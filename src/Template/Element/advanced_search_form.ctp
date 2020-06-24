@@ -59,7 +59,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <?php
                 echo $this->Search->selectLang('to', $to, [
                     'label' => '',
-                    'options' => $this->Languages->languagesArrayForPositiveLists(),
+                    'options' => $this->Languages->languagesArrayShowTranslationsIn(),
                 ]);
                 ?>
             </div>
@@ -150,7 +150,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <label for="list" flex><?= __('Belongs to list:') ?></label>
                 <div flex>
                 <?php
-                $listOptions = $this->Lists->listsAsSelectable($searchableLists);
+                $listOptions = $this->Lists->listsAsSelectable($searchableLists->toList());
                 echo $this->Form->input('list', [
                     'class' => 'list-select',
                     'label' => '',
@@ -214,10 +214,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="param" layout="<?= $layout ?>" layout-align="center">
                     <label for="trans-to" flex><?= __('Language:') ?></label>
                     <?php
-                    echo $this->Search->selectLang('trans_to', $trans_to, array(
-                        'label' => '',
-                        'options' => $this->Languages->getSearchableLanguagesArray(),
-                    ));
+                    echo $this->Search->selectLang('trans_to', $trans_to, ['label' => '']);
                     ?>
                 </div>
 

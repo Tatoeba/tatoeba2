@@ -118,7 +118,7 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testDeleteUserLanguage_failsBecauseUnknownId() {
-        $result = $this->UsersLanguages->deleteUserLanguage(2, 4);
+        $result = $this->UsersLanguages->deleteUserLanguage(9999999, 4);
         $this->assertFalse($result);
     }
 
@@ -145,13 +145,15 @@ class UsersLanguagesTableTest extends TestCase {
 
     function testGetNumberOfUsersForEachLanguage() {
         $result = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
-        $this->assertEquals(1, count($result));
+        $this->assertEquals(2, count($result));
     }
 
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = Time::now();
+        $now = new Time('2020-01-02 03:04:05');
         Time::setTestNow($now);
+
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
             100
@@ -159,5 +161,8 @@ class UsersLanguagesTableTest extends TestCase {
         $returned = $this->UsersLanguages->get($added->id);
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
+
+        Time::setTestNow();
+        I18n::setLocale($prevLocale);
     }
 }

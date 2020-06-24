@@ -310,7 +310,7 @@ class ListsHelper extends AppHelper
         // TODO onChange should be defined in a separate js file
         echo $this->Form->select(
             "translationLangChoice",
-            $this->Languages->languagesArrayForPositiveLists(),
+            $this->Languages->languagesArrayShowTranslationsIn(),
             array(
                 "value" => $translationsLang,
                 "onchange" => "$(location).attr('href', '".$path."' + this.value);",

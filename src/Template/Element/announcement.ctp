@@ -57,30 +57,27 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     echo $this->Form->end();
 }
 
+if ($this->Announcement->isDisplayed()) {
+    if ($warning = $this->Announcement->shutdownWarning()) {
+        echo $this->Html->div('maintenance', $warning);
+    } else {
+        $isDisplayingAnnouncement = true;
+        $announcementId = 'maintenance-2020-06-07';
+        $announcementText = $this->Html->tag('div', format(__(
+            'Tatoeba will be unavailable this Sunday (June 7) from 2am to 5am UTC for <a href="{}">maintenance</a>.'
+        ), 'https://blog.tatoeba.org/2020/06/tatoeba-scheduled-maintenance.html'));
 
-if (Configure::read('Announcement.enabled')) {
-    $isDisplayingAnnouncement = true;
-    $announcementId = 'coding-event-2020';
-    $announcementText = $this->Html->tag('strong', __('Tatoeba coding event'));
-    $announcementText .= $this->Html->tag('p', format(__(
-        'In order to get more developers involved in Tatoeba and have some fun at the same time, we are organizing a coding event. '.
-        'If this sounds interesting, please fill up <a href="{}">our survey</a>.'
-    ), 'https://forms.gle/wyLqhcyLZxkiqn1WA'));
-    $announcementText .= $this->Html->tag('p', format(__(
-        'Until then, if you wish to get involved, please read our <a href="{}">guide for contributing as a developer</a> '.
-        'or just <a href="{}">contact us</a>. We are an open source project and we welcome everyone!'
-    ), 'https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer', $this->Url->build(['controller' => 'pages', 'action' => 'contact'])));
+        $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
+        $content = $this->Html->div('content', $announcementText);
 
-    $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
-    $content = $this->Html->div('content', $announcementText);
-
-    echo $this->Html->div(
-        'announcement',
-        $closeButton . $content,
-        array(
-            'data-announcement-id' => $announcementId
-        )
-    );
+        echo $this->Html->div(
+            'announcement',
+            $closeButton . $content,
+            array(
+                'data-announcement-id' => $announcementId
+            )
+        );
+    }
 }
 
 if (Configure::read('Tatoeba.devStylesheet')) {

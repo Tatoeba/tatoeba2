@@ -108,17 +108,17 @@ class TagsTable extends Table
             function ($entity) use ($newTag) { return $newTag; }
         );
 
-        if ($tag && !isset($tag->nbrOfSentences)) {
+        if ($tag) {
             $event = new Event('Model.Tag.tagAdded', $this, ['tagName' => $tag->name]);
             $this->getEventManager()->dispatch($event);
-        }
 
-        if ($tag && $sentenceId != null) {
-            $tag->link = $this->TagsSentences->tagSentence(
-                $sentenceId,
-                $tag->id,
-                $userId
-            );
+            if ($sentenceId != null) {
+                $tag->link = $this->TagsSentences->tagSentence(
+                    $sentenceId,
+                    $tag->id,
+                    $userId
+                );
+            }
         }
 
         return $tag;

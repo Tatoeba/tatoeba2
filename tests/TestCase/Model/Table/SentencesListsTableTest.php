@@ -479,8 +479,8 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals(count($ids), count($translations));
     }
 
-    function testIsSearchableList_isSearchable() {
-        $result = $this->SentencesList->isSearchableList(1);
+    function testIsSearchableList_public_asGuest() {
+        $result = $this->SentencesList->isSearchableList(1, null);
         $expected = [
             'id' => 1,
             'user_id' => 7,
@@ -489,17 +489,30 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals($expected, $result->toArray());
     }
 
-    function testIsSearchableList_isNotSearchable() {
-        CurrentUser::store(null);
-        $result = $this->SentencesList->isSearchableList(3);
+    function testIsSearchableList_private_asOwner() {
+        $result = $this->SentencesList->isSearchableList(3, 7);
+        $expected = [
+            'id' => 3,
+            'user_id' => 7,
+            'name' => 'Private list'
+        ];
+        $this->assertEquals($expected, $result->toArray());
+    }
+
+    function testIsSearchableList_private_asGuest() {
+        $result = $this->SentencesList->isSearchableList(3, null);
         $this->assertNull($result);
     }
 
     function testCreateList_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->SentencesList->createList('arabic', 1);
         $returned = $this->SentencesList->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 }

@@ -46,9 +46,11 @@ $tagsIndexUrl = $this->Url->build([
 </div>
 
 <div id="main_content">
-    <div class="section">
-        <h2>
-        <?php
+<section class="md-whiteframe-1dp">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2 flex>
+            <?php
             $n = $this->Paginator->param('count');
             echo format(
                 __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
@@ -57,8 +59,14 @@ $tagsIndexUrl = $this->Url->build([
                     'n' => $this->Number->format($n)
                 )
             );
-        ?>
-        </h2>
+            ?>
+            </h2>
+            
+            <?= $this->element('sentences/expand_all_menus_button'); ?>
+        </div>
+    </md-toolbar>
+
+    <md-content>
 
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?></strong>
@@ -110,5 +118,6 @@ $tagsIndexUrl = $this->Url->build([
 
         <?php $this->Pagination->display(); ?>
         
-    </div>
+    </md-content>
+</section>
 </div>

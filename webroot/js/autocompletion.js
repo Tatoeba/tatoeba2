@@ -51,7 +51,7 @@ function sendToAutocomplete() {
     var rootUrl = get_tatoeba_root_url();
     if ( tag != previousText) {
         $.get(
-            rootUrl + "/autocompletions/request/" + tag,
+            rootUrl + "/tags/autocomplete/" + encodeURIComponent(tag),
             function(data) {
                 suggestShowResults(data);
             }
@@ -69,49 +69,51 @@ function suggestSelect(suggestionStr) {
     return false;
 }
 /**
- * transform the xml result into html content
+ * transform the json result into html content
  */
-function suggestShowResults(xmlDocResults) {
+function suggestShowResults(suggestions) {
     // we remove the old one
     removeSuggestList();
-    suggestions = xmlDocResults.getElementsByTagName('item');
-
-    if (suggestions.length == 0) {
+    if (suggestions.allTags.length == 0) {
         return;
     }
-    suggestLength = suggestions.length;
+
+    suggestLength = suggestions.allTags.length;
+    isSuggestListActive = true;
 
     var ul = document.createElement("ul");
     $("#autocompletionDiv").append(ul);
-    isSuggestListActive = true;
-    for (var i in suggestions) {
-        // for some weird reason the last element in suggestion is the number
-        // of element in the array Oo
-        // and even a function oO wow we're leaving in a strange world .... 
-        if (!isNaN(parseInt(suggestions[i])) || $.isFunction(suggestions[i])) {
-            continue;
-        }
-        suggestion = suggestions[i].firstChild.data;
+    suggestions.allTags.forEach(function(suggestion, index) {
+        var text = document.createTextNode(suggestion.name + " (" + suggestion.nbrOfSentences + ")");
+
+        var link = document.createElement("a");
+        link.id = "suggestedItem" + index;
+        link.dataset.tagName = suggestion.name;
+        link.setAttribute("onclick", "suggestSelect(this.dataset.tagName)");
+        link.style = "color:black";
+        link.appendChild(text);
+
         var li = document.createElement("li");
-        li.innerHTML = "<a id='suggestItem" + i + "' onclick='suggestSelect(this.innerHTML)' style='color:black;'>"+
-            suggestion +
-        "</a>";
+        li.appendChild(link);
+
         ul.appendChild(li);
-    }
+    });
 }
 
 /**
  *
  */
 function changeActiveSuggestion(offset) {
-    $("#suggestItem"+currentSuggestPosition % suggestLength).removeClass("selected");
-    currentSuggestPosition += offset;
+    $("#suggestedItem"+currentSuggestPosition).removeClass("selected");
+    currentSuggestPosition = (currentSuggestPosition + offset) % suggestLength;
     if (currentSuggestPosition < 0) {
         currentSuggestPosition = suggestLength - 1;
     }
-    var selectedItem = $("#suggestItem"+currentSuggestPosition % suggestLength);
-    selectedItem.addClass("selected");
-    suggestSelect(selectedItem[0].innerHTML);
+    var selectedItem = $("#suggestedItem"+currentSuggestPosition);
+    if (selectedItem.length > 0) {
+        selectedItem.addClass("selected");
+        suggestSelect(selectedItem[0].dataset.tagName);
+    }
 } 
 
 /**
@@ -126,13 +128,6 @@ function removeSuggestList() {
 
 $(document).ready(function()
 {
-
-
-    // it desactivates browsers autocompletion
-    // TODO: it's not something in the standard, so if you 
-    // know a standard way to do this ...
-    $("#TagTagName").attr("autocomplete","off");
-
     $("#TagTagName").blur(function() {
         setTimeout(function() {
         removeSuggestList()},
@@ -143,12 +138,18 @@ $(document).ready(function()
     $("#TagTagName").keyup(function(e){
         switch(e.keyCode) {
             case 38: //up
-                changeActiveSuggestion(-1);
+                if (isSuggestListActive) {
+                    changeActiveSuggestion(-1);
+                }
                 break;
             case 40://down
-                changeActiveSuggestion(1);
+                if (isSuggestListActive) {
+                    changeActiveSuggestion(1);
+                }
                 break;
             case 27: //escape
+            case 37: //left
+            case 39: //right
                 removeSuggestList();
                 break;
             default: 
@@ -159,14 +160,4 @@ $(document).ready(function()
         }
  
     });
-
-    $("#TagAddTagPostForm").submit(function(){
-        if (isSuggestListActive) {
-            var text = $("#suggestItem"+currentSuggestPosition).html()
-            $("#TagTagName").val(text);
-            removeSuggestList(); 
-            return false;
-        }
-    });
-       
 });

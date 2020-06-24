@@ -27,7 +27,7 @@
 
 use Cake\Core\Configure;
 
-$searchQuery = h(str_replace('{{', '\{\{', $searchQuery));
+$searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
 ?>
 
 <md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
@@ -80,7 +80,7 @@ echo $this->Form->create(
                    type="search"
                    name="query"
                    ng-model="ctrl.searchQuery"
-                   ng-init="ctrl.searchQuery = '<?= $searchQuery ?>'"
+                   ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
                    accesskey="4"
                    lang=""
                    dir="auto"
@@ -100,7 +100,8 @@ echo $this->Form->create(
                     'id' => 'SentenceFrom',
                     'name' => 'from',
                     'selectedLanguage' => $selectedLanguageFrom,
-                    'languages' => $this->Search->getLangs(),
+                    /* @translators: option used in language selection dropdowns in top search bar */
+                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langFromApi'
                 )
             );
@@ -123,7 +124,8 @@ echo $this->Form->create(
                     'id' => 'SentenceTo',
                     'name' => 'to',
                     'selectedLanguage' => $selectedLanguageTo,
-                    'languages' => $this->Search->getLangs(),
+                    /* @translators: option used in language selection dropdowns in top search bar */
+                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langToApi'
                 )
             );

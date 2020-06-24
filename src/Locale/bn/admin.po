@@ -5,15 +5,16 @@
 # 
 # Translators:
 # gillux, 2018
+# Tanay Banerjee <tanaybanerjee2006@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-16 13:47+0800\n"
+"POT-Creation-Date: 2020-06-04 23:48+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: gillux, 2018\n"
+"Last-Translator: Tanay Banerjee <tanaybanerjee2006@gmail.com>, 2020\n"
 "Language-Team: Bengali (https://www.transifex.com/tatoeba/teams/28284/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,52 +24,58 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "অকার্যকর ফাইল “{file}” উপেক্ষা করা হলো।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
+"“{file}” ফাইলটিকে আমদানি করার উদ্দেশ্য প্রয়োজনীয় “{dir}” ডিরেক্টরিটি তৈরি "
+"করতে ব্যর্থ।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "“{file}” ফাইলটিকে “{dir}” ডিরেক্টরিটিতে অনুলিপি করতে ব্যর্থ।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"ডাটাবেসের ভিতরে {sentenceId} বাক্যটির অডিও “{author}”-কে নির্ধারণ করতে "
+"অক্ষম। নিশ্চিত করুন যে এটি একটি বৈধ ব্যবহারকারীর নাম।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"“{file}” ফাইলটি সফলভাবে আমদানি করা হয়েছিল কিন্তু আমদানি ডিরেক্টরি থেকে "
+"অপসারণ করা যায়নি।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr ""
+msgstr "রেকর্ডিং আমদানি"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
-msgstr ""
+msgstr "বিবরণী আমদানি"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "আমদানির সময় নিম্নলিখিত ত্রুটিগুলি ঘটেছে।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr ""
+msgstr "ফাইল সনাক্ত করা হয়েছে"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
-msgstr ""
+msgstr "ফাইলের নাম"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
-msgstr ""
+msgstr "বাক্যের আইডি"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "Language"
@@ -76,98 +83,98 @@ msgstr "ভাষা"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
 msgid "Already has audio"
-msgstr ""
+msgstr "অডিও পূর্বেই উপস্থিত"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
-msgstr ""
+msgstr "আমদানি করা যেতে পারে"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
-msgstr ""
+msgstr "প্রযোজ্য নয়"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
-msgstr ""
+msgstr "অকার্যকর"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
 msgid "Yes"
-msgstr ""
+msgstr "হ্যাঁ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
 msgid "No"
-msgstr ""
+msgstr "না"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "আমদানি ডিরেক্টরিতে কোনও ফাইল সনাক্ত করা যায়নি।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
 msgid "Import"
-msgstr ""
+msgstr "আমদানি"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
 msgid "Enabled"
-msgstr ""
+msgstr "সক্রিয়"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
-msgstr ""
+msgstr "প্রণেতা"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
-msgstr ""
+msgstr "জমা দিন"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
-msgstr ""
+msgstr "শুদ্ধি"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
-msgstr ""
+msgstr "পরিবর্তন করুন"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
-msgstr ""
+msgstr "বাক্য আমদানি করুন"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr ""
+msgstr "একক বাক্যগুলি"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
-msgstr ""
+msgstr "বাক্যগুলির ভাষা:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr ""
+msgstr "ফাইল:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "সাংখ্যিক ব্যবহারকারী আইডি:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
 msgid "import"
-msgstr ""
+msgstr "আমদানি"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr ""
+msgstr "বাক্য এবং অনুবাদ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
-msgstr ""
+msgstr "অনুবাদগুলির ভাষা:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
@@ -175,7 +182,7 @@ msgstr "মুছে ফেলুন"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "ব্যবহারকারী #{number}-কে অপসারণ করার ব্যাপারে আপনি নিশ্চিত?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
@@ -187,7 +194,7 @@ msgstr "প্রোফাইল"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr ""
+msgstr "ব্যবহারকারী সম্পাদন"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"

@@ -66,7 +66,7 @@ class LinksController extends AppController
                 'delete'
             ]);
         }
-
+        
         return parent::beforeFilter($event);
     }
 
@@ -81,6 +81,16 @@ class LinksController extends AppController
         $this->set('message', $message);
         $this->set('langFilter', $langFilter);
         $this->render('/Sentences/translations_group');
+    }
+
+    private function _returnSentenceAndTranslations($sentenceId) {
+        $this->loadComponent('RequestHandler');
+        $this->loadModel('Sentences');
+        $translationLang = $this->request->getQuery('translationLang');
+        $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
+        $this->set('sentence', $sentence);
+        $this->set('_serialize', ['sentence']);
+        $this->RequestHandler->renderAs($this, 'sentences_json');
     }
 
     /**
@@ -114,7 +124,10 @@ class LinksController extends AppController
 
         $this->set('saved', $saved);
 
-        if ($this->request->is('ajax')) {
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->_returnSentenceAndTranslations($sentenceId);
+        } else if ($this->request->is('ajax')) {
             if (isset($this->request->data['returnTranslations'])
                 && (bool)$this->request->data['returnTranslations'])
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
@@ -155,7 +168,10 @@ class LinksController extends AppController
 
         $this->set('saved', $saved);
 
-        if ($this->request->is('ajax')) {
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->_returnSentenceAndTranslations($sentenceId);
+        } else if ($this->request->is('ajax')) {
             if (isset($this->request->data['returnTranslations'])
                 && (bool)$this->request->data['returnTranslations'])
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);

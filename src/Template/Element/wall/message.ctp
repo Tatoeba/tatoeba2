@@ -120,7 +120,7 @@ $canReply = false;
         <?php } ?>
     </md-card-content>
 
-    <?php if (count($children) > 0) { ?>
+    <?php if (!is_null($children) && count($children) > 0) { ?>
         <md-button ng-click="vm.expandOrCollapse(<?= $message->id ?>)" ng-cloak>
             <md-icon>{{vm.hiddenReplies[<?= $message->id ?>] ? 'expand_more' : 'expand_less'}}</md-icon>
             <span ng-if="!vm.hiddenReplies[<?= $message->id ?>]">

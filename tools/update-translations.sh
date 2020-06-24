@@ -46,13 +46,6 @@ pull_translations() {
   fi
 }
 
-compile_po_files() {
-  echo "Compiling PO files..."
-  for file in src/Locale/*/*.po; do
-    msgfmt -o ${file%po}mo "$file"
-  done
-}
-
 remove_cakephp_cached_translation() {
   echo "Cleaning CakePHP cache..."
   find ./tmp/cache/persistent/ -type f \! -name empty \! -name 'myapp_cake_core_translations_cake_*' -exec rm -f {} \;
@@ -69,7 +62,6 @@ fi
 
 check_prerequistes
 pull_translations $pull_all
-compile_po_files
 remove_cakephp_cached_translation
 
 exit 0

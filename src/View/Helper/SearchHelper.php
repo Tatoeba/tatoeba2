@@ -28,23 +28,9 @@ class SearchHelper extends AppHelper
 
     private $langs;
 
-    public function getLangs() {
-        $restrictSearchLangsEnabled = $this->request->getSession()->read('restrict_search_langs_enabled');
-        if ($restrictSearchLangsEnabled) {
-            $langArray = $this->Languages->profileLanguagesArray(false, false);
-            $currentUserLanguages = CurrentUser::getProfileLanguages();
-        }
-
-        if (!$restrictSearchLangsEnabled || empty($currentUserLanguages)) {
-            return $this->Languages->getSearchableLanguagesArray();
-        } else {
-            return $langArray;
-        }
-    }
-
     public function selectLang($fieldName, $selectedLanguage, $options = array()) {
         if (!$this->langs) {
-            $this->langs = $this->getLangs();
+            $this->langs = $this->Languages->getSearchableLanguagesArray();
         }
 
         $options = array_merge(

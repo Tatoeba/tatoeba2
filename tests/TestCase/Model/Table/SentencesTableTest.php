@@ -370,8 +370,32 @@ class SentencesTableTest extends TestCase {
 			->where($conditions)
 			->first();
 
-		$this->assertEquals(count($transcrBefore), count($transcrAfter));
 		$this->assertNotEquals($transcrBefore, $transcrAfter);
+	}
+
+	function assertLinksLanguage($sentenceId, $prefix, $expectedLang) {
+		$expectedLink = ["${prefix}_lang" => $expectedLang];
+		$links = $this->Sentence->Links
+			->find()
+			->select(["${prefix}_lang"])
+			->where(["${prefix}_id" => $sentenceId])
+			->enableHydration(false)
+			->all();
+		foreach ($links as $link) {
+			$this->assertEquals($expectedLink, $link);
+		}
+	}
+
+	function testSentenceFlagEditionUpdatesFlagsInLinksTable() {
+		$user = $this->Sentence->Users->get(1);
+		CurrentUser::store($user);
+		$cmnSentenceId = 2;
+		$newLang = 'por';
+
+		$this->Sentence->changeLanguage($cmnSentenceId, $newLang);
+
+		$this->assertLinksLanguage($cmnSentenceId, 'sentence',    $newLang);
+		$this->assertLinksLanguage($cmnSentenceId, 'translation', $newLang);
 	}
 
 	function testSentenceFlagEditionGeneratesTranscriptions() {
@@ -1184,12 +1208,22 @@ class SentencesTableTest extends TestCase {
 		$this->assertFalse(isset($translationAudio->sentence_id));
 	}
 
+	function testGetSentenceWith_noTranslations() {
+		$sentence = $this->Sentence->getSentenceWith(1, ['translations' => false]);
+		$expected = [0 => [], 1 => []];
+		$this->assertEquals($expected, $sentence->translations);
+	}
+
     function testSaveNewSentence_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->Sentence->saveNewSentence('test', 'eng', 1);
         $returned = $this->Sentence->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 
     function testSaveNewSentence_correctHashStored() {

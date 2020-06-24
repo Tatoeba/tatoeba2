@@ -723,13 +723,23 @@ rt {
  }
 
 .language-icon {
-    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
+    filter: drop-shadow(1px 1px 1.33px rgba(204,204,204,1));
 }
 
 
 /*
  *
  */
+.maintenance {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    padding: 20px;
+    color: #ffffff;
+    background: #d11;
+    border-radius: 5px;
+    font-size: 20px;
+}
 .announcement {
     display: none;
     margin: 20px;

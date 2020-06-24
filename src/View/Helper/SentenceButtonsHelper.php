@@ -233,9 +233,9 @@ class SentenceButtonsHelper extends AppHelper
             if (CurrentUser::isAdmin() || CurrentUser::isModerator()) {
                 $langArray = $this->Languages->otherLanguagesArray();
             } else {
-                $langArray = $this->Languages->profileLanguagesArray(
-                    false, true
-                );
+                $langArray = $this->Languages->profileLanguagesArray(false, [
+                    '' => __('other language'),
+                ]);
             }
             ?>
 

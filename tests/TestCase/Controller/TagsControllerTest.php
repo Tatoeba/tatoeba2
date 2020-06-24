@@ -51,6 +51,21 @@ class TagsControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
+    public function ajaxAccessesProvider() {
+        return [
+            // url; user; is accessible or redirection url
+            [ '/eng/tags/autocomplete/foobar', null, true ],
+            [ '/eng/tags/autocomplete/foobar', 'contributor', true ],
+        ];
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
     public function add_tag_post() {
         $this->ajaxPost('/fra/tags/add_tag_post', [
             'sentence_id' => 18,

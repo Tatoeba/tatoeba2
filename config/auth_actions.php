@@ -6,7 +6,6 @@ $config = [
     'public_actions' => [
         'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
         'audio' => [ 'of', 'index' ],
-        'autocompletions' => [ '*' ],
         'reviews' => [ 'of' ],
         'contributions' => [ '*' ],
         'pages' => [ '*' ],
@@ -39,7 +38,8 @@ $config = [
         'tags' => [
             'show_sentences_with_tag',
             'view_all',
-            'search'
+            'search',
+            'autocomplete'
         ],
         'tools' => [ '*' ],
         'transcriptions' => [ 'view', 'of' ],

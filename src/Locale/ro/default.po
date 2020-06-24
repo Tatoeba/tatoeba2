@@ -5,14 +5,15 @@
 # Translators:
 # Elena Cristina <elenacristina654321@gmail.com>, 2020
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
+# gillux, 2020
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2020
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-16 13:47+0800\n"
-"PO-Revision-Date: 2020-04-19 09:03+0000\n"
+"POT-Creation-Date: 2020-06-04 23:48+0800\n"
+"PO-Revision-Date: 2020-05-31 16:35+0000\n"
 "Last-Translator: Elena Cristina <elenacristina654321@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/tatoeba/tatoeba_website/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -39,12 +40,12 @@ msgid "Your audio settings have been saved."
 msgstr "Setările dumneavoastră audio au fost salvate."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L548
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr "O eroare s-a produs în timpul salvării. Vă rugăm să încercaţi din nou sau contactaţi-ne pentru a raporta problema."
+msgstr "O eroare s-a produs în timpul salvării. Vă rugăm să încercați din nou sau contactați-ne pentru a raporta problema."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L75
 msgid "Tatoeba, new password"
@@ -58,23 +59,23 @@ msgstr "Vă rugăm să așteptați până când lista se va actualiza."
 msgid "A license switch is already in progress."
 msgstr "O schimbare de licență este deja în curs."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
 msgstr "Propozițiile #{firstNumber} și #{secondNumber} sunt acum traduceri directe una pentru cealaltă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
 msgstr "Propozițiile #{firstNumber} și #{secondNumber} nu mai sunt traduceri directe una pentru cealaltă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "S-a produs o eroare la întreruperea legăturii. Vă rugăm să încercați din nou sau contactaţi-ne pentru a raporta problema."
+msgstr "S-a produs o eroare la întreruperea legăturii. Vă rugăm să încercați din nou sau contactați-ne pentru a raporta problema."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
@@ -83,7 +84,7 @@ msgstr "Dosarul „{name}” a fost golit."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
-msgstr "Nu există nicio propoziţie cu numărul de ordine {number}"
+msgstr "Nu există nicio propoziție cu id-ul {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
@@ -105,84 +106,23 @@ msgstr "Dacă ați primit acest mesaj din greșeală, vă rugăm să contactați
 msgid "Changes to your comment have been saved."
 msgstr "Modificările la comentariul dumneavoastră au fost salvate."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L289
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L269
 msgid "The sentence #{id} has been deleted."
 msgstr "Propoziția #{id} a fost ștearsă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L275
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Eroare: propoziția #{id} nu a putut fi ștearsă."
 
-#. This string will be preceded by “Warning: the
-#. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L533
-msgid ""
-"“owned by a self-identified native”, because “sentence language” is set to "
-"“any”"
-msgstr "„Deținută de un nativ autoidentificat”, deoarece câmpul „limba propoziției” este setat pe „oricare”"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L577
-msgid ""
-"“translation is orphan”, because “translation owner” is set to a username"
-msgstr "„propoziția este orfană” deoarece „proprietarul propoziției” este setat la un nume de utilizator"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L586
-msgid "“translation owner”, because “{username}” is not a valid username"
-msgstr "„proprietarul traducerii” deoarece „{username}” nu este un nume de utilizator valid"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L628
-msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr "„propoziția este orfană” deoarece „proprietarul propoziției” este setat la un nume de utilizator"
-
-#. This string will be preceded by “Warning:
-#. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L637
-msgid "“sentence owner”, because “{username}” is not a valid username"
-msgstr "„proprietarul propoziției” deoarece „{username}” nu este un nume de utilizator valid"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L674
-msgid "“tagged as {tagName}”, because it's an invalid tag name"
-msgstr "“etichetat ca {tagName}”, pentru că numele de etichetă nu este valid"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L705
-msgid ""
-"“belongs to list number {listId}”, because list {listId} is private or does "
-"not exist"
-msgstr "„Aparține listei numărul {listId}”, pentru că {listId} este privată sau nu există"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L743
-msgid ""
-"“owned by a self-identified native”, because the criterion “owned by: "
-"{username}” is set whereas he or she is not a self-identified native in the "
-"language you're searching into"
-msgstr "„deținută de un nativ autoidentificat” deoarece criteriul „deținută de: {username}” este stabilit având în vedere că el sau ea nu este un nativ autoidentificat în limba în care căutați"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1135
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L873
 msgid "You are not allowed to change the license of this sentence."
 msgstr "Nu aveți voie să schimbați licența acestei propoziții."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L880
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr "Licența propoziției a fost schimbată cu “{newLicense}”."
+msgstr "Licența propoziției a fost schimbată cu „{newLicense}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L885
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "Nu se poate schimba licența cu  „{newLicense}” deoarece:"
 
@@ -194,8 +134,8 @@ msgstr "Nu aveți permisiunea de a vizualiza această listă."
 msgid "The sentence could not be added to the list."
 msgstr "Propoziția nu a putut fi adăugată în listă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L479
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L511
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L495
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L527
 msgid "You do not have permission to download this list."
 msgstr "Nu aveți permisiunea de a descărca această listă."
 
@@ -205,74 +145,74 @@ msgid ""
 "deleted or does not exist."
 msgstr "Nu există propoziții pentru această etichetă. Eticheta pe care o căutați a fost ștearsă sau nu există."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L82
 msgid "No user with this username: {username}"
 msgstr "Nu există niciun utilizator cu acest nume de utilizator: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L156
-msgid "Failed to upload image"
-msgstr " Imaginea nu a putut fi încărcată."
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
+msgid "Failed to upload image"
+msgstr "Imaginea nu a putut fi încărcată."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L174
 msgid "Please choose an image that does not exceed 1 MB."
-msgstr "Vă rugăm să alegeţi o imagine care nu depăşeşte 1 MB."
+msgstr "Vă rugăm să alegeți o imagine care nu depășește 1 MB."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L185
 msgid "Please choose GIF, JPEG or PNG image format."
-msgstr "Vă rugăm să alegeţi formatele de imagini GIF, JPEG sau PNG."
+msgstr "Vă rugăm să alegeți formatele de imagini GIF, JPEG sau PNG."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L215
 msgid "Error while saving."
 msgstr "Eroare în timpul salvării."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L324
 msgid "Profile saved."
 msgstr "Profil salvat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L335
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Adresa de e-mail nu a putut fi modificată."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L376
 msgid "That email address already exists. Please try another."
 msgstr "Această adresă de e-mail există deja. Vă rugăm să introduceți alta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L425
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "Data introdusă nu este validă. Vă rugăm să încercați din nou."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L474
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "Data de naștere introdusă este incompletă. Date de naștere acceptate: data completă, luna și ziua, anul și luna, numai anul."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L536
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
 msgid "Your settings have been saved."
-msgstr "Opţiunile dumneavoastră au fost salvate."
+msgstr "Opțiunile dumneavoastră au fost salvate."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L605
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L614
 msgid "New password cannot be empty."
 msgstr " Câmpul pentru parola nouă nu poate fi lăsat necompletat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L608
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
 msgid "New passwords do not match."
 msgstr "Parolele noi nu se potrivesc."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L615
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
 msgid "New password has been saved."
 msgstr "Noua parolă a fost salvată."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L626
 msgid "An error occurred while saving."
 msgstr "O eroare s-a produs în timpul salvării."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L622
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L631
 msgid "Password error. Please try again."
-msgstr "Eroare parolă. Vă rugăm să reîncercaţi."
+msgstr "Eroare parolă. Vă rugăm să reîncercați."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L730
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
 msgstr "Ați acceptat noile condiții de utilizare."
 
@@ -286,7 +226,7 @@ msgstr "Acest cont a fost marcat ca inactiv. Nu vă mai puteți autentifica cu a
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr "Acest cont a fost marcat ca spamer. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un administrator dacă aceasta este o greșeală."
+msgstr "Acest cont a fost marcat ca spamer. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un admin dacă aceasta este o greșeală."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
@@ -307,7 +247,7 @@ msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
-msgstr "Pentru început, vă recomandăm să mergeți la <a href='{url}'>profilul</a> dumneavoastră ca să ne informați ce limbi vorbiți sau de care sunteți interesat."
+msgstr "Pentru început, vă recomandăm să mergeți la <a href='{url}'>profilul</a> dumneavoastră pentru a ne oferi informații despre limbile străine pe care le vorbiți sau de care sunteți interesat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L349
 msgid "Please fix the form errors."
@@ -323,7 +263,7 @@ msgstr "Este posibil să fie nevoie să verificați folderul de spam pentru a g�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L398
 msgid "There is no registered user with this email address: "
-msgstr "Nu există niciun utilizator înregistrat cu această parolă: "
+msgstr "Nu există niciun utilizator înregistrat cu această adresă de e-mail: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L420
 msgid "No user with this username: "
@@ -359,7 +299,7 @@ msgid "Unknown number of sentences"
 msgstr "Număr necunoscut de propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
@@ -378,6 +318,67 @@ msgstr "Nu aveți permisiunea de a edita acest mesaj."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L274
 msgid "The message you are trying to view does not exist or has been deleted."
 msgstr "Mesajul pe care încercați să îl vizualizați nu există sau a fost șters."
+
+#. This string will be preceded by “Warning:
+#. the following criteria have been ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L101
+msgid "“sentence owner”, because “{username}” is not a valid username"
+msgstr "„proprietarul propoziției” deoarece „{username}” nu este un nume de utilizator valid"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L141
+msgid "“translation owner”, because “{username}” is not a valid username"
+msgstr "„proprietarul traducerii” deoarece „{username}” nu este un nume de utilizator valid"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L192
+msgid "“tagged as {tagName}”, because it's an invalid tag name"
+msgstr "„etichetat ca {tagName}”, pentru că numele de etichetă nu este valid"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L209
+msgid ""
+"“belongs to list number {listId}”, because list {listId} is private or does "
+"not exist"
+msgstr "„Aparține listei numărul {listId}” pentru că {listId} este privată sau nu există"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L277
+msgid "“sentence is orphan”, because “sentence owner” is set to a username"
+msgstr "„propoziția este orfană” deoarece „proprietarul propoziției” este setat la un nume de utilizator"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L288
+msgid ""
+"“translation is orphan”, because “translation owner” is set to a username"
+msgstr "„propoziția este orfană” deoarece „proprietarul propoziției” este setat la un nume de utilizator"
+
+#. This string will be preceded by “Warning: the
+#. following criteria have been ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L298
+msgid ""
+"“owned by a self-identified native”, because “sentence language” is set to "
+"“any”"
+msgstr "„Deținută de un nativ autoidentificat” deoarece câmpul „limba propoziției” este setat pe „oricare”"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L320
+msgid ""
+"“owned by a self-identified native”, because the criterion “owned by: "
+"{username}” is set whereas he or she is not a self-identified native in the "
+"language you're searching into"
+msgstr "„deținută de un nativ autoidentificat” deoarece criteriul „deținută de: {username}” este setat dat fiind că el sau ea nu este un nativ autoidentificat în limba în care căutați"
 
 #. This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
@@ -438,18 +439,16 @@ msgstr "Probleme de licențiere"
 msgid "{language}"
 msgstr "{language}"
 
-#. option used in language selection dropdowns such as "Show translations in"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L186
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L154
 msgid "All languages"
 msgstr "Toate limbile"
 
 #. dropdown option for unknown language
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L57
 msgid "unknown"
-msgstr "necunoscut(ă)"
+msgstr "necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L228
@@ -487,7 +486,7 @@ msgstr "Această transcriere a fost generată de o aplicație software"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
-msgstr "Licențe de propoziții ce trebuie schimate cu CC0"
+msgstr "Licențe de propoziții ce trebuie schimbate cu CC0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L125
 msgid "List {listName}"
@@ -521,49 +520,41 @@ msgstr "listă fără nume"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L129
 msgid "This is not a valid license."
 msgstr "Aceasta nu este o licență validă."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L117
 msgid "This sentence is already under that license."
 msgstr "Această propoziție se află deja sub licența respectivă."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L196
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Propoziția trebuie să fie originală (nu derivată din traducere)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L204
 msgid "You're not the owner of this sentence."
 msgstr "Nu sunteți proprietarul acestei propoziții."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L210
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L211
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Proprietarul propoziției trebuie să fie creatorul original."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L224
 msgid "You can only switch to a more permissive license."
 msgstr "Puteți schimba doar cu o licență mai permisivă."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L478
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L204
-msgid "Show 1 more translation"
-msgid_plural "Show {number} more translations"
-msgstr[0] "Afișați încă 1 traducere"
-msgstr[1] "Afișați încă {number} traduceri"
-msgstr[2] "Afișați încă {number} traduceri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -578,7 +569,7 @@ msgstr "Câmp obligatoriu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L94
 msgid "Username must be at least two characters long"
-msgstr "Numele de utilizator trebuie să aibă cel puţin două litere"
+msgstr "Numele de utilizator trebuie să aibă cel puțin două caractere"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
@@ -587,7 +578,7 @@ msgstr "Numele de utilizator trebuie să aibă cel mult 20 de caractere"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
 msgid "Username can only contain letters, numbers, or underscore"
-msgstr "Numele de utilizator poate conţine doar litere, numere şi liniuţa de subliniere"
+msgstr "Numele de utilizator poate conține doar litere, numere sau liniuța de subliniere"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L140
@@ -597,17 +588,17 @@ msgstr "Parola trebuie să aibă cel puțin 6 caractere"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L190
 msgid "Invalid email address"
-msgstr "E-mail invalid"
+msgstr "E-mailul nu este valid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L100
 msgid "Username already taken."
-msgstr "Nume de utilizator deja luat"
+msgstr "Acest nume de utilizator există deja."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L193
 msgid "Email address already used."
-msgstr "E-mail folosit deja."
+msgstr " Există deja un cont făcut cu această adresă de e-mail."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L72
 msgid "You cannot save an empty message."
@@ -629,7 +620,7 @@ msgstr "Schimbarea licenței a început pe {date} la {time} UTC."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L126
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
-msgstr[0] "Licența unei propoziții a fost schimbată cu succes. {n}"
+msgstr[0] "Licența propoziției a fost schimbată cu succes. {n}"
 msgstr[1] "Licența a {n} propoziții a fost schimbată cu succes."
 msgstr[2] "Licența a {n} propoziții a fost schimbată cu succes. "
 
@@ -661,7 +652,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr "Deci dacă doriți să ne ajutați la verificarea și corectarea propozițiilor, atunci adoptați ({adoptButton}) propozițiile „orfane” care sunt în <strong>limba dumneavoastră maternă</strong> și corectați-le dacă este necesar. Citiți <a href=\"{url}\">aici</a> pentru explicații amănunțite."
+msgstr "Deci dacă doriți să ne ajutați la verificarea și corectarea propozițiilor, atunci adoptați ({adoptButton}) propozițiile „orfane” care sunt în <strong>limba dumneavoastră maternă</strong> și corectați-le dacă este necesar. Citiți <a href=\"{url}\">aici</a> pentru explicații mai amănunțite."
 
 #. title of the help text on the Adopt sentence page
 #. / title of the help text on the Add vocabulary page
@@ -678,13 +669,13 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr "Dacă apare un alt nume de utilizator după adoptarea unei propoziţii, înseamnă că propoziția a fost adoptată de către altcineva cu puțin timp înaintea dumneavoastră. În astfel de cazuri, puteţi încerca să adoptaţi propoziţii de pe paginile următoare pentru a reduce şansele ca acest lucru să se întâmple din nou."
+msgstr "Dacă apare un alt nume de utilizator după ce adoptați o propoziție, înseamnă că propoziția a fost adoptată de către altcineva cu puțin timp înaintea dumneavoastră. În astfel de cazuri, puteți încerca să adoptați propoziții de pe paginile următoare pentru a reduce șansele ca acest lucru să se întâmple din nou."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L108
 msgid "Improve sentences"
-msgstr "Corectați propoziţii"
+msgstr "Corectați propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L61
 msgid "Related links"
@@ -714,11 +705,11 @@ msgstr "{tagCheck}: propoziția trebuie verificată."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr "{tagNNC}: propoziția trebuie verificată de un vorbitor nativ."
+msgstr "{tagNNC}: propoziția trebuie verificată de către un vorbitor nativ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr "{tagOK}: propoziția este considerată a fi corectă de cel puțin o persoană."
+msgstr "{tagOK}: propoziția este considerată a fi corectă de către cel puțin o persoană."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L102
 msgid "How to help"
@@ -746,14 +737,14 @@ msgstr "Ori de câte ori observați o posibilă greșeală, adăugați eticheta 
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr "Ori de câte ori adăugați o propoziție într-o limbă străină și nu sunteți complet siguri că este corectă, adăugați eticheta {tagNNC}."
+msgstr "Ori de câte ori adăugați o propoziție într-o limbă străină și nu sunteți complet sigur că este corectă, adăugați eticheta {tagNNC}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L126
 msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr "Ori de câte ori puteți, răsfoiți propozițiile etichetate cu {tagChange}, {tagCheck} și {tagNNC} pentru a dezbate propozițiile cu alți membri și pentru a hotârî ce e de făcut cu aceste propoziții."
+msgstr "Ori de câte ori puteți, răsfoiți propozițiile etichetate cu {tagChange}, {tagCheck} și {tagNNC} pentru a dezbate propozițiile cu alți membri și pentru a hotărî ce e de făcut cu aceste propoziții."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L135
 msgid ""
@@ -761,119 +752,126 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr "În momentul în care o propoziție a fost adusă în discuție, etichetați-o {tagOK}. În sens mai larg, puteți răsfoi și verifica propozițiile altora și le puteți eticheta cu {tagOK}. Dar faceți acest lucru doar atunci când sunteți complet sigur/ă că sunt corecte, și totodată nu folosiți eticheta la propriile propoziții."
+msgstr "În momentul în care o propoziție este adusă în discuție, etichetați-o cu {tagOK}. Mai pe larg, puteți răsfoi și verifica propozițiile altora și le puteți eticheta cu {tagOK}. Dar faceți acest lucru doar atunci când sunteți complet sigur că sunt corecte. De asemenea, nu folosiți eticheta pentru propriile propoziții."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L97
 msgid "Translate sentences"
-msgstr "Traduceți propoziţii"
+msgstr "Traduceți propoziții"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L46
+#. option used in language selection dropdown
+#. for "Not directly translated into", on Translate sentences page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L45
+msgctxt "not-directly-translated-into"
+msgid "Any language"
+msgstr "Orice limbă"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L51
 msgid "How to add a translation"
 msgstr "Cum să adăugați o traducere"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L56
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
 msgstr "După afișarea propozițiilor, faceți clic pe {translateButton} pentru a adăuga o traducere."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L66
 msgid "About translations"
 msgstr "Despre traduceri"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L68
 msgid "Good translations"
 msgstr "Traduceri bune"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L70
 msgid "We know it's difficult, but do NOT translate word for word!"
-msgstr "Ştim că este dificil, dar încercaţi să NU traduceţi cuvânt cu cuvânt!"
+msgstr "Știm că este dificil, dar încercați să NU traduceți cuvânt cu cuvânt!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L74
 msgid "Multiple translations"
 msgstr "Traduceri multiple"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L78
 msgid ""
 "If you feel there are several possible translations, you can add several "
 "translations in the same language. "
-msgstr "Dacă consoderați că există mai multe traduceri posibile, puteţi adăuga mai multe traduceri în aceeaşi limbă. "
+msgstr "Dacă considerați că există mai multe traduceri posibile, puteți adăuga mai multe traduceri în aceeași limbă. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L98
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr "Traducerea de propoziții presupune faptul că cunoașteți cel puțin două limbi. Vă rugăm să vă completați <a href=\"{}\">profilul</a> pentru a indica cel puțin două limbi."
+msgstr "Traducerea de propoziții presupune faptul că cunoașteți cel puțin două limbi. Vă rugăm să vă completați <a href=\"{}\">profilul</a> pentru a specifica cel puțin două limbi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L112
 msgid "Search for untranslated sentences"
 msgstr "Căutați propoziții netraduse"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L137
 msgid "Sentences in:"
-msgstr "Propoziţii în:"
+msgstr "Propoziții în:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L144
 msgid "Not directly translated into:"
 msgstr "Care nu sunt traduse direct în:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L160
 msgid "Best practice: translate only into your native language."
 msgstr "Cele mai bune practici: traduceți numai în limba maternă."
 
 #. field name in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L163
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L311
 msgid "Order:"
 msgstr "Ordine:"
 
 #. sort order radio option in Translate sentences page (noun)
 #. / sort order dropdown option in advanced search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L325
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L322
 msgid "Random"
-msgstr "Aleatorie"
+msgstr "Aleatoriu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L171
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L318
 msgid "Fewest words first"
 msgstr " Cu cele mai puține cuvinte mai întâi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L174
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L323
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L320
 msgid "Last modified first"
 msgstr "Ultimele modificate mai întâi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L177
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L319
 msgid "Last created first"
 msgstr "Ultimele create mai întâi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L190
 msgid "show sentences"
 msgstr "afișați propozițiile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
-msgstr "Traduceţi {language} propoziţii care aparţin lui {user}"
+msgstr "Traduceți {language} propoziții care aparțin lui {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L39
 msgid "Translate sentences that belong to {user}"
-msgstr "Traduceţi propoziţii care aparţin lui {user}"
+msgstr "Traduceți propoziții care aparțin lui {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
-msgstr "Propoziţii în {language} cu conținut audio"
+msgstr "Propoziții în {language} cu conținut audio"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L414
 msgid "Sentences with audio"
-msgstr "Propoziţii cu conținut audio"
+msgstr "Propoziții cu conținut audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L49
 msgid "There are no sentences with audio"
@@ -922,9 +920,9 @@ msgstr "Lăsați acest câmp necompletat pentru a utiliza pagina de profil."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L335
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L366
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L424
 msgid "Save"
 msgstr "Salvați"
 
@@ -933,8 +931,9 @@ msgid "{username} has not contributed any audio"
 msgstr "{username} nu a adăugat conținut audio până în prezent."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
 msgid "Activity timeline"
-msgstr "Cronologia activităţii"
+msgstr "Cronologia activității"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L64
 msgid "Activity timeline — {month} {year}"
@@ -946,7 +945,7 @@ msgstr "Statistici cu privire la numărul de contribuții din această lună."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr "Statisticile cu privire la numărul de contribuții pentru {month} {year}."
+msgstr "Statistici cu privire la numărul de contribuții pentru {month} {year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
@@ -955,9 +954,9 @@ msgstr "Data"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
-msgstr "Propoziţii adăugate"
+msgstr "Propoziții adăugate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
 msgid "Links added"
@@ -987,18 +986,18 @@ msgstr[2] ", {n} linkuri adăugate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
-msgstr "Ultimele contribuţii"
+msgstr "Ultimele contribuții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
 msgid "Latest contributions of {user}"
-msgstr "Ultimele contribuții ale {user}"
+msgstr "Ultimele contribuții ale lui {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} log entries are displayed here."
-msgstr "Doar ulimele {n} de intrări în jurnal sunt afișate aici."
+msgstr "Doar ultimele {n} de intrări în jurnal sunt afișate aici."
 
 #. section title in advanced search form
 #. / link to the user's sentences on profile page sidebar
@@ -1008,14 +1007,14 @@ msgstr "Doar ulimele {n} de intrări în jurnal sunt afișate aici."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L193
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L59
 msgid "Sentences"
-msgstr "Propoziţii"
+msgstr "Propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L41
 msgid "Words:"
 msgstr "Cuvinte:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L111
 msgid "Enter a word or a phrase"
 msgstr "Introduceți un cuvânt sau o frază"
 
@@ -1023,33 +1022,33 @@ msgstr "Introduceți un cuvânt sau o frază"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L215
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L430
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L365
 msgid "Language:"
 msgstr "Limba:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L163
 msgid "Show translations in:"
-msgstr "Afişaţi traducerile în:"
+msgstr "Afișați traducerile în:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L242
 msgid "Owner:"
 msgstr "Proprietar:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L246
 msgid "Enter a username"
 msgstr "Introduceți un nume de utilizator"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L254
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L251
 msgid "Is orphan:"
 msgstr "Este orfană:"
 
 #. dropdown option of "Is orphan" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L259
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L256
 msgctxt "orphan"
 msgid "Any"
 msgstr "Oricare"
@@ -1058,9 +1057,9 @@ msgstr "Oricare"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L129
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L260
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L280
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L299
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L257
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L296
 msgid "No"
 msgstr "Nu"
 
@@ -1068,42 +1067,42 @@ msgstr "Nu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L130
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L261
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L281
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L297
 msgid "Yes"
 msgstr "Da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L265
 msgid "Orphan sentences are likely to be incorrect."
 msgstr "E posibil ca propozițiile orfane să fie incorecte."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L102
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L274
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L271
 msgid "Is unapproved:"
 msgstr "Nu este aprobată:"
 
 #. dropdown option of "Is unapproved" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L276
 msgctxt "unapproved"
 msgid "Any"
 msgstr "Oricare"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L117
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L285
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "E posibil ca propozițiile neaprobate să fie incorecte."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L290
 msgid "Has audio:"
 msgstr "Cu conținut audio:"
 
 #. dropdown option of "Has audio" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L128
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L298
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L295
 msgctxt "audio"
 msgid "Any"
 msgstr "Oricare"
@@ -1127,7 +1126,7 @@ msgstr "Deținută de un nativ autoidentificat"
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L186
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L187
 msgid "Translations"
 msgstr "Traduceri"
 
@@ -1149,45 +1148,45 @@ msgid ""
 "criteria."
 msgstr "{action} propozițiile cu traduceri care corespund următoarelor criterii."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L222
 msgid "Link:"
 msgstr "Link:"
 
 #. dropdown option of "Link" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L228
 msgctxt "link"
 msgid "Any"
 msgstr "Oricare"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L230
 msgid "Direct"
 msgstr "Direct"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L232
 msgid "Indirect"
 msgstr "Indirect"
 
 #. section title in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L310
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L307
 msgid "Sort"
 msgstr "Sortare"
 
 #. sort order dropdown option in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L317
 msgid "Relevance"
-msgstr "Relevanţă"
+msgstr "Relevanță"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L336
 msgid "Reverse order"
-msgstr "Ordine inversă"
+msgstr "Ordine inversată"
 
 #. search form submit button (verb)
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form button in List of lists pages (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L353
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L629
@@ -1195,7 +1194,7 @@ msgctxt "button"
 msgid "Search"
 msgstr "Căutare"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L358
 msgid "More search options"
 msgstr "Mai multe opțiuni de căutare"
 
@@ -1206,38 +1205,25 @@ msgid ""
 "        If you have any question, feel free to <a href=\"{contact}\">contact us</a>."
 msgstr "Am actualizat  <a href=\"{termsOfUse}\">Termenii de utilizare</a>.\n       Prin închiderea acestui anunț, sunteți de acord cu noii Termeni de utilizare.\n       Dacă aveți întrebări, nu ezitați să <a href=\"{contact}\">ne contactați</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L64
-msgid "Tatoeba coding event"
-msgstr "Eveniment de codare Tatoeba"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L67
 msgid ""
-"In order to get more developers involved in Tatoeba and have some fun at the"
-" same time, we are organizing a coding event. If this sounds interesting, "
-"please fill up <a href=\"{}\">our survey</a>."
-msgstr "Pentru a implica mai mulți dezvoltatori în proiectul Tatoeba, dar să ne și distrăm în același timp, organizăm un eveniment de codare. Dacă vă interesează, vă rugăm să completați <a href=\"{}\">sondajul nostru</a>."
+"Tatoeba will be unavailable this Sunday (June 7) from 2am to 5am UTC for <a "
+"href=\"{}\">maintenance</a>."
+msgstr "Platforma Tatoeba va fi indisponibilă duminică (7 iunie) de la 2:00 la 5:00 UTC pentru <a href=\"{}\"> întreținere</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L70
-msgid ""
-"Until then, if you wish to get involved, please read our <a "
-"href=\"{}\">guide for contributing as a developer</a> or just <a "
-"href=\"{}\">contact us</a>. We are an open source project and we welcome "
-"everyone!"
-msgstr "Până atunci, dacă doriți să vă implicați, vă rugăm să citiți <a href=\"{}\">ghidul nostru privind contribuția ca dezvoltator</a> sau doar <a href=\"{}\">să ne contactați</a>. Suntem un proiect cu sursă deschisă și toată lumea este binevenită!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L86
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr "Atenție: acest site web este destinat testării. Tot ceea ce veți trimiteți se va pierde."
+msgstr "Atenție: acest site web este destinat testării. Tot ceea ce veți trimite se va pierde definitiv."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
-msgstr "Numărul de propoziții după limbă cu conținut audio "
+msgstr "Numărul de propoziții cu conținut audio în funcție de limbă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr "Navigaţi prin fişierele audio ale tuturor limbilor"
+msgstr "Navigați prin fișierele audio ale tuturor limbilor"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
@@ -1251,7 +1237,7 @@ msgstr "Anul"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L30
 msgid "Currently contributing"
-msgstr "Cine contribuie acum"
+msgstr "Persoane care contribuie acum"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L35
 msgid "User who did the last contribution."
@@ -1330,7 +1316,7 @@ msgstr "Ce este Tatoeba?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L69
 msgid "Contact us"
-msgstr "Contactaţi-ne"
+msgstr "Contactați-ne"
 
 #. link text to the Status page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L142
@@ -1415,7 +1401,7 @@ msgstr "Autentificare"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L99
 msgid "Username: "
-msgstr "Nume utilizator : "
+msgstr "Nume de utilizator: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L107
 msgid "Password: "
@@ -1424,7 +1410,7 @@ msgstr "Parola: "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L104
 msgid "Remember me"
-msgstr "Ţine-mă minte"
+msgstr "Ține-mă minte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L124
@@ -1434,10 +1420,10 @@ msgstr "Parolă uitată?"
 #. button to close the top-right login box (verb)
 #. / button to close the announcement about the new design (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L132
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L8
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L100
 msgid "Close"
 msgstr "Închideți"
 
@@ -1456,7 +1442,7 @@ msgstr "Scrieți"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L228
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L35
 msgid "Inbox"
-msgstr "Căsuţă poştală"
+msgstr "Căsuță poștală"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L58
@@ -1530,28 +1516,16 @@ msgstr "Salvați ciorna"
 msgid "Send"
 msgstr "Trimiteți"
 
-#. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L47
+#. random sentence block header on the home page for members
+#. / random sentence block header on the home page for guests
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L48
 msgid "Random sentence"
-msgstr "Propoziţie aleasă la întâmplare"
+msgstr "Propoziție aleatorie"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L53
 msgid "show another "
 msgstr "afișați alta"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L60
-msgid ""
-"We are starting to roll out the new design for the sentences. It is "
-"currently only used for the random sentence below. You can enable it for "
-"other pages with the option \"Display sentences with the new design\" in "
-"your Settings."
-msgstr "Lucrăm la dezvoltarea unui nou design pentru propoziții. În prezent, acesta este folosit doar pentru propoziția aleasă la întâmplare de mai jos. Puteți activa din Setări opțiunea „Afișați propoziții cu noul design” și pentru alte pagini."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L66
-msgid "Go to settings"
-msgstr "Mergeți la setări"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L65
 msgid "Advanced search"
@@ -1568,8 +1542,15 @@ msgstr "Căutare"
 msgid "From"
 msgstr "Expeditor"
 
+#. option used in language selection dropdowns in top search bar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L128
+msgctxt "searchbar"
+msgid "Any language"
+msgstr "Orice limbă"
+
 #. translation language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L118
 msgctxt "language"
 msgid "To"
 msgstr "Destinatar"
@@ -1595,7 +1576,7 @@ msgstr "Redați conținutul audio înregistrat de {author}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L202
 msgid "No audio for this sentence. Click to learn how to contribute."
-msgstr "Nu există conținut audio pentru această propoziție. Faceți clic pentru a afla cum să contribuiți."
+msgstr "Nu există conținut audio pentru această propoziție. Faceți clic pentru a afla cum puteți contribui."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L20
 msgid "Add a comment"
@@ -1603,7 +1584,7 @@ msgstr "Adăugați un comentariu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L43
 msgid "Submit comment"
-msgstr "Trimiteţi comentariu"
+msgstr "Trimiteți comentariu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L55
 msgid "Good practices"
@@ -1611,16 +1592,16 @@ msgstr "Bune practici"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L57
 msgid "Say \"welcome\" to new users."
-msgstr "Spuneţi \"bine aţi venit\" noilor utilizatori."
+msgstr "Spuneți „Bine ați venit” noilor utilizatori."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L58
 msgid "Use private messages to discuss things unrelated to the sentence."
-msgstr "Folosiţi mesajele private pentru a discuta chestiuni care nu au legătură cu propoziţiile."
+msgstr "Folosiți mesajele private pentru a discuta chestiuni care nu au legătură cu propozițiile."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L61
 msgid "sentence deleted"
-msgstr "propoziţie ştearsă"
+msgstr "propoziție ștearsă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L12
@@ -1629,12 +1610,12 @@ msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, editat {modifiedDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L90
 msgid "Sentence {number} — belongs to {username}"
 msgstr "Propoziția {number} — îi aparține lui {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L101
 msgid "Sentence {number}"
 msgstr "Propoziția {number}"
 
@@ -1686,8 +1667,8 @@ msgstr "Conținutul acestui mesaj contravine <a href=\"{}\">regulilor noastre</a
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L498
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L705
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L410
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L120
 msgid "Cancel"
 msgstr "Anulați"
@@ -1719,8 +1700,7 @@ msgstr "Limbă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L17
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L157
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L134
 msgid "Auto detect"
 msgstr "Detectare automată"
 
@@ -1752,7 +1732,7 @@ msgstr "Adăugați o propoziție"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L10
 msgid "Add new sentences"
-msgstr "Adăugaţi propoziţii noi"
+msgstr "Adăugați propoziții noi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L24
 msgid "No sentences added yet."
@@ -1765,12 +1745,12 @@ msgstr "Nu au fost adăugate propoziții încă."
 #. / submit button to add a sentence to a list from the sentence block
 #. / submit button of sentence edition form
 #. / submit button of transcription edition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L490
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L506
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L393
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L703
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L705
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
 msgid "OK"
 msgstr "Adăugați"
@@ -1783,16 +1763,16 @@ msgid "Audio"
 msgstr "Conținut audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
-msgid "Expand menu for all sentences"
-msgstr "Extindeți meniul pentru toate propozițiile"
+msgid "Show more features for all sentences"
+msgstr "Afișați mai multe caracteristici pentru toate propozițiile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L13
-msgid "Collapse menu for all sentences"
-msgstr "Restrângeți meniul pentru toate propozițiile"
+msgid "Show fewer features for all sentences"
+msgstr "Afișați mai puține caracteristici pentru toate propozițiile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
-msgstr "Căutați lista sau introduceți un nume nou de listă"
+msgstr "Căutați lista sau introduceți un nou nume de listă"
 
 #. button to create a new list directly from a sentence block
 #. / button to create a new list from the lists of list page (verb)
@@ -1811,7 +1791,7 @@ msgstr "Rezultatele căutării"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L21
 msgid "(last selected)"
-msgstr "(ultima selectare)"
+msgstr "(ultima selectată)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L24
 msgid "Collaborative list"
@@ -1823,7 +1803,7 @@ msgstr "Nu a fost găsită nicio listă."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L28
 msgid "You have no lists which this sentence can be added to."
-msgstr "Nu aveți liste în care vă puteți adăuga această propoziție."
+msgstr "Nu aveți liste în care să puteți adăuga această propoziție."
 
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L25
@@ -1842,43 +1822,43 @@ msgstr "următoarea"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L42
 msgid "Language for previous, next or random sentence"
-msgstr "Limba pentru propoziţia precedentă, următoare sau aleasă la întâmplare"
+msgstr "Limba pentru propoziția precedentă, următoare sau aleatorie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L71
 msgid "Show sentence #: "
-msgstr "Afişaţi propoziţia numărul #: "
+msgstr "Afișați propoziția #: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L60
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L118
 msgid "Your sentence was not added because the following already exists."
 msgstr "Propoziția dumnevoastră nu a fost adăugată deoarece există deja."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L141
 msgid "This sentence belongs to a native speaker."
 msgstr "Această propoziție aparține unui vorbitor nativ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L146
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L30
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L46
 msgid "This sentence is not reliable."
 msgstr "Această propoziție nu este ok."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L283
 msgid "Copy sentence"
 msgstr "Copiați propoziția"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L159
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L66
 msgid "Go to sentence page"
 msgstr "Accesați pagina propoziției"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L197
 msgid "Translations of translations"
 msgstr "Traduceri ale traducerilor"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L210
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L238
 msgid "Fewer translations"
 msgstr "Mai puține traduceri"
 
@@ -1944,24 +1924,17 @@ msgstr "Modificați"
 msgid "Add sentence to list"
 msgstr "Adăugați propoziția în listă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L216
 msgid "Add to favorites"
 msgstr "Adăugați la favorite"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L26
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L207
 msgid "Remove from favorites"
-msgstr "Ştergeți de la favorite"
+msgstr "Ștergeți de la favorite"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L50
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L54
-msgid "This feature is not yet implemented."
-msgstr "Această caracteristică nu este încă implementată."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L118
@@ -1972,7 +1945,7 @@ msgstr "Această caracteristică nu este încă implementată."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L172
 msgid "Are you sure?"
-msgstr "Sunteţi sigur?"
+msgstr "Sunteți sigur?"
 
 #. delete button on sentence menu (verb)
 #. / delete button on private message (verb)
@@ -1981,7 +1954,7 @@ msgstr "Sunteţi sigur?"
 #. / delete button on sentence menu (verb)
 #. / button to put a private message in the trash (verb)
 #. / delete button on a wall post (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
@@ -1990,25 +1963,47 @@ msgstr "Sunteţi sigur?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L165
 msgid "Delete"
-msgstr "Ştergeți"
+msgstr "Ștergeți"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L554
+msgid "Mark as \"OK\""
+msgstr "Marcați ca „este OK”"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L576
+msgid "Unmark sentence"
+msgstr "Anulați marcarea propoziției"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L559
+msgid "Mark as \"unsure\""
+msgstr "Marcați ca „incert”"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L564
+msgid "Mark as \"not OK\""
+msgstr "Marcați ca „nu este OK”"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L151
 msgid "Click to adopt"
 msgstr "Faceți clic pentru a adopta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L158
 msgid "Click to unadopt"
 msgstr "Faceți clic pentru a renunța la adoptare"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L67
-msgid "Expand menu"
-msgstr "Extindeți meniul"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L86
+msgid "Show more features"
+msgstr "Afișați mai multe caracteristici"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L72
-msgid "Collapse menu"
-msgstr "Restrângeți meniul"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L91
+msgid "Show fewer features"
+msgstr "Afișați mai puține caracteristici"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
 msgid "Show unreviewed transcriptions"
@@ -2018,7 +2013,19 @@ msgstr "Afișați transcrierile nerevizuite"
 msgid "Hide unreviewed transcriptions"
 msgstr "Ascundeți transcrierile nerevizuite"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L17
+msgid "Unlink this translation"
+msgstr "Întrerupeți legătura acestei traduceri"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L21
+msgid "Make into direct translation"
+msgstr "Listați-o ca traducere directă"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L37
+msgid "Existing sentence #{number} has been added as a translation."
+msgstr "Propoziția existentă #{number} a fost adăugată ca traducere."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L53
 msgid "Edit this translation"
 msgstr "Editați această traducere"
 
@@ -2029,9 +2036,8 @@ msgid "Translation"
 msgstr "Traducere"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L398
-msgid "Submit translation"
-msgstr "Trimiteţi traducere"
+msgid "Add translation"
+msgstr "Adăugați traducere"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L40
 msgid "Edit translation"
@@ -2056,7 +2062,7 @@ msgstr "Sesiunea dumneavoastră a expirat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/session_expired.ctp#L33
 msgid "Please <a href=\"{}\">log in again</a>."
-msgstr "Vă rugăm <a href=\"{}\">să vă conectați din nou</a>."
+msgstr "Vă rugăm <a href=\"{}\">să vă autentificați din nou</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L34
 msgid "Tatoeba is a collection of sentences and translations."
@@ -2066,28 +2072,34 @@ msgstr "Tatoeba este o colecție de propoziții și traduceri."
 msgid "It's collaborative, open, free and even addictive."
 msgstr "Este colaborativă, accesibilă, gratuită și chiar captivantă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L84
+#. option used in language selection of dropdowns on home page for guests
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L67
+msgctxt "short_description"
+msgid "Any language"
+msgstr "Orice limbă"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L86
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
 msgstr "Căutați propoziții în {langFrom} traduse în {langTo} care conțin:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L98
 msgid "Clear search"
 msgstr "Ștergeți căutarea"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/advanced_search.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L30
 msgctxt "title"
 msgid "Advanced search"
 msgstr "Căutare avansată"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L140
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
-msgstr "Sugestie: <em>=cuvânt</em> va căuta o potrivire exactă pentru <em>cuvânt</em>"
+msgstr "Sugestie: <em>=cuvânt</em> va căuta potrivirea exactă pentru <em>cuvânt</em>"
 
 #. links to a page with tips to perform
 #. searches, like search operators
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L147
 msgid "More tips"
 msgstr "Mai multe sugestii"
 
@@ -2103,7 +2115,7 @@ msgstr "Profilul meu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L72
 msgid "My sentences"
-msgstr "Propoziţiile mele"
+msgstr "Propozițiile mele"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L86
 msgid "My vocabulary"
@@ -2145,35 +2157,40 @@ msgstr "Propozițiile mele înregistrate"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L30
 msgid "Settings"
-msgstr "Opţiuni de configurare"
+msgstr "Setări"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L255
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L256
 msgid "Log out"
-msgstr "Ieșire din cont"
+msgstr "Deconectare"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L11
-msgid "{number} contribution today"
-msgid_plural "{number} contributions today"
-msgstr[0] "{number} contribuție astăzi"
-msgstr[1] "{number} contribuții astăzi"
-msgstr[2] "{number} contribuții astăzi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L21
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
 msgstr[0] "{number} limbă acceptată"
 msgstr[1] "{number} limbi acceptate"
 msgstr[2] "{number} limbi acceptate"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
+msgid "Stats per languages"
+msgstr "Statistici pentru fiecare limbă"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
-msgid "stats per languages"
-msgstr "statistici pentru fiecare limbă"
+msgid "{number} contribution today"
+msgid_plural "{number} contributions today"
+msgstr[0] "{number} contribuție astăzi"
+msgstr[1] "{number} contribuții astăzi"
+msgstr[2] "{number} contribuții astăzi"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L49
 msgid "Browse"
 msgstr "Navigați"
+
+#. menu item on the top (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L56
+msgid "Show random sentence"
+msgstr "Afișați o propoziție aleatorie"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L62
@@ -2205,12 +2222,12 @@ msgstr "Contribuiți"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L136
 msgid "Add sentences"
-msgstr "Adăugați propoziţii"
+msgstr "Adăugați propoziții"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L102
 msgid "Adopt sentences"
-msgstr "Adoptați propoziţii"
+msgstr "Adoptați propoziții"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L113
@@ -2222,37 +2239,32 @@ msgstr "Discutați propoziții"
 msgid "Add vocabulary request"
 msgstr "Adăugați o cerere de vocabular"
 
-#. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L124
-msgid "Show activity timeline"
-msgstr "Afișați cronologia activităților"
-
 #. menu on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L126
 msgid "Community"
 msgstr "Comunitate"
 
 #. menu item on the top (verb)
 #. / title of the Wall page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L39
 msgid "Wall"
 msgstr "Perete"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L138
 msgid "List of all members"
 msgstr "Listă cu toți membrii"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L58
 msgid "Languages of members"
 msgstr "Limbi vorbite de membri"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L28
 msgid "Native speakers"
 msgstr "Vorbitori nativi"
@@ -2294,7 +2306,7 @@ msgstr "Comentarii"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L40
 msgid "Comments on {user}'s sentences"
-msgstr "Comentarii la propoziţiile lui {user}"
+msgstr "Comentarii la propozițiile lui {user}"
 
 #. link to the user's wall posts on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L105
@@ -2339,7 +2351,7 @@ msgstr "Cereri de vocabular existente"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L26
 msgid "Add a message: "
-msgstr "Adăugaţi un mesaj: "
+msgstr "Adăugați un mesaj: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L8
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L22
@@ -2397,7 +2409,7 @@ msgstr "Listă de export"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L33
 msgid "{user}'s favorite sentences"
-msgstr "Propoziţiile favorite ale lui {user}"
+msgstr "Propozițiile favorite ale lui {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L52
 msgid "Favorite successfully removed."
@@ -2410,7 +2422,7 @@ msgstr "Propoziția {id} a fost ștearsă."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L118
 msgid "This user does not have any favorites."
-msgstr "Acest utilizator nu are favorite."
+msgstr "Acest utilizator nu are propoziții favorite."
 
 #. title of error page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L36
@@ -2441,7 +2453,7 @@ msgid ""
 "This page allows you to massively switch the license of your sentences to "
 "{CC0-link}. Among all your sentences, only the ones that meet the following "
 "conditions will be affected."
-msgstr "Această pagină vă permite să schimbați la scară largă licența propozițiilor dumneavostră cu {CC0-link}. Dintre toate propozițiile pe care le dețineți, vor fi afectate doar cele care îndeplinesc următoarele condiții."
+msgstr "Această pagină vă permite să schimbați la scară largă licența propozițiilor dumneavoastră cu {CC0-link}. Dintre toate propozițiile pe care le dețineți, vor fi afectate doar cele care îndeplinesc următoarele condiții."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L36
 msgid "The current license of the sentence must be CC BY 2.0 FR."
@@ -2459,7 +2471,7 @@ msgstr "Propoziția trebuie să fie originală și nu derivată dintr-o traducer
 msgid ""
 "Press the following button to start or restart an analysis of which of your "
 "sentences can be switched to CC0."
-msgstr "Apăsați butonul următor pentru a porni sau reporni o analiză în urma a căreia licențele propozițiilor tale poate fi schimbate cu CC0."
+msgstr "Apăsați butonul următor pentru a porni sau reporni o analiză în urma căreia licențele propozițiilor dumnevoastră pot fi schimbate cu CC0."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L55
 msgid "Start analysis"
@@ -2550,11 +2562,11 @@ msgstr " Întrebări frecvente"
 msgid ""
 "Please make sure to <a href=\"{}\">read the FAQ</a> before asking a "
 "question."
-msgstr "Vă rugăm, <a href=\"{}\">citiţi întrebările şi răspunsurile frecvente</a> înainte de a pune o întrebare."
+msgstr "Vă rugăm să <a href=\"{}\">citiți Întrebările frecvente</a> înainte de a pune o întrebare."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L58
 msgid "Follow us"
-msgstr "Urmaţi-ne"
+msgstr "Urmați-ne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L61
 msgid "Tatoeba Blog"
@@ -2564,17 +2576,17 @@ msgstr "Blog Tatoeba "
 msgid ""
 "If you have any question, suggestion, or request (or if you would just like "
 "to say thank you), feel free to drop us an email at {emailAddress}."
-msgstr "Dacă aveţi vreo întrebare, sugestie, cerere (sau dacă doriţi doar să spuneţi mulţumesc), trimiteţi-ne un e-mail la {emailAddress}."
+msgstr "Dacă aveți vreo întrebare, sugestie, cerere (sau dacă doriți doar să spuneți mulțumesc), trimiteți-ne un e-mail la {emailAddress}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L83
 msgid "Post on the Wall"
-msgstr "Postați pe perete"
+msgstr "Postați pe Perete"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L87
 msgid ""
 "You can also tell us what you think by posting on the <a "
 "href=\"{}\">Wall</a>."
-msgstr "De asemenea, ne puteţi spune ce părere aveți despre idea de a posta pe <a href=\"{}\">Perete</a>."
+msgstr "De asemenea, puteți posta pe <a href=\"{}\">Perete</a> pentru a ne spune care este părerea dumneavoastră."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L96
 msgid "Join our chatroom"
@@ -2628,7 +2640,7 @@ msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
-msgstr "<b>PayPal.</b> Dacă nu puteți transfera bani prin IBAN, puteți dona cu PayPal. Ar trebui să știți că PayPal ia un anumit procent din donație."
+msgstr "<b>PayPal.</b> Dacă nu puteți transfera bani prin IBAN, puteți dona cu PayPal. Ar trebui să știți că PayPal reține un anumit procent din donație."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L86
 msgid "IBAN transfer"
@@ -2648,7 +2660,7 @@ msgstr "BIC/SWIFT:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L30
 msgid "Download sentences"
-msgstr "Descărcare propoziţii"
+msgstr "Descărcare propoziții"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L40
@@ -2659,7 +2671,7 @@ msgstr "Nume fișier"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L88
 msgid "Fields and structure"
-msgstr "Câmpuri şi structură"
+msgstr "Câmpuri și structură"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L44
@@ -2756,7 +2768,7 @@ msgstr "Detalii"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L82
 msgid "Attribution URL"
-msgstr " Atribuire URL"
+msgstr "Atribuire URL"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L84
@@ -2795,7 +2807,7 @@ msgstr "Fișierele furnizate aici sunt actualizate în fiecare <strong>sâmbăt�
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
-msgstr "Multe dintre propozițiile din limba japoneză și limba engleză provin din <a href=\"{}\">Tanaka Corpus</a>,  care aparține domeniului public."
+msgstr "Multe dintre propozițiile din limba japoneză și limba engleză provin din baza de date <a href=\"{}\">Tanaka Corpus</a>,  care aparține domeniului public."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L145
@@ -2820,7 +2832,7 @@ msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr "Licența care acoperă un fișier audio este aleasă de colaborator și se află pe pagina care listează fișierele audio la care el sau ea au contribuit."
+msgstr "Licența care acoperă un fișier audio este aleasă de colaborator și se află pe pagina unde sunt listate fișierele audio la care el sau ea a contribuit."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L172
@@ -2889,7 +2901,7 @@ msgstr "Conține lista de <a href=\"{url}\">etichete</a> aferente fiecărei prop
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L339
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
-msgstr "Conține lista <a href=\"{}\">listelor de propoziții.</a>."
+msgstr "Conține lista cu <a href=\"{}\">listele de propoziții</a>."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L354
@@ -2922,7 +2934,7 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr "Conține id-urile propozițiilor, în toate limbile, pentru care este disponibil conținutul audio. Alte câmpuri indică cine a înregistrat conținutul audio, licența sa și o adresă URL de atribuire a autorului. Dacă câmpul de licență este gol, este posibil să nu puteți utiliza conținutul audio în afara proiectului Tatoeba."
+msgstr "Conține id-urile propozițiilor în toate limbile pentru care este disponibil conținutul audio. Alte câmpuri indică cine a înregistrat conținutul audio, licența sa și o adresă URL de atribuire a autorului. Dacă câmpul de licență este gol, este posibil să nu puteți utiliza conținutul audio în afara proiectului Tatoeba."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L444
@@ -2932,7 +2944,7 @@ msgstr "Nivelul de cunoștință al utilizatorului pentru fiecare limbă"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L452
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr "Indică aptitudinile autodeclarate de membri asupra anumitor limbi."
+msgstr "Indică nivelurile de cunoștințe ale membrilor asupra limbilor străine, așa cum au fost declarate de către aceștia."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L464
@@ -2944,7 +2956,7 @@ msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr "Conține propoziții revizuite de utilizatori. Evaluarea poate fi notată cu  -1 (propoziția nu este OK), 0 (discutabil sau incert) sau 1 (propoziția este OK). Avertisment: aceste date sunt încă experimentale."
+msgstr "Conține propoziții revizuite de utilizatori. Evaluarea poate fi notată cu  -1 (propoziția nu este OK), 0 (discutabil sau incert) sau 1 (propoziția este OK). Atenție: aceste date sunt încă experimentale."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L503
 msgid ""
@@ -2953,15 +2965,15 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr "Conține toate transcrierile din script-urile auxiliare sau alternative. Un nume de utilizator asociat unei transcrieri indică utilizatorul care a revizuit-o și modificat-o ultima dată. O transcriere fără nume de utilizator nu este marcată ca revizuită. Denumirea script-ului este definită în conformitate cu standardul ISO 15924."
+msgstr "Conține toate transcrierile din scripturile auxiliare sau alternative. Un nume de utilizator asociat unei transcrieri indică utilizatorul care a revizuit-o și modificat-o ultima dată. O transcriere fără nume de utilizator nu este marcată ca revizuită. Denumirea scriptului este definită în conformitate cu standardul ISO 15924."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
-msgstr "Aveţi nevoie de mai mult ajutor?"
+msgstr "Aveți nevoie de mai mult ajutor?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L38
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
-msgstr "Puteţi începe cu citirea <a href=\"{}\">întrebărilor frecvente</a>."
+msgstr "Puteți începe cu <a href=\"{}\">Întrebările frecvente</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L46
 msgid ""
@@ -2978,19 +2990,19 @@ msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
-msgstr "Dacă nu aveți idee ce să faceți după ce v-ați înregistrat, puteți să vă prezentați pe <a href=\"{wall}\">Perete</a> sau puteți să vă alăturați <a href=\"{chatroom}\">chatului</a> nostru. Vă vom oferi un scop. :)"
+msgstr "Dacă nu aveți idee ce să faceți după ce v-ați înregistrat, pentru început puteți să vă prezentați pe <a href=\"{wall}\">Perete</a> sau puteți să vă alăturați <a href=\"{chatroom}\">chatului</a> nostru. Vă vom oferi un scop. :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L85
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr "Dacă considerați că acest proiect are un scop grozav şi dacă aţi dori să vă implicați activ, aici este pagina pe care <strong>TREBUIE</strong> să o citiţi:"
+msgstr "Dacă considerați că acest proiect este nemaipomenit și dacă ați dori să vă implicați activ, aici este pagina pe care <strong>TREBUIE</strong> să o citiți:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L97
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
-msgstr "Acestea fiind spuse, bine aţi venit la Tatoeba! Sperăm că vă va plăcea să fiţi parte din acest proiect :)"
+msgstr "Acestea fiind spuse, bine ați venit la Tatoeba! Sperăm că vă va face plăcere să fiți parte din acest proiect :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L108
 msgid "Important links"
@@ -2998,11 +3010,11 @@ msgstr "Linkuri importante"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L130
 msgid "Adding new sentences"
-msgstr "Adăugarea de noi propoziţii"
+msgstr "Adăugarea de noi propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L131
 msgid "There are two ways to add new sentences."
-msgstr "Există două moduri de a adăuga propoziţii noi."
+msgstr "Există două moduri de a adăuga propoziții noi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L137
 msgid ""
@@ -3014,7 +3026,7 @@ msgstr "Selectați <a href=\"{}\">Adăugați propoziții</a> din meniul <strong>
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr "Prin crearea unei <a href=\"{}\">liste</a> noi şi accesând pagina de editare a acelei liste."
+msgstr "Prin crearea unei <a href=\"{}\">liste</a> noi și accesând pagina de editare a acelei liste."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L170
 msgid ""
@@ -3022,44 +3034,44 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr "Chiar dacă Tatoeba conține o mulțime de propoziţii, există totuși foarte multe elemente de vocabular care nu au fost folosite încă. De aceea vă încurajăm să adăugaţi propoziţii noi care să conțină vocabular nou, chiar dacă nu ştiţi cum se traduc în altă limbă."
+msgstr "Chiar dacă Tatoeba conține o mulțime de propoziții, există totuși foarte multe elemente de vocabular care nu au fost folosite încă. De aceea vă încurajăm să adăugați propoziții noi care să conțină vocabular nou, chiar dacă nu știți cum se traduc în altă limbă."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L180
 msgid "Translating sentences"
-msgstr "Traducerea propoziţiilor"
+msgstr "Traducerea propozițiilor"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L184
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
-msgstr "Traducerea este una dintre activităţile cele mai importante în Tatoeba, deoarece principalul scop al proiectului este colectarea propoziţiilor traduse în mai multe limbi."
+msgstr "Traducerea propozițiilor este una dintre activitățile cele mai importante de pe Tatoeba deoarece principalul scop al proiectului este colectarea propozițiilor traduse în mai multe limbi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L194
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr "Puteţi traduce propoziţii cam de oriunde. Faceți clic pe această iconiţă {translateButton} ori de câte ori o vedeţi."
+msgstr "Puteți traduce propoziții cam de oriunde. Faceți clic pe această iconiță {translateButton} ori de câte ori o vedeți."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L205
 msgid "Correcting mistakes"
-msgstr "Corectarea greşelilor"
+msgstr "Corectarea greșelilor"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L209
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr "Puteţi corecta doar greşelile din propoziţiile care vă aparţin. Dacă vedeţi o greşeală într-o propoziţie a altcuiva, aveţi posibilitatea să publicaţi un comentariu pentru a atrage atenţia asupra greşelii."
+msgstr "Puteți corecta doar greșelile din propozițiile care vă aparțin. Dacă vedeți o greșeală într-o propoziție care aparține altcuiva, aveți posibilitatea de a publica un comentariu pentru a îi atrage atenția asupra greșelii."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L218
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr "În unele cazuri, propoziţia nu are proprietar. Citiţi paragraful de mai jos (despre adoptarea propoziţiilor) pentru a afla mai multe."
+msgstr "În unele cazuri, propoziția nu are proprietar. Citiți paragraful de mai jos (despre adoptarea propozițiilor) pentru a afla mai multe."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L227
 msgid "Adopting sentences"
-msgstr "Adoptarea propoziţiilor"
+msgstr "Adoptarea propozițiilor"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L231
 msgid ""
@@ -3067,7 +3079,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr "Când adăugaţi o propoziţie, acea propoziţie vă „aparţine” - doar dumneavoastră o puteţi modifica. Totuşi, multe dintre propoziţiile din Tatoeba provin din baza de date japonezo-engleză Tanaka. Aceste propoziţii nu au proprietar deoarece au fost colectate în afara Tatoeba."
+msgstr "Când adăugați o propoziție, acea propoziție vă „aparține” - doar dumneavoastră o puteți modifica. Totuși, multe dintre propozițiile de pe Tatoeba provin din baza de date japonezo-engleză Tanaka. Aceste propoziții nu au proprietar deoarece au fost colectate în afara platformei Tatoeba."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L243
 msgid ""
@@ -3075,24 +3087,24 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr "Dacă observaţi o eroare într-o propoziţie \"orfană\", nu o veţi putea corecta pentru că nu sunteţi proprietarul ei. Din acest motiv există opţiunea de \"adoptare\" ({adoptButton}). Odată ce aţi adoptat o propoziţie, deveniţi proprietarul ei şi astfel o puteţi modifica."
+msgstr "Dacă observați o eroare într-o propoziție „orfană”, nu o veți putea corecta pentru că nu sunteți proprietarul ei. Din acest motiv, există opțiunea „adoptați” ({adoptButton}). Odată ce ați adoptat o propoziție, deveniți proprietarul ei și astfel o puteți modifica."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
-msgstr "Adoptarea unei propoziţii este şi parte a \"procesului calităţii\". Puteţi găsi mai multe informaţii despre acesta aici:"
+msgstr "Adoptarea unei propoziții este, de asemenea, o parte a „procesului de calitate”. Puteți găsi mai multe informații despre acesta aici:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L272
 msgid "Sentence lists"
-msgstr "Liste de propoziţii"
+msgstr "Liste de propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L276
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr "Puteți crea liste de propoziții în Tatoeba. În mod implicit, lista este <strong>personală</strong>, ceea ce înseamnă că poate fi editată doar de persoana care a creat-o (dar este totuși vizibilă pentru toată lumea)."
+msgstr "Puteți crea liste de propoziții în Tatoeba. În mod implicit lista este <strong>personală</strong>, ceea ce înseamnă că poate fi editată doar de persoana care a creat-o (dar este totuși vizibilă pentru toată lumea)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L285
 msgid ""
@@ -3118,28 +3130,39 @@ msgstr "Statistici"
 msgid "Latest messages"
 msgstr "Ultimele mesaje"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L93
+msgid ""
+"The new sentence design will soon completely replace the old one. Please try"
+" it out and let us know if you experience any issue. You can enable it with "
+"the option \"Display sentences with the new design\" in your Settings."
+msgstr "Noul design al propozițiilor îl va înlocui în curând pe cel vechi. Vă rugăm să-l încercați și să ne spuneți dacă întâmpinați probleme. Îl puteți activa cu opțiunea „Afișați propozițiile folosind noul design” din Setări."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
+msgid "Go to settings"
+msgstr "Mergeți la setări"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
 msgid "show more..."
 msgstr "afișați mai mult..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Ultimele comentarii"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L76
 msgid "Want to help?"
 msgstr "Vreți să ajutați?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L81
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "Colectăm propoziții și traducerile acestora. Ne puteți ajuta traducând sau adăugând propoziții noi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L87
 msgid "Join the community"
 msgstr "Alăturați-vă comunității"
 
@@ -3256,7 +3279,7 @@ msgstr "Toate propozițiile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L34
 msgid "Outdated reviews"
-msgstr "Revizuiri învechite"
+msgstr "Revizuiri expirate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L45
 msgid "{user}'s reviews - {category}"
@@ -3270,7 +3293,7 @@ msgstr "Această caracteristică este dezactivată momentan."
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr "O puteți activa din setările dumneavoastră: \"Activați funcția pentru a revizui propoziții.\""
+msgstr "O puteți activa din setările dumneavoastră: „Activați funcția pentru a revizui propoziții.”"
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L73
@@ -3283,7 +3306,7 @@ msgstr "Filtru"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L160
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L210
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L97
 msgid "Sort by:"
@@ -3307,7 +3330,7 @@ msgstr "data modificării"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L216
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L75
 msgid "date created"
 msgstr "data creării"
 
@@ -3320,12 +3343,12 @@ msgstr "id-ul propoziției"
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr "Faceți clic pe propoziția de sus pentru a merge la tatoeba.org pentru a o traduce sau a lăsa un comentariu."
+msgstr "Faceți clic pe propoziția de mai sus pentru a merge la tatoeba.org ca să o traduceți sau ca să lăsați un comentariu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
 msgid "Sentence #{number}"
-msgstr "Propoziţia #{number}"
+msgstr "Propoziția #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
@@ -3337,7 +3360,7 @@ msgstr "Editați comentariul pentru propoziția #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
-msgstr "Comentarii la propoziţii"
+msgstr "Comentarii la propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L40
 msgid "{user}'s comments"
@@ -3352,7 +3375,7 @@ msgstr "{user} nu a publicat niciun comentariu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L138
 msgid "Go back to previous page"
-msgstr "Înapoi la pagina anterioară"
+msgstr "Înapoi la pagina precedentă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L76
 msgid "{user}'s comments (total&nbsp;{n})"
@@ -3360,11 +3383,11 @@ msgstr "comentariile lui {user} (total&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L60
 msgid "{user} has no comment posted on his/her sentences"
-msgstr "{user} nu are comentarii publicate la propoziţiile sale"
+msgstr "{user} nu are comentarii publicate la propozițiile sale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L75
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
-msgstr "Comentarii la propoziţiile lui {user} (total&nbsp;{n})"
+msgstr "Comentarii la propozițiile lui {user} (total&nbsp;{n})"
 
 #. header text in side bar of the "Add sentences" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L43
@@ -3392,7 +3415,7 @@ msgstr "<strong>Ne place să ne împărtășim datele.</strong> Evitați să cop
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
 msgid "Check out the vocabulary for which we need sentences"
-msgstr "Verificați vocabularul pentru care avem nevoie de propoziții"
+msgstr "Verificați vocabularul pentru a vedea de ce fel de propoziții avem nevoie."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
 msgid "Sentences wanted"
@@ -3400,11 +3423,11 @@ msgstr "Propoziții dorite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
-msgstr "Propoziţiile lui {user}"
+msgstr "Propozițiile lui {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L41
 msgid "{user}'s sentences in {language}"
-msgstr "Propozițiile lui {user}în {language}"
+msgstr "Propozițiile lui {user} în {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
@@ -3422,15 +3445,15 @@ msgstr "{user} nu deține nicio propoziție."
 msgid ""
 "An error occurred while fetching the random sentence. If this persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr "A apărut o eroare la preluarea unor propoziții aleatorii. Dacă acest lucru persistă, vă rugăm <a href=\"{}\">să ne informați</a>."
+msgstr "A apărut o eroare la preluarea propozițiilor aleatorii. Dacă acest lucru persistă, vă rugăm <a href=\"{}\">să ne informați</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L32
 msgid "Sentences with: {keywords}"
-msgstr "Propoziţii cu: {keywords}"
+msgstr "Propoziții cu: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L36
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr "Propoziţii în {language} netraduse în {translationLanguage}"
+msgstr "Propoziții în {language} netraduse în {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L40
 msgid "Sentences in {language} translated into {translationLanguage}"
@@ -3498,11 +3521,11 @@ msgstr "{sentence} - {language} propoziție-exemplu"
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
-msgstr "Navigaţi prin exemplele de propoziţii traduse. Această pagină afişează traduceri şi informaţii despre propoziţia: {sentenceText}"
+msgstr "Navigați printre exemplele de propoziții traduse. Această pagină afișează traduceri și informații despre propoziția: {sentenceText}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
-msgstr "Propoziţia nu există: "
+msgstr "Propoziția nu există: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
@@ -3510,11 +3533,11 @@ msgstr "Revizuită de"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L94
 msgid "(outdated)"
-msgstr "(expirate)"
+msgstr "(expirată)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L165
 msgid "There is no log for this sentence"
-msgstr "Nu există nicio înregistrare pentru această propoziţie"
+msgstr "Nu există nicio înregistrare pentru această propoziție"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L242
 msgid "There are no comments for now."
@@ -3541,7 +3564,7 @@ msgstr "Doar ultimele {n} de propoziții sunt afișate aici."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
-msgstr "Problemă în timpul salvării"
+msgstr "A apărut o problemă în timpul salvării"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L39
 msgid "Download list: "
@@ -3570,7 +3593,7 @@ msgstr "Fișier text brut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
 msgid "Tab-separated file"
-msgstr "Fișier de valori separat de file"
+msgstr "Fișier filă separată "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L74
 msgid "List for the Shtooka recorder"
@@ -3593,7 +3616,7 @@ msgstr "Se pregătește descărcarea. Vă rugăm să așteptați."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L160
 msgid "Failed to prepare download, please try again."
-msgstr "Eroare la pregătirea descărcării. Încercați din nou."
+msgstr "Eroare la pregătirea descărcării. Vă rugăm să încercați din nou."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L31
 msgid "Collaborative lists ({total})"
@@ -3641,7 +3664,7 @@ msgstr "listele lui {username} conțin \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
-msgstr "Propoziţie eliminată cu succes."
+msgstr "Propoziție eliminată cu succes."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L46
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L25
@@ -3688,12 +3711,12 @@ msgstr "data adăugării în listă"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L285
 msgid "Download this list"
-msgstr "Descărcare a acestei liste"
+msgstr "Descărcați această listă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L411
 msgid "Delete this list"
-msgstr "Ştergeți această listă"
+msgstr "Ștergeți această listă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L182
 msgid "This list is empty."
@@ -3765,14 +3788,14 @@ msgstr[2] "{n}&nbsp;propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
-msgstr "Propoziţii cu eticheta {tagName}"
+msgstr "Propoziții cu eticheta {tagName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L58
 msgid "Show all tags"
 msgstr "Afișați toate etichetele"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L56
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
 msgstr[0] "{tagName} ({n} propoziție)"
@@ -3780,7 +3803,7 @@ msgstr[1] "{tagName} ({n} propoziții)"
 msgstr[2] "{tagName} ({n} propoziții)"
 
 #. sort option in the page that lists sentences having a certain tag
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L80
 msgid "date of tag"
 msgstr "data etichetei"
 
@@ -3803,7 +3826,7 @@ msgstr "Etichete care conțin: {search} (total {{count}})"
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L95
 msgid "count"
-msgstr "numărul propozițiilor"
+msgstr "total"
 
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L98
@@ -3813,7 +3836,7 @@ msgstr "nume"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L58
 msgid "Chinese traditional/simplified conversion"
-msgstr "Conversie între chineza tradiţională şi simplificată"
+msgstr "Conversie între chineza tradițională/simplificată"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L36
@@ -3822,7 +3845,7 @@ msgstr "Cod sursă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L83
 msgid "Enter either traditional or simplified Chinese"
-msgstr "Tastaţi în chineza tradiţională/simplificată"
+msgstr "Introduceți fie chineza tradițională, fie chineza simplificată"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L106
@@ -3856,11 +3879,11 @@ msgstr "autogenerare furigana peste japoneză"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L51
 msgid "Chinese simplified/traditional conversion"
-msgstr "Conversie limba chineză simplificată/tradiţională"
+msgstr "Conversie limba chineză simplificată/tradițională"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L59
 msgid "convert traditional Chinese to simplified and vice versa"
-msgstr "conversie limba chineză tradiţională în simplificată sau invers"
+msgstr "conversie din chineza tradițională în chineza simplificată și invers"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L66
 msgid "Shanghainese to IPA"
@@ -3870,7 +3893,7 @@ msgstr "Chineza din Shanghai în IPA"
 msgid ""
 "Convert a Shanghainese text into its pronunciation using the International "
 "Phonetic Alphabet"
-msgstr "Conversie text din dialectul chinez vorbit în Shanghai în cum se pronunţă folosind Alfabetul Fonetic Internaţional (IPA)"
+msgstr "Convertiți un text din dialectul chinez vorbit în Shanghai în pronunția corespunzătoare folosind Alfabetul Fonetic Internațional"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L67
@@ -3879,7 +3902,7 @@ msgstr "Conversia dialectului chinez din Shanghai în IPA"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
-msgstr "Mulţumiri"
+msgstr "Contribuitori"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L48
 msgid ""
@@ -3887,11 +3910,11 @@ msgid ""
 "with much more complete data files. If you're interested in his work, you "
 "can check his project page <a href='{1}'>here</a>. Without him, the "
 "Shanghainese sentences wouldn't have such a complete IPA."
-msgstr "Vrem să-i mulţumim lui <a href='{0}'>Kellen Parker</a> pentru furnizarea unor fişiere de date mult mai complete. Dacă sunteţi interesați de lucrările sale, puteţi să-i accesaţi pagina de proiect <a href='{1}'>aici</a>. Fără el, propoziţiile în dialectul chinez din Shanghai nu ar fi avut un IPA atât de complet."
+msgstr "Vrem să-i mulțumim lui <a href='{0}'>Kellen Parker</a> pentru furnizarea unor fișiere de date mult mai complete. Dacă sunteți interesați de munca sa, puteți să-i accesați pagina de proiect <a href='{1}'>aici</a>. Fără el, propozițiile în dialectul chinez din Shanghai nu ar fi avut un IPA atât de complet."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L90
 msgid "Enter a text in shanghainese dialect"
-msgstr "Introduceţi un text în dialectul din Shanghai"
+msgstr "Introduceți un text în dialectul din Shanghai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
@@ -3942,7 +3965,7 @@ msgstr "Nume"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L281
 msgid "Country"
-msgstr "Ţara"
+msgstr "Țara"
 
 #. label for user's birthday in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L133
@@ -3965,7 +3988,7 @@ msgstr "Descriere"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L400
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L404
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L357
 msgid "Add a language"
 msgstr "Adăugați o limbă"
 
@@ -3982,7 +4005,7 @@ msgstr "Editați limba"
 msgid ""
 "If your language is missing, please read our article on how to <a "
 "href=\"{}\">request a new language</a>."
-msgstr "Dacă limba dumneavoastră lipsește, citiți articolul nostru despre cum <a href=\"{}\">puteți solicita adăugarea unei noi limbi.</a>."
+msgstr "Dacă limba dumneavoastră lipsește, citiți articolul nostru despre cum <a href=\"{}\">puteți solicita adăugarea unei noi limbi</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L458
@@ -3992,11 +4015,11 @@ msgstr "Care este nivelul dumneavoastră?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L474
 msgid "Details (optional). For instance, which dialect or from which country."
-msgstr "Detalii (opțional) De exemplu, ce dialect sau din ce țară."
+msgstr "Detalii (opțional). De exemplu, ce dialect sau din ce țară."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L86
 msgid "Contact {user}"
-msgstr "Contactaţi pe {user}"
+msgstr "Contactați pe {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L94
 msgid "Comments posted"
@@ -4004,7 +4027,7 @@ msgstr "Comentarii publicate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L96
 msgid "Sentences owned"
-msgstr "Propoziţii deţinute"
+msgstr "Propoziții deținute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L98
 msgid "Audio recordings"
@@ -4012,7 +4035,7 @@ msgstr "Înregistrări audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L100
 msgid "Sentences favorited"
-msgstr "Propoziţii favorite"
+msgstr "Propoziții favorite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L102
 msgid "Contributions"
@@ -4020,7 +4043,7 @@ msgstr "Contribuții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L109
 msgid "Show latest activity"
-msgstr "Afişați activitatea recentă"
+msgstr "Afișați activitatea recentă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L131
 msgid "Email notifications are ENABLED."
@@ -4034,13 +4057,13 @@ msgstr "Notificările prin e-mail sunt DEZACTIVATE."
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr "Accesul la acest profil este PUBLIC. Toate informaţiile pot fi văzute de toată lumea."
+msgstr "Accesul la acest profil este PUBLIC. Informațiile afișate pot fi văzute de către toată lumea."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L147
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr "Accesul la acest profil este RESTRICŢIONAT. Doar membrii Tatoeba pot vedea informaţiile personale şi descrierea."
+msgstr "Accesul la acest profil este RESTRICȚIONAT. Doar membrii Tatoeba pot vedea informațiile personale și descrierea."
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L244
@@ -4051,7 +4074,7 @@ msgstr "Membru din"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L253
 msgid "Contributions blocked"
-msgstr "Contribuţii blocate"
+msgstr "Contribuții blocate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L306
 msgid "No description."
@@ -4072,11 +4095,11 @@ msgstr "Nicio limbă adăugată."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L343
 msgid "TIP: We encourage you to indicate the languages you know."
-msgstr "SUGESTIE: Vă încurajăm să indicaţi limbile pe care le cunoaşteţi."
+msgstr "SUGESTIE: Vă încurajăm să specificați limbile străine pe care le cunoașteți."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L346
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
-msgstr "SUGESTIE: Încurajaţi acest utilizator să indice limbile pe care le cunoaşte."
+msgstr "SUGESTIE: Încurajați-l pe acest utilizator să specifice limbile străine pe care le cunoaște."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L502
 msgid "Next"
@@ -4096,7 +4119,7 @@ msgstr "Trimiteți notificări prin e-mail"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L87
 msgid "Set your profile public"
-msgstr "Setați-vă profilul public"
+msgstr "Setați profilul ca public"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L112
 msgid ""
@@ -4130,22 +4153,26 @@ msgstr "Introduceți <a href=\"{url}\">codurile ISO 639-3</a>, separate prin vir
 msgid "Number of sentences per page"
 msgstr "Numărul de propoziții afișate pe pagină"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
+msgid "Default license for original sentences"
+msgstr "Licență implicită pentru propoziții originale"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
 msgid "Experimental options"
 msgstr "Opțiuni aflate în faza experimentală"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L256
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
-msgstr "Opțiunile din această categorie nu sunt pe deplin funcționale, s-ar putea să nu funcționeze pentru toți și/sau sunt într-o fază de testare beta. E posibil ca acestea să fie schimbate sau eliminate pe viitor."
+msgstr "Opțiunile din această categorie nu sunt pe deplin funcționale, s-ar putea să nu funcționeze pentru toți și/sau sunt într-o fază de testare beta. Este posibil ca acestea să fie schimbate sau eliminate pe viitor."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L273
 msgid "Activate the feature to review sentences"
 msgstr "Activați funcția pentru a revizui propoziții"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L296
 msgid ""
 "Mark sentences when the owner indicated in their profile that they have a "
 "native level in the language of the sentence. In the old design \"(native)\""
@@ -4153,36 +4180,36 @@ msgid ""
 "next to the sentence."
 msgstr "Marcați propozițiile atunci când proprietarul indică în profilul lor că este nativ în limba propoziției. În vechiul design, „(nativ)” este afișat lângă numele de utilizator. În noul design, o {star} este afișată lângă propoziție."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L324
 msgid ""
 "Display sentences with the new design. Note that some features are not yet "
 "implemented in this new design but are coming soon."
-msgstr "Afișați propozițiile cu noul design. Rețineți că unele caracteristici nu sunt încă implementate în noul design, dar vor fi disponibile în curând."
+msgstr "Afișați propozițiile folosind noul design. Rețineți că unele caracteristici nu sunt încă implementate în noul design, dar vor fi disponibile în curând."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L355
 msgid "Change email address"
 msgstr "Schimbați adresa de e-mail"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L368
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L160
 msgid "Email address"
-msgstr "E-mail"
+msgstr "Adresa de e-mail"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L378
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L387
 msgid "Change password"
 msgstr "Schimbați parola"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L391
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L400
 msgid "Old password"
 msgstr "Parolă veche"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L408
 msgid "New password"
 msgstr "Parolă nouă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L416
 msgid "New password again"
-msgstr "Reintroduceţi parola nouă"
+msgstr "Reintroduceți parola nouă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L38
 msgid "Members"
@@ -4206,7 +4233,7 @@ msgstr "Membri: {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L52
 msgid "Back to global stats"
-msgstr "Înapoi la statistici globale"
+msgstr "Înapoi la statisticile globale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L96
 msgid "{lang} ({total} member)"
@@ -4223,7 +4250,7 @@ msgstr "Parola"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L44
 msgid "Send new password"
-msgstr "Trimiteţi noua parolă"
+msgstr "Trimiteți noua parolă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L52
 msgid "Email"
@@ -4252,11 +4279,11 @@ msgstr "Dacă nu vă găsiți limba maternă în listă, selectați „Niciuna�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L238
 msgid "We need to make sure you are human."
-msgstr "Este necesar să ne asigurăm că sunteţi o fiinţă umană."
+msgstr "Trebuie să ne asigurăm că sunteți o ființă umană."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L243
 msgid "What are the first five characters of your email address?"
-msgstr "Care sunt primele cinci caractere ale e-mailului dumneavoastră?"
+msgstr "Care sunt primele cinci caractere ale adresei dumneavoastră de e-mail?"
 
 #. captcha field name in register form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L252
@@ -4275,7 +4302,7 @@ msgstr "De exemplu, dacă adresa dumneavoastră de e-mail este a.b.cd@example.co
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L293
 msgid "You did not accept the terms of use."
-msgstr "Nu aţi acceptat termenii de utilizare."
+msgstr "Nu ați acceptat termenii de utilizare."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L24
 msgid "Tatoeba user: {username}"
@@ -4303,22 +4330,22 @@ msgstr "Adăugați termeni de vocabular"
 msgid ""
 "Add vocabulary that you are learning. If your vocabulary does not exist yet "
 "in Tatoeba, other contributors can add sentences for it."
-msgstr "Adăugați vocabularul pe care îl învățați. Dacă vocabularul dumneavoastră nu există încă în Tatoeba, alți colaboratori pot adăuga propoziții pentru acesta."
+msgstr "Adăugați vocabularul pe care îl învățați. Dacă vocabularul dumneavoastră nu există încă pe Tatoeba, alți colaboratori pot adăuga propoziții pentru acesta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L90
 msgid "Vocabulary item"
 msgstr "Termen de vocabular"
 
 #. button to add a vocabulary request
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L103
 msgid "Add"
 msgstr "Adăugați"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L113
 msgid "Vocabulary items added"
 msgstr "Termeni de vocabular adăugați"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L128
 msgid "You have already added this vocabulary item."
 msgstr "Ați adăugat deja acest termen de vocabular."
 
@@ -4329,7 +4356,7 @@ msgstr "Vocabular care are nevoie de propoziții"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L53
 msgid ""
 "Only vocabulary items that match fewer than 10 sentences are displayed here."
-msgstr "Aici sunt afișați doar termenii de vocabular care se potrivesc cu mai puțin de 10 propoziții."
+msgstr "Aici sunt afișați doar termenii de vocabular care se regăsesc în mai puțin de 10 propoziții."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L87
 msgid "This sentence already exists."
@@ -4338,7 +4365,7 @@ msgstr "Această propoziție există deja."
 #. button to submit new sentence from wanted vocabulary requests page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L127
 msgid "Submit"
-msgstr "Trimite"
+msgstr "Trimiteți"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/of.ctp#L33
 msgid "{username}'s vocabulary items ({number})"
@@ -4357,7 +4384,7 @@ msgstr[2] "Perete ({n}&nbsp;subiecte)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L61
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
-msgstr "Înainte de a pune o întrebare, asiguraţi-vă că aţi citit  <a href=\"{}\">întrebările şi răspunsurile frecvente</a>."
+msgstr "Înainte de a pune o întrebare, asigurați-vă că ați citit  <a href=\"{}\">Întrebările frecvente</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L72
 msgid ""
@@ -4368,15 +4395,15 @@ msgstr "Ne propunem să menținem o atmosferă pozitivă pentru discuții civili
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L86
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr "Puteți scrie în orice limbă doriți. Pe Tatoeba, toate limbile sunt egale."
+msgstr "Puteți scrie în orice limbă doriți. Pe Tatoeba toate limbile sunt egale."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
-msgstr "Mesaje pe Peretele lui {user}"
+msgstr "Mesajele de pe Peretele utilizatorului {user} "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L55
 msgid "{user}'s messages on the Wall (total&nbsp;{n})"
-msgstr "Mesajele de pe Peretele lui {user} (total&nbsp;{n})"
+msgstr "Mesajele utilizatorului {user} de pe Perete (total&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L39
 msgid "Thread #{number}"
@@ -4391,6 +4418,22 @@ msgstr "Meniu"
 msgid "Back to Wall"
 msgstr "Înapoi la Perete"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L57
+msgid "Tatoeba will temporarily shut down for maintenance in {n} minute."
+msgid_plural ""
+"Tatoeba will temporarily shut down for maintenance in {n} minutes."
+msgstr[0] "Tatoeba se va opri temporar pentru lucrări de întreținere după {n} minut."
+msgstr[1] "Tatoeba se va opri temporar pentru lucrări de întreținere în {n} minute."
+msgstr[2] "Tatoeba se va opri temporar pentru lucrări de întreținere în {n} minute."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L66
+msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
+msgid_plural ""
+"Tatoeba will temporarily shut down for maintenance in {n} seconds."
+msgstr[0] "Tatoeba se va opri temporar pentru lucrări de întreținere în {n} secundă."
+msgstr[1] "Tatoeba se va opri temporar pentru lucrări de întreținere în {n} secunde."
+msgstr[2] "Tatoeba se va opri temporar pentru lucrări de întreținere în {n} secunde."
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
 msgstr "Înregistrat de: {username}"
@@ -4403,7 +4446,7 @@ msgstr "Licență: {license}"
 msgid ""
 "You may not reuse the following audio recordings outside the Tatoeba project"
 " because {userName} has not chosen any license for them."
-msgstr "Nu puteți reutiliza următoarele înregistrări audio în afara proiectului Tatoeba deoarece {userName} nu a ales nicio licență pentru acestea."
+msgstr "Nu puteți utiliza următoarele înregistrări audio în afara proiectului Tatoeba deoarece {userName} nu a ales nicio licență pentru acestea."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L78
 msgid ""
@@ -4537,95 +4580,96 @@ msgstr "{month} {year}"
 #. see https://en.wikipedia.org/wiki/Tab_key (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L118
 msgid "tab"
-msgstr "tab"
+msgstr "filă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L138
 msgid "Profile languages"
-msgstr "Limbile de la profil"
+msgstr "Limbile străine setate la profil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L92
 msgid "Last used languages"
-msgstr "Ultimele limbi utilizate"
+msgstr "Ultimele limbi străine utilizate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L96
 msgid "Other languages"
 msgstr "Alte limbi"
 
-#. option used in language selection dropdowns such as "Not directly
-#. translated into"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L163
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L272
-msgid "Any language"
-msgstr "Orice limbă"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L166
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L217
-msgid "other language"
-msgstr "altă limbă"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L169
 msgctxt "dropdown-list"
 msgid "Unknown language"
 msgstr "Limbă necunoscută"
 
-#. option used in language selection dropdowns such as "Show translations in"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L251
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L237
+msgid "other language"
+msgstr "altă limbă"
+
+#. option used in language selection dropdown for "Show translations in" in
+#. advanced search form
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L218
 msgid "None"
 msgstr "Niciuna"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L301
-msgctxt "searchbar"
+#. option used in language selection dropdown for "Show translations in" in
+#. advanced search form
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L203
+msgctxt "show-translations-in"
+msgid "All languages"
+msgstr "Toate limbile"
+
+#. option used in language selection dropdowns in other places
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L234
 msgid "Any language"
 msgstr "Orice limbă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L404
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L338
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
 msgstr "Nu puteți adăuga propoziții pentru că nu ați adăugat nicio limbă la profilul dumneavoastră."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L409
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L343
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
 msgstr "Nu puteți traduce propoziții pentru că nu ați adăugat nicio limbă la profilul dumneavoastră."
 
 #. language level
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L369
 msgctxt "level"
 msgid "Unspecified"
 msgstr "Nespecificat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L436
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L370
 msgid "0: Almost no knowledge"
 msgstr "0: Aproape niciun fel de cunoștințe"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L437
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L371
 msgid "1: Beginner"
 msgstr "1: Începător"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L372
 msgid "2: Intermediate"
 msgstr "2: Intermediar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L439
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L373
 msgid "3: Advanced"
 msgstr "3: Avansat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L440
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L374
 msgid "4: Fluent"
 msgstr "4: Fluent"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L375
 msgid "5: Native level"
 msgstr "5: Nativ"
 
 #. sort option in list of lists
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L76
 msgid "created"
-msgstr "creat"
+msgstr "creată"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
@@ -4635,7 +4679,7 @@ msgstr "(listă fără nume)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L212
 msgid "Number of sentences"
-msgstr "Număr de propoziţii"
+msgstr "Număr de propoziții"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L233
 msgid "Back to all lists"
@@ -4647,7 +4691,7 @@ msgstr "Înapoi la această listă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L301
 msgid "Show translations :"
-msgstr "Afişați traducerile"
+msgstr "Afișați traducerile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L334
 msgid "List visibility"
@@ -4693,17 +4737,17 @@ msgstr "Ștergeți din listă propoziția {number} "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L500
 msgid "Add a sentence to this list : "
-msgstr "Adăugați o propoziţie în această listă: "
+msgstr "Adăugați o propoziție în această listă: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L519
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
-msgstr "NOTĂ: Puteţi adăuga propoziţii existente cu ajutorul acestei iconiţe {addToListButton} (în timp ce <a href=\"{url}\">navigaţi</a> de exemplu)."
+msgstr "NOTĂ: Puteți adăuga propoziții existente cu ajutorul acestei iconițe {addToListButton} (în timp ce <a href=\"{url}\">navigați</a>, de exemplu)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L573
 msgid "Create a new list"
-msgstr "Creare listă nouă"
+msgstr "Creați o listă nouă"
 
 #. field for the name of a list to create (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L585
@@ -4738,23 +4782,23 @@ msgstr "Alte liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by {user}"
-msgstr "adăugată de {user}"
+msgstr "adăugată de către {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by an unknown member"
-msgstr "adăugată de un membru necunoscut"
+msgstr "adăugată de către un membru necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by {user}"
-msgstr "legătură realizată de {user}"
+msgstr "legătură realizată de către {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by an unknown member"
-msgstr "legătură realizată de un membru necunoscut"
+msgstr "legătură realizată de către un membru necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by {user}"
-msgstr "licența aleasă de {user}"
+msgstr "licența aleasă de către {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by a unknown member"
@@ -4762,7 +4806,7 @@ msgstr "licență aleasă de către un membru necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by {user}"
-msgstr "editată de {user}"
+msgstr "editată de către {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by an unknown member"
@@ -4770,7 +4814,7 @@ msgstr "editată de către un membru necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
-msgstr "licență schimbată de {user}"
+msgstr "licență schimbată de către {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by an unknown member"
@@ -4778,7 +4822,7 @@ msgstr "licență schimbată de către un membru necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
-msgstr "ștearsă de {user}"
+msgstr "ștearsă de către {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by an unknown member"
@@ -4786,11 +4830,11 @@ msgstr "ștearsă de către un membru necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by {user}"
-msgstr "legătură întreruptă de {user}"
+msgstr "legătură întreruptă de către {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by an unknown member"
-msgstr "legătură întreruptă de un membru necunoscut"
+msgstr "legătură întreruptă de către un membru necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
@@ -4808,7 +4852,7 @@ msgstr "administrator"
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L88
 msgid "corpus maintainer"
-msgstr "responsabil întreţinere baze de date"
+msgstr "responsabil întreținere baze de date"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L90
@@ -4834,7 +4878,7 @@ msgstr "suspendat"
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
-msgstr "Momentan, această propoziție este marcată ca neaprobată. Propozițiile neaprobate nu pot fi traduse."
+msgstr "Această propoziție este marcată momentan ca neaprobată. Propozițiile neaprobate nu pot fi traduse."
 
 #. button after removing a favorite from the My favorites page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L213
@@ -4847,7 +4891,7 @@ msgstr "Legați de o altă propoziție"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L285
 msgid "Sentence number"
-msgstr "Numărul propoziţiei"
+msgstr "Numărul propoziției"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L331
 msgid "Add to list"
@@ -4855,7 +4899,7 @@ msgstr "Adăugați în listă"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L365
 msgid "Sentence already in all possible lists"
-msgstr "Propoziția există deja în toate listele posibile."
+msgstr "Propoziția există deja în toate listele posibile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L367
 msgid "Add to one of your lists"
@@ -4871,38 +4915,22 @@ msgstr "Nu puteți șterge această propoziție deoarece are conținut audio."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L517
 msgid "belongs to {user}"
-msgstr "aparţine lui {user}"
+msgstr "aparține lui {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L537
 msgid "(native)"
 msgstr "(nativ)"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L554
-msgid "Mark as \"OK\""
-msgstr "Marcați ca „este OK”"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L559
-msgid "Mark as \"unsure\""
-msgstr "Marcați ca „incert”"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L564
-msgid "Mark as \"not OK\""
-msgstr "Marcați ca „nu este OK”"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L576
-msgid "Unmark sentence"
-msgstr "Anulați marcarea propoziției"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L678
 msgid ""
 "Tatoeba can automatically enter the sentence ID when you have copied a "
 "sentence URL. To enable this, please allow your browser to read from the "
 "clipboard."
-msgstr "Tatoeba poate introduce automat ID-ul unei propoziții atunci când copiați adresa de URL a propoziției. Pentru a activa acest lucru, vă rugăm să permiteți browserului dumneavoastră să citească datele din clipboard."
+msgstr "Tatoeba poate introduce automat ID-ul unei propoziții atunci când copiați adresa de URL a propoziției. Pentru a activa această caracteristică, vă rugăm să permiteți browserului dumneavoastră să citească datele din clipboard."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
 msgid "to {recipient}"
-msgstr "la {recipient}"
+msgstr "către {recipient}"
 
 #. private message type (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
@@ -4919,7 +4947,7 @@ msgstr "de la {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
 msgid "View this user's profile"
-msgstr "Vizualizaţi profilul acestui utilizator"
+msgstr "Vizualizați profilul acestui utilizator"
 
 #. this formats the title at the top of every page
 #. that shows a list of sentences (search, browse by language,
@@ -4952,7 +4980,7 @@ msgstr "E posibil ca propozițiile adăugate recent să nu apară în rezultatel
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L118
 msgid "Previous page [Ctrl+←]"
-msgstr "Pagina anterioară [Ctrl+←]"
+msgstr "Pagina precedentă [Ctrl+←]"
 
 #. @translators Appears on “next page” links
 #. mouseover. Keyboard shortcut is between brackets.
@@ -4976,19 +5004,31 @@ msgstr "Marcați ca necitit"
 msgid "Show sentence's details"
 msgstr "Afișați detaliile propoziției"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L871
+msgid "Show 1 more translation"
+msgid_plural "Show {number} more translations"
+msgstr[0] "Afișați încă 1 traducere"
+msgstr[1] "Afișați încă {number} traduceri"
+msgstr[2] "Afișați încă {number} traduceri"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L344
 msgid "Translation:"
 msgstr "Traducere:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L826
-msgid "This sentence is original and was not derived from translation."
-msgstr "Această propoziție este originală și nu a fost derivată dintr-o traducere."
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L400
+msgid "Submit translation"
+msgstr "Trimiteți traducerea"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L838
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L828
+msgid "This sentence is original and was not derived from translation."
+msgstr "Această propoziție este originală și nu este derivată dintr-o traducere."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L840
 msgid "This sentence was initially added as a translation of sentence #{n}."
 msgstr "Această propoziție a fost adăugată inițial ca o traducere a propoziției #{n}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L843
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L845
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
@@ -4996,7 +5036,7 @@ msgstr "Nu putem stabili încă dacă această propoziție a fost sau nu derivat
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L174
 msgid "NOTE: Both direct and indirect translations will be shown."
-msgstr "NOTĂ: Vor fi afișate atât traducerile directe cât și cele indirecte."
+msgstr "NOTĂ: Vor fi afișate atât traducerile directe, cât și cele indirecte."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L93
 msgid "View all tags"
@@ -5006,11 +5046,11 @@ msgstr "Vizualizați toate etichetele"
 msgid "Added by {username}, {date}"
 msgstr "Adăugată de {username}, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."
 msgstr "Eliminați eticheta '{tagName}' din această propoziție."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L301
 msgid "Remove tag from sentence"
 msgstr "Eliminați eticheta din propoziție"
 
@@ -5050,4 +5090,4 @@ msgstr "Faceți clic pentru a marca ca revizuit."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
 msgid "by {messageAuthor}"
-msgstr "de {messageAuthor}"
+msgstr "de către {messageAuthor}"

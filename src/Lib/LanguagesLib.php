@@ -523,7 +523,7 @@ class LanguagesLib
                 'afb' => __d('languages', 'Gulf Arabic'),
                 'min' => __d('languages', 'Minangkabau'),
                 'tmw' => __d('languages', 'Temuan'),
-                'cjy' => __d('languages', 'Chinese (Jin)'),
+                'cjy' => __d('languages', 'Jin Chinese'),
                 'mai' => __d('languages', 'Maithili'),
                 'mad' => __d('languages', 'Madurese'),
                 'bjn' => __d('languages', 'Banjar'),
@@ -589,6 +589,14 @@ class LanguagesLib
                 'syc' => __d('languages', 'Syriac'),
                 'frr' => __d('languages', 'North Frisian'),
                 'nys' => __d('languages', 'Nyungar'),
+                'tts' => __d('languages', 'Isan'),
+                'toi' => __d('languages', 'Tonga (Zambezi)'),
+                'new' => __d('languages', 'Newari'),
+                'jpa' => __d('languages', 'Jewish Palestinian Aramaic'),
+                'phn' => __d('languages', 'Phoenician'),
+                'rel' => __d('languages', 'Rendille'),
+                'iii' => __d('languages', 'Nuosu'),
+                'drt' => __d('languages', 'Drents'),
             );
         }
         return $languages;
@@ -654,6 +662,8 @@ class LanguagesLib
             "otk",
             "tmr",
             "syc",
+            "phn",
+            "jpa",
         );
 
         $autoLangs = array(

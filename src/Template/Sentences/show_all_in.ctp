@@ -77,7 +77,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     array(
                         'sentence' => $sentence,
                         'translations' => $sentence->translations,
-                        'user' => $sentence->user
+                        'user' => $sentence->user,
+                        'translationLang' => $translationLang
                     )
                 );
             }

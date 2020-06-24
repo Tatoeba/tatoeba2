@@ -37,8 +37,13 @@ if (empty($currentLanguage)) {
 if (empty($notTranslatedInto)) {
     $notTranslatedInto = 'none';
 }
-$langsFrom = $this->Languages->profileLanguagesArray(false, false);
-$langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
+$langsFrom = $this->Languages->profileLanguagesArray();
+$langsTo = $this->Languages->profileLanguagesArray(false, [
+    'none' => '—',
+    /* @translators: option used in language selection dropdown
+       for "Not directly translated into", on Translate sentences page */
+    'und'  => __x('not-directly-translated-into', 'Any language'),
+]);
 ?>
 
 <div id="annexe_content">

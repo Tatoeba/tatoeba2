@@ -5,15 +5,16 @@
 # 
 # Translators:
 # صفا الفليج <safaalfulaij@hotmail.com>, 2018
+# Keegi . <keegi@spamcop.net>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-16 13:47+0800\n"
+"POT-Creation-Date: 2020-06-04 23:48+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2018\n"
+"Last-Translator: Keegi . <keegi@spamcop.net>, 2020\n"
 "Language-Team: Estonian (https://www.transifex.com/tatoeba/teams/28284/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,52 +24,56 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "Vigane fail “{file}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
+msgstr "Ebaõnnestus kataloogi “{dir}” loomine faili “{file}” importimisel."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "Ebaõnnestus faili “{file}” kopeerimine kataloogi “{dir}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"Ebaõnnestus helifaili “{author}” lisamine lausele {sentenceId} andmebaasis. "
+"Kontrolli, et kasutajanimi oleks õige."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"Faili “{file}” importimine õnnestus, aga faili eemaldamine "
+"impordikataloogist ebaõnnestus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr ""
+msgstr "Impordi salvestused"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
-msgstr ""
+msgstr "Importimise tulemused"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "Impordi käigus tekkisid järgnevad vead."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr ""
+msgstr "Leitud faile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
-msgstr ""
+msgstr "Faili nimi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
-msgstr ""
+msgstr "Lause ID"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "Language"
@@ -76,147 +81,147 @@ msgstr "Keel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
 msgid "Already has audio"
-msgstr ""
+msgstr "Helifail juba lisatud"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
-msgstr ""
+msgstr "Saab importida"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
-msgstr ""
+msgstr "Vigane"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
 msgid "Yes"
-msgstr ""
+msgstr "Jah"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "Imporditavas kataloogis ei leitud ühtegi faili "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
 msgid "Import"
-msgstr ""
+msgstr "Impordi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
 msgid "Enabled"
-msgstr ""
+msgstr "Lubatud"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
-msgstr ""
+msgstr "Omaniku nimi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
-msgstr ""
+msgstr "Salvesta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
-msgstr ""
+msgstr "Korrektsus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
-msgstr ""
+msgstr "Muuda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
-msgstr ""
+msgstr "Impordi laused"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr ""
+msgstr "Laused ükshaaval"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
-msgstr ""
+msgstr "Lausete keel:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr ""
+msgstr "Fail:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "Kasutaja numbriline ID:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
 msgid "import"
-msgstr ""
+msgstr "Impordi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr ""
+msgstr "Laused ja tõlked"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
-msgstr ""
+msgstr "Tõlgete keel:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
-msgstr ""
+msgstr "Kustuta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "Kas oled kindel, et soovid kustutada kasutaja #{number}?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr ""
+msgstr "Kasutajate nimekiri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
-msgstr ""
+msgstr "Profiil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr ""
+msgstr "Muuda kasutaja andmeid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
-msgstr ""
+msgstr "ID"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
-msgstr ""
+msgstr "Kasutajanimi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
 msgid "Lang"
-msgstr ""
+msgstr "Keel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
 msgid "Group"
-msgstr ""
+msgstr "Grupp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
 msgid "Level"
-msgstr ""
+msgstr "Tase"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
-msgstr ""
+msgstr "Teavitused"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L128
 msgid "unhide"
-msgstr ""
+msgstr "näita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L131
 msgid "hide"
-msgstr ""
+msgstr "peida"

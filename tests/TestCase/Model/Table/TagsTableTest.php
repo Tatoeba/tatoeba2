@@ -5,7 +5,7 @@ use App\Model\Table\TagsTable;
 use App\Test\TestCase\Model\Table\TatoebaTableTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Event\Event;
+use Cake\Event\EventList;
 use Cake\I18n\I18n;
 
 class TagsTableTest extends TestCase {
@@ -22,6 +22,7 @@ class TagsTableTest extends TestCase {
     public function setUp() {
         parent::setUp();
         $this->Tag = TableRegistry::getTableLocator()->get('Tags');
+        $this->Tag->getEventManager()->setEventList(new EventList());
     }
 
     public function tearDown() {
@@ -42,27 +43,28 @@ class TagsTableTest extends TestCase {
         $this->assertEquals(4, $tag->id);
     }
 
-    public function testAddTagFiresEvent() {
-        $contributorId = 4;
-        $sentenceId = 1;
-        $expectedTagName = '@needs_native_check';
-
-        $dispatched = false;
-        $model = $this->Tag;
-        $model->getEventManager()->on(
-            'Model.Tag.tagAdded',
-            function (Event $event) use ($model, &$dispatched, $expectedTagName) {
-                $this->assertSame($model, $event->getSubject());
-                extract($event->getData()); // $tagName
-                $this->assertEquals($expectedTagName, $tagName);
-                $dispatched = true;
-            }
-        );
-
-        $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
-
-        $this->assertTrue($dispatched);
+    public function eventTestProvider() {
+        return [
+            'existing tag' => ['OK', 4, 1],
+            'new tag' => ['new tag', 4, 1],
+        ];
     }
+
+    /**
+     * @dataProvider eventTestProvider
+     */
+    public function testAddTagFiresEvent($tagName, $userId, $sentenceId) {
+        $this->Tag->addTag($tagName, $userId, $sentenceId);
+
+        $this->assertEventFiredWith(
+            'Model.Tag.tagAdded',
+            'tagName',
+            $tagName,
+            $this->Tag->getEventManager()
+        );
+    }
+
+
 
     public function testAddTag_tagAlreadyAdded() {
         $result = $this->Tag->addTag('OK', 1, 2);
@@ -158,10 +160,14 @@ class TagsTableTest extends TestCase {
     }
 
     public function testAddTag_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->Tag->addTag('arabic', 4);
         $returned = $this->Tag->get($added->id);
         $this->assertEquals($added->created, $returned->created);
+
+        I18n::setLocale($prevLocale);
     }
 
     public function testAddTagWithoutSentenceId_NoDuplicateAdded() {

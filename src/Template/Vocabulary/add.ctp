@@ -69,9 +69,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     <?php /* @translators: language field label in new vocabulary request form */ ?>
                     <label for="lang-select"><?= __('Language'); ?></label>
                     <?php
-                    $langArray = $this->Languages->profileLanguagesArray(
-                        false, false
-                    );
+                    $langArray = $this->Languages->profileLanguagesArray();
                     $selectedLang = key($langArray);
                     echo $this->Form->select(
                         'lang',

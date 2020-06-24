@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-16 13:47+0800\n"
-"PO-Revision-Date: 2020-04-16 05:50+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-06-04 23:48+0800\n"
+"PO-Revision-Date: 2020-06-03 22:07+0000\n"
+"Last-Translator: Marijn Kuiper <imarijn.kuiper@gmail.com>\n"
 "Language-Team: Gronings (http://www.transifex.com/tatoeba/tatoeba_website/language/gos/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,12 +36,12 @@ msgid "Your audio settings have been saved."
 msgstr "Dien audioinstellen binnen opsloagen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L548
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "Der is wat mishottjed tiedens t opsloan. Perbaaier t nog n moal of neem kontakt op mit ons om dit probleem te melden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L75
 msgid "Tatoeba, new password"
@@ -49,33 +49,33 @@ msgstr "Tatoeba, nije wachtwoord"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "Wacht asjeblieft tot liest biegewaarkt is."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr ""
+msgstr "Zinnen {firstNumber} en {secondNumber} binnen nou direkte vertoalens van nkander."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr ""
+msgstr "Zinnen {firstNumber} en {secondNumber} binnen nait meer direkte vertoalens van nkander."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "Der is wat mishottjed tiedens t vothoalen van n hinwiezen. Perbaaier t nog n moal of neem kontakt op mit ons om dit probleem te melden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
-msgstr ""
+msgstr "Map \"{name}\" leegmoakt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
@@ -88,7 +88,7 @@ msgstr "Dien opmaarken is opsloagen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
-msgstr ""
+msgstr "Doe hest gain permizje om dizze opmaarken te bewaarken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
@@ -96,105 +96,44 @@ msgstr ""
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "Astoe dit bericht per abuus kregen hest, neem din kontakt op mit verwoarders via {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
 msgstr "Verandern aan dien opmaarken binnen opsloagen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L289
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L269
 msgid "The sentence #{id} has been deleted."
 msgstr "Zin nr. {id} is votdoan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L275
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr ""
+msgstr "Fout: zin nr. {id} kon nait vothoald worden."
 
-#. This string will be preceded by “Warning: the
-#. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L533
-msgid ""
-"“owned by a self-identified native”, because “sentence language” is set to "
-"“any”"
-msgstr ""
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L577
-msgid ""
-"“translation is orphan”, because “translation owner” is set to a username"
-msgstr ""
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L586
-msgid "“translation owner”, because “{username}” is not a valid username"
-msgstr "“vertoalen aigender”, omreden “{username}” nait bestoan kin as gebroekersnoam"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L628
-msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr ""
-
-#. This string will be preceded by “Warning:
-#. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L637
-msgid "“sentence owner”, because “{username}” is not a valid username"
-msgstr "“zin aigender”, omreden “{username}” nait bestoan kin as gebroekersnoam"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L674
-msgid "“tagged as {tagName}”, because it's an invalid tag name"
-msgstr "\"labeld as {tagName}\", omreden t nait bestoan kin as labelnoam"
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L705
-msgid ""
-"“belongs to list number {listId}”, because list {listId} is private or does "
-"not exist"
-msgstr ""
-
-#. This string will be preceded by
-#. “Warning: the following criteria have been
-#. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L743
-msgid ""
-"“owned by a self-identified native”, because the criterion “owned by: "
-"{username}” is set whereas he or she is not a self-identified native in the "
-"language you're searching into"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1135
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L873
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "Doe magst lisensie van dizze zin nait verandern."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L880
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Lisensie van zin is veranderd noar \"{newLicense}\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L885
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "Kin lisensie nait verandern noar \"{newLicense}\", omreden:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L163
 msgid "You do not have permission to view this list."
-msgstr ""
+msgstr "Doe hest gain permizje om dizze liest te bekieken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L293
 msgid "The sentence could not be added to the list."
 msgstr "Zin kon nait aan liest touvougd worden."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L479
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L511
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L495
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L527
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "Doe hest gain permizje om dizze liest te downloaden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L228
 msgid ""
@@ -202,98 +141,98 @@ msgid ""
 "deleted or does not exist."
 msgstr "Der binnen gain zinnen mit dizze label. Label woar noar zuikst is votdoan of bestoat nait."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L82
 msgid "No user with this username: {username}"
 msgstr "Gain broeker mit dizze broekersnoam: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
 msgid "Failed to upload image"
 msgstr "Oploaden van òfbeelden mishottjed"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L174
 msgid "Please choose an image that does not exceed 1 MB."
-msgstr ""
+msgstr "Kais n kiekploatje dij leuteger is as 1 MB."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L185
 msgid "Please choose GIF, JPEG or PNG image format."
-msgstr ""
+msgstr "Kais n kiekploatje mit t bestaandsformoat GIF, JPEG of PNG."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L215
 msgid "Error while saving."
-msgstr ""
+msgstr "Fout bie t opsloan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L324
 msgid "Profile saved."
 msgstr "Profiel opsloagen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L335
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr ""
+msgstr "Verandern e-mailadres mishottjed. Vul n e-mailadres ien dat bestoat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L376
 msgid "That email address already exists. Please try another."
-msgstr ""
+msgstr "Dat e-mailadres bestoat al. Perbaaier n aander."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L425
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L474
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr ""
+msgstr "Ienvulde geboortedoatum is nait kompleet. Aksepteerde geboortedoatums: komplete doatum, moand en dag, joar en moand, allain t joar."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L536
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
 msgid "Your settings have been saved."
 msgstr "Dien instellen binnen opsloagen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L605
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L614
 msgid "New password cannot be empty."
 msgstr "Nije wachtwoord kin nait leeg wezen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L608
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
 msgid "New passwords do not match."
-msgstr ""
+msgstr "Nije wachtwoorden roaken nait aan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L615
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
 msgid "New password has been saved."
 msgstr "t Nije wachtwoord is opsloagen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L626
 msgid "An error occurred while saving."
-msgstr ""
+msgstr "Der is wat mishottjed bie t opsloan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L622
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L631
 msgid "Password error. Please try again."
-msgstr ""
+msgstr "Wachtwoordfout. Perbaaier t nog n moal."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L730
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
-msgstr ""
+msgstr "Doe hest nije gebroekersveurwoarden aksepteerd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L184
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "Dit akkount is markeerd as inaktief. Doe kinst der nait meer mit inloggen. Neem kontakt op mit n verwoarder as dit nait terecht is."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L194
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "Dit akkount is markeerd as n spammer. Doe kinst der nait meer mit inloggen. Neem kontakt op mit n verwoarder as dit nait terecht is."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
-msgstr ""
+msgstr "Doe mòst dien gebroekersnoam en wachtwoord ienvullen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L216
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
-msgstr ""
+msgstr "Inloggen mishottjed. Zörg der veur dat Caps Lock en Num Lock nait zunder bedoulen aanstoan. Dien wachtwoord is hoofdlettergevuileg."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L328
 msgid "Welcome to Tatoeba!"
@@ -304,7 +243,7 @@ msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
-msgstr ""
+msgstr "Om te begunnen roaden wie die aan om noar dien <a href='{url}'>profiel</a> te goan om ons te loaten waiten welke toalen doe spreekst of in welkent doe interesseerd bist."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L349
 msgid "Please fix the form errors."
@@ -316,11 +255,11 @@ msgstr "Dien nije wachtwoord is stuurd noar {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L390
 msgid "You may need to check your spam folder to find this message."
-msgstr ""
+msgstr "t Is meugelk da's ien dien spam-map zuiken mòst om dit bericht te vienen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L398
 msgid "There is no registered user with this email address: "
-msgstr ""
+msgstr "Der is gain registreerde gebroeker mit dit e-mailadres:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L420
 msgid "No user with this username: "
@@ -353,10 +292,10 @@ msgstr "Doe kinst dizze toal nait votdoun."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L37
 msgid "Unknown number of sentences"
-msgstr ""
+msgstr "Onbekind aantel zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
@@ -369,10 +308,71 @@ msgstr "Bericht opsloagen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L218
 msgid "You do not have permission to edit this message."
-msgstr ""
+msgstr "Doe hest gain permizje om dit bericht te bewaarken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L274
 msgid "The message you are trying to view does not exist or has been deleted."
+msgstr "t Bericht da's perbaaierst te bekieken bestoat nait of is vothoald."
+
+#. This string will be preceded by “Warning:
+#. the following criteria have been ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L101
+msgid "“sentence owner”, because “{username}” is not a valid username"
+msgstr "“zin aigender”, omreden “{username}” nait bestoan kin as gebroekersnoam"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L141
+msgid "“translation owner”, because “{username}” is not a valid username"
+msgstr "“vertoalen aigender”, omreden “{username}” nait bestoan kin as gebroekersnoam"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L192
+msgid "“tagged as {tagName}”, because it's an invalid tag name"
+msgstr "\"labeld as {tagName}\", omreden t nait bestoan kin as labelnoam"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L209
+msgid ""
+"“belongs to list number {listId}”, because list {listId} is private or does "
+"not exist"
+msgstr ""
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L277
+msgid "“sentence is orphan”, because “sentence owner” is set to a username"
+msgstr "\"vertoalen is n wees\", omreden t veld \"zin aigender\" ienvuld is mit n gebroekersnoam"
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L288
+msgid ""
+"“translation is orphan”, because “translation owner” is set to a username"
+msgstr "\"vertoalen is n wees\", omreden t veld \"vertoalen aigender\" ienvuld is mit n gebroekersnoam"
+
+#. This string will be preceded by “Warning: the
+#. following criteria have been ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L298
+msgid ""
+"“owned by a self-identified native”, because “sentence language” is set to "
+"“any”"
+msgstr ""
+
+#. This string will be preceded by
+#. “Warning: the following criteria have been
+#. ignored:”
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L320
+msgid ""
+"“owned by a self-identified native”, because the criterion “owned by: "
+"{username}” is set whereas he or she is not a self-identified native in the "
+"language you're searching into"
 msgstr ""
 
 #. This string is used to create an enumeration by
@@ -388,39 +388,39 @@ msgstr ","
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L212
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Toukommende karakter het gain furigana: {charsEnumeration}."
+msgstr[1] "Toukommende karakters hebben gain furigana: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
 msgid ""
 "The provided sentence differs from the original one near “{character}”."
-msgstr ""
+msgstr "Aanleverde zin verschilt van t origineel bie \"{character}\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L245
 msgid "The provided sentence is shorter than the original one."
-msgstr ""
+msgstr "Aanleverde zin is körter as originele zin."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L269
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "t \"{kanji}\" karakter het meer din n furigana karakter: \"{furiganas}\"."
+msgstr[1] "\"{kanji}\" karakters hebben meer din {n} furigana karakters: \"{furiganas}\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Toukommende karakter het gain transkriptie: {charsEnumeration}."
+msgstr[1] "Toukommende karakters hebben gain transkriptie: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
-msgstr ""
+msgstr "Gain lisensie veur gebroek boeten webstee."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L61
 msgid "Licensing issue"
-msgstr ""
+msgstr "Lisensieprobleem"
 
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -431,18 +431,16 @@ msgstr ""
 msgid "{language}"
 msgstr "{language}"
 
-#. option used in language selection dropdowns such as "Show translations in"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L186
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L154
 msgid "All languages"
 msgstr "Ale toalen"
 
 #. dropdown option for unknown language
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L57
 msgid "unknown"
-msgstr ""
+msgstr "onbekind"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L228
@@ -460,13 +458,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
 msgid "The furigana was last edited by {author} on {date}."
-msgstr ""
+msgstr "Furigana is veur t lest bewaarkt deur {author} op {date}."
 
 #. refers to a transcription
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L218
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L100
 msgid "Last edited by {author} on {date}"
-msgstr ""
+msgstr "Lest aanpaast deur {author} op {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L226
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L108
@@ -496,13 +494,13 @@ msgstr "Doe kinst nait n leeg bericht versturen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L82
 msgid "You must fill the \"To\" field."
-msgstr ""
+msgstr "Doe mòst t vakje \"Aan\" ienvullen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L320
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
-msgstr ""
+msgstr "Gebroeker {username} aan wèl doe dit bericht sturen wilst bestoat nait. Perbaaier t nog n moal mit n aandere gebroekersnoam."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L61
 msgid "Comments cannot be empty."
@@ -510,52 +508,45 @@ msgstr "Opmaarkens kinnen nait leeg wezen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesListsTable.php#L180
 msgid "unnamed list"
-msgstr ""
+msgstr "liest zunder noam"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L129
 msgid "This is not a valid license."
-msgstr ""
+msgstr "Dizze lisensie bestoat nait."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L117
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "Dizze zin vaalt al onder dij lisensie."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L196
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr ""
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L204
 msgid "You're not the owner of this sentence."
 msgstr "Doe bist nait aigender van dizze zin."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L210
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L211
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "Aigender van dizze zin mòt oorspronkelke moaker dervan wezen."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L224
 msgid "You can only switch to a more permissive license."
 msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L478
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L204
-msgid "Show 1 more translation"
-msgid_plural "Show {number} more translations"
-msgstr[0] "Teun nog 1 vertoalen"
-msgstr[1] "Teun {number} meer vertoalens"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -565,26 +556,26 @@ msgstr[1] "Teun {number} meer vertoalens"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L187
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L265
 msgid "Field required"
-msgstr ""
+msgstr "Dit veld is veraaist"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L94
 msgid "Username must be at least two characters long"
-msgstr ""
+msgstr "Gebroekersnoam mòt te minzent twij taikens laank wezen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
-msgstr ""
+msgstr "Gebroekersnoam mag maximoal oet 20 taikens bestoan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
 msgid "Username can only contain letters, numbers, or underscore"
-msgstr ""
+msgstr "Gebroekersnoam mag allain letters, sievers of liggende streepkes loeken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L140
 msgid "Password must be at least 6 characters long"
-msgstr ""
+msgstr "Wachtwoord mòt te minzent 6 taikens laank wezen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L190
@@ -612,7 +603,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L94
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
-msgstr ""
+msgstr "Nait ien stoat om lisensie van zin-{id} te verandern ien \"{newLicense}\", omreden:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L121
 msgid "License switch started on {date} at {time} UTC."
@@ -630,21 +621,21 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L30
 msgid "Orphan sentences"
-msgstr ""
+msgstr "Weeszinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L33
 msgid "Orphan sentences in {language}"
-msgstr ""
+msgstr "Weeszinnen ien t {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L44
 msgid "About adoption"
-msgstr ""
+msgstr "Over adoptie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L48
 msgid ""
 "Adopting is a way to vote \"this sentence is correct\". It is also an "
 "occasion to check the sentence and correct it if there is a mistake."
-msgstr ""
+msgstr "Adopteren is n menaaier om te zeggen dat zin korrekt is. t Is ook n goud moment om zin noa te kieken en te korrigeren as der n fout ien stoat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L58
 msgid ""
@@ -652,7 +643,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr ""
+msgstr "Astoe ons dus helpen wilst om zinnen noa te kieken en te korrigeren, adopteer ({adoptButton}) din ale \"wees\"-zinnen dij zigst ien dien <strong>moudertoal</strong>, en korrigeer dizzent as dat neudeg is. Lees <a href=\"{url}\">dit</a> veur meer oetleg."
 
 #. title of the help text on the Adopt sentence page
 #. / title of the help text on the Add vocabulary page
@@ -661,7 +652,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L56
 msgid "Tips"
-msgstr ""
+msgstr "Tips"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L78
 msgid ""
@@ -669,43 +660,43 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr ""
+msgstr "Astoe n aandere gebroekersnoam verschienen zigst noadat doe n zin adopteerd hest, betaikent dat dat n aander even veur doe zin al adopteerd het. Ien zukse gevallen kinstoe perbaaiern zinnen te adopteren dij n aantel paginoas verderop binnen din paginoa woar doe die op dat moment beviendt om te zörgen dat kaans dat t weer gebeurt leuteger is."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L108
 msgid "Improve sentences"
-msgstr ""
+msgstr "Zinnen klandern"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L61
 msgid "Related links"
-msgstr ""
+msgstr "Relateerde hinwiezens"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L63
 msgid "Tag guidelines"
-msgstr ""
+msgstr "Richtlienen veur labels"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L70
 msgid "Tags you should know about"
-msgstr ""
+msgstr "Labels dijs kennen mòst"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L72
 msgid ""
 "The community has come up with several \"utility tags\" to improve the "
 "quality and reliability of sentences."
-msgstr ""
+msgstr "Gemainschop het n aantel \"funktionele labels\" oetbedòcht om kwaliteit en betraauwboarhaid van zinnen te vergroden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
-msgstr ""
+msgstr "{tagChange}: zin mòt veranderd worden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr ""
+msgstr "{tagCheck}: zin mòt noakieken worden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr ""
+msgstr "{tagNNC}: zin mòt noakieken worden deur n moudertoalspreker."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
@@ -719,7 +710,7 @@ msgstr "Hou doe helpen kinst"
 msgid ""
 "You need to be an <a href=\"{}\">advanced contributor</a>; otherwise you "
 "will not be able to tag sentences."
-msgstr ""
+msgstr "Doe mòst n <a href=\"{}\">vörderde biedroager</a> wezen, aanders kinst gain zinnen labeln."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L109
 msgid ""
@@ -731,20 +722,20 @@ msgstr ""
 msgid ""
 "Whenever you notice a possible mistake, add the tag {tagCheck} and post a "
 "comment explaining what you think the mistake may be."
-msgstr ""
+msgstr "Astoe n meugelke fout zigst, voug din t label {tagCheck} tou en let n opmaarken achter woar ien doe oetlegst wat volgens die fout is."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L121
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr ""
+msgstr "Astoe n zin touvougt ien n boetenlaandse toal en doe waist nait wis of e klopt, voug din t label {tagNNC} tou."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L126
 msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr "Bloader wenneer doe mor kinst deur zinnen dij labeld binnen mit {tagChange}, {tagCheck}, en {tagNNC} om zinnen te bespreken mit aandere leden en om te helpen beslizzen wat ter mit dizze zinnen doan mot worden."
+msgstr "Bloader wenneer doe mor kinst deur zinnen dij labeld binnen mit {tagChange}, {tagCheck}, en {tagNNC} om zinnen te bespreken mit aandere leden en om te helpen beslizzen wat ter mit dizze zinnen doan mòt worden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L135
 msgid ""
@@ -752,109 +743,116 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr ""
+msgstr "Zodroa n problemoatische zin behandeld is, label hom din mit {tagOK}. Over t algemain kinst doe deur aanderman zien zinnen bloadern om zie te kontroleren en labeln mit {tagOK}. Dou dit aanders allain astoe der haildaal wis van bist dat zin korrekt is, en voug t label nait tou aan dien aigen zinnen."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L97
 msgid "Translate sentences"
 msgstr "Vertoal zinnen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L46
+#. option used in language selection dropdown
+#. for "Not directly translated into", on Translate sentences page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L45
+msgctxt "not-directly-translated-into"
+msgid "Any language"
+msgstr "Ale toalen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L51
 msgid "How to add a translation"
 msgstr "Hou vougst n vertoalen tou?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L56
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr ""
+msgstr "Zodroa zin weergeven wordt, klik din op {translateButton} om n vertoalen tou te vougen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L66
 msgid "About translations"
 msgstr "Over vertoalens"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L68
 msgid "Good translations"
 msgstr "Goie vertoalens"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L70
 msgid "We know it's difficult, but do NOT translate word for word!"
-msgstr ""
+msgstr "Wie waiten hou stoer t is, mor vertoal NAIT woord veur woord!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L74
 msgid "Multiple translations"
-msgstr ""
+msgstr "Meerdere vertoalens"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L78
 msgid ""
 "If you feel there are several possible translations, you can add several "
 "translations in the same language. "
-msgstr ""
+msgstr "Astoe denkst dat ter verschaaiden vertoalens meugelk binnen, kinstoe verschaaiden vertoalens ien zulfde toal touvougen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L98
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L112
 msgid "Search for untranslated sentences"
 msgstr "Noar onvertoalde zinnen zuiken"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L137
 msgid "Sentences in:"
 msgstr "Zinnen ien:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L144
 msgid "Not directly translated into:"
 msgstr "Nait doadelk vertoald noar t:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L160
 msgid "Best practice: translate only into your native language."
-msgstr ""
+msgstr "n Goie gewoonte: vertoal allain noar dien moudertoal."
 
 #. field name in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L163
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L311
 msgid "Order:"
 msgstr ""
 
 #. sort order radio option in Translate sentences page (noun)
 #. / sort order dropdown option in advanced search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L325
-msgid "Random"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L171
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L321
-msgid "Fewest words first"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L174
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L323
-msgid "Last modified first"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L173
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L322
-msgid "Last created first"
-msgstr ""
+msgid "Random"
+msgstr "Willekeureg"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L318
+msgid "Fewest words first"
+msgstr "Minste woorden eerst"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L320
+msgid "Last modified first"
+msgstr "Lest aanpaast eerst"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L319
+msgid "Last created first"
+msgstr "Lest aanmoakt eerst"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L190
 msgid "show sentences"
 msgstr "teun zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
-msgstr ""
+msgstr "Vertoal zinnen ien t {language} dij van {user} binnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L39
 msgid "Translate sentences that belong to {user}"
-msgstr ""
+msgstr "Vertoal zinnen dij van {user} binnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -881,7 +879,7 @@ msgstr "(totoal {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L22
 msgid "Audio contributed by {username}"
-msgstr ""
+msgstr "Geluudsfragmìnt touvougd deur {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L40
 msgid "My audio"
@@ -890,7 +888,7 @@ msgstr "Mien audio"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L51
 msgid "License:"
-msgstr ""
+msgstr "Lisensie:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L55
 msgid "Attribution URL:"
@@ -898,7 +896,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L58
 msgid "Leave this field empty to use your profile page."
-msgstr ""
+msgstr "Let dit veld leeg om dien profielpaginoa te broeken."
 
 #. submit button for saving audio contribution settings (verb)
 #. / submit button of sentence text edition form (verb)
@@ -913,70 +911,71 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L335
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L366
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L424
 msgid "Save"
 msgstr "Opsloan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L81
 msgid "{username} has not contributed any audio"
-msgstr ""
+msgstr "{username} het gain audio biedroagen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
 msgid "Activity timeline"
 msgstr "Aktiviteitstiedlien"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L64
 msgid "Activity timeline — {month} {year}"
-msgstr ""
+msgstr "Aktiviteitstiedlien - {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr ""
+msgstr "Statistieken over t aantel biedroagen ien dizze moand."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr ""
+msgstr "Statistieken over t aantel biedroagen ien {month} {year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
 msgstr "Touvougde zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
 msgid "Links added"
-msgstr ""
+msgstr "Touvougde hinwiezens"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L94
 msgid "Links removed"
-msgstr ""
+msgstr "Vothoalde hinwiezens"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L95
 msgid "Sentences removed"
-msgstr ""
+msgstr "Vothoalde zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L130
 msgid "Daily Average: {n} sentence added"
 msgid_plural "Daily Average: {n} sentences added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Doagelks gemiddelde: {n} zin touvougd"
+msgstr[1] "Doagelks gemiddelde: {n} zinnen touvougd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L140
 msgid ", {n} link added"
 msgid_plural ", {n} links added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] ", {n} hinwiezen touvougd"
+msgstr[1] ", {n} hinwiezens touvougd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Leste biedroagen"
@@ -987,7 +986,7 @@ msgstr "Leste biedroagen van {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} log entries are displayed here."
-msgstr ""
+msgstr "Allain leste {n} zinnen worden hier teund."
 
 #. section title in advanced search form
 #. / link to the user's sentences on profile page sidebar
@@ -1001,18 +1000,18 @@ msgstr "Zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L41
 msgid "Words:"
-msgstr ""
+msgstr "Woorden:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L111
 msgid "Enter a word or a phrase"
-msgstr ""
+msgstr "Vul n woord of zinsdail ien"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L215
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L430
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L365
 msgid "Language:"
 msgstr "Toal:"
 
@@ -1022,23 +1021,23 @@ msgid "Show translations in:"
 msgstr "Teun vertoalens ien t:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L242
 msgid "Owner:"
 msgstr "Aigender:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L246
 msgid "Enter a username"
-msgstr ""
+msgstr "Vul n gebroekersnoam ien"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L254
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L251
 msgid "Is orphan:"
-msgstr ""
+msgstr "Is n wees:"
 
 #. dropdown option of "Is orphan" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L259
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L256
 msgctxt "orphan"
 msgid "Any"
 msgstr "Baaident mag"
@@ -1047,9 +1046,9 @@ msgstr "Baaident mag"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L129
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L260
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L280
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L299
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L257
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L296
 msgid "No"
 msgstr "Nee"
 
@@ -1057,42 +1056,42 @@ msgstr "Nee"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L130
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L261
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L281
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L297
 msgid "Yes"
 msgstr "Joa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L265
 msgid "Orphan sentences are likely to be incorrect."
-msgstr ""
+msgstr "Weeszinnen hebben n hoge kaans fout te wezen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L102
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L274
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L271
 msgid "Is unapproved:"
 msgstr ""
 
 #. dropdown option of "Is unapproved" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L276
 msgctxt "unapproved"
 msgid "Any"
 msgstr "Baaident mag"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L117
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L285
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L290
 msgid "Has audio:"
 msgstr "Het audio:"
 
 #. dropdown option of "Has audio" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L128
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L298
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L295
 msgctxt "audio"
 msgid "Any"
 msgstr "Baaident mag"
@@ -1103,11 +1102,11 @@ msgstr "Labels:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L145
 msgid "Separate tags with commas."
-msgstr ""
+msgstr "Schaaid labels mit kommas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L150
 msgid "Belongs to list:"
-msgstr ""
+msgstr "Beheurt tou aan liest:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L171
 msgid "Owned by a self-identified native"
@@ -1116,7 +1115,7 @@ msgstr ""
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L186
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L187
 msgid "Translations"
 msgstr "Vertoalens"
 
@@ -1124,13 +1123,13 @@ msgstr "Vertoalens"
 #. that begins with {action}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L195
 msgid "Limit to"
-msgstr ""
+msgstr "allain"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L198
 msgid "Exclude"
-msgstr ""
+msgstr "gain"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L206
 msgid ""
@@ -1138,37 +1137,37 @@ msgid ""
 "criteria."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L222
 msgid "Link:"
 msgstr "Hinwiezen:"
 
 #. dropdown option of "Link" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L228
 msgctxt "link"
 msgid "Any"
 msgstr "Baaident mag"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L230
 msgid "Direct"
-msgstr ""
+msgstr "Direkt"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L232
 msgid "Indirect"
-msgstr ""
+msgstr "Indirekt"
 
 #. section title in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L310
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L307
 msgid "Sort"
 msgstr ""
 
 #. sort order dropdown option in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L317
 msgid "Relevance"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L336
 msgid "Reverse order"
 msgstr ""
 
@@ -1176,7 +1175,7 @@ msgstr ""
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form button in List of lists pages (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L353
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L629
@@ -1184,9 +1183,9 @@ msgctxt "button"
 msgid "Search"
 msgstr "Zuiken"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L358
 msgid "More search options"
-msgstr ""
+msgstr "Meer zuikopsies"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L52
 msgid ""
@@ -1195,26 +1194,13 @@ msgid ""
 "        If you have any question, feel free to <a href=\"{contact}\">contact us</a>."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L64
-msgid "Tatoeba coding event"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L67
 msgid ""
-"In order to get more developers involved in Tatoeba and have some fun at the"
-" same time, we are organizing a coding event. If this sounds interesting, "
-"please fill up <a href=\"{}\">our survey</a>."
+"Tatoeba will be unavailable this Sunday (June 7) from 2am to 5am UTC for <a "
+"href=\"{}\">maintenance</a>."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L70
-msgid ""
-"Until then, if you wish to get involved, please read our <a "
-"href=\"{}\">guide for contributing as a developer</a> or just <a "
-"href=\"{}\">contact us</a>. We are an open source project and we welcome "
-"everyone!"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L86
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
@@ -1222,7 +1208,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
-msgstr ""
+msgstr "Aantel zinnen mit audio op toal sorteerd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
@@ -1245,8 +1231,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L35
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gebroeker dij leste biedroage leverde."
+msgstr[1] "Gebroekers dij mitholpen hebben mit leste {n}&nbsp;biedroagen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L61
 msgid "{n}&nbsp;sentence"
@@ -1256,7 +1242,7 @@ msgstr[1] "{n}&nbsp;zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L32
 msgid "Need some help?"
-msgstr ""
+msgstr "Hulp neudeg?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L37
 msgid "Quick Start Guide"
@@ -1264,13 +1250,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L45
 msgid "Tatoeba Wiki"
-msgstr ""
+msgstr "Tatoeba Wiki"
 
 #. link text in the footer
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L54
 msgctxt "footer"
 msgid "FAQ"
-msgstr ""
+msgstr "Mainst stelde vroagen"
 
 #. link text to the Help page in the footer (noun)
 #. / title of the Help page (noun)
@@ -1290,12 +1276,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L188
 msgid "Downloads"
-msgstr ""
+msgstr "Downloads"
 
 #. link text to the Tatoeba GitHub page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L94
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #. link text to the Google group page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L104
@@ -1317,17 +1303,17 @@ msgstr "Wat is Tatoeba?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L69
 msgid "Contact us"
-msgstr ""
+msgstr "Neem kontakt mit ons op"
 
 #. link text to the Status page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L142
 msgid "Status"
-msgstr ""
+msgstr "Stoatus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L1
 msgid "Terms of use"
-msgstr ""
+msgstr "Gebroeksveurwoarden"
 
 #. link text to the Blog page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L163
@@ -1376,7 +1362,7 @@ msgstr "Gain toal vonden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
-msgstr ""
+msgstr "Liest van trovven zinnen (totoal {{count}})"
 
 #. link to the Register page in the top bar (verb)
 #. / link to the Register page in the login page (verb)
@@ -1398,7 +1384,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L120
 msgid "Log in"
-msgstr ""
+msgstr "Inloggen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L99
 msgid "Username: "
@@ -1411,31 +1397,31 @@ msgstr "Wachtwoord:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L104
 msgid "Remember me"
-msgstr ""
+msgstr "Aanmeld blieven"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L124
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Wachtwoord vergeten?"
 
 #. button to close the top-right login box (verb)
 #. / button to close the announcement about the new design (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L132
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L8
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L100
 msgid "Close"
 msgstr "Sloeten"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
-msgstr ""
+msgstr "Allain zinnen ien t:"
 
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46
 msgid "Compose"
-msgstr ""
+msgstr "Opstellen"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L53
@@ -1443,25 +1429,25 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L228
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L35
 msgid "Inbox"
-msgstr ""
+msgstr "Inbox"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L32
 msgid "Unread"
-msgstr ""
+msgstr "Nait lezen"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L45
 msgid "Drafts"
-msgstr ""
+msgstr "Ontwaarpen"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L39
 msgid "Sent"
-msgstr ""
+msgstr "Verstuurd"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L73
@@ -1474,7 +1460,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L9
 msgctxt "header"
 msgid "Reply"
-msgstr ""
+msgstr "Antwoord"
 
 #. title of section containing a form for
 #. a new private message (noun)
@@ -1503,7 +1489,7 @@ msgstr "Titel"
 #. button to save a private message as draft
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L89
 msgid "Save as draft"
-msgstr ""
+msgstr "Sloa op as ontwaarp"
 
 #. button to send a private message (verb)
 #. / button to post a new message on the Wall (verb)
@@ -1515,30 +1501,18 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L60
 msgid "Send"
-msgstr ""
+msgstr "Versturen"
 
-#. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L47
+#. random sentence block header on the home page for members
+#. / random sentence block header on the home page for guests
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L48
 msgid "Random sentence"
-msgstr ""
+msgstr "Willekeurege zin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L53
 msgid "show another "
 msgstr "teun n aander"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L60
-msgid ""
-"We are starting to roll out the new design for the sentences. It is "
-"currently only used for the random sentence below. You can enable it for "
-"other pages with the option \"Display sentences with the new design\" in "
-"your Settings."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L66
-msgid "Go to settings"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L65
 msgid "Advanced search"
@@ -1548,26 +1522,33 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L77
 msgctxt "label"
 msgid "Search"
-msgstr ""
+msgstr "Zuiken"
 
 #. search language field label in top search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L95
 msgid "From"
 msgstr "Van"
 
+#. option used in language selection dropdowns in top search bar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L128
+msgctxt "searchbar"
+msgid "Any language"
+msgstr "Ale toalen"
+
 #. translation language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L118
 msgctxt "language"
 msgid "To"
 msgstr "Noar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_with_no_result.ctp#L30
 msgid "No results found."
-msgstr ""
+msgstr "Gain resultoaten vonden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_with_no_result.ctp#L33
 msgid "No results found for: {search}"
-msgstr ""
+msgstr "Gain resultoaten vonden veur: {search}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L11
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L190
@@ -1590,11 +1571,11 @@ msgstr "Opmaarken touvougen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L43
 msgid "Submit comment"
-msgstr ""
+msgstr "Opmaarken versturen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L55
 msgid "Good practices"
-msgstr ""
+msgstr "Goie praktieken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L57
 msgid "Say \"welcome\" to new users."
@@ -1613,15 +1594,15 @@ msgstr "zin votdoan"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L12
 msgctxt "sentence comment"
 msgid "{createdDate}, edited {modifiedDate}"
-msgstr ""
+msgstr "{createdDate}, {modifiedDate} aanpaast"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L90
 msgid "Sentence {number} — belongs to {username}"
-msgstr ""
+msgstr "Zin {number} — beheurt tou aan {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L101
 msgid "Sentence {number}"
 msgstr "Zin {number}"
 
@@ -1633,13 +1614,13 @@ msgstr "Zin {number}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
 msgctxt "button"
 msgid "Reply"
-msgstr ""
+msgstr "Antwoord"
 
 #. tooltip of permalink button on a comment (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L42
 msgid "Permalink"
-msgstr ""
+msgstr "Permalink"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L104
@@ -1647,7 +1628,7 @@ msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr ""
+msgstr "Ienhold van dit bericht is ien stried mit <a href=\"{}\">ons regels</a> en is doarom onzichtboar moakt. t Is allain zichtboar veur verwoarders en auteur van dit bericht."
 
 #. cancel button of sentence comment edition form (verb)
 #. / cancel button of sentence text edition form (verb)
@@ -1673,8 +1654,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L498
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L705
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L410
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L120
 msgid "Cancel"
 msgstr ""
@@ -1706,8 +1687,7 @@ msgstr "Toal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L17
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L157
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L134
 msgid "Auto detect"
 msgstr ""
 
@@ -1720,7 +1700,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L80
 msgid "License"
-msgstr ""
+msgstr "Lisensie"
 
 #. label for sentence text in sentence addition form
 #. / sentence text field label on new sentence addition form
@@ -1752,12 +1732,12 @@ msgstr "Nog gain zinnen touvougd."
 #. / submit button to add a sentence to a list from the sentence block
 #. / submit button of sentence edition form
 #. / submit button of transcription edition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L490
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L506
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L393
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L703
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L705
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
 msgid "OK"
 msgstr "OK"
@@ -1770,16 +1750,16 @@ msgid "Audio"
 msgstr "Audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
-msgid "Expand menu for all sentences"
+msgid "Show more features for all sentences"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L13
-msgid "Collapse menu for all sentences"
+msgid "Show fewer features for all sentences"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
-msgstr ""
+msgstr "Zuik liest of vul n nije liestnoam ien"
 
 #. button to create a new list directly from a sentence block
 #. / button to create a new list from the lists of list page (verb)
@@ -1802,7 +1782,7 @@ msgstr "(lest selekteerd)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L24
 msgid "Collaborative list"
-msgstr ""
+msgstr "Gezoamelke liest"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L27
 msgid "No list found."
@@ -1820,7 +1800,7 @@ msgstr "veurege"
 #. link to a random sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L30
 msgid "random"
-msgstr ""
+msgstr "willekeureg"
 
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L36
@@ -1829,50 +1809,50 @@ msgstr "toukommende"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L42
 msgid "Language for previous, next or random sentence"
-msgstr ""
+msgstr "Toal veur veurege, toukommende of willekeurege zin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L71
 msgid "Show sentence #: "
 msgstr "Teun zin nummer:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L60
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L118
 msgid "Your sentence was not added because the following already exists."
 msgstr "Dien zin wer nait touvougd, omreden hai al bestoat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L141
 msgid "This sentence belongs to a native speaker."
-msgstr ""
+msgstr "Dizze zin is van n moudertoalspreker."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L146
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L30
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L46
 msgid "This sentence is not reliable."
-msgstr ""
+msgstr "Dizze zin is nait betraauwboar."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L283
 msgid "Copy sentence"
-msgstr ""
+msgstr "Zin kopieren"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L159
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L66
 msgid "Go to sentence page"
-msgstr ""
+msgstr "Goa noar zin paginoa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L197
 msgid "Translations of translations"
-msgstr ""
+msgstr "Vertoalen van vertoalen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L210
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L238
 msgid "Fewer translations"
-msgstr ""
+msgstr "Minder vertoalens"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L4
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L480
 msgid "You cannot edit this sentence because it has audio."
-msgstr ""
+msgstr "Kinst dizze zin nait bewaarken, omreden e n audio het."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L20
 msgid "Other language"
@@ -1883,13 +1863,13 @@ msgstr "Aandere toal"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
 msgid "Transcription"
-msgstr ""
+msgstr "Transkriptie"
 
 #. reset button of transcription edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L122
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L61
 msgid "Mark as reviewed"
@@ -1931,24 +1911,17 @@ msgstr "bewaarken"
 msgid "Add sentence to list"
 msgstr "Voug zin aan liest tou"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L216
 msgid "Add to favorites"
 msgstr "Aan faverieten touvougen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L26
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L207
 msgid "Remove from favorites"
 msgstr "Oet faverieten vothoalen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L50
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L54
-msgid "This feature is not yet implemented."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L118
@@ -1959,7 +1932,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L172
 msgid "Are you sure?"
-msgstr ""
+msgstr "Waist doe t wis?"
 
 #. delete button on sentence menu (verb)
 #. / delete button on private message (verb)
@@ -1968,7 +1941,7 @@ msgstr ""
 #. / delete button on sentence menu (verb)
 #. / button to put a private message in the trash (verb)
 #. / delete button on a wall post (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
@@ -1979,22 +1952,44 @@ msgstr ""
 msgid "Delete"
 msgstr "Votdoun"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L554
+msgid "Mark as \"OK\""
+msgstr "As \"goud\" markeren"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L576
+msgid "Unmark sentence"
+msgstr "Markeren votdoun"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L559
+msgid "Mark as \"unsure\""
+msgstr "As \"twievelachteg\" markeren"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L564
+msgid "Mark as \"not OK\""
+msgstr "As \"nait goud\" markeren"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L151
 msgid "Click to adopt"
-msgstr ""
+msgstr "Klik om te adopteren"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L158
 msgid "Click to unadopt"
+msgstr "Klik om zin tot wees te moaken"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L86
+msgid "Show more features"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L67
-msgid "Expand menu"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L72
-msgid "Collapse menu"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L91
+msgid "Show fewer features"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
@@ -2005,7 +2000,19 @@ msgstr ""
 msgid "Hide unreviewed transcriptions"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L17
+msgid "Unlink this translation"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L21
+msgid "Make into direct translation"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L37
+msgid "Existing sentence #{number} has been added as a translation."
+msgstr "Bestoande zin nr. {number} is touvougd as n vertoalen."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L53
 msgid "Edit this translation"
 msgstr "Bewaark dizze vertoalen"
 
@@ -2016,9 +2023,8 @@ msgid "Translation"
 msgstr "Vertoalen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L398
-msgid "Submit translation"
-msgstr ""
+msgid "Add translation"
+msgstr "Vertoalen touvougen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L40
 msgid "Edit translation"
@@ -2026,11 +2032,11 @@ msgstr "Bewaark vertoalen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L22
 msgid "Sentence removed from list."
-msgstr ""
+msgstr "Zin vothoald van liest."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L25
 msgid "Undo removal"
-msgstr ""
+msgstr "Moak vothoalen ongedoan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L474
@@ -2043,40 +2049,46 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/session_expired.ctp#L33
 msgid "Please <a href=\"{}\">log in again</a>."
-msgstr ""
+msgstr "<a href=\"{}\">Meldst doe asjeblieft vannijs aan</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L34
 msgid "Tatoeba is a collection of sentences and translations."
-msgstr ""
+msgstr "Tatoeba is n kolleksie van zinnen en vertoalens."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L38
 msgid "It's collaborative, open, free and even addictive."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L84
+#. option used in language selection of dropdowns on home page for guests
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L67
+msgctxt "short_description"
+msgid "Any language"
+msgstr "Ale toalen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L86
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
-msgstr ""
+msgstr "Zuik zinnen ien t {langFrom} vertoald noar t {langTo}woar ien t toukommende stoat:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L98
 msgid "Clear search"
-msgstr ""
+msgstr "Zuikveld leegmoaken"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/advanced_search.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L30
 msgctxt "title"
 msgid "Advanced search"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L140
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr ""
 
 #. links to a page with tips to perform
 #. searches, like search operators
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L147
 msgid "More tips"
-msgstr ""
+msgstr "Meer tips"
 
 #. link to the user's profile in the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L39
@@ -2094,7 +2106,7 @@ msgstr "Mien zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L86
 msgid "My vocabulary"
-msgstr ""
+msgstr "Mien woordenbouk"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L100
 msgid "My reviews"
@@ -2124,7 +2136,7 @@ msgstr "Mien muurberichten"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L184
 msgid "My sentence logs"
-msgstr ""
+msgstr "Liest van mien biedroagen"
 
 #. header text for settings on profile page
 #. / title of Settings page
@@ -2137,33 +2149,38 @@ msgstr "Instellen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L255
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L256
 msgid "Log out"
-msgstr ""
+msgstr "Oetloggen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L11
-msgid "{number} contribution today"
-msgid_plural "{number} contributions today"
-msgstr[0] "{number} biedroage vandoag"
-msgstr[1] "{number} biedroagen vandoag"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L21
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
 msgstr[0] ""
 msgstr[1] ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
+msgid "Stats per languages"
+msgstr "Statistieken per toal"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
-msgid "stats per languages"
-msgstr ""
+msgid "{number} contribution today"
+msgid_plural "{number} contributions today"
+msgstr[0] "{number} biedroage vandoag"
+msgstr[1] "{number} biedroagen vandoag"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L49
 msgid "Browse"
-msgstr ""
+msgstr "Bloadern"
+
+#. menu item on the top (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L56
+msgid "Show random sentence"
+msgstr "Let willekeurege zin zain"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L62
 msgid "Browse by language"
-msgstr ""
+msgstr "Bloadern op toal"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L68
@@ -2183,7 +2200,7 @@ msgstr "Deur audio bloadern"
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L85
 msgid "Contribute"
-msgstr ""
+msgstr "Biedroage levern"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L92
@@ -2195,57 +2212,52 @@ msgstr "Zinnen touvougen"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L102
 msgid "Adopt sentences"
-msgstr ""
+msgstr "Zinnen adopteren"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L113
 msgid "Discuss sentences"
-msgstr ""
+msgstr "Zinnen bespreken"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L118
 msgid "Add vocabulary request"
-msgstr ""
-
-#. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L124
-msgid "Show activity timeline"
-msgstr ""
+msgstr "Aanvroag veur woordenschat touvougen"
 
 #. menu on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L126
 msgid "Community"
-msgstr ""
+msgstr "Gemainschop"
 
 #. menu item on the top (verb)
 #. / title of the Wall page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L39
 msgid "Wall"
 msgstr "Muur"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L138
 msgid "List of all members"
 msgstr "Liest van ale leden"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L58
 msgid "Languages of members"
 msgstr "Toalen van leden"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr ""
+msgstr "Moudertoalsprekers"
 
 #. link to the user's vocabulary on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L51
 msgid "Vocabulary"
-msgstr ""
+msgstr "Woordenbouk"
 
 #. link to the user's reviews on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L60
@@ -2291,7 +2303,7 @@ msgstr "Muurberichten"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L144
 msgid "Logs"
-msgstr ""
+msgstr "Liest van biedroagen"
 
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
@@ -2307,15 +2319,15 @@ msgstr "Vertoal zinnen van {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L28
 msgid "Vocabulary requests"
-msgstr ""
+msgstr "Aanvroagen veur woordenschat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L33
 msgid "My vocabulary requests"
-msgstr ""
+msgstr "Mien aanvroagen veur woordenschat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L39
 msgid "Add vocabulary requests"
-msgstr ""
+msgstr "Aanvroagen veur woordenschat touvougen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L45
 msgid "Existing vocabulary requests"
@@ -2330,15 +2342,15 @@ msgstr "Voug n bericht tou:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L22
 msgctxt "wall message"
 msgid "{createdDate}, edited {modifiedDate}"
-msgstr ""
+msgstr "{createdDate}, {modifiedDate} aanpast"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L127
 msgid "hide replies"
-msgstr ""
+msgstr "verbaarg reaksies"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L130
 msgid "show replies"
-msgstr ""
+msgstr "teun reaksies"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L2
 msgid "Your login: "
@@ -2400,7 +2412,7 @@ msgstr "Dizze gebroeker het gain faverieten."
 #. title of error page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L36
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #. link to go back the previous page from an error page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L45
@@ -2409,7 +2421,7 @@ msgstr "Terog"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
-msgstr ""
+msgstr "Verwizzel lisensie van mien zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L26
 msgid "Switch my sentences to CC0"
@@ -2434,11 +2446,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L37
 msgid "You must be the original creator of the sentence."
-msgstr ""
+msgstr "Doe mòst oorspronkelke auteur van zin wezen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L38
 msgid "The sentence must be original and not derived from translation."
-msgstr ""
+msgstr "Zin mòt origineel wezen en nait òflaaid wezen van n vertoalen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L53
 msgid ""
@@ -2452,7 +2464,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L62
 msgid "Switch license"
-msgstr ""
+msgstr "Wizzel lisensie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L64
 msgid ""
@@ -2468,7 +2480,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L72
 msgid "Switch license to CC0 1.0"
-msgstr ""
+msgstr "Verander lisensie noar CC0 1.0"
 
 #. alt text for unlink translation button (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/add.ctp#L6
@@ -2497,7 +2509,7 @@ msgstr "Hinwiezen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/delete.ctp#L11
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L159
 msgid "Make into direct translation."
-msgstr ""
+msgstr "n Direkte vertoalen moaken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L42
 msgid ""
@@ -2529,17 +2541,17 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L43
 msgctxt "header"
 msgid "FAQ"
-msgstr ""
+msgstr "Mainst stelde vroagen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L49
 msgid ""
 "Please make sure to <a href=\"{}\">read the FAQ</a> before asking a "
 "question."
-msgstr ""
+msgstr "Zörg der veur da's <a href=\"{}\">mainst stelde vroagen (FAQ)</a> lezen hest veurdat doe n vroag stelst."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L58
 msgid "Follow us"
-msgstr ""
+msgstr "Volg ons"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L61
 msgid "Tatoeba Blog"
@@ -2553,13 +2565,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L83
 msgid "Post on the Wall"
-msgstr ""
+msgstr "Let n bericht op muur achter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L87
 msgid ""
 "You can also tell us what you think by posting on the <a "
 "href=\"{}\">Wall</a>."
-msgstr ""
+msgstr "Doe kinst ons ook vertellen wat doe aargenswoar van viendt deur n bericht op <a href=\"{}\">muur</a> achter te loaten."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L96
 msgid "Join our chatroom"
@@ -2579,7 +2591,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L34
 msgid "Any question?"
-msgstr ""
+msgstr "Hest n vroag?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L38
 msgid ""
@@ -2633,12 +2645,12 @@ msgstr "BIC/SWIFT:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L30
 msgid "Download sentences"
-msgstr ""
+msgstr "Zinnen downloaden"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L40
 msgid "Filename"
-msgstr ""
+msgstr "Bestaandsnoam"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L42
@@ -2666,7 +2678,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L92
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L54
@@ -2690,12 +2702,12 @@ msgstr "Doatum touvougd"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L60
 msgid "Date created"
-msgstr ""
+msgstr "Doatum aanmoakt"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L62
 msgid "Date last modified"
-msgstr ""
+msgstr "Doatum veur lest wiezigd"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L64
@@ -2726,7 +2738,7 @@ msgstr "Bewaarkboar deur"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L74
 msgid "Meaning id"
-msgstr ""
+msgstr "Betaiken-ID"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L76
@@ -2746,12 +2758,12 @@ msgstr ""
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L84
 msgid "Script name"
-msgstr ""
+msgstr "Skriptnoam"
 
 #. header text in the Downloads page on the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L104
 msgid "Note"
-msgstr ""
+msgstr "Opmaarken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L107
 msgid ""
@@ -2768,7 +2780,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L125
 msgid "General information about the files"
-msgstr ""
+msgstr "Algemaine informoatsie over bestanden"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L128
 msgid ""
@@ -2798,7 +2810,7 @@ msgstr ""
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L160
 msgid "Licenses covering audio"
-msgstr ""
+msgstr "Lisensies veur audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L163
 msgid ""
@@ -2810,7 +2822,7 @@ msgstr ""
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L172
 msgid "Questions?"
-msgstr ""
+msgstr "Nog vroagen?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L176
 msgid ""
@@ -2828,7 +2840,7 @@ msgstr ""
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L222
 msgid "Detailed Sentences"
-msgstr ""
+msgstr "Detailleerde zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L236
 msgid ""
@@ -2942,17 +2954,17 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
-msgstr ""
+msgstr "Meer hulp neudeg?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L38
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "Doe kinst ook even kieken bie <a href=\"{}\">Mainst stelde vroagen (FAQ)</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L46
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
-msgstr ""
+msgstr "Astoe nait t antwoord op dien vroag viendt, twiefel din nait <a href=\"{}\">kontakt mit ons op te nemen</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L62
 msgid "Getting started"
@@ -2969,7 +2981,7 @@ msgstr ""
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "Astoe dit projekt haildaal geweldeg viendt en geern aktief mit helpen wilst, din is hier n hinwiezen dijs lezen <strong>MÒST</strong>:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L97
 msgid ""
@@ -2979,7 +2991,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L108
 msgid "Important links"
-msgstr ""
+msgstr "Belangrieke hinwiezens"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L130
 msgid "Adding new sentences"
@@ -2993,13 +3005,13 @@ msgstr "Der binnen twij menaairn woarop nije zinnen touvougen kinst."
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Kais <a href=\"{}\">Zinnen touvougen</a> ien t menu <strong>Biedroagen</strong> bovenaan ale paginoas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr ""
+msgstr "Deur n nije <a href=\"{}\">liest</a> aan te moaken, en noar bewaarkenpaginoa veur liest te goan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L170
 msgid ""
@@ -3027,24 +3039,24 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L205
 msgid "Correcting mistakes"
-msgstr ""
+msgstr "Fouten korrigeren"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L209
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr ""
+msgstr "Doe kinst allain mor fouten korrigeren in dien zinnen. Astoe n fout zigst ien n zin dij van n aander is, kinstoe n opmaarken achterloaten om hom of heur op fout te wiezen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L218
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "Ien summege gevallen is zin van gainain. Lees paragroaf hieronder (over t adopteren van zinnen) om meer te waiten te kommen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L227
 msgid "Adopting sentences"
-msgstr ""
+msgstr "Zinnen adopteren"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L231
 msgid ""
@@ -3060,13 +3072,13 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "As doe n fout zigst ien n \"wees\"-zin, kinst dij nait korrigeren, omreden zin nait dienent is. Doarom is der n opsie om te \"adopteren\" ({adoptButton}). Zodroa doe n zin adopteerst, is e dienent en kinst hom dus bewaarken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
-msgstr ""
+msgstr "t Adopteren van n zin heurt ook bie t \"kwaliteitsproces\". Kinst hier meer informoatsie over vienen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L272
 msgid "Sentence lists"
@@ -3088,7 +3100,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L29
 msgid "Tatoeba: Collection of sentences and translations"
-msgstr ""
+msgstr "Tatoeba: n Kolleksie van zinnen en vertoalens"
 
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
@@ -3096,37 +3108,48 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
-msgstr ""
+msgstr "Statistieken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L99
 msgid "Latest messages"
+msgstr "Nijste berichten"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L93
+msgid ""
+"The new sentence design will soon completely replace the old one. Please try"
+" it out and let us know if you experience any issue. You can enable it with "
+"the option \"Display sentences with the new design\" in your Settings."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
+msgid "Go to settings"
+msgstr "Goa noar instellens"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
 msgid "show more..."
 msgstr "teun meer..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Nijste opmaarkens"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L76
 msgid "Want to help?"
-msgstr ""
+msgstr "Wilst helpen?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L81
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L87
 msgid "Join the community"
-msgstr ""
+msgstr "Wor lid van gemainschop"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -3140,7 +3163,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L52
 msgid "We are sorry for the inconvenience."
-msgstr ""
+msgstr "t Spiet ons dunders veur t ongemak."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L6
 msgid ""
@@ -3206,7 +3229,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L50
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "Wacht asjeblieft tot doe meer berichten versturen kinst."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L64
 msgid ""
@@ -3258,7 +3281,7 @@ msgstr ""
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L73
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L113
@@ -3266,7 +3289,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L160
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L210
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L97
 msgid "Sort by:"
@@ -3277,7 +3300,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L122
 msgid "date modified"
-msgstr ""
+msgstr "doatum aanpazzen"
 
 #. sort option in the list of reviews
 #. / sort option in the "Sentences of user" page
@@ -3290,9 +3313,9 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L216
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L75
 msgid "date created"
-msgstr ""
+msgstr "doatum aanmoakt"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L119
@@ -3303,12 +3326,12 @@ msgstr "Zin-ID"
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr ""
+msgstr "Klik op bovenste zin om noar tatoeba.org te goan en zin te vertoalen of n opmaarken acter te loaten."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
 msgid "Sentence #{number}"
-msgstr ""
+msgstr "Zin nr. {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
@@ -3352,13 +3375,13 @@ msgstr "Opmaarkens bie zinnen van {user} (ien totoal&nbsp;{n})"
 #. header text in side bar of the "Add sentences" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L43
 msgid "Important"
-msgstr ""
+msgstr "Belangriek"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L47
 msgid ""
 "<strong>We like quality.</strong> Every detail matters. Please do not forget"
 " punctuation and capital letters."
-msgstr ""
+msgstr "<strong>Wie holden van kwaliteit.</strong> Ale details binnen belangriek. Vergeet interpunktie en hoofdletters nait."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L56
 msgid ""
@@ -3379,7 +3402,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
 msgid "Sentences wanted"
-msgstr ""
+msgstr "Wìnste zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
@@ -3391,15 +3414,15 @@ msgstr "Zinnen van {user} ien t {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
-msgstr ""
+msgstr "Let allain originele zinnen zain"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L89
 msgid "{user} does not own any sentences in {language}"
-msgstr ""
+msgstr "{user} het gain zinnen ien t {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L94
 msgid "{user} does not own any sentences"
-msgstr ""
+msgstr "{user} bezit gain zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
 msgid ""
@@ -3438,12 +3461,12 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L77
 msgid "More search criteria"
-msgstr ""
+msgstr "Meer zuikkriteria"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
 msgid "Search error"
-msgstr ""
+msgstr "Zuikfout"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L97
 msgid ""
@@ -3475,21 +3498,21 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
-msgstr ""
+msgstr "{sentence} - {language} veurbeeldzin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
-msgstr ""
+msgstr "Bloader deur vertoalde veurbeeldzinnen. Dizze pagina let vertoalens en informoatsie over zin zain: {sentenceText}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
-msgstr ""
+msgstr "Zin bestoat nait:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
-msgstr ""
+msgstr "Noakeken deur"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L94
 msgid "(outdated)"
@@ -3497,7 +3520,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L165
 msgid "There is no log for this sentence"
-msgstr ""
+msgstr "Der is gain geschiednis veur dizze zin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L242
 msgid "There are no comments for now."
@@ -3505,7 +3528,7 @@ msgstr "Der binnen nog gain opmaarkens."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L262
 msgid "Random Sentence"
-msgstr ""
+msgstr "Willekeurege Zin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L264
 msgid ""
@@ -3520,36 +3543,36 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L64
 msgid "Only the last {n} sentences are displayed here."
-msgstr ""
+msgstr "Allain leste {n} zinnen worden hier teund."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
-msgstr ""
+msgstr "Probleem tijdens t opsloan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L39
 msgid "Download list: "
-msgstr ""
+msgstr "Liest downloaden:"
 
 #. header text in the side bar of the download list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L46
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L79
 msgid "Actions"
-msgstr ""
+msgstr "Aksies"
 
 #. subheader text in the download list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L60
 msgctxt "header"
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L65
 msgid "File format"
-msgstr ""
+msgstr "Bestaandsformoat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L72
 msgid "Raw text file"
-msgstr ""
+msgstr "Raauw tekstbestaand"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
 msgid "Tab-separated file"
@@ -3561,7 +3584,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L99
 msgid "Translation (optional)"
-msgstr ""
+msgstr "Vertoalen (opsioneel)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L134
 msgid ""
@@ -3576,7 +3599,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L160
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "Download veurberaaiden mishottjed. Perbaaier vannijs."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L31
 msgid "Collaborative lists ({total})"
@@ -3584,7 +3607,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L33
 msgid "All public lists ({total})"
-msgstr ""
+msgstr "Ale openboare liesten ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L38
 msgid "Collaborative lists containing \"{search}\" ({total})"
@@ -3592,7 +3615,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L40
 msgid "All public lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Ale openboare liesten mit \"{search}\" ({total})"
 
 #. sort option in the "List of lists" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L73
@@ -3616,11 +3639,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L38
 msgid "{username}'s lists ({total})"
-msgstr "{username}'s liesten ({total})"
+msgstr "{username} zien/heur liesten ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L43
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "{username} zien/heur liesten mit \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
@@ -3635,15 +3658,15 @@ msgstr "Over dizze liest"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L179
 msgid "created by {listAuthor}"
-msgstr ""
+msgstr "moakt deur {listAuthor}"
 
 #. number of sentences contained in the list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L66
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L45
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Loekt {n}&nbsp;zin"
+msgstr[1] "Loekt {n}&nbsp;zinnen"
 
 #. header text in the side bar of a list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L82
@@ -3655,11 +3678,11 @@ msgstr "Opsies"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L128
 msgid "Edit name"
-msgstr ""
+msgstr "Noam aanpazen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L149
 msgid "Click to edit..."
-msgstr ""
+msgstr "Klik om te bewaarken"
 
 #. sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L162
@@ -3679,7 +3702,7 @@ msgstr "Dou dizze liest vot"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L182
 msgid "This list is empty."
-msgstr ""
+msgstr "Dizze liest is leeg."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L187
 msgid ""
@@ -3702,29 +3725,29 @@ msgstr ""
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L32
 msgid "Admins"
-msgstr ""
+msgstr "Verwoarders"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L34
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "Korpusonderholders"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L36
 msgid "Advanced contributors"
-msgstr ""
+msgstr "Vörderde biedroagers"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L38
 msgid "Contributors"
-msgstr ""
+msgstr "Biedroagers"
 
 #. header text in the side bar of the Native speakers page (noun)
 #. / header text in the side bar of the Languages of members page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L35
 msgid "Legend"
-msgstr ""
+msgstr "Info"
 
 #. table header text in Native speakers page
 #. / table header text in Languages of members page
@@ -3753,14 +3776,14 @@ msgstr "Zinnen mit label {tagName}"
 msgid "Show all tags"
 msgstr "Teun ale labels"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L56
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
 msgstr[0] "{tagName} ({n} zin)"
 msgstr[1] "{tagName} ({n} zinnen)"
 
 #. sort option in the page that lists sentences having a certain tag
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L80
 msgid "date of tag"
 msgstr "doatum van label"
 
@@ -3783,7 +3806,7 @@ msgstr "Labels mit: {search} (totoal {{count}})"
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L95
 msgid "count"
-msgstr ""
+msgstr "aantel"
 
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L98
@@ -3820,11 +3843,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L28
 msgid "Useful tools"
-msgstr ""
+msgstr "Smietege hulpmiddels"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L32
 msgid "Tools"
-msgstr ""
+msgstr "Hulpmiddels"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L38
 msgid "Furigana autogeneration"
@@ -3844,18 +3867,18 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L66
 msgid "Shanghainese to IPA"
-msgstr ""
+msgstr "Sjanghainees noar t IPA"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L74
 msgid ""
 "Convert a Shanghainese text into its pronunciation using the International "
 "Phonetic Alphabet"
-msgstr ""
+msgstr "Zet n tekst ien t Sjanghainees om noar oetsproak mit t Internaasjonoal Fonetisch Alfabet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L67
 msgid "Convert Shanghainese into IPA"
-msgstr ""
+msgstr "Zet Sjanghainees om ien t IPA"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
@@ -3871,15 +3894,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L90
 msgid "Enter a text in shanghainese dialect"
-msgstr ""
+msgstr "Vul n tekst ien ien t Sjanghainese dialekt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
-msgstr ""
+msgstr "Transkripties van {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L52
 msgid "{username} does not have any transcriptions"
-msgstr ""
+msgstr "{username} het gain transkripties"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."
@@ -3933,18 +3956,18 @@ msgstr "Verjoardag"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L283
 msgid "Homepage"
-msgstr ""
+msgstr "Webstee"
 
 #. label for user's description in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L157
 msgid "Description"
-msgstr ""
+msgstr "Omschrieven"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L400
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L404
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L357
 msgid "Add a language"
 msgstr "Voug n toal tou"
 
@@ -3961,7 +3984,7 @@ msgstr "Bewaark toal"
 msgid ""
 "If your language is missing, please read our article on how to <a "
 "href=\"{}\">request a new language</a>."
-msgstr ""
+msgstr "As dien toal ontbreekt, lees din ons artikel over hou die <a href=\"{}\">n nije toal aanvroagen kinst</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L458
@@ -3971,11 +3994,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L474
 msgid "Details (optional). For instance, which dialect or from which country."
-msgstr ""
+msgstr "Details (opsioneel). Bieveurbeeld welk dialekt of oet welk laand."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L86
 msgid "Contact {user}"
-msgstr ""
+msgstr "Kontakt opnemen mit {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L94
 msgid "Comments posted"
@@ -3983,15 +4006,15 @@ msgstr "Opmaarkens ploatst"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L96
 msgid "Sentences owned"
-msgstr ""
+msgstr "Aantel angoande zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L98
 msgid "Audio recordings"
-msgstr ""
+msgstr "Geluudsopnoamen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L100
 msgid "Sentences favorited"
-msgstr ""
+msgstr "Aantel zinnen ien zien/heur faverieten"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L102
 msgid "Contributions"
@@ -4013,13 +4036,13 @@ msgstr ""
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr ""
+msgstr "Dit profiel is OPENBOAR tougankelk. Ale informoatsie kin deur elkenain bekeken worden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L147
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr ""
+msgstr "Dit profiel is BEPERKT tougankelk. Allain leden van Tatoeba kinnen persoonelke informoatsie en beschrieven bekieken."
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L244
@@ -4067,7 +4090,7 @@ msgstr "Voug dizze toal tou"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L54
 msgid "Main options"
-msgstr ""
+msgstr "Belangriekste meugelkheden"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L64
 msgid "Send email notifications"
@@ -4075,7 +4098,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L87
 msgid "Set your profile public"
-msgstr ""
+msgstr "Moak dien profiel openboar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L112
 msgid ""
@@ -4107,24 +4130,28 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L232
 msgid "Number of sentences per page"
+msgstr "Aantel zinnen per paginoa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
+msgid "Default license for original sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
 msgid "Experimental options"
-msgstr ""
+msgstr "Experimentele opsies"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L256
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L273
 msgid "Activate the feature to review sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L296
 msgid ""
 "Mark sentences when the owner indicated in their profile that they have a "
 "native level in the language of the sentence. In the old design \"(native)\""
@@ -4132,36 +4159,36 @@ msgid ""
 "next to the sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L324
 msgid ""
 "Display sentences with the new design. Note that some features are not yet "
 "implemented in this new design but are coming soon."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L355
 msgid "Change email address"
 msgstr "E-mailadres verandern"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L368
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L160
 msgid "Email address"
 msgstr "E-mailadres"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L378
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L387
 msgid "Change password"
 msgstr "Verander wachtwoord"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L391
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L400
 msgid "Old password"
 msgstr "Old wachtwoord"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L408
 msgid "New password"
 msgstr "Nije wachtwoord"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L416
 msgid "New password again"
-msgstr ""
+msgstr "Weer nij wachtwoord"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L38
 msgid "Members"
@@ -4177,7 +4204,7 @@ msgstr "Leden (totoal {number})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Can switch license"
-msgstr ""
+msgstr "Kin van lisensie wizzeln"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
@@ -4185,7 +4212,7 @@ msgstr "Leden: {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L52
 msgid "Back to global stats"
-msgstr ""
+msgstr "Terog noar algemaine statistieken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L96
 msgid "{lang} ({total} member)"
@@ -4201,7 +4228,7 @@ msgstr "Wachtwoord"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L44
 msgid "Send new password"
-msgstr ""
+msgstr "Nij wachtwoord versturen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L52
 msgid "Email"
@@ -4213,11 +4240,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L147
 msgid "unmask password"
-msgstr ""
+msgstr "Wachtwoord zichtboar moaken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L152
 msgid "Unmask password"
-msgstr ""
+msgstr "Teun wachtwoord"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L207
 msgid "Native language:"
@@ -4230,7 +4257,7 @@ msgstr "Astoe dien moudertoal nait ien liest vienen kin, let hom din op ''Gain''
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L238
 msgid "We need to make sure you are human."
-msgstr ""
+msgstr "Wie mòtten der wis van wezen da's n mìnsk bist."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L243
 msgid "What are the first five characters of your email address?"
@@ -4253,7 +4280,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L293
 msgid "You did not accept the terms of use."
-msgstr ""
+msgstr "Doe hest gebroekersveurwoarden nait aksepteerd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L24
 msgid "Tatoeba user: {username}"
@@ -4267,7 +4294,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L145
 msgid "view all"
-msgstr ""
+msgstr "teun aal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L142
 msgid "Latest Wall messages"
@@ -4283,20 +4310,20 @@ msgid ""
 "in Tatoeba, other contributors can add sentences for it."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L90
 msgid "Vocabulary item"
 msgstr ""
 
 #. button to add a vocabulary request
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L103
 msgid "Add"
 msgstr "Touvougen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L113
 msgid "Vocabulary items added"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L128
 msgid "You have already added this vocabulary item."
 msgstr ""
 
@@ -4316,7 +4343,7 @@ msgstr "Dizze zin bestoat al."
 #. button to submit new sentence from wanted vocabulary requests page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L127
 msgid "Submit"
-msgstr ""
+msgstr "Versturen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/of.ctp#L33
 msgid "{username}'s vocabulary items ({number})"
@@ -4345,7 +4372,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L86
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr ""
+msgstr "Doe magst ien ale wìnste toalen schrieven. Op Tatoeba binnen ale toalen geliek."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
@@ -4362,19 +4389,33 @@ msgstr ""
 #. header text the side bar of the page of a Wall post
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L47
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L51
 msgid "Back to Wall"
 msgstr "Terog noar muur"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L57
+msgid "Tatoeba will temporarily shut down for maintenance in {n} minute."
+msgid_plural ""
+"Tatoeba will temporarily shut down for maintenance in {n} minutes."
+msgstr[0] ""
+msgstr[1] ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L66
+msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
+msgid_plural ""
+"Tatoeba will temporarily shut down for maintenance in {n} seconds."
+msgstr[0] ""
+msgstr[1] ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
-msgstr ""
+msgstr "Opnomen deur: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L61
 msgid "License: {license}"
-msgstr ""
+msgstr "Lisensie: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L74
 msgid ""
@@ -4408,22 +4449,22 @@ msgstr "Stuur bericht"
 #. button to unhide a sentence comment (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L94
 msgid "Unhide"
-msgstr ""
+msgstr "Zichtboar moaken"
 
 #. button to hide a sentence comment (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L98
 msgid "Hide"
-msgstr ""
+msgstr "Verbaargen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
-msgstr ""
+msgstr "Op toal filtern"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L117
 msgid "date unknown"
-msgstr ""
+msgstr "doatum onbekind"
 
 #. This date appears in a phrase (e.g. "edited April 1, 2012"), so you
 #. may want to add a preposition or an article.
@@ -4514,85 +4555,86 @@ msgid "tab"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L138
 msgid "Profile languages"
-msgstr ""
+msgstr "Profieltoalen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L92
 msgid "Last used languages"
-msgstr ""
+msgstr "Lest broekte toalen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L96
 msgid "Other languages"
 msgstr "Aandere toalen"
 
-#. option used in language selection dropdowns such as "Not directly
-#. translated into"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L163
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L272
-msgid "Any language"
-msgstr "Ale toalen"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L169
+msgctxt "dropdown-list"
+msgid "Unknown language"
+msgstr "Onbekinde toal"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L166
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L217
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L237
 msgid "other language"
 msgstr "Aandere toal"
 
+#. option used in language selection dropdown for "Show translations in" in
+#. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
-msgctxt "dropdown-list"
-msgid "Unknown language"
-msgstr ""
-
-#. option used in language selection dropdowns such as "Show translations in"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L251
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L218
 msgid "None"
 msgstr "Gain"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L301
-msgctxt "searchbar"
+#. option used in language selection dropdown for "Show translations in" in
+#. advanced search form
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L203
+msgctxt "show-translations-in"
+msgid "All languages"
+msgstr "Ale toalen"
+
+#. option used in language selection dropdowns in other places
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L234
 msgid "Any language"
 msgstr "Ale toalen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L404
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L338
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
 msgstr "Doe kinst gain zinnen touvougen, omreden doe gain toalen aan dien profiel touvougd hest."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L409
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L343
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
 msgstr "Doe kinst gain zinnen vertoalen, omreden doe gain toalen aan dien profiel touvougd hest."
 
 #. language level
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L369
 msgctxt "level"
 msgid "Unspecified"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L436
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L370
 msgid "0: Almost no knowledge"
-msgstr ""
+msgstr "0: Sikkom gain kunde"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L437
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L371
 msgid "1: Beginner"
-msgstr ""
+msgstr "1: Begunner"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L372
 msgid "2: Intermediate"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L439
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L373
 msgid "3: Advanced"
-msgstr ""
+msgstr "3: Vörderd"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L440
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L374
 msgid "4: Fluent"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L375
 msgid "5: Native level"
 msgstr ""
 
@@ -4605,7 +4647,7 @@ msgstr ""
 #. the name of a list when it happens to be empty
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L153
 msgid "(unnamed list)"
-msgstr ""
+msgstr "(liest zunder noam)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L212
 msgid "Number of sentences"
@@ -4625,12 +4667,12 @@ msgstr "Vertoalens teunen:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L334
 msgid "List visibility"
-msgstr ""
+msgstr "Zichtboarhaid van liest"
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L342
 msgid "Public"
-msgstr ""
+msgstr "Openboar"
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L346
@@ -4659,7 +4701,7 @@ msgstr "Alleen k"
 #. option when choosing who can edit a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
 msgid "No one (list inactive)"
-msgstr ""
+msgstr "Gainain (inaktieve liest)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L465
 msgid "Remove sentence {number} from list"
@@ -4677,7 +4719,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L573
 msgid "Create a new list"
-msgstr ""
+msgstr "n Nije liest moaken"
 
 #. field for the name of a list to create (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L585
@@ -4689,11 +4731,11 @@ msgstr "Noam"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L608
 msgctxt "header"
 msgid "Search"
-msgstr ""
+msgstr "Zuiken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L655
 msgid "All public lists"
-msgstr ""
+msgstr "Ale openboare liesten"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L666
 msgid "Collaborative lists"
@@ -4716,23 +4758,23 @@ msgstr "touvougd deur {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by an unknown member"
-msgstr ""
+msgstr "Touvougd deur n onbekind lid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by {user}"
-msgstr ""
+msgstr "Hinwezen deur {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by an unknown member"
-msgstr ""
+msgstr "Hinwezen deur n onbekind lid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by {user}"
-msgstr ""
+msgstr "lisensie kozen deur {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by a unknown member"
-msgstr ""
+msgstr "lisensie kozen deur n onbekind lid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by {user}"
@@ -4740,15 +4782,15 @@ msgstr "bewaarkt deur {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by an unknown member"
-msgstr ""
+msgstr "Bewaarkt deur n onbekind lid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
-msgstr ""
+msgstr "lisensie veranderd deur {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by an unknown member"
-msgstr ""
+msgstr "lisensie veranderd deur n onbekind lid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
@@ -4756,15 +4798,15 @@ msgstr "Votdoan deur {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by an unknown member"
-msgstr ""
+msgstr "Votdoan deur n onbekind lid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by {user}"
-msgstr ""
+msgstr "Hinwiezen vothoald deur {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by an unknown member"
-msgstr ""
+msgstr "Hinwiezen vothoald deur n onbekind lid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
@@ -4777,27 +4819,27 @@ msgstr ""
 #. one of the user status displayed on profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L86
 msgid "admin"
-msgstr ""
+msgstr "verwoarder"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L88
 msgid "corpus maintainer"
-msgstr ""
+msgstr "korpusonderholder"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L90
 msgid "advanced contributor"
-msgstr ""
+msgstr "vörderde biedroager"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L92
 msgid "contributor"
-msgstr ""
+msgstr "biedroager"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L94
 msgid "inactive"
-msgstr ""
+msgstr "inaktief"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L96
@@ -4813,7 +4855,7 @@ msgstr ""
 #. button after removing a favorite from the My favorites page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L213
 msgid "Undo"
-msgstr ""
+msgstr "Ongedoan moaken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L271
 msgid "Link to another sentence"
@@ -4845,27 +4887,11 @@ msgstr "Doe kinst dizze zin nait votdoun, omreden t n audio het."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L517
 msgid "belongs to {user}"
-msgstr ""
+msgstr "heurt bie {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L537
 msgid "(native)"
 msgstr "(moudertoal)"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L554
-msgid "Mark as \"OK\""
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L559
-msgid "Mark as \"unsure\""
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L564
-msgid "Mark as \"not OK\""
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L576
-msgid "Unmark sentence"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L678
 msgid ""
@@ -4881,7 +4907,7 @@ msgstr "aan {recipient}"
 #. private message type (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
 msgid "Draft"
-msgstr ""
+msgstr "Ontwaarp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
 msgid "notification from Tatoeba"
@@ -4893,7 +4919,7 @@ msgstr "van {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
 msgid "View this user's profile"
-msgstr ""
+msgstr "Bekiek het profiel van dizze gebroeker"
 
 #. this formats the title at the top of every page
 #. that shows a list of sentences (search, browse by language,
@@ -4902,8 +4928,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L38
 msgid "{title} ({n} result)"
 msgid_plural "{title} ({n}&nbsp;results)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{title} ({n} resultoat)"
+msgstr[1] "{title} ({n}&nbsp;resultoaten)"
 
 #. this formats the title at the top of the search
 #. page by appending the number of results. Tatoeba is only able
@@ -4913,12 +4939,12 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L49
 msgid "{title} ({thousand}&nbsp;results out of {n} occurrence)"
 msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{title} ({thousand}&nbsp;teunde resultoat op n totoal van {n}&nbsp;)"
+msgstr[1] "{title} ({thousand}&nbsp;teunde resultoaten op n totoal van {n}&nbsp;)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L84
 msgid "Recently added sentences may not appear in search results."
-msgstr ""
+msgstr "Net touvougde zinnen kommen meschain nait ien t overzicht veur."
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
@@ -4930,11 +4956,11 @@ msgstr ""
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L128
 msgid "Next page [Ctrl+→]"
-msgstr ""
+msgstr "Toukommende paginoa [Ctrl+→]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L153
 msgid "Member status"
-msgstr ""
+msgstr "Lidstoatus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L59
 msgid "{sender} wrote:"
@@ -4942,25 +4968,36 @@ msgstr "{sender} schreef:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
-msgstr ""
+msgstr "Markeren as nait lezen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L871
+msgid "Show 1 more translation"
+msgid_plural "Show {number} more translations"
+msgstr[0] "Teun nog 1 vertoalen"
+msgstr[1] "Teun {number} meer vertoalens"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L344
 msgid "Translation:"
 msgstr "Vertoalen:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L826
-msgid "This sentence is original and was not derived from translation."
-msgstr ""
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L400
+msgid "Submit translation"
+msgstr "Vertoalen versturen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L838
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L828
+msgid "This sentence is original and was not derived from translation."
+msgstr "Dizze zin is origineel en is gain vertoalen van n aandere."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L840
 msgid "This sentence was initially added as a translation of sentence #{n}."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L843
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L845
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
@@ -4978,11 +5015,11 @@ msgstr "Ale labels bekieken"
 msgid "Added by {username}, {date}"
 msgstr "Touvougd deur {username}, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."
 msgstr "Hoal label '{tagName}' van dizze zin vot."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L301
 msgid "Remove tag from sentence"
 msgstr "Hoal label van zin vot"
 
@@ -5000,15 +5037,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L199
 msgid "Edit transcription"
-msgstr ""
+msgstr "Transkriptie aanpazen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L205
 msgid "You cannot edit this script."
-msgstr ""
+msgstr "Kinst dit schrift nait aanpazen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L207
 msgid "You cannot edit this transcription."
-msgstr ""
+msgstr "Kinst dizze transkriptie nait aanpazen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L249
 msgctxt "alternative script"

@@ -234,13 +234,13 @@ class LinksTable extends Table
     public function updateLanguage($sentenceId, $lang)
     {
         $this->updateAll(
-            array('sentence_lang' => "'$lang'"),
-            array('sentence_id' => $sentenceId)
+            ['sentence_lang' => $lang],
+            ['sentence_id' => $sentenceId]
         );
 
         $this->updateAll(
-            array('translation_lang' => "'$lang'"),
-            array('translation_id' => $sentenceId)
+            ['translation_lang' => $lang],
+            ['translation_id' => $sentenceId]
         );
     }
 }

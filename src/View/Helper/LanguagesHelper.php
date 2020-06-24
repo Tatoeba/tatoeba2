@@ -114,64 +114,32 @@ class LanguagesHelper extends AppHelper
         return $languages;
     }
 
-
-    /**
-     * Returns array of languages set in the user's options.
-     */
-    public function userLanguagesArray()
-    {
-        $languages = $this->onlyLanguagesArray();
-
-        if (CurrentUser::isMember()) {
-            $userLangs = CurrentUser::getLanguages();
-            if (!empty($userLangs)) {
-                $filteredLangs = array();
-                foreach($userLangs as $langCode) {
-                    $filteredLangs[$langCode] = $languages[$langCode];
-                }
-                $languages = $filteredLangs;
-            }
-        }
-
-        return $languages;
-    }
-
     /**
      * Returns array of languages set in the user's profile.
      *
      * @param bool   $withAutoDetection Set to true if "Auto detect" should be one of the options.
-     * @param bool   $withOther Set to true if "Other language" should be one of the options.
+     * @param array  $with Additional options
      *
      * @return array
      */
 
-    public function profileLanguagesArray($withAutoDetection, $withOther, $withNone = false, $withAny = false)
+    public function profileLanguagesArray($withAutoDetection = false, $with = [])
     {
         $languages = array_intersect_key(
             $this->onlyLanguagesArray(false),
             array_flip(CurrentUser::getProfileLanguages())
         );
 
-        $options = array();
         if (count($languages) > 1 && $withAutoDetection) {
-            $options['auto'] = __('Auto detect');
+            $with['auto'] = __('Auto detect');
         }
-        if ($withNone) {
-            $options['none'] = '—';
-        }
-        if ($withAny) {
-            $options['und'] = __('Any language');   
-        }
-        if ($withOther) {
-            $options[''] = __('other language');
-        }
-        if (!empty($options)) {
+        if (!empty($with)) {
             $languages = array(
                 __('Profile languages') => $languages
             );
         }
 
-        return $options + $languages;
+        return $with + $languages;
     }
 
     /**
@@ -221,55 +189,18 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-     * Return array of language + "auto"
-     * used to know if the user want the language of a contribution
-     * to be manualy set or auto detect
-     *
-     * @return array
-     */
-
-    public function translationsArray()
-    {
-        $languages = $this->userLanguagesArray();
-        $options = ['auto' => __('Auto detect')];
-
-        return $languages;
-    }
-
-
-    /**
      * Return array of languages, with "None" and "All languages" options.
-     * Applies to a positive phrase (for example, "Show translations in").
      *
      * @return array
      */
-    public function languagesArrayForPositiveLists()
+    public function languagesArrayShowTranslationsIn()
     {
         $languages = $this->onlyLanguagesArray();
         $options = [
-            /* @translators: option used in language selection dropdowns such as "Show translations in" */
+            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
             'none' => __('None'),
-            /* @translators: option used in language selection dropdowns such as "Show translations in" */
-            'und' => __('All languages')
-        ];
-
-        return $options + $languages;
-    }
-
-
-    /**
-    * Return array of languages, with "--" and "Any languages" options.
-    * Applies to a negative phrase (for example, "Not directly translated into").
-    *
-    * @return array
-    */
-    public function languagesArrayForNegativeLists()
-    {
-        $languages = $this->onlyLanguagesArray();
-        $options = [
-            'none' => '—',
-            /* @translators: option used in language selection dropdowns such as "Not directly translated into" */
-            'und' => __('Any language')
+            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
+            'und' => __x('show-translations-in', 'All languages')
         ];
 
         return $options + $languages;
@@ -293,12 +224,15 @@ class LanguagesHelper extends AppHelper
     /**
      * Return array of languages in which you can search.
      *
+     * @param string $anyOption String for option "Any language" (und)
      * @return array
      */
-    public function getSearchableLanguagesArray()
+    public function getSearchableLanguagesArray($anyOption = null)
     {
         $languages = $this->onlyLanguagesArray();
-        $options = array('und' => __x('searchbar', 'Any language'));
+        /* @translators: option used in language selection dropdowns in other places */
+        $anyOption = $anyOption ?? __('Any language');
+        $options = array('und' => $anyOption);
         
         return $options + $languages;
     }
