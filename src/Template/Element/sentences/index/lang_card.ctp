@@ -3,9 +3,10 @@
 ?>
 <md-button class="md-primary lang-button" ng-href="<?= $baseUrl ?>/{{lang.code}}/none">
   <div class="lang-name">
-    <img class="language-icon" width="30" height="20"
-         ng-attr-title="{{lang.name ? lang.name : lang.code}}"
-         ng-src="/img/flags/{{lang.code}}.svg" />
+    <svg class="language-icon" width="30" height="20">
+        <use ng-attr-xlink:href="{{getFlagSpriteUrl(lang.code)}}"
+             xlink:href="" />
+    </svg>
     <strong>{{lang.name}}</strong>
   </div>
   <small>{{lang.sentences}}</small>
