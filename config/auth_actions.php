@@ -6,10 +6,10 @@ $config = [
     'public_actions' => [
         'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
         'audio' => [ 'of', 'index' ],
-        'autocompletions' => '*',
+        'autocompletions' => [ '*' ],
         'reviews' => [ 'of' ],
-        'contributions' => '*',
-        'pages' => '*',
+        'contributions' => [ '*' ],
+        'pages' => [ '*' ],
         'favorites' => [ 'of_user' ],
         's' => [ 's' ],
         'sentence_annotations' => [ 'last_modified' ],
@@ -35,13 +35,13 @@ $config = [
             'search',
             'collaborative',
         ],
-        'stats' => '*',
+        'stats' => [ '*' ],
         'tags' => [
             'show_sentences_with_tag',
             'view_all',
             'search'
         ],
-        'tools' => '*',
+        'tools' => [ '*' ],
         'transcriptions' => [ 'view', 'of' ],
         'user' => [
             'profile',
