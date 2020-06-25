@@ -18,7 +18,7 @@ ThisProc: BEGIN
 
 SELECT COUNT(*) INTO @code_found FROM languages WHERE code = lang_iso_code;
 IF NOT (@code_found = 0) THEN
-    SELECT CONCAT('Language code ', lang_iso_code, ' has already been added.');
+    SELECT CONCAT('Language code ', lang_iso_code, ' has already been added.') AS Error;
 END IF;
 -- We know this will fail when the language already exists, but we want the exception
 -- to occur so the caller will catch it.
@@ -28,7 +28,7 @@ SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_list
     WHERE sentences_list_id = list_id_for_lang AND sentences.id = sentence_id;
 
 IF (@sentences_in_list = 0) THEN
-    select CONCAT('There are no sentences in list ', list_id_for_lang);
+    select CONCAT('There are no sentences in list ', list_id_for_lang) AS Warning;
     LEAVE ThisProc;
 END IF;
 
