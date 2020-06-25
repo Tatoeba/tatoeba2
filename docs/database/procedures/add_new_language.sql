@@ -16,10 +16,6 @@ DROP PROCEDURE IF EXISTS add_new_language |
 CREATE PROCEDURE add_new_language(IN lang_iso_code CHAR(4), IN list_id_for_lang INT)
 ThisProc: BEGIN
 
-SELECT COUNT(*) INTO @code_found FROM languages WHERE code = lang_iso_code;
-IF NOT (@code_found = 0) THEN
-    SELECT CONCAT('Language code ', lang_iso_code, ' has already been added.') AS Error;
-END IF;
 -- We know this will fail when the language already exists, but we want the exception
 -- to occur so the caller will catch it.
 INSERT INTO languages (code) VALUES (lang_iso_code);
