@@ -19,9 +19,10 @@ ThisProc: BEGIN
 SELECT COUNT(*) INTO @code_found FROM languages WHERE code = lang_iso_code;
 IF NOT (@code_found = 0) THEN
     SELECT CONCAT('Language code ', lang_iso_code, ' has already been added.');
-    -- We know this will fail, but we want the exception to occur so the caller will catch it.
-    INSERT INTO languages (code) VALUES (lang_iso_code);
 END IF;
+-- We know this will fail when the language already exists, but we want the exception
+-- to occur so the caller will catch it.
+INSERT INTO languages (code) VALUES (lang_iso_code);
 
 SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_lists
     WHERE sentences_list_id = list_id_for_lang AND sentences.id = sentence_id;
@@ -31,7 +32,6 @@ IF (@sentences_in_list = 0) THEN
     LEAVE ThisProc;
 END IF;
 
-INSERT INTO languages (code) VALUES (lang_iso_code);
 UPDATE sentences, sentences_sentences_lists
     SET lang = lang_iso_code
     WHERE sentences_list_id = list_id_for_lang
