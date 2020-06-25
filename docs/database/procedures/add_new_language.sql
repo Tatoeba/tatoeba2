@@ -24,21 +24,23 @@ END IF;
 -- to occur so the caller will catch it.
 INSERT INTO languages (code) VALUES (lang_iso_code);
 
-SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_lists
-    WHERE sentences_list_id = list_id_for_lang AND sentences.id = sentence_id;
+IF (list_id_for_lang > 0) THEN
+    SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_lists
+        WHERE sentences_list_id = list_id_for_lang AND sentences.id = sentence_id;
 
-IF (@sentences_in_list = 0) THEN
-    select CONCAT('There are no sentences in list ', list_id_for_lang) AS Warning;
-    LEAVE ThisProc;
+    IF (@sentences_in_list = 0) THEN
+        select CONCAT('There are no sentences in list ', list_id_for_lang) AS Warning;
+        LEAVE ThisProc;
+    END IF;
+
+    UPDATE sentences, sentences_sentences_lists
+        SET lang = lang_iso_code
+        WHERE sentences_list_id = list_id_for_lang
+        AND sentences.id = sentence_id;
+    UPDATE languages
+        SET sentences = (SELECT count(*) FROM sentences WHERE lang = lang_iso_code)
+        WHERE code = lang_iso_code;
 END IF;
-
-UPDATE sentences, sentences_sentences_lists
-    SET lang = lang_iso_code
-    WHERE sentences_list_id = list_id_for_lang
-    AND sentences.id = sentence_id;
-UPDATE languages
-    SET sentences = (SELECT count(*) FROM sentences WHERE lang = lang_iso_code)
-    WHERE code = lang_iso_code;
 
 END |
 
