@@ -47,7 +47,7 @@ $description = __('File description');
 /* @translators: field name in Fields and structure on Downloads page */
 $sentence_id = __('Sentence id');
 /* @translators: field name in Fields and structure on Downloads page */
-$sentence_based_on_id = __('Sentence Id of base sentence');
+$sentence_based_on_id = __('Sentence id of base sentence');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
 $review = __('Review');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
@@ -96,7 +96,7 @@ $list_sample = $this->Downloads->fileFormat(['13', '381279']);
 // Dropdown for selections
 $sentencesOptions = $this->Downloads->createOptions('sentences');
 $sentencesDetailedOptions = $this->Downloads->createOptions('sentences_detailed');
-$sentencesBasedOnIdOptions = $this->Downloads->createOptions('sentences_based_on_id');
+// $sentencesBasedOnIdOptions = $this->Downloads->createOptions('sentences_based_on_id');
 $sentencesCC0Options = $this->Downloads->createOptions('sentences_CC0');
 $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 ?>
@@ -256,20 +256,20 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
             <h2><?= __('Sentences Based On ID') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
-                <?= $this->element(
-                    'per_language_files',
-                    [
-                        'model' => 'sentences',
-                        'options' => $sentencesBasedOnIdOptions
-                    ]
-                ) ?>
+                <dd>
+                    <a href="<?= $download_url ?>sentences_based_on_id.tar.bz2">sentences_based_on_id.tar.bz2</a>
+                </dd>
                 <dt><?= $description ?></dt>
                 <dd>
                     <?= format(
                         __(
                             'Contains all the sentences in the selected language. '.
-                            'Each sentence is associated with a unique id and the id'.
-                            ' of the sentence it is based on.'
+                            'Each sentence is associated with a unique id and the based on id.'.
+                            ' The based on id can be:'.
+                            ' 0: Original sentence, not based on another.'.
+                            ' >0: the sentence id it is based upon.'.
+                            ' \N (null): We do not know. This is rare but we have a handful of sentences for which'.
+                            ' we do not know if they have been added as translations or not.'
                         )
                     ) ?>
                 </dd>
