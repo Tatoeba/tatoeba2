@@ -146,6 +146,8 @@ sphinxql # runs the SphinxQL console
 ### Generate exports
 
 ```bash
+# Just run this command once
+sudo ln -s /home/vagrant/Tatoeba /var/www-prod
 # This creates the files available on the Downloads page
 sudo ./docs/cron/runner.sh ./docs/cron/export.sh
 ```
