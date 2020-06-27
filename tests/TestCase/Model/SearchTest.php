@@ -781,4 +781,19 @@ class SearchTest extends TestCase
         $this->Search->sort('relevance');
         $this->testSortByEmpty();
     }
+
+    public function exactQueryProvider() {
+        return [
+            ['="test"', 'test'],
+            ['="\=test"', '=test'],
+            ['="\\\\\(\)"', '\\()'],
+        ];
+    }
+
+    /**
+     * @dataProvider exactQueryProvider
+     */
+    public function testExactSearchQuery($expected, $query) {
+        $this->assertEquals($expected, Search::exactSearchQuery($query));
+    }
 }

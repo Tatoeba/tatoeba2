@@ -23,7 +23,7 @@ use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Validation\Validator;
 use App\Model\CurrentUser;
-use App\Utility\Search;
+use App\Model\Search;
 use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table

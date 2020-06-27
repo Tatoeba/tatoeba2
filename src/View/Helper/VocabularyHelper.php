@@ -20,7 +20,7 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use Cake\Core\Configure;
-use App\Utility\Search;
+use App\Model\Search;
 
 
 class VocabularyHelper extends AppHelper

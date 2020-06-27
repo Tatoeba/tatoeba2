@@ -290,4 +290,11 @@ class Search {
             function ($v) { return !is_null($v); }
         );
     }
+
+    public static function exactSearchQuery($text) {
+        $from = array('\\', '(', ')', '|', '-', '!', '@', '~', '"', '&', '/', '^', '$', '=');
+        $to = array('\\\\', '\(', '\)', '\|', '\-', '\!', '\@', '\~', '\"', '\&', '\/', '\^', '\$', '\=' );
+        $escaped = str_replace($from, $to, $text);
+        return '="'.$escaped.'"';
+    }
 }
