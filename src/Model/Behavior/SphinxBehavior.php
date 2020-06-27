@@ -78,12 +78,6 @@ class SphinxBehavior extends Behavior
         $page = isset($options['sphinx']['page']) ? $options['sphinx']['page']: 1;
         $limit = isset($options['sphinx']['limit']) ? (int)$options['sphinx']['limit'] : 1;
         
-        /*if ($event->type == 'count') {
-            $options['limit'] = 1;
-            $options['page'] = 1;
-        } else 
-        */
-
         $sphinx = $this->runtime[$alias]['sphinx'];
         foreach ($options['sphinx'] as $key => $setting) {
             switch ($key) {
@@ -151,27 +145,21 @@ class SphinxBehavior extends Behavior
             }
         }
 
-        /*if ($event->type == 'count') { // TODO
-            $result['total'] = !empty($result['total']) ? $result['total'] : 0;
-            $query['fields'] = 'ABS(' . $result['total'] . ') AS count';
-        } else {*/
-            $this->_cached_result = $result;
-            $this->_cached_query = $search;
-            $this->_cached_options = $options['sphinx'];
-            if (isset($result['matches'])) {
-                $ids = array_keys($result['matches']);
-            } else {
-                $ids = array(0);
-            }
-            $query->where(['Sentences.id IN' => $ids]);
+        $this->_cached_result = $result;
+        $this->_cached_query = $search;
+        $this->_cached_options = $options['sphinx'];
+        if (isset($result['matches'])) {
+            $ids = array_keys($result['matches']);
+        } else {
+            $ids = array(0);
+        }
+        $query->where(['Sentences.id IN' => $ids]);
 
-            // Make sure that we order results according to the $ids array,
-            // which contains the order provided by Sphinx. 
-            // We have to set the second param of order() to true to override 
-            // some previous ordering on the created/modified columns.
-            $query->order(['FIND_IN_SET(Sentences.id, \'' . implode(',', $ids) . '\')'], true);
-
-        /*}*/
+        // Make sure that we order results according to the $ids array,
+        // which contains the order provided by Sphinx.
+        // We have to set the second param of order() to true to override
+        // some previous ordering on the created/modified columns.
+        $query->order(['FIND_IN_SET(Sentences.id, \'' . implode(',', $ids) . '\')'], true);
 
         return $query;
     }
