@@ -26,6 +26,7 @@ class SphinxBehavior extends Behavior
 
     public $_cached_result = null;
     public $_cached_query = null;
+    private $_cached_options = null;
 
     /**
      * Spinx client object
@@ -67,8 +68,9 @@ class SphinxBehavior extends Behavior
          * query and the second for the total count. But when we use the search engine
          * we already get the total count with the first call. The 'withSphinx' finder
          * from the model will use the cached count so we don't need to do anything
-         * when this callback gets called the second time. */
-        if (empty($options['sphinx']) || $this->_cached_result) {
+         * when this callback gets called with the same options a second time. */
+        if (empty($options['sphinx']) ||
+            $options['sphinx'] === $this->_cached_options) {
             return true;
         }
 
@@ -155,6 +157,7 @@ class SphinxBehavior extends Behavior
         } else {*/
             $this->_cached_result = $result;
             $this->_cached_query = $search;
+            $this->_cached_options = $options['sphinx'];
             if (isset($result['matches'])) {
                 $ids = array_keys($result['matches']);
             } else {
