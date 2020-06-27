@@ -597,6 +597,7 @@ class LanguagesLib
                 'rel' => __d('languages', 'Rendille'),
                 'iii' => __d('languages', 'Nuosu'),
                 'drt' => __d('languages', 'Drents'),
+                'chm' => __d('languages', 'Chinook Jargon'),
             );
         }
         return $languages;
