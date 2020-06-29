@@ -16,7 +16,6 @@ class LastContributionsFixture extends TestFixture {
 		'action' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 6, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
 		'datetime' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'ip' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 15, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
 		'type' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 8, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => true],
 		'_indexes' => [
@@ -41,7 +40,6 @@ class LastContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-10 01:26:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '110'
 		],
@@ -55,7 +53,6 @@ class LastContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-10 01:27:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '111'
 		],
@@ -69,7 +66,6 @@ class LastContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2017-04-11 13:49:10',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '112'
 		],

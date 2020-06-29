@@ -301,24 +301,6 @@ class CurrentUser
 
 
     /**
-     * Get user's ip, even if behind a proxy (anyway tatoeba is currently
-     * behind a proxy
-     *
-     * @return IP
-     */
-    public static function getIp()
-    {
-        if (getenv("HTTP_CLIENT_IP")) {
-            return getenv("HTTP_CLIENT_IP");
-        } elseif (getenv("HTTP_X_FORWARDED_FOR")) {
-            return getenv("HTTP_X_FORWARDED_FOR");
-        } else {
-            return getenv("REMOTE_ADDR");
-        }
-    }
-
-
-    /**
      * Languages that the user has set in their settings, to filter the languages
      * in which translations are displayed.
      *
