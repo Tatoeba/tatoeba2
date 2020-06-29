@@ -15,8 +15,18 @@ build_netrc() {
   fi
 }
 
+debug_enabled() {
+  shopt -q -o xtrace
+}
+
 get_transifex() {
-  curl -s --netrc-file <(build_netrc) "$1"
+  local verbose="-s"
+
+  if debug_enabled; then
+    verbose="-v"
+  fi
+
+  curl $verbose --netrc-file <(build_netrc) "$1"
 }
 
 parse_param() {
