@@ -386,13 +386,29 @@ class SentencesTableTest extends TestCase {
 		}
 	}
 
-	function testSentenceFlagEditionUpdatesFlagsInLinksTable() {
+	function testSentenceFlagEditionUpdatesFlagsInLinksTable_oldDesign() {
 		$user = $this->Sentence->Users->get(1);
 		CurrentUser::store($user);
 		$cmnSentenceId = 2;
 		$newLang = 'por';
 
 		$this->Sentence->changeLanguage($cmnSentenceId, $newLang);
+
+		$this->assertLinksLanguage($cmnSentenceId, 'sentence',    $newLang);
+		$this->assertLinksLanguage($cmnSentenceId, 'translation', $newLang);
+	}
+
+	function testSentenceFlagEditionUpdatesFlagsInLinksTable_newDesign() {
+		$user = $this->Sentence->Users->get(1);
+		CurrentUser::store($user);
+		$cmnSentenceId = 2;
+		$newLang = 'por';
+		$requestData = [
+			'id' => "${newLang}_$cmnSentenceId",
+			'value' => $this->Sentence->get($cmnSentenceId)->text
+		];
+
+		$this->Sentence->editSentence($requestData);
 
 		$this->assertLinksLanguage($cmnSentenceId, 'sentence',    $newLang);
 		$this->assertLinksLanguage($cmnSentenceId, 'translation', $newLang);
