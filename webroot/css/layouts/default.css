@@ -789,3 +789,13 @@ md-list-item .md-list-item-inner .md-avatar {
 md-list {
     padding: 0;
 }
+
+.md-button-right input {
+    padding-right: 40px;
+}
+.md-button-right .md-button {
+    min-width: 40px !important;
+    position: absolute;
+    right: -8px;
+    top: -3px;
+}
