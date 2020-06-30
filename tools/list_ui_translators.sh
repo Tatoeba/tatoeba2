@@ -4,19 +4,23 @@ set -e
 
 TRANSIFEX_RC=~/.transifexrc
 
-build_netrc() {
+build_user_pass() {
   local username password
 
   username=$(grep ^username "$TRANSIFEX_RC" | sed 's, *= *,=,' | cut -f2 -d=)
   password=$(grep ^password "$TRANSIFEX_RC" | sed 's, *= *,=,' | cut -f2 -d=)
 
   if [ -n "$username" -a -n "$password" ]; then
-    echo "machine www.transifex.com login $username password $password"
+    echo "$username:$password"
   fi
 }
 
 debug_enabled() {
   shopt -q -o xtrace
+}
+
+build_config() {
+  printf 'user = "%s"\n' "$(build_user_pass)"
 }
 
 get_transifex() {
@@ -26,7 +30,7 @@ get_transifex() {
     verbose="-v"
   fi
 
-  curl $verbose --netrc-file <(build_netrc) "$1"
+  build_config | curl $verbose --config - "$1"
 }
 
 parse_param() {
@@ -127,7 +131,7 @@ password =
 EOF
   fi
 
-  if [ -z "$(build_netrc)" ]; then
+  if [ -z "$(build_user_pass)" ]; then
     echo "Please add your transifex username and password in $TRANSIFEX_RC"
     exit 1
   fi
