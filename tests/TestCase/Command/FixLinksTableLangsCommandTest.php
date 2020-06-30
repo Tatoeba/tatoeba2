@@ -22,7 +22,7 @@ class FixLinksTableLangsCommandTest extends TestCase
         $this->useCommandRunner();
     }
 
-    public function testExecute() {
+    public function testExecute_wrongLangGetsUpdated() {
         $id = 56;
         $sentence = $this->Sentences->get($id);
         $oldLang1 = $this->Links->find()
@@ -48,5 +48,29 @@ class FixLinksTableLangsCommandTest extends TestCase
         $this->assertNotEquals($oldLang2, $newLang2);
         $this->assertEquals($sentence->lang, $newLang1);
         $this->assertEquals($sentence->lang, $newLang2);
+    }
+
+    public function testExecute_correctLangDoesNotGetUpdated() {
+        $id = 56;
+        $conditions = [ 'not' => [
+            'OR' => [
+                'translation_id' => $id,
+                'sentence_id'    => $id,
+            ]
+        ]];
+        $otherLinksBefore = $this->Links
+                                 ->find()
+                                 ->where($conditions)
+                                 ->all()
+                                 ->toArray();
+
+        $this->exec('fix_links_table_langs');
+
+        $otherLinksAfter = $this->Links
+                                ->find()
+                                ->where($conditions)
+                                ->all()
+                                ->toArray();
+        $this->assertEquals($otherLinksBefore, $otherLinksAfter);
     }
 }
