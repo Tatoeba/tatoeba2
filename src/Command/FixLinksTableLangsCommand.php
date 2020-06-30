@@ -17,20 +17,34 @@ class FixLinksTableLangsCommand extends Command
 
     public function execute(Arguments $args, ConsoleIo $io) {
         foreach (['sentence', 'translation'] as $column) {
+            $io->out(format(
+                'Processing field {column}_lang...',
+                compact('column')
+            ));
             $ids = $this->findWrongLanguageLinks($column);
-            $this->fixLinksLanguage($column, $ids);
+            $io->out(format(
+                '{column}_lang: found {count} sentence(s) having incorrect language.',
+                [ 'count' => $ids->count(), 'column' => $column ]
+            ));
+            $total = $this->fixLinksLanguage($column, $ids);
+            $io->out(format(
+                '{column}_lang: fixed {total} row(s) in links table.',
+                compact('column', 'total')
+            ));
         }
     }
 
     private function fixLinksLanguage(string $column, $sentenceIds) {
         $field = "${column}_id";
+        $count = 0;
         foreach ($sentenceIds as $id) {
             $correctLang = $this->Sentences->get($id)->lang;
-            $this->Links->query()->update()
-                 ->set(["${column}_lang" => $correctLang])
-                 ->where([$field => $id])
-                 ->execute();
+            $count += $this->Links->updateAll(
+                [ "${column}_lang" => $correctLang ],
+                [ $field => $id ]
+            );
         }
+        return $count;
     }
 
     private function findWrongLanguageLinks($column) {

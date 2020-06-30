@@ -73,4 +73,20 @@ class FixLinksTableLangsCommandTest extends TestCase
                                 ->toArray();
         $this->assertEquals($otherLinksBefore, $otherLinksAfter);
     }
+
+    public function testExecute_logs() {
+        $this->exec('fix_links_table_langs');
+
+        $log = [
+            'Processing field sentence_lang...',
+            'sentence_lang: found 1 sentence(s) having incorrect language.',
+            'sentence_lang: fixed 1 row(s) in links table.',
+            'Processing field translation_lang...',
+            'translation_lang: found 1 sentence(s) having incorrect language.',
+            'translation_lang: fixed 1 row(s) in links table.',
+        ];
+        foreach ($log as $line) {
+            $this->assertOutputContains($line);
+        }
+    }
 }
