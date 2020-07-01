@@ -48,6 +48,10 @@ nice_date() {
   date -d "$1" +"%Y-%m-%d %H:%M"
 }
 
+suppress_cr() {
+  sed 's,\r$,,'
+}
+
 get_translations_info() {
   local lang="$1" slug="$2"
   get_transifex "https://www.transifex.com/api/2/project/tatoeba_website/resource/$slug/translation/$lang/strings/?details"
@@ -61,17 +65,20 @@ group_by(.user) |
 map_values({"key": (.[].user), "value": length}) |
 sort_by(-.value) |
 map_values("\(.key) (\(.value))") |
-join(", ")'
+join(", ")' \
+    | suppress_cr
 }
 
 get_locales() {
   get_transifex "https://www.transifex.com/api/2/project/tatoeba_website/resource/tatoebaResource/?details" | \
-    jq -r '.available_languages | map((.code+" "+.name)) | .[]'
+    jq -r '.available_languages | map((.code+" "+.name)) | .[]' | \
+    suppress_cr
 }
 
 get_resources() {
   get_transifex 'https://www.transifex.com/api/2/project/tatoeba_website/resources' | \
-    jq -r 'map((.name+" "+.slug)) | .[]'
+    jq -r 'map((.name+" "+.slug)) | .[]' | \
+    suppress_cr
 }
 
 display_stats() {
