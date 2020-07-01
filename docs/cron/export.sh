@@ -2,6 +2,8 @@
 set -e
 
 ROOT='/var/www-prod'
+# To test...
+# ROOT='/home/vagrant/Tatoeba'
 
 rm -f /var/tmp/*.csv
 mkdir -p "$DL_DIR"
@@ -13,6 +15,7 @@ mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < "$ROOT"/docs/database/scripts/wwwjdic.s
 mv /var/tmp/*csv "$DL_DIR"
 
 cd "$DL_DIR"
+tar -cjf sentences_base.tar.bz2 sentences_base.csv
 tar -cjf sentences_detailed.tar.bz2 sentences_detailed.csv
 tar -cjf links.tar.bz2 links.csv
 tar -cjf sentences.tar.bz2 sentences.csv
