@@ -256,7 +256,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
             <dl>
                 <dt><?= $filename ?></dt>
                 <dd>
-                    <a href="<?= $download_url ?>sentences_based_on_id.tar.bz2">sentences_based_on_id.tar.bz2</a>
+                    <a href="<?= $download_url ?>sentences_base.tar.bz2">sentences_base.tar.bz2</a>
                 </dd>
                 <dt><?= $description ?></dt>
                 <dd>
