@@ -47,7 +47,7 @@ $description = __('File description');
 /* @translators: field name in Fields and structure on Downloads page */
 $sentence_id = __('Sentence id');
 /* @translators: field name in Fields and structure on Downloads page */
-$sentence_based_on_id = __('Sentence id of base sentence');
+$sentence_base = __('Base of the sentence');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
 $review = __('Review');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
@@ -253,7 +253,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
         <!-- Sentences based on id  -->
         <div  class="section md-whiteframe-1dp">
             <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Sentences Based On ID') ?></h2>
+            <h2><?= __('Base of Sentences') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
                 <dd>
@@ -261,20 +261,20 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 </dd>
                 <dt><?= $description ?></dt>
                 <dd>
-                    <?= format(
-                        __(
-                            'Contains all the sentences in the selected language. '.
-                            'Each sentence is associated with a unique id and the based on id.'.
-                            ' The based on id can be:'.
-                            ' 0: Original sentence, not based on another.'.
-                            ' >0: the sentence id it is based upon.'.
-                            ' \N (null): We do not know. This is rare but we have a handful of sentences for which'.
-                            ' we do not know if they have been added as translations or not.'
-                        )
-                    ) ?>
+                    <?= format(__(
+                        'A sentence is based on another if it has been initially added as a'
+                       .' translation. Each sentence is associated with a base, which can be:'
+                    )) ?>
+                    <ul>
+                        <li><?= __('zero: The sentence is original, not based on another.') ?></li>
+                        <li><?= __('greater than 0: The sentence id it is based upon.') ?></li>
+                        <li><?= __('\N: We do not know. This is rare but we have a handful of sentences for which'.
+                                   ' we do not know if they have been added as translations or not.'
+                        ) ?></li>
+                    </ul>
                 </dd>
                 <dt><?= $format ?></dt>
-                <dd><?= $this->Downloads->fileFormat([$sentence_id, $sentence_based_on_id]) ?></dd>
+                <dd><?= $this->Downloads->fileFormat([$sentence_id, $sentence_base]) ?></dd>
             </dl>
         </div>
 
