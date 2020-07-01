@@ -1,6 +1,6 @@
 -- Files that are exported every week on Saturday, at 9AM.
 
--- Sentences with based_on_id issue 2325
+-- Sentences base
 SELECT s.id, s.based_on_id
 FROM sentences s
 WHERE correctness > -1 AND license != ''
