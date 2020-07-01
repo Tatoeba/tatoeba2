@@ -96,7 +96,6 @@ $list_sample = $this->Downloads->fileFormat(['13', '381279']);
 // Dropdown for selections
 $sentencesOptions = $this->Downloads->createOptions('sentences');
 $sentencesDetailedOptions = $this->Downloads->createOptions('sentences_detailed');
-// $sentencesBasedOnIdOptions = $this->Downloads->createOptions('sentences_based_on_id');
 $sentencesCC0Options = $this->Downloads->createOptions('sentences_CC0');
 $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 ?>
