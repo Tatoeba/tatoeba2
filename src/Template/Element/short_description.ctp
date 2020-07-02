@@ -53,11 +53,13 @@
             ]);
             ?>
            
-            <md-input-container class="md-icon-float md-block md-title">
+            <md-input-container class="md-icon-float md-button-right md-block md-title">
                 <label><?= __('Search') ?></label>
                 <md-icon>search</md-icon>
-                <input name="query" accesskey="4" dir="auto" ng-model="ctrl.searchQuery" />                
-                <md-icon ng-click="ctrl.clearSearch()">clear</md-icon>
+                <input id="query" name="query" accesskey="4" dir="auto" ng-model="ctrl.searchQuery" />                
+                <md-button class="md-icon-button" reset-button target="query">
+                    <md-icon>clear</md-icon>
+                </md-button>
                 <div class="hint">
                     <?= __(
                         "Tip: <em>=word</em> will search for ".
