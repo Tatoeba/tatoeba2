@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-22 03:27+0800\n"
-"PO-Revision-Date: 2020-05-22 04:33+0000\n"
+"POT-Creation-Date: 2020-06-24 21:16+0800\n"
+"PO-Revision-Date: 2020-06-24 16:41+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -146,7 +146,7 @@ msgstr "Это предложение не может быть добавлен�
 msgid "You do not have permission to download this list."
 msgstr "У вас нет прав на загрузку данного списка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L224
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
@@ -544,26 +544,26 @@ msgstr "На это предложение уже распространяетс
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L208
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Предложение должно быть оригиналом (не являться результатом перевода)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L216
 msgid "You're not the owner of this sentence."
 msgstr "Вы не являетесь владельцем этого предложения."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L223
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Владелец предложения должен изначально быль его автором."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
 msgid "You can only switch to a more permissive license."
 msgstr "Можно переключиться только на менее строгую лицензию."
 
@@ -966,7 +966,7 @@ msgstr "День"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
 msgstr "Предложений добавлено"
 
@@ -1223,7 +1223,7 @@ msgstr "Мы обновили <a href=\"{termsOfUse}\">Условия испол
 msgid ""
 "Tatoeba will be unavailable this Sunday (June 7) from 2am to 5am UTC for <a "
 "href=\"{}\">maintenance</a>."
-msgstr ""
+msgstr "Татоэба будет недоступна в это воскресенье (7 июня) с 2 до 5 часов (UTC) в связи с<a href=\"{}\">обслуживанием</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L86
 msgid ""
@@ -1761,7 +1761,7 @@ msgstr "Добавленных предложений пока нет."
 #. / submit button to add a sentence to a list from the sentence block
 #. / submit button of sentence edition form
 #. / submit button of transcription edition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L490
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L506
@@ -1951,8 +1951,8 @@ msgid "Remove from favorites"
 msgstr "Убрать из избранных"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L32
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L138
@@ -1971,7 +1971,7 @@ msgstr "Вы уверены?"
 #. / button to put a private message in the trash (verb)
 #. / delete button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L36
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L435
@@ -3153,7 +3153,7 @@ msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr "Новый дизайн для предложений скоро полностью заменит старый. Дайте нам знать, если были какие-то проблемы. Вы можете включить его через опцию \"Показывать предложения с использование нового дизайна\" в ваших Настройках."
+msgstr "Новый дизайн для предложений скоро полностью заменит старый. Дайте нам знать, если возникли какие-то проблемы. Вы можете включить его через настройку \"Показывать предложения с использование нового дизайна\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
@@ -3225,24 +3225,24 @@ msgstr[1] "{folderName} ({n}&nbsp;сообщения)"
 msgstr[2] "{folderName} ({n}&nbsp;сообщений)"
 msgstr[3] "{folderName} ({n}&nbsp;сообщений)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L83
 msgid "Empty trash"
 msgstr "Очистить корзину"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[нет темы]"
 
 #. button to delete a private message that has already been put in the trash
 #. (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L80
 msgid "Permanently delete"
 msgstr "Удалить окончательно"
 
 #. button to restore a private message that has been put to trash (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L159
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L70
 msgid "Restore"
 msgstr "Восстановить"
@@ -4158,8 +4158,8 @@ msgid ""
 msgstr "Показывать ссылку для сворачивания/разворачивания переводов, когда их слишком много"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L162
-msgid "Always show transcriptions and alternative scripts"
-msgstr "Всегда показывать транскрипции и альтернативные формы записи"
+msgid "Always show unreviewed transcriptions and alternative scripts"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L187
 msgid "Show random sentence on the homepage"
@@ -4179,7 +4179,7 @@ msgstr "Количество предложений на странице"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Default license for original sentences"
-msgstr ""
+msgstr "Лицензия по умолчанию для оригинальных предложений"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
 msgid "Experimental options"
@@ -4448,19 +4448,19 @@ msgstr "Назад на Стену"
 msgid "Tatoeba will temporarily shut down for maintenance in {n} minute."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} minutes."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Татоэба будет временно остановлена на обслуживание через {n}минуту."
+msgstr[1] "Татоэба будет временно остановлена на обслуживание через {n}минуты."
+msgstr[2] "Татоэба будет временно остановлена на обслуживание через {n}минут."
+msgstr[3] "Татоэба будет временно остановлена на обслуживание через {n}минут. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L66
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Татоэба будет временно остановлена на обслуживание через {n} секунду."
+msgstr[1] "Татоэба будет временно остановлена на обслуживание через {n} секунды."
+msgstr[2] "Татоэба будет временно остановлена на обслуживание через {n} секунд."
+msgstr[3] "Татоэба будет временно остановлена на обслуживание через {n} секунд."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
@@ -5080,11 +5080,11 @@ msgstr "Доступные теги"
 msgid "Added by {username}, {date}"
 msgstr "Добавлено пользователем {username}, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."
 msgstr "Удалить тег «{tagName}» с этого предложения"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L301
 msgid "Remove tag from sentence"
 msgstr "Удалить тег с предложения"
 

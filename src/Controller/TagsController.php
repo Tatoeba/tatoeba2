@@ -19,7 +19,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Event\SuggestdListener;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 
@@ -45,9 +44,6 @@ class TagsController extends AppController
         $this->Security->unlockedActions = [
             'add_tag_post'
         ];
-
-        $eventManager = $this->Tags->getEventManager();
-        $eventManager->attach(new SuggestdListener());
 
         return parent::beforeFilter($event);
     }
@@ -207,7 +203,7 @@ class TagsController extends AppController
                 'contain' => ['Sentences' => $contain],
                 'conditions' => $conditions,
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['sentence_id' => 'DESC']
+                'order' => ['added_time' => 'DESC']
             ];
             $this->paginate = $pagination;
 

@@ -1,7 +1,7 @@
 <?php
 /**
     Tatoeba Project, free collaborative creation of languages corpuses project
-    Copyright (C) 2018  Gilles Bedel
+    Copyright (C) 2020  Gilles Bedel
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -19,24 +19,20 @@
 namespace App\Event;
 
 use Cake\Event\EventListenerInterface;
+use Cake\ORM\TableRegistry;
 
-
-class SuggestdListener implements EventListenerInterface {
+class LinksListener implements EventListenerInterface {
     public function implementedEvents() {
         return array(
-            'Model.Tag.tagAdded' => 'notifySuggestd',
+            'Model.Sentence.saved' => 'updateLanguageInLinksTable',
         );
     }
 
-    public function notifySuggestd($event) {
-        $tagName = $event->getData('tagName'); // $tagName
-
-        // Send a request to suggestd (the auto-suggest daemon) to update its internal
-        // table.
-        // TODO only do this if we add a new ("dirty") tag.
-        $dirty = @fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
-        if ($dirty != null) {
-            fclose($dirty);
+    public function updateLanguageInLinksTable($event, $entity, $options) {
+        $Links = TableRegistry::getTableLocator()->get('Links');
+        $sentence = $event->getData('data');
+        if ($sentence->id && $sentence->isDirty('lang')) {
+            $Links->updateLanguage($sentence->id, $sentence->lang);
         }
     }
 }

@@ -52,16 +52,13 @@ class MailerComponent extends Component
             ->template('blocked_or_suspended_user');
 
         $User = TableRegistry::get('Users');
-        $Contribution = TableRegistry::get('Contributions');
         $userId = $User->getIdFromUsername($username);
-        $ips = $Contribution->getLastContributionOf($userId);
 
         $this->Email->viewVars(array(
           'admin' => CurrentUser::get('username'),
           'user' => $username,
           'userId' => $userId,
           'isSuspended' => $isSuspended,
-          'ips' => $ips
         ));
 
         $this->_send();

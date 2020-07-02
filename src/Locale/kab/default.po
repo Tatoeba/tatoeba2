@@ -3,8 +3,9 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# MozillaKab <belkacem77@gmail.com>, 2019-2020
-# MozillaKab <belkacem77@gmail.com>, 2018-2019
+# marzuq UCCEN <merzouk.ouchene@laposte.net>, 2020
+# Muḥend Belqasem <belkacem77@gmail.com>, 2019-2020
+# Muḥend Belqasem <belkacem77@gmail.com>, 2018-2020
 # samir_t <samir_t7@yahoo.fr>, 2020
 # Slimane Selyan AMIRI <selyan.kab@gmail.com>, 2019-2020
 # Slimane AMIRI, 2018
@@ -16,9 +17,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-22 03:27+0800\n"
-"PO-Revision-Date: 2020-05-27 18:45+0000\n"
-"Last-Translator: samir_t <samir_t7@yahoo.fr>\n"
+"POT-Creation-Date: 2020-06-24 21:16+0800\n"
+"PO-Revision-Date: 2020-06-24 16:41+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Kabyle (http://www.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,7 +144,7 @@ msgstr "Ur nezmir ara ad nernu tafyirt ɣer tebdert."
 msgid "You do not have permission to download this list."
 msgstr "Ur ɣur-k ara tasiregt akken ad tessadreḍ tabdert-a."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L224
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
@@ -190,7 +191,7 @@ msgstr "Azem n tlalit d yir azemz . Ttxil-k fren wayed."
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr "Azeme n tlalit ur yemmid ara. Izmaz ilaqen: azemz ummid, ayyur d wass, aseggas d waggur, aseggas kan."
+msgstr "Azemz n tlalit ur yemmid ara. Izmaz ilaqen: azemz ummid, ayyur d wass, aseggas d waggur, aseggas kan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
 msgid "Your settings have been saved."
@@ -533,26 +534,26 @@ msgstr "Tafyirt-agi attan yakan ddaw turagt-a."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L208
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Tafyirt-a tesra ad tili d tanaṣlit ( mačči ad tt-twakkes seg tsuqilt)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L216
 msgid "You're not the owner of this sentence."
 msgstr "Ur telliḍ ara d bab n tefyirt."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L223
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Bab n tefyirt yesra ad yili d ameskar amezwaru n tmerna-ines."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
 msgid "You can only switch to a more permissive license."
 msgstr "Tzemreḍ kan ad bedleḍ ɣer turagt-nniḍen i ttwasirgen."
 
@@ -953,7 +954,7 @@ msgstr "Ass"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
 msgstr "Tifyar yettwarnan"
 
@@ -1740,7 +1741,7 @@ msgstr "Ula tifyar ittwarnan yakan."
 #. / submit button to add a sentence to a list from the sentence block
 #. / submit button of sentence edition form
 #. / submit button of transcription edition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L490
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L506
@@ -1930,8 +1931,8 @@ msgid "Remove from favorites"
 msgstr "Kkes seg yinuraf"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L32
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L138
@@ -1950,7 +1951,7 @@ msgstr "Tebɣiḍ ?"
 #. / button to put a private message in the trash (verb)
 #. / delete button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L36
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L435
@@ -3198,24 +3199,24 @@ msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} ({n}&nbsp;message)"
 msgstr[1] "{folderName} ({n}&nbsp;messages)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L83
 msgid "Empty trash"
 msgstr "Silem iḍumman"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[ulac asentel]"
 
 #. button to delete a private message that has already been put in the trash
 #. (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L80
 msgid "Permanently delete"
 msgstr "kkes ilebda"
 
 #. button to restore a private message that has been put to trash (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L159
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L70
 msgid "Restore"
 msgstr "Err-d"
@@ -3584,7 +3585,7 @@ msgstr "Afaylu n uḍris Raw"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
 msgid "Tab-separated file"
-msgstr ""
+msgstr "Afaylu yebḍan s yiccer"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L74
 msgid "List for the Shtooka recorder"
@@ -3772,7 +3773,7 @@ msgstr "Amḍan n tefyar s tutlayt"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L114
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] "Yiwet n tefyir"
+msgstr[0] "Yiwet n tefyirt"
 msgstr[1] "{n}&nbsp;n tefyar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L30
@@ -4121,8 +4122,8 @@ msgid ""
 msgstr "Ad d-yesken aseɣwen i tneflit neɣ afnaẓ n tsuqilin ticki ddeqs i yellan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L162
-msgid "Always show transcriptions and alternative scripts"
-msgstr "Skan yal tikelt iḍrisen akked iskripten-nniḍen"
+msgid "Always show unreviewed transcriptions and alternative scripts"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L187
 msgid "Show random sentence on the homepage"
@@ -4171,7 +4172,7 @@ msgstr "Cṛeḍ tifyar mi ara ad yesken bab-nsent deg umaɣnu-innes d akken sε
 msgid ""
 "Display sentences with the new design. Note that some features are not yet "
 "implemented in this new design but are coming soon."
-msgstr ""
+msgstr "Sken tifyar s design amaynut. Ẓer belli kra n tmahilin ur ẓẓant ara yakan deg design-agi amaynut maca qrib ad wejdent."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L355
 msgid "Change email address"
@@ -4414,8 +4415,8 @@ msgstr[1] ""
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ad yens Tatoeba deg {n} n tsenat i kra n wakud i uqaεed."
+msgstr[1] "Ad yens Tatoeba deg {n} n tsenatin i kra n wakud i uqaεed."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
@@ -5023,11 +5024,11 @@ msgstr "Sken-d akk ticraḍ"
 msgid "Added by {username}, {date}"
 msgstr "Yerna-t{username}, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."
 msgstr "Kkes tabzimt '{tagName}' seg tefyirt-a. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L301
 msgid "Remove tag from sentence"
 msgstr "Kkes tabzimt seg tefyirt"
 

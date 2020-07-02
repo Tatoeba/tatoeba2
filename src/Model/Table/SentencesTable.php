@@ -32,6 +32,7 @@ use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Event\ContributionListener;
 use App\Event\UsersLanguagesListener;
+use App\Event\LinksListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
@@ -93,6 +94,7 @@ class SentencesTable extends Table
 
         $this->getEventManager()->on(new ContributionListener());
         $this->getEventManager()->on(new UsersLanguagesListener());
+        $this->getEventManager()->on(new LinksListener());
     }
 
     public function validationDefault(Validator $validator)
@@ -156,7 +158,19 @@ class SentencesTable extends Table
                     return true;
                 }
             },
-            'licenseCheck'
+            'isTranslatable'
+        );
+
+        $rules->addCreate(
+            function ($entity, $options) {
+                if (!empty($entity->license)) {
+                    return CurrentUser::getSetting('can_switch_license') ||
+                           $entity->license == CurrentUser::getSetting('default_license');
+                } else {
+                    return true;
+                }
+            },
+            'hasCorrectLicense'
         );
 
         return $rules;
@@ -684,7 +698,7 @@ class SentencesTable extends Table
             ];
         }
 
-        if (isset($what['translations'])) {
+        if (isset($what['translations']) && $what['translations']) {
             $translationFields = [
                 'id', 'text', 'lang', 'correctness', 'script',
                 'SentencesTranslations.sentence_id'
@@ -1092,7 +1106,6 @@ class SentencesTable extends Table
             $sentence->lang = $newLang;
             $result = $this->save($sentence);
 
-            $this->Links->updateLanguage($sentenceId, $newLang);
             $this->Contributions->updateLanguage($sentenceId, $newLang);
             $this->Languages->incrementCountForLanguage($newLang);
             $this->Languages->decrementCountForLanguage($prevLang);

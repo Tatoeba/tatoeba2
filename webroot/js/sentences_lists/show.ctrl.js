@@ -53,7 +53,6 @@
                 vm.newSentence.lang = vm.showAutoDetect ? 'auto' : langCodes[0];
             }
             vm.licenses = licenses;
-            vm.newSentence.license = Object.keys(vm.licenses)[0];
         }
 
         function initList(list) {

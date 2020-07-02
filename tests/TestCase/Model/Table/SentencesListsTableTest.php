@@ -441,16 +441,18 @@ class SentencesListsTableTest extends TestCase {
         CurrentUser::store(['id' => null]);
         $lists = $this->SentencesList->getSearchableLists();
         $result = Hash::extract($lists, '{n}.id');
-        $expected = [2, 5];
-        $this->assertEquals(asort($expected), asort($result));
+        sort($result);
+        $expected = [2, 5, 6];
+        $this->assertEquals($expected, $result);
     }
 
     function testGetSearchableLists_asMember() {
         CurrentUser::store(['id' => 7]);
         $lists = $this->SentencesList->getSearchableLists();
         $result = Hash::extract($lists, '{n}.id');
-        $expected = [1, 3, 2, 5];
-        $this->assertEquals(asort($expected), asort($result));
+        sort($result);
+        $expected = [1, 2, 3, 5, 6];
+        $this->assertEquals($expected, $result);
     }
 
     function testGetNameForListWithId() {
@@ -505,10 +507,14 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testCreateList_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->SentencesList->createList('arabic', 1);
         $returned = $this->SentencesList->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 }

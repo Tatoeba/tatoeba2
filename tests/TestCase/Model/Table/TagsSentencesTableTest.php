@@ -43,9 +43,13 @@ class TagsSentencesTableTest extends TestCase {
     }
 
     function testTagSentence_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->TagsSentences->tagSentence(1, 2, 3);
         $returned = $this->TagsSentences->get($added->id);
         $this->assertEquals($added->added_time, $returned->added_time);
+
+        I18n::setLocale($prevLocale);
     }
 }

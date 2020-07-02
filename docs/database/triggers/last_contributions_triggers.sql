@@ -26,7 +26,6 @@ FOR EACH ROW BEGIN
       action,
       user_id,
       datetime,
-      ip,
       type
     )
     VALUES (
@@ -40,7 +39,6 @@ FOR EACH ROW BEGIN
       NEW.action,
       NEW.user_id,
       NEW.datetime,
-      NEW.ip,
       NEW.type
     );
     -- delete the oldest contributions only if we have more than

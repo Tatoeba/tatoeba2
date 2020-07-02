@@ -606,7 +606,9 @@ class TranscriptionsTableTest extends TestCase {
     }
 
     function testSave_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $data = $this->_getRecord(0);
         $this->Transcription->deleteAll('true');
         unset($data['id'], $data['created'], $data['modified']);
@@ -615,5 +617,7 @@ class TranscriptionsTableTest extends TestCase {
         $returned = $this->Transcription->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 }

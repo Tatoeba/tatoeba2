@@ -58,13 +58,14 @@ class EditLicensesCommandTest extends TestCase
         $sentence = $this->Sentences->get(1);
         $this->assertEquals('', $sentence->license);
 
-        $conditions = [
+        $contribution = $this->Contributions->find()->where(['sentence_id' => 2])->last()->toArray();
+        $expected = [
             'sentence_id' => 2,
             'type' => 'license',
-            'action' => 'update'
+            'action' => 'update',
+            'text' => '',
         ];
-        $contribution = $this->Contributions->find()->where($conditions)->last();
-        $this->assertEquals('', $sentence->license);
+        $this->assertArraySubset($expected, $contribution);
     }
 
     public function scenariosProvider() {

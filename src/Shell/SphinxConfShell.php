@@ -35,7 +35,7 @@ class SphinxConfShell extends Shell {
      * currently installed Snowball library supports.
      * Here is a quick and dirty command to figure it out:
      *
-     *   strings /usr/bin/searchd | grep UTF_8_stem$
+     *   strings /usr/bin/searchd | grep UTF_8_stem$ | sort
      *
      * About the language codes, note that we use ISO 639-3
      * while Snowball uses ISO 639-2, so the array goes like
@@ -45,30 +45,31 @@ class SphinxConfShell extends Shell {
      * See also https://github.com/snowballstem/snowball/blob/master/libstemmer/modules.txt
      */
     public $morphology = array(
-        'deu' => 'libstemmer_deu',
-        'spa' => 'libstemmer_spa',
-        'fra' => 'libstemmer_fra',
-        'nld' => 'libstemmer_nld',
-        'por' => 'libstemmer_por',
-        'rus' => 'libstemmer_rus',
-        'fin' => 'libstemmer_fin',
-        'ita' => 'libstemmer_ita',
-        'tur' => 'libstemmer_tur',
-        'swe' => 'libstemmer_swe',
-        'eng' => 'libstemmer_eng',
-        'dan' => 'libstemmer_dan', # Danish
-        'hun' => 'libstemmer_hun', # Hungarian
-        'ron' => 'libstemmer_ron', # Romanian
-        'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
-        'ell' => 'libstemmer_ell', # Greek
-        'tam' => 'libstemmer_tam', # Tamil
-        'eus' => 'libstemmer_eus', # Basque
-        'hin' => 'libstemmer_hin', # Hindi
         'ara' => 'libstemmer_ara', # Arabic
+        'eus' => 'libstemmer_eus', # Basque
         'cat' => 'libstemmer_cat', # Catalan
-        'npi' => 'libstemmer_nep', # Nepali
+        'dan' => 'libstemmer_dan', # Danish
+        'nld' => 'libstemmer_nld', # Dutch
+        'eng' => 'libstemmer_eng', # English
+        'fin' => 'libstemmer_fin', # Finnish
+        'fra' => 'libstemmer_fra', # French
+        'deu' => 'libstemmer_deu', # German
+        'ell' => 'libstemmer_ell', # Greek
+        'hin' => 'libstemmer_hin', # Hindi
+        'hun' => 'libstemmer_hun', # Hungarian
+        'ind' => 'libstemmer_ind', # Indonesian
         'gle' => 'libstemmer_gle', # Irish
+        'ita' => 'libstemmer_ita', # Italian
         'lit' => 'libstemmer_lit', # Lithuanian
+        'npi' => 'libstemmer_nep', # Nepali
+        'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
+        'por' => 'libstemmer_por', # Portuguese
+        'ron' => 'libstemmer_ron', # Romanian
+        'rus' => 'libstemmer_rus', # Russian
+        'spa' => 'libstemmer_spa', # Spanish
+        'swe' => 'libstemmer_swe', # Swedish
+        'tam' => 'libstemmer_tam', # Tamil
+        'tur' => 'libstemmer_tur', # Turkish
     );
 
     public $charsetTable = array(
@@ -114,8 +115,11 @@ class SphinxConfShell extends Shell {
         # Combining Diacritical Marks
         'U+300..U+36F',
         # Arabic
-        'U+621..U+63a', 'U+640..U+64a',
-        'U+66e..U+66f', 'U+671..U+6d3', 'U+6d5', 'U+6e5..U+6e6', 'U+6ee..U+6ef', 'U+6fa..U+6fc', 'U+6ff',
+        'U+620->U+64a', 'U+621', 'U+622->U+627', 'U+623->U+627', 'U+624', 'U+625->U+627', 'U+626..U+628', 'U+629->U+647', 'U+62a..U+63a',
+        'U+641..U+648', 'U+649->U+64a', 'U+64a',
+        'U+660..U+669', 'U+66e', 'U+66f', 'U+671..U+6a8', 'U+6a9->U+643', 'U+6aa..U+6bf',
+        'U+6c0->U+647', 'U+6c1->U+647', 'U+6c2..U+6d3', 'U+6d5', 'U+6e5', 'U+6e6', 'U+6ee', 'U+6ef',
+        'U+6f0..U+6f9->U+660..U+669', 'U+6fa..U+6fc', 'U+6ff',
         # Greek and Coptic
         'U+370..U+373/2', 'U+374->U+2B9', 'U+376..U+377/2', 'U+37A->U+3B9', 'U+37B..U+37D', 'U+37F->U+3F3', 'U+384->U+301',
         'U+386->U+3AC', 'U+388..U+38A->U+3AD..U+3af', 'U+38C->U+3CC', 'U+38E..U+38F->U+3CD..U+3ce', 'U+390', 'U+391..U+3a1->U+3b1..U+3c1',
@@ -258,6 +262,8 @@ class SphinxConfShell extends Shell {
         'U+1810..U+1819', 'U+1820..U+1878', 'U+1880..U+18AA',
         # Phoenician alphabet
         'U+10900..U+1091B',
+        # Tagalog (tgl)
+        'U+1700..U+1714',
     );
 
     public $scriptsWithoutWordBoundaries = array(
@@ -294,6 +300,8 @@ class SphinxConfShell extends Shell {
         'U+A980..U+A9C0', 'U+A9CF..U+A9D9',
         # Cuneiform, used by Sumerian (sux):
         'U+12000..U+12399', 'U+12400..U+1246E', 'U+12480..U+12543',
+        # Egyptian Hieroglyphs (egy)
+        'U+13000..U+1342E',
     );
 
     public $regexpFilter = array(
@@ -362,7 +370,8 @@ class SphinxConfShell extends Shell {
                     $v != 'U+D8..U+DE->U+F8..U+FE' &&
                     $v != 'U+E0..U+F6' &&
                     $v != 'U+F8..U+FF' &&
-                    $v != 'U+100..U+177/2' &&
+                    $v != 'U+100..U+137/2' &&
+                    $v != 'U+14A..U+177/2' &&
                     $v != 'U+1DE..U+1EF/2' &&
                     $v != 'U+300..U+36F'
                 ; }
@@ -423,7 +432,7 @@ class SphinxConfShell extends Shell {
                 'C->c', 'c',
                 'U+C7->U+E7', 'U+E7', # case-folding: c-cedilla
                 'D..H->d..h', 'd..h',
-                'I->U+131', 'U+CE->U+131', 'U+EE->U+131', 'U+131', # case-folding: dotless i
+                'I->U+131', 'U+131', # case-folding: dotless i
                 'U+CE->U+131', 'U+EE->U+131', # strip circumflex from I,i and map to dotless i
                 'U+130->i', 'i', # case-folding: dotted i
                 'J..N->j..n', 'j..n',
@@ -433,8 +442,7 @@ class SphinxConfShell extends Shell {
                 'U->u', 'U+DB->u', 'U+FB->u', 'u', # case-folding: u with/without circumflex
                 'U+DC->U+FC', 'U+FC',   # case-folding: u-umlaut
                 'V..Z->v..z', 'v..z',
-                'U+11E->U+11F', 'U+11F', # case-folding: g-breve
-                'U+15E->U+15F', 'U+15F' # case-folding: s-cedilla
+                'U+100..U+129/2', 'U+132..U+137/2',
             ),
             array_filter(
                 $this->charsetTable,
@@ -442,7 +450,7 @@ class SphinxConfShell extends Shell {
                     return $v != 'A..Z->a..z' && $v != 'a..z'
                     && $v != 'U+C0..U+D6->U+E0..U+F6' && $v != 'U+E0..U+F6' # Latin-1 supplement
                     && $v != 'U+D8..U+DE->U+F8..U+FE' && $v != 'U+F8..U+FF' # Latin-1 supplement
-                    && $v != 'U+100..U+177/2' # A-macron to y-circumflex
+                    && $v != 'U+100..U+137/2' # A-macron to k-cedilla
                     && $v != 'U+300..U+36F'   # combining characters
                 ; }
             )
@@ -454,6 +462,37 @@ class SphinxConfShell extends Shell {
         $this->indexExtraOptions['jpn'] =
             "
         regexp_filter = \[[^|]*\| =>";
+
+        /* Arabic vowel marks are optional, so it's easier to search if they are
+         * ignored. The common ignore_chars setting accomplishes that, but it's
+         * redundant with the Arabic stemmer. By adding them as regular
+         * characters, it becomes possible to use them with the "exact match"
+         * operator. We only ignore soft hyphen. */
+        $this->indexExtraOptions['ara'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array('U+640', 'U+64b..U+65f', 'U+670', 'U+6dc'),
+            $this->charsetTable
+        ))."
+        ignore_chars = U+AD\n";
+
+        /* In Ottoman Turkish, a few characters have rarely used variants:
+         * U+6ad as a variant of U+643 and U+647 as a variant of U+6d5.
+         */
+        $this->indexExtraOptions['ota'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array(
+                'U+641..U+646', 'U+647->U+6d5', 'U+648',
+                'U+6aa..U+6ac', 'U+6ad->U+643', 'U+6ae..U+6bf',
+            ),
+            array_filter(
+                $this->charsetTable,
+                function($v) {
+                    return $v != 'U+641..U+648' and $v != 'U+6aa..U+6bf'
+                ; }
+            )
+        ))."\n";
 
         foreach ($this->morphology as $lang => $morphology) {
             if (!isset($this->indexExtraOptions[$lang])) {
@@ -470,6 +509,9 @@ class SphinxConfShell extends Shell {
     // ignore_chars are Hebrew/Yiddish vowels, which should be ignored in
     // searches. No other language uses them, so ignoring them for all
     // languages should be safe.
+    // The characters U+640, U+64b..U+65f, U+670, U+6dc are Arabic diacritics,
+    // which should be ignored. For a language with a stemmer that removes them
+    // (e.g. Arabic) they can be re-enabled to allow searching for exact matches.
     private function conf_beginning() {
         $charset_table_opt = implode(", ", $this->charsetTable);
         $ngram_chars_opt = implode(', ', $this->scriptsWithoutWordBoundaries);
@@ -496,7 +538,7 @@ source default
 index common_index
 {
     index_field_lengths     = 1
-    ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7
+    ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7, U+640, U+64b..U+65f, U+670, U+6dc
 $regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
@@ -702,10 +744,32 @@ EOT;
         return $conf;
     }
 
+    /**
+     * Manticore has an internal buffer limit of 8192 bytes:
+     * https://github.com/manticoresoftware/manticoresearch/blob/69c389347d44f136cd93b899640d7f4f4a6ce750/src/sphinxutils.cpp#L1201
+     * To ensure that the configuration stays below the limit, we need to add
+     * a backslash-escaped newline into overly long lines.
+     */
+    public function escape_long_lines($conf, $limit = 8192) {
+        $limit -= 3; // we need enough room for the escape characters + \0
+        $lines = explode("\n", $conf);
+        $conf = "";
+        foreach ($lines as $line) {
+            for ($i = 0; $i < strlen($line); $i += $limit) {
+                $conf .= substr($line, $i, $limit);
+                if ($i + $limit < strlen($line)) {
+                    $conf .= "\\\n";
+                }
+            }
+            $conf .= "\n";
+        }
+        return $conf;
+    }
+
     public function main() {
         $this->dbConfig = ConnectionManager::get('default')->config();
         $this->sphinxConfig = Configure::read('Sphinx');
         
-        echo $this->conf($this->args);
+        echo $this->escape_long_lines($this->conf($this->args));
     }
 }

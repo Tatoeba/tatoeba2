@@ -86,7 +86,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
 <div id="main_content">
 
-<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm" ng-init="vm.initList(<?= $listJSON ?>, sentenceForm)">
+<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm" ng-init="vm.initList(<?= $listJSON ?>)">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
             <h2 ng-cloak flex>{{vm.list.currentName}}</h2>

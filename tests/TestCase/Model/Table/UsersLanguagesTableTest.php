@@ -149,9 +149,11 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
         $now = new Time('2020-01-02 03:04:05');
         Time::setTestNow($now);
+
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
             100
@@ -159,5 +161,8 @@ class UsersLanguagesTableTest extends TestCase {
         $returned = $this->UsersLanguages->get($added->id);
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
+
+        Time::setTestNow();
+        I18n::setLocale($prevLocale);
     }
 }

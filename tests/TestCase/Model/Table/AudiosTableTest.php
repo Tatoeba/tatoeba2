@@ -230,10 +230,14 @@ class AudiosTableTest extends TestCase {
     }
 
     function testAssignAudioTo_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->Audio->assignAudioTo(2, 'contributor');
         $returned = $this->Audio->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 }
