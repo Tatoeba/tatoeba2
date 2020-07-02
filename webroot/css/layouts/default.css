@@ -267,6 +267,14 @@ rt {
     color: #FFFFFF;
 }
 
+#user-menu {
+    max-height: none;
+}
+
+#user-menu md-divider {
+    border-top-color: #555;
+}
+
 /*
  * User Menu
  */

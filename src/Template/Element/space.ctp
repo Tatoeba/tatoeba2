@@ -60,7 +60,7 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
             <?= $this->Members->image(null, $avatar, ['width' => 24, 'height' => 24]); ?>
             <span><?= $username ?></span>
         </md-button>
-        <md-menu-content md-colors="::{background: 'grey-800'}">
+        <md-menu-content id="user-menu" md-colors="::{background: 'grey-800'}">
             <md-menu-item md-colors="::{color: 'grey-50'}">
                 <md-button href="<?= $this->Url->build(['controller' => 'user', 'action' => 'profile', $username]) ?>">
                     <md-icon md-colors="::{color: 'grey'}">person</md-icon>
@@ -96,6 +96,99 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
                     <md-icon md-colors="::{color: 'grey'}">power_settings_new</md-icon>
                     <span>
                     <?= __('Log out') ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+
+            <md-divider></md-divider>
+
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your sentences */
+                    echo __('My sentences');
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'vocabulary', 'action' => 'of', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your vocabulary */
+                    echo __('My vocabulary');
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'reviews', 'action' => 'of', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your reviews */
+                    echo __('My reviews');
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'sentences_lists', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your lists */
+                    echo __('My lists');
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'favorites', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your favorites */
+                    echo __('My favorites');
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your comments */
+                    echo __('My comments');
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'on_sentences_of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list comments made on your sentences */
+                    echo __("Comments on my sentences");
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'wall', 'action' => 'messages_of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your wall posts */
+                    echo __('My Wall messages');
+                    ?>
+                    </span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item md-colors="::{color: 'grey-50'}">
+                <md-button href="<?= $this->Url->build(['controller' => 'contributions', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your contributions */
+                    echo __('My sentence logs');
+                    ?>
                     </span>
                 </md-button>
             </md-menu-item>
