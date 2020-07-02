@@ -538,6 +538,7 @@ source default
 index common_index
 {
     index_field_lengths     = 1
+    blend_chars             = ?
     ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7, U+640, U+64b..U+65f, U+670, U+6dc
 $regexp_filter
     charset_table           = $charset_table_opt
