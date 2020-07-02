@@ -534,6 +534,8 @@ class SentencesController extends AppController
             $results = $this->Sentences->addHighlightMarkers($results);
         } catch (Exception $e) {
             $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
+            $this->loadComponent('Error');
+            $this->Error->log('Search error: ' . $e->getMessage());
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));
