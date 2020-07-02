@@ -92,6 +92,7 @@ class Search {
     public function asSphinx() {
         $sphinx = [
             'index' => $this->asSphinxIndex($this->lang),
+            'matchMode' => SPH_MATCH_EXTENDED2,
         ];
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
@@ -152,7 +153,6 @@ class Search {
                     $rankingExpr = $this->sort;
                 }
             }
-            $sphinx['matchMode'] = SPH_MATCH_EXTENDED2;
             $sphinx['sortMode'] = [SPH_SORT_EXTENDED => $sortOrder];
             if (isset($rankingExpr)) {
                 $sphinx['rankingMode'] = [SPH_RANK_EXPR => $rankingExpr];
