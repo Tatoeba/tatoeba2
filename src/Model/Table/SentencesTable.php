@@ -288,17 +288,17 @@ class SentencesTable extends Table
         if (empty($ids)) {
             return;
         }
-        $result = $this->find('all')
-            ->where(['id' => $ids], ['id' => 'integer[]'])
-            ->select(['id', 'lang'])
+        $sentences = $this->find('all')
+            ->where(['id' => $ids, 'lang IS NOT' => null], ['id' => 'integer[]'])
+            ->select(['sentence_id' => 'id', 'lang'])
+            ->formatResults(function ($results) {
+                return $results->map(function ($row) {
+                    $row['type'] = 'change';
+                    return $row;
+                });
+            })
+            ->disableHydration()
             ->toList();
-        $sentences = [];
-        foreach ($result as $sentence) {
-            $sentences[] = [
-                'sentence_id' => $sentence->id,
-                'lang' => $sentence->lang
-            ];
-        }
         $data = $this->ReindexFlags->newEntities($sentences);
         $this->ReindexFlags->saveMany($data);
     }
@@ -335,13 +335,15 @@ class SentencesTable extends Table
         $translationsIds = $this->Links->findDirectAndIndirectTranslationsIds($entity->id);
         $this->needsReindex($translationsIds);
 
-        // Add the sentence to the kill-list
-        // so that it won't appear in search results anymore
-        $reindexFlag = $this->ReindexFlags->newEntity([
-            'sentence_id' => $sentenceId,
-            'lang' => $sentenceLang
-        ]);
-        $this->ReindexFlags->save($reindexFlag);
+        // Add the sentence to the kill-list so that it won't appear in search results anymore
+        if ($sentenceLang) {
+            $reindexFlag = $this->ReindexFlags->newEntity([
+                'sentence_id' => $sentenceId,
+                'lang' => $sentenceLang,
+                'type' => 'removal',
+            ]);
+            $this->ReindexFlags->save($reindexFlag);
+        }
 
         // Remove links
         $conditions = ['OR' => [
@@ -1112,11 +1114,14 @@ class SentencesTable extends Table
 
             // In the previous language, add the sentence to the kill-list
             // so that it doesn't appear in results any more.
-            $reindexFlag = $this->ReindexFlags->newEntity([
-                'sentence_id' => $sentenceId,
-                'lang' => $prevLang,
-            ]);
-            $this->ReindexFlags->save($reindexFlag);
+            if ($prevLang) {
+                $reindexFlag = $this->ReindexFlags->newEntity([
+                    'sentence_id' => $sentenceId,
+                    'lang' => $prevLang,
+                    'type' => 'removal',
+                ]);
+                $this->ReindexFlags->save($reindexFlag);
+            }
 
             return $result->lang;
         }

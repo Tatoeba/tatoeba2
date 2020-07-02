@@ -734,46 +734,72 @@ class SentencesTableTest extends TestCase {
 		$this->assertFalse($result);
 	}
 
-	function testNeedsReindex() {
-		$reindex = array(2, 3);
-		$this->Sentence->needsReindex($reindex);
-		$result = $this->Sentence->ReindexFlags->find('all')
-			->where(['sentence_id' => $reindex], ['sentence_id' => 'integer[]'])
-			->count();
-		$this->assertEquals(2, $result);
+    function testNeedsReindex() {
+        $reindex = array(2, 3);
+        $this->Sentence->needsReindex($reindex);
+        $result = $this->Sentence->ReindexFlags->find('all')
+            ->where(['sentence_id' => $reindex], ['sentence_id' => 'integer[]']);
+        $this->assertEquals(2, $result->count());
+        $this->assertTrue($result->every(function ($entity) {
+            return $entity->type == 'change' && $entity->indexed === false;
+        }));
 	}
+
+    function testNeedsReindex_ExcludeUnknownLanguage() {
+        $ids = [6, 7, 9, 57];
+        $this->Sentence->needsReindex($ids);
+        $result = $this->Sentence->ReindexFlags->find('all')
+            ->where(['sentence_id' => $ids], ['sentence_id' => 'integer[]'])
+            ->select('sentence_id')
+            ->disableHydration()
+            ->toList();
+        $this->assertNotContains(9, $result);
+        $this->assertCount(3, $result);
+    }
 
 	function testModifiedSentenceNeedsReindex() {
 		$id = 1;
 		$sentence = $this->Sentence->get($id);
 		$sentence->text = 'Changed!';
 		$this->Sentence->save($sentence);
-		$result = $this->Sentence->ReindexFlags->findBySentenceId($id);
-		$this->assertTrue((bool)$result);
+		$result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first();
+		$this->assertEquals('change', $result->type);
 	}
 
-	function testModifiedSentenceNeedsTranslationsReindex() {
-		$expected = array(1, 2, 4, 5);
-		$sentence = $this->Sentence->get(5);
-		$sentence->user_id = 0;
-		$this->Sentence->save($sentence);
-		$result = $this->Sentence->ReindexFlags->find('all')
-			->order(['sentence_id'])
-			->toList();
-		$result = Hash::extract($result, '{n}.sentence_id');
-		$this->assertEquals($expected, $result);
-	}
+    function testModifiedSentenceInUnknownDoesNotNeedReindex() {
+        $id = 9;
+        $sentence = $this->Sentence->get($id);
+        $sentence->text = 'Changed!';
+        $this->Sentence->save($sentence);
+        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->First();
+        $this->assertNull($result);
+    }
 
-	function testRemovedSentenceNeedsItselfAndTranslationsReindex() {
-		$expected = array(1, 2, 4, 5);
-		$sentence = $this->Sentence->get(5);
-		$this->Sentence->delete($sentence);
-		$result = $this->Sentence->ReindexFlags->find('all')
-			->order(['sentence_id'])
-			->toList();
-		$result = Hash::extract($result, '{n}.sentence_id');
-		$this->assertEquals($expected, $result);
-	}
+    function testModifiedSentenceNeedsTranslationsReindex() {
+        $expected = array(1, 2, 4, 5);
+        $sentence = $this->Sentence->get(5);
+        $sentence->user_id = 0;
+        $this->Sentence->save($sentence);
+        $result = $this->Sentence->ReindexFlags->find('all')
+            ->order(['sentence_id']);
+        $ids = $result->extract('sentence_id')->toList();
+        $this->assertEquals($expected, $ids);
+        $counts = $result->countBy('type')->toArray();
+        $this->assertEquals(4, $counts['change']);
+    }
+
+    function testRemovedSentenceNeedsItselfAndTranslationsReindex() {
+        $expected = array(1, 2, 4, 5);
+        $sentence = $this->Sentence->get(5);
+        $this->Sentence->delete($sentence);
+        $result = $this->Sentence->ReindexFlags->find('all')
+            ->order(['sentence_id']);
+        $ids = $result->extract('sentence_id')->toList();
+        $this->assertEquals($expected, $ids);
+        $types = $result->groupBy('type')->toArray();
+        $this->assertCount(1, $types['removal']);
+        $this->assertCount(3, $types['change']);
+    }
 
 	function testSentenceLoosesOKTagOnEdition() {
 		$sentenceId = 2;
@@ -1021,6 +1047,27 @@ class SentencesTableTest extends TestCase {
 		}
 	}
 
+    function testDeleteSentence_EntryInReindexFlags() {
+        CurrentUser::store($this->Sentence->Users->get(1));
+        $id = 1;
+        $this->Sentence->deleteSentence($id);
+        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first();
+        $expected = [
+            'sentence_id' => 1,
+            'lang' => 'eng',
+            'indexed' => false,
+            'type' => 'removal'
+        ];
+        $this->assertArraySubset($expected, $result->toArray());
+    }
+
+    function testDeleteSentene_NoEntryInReindexFlagsForUnknownLanguage() {
+        CurrentUser::store($this->Sentence->Users->get(1));
+        $id = 9;
+        $this->Sentence->deleteSentence($id);
+        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first();
+        $this->assertNull($result);
+    }
 
 	function testNumberOfSentencesOwnedBy() {
 		$result = $this->Sentence->numberOfSentencesOwnedBy(7);
@@ -1076,6 +1123,35 @@ class SentencesTableTest extends TestCase {
 		$result = $this->Sentence->changeLanguage(3, 'eng');
 		$this->assertEquals('spa', $result);
 	}
+
+    function testChangeLanguage_correctEntriesInReindexFlags() {
+        CurrentUser::store($this->Sentence->Users->get(2));
+        $this->Sentence->changeLanguage(53, 'rus');
+        $changes = $this->Sentence->ReindexFlags->findBySentenceId(53)
+            ->select(['lang', 'type'])
+            ->disableHydration()
+            ->all();
+        $this->assertContains(['lang' => 'rus', 'type' => 'change'], $changes);
+        $this->assertContains(['lang' => 'eng', 'type' => 'removal'], $changes);
+    }
+
+    function testChangeLanguage_noEntryInReindexFlagsForUnknownPreviousLanguage() {
+        CurrentUser::store($this->Sentence->Users->get(3));
+        $this->Sentence->changeLanguage(9, 'eng');
+        $changes = $this->Sentence->ReindexFlags->findBySentenceId(9)
+            ->where(['type' => 'removal'])
+            ->first();
+        $this->assertNull($changes);
+    }
+
+    function testChangeLanguage_noEntryInReindexFlagsForUnknownNewLanguage() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $this->Sentence->changeLanguage(8, '');
+        $changes = $this->Sentence->ReindexFlags->findBySentenceId(8)
+            ->where(['type' => 'change'])
+            ->first();
+        $this->assertNull($changes);
+    }
 
 	function testSetOwner_succeeds() {
 		$id = 14;
