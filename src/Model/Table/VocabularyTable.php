@@ -128,7 +128,6 @@ class VocabularyTable extends Table
         $search = new Search();
         $search->filterByLanguage($lang);
         $search->filterByQuery(Search::exactSearchQuery($text));
-        $search->sort('random');
 
         return $this->Sentences->find('withSphinx', [
             'sphinx' => $search->asSphinx()
