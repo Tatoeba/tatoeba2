@@ -53,6 +53,7 @@ class FixLinksTableLangsCommand extends Command
             ->select([
                 'id' => "${column}_id",
             ])
+            ->distinct()
             ->join([
                 'table' => 'sentences',
                 'alias' => 's',
