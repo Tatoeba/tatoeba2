@@ -584,7 +584,11 @@ EOT;
 
                 $delta_join = ($type == 'main') ?
                     '' :
-                    'join reindex_flags on reindex_flags.sentence_id = sent_start.id and reindex_flags.indexed = 1';
+                    "join reindex_flags rf on rf.sentence_id = sent_start.id and rf.indexed = 1 and rf.type = 'change'";
+                $kill_list_query = ($type == 'main') ?
+                    '' :
+                    "sql_query_killlist = select sentence_id from reindex_flags \
+                        where lang = '$lang' and indexed = 1 and type = 'removal'";
                 $conf .= "
         sql_query_range = select min(id), max(id) from sentences
         sql_range_step = 100000
@@ -639,6 +643,7 @@ EOT;
             left join \
                 sentences_sentences_lists lists on lists.sentence_id = r.id \
             group by id
+        $kill_list_query
 
         sql_attr_timestamp = created
         sql_attr_timestamp = modified
@@ -676,7 +681,7 @@ EOT;
                     }
                 } else {
                     $conf .= "
-        killlist_target = ${lang}_main_index:id";
+        killlist_target = ${lang}_main_index";
                 }
                 $conf .= "
     }
