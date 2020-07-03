@@ -666,6 +666,7 @@ class LanguagesLib
             "syc",
             "phn",
             "jpa",
+            "bal"
         );
 
         $autoLangs = array(
