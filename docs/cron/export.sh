@@ -93,9 +93,9 @@ mysql --skip-column-names --batch tatoeba -e \
        COALESCE(s.lang, '\N'), 
        ts.sentence_id, 
        t.name 
-     FROM `tags_sentences` ts
-       JOIN `tags` t ON ts.tag_id = t.id
-       JOIN `sentences` s ON ts.sentence_id = s.id" | \
+     FROM tags_sentences ts
+       JOIN tags t ON ts.tag_id = t.id
+       JOIN sentences s ON ts.sentence_id = s.id" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
       lg = ($1 == "\\N" ? "unknown" : $1);
       fpath = dir "/" lg "/" lg "_tags.tsv";
