@@ -32,6 +32,7 @@ tar -cjf user_languages.tar.bz2 user_languages.csv
 tar -cjf tags_detailed.tar.bz2 tags_detailed.csv
 tar -cjf sentences_CC0.tar.bz2 sentences_CC0.csv
 tar -cjf transcriptions.tar.bz2 transcriptions.csv
+tar -cjf sentences_base.tar.bz2 sentences_base.csv
 
 # Create per-language files for the different sentences files
 TEMP_DIR='/var/tmp/per_language'
