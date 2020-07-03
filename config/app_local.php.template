@@ -14,11 +14,13 @@ return [
             'username' => '{{mysql_user}}',
             'password' => '{{mysql_password}}',
             'database' => '{{mysql_db_name}}',
+#            'log' => true, // log all SQL queries to logs/queries.log
         ],
         'test' => [
             'username' => '{{mysql_test_user}}',
             'password' => '{{mysql_test_password}}',
             'database' => '{{mysql_test_db_name}}',
+#            'log' => true, // log all SQL queries to logs/cli-queries.log during tests
         ],
     ],
 
