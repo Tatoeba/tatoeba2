@@ -58,8 +58,8 @@ split_file transcriptions.csv
 # split links by language pair
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT 
-      COALESCE(sentence_lang, '\N'), 
-      COALESCE(translation_lang, '\N'),
+      COALESCE(sentence_lang, '\\N'), 
+      COALESCE(translation_lang, '\\N'),
       sentence_id, 
       translation_id
      FROM sentences_translations" | \
@@ -74,9 +74,9 @@ mysql --skip-column-names --batch tatoeba -e \
 # split user languages by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
-       COALESCE(ul.language_code, '\N'), 
-       COALESCE(ul.level, '\N'), 
-       COALESCE(u.username, '\N'), 
+       COALESCE(ul.language_code, '\\N'), 
+       COALESCE(ul.level, '\\N'), 
+       COALESCE(u.username, '\\N'), 
        ul.details
      FROM users_languages ul 
        LEFT JOIN users u ON ul.of_user_id = u.id
@@ -90,7 +90,7 @@ mysql --skip-column-names --batch tatoeba -e \
 # split tags by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT DISTINCT 
-       COALESCE(s.lang, '\N'), 
+       COALESCE(s.lang, '\\N'), 
        ts.sentence_id, 
        t.name 
      FROM tags_sentences ts
@@ -105,7 +105,7 @@ mysql --skip-column-names --batch tatoeba -e \
 # split sentences in lists by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT 
-       COALESCE(s.lang, '\N'), 
+       COALESCE(s.lang, '\\N'), 
        sl.id, 
        s_sl.sentence_id
      FROM sentences_sentences_lists s_sl
@@ -122,11 +122,11 @@ mysql --skip-column-names --batch tatoeba -e \
 # split sentences with audio by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
-       COALESCE(s.lang, '\N'), 
+       COALESCE(s.lang, '\\N'), 
        a.sentence_id, 
-       COALESCE(u.username, '\N'), 
-       COALESCE(u.audio_license, '\N'), 
-       COALESCE(u.audio_attribution_url, '\N')
+       COALESCE(u.username, '\\N'), 
+       COALESCE(u.audio_license, '\\N'), 
+       COALESCE(u.audio_attribution_url, '\\N')
      FROM audios a 
        LEFT JOIN users u on u.id = a.user_id
        JOIN sentences s ON a.sentence_id = s.id
@@ -140,9 +140,9 @@ mysql --skip-column-names --batch tatoeba -e \
 # split sentences base by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
-       COALESCE(s.lang, '\N'),     
+       COALESCE(s.lang, '\\N'),     
        s.id,
-       COALESCE(s.based_on_id, '\N')
+       COALESCE(s.based_on_id, '\\N')
      FROM sentences s
      WHERE correctness > -1 AND license != ''" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
