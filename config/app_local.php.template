@@ -122,21 +122,6 @@ return [
          * Stylesheet for development website
          */
         'devStylesheet' => false,
-
-        /**
-         * Blocked IP addresses. Should be an array of strings containing the
-         * IP's you want to block. For instance:
-         *
-         *    'blockedIP' => [
-         *      "1.2.3.4",
-         *      "5.6.7.8",
-         *      "9.10.11.12"
-         *    ]
-         *
-         * Cf. src/Controller/AppController.php
-         */
-        'blockedIP' => [
-        ],
     ],
 
     /**
