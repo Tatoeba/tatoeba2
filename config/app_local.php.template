@@ -9,6 +9,9 @@ return [
         'salt' => '{{security_salt}}',
     ],
 
+# You can disable debug to run like production runs
+#    'debug' => false,
+
     'Datasources' => [
         'default' => [
             'username' => '{{mysql_user}}',
