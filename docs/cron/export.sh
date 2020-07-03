@@ -135,6 +135,20 @@ mysql --skip-column-names --batch tatoeba -e \
       lg = ($1 == "\\N" ? "unknown" : $1);
       fpath = dir "/" lg "/" lg "_sentences_with_audio.tsv";
       print $2, $3, $4, $5 >> fpath
+  }'  
+
+# split sentences base by language
+mysql --skip-column-names --batch tatoeba -e \
+    "SELECT
+       COALESCE(s.lang, '\N'),     
+       s.id,
+       COALESCE(s.based_on_id, '\N')
+     FROM sentences s
+     WHERE correctness > -1 AND license != ''" | \
+  awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
+      lg = ($1 == "\\N" ? "unknown" : $1);
+      fpath = dir "/" lg "/" lg "_sentences_base.tsv";
+      print $2, $3 >> fpath
   }'    
 
 find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
