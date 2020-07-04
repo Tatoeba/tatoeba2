@@ -750,3 +750,11 @@ md-list {
     right: -8px;
     top: -3px;
 }
+
+html[dir="rtl"] .md-button-right input {
+    padding-left: 40px;
+}
+html[dir="rtl"] .md-button-right .md-button {
+    left: -8px;
+    right: initial;
+}
