@@ -510,7 +510,7 @@ class ListsHelper extends AppHelper
                 "alt" => $removeSentenceFromListAlt
             )
         );
-        // X link to remove tag from sentence
+        // X link to remove sentence from List
         echo $this->Html->link(
             $removeSentenceFromListImg,
             array(
@@ -587,10 +587,11 @@ class ListsHelper extends AppHelper
         $sentenceId = $sentences->id; 
         $currentUserId = CurrentUser::get('id');
         
+        echo '<div class="section md-whiteframe-1dp">';
+        /* @translators: header text on the sidebar of a sentence page */
+        echo $this->Html->tag('h2', __('Lists'));
         if (count($listsArray) > 0) {
-            echo '<div class="section md-whiteframe-1dp">';
-            /* @translators: header text on the sidebar of a sentence page */
-            echo $this->Html->tag('h2', __('Lists'));
+            
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
                 $list = $list->sentences_list;
@@ -608,7 +609,7 @@ class ListsHelper extends AppHelper
                         $list['id']
                     )
                 );
-                if(currentUser::isMember()){
+                if(CurrentUser::isMember()){
                     if(($list['user_id'] == $currentUserId && $list['editable_by'] != 'no_one') || $list['editable_by'] == 'anyone')
                     {
                        echo $this->_displayRemoveLink($list['id'], $sentenceId, $list['name']);
@@ -617,13 +618,8 @@ class ListsHelper extends AppHelper
                 echo '</li>';
             }
             echo '</ul>';
-            echo '</div>';
-        } else {
-            echo '<div class="section md-whiteframe-1dp">';
-            /* @translators: header text on the sidebar of a sentence page */
-            echo $this->Html->tag('h2', __('Lists'));
-            echo '</div>';
         }
+        echo '</div>';
     }
 
 
