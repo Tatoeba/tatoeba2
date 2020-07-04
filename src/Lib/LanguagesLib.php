@@ -599,6 +599,7 @@ class LanguagesLib
                 'drt' => __d('languages', 'Drents'),
                 'laa' => __d('languages', 'Southern Subanen'),
                 'chm' => __d('languages', 'Chinook Jargon'),
+                'pli' => __d('languages', 'Pali'),
             );
         }
         return $languages;
