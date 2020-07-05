@@ -68,6 +68,10 @@ $menuElements = array(
                 "controller" => "tags",
                 "action" => "view_all"
             ),
+            __('Manage tags') => array(
+                "controller" => "tagsLinks",
+                "action" => "manage"
+            ),
             __('Browse audio') => array(
                 "controller" => "audio",
                 "action" => "index"
