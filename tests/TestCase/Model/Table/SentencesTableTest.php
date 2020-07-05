@@ -982,6 +982,49 @@ class SentencesTableTest extends TestCase {
 		$this->assertEmpty($result);
 	}
 
+    function testEditSentence_languageChangeUpdatesReindexFlags() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $data = [
+            'id' => 'ita_7',
+            'value' => 'This is a lonely sentence.'
+        ];
+
+        $result = $this->Sentence->editSentence($data);
+        $entries = $this->Sentence->ReindexFlags->findBySentenceId($result->id)
+                ->select(['lang', 'type'])
+                ->disableHydration()
+                ->toArray();
+        $this->assertContains(['lang' => 'eng', 'type' => 'removal'], $entries);
+        $this->assertContains(['lang' => 'ita', 'type' => 'change'], $entries);
+    }
+
+    function testEditSentence_noEntryInReindexFlagsForUnknownPreviousLanguage() {
+        CurrentUser::store($this->Sentence->Users->get(3));
+        $data = [
+            'id' => 'eng_9',
+            'value' => 'This sentences purposely misses its flag.'
+        ];
+
+        $this->Sentence->editSentence($data);
+        $row = $this->Sentence->ReindexFlags->findBySentenceId(9)
+            ->where(['type' => 'removal'])
+            ->first();
+        $this->assertNull($row);
+    }
+
+    function testEditSentence_noEntryInReindexFlagsForUnknownNewLanguage() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $data = [
+            'id' => '_7',
+            'value' => 'This is a lonely sentence.'
+        ];
+        $this->Sentence->editSentence($data);
+        $row = $this->Sentence->ReindexFlags->findBySentenceId(8)
+            ->where(['type' => 'change'])
+            ->first();
+        $this->assertNull($row);
+    }
+
 	function testDeleteSentence_succeedsBecauseIsOwnerAndHasNoTranslations()
 	{
 		$user = $this->Sentence->Users->get(4);

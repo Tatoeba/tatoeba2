@@ -254,7 +254,27 @@ class SentencesTable extends Table
         ));
         $this->getEventManager()->dispatch($event);
 
+        if (!$created && $entity->isDirty('lang')) {
+            $oldLang = $entity->getOriginal('lang');
+            $this->Contributions->updateLanguage($entity->id, $entity->lang);
+            $this->Languages->incrementCountForLanguage($entity->lang);
+            $this->Languages->decrementCountForLanguage($oldLang);
+
+            // In the old language, add the sentence to the kill-list
+            // so that it doesn't appear in results any more.
+            // In addition an unknown language shouldn't be added.
+            if ($oldLang) {
+                $reindexFlag = $this->ReindexFlags->newEntity([
+                    'sentence_id' => $entity->id,
+                    'lang' => $oldLang,
+                    'type' => 'removal',
+                ]);
+                $this->ReindexFlags->save($reindexFlag);
+            }
+        }
+
         $this->updateTags($entity);
+
         if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
         }
@@ -1107,22 +1127,6 @@ class SentencesTable extends Table
         if (($ownerId == $currentUserId || CurrentUser::isModerator()) && !$this->hasAudio($sentence->id)) {
             $sentence->lang = $newLang;
             $result = $this->save($sentence);
-
-            $this->Contributions->updateLanguage($sentenceId, $newLang);
-            $this->Languages->incrementCountForLanguage($newLang);
-            $this->Languages->decrementCountForLanguage($prevLang);
-
-            // In the previous language, add the sentence to the kill-list
-            // so that it doesn't appear in results any more.
-            if ($prevLang) {
-                $reindexFlag = $this->ReindexFlags->newEntity([
-                    'sentence_id' => $sentenceId,
-                    'lang' => $prevLang,
-                    'type' => 'removal',
-                ]);
-                $this->ReindexFlags->save($reindexFlag);
-            }
-
             return $result->lang;
         }
 
