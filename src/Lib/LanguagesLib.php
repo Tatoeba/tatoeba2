@@ -600,6 +600,7 @@ class LanguagesLib
                 'laa' => __d('languages', 'Southern Subanen'),
                 'chn' => __d('languages', 'Chinook Jargon'),
                 'bal' => __d('languages', 'Baluchi'),
+                'pli' => __d('languages', 'Pali'),
             );
         }
         return $languages;
