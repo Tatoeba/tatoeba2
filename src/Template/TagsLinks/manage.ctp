@@ -26,43 +26,9 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Structure tags')));
+echo $this->Html->css('autocompletion.css');
+$this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
 $this->Html->script('tagslinks.js', ['block' => 'scriptBottom']);
-$this->Html->script('tagslinksautocompletion.js', ['block' => 'scriptBottom']);
-echo $this->Html->css('tagslinks/manage.css');
-
-function displayTree($tree, $tags, $before, $depth, $t) {
-    echo "<ol ui-tree-nodes>";
-    foreach ($tree as $parent => $children) {
-        echo "<li ui-tree-node>";
-        echo "<div ui-tree-handle>";
-        echo "<span class='tag'>".$tags[$parent][0]."</span>";
-        if (!count($children) && $depth > 0)
-        echo $t->Html->link(
-            'X',
-            array(
-                "controller" => "tagsLinks",
-                "action" => "remove",
-                $before,
-                $parent
-            ),
-            array(
-                "class" => "removeTagFromSentenceButton",
-                "id" => 'deleteButton'.$before.$parent,
-                "title" => "remove",
-                "escape" => false
-            ),
-            null
-        );
-        echo "</div>";
-        foreach ($children as $head => $sub){
-            $subtree = [];
-            $subtree[$head] = $sub;
-            displayTree($subtree, $tags, $parent, $depth+1, $t);
-        }
-        echo "</li>";
-    }
-    echo "</ol>";
-}
 
 ?>
 
@@ -84,13 +50,13 @@ function displayTree($tree, $tags, $before, $depth, $t) {
             <?php
                 echo $this->Form->input('parentTag');
             ?>
-            <div id="autocompletionParent" class="autocompletionDiv"></div>
+            <div id="autocompletionParent"></div>
         </md-input-container>
         <md-input-container layout="column">
             <?php
                 echo $this->Form->input('childTag');
             ?>
-            <div id="autocompletionChild" class="autocompletionDiv"></div>
+            <div id="autocompletionChild"></div>
         </md-input-container>
         <md-input-container layout="column">
             <md-button type="submit" class="md-raised md-default">
@@ -102,32 +68,17 @@ function displayTree($tree, $tags, $before, $depth, $t) {
         ?>
     </section>
 
-    <section class="md-whiteframe-1dp">
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <h2><?= __('Tags in tree') ?></h2>
-            </div>
-        </md-toolbar>
-
-        <div layout-padding>
-            <div ui-tree>
-            <?php displayTree($tree, $all_tags, -1, 0, $this); ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- <script type="text/ng-template" id="nodes_renderer.html">
-        <div ui-tree-handle>
-            {{node.title}}
-        </div>
-        <ol ui-tree-nodes="" ng-model="node.nodes">
-            <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
-            </li>
-        </ol>
-    </script>
-    <div ui-tree>
-    <ol ui-tree-nodes="" ng-model="nodes" id="tree-root">
-        <li ng-repeat="node in nodes" ui-tree-node ng-include="'nodes_renderer.html'"></li>
-    </ol>
-    </div> -->
+    <div ng-app="app" ng-controller="TagsLinksController as vm">
+    <?php
+    foreach ($tree as $parent => $children) {
+        echo $this->element('tagslink', [
+            'root' => 0,
+            'parent' => $parent,
+            'children' => $children,
+            'labels' => $all_tags,
+            'depth' => 0
+        ]);
+    }
+    ?>
+    </div>
 </div>

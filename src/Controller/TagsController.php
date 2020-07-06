@@ -246,4 +246,14 @@ class TagsController extends AppController
             $search
         ]);
     }
+
+    public function autocomplete($search)
+    {
+        $allTags = $this->Tags->Autocomplete($search);
+
+        $this->loadComponent('RequestHandler');
+        $this->set('allTags', $allTags);
+        $this->set('_serialize', ['allTags']);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 }

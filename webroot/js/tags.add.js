@@ -18,6 +18,8 @@
 
 
 $(document).ready(function() {
+	new AutocompleteBox("TagTagName", "autocompletionDiv");
+	
     $("#TagTagName").keydown(function(e){
         if (e.keyCode == 13) {
             addTag();

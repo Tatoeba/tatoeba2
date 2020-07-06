@@ -53,6 +53,7 @@ class TagsTable extends Table
         $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Autocompletable');
     }
     /**
      * Cakephp callback before each saving operation
