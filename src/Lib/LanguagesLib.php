@@ -599,6 +599,7 @@ class LanguagesLib
                 'drt' => __d('languages', 'Drents'),
                 'laa' => __d('languages', 'Southern Subanen'),
                 'chn' => __d('languages', 'Chinook Jargon'),
+                'bal' => __d('languages', 'Baluchi'),
             );
         }
         return $languages;
@@ -666,6 +667,7 @@ class LanguagesLib
             "syc",
             "phn",
             "jpa",
+            "bal",
         );
 
         $autoLangs = array(
