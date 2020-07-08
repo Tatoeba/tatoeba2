@@ -59,15 +59,15 @@ split_file transcriptions.csv
 # split links by language pair
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT 
-      COALESCE(sentence_lang, '\\N'), 
-      COALESCE(translation_lang, '\\N'),
+      sentence_lang, 
+      translation_lang,
       sentence_id, 
       translation_id
      FROM sentences_translations" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      src_lg = ($1 == "\\N" ? "unknown" : $1);
-      tgt_lg = ($2 == "\\N" ? "unknown" : $2);
-      fpath = dir "/" src_lg "/" src_lg "-" tgt_lg "_links.tsv";
+      sentence_lang = ($1 == "NULL" ? "unknown" : $1);
+      translation_lang = ($2 == "NULL" ? "unknown" : $2);
+      fpath = dir "/" sentence_lang "/" sentence_lang "-" translation_lang "_links.tsv";
       print $3, $4 >> fpath;
       close(fpath)
   }'
@@ -75,38 +75,39 @@ mysql --skip-column-names --batch tatoeba -e \
 # split user languages by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
-       COALESCE(ul.language_code, '\\N'), 
-       COALESCE(ul.level, '\\N'), 
-       COALESCE(u.username, '\\N'), 
+       ul.language_code, 
+       ul.level, 
+       u.username, 
        ul.details
      FROM users_languages ul 
        LEFT JOIN users u ON ul.of_user_id = u.id
      ORDER BY ul.language_code ASC, ul.level DESC, u.username ASC" | \
   awk -F"\t" -v dir=$TEMP_DIR '{
-      lg = ($1 == "\\N" ? "unknown" : $1);      
-      fpath = dir "/" lg "/" lg "_user_languages.tsv";
-      print >> fpath
+      language_code = ($1 == "" ? "unknown" : $1);      
+      level = ($2 == "NULL" ? "\\N" : $2);      
+      fpath = dir "/" language_code "/" language_code "_user_languages.tsv";
+      print $1, level, $3, $4 >> fpath
   }'
 
 # split tags by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT DISTINCT 
-       COALESCE(s.lang, '\\N'), 
+       s.lang, 
        ts.sentence_id, 
        t.name 
      FROM tags_sentences ts
        JOIN tags t ON ts.tag_id = t.id
        JOIN sentences s ON ts.sentence_id = s.id" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lg = ($1 == "\\N" ? "unknown" : $1);
-      fpath = dir "/" lg "/" lg "_tags.tsv";
+      lang = ($1 == "NULL" ? "unknown" : $1);
+      fpath = dir "/" lang "/" lang "_tags.tsv";
       print $2, $3 >> fpath
   }'
 
 # split sentences in lists by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT 
-       COALESCE(s.lang, '\\N'), 
+       s.lang, 
        sl.id, 
        s_sl.sentence_id
      FROM sentences_sentences_lists s_sl
@@ -115,41 +116,44 @@ mysql --skip-column-names --batch tatoeba -e \
      WHERE sl.visibility != 'private'
      ORDER BY sl.id ASC, s_sl.sentence_id" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lg = ($1 == "\\N" ? "unknown" : $1);
-      fpath = dir "/" lg "/" lg "_sentences_in_lists.tsv";
+      lang = ($1 == "NULL" ? "unknown" : $1);
+      fpath = dir "/" lang "/" lang "_sentences_in_lists.tsv";
       print $2, $3 >> fpath
   }'      
 
 # split sentences with audio by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
-       COALESCE(s.lang, '\\N'), 
+       s.lang, 
        a.sentence_id, 
-       COALESCE(u.username, '\\N'), 
-       COALESCE(u.audio_license, '\\N'), 
-       COALESCE(u.audio_attribution_url, '\\N')
+       u.username, 
+       u.audio_license, 
+       u.audio_attribution_url
      FROM audios a 
        LEFT JOIN users u on u.id = a.user_id
        JOIN sentences s ON a.sentence_id = s.id
      ORDER BY sentence_id ASC" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lg = ($1 == "\\N" ? "unknown" : $1);
-      fpath = dir "/" lg "/" lg "_sentences_with_audio.tsv";
-      print $2, $3, $4, $5 >> fpath
+      lang = ($1 == "NULL" ? "unknown" : $1);
+      audio_license = ($4 == "NULL" ? "\\N" : $4);
+      audio_attribution_url = ($5 == "NULL" ? "\\N" : $5);
+      fpath = dir "/" lang "/" lang "_sentences_with_audio.tsv";
+      print $2, $3, audio_license, audio_attribution_url >> fpath
   }'  
 
 # split sentences base by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
-       COALESCE(s.lang, '\\N'),     
+       s.lang,     
        s.id,
-       COALESCE(s.based_on_id, '\\N')
+       s.based_on_id
      FROM sentences s
      WHERE correctness > -1 AND license != ''" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lg = ($1 == "\\N" ? "unknown" : $1);
-      fpath = dir "/" lg "/" lg "_sentences_base.tsv";
-      print $2, $3 >> fpath
+      lang = ($1 == "NULL" ? "unknown" : $1);
+      based_on_id = ($3 == "NULL" ? "\\N" : $3);
+      fpath = dir "/" lang "/" lang "_sentences_base.tsv";
+      print $2, based_on_id >> fpath
   }'    
 
 find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
