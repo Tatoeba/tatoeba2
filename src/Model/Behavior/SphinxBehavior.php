@@ -129,10 +129,10 @@ class SphinxBehavior extends Behavior
         if ($result === false) {
             $gotSyntaxError = strpos($sphinx->GetLastError(), 'syntax error,') !== FALSE;
             if ($gotSyntaxError) {
-                $quotedQuery = $sphinx->EscapeString($options['search']);
+                $quotedQuery = $sphinx->EscapeString($search);
                 $result = $sphinx->Query($quotedQuery, $indexes);
                 if ($result) {
-                    $options['search'] = $quotedQuery;
+                    $search = $quotedQuery;
                 }
             }
         }
