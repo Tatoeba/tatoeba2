@@ -601,6 +601,7 @@ class LanguagesLib
                 'chn' => __d('languages', 'Chinook Jargon'),
                 'bal' => __d('languages', 'Baluchi'),
                 'pli' => __d('languages', 'Pali'),
+                'hbo' => __d('languages', 'Ancient Hebrew'),
             );
         }
         return $languages;
@@ -669,6 +670,7 @@ class LanguagesLib
             "phn",
             "jpa",
             "bal",
+            'hbo',
         );
 
         $autoLangs = array(
