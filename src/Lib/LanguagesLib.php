@@ -602,6 +602,7 @@ class LanguagesLib
                 'bal' => __d('languages', 'Baluchi'),
                 'pli' => __d('languages', 'Pali'),
                 'hbo' => __d('languages', 'Ancient Hebrew'),
+                'hax' => __d('languages', 'Southern Haida'),
             );
         }
         return $languages;
