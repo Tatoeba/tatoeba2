@@ -82,7 +82,7 @@ mysql --skip-column-names --batch tatoeba -e \
      FROM users_languages ul 
        LEFT JOIN users u ON ul.of_user_id = u.id
      ORDER BY ul.language_code ASC, ul.level DESC, u.username ASC" | \
-  awk -F"\t" -v dir=$TEMP_DIR '{
+  awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
       language_code = ($1 == "" ? "unknown" : $1);      
       level = ($2 == "NULL" ? "\\N" : $2);      
       fpath = dir "/" language_code "/" language_code "_user_languages.tsv";
