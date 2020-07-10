@@ -770,8 +770,9 @@ class SentencesTableTest extends TestCase {
         $id = 9;
         $sentence = $this->Sentence->get($id);
         $sentence->text = 'Changed!';
-        $this->Sentence->save($sentence);
-        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->First();
+        $result = $this->Sentence->save($sentence);
+        $this->assertTrue((bool)$result);
+        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first();
         $this->assertNull($result);
     }
 
@@ -1005,8 +1006,9 @@ class SentencesTableTest extends TestCase {
             'value' => 'This sentences purposely misses its flag.'
         ];
 
-        $this->Sentence->editSentence($data);
-        $row = $this->Sentence->ReindexFlags->findBySentenceId(9)
+        $sentence = $this->Sentence->editSentence($data);
+        $this->assertTrue((bool)$sentence);
+        $row = $this->Sentence->ReindexFlags->findBySentenceId($sentence->id)
             ->where(['type' => 'removal'])
             ->first();
         $this->assertNull($row);
@@ -1018,8 +1020,9 @@ class SentencesTableTest extends TestCase {
             'id' => '_7',
             'value' => 'This is a lonely sentence.'
         ];
-        $this->Sentence->editSentence($data);
-        $row = $this->Sentence->ReindexFlags->findBySentenceId(8)
+        $sentence = $this->Sentence->editSentence($data);
+        $this->assertTrue((bool)$sentence);
+        $row = $this->Sentence->ReindexFlags->findBySentenceId($sentence->id)
             ->where(['type' => 'change'])
             ->first();
         $this->assertNull($row);
@@ -1180,8 +1183,10 @@ class SentencesTableTest extends TestCase {
 
     function testChangeLanguage_noEntryInReindexFlagsForUnknownPreviousLanguage() {
         CurrentUser::store($this->Sentence->Users->get(3));
-        $this->Sentence->changeLanguage(9, 'eng');
-        $changes = $this->Sentence->ReindexFlags->findBySentenceId(9)
+        $sentenceId = 9;
+        $result = $this->Sentence->changeLanguage($sentenceId, 'eng');
+        $this->assertEquals('eng', $result);
+        $changes = $this->Sentence->ReindexFlags->findBySentenceId($sentenceId)
             ->where(['type' => 'removal'])
             ->first();
         $this->assertNull($changes);
@@ -1189,8 +1194,10 @@ class SentencesTableTest extends TestCase {
 
     function testChangeLanguage_noEntryInReindexFlagsForUnknownNewLanguage() {
         CurrentUser::store($this->Sentence->Users->get(7));
-        $this->Sentence->changeLanguage(8, '');
-        $changes = $this->Sentence->ReindexFlags->findBySentenceId(8)
+        $sentenceId = 8;
+        $result = $this->Sentence->changeLanguage($sentenceId, '');
+        $this->assertEquals('', $result);
+        $changes = $this->Sentence->ReindexFlags->findBySentenceId($sentenceId)
             ->where(['type' => 'change'])
             ->first();
         $this->assertNull($changes);
