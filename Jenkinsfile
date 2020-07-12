@@ -9,7 +9,7 @@ pipeline {
     stage('Check') {
       steps {
         // Check for flags that are too big
-        sh '! find webroot/img/flags/ -name "*.svg" -size +3k | grep .'
+        sh '! find webroot/img/flags/ -name "*.svg" -size +4k | grep .'
         // Check for PHP short open tags
         sh '! grep -norz "<?[[:space:]]" src/'
         // Check for PHP syntax errors in template config file
