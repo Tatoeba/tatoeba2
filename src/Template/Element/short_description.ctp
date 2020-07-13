@@ -42,7 +42,7 @@
         </div>
     </md-toolbar>
 
-    <div class="container" id="langing-page-search" ng-cloak>
+    <div class="container" ng-cloak>
         <!-- Search -->
         <div class="search-bar" ng-controller="SearchBarController as ctrl">
             <?php
