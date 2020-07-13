@@ -21,7 +21,7 @@ $responsiveNgClass = '{activated: translation.showActions, deactivated: !transla
 
 <?= $this->element('sentence_buttons/audio', ['angularVar' => $angularVar]); ?>
 
-<md-button class="md-icon-button" ng-class="<?= $responsiveNgClass ?>" href="<?= $sentenceBaseUrl ?>/{{<?= $angularVar ?>.id}}">
+<md-button class="md-icon-button" ng-class="<?= $responsiveNgClass ?>" ng-href="<?= $sentenceBaseUrl ?>/{{<?= $angularVar ?>.id}}">
     <md-icon>info</md-icon>
     <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
 </md-button>
