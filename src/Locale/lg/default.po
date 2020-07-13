@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-02 02:04+0800\n"
-"PO-Revision-Date: 2020-07-02 04:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-07-06 19:51+0000\n"
+"Last-Translator: Mbwabwa Ivan Peter <ivanpeterm@gmail.com>\n"
 "Language-Team: Luganda (http://www.transifex.com/tatoeba/tatoeba_website/language/lg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,11 +45,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L72
 msgid "Tatoeba, new password"
-msgstr ""
+msgstr "Tatoeba, paasiwadi empy"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "Gumikilizako paka ng'olukalala luzidwa bupya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
@@ -84,7 +84,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
-msgstr ""
+msgstr "okuteesa kwo kutelekedwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
@@ -108,7 +108,7 @@ msgstr "Emboozi #{id} esangudwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L275
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr ""
+msgstr "ensobi: emboozi #1{id} tesobodde kusangulwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L873
 msgid "You are not allowed to change the license of this sentence."
@@ -116,7 +116,7 @@ msgstr "Tokilizibwa kukyusa layisensi y'emboozi eno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L880
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Layisensi y'emboozi eno ekyusidwa okudda ku \"1{newLicense}\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L885
 msgid "Unable to change the license to “{newLicense}” because:"
@@ -435,7 +435,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L154
 msgid "All languages"
-msgstr ""
+msgstr "Enimi zzona"
 
 #. dropdown option for unknown language
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L57
@@ -652,7 +652,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L56
 msgid "Tips"
-msgstr ""
+msgstr "Obukodyo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L78
 msgid ""
@@ -666,7 +666,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L108
 msgid "Improve sentences"
-msgstr ""
+msgstr "Yongera ku mutindo gw'emboozi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L61
 msgid "Related links"
@@ -678,7 +678,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L70
 msgid "Tags you should know about"
-msgstr ""
+msgstr "taaga zolina okumanya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L72
 msgid ""
@@ -704,7 +704,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L102
 msgid "How to help"
-msgstr ""
+msgstr "Engeri gyoyinza okuyamba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L104
 msgid ""
@@ -757,7 +757,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L45
 msgctxt "not-directly-translated-into"
 msgid "Any language"
-msgstr ""
+msgstr "Olulimi lwona"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L51
 msgid "How to add a translation"
@@ -1181,7 +1181,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L629
 msgctxt "button"
 msgid "Search"
-msgstr ""
+msgstr "Noonya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L374
 msgid "More search options"
@@ -1522,7 +1522,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L77
 msgctxt "label"
 msgid "Search"
-msgstr ""
+msgstr "Noonya"
 
 #. search language field label in top search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L95
@@ -1534,7 +1534,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L128
 msgctxt "searchbar"
 msgid "Any language"
-msgstr ""
+msgstr "Olulimi lwona"
 
 #. translation language field label in top search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L118
@@ -2063,7 +2063,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L67
 msgctxt "short_description"
 msgid "Any language"
-msgstr ""
+msgstr "Olulimi lwona"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L86
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
@@ -3968,7 +3968,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L280
 msgctxt "user"
 msgid "Name"
-msgstr ""
+msgstr "Elinya"
 
 #. label for user's country in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L122
@@ -4116,7 +4116,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L503
 msgid "Add this language"
-msgstr ""
+msgstr "Gatako luno olulimi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L54
 msgid "Main options"
@@ -4222,19 +4222,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L38
 msgid "Members"
-msgstr ""
+msgstr "Bba memba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L43
 msgid "Search user"
-msgstr ""
+msgstr "Nonya omukozesa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L86
 msgid "Members (total {number})"
-msgstr ""
+msgstr "Bba memba (omuggaate {number})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Can switch license"
-msgstr ""
+msgstr "Osoobola okukyusa layisensi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
@@ -4278,29 +4278,29 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L207
 msgid "Native language:"
-msgstr ""
+msgstr "Olulimi oluzaalilanwa:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L227
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
-msgstr ""
+msgstr "Bwoba tosanze lulimi lwo luzaalilanwa mu lukalala luno, lekawo nga 'None'."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L238
 msgid "We need to make sure you are human."
-msgstr ""
+msgstr "Tulina okukakasa nti ddala oli muntu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L243
 msgid "What are the first five characters of your email address?"
-msgstr ""
+msgstr "Nyukuta kki etaano ezzisooka ku email yyo?"
 
 #. captcha field name in register form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L252
 msgid "Answer"
-msgstr ""
+msgstr "Okudibwaamu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L262
 msgid "Wrong answer to the question."
-msgstr ""
+msgstr "Okudibwaamu okukyamu eri ekibuuzo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L270
 msgid ""
@@ -4310,7 +4310,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L293
 msgid "You did not accept the terms of use."
-msgstr ""
+msgstr "Tewakiliza bukwakulizo bwenkozesa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L24
 msgid "Tatoeba user: {username}"
@@ -4318,7 +4318,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L66
 msgid "Latest sentences"
-msgstr ""
+msgstr "Emboozi empya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L102
@@ -4381,7 +4381,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/edit.ctp#L28
 msgid "Edit message {number}"
-msgstr ""
+msgstr "Kyusa mu bubaka {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L48
 msgid "Wall (one thread)"
@@ -4445,7 +4445,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L61
 msgid "License: {license}"
-msgstr ""
+msgstr "Laayisensi: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L74
 msgid ""
@@ -4474,17 +4474,17 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
 msgid "Send message"
-msgstr ""
+msgstr "Weleza obubaka"
 
 #. button to unhide a sentence comment (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L94
 msgid "Unhide"
-msgstr ""
+msgstr "Kwekula"
 
 #. button to hide a sentence comment (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L98
 msgid "Hide"
-msgstr ""
+msgstr "Kweeka"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
@@ -4522,51 +4522,51 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L155
 msgid "January"
-msgstr ""
+msgstr "Gatonya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L156
 msgid "February"
-msgstr ""
+msgstr "Mukutulasanja"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L157
 msgid "March"
-msgstr ""
+msgstr "Mugulansigo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L158
 msgid "April"
-msgstr ""
+msgstr "Kafumuulampawu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L159
 msgid "May"
-msgstr ""
+msgstr "Muzigo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L160
 msgid "June"
-msgstr ""
+msgstr "Ssebaaseka"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L161
 msgid "July"
-msgstr ""
+msgstr "Kasambula"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L162
 msgid "August"
-msgstr ""
+msgstr "Muwakanya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L163
 msgid "September"
-msgstr ""
+msgstr "Mutunda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L164
 msgid "October"
-msgstr ""
+msgstr "Mukulukusabitungotungo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L165
 msgid "November"
-msgstr ""
+msgstr "Museenene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L166
 msgid "December"
-msgstr ""
+msgstr "Ntenvu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L264
 msgctxt "incomplete date"
@@ -4591,118 +4591,118 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L92
 msgid "Last used languages"
-msgstr ""
+msgstr "Olulimi olwasembayo okozesebwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L96
 msgid "Other languages"
-msgstr ""
+msgstr "Ennimi endala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L169
 msgctxt "dropdown-list"
 msgid "Unknown language"
-msgstr ""
+msgstr "Olulimi olutamanyidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L185
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L237
 msgid "other language"
-msgstr ""
+msgstr "Olulimi olulala"
 
 #. option used in language selection dropdown for "Show translations in" in
 #. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L218
 msgid "None"
-msgstr ""
+msgstr "Tewali"
 
 #. option used in language selection dropdown for "Show translations in" in
 #. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L203
 msgctxt "show-translations-in"
 msgid "All languages"
-msgstr ""
+msgstr "Enimi zzona"
 
 #. option used in language selection dropdowns in other places
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L234
 msgid "Any language"
-msgstr ""
+msgstr "Olulimi lwona"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L338
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "Tosobola kwongelako mboozi yona kubanga tonayongelako lulimi lwona ku pulofayilo yo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L343
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "Tosobola kukyusa mboozi yona kubanga tonayongelako lulimi lwona ku pulofayilo yo"
 
 #. language level
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L369
 msgctxt "level"
 msgid "Unspecified"
-msgstr ""
+msgstr "Tekimanyidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L370
 msgid "0: Almost no knowledge"
-msgstr ""
+msgstr "0: Kumpi tewali kimanyiidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L371
 msgid "1: Beginner"
-msgstr ""
+msgstr "1: Otandika butandisi "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L372
 msgid "2: Intermediate"
-msgstr ""
+msgstr "2: Wakatikati"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L373
 msgid "3: Advanced"
-msgstr ""
+msgstr "3:Mukugu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L374
 msgid "4: Fluent"
-msgstr ""
+msgstr "4:Kafulu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L375
 msgid "5: Native level"
-msgstr ""
+msgstr "5: Munaansi"
 
 #. sort option in list of lists
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L76
 msgid "created"
-msgstr ""
+msgstr "yatondebwa"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L153
 msgid "(unnamed list)"
-msgstr ""
+msgstr "(olukalala olutalina linya)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L212
 msgid "Number of sentences"
-msgstr ""
+msgstr "Omuweendo gw'emboozi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L233
 msgid "Back to all lists"
-msgstr ""
+msgstr "Ddayo kunkalala zzona"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L256
 msgid "Back to this list"
-msgstr ""
+msgstr "Ddayo kulukalala luno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L301
 msgid "Show translations :"
-msgstr ""
+msgstr "Laga okukyusakyusa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L334
 msgid "List visibility"
-msgstr ""
+msgstr "okulabika kwolukalala"
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L342
 msgid "Public"
-msgstr ""
+msgstr "Olukale"
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L346
@@ -4716,30 +4716,30 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L374
 msgid "Who can add/remove sentences"
-msgstr ""
+msgstr "Ani ayinza okuggatako oba okujako emboozi"
 
 #. option when choosing who can edit a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L382
 msgid "Anyone"
-msgstr ""
+msgstr "Omuntu yeena"
 
 #. option when choosing who can edit a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L386
 msgid "Only me"
-msgstr ""
+msgstr "Nze nzeka"
 
 #. option when choosing who can edit a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
 msgid "No one (list inactive)"
-msgstr ""
+msgstr "Tewali muntu yena(olukalala telukola)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L465
 msgid "Remove sentence {number} from list"
-msgstr ""
+msgstr "Jjako emboozi {number} okuva kulukalala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L500
 msgid "Add a sentence to this list : "
-msgstr ""
+msgstr "Yongela emboozi kulukalala luno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L519
 msgid ""
@@ -4749,86 +4749,86 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L573
 msgid "Create a new list"
-msgstr ""
+msgstr "Tondawo olukalala olupya"
 
 #. field for the name of a list to create (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L585
 msgctxt "list"
 msgid "Name"
-msgstr ""
+msgstr "Elinya"
 
 #. header text in List of lists page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L608
 msgctxt "header"
 msgid "Search"
-msgstr ""
+msgstr "Noonya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L655
 msgid "All public lists"
-msgstr ""
+msgstr "Enkalala z'olukale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L666
 msgid "Collaborative lists"
-msgstr ""
+msgstr "Enkalala ezikolebwako abantu abangi"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L694
 msgctxt "list"
 msgid "Unspecified"
-msgstr ""
+msgstr "Tekimanyidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L706
 msgid "Other lists"
-msgstr ""
+msgstr "Enkalala endala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by {user}"
-msgstr ""
+msgstr "Yagatibwako {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by an unknown member"
-msgstr ""
+msgstr "yagatibwako memba atamanyiidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by {user}"
-msgstr ""
+msgstr "Yayungibwa {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by an unknown member"
-msgstr ""
+msgstr "Yayungibwa memba atamanyiidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by {user}"
-msgstr ""
+msgstr "Laayisensi yalondebwa {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by a unknown member"
-msgstr ""
+msgstr "Laayisensi yalondebwa memba atamanyiidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by {user}"
-msgstr ""
+msgstr "Yakyusibwa {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by an unknown member"
-msgstr ""
+msgstr "Yakyusibwa memba atamanyiidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
-msgstr ""
+msgstr "Laayisensi yakyusibwa {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by an unknown member"
-msgstr ""
+msgstr "Laayisensi yakyusibwa memba atamanyiidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
-msgstr ""
+msgstr "Yasaangulwa {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by an unknown member"
-msgstr ""
+msgstr "Yasaangulwa memba atamanyiidwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by {user}"
@@ -4844,7 +4844,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L67
 msgid "Former member"
-msgstr ""
+msgstr "Yaliko memba"
 
 #. one of the user status displayed on profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L86
@@ -4874,13 +4874,13 @@ msgstr ""
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L96
 msgid "suspended"
-msgstr ""
+msgstr "yagobebwa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L89
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
-msgstr ""
+msgstr "Emboozi eno elambidwa ng'etanakilizibwa. Emboozi ezitanakilizibwa tezisobola kukyusibwa"
 
 #. button after removing a favorite from the My favorites page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L213
@@ -4889,27 +4889,27 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L271
 msgid "Link to another sentence"
-msgstr ""
+msgstr "Yuunga ku mboozi endala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L285
 msgid "Sentence number"
-msgstr ""
+msgstr "namba y'emboozi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L331
 msgid "Add to list"
-msgstr ""
+msgstr "Yongela kulukalala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L365
 msgid "Sentence already in all possible lists"
-msgstr ""
+msgstr "Emboozi mweli munkalala zzona"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L367
 msgid "Add to one of your lists"
-msgstr ""
+msgstr "Yongela kwemu kunkalala zzo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L368
 msgid "Add to a collaborative list"
-msgstr ""
+msgstr "Yongela kulukalala olukolebwako abantu abangi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L426
 msgid "You cannot delete this sentence because it has audio."
@@ -4917,11 +4917,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L517
 msgid "belongs to {user}"
-msgstr ""
+msgstr "ya {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L537
 msgid "(native)"
-msgstr ""
+msgstr "(munaansi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L678
 msgid ""
@@ -4932,7 +4932,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
 msgid "to {recipient}"
-msgstr ""
+msgstr "eri {recipient}"
 
 #. private message type (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
@@ -4941,15 +4941,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
 msgid "notification from Tatoeba"
-msgstr ""
+msgstr "Obubaka okuva mu Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L125
 msgid "from {sender}"
-msgstr ""
+msgstr "okuva ewa {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
 msgid "View this user's profile"
-msgstr ""
+msgstr "Laba pulofayilo eno"
 
 #. this formats the title at the top of every page
 #. that shows a list of sentences (search, browse by language,
@@ -5013,25 +5013,25 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L344
 msgid "Translation:"
-msgstr ""
+msgstr "Okukyusakyusa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L400
 msgid "Submit translation"
-msgstr ""
+msgstr "weleza okukyusakyusa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L828
 msgid "This sentence is original and was not derived from translation."
-msgstr ""
+msgstr "Emboozi eno yetongodde, era teyajjibwa mukukyusakyusa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L840
 msgid "This sentence was initially added as a translation of sentence #{n}."
-msgstr ""
+msgstr "Emboozi eno mukusoka yagatibwako nga okukyusakyusa kwemboozi #{n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L845
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
-msgstr ""
+msgstr "Tetunakakasa oba emboozi eno yajjibwa mu kukyukyusa oba nedda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L174
 msgid "NOTE: Both direct and indirect translations will be shown."
@@ -5039,19 +5039,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L93
 msgid "View all tags"
-msgstr ""
+msgstr "Laba taaga zonna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L145
 msgid "Added by {username}, {date}"
-msgstr ""
+msgstr "Yateekebwayo {username}, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."
-msgstr ""
+msgstr "Jjako taag '{tagName} okuva kumboozi eno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L301
 msgid "Remove tag from sentence"
-msgstr ""
+msgstr "Jjako taaga okuva kumboozi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L152
 msgid "Show alternative script"
@@ -5059,7 +5059,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L154
 msgid "Show transcription"
-msgstr ""
+msgstr "Laaga ebigambo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L197
 msgid "Edit alternative script"
@@ -5067,7 +5067,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L199
 msgid "Edit transcription"
-msgstr ""
+msgstr "kyuusa ebigambo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L205
 msgid "You cannot edit this script."
@@ -5089,4 +5089,4 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
 msgid "by {messageAuthor}"
-msgstr ""
+msgstr "bya {messageAuthor}"

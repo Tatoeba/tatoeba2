@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-02 02:04+0800\n"
-"PO-Revision-Date: 2020-07-03 17:34+0000\n"
+"PO-Revision-Date: 2020-07-09 12:50+0000\n"
 "Last-Translator: Yorwba\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/tatoeba/tatoeba_website/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -4505,56 +4505,56 @@ msgstr[0] "{n}分钟前"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L155
 msgid "January"
-msgstr "一月"
+msgstr "1月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L156
 msgid "February"
-msgstr "二月"
+msgstr "2月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L157
 msgid "March"
-msgstr "三月"
+msgstr "3月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L158
 msgid "April"
-msgstr "四月"
+msgstr "4月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L159
 msgid "May"
-msgstr "五月"
+msgstr "5月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L160
 msgid "June"
-msgstr "六月"
+msgstr "6月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L161
 msgid "July"
-msgstr "七月"
+msgstr "7月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L162
 msgid "August"
-msgstr "八月"
+msgstr "8月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L163
 msgid "September"
-msgstr "九月"
+msgstr "9月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L164
 msgid "October"
-msgstr "十月"
+msgstr "10月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L165
 msgid "November"
-msgstr "十一月"
+msgstr "11月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L166
 msgid "December"
-msgstr "十二月"
+msgstr "12月"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L264
 msgctxt "incomplete date"
 msgid "{month} {day}"
-msgstr ""
+msgstr "{month}{day}日"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L270
 msgctxt "incomplete date"
@@ -4823,7 +4823,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
-msgstr ""
+msgstr "{date}{info}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L67
 msgid "Former member"
@@ -5023,7 +5023,7 @@ msgstr "查看所有标签"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L145
 msgid "Added by {username}, {date}"
-msgstr ""
+msgstr "{date}由{username}添加"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."

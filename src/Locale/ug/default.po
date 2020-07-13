@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-02 02:04+0800\n"
-"PO-Revision-Date: 2020-07-02 04:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-07-09 13:43+0000\n"
+"Last-Translator: Arslan Abdurazik\n"
 "Language-Team: Uyghur (http://www.transifex.com/tatoeba/tatoeba_website/language/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,30 +65,30 @@ msgstr ""
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr ""
+msgstr "جۈملە {firstNumber} بىلەن {secondNumber} نىڭ بىۋاستە تەرجىمىسى يوق."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "ئۇلىنىشنى چىقىرۋېتىشتە خاتالىق كۆرۈلدى. قايتا سىناپ بېقىڭ ياكى بىزگە مەلۇم قىلىڭ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
-msgstr ""
+msgstr "ھۆججەتدان {name} قۇرۇقلاندى"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
-msgstr ""
+msgstr "نومۇرى {number} بولغان جۈملە يوق"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
-msgstr ""
+msgstr "پىكىرىڭىز ساقلاندى"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
-msgstr ""
+msgstr "بۇ پىكىرنى تەھرىرلەش ھوقۇقىڭىز يوق"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
@@ -96,15 +96,15 @@ msgstr ""
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "ئەگەر بۇ ئۇچۇرنى خاتا تاپشۇرۇپ ئالغان بولسىڭىز، باشقۇرغۇچى -  {email} غا خەت يوللاڭ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
-msgstr ""
+msgstr "پىكىرىڭىز ئۆزگەرتىپ ساقلاندى."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L269
 msgid "The sentence #{id} has been deleted."
-msgstr ""
+msgstr "جۈملە # {id} ئۆچۈرۈلدى."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L275
 msgid "Error: the sentence #{id} could not be deleted."
@@ -190,15 +190,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L614
 msgid "New password cannot be empty."
-msgstr ""
+msgstr "يېڭى پارول كىرگۈزۈڭ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
 msgid "New passwords do not match."
-msgstr ""
+msgstr "كىرگۈزگەن يېڭى پاروللار ئوخشاش ئەمەس."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
 msgid "New password has been saved."
-msgstr ""
+msgstr "يېڭى پارول ساقلاندى."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L626
 msgid "An error occurred while saving."
@@ -206,7 +206,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L631
 msgid "Password error. Please try again."
-msgstr ""
+msgstr "پارولدا خاتالىق كۆرۈلدى، قايتا سىناپ بېقىڭ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
@@ -226,13 +226,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
-msgstr ""
+msgstr "ئىسىم ۋە پارولنى كىرگۈزۈڭ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L216
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
-msgstr ""
+msgstr "كىرىشتە چاتاق چىقتى، Caps Lock ياكىNum Lock كونۇپكىلىرى ئېھتىياتسىزلىقتىن بېسلىپ قالغانمۇ، تەكشۈرۈپ بېقىڭ. پارولىڭىزدىكى ھەرپنىڭ چوڭ ياكى كىچىكلىكىگە دىققەت قىلىڭ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L328
 msgid "Welcome to Tatoeba!"
@@ -251,7 +251,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L385
 msgid "Your new password has been sent to {email}."
-msgstr ""
+msgstr "يېڭى پارولىڭىز {email} غا ئەۋەتىلدى."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L390
 msgid "You may need to check your spam folder to find this message."
@@ -259,7 +259,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L398
 msgid "There is no registered user with this email address: "
-msgstr ""
+msgstr "بۇ ئېلخەت بىلەن تىزىملاتقان ئەزا يوق."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L420
 msgid "No user with this username: "
@@ -304,7 +304,7 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L200
 msgid "Message saved."
-msgstr ""
+msgstr "ئۇچۇر ساقلاندى"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L218
 msgid "You do not have permission to edit this message."
@@ -440,7 +440,7 @@ msgstr ""
 #. dropdown option for unknown language
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L57
 msgid "unknown"
-msgstr ""
+msgstr "نامەلۇم"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L228
@@ -490,7 +490,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
 msgid "You cannot send an empty message."
-msgstr ""
+msgstr "قۇرۇق ئۇچۇر يوللىيالمايسىز"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L82
 msgid "You must fill the \"To\" field."
@@ -561,7 +561,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L94
 msgid "Username must be at least two characters long"
-msgstr ""
+msgstr "ئەزالىق ئىسىمدا كەم دېگەندە ئىككى ھەرپ بولۇش كېرەك."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
@@ -570,12 +570,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
 msgid "Username can only contain letters, numbers, or underscore"
-msgstr ""
+msgstr "ئەزالىق ئىسىمى پەقەت ھەرپ، سان ياكى ئاستى سىزىق ئۆز ئىچىگە ئالسا بولىدۇ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L140
 msgid "Password must be at least 6 characters long"
-msgstr ""
+msgstr "پارولدا كەم دېگەندا 6 بەلگە بولۇشى كېرەك."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L190
@@ -585,7 +585,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L100
 msgid "Username already taken."
-msgstr ""
+msgstr "بۇ ئىسىم ئېلىنىپ بولۇنغان."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L193
@@ -1212,7 +1212,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr ""
+msgstr "بارلىق تىللاردىكى ئاۋازلارغا كۆزيۈگۈرتۈش"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
@@ -1374,7 +1374,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L301
 msgid "Register"
-msgstr ""
+msgstr "ئەزا بولۇش"
 
 #. link to open the Login box in the top bar (verb)
 #. / button to submit login form (verb)
@@ -1384,25 +1384,25 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L120
 msgid "Log in"
-msgstr ""
+msgstr "تىزىملاپ كىرىش"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L99
 msgid "Username: "
-msgstr ""
+msgstr "ئەزالىق ئىسىم:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L107
 msgid "Password: "
-msgstr ""
+msgstr "پارول: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L104
 msgid "Remember me"
-msgstr ""
+msgstr "ئەستە ساقلانسۇن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L124
 msgid "Forgot your password?"
-msgstr ""
+msgstr "پارولنى ئۇنتۇپ قاپسىزمۇ؟"
 
 #. button to close the top-right login box (verb)
 #. / button to close the announcement about the new design (verb)
@@ -1658,7 +1658,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L120
 msgid "Cancel"
-msgstr ""
+msgstr "قالدۇرۇش"
 
 #. save button of sentence comment edition form (verb)
 #. / save button of wall post edition form (verb)
@@ -2049,15 +2049,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/session_expired.ctp#L33
 msgid "Please <a href=\"{}\">log in again</a>."
-msgstr ""
+msgstr "<a href=\"{}\">قايتا كىرىڭ</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L34
 msgid "Tatoeba is a collection of sentences and translations."
-msgstr ""
+msgstr "Tatoeba جۈملە ۋە تەرجىمىسنىڭ توپلىمىسى."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L38
 msgid "It's collaborative, open, free and even addictive."
-msgstr ""
+msgstr " بۇ ھەمكارلىق، ئوچۇق، ھەقسىز ھەتتا خۇمار قىلىدىغان سۇپا."
 
 #. option used in language selection of dropdowns on home page for guests
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L67
@@ -2170,7 +2170,7 @@ msgstr[1] ""
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L49
 msgid "Browse"
-msgstr ""
+msgstr "كۆزيۈگۈرتۈش"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L56
@@ -2180,22 +2180,22 @@ msgstr ""
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L62
 msgid "Browse by language"
-msgstr ""
+msgstr "تىل بويىچە كۆزيۈگۈرتۈش"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L68
 msgid "Browse by list"
-msgstr ""
+msgstr "تىزىملىك بويىچە كۆزيۈگۈرتۈش"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L73
 msgid "Browse by tag"
-msgstr ""
+msgstr "خەتكۈچ بويىچە كۆزيۈگۈرتۈش"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L78
 msgid "Browse audio"
-msgstr ""
+msgstr "ئاۋازلارغا كۆزيۈگۈرتۈش"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L85
@@ -2227,7 +2227,7 @@ msgstr ""
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L126
 msgid "Community"
-msgstr ""
+msgstr "جامائەت"
 
 #. menu item on the top (verb)
 #. / title of the Wall page
@@ -2358,7 +2358,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L3
 msgid "Your new password: "
-msgstr ""
+msgstr "يېڭى پارولىڭىز: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L7
 msgid "My exports"
@@ -2697,7 +2697,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L63
 msgid "Username"
-msgstr ""
+msgstr "ئەزالىق ئىسىم"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L60
@@ -3179,7 +3179,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L87
 msgid "Join the community"
-msgstr ""
+msgstr "جامائەتكە قوشۇلۇش"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -4206,19 +4206,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L387
 msgid "Change password"
-msgstr ""
+msgstr "پارول ئۆزگەرتىش"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L400
 msgid "Old password"
-msgstr ""
+msgstr "كونا پارول"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L408
 msgid "New password"
-msgstr ""
+msgstr "يېڭى پارول"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L416
 msgid "New password again"
-msgstr ""
+msgstr "يېڭى پارول قايتا"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L38
 msgid "Members"
@@ -4253,12 +4253,12 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L113
 msgid "Password"
-msgstr ""
+msgstr "پارول"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L44
 msgid "Send new password"
-msgstr ""
+msgstr "يېڭى پارول ئەۋەتىش"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L52
 msgid "Email"
@@ -4270,11 +4270,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L147
 msgid "unmask password"
-msgstr ""
+msgstr "پارول كۆرۈنسۇن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L152
 msgid "Unmask password"
-msgstr ""
+msgstr "پارول كۆرۈنسۇن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L207
 msgid "Native language:"

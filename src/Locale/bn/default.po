@@ -4,14 +4,14 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
-# Tanay Banerjee <tanaybanerjee2006@gmail.com>, 2015-2016
+# Tanay Banerjee <tanaybanerjee2006@gmail.com>, 2015-2016,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-02 02:04+0800\n"
-"PO-Revision-Date: 2020-07-02 04:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-07-12 11:40+0000\n"
+"Last-Translator: Tanay Banerjee <tanaybanerjee2006@gmail.com>\n"
 "Language-Team: Bengali (http://www.transifex.com/tatoeba/tatoeba_website/language/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr "{username} নামে কোন ব্যবহারকারী ন�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
 msgid "Your audio settings have been saved."
-msgstr ""
+msgstr "আপনার অডিও সেটিংস সংরক্ষণ করা হয়েছে।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
@@ -50,11 +50,11 @@ msgstr "টাটোয়েবা, নতুন পাসওয়ার্ড।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "তালিকা হালনাগাদ হওয়া পর্যন্ত অপেক্ষা করুন।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "লাইসেন্স পরিবর্তন ইতিমধ্যে চলছে।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
@@ -81,7 +81,7 @@ msgstr "ফোল্ডার \"{name}\"-টি খালি করা হোল
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
-msgstr ""
+msgstr "{number}আইডি সহ কোন বাক্য নেই"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
@@ -113,39 +113,39 @@ msgstr "ত্রুটি: বাক্য #{id}-টি মোছা যাচ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L873
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "আপনার এই বাক্যটির লাইসেন্স পরিবর্তন করার অনুমতি নেই।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L880
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "এই বাক্যটির লাইসেন্সটি “{newLicense}”-এ পরিবর্তন করা হল।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L885
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr " লাইসেন্স “{newLicense}”-এ পরিবর্তন করতে অক্ষম, কারণ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L163
 msgid "You do not have permission to view this list."
-msgstr ""
+msgstr "আপনার এই তালিকাটি দেখার অনুমতি নেই।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L293
 msgid "The sentence could not be added to the list."
-msgstr ""
+msgstr "বাক্যটি তালিকায় যুক্ত করা যায়নি।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L495
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L527
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "আপনার কাছে এই তালিকাটি ডাউনলোড করার অনুমতি নেই।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L224
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr ""
+msgstr "কোনো বাক্যে এই ট্যাগ নেই। আপনি যে ট্যাগটি খুঁজছেন সেটি হয় অপসারিত হয়েছে অথবা ট্যাগটির অস্তিত্ব নেই।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L82
 msgid "No user with this username: {username}"
-msgstr ""
+msgstr "{username}নামে কোনো ব্যবহারকারী নেই"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
 msgid "Failed to upload image"
@@ -177,13 +177,13 @@ msgstr "ওই ইমেলের ঠিকানাটির আগা থে�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L425
 msgid "The entered birthday is an invalid date. Please try again."
-msgstr ""
+msgstr "প্রবেশকৃত জন্ম তারিখটি অবৈধ। অনুগ্রহ করে পুনরায় চেষ্টা করুন।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L474
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr ""
+msgstr "প্রবেশকৃত জন্ম তারিখটি অসম্পূর্ণ। গ্রহণযোগ্য তারিখ: সম্পূর্ণ তারিখ, মাস এবং দিন, বছর এবং মাস, কেবল মাস।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
 msgid "Your settings have been saved."
@@ -191,7 +191,7 @@ msgstr "আপনার সেটিংস সংরক্ষণ করা হ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L614
 msgid "New password cannot be empty."
-msgstr ""
+msgstr "নতুন পাসওয়ার্ডটি খালি হতে পারে না।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
 msgid "New passwords do not match."
@@ -2689,7 +2689,7 @@ msgstr ""
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L56
 msgid "Lang"
-msgstr ""
+msgstr "ভাষা"
 
 #. field name in Fields and structure on Downloads page
 #. / sort option in the All members page
@@ -2698,7 +2698,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L63
 msgid "Username"
-msgstr ""
+msgstr "ব্যবহারকারী"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L60

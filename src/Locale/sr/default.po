@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-02 02:04+0800\n"
-"PO-Revision-Date: 2020-07-04 13:15+0000\n"
+"PO-Revision-Date: 2020-07-07 06:22+0000\n"
 "Last-Translator: Lazar Ljubenović <lazar.ljubenovic.1995@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/tatoeba/tatoeba_website/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -897,7 +897,7 @@ msgstr "Лиценца:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L55
 msgid "Attribution URL:"
-msgstr ""
+msgstr "URL лиценце:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L58
 msgid "Leave this field empty to use your profile page."
@@ -929,11 +929,11 @@ msgstr "{username} није допринео/ла ниједним звучни�
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
 msgid "Activity timeline"
-msgstr ""
+msgstr "Временска линија активности"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L64
 msgid "Activity timeline — {month} {year}"
-msgstr ""
+msgstr "Временска линија активности — {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
@@ -993,7 +993,7 @@ msgstr "Скорашњи доприноси корисника {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} log entries are displayed here."
-msgstr ""
+msgstr "Само последњих {n} ставки из лога је приказано овде."
 
 #. section title in advanced search form
 #. / link to the user's sentences on profile page sidebar
@@ -1779,7 +1779,7 @@ msgstr "Направи"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L13
 msgid "Your last selected list (if any) and last updated lists"
-msgstr ""
+msgstr "Твој списак који је последњи изабран (ако постоји) и спискови који су недавно ажурирани"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L14
 msgid "Search results"
@@ -2593,16 +2593,16 @@ msgid ""
 "We have an <strong>XMPP room</strong>: <a "
 "href=\"{room}\">tatoeba@chat.tatoeba.org</a>.  You can join with your "
 "favorite XMPP client or <a href=\"{webclient}\">from your browser</a>."
-msgstr ""
+msgstr "We have an <strong>XMPP room</strong>: <a href=\"{room}\">tatoeba@chat.tatoeba.org</a>.  Можеш да се придружиш преко омиљеног XMPP клијента или <a href=\"{webclient}\">кроз браузер</a>."
 
 #. title of the Donate page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L29
 msgid "Donate"
-msgstr ""
+msgstr "Донирај"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L34
 msgid "Any question?"
-msgstr ""
+msgstr "Имаш питање?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L38
 msgid ""
@@ -2610,69 +2610,69 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr ""
+msgstr "Ако имаш било какво питање у вези с донацијама или желиш да донираш на начин који није овде наведен, особа коју тражиш је <a href=\"{trangEmail}\">Trang</a>, а можеш и да контактираш читав <a href=\"{teamEmail}\">тим</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L52
 msgid "All donations"
-msgstr ""
+msgstr "Све донације"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L61
 msgid "How to donate"
-msgstr ""
+msgstr "Како донирати"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L62
 msgid "You have two possible ways to make a donation:"
-msgstr ""
+msgstr "Постоје два начина на која можеш да донираш:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L67
 msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr ""
+msgstr "<b>IBAN трансфер.</b> Ово је вероватно најјефтинији начин за донацију. Татоебина банка је у Француској, па ако си из земље Европске уније, велика је шанса да ће пренос новца бити бесплатан."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L76
 msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
-msgstr ""
+msgstr "<b>PayPal.</b> Ако не можеш да пребациш новац IBAN-ом, можеш да донираш преко PayPal-а. Само имај у виду да PayPal узима за себе неки мали проценат донације."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L86
 msgid "IBAN transfer"
-msgstr ""
+msgstr "IBAN трансфер"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L87
 msgid "Titular:"
-msgstr ""
+msgstr "Титулар:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L88
 msgid "IBAN:"
-msgstr ""
+msgstr "IBAN:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L89
 msgid "BIC/SWIFT:"
-msgstr ""
+msgstr "BIC/SWIFT:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L30
 msgid "Download sentences"
-msgstr ""
+msgstr "Преузми реченице"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L40
 msgid "Filename"
-msgstr ""
+msgstr "Име фајла"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L88
 msgid "Fields and structure"
-msgstr ""
+msgstr "Поља и структура"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L44
 msgid "File description"
-msgstr ""
+msgstr "Опис фајла"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L48
@@ -2683,18 +2683,18 @@ msgstr "ID реченице"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
 msgid "Base of the sentence"
-msgstr ""
+msgstr "Основа реченице"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
 msgid "Review"
-msgstr ""
+msgstr "Преглед"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L92
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L56
@@ -2713,195 +2713,195 @@ msgstr "Корисничко име"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L60
 msgid "Date added"
-msgstr ""
+msgstr "Датум додавања"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L62
 msgid "Date created"
-msgstr ""
+msgstr "Датум прављења"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L64
 msgid "Date last modified"
-msgstr ""
+msgstr "Датум последње измене"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L66
 msgid "Translation id"
-msgstr ""
+msgstr "ID превода"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L68
 msgid "Tag name"
-msgstr ""
+msgstr "Име ознак"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L70
 msgid "List id"
-msgstr ""
+msgstr "ID списка"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L146
 msgid "List name"
-msgstr ""
+msgstr "Име списка"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L74
 msgid "Editable by"
-msgstr ""
+msgstr "Може да измени"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L76
 msgid "Meaning id"
-msgstr ""
+msgstr "ID значења"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L78
 msgid "Skill level"
-msgstr ""
+msgstr "Ниво познавања"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L80
 msgid "Details"
-msgstr ""
+msgstr "Детаљи"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L84
 msgid "Attribution URL"
-msgstr ""
+msgstr "URL лиценце"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
 msgid "Script name"
-msgstr ""
+msgstr "Назив писма"
 
 #. header text in the Downloads page on the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L106
 msgid "Note"
-msgstr ""
+msgstr "Белешка"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L109
 msgid ""
 "The data you will find here will NOT be useful unless you are coding a "
 "language tool or processing data."
-msgstr ""
+msgstr "Информације које нађеш овде ти НЕЋЕ бити корисни ако их не преузимаш због кодирања апликације или процесуирања података."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L116
 msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
-msgstr ""
+msgstr "Ако ти просто требају реченице помоћу којих желиш да учиш језик, погледај <a href=\"{}\">списак реченица</a>. Можеш да направиш свој или да гледаш оне који су креирали други. Спискови могу да се преузму и одштампају."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L127
 msgid "General information about the files"
-msgstr ""
+msgstr "Опште информације о фајловима"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L130
 msgid ""
 "The files provided here are updated every <strong>Saturday at 6:30 "
 "a.m.</strong> (UTC)."
-msgstr ""
+msgstr "Фајлови доступни овде се ажурирају сваке <strong>суботе у 6:30 ујутру</strong> (по UTC-у)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L137
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
-msgstr ""
+msgstr "Много јапанских и енглеских реченица су са <a href=\"{}\">Tanaka Corpus-а</a>, који припада јавном домену."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L147
 msgid "Creative commons"
-msgstr ""
+msgstr "Creative commons"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L148
 msgid "These files are released under CC BY 2.0 FR."
-msgstr ""
+msgstr "Ови фајлови су објављени под лиценцом CC BY 2.0 FR."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L153
 msgid "A part of our sentences are also available under CC0 1.0."
-msgstr ""
+msgstr "Део наших реченица је доступан и под CC0 1.0."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L162
 msgid "Licenses covering audio"
-msgstr ""
+msgstr "Лиценце везане за звучне записе"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L165
 msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr ""
+msgstr "Лиценцу везану за звучни запис бира доприносилац, и види се на страници са списком звучних записа који припадају том кориснику."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L174
 msgid "Questions?"
-msgstr ""
+msgstr "Питања?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L178
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>. In general, we answer quickly."
-msgstr ""
+msgstr "Ако имаш питања или захтеве, слободно нас <a href=\"{}\">контактирај</a>. Обично одговоримо брзо."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L209
 msgid ""
 "Contains all the sentences in the selected language. Each sentence is "
 "associated with a unique id and an <a href=\"{}\">ISO 639-3</a> language "
 "code."
-msgstr ""
+msgstr "Садржи све реченице изабраног језика. Свака реченица има јединствен ID и <a href=\"{}\">ISO 639-3</a> језични код."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L224
 msgid "Detailed Sentences"
-msgstr ""
+msgstr "Детаљне реченице"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L238
 msgid ""
 "Contains additional fields for each sentence (owner name, date "
 "created/modified)."
-msgstr ""
+msgstr "Садржи додатна поља за сваку реченицу (име власника, датум прављења/измене)."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L255
 msgid "Base of Sentences"
-msgstr ""
+msgstr "Основе реченица"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L264
 msgid ""
 "A sentence is based on another if it has been initially added as a "
 "translation. Each sentence is associated with a base, which can be:"
-msgstr ""
+msgstr "Реченица је створена на основу друге ако је првобитно додата као превод. Свака реченица има за себе везану основу, која може бити:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L268
 msgid "zero: The sentence is original, not based on another."
-msgstr ""
+msgstr "нула: Реченица је оригинална, није заснована на другој."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L269
 msgid "greater than 0: The sentence id it is based upon."
-msgstr ""
+msgstr "већа од нуле: ID реченице која представља њену основу."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L270
 msgid ""
 "\\N: We do not know. This is rare but we have a handful of sentences for "
 "which we do not know if they have been added as translations or not."
-msgstr ""
+msgstr "\\N: Не знамо. Ово је реткост али имамо неколико реченица за које не знамо да ли су додате као преводи или не."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L283
 msgid "Sentences (CC0)"
-msgstr ""
+msgstr "Реченице (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L295
 msgid "Contains all the sentences available under CC0."
-msgstr ""
+msgstr "Садржи све реченице доступне под лиценцом CC0."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L307
 msgid "Links"
-msgstr ""
+msgstr "Линкови"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L316
 msgid ""
@@ -2909,41 +2909,41 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "Садржи линкове између реченица. {sampleLinkLine}значи да је реченица #77 превод реченице #1. Забележен је и реципрочни линк, тако да ће фајл садржати и линију која каже {sampleLinkLineReversed}."
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L334
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L67
 msgid "Tags"
-msgstr ""
+msgstr "Ознаке"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L343
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr ""
+msgstr "Садржи списак <a href=\"{url}\">ознака</a> везане за сваку реченицу. {sampleTagLine} значи да је реченици #381279 додељена ознака \"proverb\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L369
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
-msgstr ""
+msgstr "Садржи списак <a href=\"{}\">спискова реченица</a>."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L384
 msgid "Sentences in lists"
-msgstr ""
+msgstr "Реченице на списковима"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L396
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr ""
+msgstr "Обележава реченице које су део било ког списка. {sampleListLine} значи да се реченица #381279 налази на списку који има ID 13."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L413
 msgid "Japanese indices"
-msgstr ""
+msgstr "Јапански индекси"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L423
 msgid ""
@@ -2952,7 +2952,7 @@ msgid ""
 "format. Each entry is associated with a pair of Japanese/English sentences. "
 "{sentenceId} refers to the id of the Japanese sentence. {meaningId} refers "
 "to the id of the English sentence."
-msgstr ""
+msgstr "Садржи еквивалент \"Б линија\" из фајла Танака Корпуса који је дистрибуирао Џин Брин. Погледај <a href=\"{url}\">ову страницу</a> да видиш формат. Свака ставка је повезана са паром који чини јапанска и енглеска реченица. {sentenceId} се односи на ID јапанске реченице. {meaningId} се односи на ID енглеске реченице."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L455
 msgid ""
@@ -2960,17 +2960,17 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr ""
+msgstr "Садржи ID-јеве реченица, на свим језицима, за које постоји звучни запис. Друга поља указују на то ко је направио снимак, његову лиценцу и URL којим се приписују права аутору. Ако је поље за лиценцу празно, онда није дозвољено да се звучни запис користи ван Татоеба пројекта."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L474
 msgid "User skill level per language"
-msgstr ""
+msgstr "Ниво знања корисника по језику"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr ""
+msgstr "Обележава самопроцењени ниво знања корисника за појединачне језике."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L494
@@ -2995,58 +2995,58 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
-msgstr ""
+msgstr "Треба ти додатна помоћ?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L38
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "Можеш да погледаш <a href=\"{}\">честа питања</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L46
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
-msgstr ""
+msgstr "Ако не можеш да нађеш одговор на питање које имаш, слободно нас <a href=\"{}\">контактирај</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L62
 msgid "Getting started"
-msgstr ""
+msgstr "За почетак"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L69
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
-msgstr ""
+msgstr "Ако не знаш шта да радиш сада када имаш налог, можеш да се представиш на <a href=\"{wall}\">Зиду</a> или да нам се придружиш на <a href=\"{chatroom}\">чету</a>. Ми ћемо да ти дамо сврху :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L85
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "Ако ти се свиђа пројекат и хоћеш активно да учествујеш, ево линка који МОРАШ да прочиташ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L97
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
-msgstr ""
+msgstr "У суштини, лепо се провери на Татоеби! Надамо се да ће ти се допасти да будеш део пројекта :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L108
 msgid "Important links"
-msgstr ""
+msgstr "Важни линкови"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L130
 msgid "Adding new sentences"
-msgstr ""
+msgstr "Додавање нових реченица"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L131
 msgid "There are two ways to add new sentences."
-msgstr ""
+msgstr "Постоје два начина за додавање нових реченица."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L137
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Изабери <a href=\"{}\">Додај реченице</a> из менија <strong>Допринос</strong> с врха сваке странице."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
@@ -3060,44 +3060,44 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr ""
+msgstr "Иако има много реченица на Татоеби, добар део вокабулара и даље није покривен. Зато те подстичемо да додаш нове реченице са новим вокабуларом, чак и ако не знаш како да га преведеш на друге језике."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L180
 msgid "Translating sentences"
-msgstr ""
+msgstr "Превођење реченица"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L184
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
-msgstr ""
+msgstr "Превођење је један од најважнијих задатака на Татоеби, јер је главни циљ пројекта скупљање реченица преведених на много језика."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L194
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr ""
+msgstr "Реченицу можеш да преведеш одакле год хоћеш. Само кликни на иконицу {translateButton} кад год је видиш."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L205
 msgid "Correcting mistakes"
-msgstr ""
+msgstr "Исправљање грешака"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L209
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr ""
+msgstr "Можеш да исправиш грешке само у реченицама које припадају теби. Ако видиш грешку у туђој реченици, можеш да напишеш коментар са образложењем где си приметио грешку."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L218
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "У неким случајевима, реченица нема власника. Прочитај доњи параграф (о усвајању реченица) да сазнаш више о овоме."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L227
 msgid "Adopting sentences"
-msgstr ""
+msgstr "Усвајање реченица"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L231
 msgid ""
@@ -3105,7 +3105,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr ""
+msgstr "Када додаш реченицу, та реченица \"припада\" теби -- само ти можеш да је мењаш. Међутим, много реченица на Татоеби долазе са јапанско-енглеског корпуса који се зове Танака Корпус. Ове реченице немају власника јер нису створене на Татоеби."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L243
 msgid ""
@@ -3113,17 +3113,17 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "Ако видиш грешку у реченици која је \"сироче\", нећеш моћи да је исправиш јер јој ниси власник. Зато постоји опција \"усвоји\" ({adoptButton}). Када усвојиш реченицу, постајеш њен власник и зато можеш да је измениш."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
-msgstr ""
+msgstr "Усвајање реченице је такође део \"процеса квалитета\". Више информације о овоме ћеш наћи овде: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L272
 msgid "Sentence lists"
-msgstr ""
+msgstr "Спискови реченица"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L276
 msgid ""
@@ -3141,7 +3141,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L29
 msgid "Tatoeba: Collection of sentences and translations"
-msgstr ""
+msgstr "Татоеба: скуп реченица и превода"
 
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
@@ -3149,74 +3149,74 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
-msgstr ""
+msgstr "Статистика"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L99
 msgid "Latest messages"
-msgstr ""
+msgstr "Последње поруке"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L93
 msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr ""
+msgstr "Нови дизајн реченица ће ускоро потпуно заменити стари. Молимо те да га испробаш и да нам јавиш ако наиђеш на било какве проблеме. Можеш да га укључиш опцијом \"Прикажи реченице користећи нови дизајн\" у Подешавањима."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
-msgstr ""
+msgstr "Иди на подешавања"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
 msgid "show more..."
-msgstr ""
+msgstr "прикажи још..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
-msgstr ""
+msgstr "Последњи коментари"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L76
 msgid "Want to help?"
-msgstr ""
+msgstr "Хоћеш да помогнеш?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L81
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr ""
+msgstr "Сакупљамо реченице и њихове преводе. Можеш да помогнеш превођењем или додавањем нових реченица."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L87
 msgid "Join the community"
-msgstr ""
+msgstr "Придружи се заједници"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
-msgstr ""
+msgstr "Страница привремено онемогућена"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L47
 msgid ""
 "This page is currently disabled due to technical issues: it may be slowing "
 "down the website or is dysfunctional."
-msgstr ""
+msgstr "Ова страница је тренутно онемогућена из техничких разлога: можда успорава сајт или уопште није у функцији."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L52
 msgid "We are sorry for the inconvenience."
-msgstr ""
+msgstr "Извињавамо се на сметњи."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L6
 msgid ""
 "These Terms of Use have not been translated yet into your language. Below is"
 " the original version in French."
-msgstr ""
+msgstr "Ови услови коришћења још нису преведени на твој језик. Ниже се налази првобитна верзија на француском."
 
 #. this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L51
 msgid "Private messages - {folderName}"
-msgstr ""
+msgstr "Приватне поруке - {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L36
@@ -3228,9 +3228,9 @@ msgstr "Приватне поруке"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L69
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{folderName} ({n}&nbsp;порука)"
+msgstr[1] "{folderName} ({n}&nbsp;поруке)"
+msgstr[2] "{folderName} ({n}&nbsp;порука)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L83
 msgid "Empty trash"
@@ -3261,70 +3261,70 @@ msgstr "- Татоеба"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L45
 msgid "You have reached your message limit for today"
-msgstr ""
+msgstr "Данашња граница за поруке је досегнута"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L47
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr ""
+msgstr "Да бисмо Татоебу одржали чистом, без спама и злонамерних порука, нови корисници могу да пошаљу само пет порука дневно."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L50
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "Сачекај мало за даље слање порука."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L64
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                new users can send only 5 messages per day."
-msgstr ""
+msgstr "Да бисмо Татоебу одржали чистом, без спама и злонамерних порука,\nнови корисници могу да пошљау само пет порука дневно."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L70
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Са твог налога је данас послата једна порука."
+msgstr[1] "Са твог налога су данас послате {n}&nbsp;поруке."
+msgstr[2] "Са твог налога је данас послато {n}&nbsp;порука"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L30
 msgid "Sentences marked as \"OK\""
-msgstr ""
+msgstr "Реченица обележена као \"ОК\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L31
 msgid "Sentences marked as \"unsure\""
-msgstr ""
+msgstr "Реченица обележена као \"несигурна\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L32
 msgid "Sentences marked as \"not OK\""
-msgstr ""
+msgstr "Реченица обележена као \"није ОК\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L56
 msgid "All sentences"
-msgstr ""
+msgstr "Све реченице"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L34
 msgid "Outdated reviews"
-msgstr ""
+msgstr "Застареле реченице"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L45
 msgid "{user}'s reviews - {category}"
-msgstr ""
+msgstr "Прегледи корисника {user} - {category}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L60
 msgid "This feature is currently deactivated."
-msgstr ""
+msgstr "Ова могућност је тренутно деактивирана."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L63
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr ""
+msgstr "Можеш да је активираш у својим подешавањима: \"Активирај могућност за преглед реченица\"."
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L73
 msgid "Filter"
-msgstr ""
+msgstr "Филтер"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L113
@@ -3336,14 +3336,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L97
 msgid "Sort by:"
-msgstr ""
+msgstr "Сортирај по:"
 
 #. sort option in the list of reviews
 #. / sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L122
 msgid "date modified"
-msgstr ""
+msgstr "датуму измене"
 
 #. sort option in the list of reviews
 #. / sort option in the "Sentences of user" page
@@ -3358,12 +3358,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L216
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L75
 msgid "date created"
-msgstr ""
+msgstr "датуму настанка"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L119
 msgid "sentence id"
-msgstr ""
+msgstr "ID-ју реченице"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/S/s.ctp#L41
 msgid ""
@@ -3374,234 +3374,234 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
 msgid "Sentence #{number}"
-msgstr ""
+msgstr "Реченица #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
-msgstr ""
+msgstr "Измени комента"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L27
 msgid "Edit Comment on Sentence #{number}"
-msgstr ""
+msgstr "Измени коментар на реченици #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
-msgstr ""
+msgstr "Коментари на реченицама"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L40
 msgid "{user}'s comments"
-msgstr ""
+msgstr "Коментари корисника {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L62
 msgid "{user} has posted no comment"
-msgstr ""
+msgstr "Корисник {user} није поставио ниједан коментар"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L138
 msgid "Go back to previous page"
-msgstr ""
+msgstr "Врати се на претходну страницу"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L76
 msgid "{user}'s comments (total&nbsp;{n})"
-msgstr ""
+msgstr "Коментари корисника {user} (укупно&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L60
 msgid "{user} has no comment posted on his/her sentences"
-msgstr ""
+msgstr "Корисник {user} није оставио ниједан коментар на својим реченицама."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L75
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
-msgstr ""
+msgstr "Коментари на реченицама корисника {user} (укупно&nbsp;{n})"
 
 #. header text in side bar of the "Add sentences" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L43
 msgid "Important"
-msgstr ""
+msgstr "Важно"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L47
 msgid ""
 "<strong>We like quality.</strong> Every detail matters. Please do not forget"
 " punctuation and capital letters."
-msgstr ""
+msgstr "<strong>Волимо квалитет.</strong> Сваки детаљ је важан. Немој да заборавиш на знаке интерпункције и велика слова."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L56
 msgid ""
 "<strong>We like diversity.</strong> Unleash your creativity! Avoid using the"
 " same words, names, topics, or patterns over and over again."
-msgstr ""
+msgstr "<strong>Волимо разноликост.</strong> Пусти машти на вољу! Избегавај да изнова користиш исте речи, имена, теме или шаблоне. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L65
 msgid ""
 "<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, or "
 "at least make sure they are not copyrighted and are compatible with the CC "
 "BY license. Otherwise we cannot use them."
-msgstr ""
+msgstr "<strong>Волимо да делимо.</strong> Немој да преписујеш реченице однекуд, или се барем прво увери да им нису заштињена права и да су компатибилне са лиценцом CC BY. У супротном не смемо да их користимо."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
 msgid "Check out the vocabulary for which we need sentences"
-msgstr ""
+msgstr "Провери вокабулар за који су нам потребне реченице."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
 msgid "Sentences wanted"
-msgstr ""
+msgstr "Реченице које се траж"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
-msgstr ""
+msgstr "Реченице корисника {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L41
 msgid "{user}'s sentences in {language}"
-msgstr ""
+msgstr "Реченице корисника {user} на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
-msgstr ""
+msgstr "Покажи само оригиналне реченице"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L89
 msgid "{user} does not own any sentences in {language}"
-msgstr ""
+msgstr "Корисник {user} нема ниједну реченицу на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L94
 msgid "{user} does not own any sentences"
-msgstr ""
+msgstr "Корисник {user} нема ниједну реченицу"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
 msgid ""
 "An error occurred while fetching the random sentence. If this persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "Дошло је до грешке приликом добаљања насумичне реченице. Ако се овај проблем настави, слободно нам <a href=\"{}\">јави</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L32
 msgid "Sentences with: {keywords}"
-msgstr ""
+msgstr "Реченице са: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L36
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr ""
+msgstr "Реченице на {language} које нису преведене на {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L40
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr ""
+msgstr "Реченице на {language} које су преведене на {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L32
 msgid "Sentences in {language}"
-msgstr ""
+msgstr "Реченице на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L49
 msgid "Sentences not translated into {language}"
-msgstr ""
+msgstr "Реченице које нису преведене на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L52
 msgid "Sentences translated into {language}"
-msgstr ""
+msgstr "Реченице које су преведене на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L64
 msgid "Warning: the following criteria have been ignored:{list}"
-msgstr ""
+msgstr "Упозорење: следећи услови су игнорисани: {list}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L77
 msgid "More search criteria"
-msgstr ""
+msgstr "Још критеријума за претрагу"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
 msgid "Search error"
-msgstr ""
+msgstr "Грешка приликом претраге"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L97
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
-msgstr ""
+msgstr "Неисправан упит. Погледај <a href=\"{}\">документацију о претрази</a> за више детаља."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L110
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "Дошло је до грешке приликом претраге. Ако се овај проблем настави, слободно нам <a href=\"{}\">јави</a>."
 
 #. title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L126
 msgid "Search: {keywords}"
-msgstr ""
+msgstr "Претрага: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
 msgid "Search disabled"
-msgstr ""
+msgstr "Претрага искључена"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L10
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
-msgstr ""
+msgstr "Из техничких разлога, функција претраге је тренутно искључена. Извињавамо се на сметњи. Покушај касније."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
-msgstr ""
+msgstr "{sentence} - пример реченице на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
-msgstr ""
+msgstr "Претражуј преведене примере реченица. На овој страници се виде преводи и информације о реченици: {sentenceText}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
-msgstr ""
+msgstr "Реченица на постоји:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
-msgstr ""
+msgstr "Прегледао корисник"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L94
 msgid "(outdated)"
-msgstr ""
+msgstr "(застарела)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L165
 msgid "There is no log for this sentence"
-msgstr ""
+msgstr "Не постоји лог за ову реченицу"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L242
 msgid "There are no comments for now."
-msgstr ""
+msgstr "Засад нема коментара."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L262
 msgid "Random Sentence"
-msgstr ""
+msgstr "Насумична реченица"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L264
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
-msgstr ""
+msgstr "Функција насумичне реченице је тренутно искључена; покушај касније."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L266
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "Дошло је до грешке приликом добаљања насумичних реченица. Ако се овај проблем настави, слободно нам <a href=\"{}\">јави</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L64
 msgid "Only the last {n} sentences are displayed here."
-msgstr ""
+msgstr "Овде је приказано само последњих {n} реченица."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
-msgstr ""
+msgstr "Проблем приликом чувања"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L39
 msgid "Download list: "
-msgstr ""
+msgstr "Преузми списак:"
 
 #. header text in the side bar of the download list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L46
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L79
 msgid "Actions"
-msgstr ""
+msgstr "Акције"
 
 #. subheader text in the download list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L60
@@ -3611,66 +3611,66 @@ msgstr "Преузми"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L65
 msgid "File format"
-msgstr ""
+msgstr "Формат фајла"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L72
 msgid "Raw text file"
-msgstr ""
+msgstr "Сиров текстуални фајл"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
 msgid "Tab-separated file"
-msgstr ""
+msgstr "Фајл са табовима"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L74
 msgid "List for the Shtooka recorder"
-msgstr ""
+msgstr "Списак за Shtooka recorder"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L99
 msgid "Translation (optional)"
-msgstr ""
+msgstr "Превод (није обавезно)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L134
 msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
-msgstr ""
+msgstr "Ако изабереш језик, превод сваке реченице на тај језик (ако постоји) ће се наћи у излазном фајлу. Онда можеш да тај фајл искористиш да добијеш шпил картица користећи програм {Anki}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
 msgid "Preparing download, please wait."
-msgstr ""
+msgstr "Припрема за преузимање у току; хвала на стрпљењу."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L160
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "Припрема за преузимање неуспела; покушај поново."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L31
 msgid "Collaborative lists ({total})"
-msgstr ""
+msgstr "Колаборативни спискови ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L33
 msgid "All public lists ({total})"
-msgstr ""
+msgstr "Сви јавни спискови ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L38
 msgid "Collaborative lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Колаборативни спискови који садрже \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L40
 msgid "All public lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Сви јавни спискови који садрже \"{search}\" ({total})"
 
 #. sort option in the "List of lists" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L81
 msgid "list name"
-msgstr ""
+msgstr "име списка"
 
 #. sort option in the "List of lists" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L81
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L87
 msgid "number of sentences"
-msgstr ""
+msgstr "број реченица"
 
 #. sort option in the "List of lists" page
 #. / sort option in list of lists
@@ -3678,19 +3678,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L82
 msgid "last updated"
-msgstr ""
+msgstr "последња измена"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L38
 msgid "{username}'s lists ({total})"
-msgstr ""
+msgstr "Спискови корисника {username} ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L43
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Спискови корисника {username} који садрже \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
-msgstr ""
+msgstr "Реченица успешно уклоњена."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L46
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L25
@@ -3774,7 +3774,7 @@ msgstr "Администратори"
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L34
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "Одржаватељи корпуса"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L36
@@ -3862,7 +3862,7 @@ msgstr "име"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L58
 msgid "Chinese traditional/simplified conversion"
-msgstr ""
+msgstr "Конверзија између традиционалног и упрошћеног кинеског"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L36
@@ -3871,12 +3871,12 @@ msgstr "Изворни код"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L83
 msgid "Enter either traditional or simplified Chinese"
-msgstr ""
+msgstr "Унеси или традиционални или упрошћени кинески"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L106
 msgid "Convert"
-msgstr ""
+msgstr "Конвертуј"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L50
@@ -3905,26 +3905,26 @@ msgstr "аутоматски генериши фуригану преко јап
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L51
 msgid "Chinese simplified/traditional conversion"
-msgstr ""
+msgstr "Конверзија између упрошћеног и традиционалног кинеског"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L59
 msgid "convert traditional Chinese to simplified and vice versa"
-msgstr ""
+msgstr "конвертуј традиционални кинески у упрошћени кинески и обрнуто"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L66
 msgid "Shanghainese to IPA"
-msgstr ""
+msgstr "шангајски у IPA"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L74
 msgid ""
 "Convert a Shanghainese text into its pronunciation using the International "
 "Phonetic Alphabet"
-msgstr ""
+msgstr "Конвертуј текст на шангајском у изговор помоћу Међународног фонетског алфабета"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L67
 msgid "Convert Shanghainese into IPA"
-msgstr ""
+msgstr "Конвертуј шангајски у IPA"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
@@ -3944,11 +3944,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
-msgstr ""
+msgstr "Транскрипције корисника {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L52
 msgid "{username} does not have any transcriptions"
-msgstr ""
+msgstr "Корисник {username} нема ниједну транскрипцију"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."
@@ -4083,13 +4083,13 @@ msgstr "Обавештења путем мејла су ИСКЉУЧЕНА."
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr ""
+msgstr "Ово је ЈАВНИ профил. Све информације на њему су видљиве свима."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L147
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr ""
+msgstr "Ово је ОГРАНИЧЕН профил. Само чланови Татоебе могу да виде личне податке и опис."
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L244
@@ -4104,7 +4104,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L306
 msgid "No description."
-msgstr ""
+msgstr "Нема описа."
 
 #. header text on profile page
 #. / option label on settings page
@@ -4113,59 +4113,59 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L224
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L47
 msgid "Languages"
-msgstr ""
+msgstr "Језици"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L338
 msgid "No language added."
-msgstr ""
+msgstr "Није додат ниједан језик."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L343
 msgid "TIP: We encourage you to indicate the languages you know."
-msgstr ""
+msgstr "САВЕТ: Подстичемо те да упишеш језике које знаш."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L346
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
-msgstr ""
+msgstr "САВЕТ: Подстакни овог корисника да дода језике које зна."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L502
 msgid "Next"
-msgstr ""
+msgstr "Следећу"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L503
 msgid "Add this language"
-msgstr ""
+msgstr "Додај овај језик"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L54
 msgid "Main options"
-msgstr ""
+msgstr "Главне опције"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L64
 msgid "Send email notifications"
-msgstr ""
+msgstr "Шаљи обавештења на мејл"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L87
 msgid "Set your profile public"
-msgstr ""
+msgstr "Подеси профил као јавни"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L112
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr ""
+msgstr "Запамти последњи списак у који је додата реченица и убудуће подразумевај да је тај списак изабран"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L138
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations"
-msgstr ""
+msgstr "Прикажи дугме за откривање/сакривање превода када их има превише"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L162
 msgid "Always show unreviewed transcriptions and alternative scripts"
-msgstr ""
+msgstr "Увек прикажи непрегледане транскрипције и алтернативна писма"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L187
 msgid "Show random sentence on the homepage"
-msgstr ""
+msgstr "Прикажи насумичну реченицу на почетној страни"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L210
 msgid ""
@@ -5082,11 +5082,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L152
 msgid "Show alternative script"
-msgstr ""
+msgstr "Прикажи алтернативно писмо"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L154
 msgid "Show transcription"
-msgstr ""
+msgstr "Прикажи транскрипцију"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L197
 msgid "Edit alternative script"

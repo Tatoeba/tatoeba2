@@ -24,15 +24,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "Keçərsiz fayl  \"{file}\" rədd edildi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
+msgstr "{dir} -dən {file} -ə fayl import edilə bilmədi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "\"{file}\" -dan \"{dir}\"-a fayl kopya edilə bilmədi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
@@ -49,15 +49,15 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr ""
+msgstr "Səsyazmaları import et"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
-msgstr ""
+msgstr "Reportu import et"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "İmport zamanı bu səhvlər baş verdi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
@@ -81,12 +81,12 @@ msgstr "Səs yazısı mövcuddur"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
-msgstr ""
+msgstr "İmport oluna bilər"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
@@ -106,11 +106,11 @@ msgstr "Xeyr"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "İmport olunan yerdə heç bir fayl tapılmadı."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
 msgid "Import"
-msgstr ""
+msgstr "İmport et"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
 msgid "Enabled"
@@ -118,7 +118,7 @@ msgstr "İcazə verilmiş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
-msgstr ""
+msgstr "Sahibin adı"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
@@ -155,7 +155,7 @@ msgstr "Fayl"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "İstifadəçinin numeral İD-si:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
@@ -180,7 +180,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr ""
+msgstr "İstifadəçilərin siyahısı"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
@@ -188,11 +188,11 @@ msgstr "Profil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr ""
+msgstr "İstifadəçini dəyiş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
-msgstr ""
+msgstr "İd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
@@ -216,7 +216,7 @@ msgstr "Bildirişləri göndər"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L128
 msgid "unhide"
-msgstr ""
+msgstr "Gizlətmə"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L131
 msgid "hide"
