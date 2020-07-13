@@ -134,6 +134,7 @@ $sentenceUrl = $this->Url->build([
                     <span ng-if="!vm.sentence.furigana">{{vm.sentence.text}}</span>
                 </span>
             </div>
+            </div>
 
             <div class="indicator" ng-if="vm.sentence.user.is_native === '1'">
                 <md-icon>
@@ -142,7 +143,6 @@ $sentenceUrl = $this->Url->build([
                         <?= __('This sentence belongs to a native speaker.') ?>
                     </md-tooltip>
                 </md-icon>
-            </div>
             </div>
 
             <?= $this->element('sentences/sentence_icons', ['angularVar' => 'vm.sentence']); ?>
