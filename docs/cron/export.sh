@@ -47,7 +47,7 @@ split_file () {
     local DIR=${TEMP_DIR}/
 
     awk -F"\t" -v basename=$BASENAME -v dir=$DIR \
-    '{print >> ($2 == "\\N" ? dir "unknown/unknown" basename : dir $2 "/" $2 basename)}' \
+    '{print >> ($2 == "\\N" || $2 == "" ? dir "unknown/unknown" basename : dir $2 "/" $2 basename)}' \
     $1
 }
 
@@ -65,8 +65,8 @@ mysql --skip-column-names --batch tatoeba -e \
       translation_id
      FROM sentences_translations" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      sentence_lang = ($1 == "NULL" ? "unknown" : $1);
-      translation_lang = ($2 == "NULL" ? "unknown" : $2);
+      sentence_lang = ($1 == "NULL" || $1 == "" ? "unknown" : $1);
+      translation_lang = ($2 == "NULL" || $2 == "" ? "unknown" : $2);
       fpath = dir "/" sentence_lang "/" sentence_lang "-" translation_lang "_links.tsv";
       print $3, $4 >> fpath;
       close(fpath)
@@ -83,7 +83,7 @@ mysql --skip-column-names --batch tatoeba -e \
        LEFT JOIN users u ON ul.of_user_id = u.id
      ORDER BY ul.language_code ASC, ul.level DESC, u.username ASC" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      language_code = ($1 == "" ? "unknown" : $1);      
+      language_code = ($1 == "NULL" || $1 == "" ? "unknown" : $1);      
       level = ($2 == "NULL" ? "\\N" : $2);      
       username = ($3 == "NULL" ? "\\N" : $3);      
       fpath = dir "/" language_code "/" language_code "_user_languages.tsv";
@@ -100,7 +100,7 @@ mysql --skip-column-names --batch tatoeba -e \
        JOIN tags t ON ts.tag_id = t.id
        JOIN sentences s ON ts.sentence_id = s.id" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lang = ($1 == "NULL" ? "unknown" : $1);
+      lang = ($1 == "NULL" || $1 == "" ? "unknown" : $1);
       fpath = dir "/" lang "/" lang "_tags.tsv";
       print $2, $3 >> fpath
   }'
@@ -117,7 +117,7 @@ mysql --skip-column-names --batch tatoeba -e \
      WHERE sl.visibility != 'private'
      ORDER BY sl.id ASC, s_sl.sentence_id" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lang = ($1 == "NULL" ? "unknown" : $1);
+      lang = ($1 == "NULL" || $1 == "" ? "unknown" : $1);
       fpath = dir "/" lang "/" lang "_sentences_in_lists.tsv";
       print $2, $3 >> fpath
   }'      
@@ -135,7 +135,7 @@ mysql --skip-column-names --batch tatoeba -e \
        JOIN sentences s ON a.sentence_id = s.id
      ORDER BY sentence_id ASC" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lang = ($1 == "NULL" ? "unknown" : $1);
+      lang = ($1 == "NULL" || $1 == "" ? "unknown" : $1);
       username = ($3 == "NULL" ? "\\N" : $3);
       audio_license = ($4 == "NULL" ? "\\N" : $4);
       audio_attribution_url = ($5 == "NULL" ? "\\N" : $5);
@@ -152,7 +152,7 @@ mysql --skip-column-names --batch tatoeba -e \
      FROM sentences s
      WHERE correctness > -1 AND license != ''" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lang = ($1 == "NULL" ? "unknown" : $1);
+      lang = ($1 == "NULL" || $1 == "" ? "unknown" : $1);
       based_on_id = ($3 == "NULL" ? "\\N" : $3);
       fpath = dir "/" lang "/" lang "_sentences_base.tsv";
       print $2, based_on_id >> fpath
