@@ -36,14 +36,13 @@ class VocabularyHelper extends AppHelper
         if (is_null($numSentences)) {
             $numSentencesLabel = __('Unknown number of sentences');
         } else {
-            $numSentences = $numSentences == 1000 ? '1000+' : $numSentences;
             $numSentencesLabel = format(
                 __n(
                     '{number} sentence', '{number} sentences',
                     $numSentences,
                     true
                 ),
-                array('number' => $numSentences)
+                array('number' => $numSentences == 1000 ? '1000+' : $numSentences)
             );
         }
         if (Configure::read('Search.enabled')) {
