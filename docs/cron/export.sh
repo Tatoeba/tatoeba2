@@ -85,8 +85,9 @@ mysql --skip-column-names --batch tatoeba -e \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
       language_code = ($1 == "" ? "unknown" : $1);      
       level = ($2 == "NULL" ? "\\N" : $2);      
+      username = ($3 == "NULL" ? "\\N" : $3);      
       fpath = dir "/" language_code "/" language_code "_user_languages.tsv";
-      print $1, level, $3, $4 >> fpath
+      print $1, level, username, $4 >> fpath
   }'
 
 # split tags by language
