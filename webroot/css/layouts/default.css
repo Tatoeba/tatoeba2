@@ -535,11 +535,11 @@ html[dir="rtl"] .search-bar-extra a:before {
 
 #footer .category {
     padding: 10px;
+    margin: 0 20px;
     width: 100%;
 }
 
 #footer .category {
-    text-align: center;
     padding: 0;
 }
 
@@ -551,13 +551,10 @@ html[dir="rtl"] .search-bar-extra a:before {
 }
 
 #footer ul {
-    margin: 5px;
-    padding: 0;
+    padding: 0 24px;
 }
 #footer li {
-    list-style: none;
-    font-size: 15px;
-    margin: 5px 0;
+    padding: 2px 0;
 }
 #footer .license {
     display: flex;
