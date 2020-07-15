@@ -73,6 +73,7 @@
             $scope.showInterfaceLanguageSelection = function() {
                 $mdDialog.show({
                     controller: DialogController,
+                    clickOutsideToClose: true,
                     templateUrl: get_tatoeba_root_url() + '/angular_templates/interface_language'
                 });
             }
