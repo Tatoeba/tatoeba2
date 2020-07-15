@@ -402,16 +402,17 @@ class SentencesController extends AppController
     private function renderAdopt($id)
     {
         $acceptsJson = $this->request->accepts('application/json');
-        $sentence = $this->Sentences->get($id, [
-            'contain' => ['Users' => ['fields' => ['username']]]
-        ]);
 
         if ($acceptsJson) {
+            $sentence = $this->Sentences->getSentenceWith($id);
             $this->loadComponent('RequestHandler');
-            $this->set('user', $sentence->user);
-            $this->set('_serialize', ['user']);
+            $this->set('sentence', $sentence);
+            $this->set('_serialize', ['sentence']);
             $this->RequestHandler->renderAs($this, 'json');
         } else {
+            $sentence = $this->Sentences->get($id, [
+                'contain' => ['Users' => ['fields' => ['username']]]
+            ]);
             $this->set('sentenceId', $id);
             $this->set('owner', $sentence->user);
             $this->viewBuilder()->setLayout('ajax');
@@ -476,7 +477,7 @@ class SentencesController extends AppController
             $numberOfTranslations = $this->request->getQuery('numberOfTranslations');
             $includeTranslations = $translationLangFilter == 'und';
             $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
-            $sentence->extraTranslationsCount = $numberOfTranslations + 1 - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+            $sentence->extraTranslationsCount = $numberOfTranslations + 1 - $sentence->max_visible_translations;
 
             $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);

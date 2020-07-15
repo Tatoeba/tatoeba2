@@ -124,7 +124,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
 
-            <md-list-item>
+            <md-list-item ng-show="disableNewDesign">
                 <?php $collapsibleTranslations = $userSettings->settings['collapsible_translations']; ?>
                 <md-checkbox
                     ng-false-value="0"
@@ -198,6 +198,30 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
+                <?php $disableNewDesign = $userSettings->settings['disable_new_design']; ?>
+                <md-checkbox
+                    ng-false-value="1"
+                    ng-true-value="0"
+                    ng-model="disableNewDesign"
+                    ng-init="disableNewDesign = <?= (int)$disableNewDesign ?>"
+                    class="md-primary">
+                </md-checkbox>
+                <p><?php echo __(
+                    'Display sentences with the new design'
+                ) ?></p>
+                <div ng-hide="true">
+                <?php
+                echo $this->Form->input(
+                    'settings.disable_new_design',
+                    array(
+                        'value' => '{{disableNewDesign}}'
+                    )
+                );
+                ?>
+                </div>
+            </md-list-item>
+
+            <md-list-item>
                 <?php
                 $sentencesByLanguageURL = $this->Url->build(
                     array(
@@ -235,6 +259,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     'label' => ''
                 )); ?>
             </md-list-item>
+
+            <md-list-item ng-show="!disableNewDesign">
+                <p><?= __('Number of translations visible by default'); ?></p>
+                <?php echo $this->Form->input('settings.max_visible_translations', [
+                    'options' => [5 => 5, 10 => 10, 20 => 20, 50 => 50],
+                    'label' => ''
+                ]); ?>
+            </md-list-item>
+
             <?php if ($userSettings->settings['can_switch_license']) : ?>
                 <md-list-item>
                     <p><?= __('Default license for original sentences'); ?></p>
@@ -308,30 +341,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                         'value' => '{{nativeIndicator}}'
                         )
                     );
-                ?>
-                </div>
-            </md-list-item>
-            <md-list-item>
-                <?php $useNewDesign = $userSettings->settings['use_new_design']; ?>
-                <md-checkbox
-                    ng-false-value="0"
-                    ng-true-value="1"
-                    ng-model="useNewDesign"
-                    ng-init="useNewDesign = <?= $useNewDesign ?>"
-                    class="md-primary">
-                </md-checkbox>
-                <p><?php echo __(
-                    'Display sentences with the new design. '.
-                    'Note that some features are not yet implemented in this new design but are coming soon.'
-                ) ?></p>
-                <div ng-hide="true">
-                <?php
-                echo $this->Form->input(
-                    'settings.use_new_design',
-                    array(
-                        'value' => '{{useNewDesign}}'
-                    )
-                );
                 ?>
                 </div>
             </md-list-item>

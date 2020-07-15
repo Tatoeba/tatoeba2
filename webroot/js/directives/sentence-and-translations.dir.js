@@ -89,7 +89,6 @@
     
     SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
     function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
-        const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
@@ -232,7 +231,7 @@
             if (!listsDataService) {
                 listsDataService = $injector.get('listsDataService');
             }
-            var selectableLists = listsDataService.getLists();
+            var selectableLists = angular.copy(listsDataService.getLists());
 
             if (selectableLists) {
                 if (selectedLists) {
@@ -279,10 +278,10 @@
 
         function showFewerTranslations() {
             vm.directTranslations = allDirectTranslations.filter(function(item, index) {
-                return index <= MAX_TRANSLATIONS - 1;
+                return index <= vm.sentence.max_visible_translations - 1;
             });
             vm.indirectTranslations = allIndirectTranslations.filter(function(item, index) {
-                return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
+                return index + allDirectTranslations.length <= vm.sentence.max_visible_translations - 1;
             });
         }
 
@@ -456,8 +455,10 @@
             var action = vm.sentence.is_owned_by_current_user ? 'let_go' : 'adopt';
             vm.iconsInProgress.adopt = true;
             $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
-                vm.sentence.user = result.data.user;
-                vm.sentence.is_owned_by_current_user = vm.sentence.user && vm.sentence.user.username;
+                var sentence = result.data.sentence;
+                sentence.expandLabel = vm.sentence.expandLabel;
+                initSentence(sentence);
+                initMenu(!vm.isExpanded, sentence.permissions);
                 vm.iconsInProgress.adopt = false;
             });
         }

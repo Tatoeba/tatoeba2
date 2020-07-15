@@ -86,7 +86,7 @@ $tagsIndexUrl = $this->Url->build([
         <div class="sentencesList" id="sentencesList">
             <?php
             $useNewDesign = !CurrentUser::isMember()
-                || CurrentUser::getSetting('use_new_design');
+                || !CurrentUser::getSetting('disable_new_design');
             if ($useNewDesign) {
                 foreach ($allSentences as $item) {
                     $sentence = $item->sentence;

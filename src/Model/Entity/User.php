@@ -53,19 +53,22 @@ class User extends Entity
         'collapsible_translations' => false,
         'show_transcriptions' => false,
         'sentences_per_page' => 10,
+        'max_visible_translations' => 5,
         'users_collections_ratings' => false,
         'native_indicator' => false,
         'hide_random_sentence' => false,
         'use_new_design' => false,
+        'disable_new_design' => false,
         'default_license' => 'CC BY 2.0 FR',
         'can_switch_license' => false,
         'new_terms_of_use' => '1',
         'license_switch_list_id' => null,
-        'hide_new_design_announcement' => false,
+        'hide_new_design_announcement_2' => false,
     );
 
     private $settingsValidation = array(
         'sentences_per_page' => array(10, 20, 50, 100),
+        'max_visible_translations' => array(5, 10, 20, 50),
     );
 
     protected function _setPassword($password) {
