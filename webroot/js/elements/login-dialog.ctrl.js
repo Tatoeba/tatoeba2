@@ -13,7 +13,7 @@
             function showDialog(url) {
                 $mdDialog.show({
                     controller: DialogController,
-                    templateUrl: get_tatoeba_root_url() + '/users/login_dialog_template?redirect=' + url,
+                    templateUrl: get_tatoeba_root_url() + '/users/login_dialog_template?redirect=' + encodeURIComponent(url),
                     parent: angular.element(document.body),
                     clickOutsideToClose: true,
                     fullscreen: true
