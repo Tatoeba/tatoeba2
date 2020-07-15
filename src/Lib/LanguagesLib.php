@@ -602,6 +602,7 @@ class LanguagesLib
                 'bal' => __d('languages', 'Baluchi'),
                 'pli' => __d('languages', 'Pali'),
                 'hbo' => __d('languages', 'Ancient Hebrew'),
+                'ajp' => __d('languages', 'South Levantine Arabic'),
             );
         }
         return $languages;
@@ -671,6 +672,7 @@ class LanguagesLib
             "jpa",
             "bal",
             'hbo',
+            "ajp"
         );
 
         $autoLangs = array(
