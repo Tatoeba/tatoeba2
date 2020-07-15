@@ -848,11 +848,11 @@ class SentencesHelper extends AppHelper
         }
         $sentence->expandLabel = $this->getExpandLabel($sentence);
 
-        return h(json_encode($sentence), ENT_QUOTES, 'UTF-8');
+        return h(json_encode($sentence));
     }
 
     public function translationsForAngular($translations) {
-        return h(json_encode($translations), ENT_QUOTES, 'UTF-8');
+        return h(json_encode($translations));
     }
 
     public function getExpandLabel($sentence)
