@@ -603,6 +603,7 @@ class LanguagesLib
                 'pli' => __d('languages', 'Pali'),
                 'hbo' => __d('languages', 'Ancient Hebrew'),
                 'ajp' => __d('languages', 'South Levantine Arabic'),
+                'hax' => __d('languages', 'Southern Haida'),
             );
         }
         return $languages;
