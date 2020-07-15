@@ -535,11 +535,7 @@ html[dir="rtl"] .search-bar-extra a:before {
 
 #footer .category {
     padding: 10px;
-    margin: 0 20px;
     width: 100%;
-}
-
-#footer .category {
     padding: 0;
 }
 
@@ -547,12 +543,10 @@ html[dir="rtl"] .search-bar-extra a:before {
     border-bottom: 1px solid #E2E2E2;
     font-size: inherit;
     font-weight: normal;
-    padding: 10px 5px;
+    padding: 10px;
+    margin: 10px;
 }
 
-#footer ul {
-    padding: 0 24px;
-}
 #footer li {
     padding: 2px 0;
 }
