@@ -55,14 +55,14 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
         <?php } ?>
     </div>
 
-    <md-menu md-offset="0 52" md-position-mode="<?= $menuPositionMode ?>">
-        <md-button class="user-menu-button" ng-click="$mdOpenMenu($event)" layout="row" layout-align="start center">
+    <div id="user-menu" class="dropdown">
+        <div class="label">
             <?= $this->Members->image(null, $avatar, ['width' => 24, 'height' => 24]); ?>
             <span><?= $username ?></span>
-        </md-button>
-        <md-menu-content id="user-menu" md-colors="::{background: 'grey-800'}">
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'user', 'action' => 'profile', $username]) ?>">
+        </div>
+        <div class="dropdown-content">
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'user', 'action' => 'profile', $username]) ?>">
                     <md-icon md-colors="::{color: 'grey'}">person</md-icon>
                     <span>
                     <?php
@@ -70,18 +70,18 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
                     echo __('My profile');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button ng-click="showInterfaceLanguageSelection()">
+                </a>
+            </div>
+            <div class="item">
+                <a ng-click="showInterfaceLanguageSelection()">
                     <md-icon md-colors="::{color: 'grey'}">language</md-icon>
                     <span>
                     <?= format(__('Language: {lang}'), ['lang' => $uiLanguage]) ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'user', 'action' => 'settings']) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'user', 'action' => 'settings']) ?>">
                     <md-icon md-colors="::{color: 'grey'}">settings</md-icon>
                     <span>
                     <?php
@@ -89,109 +89,109 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
                     echo __('Settings');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'users', 'action' => 'logout']) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'users', 'action' => 'logout']) ?>">
                     <md-icon md-colors="::{color: 'grey'}">power_settings_new</md-icon>
                     <span>
                     <?= __('Log out') ?>
                     </span>
-                </md-button>
-            </md-menu-item>
+                </a>
+            </div>
 
             <md-divider></md-divider>
 
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'of_user', $username]) ?>">
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'of_user', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your sentences */
                     echo __('My sentences');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'vocabulary', 'action' => 'of', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'vocabulary', 'action' => 'of', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your vocabulary */
                     echo __('My vocabulary');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'reviews', 'action' => 'of', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'reviews', 'action' => 'of', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your reviews */
                     echo __('My reviews');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'sentences_lists', 'action' => 'of_user', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentences_lists', 'action' => 'of_user', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your lists */
                     echo __('My lists');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'favorites', 'action' => 'of_user', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'favorites', 'action' => 'of_user', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your favorites */
                     echo __('My favorites');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'of_user', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'of_user', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your comments */
                     echo __('My comments');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'on_sentences_of_user', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'on_sentences_of_user', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list comments made on your sentences */
                     echo __("Comments on my sentences");
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'wall', 'action' => 'messages_of_user', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'wall', 'action' => 'messages_of_user', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your wall posts */
                     echo __('My Wall messages');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-            <md-menu-item md-colors="::{color: 'grey-50'}">
-                <md-button href="<?= $this->Url->build(['controller' => 'contributions', 'action' => 'of_user', $username]) ?>">
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'contributions', 'action' => 'of_user', $username]) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your contributions */
                     echo __('My sentence logs');
                     ?>
                     </span>
-                </md-button>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
+                </a>
+            </div>
+        </div>
+        </div>
  </div>

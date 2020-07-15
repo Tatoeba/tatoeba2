@@ -206,7 +206,9 @@ rt {
     font-size: 66%;
 }
 
-/* User Menu : Main Menu */
+/* 
+ * Top menu
+ */
 .tatoeba-name {
     font-size: 24px;
     padding: 0 10px;
@@ -237,7 +239,44 @@ rt {
 #top_menu {
     max-width: 960px;
     margin: auto;
-    overflow: hidden;
+    z-index: 3;
+}
+
+#top_menu .dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#top_menu .dropdown .label {
+    line-height: 40px;
+    padding: 0 12px;
+}
+
+#top_menu .dropdown:hover {
+    background-color: #333;
+}
+  
+#top_menu .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 225px;
+    background-color: #333;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#top_menu .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#top_menu .dropdown-content .item a {
+    display: block;
+    padding: 12px 16px;
+}
+
+#top_menu .dropdown-content .item:hover {
+    background-color: #222;
 }
 
 #top_menu .private-messages {
@@ -267,21 +306,29 @@ rt {
     color: #FFFFFF;
 }
 
-#user-menu {
-    max-height: none;
-}
-
 #user-menu md-divider {
     border-top-color: #555;
 }
 
-/*
- * User Menu
- */
-.user-menu-button span,
-.user-menu-button img {
-    margin: 0 5px;
-    text-transform: none;
+#user-menu {
+    margin: 0 10px;
+}
+#user-menu .dropdown-content {
+    right: 0;
+}
+html[dir="rtl"] #user-menu .dropdown-content {
+    right: initial;
+    left: 0;
+}
+#user-menu .label span,
+#user-menu .label img {
+    margin: 0 2px;
+    vertical-align: middle;
+}
+#user-menu .item span,
+#user-menu .item md-icon {
+    margin: 0 2px;
+    vertical-align: middle;
 }
 
 /*

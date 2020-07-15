@@ -161,22 +161,15 @@ $sidenavPosition = $htmlDir == 'rtl' ? 'md-sidenav-right' : 'md-sidenav-left';
                 continue;
             }
             ?>
-            <md-menu md-offset="0 52" md-position-mode="<?= $menuPositionMode ?>">
-                <md-button class="md-primary" ng-click="$mdOpenMenu($event)">
-                    <?= $title ?>
-                </md-button>
+            <div class="dropdown">
+                <div class="label"><?= $title ?> <md-icon>expand_more</md-icon></div>
 
-                <md-menu-content class="top-menu-content" md-colors="::{background: 'grey-800'}">
+                <div class="dropdown-content">
                 <?php foreach ($data['sub-menu'] as $title2 => $route) { ?>
-                    <md-menu-item md-colors="::{color: 'grey-50'}">
-                        <md-button href="<?= $this->Url->build($route) ?>">
-                            <span><?= $title2 ?>
-                            </span>
-                        </md-button>
-                    </md-menu-item>
+                    <div class="item"><?= $this->Html->link($title2, $route); ?></div>
                 <?php } ?>
-                </md-menu-content>
-            </md-menu>
+                </div>
+            </div>
             <?php
         }
         ?>
