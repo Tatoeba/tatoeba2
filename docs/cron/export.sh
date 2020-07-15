@@ -38,7 +38,7 @@ tar -cjf sentences_base.tar.bz2 sentences_base.csv
 TEMP_DIR='/var/tmp/per_language'
 trap "rm -rf $TEMP_DIR" EXIT
 
-echo 'select code from languages;' |
+echo 'SELECT code FROM languages WHERE code IS NOT NULL;' |
 ( mysql --skip-column-names tatoeba; echo 'unknown' ) |
 xargs -L 1 -I @ mkdir -p $TEMP_DIR/@
 
