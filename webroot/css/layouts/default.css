@@ -729,7 +729,7 @@ html[dir="rtl"] .search-bar-extra a:before {
  */
 .announcement-container {
     background-color: #fff;
-    padding: 1px;
+    overflow: hidden;
 }
 .maintenance {
     text-align: center;
