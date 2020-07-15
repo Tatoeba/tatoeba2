@@ -604,6 +604,7 @@ class LanguagesLib
                 'hbo' => __d('languages', 'Ancient Hebrew'),
                 'ajp' => __d('languages', 'South Levantine Arabic'),
                 'hax' => __d('languages', 'Southern Haida'),
+                'hdn' => __d('languages', 'Northern Haida'),
             );
         }
         return $languages;
