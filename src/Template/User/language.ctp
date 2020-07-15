@@ -102,7 +102,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             if ($userLanguage && !is_null($userLanguage->level)) {
                 $selected = $userLanguage->level;
             }
-            $selected = htmlspecialchars(json_encode($selected), ENT_QUOTES, 'UTF-8');
+            $selected = h(json_encode($selected), ENT_QUOTES, 'UTF-8');
 
             $radioLabels = $this->Languages->getLevelsLabels();
 

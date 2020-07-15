@@ -24,7 +24,7 @@ usort(
     }
 );
 
-$languagesJSON = htmlspecialchars(json_encode($languages), ENT_QUOTES, 'UTF-8');
+$languagesJSON = h(json_encode($languages), ENT_QUOTES, 'UTF-8');
 ?>
 
 <md-dialog aria-label="<?= __('Interface language') ?>" ng-cloak ng-init="init(<?= $languagesJSON ?>)">

@@ -43,7 +43,7 @@ if (!isset($translationLang)) {
     $translationLang = 'und';
 }
 if (!isset($userLanguagesData)) {
-    $userLanguagesData = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
+    $userLanguagesData = h(json_encode($langs), ENT_QUOTES, 'UTF-8');
 }
 if (!isset($sentenceData)) {
     $sentenceData = $this->Sentences->sentenceForAngular($sentence);
