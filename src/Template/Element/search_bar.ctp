@@ -83,7 +83,6 @@ echo $this->Form->create(
                    ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
                    accesskey="4"
                    lang=""
-                   dir="auto"
                    flex>
             <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
         </div>

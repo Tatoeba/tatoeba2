@@ -38,9 +38,6 @@
         function add() {
             vm.isAdding = true;
 
-            $('#add-vocabulary-form input[name^="_Token"]').each(function() {
-                vm.data[$(this).attr('name')] = $(this).val();
-            });
             var req = {
                 method: 'POST',
                 url: rootUrl + '/vocabulary/save',
@@ -69,7 +66,7 @@
         function remove(id) {
             $http.get(rootUrl + '/vocabulary/remove/' + id).then(
                 function(response) {
-                    $('#vocabulary_' + id).hide();
+                    angular.element(document.querySelector('#vocabulary_' + id)).remove();
                 }
             );
         }

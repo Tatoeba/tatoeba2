@@ -109,6 +109,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     <?= $this->Form->hidden('lang', ['value' => $lang]) ?>
                     <md-input-container flex>
                         <?= $this->Form->input('text', [
+                            'id' => 'form_'.$id.'_input',
                             /* @translators: sentence text field label of sentence addition form on vocabulary page */
                             'label' => __('Sentence'),
                             'ng-model' => "ctrl.sentence['$id']"

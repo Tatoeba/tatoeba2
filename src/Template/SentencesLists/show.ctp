@@ -27,6 +27,9 @@
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
+// Just to make sure jQuery is loaded before the rest of the lists JS scripts
+$this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
+
 $this->Html->script(
     JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
 );
@@ -118,8 +121,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     $class = '';
     if ($permissions['canEdit']) {
-        $this->Html->script('jquery.jeditable.js', ['block' => 'scriptBottom']);
-        $this->Html->script('sentences_lists.edit_name.js', ['block' => 'scriptBottom']);
+        $this->Html->script('sentences_lists.edit_name.js', ['block' => 'scriptBottom']);        
 
         $class = 'editable-list-name';
 

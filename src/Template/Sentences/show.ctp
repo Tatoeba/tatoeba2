@@ -28,6 +28,9 @@ use App\Model\CurrentUser;
 
 if (!isset($searchProblem)) {
 if (isset($sentence)) {
+    // Just to make sure jQuery is loaded before the rest of the JS scripts
+    $this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
+
     $sentenceId = $sentence->id;
     $sentenceLang = $sentence->lang;
     $sentenceText = $sentence->text;

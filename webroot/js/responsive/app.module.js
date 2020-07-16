@@ -3,9 +3,9 @@
 
     angular
         .module('app', ['ngMaterial', 'ngMessages', 'ngCookies', 'ngSanitize'])
-        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$cookiesProvider',
+        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$httpParamSerializerJQLikeProvider', '$cookiesProvider',
                  '$compileProvider', function(
-            $mdThemingProvider, $mdIconProvider, $httpProvider, $cookiesProvider, $compileProvider
+            $mdThemingProvider, $mdIconProvider, $httpProvider, $httpParamSerializerJQLikeProvider, $cookiesProvider, $compileProvider
         ) {
             $compileProvider.debugInfoEnabled(false);
             $compileProvider.commentDirectivesEnabled(false);
@@ -14,12 +14,8 @@
                 .primaryPalette('green')
                 .accentPalette('grey')
                 .warnPalette('red',  {'default': '700'});
-            $httpProvider.defaults.transformRequest = function(data) {
-                if (data === undefined) {
-                    return data;
-                }
-                return $.param(data);
-            };
+            // https://stackoverflow.com/questions/12190166/angularjs-any-way-for-http-post-to-send-request-parameters-instead-of-json
+            $httpProvider.defaults.transformRequest.unshift($httpParamSerializerJQLikeProvider.$get());
             $httpProvider.defaults.headers.post['Content-Type'] =
                 'application/x-www-form-urlencoded; charset=UTF-8';
             $httpProvider.defaults.headers.common['X-Requested-With'] =
@@ -69,6 +65,40 @@
                 });
             };
         })
+        .controller('MenuController', ['$scope', '$mdSidenav', '$mdDialog', function($scope, $mdSidenav, $mdDialog) {
+            $scope.toggleMenu = function() {
+                $mdSidenav('menu').toggle();
+            };
+
+            $scope.showInterfaceLanguageSelection = function() {
+                $mdDialog.show({
+                    controller: DialogController,
+                    clickOutsideToClose: true,
+                    templateUrl: get_tatoeba_root_url() + '/angular_templates/interface_language'
+                });
+            }
+
+            DialogController.$inject = ['$scope', '$mdDialog'];
+            function DialogController($scope, $mdDialog) {
+                $scope.init = function (data) {
+                    $scope.languages = data;
+                }
+
+                $scope.close = function() {
+                    $mdDialog.cancel();
+                };
+
+                $scope.changeInterfaceLang = function(newLang) {
+                    // Saving the cookie
+                    var date = new Date();
+                    date.setMonth(date.getMonth()+1);
+                    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang
+                        + '; path=/'
+                        + '; expires=' + date.toGMTString();
+                    location.reload();
+                }
+            }
+        }])
         .directive('resetButton', function(){
             return function(scope, element, attrs) {
                 element.bind('click', function(e) {

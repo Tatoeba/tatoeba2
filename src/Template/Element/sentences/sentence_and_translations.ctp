@@ -43,7 +43,7 @@ if (!isset($translationLang)) {
     $translationLang = 'und';
 }
 if (!isset($userLanguagesData)) {
-    $userLanguagesData = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
+    $userLanguagesData = h(json_encode($langs));
 }
 if (!isset($sentenceData)) {
     $sentenceData = $this->Sentences->sentenceForAngular($sentence);
@@ -119,12 +119,13 @@ $sentenceUrl = $this->Url->build([
         </div>
 
         <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}" ng-if="!vm.visibility.sentence_form">
-            <div layout="row" layout-align="start center" flex>
+            <div layout="row" layout-align="stretch" flex>
+            <div ng-click="translation.showActions = !translation.showActions" layout="row" layout-align="start center" role="switch" flex>
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
             </div>
             
-            <div class="text" flex dir="{{vm.sentence.dir}}" lang="{{vm.sentence.lang_tag}}">
+            <div class="text" dir="{{vm.sentence.dir}}" lang="{{vm.sentence.lang_tag}}">
                 <span ng-if="vm.sentence.highlightedText" ng-bind-html="vm.sentence.highlightedText"></span>
                 <span ng-if="!vm.sentence.highlightedText">
                     <span ng-if="vm.sentence.furigana" ng-bind-html="vm.sentence.furigana.html">
@@ -132,6 +133,7 @@ $sentenceUrl = $this->Url->build([
                     </span>
                     <span ng-if="!vm.sentence.furigana">{{vm.sentence.text}}</span>
                 </span>
+            </div>
             </div>
 
             <div class="indicator" ng-if="vm.sentence.user.is_native === '1'">
@@ -143,24 +145,7 @@ $sentenceUrl = $this->Url->build([
                 </md-icon>
             </div>
 
-            <div class="indicator" ng-if="vm.sentence.correctness === -1">
-                <md-icon class="md-warn">warning</md-icon>
-                <md-tooltip md-direction="top">
-                    <?= __('This sentence is not reliable.') ?>
-                </md-tooltip>
-            </div>
-
-            <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{vm.sentence.text}}">
-                <md-icon>content_copy</md-icon>
-                <md-tooltip><?= __('Copy sentence') ?></md-tooltip>
-            </md-button>
-
-            <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
-
-            <md-button class="md-icon-button" ng-href="<?= $sentenceUrl ?>/{{vm.sentence.id}}">
-                <md-icon>info</md-icon>
-                <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
-            </md-button>
+            <?= $this->element('sentences/sentence_icons', ['angularVar' => 'vm.sentence']); ?>
             </div>
             
             <?= $this->element('sentences/transcriptions'); ?>

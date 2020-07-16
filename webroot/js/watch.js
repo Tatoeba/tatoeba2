@@ -52,3 +52,15 @@
         };
     }); 
 }(jQuery));
+
+
+$(document).ready(function() {
+    $(document).watch("addrule", function() {
+        $('.sentenceContent .text').each(function() {
+            var sentence = $(this);
+            if (sentence.data('text') === undefined) {
+                sentence.data('text', sentence.text());
+            }
+        });
+    });
+});

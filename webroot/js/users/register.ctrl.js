@@ -61,7 +61,7 @@
         function togglePassword() {
             vm.isPasswordVisible = !vm.isPasswordVisible;
             var type = vm.isPasswordVisible ? 'text' : 'password';
-            $('#registrationPassword').attr('type', type);
+            angular.element(document.querySelector('#registrationPassword')).attr('type', type);
         }
     }
 

@@ -59,6 +59,7 @@ $config = [
             'check_username',
             'check_email',
             'for_language',
+            'login_dialog_template',
         ],
         'vocabulary' => [ 'of' ],
         'wall' => [
@@ -66,6 +67,7 @@ $config = [
             'show_message',
             'messages_of_user',
         ],
+        'angular_templates' => '*',
     ],
 
     // actions not available for guests or some users
