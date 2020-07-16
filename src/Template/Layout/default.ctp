@@ -74,7 +74,7 @@ $isSearch = $controller == 'sentences' && $action == 'search';
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
     
-    <?php if ($isHomepage && !CurrentUser::isMember() || $isSearch) { ?>
+    <?php if (($isHomepage || $isSearch) && !CurrentUser::isMember()) { ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">     
     <?php } ?>
 </head>
