@@ -555,13 +555,7 @@ class SentencesController extends AppController
     public function advanced_search() {
         $search = new SentencesSearchForm();
 
-        $data = $this->request->getParam('?');
-
-        if ($data) {
-            $search->setData($data);
-        } else {
-            $search->setData([]);
-        }
+        $search->setData($this->request->getQueryParams());
 
         $this->set($search->getData());
 
