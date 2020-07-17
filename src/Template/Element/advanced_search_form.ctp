@@ -357,10 +357,11 @@ echo $this->Form->create('AdvancedSearch', [
                    href="http://en.wiki.tatoeba.org/articles/show/text-search">
             <?= __('More search options') ?>
         </md-button>
-
-        <md-button type="submit" class="md-primary" formaction="/eng/sentences/advanced_search">
-            <?= __('Permalink to search') ?>
-        </md-button>
+        <?php if ($layout == 'row'): ?>
+            <md-button type="submit" class="md-primary" formaction="/eng/sentences/advanced_search">
+                <?= __('Permalink to search') ?>
+            </md-button>
+        <?php endif; ?>
     </div>
 </div>
 
