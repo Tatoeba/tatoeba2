@@ -826,10 +826,69 @@ class SearchTest extends TestCase
         $this->assertFalse($result);
     }
 
-    public function testSortByRandom() {
+    public function testSortByRandom_withoutSeed_withEmptyQuery() {
         $this->Search->filterByQuery('');
+        $this->Search->setRandSeed(null);
         $this->assertEquals('random', $this->Search->sort('random'));
-        $this->assertSortBy('@random');
+        $this->assertSortBy('RAND()*16777216 DESC');
+    }
+
+    public function testSortByRandom_withoutSeed_withEmptyQuery_reversed() {
+        $this->Search->filterByQuery('');
+        $this->Search->setRandSeed(null);
+        $this->assertEquals('random', $this->Search->sort('random'));
+        $this->Search->reverseSort(true);
+        $this->assertSortBy('RAND()*16777216 ASC');
+    }
+
+    public function testSortByRandom_withoutSeed_withNonEmptyQuery() {
+        $this->Search->filterByQuery('comme ci comme ça');
+        $this->Search->setRandSeed(null);
+        $this->assertEquals('random', $this->Search->sort('random'));
+        $this->assertSortByRank('@rank DESC', 'RAND()*16777216');
+    }
+
+    public function testSortByRandom_withoutSeed_withNonEmptyQuery_reversed() {
+        $this->Search->filterByQuery('comme ci comme ça');
+        $this->Search->setRandSeed(null);
+        $this->Search->reverseSort(true);
+        $this->assertEquals('random', $this->Search->sort('random'));
+        $this->assertSortByRank('@rank ASC', 'RAND()*16777216');
+    }
+
+    public function testSortByRandom_withSeed_withEmptyQuery() {
+        $this->Search->filterByQuery('');
+        $this->Search->setRandSeed(123456789);
+        $this->assertEquals('random', $this->Search->sort('random'));
+        $this->assertSortBy('RAND(123456789)*16777216 DESC');
+    }
+
+    public function testSortByRandom_withSeed_withEmptyQuery_reversed() {
+        $this->Search->filterByQuery('');
+        $this->Search->setRandSeed(123456789);
+        $this->assertEquals('random', $this->Search->sort('random'));
+        $this->Search->reverseSort(true);
+        $this->assertSortBy('RAND(123456789)*16777216 ASC');
+    }
+
+    public function testSortByRandom_withSeed_withNonEmptyQuery() {
+        $this->Search->filterByQuery('comme ci comme ça');
+        $this->Search->setRandSeed(123456789);
+        $this->assertEquals('random', $this->Search->sort('random'));
+        $this->assertSortByRank('@rank DESC', 'RAND(123456789)*16777216');
+    }
+
+    public function testSortByRandom_withSeed_withNonEmptyQuery_reversed() {
+        $this->Search->filterByQuery('comme ci comme ça');
+        $this->Search->setRandSeed(123456789);
+        $this->assertEquals('random', $this->Search->sort('random'));
+        $this->Search->reverseSort(true);
+        $this->assertSortByRank('@rank ASC', 'RAND(123456789)*16777216');
+    }
+
+    public function testRandSeed_resets() {
+        $this->Search->setRandSeed(12345);
+        $this->testSortByRandom_withoutSeed_withEmptyQuery();
     }
 
     public function testSortByInvalid() {
