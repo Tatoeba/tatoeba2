@@ -259,6 +259,19 @@ class SentencesSearchFormTest extends TestCase
         $this->assertEquals('relevance', $this->Form->getData()['sort']);
     }
 
+    public function testGenerateRandomSeedIfNeeded_unneeded() {
+        $this->Form->setData(['sort' => 'created']);
+        $this->assertFalse($this->Form->generateRandomSeedIfNeeded());
+        $this->assertEmpty($this->Form->getData()['rand_seed']);
+    }
+
+    public function testGenerateRandomSeedIfNeeded_needed() {
+        mt_srand(42);
+        $this->Form->setData(['sort' => 'random']);
+        $this->assertTrue($this->Form->generateRandomSeedIfNeeded());
+        $this->assertEquals('Ztzh', $this->Form->getData()['rand_seed']);
+    }
+
     public function testGetSearchableLists_asGuest() {
         $searcher = null;
         $expected = [

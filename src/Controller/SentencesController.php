@@ -36,6 +36,7 @@ use App\Lib\Licenses;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
+use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
 use Exception;
@@ -500,6 +501,11 @@ class SentencesController extends AppController
         /* Apply search criteria and sort */
         $search = new SentencesSearchForm();
         $search->setData($this->request->getQueryParams());
+
+        /* Control input */
+        if ($search->generateRandomSeedIfNeeded()) {
+            return $this->redirect(Router::url($search->getData()));
+        }
         $search->checkUnwantedCombinations();
 
         /* Session variables for search bar */

@@ -242,6 +242,12 @@ class SentencesSearchForm extends Form
         return $sort_reverse ? 'yes' : '';
     }
 
+    private function _newSeed() {
+        /* Only use 24 bits of randomness */
+        $pseudoRand = mt_rand(0, (2<<23)-1);
+        return $this->_encodeSeed($pseudoRand);
+    }
+
     private function _encodeSeed($seed) {
         $result = '';
         if (is_int($seed)) {
@@ -293,6 +299,15 @@ class SentencesSearchForm extends Form
             $keyCamel = Inflector::camelize($key);
             $setter = "setData$keyCamel";
             $this->_data[$key] = $this->$setter($value);
+        }
+    }
+
+    public function generateRandomSeedIfNeeded() {
+        if ($this->_data['sort'] == 'random' && empty($this->_data['rand_seed'])) {
+            $this->_data['rand_seed'] = $this->_newSeed();
+            return true;
+        } else {
+            return false;
         }
     }
 
