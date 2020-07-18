@@ -41,6 +41,7 @@ class SentencesSearchForm extends Form
         'trans_filter' => 'limit',
         'sort' => 'relevance',
         'sort_reverse' => '',
+        'rand_seed' => '',
     ];
 
     public function __construct(EventManager $eventManager = null) {
@@ -239,6 +240,33 @@ class SentencesSearchForm extends Form
     protected function setDataSortReverse(string $sort_reverse) {
         $sort_reverse = $this->search->reverseSort($sort_reverse === 'yes');
         return $sort_reverse ? 'yes' : '';
+    }
+
+    private function _encodeSeed($seed) {
+        $result = '';
+        if (is_int($seed)) {
+            $seed = base64_encode(pack('V', $seed));
+            $seed = substr($seed, 0, 4);
+            $result = str_replace(['+','/'], ['-','_'], $seed);
+        }
+        return $result;
+    }
+
+    private function _decodeSeed(string $seed) {
+        $result = null;
+        if (strlen($seed) >= 4) {
+            $seed = str_replace(['-','_'], ['+','/'], $seed);
+            $seed = substr($seed, 0, 4).'AA';
+            $result = @unpack('V', base64_decode($seed))[1];
+        }
+        return $result;
+    }
+
+    protected function setDataRandSeed(string $seed_b64) {
+        $seed_int = $this->_decodeSeed($seed_b64);
+        $seed_int = $this->search->setRandSeed($seed_int);
+        $seed_b64 = $this->_encodeSeed($seed_int);
+        return $seed_b64;
     }
 
     public function setData(array $data)

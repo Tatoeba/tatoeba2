@@ -45,6 +45,7 @@ class SentencesSearchFormTest extends TestCase
             'trans_user' => '',
             'sort' => 'relevance',
             'sort_reverse' => '',
+            'rand_seed' => '',
         ];
         $this->Form->setData([]);
         $this->assertEquals($expected, $this->Form->getData());
@@ -156,6 +157,13 @@ class SentencesSearchFormTest extends TestCase
             [ 'sort_reverse', 'yes',     ['reverseSort', true],  'yes' ],
             [ 'sort_reverse', '',        ['reverseSort', false], '' ],
             [ 'sort_reverse', 'invalid', ['reverseSort', false], '' ],
+
+            [ 'rand_seed', 'xrgU',          ['setRandSeed',  1358022], 'xrgU' ],
+            [ 'rand_seed', '3-_a',          ['setRandSeed', 14348255], '3-_a' ],
+            [ 'rand_seed', '',              ['setRandSeed',     null], ''     ],
+            [ 'rand_seed', 'longer string', ['setRandSeed', 14715286], 'long' ],
+            [ 'rand_seed', 'sml',           ['setRandSeed',     null], ''     ],
+            [ 'rand_seed', '.!"@',          ['setRandSeed',     null], ''     ],
         ];
     }
 
