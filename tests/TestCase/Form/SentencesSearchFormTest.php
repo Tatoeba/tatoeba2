@@ -406,4 +406,32 @@ class SentencesSearchFormTest extends TestCase
 
         $this->assertEquals($stuff, $result);
     }
+
+    private function assertSameKeyOrder(array $expected, array $tested) {
+        reset($expected);
+        reset($tested);
+        while (!is_null(key($expected))) {
+            $this->assertEquals(key($expected), key($tested));
+            next($tested);
+            next($expected);
+        }
+    }
+
+    public function testDataOrderIsPreserved() {
+        $expected = [
+            'native' => 'yes',
+            'user' => '',
+            'from' => 'und',
+            'orphans' => 'no',
+            'tags' => '',
+            'query' => 'order should be preserved',
+            'unapproved' => 'no',
+            'has_audio' => '',
+            'to' => 'und',
+            'list' => '',
+        ];
+        $this->Form->setData($expected);
+        $retreived = $this->Form->getData();
+        $this->assertSameKeyOrder($expected, $retreived);
+    }
 }

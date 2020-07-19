@@ -44,6 +44,8 @@ class SentencesSearchForm extends Form
         'rand_seed' => '',
     ];
 
+    private $paramsOrder = [];
+
     public function __construct(EventManager $eventManager = null) {
         parent::__construct($eventManager);
         $this->search = new Search();
@@ -277,6 +279,9 @@ class SentencesSearchForm extends Form
 
     public function setData(array $data)
     {
+        /* Remember params order */
+        $this->paramsOrder = array_keys($data);
+
         /* Convert simple search to advanced search parameters */
         if (isset($data['to']) && !isset($data['trans_to'])) {
             $data['trans_to'] = $data['to'];
@@ -300,6 +305,24 @@ class SentencesSearchForm extends Form
             $setter = "setData$keyCamel";
             $this->_data[$key] = $this->$setter($value);
         }
+    }
+
+    private function paramIndex($param) {
+        $index = array_search($param, $this->paramsOrder);
+        if ($index === FALSE) {
+            $index = PHP_INT_MAX;
+        }
+        return $index;
+    }
+
+    public function getData($field = null) {
+        $data = parent::getData($field);
+        if (is_null($field)) {
+            uksort($data, function($a, $b) {
+                return $this->paramIndex($a) <=> $this->paramIndex($b);
+            });
+        }
+        return $data;
     }
 
     public function generateRandomSeedIfNeeded() {
