@@ -29,23 +29,28 @@ class VocabularyHelper extends AppHelper
         'Html', 'Url'
     );
 
+    /**
+     * Create the label for the link to the search page
+     *
+     * @param integer $numSentences Number of sentences containing the vocabulary item
+     *
+     * @return string
+     */
+    public function sentenceCountLabel($numSentences) {
+        if (is_null($numSentences)) {
+            return __('Unknown number of sentences');
+        } else {
+            return format(
+                __n('{number} sentence', '{number} sentences', $numSentences),
+                ['number' => $numSentences == 1000 ? "1000+" : $numSentences]
+            );
+        }
+    }
+
     public function vocabulary($vocab) {
         $lang = $vocab['lang'];
         $text = $this->_View->safeForAngular($vocab['text']);
-        $numSentences = $vocab['numSentences'];
-        if (is_null($numSentences)) {
-            $numSentencesLabel = __('Unknown number of sentences');
-        } else {
-            $numSentences = $numSentences == 1000 ? '1000+' : $numSentences;
-            $numSentencesLabel = format(
-                __n(
-                    '{number} sentence', '{number} sentences',
-                    $numSentences,
-                    true
-                ),
-                array('number' => $numSentences)
-            );
-        }
+        $numSentencesLabel = $this->sentenceCountLabel($vocab['numSentences']);
         if (Configure::read('Search.enabled')) {
             $url = $this->Url->build(array(
                 'controller' => 'sentences',
