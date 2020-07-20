@@ -148,6 +148,15 @@ if (!isset($htmlDir)) {
 }
 $menuPositionMode = $htmlDir == 'rtl' ? 'target-right target' : 'target target';
 $sidenavPosition = $htmlDir == 'rtl' ? 'md-sidenav-right' : 'md-sidenav-left';
+
+$action = $this->request->getParam('action');
+$controller = $this->request->getParam('controller');
+$isOnLoginPage = ($controller == 'Users' && $action == 'login');
+$registerUrl = $this->Url->build([
+    'controller' => 'users',
+    'action' => 'register'
+]);
+$uiLanguage = $this->Languages->getInterfaceLanguage();
 ?>
 
 <div id="top_menu_container" ng-controller="MenuController">
@@ -178,14 +187,8 @@ $sidenavPosition = $htmlDir == 'rtl' ? 'md-sidenav-right' : 'md-sidenav-left';
         <div id="user_menu" ng-cloak>
             <?php
             // User menu
-            if (!$session->read('Auth.User.id')) {
-                $action = $this->request->getParam('action');
-                $controller = $this->request->getParam('controller');
-                $isOnLoginPage = ($controller == 'Users' && $action == 'login');
-
-                if (!$isOnLoginPage) {
-                    echo $this->element('login');
-                }
+            if (!$session->read('Auth.User.id') && !$isOnLoginPage) {
+                echo $this->element('login');
             } else {
                 echo $this->element('space', ['htmlDir' => $htmlDir]);
             }
@@ -195,7 +198,7 @@ $sidenavPosition = $htmlDir == 'rtl' ? 'md-sidenav-right' : 'md-sidenav-left';
         <?php 
         if (!CurrentUser::isMember()) {
             echo $this->element('ui_language_button', [
-                'displayOption' => 'hide-xs'
+                'displayOption' => 'hide-xs',
             ]);
         }
         ?>
@@ -225,6 +228,32 @@ $sidenavPosition = $htmlDir == 'rtl' ? 'md-sidenav-right' : 'md-sidenav-left';
                     <span class="tatoeba-name"><?= $name ?></span>
                 </div>
             </div>
+
+            <md-list>
+                <?php if (!$session->read('Auth.User.id') && !$isOnLoginPage) { ?>
+                <md-list-item href="<?= $registerUrl ?>">
+                    <p>
+                    <md-icon>chevron_right</md-icon>
+                    <?php
+                    /* @translators: link to the Register page in the top bar (verb) */
+                    echo __('Register');
+                    ?>
+                    </p>
+                </md-list-item>
+
+                <md-list-item ng-controller="LoginDialogController as vm" ng-click="vm.showDialog('<?= $this->Pages->currentPageUrl() ?>')">
+                    <p>
+                    <md-icon>chevron_right</md-icon>
+                    <?php 
+                    /* @translators: link to open the Login box in the top bar (verb) */
+                    echo __('Log in');
+                    ?>
+                    </p>
+                </md-list-item>
+                <?php } ?>
+            </md-list>
+
+            <md-divider></md-divider>
 
             <md-list>
             <?php

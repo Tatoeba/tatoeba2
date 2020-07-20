@@ -60,12 +60,13 @@ use Cake\Core\Configure;
         [
             'escape' => false,
             'layout' => 'row',
-            'flex-xs' => ''
+            'flex-xs' => '',
+            'layout-align' => 'center center'
         ]
     );
     ?>
 
-    <?= $this->element('ui_language_button', [
-        'displayOption' => 'hide-gt-xs'
-    ]); ?>
+    <md-button hide-gt-xs class="md-icon-button" ng-click="showInterfaceLanguageSelection()">
+        <md-icon>language</md-icon>
+    </md-button>
 </div>
