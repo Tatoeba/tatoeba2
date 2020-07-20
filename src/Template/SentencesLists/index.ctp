@@ -63,24 +63,66 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div class="md-toolbar-tools">
                 <h2 flex>
                     <?= $this->safeForAngular($title) ?>
-
-                    <md-menu md-offset="5 50" md-position-mode="target-right target">
-                        <md-button ng-click="$mdOpenMenu($event)">
-                            <md-icon>sort</md-icon> Sort by
+                </h2>
+                <md-menu md-offset="5 50" md-position-mode="target-right target">
+                    <md-button ng-click="$mdOpenMenu($event)">
+                        <md-icon>sort</md-icon> Sort by
+                    </md-button>
+                    <md-menu-content>
+                        <!-- <md-menu-item ng-repeat="item in ['list', 2, 22223, 9324, 02934, 12]">
+                        <md-button>
+                        <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                        <span style="padding-right: 12px">Option {{item}}</span>
                         </md-button>
-                        <md-menu-content>
-                            <md-menu-item ng-repeat="item in ['list', 2, 22223, 9324, 02934, 12]">
-                                <md-button>
-                                    <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
-                                    <span style="padding-right: 12px">Option {{item}}</span>
-                                </md-button>
-                            </md-menu-item>
+                        </md-menu-item> -->
+                        
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php echo $this->Paginator->sort('name', __('list name')); ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+                        
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php echo $this->Paginator->sort('created', __('date created')); ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+                        
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php 
+                                    echo $this->Paginator->sort(
+                                        'numberOfSentences',
+                                        /* @translators: sort option in the "List of lists" page */
+                                        __('number of sentences')); 
+                                    ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+                            
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php  
+                                        $options = array('defaultOrders' => array('modified' => 'desc'));
+                                        /* @translators: sort option in the "List of lists" page */
+                                        echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
+                                    ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+                        
                         </md-menu-content>
                     </md-menu>
-
-                </h2>
-
-                
 
             </div>
         </md-toolbar>
