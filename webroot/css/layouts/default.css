@@ -239,7 +239,10 @@ rt {
 #top_menu {
     max-width: 960px;
     margin: auto;
-    z-index: 90;
+}
+
+#top_menu:hover {
+    z-index: 70;
 }
 
 #top_menu .dropdown {
@@ -304,6 +307,10 @@ rt {
 #top_menu md-menu-item md-icon,
 .sidenav-menu .md-icon-button md-icon {
     color: #FFFFFF;
+}
+
+.sidenav-menu {
+    z-index: 80;
 }
 
 #user-menu md-divider {
