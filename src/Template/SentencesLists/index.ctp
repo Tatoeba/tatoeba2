@@ -78,31 +78,117 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         
                         <md-menu-item>
                             <md-button>
-                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'name') == 0 && strcmp($this->Paginator->sortDir(),'asc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
                                 <span style="padding-right: 12px">
-                                    <?php echo $this->Paginator->sort('name', __('list name')); ?>
+                                    <?php echo $this->Paginator->sort('name', __('list name'), ['direction'=>'asc', 'lock'=>true]); ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'name') == 0 && strcmp($this->Paginator->sortDir(),'desc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php echo $this->Paginator->sort('name', __('list name'), ['direction'=>'desc', 'lock'=>true]); ?>
                                 </span>
                             </md-button>
                         </md-menu-item>
                         
                         <md-menu-item>
                             <md-button>
-                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'created') == 0 && strcmp($this->Paginator->sortDir(),'asc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
                                 <span style="padding-right: 12px">
-                                    <?php echo $this->Paginator->sort('created', __('date created')); ?>
+                                    <?php echo $this->Paginator->sort('created', __('date created'), ['direction'=>'asc', 'lock'=>true]); ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'created') == 0 && strcmp($this->Paginator->sortDir(),'desc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php echo $this->Paginator->sort('created', __('date created'), ['direction'=>'desc', 'lock'=>true]); ?>
                                 </span>
                             </md-button>
                         </md-menu-item>
                         
                         <md-menu-item>
                             <md-button>
-                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'numberOfSentences') == 0 && strcmp($this->Paginator->sortDir(),'asc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
                                 <span style="padding-right: 12px">
                                     <?php 
                                     echo $this->Paginator->sort(
                                         'numberOfSentences',
                                         /* @translators: sort option in the "List of lists" page */
-                                        __('number of sentences')); 
+                                        __('number of sentences'), ['direction'=>'asc', 'lock'=>true]); 
+                                    ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'numberOfSentences') == 0 && strcmp($this->Paginator->sortDir(),'desc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php 
+                                    echo $this->Paginator->sort(
+                                        'numberOfSentences',
+                                        /* @translators: sort option in the "List of lists" page */
+                                        __('number of sentences'), ['direction'=>'desc', 'lock'=>true]); 
                                     ?>
                                 </span>
                             </md-button>
@@ -110,10 +196,41 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             
                         <md-menu-item>
                             <md-button>
-                                <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'modified') == 0 && strcmp($this->Paginator->sortDir(),'desc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
                                 <span style="padding-right: 12px">
                                     <?php  
                                         $options = array('defaultOrders' => array('modified' => 'desc'));
+                                        /* @translators: sort option in the "List of lists" page */
+                                        echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
+                                    ?>
+                                </span>
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item>
+                            <md-button>
+                                <md-icon>
+                                    <?php 
+                                        if (strcmp($this->Paginator->sortKey(),'modified') == 0 && strcmp($this->Paginator->sortDir(),'asc') == 0) {
+                                            echo 'check'; 
+                                        }
+                                        else {
+                                            echo 'blank';
+                                        }
+                                    ?>
+                                </md-icon>
+                                <span style="padding-right: 12px">
+                                    <?php  
+                                        $options = array('defaultOrders' => array('modified' => 'asc'));
                                         /* @translators: sort option in the "List of lists" page */
                                         echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
                                     ?>
@@ -147,6 +264,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             /* @translators: sort option in the "List of lists" page */
             echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
             ?>
+
+            <?php echo $this->Paginator->sortKey(); ?>
+            <?php echo $this->Paginator->sortDir(); ?>
+
         </div>
         <?php
 
