@@ -120,16 +120,6 @@ $tagsIndexUrl = $this->Url->build([
         </md-toolbar>
 
         <div layout-padding>
-        <!-- <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            /* @translators: sort option in the All tags page */
-            echo $this->Paginator->sort('nbrOfSentences', __("count"));
-            echo " | ";
-            /* @translators: sort option in the All tags page */
-            echo $this->Paginator->sort('name', __("name"));
-            ?>
-        </div> -->
 
         <?php $this->Pagination->display(); ?>
 
