@@ -69,13 +69,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         <md-icon>sort</md-icon> Sort by
                     </md-button>
                     <md-menu-content>
-                        <!-- <md-menu-item ng-repeat="item in ['list', 2, 22223, 9324, 02934, 12]">
-                        <md-button>
-                        <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
-                        <span style="padding-right: 12px">Option {{item}}</span>
-                        </md-button>
-                        </md-menu-item> -->
-                        
+
+                        <?php echo $this->element('list_sort_button', array(
+                                'param' => 'name',
+                                'direction' => 'asc',
+                                'label' => 'list name'
+                        ));?>
+
                         <md-menu-item>
                             <md-button>
                                 <md-icon>
