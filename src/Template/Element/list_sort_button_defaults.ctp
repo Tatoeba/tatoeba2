@@ -11,7 +11,11 @@
             ?>
         </md-icon>
         <span style="padding-right: 12px">
-            <?php echo $this->Paginator->sort($param, $label, ['direction'=>$direction, 'lock'=>true]); ?>
+            <?php  
+                $options = array('defaultOrders' => array($param => $direction));
+                /* @translators: sort option in the "List of lists" page */
+                echo $this->Pagination->sortDefaultOrder($label, $param, $options);
+            ?>
         </span>
     </md-button>
 </md-menu-item>
