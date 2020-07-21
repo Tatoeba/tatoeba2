@@ -245,30 +245,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         </md-toolbar>
 
         <div layout-padding>
-        <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            /* @translators: sort option in the "List of lists" page */
-            echo $this->Paginator->sort('name', __('list name'));
-            echo " | ";
-            /* @translators: sort option in the "List of lists" page */
-            echo $this->Paginator->sort('created', __('date created'));
-            echo " | ";
-            echo $this->Paginator->sort(
-              'numberOfSentences',
-                /* @translators: sort option in the "List of lists" page */
-                __('number of sentences')
-            );
-            echo " | ";
-            $options = array('defaultOrders' => array('modified' => 'desc'));
-            /* @translators: sort option in the "List of lists" page */
-            echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
-            ?>
-
-            <?php echo $this->Paginator->sortKey(); ?>
-            <?php echo $this->Paginator->sortDir(); ?>
-
-        </div>
         <?php
 
         $this->Pagination->display();
