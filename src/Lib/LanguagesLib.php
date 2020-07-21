@@ -605,6 +605,7 @@ class LanguagesLib
                 'ajp' => __d('languages', 'South Levantine Arabic'),
                 'hax' => __d('languages', 'Southern Haida'),
                 'hdn' => __d('languages', 'Northern Haida'),
+                'xqa' => __d('languages', 'Karakhanid'),
             );
         }
         return $languages;
@@ -682,6 +683,7 @@ class LanguagesLib
             "ota",
             "chg",
             "lad",
+            "xqa",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
