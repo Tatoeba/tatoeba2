@@ -84,11 +84,43 @@ $tagsIndexUrl = $this->Url->build([
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $this->safeForAngular($title) ?></h2>
+                <md-menu md-offset="5 50" md-position-mode="target-right target">
+                    <md-button ng-click="$mdOpenMenu($event)">
+                        <md-icon>sort</md-icon> Sort by
+                    </md-button>
+                    <md-menu-content>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'nbrOfSentences',
+                                'direction' => 'desc',
+                                'label' => __('count')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'nbrOfSentences',
+                                'direction' => 'asc',
+                                'label' => __('count')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'name',
+                                'direction' => 'asc',
+                                'label' => __('name')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'name',
+                                'direction' => 'desc',
+                                'label' => __('name')
+                        ));?>
+                        
+                    </md-menu-content>
+                </md-menu>
             </div>
         </md-toolbar>
 
         <div layout-padding>
-        <div class="sortBy">
+        <!-- <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
             /* @translators: sort option in the All tags page */
@@ -97,7 +129,7 @@ $tagsIndexUrl = $this->Url->build([
             /* @translators: sort option in the All tags page */
             echo $this->Paginator->sort('name', __("name"));
             ?>
-        </div>
+        </div> -->
 
         <?php $this->Pagination->display(); ?>
 
