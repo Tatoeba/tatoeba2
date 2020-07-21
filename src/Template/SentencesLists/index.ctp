@@ -70,49 +70,49 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     </md-button>
                     <md-menu-content>
 
-                        <?php echo $this->element('list_sort_button', array(
+                        <?php echo $this->element('sort_option', array(
                                 'param' => 'name',
                                 'direction' => 'asc',
                                 'label' => __('list name')
                         ));?>
 
-                        <?php echo $this->element('list_sort_button', array(
+                        <?php echo $this->element('sort_option', array(
                                 'param' => 'name',
                                 'direction' => 'desc',
                                 'label' => __('list name')
                         ));?>
 
-                        <?php echo $this->element('list_sort_button', array(
+                        <?php echo $this->element('sort_option', array(
                                 'param' => 'created',
                                 'direction' => 'asc',
                                 'label' => __('date created')
                         ));?>
 
-                        <?php echo $this->element('list_sort_button', array(
+                        <?php echo $this->element('sort_option', array(
                                 'param' => 'created',
                                 'direction' => 'desc',
                                 'label' => __('date created')
                         ));?>
                         
-                        <?php echo $this->element('list_sort_button', array(
+                        <?php echo $this->element('sort_option', array(
                                 'param' => 'numberOfSentences',
                                 'direction' => 'asc',
                                 'label' => __('number of sentences')
                         ));?>
 
-                        <?php echo $this->element('list_sort_button', array(
+                        <?php echo $this->element('sort_option', array(
                                 'param' => 'numberOfSentences',
                                 'direction' => 'desc',
                                 'label' => __('number of sentences')
                         ));?>
 
-                        <?php echo $this->element('list_sort_button_defaults', array(
+                        <?php echo $this->element('sort_option_defaults', array(
                                 'param' => 'modified',
                                 'direction' => 'desc',
                                 'label' => __('last updated')
                         ));?>
 
-                        <?php echo $this->element('list_sort_button_defaults', array(
+                        <?php echo $this->element('sort_option_defaults', array(
                                 'param' => 'modified',
                                 'direction' => 'asc',
                                 'label' => __('last updated')
