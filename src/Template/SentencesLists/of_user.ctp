@@ -71,11 +71,47 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <md-toolbar class="md-hue-2">
                 <div class="md-toolbar-tools">
                     <h2><?= $this->safeForAngular($title) ?></h2>
+
+                    <md-menu md-offset="5 50" md-position-mode="target-right target">
+                        <md-button ng-click="$mdOpenMenu($event)">
+                            <md-icon>sort</md-icon> Sort by
+                        </md-button>
+                        <md-menu-content>
+
+                            <?php echo $this->element('sort_option', array(
+                                    'param' => 'modified',
+                                    'direction' => 'desc',
+                                    'label' => __('last updated')
+                            ));?>
+
+                            <?php echo $this->element('sort_option', array(
+                                    'param' => 'modified',
+                                    'direction' => 'asc',
+                                    'label' => __('last updated')
+                            ));?>
+
+                            <?php echo $this->element('sort_option', array(
+                                    'param' => 'created',
+                                    'direction' => 'desc',
+                                    'label' => __('date created')
+                            ));?>
+
+                            <?php echo $this->element('sort_option', array(
+                                    'param' => 'created',
+                                    'direction' => 'asc',
+                                    'label' => __('date created')
+                            ));?>
+                            
+                            <!-- Status, check key name ans label name -->
+
+                        </md-menu-content>
+                    </md-menu>
+
                 </div>
             </md-toolbar>
             
             <div layout-padding>
-            <div class="sortBy">
+            <!-- <div class="sortBy">
                 <strong><?php echo __("Sort by:") ?> </strong>
                 <?php
                 echo $this->Paginator->sort('name', __('list name'));
@@ -91,7 +127,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
                 ?>
 
-            </div>
+            </div> -->
 
             <?php
             $this->Pagination->display();

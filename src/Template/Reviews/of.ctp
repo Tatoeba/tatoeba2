@@ -103,10 +103,58 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $title ?></h2>
+
+                <md-menu md-offset="5 50" md-position-mode="target-right target">
+                    <md-button ng-click="$mdOpenMenu($event)">
+                        <md-icon>sort</md-icon> Sort by
+                    </md-button>
+                    <md-menu-content>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'modified',
+                                'direction' => 'desc',
+                                'label' => __('date modified')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'modified',
+                                'direction' => 'asc',
+                                'label' => __('date modified')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'created',
+                                'direction' => 'desc',
+                                'label' => __('date created')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'created',
+                                'direction' => 'asc',
+                                'label' => __('date created')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'sentence_id',
+                                'direction' => 'desc',
+                                'label' => __('sentence id')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'sentence_id',
+                                'direction' => 'asc',
+                                'label' => __('sentence id')
+                        ));?>
+                            
+                            <!-- Status, check key name ans label name -->
+
+                        </md-menu-content>
+                    </md-menu>
+
             </div>
         </md-toolbar>
 
-        <div class="sortBy">
+        <!-- <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
             /* @translators: sort option in the list of reviews */
@@ -118,7 +166,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             /* @translators: sort option in the list of reviews */
             echo $this->Paginator->sort('sentence_id', __("sentence id"));
             ?>
-        </div>
+        </div> -->
         <?php
             $this->Pagination->display();
 

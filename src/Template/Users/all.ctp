@@ -89,11 +89,47 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             );
             ?>
             </h2>
+
+            <md-menu md-offset="5 50" md-position-mode="target-right target">
+                <md-button ng-click="$mdOpenMenu($event)">
+                    <md-icon>sort</md-icon> Sort by
+                </md-button>
+                <md-menu-content>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'username',
+                            'direction' => 'asc',
+                            'label' => __('Username')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'username',
+                            'direction' => 'desc',
+                            'label' => __('Username')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'since',
+                            'direction' => 'desc',
+                            'label' => __('Member since')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'since',
+                            'direction' => 'asc',
+                            'label' => __('Member since')
+                    ));?>
+                    
+                    <!-- Status, check key name ans label name -->
+
+                </md-menu-content>
+            </md-menu>
+
             </div>
         </md-toolbar>
         
         <md-content>
-        <div class="sortBy">
+        <!-- <div class="sortBy">
             <strong><?php echo __('Sort by:'); ?></strong>
             <?php
             /* @translators: sort option in the All members page */
@@ -104,7 +140,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             echo ' | ';
             echo $this->Pagination->sortForRole();
             ?>
-        </div>
+        </div> -->
 
 
         <?php $this->Pagination->display(); ?>

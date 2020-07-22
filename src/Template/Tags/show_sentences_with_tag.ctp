@@ -63,12 +63,46 @@ $tagsIndexUrl = $this->Url->build([
             </h2>
             
             <?= $this->element('sentences/expand_all_menus_button'); ?>
+
+            <md-menu md-offset="5 50" md-position-mode="target-right target">
+                <md-button ng-click="$mdOpenMenu($event)">
+                    <md-icon>sort</md-icon> Sort by
+                </md-button>
+                <md-menu-content>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'sentence_id',
+                            'direction' => 'desc',
+                            'label' => __('date created')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'sentence_id',
+                            'direction' => 'asc',
+                            'label' => __('date created')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'added_time',
+                            'direction' => 'asc',
+                            'label' => __('date of tag')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'added_time',
+                            'direction' => 'desc',
+                            'label' => __('date of tag')
+                    ));?>
+                        
+                </md-menu-content>
+            </md-menu>
+
         </div>
     </md-toolbar>
 
     <md-content>
 
-        <div class="sortBy">
+        <!-- <div class="sortBy">
             <strong><?php echo __("Sort by:") ?></strong>
             <?php
             /* @translators: sort option in the page that lists sentences having a certain tag */
@@ -79,7 +113,7 @@ $tagsIndexUrl = $this->Url->build([
             /* @translators: sort option in the page that lists sentences having a certain tag */
             echo $this->Paginator->sort('added_time', __("date of tag"));
             ?>
-        </div>
+        </div> -->
 
         <?php $this->Pagination->display(); ?>
 
