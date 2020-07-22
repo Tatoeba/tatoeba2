@@ -358,11 +358,25 @@ echo $this->Form->create('AdvancedSearch', [
             <?= __('More search options') ?>
         </md-button>
         <?php if ($layout == 'row'): ?>
-            <md-button type="submit" class="md-primary" formaction="/eng/sentences/advanced_search">
+            <md-button type="submit" class="md-primary" formaction="">
                 <?= __('Permalink to search') ?>
             </md-button>
         <?php endif; ?>
     </div>
+
+    <?php if ($this->request->getParam("?")): ?>
+        <md-divider style="text-align:left">
+            <md-button class="md-primary md-raised"
+                        href="<?= $this->Url->build([
+                            "controller" => "Sentences",
+                            "action" => "advanced_search",
+                            "?" => [],
+                        ]);?>">
+                <?= __('Clear') ?>
+            </md-button>
+            <i><?= __("This form has been filled by a template.")?></i>
+        </md-divider>
+    <?php endif; ?>
 </div>
 
 <?php
