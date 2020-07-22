@@ -81,25 +81,25 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             <?php echo $this->element('sort_option', array(
                                     'param' => 'modified',
                                     'direction' => 'desc',
-                                    'label' => __('last updated')
+                                    'label' => __('Most recently updated')
                             ));?>
 
                             <?php echo $this->element('sort_option', array(
                                     'param' => 'modified',
                                     'direction' => 'asc',
-                                    'label' => __('last updated')
+                                    'label' => __('Least recently updated')
                             ));?>
 
                             <?php echo $this->element('sort_option', array(
                                     'param' => 'created',
                                     'direction' => 'desc',
-                                    'label' => __('date created')
+                                    'label' => __('Newest first')
                             ));?>
 
                             <?php echo $this->element('sort_option', array(
                                     'param' => 'created',
                                     'direction' => 'asc',
-                                    'label' => __('date created')
+                                    'label' => __('Oldest first')
                             ));?>
                             
                             <!-- Status, check key name ans label name -->
@@ -111,23 +111,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </md-toolbar>
             
             <div layout-padding>
-            <!-- <div class="sortBy">
-                <strong><?php echo __("Sort by:") ?> </strong>
-                <?php
-                echo $this->Paginator->sort('name', __('list name'));
-                echo " | ";
-                echo $this->Paginator->sort('created', __('date created'));
-                echo " | ";
-                echo $this->Paginator->sort(
-                  'numberOfSentences',
-                    __('number of sentences')
-                );
-                echo " | ";
-                $options = array('defaultOrders' => array('modified' => 'desc'));
-                echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
-                ?>
-
-            </div> -->
 
             <?php
             $this->Pagination->display();

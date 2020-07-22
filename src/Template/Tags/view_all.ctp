@@ -93,25 +93,25 @@ $tagsIndexUrl = $this->Url->build([
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'nbrOfSentences',
                                 'direction' => 'desc',
-                                'label' => __('count')
+                                'label' => __('Highest number of sentences')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'nbrOfSentences',
                                 'direction' => 'asc',
-                                'label' => __('count')
+                                'label' => __('Lowest number of sentences')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'name',
                                 'direction' => 'asc',
-                                'label' => __('name')
+                                'label' => __('Tag name (alphabetical)')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'name',
                                 'direction' => 'desc',
-                                'label' => __('name')
+                                'label' => __('Tag name (reverse alphabetical)')
                         ));?>
                         
                     </md-menu-content>

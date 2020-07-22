@@ -73,49 +73,49 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'name',
                                 'direction' => 'asc',
-                                'label' => __('list name')
+                                'label' => __('List name (alphabetical)')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'name',
                                 'direction' => 'desc',
-                                'label' => __('list name')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'created',
-                                'direction' => 'asc',
-                                'label' => __('date created')
+                                'label' => __('List name (reverse alphabetical)')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'created',
                                 'direction' => 'desc',
-                                'label' => __('date created')
+                                'label' => __('Newest first')
+                        ));?>
+
+                        <?php echo $this->element('sort_option', array(
+                                'param' => 'created',
+                                'direction' => 'asc',
+                                'label' => __('Oldest first')
                         ));?>
                         
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'numberOfSentences',
-                                'direction' => 'asc',
-                                'label' => __('number of sentences')
+                                'direction' => 'desc',
+                                'label' => __('Highest number of sentences')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'numberOfSentences',
-                                'direction' => 'desc',
-                                'label' => __('number of sentences')
+                                'direction' => 'asc',
+                                'label' => __('Lowest number of sentences')
                         ));?>
 
                         <?php echo $this->element('sort_option_defaults', array(
                                 'param' => 'modified',
                                 'direction' => 'desc',
-                                'label' => __('last updated')
+                                'label' => __('Most recently updated')
                         ));?>
 
                         <?php echo $this->element('sort_option_defaults', array(
                                 'param' => 'modified',
                                 'direction' => 'asc',
-                                'label' => __('last updated')
+                                'label' => __('Least recently updated')
                         ));?>
                         
                     </md-menu-content>

@@ -113,37 +113,37 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'modified',
                                 'direction' => 'desc',
-                                'label' => __('date modified')
+                                'label' => __('Most recently updated')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'modified',
                                 'direction' => 'asc',
-                                'label' => __('date modified')
+                                'label' => __('Least recently updated')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'created',
                                 'direction' => 'desc',
-                                'label' => __('date created')
+                                'label' => __('Newest first')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'created',
                                 'direction' => 'asc',
-                                'label' => __('date created')
+                                'label' => __('Oldest first')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'sentence_id',
                                 'direction' => 'desc',
-                                'label' => __('sentence id')
+                                'label' => __('Newest sentences')
                         ));?>
 
                         <?php echo $this->element('sort_option', array(
                                 'param' => 'sentence_id',
                                 'direction' => 'asc',
-                                'label' => __('sentence id')
+                                'label' => __('Oldest sentences')
                         ));?>
                             
                             <!-- Status, check key name ans label name -->
