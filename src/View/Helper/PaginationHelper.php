@@ -144,13 +144,13 @@ class PaginationHelper extends AppHelper
      *
      * @return string
      **/
-    public function sortForRole() {
+    public function sortForRole($label = 'Member', $options = array()) {
         $templates = $this->Paginator->getTemplates();
         $this->Paginator->setTemplates([
             'sortAsc' => $this->Paginator->getTemplates('sortDesc'),
             'sortDesc' => $this->Paginator->getTemplates('sortAsc')
         ]);
-        $sortLink = $this->Paginator->sort('role', __('Member status'));
+        $sortLink = $this->Paginator->sort('role', $label, $options);
         $this->Paginator->setTemplates($templates);
         return $sortLink;
     }

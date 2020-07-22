@@ -99,28 +99,36 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
                     <?php echo $this->element('sort_option', array(
                             'param' => 'username',
                             'direction' => 'asc',
-                            'label' => __('Username')
+                            'label' => __('Username (alphabetical)')
                     ));?>
 
                     <?php echo $this->element('sort_option', array(
                             'param' => 'username',
                             'direction' => 'desc',
-                            'label' => __('Username')
+                            'label' => __('Username (reverse alphabetical)')
                     ));?>
 
                     <?php echo $this->element('sort_option', array(
                             'param' => 'since',
                             'direction' => 'desc',
-                            'label' => __('Member since')
+                            'label' => __('Newest first')
                     ));?>
 
                     <?php echo $this->element('sort_option', array(
                             'param' => 'since',
                             'direction' => 'asc',
-                            'label' => __('Member since')
+                            'label' => __('Oldest first')
                     ));?>
-                    
-                    <!-- Status, check key name ans label name -->
+
+                    <?php echo $this->element('sort_option_role', array(
+                            'direction' => 'asc',
+                            'label' => __('Status (admin to contributor)')
+                    ));?>
+
+                    <?php echo $this->element('sort_option_role', array(
+                            'direction' => 'desc',
+                            'label' => __('Status (contributor to admin)')
+                    ));?>
 
                 </md-menu-content>
             </md-menu>
@@ -129,18 +137,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         </md-toolbar>
         
         <md-content>
-        <!-- <div class="sortBy">
-            <strong><?php echo __('Sort by:'); ?></strong>
-            <?php
-            /* @translators: sort option in the All members page */
-            echo $this->Paginator->sort('username', __('Username'));
-            echo ' | ';
-            /* @translators: sort option in the All members page */
-            echo $this->Paginator->sort('since', __('Member since'));
-            echo ' | ';
-            echo $this->Pagination->sortForRole();
-            ?>
-        </div> -->
 
 
         <?php $this->Pagination->display(); ?>
