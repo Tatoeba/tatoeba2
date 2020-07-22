@@ -29,6 +29,21 @@ echo $this->Form->create('AdvancedSearch', [
 ]);
 ?>
 
+<?php if ($this->request->getParam("?")): ?>
+    <md-divider>
+        <md-button class="md-primary md-raised"
+                    href="<?= $this->Url->build([
+                        "controller" => "Sentences",
+                        "action" => "advanced_search",
+                        "?" => [],
+                    ]);?>">
+            <?= __('Clear') ?>
+        </md-button>
+        <i><?= __("This form has been filled by a template.")?></i>
+    </md-divider>
+    <md-divider></md-divider>
+<?php endif; ?>
+
 <div layout="column" ng-app="app" ng-cloak>
     <div layout="<?= $layout ?>">
         <div class="column-1" layout="column" flex>
@@ -370,20 +385,6 @@ echo $this->Form->create('AdvancedSearch', [
             </span>
         <?php endif; ?>
     </div>
-
-    <?php if ($this->request->getParam("?")): ?>
-        <md-divider>
-            <md-button class="md-primary md-raised"
-                        href="<?= $this->Url->build([
-                            "controller" => "Sentences",
-                            "action" => "advanced_search",
-                            "?" => [],
-                        ]);?>">
-                <?= __('Clear') ?>
-            </md-button>
-            <i><?= __("This form has been filled by a template.")?></i>
-        </md-divider>
-    <?php endif; ?>
 </div>
 
 <?php
