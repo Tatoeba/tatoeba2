@@ -137,6 +137,40 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 </md-icon>
             </md-button>
             <?php } ?>
+
+            <md-menu md-offset="5 50" md-position-mode="target-right target">
+                <md-button ng-click="$mdOpenMenu($event)">
+                    <md-icon>sort</md-icon> Sort by
+                </md-button>
+                <md-menu-content>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'created',
+                            'direction' => 'desc',
+                            'label' => __('Most recently added')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'created',
+                            'direction' => 'asc',
+                            'label' => __('Least recently added')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'sentence_id',
+                            'direction' => 'desc',
+                            'label' => __('Newest sentences')
+                    ));?>
+
+                    <?php echo $this->element('sort_option', array(
+                            'param' => 'sentence_id',
+                            'direction' => 'asc',
+                            'label' => __('Oldest sentences')
+                    ));?>
+
+                </md-menu-content>
+            </md-menu>
+
         </div>
     </md-toolbar>
 
@@ -206,16 +240,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         <?php
     } else {
         ?>
-        <div class="sortBy" id="sortBy">
-        <strong><?php echo __("Sort by:") ?> </strong>
-        <?php
-        /* @translators: sort option in a list page */
-        echo $this->Paginator->sort('created', __('date added to list'));
-        echo ' | ';
-        /* @translators: sort option in a list page */
-        echo $this->Paginator->sort('sentence_id', __('date created'));
-        ?>
-        </div>
         <?php
     }
     ?>
