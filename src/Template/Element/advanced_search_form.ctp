@@ -347,7 +347,7 @@ echo $this->Form->create('AdvancedSearch', [
         </div>
     </div>
 
-    <div class="buttons" layout="<?= $layout ?>">
+    <div class="buttons" layout="<?= $layout ?>" style="align-items:center">
         <md-button type="submit" class="md-primary md-raised">
             <?php /* @translators: search form submit button (verb) */ ?>
             <?= __x('button', 'Search') ?>
@@ -357,15 +357,22 @@ echo $this->Form->create('AdvancedSearch', [
                    href="http://en.wiki.tatoeba.org/articles/show/text-search">
             <?= __('More search options') ?>
         </md-button>
-        <?php if ($layout == 'row'): ?>
+        <?php if (!(isset($isSidebar) && $isSidebar)): ?>
             <md-button type="submit" class="md-primary" formaction="">
-                <?= __('Permalink to search') ?>
+                <?= __('Create a search template') ?>
             </md-button>
+            <span>
+                <md-icon class="unsure">help</md-icon>
+                <md-tooltip md-direction="right" md-delay="1000">
+                    <?= __('Use this button to use the currently selected criteria as a base for other searches.
+                        You can also bookmark/share the search template with someone else.') ?>
+                </md-tooltip>
+            </span>
         <?php endif; ?>
     </div>
 
     <?php if ($this->request->getParam("?")): ?>
-        <md-divider style="text-align:left">
+        <md-divider>
             <md-button class="md-primary md-raised"
                         href="<?= $this->Url->build([
                             "controller" => "Sentences",
