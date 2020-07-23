@@ -29,22 +29,22 @@ echo $this->Form->create('AdvancedSearch', [
 ]);
 ?>
 
-<?php if ($this->request->getParam("?")): ?>
-    <div id="template-notif">
-        <i><?= __("This form has been filled by a template.")?></i>
-        <md-button class="md-primary md-raised"
-                    href="<?= $this->Url->build([
-                        "controller" => "Sentences",
-                        "action" => "advanced_search",
-                        "?" => [],
-                    ]);?>">
-            <?= __('Clear Form') ?>
-        </md-button>
-    </div>
-    <md-divider></md-divider>
-<?php endif; ?>
-
 <div layout="column" ng-app="app" ng-cloak>
+    <?php if ($this->request->getParam("?") && !(isset($isSidebar) && $isSidebar)): ?>
+        <div id="template-notif">
+            <i><?= __("This form has been filled by a template.")?></i>
+            <md-button class="md-primary md-raised"
+                        href="<?= $this->Url->build([
+                            "controller" => "Sentences",
+                            "action" => "advanced_search",
+                            "?" => [],
+                        ]);?>">
+                <?= __('Clear Form') ?>
+            </md-button>
+        </div>
+        <md-divider></md-divider>
+    <?php endif; ?>
+
     <div layout="<?= $layout ?>">
         <div class="column-1" layout="column" flex>
             <?php /* @translators: section title in advanced search form */ ?>
@@ -377,10 +377,10 @@ echo $this->Form->create('AdvancedSearch', [
                 <?= __('Create a search template') ?>
             </md-button>
             <span>
-                <md-icon class="unsure">help</md-icon>
+                <md-icon>help</md-icon>
                 <md-tooltip md-direction="right" md-delay="1000">
-                    <?= __('Use this button to use the currently selected criteria as a base for other searches.
-                        You can also bookmark/share the search template with someone else.') ?>
+                    <?= __('Use this button to use the currently selected criteria as a base for other searches. '
+                          .'You can also bookmark/share the search template with someone else.') ?>
                 </md-tooltip>
             </span>
         <?php endif; ?>
