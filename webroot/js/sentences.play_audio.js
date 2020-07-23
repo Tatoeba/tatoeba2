@@ -16,13 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function () {
-  $(document).watch('addrule', function () {
-    $('.audioAvailable').off();
-    $('.audioAvailable').click(function () {
-      var audioURL = $(this).attr('href');
-      var audio = new Audio(audioURL);
-      audio.play();
+/* Polyfill for IE */
+if (window.NodeList && !NodeList.prototype.forEach) {
+   NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
+var addAudio = function () {
+    document.querySelectorAll('.audioAvailable').forEach(function(elem) {
+       elem.addEventListener('click', function(event) {
+           var audioURL = event.target.getAttribute('href');
+           var audio = new Audio(audioURL);
+           audio.play();
+       });
     });
-  });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', addAudio);
+} else {
+  addAudio();
+}
