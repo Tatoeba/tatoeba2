@@ -362,7 +362,7 @@ echo $this->Form->create('AdvancedSearch', [
         </div>
     </div>
 
-    <div class="buttons" layout="<?= $layout ?>" style="align-items:center">
+    <div class="buttons" layout="<?= $layout ?>" style="align-items:<?= (isset($isSidebar) && $isSidebar) ? 'stretch' : 'center'?>">
         <md-button type="submit" class="md-primary md-raised">
             <?php /* @translators: search form submit button (verb) */ ?>
             <?= __x('button', 'Search') ?>
