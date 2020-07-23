@@ -30,15 +30,17 @@ echo $this->Form->create('AdvancedSearch', [
 ?>
 
 <?php if ($this->request->getParam("?")): ?>
-    <i><?= __("This form has been filled by a template.")?></i>
-    <md-button class="md-primary md-raised"
-                href="<?= $this->Url->build([
-                    "controller" => "Sentences",
-                    "action" => "advanced_search",
-                    "?" => [],
-                ]);?>">
-        <?= __('Clear Form') ?>
-    </md-button>
+    <div id="template-notif">
+        <i><?= __("This form has been filled by a template.")?></i>
+        <md-button class="md-primary md-raised"
+                    href="<?= $this->Url->build([
+                        "controller" => "Sentences",
+                        "action" => "advanced_search",
+                        "?" => [],
+                    ]);?>">
+            <?= __('Clear Form') ?>
+        </md-button>
+    </div>
     <md-divider></md-divider>
 <?php endif; ?>
 
