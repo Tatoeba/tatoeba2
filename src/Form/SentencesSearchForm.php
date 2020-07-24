@@ -21,7 +21,7 @@ class SentencesSearchForm extends Form
 
     private $ownerId;
 
-    private $defaultCriteria = [
+    const DEFAULT_CRITERIA = [
         'query' => '',
         'from' => 'und',
         'to' => 'und',
@@ -226,7 +226,7 @@ class SentencesSearchForm extends Form
 
         /* If an invalid sort was provided,
            fallback to default sort instead of no sort */
-        return $sort ?? $this->search->sort($this->defaultCriteria['sort']);
+        return $sort ?? $this->search->sort(SentencesSearchForm::DEFAULT_CRITERIA['sort']);
     }
 
     protected function setDataTo(string $to) {
@@ -249,10 +249,10 @@ class SentencesSearchForm extends Form
         }
 
         /* Remove unknown parameters */
-        $data = array_intersect_key($data, $this->defaultCriteria);
+        $data = array_intersect_key($data, SentencesSearchForm::DEFAULT_CRITERIA);
 
         /* Apply default criteria */
-        $data = array_merge($this->defaultCriteria, $data);
+        $data = array_merge(SentencesSearchForm::DEFAULT_CRITERIA, $data);
 
         /* Make sure trans_filter is applied at the end
            because it depends on other trans_* filters */

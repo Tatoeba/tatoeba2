@@ -556,8 +556,9 @@ class SentencesController extends AppController
         $search = new SentencesSearchForm();
 
         $search->setData($this->request->getQueryParams());
+        $usesTemplate = $search->getData() != SentencesSearchForm::DEFAULT_CRITERIA;
 
-        $this->set($search->getData());
+        $this->set($search->getData() + compact('usesTemplate'));
 
         $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
         $this->set(compact('searchableLists'));
