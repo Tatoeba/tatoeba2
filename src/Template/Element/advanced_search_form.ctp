@@ -378,7 +378,7 @@ echo $this->Form->create('AdvancedSearch', [
             </md-button>
             <span>
                 <md-icon>help</md-icon>
-                <md-tooltip md-direction="top">
+                <md-tooltip class="multiline" md-direction="top">
                     <?= __('Use this button to use the currently selected criteria as a base for other searches. '
                           .'You can also bookmark/share the search template with someone else.') ?>
                 </md-tooltip>
