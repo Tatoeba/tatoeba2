@@ -137,7 +137,7 @@ class DateHelperTest extends TestCase {
             'CakePHP Time instance' =>
                 [new Time('1987-06-05 23:45:19'), 'June 5, 1987 at 11:45 PM'],
             'CakePHP FrozenTime instance' =>
-                [new FrozenTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45 PM'],
+                [new FrozenTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45:19 PM UTC'],
             'string' => ['2000-12-07 01:23:45', 'December 7, 2000 at 1:23 AM']
         ];
     }
@@ -169,7 +169,7 @@ class DateHelperTest extends TestCase {
     }
 
     public function testAgoWorksWithFrozenTimeObjects() {
-        $expected = 'November 24, 1988 at 1:45 PM';
+        $expected = 'November 24, 1988 at 1:45:00 PM UTC';
         $this->assertEquals($expected, $this->DateHelper->ago(new FrozenTime('1988-11-24 13:45:00')));
     }
 }
