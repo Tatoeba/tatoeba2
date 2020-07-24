@@ -146,27 +146,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                                 'label' => __('Oldest sentences')
                         ));?>
                             
-                            <!-- Status, check key name ans label name -->
-
                         </md-menu-content>
                     </md-menu>
 
             </div>
         </md-toolbar>
 
-        <!-- <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            /* @translators: sort option in the list of reviews */
-            echo $this->Paginator->sort('modified', __("date modified"));
-            echo " | ";
-            /* @translators: sort option in the list of reviews */
-            echo $this->Paginator->sort('created', __("date created"));
-            echo " | ";
-            /* @translators: sort option in the list of reviews */
-            echo $this->Paginator->sort('sentence_id', __("sentence id"));
-            ?>
-        </div> -->
         <?php
             $this->Pagination->display();
 

@@ -102,8 +102,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                                     'label' => __('Oldest first')
                             ));?>
                             
-                            <!-- Status, check key name ans label name -->
-
                         </md-menu-content>
                     </md-menu>
 
