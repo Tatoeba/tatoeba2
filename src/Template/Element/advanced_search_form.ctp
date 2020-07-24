@@ -32,14 +32,14 @@ echo $this->Form->create('AdvancedSearch', [
 <div layout="column" ng-app="app" ng-cloak>
     <?php if ($this->request->getParam("?") && !(isset($isSidebar) && $isSidebar)): ?>
         <div id="template-notif">
-            <i><?= __("This form has been filled by a template.")?></i>
+            <i><?= __("This form is pre-filled.")?></i>
             <md-button class="md-primary md-raised"
                         href="<?= $this->Url->build([
                             "controller" => "Sentences",
                             "action" => "advanced_search",
                             "?" => [],
                         ]);?>">
-                <?= __('Clear Form') ?>
+                <?= __('Clear form') ?>
             </md-button>
         </div>
         <md-divider></md-divider>
@@ -362,7 +362,7 @@ echo $this->Form->create('AdvancedSearch', [
         </div>
     </div>
 
-    <div class="buttons" layout="<?= $layout ?>" style="align-items:<?= (isset($isSidebar) && $isSidebar) ? 'stretch' : 'center'?>">
+    <div class="buttons" layout="<?= $layout ?>">
         <md-button type="submit" class="md-primary md-raised">
             <?php /* @translators: search form submit button (verb) */ ?>
             <?= __x('button', 'Search') ?>
@@ -378,7 +378,7 @@ echo $this->Form->create('AdvancedSearch', [
             </md-button>
             <span>
                 <md-icon>help</md-icon>
-                <md-tooltip md-direction="top" md-delay="1000">
+                <md-tooltip md-direction="top">
                     <?= __('Use this button to use the currently selected criteria as a base for other searches. '
                           .'You can also bookmark/share the search template with someone else.') ?>
                 </md-tooltip>
