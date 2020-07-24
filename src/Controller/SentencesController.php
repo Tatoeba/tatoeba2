@@ -535,7 +535,7 @@ class SentencesController extends AppController
         } catch (Exception $e) {
             $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
             $this->loadComponent('Error');
-            $this->Error->log('Search error: ' . $e->getMessage());
+            $this->log($this->Error->format('Search error: ' . $e->getMessage()));
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));

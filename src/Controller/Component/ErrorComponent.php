@@ -2,7 +2,6 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Psr\Log\LogLevel;
 
 class ErrorComponent extends Component
 {
@@ -14,7 +13,7 @@ class ErrorComponent extends Component
         return $info;
     }
 
-    public function log($message, $level = LogLevel::ERROR, $context = []) {
+    public function format($message) {
         if (strlen($message)) {
             $message .= "\nRequest URL: " . $this->request->getRequestTarget() . "\n";
 
@@ -27,7 +26,7 @@ class ErrorComponent extends Component
             $agent = $this->request->getEnv('HTTP_USER_AGENT');
             $message .= $this->infoLine('User Agent', $agent);
 
-            return parent::log($message);
+            return $message;
         }
     }
 }
