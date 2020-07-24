@@ -33,7 +33,7 @@ echo $this->Form->create('AdvancedSearch', [
     <?php if ($this->request->getParam("?") && !(isset($isSidebar) && $isSidebar)): ?>
         <div id="template-notif">
             <i><?= __("This form is pre-filled.")?></i>
-            <md-button class="md-primary md-raised"
+            <md-button class="md-primary"
                         href="<?= $this->Url->build([
                             "controller" => "Sentences",
                             "action" => "advanced_search",
