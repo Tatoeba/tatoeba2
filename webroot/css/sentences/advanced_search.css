@@ -31,8 +31,8 @@
 }
 
 md-tooltip.multiline {
-    /* Only wrap tooltip if it takes more than 90% of window width. */
-    max-width: 90vw;
+    /* Only wrap tooltip if it takes more than 20% of page width. */
+    max-width: 20%;
 }
 
 md-tooltip.multiline .md-content {
