@@ -21,7 +21,7 @@
                             }
                         ?>
                     </md-icon>
-                    <span style="padding-right: 12px">
+                    <span class="sortOption">
                         <?php echo $this->Paginator->sort($option['param'], $option['label'], ['direction'=>$option['direction'], 'lock'=>true]); ?>
                     </span>
                 </md-button>
