@@ -84,38 +84,17 @@ $tagsIndexUrl = $this->Url->build([
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $this->safeForAngular($title) ?></h2>
-                <md-menu md-offset="5 50" md-position-mode="target-right target">
-                    <md-button ng-click="$mdOpenMenu($event)">
-                        <md-icon>sort</md-icon> Sort by
-                    </md-button>
-                    <md-menu-content>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'nbrOfSentences',
-                                'direction' => 'desc',
-                                'label' => __('Highest number of sentences')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'nbrOfSentences',
-                                'direction' => 'asc',
-                                'label' => __('Lowest number of sentences')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'name',
-                                'direction' => 'asc',
-                                'label' => __('Tag name (alphabetical)')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'name',
-                                'direction' => 'desc',
-                                'label' => __('Tag name (reverse alphabetical)')
-                        ));?>
-                        
-                    </md-menu-content>
-                </md-menu>
+                
+                <?php 
+                    $options = array(
+                        array( 'param' => 'nbrOfSentences', 'direction' => 'desc', 'label' => __('Highest number of sentences')),
+                        array( 'param' => 'nbrOfSentences', 'direction' => 'asc', 'label' => __('Lowest number of sentences') ),
+                        array( 'param' => 'name', 'direction' => 'asc', 'label' => __('Tag name (alphabetical)')),
+                        array( 'param' => 'name', 'direction' => 'desc', 'label' => __('Tag name (reverse alphabetical)'))
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
+                
             </div>
         </md-toolbar>
 

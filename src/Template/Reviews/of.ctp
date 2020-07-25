@@ -104,50 +104,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div class="md-toolbar-tools">
                 <h2><?= $title ?></h2>
 
-                <md-menu md-offset="5 50" md-position-mode="target-right target">
-                    <md-button ng-click="$mdOpenMenu($event)">
-                        <md-icon>sort</md-icon> Sort by
-                    </md-button>
-                    <md-menu-content>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'modified',
-                                'direction' => 'desc',
-                                'label' => __('Most recently updated')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'modified',
-                                'direction' => 'asc',
-                                'label' => __('Least recently updated')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'created',
-                                'direction' => 'desc',
-                                'label' => __('Newest first')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'created',
-                                'direction' => 'asc',
-                                'label' => __('Oldest first')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'sentence_id',
-                                'direction' => 'desc',
-                                'label' => __('Newest sentences')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'sentence_id',
-                                'direction' => 'asc',
-                                'label' => __('Oldest sentences')
-                        ));?>
-                            
-                        </md-menu-content>
-                    </md-menu>
+                <?php 
+                    $options = array(
+                        array( 'param' => 'modified', 'direction' => 'desc', 'label' => __('Most recently updated')),
+                        array( 'param' => 'modified', 'direction' => 'asc', 'label' => __('Least recently updated')),
+                        array( 'param' => 'created', 'direction' => 'desc', 'label' => __('Newest first')),
+                        array( 'param' => 'created', 'direction' => 'asc', 'label' => __('Oldest first') ),
+                        array( 'param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences') ),
+                        array( 'param' => 'sentence_id', 'direction' => 'asc', 'label' => __('Oldest sentences') )
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
 
             </div>
         </md-toolbar>

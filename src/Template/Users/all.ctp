@@ -90,48 +90,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             ?>
             </h2>
 
-            <md-menu md-offset="5 50" md-position-mode="target-right target">
-                <md-button ng-click="$mdOpenMenu($event)">
-                    <md-icon>sort</md-icon> Sort by
-                </md-button>
-                <md-menu-content>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'username',
-                            'direction' => 'asc',
-                            'label' => __('Username (alphabetical)')
-                    ));?>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'username',
-                            'direction' => 'desc',
-                            'label' => __('Username (reverse alphabetical)')
-                    ));?>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'since',
-                            'direction' => 'desc',
-                            'label' => __('Newest first')
-                    ));?>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'since',
-                            'direction' => 'asc',
-                            'label' => __('Oldest first')
-                    ));?>
-
-                    <?php echo $this->element('sort_option_role', array(
-                            'direction' => 'asc',
-                            'label' => __('Status (admin to contributor)')
-                    ));?>
-
-                    <?php echo $this->element('sort_option_role', array(
-                            'direction' => 'desc',
-                            'label' => __('Status (contributor to admin)')
-                    ));?>
-
-                </md-menu-content>
-            </md-menu>
+            <?php 
+                $options = array(
+                    array( 'param' => 'username', 'direction' => 'asc', 'label' => __('Username (alphabetical)')),
+                    array( 'param' => 'username', 'direction' => 'desc', 'label' => __('Username (reverse alphabetical)')),
+                    array( 'param' => 'since', 'direction' => 'desc', 'label' => __('Newest first')),
+                    array( 'param' => 'since', 'direction' => 'asc', 'label' => __('Oldest first')),
+                    array( 'param' => 'role', 'direction' => 'asc', 'label' => __('Status (admin to contributor)')),
+                    array( 'param' => 'role', 'direction' => 'desc', 'label' => __('Status (contributor to admin)') )
+                );
+                echo $this->element('sort_menu', array('options' => $options));
+            ?>
 
             </div>
         </md-toolbar>

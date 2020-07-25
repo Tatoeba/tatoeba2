@@ -64,62 +64,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <h2 flex>
                     <?= $this->safeForAngular($title) ?>
                 </h2>
-                <md-menu md-offset="5 50" md-position-mode="target-right target">
-                    <md-button ng-click="$mdOpenMenu($event)">
-                        <md-icon>sort</md-icon> Sort by
-                    </md-button>
-                    <md-menu-content>
 
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'name',
-                                'direction' => 'asc',
-                                'label' => __('List name (alphabetical)')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'name',
-                                'direction' => 'desc',
-                                'label' => __('List name (reverse alphabetical)')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'created',
-                                'direction' => 'desc',
-                                'label' => __('Newest first')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'created',
-                                'direction' => 'asc',
-                                'label' => __('Oldest first')
-                        ));?>
-                        
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'numberOfSentences',
-                                'direction' => 'desc',
-                                'label' => __('Highest number of sentences')
-                        ));?>
-
-                        <?php echo $this->element('sort_option', array(
-                                'param' => 'numberOfSentences',
-                                'direction' => 'asc',
-                                'label' => __('Lowest number of sentences')
-                        ));?>
-
-                        <?php echo $this->element('sort_option_defaults', array(
-                                'param' => 'modified',
-                                'direction' => 'desc',
-                                'label' => __('Most recently updated')
-                        ));?>
-
-                        <?php echo $this->element('sort_option_defaults', array(
-                                'param' => 'modified',
-                                'direction' => 'asc',
-                                'label' => __('Least recently updated')
-                        ));?>
-                        
-                    </md-menu-content>
-                </md-menu>
+                <?php 
+                    $options = array(
+                        array('param' => 'name','direction' => 'asc','label' => __('List name (alphabetical)')),
+                        array('param' => 'name', 'direction' => 'desc','label' => __('List name (reverse alphabetical)')),
+                        array('param' => 'created','direction' => 'desc','label' => __('Newest first')),
+                        array('param' => 'created','direction' => 'asc','label' => __('Oldest first')),
+                        array('param' => 'numberOfSentences','direction' => 'desc','label' => __('Highest number of sentences')),
+                        array('param' => 'numberOfSentences','direction' => 'asc','label' => __('Lowest number of sentences')),
+                        array('param' => 'modified','direction' => 'desc','label' => __('Most recently updated')),
+                        array('param' => 'modified','direction' => 'asc','label' => __('Least recently updated'))
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
 
             </div>
         </md-toolbar>

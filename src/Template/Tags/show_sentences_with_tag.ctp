@@ -64,38 +64,15 @@ $tagsIndexUrl = $this->Url->build([
             
             <?= $this->element('sentences/expand_all_menus_button'); ?>
 
-            <md-menu md-offset="5 50" md-position-mode="target-right target">
-                <md-button ng-click="$mdOpenMenu($event)">
-                    <md-icon>sort</md-icon> Sort by
-                </md-button>
-                <md-menu-content>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'sentence_id',
-                            'direction' => 'desc',
-                            'label' => __('Newest sentences first')
-                    ));?>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'sentence_id',
-                            'direction' => 'asc',
-                            'label' => __('Oldest sentences first')
-                    ));?>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'added_time',
-                            'direction' => 'desc',
-                            'label' => __('Most recently tagged')
-                    ));?>
-
-                    <?php echo $this->element('sort_option', array(
-                            'param' => 'added_time',
-                            'direction' => 'asc',
-                            'label' => __('Least recently tagged')
-                    ));?>
-                        
-                </md-menu-content>
-            </md-menu>
+            <?php 
+                $options = array(
+                    array( 'param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences first')),
+                    array( 'param' => 'sentence_id', 'direction' => 'asc', 'label' => __('Oldest sentences first')),
+                    array( 'param' => 'added_time', 'direction' => 'desc', 'label' => __('Most recently tagged')),
+                    array( 'param' => 'added_time', 'direction' => 'asc', 'label' => __('Least recently tagged'))
+                );
+                echo $this->element('sort_menu', array('options' => $options));
+            ?>
 
         </div>
     </md-toolbar>
