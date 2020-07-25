@@ -697,7 +697,7 @@ class SentencesController extends AppController
                     )
                 ),
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['Sentences.modified' => 'DESC']
+                'order' => ['modified' => 'DESC']
             )
         );
 
