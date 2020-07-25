@@ -338,7 +338,7 @@ class ListsHelper extends AppHelper
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
                 <md-radio-button value='public' class='md-primary' title=
-                                 '<?=h(__("The list is displayed everywhere for everyone"))?>'>                  
+                                 '<?=h(__("The list is accessible to anyone and is listed on the 'Browse by list' page, as well as on the sentence page for every sentence it contains."))?>'>                  
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Public');?>      
                     
@@ -349,15 +349,17 @@ class ListsHelper extends AppHelper
                     </span>
                 </md-radio-button>
                 <md-radio-button value='listed' class='md-primary' title=
-                                 '<?= h(__("The list can be found over Browse -> Browse by list, not at the sentence page"))?>'>
+                                 '<?= h(__("The list is accessible to anyone and is listed on the 'Browse by list' page."))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Listed');?>
                 </md-radio-button>
-                <md-radio-button value='unlisted' class='md-primary'>
+                <md-radio-button value='unlisted' class='md-primary' title=
+                                 '<?= h(__("The list is accessible to anyone but is not listed on the 'Browse by list' page."))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Unlisted') ?>
                 </md-radio-button>
-                <md-radio-button value='private' class='md-primary'>
+                <md-radio-button value='private' class='md-primary' title=
+                                 '<?= h(__("The list is accessible only to you."))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Private') ?>
                 </md-radio-button>
