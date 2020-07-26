@@ -6,29 +6,22 @@
 
         <?php 
             foreach($options as $option) {
+                $icon = 'blank';
+                $url = $this->Paginator->generateUrl(['sort'=>$option['param'], 'direction'=>$option['direction']]);
+                if ($this->Paginator->sortKey() === $option['param'] && $this->Paginator->sortDir() === $option['direction']){
+                    $icon = 'check';
+                    $url = '#'; 
+                }
         ?>
 
             <md-menu-item>
-                <md-button>
-                    <?php 
-                        if ($this->Paginator->sortKey() === $option['param'] && $this->Paginator->sortDir() === $option['direction']){
-                    ?>
-                        <md-icon>check</md-icon>
+                <md-button href="<?php echo $url; ?>">
+                        <md-icon>
+                            <?php echo $icon; ?>
+                        </md-icon>
                         <span class="sortOption">
                             <?php echo $option['label']; ?>
                         </span>
-                    <?php
-                        }
-                        else {
-                    ?>
-                        <md-icon>blank</md-icon>
-                        <span class="sortOption">
-                            <?php echo $this->Paginator->sort($option['param'], $option['label'], ['direction'=>$option['direction']]); ?>
-                        </span>
-
-                    <?php
-                        }
-                    ?>
                 </md-button>
             </md-menu-item>
 
