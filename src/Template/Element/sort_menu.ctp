@@ -1,8 +1,8 @@
-<md-menu md-offset="5 50" md-position-mode="target-right target">
+<md-menu md-offset="5 50" md-position-mode="target-right target" ng-cloak>
     <md-button ng-click="$mdOpenMenu($event)">
-        <md-icon>sort</md-icon> Sort by
+        <md-icon>sort</md-icon> <?php echo __('Sort by'); ?>
     </md-button>
-    <md-menu-content ng-cloak>
+    <md-menu-content>
 
         <?php 
             foreach($options as $option) {
