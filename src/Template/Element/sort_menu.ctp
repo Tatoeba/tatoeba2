@@ -10,20 +10,25 @@
 
             <md-menu-item>
                 <md-button>
-                    <md-icon>
-                        <?php 
-                            //'modified' + 'desc' parameter is not detected in show_angular and sentences of user
-                            if ($this->Paginator->sortKey() === $option['param'] && $this->Paginator->sortDir() === $option['direction']){
-                                echo 'check'; 
-                            }
-                            else {
-                                echo 'blank';
-                            }
-                        ?>
-                    </md-icon>
-                    <span class="sortOption">
-                        <?php echo $this->Paginator->sort($option['param'], $option['label'], ['direction'=>$option['direction'], 'lock'=>true]); ?>
-                    </span>
+                    <?php 
+                        if ($this->Paginator->sortKey() === $option['param'] && $this->Paginator->sortDir() === $option['direction']){
+                    ?>
+                        <md-icon>check</md-icon>
+                        <span class="sortOption">
+                            <?php echo $option['label']; ?>
+                        </span>
+                    <?php
+                        }
+                        else {
+                    ?>
+                        <md-icon>blank</md-icon>
+                        <span class="sortOption">
+                            <?php echo $this->Paginator->sort($option['param'], $option['label'], ['direction'=>$option['direction']]); ?>
+                        </span>
+
+                    <?php
+                        }
+                    ?>
                 </md-button>
             </md-menu-item>
 
