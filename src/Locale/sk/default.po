@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-17 00:49+0200\n"
-"PO-Revision-Date: 2020-07-20 13:08+0000\n"
+"POT-Creation-Date: 2020-07-23 16:42+0200\n"
+"PO-Revision-Date: 2020-07-24 10:50+0000\n"
 "Last-Translator: Dominika S\n"
 "Language-Team: Slovak (http://www.transifex.com/tatoeba/tatoeba_website/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L133
 msgid "There's no user called {username}"
-msgstr "Používateľ s menom {username} nejestvuje."
+msgstr "Užívateľ s menom {username} nejestvuje."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
 msgid "Your audio settings have been saved."
@@ -41,7 +41,7 @@ msgstr "Vaše nastavenia zvuku boli uložené."
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr "Behom ukladania sa vyskytla chyba. Prosím, skúste to znova alebo nás kontaktujte."
+msgstr "Behom ukladania sa vyskytla chyba. Prosím, skúste to znova alebo chybu nahláste."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L72
 msgid "Tatoeba, new password"
@@ -71,7 +71,7 @@ msgstr "Veta #{firstNumber} a veta #{secondNumber} už si nie sú priamym prekla
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "Pri rušení prepojenia sa vyskytla chyba. Prosím, skúste to znova alebo nás kontaktujte."
+msgstr "Pri rušení prepojenia sa vyskytla chyba. Prosím, skúste to znova alebo chybu nahláste."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
@@ -226,7 +226,7 @@ msgstr "Tento účet bol označený ako spammerský. Nemôžete sa do neho znova
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
-msgstr "Musíte zadať vaše používateľské meno a heslo."
+msgstr "Musíte zadať vaše užívateľské meno a heslo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L216
 msgid ""
@@ -259,15 +259,15 @@ msgstr "Možno budete musieť preveriť váš priečinok so spamom, aby ste naš
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L398
 msgid "There is no registered user with this email address: "
-msgstr "Nejestvuje žiadny registrovaný používateľ s týmto emailom:"
+msgstr "Nejestvuje žiadny registrovaný užívateľ s týmto emailom:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L420
 msgid "No user with this username: "
-msgstr "Nie je žiadny používateľ s týmto prihlasovacím menom:"
+msgstr "Nie je žiadny užívateľ s týmto prihlasovacím menom:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L460
 msgid "No user with this ID: {id}"
-msgstr "Nie je žiadny používateľ s týmto číslom: {id}"
+msgstr "Nie je žiadny užívateľ s týmto číslom: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L78
 msgid "This language has already been added to your profile."
@@ -288,21 +288,6 @@ msgstr "Jazyk zmazaný."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L137
 msgid "You cannot delete this language."
 msgstr "Tento jazyk nemôžete zmazať ."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L146
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L37
-msgid "Unknown number of sentences"
-msgstr "Neznáme číslo vety."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
-msgid "{number} sentence"
-msgid_plural "{number} sentences"
-msgstr[0] "{number} veta"
-msgstr[1] "{number} vety"
-msgstr[2] "{number} viet"
-msgstr[3] "{number} viet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L200
 msgid "Message saved."
@@ -349,7 +334,7 @@ msgstr "„patrí do zoznamu číslo {listId}“, pretože zoznam {listId} je s�
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L277
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr "„veta je sirota“, pretože „majiteľ vety“ je nastavený na užívateľskú prezývku"
+msgstr "„veta je sirota“, pretože „majiteľ vety“ je nastavený na užívateľské meno"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -357,7 +342,7 @@ msgstr "„veta je sirota“, pretože „majiteľ vety“ je nastavený na už�
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L288
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr "„preklad je sirota“, pretože „majiteľ prekladu“ je nastavený na používateľské meno"
+msgstr "„preklad je sirota“, pretože „majiteľ prekladu“ je nastavený na užívateľské meno"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -508,7 +493,7 @@ msgstr "Musíte vyplniť políčko „Komu“."
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
-msgstr "Používateľ {username}, ktorému chcete poslať túto správu nejestvuje. Prosím, skúste iné prihlasovacie meno."
+msgstr "Užívateľ {username}, ktorému chcete poslať túto správu nejestvuje. Prosím, skúste iné prihlasovacie meno."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L61
 msgid "Comments cannot be empty."
@@ -569,11 +554,11 @@ msgstr "Potrebné vyplniť"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L94
 msgid "Username must be at least two characters long"
-msgstr "Užívateľské meno musí mať aspoň dva znaky."
+msgstr "Užívateľské meno musí obsahovať aspoň dva znaky."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
-msgstr "Užívateľské meno musí mať aspoň 20 znakov."
+msgstr "Užívateľské meno musí obsahovať aspoň 20 znakov."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
@@ -593,7 +578,7 @@ msgstr "Neplatná emailová adresa."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L100
 msgid "Username already taken."
-msgstr "Toto používateľské meno sa už používa."
+msgstr "Toto užívateľské meno sa už používa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L193
@@ -1046,7 +1031,7 @@ msgstr "Majiteľ:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L262
 msgid "Enter a username"
-msgstr "Zadajte používateľské meno"
+msgstr "Zadajte užívateľské meno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L267
@@ -1163,7 +1148,7 @@ msgstr "Odkaz:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L240
 msgctxt "link"
 msgid "Any"
-msgstr "Akýkoľvek"
+msgstr "Akéhokoľvek"
 
 #. dropdown option of "Link" field in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L242
@@ -1526,19 +1511,19 @@ msgid "Search"
 msgstr "Vyhľadávať"
 
 #. search language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L95
 msgid "From"
 msgstr "Z jazyka"
 
 #. option used in language selection dropdowns in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L128
 msgctxt "searchbar"
 msgid "Any language"
 msgstr "Akýkoľvek"
 
 #. translation language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L118
 msgctxt "language"
 msgid "To"
 msgstr "Do jazyka"
@@ -1580,7 +1565,7 @@ msgstr "Dobré zvyklosti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L57
 msgid "Say \"welcome\" to new users."
-msgstr "Privítajte nových používateľov."
+msgstr "Privítajte nových užívateľov."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L58
 msgid "Use private messages to discuss things unrelated to the sentence."
@@ -1867,7 +1852,7 @@ msgid "This sentence is not reliable."
 msgstr "Táto veta nie je spoľahlivá"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L19
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L283
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L281
 msgid "Copy sentence"
 msgstr "Skopírovať vetu"
 
@@ -2139,6 +2124,15 @@ msgstr "Moje správy na Nástenke"
 msgid "My sentence logs"
 msgstr "Záznamy o mojich vetách"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L44
+msgid "{number} sentence"
+msgid_plural "{number} sentences"
+msgstr[0] "{number} veta"
+msgstr[1] "{number} vety"
+msgstr[2] "{number} viet"
+msgstr[3] "{number} viet"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
@@ -2244,7 +2238,7 @@ msgstr "Jazyky členov"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr "Rodený hovoriaci"
+msgstr "Rodení hovoriaci"
 
 #. link to the user's profile in the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L33
@@ -2359,11 +2353,11 @@ msgstr "Vaše nové heslo:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L7
 msgid "My exports"
-msgstr ""
+msgstr "Moje prevody"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L8
 msgid "There are no exports."
-msgstr ""
+msgstr "Nie sú žiadne prevody"
 
 #. button to download a list (verb)
 #. / button to download on the download list page (verb)
@@ -2375,19 +2369,19 @@ msgstr "Stiahnuť"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L20
 msgid "Export in progress"
-msgstr ""
+msgstr "Prebieha prevod"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L23
 msgid "Export failed"
-msgstr ""
+msgstr "Prevod zlyhal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L30
 msgid "New export"
-msgstr ""
+msgstr "Nový prevod"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L43
 msgid "Export list"
-msgstr ""
+msgstr "Previesť zoznam"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L33
 msgid "{user}'s favorite sentences"
@@ -2579,7 +2573,7 @@ msgid ""
 "We have an <strong>XMPP room</strong>: <a "
 "href=\"{room}\">tatoeba@chat.tatoeba.org</a>.  You can join with your "
 "favorite XMPP client or <a href=\"{webclient}\">from your browser</a>."
-msgstr ""
+msgstr "Máme <strong>XMPP miestnosť</strong>: <a href=\"{room}\">tatoeba@chat.tatoeba.org</a>. Môžete sa pridať s vaším obľúbeným XMPP klientom alebo <a href=\"{webclient}\">z vášho prehliadača</a>."
 
 #. title of the Donate page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L29
@@ -2596,7 +2590,7 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr "Pokiaľ máte akékoľvek otázky ohľadne prispievania alebo by ste chceli prispieť akýmkoľvek iným spôsobom, než je tu spomenuté, môžete sa spojiť buď s <a href=\"{trangEmail}\">Trang</a>alebo s celou našou <a href=\"{teamEmail}\">skupinou</a>."
+msgstr "Pokiaľ máte akékoľvek otázky ohľadne prispievania alebo by ste chceli prispieť akýmkoľvek iným spôsobom, než je tu spomenuté, môžete sa spojiť buď s <a href=\"{trangEmail}\">Trang</a> alebo s celou našou <a href=\"{teamEmail}\">skupinou</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L52
 msgid "All donations"
@@ -2615,7 +2609,7 @@ msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr "<b>Prevod cez IBAN.</b> To je asi najlacnejší spôsob, ako prispieť. Banka Tatoeby sídli vo Francúzsku, takže pokiaľ ste zo zeme EÚ, pravdepodobne budete môcť previesť prevod bez poplatkov."
+msgstr "<b>Prevod cez IBAN.</b> To je asi najlacnejší spôsob, ako prispieť. Banka Tatoeby sídli vo Francúzsku, takže pokiaľ ste z krajiny, ktorá je členom EÚ, pravdepodobne budete môcť previesť prevod bez poplatkov."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L76
 msgid ""
@@ -2695,7 +2689,7 @@ msgstr "Jazyk"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L63
 msgid "Username"
-msgstr "Používateľské meno"
+msgstr "Užívateľské meno"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L60
@@ -2978,7 +2972,7 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr "Obsahuje všetky prepisy v pomocných alebo alternatívnych zápisoch. Používateľské meno priradené k prepisu poukazuje na užívateľa, ktorý ho naposledy preveril alebo upravil. Prepis bez užívateľského mena nebol označený ako preverený. Názov zápisu je určený podľa ISO 15924."
+msgstr "Obsahuje všetky prepisy v pomocných alebo alternatívnych zápisoch. Užívateľské meno priradené k prepisu poukazuje na užívateľa, ktorý ho naposledy preveril alebo upravil. Prepis bez užívateľského mena nebol označený ako preverený. Názov zápisu je určený podľa ISO 15924."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
@@ -3033,7 +3027,7 @@ msgstr "Sú dva spôsoby, ako pridať nové vety."
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr "Vyberte možnosť <a href=\"{}\">Pridať vety</a> z kolónky <strong>Prispieť</strong> v menu v záhlaví každej stránky."
+msgstr "Vyberte možnosť <a href=\"{}\">Pridať vety</a> z políčka <strong>Prispieť</strong> v menu v záhlaví každej stránky."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
@@ -3298,7 +3292,7 @@ msgstr "Zastaralé preverenia"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L45
 msgid "{user}'s reviews - {category}"
-msgstr "preverenia užívateľa {user} - {category}"
+msgstr "preverenia užívateľa {user} – {category}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L60
 msgid "This feature is currently deactivated."
@@ -3675,7 +3669,7 @@ msgstr "zoznamy užívateľa {username} ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L43
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr "zoznam používateľa {username} obsahuje „{search}“ ({total})"
+msgstr "zoznam užívateľa {username} obsahujúce „{search}“ ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
@@ -3769,7 +3763,7 @@ msgstr "Udržiavatelia stránok"
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L36
 msgid "Advanced contributors"
-msgstr "Pokročilý prispievatelia"
+msgstr "Pokročilí prispievatelia"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L38
@@ -3873,11 +3867,11 @@ msgstr "Previesť"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L50
 msgid "Autogenerate furigana over Japanese"
-msgstr ""
+msgstr "Utvoriť furiganu nad japončinou"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L82
 msgid "Autogenerate furigana"
-msgstr ""
+msgstr "Utvoriť furiganu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L28
 msgid "Useful tools"
@@ -3889,11 +3883,11 @@ msgstr "Nástroje"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "Utvorenie furigany"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "utvoriť furiganu nad japončinou"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L51
 msgid "Chinese simplified/traditional conversion"
@@ -3920,7 +3914,7 @@ msgstr "Previesť šanghajčinu do medzinárodnej fonetickej abecedy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
-msgstr ""
+msgstr "Kredity"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L48
 msgid ""
@@ -4038,7 +4032,7 @@ msgstr "Podrobnosti (nepovinné). Napríklad aké nárečie alebo v akej krajine
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L86
 msgid "Contact {user}"
-msgstr "Spojte sa s používateľom {user}"
+msgstr "Spojte sa s užívateľom {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L94
 msgid "Comments posted"
@@ -4197,7 +4191,7 @@ msgid ""
 "native level in the language of the sentence. In the old design \"(native)\""
 " is displayed next to the username. In the new design a {star} is displayed "
 "next to the sentence."
-msgstr ""
+msgstr "Označiť vety, ak sa ich majiteľ v danom jazyku v profile označil za rodeného hovoriaceho. V starom vzhľade stránky „(rodený hovoriaci)“ bolo uvedené vedľa užívateľského mena. V novom vzhľade je vedľa vety zobrazená {star}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L324
 msgid ""
@@ -4236,7 +4230,7 @@ msgstr "Členovia"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L43
 msgid "Search user"
-msgstr "Hľadať používateľa"
+msgstr "Hľadať užívateľa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L86
 msgid "Members (total {number})"
@@ -4409,10 +4403,10 @@ msgstr "Upraviť správu {number}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L48
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] "Stena (jedno diskusné vlákno)"
-msgstr[1] "Stena ({n}&nbsp;diskusné vlákna)"
-msgstr[2] "Stena ({n}&nbsp;diskusných vlákien)"
-msgstr[3] "Stena ({n}&nbsp;diskusných vlákien)"
+msgstr[0] "Nástenka (jedno diskusné vlákno)"
+msgstr[1] "Nástenka ({n}&nbsp;diskusné vlákna)"
+msgstr[2] "Nástenka ({n}&nbsp;diskusných vlákien)"
+msgstr[3] "Nástenka ({n}&nbsp;diskusných vlákien)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L61
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
@@ -4909,7 +4903,7 @@ msgstr "nečinný"
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L96
 msgid "suspended"
-msgstr ""
+msgstr "pozastavený"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L89
 msgid ""
@@ -4963,7 +4957,7 @@ msgid ""
 "Tatoeba can automatically enter the sentence ID when you have copied a "
 "sentence URL. To enable this, please allow your browser to read from the "
 "clipboard."
-msgstr ""
+msgstr "Tatoeba môže ihneď zadať číslo vety, keď skopírujete URL danej vety. K spusteniu tejto možnosti, prosím, umožnite vášmu prehliadaču čítať z clipboard."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
 msgid "to {recipient}"
@@ -5044,7 +5038,7 @@ msgid "Show sentence's details"
 msgstr "Zobraziť podrobnosti o vete"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L204
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L863
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L861
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Zobraziť 1 ďalší preklad."
@@ -5060,15 +5054,15 @@ msgstr "Preklad:"
 msgid "Submit translation"
 msgstr "Odoslať preklad"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L820
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L818
 msgid "This sentence is original and was not derived from translation."
 msgstr "Táto veta je pôvodná a nebola odvodená od prekladu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L832
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L830
 msgid "This sentence was initially added as a translation of sentence #{n}."
 msgstr "Táto veta bola pôvodne pridaná ako preklad vety #{n}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L837
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L835
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
@@ -5127,6 +5121,10 @@ msgstr "Označiť ako preverené."
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
 msgstr "Označiť ako preverené"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L41
+msgid "Unknown number of sentences"
+msgstr "Neznáme číslo vety."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
 msgid "by {messageAuthor}"
