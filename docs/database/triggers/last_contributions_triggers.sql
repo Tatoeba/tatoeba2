@@ -26,7 +26,6 @@ FOR EACH ROW BEGIN
       action,
       user_id,
       datetime,
-      ip,
       type
     )
     VALUES (
@@ -40,7 +39,6 @@ FOR EACH ROW BEGIN
       NEW.action,
       NEW.user_id,
       NEW.datetime,
-      NEW.ip,
       NEW.type
     );
     -- delete the oldest contributions only if we have more than
@@ -50,20 +48,36 @@ FOR EACH ROW BEGIN
       SELECT count FROM (SELECT count(*) as count from last_contributions) AS t
     )
     ORDER BY id LIMIT 1;
+  END IF;
 
-    -- Update contributions stats
-    IF NEW.action = "insert" THEN
-
-      SET @statId = (SELECT id FROM contributions_stats WHERE `date` = CURDATE());
+  -- Update contributions_stats
+  IF NEW.type != "license" AND NEW.action != "update" THEN
+    -- If the deleted sentence was added today, decrease today's "insert" counter
+    IF NEW.type = "sentence" AND NEW.action = "delete" THEN
+      SET @addedTodayId = (
+        SELECT id FROM contributions
+        WHERE sentence_id = NEW.sentence_id AND type = "sentence" AND action = "insert" AND DATE(datetime) = CURDATE()
+      );
+      IF @addedTodayId IS NOT NULL THEN
+        SET @toUpdateId = (
+          SELECT id FROM contributions_stats
+          WHERE `date` = CURDATE() AND `type` = NEW.type AND `action` = "insert"
+        );
+        UPDATE contributions_stats SET sentences = sentences - 1 WHERE id = @toUpdateId;
+      END IF;
+    END IF;
+    IF @addedTodayId IS NULL THEN
+      SET @statId = (
+        SELECT id FROM contributions_stats
+        WHERE `date` = CURDATE() AND `type` = NEW.type AND `action` = NEW.action
+      );
       IF @statId IS NULL THEN
         INSERT INTO contributions_stats(`date`, `sentences`, `action`, `type`)
         VALUES (CURDATE(), 1, NEW.action, NEW.type);
       ELSE
-        UPDATE contributions_stats SET sentences = sentences +1 WHERE id = @statId;
+        UPDATE contributions_stats SET sentences = sentences + 1 WHERE id = @statId;
       END IF;
-
     END IF;
-
   END IF;
 
 END;
@@ -78,11 +92,11 @@ FOR EACH ROW BEGIN
   IF NEW.type = "sentence" THEN
 
     -- The following code may cause problems in future if there are
-    -- columns, in the last_contributions table, that would 
+    -- columns, in the last_contributions table, that would
     -- be expected to be updated.
     --
-    -- The code below only updates the sentence_lang column, 
-    -- ignoring other columns. Worryingly, this behaviour may have to 
+    -- The code below only updates the sentence_lang column,
+    -- ignoring other columns. Worryingly, this behaviour may have to
     -- change according to future issues in the GitHub issue tracker.
     UPDATE last_contributions
       SET sentence_lang=NEW.sentence_lang

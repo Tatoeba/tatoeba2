@@ -6,15 +6,17 @@
 # Translators:
 # صفا الفليج <safaalfulaij@hotmail.com>, 2018
 # Nikos Papadimoulis <glavkos@gmail.com>, 2020
+# Alex Tsen <atseniklidou@gmail.com>, 2020
+# Andreas Naziris <AndrewNaTesla@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-09 20:55+0800\n"
+"POT-Creation-Date: 2020-06-04 23:48+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Nikos Papadimoulis <glavkos@gmail.com>, 2020\n"
+"Last-Translator: Andreas Naziris <AndrewNaTesla@gmail.com>, 2020\n"
 "Language-Team: Greek (https://www.transifex.com/tatoeba/teams/28284/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,101 +24,111 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "Μη έγκυρο αρχείο \"{file}\" αγνοήθηκε."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L274
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
+"Απέτυχε η δημιουργία του φάκελου \"{dir}\" για την εισαγωγή του αρχείου "
+"\"{file}\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "Απέτυχε η αντιγραφή του αρχείου \"{file}\" στον φάκελο \"{dir}\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"Αδύνατη η ανάθεση ήχου στον \"{author}\" για την φράση {sentenceId} στην "
+"βάση δεδομένων. Βεβαιωθείτε πως είναι έγκυρο όνομα χρήστη."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L302
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"Το αρχείο \"{file}\" εισάχθηκε επιτυχώς αλλα δεν ήταν δυνατή η αφαίρεση του "
+"από τον φάκελο εισαγωγής."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr ""
+msgstr "Εισαγωγή ηχογραφήσεων"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
-msgstr ""
+msgstr "Εισαγωγή αναφοράς"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "Τα παρακάτω σφάλματα προέκυψαν κατά την εισαγωγή."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr ""
+msgstr "Αρχεία που εντοπίσθηκαν"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
-msgstr ""
+msgstr "Όνομα αρχείου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
 msgstr "Αναγνωριστικό Φράσης"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
 msgid "Already has audio"
-msgstr ""
+msgstr "Ήδη έχει ήχο"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
-msgstr ""
+msgstr "Δυνατότητα εισαγωγής"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
-msgstr ""
+msgstr "Δ/Υ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
-msgstr ""
+msgstr "Μη έγκυρο"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L127
-msgid "No files have been detected inside the import directory."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L133
-msgid "Import"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L59
-msgid "Enabled"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
 msgid "Yes"
 msgstr "Ναι"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
 msgid "No"
 msgstr "Όχι"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
-msgid "Owner name"
-msgstr ""
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
+msgid "No files have been detected inside the import directory."
+msgstr "Δεν βρέθηκαν αρχεία στον φάκελο εισαγωγής."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
+msgid "Import"
+msgstr "Εισαγωγή"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
+msgid "Enabled"
+msgstr "Ενεργό"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
+msgid "Owner name"
+msgstr "Όνομα ιδιοκτήτη"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
@@ -126,45 +138,45 @@ msgstr "Υποβολή"
 msgid "Correctness"
 msgstr "Ορθότητα"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
-msgstr ""
+msgstr "Αλλαγή"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
-msgstr ""
+msgstr "Εισαγωγή φράσεων"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr ""
+msgstr "Μόνο φράσεις"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
-msgstr ""
+msgstr "Γλώσσα των φράσεων:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr ""
+msgstr "Αρχείο:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "Αριθμητικό αναγνωριστικό ταυτότητας:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
 msgid "import"
-msgstr ""
+msgstr "εισαγωγή"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr ""
+msgstr "Φράσεις και μεταφράσεις"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
-msgstr ""
+msgstr "Γλώσσα των μεταφράσεων:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
@@ -172,11 +184,11 @@ msgstr "Διαγραφή"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "Είστε σίγουρος ότι θέλετε να διαγράψετε το χρήστη # {number};"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr ""
+msgstr "Κατάλογος Χρηστών"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
@@ -184,11 +196,11 @@ msgstr "Προφίλ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr ""
+msgstr "Επεξεργασία Χρήστη"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
-msgstr ""
+msgstr "Αναγνωριστικό"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
@@ -200,20 +212,20 @@ msgstr "Γλώσσα "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
 msgid "Group"
-msgstr ""
+msgstr "Ομάδα"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
 msgid "Level"
-msgstr ""
+msgstr "Επίπεδο"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
-msgstr ""
+msgstr "Αποστολή ειδοποιήσεων"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L128
 msgid "unhide"
 msgstr "φανέρωση"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L131
 msgid "hide"
 msgstr "απόκρυψη"

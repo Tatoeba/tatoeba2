@@ -46,8 +46,6 @@ class ShowAllHelper extends AppHelper
     public $helpers = array(
         'Languages',
         'Form',
-        'Html',
-        'Url'
     );
 
     /**
@@ -115,7 +113,7 @@ class ShowAllHelper extends AppHelper
             array(
                 "value" => $selectedLanguage,
                 "id" => "",
-                "onchange" => "$(location).attr('href', $javascriptUrl);",
+                "onchange" => "window.location.href = $javascriptUrl",
                 "class" => count($langs) > 2 ? 'language-selector' : null,
                 "empty" => false
             )
@@ -164,7 +162,7 @@ class ShowAllHelper extends AppHelper
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Show translations in:'); ?></h2>
             <?php
-            $langs = $this->Languages->languagesArrayForPositiveLists();
+            $langs = $this->Languages->languagesArrayShowTranslationsIn();
 
             echo $this->_generateSelect(
                 $selectedLanguage,
@@ -179,75 +177,5 @@ class ShowAllHelper extends AppHelper
         </div>
     <?php
     }
-
-    /**
-     * Diplsay the module to filter main sentences with no direct translation in
-     * the language specified by select
-     *
-     * @todo This should be completely removed at some point.
-     *
-     * @param string $selectedLanguage The default selected language
-     *
-     * @return void
-     */
-
-    public function displayShowNotTranslatedInto($selectedLanguage = 'none')
-    {
-        ?>
-        <div class="module">
-            <h2><?php echo __('Not directly translated into:'); ?></h2>
-            <?php
-            echo format(
-                __(
-                    'This option has been removed. '.
-                    'Please use the <a href={}>Translate sentences</a> page '.
-                    'to find untranslated sentences.', true
-                ),
-                $this->Url->build(array(
-                    'controller' => 'activities',
-                    'action' => 'translate_sentences'
-                ))
-            );
-            ?>
-            </p>
-        </div>
-    <?php
-    }
-
-    /**
-     * Display the module to filter (or not) only main sentences with audio
-     *
-     * @param string $selectedOption The default selected option
-     *
-     * @return void
-     */
-
-    public function displayFilterOrNotAudioOnly($selectedOption = 'indifferent')
-    {
-        ?>
-        <div class="module">
-            <h2><?php echo __('Only sentences with audio:'); ?></h2>
-            <?php
-            $options = array(
-                'indifferent' => __('no'),
-                'only-with-audio' =>  __('yes'),
-            );
-
-            echo $this->_generateSelect(
-                $selectedOption,
-                $options,
-                3
-            );
-            ?>
-            <p>
-            <?php echo __('NOTE: Not all languages have audio at the moment.');
-            ?>
-            </p>
-        </div>
-    <?php
-    }
-
-
-
 }
 ?>

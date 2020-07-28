@@ -137,6 +137,7 @@ class UsersTable extends Table
             ->maxLength('country_id', 2);
 
         $validator
+            ->allowEmptyString('audio_license')
             ->scalar('audio_license')
             ->maxLength('audio_license', 50);
 

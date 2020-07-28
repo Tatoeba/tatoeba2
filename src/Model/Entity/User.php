@@ -7,6 +7,10 @@ use Cake\ORM\TableRegistry;
 
 class User extends Entity
 {
+    protected $_hidden = [
+        'password',
+    ];
+
     const ROLE_ADMIN = 'admin';
     const ROLE_CORPUS_MAINTAINER = 'corpus_maintainer';
     const ROLE_ADV_CONTRIBUTOR = 'advanced_contributor';
@@ -51,13 +55,13 @@ class User extends Entity
         'sentences_per_page' => 10,
         'users_collections_ratings' => false,
         'native_indicator' => false,
-        'copy_button' => false,
         'hide_random_sentence' => false,
         'use_new_design' => false,
         'default_license' => 'CC BY 2.0 FR',
         'can_switch_license' => false,
-        'new_terms_of_use' => false,
+        'new_terms_of_use' => '1',
         'license_switch_list_id' => null,
+        'hide_new_design_announcement' => false,
     );
 
     private $settingsValidation = array(

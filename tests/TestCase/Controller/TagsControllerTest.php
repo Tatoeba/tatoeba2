@@ -51,6 +51,21 @@ class TagsControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
+    public function ajaxAccessesProvider() {
+        return [
+            // url; user; is accessible or redirection url
+            [ '/eng/tags/autocomplete/foobar', null, true ],
+            [ '/eng/tags/autocomplete/foobar', 'contributor', true ],
+        ];
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
     public function add_tag_post() {
         $this->ajaxPost('/fra/tags/add_tag_post', [
             'sentence_id' => 18,
@@ -74,6 +89,25 @@ class TagsControllerTest extends IntegrationTestCase {
         $this->logInAs('advanced_contributor');
         $this->add_tag_post();
         $this->assertResponseOk();
+    }
+
+    public function testAddTagPost_getBackTruncatedName() {
+        $this->logInAs('advanced_contributor');
+        $this->ajaxPost('/eng/tags/add_tag_post', [
+            'sentence_id' => 18,
+            'tag_name' => '1234567890123456789012345678901234567890123456789 cut after 9',
+        ]);
+        $this->assertResponseNotContains(' cut after 9');
+    }
+
+    public function testAddTagPost_duplicateTagReturnsEmptyResponse ()
+    {
+        $this->logInAs('advanced_contributor');
+        $this->ajaxPost('/eng/tags/add_tag_post', [
+            'sentence_id' => 8,
+            'tag_name' => '@needs native check',
+        ]);
+        $this->assertResponseEmpty();
     }
 
     public function testSearch_asGuest() {

@@ -20,7 +20,7 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use Cake\View\View;
-
+use App\Lib\Licenses;
 
 class LicenseHelper extends AppHelper
 {
@@ -28,67 +28,62 @@ class LicenseHelper extends AppHelper
         'Html',
     );
 
-    private $licenses;
+    /**
+     * The licenses used in the current context (sentences or audio files)
+     *
+     * Should be set in SentenceLicenseHelper and AudioLicenseHelper
+     */
+    protected $licenses = [];
 
-    public function __construct(View $view, $config = array()) {
-        assert(isset($config['availableLicences']));
-        parent::__construct($view, $config);
-        $this->licenses = array(
-            '' => array('name' => __('No license for offsite use')),
-            /* @translators: refers to the license used for sentence or audio recordings */
-            'Public domain' => array('name' => __('Public domain')),
-            'CC0 1.0' => array(
-                'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
-            ),
-            'CC BY 2.0 FR' => array(
-                'url' => 'https://creativecommons.org/licenses/by/2.0/fr/',
-            ),
-            'CC BY 4.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by/4.0/',
-            ),
-            'CC BY-NC 4.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by-nc/4.0/',
-            ),
-            'CC BY-SA 4.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by-sa/4.0/',
-            ),
-            'CC BY-NC-ND 3.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by-nc-nd/3.0/',
-            ),
-        );
-    }
-
-    public function getLicenseName($license) {
+    /**
+     * Get the displayable name for a license
+     *
+     * If there is an URL available, returns optionally a clickable link.
+     *
+     * @param string $license   Key for the license in $licenses
+     *
+     * @return string
+     */
+    public function getLicenseName($license, $link = true) {
         if (empty($license) || !isset($this->licenses[$license])) {
-            $license = __x('license', 'for Tatoeba only');
-        } elseif (isset($this->licenses[$license]['url'])) {
-            $license = $this->licenseLink($license);
-        } elseif (isset($this->licenses[$license]['name'])) {
-            // TODO: html quote
-            $license = $this->licenses[$license]['name'];
+            $name = $this->licenses['']['name'];
+        } else {
+            $name = $this->licenses[$license]['name'] ?? $license;
         }
-        return $license;
+
+        if ($link && isset($this->licenses[$license]['url'])) {
+            return $this->Html->link($name, $this->licenses[$license]['url']);
+        } else {
+            return $name;
+        }
     }
 
-    public function getLicenseOptions() {
-        foreach ($this->config('availableLicences') as $license) {
-            $keyToName[$license] = isset($this->licenses[$license]['name']) ? $this->licenses[$license]['name'] : $license;
+    /**
+     * Get the options for a selection control
+     *
+     * @param boolean $admin  Whether to get the options for regular users
+     *                        or for an admin
+     *
+     * @return array
+     **/
+    public function getLicenseOptions($admin = false) {
+        foreach ($this->licenses as $key => $license) {
+            if (!isset($license['admin_only']) || ($license['admin_only'] && $admin)) {
+                $keyToName[$key] = $this->getLicenseName($key, false);
+            }
         }
         return $keyToName;
     }
 
+    /**
+     * Checks whether a license is known.
+     *
+     * @param string $license   Key for the license in $licenses
+     *
+     * @return boolean
+     */
     public function isKnownLicense($license) {
         return isset($this->licenses[$license]);
-    }
-
-    public function licenseLink($license) {
-        $name = isset($this->licenses[$license]['name']) ?
-                $this->licenses[$license]['name'] :
-                $license;
-        return $this->Html->link(
-            $name,
-            $this->licenses[$license]['url']
-        );
     }
 }
 ?>

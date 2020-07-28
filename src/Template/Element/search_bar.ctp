@@ -27,7 +27,7 @@
 
 use Cake\Core\Configure;
 
-$searchQuery = h($searchQuery);
+$searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
 ?>
 
 <md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
@@ -73,16 +73,17 @@ echo $this->Form->create(
 
         <div layout="row">
             <label for="SentenceQuery">
-                <?php echo __('Search'); ?>
+                <?php /* @translators: keywords field label in top search bar (not displayed) */ ?>
+                <?php echo __x('label', 'Search'); ?>
             </label>
             <input id="SentenceQuery"
                    type="search"
                    name="query"
                    ng-model="ctrl.searchQuery"
+                   ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
                    accesskey="4"
                    lang=""
                    dir="auto"
-                   data-query="<?= $searchQuery ?>"
                    flex>
             <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
         </div>
@@ -90,6 +91,7 @@ echo $this->Form->create(
 
     <div layout="row" layout-align="center end">
         <div layout="column">
+            <?php /* @translators: search language field label in top search bar */ ?>
             <label for="SentenceFrom"><?= __('From') ?></label>
             <?php
             echo $this->element(
@@ -98,7 +100,8 @@ echo $this->Form->create(
                     'id' => 'SentenceFrom',
                     'name' => 'from',
                     'selectedLanguage' => $selectedLanguageFrom,
-                    'languages' => $this->Search->getLangs(),
+                    /* @translators: option used in language selection dropdowns in top search bar */
+                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langFromApi'
                 )
             );
@@ -111,6 +114,7 @@ echo $this->Form->create(
 
         <div layout="column">
             <label for="SentenceTo">
+                <?php /* @translators: translation language field label in top search bar */ ?>
                 <?= __x('language', 'To') ?>
             </label>
             <?php
@@ -120,7 +124,8 @@ echo $this->Form->create(
                     'id' => 'SentenceTo',
                     'name' => 'to',
                     'selectedLanguage' => $selectedLanguageTo,
-                    'languages' => $this->Search->getLangs(),
+                    /* @translators: option used in language selection dropdowns in top search bar */
+                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langToApi'
                 )
             );

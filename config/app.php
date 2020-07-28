@@ -93,6 +93,13 @@ return [
             'path' => CACHE,
             'url' => env('CACHE_DEFAULT_URL', null),
         ],
+        'stats' => [
+            'className' => 'Cake\Cache\Engine\FileEngine',
+            'path' => CACHE,
+            'prefix' => 'tatoeba_stats_',
+            'duration' => '+15 minutes',
+            'url' => env('CACHE_DEFAULT_URL', null),
+        ],
 
         /**
          * Configure the cache used for general framework caching.
@@ -275,7 +282,7 @@ return [
              * decreases performance because each query needs to be traversed and
              * manipulated before being executed.
              */
-            'quoteIdentifiers' => true,
+            'quoteIdentifiers' => false,
 
             /**
              * During development, if using MySQL < 5.6, uncommenting the
@@ -304,7 +311,7 @@ return [
             //'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
-            'quoteIdentifiers' => true,
+            'quoteIdentifiers' => false,
             'log' => false,
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
             'url' => env('DATABASE_TEST_URL', null),
@@ -338,6 +345,14 @@ return [
             'file' => 'queries',
             'url' => env('LOG_QUERIES_URL', null),
             'scopes' => ['queriesLog'],
+        ],
+        'queue' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
+            'file' => 'queue',
+            'url' => env('LOG_QUEUE_URL', null),
+            'scopes' => ['queue'],
+            'levels' => ['info'],
         ],
     ],
 

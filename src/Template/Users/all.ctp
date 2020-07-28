@@ -54,7 +54,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         ]);
         ?>
         <md-button type="submit" class="md-raised">
-            <?= __('Search') ?>
+            <?php /* @translators: search button in All members page (verb) */ ?>
+            <?= __x('button', 'Search') ?>
         </md-button>
     </md-input-container>
 
@@ -95,8 +96,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         <div class="sortBy">
             <strong><?php echo __('Sort by:'); ?></strong>
             <?php
+            /* @translators: sort option in the All members page */
             echo $this->Paginator->sort('username', __('Username'));
             echo ' | ';
+            /* @translators: sort option in the All members page */
             echo $this->Paginator->sort('since', __('Member since'));
             echo ' | ';
             echo $this->Pagination->sortForRole();

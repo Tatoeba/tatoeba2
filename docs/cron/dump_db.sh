@@ -8,4 +8,4 @@ if [[ -f "$HOME/dump/db.gz" ]]; then
     mv "$HOME/dump/db.gz" "$HOME/dump/db_old.gz"
 fi
 
-mysqldump -u "$DB_USER" -p"$DB_PASS" "$DB" | gzip > "$HOME""/dump/db.gz"
+mysqldump --single-transaction -u "$DB_USER" -p"$DB_PASS" "$DB" | gzip > "$HOME""/dump/db.gz"

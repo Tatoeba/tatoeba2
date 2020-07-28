@@ -282,21 +282,6 @@ class CurrentUser
     }
 
     /**
-     * Indicates if sentence of given id has been favorited by current user.
-     *
-     * @param int $sentenceId Id of the sentence.
-     *
-     * @return bool
-     */
-    public static function hasFavorited($sentenceId)
-    {
-        $userId = self::get('id');
-        $Favorite = TableRegistry::get('Favorites');
-        return $Favorite->isSentenceFavoritedByUser($sentenceId, $userId);
-    }
-
-
-    /**
      * Retrieve correctness that the user has set for a certain sentence.
      *
      * @param int $sentenceId Id of the sentence.
@@ -305,27 +290,13 @@ class CurrentUser
      */
     public static function correctnessForSentence($sentenceId)
     {
+        if (!self::isMember()) {
+            return false;
+        }
+
         $userId = self::get('id');
         $UsersSentences = TableRegistry::get('UsersSentences');
         return $UsersSentences->correctnessForSentence($sentenceId, $userId);
-    }
-
-
-    /**
-     * Get user's ip, even if behind a proxy (anyway tatoeba is currently
-     * behind a proxy
-     *
-     * @return IP
-     */
-    public static function getIp()
-    {
-        if (getenv("HTTP_CLIENT_IP")) {
-            return getenv("HTTP_CLIENT_IP");
-        } elseif (getenv("HTTP_X_FORWARDED_FOR")) {
-            return getenv("HTTP_X_FORWARDED_FOR");
-        } else {
-            return getenv("REMOTE_ADDR");
-        }
     }
 
 
@@ -375,7 +346,8 @@ class CurrentUser
     {
         $isOwner = self::get('id') == $sentence->user_id;
         $canSwitchLicense = self::getSetting('can_switch_license');
-        return ($isOwner && $canSwitchLicense) || self::isAdmin();
+        $noIssues = $sentence->license != '';
+        return ($isOwner && $canSwitchLicense && $noIssues) || self::isAdmin();
     }
     
     public static function hasAcceptedNewTermsOfUse()

@@ -42,7 +42,7 @@ class TagsLinksController extends AppController
         $temp = array();
         $s = 0;
         $this->loadModel('Tags');
-        foreach ($this->Tags->find('all')->select(['id', 'name', 'nbrOfSentences']) as $key => $value){
+        foreach ($this->Tags->find('all', array('order' => 'id DESC'))->select(['id', 'name', 'nbrOfSentences']) as $key => $value){
             $all_tags[$value['id']] = array($value['name'], $value['nbrOfSentences']);
             $links[$value['id']] = array();
             $temp[$value['id']] = array();

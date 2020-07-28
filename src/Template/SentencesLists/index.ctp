@@ -61,7 +61,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $title ?></h2>
+                <h2><?= $this->safeForAngular($title) ?></h2>
             </div>
         </md-toolbar>
 
@@ -69,16 +69,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
+            /* @translators: sort option in the "List of lists" page */
             echo $this->Paginator->sort('name', __('list name'));
             echo " | ";
+            /* @translators: sort option in the "List of lists" page */
             echo $this->Paginator->sort('created', __('date created'));
             echo " | ";
             echo $this->Paginator->sort(
               'numberOfSentences',
+                /* @translators: sort option in the "List of lists" page */
                 __('number of sentences')
             );
             echo " | ";
             $options = array('defaultOrders' => array('modified' => 'desc'));
+            /* @translators: sort option in the "List of lists" page */
             echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
             ?>
         </div>

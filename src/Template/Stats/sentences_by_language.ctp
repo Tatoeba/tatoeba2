@@ -34,8 +34,8 @@ $max = $stats[0]['sentences'];
     <?= $this->element('audio_stats',
         [ 'stats' => $audioStats ],
         [ 'cache' => [
-            'time'=> '+6 hours',
-            'key'=> Configure::read('Config.language')
+            'config' => 'stats',
+            'key' => 'audio_stats_'.Configure::read('Config.language'),
         ]]
     ); ?>
 </div>
@@ -54,6 +54,7 @@ $max = $stats[0]['sentences'];
         <th></th>
         <th></th>
         <th></th>
+        <?php /* @translators: table header text in "Number of sentences per language" page */ ?>
         <th><?php echo __('Language'); ?></th>
         <th><?php echo __('Sentences'); ?></th>
     </tr>

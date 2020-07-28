@@ -30,7 +30,9 @@ if (!$userLanguage) {
     $submitLabel = __('Add language');
 } else {
     $title = __('Edit language');
+    /* @translators: submit button of user language edition form (verb) */
     $submitLabel = __('Save');
+    $userLanguage->details = $this->safeForAngular($userLanguage->details);
 }
 
 $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
@@ -100,7 +102,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             if ($userLanguage && !is_null($userLanguage->level)) {
                 $selected = $userLanguage->level;
             }
-            $selected = htmlspecialchars(json_encode($selected), ENT_QUOTES, 'UTF-8');
+            $selected = h(json_encode($selected));
 
             $radioLabels = $this->Languages->getLevelsLabels();
 
@@ -147,6 +149,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             );
             ?>
             <md-button class="md-raised" href="<?= $cancelUrl; ?>">
+                <?php /* @translators: cancel button of user language addition/edition form (verb) */ ?>
                 <?php echo __('Cancel'); ?>
             </md-button>
 

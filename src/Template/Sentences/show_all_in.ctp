@@ -48,7 +48,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 <section class="md-whiteframe-1dp">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2><?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $total, true); ?></h2>
+            <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $total, true); ?>
+
+            <?= $this->element('sentences/expand_all_menus_button'); ?>
         </div>
     </md-toolbar>
 
@@ -75,7 +77,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     array(
                         'sentence' => $sentence,
                         'translations' => $sentence->translations,
-                        'user' => $sentence->user
+                        'user' => $sentence->user,
+                        'translationLang' => $translationLang
                     )
                 );
             }

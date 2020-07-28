@@ -8,7 +8,7 @@ $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 $commentId = $comment->id;
 $authorId = $comment->user_id;
-$commentText = $comment->text;
+$commentText = $this->safeForAngular($comment->text);
 $commentHidden = $comment->hidden;
 $sentence = null;
 $sentenceOwnerLink = null;
@@ -37,7 +37,7 @@ $sentenceLink = $this->Html->link(
 );
 $sentenceText = '<em>'.__('sentence deleted').'</em>';
 if (isset($sentence['text'])) {
-    $sentenceText = h($sentence->text);
+    $sentenceText = $this->safeForAngular(h($sentence->text));
 }
 $sentenceLang = $sentence ? $sentence->lang : null;
 $sentenceOwner = null;
@@ -121,7 +121,11 @@ if ($sentenceOwnerLink) {
 
         <?php foreach ($menu as $menuItem) {
             if ($menuItem['text'] == '#') {
-                $itemLabel = $replyIcon ? __('Reply') : __('Permalink');
+                $itemLabel = $replyIcon ?
+                             /* @translators: tooltip of reply button on a comment (verb) */
+                             __x('button', 'Reply') :
+                             /* @translators: tooltip of permalink button on a comment (noun) */
+                             __('Permalink');
             } else {
                 $itemLabel = $menuItem['text'];
             }

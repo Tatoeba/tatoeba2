@@ -56,7 +56,7 @@ class PagesHelper extends AppHelper
                             )
             );
         }
-        $title = sprintf('<h2>%s</h2>', $title);
+        $title = sprintf('<h2 flex>%s</h2>', $title);
         return $title;
     }
 

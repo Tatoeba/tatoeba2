@@ -26,6 +26,7 @@
  */
 use App\Model\CurrentUser;
 
+/* @translators: title of Settings page */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 ?>
 <div id="annexe_content">
@@ -158,7 +159,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="showTranscriptions = <?= $showTranscriptions ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Always show transcriptions and alternative scripts') ?> </p>
+                <p><?php echo __('Always show unreviewed transcriptions and alternative scripts') ?> </p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -219,6 +220,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <md-input-container class="md-block">
                     <?php
                     echo $this->Form->control('settings.lang', [
+                        /* @translators: option label on settings page */
                         'label' => __('Languages')
                     ]);
                     ?>
@@ -233,6 +235,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     'label' => ''
                 )); ?>
             </md-list-item>
+            <?php if ($userSettings->settings['can_switch_license']) : ?>
+                <md-list-item>
+                    <p><?= __('Default license for original sentences'); ?></p>
+                    <?= $this->Form->input('settings.default_license', [
+                        'options' => $this->SentenceLicense->getLicenseOptions(),
+                        'label' => ''
+                    ]); ?>
+                </md-list-item>
+            <?php endif; ?>
         </md-list>
         <br>
 
@@ -301,27 +312,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $copyButton = $userSettings->settings['copy_button']; ?>
-                <md-checkbox
-                    ng-false-value="0"
-                    ng-true-value="1"
-                    ng-model="copyButton"
-                    ng-init="copyButton = <?= $copyButton ?>"
-                    class="md-primary">
-                </md-checkbox>
-                <p><?php echo __('Display button to copy a sentence to the clipboard') ?></p>
-                <div ng-hide="true">
-                <?php
-                    echo $this->Form->input(
-                        'settings.copy_button',
-                        array(
-                          'value' => '{{copyButton}}'
-                        )
-                    );
-                ?>
-                </div>
-            </md-list-item>
-            <md-list-item>
                 <?php $useNewDesign = $userSettings->settings['use_new_design']; ?>
                 <md-checkbox
                     ng-false-value="0"
@@ -332,8 +322,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
                 <p><?php echo __(
                     'Display sentences with the new design. '.
-                    'Note that you will not have all the features '.
-                    'from the old design'
+                    'Note that some features are not yet implemented in this new design but are coming soon.'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
@@ -351,6 +340,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
         <div layout="row" layout-align="center center">
             <md-button type="submit" class="md-raised md-primary">
+                <?php /* @translators: submit button of settings edition form in settings page (verb) */ ?>
                 <?php echo __('Save'); ?>
             </md-button>
         </div>
@@ -381,6 +371,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button of email address edition form in settings page (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
@@ -429,6 +420,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button of password edition form in settings page (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>

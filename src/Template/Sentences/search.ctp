@@ -67,6 +67,7 @@ if ($ignored) {
     echo $this->Html->tag('div', $warn, array(
         'id' => 'flashMessage',
         'class' => 'message',
+        'ng-non-bindable' => '',
     ));
 }
 ?>
@@ -130,7 +131,9 @@ if (!isset($results)) {
     ?>
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2><?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?></h2>
+            <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
+
+            <?= $this->element('sentences/expand_all_menus_button'); ?>
         </div>
     </md-toolbar>
 
@@ -147,7 +150,8 @@ if (!isset($results)) {
                 array(
                     'sentence' => $sentence,
                     'translations' => $sentence->translations,
-                    'user' => $sentence->user
+                    'user' => $sentence->user,
+                    'translationLang' => $to
                 )
             );
         }

@@ -22,25 +22,6 @@ use Cake\ORM\Entity;
 
 class PrivateMessage extends Entity
 {
-    protected function _getOldFormat() 
-    {
-        return [
-            'PrivateMessage' => [
-                'id' => $this->id,
-                'recpt' => $this->recpt,
-                'sender' => $this->sender,
-                'user_id' => $this->user_id,
-                'date' => $this->date,
-                'folder' => $this->folder,
-                'title' => $this->title,
-                'content' => $this->content,
-                'sent' => $this->sent,
-                'isnonread' => $this->isnonread,
-                'draft_recpts' => $this->draft_recpts,
-            ]
-        ];
-    }
-
     protected function _getType()
     {
         return $this->author || $this->sender ? 'human' : 'machine';

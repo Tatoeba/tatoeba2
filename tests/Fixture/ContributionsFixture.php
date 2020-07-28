@@ -17,7 +17,6 @@ class ContributionsFixture extends TestFixture {
 		'action' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 6, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
 		'datetime' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'ip' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 15, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
 		'type' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 8, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
 		'_indexes' => [
@@ -41,7 +40,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:33:20',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '1'
 		),
@@ -55,7 +53,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:32:43',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '2'
 		),
@@ -69,7 +66,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:32:43',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '3'
 		),
@@ -83,7 +79,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:32:43',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '4'
 		),
@@ -97,7 +92,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:33:18',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '5'
 		),
@@ -111,7 +105,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:33:18',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '6'
 		),
@@ -125,7 +118,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:33:18',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '7'
 		),
@@ -139,7 +131,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:34:28',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '8'
 		),
@@ -153,7 +144,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:34:28',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '9'
 		),
@@ -167,7 +157,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:34:28',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '10'
 		),
@@ -181,7 +170,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:35:03',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '11'
 		),
@@ -195,7 +183,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:35:03',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '12'
 		),
@@ -209,7 +196,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:35:03',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '13'
 		),
@@ -223,7 +209,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:39:23',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '14'
 		),
@@ -237,7 +222,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:39:23',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '15'
 		),
@@ -251,7 +235,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:39:23',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '16'
 		),
@@ -265,7 +248,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:40:13',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '17'
 		),
@@ -279,7 +261,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:40:13',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '18'
 		),
@@ -293,7 +274,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:49:21',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '19'
 		),
@@ -307,7 +287,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-15 00:52:01',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '20'
 		),
@@ -321,7 +300,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2014-04-15 21:12:03',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '21'
 		),
@@ -335,7 +313,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2015-04-15 21:14:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '22'
 		),
@@ -349,7 +326,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2015-06-15 00:34:28',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '23'
 		),
@@ -363,7 +339,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2014-09-02 05:28:14',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '24'
 		),
@@ -377,7 +352,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'delete',
 			'user_id' => '4',
 			'datetime' => '2014-09-02 05:30:14',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '25'
 		),
@@ -391,7 +365,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2015-08-17 21:56:27',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '26'
 		),
@@ -405,7 +378,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => null,
 			'datetime' => '0000-00-00 00:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '27'
 		),
@@ -419,7 +391,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => null,
 			'datetime' => '0000-00-00 00:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '28'
 		),
@@ -434,7 +405,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2016-01-17 19:01:20',
-			'ip' => '172.25.59.71',
 			'type' => 'sentence',
 			'id' => '29'
 		),
@@ -448,7 +418,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2016-01-17 19:01:20',
-			'ip' => '172.25.59.71',
 			'type' => 'link',
 			'id' => '30'
 		),
@@ -462,7 +431,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2016-01-17 19:01:20',
-			'ip' => '172.25.59.71',
 			'type' => 'link',
 			'id' => '31'
 		),
@@ -477,7 +445,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2016-01-24 00:41:51',
-			'ip' => '172.25.24.72',
 			'type' => 'link',
 			'id' => '32'
 		),
@@ -491,7 +458,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2016-01-24 00:41:51',
-			'ip' => '172.25.24.72',
 			'type' => 'link',
 			'id' => '33'
 		),
@@ -505,7 +471,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2016-01-24 00:41:51',
-			'ip' => '172.25.24.72',
 			'type' => 'sentence',
 			'id' => '34'
 		),
@@ -521,7 +486,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '5',
 			'datetime' => '2016-06-19 22:56:52',
-			'ip' => '172.20.159.118',
 			'type' => 'link',
 			'id' => '35'
 		),
@@ -535,7 +499,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2016-06-19 22:56:52',
-			'ip' => '172.17.183.151',
 			'type' => 'link',
 			'id' => '36'
 		),
@@ -549,7 +512,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2016-06-19 22:56:52',
-			'ip' => '172.17.183.151',
 			'type' => 'link',
 			'id' => '37'
 		),
@@ -563,7 +525,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '5',
 			'datetime' => '2016-06-19 22:56:52',
-			'ip' => '172.20.159.118',
 			'type' => 'link',
 			'id' => '38'
 		),
@@ -577,7 +538,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2016-06-19 22:56:52',
-			'ip' => '172.17.183.151',
 			'type' => 'sentence',
 			'id' => '39'
 		),
@@ -591,7 +551,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '5',
 			'datetime' => '2016-06-19 22:56:52',
-			'ip' => '172.20.159.118',
 			'type' => 'sentence',
 			'id' => '40'
 		),
@@ -607,7 +566,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2016-12-26 20:26:24',
-			'ip' => '172.31.29.209',
 			'type' => 'link',
 			'id' => '41'
 		),
@@ -621,7 +579,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2016-12-26 20:26:24',
-			'ip' => '172.31.29.209',
 			'type' => 'link',
 			'id' => '42'
 		),
@@ -635,7 +592,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2016-12-26 20:26:24',
-			'ip' => '172.30.227.165',
 			'type' => 'link',
 			'id' => '43'
 		),
@@ -649,7 +605,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2016-12-26 20:26:24',
-			'ip' => '172.30.227.165',
 			'type' => 'link',
 			'id' => '44'
 		),
@@ -663,7 +618,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2016-12-26 20:26:24',
-			'ip' => '172.31.29.209',
 			'type' => 'sentence',
 			'id' => '45'
 		),
@@ -677,7 +631,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2016-12-26 20:26:24',
-			'ip' => '172.30.227.165',
 			'type' => 'sentence',
 			'id' => '46'
 		),
@@ -691,7 +644,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '8',
 			'datetime' => '2017-04-06 19:23:01',
-			'ip' => '172.31.230.25',
 			'type' => 'sentence',
 			'id' => '47'
 		),
@@ -707,7 +659,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2017-04-06 20:21:18',
-			'ip' => '172.28.54.205',
 			'type' => 'sentence',
 			'id' => '48'
 		),
@@ -721,7 +672,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2017-04-06 20:22:03',
-			'ip' => '172.28.54.205',
 			'type' => 'link',
 			'id' => '49'
 		),
@@ -735,7 +685,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2017-04-06 20:26:28',
-			'ip' => '172.28.54.205',
 			'type' => 'link',
 			'id' => '50'
 		),
@@ -750,7 +699,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-07 18:50:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '51'
 		),
@@ -764,7 +712,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2017-04-07 18:50:08',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '52'
 		),
@@ -778,7 +725,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2017-04-07 18:50:08',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '53'
 		),
@@ -792,7 +738,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2017-04-07 18:50:08',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '54'
 		),
@@ -806,7 +751,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-07 18:50:13',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '55'
 		),
@@ -820,7 +764,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-07 18:50:13',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '56'
 		),
@@ -834,7 +777,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-07 18:50:13',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '57'
 		),
@@ -848,7 +790,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 03:10:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '58'
 		),
@@ -862,7 +803,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 03:10:00',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '59'
 		),
@@ -876,7 +816,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 03:10:00',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '60'
 		),
@@ -891,7 +830,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 03:10:04',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '61'
 		),
@@ -905,7 +843,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 03:10:04',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '62'
 		),
@@ -920,7 +857,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '63'
 		),
@@ -934,7 +870,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '64'
 		),
@@ -948,7 +883,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '65'
 		),
@@ -962,7 +896,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '66'
 		),
@@ -976,7 +909,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '67'
 		),
@@ -990,7 +922,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '68'
 		),
@@ -1004,7 +935,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '69'
 		),
@@ -1018,7 +948,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '70'
 		),
@@ -1032,7 +961,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-08 07:42:31',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '71'
 		),
@@ -1046,7 +974,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-08 04:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '72'
 		),
@@ -1060,7 +987,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'update',
 			'user_id' => '7',
 			'datetime' => '2017-04-08 04:00:04',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '73'
 		),
@@ -1076,7 +1002,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2017-04-09 09:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '74'
 		),
@@ -1090,7 +1015,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2017-04-09 11:28:49',
-			'ip' => '172.25.59.88',
 			'type' => 'sentence',
 			'id' => '75'
 		),
@@ -1104,7 +1028,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-09 11:38:44',
-			'ip' => '172.20.9.122',
 			'type' => 'sentence',
 			'id' => '76'
 		),
@@ -1118,7 +1041,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 11:39:10',
-			'ip' => '172.22.11.42',
 			'type' => 'sentence',
 			'id' => '77'
 		),
@@ -1132,7 +1054,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'update',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 11:39:09',
-			'ip' => '172.16.202.105',
 			'type' => 'sentence',
 			'id' => '78'
 		),
@@ -1146,7 +1067,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2017-04-09 11:39:10',
-			'ip' => '172.24.229.195',
 			'type' => 'link',
 			'id' => '79'
 		),
@@ -1160,7 +1080,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-09 11:39:10',
-			'ip' => '172.20.9.122',
 			'type' => 'link',
 			'id' => '80'
 		),
@@ -1174,7 +1093,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '6',
 			'datetime' => '2017-04-09 11:39:10',
-			'ip' => '172.26.26.4',
 			'type' => 'sentence',
 			'id' => '81'
 		),
@@ -1188,7 +1106,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '5',
 			'datetime' => '2017-04-09 11:39:10',
-			'ip' => '172.21.187.164',
 			'type' => 'sentence',
 			'id' => '82'
 		),
@@ -1202,7 +1119,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2017-04-09 11:39:10',
-			'ip' => '172.17.196.239',
 			'type' => 'sentence',
 			'id' => '83'
 		),
@@ -1216,7 +1132,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.22.11.42',
 			'type' => 'link',
 			'id' => '84'
 		),
@@ -1230,7 +1145,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.17.196.239',
 			'type' => 'link',
 			'id' => '85'
 		),
@@ -1244,7 +1158,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.20.9.122',
 			'type' => 'link',
 			'id' => '86'
 		),
@@ -1258,7 +1171,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '6',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.26.26.4',
 			'type' => 'link',
 			'id' => '87'
 		),
@@ -1272,7 +1184,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.24.229.195',
 			'type' => 'link',
 			'id' => '88'
 		),
@@ -1286,7 +1197,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '5',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.21.187.164',
 			'type' => 'link',
 			'id' => '89'
 		),
@@ -1300,7 +1210,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.17.196.239',
 			'type' => 'link',
 			'id' => '90'
 		),
@@ -1314,7 +1223,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '6',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.26.26.4',
 			'type' => 'link',
 			'id' => '91'
 		),
@@ -1328,7 +1236,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.22.11.42',
 			'type' => 'link',
 			'id' => '92'
 		),
@@ -1342,7 +1249,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '5',
 			'datetime' => '2017-04-09 11:39:11',
-			'ip' => '172.21.187.164',
 			'type' => 'link',
 			'id' => '93'
 		),
@@ -1356,7 +1262,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 12:51:41',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '94'
 		),
@@ -1371,7 +1276,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 13:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '95'
 		),
@@ -1385,7 +1289,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 14:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '96'
 		),
@@ -1400,7 +1303,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 14:00:04',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '97'
 		),
@@ -1414,7 +1316,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 14:00:04',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '98'
 		),
@@ -1428,7 +1329,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 14:00:04',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '99'
 		),
@@ -1442,7 +1342,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-09 15:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '100'
 		),
@@ -1456,7 +1355,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2014-04-09 15:00:00',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '101'
 		),
@@ -1470,7 +1368,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2017-04-09 15:10:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '102'
 		),
@@ -1484,7 +1381,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 15:10:10',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '103'
 		),
@@ -1498,7 +1394,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-09 15:10:10',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '104'
 		),
@@ -1512,7 +1407,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2017-04-10 01:22:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '105'
 		),
@@ -1526,7 +1420,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-10 01:22:00',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '106'
 		),
@@ -1540,7 +1433,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-10 01:22:00',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '107'
 		),
@@ -1554,7 +1446,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-10 01:23:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '108'
 		),
@@ -1568,7 +1459,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2017-04-10 01:24:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '109'
 		),
@@ -1582,7 +1472,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-10 01:26:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '110'
 		),
@@ -1596,7 +1485,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '3',
 			'datetime' => '2017-04-10 01:27:00',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '111'
 		),
@@ -1610,7 +1498,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '4',
 			'datetime' => '2017-04-11 13:49:10',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '112'
 		),
@@ -1624,7 +1511,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2017-04-13 01:12:43',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '113'
 		),
@@ -1638,7 +1524,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2018-04-12 06:43:01',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '114'
 		),
@@ -1652,7 +1537,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '2',
 			'datetime' => '2018-04-12 06:43:01',
-			'ip' => '127.0.0.1',
 			'type' => 'license',
 			'id' => '115'
 		),
@@ -1666,7 +1550,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2018-04-12 12:12:11',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '116'
 		),
@@ -1680,7 +1563,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2018-04-12 12:12:11',
-			'ip' => '127.0.0.1',
 			'type' => 'license',
 			'id' => '117'
 		),
@@ -1694,7 +1576,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2018-04-12 12:12:11',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '118'
 		),
@@ -1708,7 +1589,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2018-04-12 12:12:11',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '119'
 		),
@@ -1722,7 +1602,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2018-04-12 12:12:19',
-			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '120'
 		),
@@ -1736,7 +1615,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '1',
 			'datetime' => '2018-04-12 12:12:19',
-			'ip' => '127.0.0.1',
 			'type' => 'license',
 			'id' => '121'
 		),
@@ -1750,7 +1628,6 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2018-04-12 12:12:19',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '122'
 		),
@@ -1764,9 +1641,60 @@ class ContributionsFixture extends TestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2018-04-12 12:12:19',
-			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '123'
+		),
+		array(
+			'sentence_id' => '55',
+			'sentence_lang' => NULL,
+			'translation_id' => '57',
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '',
+			'action' => 'delete',
+			'user_id' => '7',
+			'datetime' => '2018-04-12 12:13:19',
+			'type' => 'link',
+			'id' => '124'
+		),
+		array(
+			'sentence_id' => '57',
+			'sentence_lang' => 'jpn',
+			'translation_id' => '55',
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '',
+			'action' => 'delete',
+			'user_id' => '7',
+			'datetime' => '2018-04-12 12:13:19',
+			'type' => 'link',
+			'id' => '125'
+		),
+		array(
+			'sentence_id' => '56',
+			'sentence_lang' => 'jpn',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '電話借りてもいい？',
+			'action' => 'delete',
+			'user_id' => '4',
+			'datetime' => '2018-04-12 12:23:19',
+			'type' => 'sentence',
+			'id' => '126'
+		),
+		array(
+			'sentence_id' => '29',
+			'sentence_lang' => 'eng',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => 'The log of this sentence shows two creation records.',
+			'action' => 'delete',
+			'user_id' => '4',
+			'datetime' => '2018-04-12 12:23:19',
+			'type' => 'sentence',
+			'id' => '127'
 		),
 	);
 }

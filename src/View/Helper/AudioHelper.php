@@ -25,13 +25,7 @@ class AudioHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
-        'License' => ['availableLicences' => [
-            '',
-            'CC BY 4.0',
-            'CC BY-NC 4.0',
-            'CC BY-SA 4.0',
-            'CC BY-NC-ND 3.0',
-        ]]
+        'AudioLicense'
     );
 
     private function defaultAttribUrl($username) {
@@ -55,10 +49,12 @@ class AudioHelper extends AppHelper
             $license   = $audio->external['license'];
             $attribUrl = $audio->external['attribution_url'];
         }
+        $username = $this->_View->safeForAngular($username);
+        $attribUrl = $this->_View->safeForAngular($attribUrl);
         if (!empty($attribUrl)) {
             $username = $this->Html->link($username, $attribUrl);
         }
-        $license = $this->License->getLicenseName($license);
+        $license = $this->AudioLicense->getLicenseName($license);
 ?>
 <ul>
   <li><?php echo format(__('Recorded by: {username}'), compact('username')); ?></li>
@@ -81,8 +77,8 @@ class AudioHelper extends AppHelper
         } elseif ($license == 'Public domain') {
             $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under the public domain.');
-        } elseif ($this->License->isKnownLicense($license)) {
-            $license = $this->License->licenseLink($license);
+        } elseif ($this->AudioLicense->isKnownLicense($license)) {
+            $license = $this->AudioLicense->getLicenseName($license);
             $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under the {licenseName} '.
                       'license.');

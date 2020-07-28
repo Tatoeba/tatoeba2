@@ -37,13 +37,14 @@ $registerUrl = $this->Url->build(
 ?>
 
 <div layout="row" layout-align="center center" ng-cloak>
-<div layout="column" flex="80">
+<div layout="column" flex-gt-sm="80">
 
 <?php if(!isset($searchProblem)) { ?>
 <div layout-margin>
 <div layout="column">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
+            <?php /* @translators: random sentence block header on the home page for guests */ ?>
             <h2><?= __('Random sentence'); ?></h2>
         </div>
     </md-toolbar>
@@ -68,8 +69,8 @@ $registerUrl = $this->Url->build(
 </div>
 <?php } ?>
 
-<div layout="row" layout-margin>
-    <div class="join-us md-whiteframe-1dp" layout="column" flex>
+<div layout-gt-xs="row" layout-margin>
+    <div class="join-us md-whiteframe-1dp" layout="column" layout-align="space-between" flex>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= __('Want to help?') ?></h2>
@@ -84,7 +85,6 @@ $registerUrl = $this->Url->build(
         <div layout="row" layout-align="center center">
             <md-button class="md-primary" href="<?= $registerUrl; ?>">
                 <?php echo __('Join the community'); ?>
-                <md-icon>keyboard_arrow_right</md-icon>
             </md-button>
         </div>
     </div>
@@ -101,7 +101,7 @@ $registerUrl = $this->Url->build(
                   'numSentences' => $numSentences,
                 ],
                 [ 'cache' => [
-                    'time' => '+15 minutes',
+                    'config' => 'stats',
                     'key' => 'homepage_stats_'.Configure::read('Config.language')
                 ]]
         ); ?>

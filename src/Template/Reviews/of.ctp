@@ -34,17 +34,16 @@ $categories = array(
     'outdated' => ['keyboard_arrow_right', __("Outdated reviews")]
 );
 
-if ($correctnessLabel) {
-    $category = $correctnessLabel;
+if (empty($correctnessLabel) || !in_array($correctnessLabel, $categories)) {
+    $category = $categories['all'][1];
 } else {
-    $category = 'all';
+    $category = $categories[$correctnessLabel][1];
 }
-
 
 if ($userExists) {
     $title = format(
         __("{user}'s reviews - {category}"),
-        array('user' => $username, 'category' => $categories[$category][1])
+        array('user' => $username, 'category' => $category)
     );
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
@@ -53,6 +52,7 @@ if ($userExists) {
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
+<?php if ($userExists) : ?>
 <div id="annexe_content" ng-cloak>
     <?php
     if (!CurrentUser::get('settings.users_collections_ratings')) {
@@ -69,6 +69,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     ?>
 
     <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+        <?php /* @translators: header text in the sidebar of a list of reviews (verb) */ ?>
         <md-subheader><?= __('Filter') ?></md-subheader>
         <?php
         foreach($categories as $categoryKey => $categoryValue) {
@@ -87,6 +88,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         ?>
     </md-list>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
     <section class="md-whiteframe-1dp correctness-info">
@@ -107,10 +109,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
+            /* @translators: sort option in the list of reviews */
             echo $this->Paginator->sort('modified', __("date modified"));
             echo " | ";
+            /* @translators: sort option in the list of reviews */
             echo $this->Paginator->sort('created', __("date created"));
             echo " | ";
+            /* @translators: sort option in the list of reviews */
             echo $this->Paginator->sort('sentence_id', __("sentence id"));
             ?>
         </div>

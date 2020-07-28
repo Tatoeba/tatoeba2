@@ -55,10 +55,9 @@ class VocabularyController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        if($this->request->is('ajax')) {
-          $this->Security->unlockedActions = array('save', 'save_sentence');
-        }
-
+        $this->Security->config('unlockedActions', [
+            'save', 'save_sentence'
+        ]);
         return parent::beforeFilter($event);
     }
 
@@ -87,7 +86,6 @@ class VocabularyController extends AppController
                   'action' => 'all')
             );
         }
-        
         $this->loadModel('UsersVocabulary');
         $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
             $userId,
@@ -117,7 +115,9 @@ class VocabularyController extends AppController
      * @param $lang string Language of the vocabulary items.
      */
     public function add_sentences($lang = null)
-    {
+    {   
+        $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang);
+
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Languages';
@@ -139,23 +139,6 @@ class VocabularyController extends AppController
         $text = $this->request->getData('text');
 
         $result = $this->Vocabulary->addItem($lang, $text);
-
-        $numSentences = $result['numSentences'];
-
-        if (is_null($numSentences)) {
-            $numSentencesLabel = __('Unknown number of sentences');
-        } else {
-            $numSentences = $numSentences == 1000 ? '1000+' : $numSentences;
-            $numSentencesLabel = format(
-                __n(
-                    '{number} sentence', '{number} sentences',
-                    $numSentences,
-                    true
-                ),
-                array('number' => $numSentences)
-            );
-        }
-        $result['numSentencesLabel'] = $numSentencesLabel;
 
         $this->set('result', $result);
         $this->viewBuilder()->setLayout('json');

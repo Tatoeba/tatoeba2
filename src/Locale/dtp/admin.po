@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-09 20:55+0800\n"
+"POT-Creation-Date: 2020-06-04 23:48+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Lesley Kibat, 2020\n"
 "Language-Team: Kadazandusun (https://www.transifex.com/tatoeba/teams/28284/dtp/)\n"
@@ -21,21 +21,21 @@ msgstr ""
 "Language: dtp\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
 msgstr "Nokologos no fail dot amu kotorimo “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L274
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Amu kaanu do momonsoi do direktori “{dir}” kumaa do fail impot “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr ""
 "Amu kaanu do maan ‘copy’ do direktori “{dir}” kumaa do fail impot “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -43,7 +43,7 @@ msgstr ""
 "Amu kaanu suraton do rolou do “{author}” kumaa do boros ayat {sentenceId} id"
 " suang do piipiro data. Mositi do kotorimo ngaran ponguno."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L302
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -51,77 +51,81 @@ msgstr ""
 "Nakaanu no maai impot do \"{file}\" nga amu po papataam do impot mantad do "
 "direktori."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
 msgstr "Maai impot rakaman"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
 msgstr "Maai impot repot."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
 msgstr "Kiwaro piipiro o kisala' tontok do impot."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
 msgstr "Nokoriuk no piagalan fail."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
 msgstr "Ngaran do fail."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
 msgstr "Boros ayat do id"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "Language"
 msgstr "Boros"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
 msgid "Already has audio"
 msgstr "Kiwaro nodi o rolou"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
 msgstr "Kiwaro doti impot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
 msgstr "Aiso nunu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
 msgstr "Amu kotorimo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L127
-msgid "No files have been detected inside the import directory."
-msgstr "Aiso nunu do piagalan mantad id suang do impot direktori."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L133
-msgid "Import"
-msgstr "Impot"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L59
-msgid "Enabled"
-msgstr "Pinapaharo "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
 msgid "Yes"
 msgstr "Ohoo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
 msgid "No"
 msgstr "Amu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
+msgid "No files have been detected inside the import directory."
+msgstr "Aiso nunu do piagalan mantad id suang do impot direktori."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
+msgid "Import"
+msgstr "Impot"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
+msgid "Enabled"
+msgstr "Pinapaharo "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
 msgstr "Ngaran do sanganu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
@@ -131,7 +135,7 @@ msgstr "Papaatod"
 msgid "Correctness"
 msgstr "Pointopot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
 msgstr "Poposimban"
 
@@ -215,10 +219,10 @@ msgstr "Taraf"
 msgid "Send notifications"
 msgstr "Papaatod do notifikasi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L128
 msgid "unhide"
 msgstr "Amu lisokon"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L131
 msgid "hide"
 msgstr "Lisoko"

@@ -34,6 +34,7 @@ if (!$shouldDisplayBlock) {
 
 ?>
 <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text in sentence page */ ?>
     <h2><?php echo __('Audio') ?></h2>
 <?php
 
@@ -56,7 +57,7 @@ if (CurrentUser::isAdmin()) {
         "id",
         array("value" => $sentenceId)
     );
-    __d("admin", "Enabled");
+    echo __d("admin", "Enabled");
     echo $this->Form->control(
         "hasaudio",
         array(
@@ -72,12 +73,7 @@ if (CurrentUser::isAdmin()) {
 
     $ownerName = '';
     if ($hasaudio) {
-        $audio = $audios[0];
-        if ($audio->user_id && $audio->user->username) {
-            $ownerName = $audio->user->username;
-        } else {
-            $ownerName = $audios->external->username;
-        }
+        $ownerName = $this->safeForAngular($audios[0]->author);
     }
     echo $this->Form->control("ownerName",
         array(

@@ -25,10 +25,14 @@
  * @link     https://tatoeba.org
  */
 ?>
-<div id="footer">
+<div id="footer" layout="column" ng-cloak>
 
-    <div class="container">
-    <div class="category">
+    <div layout="row" layout-align="center center" flex layout-margin ng-controller="MenuController">
+        <?= $this->element('ui_language_button'); ?>
+    </div>
+
+    <div layout="row" layout-xs="column" layout-align="space-between start">
+    <div class="category" flex-gt-xs>
         <h3><?php echo __('Need some help?'); ?></h3>
         <ul>
             <li>
@@ -50,7 +54,8 @@
             <li>
                 <?php
                 echo $this->Html->link(
-                    __('FAQ'),
+                    /* @translators: link text in the footer */
+                    __x('footer', 'FAQ'),
                     'http://en.wiki.tatoeba.org/articles/show/faq'
                 );
                 ?>
@@ -58,6 +63,7 @@
             <li>
                 <?php
                 echo $this->Html->link(
+                    /* @translators: link text to the Help page in the footer (noun) */
                     __('Help'),
                     array(
                         "controller" => "pages",
@@ -68,13 +74,15 @@
             </li>
         </ul>
     </div>
-
-    <div class="category">
+    
+    <div class="category" flex-gt-xs>
+        <?php /* @translators: section name in the footer */ ?>
         <h3><?php echo __('Developers'); ?></h3>
         <ul>
             <li>
                 <?php
                 echo $this->Html->link(
+                    /* @translators: link text to the Downloads page in the footer (noun) */
                     __('Downloads'),
                     array(
                         "controller" => "pages",
@@ -86,6 +94,7 @@
             <li>
                 <?php
                 echo $this->Html->link(
+                    /* @translators: link text to the Tatoeba GitHub page in the footer (noun) */
                     __('GitHub'),
                     'https://github.com/Tatoeba/tatoeba2',
                     array('target' => '_blank')
@@ -95,6 +104,7 @@
             <li>
                 <?php
                 echo $this->Html->link(
+                    /* @translators: link text to the Google group page in the footer (noun) */
                     __('Google group'),
                     'https://groups.google.com/forum/#!forum/tatoebaproject'
                 );
@@ -102,8 +112,9 @@
             </li>
         </ul>
     </div>
-
-    <div class="category">
+    
+    <div class="category" flex-gt-xs>
+        <?php /* @translators: section name in the footer */ ?>
         <h3><?php echo __('About'); ?></h3>
         <ul>
             <li>
@@ -131,6 +142,7 @@
             <li>
                 <?php
                 echo $this->Html->link(
+                   /* @translators: link text to the Status page in the footer (noun) */
                     __('Status'),
                     'https://status.tatoeba.org'
                 );
@@ -138,6 +150,7 @@
             </li>
             <li>
                 <?php
+                /* @translators: link text to the Terms of use page in the footer (noun) */
                 echo $this->Html->link(
                     __('Terms of use'),
                     array(
@@ -150,6 +163,7 @@
             <li>
                 <?php
                 echo $this->Html->link(
+                    /* @translators: link text to the Blog page in the footer (noun) */
                     __('Blog'),
                     'http://blog.tatoeba.org/',
                     array('target' => '_blank')
@@ -159,6 +173,7 @@
             <li>
                 <?php
                 echo $this->Html->link(
+                    /* @translators: link text to the Tatoeba Twitter account in the footer (noun) */
                     __('Twitter'),
                     'http://twitter.com/tatoeba_org',
                     array('target' => '_blank')
@@ -168,6 +183,7 @@
             <li>
                 <?php
                 echo $this->Html->link(
+                    /* @translators: link text to the Tatoeba Facebook page in the footer (noun) */
                     __('Facebook'),
                     'https://www.facebook.com/groups/129340017083187/',
                     array('target' => '_blank')
@@ -176,8 +192,9 @@
             </li>
         </ul>
     </div>
+    </div>
 
-    <div layout="row" layout-align="start center" class="license">
+    <div layout="row" layout-align="center center" class="license">
         <img alt="Creative Commons License" src="/img/cc-logo.png" />
         <div class="text">
             <?php
@@ -185,6 +202,7 @@
                 'Our data is released under various Creative Commons licenses.'
             );
             echo $this->Html->link(
+                /* @translators: link text (in the footer) to the section 6 of the Terms of use page */
                 __('More information'),
                 array(
                     'controller' => 'pages',
@@ -208,7 +226,5 @@
             );
             ?>
         </div>
-
-    </div>
     </div>
 </div>

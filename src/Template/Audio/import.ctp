@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Cake\Core\Configure;
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import recordings')));
 
 ?>
@@ -58,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     <?php if ($errors) : ?>
         <p><?php echo __d('admin', 'The following errors occurred during import.'); ?></p>
         <div id="import-report">
-            <?php echo join('<br/>', $errors); ?>
+            <?= $this->safeForAngular(join('<br/>', $errors)) ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>
@@ -103,13 +105,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                       __d('admin', 'Invalid');
         $hasaudio = isset($file['hasaudio']) ? (
                         $file['hasaudio'] ?
-                        __('Yes') :
-                        __('No')
+                        __d('admin', 'Yes') :
+                        __d('admin', 'No')
                     ) :
                     __d('admin', 'N/A');
         $isValid = $file['valid'] ?
-                   __('Yes') :
-                   __('No');
+                   __d('admin', 'Yes') :
+                   __d('admin', 'No');
+
+        if (isset($file['hasaudio']) && $file['hasaudio']) {
+            $path = Configure::read('Recordings.url')
+                .$file['lang'].'/'.$file['sentenceId'].'.mp3';
+            $hasaudio = $this->Html->Link($hasaudio, $path);
+        }
+
         echo $this->Html->tableCells(
             array(
                 $file['fileName'],
@@ -128,8 +137,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                       'inside the import directory.'); ?></p>
 <?php endif; ?>
 <?php
-echo $this->Form->create();
-echo $this->Form->input('audioAuthor');
+echo $this->Form->create(null, ['ng-non-bindable' => '']);
+echo $this->Form->input('audioAuthor', ['required' => true]);
 echo $this->Form->submit(__d('admin', 'Import'));
 echo $this->Form->end();
 ?>

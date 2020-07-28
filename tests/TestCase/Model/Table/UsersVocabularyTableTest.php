@@ -48,9 +48,13 @@ class UsersVocabularyTableTest extends TestCase
     }
 
     public function testAdd_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->UsersVocabulary->add(1, 3);
         $returned = $this->UsersVocabulary->get($added->id);
         $this->assertEquals($added->created, $returned->created);
+
+        I18n::setLocale($prevLocale);
     }
 }

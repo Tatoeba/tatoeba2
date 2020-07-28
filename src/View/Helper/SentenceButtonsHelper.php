@@ -95,6 +95,7 @@ class SentenceButtonsHelper extends AppHelper
         $image = $this->Images->svgIcon(
             'unlink',
             array(
+                /* @translators: alt text for unlink translation button (verb) */
                 "alt"=>__('Unlink'),
                 "width" => 16,
                 "height" => 16
@@ -136,6 +137,7 @@ class SentenceButtonsHelper extends AppHelper
         $image = $this->Images->svgIcon(
             'link',
             array(
+                /* @translators: alt text for link translation button (verb) */
                 "alt"=>__('Link'),
                 "width" => 16,
                 "height" => 16
@@ -183,7 +185,7 @@ class SentenceButtonsHelper extends AppHelper
                      $sentenceAudios;
             $author = isset($audio->user['username']) ?
                       $audio->user['username'] :
-                      $audio['external']['username'];
+                      $this->_View->safeForAngular($audio['external']['username']);
             if (empty($author)) {
                 $title = __('Play audio');
             } else {
@@ -231,9 +233,9 @@ class SentenceButtonsHelper extends AppHelper
             if (CurrentUser::isAdmin() || CurrentUser::isModerator()) {
                 $langArray = $this->Languages->otherLanguagesArray();
             } else {
-                $langArray = $this->Languages->profileLanguagesArray(
-                    false, true
-                );
+                $langArray = $this->Languages->profileLanguagesArray(false, [
+                    '' => __('other language'),
+                ]);
             }
             ?>
 
@@ -273,7 +275,6 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function displayCopyButton($text)
     {
-        $this->Html->script('clipboard.min.js', array('block' => 'scriptBottom'));
         $copyButton = $this->Images->svgIcon('copy');
         echo $this->Html->div('copy-btn', $copyButton,
             array(

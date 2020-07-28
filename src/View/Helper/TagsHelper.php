@@ -63,6 +63,7 @@ class TagsHelper extends AppHelper
         ?>
 
         <div class="section md-whiteframe-1dp">
+            <?php /* @translators: header text on a sentence page in the sidebar (noun) */ ?>
             <h2><?php echo __('Tags'); ?></h2>
 
             <div class="tagsListOnSentence" >
@@ -146,7 +147,7 @@ class TagsHelper extends AppHelper
             );
         }
         echo $this->Html->link(
-            $tagName,
+            $this->_View->safeForAngular($tagName),
             array(
                 "controller" => "tags",
                 "action" => "show_sentences_with_tag",
@@ -205,6 +206,7 @@ class TagsHelper extends AppHelper
             'label' => '',
             'lang' => '',
             'dir' => 'auto',
+            'autocomplete' => 'off'
         ]);
         echo $this->Form->hidden('sentence_id', [
             'value' => $sentenceId

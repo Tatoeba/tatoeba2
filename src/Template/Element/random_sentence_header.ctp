@@ -25,40 +25,33 @@
  * @link     https://tatoeba.org
  */
 
-$this->Html->script(JS_PATH . 'sentences.show_another.js', array('block' => 'scriptBottom'));
-$this->Sentences->javascriptForAJAXSentencesGroup();
+use App\Model\CurrentUser;
+
+$this->Html->script('sentences/random.ctrl.js', ['block' => 'scriptBottom']);
 
 $langArray = $this->Languages->languagesArrayAlone();
-$selectedLanguage = $this->request->getSession()->read('random_lang_selected');
-
-if ($selectedLanguage == null) {
-    $selectedLanguage == 'und';
-}
-
 ?>
 
-
+<div ng-controller="RandomSentenceController as vm" ng-init="vm.init()">
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
+        <?php /* @translators: random sentence block header on the home page for members */ ?>
         <h2 flex><?= __('Random sentence') ?></h2>
+
         <span>
         <?php
-        echo $this->Form->select(
-            "randomLangChoice",
-            $langArray,
-            array(
-                'id' => 'randomLangChoice',
-                'value' => $selectedLanguage,
-                'class' => 'language-selector',
-                "empty" => false
-            ),
-            false
-        );
+        echo $this->Form->select('randomLangChoice', $langArray, [
+            'id' => 'randomLangChoice',
+            'class' => 'language-selector',
+            'empty' => false,
+            'ng-model' => 'vm.lang'
+        ]);
         ?>
         </span>
 
-        <md-button id="showRandom" onclick="return false;">
+        <md-button id="showRandom" ng-click="vm.showAnother(vm.lang)">
             <?= __('show another ') ?>
         </md-button>
     </div>
 </md-toolbar>
+</div>

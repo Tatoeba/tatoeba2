@@ -46,21 +46,37 @@ $tagsIndexUrl = $this->Url->build([
 </div>
 
 <div id="main_content">
-    <div class="section">
-        <h2><?php
-        $n = $this->Paginator->param('count');
-        echo format(
-            __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
-            array('tagName' => $tagName, 'n' => $this->Number->format($n))
-        ); ?></h2>
+<section class="md-whiteframe-1dp">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2 flex>
+            <?php
+            $n = $this->Paginator->param('count');
+            echo format(
+                __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
+                array(
+                    'tagName' => $this->safeForAngular($tagName),
+                    'n' => $this->Number->format($n)
+                )
+            );
+            ?>
+            </h2>
+            
+            <?= $this->element('sentences/expand_all_menus_button'); ?>
+        </div>
+    </md-toolbar>
+
+    <md-content>
 
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?></strong>
             <?php
+            /* @translators: sort option in the page that lists sentences having a certain tag */
             echo $this->Paginator->sort('sentence_id', __('date created'));
             ?>
             |
             <?php
+            /* @translators: sort option in the page that lists sentences having a certain tag */
             echo $this->Paginator->sort('added_time', __("date of tag"));
             ?>
         </div>
@@ -102,5 +118,6 @@ $tagsIndexUrl = $this->Url->build([
 
         <?php $this->Pagination->display(); ?>
         
-    </div>
+    </md-content>
+</section>
 </div>

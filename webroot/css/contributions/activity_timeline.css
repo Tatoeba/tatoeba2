@@ -6,7 +6,7 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -26,22 +26,15 @@
 }
 
 #timeline td {
-    padding: 0;
+    padding-bottom: 2px;
     border: 1px solid #FFF;
 }
 
 #timeline .date {
     text-align: right;
     color: #545454;
-    padding: 0 10px;
-}
-
-#timeline .number {
-    text-align: center;
-    padding: 0 10px;
-    color: #111;
     border-right: 1px solid #767676;
-    font-weight: bold;
+    padding: 0 10px;
 }
 
 #timeline .bar {
@@ -49,10 +42,35 @@
 }
 
 #timeline .logs_stats {
-    height: 10px;
     border-left: none;
-    background: #4caf50;
-    opacity: 0.4;
+    display: inline-block;
+    text-align: center;
+}
+
+#timeline .added {
+    background: #4caf5066;
+}
+
+#timeline .deleted {
+    background: #F4433666;
+}
+
+#timeline .linked {
+    background: #03a9f466;
+}
+
+#timeline .unlinked {
+    background: #ff980066;
+}
+
+thead {
+    text-align: center;
+    border-bottom: 30px solid white;
+}
+
+thead .added, thead .deleted,
+thead .linked, thead .unlinked {
+    min-height: 33px;
 }
 
 .daily-average {

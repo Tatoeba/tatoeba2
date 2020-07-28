@@ -55,7 +55,12 @@ class ExportsTableTest extends TestCase
 
     private function options()
     {
-        return [ 'type' => 'list', 'list_id' => 2, 'fields' => ['id', 'lang', 'text'] ];
+        return [
+            'type' => 'list',
+            'list_id' => 2,
+            'fields' => ['id', 'lang', 'text'],
+            'format' => 'tsv',
+        ];
     }
 
     private function optionsWith($with)
@@ -99,7 +104,7 @@ class ExportsTableTest extends TestCase
                 'description' => 'Japanese sentence text [tab] Russian entence text',
                 'status' => 'queued',
                 'generated' => new \Cake\I18n\FrozenTime('2019-02-01 15:04:02'),
-                'pretty_filename' => 'Japanese-Russian sentence pairs - 2019-02-01.csv',
+                'pretty_filename' => 'Japanese-Russian sentence pairs - 2019-02-01.tsv',
             ],
         ];
 
@@ -173,6 +178,13 @@ class ExportsTableTest extends TestCase
     public function testCreateExport_failsIfFieldsIsNotAnArray()
     {
         $options = $this->optionsWith(['fields' => 123]);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsIfFormatUnsupported()
+    {
+        $options = $this->optionsWith(['format' => 'message-in-a-bottle']);
         $result = $this->Exports->createExport(4, $options);
         $this->assertFalse($result);
     }
@@ -283,8 +295,8 @@ class ExportsTableTest extends TestCase
         Time::setTestNow();
         $export = $this->Exports->get($exportId);
         $this->assertEquals($now, $export->generated);
-        $this->assertEquals(TMP.'export_tests/list_3.csv', $export->filename);
-        $this->assertEquals('/export_tests/list_3.csv', $export->url);
+        $this->assertEquals(TMP.'export_tests/list_3.tsv', $export->filename);
+        $this->assertEquals('/export_tests/list_3.tsv', $export->url);
         $this->assertEquals('online', $export->status);
     }
 
@@ -297,7 +309,7 @@ class ExportsTableTest extends TestCase
         $this->Exports->runExport($config, $jobId);
 
         $filename = $this->Exports->get($exportId)->filename;
-        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_3.csv', $filename);
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_3.tsv', $filename);
     }
 
     public function testRunExport_fileHasExpectedContents_withoutId()
@@ -309,7 +321,7 @@ class ExportsTableTest extends TestCase
         $firstExportId = $config['export_id'];
 
         $filename = $this->Exports->get($firstExportId)->filename;
-        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_without_id.csv', $filename);
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_without_id.tsv', $filename);
     }
 
     public function testRunExport_fileHasExpectedContents_withTranslations()
@@ -321,7 +333,31 @@ class ExportsTableTest extends TestCase
         $firstExportId = $config['export_id'];
 
         $filename = $this->Exports->get($firstExportId)->filename;
-        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_with_translations.csv', $filename);
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_with_translations.tsv', $filename);
+    }
+
+    public function testRunExport_fileHasExpectedContents_asTextFormat()
+    {
+        $options = $this->optionsWith(['list_id' => 1, 'fields' => ['text'], 'format' => 'txt']);
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $filename = $this->Exports->get($firstExportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_as_raw_text.txt', $filename);
+    }
+
+    public function testRunExport_fileHasExpectedContents_asShtookaFormat()
+    {
+        $options = $this->optionsWith(['list_id' => 1, 'format' => 'shtooka']);
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $filename = $this->Exports->get($firstExportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_for_shtooka.txt', $filename);
     }
 
     public function testRunExport_failsIfExportDirNotWritable()

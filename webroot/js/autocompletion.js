@@ -40,13 +40,19 @@ class AutocompleteBox {
         $(this.inputTag).keyup(function(e){
             switch(e.keyCode) {
                 case 38: //up
-                    this.changeActiveSuggestion(-1);
+                    if (that.isSuggestListActive) {
+                        that.changeActiveSuggestion(-1);
+                    }
                     break;
                 case 40://down
-                    this.changeActiveSuggestion(1);
+                    if (that.isSuggestListActive) {
+                        that.changeActiveSuggestion(1);
+                    }
                     break;
                 case 27: //escape
-                    this.removeSuggestList();
+                case 37: //left
+                case 39: //right
+                    that.removeSuggestList();
                     break;
                 default:
                     this.countBeforeRequest++;
@@ -65,14 +71,16 @@ class AutocompleteBox {
     }
 
     changeActiveSuggestion(offset) {
-        $("#suggestItem" + this.currentSuggestPosition % this.suggestLength).removeClass("selected");
-        this.currentSuggestPosition += offset;
+        $("#suggestItem" + this.currentSuggestPosition).removeClass("selected");
+        this.currentSuggestPosition = (this.currentSuggestPosition + offset) % this.suggestLength;
         if (this.currentSuggestPosition < 0) {
             this.currentSuggestPosition = this.suggestLength - 1;
         }
-        var selectedItem = $("#suggestItem" + this.currentSuggestPosition % this.suggestLength);
-        selectedItem.addClass("selected");
-        this.suggestSelect(this.selectedItem[0].innerHTML);
+        var selectedItem = $("#suggestedItem" + this.currentSuggestPosition);
+        if (selectedItem.length > 0){
+            selectedItem.addClass("selected");
+            this.suggestSelect(selectedItem[0].dataset.tagName);
+        }
     }
 
     suggestSelect(suggestionStr) {
@@ -115,6 +123,7 @@ class AutocompleteBox {
             return;
         }
     
+        this.suggestLength = suggestions.allTags.length;
         this.isSuggestListActive = true;
         var that = this;
     

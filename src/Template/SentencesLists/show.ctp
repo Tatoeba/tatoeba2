@@ -27,6 +27,9 @@
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
+// Just to make sure jQuery is loaded before the rest of the lists JS scripts
+$this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
+
 $this->Html->script(
     JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
 );
@@ -118,14 +121,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     $class = '';
     if ($permissions['canEdit']) {
-        $this->Html->script('jquery.jeditable.js', ['block' => 'scriptBottom']);
-        $this->Html->script('sentences_lists.edit_name.js', ['block' => 'scriptBottom']);
+        $this->Html->script('sentences_lists.edit_name.js', ['block' => 'scriptBottom']);        
 
         $class = 'editable-list-name';
 
         $editImage = $this->Images->svgIcon(
             'edit',
             array(
+                /* @translators: edit button for list name (verb) */
                 'alt'=> __('Edit'),
                 'title'=> __('Edit name'),
                 'width' => 15,
@@ -135,13 +138,19 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         );
     }
 
-    echo $this->Html->tag('h2', $listName, [
-        'id'    => "l$listId",
-        'class' => $class,
-        'data-submit'  => __('OK'),
-        'data-cancel'  => __('Cancel'),
-        'data-tooltip' => __('Click to edit...'),
-    ]);
+    echo $this->Html->tag(
+        'h2',
+        $this->safeForAngular($listName),
+        [
+            'id'    => "l$listId",
+            'class' => $class,
+            /* @translators: submit button of list name edition form */
+            'data-submit'  => __('OK'),
+            /* @translators: cancel button of list name edition form (verb) */
+            'data-cancel'  => __('Cancel'),
+            'data-tooltip' => __('Click to edit...'),
+        ]
+    );
 
     if ($permissions['canAddSentences']) {
         echo $this->Html->div('edit-list-name', $editImage);

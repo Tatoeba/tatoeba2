@@ -11,8 +11,8 @@ $editUrl = $this->Url->build([
 ?>
 
 <a id="reply-form-<?= $parentId ?>"></a>
-<md-card id="form-<?= $parentId ?>" ng-hide="true"
-         class="wall comment form" ng-cloak>
+<md-card id="form-<?= $parentId ?>" ng-if="vm.visibleForms[<?= $parentId ?>]"
+         class="wall form reply" ng-cloak>
 
     <md-card-header>
         <md-card-avatar>
@@ -27,10 +27,11 @@ $editUrl = $this->Url->build([
             </span>
         </md-card-header-text>
 
-        <md-button class="md-icon-button" aria-label="<?= __('edit') ?>"
+        <md-button class="md-icon-button" aria-label="<?= __('Edit') ?>"
                    ng-if="vm.savedReplies[<?= $parentId ?>].id"
                    ng-href="<?= $editUrl ?>/{{vm.savedReplies[<?= $parentId ?>].id}}">
             <md-icon>edit</md-icon>
+            <?php /* @translators: edit button on a just-posted reply of a wall post (verb) */ ?>
             <md-tooltip><?= __('Edit') ?></md-tooltip>
         </md-button>
     </md-card-header>
@@ -38,7 +39,7 @@ $editUrl = $this->Url->build([
     <md-progress-linear ng-if="vm.isSaving[<?= $parentId ?>]"
                         md-mode="indeterminate"></md-progress-linear>
 
-    <md-card-content class="content">
+    <md-card-content class="content" ng-if="!vm.savedReplies[<?= $parentId ?>]">
         <?php
         echo $this->Form->create('', [
             'ng-submit' => 'vm.saveReply('.$parentId.')',
@@ -62,11 +63,13 @@ $editUrl = $this->Url->build([
 
         <div ng-cloak layout="row" layout-align="end center">
             <md-button class="md-raised" ng-click="vm.hideForm(<?= $parentId ?>)">
+                <?php /* @translators: button to cancel posting a reply on the Wall (verb) */ ?>
                 <?php echo __('Cancel'); ?>
             </md-button>
 
             <md-button type="submit" class="md-raised md-primary submit"
                        ng-disabled="vm.isSaving[<?= $parentId ?>]">
+                <?php /* @translators: button to post a reply on the Wall (verb) */ ?>
                 <?php echo __('Send'); ?>
             </md-button>
         </div>
@@ -75,5 +78,5 @@ $editUrl = $this->Url->build([
         ?>
     </md-card-content>
 
-    <md-card-content class="reply-saved" ng-hide="true">{{vm.savedReplies[<?= $parentId ?>].content}}</md-card-content>
+    <md-card-content class="reply-saved" ng-if="vm.savedReplies[<?= $parentId ?>]">{{vm.savedReplies[<?= $parentId ?>].content}}</md-card-content>
 </md-card>

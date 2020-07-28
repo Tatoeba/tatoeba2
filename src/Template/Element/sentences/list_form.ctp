@@ -2,9 +2,10 @@
     <div layout="row" layout-margin>
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
-            <input id="list-form-<?= $sentenceId ?>" ng-model="vm.listSearch"
+            <input ng-attr-id="list-form-{{vm.sentence.id}}" ng-model="vm.listSearch"
                    ng-change="vm.searchList()" ng-enter="vm.addToNewList()" ng-escape="vm.closeList()">
         </md-input-container>
+        <?php /* @translators: button to create a new list directly from a sentence block */ ?>
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()" ng-disabled="!vm.listSearch"><?= __('Create') ?></md-button>
     </div>
 
@@ -26,5 +27,7 @@
         <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'search'"><em><?= __('No list found.') ?></em></md-list-item>
         <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'of_user'"><em><?= __('You have no lists which this sentence can be added to.') ?></em></md-list-item>
     </md-list>
-    <md-button ng-click="vm.closeList()"><?= __('Close') ?></md-button>
+    <md-button ng-click="vm.closeList()">
+        <md-icon>close</md-icon> <?= __('Close') ?>
+    </md-button>
 </form>

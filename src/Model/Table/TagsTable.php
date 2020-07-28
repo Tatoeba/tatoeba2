@@ -22,6 +22,7 @@ use App\Model\CurrentUser;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
+use Cake\Validation\Validator;
 
 class TagsTable extends Table
 {
@@ -55,18 +56,24 @@ class TagsTable extends Table
         $this->addBehavior('Timestamp');
         $this->addBehavior('Autocompletable');
     }
-    /**
-     * Cakephp callback before each saving operation
-     *
-     * @return bool True if the saving operation can continue
-     *              False if we have to abort it
-     */
 
-    public function beforeSave($event, $entity, $options = array())
+    public function beforeMarshal($event, $data, $options)
     {
-        $tagName = $entity->name;
-        $result = $this->getIdFromName($tagName);
-        return empty($result);
+        if (isset($data['name'])) {
+            $name = ltrim($data['name']);
+            // Truncate to a maximum byte length of 50. If a multibyte
+            // character would be split, the entire character will be
+            // truncated.
+            $name = mb_strcut($name, 0, 50, "UTF-8");
+            $name = rtrim($name);
+            $data['name'] = $name;
+        }
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator->allowEmptyString('name', false);
+        return $validator;
     }
 
     /**
@@ -80,53 +87,42 @@ class TagsTable extends Table
      */
     public function addTag($tagName, $userId, $sentenceId = null)
     {
-        $tagName = trim($tagName);
-        if ($tagName == '') {
-            return false;
-        }
-        // Truncate to a maximum byte length of 50. If a multibyte
-        // character would be split, the entire character will be
-        // truncated.
-        $tagName = mb_strcut($tagName, 0, 50, "UTF-8");
-
         // Special case: don't allow the owner of a sentence to give it an OK tag.
-        if ($tagName == 'OK') {
+        if ($sentenceId && $tagName == 'OK') {
             $owner = $this->Sentences->getOwnerInfoOfSentence($sentenceId);
             if ($owner && $userId == $owner['id']) {
                 return false;
             }
         }
 
-        $data = $this->newEntity([
+        $newTag = $this->newEntity([
             'name' => $tagName,
             'user_id' => $userId,
         ]);
-        // try to add it as a new tag
-        $added = $this->save($data);
-        if ($added) {
-            $tagId = $added->id;
-        } else {
-            // This is mildly inefficient because the query has already
-            // been performed in beforeSave().
-            $tagId = $this->getIdFromName($tagName);
-            if ($tagId == null) {
-                return false;
+
+        if ($newTag->hasErrors()) {
+            return false;
+        }
+
+        $tag = $this->findOrCreate(
+            ['name' => $newTag->name],
+            function ($entity) use ($newTag) { return $newTag; }
+        );
+
+        if ($tag) {
+            $event = new Event('Model.Tag.tagAdded', $this, ['tagName' => $tag->name]);
+            $this->getEventManager()->dispatch($event);
+
+            if ($sentenceId != null) {
+                $tag->link = $this->TagsSentences->tagSentence(
+                    $sentenceId,
+                    $tag->id,
+                    $userId
+                );
             }
         }
 
-        $event = new Event('Model.Tag.tagAdded', $this, compact('tagName'));
-        $this->getEventManager()->dispatch($event);
-
-        if ($sentenceId != null) {
-            $savedTag = $this->TagsSentences->tagSentence(
-                $sentenceId,
-                $tagId,
-                $userId
-            );
-            return $savedTag;
-        }
-
-        return false;
+        return $tag;
     }
 
     public function removeTagFromSentence($tagId, $sentenceId) {
@@ -150,34 +146,6 @@ class TagsTable extends Table
             $result->user_id
         );
     }
-
-    public function paramsForPaginate($tagId, $limit, $lang = null)
-    {
-        $conditions = ['Tags.id' => $tagId];
-        $contain = [
-            'Tags' => ['fields' => ['id']],
-            'Sentences' => $this->Sentences->paginateContain()
-        ];
-
-        if (!empty($lang) && $lang != 'und') {
-            $conditions['Sentences.lang'] = $lang;
-        }
-        $params = array(
-            'TagsSentences' => array(
-                'limit' => $limit,
-                'fields' => [
-                    'sentence_id' => 'DISTINCT(sentence_id)', 
-                    'user_id'
-                ],
-                'conditions' => $conditions,
-                'contain' => $contain
-            )
-        );
-
-        return $params;
-
-    }
-
 
     /**
      * Get tag id from tag internal name.

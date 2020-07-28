@@ -28,17 +28,18 @@ use App\Model\CurrentUser;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Add sentences')));
 
-$this->Sentences->javascriptForAJAXSentencesGroup();
-$this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBottom']);
+$filteredLanguage = $this->request->getSession()->read('vocabulary_requests_filtered_lang');
 
 $vocabularyUrl = $this->Url->build(array(
     'controller' => 'vocabulary',
-    'action' => 'add_sentences'
+    'action' => 'add_sentences',
+    $filteredLanguage
 ));
 ?>
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text in side bar of the "Add sentences" page */ ?>
     <h2><?php echo __('Important'); ?></h2>
     <p>
     <?php
@@ -72,110 +73,13 @@ $vocabularyUrl = $this->Url->build(array(
 
 <div id="main_content">
 
-    <section class="md-whiteframe-1dp">
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <h2><?php echo __('Add new sentences'); ?></h2>
-            </div>
-        </md-toolbar>
-        
-        <?php
-        $langArray = $this->Languages->profileLanguagesArray(true, false);
-        $currentUserLanguages = CurrentUser::getProfileLanguages();
-        if (empty($currentUserLanguages)) {
-
-            $this->Languages->displayAddLanguageMessage(true);
-
-        } else {
-            $preSelectedLang = $this->request->getSession()->read('contribute_lang');
-            echo $this->Form->create('Sentence', [
-                'id' => 'sentence-form',
-                'url' => '/sentences/add_an_other_sentence',
-                'onsubmit' => 'return false',
-                'ng-cloak' => true,
-            ]);
-            ?>
-
-            <div layout="column" layout-margin>
-                <div layout="row">
-                    <div class="language-select" layout="row" layout-align="start center" flex>
-                        <label><?= __('Language'); ?></label>
-                        <?php
-                        echo $this->Form->select(
-                            'contributionLang',
-                            $langArray,
-                            array(
-                                'id' => 'contributionLang',
-                                "value" => $preSelectedLang,
-                                "class" => "language-selector",
-                                "empty" => false
-                            ),
-                            false
-                        );
-                        ?>
-                    </div>
-
-                    <?php if (CurrentUser::getSetting('can_switch_license')) : ?>
-                    <div class="license-select" layout="row" layout-align="end center" flex>
-                        <label><?= __('License'); ?></label>
-                        <?php
-                        echo $this->Form->select(
-                            'sentenceLicense',
-                            $this->Sentences->License->getLicenseOptions(),
-                            array(
-                                'id' => 'sentenceLicense',
-                                "value" => CurrentUser::getSetting('default_license'),
-                                "class" => "license-selector",
-                                "empty" => false
-                            ),
-                            false
-                        );
-                        ?>
-                    </div>
-                    <?php endif; ?>
-                </div>
-
-                <md-input-container flex>
-                    <label><?= __('Sentence'); ?></label>
-                    <input id="SentenceText" type="text" ng-model="ctrl.data.text"
-                           autocomplete="off"
-                           ng-disabled="ctrl.isAdding">
-                </md-input-container>
-
-                <div layout="row" layout-align="center center">
-                    <md-button id="submitNewSentence" class="md-raised md-primary">
-                        <?= __('OK') ?>
-                    </md-button>
-                </div>
-            </div>
-            <?php
-            echo $this->Form->end();
-        }
-        ?>
-    </section>
-
-    <section class="md-whiteframe-1dp">
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <h2><?php echo __('Sentences added'); ?></h2>
-            </div>
-        </md-toolbar>
-        
-
-        <div class="sentencesAddedloading" style="display:none">
-            <md-progress-circular md-mode="indeterminate" class="block-loader">
-            </md-progress-circular>
-        </div>
-
-        <div id="sentencesAdded" layout-margin>
-        <?php
-        if (isset($sentence)) {
-            $sentence['Translation'] = array();
-            $this->Sentences->displaySentencesGroup($sentence);
-        }
-        ?>
-        </div>
-    </section>
+    <?php
+    if (CurrentUser::getSetting('use_new_design')) {
+        echo $this->element('sentences/add_sentences_angular');
+    } else {
+        echo $this->element('sentences/add_sentences_jquery');
+    }
+    ?>
 
     <div ng-cloak class="section md-whiteframe-1dp">
         <div layout="column" layout-align="center center">

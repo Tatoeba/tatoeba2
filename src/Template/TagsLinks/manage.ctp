@@ -27,6 +27,7 @@
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Structure tags')));
 echo $this->Html->css('autocompletion.css');
+$this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
 $this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
 $this->Html->script('tagslinks.js', ['block' => 'scriptBottom']);
 

@@ -30,7 +30,7 @@ if ($isSwitching) {
 } else {
     echo $this->Html->tag('p', format(
         __('This page allows you to massively switch the license of your sentences to {CC0-link}. Among all your sentences, only the ones that meet the following conditions will be affected.'),
-       array('CC0-link' => $this->Sentences->License->licenseLink('CC0 1.0'))
+       array('CC0-link' => $this->SentenceLicense->getLicenseName('CC0 1.0'))
     ));
     echo $this->Html->nestedList(array(
         __('The current license of the sentence must be CC BY 2.0 FR.'),

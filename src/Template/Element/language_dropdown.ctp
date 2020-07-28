@@ -1,5 +1,5 @@
 <?php
-$languagesJSON = htmlspecialchars(json_encode($languages), ENT_QUOTES, 'UTF-8');
+$languagesJSON = h(json_encode($languages));
 $selectedLanguage = isset($selectedLanguage) ? $selectedLanguage : '';
 $placeholder = isset($placeholder) ? $placeholder : __('Select a language');
 $this->Form->unlockField($name);

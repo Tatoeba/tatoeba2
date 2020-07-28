@@ -24,31 +24,6 @@
             'sentenceAndTranslations',
             sentenceAndTranslations
         )
-        // https://stackoverflow.com/questions/28851893/angularjs-textaera-enter-key-submit-form-with-autocomplete
-        .directive('ngEnter', function() {
-            return function(scope, element, attrs) {
-                element.bind('keydown', function(e) {
-                    if(e.which === 13) {
-                        scope.$apply(function(){
-                            scope.$eval(attrs.ngEnter, {'e': e});
-                        });
-                        e.preventDefault();
-                    }
-                });
-            };
-        })
-        .directive('ngEscape', function() {
-            return function(scope, element, attrs) {
-                element.bind('keydown', function(e) {
-                    if(e.which === 27) {
-                        scope.$apply(function(){
-                            scope.$eval(attrs.ngEscape, {'e': e});
-                        });
-                        e.preventDefault();
-                    }
-                });
-            };
-        })
         .directive('languageIcon', function() {
             return {
                 restrict: 'E',
@@ -62,11 +37,47 @@
                     }
                 },
                 template: 
-                    '<img class="language-icon" width="30" heigth="20" ' +
+                    '<img class="language-icon" width="30" height="20" ' +
                       'ng-attr-title="{{title ? title : lang}}"' +
                       'ng-src="/img/flags/{{lang}}.svg" />'
             }
+        })
+        .directive('toggleAllMenus', ['$rootScope', '$cookies', function($rootScope, $cookies) {
+            return {
+                restrict: 'A',
+                controllerAs: 'menu',
+                controller: function() {
+                    var vm = this;
+
+                    vm.expanded = $cookies.get('sentence_menu_expanded') === 'true';
+                    vm.toggleAll = toggleAll;
+
+                    /////////////////////////////////////////////////////////////////////////
+
+                    function toggleAll() {
+                        vm.expanded = !vm.expanded;
+                        $rootScope.$broadcast('menuToggled', vm.expanded);
+                        $cookies.put('sentence_menu_expanded', vm.expanded);
+                    }
+                }
+            }
+        }])
+        .directive('iconWithProgress', function() {
+            return {
+                restrict: 'E',
+                transclude: true,
+                scope: {
+                    isLoading: '=',
+                },
+                template: 
+                    '<span ng-if="!isLoading"><ng-transclude></ng-transclude></span>' +
+                    '<md-button class="md-icon-button" ng-if="isLoading">' +
+                        '<md-progress-circular md-diameter="24"></md-progress-circular>' +
+                    '</md-button>'
+            }
         });
+
+    angular.module('app').requires.push('ngclipboard');
 
     function sentenceAndTranslations() {
         return {
@@ -89,12 +100,19 @@
         var lastSelectedList = null;
         var timeout;
         var listsDataService;
+        var editableTranslations = [];
+        var duplicateTranslations = [];
+        var newTranslations = [];
+        var translationLang;
 
+        vm.menu = {};
         vm.inProgress = false;
+        vm.iconsInProgress = {};
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
+        vm.showAutoDetect = false;
         vm.sentence = null;
         vm.directTranslations = [];
         vm.indirectTranslations = [];
@@ -107,11 +125,15 @@
             'sentence_form': false,
             'list_form': false
         };
+        vm.selectedLangForRandom = null;
+        vm.hasHiddenTranscriptions = false;
 
         vm.init = init;
+        vm.initMenu = initMenu;
         vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
+        vm.toggleTranscriptions = toggleTranscriptions;
         vm.playAudio = playAudio;
         vm.getAudioAuthor = getAudioAuthor;
         vm.translate = translate;
@@ -130,6 +152,10 @@
         vm.listType = 'of_user';
         vm.show = show;
         vm.hide = hide;
+        vm.saveTranscription = saveTranscription;
+        vm.saveLink = saveLink;
+        vm.setReview = setReview;
+        vm.resetReview = resetReview;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -146,14 +172,60 @@
             resetLists();
         });
 
+        $scope.$on('randomSentenceRequested', function(event, lang) {
+            var url = rootUrl + '/sentences/random';
+            if (lang) {
+                url += '/' + lang;
+            }
+            vm.inProgress = true;
+            $http.get(url).then(function(result) {
+                if (!result.data || !result.data.sentence) {
+                    // TODO Show error
+                    return;
+                }
+
+                var sentence = result.data.sentence;
+                var directTranslations = sentence.translations[0];
+                var indirectTranslations = sentence.translations[1];
+                init(vm.userLanguages, sentence, directTranslations, indirectTranslations);
+                initMenu(false, sentence.permissions);
+                initLists(sentence.sentences_lists);
+            }).finally(function() {
+                vm.inProgress = false;
+                vm.isExpanded = false;
+                vm.expandableIcon = 'expand_more';
+            });
+        });
+
+        $scope.$on('menuToggled', function(event, isMenuExpanded) {
+            vm.isMenuExpanded = isMenuExpanded;
+        });
+
         /////////////////////////////////////////////////////////////////////////
 
-        function init(langs, sentence, directTranslations, indirectTranslations) {
+        function init(langs, sentence, directTranslations, indirectTranslations, translationLanguage) {
             vm.userLanguages = langs;
+            vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
-            allDirectTranslations = directTranslations;
-            allIndirectTranslations = indirectTranslations;
+            allDirectTranslations = directTranslations ? directTranslations : [];
+            allDirectTranslations.forEach(function(translation) {
+                initTranscriptions(translation);
+            });
+            allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
+            allIndirectTranslations.forEach(function(translation) {
+                initTranscriptions(translation);
+            });
             showFewerTranslations();
+            translationLang = translationLanguage ? translationLanguage : 'und';
+        }
+
+        function initMenu(isExpanded, menu) {
+            if (isExpanded) {
+                vm.isMenuExpanded = isExpanded;
+            } else {
+                vm.isMenuExpanded = $cookies.get('sentence_menu_expanded') === 'true';
+            }
+            vm.menu = menu;
         }
 
         function initLists(selectedLists) {
@@ -180,16 +252,24 @@
             }
         }
 
-        function expandOrCollapse() {
-            vm.isExpanded = !vm.isExpanded;
-
-            if (vm.isExpanded) {
-                vm.expandableIcon = 'expand_less';
-                showAllTranslations();
+        function expandOrCollapse(isExpanded) {
+            if (isExpanded) {
+                expandTranslations();
             } else {
-                vm.expandableIcon = 'expand_more';
-                showFewerTranslations();
+                collapseTranslations();
             }
+        }
+
+        function collapseTranslations() {
+            vm.isExpanded = false;
+            vm.expandableIcon = 'expand_more';
+            showFewerTranslations();
+        }
+
+        function expandTranslations() {
+            vm.isExpanded = true;
+            vm.expandableIcon = 'expand_less';
+            showAllTranslations();
         }
 
         function showAllTranslations() {
@@ -210,6 +290,11 @@
             vm.isMenuExpanded = !vm.isMenuExpanded;
         }
 
+        function toggleTranscriptions() {
+            toggleMenu();
+            expandOrCollapse(vm.isMenuExpanded);
+        }
+
         function playAudio($event) {
             $event.stopPropagation();
             $event.preventDefault();
@@ -222,13 +307,7 @@
         function getAudioAuthor(sentence) {
             var audio = sentence.audios ? sentence.audios[0] : null;
 
-            if (audio && audio.user) {
-                return audio.user.username;
-            } else if (audio && audio.external) {
-                return audio.external.username;
-            } else {
-                return null;
-            }
+            return audio.author;
         }
 
         function translate(id) {
@@ -238,12 +317,14 @@
                 vm.newTranslation = {};
             }
 
-            if ($cookies.get('translationLang') && !vm.newTranslation.text) {
-                vm.newTranslation.lang = $cookies.get('translationLang');
+            var preselectedLang = $cookies.get('translationLang');
+            var langCodes = Object.keys(vm.userLanguages);
+            if (langCodes.indexOf(preselectedLang) > -1 && !vm.newTranslation.text) {
+                vm.newTranslation.lang = preselectedLang;
             } else if (!vm.newTranslation.lang) {
-                vm.newTranslation.lang = vm.userLanguages.length > 1 ? 'auto' : Object.keys(vm.userLanguages)[0];
+                vm.newTranslation.lang = vm.showAutoDetect ? 'auto' : langCodes[0];
             }
-            focusInput('#translation-form-' + id);
+            focusInput('translation-form-' + id);
         }
 
         function saveTranslation(sentenceId) {
@@ -263,14 +344,20 @@
                         selectLang: vm.newTranslation.lang,
                         value: vm.newTranslation.text
                     };
-                    $http.post(rootUrl + '/sentences/save_translation', data).then(function(result) {
-                        result.data.editable = true;
-                        result.data.parentId = sentenceId;
-                        allDirectTranslations.unshift(result.data);
+                    var url = rootUrl + '/sentences/save_translation?translationLang=' + translationLang + '&numberOfTranslations=' + getNumberOfTranslations();
+                    $http.post(url, data).then(function(result) {
+                        var translation = result.data.translation;
+                        var sentence = result.data.sentence;
+                        initSentence(sentence);
+                        if (translationLang === 'und') {
+                            updateNewTranslationsInfo(translation, sentenceId, sentence.translations);
+                        } else {
+                            allDirectTranslations.unshift(translation);
+                        }
+                        refreshTranslations();
                         vm.newTranslation = {};
                         show('translations');
                         vm.inProgress = false;
-                        showFewerTranslations();
                     });
                 }
             }
@@ -279,19 +366,19 @@
         function editTranslation(translation) {
             show('translation_form');
             vm.newTranslation = translation;
-            focusInput('#translation-form-' + translation.parentId);
+            focusInput('translation-form-' + translation.parentId);
         }
 
         function focusInput(id) {
             setTimeout(function() {
-                var input = angular.element(id);
+                var input = document.getElementById(id);
                 input.focus();
             }, 100);
         }
 
         function edit() {
             show('sentence_form');
-            focusInput('#sentence-form-' + vm.sentence.id);
+            focusInput('sentence-form-' + vm.sentence.id);
         }
         
         function cancelEdit() {
@@ -300,13 +387,30 @@
         }
 
         function editSentence() {
-            vm.inProgress = true;
-
-            saveSentence(vm.sentence).then(function(result) {
-                hide('sentence_form');
-                vm.inProgress = false;
-                initSentence(result.data);
-            });
+            var sentenceChanged = oldSentence.text !== vm.sentence.text || oldSentence.lang !== vm.sentence.lang;
+            var transcriptionChanged = false;
+            if (vm.sentence.transcriptions.length > 0) {
+                var oldTranscription = getEditableTranscription(oldSentence);
+                var transcription = getEditableTranscription(vm.sentence);
+                var oldMarkup = oldTranscription ? oldTranscription.markup : null;
+                var newMarkup = transcription ? transcription.markup : null,
+                transcriptionChanged = oldMarkup !== newMarkup;
+            }
+            
+            if (sentenceChanged) {
+                vm.inProgress = true;
+                saveSentence(vm.sentence).then(function(result) {
+                    if (transcriptionChanged) {
+                        saveTranscription(transcription, result.data.result, 'save');
+                    } else {
+                        initSentence(result.data.result);
+                        hide('sentence_form');
+                        vm.inProgress = false;
+                    }
+                });
+            } else if (transcriptionChanged) {
+                saveTranscription(transcription, vm.sentence, 'save');
+            }
         }
 
         function saveSentence(sentence) {
@@ -322,22 +426,39 @@
             data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
             vm.sentence = angular.copy(data);
+            initTranscriptions(vm.sentence);
+        }
+
+        function initTranscriptions(sentence) {
+            var transcriptions = sentence.transcriptions;
+            if (sentence.lang === 'jpn' && transcriptions) {
+                sentence.furigana = transcriptions.find(function(item) {
+                    return !item.needsReview && item.type === 'altscript';
+                });
+            }
+            transcriptions.forEach(function(item) {
+                if (item.needsReview) {
+                    vm.hasHiddenTranscriptions = true;
+                }
+            });
         }
 
         function favorite() {
-            var action = vm.sentence.isFavorite ? 'remove_favorite' : 'add_favorite';
-            
+            var action = vm.sentence.is_favorite ? 'remove_favorite' : 'add_favorite';
+            vm.iconsInProgress.favorite = true;
             $http.get(rootUrl + '/favorites/' + action + '/' + vm.sentence.id).then(function(result) {
-                vm.sentence.isFavorite = !vm.sentence.isFavorite;
+                vm.sentence.is_favorite = !vm.sentence.is_favorite;
+                vm.iconsInProgress.favorite = false;
             });
         }
 
         function adopt() {
-            var action = vm.sentence.isOwnedByCurrentUser ? 'let_go' : 'adopt';
-            
+            var action = vm.sentence.is_owned_by_current_user ? 'let_go' : 'adopt';
+            vm.iconsInProgress.adopt = true;
             $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
                 vm.sentence.user = result.data.user;
-                vm.sentence.isOwnedByCurrentUser = vm.sentence.user && vm.sentence.user.username;
+                vm.sentence.is_owned_by_current_user = vm.sentence.user && vm.sentence.user.username;
+                vm.iconsInProgress.adopt = false;
             });
         }
 
@@ -348,7 +469,7 @@
                 closeList();
             } else {
                 show('list_form');
-                focusInput('#list-form-' + vm.sentence.id);
+                focusInput('list-form-' + vm.sentence.id);
                 resetLists();
             }
         }
@@ -364,8 +485,27 @@
 
             $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
                 vm.inProgress = false;
+                updateSentenceLists(action, list, result);
                 $cookies.put('most_recent_list', list.id);
             });
+        }
+
+        function updateSentenceLists(action, list, result) {
+            var result = result.data;
+            if (action === 'add_sentence_to_list') {
+                var listId = parseInt(result.result);
+                if (listId === list.id) {
+                    vm.sentence.sentences_lists.push({id: list.id});
+                }
+            } else {
+                var removed = result.removed;
+                if (removed) {
+                    var index = vm.sentence.sentences_lists.findIndex(function(item) {
+                        return item.id === list.id;
+                    });
+                    vm.sentence.sentences_lists.splice(index, 1);
+                }
+            }
         }
 
         function addToNewList() {
@@ -435,6 +575,164 @@
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
             vm.listType = 'of_user';
+        }
+
+        function saveTranscription(transcription, sentence, action) {
+            var lang = sentence.lang + '-' + transcription.script;
+            var text = transcription.markup;
+            var url = rootUrl + '/transcriptions/' + action + '/' + sentence.id + '/' + transcription.script;
+            var data = {
+                value: markupToStored(lang, text)
+            };
+            var i = sentence.transcriptions.findIndex(function(item) {
+                return item.id === transcription.id;
+            });
+
+            vm.inProgress = true;
+            $http.post(url, data).then(function(result) {
+                transcription = result.data.result;
+                hide('sentence_form');
+            }, function(error) {
+                if (error.data) {
+                    if (error.status === 403) {
+                        transcription.errors = [error.data];
+                    } else {
+                        transcription.errors = error.data;
+                    }
+                } else {
+                    transcription.errors = [error.statusText];
+                }
+            }).finally(function() {
+                sentence.transcriptions.splice(i, 1);
+                sentence.transcriptions.push(transcription);
+                initTranscriptions(sentence);
+                vm.inProgress = false;
+            });
+        }
+
+        function markupToStored(lang, text) {
+            if (lang === 'jpn-Hrkt') {
+                // Converts the kanji｛reading｝ notation into [kanji|reading]
+                var hiragana = 'ぁ-ゖーゝゞ'; // \p{Hiragana}
+                var katakana = 'ァ-ヺーヽヾ'; // \p{Katakana}
+                var punct = '　-〄〇-〠・'; // 。、「」etc.
+                punct += '！＂＃＇（），．／：；？［＼］＾｀～｟｠'; // fullwitdh forms
+                punct += ' '; // space
+                var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
+                text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
+                text = text.replace(uniRegExp('｜', 'g'),  '|');
+            }
+            return text;
+        }
+
+        function uniRegExp(regex, flags) {
+            return new RegExp(escapeUnicodeString(regex), flags);
+        }
+
+        function escapeUnicodeChar(c) {
+            var code = c.charCodeAt(0);
+            if (code >= 128) {
+               c = '\\u' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4);
+            }
+            return c;
+        }
+
+        function escapeUnicodeString(input) {
+            var output = '';
+            for (var i = 0, l = input.length; i < l; i++) {
+                output += escapeUnicodeChar(input.charAt(i));
+            }
+            return output;
+        }
+
+        function getEditableTranscription(sentence) {
+            return sentence.transcriptions.find(function(item) {
+                return item.markup;
+            });
+        }
+        
+        function saveLink(action, translation) {
+            var url = rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id;
+            if (translationLang) {
+                url += '?translationLang=' + translationLang;
+            }
+            vm.iconsInProgress['link' + translation.id] = true;
+            $http.get(url).then(function(result) {
+                var sentence = result.data.sentence;
+                initSentence(sentence);
+                refreshTranslations(sentence.translations);
+                vm.iconsInProgress['link' + translation.id] = false;
+            });
+        }
+
+        function refreshTranslations(translations) {
+            if (translations) {
+                allDirectTranslations = translations[0];
+                allIndirectTranslations = translations[1];
+            }
+            
+            if (vm.isExpanded) {
+                showAllTranslations();
+            } else {
+                showFewerTranslations();
+            }
+        }
+
+        function updateNewTranslationsInfo(translation, sentenceId, translations) {
+            allDirectTranslations = translations[0];
+            allIndirectTranslations = translations[1];
+            
+            newTranslations.push(translation.id);
+            if (translation.isDuplicate) {
+                duplicateTranslations.push(translation.id);
+            } else if (translation.is_owned_by_current_user) {
+                editableTranslations.push(translation.id);
+            }
+            allDirectTranslations.forEach(function(item) {
+                item.editable = editableTranslations.indexOf(item.id) > -1;
+                item.isDuplicate = duplicateTranslations.indexOf(item.id) > -1;;
+                item.parentId = sentenceId;
+            });
+            allDirectTranslations.sort(function(a, b) {
+                var indexA = newTranslations.indexOf(a.id);
+                var indexB = newTranslations.indexOf(b.id);
+                return indexB - indexA;
+            });
+        }
+
+        function getNumberOfTranslations() {
+            return allDirectTranslations.length + allIndirectTranslations.length;
+        }
+
+        function setReview(value) {
+            var reviewType = getReviewType(value);
+            vm.iconsInProgress[reviewType] = true;
+            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
+                vm.sentence.current_user_review =  parseInt(response.data.result.correctness);
+                vm.iconsInProgress[reviewType] = false;
+            });
+        }
+
+        function resetReview() {
+            var reviewType = getReviewType(vm.sentence.current_user_review);
+            vm.iconsInProgress[reviewType] = true;
+            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
+                if (response.data.result) {
+                    vm.sentence.current_user_review = null;
+                    vm.iconsInProgress[reviewType] = false;
+                }
+            });
+        }
+
+        function getReviewType(correctness) {
+            if (correctness === 1) {
+                return 'reviewOk';
+            } else if (correctness === 0) {
+                return 'reviewUnsure';
+            } else if (correctness === -1) {
+                return 'reviewNotOk';
+            }
+            return null;
         }
     }
 

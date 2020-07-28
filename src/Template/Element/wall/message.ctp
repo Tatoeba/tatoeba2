@@ -8,7 +8,7 @@ $createdDate = $message->date;
 $modifiedDate = $message->modified;
 $messageId = $message->id;
 $authorId = $message->owner;
-$messageText = $message->content;
+$messageText = $this->safeForAngular($message->content);
 $messageHidden = $message->hidden;
 $sentence = null;
 $sentenceOwnerLink = null;
@@ -38,7 +38,8 @@ if (isset($message['Permissions'])) {
     $menu = [];
 }
 $menu[] = [
-    'text' => 'permalink',
+    /* tooltip of permalink button on a wall post (noun) */
+    'text' => __('Permalink'),
     'icon' => 'link',
     'url' => [
         'controller' => 'wall',
@@ -119,7 +120,7 @@ $canReply = false;
         <?php } ?>
     </md-card-content>
 
-    <?php if (count($children) > 0) { ?>
+    <?php if (!is_null($children) && count($children) > 0) { ?>
         <md-button ng-click="vm.expandOrCollapse(<?= $message->id ?>)" ng-cloak>
             <md-icon>{{vm.hiddenReplies[<?= $message->id ?>] ? 'expand_more' : 'expand_less'}}</md-icon>
             <span ng-if="!vm.hiddenReplies[<?= $message->id ?>]">

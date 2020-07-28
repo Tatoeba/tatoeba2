@@ -13,7 +13,10 @@
     <span ng-show="export.status == 'online' && export.generated">{{export.generated | date:'yyyy-MM-dd'}}</span>
     <md-button class="md-raised md-primary"
                ng-href="/exports/download/{{export.id}}/{{export.pretty_filename | urlEncode}}"
-               ng-show="export.status == 'online'"><?= __x('button', 'Download') ?></md-button>
+               ng-show="export.status == 'online'">
+        <?php /* @translators: button to download a list (verb) */ ?>
+        <?= __x('button', 'Download') ?>
+    </md-button>
     <span ng-show="export.status == 'queued'"><?= __('Export in progress') ?></span>
     <span ng-show="export.status == 'failed'">
         <md-icon>error</md-icon>
@@ -31,7 +34,7 @@
     echo $this->Form->input('list', array(
         'id' => 'listToExport',
         'ng-model' => 'selectedList',
-        'options' => $listOptions,
+        'options' => $this->safeForAngular($listOptions),
     ));
 ?>
 <md-button ng-click="addListExport()"

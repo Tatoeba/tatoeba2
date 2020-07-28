@@ -111,6 +111,18 @@ class WallHelper extends AppHelper
         $messageId = $message['id'];
         $hidden = $message['hidden'];
 
+        if ($permissions['canPM']) {
+            $menu[] = array(
+                'text' => __('Send message'),
+                'icon' => 'mail',
+                'url' => array(
+                    'controller' => 'private_messages',
+                    'action' => 'write',
+                    $message->user->username
+                )
+            );
+        }
+
         if (CurrentUser::isAdmin()) {
             if ($hidden) {
                 $hiddenLinkText = __d('admin', 'unhide');
@@ -134,7 +146,8 @@ class WallHelper extends AppHelper
 
         if ($permissions['canEdit']) {
             $menu[] = array(
-                'text' => __("edit"),
+                /* @translators: edit button on a wall post (verb) */
+                'text' => __('Edit'),
                 'icon' => 'edit',
                 'url' => array(
                     'controller' => 'wall',
@@ -148,7 +161,8 @@ class WallHelper extends AppHelper
         if ($permissions['canDelete']) {
             // delete link
             $menu[] = array(
-                'text' => __('delete'),
+                /* @translators: delete button on a wall post (verb) */
+                'text' => __('Delete'),
                 'icon' => 'delete',
                 'url' => array(
                     "controller"=>"wall",
@@ -163,7 +177,8 @@ class WallHelper extends AppHelper
             $replyLinkId = 'reply_' . $messageId;
             $replyClasses = 'replyLink ' . $messageId;
             $menu[] = array(
-                'text' => __("reply"),
+                /* @translators: reply button on a wall post (verb) */
+                'text' => __x('button', 'Reply'),
                 'icon' => 'reply',
                 'url' => null,
                 'class' => $replyClasses,

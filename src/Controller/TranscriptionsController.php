@@ -84,12 +84,16 @@ class TranscriptionsController extends AppController
             );
         }
 
-        if (!$saved) {
-            return $this->response->withStatus(400, 'Bad transcription');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            return $this->returnTranscriptionData($saved, $sentenceId, $script);
+        } else {
+            if (!$saved) {
+                return $this->response->withStatus(400, 'Bad transcription');
+            }
+            $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
+            $this->render('view');
         }
-
-        $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
-        $this->render('view');
     }
 
     public function save($sentenceId, $script) {
@@ -127,10 +131,28 @@ class TranscriptionsController extends AppController
             );
         }
 
-        $this->setViewVars(array_filter(array($saved)), $sentenceId);
-        $this->render('view');
-        if (!$saved) {
-            return $this->response->withStatus(400, 'Bad transcription');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            return $this->returnTranscriptionData($saved, $sentenceId, $script);
+        } else {
+            $this->setViewVars(array_filter(array($saved)), $sentenceId);
+            $this->render('view');
+            if (!$saved) {
+                return $this->response->withStatus(400, 'Bad transcription');
+            }
+        }
+    }
+
+    private function returnTranscriptionData($saved, $sentenceId, $script) {
+        if ($saved) {
+            $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
+            $this->set('result', $transcription);
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');    
+        } else {
+            $errors = json_encode($this->Transcriptions->validationErrors);
+            return $this->response->withStatus(400)->withStringBody($errors);
         }
     }
 

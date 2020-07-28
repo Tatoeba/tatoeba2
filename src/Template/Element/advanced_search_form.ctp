@@ -32,17 +32,22 @@ echo $this->Form->create('AdvancedSearch', [
 <div layout="column" ng-app="app" ng-cloak>
     <div layout="<?= $layout ?>">
         <div class="column-1" layout="column" flex>
+            <?php /* @translators: section title in advanced search form */ ?>
             <h3><?= __('Sentences'); ?></h3>
 
-            <md-input-container>
+            <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('query', array(
                     'label' => __('Words:'),
-                    'value' => $query,
+                    'value' => $this->safeForAngular($query),
                     'lang' => '',
                     'dir' => 'auto',
+                    'id' => 'WordSearch'
                 ));
                 ?>
+                <md-button class="md-icon-button" reset-button target="WordSearch">
+                    <md-icon>clear</md-icon>
+                </md-button>
                 <div class="hint"><?= __('Enter a word or a phrase') ?></div>
             </md-input-container>
 
@@ -58,18 +63,22 @@ echo $this->Form->create('AdvancedSearch', [
                 <?php
                 echo $this->Search->selectLang('to', $to, [
                     'label' => '',
-                    'options' => $this->Languages->languagesArrayForPositiveLists(),
+                    'options' => $this->Languages->languagesArrayShowTranslationsIn(),
                 ]);
                 ?>
             </div>
 
-            <md-input-container>
+            <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('user', array(
                     'label' => __('Owner:'),
                     'value' => $user,
+                    'id' => 'OwnerSearch'
                 ));
                 ?>
+                <md-button class="md-icon-button" reset-button target="OwnerSearch">
+                    <md-icon>clear</md-icon>
+                </md-button>
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
@@ -80,8 +89,11 @@ echo $this->Form->create('AdvancedSearch', [
                     echo $this->Form->input('orphans', [
                         'label' => '',
                         'options' => [
+                            /* @translators: dropdown option of "Is orphan" field in search form */
                             '' => __x('orphan', 'Any'),
+                            /* @translators: part of Any/No/Yes dropdown options in search form */
                             'no' => __('No'),
+                            /* @translators: part of Any/No/Yes dropdown options in search form */
                             'yes' => __('Yes'),
                         ],
                         'value' => $orphans,
@@ -100,6 +112,7 @@ echo $this->Form->create('AdvancedSearch', [
                     echo $this->Form->input('unapproved', array(
                         'label' => '',
                         'options' => array(
+                            /* @translators: dropdown option of "Is unapproved" field in search form */
                             '' => __x('unapproved', 'Any'),
                             'no' => __('No'),
                             'yes' => __('Yes'),
@@ -112,13 +125,14 @@ echo $this->Form->create('AdvancedSearch', [
                     <?= __('Unapproved sentences are likely to be incorrect.') ?>
                 </div>
             </div>
-            
+
             <div class="param" layout="row" layout-align="center">
                 <label for="has-audio" flex><?= __('Has audio:') ?></label>
                 <?php
                 echo $this->Form->input('has_audio', array(
                     'label' => '',
                     'options' => array(
+                        /* @translators: dropdown option of "Has audio" field in search form */
                         '' => __x('audio', 'Any'),
                         'no' => __('No'),
                         'yes' => __('Yes'),
@@ -128,13 +142,17 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
-            <md-input-container>
+            <md-input-container class="md-button-right">
             <?php
             echo $this->Form->input('tags', array(
                 'label' => __('Tags:'),
-                'value' => $tags
+                'value' => $this->safeForAngular($tags),
+                'id' => 'TagSearch'
             ));
             ?>
+            <md-button class="md-icon-button" reset-button target="TagSearch">
+                <md-icon>clear</md-icon>
+            </md-button>
             <div class="hint">
                 <?= __('Separate tags with commas.') ?>
             </div>
@@ -144,24 +162,25 @@ echo $this->Form->create('AdvancedSearch', [
                 <label for="list" flex><?= __('Belongs to list:') ?></label>
                 <div flex>
                 <?php
-                $listOptions = $this->Lists->listsAsSelectable($searchableLists);
+                $listOptions = $this->Lists->listsAsSelectable($searchableLists->toList());
                 echo $this->Form->input('list', [
                     'class' => 'list-select',
                     'label' => '',
                     'value' => $list,
-                    'options' => $listOptions,
+                    'options' => $this->safeForAngular($listOptions),
                 ]);
                 ?>
                 </div>
             </div>
 
-            <div class="param" layout="row" layout-align="center">
+            <div class="param" layout="row">
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="native"
                     ng-init="native = <?= isset($native) && $native == 'yes' ? 1 : 0 ?>"
                     class="md-primary">
+                    <?= __('Owned by a self-identified native') ?>
                 </md-checkbox>
                 <div ng-hide="true">
                     <?php
@@ -170,12 +189,12 @@ echo $this->Form->create('AdvancedSearch', [
                     ]);
                     ?>
                 </div>
-                <label for="native" flex><?= __('Owned by a self-identified native') ?></label>
             </div>
         </div>
 
         <div class="column-2" <?= isset($isSidebar) && $isSidebar ? '' : 'flex' ?>>
             <div layout="column">
+                <?php /* @translators: section title in advanced search form */ ?>
                 <h3><?php echo __('Translations'); ?></h3>
 
                 <div class="param">
@@ -207,10 +226,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="param" layout="<?= $layout ?>" layout-align="center">
                     <label for="trans-to" flex><?= __('Language:') ?></label>
                     <?php
-                    echo $this->Search->selectLang('trans_to', $trans_to, array(
-                        'label' => '',
-                        'options' => $this->Languages->getSearchableLanguagesArray(),
-                    ));
+                    echo $this->Search->selectLang('trans_to', $trans_to, ['label' => '']);
                     ?>
                 </div>
 
@@ -220,8 +236,11 @@ echo $this->Form->create('AdvancedSearch', [
                     echo $this->Form->input('trans_link', array(
                         'label' => '',
                         'options' => array(
+                            /* @translators: dropdown option of "Link" field in search form */
                             '' => __x('link', 'Any'),
+                            /* @translators: dropdown option of "Link" field in search form (noun) */
                             'direct' => __('Direct'),
+                            /* @translators: dropdown option of "Link" field in search form (noun) */
                             'indirect' => __('Indirect'),
                         ),
                         'value' => $trans_link,
@@ -229,13 +248,17 @@ echo $this->Form->create('AdvancedSearch', [
                     ?>
                 </div>
 
-                <md-input-container>
+                <md-input-container class="md-button-right">
                     <?php
                     echo $this->Form->input('trans_user', array(
                         'label' => __('Owner:'),
                         'value' => $trans_user,
+                        'id' => 'TranslatorSearch'
                     ));
                     ?>
+                    <md-button class="md-icon-button" reset-button target="TranslatorSearch">
+                        <md-icon>clear</md-icon>
+                    </md-button>
                     <div class="hint"><?= __('Enter a username') ?></div>
                 </md-input-container>
 
@@ -296,18 +319,22 @@ echo $this->Form->create('AdvancedSearch', [
             </div>
 
             <div layout="column">
+                <?php /* @translators: section title in search form (noun) */ ?>
                 <h3><?php echo __('Sort'); ?></h3>
 
                 <div class="param" layout="<?= $layout ?>" layout-align="center">
+                    <?php /* @translators: field name in search form (noun) */ ?>
                     <label for="sort" flex><?= __('Order:') ?></label>
                     <?php
                     echo $this->Form->input('sort', array(
                         'label' => '',
                         'options' => array(
+                            /* @translators: sort order dropdown option in search form */
                             'relevance' => __('Relevance'),
                             'words' => __('Fewest words first'),
                             'created' => __('Last created first'),
                             'modified' => __('Last modified first'),
+                            /* @translators: sort order dropdown option in advanced search form (noun) */
                             'random' => __('Random'),
                         ),
                         'value' => $sort,
@@ -315,13 +342,14 @@ echo $this->Form->create('AdvancedSearch', [
                     ?>
                 </div>
 
-                <div class="param" layout="row" layout-align="center">
+                <div class="param" layout="row">
                     <md-checkbox
                         ng-false-value="0"
                         ng-true-value="1"
                         ng-model="sortReverse"
                         ng-init="sortReverse = <?= $sort_reverse == 'yes' ? 1 : 0 ?>"
                         class="md-primary">
+                        <?= __('Reverse order') ?>
                     </md-checkbox>
                     <div ng-hide="true">
                         <?php
@@ -330,7 +358,6 @@ echo $this->Form->create('AdvancedSearch', [
                         ]);
                         ?>
                     </div>
-                    <label for="sort-reverse" flex><?= __('Reverse order') ?></label>
                 </div>
             </div>
         </div>
@@ -338,6 +365,7 @@ echo $this->Form->create('AdvancedSearch', [
 
     <div class="buttons" layout="<?= $layout ?>">
         <md-button type="submit" class="md-primary md-raised">
+            <?php /* @translators: search form submit button (verb) */ ?>
             <?= __x('button', 'Search') ?>
         </md-button>
 

@@ -26,9 +26,13 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
+
+$lang = Configure::read('Config.language');
+$htmlLang = LanguagesLib::languageTag($lang);
+$htmlDir = LanguagesLib::getLanguageDirection($lang);
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo LanguagesLib::languageTag(Configure::read('Config.language')); ?>">
+<html lang="<?= $htmlLang ?>" dir="<?= $htmlDir ?>">
 <head>
     <?php echo $this->Html->charset(); ?>
     <title>
@@ -65,12 +69,16 @@ use Cake\Core\Configure;
 
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
+    
+    <?php if ($controller === 'pages' && $action === 'index' && !CurrentUser::isMember()) { ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <?php } ?>
 </head>
 <body ng-app="app">
     <div id="audioPlayer"></div>
 
     <!--  TOP  -->
-    <?php echo $this->element('top_menu'); ?>
+    <?php echo $this->element('top_menu', ['htmlDir' => $htmlDir]); ?>
 
     <!--  SEARCH BAR  -->
     <?php
@@ -84,10 +92,7 @@ use Cake\Core\Configure;
             && $selectedLanguageTo == 'und'
             && empty($query)
             && !$this->Languages->preferredLanguageFilter()) {
-            $cache = [
-                'time' => '+1 day',
-                'key' => 'search_bar_'.Configure::read('Config.language'),
-            ];
+            $cache = [ 'key' => 'search_bar_'.$lang ];
         } else {
             $cache = null;
         }
@@ -97,19 +102,19 @@ use Cake\Core\Configure;
         );
     } else {
         echo $this->element('short_description', [], [
-            'cache' => [
-                'time' => '+1 day',
-                'key' => 'short_description_'.Configure::read('Config.language')
-            ]
+            'cache' => [ 'key' => 'short_description_'.$lang ]
         ]);
     }
     ?>
+
+    <div class="announcement-container">
+        <?= $this->element('announcement'); ?>
+    </div>
 
     <!--  CONTENT -->
     <div id="content">
         <div class="container">
         <?php
-        echo $this->element('announcement');
         echo $this->Flash->render('flash', array('element' => 'flash_message'));
 
         echo $this->fetch('content');
@@ -131,16 +136,6 @@ use Cake\Core\Configure;
     echo $this->AssetCompress->script('layout.js');
 
     echo $this->fetch('scriptBottom');
-
-    if (CurrentUser::getSetting('copy_button')) {
-        echo $this->Html->script(JS_PATH . 'clipboard.min.js');
-        echo $this->Html->script(JS_PATH . 'sentences.copy.js');
-    }
-
-    if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        echo $this->Html->script(JS_PATH . 'jquery.cookie.js');
-        echo $this->Html->script(JS_PATH . 'announcement.js');
-    }
 
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', [], [ 'cache' => true ]);

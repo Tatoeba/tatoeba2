@@ -48,6 +48,7 @@ if ($userExists === true) {
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
+<?php if ($userExists): ?>
 <div id="annexe_content" ng-cloak>
     <?php
     echo $this->element(
@@ -72,6 +73,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <?php
      } ?>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
 
@@ -116,8 +118,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 );
                 $this->Paginator->options(array('url' => $urlOptions));
             }
+            /* @translators: sort option in the "Sentences of user" page */
             echo $this->Paginator->sort('modified', __('date modified'));
             echo " | ";
+            /* @translators: sort option in the "Sentences of user" page */
             echo $this->Paginator->sort('created', __('date created'));
             ?>
         </div>

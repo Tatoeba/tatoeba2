@@ -95,7 +95,6 @@ class FixHashesCommand extends Command
                     if (array_diff($allStoredValues, $allNewValues)) {
                         $this->log[] = [$id, $entity->get($hashColumn), $allNewValues[$hashColumn]];
                         $table->patchEntity($entity, $allNewValues);
-                        $entity->setDirty('modified', true); // Don't update modified column
                         if (!$dryRun) {
                             return $table->save($entity);
                         }

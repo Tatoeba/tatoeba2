@@ -114,64 +114,32 @@ class LanguagesHelper extends AppHelper
         return $languages;
     }
 
-
-    /**
-     * Returns array of languages set in the user's options.
-     */
-    public function userLanguagesArray()
-    {
-        $languages = $this->onlyLanguagesArray();
-
-        if (CurrentUser::isMember()) {
-            $userLangs = CurrentUser::getLanguages();
-            if (!empty($userLangs)) {
-                $filteredLangs = array();
-                foreach($userLangs as $langCode) {
-                    $filteredLangs[$langCode] = $languages[$langCode];
-                }
-                $languages = $filteredLangs;
-            }
-        }
-
-        return $languages;
-    }
-
     /**
      * Returns array of languages set in the user's profile.
      *
      * @param bool   $withAutoDetection Set to true if "Auto detect" should be one of the options.
-     * @param bool   $withOther Set to true if "Other language" should be one of the options.
+     * @param array  $with Additional options
      *
      * @return array
      */
 
-    public function profileLanguagesArray($withAutoDetection, $withOther, $withNone = false, $withAny = false)
+    public function profileLanguagesArray($withAutoDetection = false, $with = [])
     {
         $languages = array_intersect_key(
             $this->onlyLanguagesArray(false),
             array_flip(CurrentUser::getProfileLanguages())
         );
 
-        $options = array();
         if (count($languages) > 1 && $withAutoDetection) {
-            $options['auto'] = __('Auto detect');
+            $with['auto'] = __('Auto detect');
         }
-        if ($withNone) {
-            $options['none'] = '—';
-        }
-        if ($withAny) {
-            $options['und'] = __('Any language');   
-        }
-        if ($withOther) {
-            $options[''] = __('other language');
-        }
-        if (!empty($options)) {
+        if (!empty($with)) {
             $languages = array(
                 __('Profile languages') => $languages
             );
         }
 
-        return $options + $languages;
+        return $with + $languages;
     }
 
     /**
@@ -189,16 +157,18 @@ class LanguagesHelper extends AppHelper
     }
 
     /**
-     * Return array of languages in Tatoeba. + 'unknown language'
+     * Return array of languages in Tatoeba + 'Unknown language'
      *
+     * @param Boolean $split Whether the languages should be split into
+     *                       'Profile languages' and 'Other languages'.
      * @return array
      */
-    public function unknownLanguagesArray()
+    public function unknownLanguagesArray($split = true)
     {
-        $languages = $this->onlyLanguagesArray();
+        $languages = $this->onlyLanguagesArray($split);
         $options = ['unknown' => __x('dropdown-list', 'Unknown language')];
 
-        return $options + $languages;
+        return $languages + $options;
     }
 
 
@@ -219,52 +189,18 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-     * Return array of language + "auto"
-     * used to know if the user want the language of a contribution
-     * to be manualy set or auto detect
-     *
-     * @return array
-     */
-
-    public function translationsArray()
-    {
-        $languages = $this->userLanguagesArray();
-        $options = ['auto' => __('Auto detect')];
-
-        return $languages;
-    }
-
-
-    /**
      * Return array of languages, with "None" and "All languages" options.
-     * Applies to a positive phrase (for example, "Show translations in").
      *
      * @return array
      */
-    public function languagesArrayForPositiveLists()
+    public function languagesArrayShowTranslationsIn()
     {
         $languages = $this->onlyLanguagesArray();
         $options = [
+            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
             'none' => __('None'),
-            'und' => __('All languages')
-        ];
-
-        return $options + $languages;
-    }
-
-
-    /**
-    * Return array of languages, with "--" and "Any languages" options.
-    * Applies to a negative phrase (for example, "Not directly translated into").
-    *
-    * @return array
-    */
-    public function languagesArrayForNegativeLists()
-    {
-        $languages = $this->onlyLanguagesArray();
-        $options = [
-            'none' => '—',
-            'und' => __('Any language')
+            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
+            'und' => __x('show-translations-in', 'All languages')
         ];
 
         return $options + $languages;
@@ -288,12 +224,15 @@ class LanguagesHelper extends AppHelper
     /**
      * Return array of languages in which you can search.
      *
+     * @param string $anyOption String for option "Any language" (und)
      * @return array
      */
-    public function getSearchableLanguagesArray()
+    public function getSearchableLanguagesArray($anyOption = null)
     {
         $languages = $this->onlyLanguagesArray();
-        $options = array('und' => __x('searchbar', 'Any language'));
+        /* @translators: option used in language selection dropdowns in other places */
+        $anyOption = $anyOption ?? __('Any language');
+        $options = array('und' => $anyOption);
         
         return $options + $languages;
     }
@@ -385,11 +324,10 @@ class LanguagesHelper extends AppHelper
                 'lang' => LanguagesLib::languageTag($lang, $script),
                 'dir'  => $direction,
                 'escape' => true,
-                'ng-non-bindable' => ''
             ),
             $options
         );
-        return $this->Html->tag($tag, $text, $options);
+        return $this->Html->tag($tag, $this->_View->safeForAngular($text), $options);
     }
 
 
@@ -427,6 +365,7 @@ class LanguagesHelper extends AppHelper
     {
         if (!isset($__languagesLevels)) {
             $__languagesLevels = array(
+                /* @translators: language level */
                 '' => __x('level', 'Unspecified'),
                 0 => __('0: Almost no knowledge'),
                 1 => __('1: Beginner'),
@@ -447,16 +386,19 @@ class LanguagesHelper extends AppHelper
 
     public function smallLevelBar($level)
     {
-        $opacity = $opacity = 0.5 + 0.5 * ($level / Language::MAX_LEVEL);
-        $size = ($level / Language::MAX_LEVEL) * 100;
-        $levelDiv = $this->Html->div(
-            null,
-            "",
-            array(
+        if ($level === '') {
+            $text = '?';
+            $options = ['class' => 'unknownLevel'];
+        } else {
+            $text = '';
+            $opacity = $opacity = 0.5 + 0.5 * ($level / Language::MAX_LEVEL);
+            $size = ($level / Language::MAX_LEVEL) * 100;
+            $options = [
+                'class' => 'level',
                 'style' => 'opacity:'.$opacity.'; width:'.$size.'%;',
-                'class' => 'level'
-            )
-        );
+            ];
+        }
+        $levelDiv = $this->Html->div(null, $text, $options);
         $levelDivContainer = $this->Html->div(
             'languageLevel',
             $levelDiv,
@@ -464,5 +406,17 @@ class LanguagesHelper extends AppHelper
         );
 
         return $levelDivContainer;
+    }
+
+    public function getInterfaceLanguage()
+    {
+        $langCode = Configure::read('Config.language');
+        $lang = array_filter(
+            Configure::read('UI.languages'),
+            function ($item) use ($langCode) {
+                return $item[0] == $langCode;
+            }
+        );
+        return current($lang)[2];
     }
 }

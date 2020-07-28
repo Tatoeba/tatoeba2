@@ -35,5 +35,14 @@ dt {
 
 .symbol {
     color: #97BC5C;
+    padding: 0 0.2em;
 }
 
+.file-selection {
+    margin: 0;
+}
+
+.file-selection md-select-value {
+    min-width: 200px;
+    margin-left: 0.5em;
+}

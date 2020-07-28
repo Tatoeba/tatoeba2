@@ -52,7 +52,7 @@ class ActivitiesController extends AppController
     {
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Pagination';
-
+        
         $conditions = array('user_id IS' => null);
         if(!empty($lang)) {
             $conditions['lang'] = $lang;
@@ -60,17 +60,14 @@ class ActivitiesController extends AppController
 
         $this->loadModel('Sentences');
         $this->paginate = array(
+            'finder' => ['filteredTranslations' => [
+                'translationLang' => 'none',
+                'hideFields' => $this->Sentences->hideFields(),
+            ]],
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
-            'contain' => array(
-                'Transcriptions' => array(
-                    'Users' => array('fields' => array('username')),
-                ),
-                'Audios' => array(
-                    'Users' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'sentence_id'),
-                ),
-            ),
+            'fields' => $this->Sentences->fields(),
+            'contain' => $this->Sentences->contain(),
         );
         $results = $this->paginate('Sentences');
         $this->set('results', $results);
@@ -116,7 +113,7 @@ class ActivitiesController extends AppController
     public function translate_sentences()
     {
         $this->helpers[] = 'Languages';
-
+        
         $langFrom = $this->request->getQuery('langFrom');
         $langTo = $this->request->getQuery('langTo');
         if ($langFrom && $langTo)
@@ -143,7 +140,7 @@ class ActivitiesController extends AppController
             ));
         }
     }
-
+    
 
     /**
      * Translate sentences of a specific user.
@@ -185,10 +182,12 @@ class ActivitiesController extends AppController
         }
 
         $this->paginate = [
-            'finder' => 'filteredTranslations',
+            'finder' => ['filteredTranslations' => [
+                'hideFields' => $this->Sentences->hideFields(),
+            ]],
             'fields' => $this->Sentences->fields(),
             'conditions' => $conditions,
-            'contain' => $this->Sentences->paginateContain(),
+            'contain' => $this->Sentences->contain(['translations' => true]),
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => ['Sentences.created' => 'DESC'],
         ];

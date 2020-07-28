@@ -28,7 +28,10 @@
 use Cake\Core\Configure;
 use App\Model\CurrentUser;
 
+$isDisplayingAnnouncement = false;
+
 if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
+    $isDisplayingAnnouncement = true;
     $termsOfUseUrl = $this->Url->build([
         'controller' => 'pages', 
         'action' => 'terms_of_use'
@@ -39,7 +42,6 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     ]);
     echo $this->Form->create('Users', [
         'class' => 'announcement',
-        'data-announcement-id' => 'new-terms-of-use',
         'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
     ]);
     echo $this->Form->hidden('settings.new_terms_of_use', ['value' => true]);
@@ -55,37 +57,47 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     echo $this->Form->end();
 }
 
-/*
-if (Configure::read('Announcement.enabled')) {
-    $announcementId = 'announcement-123';
-    $announcementText = 'Announcement text here.';
-
-    $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
-    $content = $this->Html->div('content', $announcementText);
-
-    echo $this->Html->div(
-        'announcement',
-        $closeButton . $content,
-        array(
-            'data-announcement-id' => $announcementId
-        )
-    );
+if ($this->Announcement->isDisplayed()) {
+    if ($warning = $this->Announcement->shutdownWarning()) {
+        echo $this->Html->div('maintenance', $warning);
+    } 
+    
+    $isDisplayingAnnouncement = true;
+    ?>
+    <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_announcement')" ng-cloak>
+        <p>
+        Announcement text here.
+        </p>
+        <div layout="row" layout-align="end center">
+            <?php /* @translators: button to close the blue announcement banner */ ?>
+            <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+        </div>
+    </div>
+    <?php
 }
-*/
 
 if (Configure::read('Tatoeba.devStylesheet')) {
-    $content = __(
-        'Warning: this website is for testing purposes. '.
-        'Everything you submit will be definitely lost.', true
-    );
-    $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
-    echo $this->Html->div(
-        'announcement',
-        $closeButton . $content,
-        array(
-            'data-announcement-id' => 'dev-warning5'
-        )
-    );
+    $isDisplayingAnnouncement = true;
+    ?>
+    <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_dev_warning')" ng-cloak>
+        <div layout="row">
+            <md-icon>warning</md-icon>
+            <p>
+                <?= __(
+                'Warning: this website is for testing purposes. '.
+                'Everything you submit will be definitely lost.', true
+                ); ?>
+            </p>
+        </div>
+        <div layout="row" layout-align="end center">
+            <?php /* @translators: button to close the blue announcement banner */ ?>
+            <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+        </div>
+    </div>
+    <?php
 }
 
+if ($isDisplayingAnnouncement) {
+    $this->Html->script(JS_PATH . 'directives/info-banner.dir.js', ['block' => 'scriptBottom']);
+}
 ?>

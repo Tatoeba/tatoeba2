@@ -1301,6 +1301,10 @@ div.hideLink {
 /*
  *
  */
+.sentence-and-translations {
+    background-color: #fff;
+}
+
 .sentence-and-translations .header {
     background: #fafafa;
 }
@@ -1312,6 +1316,10 @@ div.hideLink {
     background: #fafafa;
     border-bottom-left-radius: 15px;
 }
+html[dir="rtl"] .sentence-and-translations .menu {
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: 15px;
+}
 
 .sentence-and-translations .text,
 .sentence-and-translations .lang {
@@ -1320,8 +1328,11 @@ div.hideLink {
 }
 
 .sentence-and-translations .sentence {
-    font-size: 24px;
     padding: 10px;
+}
+
+.sentence-and-translations .sentence .text {
+    font-size: 24px;
 }
 
 .sentence-and-translations .translation {
@@ -1330,7 +1341,6 @@ div.hideLink {
 
 .sentence-and-translations .md-subheader {
     background: #fff;
-    border-top-right-radius: 15px;
 }
 
 .sentence-and-translations .md-subheader ._md-subheader-inner {
@@ -1366,6 +1376,11 @@ div.hideLink {
     background: #f1f1f1;
 }
 
+.sentence-and-translations .indicator md-icon {
+    padding: 8px;
+    cursor: help;
+}
+
 .sentence-and-translations .list-form {
     border-top: 1px solid #f1f1f1;
     padding-top: 10px;
@@ -1381,6 +1396,82 @@ div.hideLink {
     color: grey;
     padding: 0 5px;
 }
+
+.sentence-and-translations .duplicate-warning {
+    border-bottom: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .translation-form {
+    background: #fafafa; 
+    border-top: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .sentence-form,
+.sentence-and-translations .translation-form form {
+    padding-top: 10px;
+}
+
+form .language-icon-div {
+    padding: 10px 10px 0 10px;
+}
+.sentence-and-translations .sentence .transcription .icon {
+    margin: 0 8px 0 19px;
+}
+html[dir="rtl"] .sentence-and-translations .sentence .transcription .icon {
+    margin: 0 19px 0 8px;
+}
+.sentence-and-translations .sentence .transcription .text {
+    color: #A1A1A1;
+    font-size: 24px;
+}
+
+.sentence-and-translations .translation .transcription .icon {
+    margin: 0 20px 0 40px;
+}
+html[dir="rtl"] .sentence-and-translations .translation .transcription .icon {
+    margin: 0 40px 0 20px;
+}
+.sentence-and-translations .translation.trusted-user.expanded .transcription .icon {
+    margin: 0 20px 0 69px;
+}
+html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .transcription .icon {
+    margin: 0 69px 0 20px;
+}
+.sentence-and-translations .translation .transcription .text {
+    color: #A1A1A1;
+    padding: 0;
+}
+
+.sentence-and-translations div:focus {
+    outline: none;
+    border: 0;
+ }
+
+@media only screen and (max-width: 600px) {    
+    .sentence-and-translations .buttons {
+        display: none;
+    }
+    .sentence-and-translations .chevron {
+        display: none;
+    }
+    .sentence-and-translations .sentence .text,
+    .sentence-and-translations .sentence .transcription .text {
+        font-size: 18px;
+    }
+
+    .sentence-and-translations .text,
+    .sentence-and-translations .lang {
+        padding: 0 5px;
+    }
+
+    .sentence-and-translations .sentence .transcription .icon {
+        margin: 0 5px 0 12px;
+    }
+    .sentence-and-translations .translation .transcription .icon {
+        margin: 0 10px 0 12px;
+    }
+}
+
 
 /*
  * --------------------------------------------------------------------
@@ -1658,20 +1749,6 @@ div.hideLink {
     padding: 5px;
 }
 
-.languageLevel {
-}
-
-.languageLevel.unknown {
-    color: #AAAAAA;
-}
-
-.languageLevel .level {
-    background: #06A;
-    width: 20px;
-    height: 100%;
-    display: inline-block;
-}
-
 .warning-add-language {
     font-size: 16px;
     padding: 10px 15px;
@@ -1846,4 +1923,20 @@ div.hideLink {
 }
 .annexe-menu md-icon {
     margin: auto 0;
+}
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Login dialog
+ *
+ * --------------------------------------------------------------------
+ */
+
+#login-dialog {
+    width: 300px;
+}
+
+#login-dialog md-dialog-content {
+    padding: 40px 20px 10px 20px;
 }

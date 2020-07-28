@@ -37,8 +37,13 @@ if (empty($currentLanguage)) {
 if (empty($notTranslatedInto)) {
     $notTranslatedInto = 'none';
 }
-$langsFrom = $this->Languages->profileLanguagesArray(false, false);
-$langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
+$langsFrom = $this->Languages->profileLanguagesArray();
+$langsTo = $this->Languages->profileLanguagesArray(false, [
+    'none' => '—',
+    /* @translators: option used in language selection dropdown
+       for "Not directly translated into", on Translate sentences page */
+    'und'  => __x('not-directly-translated-into', 'Any language'),
+]);
 ?>
 
 <div id="annexe_content">
@@ -164,6 +169,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                 </label>
                 <md-radio-group ng-model='sort'>
                     <md-radio-button value='random' class='md-primary'>
+                        <?php /* @translators: sort order radio option in Translate sentences page (noun) */ ?>
                         <?= __('Random') ?>
                     </md-radio-button>
                     <md-radio-button value='words' class='md-primary'>

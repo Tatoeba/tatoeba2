@@ -4,9 +4,8 @@ use App\Model\Entity\User;
 $config = [
     // actions available to everyone, even guests
     'public_actions' => [
-        'activities' => '*',
+        'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
         'audio' => [ 'of', 'index' ],
-        'autocompletions' => '*',
         'reviews' => [ 'of' ],
         'contributions' => '*',
         'pages' => '*',
@@ -39,7 +38,8 @@ $config = [
         'tags' => [
             'show_sentences_with_tag',
             'view_all',
-            'search'
+            'search',
+            'autocomplete'
         ],
         'tools' => '*',
         'transcriptions' => [ 'view', 'of' ],
@@ -59,6 +59,7 @@ $config = [
             'check_username',
             'check_email',
             'for_language',
+            'login_dialog_template',
         ],
         'vocabulary' => [ 'of' ],
         'wall' => [
@@ -66,10 +67,15 @@ $config = [
             'show_message',
             'messages_of_user',
         ],
+        'angular_templates' => '*',
     ],
 
     // actions not available for guests or some users
     'auth_actions' => [
+        'activities' => [
+            'translate_sentences'  => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'adopt_sentences'      => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+        ],    
         'audio' => [
             'import' => [ User::ROLE_ADMIN ],
             'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
@@ -105,7 +111,7 @@ $config = [
         ],
         'sentences_lists'      => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'tags'                 => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
-        'tags_links'           => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
+        'tags_links'           => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
         'transcriptions'       => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'user'                 => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'users'                => [ '*' => [ User::ROLE_ADMIN ] ],

@@ -30,7 +30,9 @@ use Cake\View\Helper;
 
 
 /**
- * Controller for contributions.
+ * Base helper class
+ *
+ * Contains general functions which are useful for several different helpers and templates.
  *
  * @category App
  * @package  Helper

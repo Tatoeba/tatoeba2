@@ -10,7 +10,7 @@ $removeUrl = $this->Url->build([
     $parent
 ]);
 
-$cssClass = $depth == 0 ? 'wall-thread' : 'reply'
+$cssClass = $depth == 0 ? 'wall-thread' : 'reply';
 ?>
 
 <md-card class="comment <?= $cssClass ?>" flex>

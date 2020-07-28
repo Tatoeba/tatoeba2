@@ -28,15 +28,20 @@
 $folderName = '';
 if ($folder == 'Inbox') {
     if ($status == 'unread') {
+        /* @translators: folder name in private messages (noun) */
         $folderName = __('Unread');
     } else {
+        /* @translators: folder name in private messages (noun) */
         $folderName = __('Inbox');
     }
 } elseif ($folder == 'Sent') {
+    /* @translators: folder name in private messages (noun) */
     $folderName = __('Sent');
 } elseif ($folder == 'Trash') {
+    /* @translators: folder name in private messages (noun) */
     $folderName = __('Trash');
 } elseif ($folder == 'Drafts') {
+    /* @translators: folder name in private messages (noun) */
     $folderName = __('Drafts');
 }
 
@@ -64,7 +69,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     echo format(__n('{folderName} ({n}&nbsp;message)',
                                     '{folderName} ({n}&nbsp;messages)',
                                     $n, true),
-                                compact('folderName', 'n'));
+                                ['folderName'=> $folderName, 'n'=> $this->Number->format($n)]
+                                );
                     ?>
                 </h2>
 
@@ -122,6 +128,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     $deleteIcon = 'delete_forever';
                 } else {
                     $deleteConfirmation = '';
+                    /* @translators: delete button on private message (verb) */
                     $deleteLabel = __('Delete');
                     $deleteIcon = 'delete';
                 }
@@ -134,7 +141,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                 <md-list-item class="md-2-line <?= $unread ?>" href="<?= $url ?>">
                     <?= $this->Members->image($username, $userImage, array('class' => 'md-avatar')); ?>
                     <div class="md-list-item-text" layout="column">
-                        <h3><?= $messageTitle ?></h3>
+                        <h3><?= $this->safeForAngular($messageTitle) ?></h3>
                         <p>
                         <?php
                         echo $label;
@@ -148,6 +155,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     <?php if ($folder == 'Trash') { ?>
                     <md-button class="md-icon-button" href="<?= $restoreUrl ?>">
                         <md-icon>restore</md-icon>
+                        <?php /* @translators: button to restore a private message that has been put to trash (verb) */ ?>
                         <md-tooltip><?= __('Restore') ?></md-tooltip>
                     </md-button>
                     <?php } ?>

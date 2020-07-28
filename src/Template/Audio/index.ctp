@@ -33,8 +33,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?= $this->element('audio_stats',
             [ 'stats' => $stats ],
             [ 'cache' => [
-                'time' => '+6 hours',
-                'key'  => 'audio_stats_'.Configure::read('Config.language')
+                'config' => 'stats',
+                'key' => 'audio_stats_'.Configure::read('Config.language'),
             ]]
     ); ?>
 </div>

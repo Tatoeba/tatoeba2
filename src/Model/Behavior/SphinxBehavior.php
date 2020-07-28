@@ -26,6 +26,7 @@ class SphinxBehavior extends Behavior
 
     public $_cached_result = null;
     public $_cached_query = null;
+    private $_cached_options = null;
 
     /**
      * Spinx client object
@@ -63,7 +64,13 @@ class SphinxBehavior extends Behavior
      */
     function beforeFind($event, $query, $options, $primary)
     {
-        if (empty($options['sphinx'])) {
+        /* CakePHP's paginator makes two calls to the database: the first for the actual
+         * query and the second for the total count. But when we use the search engine
+         * we already get the total count with the first call. The 'withSphinx' finder
+         * from the model will use the cached count so we don't need to do anything
+         * when this callback gets called with the same options a second time. */
+        if (empty($options['sphinx']) ||
+            $options['sphinx'] === $this->_cached_options) {
             return true;
         }
 
@@ -71,12 +78,6 @@ class SphinxBehavior extends Behavior
         $page = isset($options['sphinx']['page']) ? $options['sphinx']['page']: 1;
         $limit = isset($options['sphinx']['limit']) ? (int)$options['sphinx']['limit'] : 1;
         
-        /*if ($event->type == 'count') {
-            $options['limit'] = 1;
-            $options['page'] = 1;
-        } else 
-        */
-
         $sphinx = $this->runtime[$alias]['sphinx'];
         foreach ($options['sphinx'] as $key => $setting) {
             switch ($key) {
@@ -121,16 +122,17 @@ class SphinxBehavior extends Behavior
 
         $indexes = !empty($options['sphinx']['index']) ? implode(',' , $options['sphinx']['index']) : '*';
 
-        $result = $sphinx->Query($options['search'], $indexes);
+        $search = $options['sphinx']['query'] ?? '';
+        $result = $sphinx->Query($search, $indexes);
 
         // avoid failing just because search operators are being misused
         if ($result === false) {
             $gotSyntaxError = strpos($sphinx->GetLastError(), 'syntax error,') !== FALSE;
             if ($gotSyntaxError) {
-                $quotedQuery = $sphinx->EscapeString($options['search']);
+                $quotedQuery = $sphinx->EscapeString($search);
                 $result = $sphinx->Query($quotedQuery, $indexes);
                 if ($result) {
-                    $options['search'] = $quotedQuery;
+                    $search = $quotedQuery;
                 }
             }
         }
@@ -143,26 +145,21 @@ class SphinxBehavior extends Behavior
             }
         }
 
-        /*if ($event->type == 'count') { // TODO
-            $result['total'] = !empty($result['total']) ? $result['total'] : 0;
-            $query['fields'] = 'ABS(' . $result['total'] . ') AS count';
-        } else {*/
-            $this->_cached_result = $result;
-            $this->_cached_query = $options['search'];
-            if (isset($result['matches'])) {
-                $ids = array_keys($result['matches']);
-            } else {
-                $ids = array(0);
-            }
-            $query->where(['Sentences.id IN' => $ids]);
+        $this->_cached_result = $result;
+        $this->_cached_query = $search;
+        $this->_cached_options = $options['sphinx'];
+        if (isset($result['matches'])) {
+            $ids = array_keys($result['matches']);
+        } else {
+            $ids = array(0);
+        }
+        $query->where(['Sentences.id IN' => $ids]);
 
-            // Make sure that we order results according to the $ids array,
-            // which contains the order provided by Sphinx. 
-            // We have to set the second param of order() to true to override 
-            // some previous ordering on the created/modified columns.
-            $query->order(['FIND_IN_SET(Sentences.id, \'' . implode(',', $ids) . '\')'], true);
-
-        /*}*/
+        // Make sure that we order results according to the $ids array,
+        // which contains the order provided by Sphinx.
+        // We have to set the second param of order() to true to override
+        // some previous ordering on the created/modified columns.
+        $query->order(['FIND_IN_SET(Sentences.id, \'' . implode(',', $ids) . '\')'], true);
 
         return $query;
     }

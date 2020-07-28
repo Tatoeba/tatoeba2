@@ -90,9 +90,11 @@ class CommentsHelper extends AppHelper
             $hidden = $comment['hidden'];
 
             if ($hidden) {
+                /* @translators: button to unhide a sentence comment (verb) */
                 $hiddenLinkText = __('Unhide');
                 $hiddenLinkAction = 'unhide_message';
             } else {
+                /* @translators: button to hide a sentence comment (verb) */
                 $hiddenLinkText = __('Hide');
                 $hiddenLinkAction = 'hide_message';
             }
@@ -108,9 +110,24 @@ class CommentsHelper extends AppHelper
             );
         }
 
+        // edit
+        if ($permissions['canEdit']) {
+            $menu[] = array(
+                /* @translators: edit button on sentence comment (verb) */
+                'text' => __('Edit'),
+                'icon' => 'edit',
+                'url' => array(
+                    "controller" => "sentence_comments",
+                    "action" => "edit",
+                    $commentId
+                )
+            );
+        }
+
         // delete
         if ($permissions['canDelete']) {
             $menu[] = array(
+                /* @translators: delete button on sentence comment (verb) */
                 'text' => __('Delete'),
                 'icon' => 'delete',
                 'url' => array(
@@ -119,19 +136,6 @@ class CommentsHelper extends AppHelper
                     $commentId
                 ),
                 'confirm' => __('Are you sure?')
-            );
-        }
-
-        // edit
-        if ($permissions['canEdit']) {
-            $menu[] = array(
-                'text' => __('Edit'),
-                'icon' => 'edit',
-                'url' => array(
-                    "controller" => "sentence_comments",
-                    "action" => "edit",
-                    $commentId
-                )
             );
         }
 
