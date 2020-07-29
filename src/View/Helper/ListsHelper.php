@@ -337,15 +337,29 @@ class ListsHelper extends AppHelper
             ?>
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
-                <md-radio-button value='public' class='md-primary'>
+                <md-radio-button value='public' class='md-primary' title=
+                                 '<?=h(__("The list is accessible to anyone and is listed on the 'Browse by list' page, as well as on the sentence page for every sentence it contains."))?>'>                  
                     <?php /* @translators: visibility option of a list */ ?>
-                    <?=  __('Public') ?>
+                    <?=  __('Public');?>      
+                    
+                    <?php
+                    /*should be removed after 2020*/
+                    /* @translators: notice of new visibility feature of a list */?>
+                    <span style="color:red"><?= __('new')?>
+                    </span>
                 </md-radio-button>
-                <md-radio-button value='unlisted' class='md-primary'>
+                <md-radio-button value='listed' class='md-primary' title=
+                                 '<?= h(__("The list is accessible to anyone and is listed on the 'Browse by list' page."))?>'>
+                    <?php /* @translators: visibility option of a list */ ?>
+                    <?=  __('Listed');?>
+                </md-radio-button>
+                <md-radio-button value='unlisted' class='md-primary' title=
+                                 '<?= h(__("The list is accessible to anyone but is not listed on the 'Browse by list' page."))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Unlisted') ?>
                 </md-radio-button>
-                <md-radio-button value='private' class='md-primary'>
+                <md-radio-button value='private' class='md-primary' title=
+                                 '<?= h(__("The list is accessible only to you."))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Private') ?>
                 </md-radio-button>
@@ -480,6 +494,41 @@ class ListsHelper extends AppHelper
         <?php
     }
 
+     /**
+      * Function shows X behind the List to remove it 
+      */
+    private function _displayRemoveLink($listId, $sentenceId, $listName)
+    {
+        $removeSentenceFromListAlt = format(
+            __("Remove this sentence from '{listName}'."),
+                compact('listName')
+        );
+
+        $removeSentenceFromListImg =  $this->Html->image(
+            IMG_PATH . 'close.png',
+            array(
+                "class" => "removeFromListButton",
+                "id" => 'deleteFromListButton'.$listId,
+                "alt" => $removeSentenceFromListAlt
+            )
+        );
+        // X link to remove sentence from List
+        echo $this->Html->link(
+            $removeSentenceFromListImg,
+            array(
+                "controller" => "sentences_lists",
+                "action" => "remove_sentence_from_list",                
+                $sentenceId,
+                $listId
+            ),
+            array(
+                "class" => "removeSentenceFromListButton",
+                "id" => 'deleteButton'.$listId.$sentenceId,
+                "title" => $removeSentenceFromListAlt,
+                "escape" => false
+            )
+        );        
+    }
     /**
      * Form to add a new sentence to a list.
      *
@@ -535,12 +584,16 @@ class ListsHelper extends AppHelper
     }
 
 
-    public function displayListsModule($listsArray)
+    public function displayListsModule($listsArray, $sentences)
     {
+        $sentenceId = $sentences->id; 
+        $currentUserId = CurrentUser::get('id');
+        
+        echo '<div class="section md-whiteframe-1dp">';
+        /* @translators: header text on the sidebar of a sentence page */
+        echo $this->Html->tag('h2', __('Lists'));
         if (count($listsArray) > 0) {
-            echo '<div class="section md-whiteframe-1dp">';
-            /* @translators: header text on the sidebar of a sentence page */
-            echo $this->Html->tag('h2', __('Lists'));
+            
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
                 $list = $list->sentences_list;
@@ -558,11 +611,17 @@ class ListsHelper extends AppHelper
                         $list['id']
                     )
                 );
+                if(CurrentUser::isMember()){
+                    if(($list['user_id'] == $currentUserId && $list['editable_by'] != 'no_one') || $list['editable_by'] == 'anyone')
+                    {
+                       echo $this->_displayRemoveLink($list['id'], $sentenceId, $list['name']);
+                    }                   
+                }
                 echo '</li>';
             }
             echo '</ul>';
-            echo '</div>';
         }
+        echo '</div>';
     }
 
 

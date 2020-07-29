@@ -195,9 +195,8 @@ class SentencesController extends AppController
             $tagsArray = $this->Sentences->getAllTagsOnSentence($id);
             $this->loadModel('SentencesSentencesLists');
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
-
+ 
             $this->set('sentence', $sentence);
-
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
 

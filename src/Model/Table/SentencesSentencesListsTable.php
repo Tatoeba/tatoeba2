@@ -39,23 +39,26 @@ class SentencesSentencesListsTable extends Table
 
         $this->getEventManager()->on(new SentencesListListener());
     }
-
     public function getListsForSentence($sentenceId)
     {
         return $this->find()
             ->where([
                 'sentence_id' => $sentenceId,
-                'user_id' => CurrentUser::get('id')
+                'OR' => [                   
+                    'user_id' => CurrentUser::get('id'),
+                    'visibility' => 'public',
+                ]
             ])
             ->select(['created'])
             ->contain([
                 'SentencesLists' => [
-                    'fields' => ['id', 'name', 'visibility']
+                    'fields' => ['id', 'name', 'visibility', 'user_id', 'editable_by']
                 ]
             ])
             ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
             ->all();
     }
+    
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {
         $sentenceId = $entity->sentence_id;
