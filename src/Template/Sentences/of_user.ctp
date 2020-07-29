@@ -106,11 +106,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div class="md-toolbar-tools">
                 <h2><?= $this->Paginator->counter($title . ' ' . __("(total {{count}})")); ?></h2>
 
-                <?php 
+                <?php
+                    if ($onlyOriginal) {
+                        $urlOptions = $this->Paginator->generateUrlParams(
+                            array('?' => array('only_original' => ''))
+                        );
+                        $this->Paginator->options(array('url' => $urlOptions));
+                    }
+                
                     $options = array(
+                        /* @translators: sort option in the "Sentences of user" page */
                         array( 'param' => 'modified', 'direction' => 'desc', 'label' => __('Most recently updated')),
+                        /* @translators: sort option in the "Sentences of user" page */
                         array( 'param' => 'modified', 'direction' => 'asc', 'label' => __('Least recently updated')),
+                        /* @translators: sort option in the "Sentences of user" page */
                         array( 'param' => 'created', 'direction' => 'desc', 'label' => __('Newest first')),
+                        /* @translators: sort option in the "Sentences of user" page */
                         array( 'param' => 'created', 'direction' => 'asc', 'label' => __('Oldest first'))
                     );
                     echo $this->element('sort_menu', array('options' => $options));
