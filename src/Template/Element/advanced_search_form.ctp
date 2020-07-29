@@ -30,6 +30,21 @@ echo $this->Form->create('AdvancedSearch', [
 ?>
 
 <div layout="column" ng-app="app" ng-cloak>
+    <?php if (!(isset($isSidebar) && $isSidebar) && $usesTemplate): ?>
+        <div>
+            <i><?= __("This form is pre-filled.")?></i>
+            <md-button class="md-primary"
+                        href="<?= $this->Url->build([
+                            "controller" => "Sentences",
+                            "action" => "advanced_search",
+                            "?" => [],
+                        ]);?>">
+                <?= __('Clear form') ?>
+            </md-button>
+        </div>
+        <md-divider></md-divider>
+    <?php endif; ?>
+
     <div layout="<?= $layout ?>">
         <div class="column-1" layout="column" flex>
             <?php /* @translators: section title in advanced search form */ ?>
@@ -373,6 +388,18 @@ echo $this->Form->create('AdvancedSearch', [
                    href="http://en.wiki.tatoeba.org/articles/show/text-search">
             <?= __('More search options') ?>
         </md-button>
+        <?php if (!(isset($isSidebar) && $isSidebar)): ?>
+            <md-button type="submit" class="md-primary" formaction="">
+                <?= __('Create a search template') ?>
+            </md-button>
+            <span>
+                <md-icon>help</md-icon>
+                <md-tooltip class="multiline" md-direction="top">
+                    <?= __('Use this button to use the currently selected criteria as a base for other searches. '
+                          .'You can also bookmark/share the search template with someone else.') ?>
+                </md-tooltip>
+            </span>
+        <?php endif; ?>
     </div>
 </div>
 

@@ -376,4 +376,8 @@ class SentencesSearchForm extends Form
     public function asSphinx() {
         return $this->search->asSphinx();
     }
+
+    public function isUsingDefaultCriteria() {
+        return $this->getData() == $this->defaultCriteria;
+    }
 }
