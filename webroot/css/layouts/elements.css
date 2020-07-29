@@ -1208,6 +1208,14 @@ input.sentenceId {
     height: 20px;
 }
 
+.audioButton:focus {
+    outline: none;
+}
+
+.audioButton::-moz-focus-inner {
+    border: none;
+}
+
 .audioButton.audioAvailable {
     border: none;
     background: url(../../img/audio.svg);
