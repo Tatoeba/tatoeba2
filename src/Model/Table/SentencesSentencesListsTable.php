@@ -39,12 +39,13 @@ class SentencesSentencesListsTable extends Table
 
         $this->getEventManager()->on(new SentencesListListener());
     }
+
     public function getListsForSentence($sentenceId)
     {
         return $this->find()
             ->where([
                 'sentence_id' => $sentenceId,
-                'OR' => [                   
+                'OR' => [
                     'user_id' => CurrentUser::get('id'),
                     'visibility' => 'public',
                 ]
@@ -58,7 +59,6 @@ class SentencesSentencesListsTable extends Table
             ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
             ->all();
     }
-    
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {
         $sentenceId = $entity->sentence_id;

@@ -102,7 +102,7 @@ class SentencesListsTable extends Table
             ->where([
                 'OR' => [
                     'user_id' => CurrentUser::get('id'),
-                    'visibility IN' => ['public', 'listed']               
+                    'visibility IN' => ['public', 'listed']
                 ]
             ])
             ->select(['id', 'name', 'user_id'])

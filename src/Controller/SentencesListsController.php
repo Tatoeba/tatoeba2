@@ -316,22 +316,20 @@ class SentencesListsController extends AppController
             $sentenceId, $listId, $userId
         );
         $this->set('removed', $isRemoved);
-        
+
         if (strpos($this->referer(), 'sentences/show')) {
            return $this->redirect($this->referer());
         }
-        
+
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
             $this->set('_serialize', ['removed']);
             $this->RequestHandler->renderAs($this, 'json');
         }
-                
-        
     }
-    
-    
+
+
     /**
      * Displays the lists of a specific user.
      *
@@ -572,5 +570,4 @@ class SentencesListsController extends AppController
         $this->set('_serialize', ['lists']);
         $this->RequestHandler->renderAs($this, 'json');
     }
-
 }
