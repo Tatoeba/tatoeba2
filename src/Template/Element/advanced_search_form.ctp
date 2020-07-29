@@ -31,7 +31,7 @@ echo $this->Form->create('AdvancedSearch', [
 
 <div layout="column" ng-app="app" ng-cloak>
     <?php if (!(isset($isSidebar) && $isSidebar) && $usesTemplate): ?>
-        <div id="template-notif">
+        <div>
             <i><?= __("This form is pre-filled.")?></i>
             <md-button class="md-primary"
                         href="<?= $this->Url->build([
