@@ -729,7 +729,6 @@ class SentencesHelper extends AppHelper
 
         // defined in config/asset_compress.ini
         $this->AssetCompress->script('sentences-block-for-members.js', $options);
-        $this->Html->script('sentences.play_audio.js', $options);
     }
 
 
