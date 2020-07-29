@@ -1,5 +1,6 @@
 <md-menu md-offset="5 50" md-position-mode="target-right target" ng-cloak>
     <md-button ng-click="$mdOpenMenu($event)">
+        <?php /* @translators: button to open top-right sort menu on various pages (verb) */ ?>
         <md-icon>sort</md-icon> <?php echo __('Sort by'); ?>
     </md-button>
     <md-menu-content>

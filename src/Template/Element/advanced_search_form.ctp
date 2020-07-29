@@ -39,7 +39,10 @@ echo $this->Form->create('AdvancedSearch', [
                             "action" => "advanced_search",
                             "?" => [],
                         ]);?>">
-                <?= __('Clear form') ?>
+                <?= /* @translators: button appearing on advanced search page
+                       after clicking "Create a search template" (verb) */
+                    __('Clear form')
+                ?>
             </md-button>
         </div>
         <md-divider></md-divider>
