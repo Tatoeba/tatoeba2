@@ -88,13 +88,13 @@ $tagsIndexUrl = $this->Url->build([
                 <?php 
                     $options = array(
                         /* @translators: sort option in the All tags page */
-                        array( 'param' => 'nbrOfSentences', 'direction' => 'desc', 'label' => __('Highest number of sentences')),
+                        array('param' => 'nbrOfSentences', 'direction' => 'desc', 'label' => __('Highest number of sentences')),
                         /* @translators: sort option in the All tags page */
-                        array( 'param' => 'nbrOfSentences', 'direction' => 'asc', 'label' => __('Lowest number of sentences') ),
+                        array('param' => 'nbrOfSentences', 'direction' => 'asc', 'label' => __('Lowest number of sentences') ),
                         /* @translators: sort option in the All tags page */
-                        array( 'param' => 'name', 'direction' => 'asc', 'label' => __('Tag name (alphabetical)')),
+                        array('param' => 'name', 'direction' => 'asc', 'label' => __('Tag name (alphabetical)')),
                         /* @translators: sort option in the All tags page */
-                        array( 'param' => 'name', 'direction' => 'desc', 'label' => __('Tag name (reverse alphabetical)'))
+                        array('param' => 'name', 'direction' => 'desc', 'label' => __('Tag name (reverse alphabetical)'))
                     );
                     echo $this->element('sort_menu', array('options' => $options));
                 ?>
