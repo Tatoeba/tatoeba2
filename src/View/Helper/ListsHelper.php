@@ -334,8 +334,6 @@ class ListsHelper extends AppHelper
             $title = __('List visibility');
             $loader = "<md-progress-circular class='is-public loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
             echo $this->Html->tag('dt', $title . $loader);
-            $visibilityMessage = __(
-            );
             ?>
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
@@ -344,7 +342,7 @@ class ListsHelper extends AppHelper
                                  title='<?= h(__(
                                      "The list is accessible to anyone and is listed on the "
                                     ."'Browse by list' page, as well as on the sentence page "
-                                    ."every sentence it contains.")) ?>'>
+                                    ."for every sentence it contains.")) ?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?= __('Public') ?>
 
