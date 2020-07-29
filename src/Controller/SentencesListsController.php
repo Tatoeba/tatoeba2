@@ -177,7 +177,7 @@ class SentencesListsController extends AppController
             'contain' => ['Sentences' => $contain],
             'conditions' => ['sentences_list_id' => $id],
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['SentencesSentencesLists.created' => 'DESC']
+            'order' => ['created' => 'DESC']
         ];
         $this->paginate = $pagination;
         $sentencesInList = $this->paginate('SentencesSentencesLists');

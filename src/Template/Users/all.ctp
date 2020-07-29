@@ -89,22 +89,29 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             );
             ?>
             </h2>
+
+            <?php 
+                $options = array(
+                    /* @translators: sort option in the All members page */
+                    array( 'param' => 'username', 'direction' => 'asc', 'label' => __('Username (alphabetical)')),
+                    /* @translators: sort option in the All members page */
+                    array( 'param' => 'username', 'direction' => 'desc', 'label' => __('Username (reverse alphabetical)')),
+                    /* @translators: sort option in the All members page */
+                    array( 'param' => 'since', 'direction' => 'desc', 'label' => __('Newest first')),
+                    /* @translators: sort option in the All members page */
+                    array( 'param' => 'since', 'direction' => 'asc', 'label' => __('Oldest first')),
+                    /* @translators: sort option in the All members page */
+                    array( 'param' => 'role', 'direction' => 'asc', 'label' => __('Status (admin to contributor)')),
+                    /* @translators: sort option in the All members page */
+                    array( 'param' => 'role', 'direction' => 'desc', 'label' => __('Status (contributor to admin)') )
+                );
+                echo $this->element('sort_menu', array('options' => $options));
+            ?>
+
             </div>
         </md-toolbar>
         
         <md-content>
-        <div class="sortBy">
-            <strong><?php echo __('Sort by:'); ?></strong>
-            <?php
-            /* @translators: sort option in the All members page */
-            echo $this->Paginator->sort('username', __('Username'));
-            echo ' | ';
-            /* @translators: sort option in the All members page */
-            echo $this->Paginator->sort('since', __('Member since'));
-            echo ' | ';
-            echo $this->Pagination->sortForRole();
-            ?>
-        </div>
 
 
         <?php $this->Pagination->display(); ?>
