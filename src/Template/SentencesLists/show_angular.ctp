@@ -57,7 +57,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     if ($permissions['canEdit']) {
         ?>
-        <div class="section md-whiteframe-1dp">
+        <div class="section md-whiteframe-1dp" ng-controller="optionsCtrl">
             <?php /* @translators: header text in the side bar of a list page (noun) */ ?>
             <h2><?php echo __('Options'); ?></h2>
             <ul class="sentencesListActions">

@@ -332,11 +332,19 @@ class ListsHelper extends AppHelper
         <dl>
             <?php
             $title = __('List visibility');
-            $loader = "<md-progress-circular class='is-public loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
+            $loader = $this->Html->tag(
+                'md-progress-circular',
+                '',
+                [
+                    'class' => 'loader-container',
+                    'md-diameter' => '16',
+                    'ng-show' => 'visibilityProgress',
+                ]
+            );
             echo $this->Html->tag('dt', $title . $loader);
             ?>
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
-            <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
+            <md-radio-group ng-model='visibility' ng-change='visibilityChanged()'>
                 <md-radio-button value='public'
                                  class='md-primary'
                                  title='<?= h(__(
@@ -392,11 +400,19 @@ class ListsHelper extends AppHelper
                     $value = "no_one";
                 }
                 $title = __('Who can add/remove sentences');
-                $loader = "<md-progress-circular class='is-editable loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
+                $loader = $this->Html->tag(
+                    'md-progress-circular',
+                    '',
+                    [
+                        'class' => 'loader-container',
+                        'md-diameter' => '16',
+                        'ng-if' => 'editableProgress',
+                    ]
+                );
                 echo $this->Html->tag('dt', $title.$loader);
             ?>
             <input type="radio"  name="editable_by" data-list-id='<?= $listId ?>'  value="{{editable}}" checked hidden ng-init="editable = '<?= $value ?>';"/>
-            <md-radio-group ng-controller='optionsCtrl' ng-model='editable' ng-change='editableChanged("{{editable}}")'>
+            <md-radio-group ng-model='editable' ng-change='editableChanged("{{editable}}")'>
                 <md-radio-button value='anyone' class='md-primary'>
                     <?php /* @translators: option when choosing who can edit a list */ ?>
                     <?=  __('Anyone') ?>
