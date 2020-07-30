@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateExports extends AbstractMigration
+class CreateSuperTags extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,23 +12,23 @@ class CreateExports extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('tagsLinks');
-        $table->addColumn('parent', 'integer', [
+        $table = $this->table('super_tags');
+        $table->addColumn('name', 'string', [
             'default' => null,
-            'limit' => 11,
+            'limit' => 50,
             'null' => false,
         ]);
-        $table->addColumn('child', 'integer', [
+        $table->addColumn('description', 'string', [
             'default' => null,
-            'limit' => 11,
-            'null' => false,
+            'limit' => 500,
+            'null' => true,
         ]);
         $table->addColumn('user_id', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => true,
         ]);
-        $table->addColumn('added_time', 'datetime', [
+        $table->addColumn('created', 'datetime', [
             'default' => 'CURRENT_TIMESTAMP',
             'null' => true,
         ]);

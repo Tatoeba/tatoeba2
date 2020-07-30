@@ -17,7 +17,10 @@
  */
 
 class AutocompleteBox {
-    constructor(inputId, divId) {
+    constructor(url, format, inputId, divId) {
+        this.url = get_tatoeba_root_url() + "/" + url + "/";
+        this.format = format;
+
         this.currentSuggestPosition = -1;
         this.countBeforeRequest = 0;
         this. suggestLength = 0;
@@ -104,11 +107,10 @@ class AutocompleteBox {
             return;
         }
 
-        var rootUrl = get_tatoeba_root_url();
         var that = this;
         if (tag != this.previousText) {
             $.get(
-                rootUrl + "/tags/autocomplete/" + tag,
+                this.url + tag,
                 function(data) {
                     that.suggestShowResults(data);
                 }
@@ -119,18 +121,18 @@ class AutocompleteBox {
     
     suggestShowResults(suggestions) {
         this.removeSuggestList();
-        if (suggestions.allTags.length == 0) {
+        if (suggestions.results.length == 0) {
             return;
         }
     
-        this.suggestLength = suggestions.allTags.length;
+        this.suggestLength = suggestions.results.length;
         this.isSuggestListActive = true;
         var that = this;
     
         var ul = document.createElement("ul");
         $(this.divTag).append(ul);
-        suggestions.allTags.forEach(function(suggestion, index) {
-            var text = document.createTextNode(suggestion.name + " (" + suggestion.nbrOfSentences + ")");
+        suggestions.results.forEach(function(suggestion, index) {
+            var text = document.createTextNode(that.format(suggestion));
         
             var link = document.createElement("a");
             link.id = "suggestedItem" + index;

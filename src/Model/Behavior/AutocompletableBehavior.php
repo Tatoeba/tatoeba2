@@ -46,6 +46,15 @@ class AutocompletableBehavior extends Behavior
         'limit' => 10
     ];
 
+    public function initialize(array $config)
+    {
+        foreach (['index', 'fields', 'order', 'limit'] as $conf) {
+            if (isset($config[$conf])) {
+                $this->_config[$conf] = $config[$conf];
+            }
+        }
+    }
+
     public function Autocomplete($search)
     {
         $query = $this->getTable()->find();
