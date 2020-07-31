@@ -38,7 +38,7 @@ if ($selectedLanguageTo == null) {
 }
 ?>
 
-<md-toolbar id="search-bar" ng-cloak>
+<md-toolbar id="search-bar-minimal" ng-cloak>
     <div class="md-toolbar-tools">
     <?php
     echo $this->Form->create('Sentence', [
@@ -72,7 +72,7 @@ if ($selectedLanguageTo == null) {
     </div>
 </md-toolbar>
 
-<md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
+<md-toolbar id="search-bar" ng-controller="SearchBarController as ctrl" class="md-whiteframe-1dp md-primary">
 <?php
 echo $this->Form->create(
     'Sentence',

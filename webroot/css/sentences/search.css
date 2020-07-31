@@ -17,23 +17,23 @@
  */
 
 @media only screen and (max-width: 960px) {
-    .search_bar {
+    #search-bar {
         display: none;
     }
 
-    #search-bar {
+    #search-bar-minimal {
         display: flex;
     }
-    #search-bar md-input-container label {
+    #search-bar-minimal md-input-container label {
         color: red;
     }
-    #search-bar .md-toolbar-tools {
+    #search-bar-minimal .md-toolbar-tools {
         padding: 0 5px 0 10px;
     }
-    #search-bar .md-errors-spacer {
+    #search-bar-minimal .md-errors-spacer {
         display: none;
     }
-    #search-bar input {
+    #search-bar-minimal input {
         color: #fff;
     }
     
