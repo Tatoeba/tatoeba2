@@ -170,6 +170,7 @@ if (!isset($results)) {
             md-is-locked-open="$mdMedia('gt-sm')">
     <md-toolbar>
         <div class="md-toolbar-tools" ng-controller="SidenavController">
+            <?php /* @translators: title for the sidebar on the search page */ ?>
             <h2 flex><?= __('Search criteria'); ?></h2>
             <md-button class="close md-icon-button" ng-click="toggle('advanced-search')">
                 <md-icon>close</md-icon>

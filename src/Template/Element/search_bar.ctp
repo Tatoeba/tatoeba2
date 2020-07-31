@@ -59,7 +59,8 @@ if ($selectedLanguageTo == null) {
                 dir="auto" 
                 ng-model="ctrl.searchQuery" 
                 ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
-                placeholder="<?= __('Search') ?>"/>
+                <?php /* @translators: placeholder for the search input in the search bar */ ?>
+                placeholder="<?= __x('placeholder', 'Search') ?>"/>
         </md-input-container>
         <md-button class="md-icon-button" ng-click="toggle('advanced-search')">
             <md-icon>more_vert</md-icon>
