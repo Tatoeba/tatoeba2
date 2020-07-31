@@ -11,7 +11,7 @@ $detachUrl = $this->Url->build([
 ]);
 
 $deleteUrl = $this->Url->build([
-    'controller' => 'tagsSuperTags',
+    'controller' => 'superTags',
     'action' => 'removeSuperTag',
     $parent
 ]);

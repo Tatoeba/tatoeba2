@@ -98,26 +98,6 @@ class TagsSuperTagsController extends AppController
         $this->set('all_super_tags_links', $tree);
     }
 
-    /**
-     * Add a super tag
-     *
-     * @return void
-     */
-    public function createSuperTag(){
-        $name = $this->request->data('name');
-        $description = $this->request->data('description');
-        $userId = CurrentUser::get('id');
-
-        $this->loadModel('SuperTags');
-        $added = $this->SuperTags->create($name, $description, $userId);
-
-        return $this->redirect([
-            'controller' => 'tags_super_tags',
-            'action' => 'manage',
-            '?' => ['superTagAdded' => $added],
-        ]);
-    }
-
     public function createTagSuperTag(){
         $parent = $this->request->data('parent');
         $child = $this->request->data('child');
@@ -130,16 +110,6 @@ class TagsSuperTagsController extends AppController
             'controller' => 'tags_super_tags',
             'action' => 'manage',
             '?' => ['tagSuperTagAdded' => $added],
-        ]);
-    }
-
-    public function removeSuperTag($superTagId){
-        $this->loadModel('SuperTags');
-        $this->SuperTags->remove($superTagId);
-
-        return $this->redirect([
-            'controller' => 'tags_super_tags',
-            'action' => 'manage',
         ]);
     }
 

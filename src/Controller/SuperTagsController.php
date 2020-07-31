@@ -34,6 +34,34 @@ class SuperTagsController extends AppController
     public $name = 'SuperTags';
     public $components = ['CommonSentence', 'Flash'];
 
+    /**
+     * Add a super tag
+     *
+     * @return void
+     */
+    public function createSuperTag(){
+        $name = $this->request->data('name');
+        $description = $this->request->data('description');
+        $userId = CurrentUser::get('id');
+
+        $added = $this->SuperTags->create($name, $description, $userId);
+
+        return $this->redirect([
+            'controller' => 'tags_super_tags',
+            'action' => 'manage',
+            '?' => ['superTagAdded' => $added],
+        ]);
+    }
+
+    public function removeSuperTag($superTagId){
+        $this->SuperTags->remove($superTagId);
+
+        return $this->redirect([
+            'controller' => 'tags_super_tags',
+            'action' => 'manage',
+        ]);
+    }
+
     public function autocomplete($search) {
         $results = $this->SuperTags->Autocomplete($search);
 

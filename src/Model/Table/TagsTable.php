@@ -49,6 +49,9 @@ class TagsTable extends Table
 
     public function initialize(array $config) 
     {
+        $this->hasMany('TagsSuperTags');
+        $this->belongsToMany('SuperTags');
+
         $this->hasMany('TagsSentences');
         $this->belongsToMany('Sentences');
         $this->belongsTo('Users');
@@ -129,10 +132,15 @@ class TagsTable extends Table
         if (!$this->canRemoveTagFromSentence($tagId, $sentenceId)) {
             return false;
         }
-        return $this->TagsSentences->removeTagFromSentence(
+        $count = $this->TagsSentences->removeTagFromSentence(
             $tagId,
             $sentenceId
         );
+
+        if ($this->getNameFromId($tagId) == null)
+            $this->TagsSuperTags->deleteAll(['child' => $tagId, 'child_type' => 'tag']);
+
+        return $count;
     }
 
     private function canRemoveTagFromSentence($tagId, $sentenceId) {

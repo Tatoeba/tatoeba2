@@ -27,8 +27,10 @@ class SuperTagsTable extends Table
 {
     public function initialize(array $config) 
     {
-        $this->belongsTo('Users');
         $this->hasMany('TagsSuperTags');
+        $this->belongsToMany('SuperTags');
+
+        $this->belongsTo('Users');
         $this->addBehavior('Autocompletable', [
             'fields' => ['name', 'id'],
             'order' => [],
@@ -93,8 +95,10 @@ class SuperTagsTable extends Table
         $children = $this->TagsSuperTags->find('all')
             ->where(['parent' => $superTagId])
             ->count();
-        if ($children == 0)
+        if ($children == 0){
+            $this->TagsSuperTags->deleteAll(['child' => $superTagId, 'child_type' => 'superTag']);
             $this->deleteAll(['id' => $superTagId]);
+        }
         
         return ($children == 0);
     }

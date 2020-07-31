@@ -46,7 +46,7 @@ $this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
                 if (isset($this->request['?']) && isset($this->request['?']['superTagAdded']) && $this->request['?']['superTagAdded'] == '0'){
             ?>
             <div class="warning">
-                <?php __('This super tag could not be created (it may already exist).') ?>
+                <?= __('This super tag could not be created (it may already exist).') ?>
             </div>
             <?php
                 }
@@ -57,6 +57,7 @@ $this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
                     'CreateSuperTag', 
                     [
                         'url' => [
+                            'controller' => 'superTags',
                             'action' => 'createSuperTag'
                         ],
                     ]
@@ -108,7 +109,7 @@ $this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
                 if (isset($this->request['?']) && isset($this->request['?']['tagSuperTagAdded']) && $this->request['?']['tagSuperTagAdded'] == '0'){
             ?>
             <div class="warning">
-                <?php __('This link could not be added: parent must refer to a super tag, child must referer to the corresponding child type, and cycling hierarchies are forbidden.') ?>
+                <?= __('This link could not be added: parent must refer to a super tag, child must referer to the corresponding child type, and cycling hierarchies are forbidden.') ?>
             </div>
             <?php
                 }
