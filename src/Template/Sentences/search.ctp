@@ -26,6 +26,9 @@
  */
 use App\Model\CurrentUser;
 
+if (!CurrentUser::isMember()) {
+    $this->set('isResponsive', true);
+}
 if ($is_advanced_search) {
     $title = __x('title', 'Advanced search');
 } else if (!empty($query)) {

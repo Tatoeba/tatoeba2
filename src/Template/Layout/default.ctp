@@ -36,7 +36,6 @@ $controller = Cake\Utility\Inflector::delimit($controller);
 $action = $this->request->getParam("action");
 
 $isHomepage = $controller == 'pages' && $action == 'index';
-$isSearch = $controller == 'sentences' && $action == 'search';
 ?>
 <!DOCTYPE html>
 <html lang="<?= $htmlLang ?>" dir="<?= $htmlDir ?>">
@@ -74,8 +73,8 @@ $isSearch = $controller == 'sentences' && $action == 'search';
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
     
-    <?php if (($isHomepage || $isSearch) && !CurrentUser::isMember()) { ?>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <?php if (isset($isResponsive) && $isResponsive) { ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php } ?>
 </head>
 <body ng-app="app">

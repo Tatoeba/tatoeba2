@@ -26,6 +26,7 @@
  */
 use Cake\Core\Configure;
 
+$this->set('isResponsive', true);
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 
 $registerUrl = $this->Url->build(
