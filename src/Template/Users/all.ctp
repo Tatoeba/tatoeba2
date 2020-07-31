@@ -97,9 +97,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
                     /* @translators: sort option in the All members page */
                     array('param' => 'username', 'direction' => 'desc', 'label' => __('Username (reverse alphabetical)')),
                     /* @translators: sort option in the All members page */
-                    array('param' => 'since', 'direction' => 'desc', 'label' => __('Newest first')),
+                    array('param' => 'since', 'direction' => 'desc', 'label' => __x('members', 'Newest first')),
                     /* @translators: sort option in the All members page */
-                    array('param' => 'since', 'direction' => 'asc', 'label' => __('Oldest first')),
+                    array('param' => 'since', 'direction' => 'asc', 'label' => __x('members', 'Oldest first')),
                     /* @translators: sort option in the All members page */
                     array('param' => 'role', 'direction' => 'asc', 'label' => __('Status (admin to contributor)')),
                     /* @translators: sort option in the All members page */

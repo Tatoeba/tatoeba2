@@ -79,17 +79,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             /* @translators: sort option in the "Lists of user" page */
                             array('param' => 'name', 'direction' => 'desc', 'label' => __('List name (reverse alphabetical)')),
                             /* @translators: sort option in the "Lists of user" page */
-                            array('param' => 'created', 'direction' => 'desc', 'label' => __('Newest first')),
+                            array('param' => 'created', 'direction' => 'desc', 'label' => __x('lists', 'Newest first')),
                             /* @translators: sort option in the "Lists of user" page */
-                            array('param' => 'created', 'direction' => 'asc', 'label' => __('Oldest first')),
+                            array('param' => 'created', 'direction' => 'asc', 'label' => __x('lists', 'Oldest first')),
                             /* @translators: sort option in the "Lists of user" page */
                             array('param' => 'numberOfSentences', 'direction' => 'desc', 'label' => __('Highest number of sentences')),
                             /* @translators: sort option in the "Lists of user" page */
                             array('param' => 'numberOfSentences', 'direction' => 'asc', 'label' => __('Lowest number of sentences')),
                             /* @translators: sort option in the "Lists of user" page */
-                            array('param' => 'modified', 'direction' => 'desc', 'label' => __('Most recently updated')),
+                            array('param' => 'modified', 'direction' => 'desc', 'label' => __x('lists', 'Most recently updated')),
                             /* @translators: sort option in the "Lists of user" page */
-                            array('param' => 'modified', 'direction' => 'asc', 'label' => __('Least recently updated'))
+                            array('param' => 'modified', 'direction' => 'asc', 'label' => __x('lists', 'Least recently updated'))
                         );
                         echo $this->element('sort_menu', array('options' => $options));
                     ?>

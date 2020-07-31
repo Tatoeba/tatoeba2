@@ -107,13 +107,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <?php 
                     $options = array(
                         /* @translators: sort option in the list of reviews */
-                        array('param' => 'modified', 'direction' => 'desc', 'label' => __('Most recently updated')),
+                        array('param' => 'modified', 'direction' => 'desc', 'label' => __x('reviews', 'Most recently updated')),
                         /* @translators: sort option in the list of reviews */
-                        array('param' => 'modified', 'direction' => 'asc', 'label' => __('Least recently updated')),
+                        array('param' => 'modified', 'direction' => 'asc', 'label' => __x('reviews', 'Least recently updated')),
                         /* @translators: sort option in the list of reviews */
-                        array('param' => 'created', 'direction' => 'desc', 'label' => __('Newest first')),
+                        array('param' => 'created', 'direction' => 'desc', 'label' => __x('reviews', 'Newest first')),
                         /* @translators: sort option in the list of reviews */
-                        array('param' => 'created', 'direction' => 'asc', 'label' => __('Oldest first') ),
+                        array('param' => 'created', 'direction' => 'asc', 'label' => __x('reviews', 'Oldest first')),
                         /* @translators: sort option in the list of reviews */
                         array('param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences') ),
                         /* @translators: sort option in the list of reviews */

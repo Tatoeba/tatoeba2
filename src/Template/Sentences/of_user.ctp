@@ -116,13 +116,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 
                     $options = array(
                         /* @translators: sort option in the "Sentences of user" page */
-                        array('param' => 'modified', 'direction' => 'desc', 'label' => __('Most recently updated')),
+                        array('param' => 'modified', 'direction' => 'desc', 'label' => __x('sentences', 'Most recently updated')),
                         /* @translators: sort option in the "Sentences of user" page */
-                        array('param' => 'modified', 'direction' => 'asc', 'label' => __('Least recently updated')),
+                        array('param' => 'modified', 'direction' => 'asc', 'label' => __x('sentences', 'Least recently updated')),
                         /* @translators: sort option in the "Sentences of user" page */
-                        array('param' => 'created', 'direction' => 'desc', 'label' => __('Newest first')),
+                        array('param' => 'created', 'direction' => 'desc', 'label' => __x('sentences', 'Newest first')),
                         /* @translators: sort option in the "Sentences of user" page */
-                        array('param' => 'created', 'direction' => 'asc', 'label' => __('Oldest first'))
+                        array('param' => 'created', 'direction' => 'asc', 'label' => __x('sentences', 'Oldest first'))
                     );
                     echo $this->element('sort_menu', array('options' => $options));
                 ?>
