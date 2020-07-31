@@ -41,19 +41,24 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
         'action' => 'contact'
     ]);
     echo $this->Form->create('Users', [
-        'class' => 'announcement',
+        'class' => 'announcement md-whiteframe-1dp',
         'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
     ]);
     echo $this->Form->hidden('settings.new_terms_of_use', ['value' => true]);
-    echo $this->Form->button($this->Images->svgIcon('close'), [
-        'class' => 'close button'
-    ]);
-    echo $this->Html->div('terms-of-use-info', format(
+    ?>
+    <p>
+    <?= format(
         __('We have updated our <a href="{termsOfUse}">Terms of Use</a>.
         By closing this announcement, you agree with the new Terms of Use.
         If you have any question, feel free to <a href="{contact}">contact us</a>.'),
         ['termsOfUse' => $termsOfUseUrl, 'contact' => $contactUrl]
-    ));
+    ) ?>
+    </p>
+    <div layout="row" layout-align="end center">
+        <?php /* @translators: button to accept new terms of use */ ?>
+        <md-button type="submit" class="md-primary"><?= __('Accept and close') ?></md-button>
+    </div>
+    <?php
     echo $this->Form->end();
 }
 
