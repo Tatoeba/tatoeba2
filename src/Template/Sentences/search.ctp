@@ -75,7 +75,7 @@ if ($ignored) {
 }
 ?>
 
-<md-toolbar class="md-hue-2" ng-cloak>
+<md-toolbar class="md-hue-2" hide-xs ng-cloak>
     <div class="md-toolbar-tools">
         <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
 
@@ -86,6 +86,19 @@ if ($ignored) {
 <section layout="row" ng-cloak>
 
 <md-content class="md-whiteframe-1dp" flex>
+
+<md-toolbar class="md-hue-2" hide-gt-xs ng-cloak ng-controller="SidenavController">
+    <div class="md-toolbar-tools">
+        <h2 flex><?= $this->Pages->formatResultCount($this->Paginator, $real_total); ?></h2>
+
+        <md-button ng-click="toggle('advanced-search')">
+            <md-icon>filter_list</md-icon>
+            <?php /* @translators: button to open the advanced search option sidebar on mobile */ ?>
+            <?= __('Narrow search') ?>
+        </md-button>
+    </div>
+</md-toolbar>
+
 <?php
 if (!isset($results)) {
     ?><div class="section"><?php

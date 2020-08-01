@@ -46,25 +46,22 @@ if ($selectedLanguageTo == null) {
         'url' => ['controller' => 'sentences', 'action' => 'search'],
         'type' => 'get',
         'flex' => '',
-        'ng-cloak' => '',
-        'ng-controller' => 'SidenavController'
+        'ng-cloak' => ''
     ]);
     ?>
 
     <div layout="row" layout-align="center center" flex>
         <md-input-container class="md-accent" flex md-no-float>
-            <md-icon>search</md-icon>
             <input name="query" 
                 accesskey="4" 
+                type="search"
                 dir="auto" 
                 ng-model="ctrl.searchQuery" 
                 ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
                 <?php /* @translators: placeholder for the search input in the search bar */ ?>
                 placeholder="<?= __x('placeholder', 'Search') ?>"/>
         </md-input-container>
-        <md-button class="md-icon-button" ng-click="toggle('advanced-search')">
-            <md-icon>more_vert</md-icon>
-        </md-button>
+        <md-button type="submit" class="md-icon-button md-raised"><md-icon>search</md-icon></md-button>
     </div>
     <?php
     echo $this->Form->end();
