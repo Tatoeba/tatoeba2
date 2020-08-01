@@ -343,7 +343,7 @@ class SentencesSearchForm extends Form
             ->where([
                 'OR' => [
                     'user_id' => $byUserId,
-                    'visibility' => 'public',
+                    'visibility IN' => ['public', 'listed']
                 ]
             ]);
 
@@ -375,5 +375,9 @@ class SentencesSearchForm extends Form
 
     public function asSphinx() {
         return $this->search->asSphinx();
+    }
+
+    public function isUsingDefaultCriteria() {
+        return $this->getData() == $this->defaultCriteria;
     }
 }

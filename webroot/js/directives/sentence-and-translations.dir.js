@@ -324,7 +324,7 @@
             } else if (!vm.newTranslation.lang) {
                 vm.newTranslation.lang = vm.showAutoDetect ? 'auto' : langCodes[0];
             }
-            focusInput('#translation-form-' + id);
+            focusInput('translation-form-' + id);
         }
 
         function saveTranslation(sentenceId) {
@@ -366,19 +366,19 @@
         function editTranslation(translation) {
             show('translation_form');
             vm.newTranslation = translation;
-            focusInput('#translation-form-' + translation.parentId);
+            focusInput('translation-form-' + translation.parentId);
         }
 
         function focusInput(id) {
             setTimeout(function() {
-                var input = angular.element(id);
+                var input = document.getElementById(id);
                 input.focus();
             }, 100);
         }
 
         function edit() {
             show('sentence_form');
-            focusInput('#sentence-form-' + vm.sentence.id);
+            focusInput('sentence-form-' + vm.sentence.id);
         }
         
         function cancelEdit() {
@@ -469,7 +469,7 @@
                 closeList();
             } else {
                 show('list_form');
-                focusInput('#list-form-' + vm.sentence.id);
+                focusInput('list-form-' + vm.sentence.id);
                 resetLists();
             }
         }

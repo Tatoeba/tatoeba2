@@ -1,7 +1,8 @@
 var clipboard = new ClipboardJS('.copy-btn', {
     text: function(button) {
-        var sentence = button.closest('.content').querySelector('.sentenceContent > .text');
-        return sentence.innerHTML;
+        var sentence = $(button).closest('.content')
+                                .find('.sentenceContent > .text');
+        return sentence.data('text') ? sentence.data('text') : sentence.text();
     }
 });
 clipboard.on('success', function(e) {

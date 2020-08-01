@@ -81,7 +81,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     if ($permissions['canEdit']) {
         ?>
-        <div class="section md-whiteframe-1dp">
+        <div class="section md-whiteframe-1dp" ng-controller="optionsCtrl">
             <h2><?php echo __('Options'); ?></h2>
             <ul class="sentencesListActions">
                 <?php

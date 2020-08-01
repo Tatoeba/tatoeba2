@@ -197,7 +197,6 @@ class SentencesController extends AppController
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
 
             $this->set('sentence', $sentence);
-
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
 
@@ -555,8 +554,10 @@ class SentencesController extends AppController
     public function advanced_search() {
         $search = new SentencesSearchForm();
 
-        $search->setData([]);
-        $this->set($search->getData());
+        $search->setData($this->request->getQueryParams());
+        $usesTemplate = !$search->isUsingDefaultCriteria();
+
+        $this->set($search->getData() + compact('usesTemplate'));
 
         $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
         $this->set(compact('searchableLists'));
@@ -697,7 +698,7 @@ class SentencesController extends AppController
                     )
                 ),
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['Sentences.modified' => 'DESC']
+                'order' => ['modified' => 'DESC']
             )
         );
 

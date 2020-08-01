@@ -23,7 +23,7 @@ use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Validation\Validator;
 use App\Model\CurrentUser;
-use App\Utility\Search;
+use App\Model\Search;
 use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
@@ -125,15 +125,12 @@ class VocabularyTable extends Table
         if (!Configure::read('Search.enabled')) {
             return null;
         }
-        $index = array($lang . '_main_index', $lang . '_delta_index');
-        $sphinx = array(
-            'index' => $index,
-            'matchMode' => SPH_MATCH_EXTENDED2
-        );
-        $query = Search::exactSearchQuery($text);
+        $search = new Search();
+        $search->filterByLanguage($lang);
+        $search->filterByQuery(Search::exactSearchQuery($text));
+
         return $this->Sentences->find('withSphinx', [
-            'sphinx' => $sphinx,
-            'search' => $query
+            'sphinx' => $search->asSphinx()
         ])->count();
     }
 
