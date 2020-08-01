@@ -235,7 +235,7 @@ $uiLanguage = $this->Languages->getInterfaceLanguage();
                     <p>
                     <md-icon>chevron_right</md-icon>
                     <?php
-                    /* @translators: link to the Register page in the top bar (verb) */
+                    /* @translators: link to the Register page in the sidebar menu on mobile (verb) */
                     echo __('Register');
                     ?>
                     </p>
@@ -245,7 +245,7 @@ $uiLanguage = $this->Languages->getInterfaceLanguage();
                     <p>
                     <md-icon>chevron_right</md-icon>
                     <?php 
-                    /* @translators: link to open the Login box in the top bar (verb) */
+                    /* @translators: link to open the Login box in the sidebar menu on mobile (verb) */
                     echo __('Log in');
                     ?>
                     </p>
