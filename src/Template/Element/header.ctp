@@ -66,7 +66,9 @@ use Cake\Core\Configure;
     );
     ?>
 
-    <md-button hide-gt-xs class="md-icon-button" ng-click="showInterfaceLanguageSelection()">
-        <md-icon>language</md-icon>
-    </md-button>
+    <?= $this->element('ui_language_button', [
+        'class' => 'md-icon-button',
+        'displayOption' => 'hide-gt-xs',
+        'label' => ''
+    ]); ?>
 </div>
