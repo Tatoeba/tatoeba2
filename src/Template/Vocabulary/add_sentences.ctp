@@ -27,9 +27,14 @@
 ?>
 <?php
 $this->Html->script('/js/vocabulary/add-sentences.ctrl.js', ['block' => 'scriptBottom']);
-
-$title = __('Vocabulary that needs sentences');
-
+if (empty($langFilter)) {
+    $title = __('Vocabulary that needs sentences');
+} else {
+    $title = format(
+        __('Vocabulary that needs sentences in {language}'),
+        array('language' => $this->Languages->codeToNameToFormat($langFilter))
+    );
+}
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
@@ -55,6 +60,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             )
             ?>
         </div>
+        <?php
+            if ($vocabulary->count() == 0) {
+                $noRequestsMessage = __("There are no requests.");
+                echo "<div class='empty-info-text'> $noRequestsMessage </div>";
+            }
+        ?>
 
         <?php
         $this->Pagination->display();
