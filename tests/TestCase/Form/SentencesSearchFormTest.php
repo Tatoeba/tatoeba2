@@ -45,6 +45,7 @@ class SentencesSearchFormTest extends TestCase
             'trans_user' => '',
             'sort' => 'relevance',
             'sort_reverse' => '',
+            'rand_seed' => '',
         ];
         $this->Form->setData([]);
         $this->assertEquals($expected, $this->Form->getData());
@@ -156,6 +157,13 @@ class SentencesSearchFormTest extends TestCase
             [ 'sort_reverse', 'yes',     ['reverseSort', true],  'yes' ],
             [ 'sort_reverse', '',        ['reverseSort', false], '' ],
             [ 'sort_reverse', 'invalid', ['reverseSort', false], '' ],
+
+            [ 'rand_seed', 'xrgU',          ['setRandSeed',  1358022], 'xrgU' ],
+            [ 'rand_seed', '3-_a',          ['setRandSeed', 14348255], '3-_a' ],
+            [ 'rand_seed', '',              ['setRandSeed',     null], ''     ],
+            [ 'rand_seed', 'longer string', ['setRandSeed', 14715286], 'long' ],
+            [ 'rand_seed', 'sml',           ['setRandSeed',     null], ''     ],
+            [ 'rand_seed', '.!"@',          ['setRandSeed',     null], ''     ],
         ];
     }
 
@@ -249,6 +257,19 @@ class SentencesSearchFormTest extends TestCase
         $this->assertMethodCalledWith($this->Search, 'sort', ['', 'relevance']);
         $this->Form->setData(['sort' => '']);
         $this->assertEquals('relevance', $this->Form->getData()['sort']);
+    }
+
+    public function testGenerateRandomSeedIfNeeded_unneeded() {
+        $this->Form->setData(['sort' => 'created']);
+        $this->assertFalse($this->Form->generateRandomSeedIfNeeded());
+        $this->assertEmpty($this->Form->getData()['rand_seed']);
+    }
+
+    public function testGenerateRandomSeedIfNeeded_needed() {
+        mt_srand(42);
+        $this->Form->setData(['sort' => 'random']);
+        $this->assertTrue($this->Form->generateRandomSeedIfNeeded());
+        $this->assertEquals('Ztzh', $this->Form->getData()['rand_seed']);
     }
 
     public function testGetSearchableLists_asGuest() {
@@ -384,5 +405,33 @@ class SentencesSearchFormTest extends TestCase
         $result = $this->Form->asSphinx();
 
         $this->assertEquals($stuff, $result);
+    }
+
+    private function assertSameKeyOrder(array $expected, array $tested) {
+        reset($expected);
+        reset($tested);
+        while (!is_null(key($expected))) {
+            $this->assertEquals(key($expected), key($tested));
+            next($tested);
+            next($expected);
+        }
+    }
+
+    public function testDataOrderIsPreserved() {
+        $expected = [
+            'native' => 'yes',
+            'user' => '',
+            'from' => 'und',
+            'orphans' => 'no',
+            'tags' => '',
+            'query' => 'order should be preserved',
+            'unapproved' => 'no',
+            'has_audio' => '',
+            'to' => 'und',
+            'list' => '',
+        ];
+        $this->Form->setData($expected);
+        $retreived = $this->Form->getData();
+        $this->assertSameKeyOrder($expected, $retreived);
     }
 }
