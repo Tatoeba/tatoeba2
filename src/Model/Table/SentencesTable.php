@@ -791,6 +791,11 @@ class SentencesTable extends Table
      */
     public function getSentenceWith($id, $what = [], $translationLang = null)
     {
+        //get current user (if logged) and its setting for sort
+        $userLangFirst = false; //see if option breaks everything
+        $userLangCodes = array();
+        //UsersLanguagesTable->getLanguagesOfUser($userId)
+
         return $this->find('filteredTranslations', [
                 'nativeMarker' => CurrentUser::getSetting('native_indicator'),
                 'hideFields' => $this->hideFields(),
@@ -799,6 +804,7 @@ class SentencesTable extends Table
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
             ->select($this->fields($what))
+            //->order(['FIND_IN_SET(Language.code, \'' . implode(',', $userLangCodes) . '\')'], $userLangFirst) //no Language.code column
             ->first();
     }
 

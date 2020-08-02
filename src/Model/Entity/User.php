@@ -62,6 +62,7 @@ class User extends Entity
         'new_terms_of_use' => '1',
         'license_switch_list_id' => null,
         'hide_new_design_announcement' => false,
+        'show_known_languages_first' => true, //this may be set to false as default, true for tests
     );
 
     private $settingsValidation = array(
