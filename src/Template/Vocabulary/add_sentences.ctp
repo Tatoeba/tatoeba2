@@ -27,10 +27,15 @@
 ?>
 <?php
 $this->Html->script('/js/vocabulary/add-sentences.ctrl.js', ['block' => 'scriptBottom']);
-
-$title = __('Vocabulary that needs sentences');
-
-$this->set('title_for_layout', $this->Pages->formatTitle($title));
+    if (empty($langFilter)) {
+        $title = __('Vocabulary that needs sentences');
+        $this->set('title_for_layout', $this->Pages->formatTitle($title));
+    } else {
+        $title = format(
+            __('Vocabulary that needs sentences in {language}'),
+            array('language' => $this->Languages->codeToNameToFormat($langFilter))
+        );
+    }
 ?>
 
 <div ng-cloak id="annexe_content">
@@ -53,6 +58,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 'Only vocabulary items that match fewer than 10 sentences are '.
                 'displayed here.'
             )
+            ?>
+        </div>
+        <div class="empty-info-text">
+            <?php
+                if ($vocabulary->count() == 0) {
+                    echo "There are no requests. ";
+                }
             ?>
         </div>
 
