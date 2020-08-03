@@ -187,10 +187,10 @@ $uiLanguage = $this->Languages->getInterfaceLanguage();
         <div id="user_menu" ng-cloak>
             <?php
             // User menu
-            if (!$session->read('Auth.User.id') && !$isOnLoginPage) {
-                echo $this->element('login');
-            } else {
+            if ($session->read('Auth.User.id')) {
                 echo $this->element('space', ['htmlDir' => $htmlDir]);
+            } else if (!$isOnLoginPage) {
+                echo $this->element('login');
             }
             ?>
         </div>
