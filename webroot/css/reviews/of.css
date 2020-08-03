@@ -17,8 +17,9 @@
  */
 
 .sentence,
-.correctness {
+.correctness-icons {
     display: inline-block;
+    vertical-align: middle;
 }
 
 .sentence.deleted {
@@ -39,10 +40,6 @@
 
 .text {
     overflow: hidden;
-}
-
-.correctness-icons {
-    padding-top:7px;
 }
 
 .correctness-icons md-icon,

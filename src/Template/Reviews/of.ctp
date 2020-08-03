@@ -28,7 +28,7 @@ use App\Model\CurrentUser;
 
 
 if (CurrentUser::isMember()) {
-    $this->Html->script('/js/reviews/of.ctrl.js', ['block' => 'scriptBottom']);
+    $this->Html->script('/js/directives/edit-review.dir.js', ['block' => 'scriptBottom']);
 }
 
 $categories = array(
@@ -141,12 +141,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 $sentenceData = $this->Sentences->sentenceForAngular($sentence);
                 $sentenceData = str_replace('{{', '\{\{', $sentenceData);
                 $correctness = $item->correctness;
-        ?>
-                <div ng-controller="ReviewsController as ctrl"
-                     ng-init="ctrl.initSentenceAndCorrectness(<?= $sentenceData ?>, <?= $correctness ?>)"
-                     ng-cloak
-                     class="layout-row flex">
-         <?php
+
                 if (empty($sentence->id)) {
                     $sentenceId = $item->sentence_id;
                     $linkToSentence = $this->Html->link(
@@ -165,67 +160,46 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         )
                     );
                 } else {
+                    echo '<div>';
                     $this->Sentences->displayGenericSentence(
                         $sentence,
                         $type,
                         $parentId,
                         $withAudio
                     );
+
+                    if ($userIsReviewer) {
+                        echo $this->Html->tag(
+                            'edit-review',
+                            '',
+                            [
+                                'sentence-id' => $sentence->id,
+                                'correctness' => $correctness,
+                                'class' => 'correctness-icons',
+                            ]
+                        );
+                    } else {
+                        $categoryLabel = $correctness == 1 ?
+                                         'ok' :
+                                         ($correctness == 0 ? 'unsure' : 'not-ok');
+                        $icon = $this->Html->tag(
+                            'md-icon',
+                            $categories[$categoryLabel][0],
+                            [ 'class' => $categoryLabel ]
+                        );
+                        echo $this->Html->div(
+                            'correctness-icons',
+                            $icon,
+                            [
+                                'title' => $this->Date->nice($item->modified),
+                                'ng-cloak' => '',
+                            ]
+                        );
+                    }
+                    echo '</div>';
                 }
-
-            ?>
-
-            <?php if($userIsReviewer): ?>
-                <div class="correctness-icons">
-                    <icon-with-progress is-loading="ctrl.iconsInProgress.reviewOk">
-                        <md-button class="md-icon-button" ng-click="ctrl.setReview(1)" ng-if="ctrl.correctness !== 1">
-                            <md-icon>check_circle</md-icon>
-                            <md-tooltip><?= __('Mark as "OK"') ?></md-tooltip>
-                        </md-button>
-                        <md-button class="md-icon-button" ng-click="ctrl.resetReview()" ng-if="ctrl.correctness === 1">
-                            <md-icon class="ok">check_circle</md-icon>
-                            <md-tooltip><?= __('Unmark sentence') ?></md-tooltip>
-                        </md-button>
-                    </icon-with-progress>
-
-                    <icon-with-progress is-loading="ctrl.iconsInProgress.reviewUnsure">
-                        <md-button class="md-icon-button" ng-click="ctrl.setReview(0)" ng-if="ctrl.correctness !== 0">
-                            <md-icon>help</md-icon>
-                            <md-tooltip><?= __('Mark as "unsure"') ?></md-tooltip>
-                        </md-button>
-                        <md-button class="md-icon-button" ng-click="ctrl.resetReview()" ng-if="ctrl.correctness === 0">
-                            <md-icon class="unsure">help</md-icon>
-                            <md-tooltip><?= __('Unmark sentence') ?></md-tooltip>
-                        </md-button>
-                    </icon-with-progress>
-
-                    <icon-with-progress is-loading="ctrl.iconsInProgress.reviewNotOk">
-                        <md-button class="md-icon-button" ng-click="ctrl.setReview(-1)" ng-if="ctrl.correctness !== -1">
-                            <md-icon>error</md-icon>
-                            <md-tooltip><?= __('Mark as "not OK"') ?></md-tooltip>
-                        </md-button>
-                        <md-button class="md-icon-button not-ok" ng-click="ctrl.resetReview()" ng-if="ctrl.correctness === -1">
-                            <md-icon class="not-ok">error</md-icon>
-                            <md-tooltip><?= __('Unmark sentence') ?></md-tooltip>
-                        </md-button>
-                    </icon-with-progress>
-                </div>
-
-            <?php else:
-                $categoryLabel = $correctness == 1 ? 'ok' : ($correctness == 0 ? 'unsure' : 'not-ok');
-                echo $this->Html->div(
-                    'correctness-icons',
-                    '<md-icon class="' . $categoryLabel . '">' . $categories[$categoryLabel][0] . '</md-icon>',
-                    array('title' => $this->Date->nice($item->modified))
-                );
-            ?>
-            <?php endif;?>
-            <?php
-                echo '</div>';
             }
-
             $this->Pagination->display();
-        }
-        ?>
-    </div>
+        } ?>
+    </section>
 </div>
