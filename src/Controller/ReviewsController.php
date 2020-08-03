@@ -133,4 +133,9 @@ class ReviewsController extends AppController
         $this->set('lang', $lang);
         $this->set('userIsReviewer', $userId == CurrentUser::get('id'));
     }
+
+    /**
+     * Create localized template for AngularJS directive
+     */
+    public function edit_review() {}
 }
