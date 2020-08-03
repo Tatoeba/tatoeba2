@@ -169,7 +169,7 @@ class DateHelperTest extends TestCase {
     }
 
     public function testAgoWorksWithFrozenTimeObjects() {
-        $expected = 'November 24, 1988 at 1:45:00 PM UTC';
+        $expected = 'November 24, 1988 at 1:45 PM';
         $this->assertEquals($expected, $this->DateHelper->ago(new FrozenTime('1988-11-24 13:45:00')));
     }
 }
