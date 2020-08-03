@@ -15,12 +15,16 @@
   - import/users.sql
   - import/groups.sql
 
-- name: Initialize database schema (2)
+- name: Install database triggers
+# This task requires mysql root for creating triggers
+  shell: cat {{code_dir}}/docs/database/triggers/*.sql | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
+
+- name: Run migrations
   become: true
   become_user: vagrant
   shell: "{{code_dir}}/bin/cake migrations migrate"
 
-- name: Initialize database schema (3)
+- name: Run plugin migrations
   become: true
   become_user: vagrant
   shell: "{{code_dir}}/bin/cake migrations migrate -p Queue"
@@ -29,10 +33,6 @@
   become: true
   become_user: vagrant
   shell: "{{code_dir}}/bin/cake languages_table reset"
-
-- name: Install database triggers
-# This task requires mysql root for creating triggers
-  shell: cat {{code_dir}}/docs/database/triggers/*.sql | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
 
 - name: Install database procedures
   shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/procedures/{{item}}
