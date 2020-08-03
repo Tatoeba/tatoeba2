@@ -75,7 +75,7 @@ if ($ignored) {
 }
 ?>
 
-<md-toolbar class="md-hue-2" hide-xs ng-cloak>
+<md-toolbar class="md-hue-2" hide-xs hide-sm ng-cloak>
     <div class="md-toolbar-tools">
         <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
 
@@ -87,7 +87,7 @@ if ($ignored) {
 
 <md-content class="md-whiteframe-1dp" flex>
 
-<md-toolbar class="md-hue-2" hide-gt-xs ng-cloak ng-controller="SidenavController">
+<md-toolbar class="md-hue-2" hide-gt-sm ng-cloak ng-controller="SidenavController">
     <div class="md-toolbar-tools">
         <h2 flex><?= $this->Pages->formatResultCount($this->Paginator, $real_total); ?></h2>
 
