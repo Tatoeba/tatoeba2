@@ -83,7 +83,7 @@ $sentenceUrl = $this->Url->build([
     </div>
     <div layout="column">
         <div layout="row" class="header">
-            <md-subheader flex>
+            <md-subheader flex ng-if="!vm.isMenuExpanded">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
                     echo format(
