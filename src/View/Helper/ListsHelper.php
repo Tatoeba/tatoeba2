@@ -313,7 +313,7 @@ class ListsHelper extends AppHelper
             $this->Languages->languagesArrayShowTranslationsIn(),
             array(
                 "value" => $translationsLang,
-                "onchange" => "$(location).attr('href', '".$path."' + this.value);",
+                "onchange" => "window.location.href = '$path' + this.value",
                 "class" => "language-selector",
                 "empty" => false
             ),
