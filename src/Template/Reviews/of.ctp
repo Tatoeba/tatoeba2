@@ -29,6 +29,14 @@ use App\Model\CurrentUser;
 
 if (CurrentUser::isMember()) {
     $this->Html->script('/js/directives/edit-review.dir.js', ['block' => 'scriptBottom']);
+    $this->Html->scriptBlock(
+        $this->element('reviews/edit_review'),
+        [
+            'block' => 'scriptBottom',
+            'type' => 'text/ng-template',
+            'id' => 'edit-review-template'
+        ]
+    );
 }
 
 $categories = array(

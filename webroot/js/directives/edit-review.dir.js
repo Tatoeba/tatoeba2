@@ -19,7 +19,6 @@
 (function() {
     'use strict';
 
-    const rootUrl = get_tatoeba_root_url();
     angular
         .module('app')
         .directive('editReview', function() {
@@ -32,13 +31,14 @@
                 controller: ReviewsController,
                 controllerAs: 'vm',
                 restrict: 'E',
-                templateUrl: rootUrl + '/reviews/edit_review'
+                templateUrl: 'edit-review-template'
             };
         });
 
     ReviewsController.$inject = ['$http'];
     function ReviewsController($http) {
 
+        const rootUrl = get_tatoeba_root_url();
         var vm = this;
         vm.iconsInProgress = {};
         vm.setReview = setReview;
