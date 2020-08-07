@@ -10,6 +10,8 @@ server {
 	error_log 	/var/log/nginx/error.log;
 	rewrite_log	on;
 
+	gzip_static	on;
+
   location / {
     try_files $uri $uri/ /index.php?$args;
   }
