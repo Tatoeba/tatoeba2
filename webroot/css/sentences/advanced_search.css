@@ -33,9 +33,6 @@
 md-tooltip.multiline {
     /* Only wrap tooltip if it takes more than 20% of page width. */
     max-width: 20%;
-}
-
-md-tooltip.multiline .md-content {
     height: auto;
     white-space: normal;
     /* The original md-tooltip use line-height to pad, but we want a nice
