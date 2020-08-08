@@ -176,40 +176,41 @@ class SentenceButtonsHelper extends AppHelper
     public function audioButton($sentenceId, $sentenceLang, $sentenceAudios)
     {
         if (count($sentenceAudios)) {
-            $author = $this->_View->safeForAngular($sentenceAudios[0]->author);
-            $title = empty($author) ?
-                     __('Play audio') :
-                     format(__('Play audio recorded by {author}'), compact('author'));
-            $audioTag = $this->Html->media(
-                "{$sentenceLang}/{$sentenceId}.mp3",
-                [
-                    'tag' => 'audio',
-                    'pathPrefix' => Configure::read('Recordings.url'),
-                    'preload' => 'none',
-                ]
-            );
-            echo $this->Html->tag(
-                'button',
-                $audioTag,
-                [
-                    'title' => $title,
-                    'class' => 'audioButton audioAvailable',
-                    'type' => 'button',
-                    'onclick' => 'this.firstElementChild.play()',
-                ]
-            );
+            $onClick = 'return false';
+            $path = Configure::read('Recordings.url')
+                .$sentenceLang.'/'.$sentenceId.'.mp3';
+            $css = 'audioAvailable';
+            $audio = isset($sentenceAudios[0]) ?
+                     $sentenceAudios[0] :
+                     $sentenceAudios;
+            $author = isset($audio->user['username']) ?
+                      $audio->user['username'] :
+                      $this->_View->safeForAngular($audio['external']['username']);
+            if (empty($author)) {
+                $title = __('Play audio');
+            } else {
+                $title = format(
+                    __('Play audio recorded by {author}', true),
+                    array('author' => $author)
+                );
+            }
+            $this->Html->script('sentences.play_audio.js', array('block' => 'scriptBottom'));
         } else {
+            $onClick = 'return false';
+            $css = 'audioUnavailable';
+            $path = 'http://en.wiki.tatoeba.org/articles/show/contribute-audio';
             $title = __('No audio for this sentence. Click to learn how to contribute.');
-            echo $this->Html->Link(
-                null,
-                'http://en.wiki.tatoeba.org/articles/show/contribute-audio',
-                [
-                    'title' => $title,
-                    'class' => 'audioButton audioUnavailable',
-                    'target' => '_blank',
-                ]
-            );
+            $onClick = 'window.open(this.href); return false;';
         }
+
+        echo $this->Html->Link(
+            null, $path,
+            array(
+                'title' => $title,
+                'class' => "audioButton $css",
+                'onclick' => $onClick
+            )
+        );
     }
 
 
@@ -274,6 +275,8 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function displayCopyButton($text)
     {
+        $this->Html->script('clipboard.min.js', array('block' => 'scriptBottom'));
+        $this->Html->script('sentences.copy.js', array('block' => 'scriptBottom'));
         $copyButton = $this->Images->svgIcon('copy');
         echo $this->Html->div('copy-btn', $copyButton,
             array(
