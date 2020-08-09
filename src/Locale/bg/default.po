@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-31 13:09+0200\n"
-"PO-Revision-Date: 2020-08-01 16:28+0000\n"
+"PO-Revision-Date: 2020-08-06 15:49+0000\n"
 "Last-Translator: ls404 <lubomir@stefanov.biz>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/tatoeba/tatoeba_website/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -632,7 +632,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr ""
+msgstr "Така че, ако искате да ни помогнете да проверим и коригираме изреченията, след това приемете ({adoptButton}) всяко изречение „сирак“, което виждате във вашия <strong>роден езики</strong> и го коригирайте, ако е необходимо. Прочетете <a href=\"{url}\">това</a> за допълнително обяснение."
 
 #. title of the help text on the Adopt sentence page
 #. / title of the help text on the Add vocabulary page
@@ -649,7 +649,7 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr ""
+msgstr "Ако видите друго потребителско име след като приемете изречение, това означава, че някой друг го е осиновил много малко преди това. В такива случаи можете да опитате да приемете изречения, които са на няколко страници от текущата ви страница, за да намалите шансовете това да се случи отново."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
@@ -984,13 +984,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L35
 msgid "This form is pre-filled."
-msgstr ""
+msgstr "Тази форма е предварително попълнена."
 
 #. button appearing on advanced search page
 #. after clicking "Create a search template" (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L44
 msgid "Clear form"
-msgstr ""
+msgstr "Изчистване от"
 
 #. section title in advanced search form
 #. / link to the user's sentences on profile page sidebar
@@ -1126,7 +1126,7 @@ msgstr "Преводи"
 #. that begins with {action}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L225
 msgid "Limit to"
-msgstr ""
+msgstr "Ограничение до"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
@@ -1192,7 +1192,7 @@ msgstr "Повече опции за търсене"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L396
 msgid "Create a search template"
-msgstr ""
+msgstr "Създайте шаблон за търсене"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L401
 msgid ""
@@ -1244,7 +1244,7 @@ msgstr "Година"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L30
 msgid "Currently contributing"
-msgstr ""
+msgstr "В момента допринася"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L35
 msgid "User who did the last contribution."
@@ -1409,7 +1409,7 @@ msgstr "Вход"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
-msgstr ""
+msgstr "Само изречения на:"
 
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46

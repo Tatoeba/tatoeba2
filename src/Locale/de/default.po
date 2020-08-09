@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-31 13:09+0200\n"
-"PO-Revision-Date: 2020-08-03 12:35+0000\n"
+"PO-Revision-Date: 2020-08-04 10:04+0000\n"
 "Last-Translator: Doreen\n"
 "Language-Team: German (http://www.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -997,7 +997,7 @@ msgstr "Nur die letzten {n} Protokolleinträge werden angezeigt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L35
 msgid "This form is pre-filled."
-msgstr "Dieses Formular wurde zuvor schon ausgefüllt."
+msgstr "Dieses Formular ist schon ausgefüllt."
 
 #. button appearing on advanced search page
 #. after clicking "Create a search template" (verb)
@@ -1211,7 +1211,7 @@ msgstr "Suchvorlage erstellen"
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
-msgstr "Hier klicken, um die aktuellen Sucheinstellungen als Grundlage für spätere Suchen zu benutzen. Du kannst diese Suchvorlage auch mit einem Lesezeichen versehen oder sie mit anderen teilen."
+msgstr "Die aktuellen Sucheinstellungen speichern. Du kannst diese Suchvorlage auch mit einem Lesezeichen versehen oder sie mit anderen teilen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L52
 msgid ""
@@ -3715,7 +3715,7 @@ msgstr "Älteste zuerst"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L91
 msgid "Highest number of sentences"
-msgstr "Höchste Anzahl von Sätzen"
+msgstr "mit den meisten Sätzen"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3724,7 +3724,7 @@ msgstr "Höchste Anzahl von Sätzen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L93
 msgid "Lowest number of sentences"
-msgstr "Niedrigste Anzahl von Sätzen"
+msgstr "mit den wenigsten Sätzen"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -4870,7 +4870,7 @@ msgstr "neu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L364
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
-msgstr "Die Liste ist für alle zugänglich und wird auf der Seite 'Sämtliche öffentlich freigegebene Listen' angezeigt."
+msgstr "Die Liste ist für alle zugänglich, wird aber nur auf der Seite 'Sämtliche öffentlich freigegebene Listen' angezeigt."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L367
@@ -4881,7 +4881,7 @@ msgstr "Aufgeführt"
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
-msgstr "Die Liste ist für alle zugänglich, wird aber nicht auf der Seite 'Sämtliche öffentlich freigegebene Listen' angezeigt."
+msgstr "Die Liste ist nur für diejenigen zugänglich, die den Link dahin kennen. Sie wird nicht auf der Seite 'Sämtliche öffentlich freigegebenen Listen' angezeigt. "
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L373
