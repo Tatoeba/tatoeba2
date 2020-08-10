@@ -606,6 +606,7 @@ class LanguagesLib
                 'hax' => __d('languages', 'Southern Haida'),
                 'hdn' => __d('languages', 'Northern Haida'),
                 'xqa' => __d('languages', 'Karakhanid'),
+                'crk' => __d('languages', 'Plains Cree'),
             );
         }
         return $languages;
