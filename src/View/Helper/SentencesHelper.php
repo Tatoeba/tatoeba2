@@ -829,10 +829,11 @@ class SentencesHelper extends AppHelper
             $msg = __('This sentence is original and '
                      .'was not derived from translation.');
         } elseif ($baseId > 0) {
+            $baseText = $sentence->base ? $sentence->base->text : null;
             $msg = format(
                 __('This sentence was initially added as a '
                   .'translation of sentence {sentenceIdWithIdSign}.'),
-                array('sentenceIdWithIdSign' => $this->ClickableLinks->buildSentenceLink($baseId))
+                array('sentenceIdWithIdSign' => $this->ClickableLinks->buildSentenceLink($baseId, $baseText))
             );
         } else {
             $msg = __('We cannot determine yet whether this sentence was '
