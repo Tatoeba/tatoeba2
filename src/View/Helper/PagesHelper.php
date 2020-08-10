@@ -42,7 +42,7 @@ class PagesHelper extends AppHelper
         $n = $totalOnly ? $real_total : $paginator->param('count');
         if ($real_total == 0 || $real_total == $n || $totalOnly) {
             /* @translators: this formats the number of results on pages
-               that shows a list of sentences (search, browse by language,
+               that show a list of sentences (search, browse by language,
                adopt sentences…). Note the use of &nbsp; which is a non-breaking space. */
             $results = format(
                 __n('{n} result', '{n}&nbsp;results', $n, true),
@@ -50,8 +50,11 @@ class PagesHelper extends AppHelper
             );
         } else {
             /* @translators: this formats the number of results on pages
-               that shows a list of sentences (search, browse by language,
-               adopt sentences…). Note the use of &nbsp; which is a non-breaking space. */
+               that show a list of sentences (search, browse by language,
+               adopt sentences…). Tatoeba is only able
+               to display {thousand} results (that should always be turned
+               into “1000”), but {n} results actually exist in the corpus.
+               Note the use of &nbsp; which is a non-breaking space. */
             $results = format(
                 __n(
                     '{thousand}&nbsp;results out of {n} occurrence',
