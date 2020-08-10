@@ -157,13 +157,19 @@ class ContributionsController extends AppController
 
         $this->paginate = [
             'conditions' => [
-                'user_id' => $userId,
-                'type !=' => 'license'
+                'Contributions.user_id' => $userId,
+                'Contributions.type !=' => 'license'
             ],
             'contain' => [
                 'Users' => [
                     'fields' => ['username', 'image']
-                ]
+                ],
+                'Sentences' => [
+                    'fields' => ['text'],
+                ],
+                'Translations' => [
+                    'fields' => ['text'],
+                ],
             ],
             'limit' => 200,
             'order' => ['Contributions.id' => 'DESC'],

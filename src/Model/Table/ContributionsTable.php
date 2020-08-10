@@ -54,6 +54,7 @@ class ContributionsTable extends Table
     {
         $this->belongsTo('Users');
         $this->belongsTo('Sentences');
+        $this->belongsTo('Translations');
     }
 
     public function logSentence($event) {
@@ -166,11 +167,15 @@ class ContributionsTable extends Table
                 'Contributions.type',
                 'Users.username',
                 'Users.id',
+                'Translations.text',
             ])
             ->where(['Contributions.sentence_id' => $sentenceId])
-            ->contain(['Users' => function ($q) {
-                return $q->select(['username', 'id']);
-            }])
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->select(['username', 'id']);
+                },
+                'Translations',
+            ])
             ->order('datetime');
 
         return $query->all();

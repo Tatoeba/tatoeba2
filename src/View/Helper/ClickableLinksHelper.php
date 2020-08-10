@@ -183,7 +183,6 @@ class ClickableLinksHelper extends AppHelper
                 that appears in logs to a more natural character  */
                 '#{sentenceId}'),
             array('sentenceId' => $sentenceId));
-        $model = TableRegistry::getTableLocator()->get('Sentences');
         return $this->Html->link(
             $linkText,
             array(
@@ -191,8 +190,7 @@ class ClickableLinksHelper extends AppHelper
                 'action' => 'show',
                 $sentenceId
             ),
-            // $sentenceText could come as the empty string
-            array('title' => $sentenceText != null ? $sentenceText : $model->getSentenceTextForId($sentenceId))
+            ['title' => $sentenceText]
         );
     }
 }

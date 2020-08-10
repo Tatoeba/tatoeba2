@@ -9,7 +9,8 @@ if (isset($log->type)) {
 $sentenceLink = '';
 if ($log->sentence_id) {
     $sentenceId = $log->sentence_id;
-    $sentenceLink = $this->ClickableLinks->buildSentenceLink($sentenceId, $log->text);
+    $sentenceText = $log->text ? $log->text : ($log->sentence ? $log->sentence->text : null);
+    $sentenceLink = $this->ClickableLinks->buildSentenceLink($sentenceId, $sentenceText);
 }
 
 $sentenceText = $log->text;
@@ -18,7 +19,8 @@ $sentenceScript = $log->script;
 $translationLink = null;
 if ($log->translation_id) {
     $translationId = $log->translation_id;
-    $translationLink = $this->ClickableLinks->buildSentenceLink($translationId);
+    $translationText = $log->translation ? $log->translation->text : null;
+    $translationLink = $this->ClickableLinks->buildSentenceLink($translationId, $translationText);
 }
 
 $action = $log->action;
