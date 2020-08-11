@@ -86,7 +86,7 @@ if ($ignored) {
 
 <section class="md-whiteframe-1dp">   
 <?php
-    if ($syntax_error) {
+    if (isset($syntax_error)) {
 ?>
     <div class="section">
         <h2><?php echo __('Search error'); ?></h2>
