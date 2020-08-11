@@ -29,4 +29,18 @@ class ErrorComponent extends Component
             return $message;
         }
     }
+
+    protected function generateNewCode() {
+        return uniqid();
+    }
+
+    public function traceError($message, $code = null) {
+        if (is_null($code)) {
+            $code = $this->generateNewCode();
+        }
+        $message = $this->format("[$code] $message");
+        $this->_registry->getController()->log($message);
+
+        return $code;
+    }
 }
