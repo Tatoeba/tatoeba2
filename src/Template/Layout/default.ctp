@@ -30,6 +30,12 @@ use Cake\Core\Configure;
 $lang = Configure::read('Config.language');
 $htmlLang = LanguagesLib::languageTag($lang);
 $htmlDir = LanguagesLib::getLanguageDirection($lang);
+
+$controller = $this->request->getParam("controller");
+$controller = Cake\Utility\Inflector::delimit($controller);
+$action = $this->request->getParam("action");
+
+$isHomepage = $controller == 'pages' && $action == 'index';
 ?>
 <!DOCTYPE html>
 <html lang="<?= $htmlLang ?>" dir="<?= $htmlDir ?>">
@@ -56,9 +62,6 @@ $htmlDir = LanguagesLib::getLanguageDirection($lang);
         echo $this->AssetCompress->css('layout.css');
 
         // Specific
-        $controller = $this->request->getParam("controller");
-        $controller = Cake\Utility\Inflector::delimit($controller);
-        $action = $this->request->getParam("action");
         $specificCSS = "$controller/$action.css";
         if (file_exists(Configure::read('App.cssBaseUrl') . $specificCSS)) {
             echo $this->Html->css($specificCSS);
@@ -70,8 +73,8 @@ $htmlDir = LanguagesLib::getLanguageDirection($lang);
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
     
-    <?php if ($controller === 'pages' && $action === 'index' && !CurrentUser::isMember()) { ?>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <?php if (isset($isResponsive) && $isResponsive) { ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php } ?>
 </head>
 <body ng-app="app">
@@ -82,7 +85,7 @@ $htmlDir = LanguagesLib::getLanguageDirection($lang);
 
     <!--  SEARCH BAR  -->
     <?php
-    $isHomepage = $controller == 'pages' && $action == 'index';
+    
     if (CurrentUser::isMember() || !$isHomepage) {
         $session = $this->request->getSession();
         $selectedLanguageFrom = $session->read('search_from') ?? 'und';

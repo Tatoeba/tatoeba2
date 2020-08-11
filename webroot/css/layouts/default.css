@@ -239,7 +239,10 @@ rt {
 #top_menu {
     max-width: 960px;
     margin: auto;
-    z-index: 3;
+}
+
+#top_menu:hover {
+    z-index: 70;
 }
 
 #top_menu .dropdown {
@@ -306,6 +309,10 @@ rt {
     color: #FFFFFF;
 }
 
+.sidenav-menu {
+    z-index: 80;
+}
+
 #user-menu md-divider {
     border-top-color: #555;
 }
@@ -345,21 +352,25 @@ html[dir="rtl"] #user-menu .dropdown-content {
  * search bar
  */
 
-.search_bar {
+ #search-bar-minimal {
+    display: none;
+}
+
+#search-bar {
     min-height: 92px;
     background-color: #4caf50; /* Material's green */
 }
 
-.search_bar a {
+#search-bar a {
     color: white;
 }
 
-.search_bar label {
+#search-bar label {
     color: white;
     font-size: 15px;
 }
 
-.search_bar label[for="SentenceQuery"] {
+#search-bar label[for="SentenceQuery"] {
     display: none;
 }
 
@@ -380,7 +391,7 @@ html[dir="rtl"] #SentenceQuery {
     padding: 5px 5px 5px 30px;
 }
 
-.search_bar select {
+#search-bar select {
     background-color: #FFFFFF;
     color: #111111;
     border: 1px solid #DDDDDD;
@@ -390,11 +401,11 @@ html[dir="rtl"] #SentenceQuery {
     height: 36px;
 }
 
-.search_bar .input {
+#search-bar .input {
     position: relative;
 }
 
-.search_bar #clearSearch {
+#search-bar #clearSearch {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -402,23 +413,23 @@ html[dir="rtl"] #SentenceQuery {
     margin-left: -30px;
 }
 
-html[dir="rtl"] .search_bar #clearSearch {
+html[dir="rtl"] #search-bar #clearSearch {
     margin-left: 0;
     margin-right: -30px;
 }
 
-.search_bar .search-submit-button {
+#search-bar .search-submit-button {
     width: 70px;
     min-width: 0;
     padding-top: 2px;
     padding-bottom: 2px;
 }
 
-.search_bar .search-submit-button.md-raised:hover {
+#search-bar .search-submit-button.md-raised:hover {
     background-color: #DDDDDD;
 }
 
-.search_bar #arrow {
+#search-bar #arrow {
     padding: 0 10px;
     line-height: 40px;
     cursor: pointer;
@@ -725,7 +736,7 @@ html[dir="rtl"] .search-bar-extra a:before {
  */
 .announcement-container {
     background-color: #fff;
-    padding: 1px;
+    overflow: hidden;
 }
 .maintenance {
     text-align: center;

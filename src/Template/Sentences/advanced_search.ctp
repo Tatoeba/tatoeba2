@@ -21,9 +21,16 @@ $title = __x('title', 'Advanced search');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<div class="section advanced-search md-whiteframe-1dp">
-<h2><?php echo $title; ?></h2>
+<section class="md-whiteframe-1dp">
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2><?php echo $title; ?></h2>
+    </div>
+</md-toolbar>
+
+<md-content>
 <?php echo $this->element('advanced_search_form', array(
     'searchableLists' => $searchableLists,
 )); ?>
-</div>
+</md-content>
+</section>
