@@ -4,19 +4,33 @@ set -e
 
 TRANSIFEX_RC=~/.transifexrc
 
-build_netrc() {
+build_user_pass() {
   local username password
 
   username=$(grep ^username "$TRANSIFEX_RC" | sed 's, *= *,=,' | cut -f2 -d=)
   password=$(grep ^password "$TRANSIFEX_RC" | sed 's, *= *,=,' | cut -f2 -d=)
 
   if [ -n "$username" -a -n "$password" ]; then
-    echo "machine www.transifex.com login $username password $password"
+    echo "$username:$password"
   fi
 }
 
+debug_enabled() {
+  shopt -q -o xtrace
+}
+
+build_config() {
+  printf 'user = "%s"\n' "$(build_user_pass)"
+}
+
 get_transifex() {
-  curl -s --netrc-file <(build_netrc) "$1"
+  local verbose="-s"
+
+  if debug_enabled; then
+    verbose="-v"
+  fi
+
+  build_config | curl $verbose --config - "$1"
 }
 
 parse_param() {
@@ -34,6 +48,10 @@ nice_date() {
   date -d "$1" +"%Y-%m-%d %H:%M"
 }
 
+suppress_cr() {
+  sed 's,\r$,,'
+}
+
 get_translations_info() {
   local lang="$1" slug="$2"
   get_transifex "https://www.transifex.com/api/2/project/tatoeba_website/resource/$slug/translation/$lang/strings/?details"
@@ -47,17 +65,20 @@ group_by(.user) |
 map_values({"key": (.[].user), "value": length}) |
 sort_by(-.value) |
 map_values("\(.key) (\(.value))") |
-join(", ")'
+join(", ")' \
+    | suppress_cr
 }
 
 get_locales() {
   get_transifex "https://www.transifex.com/api/2/project/tatoeba_website/resource/tatoebaResource/?details" | \
-    jq -r '.available_languages | map((.code+" "+.name)) | .[]'
+    jq -r '.available_languages | map((.code+" "+.name)) | .[]' | \
+    suppress_cr
 }
 
 get_resources() {
   get_transifex 'https://www.transifex.com/api/2/project/tatoeba_website/resources' | \
-    jq -r 'map((.name+" "+.slug)) | .[]'
+    jq -r 'map((.name+" "+.slug)) | .[]' | \
+    suppress_cr
 }
 
 display_stats() {
@@ -117,7 +138,7 @@ password =
 EOF
   fi
 
-  if [ -z "$(build_netrc)" ]; then
+  if [ -z "$(build_user_pass)" ]; then
     echo "Please add your transifex username and password in $TRANSIFEX_RC"
     exit 1
   fi

@@ -30,20 +30,42 @@ echo $this->Form->create('AdvancedSearch', [
 ?>
 
 <div layout="column" ng-app="app" ng-cloak>
+    <?php if (!(isset($isSidebar) && $isSidebar) && $usesTemplate): ?>
+        <div>
+            <i><?= __("This form is pre-filled.")?></i>
+            <md-button class="md-primary"
+                        href="<?= $this->Url->build([
+                            "controller" => "Sentences",
+                            "action" => "advanced_search",
+                            "?" => [],
+                        ]);?>">
+                <?= /* @translators: button appearing on advanced search page
+                       after clicking "Create a search template" (verb) */
+                    __('Clear form')
+                ?>
+            </md-button>
+        </div>
+        <md-divider></md-divider>
+    <?php endif; ?>
+
     <div layout="<?= $layout ?>">
         <div class="column-1" layout="column" flex>
             <?php /* @translators: section title in advanced search form */ ?>
             <h3><?= __('Sentences'); ?></h3>
 
-            <md-input-container>
+            <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('query', array(
                     'label' => __('Words:'),
                     'value' => $this->safeForAngular($query),
                     'lang' => '',
                     'dir' => 'auto',
+                    'id' => 'WordSearch'
                 ));
                 ?>
+                <md-button class="md-icon-button" reset-button target="WordSearch">
+                    <md-icon>clear</md-icon>
+                </md-button>
                 <div class="hint"><?= __('Enter a word or a phrase') ?></div>
             </md-input-container>
 
@@ -64,13 +86,17 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
-            <md-input-container>
+            <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('user', array(
                     'label' => __('Owner:'),
                     'value' => $user,
+                    'id' => 'OwnerSearch'
                 ));
                 ?>
+                <md-button class="md-icon-button" reset-button target="OwnerSearch">
+                    <md-icon>clear</md-icon>
+                </md-button>
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
@@ -134,13 +160,17 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
-            <md-input-container>
+            <md-input-container class="md-button-right">
             <?php
             echo $this->Form->input('tags', array(
                 'label' => __('Tags:'),
                 'value' => $this->safeForAngular($tags),
+                'id' => 'TagSearch'
             ));
             ?>
+            <md-button class="md-icon-button" reset-button target="TagSearch">
+                <md-icon>clear</md-icon>
+            </md-button>
             <div class="hint">
                 <?= __('Separate tags with commas.') ?>
             </div>
@@ -236,13 +266,17 @@ echo $this->Form->create('AdvancedSearch', [
                     ?>
                 </div>
 
-                <md-input-container>
+                <md-input-container class="md-button-right">
                     <?php
                     echo $this->Form->input('trans_user', array(
                         'label' => __('Owner:'),
                         'value' => $trans_user,
+                        'id' => 'TranslatorSearch'
                     ));
                     ?>
+                    <md-button class="md-icon-button" reset-button target="TranslatorSearch">
+                        <md-icon>clear</md-icon>
+                    </md-button>
                     <div class="hint"><?= __('Enter a username') ?></div>
                 </md-input-container>
 
@@ -357,6 +391,18 @@ echo $this->Form->create('AdvancedSearch', [
                    href="http://en.wiki.tatoeba.org/articles/show/text-search">
             <?= __('More search options') ?>
         </md-button>
+        <?php if (!(isset($isSidebar) && $isSidebar)): ?>
+            <md-button type="submit" class="md-primary" formaction="">
+                <?= __('Create a search template') ?>
+            </md-button>
+            <span>
+                <md-icon>help</md-icon>
+                <md-tooltip class="multiline" md-direction="top">
+                    <?= __('Use this button to use the currently selected criteria as a base for other searches. '
+                          .'You can also bookmark/share the search template with someone else.') ?>
+                </md-tooltip>
+            </span>
+        <?php endif; ?>
     </div>
 </div>
 

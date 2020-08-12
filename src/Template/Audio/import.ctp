@@ -60,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     <?php if ($errors) : ?>
         <p><?php echo __d('admin', 'The following errors occurred during import.'); ?></p>
         <div id="import-report">
-            <?= $this->App->safeforAngular(join('<br/>', $errors)) ?>
+            <?= $this->safeForAngular(join('<br/>', $errors)) ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>

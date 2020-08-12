@@ -36,6 +36,7 @@ use App\Lib\Licenses;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
+use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
 use Exception;
@@ -190,7 +191,6 @@ class SentencesController extends AppController
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
 
             $this->set('sentence', $sentence);
-
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
 
@@ -493,6 +493,11 @@ class SentencesController extends AppController
         /* Apply search criteria and sort */
         $search = new SentencesSearchForm();
         $search->setData($this->request->getQueryParams());
+
+        /* Control input */
+        if ($search->generateRandomSeedIfNeeded()) {
+            return $this->redirect(Router::url($search->getData()));
+        }
         $search->checkUnwantedCombinations();
 
         /* Session variables for search bar */
@@ -548,8 +553,10 @@ class SentencesController extends AppController
     public function advanced_search() {
         $search = new SentencesSearchForm();
 
-        $search->setData([]);
-        $this->set($search->getData());
+        $search->setData($this->request->getQueryParams());
+        $usesTemplate = !$search->isUsingDefaultCriteria();
+
+        $this->set($search->getData() + compact('usesTemplate'));
 
         $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
         $this->set(compact('searchableLists'));
@@ -689,7 +696,7 @@ class SentencesController extends AppController
                     )
                 ),
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['Sentences.modified' => 'DESC']
+                'order' => ['modified' => 'DESC']
             )
         );
 

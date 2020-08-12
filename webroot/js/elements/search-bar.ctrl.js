@@ -47,7 +47,7 @@
 
             function clearSearch() {
                 vm.searchQuery = '';
-                angular.element('#SentenceQuery').focus();
+                angular.element(document.querySelector('#SentenceQuery')).focus();
             }
 
             function swapLanguages() {

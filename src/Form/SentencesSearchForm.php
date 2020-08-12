@@ -41,7 +41,10 @@ class SentencesSearchForm extends Form
         'trans_filter' => 'limit',
         'sort' => 'relevance',
         'sort_reverse' => '',
+        'rand_seed' => '',
     ];
+
+    private $paramsOrder = [];
 
     public function __construct(EventManager $eventManager = null) {
         parent::__construct($eventManager);
@@ -241,8 +244,44 @@ class SentencesSearchForm extends Form
         return $sort_reverse ? 'yes' : '';
     }
 
+    private function _newSeed() {
+        /* Only use 24 bits of randomness */
+        $pseudoRand = mt_rand(0, (2<<23)-1);
+        return $this->_encodeSeed($pseudoRand);
+    }
+
+    private function _encodeSeed($seed) {
+        $result = '';
+        if (is_int($seed)) {
+            $seed = base64_encode(pack('V', $seed));
+            $seed = substr($seed, 0, 4);
+            $result = str_replace(['+','/'], ['-','_'], $seed);
+        }
+        return $result;
+    }
+
+    private function _decodeSeed(string $seed) {
+        $result = null;
+        if (strlen($seed) >= 4) {
+            $seed = str_replace(['-','_'], ['+','/'], $seed);
+            $seed = substr($seed, 0, 4).'AA';
+            $result = @unpack('V', base64_decode($seed))[1];
+        }
+        return $result;
+    }
+
+    protected function setDataRandSeed(string $seed_b64) {
+        $seed_int = $this->_decodeSeed($seed_b64);
+        $seed_int = $this->search->setRandSeed($seed_int);
+        $seed_b64 = $this->_encodeSeed($seed_int);
+        return $seed_b64;
+    }
+
     public function setData(array $data)
     {
+        /* Remember params order */
+        $this->paramsOrder = array_keys($data);
+
         /* Convert simple search to advanced search parameters */
         if (isset($data['to']) && !isset($data['trans_to'])) {
             $data['trans_to'] = $data['to'];
@@ -265,6 +304,33 @@ class SentencesSearchForm extends Form
             $keyCamel = Inflector::camelize($key);
             $setter = "setData$keyCamel";
             $this->_data[$key] = $this->$setter($value);
+        }
+    }
+
+    private function paramIndex($param) {
+        $index = array_search($param, $this->paramsOrder);
+        if ($index === FALSE) {
+            $index = PHP_INT_MAX;
+        }
+        return $index;
+    }
+
+    public function getData($field = null) {
+        $data = parent::getData($field);
+        if (is_null($field)) {
+            uksort($data, function($a, $b) {
+                return $this->paramIndex($a) <=> $this->paramIndex($b);
+            });
+        }
+        return $data;
+    }
+
+    public function generateRandomSeedIfNeeded() {
+        if ($this->_data['sort'] == 'random' && empty($this->_data['rand_seed'])) {
+            $this->_data['rand_seed'] = $this->_newSeed();
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -343,7 +409,7 @@ class SentencesSearchForm extends Form
             ->where([
                 'OR' => [
                     'user_id' => $byUserId,
-                    'visibility' => 'public',
+                    'visibility IN' => ['public', 'listed']
                 ]
             ]);
 
@@ -375,5 +441,9 @@ class SentencesSearchForm extends Form
 
     public function asSphinx() {
         return $this->search->asSphinx();
+    }
+
+    public function isUsingDefaultCriteria() {
+        return $this->getData() == $this->defaultCriteria;
     }
 }

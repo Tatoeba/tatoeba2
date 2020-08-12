@@ -36,16 +36,16 @@
         ///////////////////////////////////////////////////////////////////////////
 
         function showForm(id) {
-            $('#form_' + id).removeClass('ng-hide');
-            $('#form_' + id + ' input').focus();
+            angular.element(document.querySelector('#form_' + id)).removeClass('ng-hide');
+            angular.element(document.querySelector('#form_' + id + '_input')).focus();
         }
 
         function hideForm(id) {
-            $('#form_' + id).addClass('ng-hide');
+            angular.element(document.querySelector('#form_' + id)).addClass('ng-hide');
         }
 
         function saveSentence(id, lang) {
-            var loader = $('#loader_' + id);
+            var loader = angular.element(document.querySelector('#loader_' + id));
             var body = {
                 'text': vm.sentence[id],
                 'lang': lang
@@ -58,9 +58,6 @@
             loader.removeClass('ng-hide');
             hideForm(id);
 
-            $('#form_' + id + ' input[name^="_Token"]').each(function() {
-                body[$(this).attr('name')] = $(this).val();
-            });
             var rootUrl = get_tatoeba_root_url();
             var req = {
                 method: 'POST',

@@ -325,7 +325,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
     </div>
 
 <?php
-$userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-8');
+$userLanguages = h(json_encode($userLanguages));
 ?>
     <div class="section md-whiteframe-1dp"
          ng-cloak

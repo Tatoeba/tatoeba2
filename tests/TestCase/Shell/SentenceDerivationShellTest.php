@@ -443,7 +443,6 @@ class SentenceDerivationShellTest extends TestCase
                 'action' => 'insert',
                 'user_id' => '1',
                 'datetime' => 'NOW()',
-                'ip' => '127.0.0.1',
                 'type' => 'sentence',
             ]);
             $Contributions->save($contribution);

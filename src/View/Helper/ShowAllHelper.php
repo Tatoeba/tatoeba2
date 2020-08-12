@@ -115,7 +115,7 @@ class ShowAllHelper extends AppHelper
             array(
                 "value" => $selectedLanguage,
                 "id" => "",
-                "onchange" => "$(location).attr('href', $javascriptUrl);",
+                "onchange" => "window.location.href = $javascriptUrl",
                 "class" => count($langs) > 2 ? 'language-selector' : null,
                 "empty" => false
             )

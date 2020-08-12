@@ -107,7 +107,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, 'public'
+            $filter, null, ['public', 'listed']
         );
         $allLists = $this->paginate();
 
@@ -124,7 +124,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, 'public', 'anyone'
+            $filter, null, ['public', 'listed'], 'anyone'
         );
         $allLists = $this->paginate();
 
@@ -177,7 +177,7 @@ class SentencesListsController extends AppController
             'contain' => ['Sentences' => $contain],
             'conditions' => ['sentences_list_id' => $id],
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['SentencesSentencesLists.created' => 'DESC']
+            'order' => ['created' => 'DESC']
         ];
         $this->paginate = $pagination;
         $sentencesInList = $this->paginate('SentencesSentencesLists');
@@ -309,13 +309,17 @@ class SentencesListsController extends AppController
      *
      * @return void
      */
-    public function remove_sentence_from_list($sentenceId, $listId)
+    public function remove_sentence_from_list($sentenceId, $listId )
     {
         $userId = $this->Auth->user('id');
         $isRemoved = $this->SentencesLists->removeSentenceFromList(
             $sentenceId, $listId, $userId
         );
         $this->set('removed', $isRemoved);
+
+        if (strpos($this->referer(), 'sentences/show')) {
+           return $this->redirect($this->referer());
+        }
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
@@ -353,7 +357,7 @@ class SentencesListsController extends AppController
 
         $visibility = null;
         if ($username != CurrentUser::get('username')) {
-            $visibility = 'public';
+            $visibility = ['public', 'listed'];
         }
         $this->paginate = $this->SentencesLists->getPaginatedLists(
             $filter, $username, $visibility

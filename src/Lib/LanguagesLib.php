@@ -597,6 +597,16 @@ class LanguagesLib
                 'rel' => __d('languages', 'Rendille'),
                 'iii' => __d('languages', 'Nuosu'),
                 'drt' => __d('languages', 'Drents'),
+                'laa' => __d('languages', 'Southern Subanen'),
+                'chn' => __d('languages', 'Chinook Jargon'),
+                'bal' => __d('languages', 'Baluchi'),
+                'pli' => __d('languages', 'Pali'),
+                'hbo' => __d('languages', 'Ancient Hebrew'),
+                'ajp' => __d('languages', 'South Levantine Arabic'),
+                'hax' => __d('languages', 'Southern Haida'),
+                'hdn' => __d('languages', 'Northern Haida'),
+                'xqa' => __d('languages', 'Karakhanid'),
+                'crk' => __d('languages', 'Plains Cree'),
             );
         }
         return $languages;
@@ -664,6 +674,9 @@ class LanguagesLib
             "syc",
             "phn",
             "jpa",
+            "bal",
+            'hbo',
+            "ajp"
         );
 
         $autoLangs = array(
@@ -671,6 +684,7 @@ class LanguagesLib
             "ota",
             "chg",
             "lad",
+            "xqa",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {

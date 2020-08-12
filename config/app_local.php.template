@@ -9,16 +9,21 @@ return [
         'salt' => '{{security_salt}}',
     ],
 
+# You can disable debug to run like production runs
+#    'debug' => false,
+
     'Datasources' => [
         'default' => [
             'username' => '{{mysql_user}}',
             'password' => '{{mysql_password}}',
             'database' => '{{mysql_db_name}}',
+#            'log' => true, // log all SQL queries to logs/queries.log
         ],
         'test' => [
             'username' => '{{mysql_test_user}}',
             'password' => '{{mysql_test_password}}',
             'database' => '{{mysql_test_db_name}}',
+#            'log' => true, // log all SQL queries to logs/cli-queries.log during tests
         ],
     ],
 
@@ -117,21 +122,6 @@ return [
          * Stylesheet for development website
          */
         'devStylesheet' => false,
-
-        /**
-         * Blocked IP addresses. Should be an array of strings containing the
-         * IP's you want to block. For instance:
-         *
-         *    'blockedIP' => [
-         *      "1.2.3.4",
-         *      "5.6.7.8",
-         *      "9.10.11.12"
-         *    ]
-         *
-         * Cf. src/Controller/AppController.php
-         */
-        'blockedIP' => [
-        ],
     ],
 
     /**
@@ -160,11 +150,13 @@ return [
      */
     'UI' => [
         'languages' => [
-            ['ara', null, 'ﺎﻠﻋﺮﺒﻳﺓ'],
+            ['ara', null, 'العربية'],
             ['aze', null, 'Azərbaycanca'],
+            ['bal', null, 'بلۏچی'],
             ['bel', null, 'Беларуская'],
             ['ben', null, 'বাংলা'],
             ['bre', null, 'Brezhoneg'],
+            ['bul', null, 'Български'],
             ['cat', null, 'Català'],
             ['ces', null, 'Čeština'],
             ['cmn', 'Hans', '中文', ['chi']],
@@ -175,6 +167,7 @@ return [
             ['epo', null, 'Esperanto'],
             ['est', null, 'Eesti'],
             ['eus', null, 'Euskara'],
+            ['fil', null, 'Filipino'],
             ['fin', null, 'Suomi'],
             ['fra', null, 'Français', ['fre']],
             ['fry', null, 'Frysk'],
@@ -182,6 +175,7 @@ return [
             ['glg', null, 'Galego'],
             ['ell', null, 'Ελληνικά', ['gre']],
             ['hin', null, 'हिन्दी'],
+            ['hrv', null, 'Hrvatski'],
             ['hun', null, 'Magyar'],
             ['ina', null, 'Interlingua'],
             ['ind', null, 'Bahasa Indonesia'],
@@ -202,10 +196,14 @@ return [
             ['por', 'BR', 'Português (Brasil)', ['pt_BR']],
             ['ron', null, 'Română'],
             ['rus', null, 'Русский'],
+            ['slk', null, 'Slovenčina'],
             ['spa', null, 'Español'],
+            ['srp', null, 'српски'],
             ['swe', null, 'Svenska'],
             ['tgl', null, 'Tagalog'],
+            ['tuk', null, 'Türkmen dili'],
             ['tur', null, 'Türkçe'],
+            ['uig', null, 'ئۇيغۇرچە'],
             ['ukr', null, 'Українська'],
             ['uzb', null, 'Oʻzbekcha'],
             ['vie', null, 'Tiếng Việt'],

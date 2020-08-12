@@ -103,22 +103,28 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $title ?></h2>
+
+                <?php 
+                    $options = array(
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'modified', 'direction' => 'desc', 'label' => __x('reviews', 'Most recently updated')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'modified', 'direction' => 'asc', 'label' => __x('reviews', 'Least recently updated')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'created', 'direction' => 'desc', 'label' => __x('reviews', 'Newest first')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'created', 'direction' => 'asc', 'label' => __x('reviews', 'Oldest first')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences') ),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'sentence_id', 'direction' => 'asc', 'label' => __('Oldest sentences') )
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
+
             </div>
         </md-toolbar>
 
-        <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            /* @translators: sort option in the list of reviews */
-            echo $this->Paginator->sort('modified', __("date modified"));
-            echo " | ";
-            /* @translators: sort option in the list of reviews */
-            echo $this->Paginator->sort('created', __("date created"));
-            echo " | ";
-            /* @translators: sort option in the list of reviews */
-            echo $this->Paginator->sort('sentence_id', __("sentence id"));
-            ?>
-        </div>
         <?php
             $this->Pagination->display();
 

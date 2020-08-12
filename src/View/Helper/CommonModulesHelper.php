@@ -104,9 +104,9 @@ class CommonModulesHelper extends AppHelper
                     "value" => $lang,
                     "onchange" => "
                         if (this.value == 'und') {
-                            $(location).attr('href','$path' + '$query');
+                            window.location.href = '$path' + '$query';
                         } else {
-                            $(location).attr('href','$path' + this.value + '$query');
+                            window.location.href = '$path' + this.value + '$query';
                         }",
                     // the if is to avoid a duplicate page (with and without "und")
                     "class" => "language-selector",

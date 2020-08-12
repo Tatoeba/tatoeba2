@@ -57,6 +57,7 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/jpn/sentences/search', null, true ],
             [ '/jpn/sentences/search', 'contributor', true ],
             [ '/jpn/sentences/search?query=hacer&from=spa&to=fra', null, true ],
+            [ '/jpn/sentences/search?query=hacer&from=spa&to=fra&sort=random', null, true ], // TODO no redirect because Search.enabled = false
             [ '/jpn/sentences/advanced_search', null, true ],
             [ '/jpn/sentences/advanced_search', 'contributor', true ],
             [ '/jpn/sentences/show_all_in/jpn/none', null, true ],

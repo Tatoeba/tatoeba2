@@ -84,20 +84,25 @@ $tagsIndexUrl = $this->Url->build([
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $this->safeForAngular($title) ?></h2>
+                
+                <?php 
+                    $options = array(
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'nbrOfSentences', 'direction' => 'desc', 'label' => __('Highest number of sentences')),
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'nbrOfSentences', 'direction' => 'asc', 'label' => __('Lowest number of sentences') ),
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'name', 'direction' => 'asc', 'label' => __('Tag name (alphabetical)')),
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'name', 'direction' => 'desc', 'label' => __('Tag name (reverse alphabetical)'))
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
+                
             </div>
         </md-toolbar>
 
         <div layout-padding>
-        <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            /* @translators: sort option in the All tags page */
-            echo $this->Paginator->sort('nbrOfSentences', __("count"));
-            echo " | ";
-            /* @translators: sort option in the All tags page */
-            echo $this->Paginator->sort('name', __("name"));
-            ?>
-        </div>
 
         <?php $this->Pagination->display(); ?>
 

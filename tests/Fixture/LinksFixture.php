@@ -148,14 +148,14 @@ class LinksFixture extends TestFixture {
 			'sentence_id' => '55',
 			'translation_id' => '56',
 			'sentence_lang' => 'fra',
-			'translation_lang' => 'jpn',
+			'translation_lang' => 'bod', // purposely wrong flag
 			'distance' => '1'
 		),
 		array(
 			'id' => '16',
 			'sentence_id' => '56',
 			'translation_id' => '55',
-			'sentence_lang' => 'jpn',
+			'sentence_lang' => 'bod', // purposely wrong flag
 			'translation_lang' => 'fra',
 			'distance' => '1'
 		),
