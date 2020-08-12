@@ -16,6 +16,7 @@ class TatoebaFlagsFilter extends AssetFilter
         }
         $identifier = explode('.', $filename)[0];
 
+        $content = $this->forceViewBox($content);
         $content = $this->removeXmlDeclaration($content);
         $content = $this->removeXmlNs($content);
         $content = $this->changeSvgIntoSymbol($identifier, $content);
@@ -34,5 +35,20 @@ class TatoebaFlagsFilter extends AssetFilter
     private function changeSvgIntoSymbol($identifier, $content) {
         $content = preg_replace('/<svg/', "<symbol id=\"$identifier\"", $content);
         return preg_replace('/<\/svg>/', '</symbol>', $content);
+    }
+
+    private function forceViewBox($content) {
+        $xml = new \DOMDocument();
+        $xml->loadXML($content);
+        if ($xml->firstChild) {
+            $h = $xml->firstChild->getAttribute('height');
+            $w = $xml->firstChild->getAttribute('width');
+            if ($w && $h) {
+                $xml->firstChild->removeAttribute('width');
+                $xml->firstChild->removeAttribute('height');
+                $xml->firstChild->setAttribute('viewBox', "0 0 $w $h");
+            }
+        }
+        return $xml->saveXML();
     }
 }

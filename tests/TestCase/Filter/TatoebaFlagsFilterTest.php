@@ -38,4 +38,13 @@ class TatoebaFlagsFilterTest extends TestCase
         $this->assertNotContains('xmlns=', $result);
         $this->assertContains('<symbol id="epo"', $result);
     }
+
+    public function testFlagForcesViewbox() {
+        $file = $this->flagsDir . 'ryu.svg';
+        $content = file_get_contents($file);
+        $result = $this->filter->input($file, $content);
+
+        $this->assertContains('<symbol id="ryu" viewBox="0 0 1050 700">', $result);
+        $this->assertContains('<rect width="1050" height="700"', $result);
+    }
 }
