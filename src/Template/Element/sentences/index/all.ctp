@@ -21,7 +21,7 @@
 
       <li ng-repeat="lang in <?= $l ?>">
         <a ng-href="<?= $baseUrl ?>/{{lang.code}}/none">
-          <svg class="language-icon" width="30" height="20">
+          <svg class="language-icon">
               <use ng-attr-xlink:href="{{getFlagSpriteUrl(lang.code)}}"
                    xlink:href="" />
           </svg>
