@@ -60,6 +60,14 @@ svg.language-icon {
   height: 20px;
 }
 
+/* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
+@-moz-document url-prefix() {
+  svg.language-icon {
+    filter: none;
+    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
+  }
+}
+
 .lang1  { top: 0;   right: 60%; }
 .lang2  { top: 0;    left: 60%; }
 .lang3  { top: 20%; right: 70%; }
