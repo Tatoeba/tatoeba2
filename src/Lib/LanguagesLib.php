@@ -608,6 +608,7 @@ class LanguagesLib
                 'xqa' => __d('languages', 'Karakhanid'),
                 'crk' => __d('languages', 'Plains Cree'),
                 'yua' => __d('languages', 'Yucatec Maya'),
+                'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
             );
         }
         return $languages;
