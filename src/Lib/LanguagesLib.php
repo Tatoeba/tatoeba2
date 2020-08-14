@@ -607,6 +607,7 @@ class LanguagesLib
                 'hdn' => __d('languages', 'Northern Haida'),
                 'xqa' => __d('languages', 'Karakhanid'),
                 'crk' => __d('languages', 'Plains Cree'),
+                'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
             );
         }
         return $languages;
