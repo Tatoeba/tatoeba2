@@ -413,17 +413,14 @@ class SentencesTable extends Table
      * This allows to hide some extra fields
      * in json in a similar fashion as contain().
      */
-    public function beforeFind($event, $query, $options)
+    public function findHideFields(Query $query, array $options)
     {
-        if (isset($options['hideFields'])) {
-            $hide = $options['hideFields'];
-            return $query->formatResults(function($results) use ($hide) {
-                return $results->map(function($result) use ($hide) {
-                    return $this->applyHideFields($result, $hide);
-                });
+        $hide = $this->hideFields();
+        return $query->formatResults(function($results) use ($hide) {
+            return $results->map(function($result) use ($hide) {
+                return $this->applyHideFields($result, $hide);
             });
-        }
-        return $query;
+        });
     }
 
     private function sortOutTranslations($result, $translationLanguages) {
@@ -769,9 +766,9 @@ class SentencesTable extends Table
 
     /**
      * Value for the hideFields finder option.
-     * See beforeFind().
+     * See findHideFields().
      */
-    public function hideFields()
+    private function hideFields()
     {
         $hideAudio = ['fields' => ['user', 'external', 'sentence_id']];
         return [
@@ -794,9 +791,9 @@ class SentencesTable extends Table
     {
         return $this->find('filteredTranslations', [
                 'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                'hideFields' => $this->hideFields(),
                 'translationLang' => $translationLang
             ])
+            ->find('hideFields')
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
             ->select($this->fields($what))

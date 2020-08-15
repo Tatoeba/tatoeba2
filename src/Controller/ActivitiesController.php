@@ -53,23 +53,22 @@ class ActivitiesController extends AppController
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Pagination';
         
-        $conditions = array('user_id IS' => null);
+        $this->loadModel('Sentences');
+        $query = $this->Sentences
+            ->find('filteredTranslations', ['translationLang' => 'none'])
+            ->find('hideFields')
+            ->select($this->Sentences->fields())
+            ->contain($this->Sentences->contain())
+            ->where(['user_id IS' => null]);
+
         if(!empty($lang)) {
-            $conditions['lang'] = $lang;
+            $query->where(['lang' => $lang]);
         }
 
-        $this->loadModel('Sentences');
-        $this->paginate = array(
-            'finder' => ['filteredTranslations' => [
-                'translationLang' => 'none',
-                'hideFields' => $this->Sentences->hideFields(),
-            ]],
+        $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'conditions' => $conditions,
-            'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->contain(),
-        );
-        $results = $this->paginate('Sentences');
+        ];
+        $results = $this->paginate($query);
         $this->set('results', $results);
         $this->set('lang', $lang);
     }
@@ -173,27 +172,24 @@ class ActivitiesController extends AppController
         }
 
         $this->loadModel('Sentences');
+        $query = $this->Sentences
+            ->find('filteredTranslations')
+            ->find('hideFields')
+            ->select($this->Sentences->fields())
+            ->where(['user_id' => $userId])
+            ->contain($this->Sentences->contain(['translations' => true]))
+            ->order(['Sentences.created' => 'DESC']);
 
-        $conditions = array(
-            'user_id' => $userId
-        );
         if (!empty($lang)) {
-            $conditions['Sentences.lang'] = $lang;
+            $query->where(['Sentences.lang' => $lang]);
         }
 
         $this->paginate = [
-            'finder' => ['filteredTranslations' => [
-                'hideFields' => $this->Sentences->hideFields(),
-            ]],
-            'fields' => $this->Sentences->fields(),
-            'conditions' => $conditions,
-            'contain' => $this->Sentences->contain(['translations' => true]),
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['Sentences.created' => 'DESC'],
         ];
 
         try {
-            $results = $this->paginate('Sentences');
+            $results = $this->paginate($query);
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }

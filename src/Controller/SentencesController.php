@@ -92,7 +92,9 @@ class SentencesController extends AppController
             $this->components()->unload('Csrf');
         }
 
-        $this->paginate['limit'] = CurrentUser::getSetting('sentences_per_page');
+        $this->paginate = [
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+        ];
     }
 
     /**
@@ -517,22 +519,23 @@ class SentencesController extends AppController
         $sphinx['limit'] = $limit;
 
         $model = 'Sentences';
-        $pagination = [
-            'finder' => ['withSphinx' => [
+        $query = $this->Sentences
+            ->find('hideFields')
+            ->find('withSphinx', [
                 'translationLang' => $search->getData('to'),
                 'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                'hideFields' => $this->Sentences->hideFields(),
-            ]],
-            'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->contain(['translations' => true]),
+            ])
+            ->select($this->Sentences->fields())
+            ->contain($this->Sentences->contain(['translations' => true]));
+
+        $this->paginate = [
             'limit' => $limit,
             'sphinx' => $sphinx,
         ];
 
-        $this->paginate = $pagination;
         $syntax_error = false;
         try {
-            $results = $this->paginate($model);
+            $results = $this->paginate($query);
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
         } catch (Exception $e) {
@@ -592,8 +595,8 @@ class SentencesController extends AppController
         $query->find('filteredTranslations', [
                   'translationLang' => $translationLang,
                   'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                  'hideFields' => $this->Sentences->hideFields(),
               ])
+              ->find('hideFields')
               ->select($this->Sentences->fields())
               ->contain($this->Sentences->contain(['translations' => true]))
               ->order(['Sentences.id' => 'DESC']);
