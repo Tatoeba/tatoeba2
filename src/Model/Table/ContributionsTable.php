@@ -54,6 +54,7 @@ class ContributionsTable extends Table
     {
         $this->belongsTo('Users');
         $this->belongsTo('Sentences');
+        $this->addBehavior('LimitResults');
     }
 
     public function logSentence($event) {

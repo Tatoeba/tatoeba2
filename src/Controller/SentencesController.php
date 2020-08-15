@@ -70,10 +70,6 @@ class SentencesController extends AppController
         'Languages',
         'CommonModules'
     );
-    public $paginate = array(
-        'limit' => 100,
-        "order" => "Sentence.modified DESC"
-    );
 
     public $uses = array(
         'Audio',
@@ -95,6 +91,8 @@ class SentencesController extends AppController
         if (in_array($params['action'], $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
+
+        $this->paginate['limit'] = CurrentUser::getSetting('sentences_per_page');
     }
 
     /**
@@ -583,34 +581,29 @@ class SentencesController extends AppController
     public function show_all_in($lang, $translationLang) {
         $this->helpers[] = 'ShowAll';
 
+        $query = $this->Sentences->find();
         if ($lang == 'unknown') {
-            $conditions = ['Sentences.lang IS' => null];
+            $query->where(['Sentences.lang IS' => null]);
         } else {
-            $conditions = ['Sentences.lang' => $lang];
+            $query->where(['Sentences.lang' => $lang]);
         }
+        $total = $query->count();
+
+        $query->find('filteredTranslations', [
+                  'translationLang' => $translationLang,
+                  'nativeMarker' => CurrentUser::getSetting('native_indicator'),
+                  'hideFields' => $this->Sentences->hideFields(),
+              ])
+              ->select($this->Sentences->fields())
+              ->contain($this->Sentences->contain(['translations' => true]))
+              ->order(['Sentences.id' => 'DESC']);
 
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
 
-        $pagination = [
-            'finder' => ['filteredTranslations' => [
-                'translationLang' => $translationLang,
-                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                'hideFields' => $this->Sentences->hideFields(),
-            ]],
-            'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->contain(['translations' => true]),
-            'conditions' => $conditions,
-            'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['Sentences.id' => 'DESC']
-        ];
-
-        $this->paginate = $pagination;
-
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $allSentences = $this->paginateLatest($this->Sentences, $totalLimit);
-
-        $total = $this->Sentences->find()->where($conditions)->count();
+        $query->find('latest', ['maxResults' => $totalLimit]);
+        $allSentences = $this->paginateOrRedirect($query);
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);

@@ -91,6 +91,7 @@ class SentencesTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+        $this->addBehavior('LimitResults');
 
         $this->getEventManager()->on(new ContributionListener());
         $this->getEventManager()->on(new UsersLanguagesListener());

@@ -303,58 +303,9 @@ class AppController extends Controller
         return $this->redirect($url);
     }
 
-    /**
-     * Calculate minimal associations for a query
-     *
-     * Helper function for paginateLatest which filters the associations to
-     * load for the given query. Only the associations mentioned in the 'select'
-     * and 'order' part are necessary for calculating the lowest id we need.
-     *
-     * @param array $conditions The conditions for the query
-     * @param array $order      The ordering for the query
-     * @param array $contain    The original contain part of the query
-     *
-     * @return array
-     **/
-    private function getMinimalContain($conditions, $order, $contain) {
-        $neededAssociations = array_map(function ($key) {
-            $splitPos = strpos($key, '.');
-            if ($splitPos) {
-                return substr($key, 0, $splitPos);
-            } else {
-                return '';
-            }
-        }, array_keys(array_merge($conditions, $order)));
-
-        return array_filter(
-            $contain,
-            function ($key) use ($neededAssociations) {
-                return in_array($key, $neededAssociations);
-            },
-            ARRAY_FILTER_USE_KEY);
-    }
-
-    public function paginateLatest($model, $totalLimit) {
-        $alias = $model->getAlias();
-        $conditions = $this->paginate['conditions'] ?? [];
-        $contain = $this->paginate['contain'] ?? [];
-        $order = $this->paginate['order'] ?? [];
-        $order += [$alias . '.id' => 'DESC'];
-
-        $contain = $this->getMinimalContain($conditions, $order, $contain);
-
-        $lastId = $model->find('list')
-            ->select([$alias . '.id'])
-            ->where($conditions)
-            ->contain($contain)
-            ->order($order)
-            ->limit($totalLimit)
-            ->last();
-
-        $this->paginate['conditions'][$alias . '.id >='] = $lastId;
-
+    public function paginateOrRedirect($object = null, array $settings = []) {
         try {
-            return $this->paginate();
+            return $this->paginate($object, $settings);
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }
