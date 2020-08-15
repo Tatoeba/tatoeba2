@@ -480,22 +480,6 @@ class SentencesTable extends Table
     }
 
     /**
-     * Custom ->find('random', ...) function.
-     */
-    public function _findRandom($state, $query, $results = array())
-    {
-        if ($state == 'before') {
-            $ids = $this->getSeveralRandomIds($query['lang'], $query['number']);
-            $query['conditions'][$this->alias.'.'.$this->primaryKey] = $ids;
-            unset($query['lang']);
-            unset($query['number']);
-            return $query;
-        } else {
-            return $results;
-        }
-    }
-
-    /**
      * Fast random sentence id selection
      * when not selecting any particular language
      */
