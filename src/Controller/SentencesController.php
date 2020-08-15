@@ -522,9 +522,9 @@ class SentencesController extends AppController
         $query = $this->Sentences
             ->find('hideFields')
             ->find('withSphinx')
+            ->find('nativeMarker')
             ->find('filteredTranslations', [
                 'translationLang' => $search->getData('to'),
-                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
             ])
             ->select($this->Sentences->fields())
             ->contain($this->Sentences->contain(['translations' => true]));
@@ -595,8 +595,8 @@ class SentencesController extends AppController
 
         $query->find('filteredTranslations', [
                   'translationLang' => $translationLang,
-                  'nativeMarker' => CurrentUser::getSetting('native_indicator'),
               ])
+              ->find('nativeMarker')
               ->find('hideFields')
               ->select($this->Sentences->fields())
               ->contain($this->Sentences->contain(['translations' => true]))

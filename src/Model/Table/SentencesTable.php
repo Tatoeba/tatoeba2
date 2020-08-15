@@ -31,7 +31,6 @@ use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Event\ContributionListener;
-use App\Event\UsersLanguagesListener;
 use App\Event\LinksListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -92,9 +91,9 @@ class SentencesTable extends Table
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
         $this->addBehavior('LimitResults');
+        $this->addBehavior('NativeFinder');
 
         $this->getEventManager()->on(new ContributionListener());
-        $this->getEventManager()->on(new UsersLanguagesListener());
         $this->getEventManager()->on(new LinksListener());
     }
 
@@ -763,9 +762,9 @@ class SentencesTable extends Table
     public function getSentenceWith($id, $what = [], $translationLang = null)
     {
         return $this->find('filteredTranslations', [
-                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
                 'translationLang' => $translationLang
             ])
+            ->find('nativeMarker')
             ->find('hideFields')
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
