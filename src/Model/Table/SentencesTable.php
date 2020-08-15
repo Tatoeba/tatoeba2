@@ -487,7 +487,7 @@ class SentencesTable extends Table
             })
             ->offset(0);
 
-        return $this->findFilteredTranslations($query, $options);
+        return $query;
     }
 
     /**
