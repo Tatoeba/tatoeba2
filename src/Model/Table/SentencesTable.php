@@ -479,17 +479,6 @@ class SentencesTable extends Table
         });
     }
 
-    public function findWithSphinx($query, $options)
-    {
-        $query
-            ->counter(function($query) {
-                return $this->getTotal();
-            })
-            ->offset(0);
-
-        return $query;
-    }
-
     /**
      * Custom ->find('random', ...) function.
      */
