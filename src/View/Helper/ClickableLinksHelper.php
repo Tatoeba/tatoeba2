@@ -190,7 +190,7 @@ class ClickableLinksHelper extends AppHelper
                 'action' => 'show',
                 $sentenceId
             ),
-            ['title' => $sentenceText]
+            ['title' => $this->_View->safeForAngular($sentenceText)]
         );
     }
 }
