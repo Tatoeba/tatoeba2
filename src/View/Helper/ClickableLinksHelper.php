@@ -177,6 +177,11 @@ class ClickableLinksHelper extends AppHelper
      */
     public function buildSentenceLink($sentenceId, $sentenceText = null)
     {
+        $tooltipTag = $this->Html->tag(
+            'md-tooltip',
+            $this->_View->safeForAngular($sentenceText),
+            ['ng-cloak']
+        );
         $linkText = format(
             __(
                 /* @translators: You can translate the sharp in the link to a sentence
@@ -184,13 +189,13 @@ class ClickableLinksHelper extends AppHelper
                 '#{sentenceId}'),
             array('sentenceId' => $sentenceId));
         return $this->Html->link(
-            $linkText,
+            h($linkText).$tooltipTag,
             array(
                 'controller' => 'sentences',
                 'action' => 'show',
                 $sentenceId
             ),
-            ['title' => $this->_View->safeForAngular($sentenceText)]
+            ['escape' => false]
         );
     }
 }
