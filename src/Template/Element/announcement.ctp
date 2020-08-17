@@ -48,9 +48,9 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     ?>
     <p>
     <?= format(
-        __('We have updated our <a href="{termsOfUse}">Terms of Use</a>.
-        By closing this announcement, you agree with the new Terms of Use.
-        If you have any question, feel free to <a href="{contact}">contact us</a>.'),
+        __('We have updated our <a href="{termsOfUse}">Terms of Use</a>. ' .
+           'By closing this announcement, you agree with the new Terms of Use. ' .
+           'If you have any question, feel free to <a href="{contact}">contact us</a>.'),
         ['termsOfUse' => $termsOfUseUrl, 'contact' => $contactUrl]
     ) ?>
     </p>
