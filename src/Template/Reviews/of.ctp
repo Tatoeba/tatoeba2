@@ -87,6 +87,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         }
         ?>
     </md-list>
+
+    <?php $this->CommonModules->createFilterByLangMod(3); ?>
 </div>
 <?php endif; ?>
 
