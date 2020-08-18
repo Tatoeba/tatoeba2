@@ -19,8 +19,10 @@ class ReviewsControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/reviews/of/admin', null, true ],
-            [ '/eng/reviews/of/admin', 'contributor', true ],
+            [ '/eng/reviews/of/admin', null, '/eng/reviews/of/admin/all' ],
+            [ '/eng/reviews/of/admin', 'contributor', '/eng/reviews/of/admin/all' ],
+            [ '/eng/reviews/of/admin/all', null, true ],
+            [ '/eng/reviews/of/admin/all', 'contributor', true ],
             [ '/eng/reviews/of/admin/ok', null, true ],
             [ '/eng/reviews/of/admin/ok', 'contributor', true ],
             [ '/eng/reviews/of/admin/ok/cmn', null, true ],

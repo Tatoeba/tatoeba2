@@ -111,6 +111,10 @@ class ReviewsController extends AppController
      */
     public function of($username, $correctnessLabel = null, $lang = null)
     {
+        if (empty($correctnessLabel)) {
+            return $this->redirect([$username, 'all'], 301);
+        }
+
         $this->helpers[] = 'Pagination';
 
         $this->loadModel('Users');
