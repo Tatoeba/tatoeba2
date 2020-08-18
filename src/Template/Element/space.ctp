@@ -123,7 +123,7 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
                 </a>
             </div>
             <div class="item">
-                <a href="<?= $this->Url->build(['controller' => 'reviews', 'action' => 'of', $username]) ?>">
+                <a href="<?= $this->Url->build(['controller' => 'reviews', 'action' => 'of', $username, 'all']) ?>">
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your reviews */
