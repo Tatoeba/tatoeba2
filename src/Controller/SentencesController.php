@@ -143,6 +143,7 @@ class SentencesController extends AppController
         $this->helpers[] = 'Lists';
         $this->helpers[] = 'Members';
         $this->helpers[] = 'Audio';
+        $this->helpers[] = 'ClickableLinks';
 
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->request->getSession()->read('random_lang_selected');
