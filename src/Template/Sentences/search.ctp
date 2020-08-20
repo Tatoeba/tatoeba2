@@ -100,10 +100,9 @@ if ($ignored) {
 </md-toolbar>
 
 <?php
-if (!isset($results)) {
-    ?><div class="section"><?php
-    if ($syntax_error) {
-    ?>
+    if (isset($syntax_error)) {
+?>
+    <div class="section">
         <h2><?php echo __('Search error'); ?></h2>
         <p><?php
             echo format(
@@ -114,22 +113,27 @@ if (!isset($results)) {
                 'http://en.wiki.tatoeba.org/articles/show/text-search'
             );
         ?></p>
-    <?php
-    } else {
-    ?>
-    <h2><?php echo __('Search error'); ?></h2>
-    <p><?php
-        echo format(
-            __(
-                'An error occurred while performing the search. '.
-                'If the problem persists, please '.
-                '<a href="{}">let us know</a>.', true),
-            $this->Url->build(array('controller' => 'pages', 'action' => 'contact'))
-        );
-    ?></p>
-    <?php
-    }
-    ?></div><?php
+    </div>
+<?php
+    } elseif (isset($error_code)) {
+?>
+    <div class="section">
+        <h2><?php echo __('Search error'); ?></h2>
+        <p><?php
+            echo format(
+                __(
+                    'An error occurred while performing the search. '.
+                    'If the problem persists, please '.
+                    '<a href="{us}">let us know</a> and include the '.
+                    'error code "{errorCode}" in your message.'),
+                    [
+                        'us' => $this->Url->build(['controller' => 'pages', 'action' => 'contact']),
+                        'errorCode' => $error_code,
+                    ]
+            );
+        ?></p>
+    </div>
+<?php
 } elseif (count($results) > 0) {
     if (!$is_advanced_search && !empty($query)) {
         $keywords = $this->Languages->tagWithLang(
