@@ -18,88 +18,85 @@
  */
 namespace App\Model\Table;
 
-use App\Model\CurrentUser;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
+use Cake\Utility\ClassRegistry;
 
-class SuperTagsTable extends Table
+class CategoriesTreeTable extends Table
 {
     public function initialize(array $config) 
     {
-        $this->hasMany('TagsSuperTags');
-        $this->belongsToMany('SuperTags');
-
-        $this->belongsTo('Users');
+        $this->hasMany('Tags')->setForeignKey('category_id');
+        
+        $this->addBehavior('Tree');
         $this->addBehavior('Autocompletable', [
             'fields' => ['name', 'id'],
-            'order' => [],
+            'order' => []
         ]);
     }
 
     /**
-     * Select a supertag
-     *
-     * @param String    $name
-     *
-     * @return Integer
-     */
-    public function getIdFromName($name) {
-        $result = $this->find('all')
-            ->where(['name' => $name])
-            ->select(['id'])
-            ->first();
-            
-        return $result ? $result->id : null;
-    }
-
-    /**
-     * Add a supertag
+     * Add a tag category
      *
      * @param String    $name
      * @param String    $description
-     * @param int       $userId
+     * @param Integer   $parentId
      *
      * @return bool
      */
-    public function create($name, $description, $userId)
+    public function create($name, $description, $parentName)
     {
-        if (!empty($name)){
-            $exists = $this->find('all')
+        if (empty($name))
+            return false;
+        else {
+            $count = $this->find('all')
                 ->where(['name' => $name])
                 ->count();
-            if ($exists > 0)
+            if ($count > 0)
                 return false;
 
             $data = $this->newEntity([
                 'name' => $name,
                 'description' => $description,
-                'user_id' => $userId
+                'parent_id' => $this->getIdFromName($parentName)
             ]);
-            $added = $this->save($data);
-            return $added;
+            return $this->save($data);
         }
-        else
-            return false;
         
     }
 
     /**
-     * Remove a supertag
+     * Remove a tag category
      *
-     * @param int   $id
+     * @param Integer   $categoryId
      */
-    public function remove($superTagId)
+    public function remove($categoryId)
     {
-        // check whether the supertag has no children
-        $children = $this->TagsSuperTags->find('all')
-            ->where(['parent' => $superTagId])
-            ->count();
-        if ($children == 0){
-            $this->TagsSuperTags->deleteAll(['child' => $superTagId, 'child_type' => 'superTag']);
-            $this->deleteAll(['id' => $superTagId]);
-        }
+        // check this category contains no tag
+        $tagsCount = $this->Tags->find('all', [
+            'conditions' => ['category_id' => $categoryId]
+        ])->count();
+        if ($tagsCount > 0)
+            return false;
+
+        // check this category contains no other category
+        $categoriesCount = $this->find('all', [
+            'conditions' => ['parent_id' => $categoryId]
+        ])->count();
+        if ($categoriesCount > 0)
+            return false;
         
-        return ($children == 0);
+        return $this->deleteAll(['id' => $categoryId]);   
     }
+
+    public function getIdFromName($name) {
+        $result = $this->find('all')
+            ->where(['name' => $name])
+            ->select(['id'])
+            ->first();
+
+        return $result ? $result->id : null;
+    }
+
 }

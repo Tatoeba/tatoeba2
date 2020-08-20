@@ -25,40 +25,50 @@
  * @link     https://tatoeba.org
  */
 
-$this->set('title_for_layout', $this->Pages->formatTitle(__('Super tags management')));
+$this->set('title_for_layout', $this->Pages->formatTitle(__('Tags categories management')));
 echo $this->Html->css('autocompletion.css');
 $this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
 $this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
-$this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
+$this->Html->script('categoriesTree.js', ['block' => 'scriptBottom']);
 
+$messages = [
+    'createCategory' => __('This tags category could not be created (category names should be unique and cycles are forbidden).'),
+    'removeCategory' => __('This tags category could not be removed (a category should be empty to be deleted).'),
+    'attachTagToCategory' => __('This tag could not be attached to this category.'),
+    'detachTagFromCategory' => __('This tag could not be detached from its category.')
+];
 ?>
 
 <div id="main_content">
-<section class="md-whiteframe-1dp">
+    <?php
+        if (isset($this->request['?'])) {
+            $action = array_keys($this->request['?'])[0];
+            $error = ($this->request['?'][$action] == '0');
+            if (array_key_exists($action, $messages) && $error) {
+    ?>
+        <div class="warning">
+            <?= $messages[$action] ?>
+        </div>
+    <?php
+            }
+        }
+    ?>
+
+    <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= __('Create a super tag') ?></h2>
+                <h2><?= __('Create a tags category') ?></h2>
             </div>
         </md-toolbar>
         
         <div class="section md-whiteframe-1dp">
             <?php
-                if (isset($this->request['?']) && isset($this->request['?']['superTagAdded']) && $this->request['?']['superTagAdded'] == '0'){
-            ?>
-            <div class="warning">
-                <?= __('This super tag could not be created (it may already exist).') ?>
-            </div>
-            <?php
-                }
-            ?>
-
-            <?php
                 echo $this->Form->create(
-                    'CreateSuperTag', 
+                    'CreateCategory', 
                     [
                         'url' => [
-                            'controller' => 'superTags',
-                            'action' => 'createSuperTag'
+                            'controller' => 'categoriesTree',
+                            'action' => 'createCategory'
                         ],
                     ]
                 );
@@ -87,6 +97,19 @@ $this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
             </md-input-container>
 
             <md-input-container layout="column">
+                <?php
+                    echo $this->Form->input(
+                        'parentName', 
+                        [
+                            'id' => 'parentName',
+                            'label' => __('Parent (tags category)')
+                        ]
+                    );
+                ?>
+                <div id="autocompletionParent"></div>
+            </md-input-container>
+
+            <md-input-container layout="column">
                 <md-button type="submit" class="md-raised md-default">
                     <?= __('Create') ?>
                 </md-button>
@@ -100,27 +123,18 @@ $this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= __('Add a hierarchy') ?></h2>
+                <h2><?= __('Attach a tag to a category') ?></h2>
             </div>
         </md-toolbar>
         
         <div class="section md-whiteframe-1dp">
             <?php
-                if (isset($this->request['?']) && isset($this->request['?']['tagSuperTagAdded']) && $this->request['?']['tagSuperTagAdded'] == '0'){
-            ?>
-            <div class="warning">
-                <?= __('This link could not be added: parent must refer to a super tag, child must referer to the corresponding child type, and cycling hierarchies are forbidden.') ?>
-            </div>
-            <?php
-                }
-            ?>
-
-            <?php
                 echo $this->Form->create(
-                    'CreateTagSuperTag', 
+                    'AttachTag', 
                     [
                         'url' => [
-                            'action' => 'createTagSuperTag'
+                            'controller' => 'categories_tree',
+                            'action' => 'attachTagToCategory'
                         ],
                     ]
                 );
@@ -129,39 +143,27 @@ $this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
             <md-input-container layout="column">
                 <?php
                     echo $this->Form->input(
-                        'parent', 
+                        'categoryName', 
                         [
-                            'label' => __('Parent (super tag)')
+                            'id' => 'categoryName',
+                            'label' => __('Tags category')
                         ]
                     );
                 ?>
-                <div id="autocompletionParent"></div>
-            </md-input-container>
-
-            <md-input-container layout="column">
-                <?php
-                    echo $this->Form->select(
-                        'childType',
-                        [__('Tag'), __('Super tag')],
-                        [
-                            'label' => __('Child type'),
-                            'id' => 'child_type',
-                            'empty' => __('Child type (choose one)'),
-                        ]
-                    );
-                ?>
+                <div id="autocompletionCategory"></div>
             </md-input-container>
                     
             <md-input-container layout="column">
                 <?php
                     echo $this->Form->input(
-                        'child',
+                        'tagName',
                         [
-                        'label' => __('Child (tag or super tag)')
+                            'id' => 'tagName',
+                            'label' => __('Tag')
                         ]
                     );
                 ?>
-                <div id="autocompletionChild"></div>
+                <div id="autocompletionTag"></div>
             </md-input-container>
 
             <md-input-container layout="column">
@@ -175,14 +177,13 @@ $this->Html->script('tagsSuperTags.js', ['block' => 'scriptBottom']);
         </div>
     </section>
 
-    <div ng-app="app" ng-controller="TagsSuperTagsController as vm">
+    <div ng-app="app" ng-controller="CategoriesTreeController as vm">
         <?php
-            foreach ($all_super_tags_links as $parent => $children) {
-                echo $this->element('superTag', [
+            foreach ($tree as $category) {
+                echo $this->element('categories_tree', [
                     'root' => -1,
                     'depth' => 0,
-                    'parent' => $parent,
-                    'children' => $children,
+                    'category' => $category
                 ]);
             }
         ?>

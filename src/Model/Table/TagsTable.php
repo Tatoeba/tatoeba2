@@ -49,9 +49,7 @@ class TagsTable extends Table
 
     public function initialize(array $config) 
     {
-        $this->hasMany('TagsSuperTags');
-        $this->belongsToMany('SuperTags');
-
+        $this->belongsTo('CategoriesTree')->setForeignKey('category_id');
         $this->hasMany('TagsSentences');
         $this->belongsToMany('Sentences');
         $this->belongsTo('Users');
@@ -137,9 +135,6 @@ class TagsTable extends Table
             $sentenceId
         );
 
-        if ($this->getNameFromId($tagId) == null)
-            $this->TagsSuperTags->deleteAll(['child' => $tagId, 'child_type' => 'tag']);
-
         return $count;
     }
 
@@ -210,5 +205,21 @@ class TagsTable extends Table
             ->first();
 
         return $result ? $result->name : null;
+    }
+
+    public function attachToCategory($tagName, $categoryName) {
+        $query = $this->query();
+        return $query->update()
+                    ->set(['category_id' => $this->CategoriesTree->getIdFromName($categoryName)])
+                    ->where(['id' => $this->getIdFromName($tagName)])
+                    ->execute();
+    }
+
+    public function detachFromCategory($tagId) {
+        $query = $this->query();
+        return $query->update()
+                    ->set(['category_id' => null])
+                    ->where(['id' => $tagId])
+                    ->execute();
     }
 }

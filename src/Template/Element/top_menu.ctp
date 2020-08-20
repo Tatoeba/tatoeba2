@@ -71,8 +71,8 @@ $menuElements = array(
                 "controller" => "tags",
                 "action" => "view_all"
             ),
-            __('Manage supertags') => array(
-                "controller" => "tagsSuperTags",
+            __('Manage tags categories') => array(
+                "controller" => "categories_tree",
                 "action" => "manage"
             ),
             /* @translators: menu item on the top (verb) */

@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateSuperTags extends AbstractMigration
+class CreateCategoriesTree extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,24 +12,29 @@ class CreateSuperTags extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('super_tags');
+        $table = $this->table('categories_tree');
         $table->addColumn('name', 'string', [
             'default' => null,
-            'limit' => 50,
+            'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('description', 'string', [
+        $table->addColumn('description', 'text', [
             'default' => null,
-            'limit' => 500,
             'null' => true,
         ]);
-        $table->addColumn('user_id', 'integer', [
+        $table->addColumn('parent_id', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => true,
         ]);
-        $table->addColumn('created', 'datetime', [
-            'default' => 'CURRENT_TIMESTAMP',
+        $table->addColumn('lft', 'integer', [
+            'default' => null,
+            'limit' => 11,
+            'null' => true,
+        ]);
+        $table->addColumn('rght', 'integer', [
+            'default' => null,
+            'limit' => 11,
             'null' => true,
         ]);
         $table->create();
