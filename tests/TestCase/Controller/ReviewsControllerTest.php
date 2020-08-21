@@ -27,6 +27,8 @@ class ReviewsControllerTest extends IntegrationTestCase
             [ '/eng/reviews/of/admin/ok', 'contributor', true ],
             [ '/eng/reviews/of/admin/ok/cmn', null, true ],
             [ '/eng/reviews/of/admin/ok/cmn', 'contributor', true ],
+            [ '/eng/reviews/of/admin/foobar', null, '/eng/reviews/of/admin/all' ],
+            [ '/eng/reviews/of/admin/foobar/eng', null, '/eng/reviews/of/admin/all/eng' ],
         ];
     }
 
