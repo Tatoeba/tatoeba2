@@ -139,6 +139,7 @@ class SentencesController extends AppController
         $this->helpers[] = 'Lists';
         $this->helpers[] = 'Members';
         $this->helpers[] = 'Audio';
+        $this->helpers[] = 'ClickableLinks';
 
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->request->getSession()->read('random_lang_selected');
@@ -530,13 +531,20 @@ class SentencesController extends AppController
             'sphinx' => $sphinx,
         ];
 
-        $syntax_error = false;
         try {
             $results = $this->paginate($query);
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
+            $this->set(compact('results', 'real_total'));
         } catch (Exception $e) {
             $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
+            if ($syntax_error) {
+                $this->set('syntax_error', true);
+            } else {
+                $this->loadComponent('Error');
+                $error_code = $this->Error->traceError('Search error: ' . $e->getMessage());
+                $this->set('error_code', $error_code);
+            }
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));
@@ -547,8 +555,7 @@ class SentencesController extends AppController
         $ignored = $search->getIgnoredFields();
 
         $this->set($search->getData());
-        $this->set(compact('real_total', 'ignored', 'results',
-                           'syntax_error', 'searchableLists', 'vocabulary'));
+        $this->set(compact('ignored', 'searchableLists', 'vocabulary'));
         $this->set(
             'is_advanced_search',
             !is_null($this->request->getQuery('trans_to'))

@@ -163,7 +163,13 @@ class ContributionsController extends AppController
             ->contain([
                 'Users' => [
                     'fields' => ['username', 'image']
-                ]
+                ],
+                'Sentences' => [
+                    'fields' => ['text'],
+                ],
+                'Translations' => [
+                    'fields' => ['text'],
+                ],
             ])
             ->order(['Contributions.id' => 'DESC']);
 

@@ -81,6 +81,14 @@ class SentencesTable extends Table
         ]);
         $this->hasMany('SentenceComments');
         $this->hasMany('SentenceAnnotations');
+        $this->hasOne(
+            'Base',
+            [
+                'className' => 'Sentences',
+                'foreignKey' => 'id',
+                'bindingKey' => 'based_on_id',
+            ]
+        )->setConditions(['Sentences.based_on_id >' => '0']);
 
         $this->addBehavior('Duplicate');
         $this->addBehavior('Timestamp');
@@ -710,6 +718,7 @@ class SentencesTable extends Table
         if (isset($what['sentenceDetails'])) {
             $contain['Audios']['Users']['fields'][] = 'audio_license';
             $contain['Audios']['Users']['fields'][] = 'audio_attribution_url';
+            $contain['Base']['fields'] = ['text'];
         }
 
         return $contain;

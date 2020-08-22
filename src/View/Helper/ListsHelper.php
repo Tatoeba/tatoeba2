@@ -546,7 +546,7 @@ class ListsHelper extends AppHelper
             array(
                 "class" => "removeSentenceFromListButton",
                 "id" => 'deleteButton'.$listId.$sentenceId,
-                "title" => $removeSentenceFromListAlt,
+                "title" => h($removeSentenceFromListAlt),
                 "escape" => false
             )
         );
@@ -619,6 +619,7 @@ class ListsHelper extends AppHelper
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
                 $list = $list->sentences_list;
+                $listName = $this->_View->safeForAngular($list['name']);
                 if ($list['visibility'] == 'public') {
                     $class = 'public-list';
                 } else {
@@ -626,7 +627,7 @@ class ListsHelper extends AppHelper
                 }
                 echo '<li class="'.$class.'">';
                 echo $this->Html->link(
-                    $this->_View->safeForAngular($list['name']),
+                    $listName,
                     array(
                         'controller' => 'sentences_lists',
                         'action' => 'show',
@@ -638,8 +639,8 @@ class ListsHelper extends AppHelper
                          $list['editable_by'] != 'no_one')
                         || $list['editable_by'] == 'anyone')
                     {
-                       echo $this->_displayRemoveLink($list['id'], $sentenceId, $list['name']);
-                    }                   
+                       echo $this->_displayRemoveLink($list['id'], $sentenceId, $listName);
+                    }
                 }
                 echo '</li>';
             }
