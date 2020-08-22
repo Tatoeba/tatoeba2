@@ -165,9 +165,11 @@ class ContributionsController extends AppController
                     'fields' => ['username', 'image']
                 ]
             ])
-            ->limit(200)
             ->order(['Contributions.id' => 'DESC']);
 
+        $this->paginate = [
+            'limit' => 100,
+        ];
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $query->find('latest', ['maxResults' => $totalLimit]);
         $contributions = $this->paginateOrRedirect($query);
