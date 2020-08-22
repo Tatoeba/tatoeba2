@@ -91,10 +91,6 @@ class SentencesController extends AppController
         if (in_array($params['action'], $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
-
-        $this->paginate = [
-            'limit' => CurrentUser::getSetting('sentences_per_page'),
-        ];
     }
 
     /**
@@ -605,6 +601,9 @@ class SentencesController extends AppController
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
 
+        $this->paginate = [
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+        ];
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $query->find('latest', ['maxResults' => $totalLimit]);
         $allSentences = $this->paginateOrRedirect($query);
