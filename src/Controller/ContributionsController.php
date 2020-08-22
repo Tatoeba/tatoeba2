@@ -157,8 +157,8 @@ class ContributionsController extends AppController
 
         $query = $this->Contributions->find()
             ->where([
-                'user_id' => $userId,
-                'type !=' => 'license'
+                'Contributions.user_id' => $userId,
+                'Contributions.type !=' => 'license'
             ])
             ->contain([
                 'Users' => [
