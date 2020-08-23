@@ -110,7 +110,6 @@ class SentenceCommentsController extends AppController
 
         $query = $this->SentenceComments->find();
         $botsIds = Configure::read('Bots.userIds');
-        $conditions = [];
         if (!empty($botsIds)) {
             $query->where(['SentenceComments.user_id NOT IN' => $botsIds]);
         }
