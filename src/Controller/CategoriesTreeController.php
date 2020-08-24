@@ -67,7 +67,7 @@ class CategoriesTreeController extends AppController
                 'children' => []
             ]);
         }
-        $maxDepth = max($depths);
+        $maxDepth = (count($depths)) ? max($depths) : -1;
 
         for ($d=$maxDepth; $d > 0; $d--) {
             $i = 0;
