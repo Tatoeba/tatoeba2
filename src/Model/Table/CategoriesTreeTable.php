@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2010 SIMON   Allan   <allan.simon@supinfo.com>
+ * Copyright (C) 2020 Tatoeba Project
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,10 +18,7 @@
  */
 namespace App\Model\Table;
 
-use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
-use Cake\Event\Event;
-use Cake\Utility\ClassRegistry;
 
 class CategoriesTreeTable extends Table
 {
@@ -31,8 +28,7 @@ class CategoriesTreeTable extends Table
         
         $this->addBehavior('Tree');
         $this->addBehavior('Autocompletable', [
-            'fields' => ['name', 'id'],
-            'order' => []
+            'order' => ['name']
         ]);
     }
 
@@ -47,15 +43,9 @@ class CategoriesTreeTable extends Table
      */
     public function create($name, $description, $parentName)
     {
-        if (empty($name))
+        if (empty($name) || $this->exists(['name' => $name]))
             return false;
         else {
-            $count = $this->find('all')
-                ->where(['name' => $name])
-                ->count();
-            if ($count > 0)
-                return false;
-
             $data = $this->newEntity([
                 'name' => $name,
                 'description' => $description,
@@ -74,17 +64,11 @@ class CategoriesTreeTable extends Table
     public function remove($categoryId)
     {
         // check this category contains no tag
-        $tagsCount = $this->Tags->find('all', [
-            'conditions' => ['category_id' => $categoryId]
-        ])->count();
-        if ($tagsCount > 0)
+        if ($this->Tags->exists(['category_id' => $categoryId]))
             return false;
 
         // check this category contains no other category
-        $categoriesCount = $this->find('all', [
-            'conditions' => ['parent_id' => $categoryId]
-        ])->count();
-        if ($categoriesCount > 0)
+        if ($this->exists(['parent_id' => $categoryId]))
             return false;
         
         return $this->deleteAll(['id' => $categoryId]);   

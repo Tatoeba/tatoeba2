@@ -55,7 +55,10 @@ class TagsTable extends Table
         $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Autocompletable');
+        $this->addBehavior('Autocompletable', [
+            'fields' => ['id', 'name', 'nbrOfSentences'],
+            'order' => ['nbrOfSentences' => 'DESC']
+        ]);
     }
 
     public function beforeMarshal($event, $data, $options)

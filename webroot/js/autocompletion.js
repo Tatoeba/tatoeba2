@@ -23,7 +23,7 @@ class AutocompleteBox {
 
         this.currentSuggestPosition = -1;
         this.countBeforeRequest = 0;
-        this. suggestLength = 0;
+        this.suggestLength = 0;
         this.previousText = '';
         this.isSuggestListActive = false;
 
@@ -110,7 +110,7 @@ class AutocompleteBox {
         var that = this;
         if (tag != this.previousText) {
             $.get(
-                this.url + tag,
+                this.url + encodeURIComponent(tag),
                 function(data) {
                     that.suggestShowResults(data);
                 }

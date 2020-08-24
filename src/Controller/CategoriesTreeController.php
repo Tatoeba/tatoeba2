@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2010 Allan SIMON <allan.simon@supinfo.com>
+ * Copyright (C) 2020 Tatoeba Project
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,8 +19,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
-use App\Model\CurrentUser;
 
 
 class CategoriesTreeController extends AppController
@@ -56,9 +54,7 @@ class CategoriesTreeController extends AppController
         $tree = [];
         $depths = [];
         foreach ($treeList as $key => $value) {
-            $d = 0;
-            while ($d < strlen($value) && $value[$d] == '_')
-                $d++;
+            $d = strspn($value, '_');
             array_push($depths, $d);
 
             array_push($tree, [

@@ -40,9 +40,9 @@ class AutocompletableBehavior extends Behavior
     protected $_defaultConfig = [
         'implementedMethods' =>
             ['Autocomplete' => 'Autocomplete'],
-        'index' => ['name' => 'name', 'type' => 'string'],
-        'fields' => ['name', 'id', 'nbrOfSentences'],
-        'order' => ['nbrOfSentences' => 'DESC'],
+        'index' => 'name',
+        'fields' => ['id', 'name'],
+        'order' => [],
         'limit' => 10
     ];
 
@@ -58,21 +58,15 @@ class AutocompletableBehavior extends Behavior
     public function Autocomplete($search)
     {
         $query = $this->getTable()->find();
-        $query->select($this->config('fields'));
+        $query->select($this->getConfig('fields'));
 
         if (!empty($search)) {
             $pattern = str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $search).'%';
-            $query->where([$this->config('index')['name'].' LIKE :search'])
-                ->bind(':search', $pattern, $this->config('index')['type']);
+            $query->where(["{$this->getConfig('index')} LIKE" => $pattern]);
         }
 
-        if (count($this->config('order'))) {
-            $query->order($this->config('order'));
-        }
-    
-        if ($this->config('limit') > 0) {
-            $query->limit($this->config('limit'));
-        }
+        $query->order($this->getConfig('order'));
+        $query->limit($this->getConfig('limit'));
 
         return $query->all();
     }
