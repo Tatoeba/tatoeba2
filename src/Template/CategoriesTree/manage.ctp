@@ -49,18 +49,18 @@ $messages = [
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= __('Create a tags category') ?></h2>
+                <h2><?= __('Create or edit a tags category') ?></h2>
             </div>
         </md-toolbar>
         
         <div class="section md-whiteframe-1dp">
             <?php
                 echo $this->Form->create(
-                    'CreateCategory', 
+                    'CreateOrEditCategory', 
                     [
                         'url' => [
                             'controller' => 'categoriesTree',
-                            'action' => 'createCategory'
+                            'action' => 'createOrEditCategory'
                         ],
                     ]
                 );
@@ -103,7 +103,7 @@ $messages = [
 
             <md-input-container layout="column">
                 <md-button type="submit" class="md-raised md-default">
-                    <?= __('Create') ?>
+                    <?= __('Create or edit') ?>
                 </md-button>
             </md-input-container>
             <?php
@@ -135,19 +135,6 @@ $messages = [
             <md-input-container layout="column">
                 <?php
                     echo $this->Form->input(
-                        'categoryName', 
-                        [
-                            'id' => 'categoryName',
-                            'label' => __('Tags category')
-                        ]
-                    );
-                ?>
-                <div id="autocompletionCategory"></div>
-            </md-input-container>
-                    
-            <md-input-container layout="column">
-                <?php
-                    echo $this->Form->input(
                         'tagName',
                         [
                             'id' => 'tagName',
@@ -156,6 +143,19 @@ $messages = [
                     );
                 ?>
                 <div id="autocompletionTag"></div>
+            </md-input-container>
+
+            <md-input-container layout="column">
+                <?php
+                    echo $this->Form->input(
+                        'categoryName', 
+                        [
+                            'id' => 'categoryName',
+                            'label' => __('Tags category')
+                        ]
+                    );
+                ?>
+                <div id="autocompletionCategory"></div>
             </md-input-container>
 
             <md-input-container layout="column">

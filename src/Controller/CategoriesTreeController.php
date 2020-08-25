@@ -34,61 +34,38 @@ class CategoriesTreeController extends AppController
     public $helpers = ['Pagination'];
 
     public function manage(){
-        $tags = [];
         $this->loadModel('Tags');
-        foreach ($this->Tags->find('all')->select(['id', 'name', 'nbrOfSentences', 'category_id']) as $value) {
-            $category = ($value['category_id'] == null) ? -1 : $value['category_id'];
+        $tags = [];
+        $tagList = $this->Tags->find('all')
+            ->select(['id', 'name', 'nbrOfSentences', 'category_id'])
+            ->order(['name']);
+        foreach ($tagList as $tag) {
+            $category = ($tag['category_id'] == null) ? -1 : $tag['category_id'];
             if (!array_key_exists($category, $tags)) {
                 $tags[$category] = [];
             }
             array_push($tags[$category], [
-                'id' => $value['id'],
-                'name' => $value['name'], 
-                'nbrOfSentences' => $value['nbrOfSentences']
+                'id' => $tag['id'],
+                'name' => $tag['name'], 
+                'nbrOfSentences' => $tag['nbrOfSentences']
             ]);
             
         }
-
-        $treeList = $this->CategoriesTree->find('treeList');
-
-        $tree = [];
-        $depths = [];
-        foreach ($treeList as $key => $value) {
-            $d = strspn($value, '_');
-            array_push($depths, $d);
-
-            array_push($tree, [
-                'id' => $key,
-                'name' => substr($value, $d),
-                'children' => []
-            ]);
-        }
-        $maxDepth = (count($depths)) ? max($depths) : -1;
-
-        for ($d=$maxDepth; $d > 0; $d--) {
-            $i = 0;
-            while ($i < sizeof($tree)) {
-                if ($i < sizeof($depths) && $depths[$i] == $d) {
-                    array_push($tree[$i-1]['children'], $tree[$i]);
-                    unset($tree[$i]);
-                    unset($depths[$i]);
-                    $tree = array_values($tree);
-                    $depths = array_values($depths);
-                } else
-                    $i++;
-            }
-        }
+        
+        $tree = $this->CategoriesTree->find('threaded', [
+            'order' => 'name'
+        ]);
 
         $this->set('tags', $tags);
         $this->set('tree', $tree);
     }
 
-    public function createCategory() {
+    public function createorEditCategory() {
         $name = $this->request->data('name');
         $description = $this->request->data('description');
         $parentName = $this->request->data('parentName');
 
-        $res = $this->CategoriesTree->create($name, $description, $parentName);
+        $res = $this->CategoriesTree->createOrEdit($name, $description, $parentName);
 
         return $this->redirect([
             'controller' => 'categories_tree',

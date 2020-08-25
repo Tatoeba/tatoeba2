@@ -41,9 +41,9 @@ class CategoriesTreeTable extends Table
      *
      * @return bool
      */
-    public function create($name, $description, $parentName)
+    public function createOrEdit($name, $description, $parentName)
     {
-        if (empty($name) || $this->exists(['name' => $name]))
+        if (empty($name))
             return false;
         else {
             $data = $this->newEntity([
@@ -51,6 +51,12 @@ class CategoriesTreeTable extends Table
                 'description' => $description,
                 'parent_id' => $this->getIdFromName($parentName)
             ]);
+
+            $query = $this->find('all')->select(['id'])->where(['name' => $name]);
+            if (!$query->isEmpty()) {
+                $id = $query->first()['id'];
+                $data->set('id', $id);
+            }
             return $this->save($data);
         }
         
