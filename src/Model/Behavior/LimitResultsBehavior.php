@@ -40,7 +40,9 @@ class LimitResultsBehavior extends Behavior
             $clause = $query->clause($clause);
             if ($clause) {
                 $clause->traverse(function($c) use (&$fields) {
-                    $fields[] = $c->getField();
+                    if (in_array('Cake\Database\Expression\FieldTrait', class_uses($c))) {
+                        $fields[] = $c->getField();
+                    }
                 });
             }
         }
