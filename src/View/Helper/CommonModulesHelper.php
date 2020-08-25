@@ -70,7 +70,7 @@ class CommonModulesHelper extends AppHelper
             // language of the interface
             $path .= $this->request->getParam('lang') .'/';
             $path .= Inflector::delimit($this->request->getParam('controller')).'/';
-            $path .= $this->request->getParam('action').'/';
+            $path .= $this->request->getParam('action');
 
             $params = $this->request->getParam('pass');
             $numberOfParams = count($params);
@@ -106,7 +106,7 @@ class CommonModulesHelper extends AppHelper
                         if (this.value == 'und') {
                             window.location.href = '$path' + '$query';
                         } else {
-                            window.location.href = '$path' + this.value + '$query';
+                            window.location.href = '$path/' + this.value + '$query';
                         }",
                     // the if is to avoid a duplicate page (with and without "und")
                     "class" => "language-selector",
