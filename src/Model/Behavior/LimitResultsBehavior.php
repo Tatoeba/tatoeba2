@@ -23,18 +23,7 @@ use Cake\ORM\Query;
 
 class LimitResultsBehavior extends Behavior
 {
-    /**
-     * Calculate minimal associations for a query
-     *
-     * Helper function for paginateLatest which filters the associations to
-     * load for the given query. Only the associations mentioned in the 'where'
-     * part are necessary for calculating the lowest id we need.
-     *
-     * @param array $query The query to calculate from
-     *
-     * @return array
-     **/
-    private function getMinimalContain(Query $query) {
+    private function getNeededAssociations(Query $query) {
         $fields = [];
         foreach (['where'] as $clause) {
             $clause = $query->clause($clause);
@@ -46,7 +35,8 @@ class LimitResultsBehavior extends Behavior
                 });
             }
         }
-        $neededAssociations = array_map(function ($key) {
+
+        return array_map(function ($key) {
             $splitPos = strpos($key, '.');
             if ($splitPos) {
                 return substr($key, 0, $splitPos);
@@ -54,7 +44,21 @@ class LimitResultsBehavior extends Behavior
                 return '';
             }
         }, $fields);
+    }
 
+    /**
+     * Calculate minimal associations for a query
+     *
+     * Helper function for findLatest which filters the associations to
+     * load for the given query. Only the associations mentioned in the 'where'
+     * part are necessary for calculating the lowest id we need.
+     *
+     * @param array $query The query to calculate from
+     *
+     * @return array
+     **/
+    private function getMinimalContain(Query $query) {
+        $neededAssociations = $this->getNeededAssociations($query);
         $contain = $query->getEagerLoader()->getContain();
         return array_filter(
             $contain,
@@ -62,6 +66,20 @@ class LimitResultsBehavior extends Behavior
                 return in_array($key, $neededAssociations);
             },
             ARRAY_FILTER_USE_KEY);
+    }
+
+    /**
+     * Removes any LEFT JOIN clause to tables that are not mentioned
+     * in the 'where' part of the query.
+     */
+    private function removeLeftJoins(Query $query) {
+        $neededAssociations = $this->getNeededAssociations($query);
+        foreach ($query->clause('join') as $name => $join) {
+            if ($join['type'] == 'LEFT'
+                && !in_array($join['alias'], $neededAssociations)) {
+                $query->removeJoin($name);
+            }
+        }
     }
 
     /**
@@ -78,6 +96,7 @@ class LimitResultsBehavior extends Behavior
         $contain = $this->getMinimalContain($query);
 
         $internalQuery = clone $query;
+        $this->removeLeftJoins($internalQuery);
         $lastId = $internalQuery->find('list')
             ->select([$alias . '.id'], true)
             ->contain($contain, true)

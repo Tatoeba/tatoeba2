@@ -98,4 +98,43 @@ class LimitResultsBehaviorTest extends TestCase
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
+
+    public function testFindLatest_withLeftJoinWithoutWhere()
+    {
+        $this->query
+             ->join([
+                 'table' => 'users',
+                 'alias' => 'Users',
+                 'type' => 'LEFT',
+                 'conditions' => ['Users.id = Sentences.user_id'],
+             ]);
+
+
+        $this->query
+             ->expects($this->once())
+             ->method('where')
+             ->with(['Sentences.id >=' => 38]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
+    public function testFindLatest_withLeftJoinWithWhere()
+    {
+        $this->query
+             ->join([
+                 'table' => 'users',
+                 'alias' => 'Users',
+                 'type' => 'LEFT',
+                 'conditions' => ['Users.id = Sentences.user_id'],
+             ])
+             ->where(['Users.role' => 'contributor']);
+
+
+        $this->query
+             ->expects($this->once())
+             ->method('where')
+             ->with(['Sentences.id >=' => 11]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
 }
