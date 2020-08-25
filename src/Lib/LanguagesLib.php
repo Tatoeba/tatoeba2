@@ -609,6 +609,7 @@ class LanguagesLib
                 'crk' => __d('languages', 'Plains Cree'),
                 'yua' => __d('languages', 'Yucatec Maya'),
                 'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
+                'ayl' => __d('languages', 'Libyan Arabic'),
             );
         }
         return $languages;
@@ -677,8 +678,9 @@ class LanguagesLib
             "phn",
             "jpa",
             "bal",
-            'hbo',
-            "ajp"
+            "hbo",
+            "ajp",
+            "ayl',
         );
 
         $autoLangs = array(
