@@ -73,6 +73,19 @@ class LimitResultsBehaviorTest extends TestCase
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
 
+    public function testFindLatest_whereOnMainTableWithoutResults()
+    {
+        $this->query
+             ->where(['Sentences.id' => 0]);
+
+        $this->query
+             ->expects($this->once())
+             ->method('where')
+             ->with(['Sentences.id >=' => null]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
     public function testFindLatest_whereIsNullOnMainTable()
     {
         $this->query
