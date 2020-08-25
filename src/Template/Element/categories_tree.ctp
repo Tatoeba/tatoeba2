@@ -20,7 +20,7 @@ $deleteUrl = $this->Url->build([
         <md-card-actions layout="row" layout-align="end center">
             <md-card-icon-actions>
                 <span>
-                <?= $categoryName ?>                   
+                <?= $this->safeForAngular($categoryName) ?>                   
                     <!-- Delete tags category -->
                     <?php
                         if (!count($categoryChildren) && !count($categoryTags)) {
@@ -38,11 +38,11 @@ $deleteUrl = $this->Url->build([
                 if (count($categoryChildren) > 0) {
             ?>
                 <md-button ng-click="vm.expandOrCollapse(<?= $categoryId ?>)" ng-cloak>
-                    <md-icon>{{vm.hiddenReplies[<?= $categoryId ?>] ? 'expand_more' : 'expand_less'}}</md-icon>
-                    <span ng-if="!vm.hiddenReplies[<?= $categoryId ?>]">
+                    <md-icon>{{vm.displayedBranches[<?= $categoryId ?>] ? 'expand_less' : 'expand_more'}}</md-icon>
+                    <span ng-if="vm.displayedBranches[<?= $categoryId ?>]">
                         <?= __('hide branch') ?>
                     </span>
-                    <span ng-if="vm.hiddenReplies[<?= $categoryId ?>]">
+                    <span ng-if="!vm.displayedBranches[<?= $categoryId ?>]">
                         <?= __('show branch') ?>
                     </span>
                 </md-button>
@@ -61,7 +61,7 @@ $deleteUrl = $this->Url->build([
                 ]);
         ?>
             <span class='tag'>
-                <?= $tag['name'].'('.$tag['nbrOfSentences'].')' ?>
+                <?= $this->safeForAngular($tag['name']).' ('.$tag['nbrOfSentences'].')' ?>
                 <md-button class="md-icon-button" aria-label="<?= __('detach') ?>" ng-href="<?= $unbindUrl ?>">
                     <md-icon>reply</md-icon>
                     <md-tooltip><?= __('Detach') ?></md-tooltip>
@@ -75,7 +75,7 @@ $deleteUrl = $this->Url->build([
         <?php
             if (count($categoryChildren) > 0) {
         ?>
-            <div ng-if="!vm.hiddenReplies[<?= $categoryId ?>]">
+            <div ng-if="vm.displayedBranches[<?= $categoryId ?>]">
                 <?php
                     foreach ($categoryChildren as $subcategory) {
                         echo $this->element('categories_tree', [

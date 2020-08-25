@@ -74,7 +74,7 @@ class AutocompleteBox {
     }
 
     changeActiveSuggestion(offset) {
-        $("#suggestItem" + this.currentSuggestPosition).removeClass("selected");
+        $("#suggestedItem" + this.currentSuggestPosition).removeClass("selected");
         this.currentSuggestPosition = (this.currentSuggestPosition + offset) % this.suggestLength;
         if (this.currentSuggestPosition < 0) {
             this.currentSuggestPosition = this.suggestLength - 1;
