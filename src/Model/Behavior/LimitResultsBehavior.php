@@ -27,8 +27,8 @@ class LimitResultsBehavior extends Behavior
      * Calculate minimal associations for a query
      *
      * Helper function for paginateLatest which filters the associations to
-     * load for the given query. Only the associations mentioned in the 'select'
-     * and 'order' part are necessary for calculating the lowest id we need.
+     * load for the given query. Only the associations mentioned in the 'where'
+     * part are necessary for calculating the lowest id we need.
      *
      * @param array $query The query to calculate from
      *
@@ -36,7 +36,7 @@ class LimitResultsBehavior extends Behavior
      **/
     private function getMinimalContain(Query $query) {
         $fields = [];
-        foreach (['where', 'order'] as $clause) {
+        foreach (['where'] as $clause) {
             $clause = $query->clause($clause);
             if ($clause) {
                 $clause->traverse(function($c) use (&$fields) {
