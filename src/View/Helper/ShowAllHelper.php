@@ -27,7 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-
+use Cake\Utility\Inflector;
 
 
 /**
@@ -60,7 +60,7 @@ class ShowAllHelper extends AppHelper
         $path ='/';
         // language of the interface
         $path .= $this->request->getParam('lang') .'/';
-        $path .= $this->request->getParam('controller').'/';
+        $path .= Inflector::delimit($this->request->getParam('controller')).'/';
         $path .= $this->request->getParam('action');
         return $path;
     }
