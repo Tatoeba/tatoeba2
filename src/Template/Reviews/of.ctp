@@ -34,8 +34,19 @@ $categories = array(
     'outdated' => ['keyboard_arrow_right', __("Outdated reviews")]
 );
 
-if (empty($correctnessLabel) || !in_array($correctnessLabel, $categories)) {
-    $category = $categories['all'][1];
+$categoriesWithLang = [
+    'ok' => __('Sentences in {language} marked as "OK"'),
+    'unsure' => __('Sentences in {language} marked as "unsure"'),
+    'not-ok' => __('Sentences in {language} marked as "not OK"'),
+    'all' => __('All sentences in {language}'),
+    'outdated' => __('Outdated reviews for sentences in {language}')
+];
+
+if ($lang) {
+    $category = format(
+        $categoriesWithLang[$correctnessLabel],
+        ['language' => $this->Languages->codeToNameToFormat($lang)]
+    );
 } else {
     $category = $categories[$correctnessLabel][1];
 }
@@ -87,6 +98,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         }
         ?>
     </md-list>
+
+    <?php $this->CommonModules->createFilterByLangMod(3); ?>
 </div>
 <?php endif; ?>
 

@@ -61,7 +61,8 @@ $menu = [
         'url' => [
             'controller' => 'reviews',
             'action' => 'of',
-            $username
+            $username,
+            'all',
         ]
     ],
     [
