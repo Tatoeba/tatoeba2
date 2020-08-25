@@ -62,8 +62,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         </div>
         <?php
             if ($vocabulary->count() == 0) {
-                $noRequestsMessage = __("There are no requests.");
-                echo "<div class='empty-info-text'> $noRequestsMessage </div>";
+                echo $this->Html->div(
+                    'empty-info-text',
+                    __('There are no requests.')
+                );
             }
         ?>
 
