@@ -610,6 +610,7 @@ class LanguagesLib
                 'yua' => __d('languages', 'Yucatec Maya'),
                 'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
                 'mni' => __d('languages', 'Meitei'),
+                'ood' => __d('languages', "O'odham"),
             );
         }
         return $languages;
