@@ -611,6 +611,7 @@ class LanguagesLib
                 'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
                 'mni' => __d('languages', 'Meitei'),
                 'ayl' => __d('languages', 'Libyan Arabic'),
+                'ood' => __d('languages', "O'odham"),
             );
         }
         return $languages;
