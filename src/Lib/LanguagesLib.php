@@ -680,7 +680,7 @@ class LanguagesLib
             "bal",
             "hbo",
             "ajp",
-            "ayl',
+            "ayl",
         );
 
         $autoLangs = array(
