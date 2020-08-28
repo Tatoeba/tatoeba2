@@ -26,7 +26,7 @@
                    xlink:href="" />
           </svg>
           <span class="lang-name">{{lang.name}}</span>
-      </a>
+        </a>
       </li>
     </ul>
   </div>
