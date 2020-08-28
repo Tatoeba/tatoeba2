@@ -4,10 +4,11 @@
     angular
         .module('app')
         .controller('WallController', [
-            '$http', '$location', '$anchorScroll', WallController
+            '$http', '$location', '$anchorScroll', 'storageService',
+            WallController
         ]);
 
-    function WallController($http, $location, $anchorScroll) {
+    function WallController($http, $location, $anchorScroll, storageService) {
         var vm = this;
 
         vm.showForm = showForm;
@@ -55,6 +56,7 @@
                 function(response) {
                     vm.isSaving[id] = false;
                     vm.savedReplies[id] = response.data;
+                    storageService.remove('reply-input-' + id);
                 }
             );
         }

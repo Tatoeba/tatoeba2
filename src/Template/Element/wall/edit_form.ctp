@@ -1,4 +1,6 @@
 <?php
+echo $this->Html->script('services/storage.srv.js', ['block' => 'scriptBottom']);
+echo $this->Html->script('directives/resumable.dir.js', ['block' => 'scriptBottom']);
 $user = $message->user;
 $username = $user['username'];
 $avatar = $user['image'];
@@ -37,7 +39,10 @@ $cancelUrl = $this->Url->build([
         <?php
         $message->content = $this->safeForAngular($message->content);
         echo $this->Form->create($message);
-        echo $this->Form->textarea('content');
+        echo $this->Form->textarea('content', [
+            'id' => "edit-message-{$message->id}",
+            'resumable' => '',
+        ]);
         ?>
 
         <div layout="row" layout-align="end center" layout-padding>

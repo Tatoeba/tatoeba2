@@ -39,6 +39,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__('Thread #{number}'), array('number' => $message->id))
 ));
 
+echo $this->Html->script('services/storage.srv.js', ['block' => 'scriptBottom']);
+echo $this->Html->script('directives/resumable.dir.js', ['block' => 'scriptBottom']);
 echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
 ?>
 <div id="annexe_content">

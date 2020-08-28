@@ -35,9 +35,11 @@ $avatar = $user['image'];
 
         <?php
         echo $this->Form->textarea('content', [
+            'id' => 'new-message',
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
+            'resumable' => '',
         ]);
         ?>
 

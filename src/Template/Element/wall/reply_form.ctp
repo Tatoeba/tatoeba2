@@ -57,7 +57,8 @@ $editUrl = $this->Url->build([
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
-            'ng-model' => 'vm.replies['.$parentId.']'
+            'ng-model' => 'vm.replies['.$parentId.']',
+            'resumable' => '',
         ]);
         ?>
 

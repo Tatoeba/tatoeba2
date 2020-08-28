@@ -31,6 +31,7 @@ use App\Event\NotificationListener;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Http\Cookie\Cookie;
 
 /**
  * Controller for the wall.
@@ -142,6 +143,12 @@ class WallController extends AppController
             }
         }
 
+        $submittedCookie = new Cookie(
+            'submitted',
+            'new-message@wall/index',
+        );
+        $this->response = $this->response->withCookie($submittedCookie);
+
         $this->redirect(
             array('action'=>'index')
         );
@@ -198,6 +205,11 @@ class WallController extends AppController
             $savedMessage = $this->Wall->save($message);
             if ($savedMessage) {
                 $this->Flash->set(__('Message saved.'));
+                $submittedCookie = new Cookie(
+                    'submitted',
+                    "edit-message-{$messageId}@wall/edit/{$messageId}",
+                );
+                $this->response = $this->response->withCookie($submittedCookie);
                 $this->redirect([
                     'action' => 'show_message',
                     $messageId,
