@@ -1,5 +1,5 @@
 <div id="logo-container">
-  <img ng-cloak class="centered-logo" src="/img/tatoeba.svg" width="200px" />
+  <img ng-cloak class="centered-logo" src="/img/tatoeba.svg" width="200" />
 </div>
 
 <div ng-cloak class="languages-around-logo">
