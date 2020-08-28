@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-
+$this->AssetCompress->script('wall.js', ['block' => 'scriptBottom']);
 $title = format(__("Edit message {number}"), array('number' => $message->id));
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>

@@ -1,6 +1,4 @@
 <?php
-echo $this->Html->script('services/storage.srv.js', ['block' => 'scriptBottom']);
-echo $this->Html->script('directives/resumable.dir.js', ['block' => 'scriptBottom']);
 $user = $message->user;
 $username = $user['username'];
 $avatar = $user['image'];
