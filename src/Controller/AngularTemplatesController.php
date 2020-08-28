@@ -17,4 +17,8 @@ class AngularTemplatesController extends AppController
     public function interface_language()
     {
     }
+
+    public function language_dropdown()
+    {
+    }
 }

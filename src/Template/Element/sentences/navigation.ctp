@@ -46,8 +46,9 @@ $sentenceUrl = $this->Url->build([
             'language_dropdown', 
             array(
                 'name' => 'lang',
-                'selectedLanguage' => $selectedLanguage,
+                'initialSelection' => $selectedLanguage,
                 'languages' => $this->Languages->getSearchableLanguagesArray(),
+                'onSelectedLanguageChange' => 'vm.onSelectedLanguageChange(language)',
             )
         );
         ?>

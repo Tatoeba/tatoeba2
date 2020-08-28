@@ -27,38 +27,36 @@
 
     function languageDropdown() {
         return {
-            scope: true,
+            scope: {
+                inputId: '@?',
+                name: '@',
+                languagesJson: '<',
+                selectedLanguage: '=?',
+                onSelectedLanguageChange: '&?',
+                initialSelection: '@?',
+                placeholder: '@',
+            },
+            templateUrl: get_tatoeba_root_url() + '/angular_templates/language_dropdown',
             controllerAs: 'vm',
             controller: ['$scope', function($scope) {
                 var vm = this;
                 var languages = [];
-                var dropdownName = '';
 
-                vm.previousSelectedItem = languages[0];
-                vm.selectedItem = null;
+                vm.previousSelectedItem = null;
                 vm.searchText = '';
 
-                vm.init = init;
+                vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
-                vm.onSelectedItemChange = onSelectedItemChange;
                 vm.onSearchTextChange = onSearchTextChange;
                 vm.onBlur = onBlur;
                 vm.onFocus = onFocus;
 
                 /////////////////////////////////////////////////////////////////////////
 
-                $scope.$on('setLang', function(event, data){
-                    if (data.dropdownName && data.dropdownName === dropdownName) {
-                        setLang(data.lang);
-                    }
-                });
-
-                /////////////////////////////////////////////////////////////////////////
-
-                function init(data, selectedLang, ourDropDownName) {
+                function $onInit() {
+                    var data = $scope.languagesJson;
                     var isPriority;
-                    dropdownName = ourDropDownName;
-                    
+
                     Object.keys(data).forEach(function (key1) {
                         if (typeof data[key1] === 'object'){
                             var items = data[key1];
@@ -71,8 +69,8 @@
                         }
                     });
 
-                    if (selectedLang) {
-                        setLang(selectedLang);
+                    if ($scope.initialSelection) {
+                        setLang($scope.initialSelection);
                     }
                 }
 
@@ -92,27 +90,12 @@
                     }
                 }
 
-                function onSelectedItemChange(item) {
-                    if (vm.selectedItem) {
-                        $scope.$emit('languageChange', {
-                            langName: vm.selectedItem.name,
-                            dropdownName: dropdownName,
-                            lang: vm.selectedItem.code
-                        });
-                    }            
-                }
-
                 function setLang(lang) {
                     var newLang = languages.find(function (item) {
                         return item.code === lang;
                     });
                     if (newLang) {
-                        vm.selectedItem = newLang;
-                        $scope.$emit('languageChange', {
-                            langName: newLang.name ,
-                            dropdownName: dropdownName,
-                            lang: lang
-                        });
+                        $scope.selectedLanguage = newLang;
                     }
                 }
 
@@ -121,14 +104,14 @@
                 }
 
                 function onBlur() {
-                    if (!vm.selectedItem) {
-                        vm.selectedItem = vm.previousSelectedItem;
+                    if (!$scope.selectedLanguage) {
+                        $scope.selectedLanguage = vm.previousSelectedItem;
                     }
                 }
 
                 function onFocus() {
-                    if (vm.selectedItem) {
-                        vm.previousSelectedItem = vm.selectedItem;
+                    if ($scope.selectedLanguage) {
+                        vm.previousSelectedItem = $scope.selectedLanguage;
                         vm.searchText = '';
                     }
                 }
