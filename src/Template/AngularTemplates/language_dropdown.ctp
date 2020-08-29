@@ -6,7 +6,7 @@
         md-input-id="{{inputId}}"
         md-menu-class="language-dropdown"
         md-selected-item="selectedLanguage"
-        md-selected-item-change="onSelectedLanguageChange({'language': language})"
+        md-selected-item-change="vm.onSelectedLanguageChange()"
         md-search-text="vm.searchText"
         md-search-text-change="vm.onSearchTextChange()"
         md-items="language in vm.querySearch(vm.searchText)"

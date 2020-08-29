@@ -38,7 +38,7 @@
             },
             templateUrl: get_tatoeba_root_url() + '/angular_templates/language_dropdown',
             controllerAs: 'vm',
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', '$window', function($scope, $window) {
                 var vm = this;
                 var languages = [];
 
@@ -47,6 +47,7 @@
 
                 vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
+                vm.onSelectedLanguageChange = onSelectedLanguageChange;
                 vm.onSearchTextChange = onSearchTextChange;
                 vm.onBlur = onBlur;
                 vm.onFocus = onFocus;
@@ -96,6 +97,15 @@
                     });
                     if (newLang) {
                         $scope.selectedLanguage = newLang;
+                    }
+                }
+
+                function onSelectedLanguageChange() {
+                    if ($scope.selectedLanguage && $scope.onSelectedLanguageChange) {
+                        $scope.onSelectedLanguageChange({
+                            'window': $window,
+                            'language': $scope.selectedLanguage,
+                        });
                     }
                 }
 

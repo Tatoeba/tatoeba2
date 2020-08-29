@@ -78,12 +78,12 @@ class ShowAllHelper extends AppHelper
     private function _generateJavascriptUrl($params, $position)
     {
         $baseUrl = $this->_generateBaseUrl();
-        $params[$position] = 'this.value' ;
+        $params[$position] = 'language.code' ;
 
         $paramString = '';
         foreach ($params as $param) {
-            if ($param == 'this.value') {
-                $paramString .= "+'/'+ this.value";
+            if ($param == 'language.code') {
+                $paramString .= "+'/'+ language.code";
             } else {
                 $paramString .= ("+'/'+'$param'");
             }
@@ -107,15 +107,13 @@ class ShowAllHelper extends AppHelper
         $params = $this->request->getParam('pass');
         $javascriptUrl = $this->_generateJavascriptUrl($params, $position);
 
-        return $this->Form->select(
-            'filterLanguageSelect',
-            $langs,
+        return $this->_View->element(
+            'language_dropdown',
             array(
-                "value" => $selectedLanguage,
-                "id" => "",
-                "onchange" => "window.location.href = $javascriptUrl",
-                "class" => count($langs) > 2 ? 'language-selector' : null,
-                "empty" => false
+                'name' => 'filterLanguageSelect',
+                'initialSelection' => $selectedLanguage,
+                'languages' => $langs,
+                'onSelectedLanguageChange' => "window.location.href = $javascriptUrl",
             )
         );
 
