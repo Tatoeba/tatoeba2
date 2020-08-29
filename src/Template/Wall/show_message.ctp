@@ -35,7 +35,7 @@
  * @link     https://tatoeba.org
  */
 
-echo $this->AssetCompress->script('wall.js', ['block' => 'scriptBottom']);
+$this->AssetCompress->script('wall.js', ['block' => 'scriptBottom']);
 $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__('Thread #{number}'), array('number' => $message->id))
 ));

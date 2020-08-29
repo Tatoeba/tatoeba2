@@ -35,7 +35,7 @@
  * @link     https://tatoeba.org
  */
 
-echo $this->AssetCompress->script('wall.js', ['block' => 'scriptBottom']);
+$this->AssetCompress->script('wall.js', ['block' => 'scriptBottom']);
 /* @translators: title of the Wall page */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Wall')));
 ?>
