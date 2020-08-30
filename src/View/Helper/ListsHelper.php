@@ -307,17 +307,15 @@ class ListsHelper extends AppHelper
         }
         $path .= 'sentences_lists/show/'. $listId.'/';
 
-        // TODO onChange should be defined in a separate js file
-        echo $this->Form->select(
-            "translationLangChoice",
-            $this->Languages->languagesArrayShowTranslationsIn(),
+        // TODO onSelectedLanguageChange should be defined in a separate js file
+        echo $this->_View->element(
+            'language_dropdown',
             array(
-                "value" => $translationsLang,
-                "onchange" => "window.location.href = '$path' + this.value",
-                "class" => "language-selector",
-                "empty" => false
-            ),
-            false
+                'name' => 'translationLangChoice',
+                'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
+                'initialSelection' => $translationsLang,
+                'onSelectedLanguageChange' => "window.location.href = '$path' + language.code",
+            )
         );
 
 
