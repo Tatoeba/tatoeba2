@@ -35,7 +35,7 @@ if ($sentence && isset($sentence->user->username)) {
 }
 $sentenceId = $comment->sentence_id;
 $sentenceLink = $this->Html->link(
-    '#'.$sentenceId,
+    $this->Pages->formatSentenceIdWithSharp($sentenceId),
     array(
         'controller' => 'sentences',
         'action' => 'show',
