@@ -125,16 +125,14 @@ $langsTo = $this->Languages->profileLanguagesArray(false, [
                     <?php echo __('Sentences in:'); ?>
                 </label>
                 <?php
-                echo $this->Form->select(
-                    'langFrom',
-                    $langsFrom,
+                echo $this->element(
+                    'language_dropdown',
                     array(
+                        'name' => 'langFrom',
                         'id' => 'ActivityLangFrom',
-                        'value' => $currentLanguage,
-                        'class' => 'language-selector',
-                        "empty" => false
-                    ),
-                    false
+                        'languages' => $langsFrom,
+                        'initialSelection' => $currentLanguage,
+                    )
                 );
                 ?>
             </fieldset>
@@ -144,16 +142,14 @@ $langsTo = $this->Languages->profileLanguagesArray(false, [
                     <?php echo __('Not directly translated into:'); ?>
                 </label>
                 <?php
-                echo $this->Form->select(
-                    'langTo',
-                    $langsTo,
+                echo $this->element(
+                    'language_dropdown',
                     array(
+                        'name' => 'langTo',
                         'id' => 'ActivityLangTo',
-                        'value' => $notTranslatedInto,
-                        'class' => 'language-selector',
-                        "empty" => false
-                    ),
-                    false
+                        'languages' => $langsTo,
+                        'initialSelection' => $notTranslatedInto,
+                    )
                 );
                 ?>
                 <p class="hint">
