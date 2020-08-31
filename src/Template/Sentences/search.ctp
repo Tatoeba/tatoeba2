@@ -77,7 +77,11 @@ if ($ignored) {
 
 <md-toolbar class="md-hue-2" hide-xs hide-sm ng-cloak>
     <div class="md-toolbar-tools">
-        <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
+        <?php if (isset($syntax_error) || isset($error_code)): ?>
+            <h2 flex><?= __('Search error') ?></h2>
+        <?php else: ?>
+            <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
+        <?php endif; ?>
 
         <?= $this->element('sentences/expand_all_menus_button'); ?>
     </div>
@@ -89,7 +93,11 @@ if ($ignored) {
 
 <md-toolbar class="md-hue-2" hide-gt-sm ng-cloak ng-controller="SidenavController">
     <div class="md-toolbar-tools">
-        <h2 flex><?= $this->Pages->formatResultCount($this->Paginator, $real_total); ?></h2>
+        <?php if (isset($syntax_error) || isset($error_code)): ?>
+            <h2 flex><?= __('Search error') ?></h2>
+        <?php else: ?>
+            <h2 flex><?= $this->Pages->formatResultCount($this->Paginator, $real_total); ?></h2>
+        <?php endif; ?>
 
         <md-button ng-click="toggle('advanced-search')">
             <md-icon>filter_list</md-icon>
