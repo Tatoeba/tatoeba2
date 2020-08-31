@@ -29,7 +29,11 @@ class LimitResultsBehavior extends Behavior
         $clause = $query->clause('where');
         if ($clause) {
             $clause->traverse(function($c) use (&$fields) {
-                if (in_array('Cake\Database\Expression\FieldTrait', class_uses($c))) {
+                $hasFieldTrait = in_array(
+                    'Cake\Database\Expression\FieldTrait',
+                    class_uses($c)
+                );
+                if ($hasFieldTrait) {
                     $fields[] = $c->getField();
                 }
             });
