@@ -111,7 +111,6 @@ if ($ignored) {
     if (isset($syntax_error)) {
 ?>
     <div class="section">
-        <h2><?php echo __('Search error'); ?></h2>
         <p><?php
             echo format(
                 __(
@@ -126,7 +125,6 @@ if ($ignored) {
     } elseif (isset($error_code)) {
 ?>
     <div class="section">
-        <h2><?php echo __('Search error'); ?></h2>
         <p><?php
             echo format(
                 __(
