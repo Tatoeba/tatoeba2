@@ -607,6 +607,12 @@ class LanguagesLib
                 'hdn' => __d('languages', 'Northern Haida'),
                 'xqa' => __d('languages', 'Karakhanid'),
                 'crk' => __d('languages', 'Plains Cree'),
+                'yua' => __d('languages', 'Yucatec Maya'),
+                'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
+                'mni' => __d('languages', 'Meitei'),
+                'ayl' => __d('languages', 'Libyan Arabic'),
+                'ood' => __d('languages', "O'odham"),
+                'lut' => __d('languages', 'Lushootseed'),
             );
         }
         return $languages;
@@ -675,8 +681,9 @@ class LanguagesLib
             "phn",
             "jpa",
             "bal",
-            'hbo',
-            "ajp"
+            "hbo",
+            "ajp",
+            "ayl",
         );
 
         $autoLangs = array(

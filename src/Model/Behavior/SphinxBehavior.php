@@ -164,6 +164,17 @@ class SphinxBehavior extends Behavior
         return $query;
     }
 
+    public function findWithSphinx($query, $options)
+    {
+        $query
+            ->counter(function($query) {
+                return $this->getTotal();
+            })
+            ->offset(0);
+
+        return $query;
+    }
+
     public function getTotal()
     {
         return $this->_cached_result['total'];

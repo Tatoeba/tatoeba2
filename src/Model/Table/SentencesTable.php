@@ -31,7 +31,6 @@ use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Event\ContributionListener;
-use App\Event\UsersLanguagesListener;
 use App\Event\LinksListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -82,6 +81,14 @@ class SentencesTable extends Table
         ]);
         $this->hasMany('SentenceComments');
         $this->hasMany('SentenceAnnotations');
+        $this->hasOne(
+            'Base',
+            [
+                'className' => 'Sentences',
+                'foreignKey' => 'id',
+                'bindingKey' => 'based_on_id',
+            ]
+        )->setConditions(['Sentences.based_on_id >' => '0']);
 
         $this->addBehavior('Duplicate');
         $this->addBehavior('Timestamp');
@@ -91,9 +98,10 @@ class SentencesTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+        $this->addBehavior('LimitResults');
+        $this->addBehavior('NativeFinder');
 
         $this->getEventManager()->on(new ContributionListener());
-        $this->getEventManager()->on(new UsersLanguagesListener());
         $this->getEventManager()->on(new LinksListener());
     }
 
@@ -412,17 +420,14 @@ class SentencesTable extends Table
      * This allows to hide some extra fields
      * in json in a similar fashion as contain().
      */
-    public function beforeFind($event, $query, $options)
+    public function findHideFields(Query $query, array $options)
     {
-        if (isset($options['hideFields'])) {
-            $hide = $options['hideFields'];
-            return $query->formatResults(function($results) use ($hide) {
-                return $results->map(function($result) use ($hide) {
-                    return $this->applyHideFields($result, $hide);
-                });
+        $hide = $this->hideFields();
+        return $query->formatResults(function($results) use ($hide) {
+            return $results->map(function($result) use ($hide) {
+                return $this->applyHideFields($result, $hide);
             });
-        }
-        return $query;
+        });
     }
 
     private function sortOutTranslations($result, $translationLanguages) {
@@ -479,33 +484,6 @@ class SentencesTable extends Table
                 return $result;
             });
         });
-    }
-
-    public function findWithSphinx($query, $options)
-    {
-        $query
-            ->counter(function($query) {
-                return $this->getTotal();
-            })
-            ->offset(0);
-
-        return $this->findFilteredTranslations($query, $options);
-    }
-
-    /**
-     * Custom ->find('random', ...) function.
-     */
-    public function _findRandom($state, $query, $results = array())
-    {
-        if ($state == 'before') {
-            $ids = $this->getSeveralRandomIds($query['lang'], $query['number']);
-            $query['conditions'][$this->alias.'.'.$this->primaryKey] = $ids;
-            unset($query['lang']);
-            unset($query['number']);
-            return $query;
-        } else {
-            return $results;
-        }
     }
 
     /**
@@ -740,6 +718,7 @@ class SentencesTable extends Table
         if (isset($what['sentenceDetails'])) {
             $contain['Audios']['Users']['fields'][] = 'audio_license';
             $contain['Audios']['Users']['fields'][] = 'audio_attribution_url';
+            $contain['Base']['fields'] = ['text'];
         }
 
         return $contain;
@@ -768,9 +747,9 @@ class SentencesTable extends Table
 
     /**
      * Value for the hideFields finder option.
-     * See beforeFind().
+     * See findHideFields().
      */
-    public function hideFields()
+    private function hideFields()
     {
         $hideAudio = ['fields' => ['user', 'external', 'sentence_id']];
         return [
@@ -792,10 +771,10 @@ class SentencesTable extends Table
     public function getSentenceWith($id, $what = [], $translationLang = null)
     {
         return $this->find('filteredTranslations', [
-                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                'hideFields' => $this->hideFields(),
                 'translationLang' => $translationLang
             ])
+            ->find('nativeMarker')
+            ->find('hideFields')
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
             ->select($this->fields($what))

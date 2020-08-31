@@ -65,6 +65,12 @@
                 });
             };
         })
+        .controller('SidenavController', ['$scope', '$mdSidenav', '$window', function($scope, $mdSidenav, $window) {
+            $scope.toggle = function(id) {
+                $window.scrollTo(0, 0);
+                $mdSidenav(id).toggle();
+            };
+        }])
         .controller('MenuController', ['$scope', '$mdSidenav', '$mdDialog', function($scope, $mdSidenav, $mdDialog) {
             $scope.toggleMenu = function() {
                 $mdSidenav('menu').toggle();
@@ -108,5 +114,19 @@
                     text_input.focus();
                 });
             };
+        })
+        .directive('iconWithProgress', function() {
+            return {
+                restrict: 'E',
+                transclude: true,
+                scope: {
+                    isLoading: '=',
+                },
+                template:
+                    '<span ng-if="!isLoading"><ng-transclude></ng-transclude></span>' +
+                    '<md-button class="md-icon-button" ng-if="isLoading">' +
+                        '<md-progress-circular md-diameter="24"></md-progress-circular>' +
+                    '</md-button>'
+            }
         });
 })();

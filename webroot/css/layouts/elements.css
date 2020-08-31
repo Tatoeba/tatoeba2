@@ -1479,6 +1479,13 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
     .sentence-and-translations .translation .transcription .icon {
         margin: 0 10px 0 12px;
     }
+
+    .sentence-and-translations .md-icon-button.activated {
+        display: inherit;
+    }
+    .sentence-and-translations .md-icon-button.deactivated {
+        display: none;
+    }
 }
 
 

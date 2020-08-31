@@ -25,6 +25,15 @@ use App\Model\CurrentUser;
 $this->AssetCompress->script('sentence-component.js', ['block' => 'scriptBottom']);
 if (CurrentUser::isMember()) {
     $this->Html->script('/js/services/list-data.srv.js', array('block' => 'scriptBottom'));
+    $this->Html->script('/js/directives/edit-review.dir.js', ['block' => 'scriptBottom']);
+    $this->Html->scriptBlock(
+        $this->element('reviews/edit_review'),
+        [
+            'block' => 'scriptBottom',
+            'type' => 'text/ng-template',
+            'id' => 'edit-review-template'
+        ]
+    );
 }
 
 if (!isset($menuExpanded)) {
@@ -83,7 +92,7 @@ $sentenceUrl = $this->Url->build([
     </div>
     <div layout="column">
         <div layout="row" class="header">
-            <md-subheader flex class="ellipsis">
+            <md-subheader flex ng-if="!vm.isMenuExpanded">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
                     echo format(
@@ -110,7 +119,7 @@ $sentenceUrl = $this->Url->build([
             <?php
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
-                    'expanded' => $menuExpanded
+                    'expanded' => $menuExpanded,
                 ]);
             } else {
                 echo $this->element('sentences/transcription_button');

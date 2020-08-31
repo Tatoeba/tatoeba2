@@ -1,4 +1,4 @@
-<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}" 
+<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}"
      ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.permissions)">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>
@@ -38,38 +38,9 @@
         </div>
 
         <div ng-if="vm.isMenuExpanded && vm.menu.canReview" class="correctness-info">
-            <icon-with-progress is-loading="vm.iconsInProgress.reviewOk">
-                <md-button class="md-icon-button" ng-click="vm.setReview(1)" ng-if="vm.sentence.current_user_review !== 1">
-                    <md-icon>check_circle</md-icon>
-                    <md-tooltip><?= __('Mark as "OK"') ?></md-tooltip>
-                </md-button>
-                <md-button class="md-icon-button" ng-click="vm.resetReview()" ng-if="vm.sentence.current_user_review === 1">
-                    <md-icon class="ok">check_circle</md-icon>
-                    <md-tooltip><?= __('Unmark sentence') ?></md-tooltip>
-                </md-button>
-            </icon-with-progress>
-            
-            <icon-with-progress is-loading="vm.iconsInProgress.reviewUnsure">
-                <md-button class="md-icon-button" ng-click="vm.setReview(0)" ng-if="vm.sentence.current_user_review !== 0">
-                    <md-icon>help</md-icon>
-                    <md-tooltip><?= __('Mark as "unsure"') ?></md-tooltip>
-                </md-button>
-                <md-button class="md-icon-button" ng-click="vm.resetReview()" ng-if="vm.sentence.current_user_review === 0">
-                    <md-icon class="unsure">help</md-icon>
-                    <md-tooltip><?= __('Unmark sentence') ?></md-tooltip>
-                </md-button>
-            </icon-with-progress>
-            
-            <icon-with-progress is-loading="vm.iconsInProgress.reviewNotOk">
-                <md-button class="md-icon-button" ng-click="vm.setReview(-1)" ng-if="vm.sentence.current_user_review !== -1">
-                    <md-icon>error</md-icon>
-                    <md-tooltip><?= __('Mark as "not OK"') ?></md-tooltip>
-                </md-button>
-                <md-button class="md-icon-button not-ok" ng-click="vm.resetReview()" ng-if="vm.sentence.current_user_review === -1">
-                    <md-icon class="not-ok">error</md-icon>
-                    <md-tooltip><?= __('Unmark sentence') ?></md-tooltip>
-                </md-button>
-            </icon-with-progress>
+            <edit-review sentence-id="{{vm.sentence.id}}"
+                         correctness="vm.sentence.current_user_review">
+            </edit-review>
         </div>
 
         <div>

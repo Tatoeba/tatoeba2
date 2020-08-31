@@ -29,6 +29,7 @@ require __DIR__ . '/paths.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
+use App\Error\TatoebaErrorHandler;
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\App;
@@ -37,7 +38,6 @@ use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
 use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
-use Cake\Error\ErrorHandler;
 use Cake\Error\Debugger;
 use Cake\Http\ServerRequest;
 use Cake\Log\Log;
@@ -141,7 +141,7 @@ $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
     (new ConsoleErrorHandler(Configure::read('Error')))->register();
 } else {
-    (new ErrorHandler(Configure::read('Error')))->register();
+    (new TatoebaErrorHandler(Configure::read('Error')))->register();
 }
 
 /*

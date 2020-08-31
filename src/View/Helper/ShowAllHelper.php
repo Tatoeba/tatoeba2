@@ -28,7 +28,7 @@ namespace App\View\Helper;
 
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
-
+use Cake\Utility\Inflector;
 
 
 /**
@@ -61,9 +61,9 @@ class ShowAllHelper extends AppHelper
         // we reconstruct the path
         $path ='/';
         // language of the interface
-        $path .= $this->request->params['lang'] .'/';
-        $path .= $this->request->params['controller'].'/';
-        $path .= $this->request->params['action'];
+        $path .= $this->request->getParam('lang') .'/';
+        $path .= Inflector::delimit($this->request->getParam('controller')).'/';
+        $path .= $this->request->getParam('action');
         return $path;
     }
 
@@ -106,7 +106,7 @@ class ShowAllHelper extends AppHelper
     private function _generateSelect($selectedLanguage, $langs, $position)
     {
 
-        $params = $this->request->params['pass'];
+        $params = $this->request->getParam('pass');
         $javascriptUrl = $this->_generateJavascriptUrl($params, $position);
 
         return $this->Form->select(

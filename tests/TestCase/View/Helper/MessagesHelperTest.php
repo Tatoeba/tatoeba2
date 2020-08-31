@@ -18,6 +18,7 @@ class MessagesHelperTest extends TestCase {
         $request = new ServerRequest([
             'environment' => [
                 'HTTP_HOST' => 'example.net',
+                'HTTPS' => 'on',
             ]
         ]);
         $View = new View($request);

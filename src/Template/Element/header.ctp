@@ -60,12 +60,15 @@ use Cake\Core\Configure;
         [
             'escape' => false,
             'layout' => 'row',
-            'flex-xs' => ''
+            'flex-xs' => '',
+            'layout-align' => 'center center'
         ]
     );
     ?>
 
     <?= $this->element('ui_language_button', [
-        'displayOption' => 'hide-gt-xs'
+        'class' => 'md-icon-button',
+        'displayOption' => 'hide-gt-xs',
+        'label' => ''
     ]); ?>
 </div>

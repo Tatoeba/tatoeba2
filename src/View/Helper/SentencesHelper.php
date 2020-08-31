@@ -69,6 +69,7 @@ class SentencesHelper extends AppHelper
         'Search',
         'Number',
         'SentenceLicense',
+        'ClickableLinks',
     );
 
 
@@ -820,18 +821,11 @@ class SentencesHelper extends AppHelper
             $msg = __('This sentence is original and '
                      .'was not derived from translation.');
         } elseif ($baseId > 0) {
-            $baseLink = $this->Html->link(
-                $baseId,
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $baseId
-                )
-            );
+            $baseText = $sentence->base ? $sentence->base->text : null;
             $msg = format(
                 __('This sentence was initially added as a '
-                  .'translation of sentence #{n}.'),
-                array('n' => $baseLink)
+                  .'translation of sentence {sentenceIdWithIdSign}.'),
+                array('sentenceIdWithIdSign' => $this->ClickableLinks->buildSentenceLink($baseId, $baseText))
             );
         } else {
             $msg = __('We cannot determine yet whether this sentence was '
@@ -846,7 +840,9 @@ class SentencesHelper extends AppHelper
             $highlight = $sentence->highlight;
             $sentence['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
         }
-        $sentence->expandLabel = $this->getExpandLabel($sentence);
+        if (isset($sentence->translations)) {
+            $sentence->expandLabel = $this->getExpandLabel($sentence);
+        }
 
         return h(json_encode($sentence));
     }

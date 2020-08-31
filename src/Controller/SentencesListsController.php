@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
@@ -166,21 +167,23 @@ class SentencesListsController extends AppController
         }
 
         $this->loadModel('Sentences');
+        $this->loadModel('SentencesSentencesLists');
 
-        $contain = $this->Sentences->contain(['translations' => true]);
-        $contain['fields'] = $this->Sentences->fields();
-        $contain['finder'] = ['filteredTranslations' => [
-            'translationLang' => $translationsLang,
-            'hideFields' => $this->Sentences->hideFields(),
-        ]];
-        $pagination = [
-            'contain' => ['Sentences' => $contain],
-            'conditions' => ['sentences_list_id' => $id],
+        $query = $this->SentencesSentencesLists->find()
+            ->where(['sentences_list_id' => $id])
+            ->contain(['Sentences' => function (Query $q) use ($translationsLang) {
+                $q->find('filteredTranslations', ['translationLang' => $translationsLang])
+                  ->find('hideFields')
+                  ->contain($this->Sentences->contain(['translations' => true]))
+                  ->select($this->Sentences->fields());
+                return $q;
+            }]);
+
+        $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['created' => 'DESC']
+            'order' => ['created' => 'DESC'],
         ];
-        $this->paginate = $pagination;
-        $sentencesInList = $this->paginate('SentencesSentencesLists');
+        $sentencesInList = $this->paginate($query);
 
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
