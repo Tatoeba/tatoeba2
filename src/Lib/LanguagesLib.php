@@ -612,7 +612,7 @@ class LanguagesLib
                 'mni' => __d('languages', 'Meitei'),
                 'ayl' => __d('languages', 'Libyan Arabic'),
                 'ood' => __d('languages', "O'odham"),
-                'ckb' => __d('languages', 'Kurdish (Sorani)',
+                'ckb' => __d('languages', 'Kurdish (Soranî)',
             );
         }
         return $languages;
