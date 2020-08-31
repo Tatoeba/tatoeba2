@@ -1392,4 +1392,16 @@ class SentencesTableTest extends TestCase {
         $stored = $this->Sentence->get($sentence->id)->text;
         $this->assertEquals($expected, $stored);
     }
+
+    function testSaveTranslation_licenseIsCCBY() {
+        // 'contributor', default license: CC BY
+        CurrentUser::store($this->Sentence->Users->get(4));
+        $translation = $this->Sentence->saveTranslation(1, 'eng', 'Lorem ipsum', 'lat');
+        $this->assertEquals('CC BY 2.0 FR', $translation->license);
+
+        // 'kazuki', default license: CC0
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $translation = $this->Sentence->saveTranslation(2, 'cmn', 'Lorem ipsum', 'lat');
+        $this->assertEquals('CC BY 2.0 FR', $translation->license);
+    }
 }

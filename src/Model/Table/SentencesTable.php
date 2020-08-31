@@ -191,7 +191,9 @@ class SentencesTable extends Table
                 $user = $this->Users->get($entity->user_id);
                 if ($user) {
                     $userDefaultLicense = $user->settings['default_license'];
-                    $entity->license = $userDefaultLicense;
+                    $entity->license = $entity->based_on_id == 0 ?
+                                       $userDefaultLicense :
+                                       'CC BY 2.0 FR';
                 }
             }
         }
@@ -929,7 +931,8 @@ class SentencesTable extends Table
             $translationLang,
             $userId,
             $translationCorrectness,
-            $sentenceId
+            $sentenceId,
+            'CC BY 2.0 FR'
         );
 
         // saving links
