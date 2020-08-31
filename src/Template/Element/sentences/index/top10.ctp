@@ -3,9 +3,9 @@
 </div>
 
 <div ng-cloak class="languages-around-logo">
-  <div class="language-around-logo lang-card"
-       ng-class="'lang'+($index+1)"
-       ng-repeat="lang in <?= $top10 ?>">
-    <?= $this->element('sentences/index/lang_card'); ?>
-  </div>
+  <?php foreach ($top10 as $index => $lang): ?>
+    <div class="language-around-logo lang-card lang<?= ($index+1) ?>">
+      <?= $this->element('sentences/index/lang_card', $lang->toArray()); ?>
+    </div>
+  <?php endforeach; ?>
 </div>

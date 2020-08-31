@@ -29,9 +29,5 @@
                     vm.selectedLanguage = {'name': data.langName, 'code': data.lang};
                 }
             });
-
-            $scope.getFlagSpriteUrl = function (lang) {
-                return '/cache_svg/allflags.svg#' + lang;
-            };
         }]);
 })();

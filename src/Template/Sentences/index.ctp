@@ -15,7 +15,7 @@ $header = format(
   compact('n')
 );
 $top10 = $this->ShowAll->extractTopTen($stats);
-$top10 = h(json_encode($top10));
+$profileLangs = $this->ShowAll->extractLanguageProfiles($stats);
 ?>
 <div id="content-container">
 <section ng-controller="SentencesIndexController as vm">
@@ -26,14 +26,11 @@ $top10 = h(json_encode($top10));
   <md-tabs md-dynamic-height md-center-tabs>
     <md-tab label="<?= h(__('My profile languages')) ?>">
       <md-content class="profile-languages">
-        <?php
-          $profileLangs = $this->ShowAll->extractLanguageProfiles($stats);
-          $profileLangs = h(json_encode($profileLangs));
-        ?>
-        <div class="profile-language lang-card" ng-repeat="lang in <?= $profileLangs ?>">
-          <?= $this->element('sentences/index/lang_card'); ?>
-        </div>
-
+        <?php foreach ($profileLangs as $lang): ?>
+          <div class="profile-language lang-card">
+            <?= $this->element('sentences/index/lang_card', $lang->toArray()); ?>
+          </div>
+        <?php endforeach; ?>
         <?= $this->element('sentences/index/search') ?>
       </md-content>
     </md-tab>

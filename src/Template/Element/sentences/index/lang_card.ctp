@@ -1,13 +1,12 @@
 <?php
-  $baseUrl = $this->Url->build(['action' => 'show_all_in']);
+  $url = $this->Url->build(['action' => 'show_all_in', $code, 'none']);
 ?>
-<md-button class="md-primary lang-button" ng-href="<?= $baseUrl ?>/{{lang.code}}/none">
+<md-button class="md-primary lang-button" href="<?= h($url) ?>">
   <div class="lang-name">
     <svg class="language-icon">
-        <use ng-attr-xlink:href="{{getFlagSpriteUrl(lang.code)}}"
-             xlink:href="" />
+        <use xlink:href="/cache_svg/allflags.svg#<?= $code ?>" />
     </svg>
-    <strong>{{lang.name}}</strong>
+    <strong><?= h($name) ?></strong>
   </div>
-  <small>{{lang.sentences}}</small>
+  <small><?= h($sentences) ?></small>
 </md-button>

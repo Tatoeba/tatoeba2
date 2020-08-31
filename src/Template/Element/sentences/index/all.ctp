@@ -1,7 +1,3 @@
-<?php
-  $baseUrl = $this->Url->build(['action' => 'show_all_in']);
-?>
-
 <?php foreach ($stats as $milestone => $languages): ?>
   <h3 class="header-with-hline">
     <span class="hline">
@@ -16,18 +12,20 @@
   <div class="language-list">
     <ul>
       <?php
-        $l = h(json_encode($languages));
+        foreach ($languages as $lang) {
+          $url = $this->Url->build(['action' => 'show_all_in', $lang->code, 'none']);
+          ?>
+            <li>
+              <a href="<?= h($url) ?>">
+                <svg class="language-icon">
+                  <use xlink:href="/cache_svg/allflags.svg#<?= $lang->code ?>" />
+                </svg>
+                <span class="lang-name"><?= h($lang->name) ?></span>
+              </a>
+            </li>
+      <?php
+        }
       ?>
-
-      <li ng-repeat="lang in <?= $l ?>">
-        <a ng-href="<?= $baseUrl ?>/{{lang.code}}/none">
-          <svg class="language-icon">
-              <use ng-attr-xlink:href="{{getFlagSpriteUrl(lang.code)}}"
-                   xlink:href="" />
-          </svg>
-          <span class="lang-name">{{lang.name}}</span>
-        </a>
-      </li>
     </ul>
   </div>
 <?php endforeach; ?>
