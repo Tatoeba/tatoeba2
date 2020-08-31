@@ -25,15 +25,14 @@ class LimitResultsBehavior extends Behavior
 {
     private function getNeededAssociations(Query $query) {
         $fields = [];
-        foreach (['where'] as $clause) {
-            $clause = $query->clause($clause);
-            if ($clause) {
-                $clause->traverse(function($c) use (&$fields) {
-                    if (in_array('Cake\Database\Expression\FieldTrait', class_uses($c))) {
-                        $fields[] = $c->getField();
-                    }
-                });
-            }
+
+        $clause = $query->clause('where');
+        if ($clause) {
+            $clause->traverse(function($c) use (&$fields) {
+                if (in_array('Cake\Database\Expression\FieldTrait', class_uses($c))) {
+                    $fields[] = $c->getField();
+                }
+            });
         }
 
         return array_map(function ($key) {
