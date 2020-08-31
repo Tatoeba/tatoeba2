@@ -26,6 +26,19 @@
  */
 use App\Model\CurrentUser;
 
+
+if (CurrentUser::isMember()) {
+    $this->Html->script('/js/directives/edit-review.dir.js', ['block' => 'scriptBottom']);
+    $this->Html->scriptBlock(
+        $this->element('reviews/edit_review'),
+        [
+            'block' => 'scriptBottom',
+            'type' => 'text/ng-template',
+            'id' => 'edit-review-template'
+        ]
+    );
+}
+
 $categories = array(
     'ok' => ['check_circle', __('Sentences marked as "OK"')],
     'unsure' => ['help', __('Sentences marked as "unsure"')],
@@ -91,7 +104,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             ]);
             ?>
             <md-list-item href="<?= $url ?>">
-                <md-icon><?= $categoryValue[0] ?></md-icon>
+                <md-icon class="<?= $categoryKey ?>"><?= $categoryValue[0] ?></md-icon>
                 <p><?= $categoryValue[1] ?></p>
             </md-list-item>
             <?php
@@ -146,7 +159,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $withAudio = false;
             foreach ($corpus as $item) {
                 $sentence = $item->sentence;
-                echo '<div>';
+                $correctness = $item->correctness;
 
                 if (empty($sentence->id)) {
                     $sentenceId = $item->sentence_id;
@@ -166,26 +179,46 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         )
                     );
                 } else {
+                    echo '<div>';
                     $this->Sentences->displayGenericSentence(
                         $sentence,
                         $type,
                         $parentId,
                         $withAudio
                     );
+
+                    if ($userIsReviewer) {
+                        echo $this->Html->tag(
+                            'edit-review',
+                            '',
+                            [
+                                'sentence-id' => $sentence->id,
+                                'correctness' => $correctness,
+                                'class' => 'correctness-icons',
+                            ]
+                        );
+                    } else {
+                        $categoryLabel = $correctness == 1 ?
+                                         'ok' :
+                                         ($correctness == 0 ? 'unsure' : 'not-ok');
+                        $icon = $this->Html->tag(
+                            'md-icon',
+                            $categories[$categoryLabel][0],
+                            [ 'class' => $categoryLabel ]
+                        );
+                        echo $this->Html->div(
+                            'correctness-icons',
+                            $icon,
+                            [
+                                'title' => $this->Date->nice($item->modified),
+                                'ng-cloak' => '',
+                            ]
+                        );
+                    }
+                    echo '</div>';
                 }
-
-                $correctness = $item->correctness;
-                echo $this->Html->div(
-                    'correctness',
-                    $this->Images->correctnessIcon($correctness),
-                    array('title' => $this->Date->nice($item->modified))
-                );
-
-                echo '</div>';
             }
-
             $this->Pagination->display();
-        }
-        ?>
-    </div>
+        } ?>
+    </section>
 </div>
