@@ -146,8 +146,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $withAudio = false;
             foreach ($corpus as $item) {
                 $sentence = $item->sentence;
-                $sentenceData = $this->Sentences->sentenceForAngular($sentence);
-                $sentenceData = str_replace('{{', '\{\{', $sentenceData);
                 $correctness = $item->correctness;
 
                 if (empty($sentence->id)) {

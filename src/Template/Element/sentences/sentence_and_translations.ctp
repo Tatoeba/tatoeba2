@@ -120,7 +120,6 @@ $sentenceUrl = $this->Url->build([
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
                     'expanded' => $menuExpanded,
-                    'sentenceData' => $sentenceData
                 ]);
             } else {
                 echo $this->element('sentences/transcription_button');
