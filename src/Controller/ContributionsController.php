@@ -155,12 +155,12 @@ class ContributionsController extends AppController
             return;
         }
 
-        $this->paginate = [
-            'conditions' => [
+        $query = $this->Contributions->find()
+            ->where([
                 'Contributions.user_id' => $userId,
                 'Contributions.type !=' => 'license'
-            ],
-            'contain' => [
+            ])
+            ->contain([
                 'Users' => [
                     'fields' => ['username', 'image']
                 ],
@@ -170,12 +170,15 @@ class ContributionsController extends AppController
                 'Translations' => [
                     'fields' => ['text'],
                 ],
-            ],
-            'limit' => 200,
-            'order' => ['Contributions.id' => 'DESC'],
+            ])
+            ->order(['Contributions.id' => 'DESC']);
+
+        $this->paginate = [
+            'limit' => 100,
         ];
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $contributions = $this->paginateLatest($this->Contributions, $totalLimit);
+        $query->find('latest', ['maxResults' => $totalLimit]);
+        $contributions = $this->paginateOrRedirect($query);
         $this->set('contributions', $contributions);
         $this->set('userExists', true);
         $this->set('totalLimit', $totalLimit);

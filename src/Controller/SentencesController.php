@@ -70,10 +70,6 @@ class SentencesController extends AppController
         'Languages',
         'CommonModules'
     );
-    public $paginate = array(
-        'limit' => 100,
-        "order" => "Sentence.modified DESC"
-    );
 
     public $uses = array(
         'Audio',
@@ -520,21 +516,23 @@ class SentencesController extends AppController
         $sphinx['limit'] = $limit;
 
         $model = 'Sentences';
-        $pagination = [
-            'finder' => ['withSphinx' => [
+        $query = $this->Sentences
+            ->find('hideFields')
+            ->find('withSphinx')
+            ->find('nativeMarker')
+            ->find('filteredTranslations', [
                 'translationLang' => $search->getData('to'),
-                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                'hideFields' => $this->Sentences->hideFields(),
-            ]],
-            'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->contain(['translations' => true]),
+            ])
+            ->select($this->Sentences->fields())
+            ->contain($this->Sentences->contain(['translations' => true]));
+
+        $this->paginate = [
             'limit' => $limit,
             'sphinx' => $sphinx,
         ];
 
-        $this->paginate = $pagination;
         try {
-            $results = $this->paginate($model);
+            $results = $this->paginate($query);
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
             $this->set(compact('results', 'real_total'));
@@ -590,34 +588,32 @@ class SentencesController extends AppController
     public function show_all_in($lang, $translationLang) {
         $this->helpers[] = 'ShowAll';
 
+        $query = $this->Sentences->find();
         if ($lang == 'unknown') {
-            $conditions = ['Sentences.lang IS' => null];
+            $query->where(['Sentences.lang IS' => null]);
         } else {
-            $conditions = ['Sentences.lang' => $lang];
+            $query->where(['Sentences.lang' => $lang]);
         }
+        $total = $query->count();
+
+        $query->find('filteredTranslations', [
+                  'translationLang' => $translationLang,
+              ])
+              ->find('nativeMarker')
+              ->find('hideFields')
+              ->select($this->Sentences->fields())
+              ->contain($this->Sentences->contain(['translations' => true]))
+              ->order(['Sentences.id' => 'DESC']);
 
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
 
-        $pagination = [
-            'finder' => ['filteredTranslations' => [
-                'translationLang' => $translationLang,
-                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                'hideFields' => $this->Sentences->hideFields(),
-            ]],
-            'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->contain(['translations' => true]),
-            'conditions' => $conditions,
+        $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['Sentences.id' => 'DESC']
         ];
-
-        $this->paginate = $pagination;
-
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $allSentences = $this->paginateLatest($this->Sentences, $totalLimit);
-
-        $total = $this->Sentences->find()->where($conditions)->count();
+        $query->find('latest', ['maxResults' => $totalLimit]);
+        $allSentences = $this->paginateOrRedirect($query);
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);

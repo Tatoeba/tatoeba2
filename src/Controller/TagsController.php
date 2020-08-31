@@ -20,6 +20,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 use App\Model\CurrentUser;
 
 
@@ -188,26 +189,27 @@ class TagsController extends AppController
 
         if ($tagExists) {
             $this->loadModel('Sentences');
-            $contain = $this->Sentences->contain(['translations' => true]);
-            $contain['fields'] = $this->Sentences->fields();
-            $contain['finder'] = ['filteredTranslations' => [
-                'hideFields' => $this->Sentences->hideFields(),
-            ]];
+            $this->loadModel('TagsSentences');
+            $query = $this->TagsSentences
+                ->find()
+                ->contain(['Sentences' => function ($q) {
+                    return $q
+                        ->find('hideFields')
+                        ->find('filteredTranslations')
+                        ->select($this->Sentences->fields())
+                        ->contain($this->Sentences->contain(['translations' => true]));
+                }])
+                ->where(['tag_id' => $tagId]);
 
-            $conditions = ['tag_id' => $tagId];
             if (!empty($lang) && $lang != 'und') {
-                $conditions['Sentences.lang'] = $lang;
+                $query->where(['Sentences.lang' => $lang]);
             }
 
-            $pagination = [
-                'contain' => ['Sentences' => $contain],
-                'conditions' => $conditions,
+            $this->paginate = [
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => ['added_time' => 'DESC']
             ];
-            $this->paginate = $pagination;
-
-            $sentences = $this->paginate('TagsSentences');
+            $sentences = $this->paginate($query);
 
             $taggerIds = [];
             foreach ($sentences as $sentence) {
