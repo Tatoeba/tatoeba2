@@ -298,14 +298,15 @@ class SentencesTableTest extends TestCase {
 		$this->assertFalse((bool)$result);
 	}
 
-	function testSave_setsDefaultLicenseSettingOnCreation() {
-		$data = $this->Sentence->newEntity([
-			'text' => 'This sentence should get a default licence.',
-			'user_id' => 7,
-		]);
-		$savedSentence = $this->Sentence->save($data);
-		$this->assertEquals('CC0 1.0', $savedSentence->license);
-	}
+    function testSave_setsDefaultLicenseSettingOnCreation() {
+        $data = $this->Sentence->saveNewSentence(
+            "User 7's default license is CC0 1.0",
+            'eng',
+            7
+        );
+        $savedSentence = $this->Sentence->save($data);
+        $this->assertEquals('CC0 1.0', $savedSentence->license);
+    }
 
 	function testSave_doesNotChangeLicenseOnUpdate() {
 		$data = $this->Sentence->newEntity([
