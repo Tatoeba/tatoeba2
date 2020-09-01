@@ -119,6 +119,10 @@ html, body {
     min-width: 100%;
 }
 
+body {
+    height: auto;
+}
+
 textarea {
     border: 1px solid #ddd;
 }
