@@ -191,7 +191,7 @@ class SentencesTable extends Table
                 $user = $this->Users->get($entity->user_id);
                 if ($user) {
                     $userDefaultLicense = $user->settings['default_license'];
-                    $entity->license = $entity->based_on_id == 0 ?
+                    $entity->license = $entity->based_on_id === 0 ?
                                        $userDefaultLicense :
                                        'CC BY 2.0 FR';
                 }
