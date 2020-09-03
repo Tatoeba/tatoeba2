@@ -19,6 +19,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Core\Configure;
+use Cake\Event\Event;
 
 
 class CategoriesTreeController extends AppController
@@ -32,6 +34,14 @@ class CategoriesTreeController extends AppController
     public $name = 'CategoriesTree';
     public $components = ['CommonSentence', 'Flash'];
     public $helpers = ['Pagination'];
+
+    public function beforeFilter(Event $event)  {
+        // Not ready for production yet
+        if (!Configure::read('debug') && !Configure::read('Tatoeba.devStylesheet')) {
+            return $this->response->withStatus(403);
+        }
+        return parent::beforeFilter($event);
+    }
 
     public function manage(){
         $this->loadModel('Tags');
