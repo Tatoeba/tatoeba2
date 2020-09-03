@@ -2,7 +2,9 @@
   <h3 class="header-with-hline">
     <span class="hline">
       <span class="text">
-        <?= h(format(
+        <?= ($milestone == 0) ?
+            h(__('0 sentences')) :
+            h(format(
                 __n("{n}+ sentence", "{n}+ sentences", $milestone),
                 ['n' => $this->Number->format($milestone)]
             )) ?>
