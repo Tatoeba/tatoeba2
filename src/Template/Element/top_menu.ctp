@@ -71,6 +71,10 @@ $menuElements = array(
                 "controller" => "tags",
                 "action" => "view_all"
             ),
+            __('Manage tags categories') => array(
+                "controller" => "categories_tree",
+                "action" => "manage"
+            ),
             /* @translators: menu item on the top (verb) */
             __('Browse audio') => array(
                 "controller" => "audio",
