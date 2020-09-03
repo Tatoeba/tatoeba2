@@ -16,7 +16,7 @@ class AddCategoryIdToTags extends AbstractMigration
         $table->addColumn('category_id', 'integer', [
             'default' => null,
             'limit' => 11,
-            'null' => false,
+            'null' => true,
         ]);
         $table->update();
     }
