@@ -17,17 +17,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$this->set('title_for_layout', $this->Pages->formatTitle(__('Tags categories management')));
+$this->set('title_for_layout', $this->Pages->formatTitle(__d('beta', 'Tags categories management')));
 echo $this->Html->css('autocompletion.css');
 $this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
 $this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
 $this->Html->script('categoriesTree.js', ['block' => 'scriptBottom']);
 
 $messages = [
-    'createCategory' => __('This tags category could not be created (category names should be unique and cycles are forbidden).'),
-    'removeCategory' => __('This tags category could not be removed (a category should be empty to be deleted).'),
-    'attachTagToCategory' => __('This tag could not be attached to this category.'),
-    'detachTagFromCategory' => __('This tag could not be detached from its category.')
+    'createCategory' => __d('beta', 'This tags category could not be created (category names should be unique and cycles are forbidden).'),
+    'removeCategory' => __d('beta', 'This tags category could not be removed (a category should be empty to be deleted).'),
+    'attachTagToCategory' => __d('beta', 'This tag could not be attached to this category.'),
+    'detachTagFromCategory' => __d('beta', 'This tag could not be detached from its category.')
 ];
 ?>
 
@@ -49,7 +49,7 @@ $messages = [
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= __('Create or edit a tags category') ?></h2>
+                <h2><?= __d('beta', 'Create or edit a tags category') ?></h2>
             </div>
         </md-toolbar>
         
@@ -71,7 +71,7 @@ $messages = [
                     echo $this->Form->input(
                         'name', 
                         [
-                            'label' => __('Name (required)')
+                            'label' => __d('beta', 'Name (required)')
                         ]
                     );
                 ?>
@@ -82,7 +82,7 @@ $messages = [
                     echo $this->Form->input(
                         'description', 
                         [
-                            'label' => __('Description (optional)')
+                            'label' => __d('beta', 'Description (optional)')
                         ]
                     );
                 ?>
@@ -94,7 +94,7 @@ $messages = [
                         'parentName', 
                         [
                             'id' => 'parentName',
-                            'label' => __('Parent (tags category)')
+                            'label' => __d('beta', 'Parent (tags category)')
                         ]
                     );
                 ?>
@@ -103,7 +103,7 @@ $messages = [
 
             <md-input-container layout="column">
                 <md-button type="submit" class="md-raised md-default">
-                    <?= __('Create or edit') ?>
+                    <?= __d('beta', 'Create or edit') ?>
                 </md-button>
             </md-input-container>
             <?php
@@ -115,7 +115,7 @@ $messages = [
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= __('Attach a tag to a category') ?></h2>
+                <h2><?= __d('beta', 'Attach a tag to a category') ?></h2>
             </div>
         </md-toolbar>
         
@@ -138,7 +138,7 @@ $messages = [
                         'tagName',
                         [
                             'id' => 'tagName',
-                            'label' => __('Tag')
+                            'label' => __d('beta', 'Tag')
                         ]
                     );
                 ?>
@@ -151,7 +151,7 @@ $messages = [
                         'categoryName', 
                         [
                             'id' => 'categoryName',
-                            'label' => __('Tags category')
+                            'label' => __d('beta', 'Tags category')
                         ]
                     );
                 ?>
@@ -160,7 +160,7 @@ $messages = [
 
             <md-input-container layout="column">
                 <md-button type="submit" class="md-raised md-default">
-                    <?= __('Add') ?>
+                    <?= __d('beta', 'Add') ?>
                 </md-button>
             </md-input-container>
             <?php

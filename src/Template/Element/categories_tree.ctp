@@ -25,9 +25,9 @@ $deleteUrl = $this->Url->build([
                     <?php
                         if (!count($categoryChildren) && !count($categoryTags)) {
                     ?>
-                        <md-button class="md-icon-button" aria-label="<?= __('delete') ?>" ng-href="<?= $deleteUrl ?>">
+                        <md-button class="md-icon-button" aria-label="<?= __d('beta', 'delete') ?>" ng-href="<?= $deleteUrl ?>">
                             <md-icon>delete</md-icon>
-                            <md-tooltip><?= __('Delete') ?></md-tooltip>
+                            <md-tooltip><?= __d('beta', 'Delete') ?></md-tooltip>
                         </md-button>
                     <?php
                         }
@@ -40,10 +40,10 @@ $deleteUrl = $this->Url->build([
                 <md-button ng-click="vm.expandOrCollapse(<?= $categoryId ?>)" ng-cloak>
                     <md-icon>{{vm.displayedBranches[<?= $categoryId ?>] ? 'expand_less' : 'expand_more'}}</md-icon>
                     <span ng-if="vm.displayedBranches[<?= $categoryId ?>]">
-                        <?= __('hide branch') ?>
+                        <?= __d('beta', 'hide branch') ?>
                     </span>
                     <span ng-if="!vm.displayedBranches[<?= $categoryId ?>]">
-                        <?= __('show branch') ?>
+                        <?= __d('beta', 'show branch') ?>
                     </span>
                 </md-button>
             <?php 
@@ -62,9 +62,9 @@ $deleteUrl = $this->Url->build([
         ?>
             <span class='tag'>
                 <?= $this->safeForAngular($tag['name']).' ('.$tag['nbrOfSentences'].')' ?>
-                <md-button class="md-icon-button" aria-label="<?= __('detach') ?>" ng-href="<?= $unbindUrl ?>">
+                <md-button class="md-icon-button" aria-label="<?= __d('beta', 'detach') ?>" ng-href="<?= $unbindUrl ?>">
                     <md-icon>reply</md-icon>
-                    <md-tooltip><?= __('Detach') ?></md-tooltip>
+                    <md-tooltip><?= __d('beta', 'Detach') ?></md-tooltip>
                 </md-button>
             </span>
         <?php
