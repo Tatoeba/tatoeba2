@@ -20,6 +20,8 @@ trait TatoebaControllerTestTrait {
             $who = "guest";
         }
 
+        $this->_securityToken = false;
+        $this->_csrfToken = false;
         $this->get($url);
 
         if (is_string($response)) {
