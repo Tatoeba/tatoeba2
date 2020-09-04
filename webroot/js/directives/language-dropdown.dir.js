@@ -36,7 +36,7 @@
                 initialSelection: '@?',
                 placeholder: '@',
             },
-            templateUrl: get_tatoeba_root_url() + '/angular_templates/language_dropdown',
+            templateUrl: 'language-dropdown-template',
             controllerAs: 'vm',
             controller: ['$scope', '$window', function($scope, $window) {
                 var vm = this;

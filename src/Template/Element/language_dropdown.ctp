@@ -2,6 +2,16 @@
 $languagesJSON = h(json_encode($languages));
 $initialSelection = isset($initialSelection) ? $initialSelection : '';
 $placeholder = isset($placeholder) ? $placeholder : __('Select a language');
+
+$this->Html->scriptBlock(
+    $this->element('language_dropdown_angular'),
+    [
+        'block' => 'scriptBottom',
+        'type' => 'text/ng-template',
+        'id' => 'language-dropdown-template'
+    ]
+);
+
 $this->Form->unlockField($name);
 ?>
 <language-dropdown
