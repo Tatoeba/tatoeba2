@@ -15,12 +15,13 @@
     <ul>
       <?php
         foreach ($languages as $lang) {
-          $url = $this->Url->build(['action' => 'show_all_in', $lang->code, 'none']);
+          $code = $lang->code ?? 'unknown';
+          $url = $this->Url->build(['action' => 'show_all_in', $code, 'none']);
           ?>
             <li>
               <a href="<?= h($url) ?>">
                 <svg class="language-icon">
-                  <use xlink:href="/cache_svg/allflags.svg#<?= $lang->code ?>" />
+                  <use xlink:href="/cache_svg/allflags.svg#<?= $code ?>" />
                 </svg>
                 <span class="lang-name"><?= h($lang->name) ?></span>
               </a>
