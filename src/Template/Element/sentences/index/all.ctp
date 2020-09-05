@@ -1,13 +1,20 @@
-<?php foreach ($stats as $milestone => $languages): ?>
+<?php
+foreach ($stats as $milestone => $languages):
+  if ($milestone == 0) {
+    $header = __('0 sentences');
+  } elseif ($milestone == 1) {
+    $header = __('1 or more sentences');
+  } else {
+    $header = format(
+      __n("{n}+ sentence", "{n}+ sentences", $milestone),
+      ['n' => $this->Number->format($milestone)]
+    );
+  }
+?>
   <h3 class="header-with-hline">
     <span class="hline">
       <span class="text">
-        <?= ($milestone == 0) ?
-            h(__('0 sentences')) :
-            h(format(
-                __n("{n}+ sentence", "{n}+ sentences", $milestone),
-                ['n' => $this->Number->format($milestone)]
-            )) ?>
+        <?= h($header) ?>
       </span>
     </span>
   </h3>
