@@ -46,7 +46,9 @@ class TatoebaFlagsFilter extends AssetFilter
             if ($w && $h) {
                 $xml->firstChild->removeAttribute('width');
                 $xml->firstChild->removeAttribute('height');
-                $xml->firstChild->setAttribute('viewBox', "0 0 $w $h");
+                if (!$xml->firstChild->hasAttribute('viewBox')) {
+                    $xml->firstChild->setAttribute('viewBox', "0 0 $w $h");
+                }
             }
         }
         return $xml->saveXML();
