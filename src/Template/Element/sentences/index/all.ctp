@@ -1,11 +1,14 @@
 <?php
 foreach ($stats as $milestone => $languages):
   if ($milestone == 0) {
+    /* @translators: section header in Browse by language page */
     $header = __('0 sentences');
   } elseif ($milestone == 1) {
+    /* @translators: section header in Browse by language page */
     $header = __('1 or more sentences');
   } else {
     $header = format(
+      /* @translators: section header in Browse by language page */
       __n("{n}+ sentence", "{n}+ sentences", $milestone),
       ['n' => $this->Number->format($milestone)]
     );

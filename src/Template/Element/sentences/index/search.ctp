@@ -8,6 +8,8 @@
           array(
               'name' => 'ShowAllIn',
               'languages' => $this->Languages->unknownLanguagesArray(false),
+              /* @translators: placeholder text in search field of
+                               Browse by languages page */
               'placeholder' => __('Search a language'),
               'openOnFocus' => false,
           )
@@ -18,6 +20,8 @@
              ng-if="vm.selectedLanguage"
              ng-href="<?= $baseUrl ?>/{{vm.selectedLanguage.code}}/none">
     <?= format(
+            /* @translators: button appearing after a language search
+                             in Browse by languages page */
             __('Show all sentences in {language}'),
             ['language' => '{{vm.selectedLanguage.name}}']
         ) ?>
