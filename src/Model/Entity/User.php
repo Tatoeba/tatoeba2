@@ -62,6 +62,7 @@ class User extends Entity
         'new_terms_of_use' => '1',
         'license_switch_list_id' => null,
         'hide_new_design_announcement' => false,
+        'translations_in_lang_settings_only' => true,
     );
 
     private $settingsValidation = array(

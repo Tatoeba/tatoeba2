@@ -199,6 +199,30 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
             <md-list-item>
                 <?php
+                    $translationsInLangSettingsOnly = $userSettings->settings['translations_in_lang_settings_only'];
+                ?>
+                <md-checkbox
+                    ng-false-value="0"
+                    ng-true-value="1"
+                    ng-model="translationsInLangSettingsOnly"
+                    ng-init="translationsInLangSettingsOnly = <?= (int)$translationsInLangSettingsOnly ?>"
+                    class="md-primary">
+                </md-checkbox>
+                <p><?php echo __('Show translations only in the languages specified below') ?> </p>
+                <div ng-hide="true">
+                <?php
+                    echo $this->Form->input(
+                        'settings.translations_in_lang_settings_only',
+                        array(
+                            'value' => '{{translationsInLangSettingsOnly}}'
+                        )
+                    );
+                ?>
+                </div>
+            </md-list-item>
+
+            <md-list-item>
+                <?php
                 $sentencesByLanguageURL = $this->Url->build(
                     array(
                         'controller' => 'stats',
@@ -208,9 +232,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 $tip = format(
                     __(
                         'Enter <a href="{url}">ISO 639-3 codes</a>, separated with a comma (e.g.: jpn,epo,ara,deu). '.
-                        'Tatoeba will then only display translations in the languages you '.
-                        'indicated. You can leave this empty to display translations in all '.
-                        'languages.'
+                        'Tatoeba will display translations in the order you indicated.'
                     ),
                     array(
                         'url' => $sentencesByLanguageURL
@@ -221,7 +243,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     <?php
                     echo $this->Form->control('settings.lang', [
                         /* @translators: option label on settings page */
-                        'label' => __('Languages')
+                        'label' => __('Order translations by language')
                     ]);
                     ?>
                     <div class="hint"><?= $tip ?></div>
