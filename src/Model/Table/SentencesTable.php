@@ -454,7 +454,7 @@ class SentencesTable extends Table
                 }
             }
 
-            if (!empty($translationLanguages)) {
+            if (!empty($translationLanguages) && CurrentUser::getSetting('translations_in_lang_settings_only')) {
                 $filter = function ($item) use ($translationLanguages) {
                     return in_array($item->lang, $translationLanguages);
                 };
