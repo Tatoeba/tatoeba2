@@ -466,11 +466,31 @@ class SentencesTable extends Table
                 return !in_array($item->id, $parentIds);
             });
 
-            $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
-            $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
+            $this->sortByLang($directTranslations, $translationLanguages);
+            $this->sortByLang($indirectTranslations, $translationLanguages);
         }
 
         return [$directTranslations, $indirectTranslations];
+    }
+
+    private function sortByLang(&$sentences, $languages) {
+        if (empty($languages)) {
+            $sentences = Hash::sort($sentences, '{n}.lang', 'asc');
+        } else {
+            usort($sentences, function($a, $b) use ($languages) {
+                $indexA = array_search($a->lang, $languages);
+                $indexB = array_search($b->lang, $languages);
+                if ($indexA === $indexB) {
+                    return strcmp($a->lang, $b->lang);
+                } else if ($indexA === false) {
+                    return 1;
+                } else if ($indexB === false) {
+                    return -1;
+                } else {
+                    return $indexA < $indexB ? -1 : 1;
+                }
+            });
+        }
     }
 
     public function findFilteredTranslations($query, $options) {
