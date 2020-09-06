@@ -3,20 +3,10 @@ $languagesJSON = h(json_encode($languages));
 $initialSelection = isset($initialSelection) ? $initialSelection : '';
 $placeholder = isset($placeholder) ? $placeholder : __('Select a language');
 
-
-// Add template to the AngularJS cache, but only if it's not there yet
-$existingScripts = $this->fetch('scriptBottom');
-if (strpos($existingScripts, 'id="language-dropdown-template"') === false) {
-    $this->Html->scriptBlock(
+$this->AngularTemplate->addTemplate(
         $this->element('language_dropdown_angular'),
-        [
-            'block' => 'scriptBottom',
-            'type' => 'text/ng-template',
-            'id' => 'language-dropdown-template'
-        ]
-    );
-}
-
+        'language-dropdown-template'
+);
 
 $this->Form->unlockField($name);
 ?>
