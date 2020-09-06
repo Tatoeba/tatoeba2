@@ -143,28 +143,6 @@ class UsersLanguagesTable extends Table
     }
 
     /**
-     * Executed on Sentence's beforeFind
-     */
-    public function reportNativeness($query) {
-        $query->join([
-            'table' => 'users_languages',
-            'alias' => 'UsersLanguages',
-            'type' => 'LEFT',
-            'conditions' => [
-                'Sentences.user_id = UsersLanguages.of_user_id',
-                'Sentences.lang = UsersLanguages.language_code',
-                'UsersLanguages.level' => 5
-            ]
-        ]);
-        $isNative = $query->newExpr()
-                          ->isNotNull('UsersLanguages.id')
-                          ->notEq('Users.role', 'spammer')
-                          ->gt('Users.level', '-1');
-        $query->select(['Users__is_native' => $isNative]);
-        return $query;
-    }
-
-    /**
      * Save a language for the user
      *
      * @param array   $data          The request data

@@ -20,6 +20,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 use App\Model\CurrentUser;
 
 
@@ -188,26 +189,27 @@ class TagsController extends AppController
 
         if ($tagExists) {
             $this->loadModel('Sentences');
-            $contain = $this->Sentences->contain(['translations' => true]);
-            $contain['fields'] = $this->Sentences->fields();
-            $contain['finder'] = ['filteredTranslations' => [
-                'hideFields' => $this->Sentences->hideFields(),
-            ]];
+            $this->loadModel('TagsSentences');
+            $query = $this->TagsSentences
+                ->find()
+                ->contain(['Sentences' => function ($q) {
+                    return $q
+                        ->find('hideFields')
+                        ->find('filteredTranslations')
+                        ->select($this->Sentences->fields())
+                        ->contain($this->Sentences->contain(['translations' => true]));
+                }])
+                ->where(['tag_id' => $tagId]);
 
-            $conditions = ['tag_id' => $tagId];
             if (!empty($lang) && $lang != 'und') {
-                $conditions['Sentences.lang'] = $lang;
+                $query->where(['Sentences.lang' => $lang]);
             }
 
-            $pagination = [
-                'contain' => ['Sentences' => $contain],
-                'conditions' => $conditions,
+            $this->paginate = [
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => ['added_time' => 'DESC']
             ];
-            $this->paginate = $pagination;
-
-            $sentences = $this->paginate('TagsSentences');
+            $sentences = $this->paginate($query);
 
             $taggerIds = [];
             foreach ($sentences as $sentence) {
@@ -242,27 +244,13 @@ class TagsController extends AppController
         ]);
     }
 
-    /**
-     * Display list of tags for autocompletion.
-     *
-     * @param String $filter Filters the tags list with only those that contain the
-     *                       search string.
-     */
     public function autocomplete($search)
     {
-        $this->helpers[] = 'Tags';
-
-        $query = $this->Tags->find();
-        $query->select(['name', 'id', 'nbrOfSentences']);
-        if (!empty($search)) {
-            $pattern = str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $search).'%';
-            $query->where(['name LIKE :search'])->bind(':search', $pattern, 'string');
-        }
-        $allTags = $query->order(['nbrOfSentences' => 'DESC'])->limit(10)->all();
+        $allTags = $this->Tags->Autocomplete($search);
 
         $this->loadComponent('RequestHandler');
-        $this->set('allTags', $allTags);
-        $this->set('_serialize', ['allTags']);
+        $this->set('results', $allTags);
+        $this->set('_serialize', ['results']);
         $this->RequestHandler->renderAs($this, 'json');
     }
 }

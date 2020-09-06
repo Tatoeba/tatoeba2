@@ -840,7 +840,9 @@ class SentencesHelper extends AppHelper
             $highlight = $sentence->highlight;
             $sentence['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
         }
-        $sentence->expandLabel = $this->getExpandLabel($sentence);
+        if (isset($sentence->translations)) {
+            $sentence->expandLabel = $this->getExpandLabel($sentence);
+        }
 
         return h(json_encode($sentence));
     }

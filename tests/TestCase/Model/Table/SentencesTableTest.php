@@ -298,14 +298,15 @@ class SentencesTableTest extends TestCase {
 		$this->assertFalse((bool)$result);
 	}
 
-	function testSave_setsDefaultLicenseSettingOnCreation() {
-		$data = $this->Sentence->newEntity([
-			'text' => 'This sentence should get a default licence.',
-			'user_id' => 7,
-		]);
-		$savedSentence = $this->Sentence->save($data);
-		$this->assertEquals('CC0 1.0', $savedSentence->license);
-	}
+    function testSave_setsDefaultLicenseSettingOnCreation() {
+        $data = $this->Sentence->saveNewSentence(
+            "User 7's default license is CC0 1.0",
+            'eng',
+            7
+        );
+        $savedSentence = $this->Sentence->save($data);
+        $this->assertEquals('CC0 1.0', $savedSentence->license);
+    }
 
 	function testSave_doesNotChangeLicenseOnUpdate() {
 		$data = $this->Sentence->newEntity([
@@ -1391,5 +1392,17 @@ class SentencesTableTest extends TestCase {
         $sentence = $this->Sentence->saveNewSentence($text, 'eng', 1);
         $stored = $this->Sentence->get($sentence->id)->text;
         $this->assertEquals($expected, $stored);
+    }
+
+    function testSaveTranslation_licenseIsCCBY() {
+        // 'contributor', default license: CC BY
+        CurrentUser::store($this->Sentence->Users->get(4));
+        $translation = $this->Sentence->saveTranslation(1, 'eng', 'Lorem ipsum', 'lat');
+        $this->assertEquals('CC BY 2.0 FR', $translation->license);
+
+        // 'kazuki', default license: CC0
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $translation = $this->Sentence->saveTranslation(2, 'cmn', 'Lorem ipsum', 'lat');
+        $this->assertEquals('CC BY 2.0 FR', $translation->license);
     }
 }

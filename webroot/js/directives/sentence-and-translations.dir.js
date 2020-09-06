@@ -61,21 +61,7 @@
                     }
                 }
             }
-        }])
-        .directive('iconWithProgress', function() {
-            return {
-                restrict: 'E',
-                transclude: true,
-                scope: {
-                    isLoading: '=',
-                },
-                template: 
-                    '<span ng-if="!isLoading"><ng-transclude></ng-transclude></span>' +
-                    '<md-button class="md-icon-button" ng-if="isLoading">' +
-                        '<md-progress-circular md-diameter="24"></md-progress-circular>' +
-                    '</md-button>'
-            }
-        });
+        }]);
 
     angular.module('app').requires.push('ngclipboard');
 
@@ -86,7 +72,7 @@
             controllerAs: 'vm'
         };
     }
-    
+
     SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
     function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
         const MAX_TRANSLATIONS = 5;
@@ -154,8 +140,6 @@
         vm.hide = hide;
         vm.saveTranscription = saveTranscription;
         vm.saveLink = saveLink;
-        vm.setReview = setReview;
-        vm.resetReview = resetReview;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -702,37 +686,6 @@
 
         function getNumberOfTranslations() {
             return allDirectTranslations.length + allIndirectTranslations.length;
-        }
-
-        function setReview(value) {
-            var reviewType = getReviewType(value);
-            vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
-                vm.sentence.current_user_review =  parseInt(response.data.result.correctness);
-                vm.iconsInProgress[reviewType] = false;
-            });
-        }
-
-        function resetReview() {
-            var reviewType = getReviewType(vm.sentence.current_user_review);
-            vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
-                if (response.data.result) {
-                    vm.sentence.current_user_review = null;
-                    vm.iconsInProgress[reviewType] = false;
-                }
-            });
-        }
-
-        function getReviewType(correctness) {
-            if (correctness === 1) {
-                return 'reviewOk';
-            } else if (correctness === 0) {
-                return 'reviewUnsure';
-            } else if (correctness === -1) {
-                return 'reviewNotOk';
-            }
-            return null;
         }
     }
 

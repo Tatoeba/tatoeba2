@@ -81,7 +81,7 @@ class CommonModulesHelper extends AppHelper
             }
 
             for ($i = 0; $i < $paramsWithoutLang; $i++) {
-                $path .= $params[$i] .'/';
+                $path .= '/'.$params[$i];
             }
 
             $lang = 'und' ;

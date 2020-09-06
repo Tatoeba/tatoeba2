@@ -16,16 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.sentence {
-    width: 600px;
-}
-
-.sentence .content.colum {
-    width: 500px;
-}
-
 .sentence,
-.correctness {
+.correctness-icons {
     display: inline-block;
     vertical-align: middle;
 }
@@ -34,4 +26,29 @@
     font-size: 24px;
     color: #aaaaaa;
     margin-left: 5px;
+}
+
+.annexe-menu .ok {
+    color: #00AA00;
+}
+.annexe-menu .not-ok{
+    color: #EE0000;
+}
+.annexe-menu .unsure {
+    color: #FF9900;
+}
+
+.text {
+    overflow: hidden;
+}
+
+.correctness-icons md-icon,
+.correctness-icons .md-icon-button {
+    padding:0px;
+    margin:0px;
+    font-size:18px;
+    width:18px;
+    height:18px;
+    min-width:18px;
+    min-height:18px;
 }

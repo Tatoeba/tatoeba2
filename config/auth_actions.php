@@ -111,6 +111,7 @@ $config = [
         ],
         'sentences_lists'      => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'tags'                 => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
+        'categories_tree'      => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
         'transcriptions'       => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'user'                 => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'users'                => [ '*' => [ User::ROLE_ADMIN ] ],
