@@ -141,6 +141,8 @@ svg.language-icon {
 }
 .language-list .lang-name {
   vertical-align: middle;
+  word-wrap: anywhere;
+  hyphens: auto;
 }
 
 .language-icon {
