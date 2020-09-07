@@ -19,14 +19,22 @@
 
     angular
         .module('app')
-        .controller('SentencesIndexController', ['$scope', function($scope) {
+        .controller('SentencesIndexController', ['$scope', '$http', function($scope, $http) {
             var vm = this;
 
             vm.selectedLanguage = null;
+            vm.showAllSentencesButtonText = null;
 
             $scope.$on('languageChange', function(event, data) {
                 if (data.dropdownName === 'ShowAllIn') {
                     vm.selectedLanguage = {'name': data.langName, 'code': data.lang};
+                    var url = get_tatoeba_root_url() + '/angular_templates/show_all_sentences_button_text/' + data.lang;
+                    $http.get(url).then(function(result) {
+                        vm.showAllSentencesButtonText = result.data;
+                    },
+                    function() {
+                        vm.showAllSentencesButtonText = null;
+                    });
                 }
             });
         }]);

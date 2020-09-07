@@ -17,13 +17,8 @@
   ?>
   <md-button class="md-raised md-primary"
              ng-cloak
-             ng-if="vm.selectedLanguage"
+             ng-if="vm.showAllSentencesButtonText"
              ng-href="<?= $baseUrl ?>/{{vm.selectedLanguage.code}}/none">
-    <?= format(
-            /* @translators: button appearing after a language search
-                             in Browse by languages page */
-            __('Show all sentences in {language}'),
-            ['language' => '{{vm.selectedLanguage.name}}']
-        ) ?>
+    {{vm.showAllSentencesButtonText}}
   </md-button>
 </div>
