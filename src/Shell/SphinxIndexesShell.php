@@ -76,7 +76,7 @@ class SphinxIndexesShell extends Shell {
                 $langs = $this->ReindexFlags
                      ->find('list', ['valueField' => 'lang'])
                      ->select(['lang'])
-                     ->where(['lang is not' => null])
+                     ->where(['indexed' => 0])
                      ->group('lang')
                      ->all()
                      ->toArray();
