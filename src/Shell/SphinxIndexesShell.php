@@ -21,7 +21,6 @@ namespace App\Shell;
 use App\Lib\LanguagesLib;
 use App\Model\ReindexFlag;
 use Cake\Console\Shell;
-use Cake\Core\Configure;
 
 
 define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
@@ -33,7 +32,6 @@ class SphinxIndexesShell extends Shell {
     private $tatoeba_languages;
 
     private function get_tatoeba_languages() {
-        Configure::write('Config.language', 'eng');
         $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
     }
 

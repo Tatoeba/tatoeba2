@@ -14,6 +14,7 @@
  */
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
+use Cake\I18n\I18n;
 use Cake\Core\Plugin;
 
 /**
@@ -29,3 +30,7 @@ use Cake\Core\Plugin;
 Configure::write('Log.debug.file', 'cli-debug');
 Configure::write('Log.error.file', 'cli-error');
 Configure::write('Log.queries.file', 'cli-queries');
+
+// Use "en' locale for CLI so that we use the already cached
+// translations from the web UI
+I18n::setLocale('en');
