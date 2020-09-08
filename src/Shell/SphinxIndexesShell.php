@@ -183,11 +183,13 @@ class SphinxIndexesShell extends Shell {
     }
 
     public function main() {
-        if (posix_getuid() !== 0) {
-            $this->_die("You need to run this command as the root user.\n");
-        }
         if (!posix_getpwnam($this->sphinx_user)) {
             $this->_die("No such user: {$this->sphinx_user}\n");
+        }
+
+        exec("sudo -u {$this->sphinx_user} indexer -h", $output, $return);
+        if ($return !== 0) {
+            $this->_die("You need to be able to run 'indexer' as user '{$this->sphinx_user}'.\n");
         }
 
         if (file_exists(LOCK_FILE)) {
