@@ -54,9 +54,11 @@ class SphinxIndexesShell extends Shell {
 
     private function merge_index($lang) {
         echo "Merging indexes of $lang... ";
-        system("indexer --quiet --rotate "
-              ."--merge ${lang}_main_index ${lang}_delta_index",
-               $return_value);
+        system(
+            "sudo -u {$this->sphinx_user} indexer --quiet --rotate " .
+            "--merge ${lang}_main_index ${lang}_delta_index",
+            $return_value
+        );
         if ($return_value != 0) {
             echo "failed.\n";
             return;
@@ -93,18 +95,11 @@ class SphinxIndexesShell extends Shell {
                 function($lang) use ($type) { return "${lang}_${type}_index"; },
                 $langs
             ));
-            system("indexer --sighup-each --rotate $indexes", $return_value);
+            system(
+                "sudo -u {$this->sphinx_user} indexer --sighup-each --rotate $indexes",
+                $return_value
+            );
             echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
-        }
-    }
-
-    private function become_sphinx_user() {
-        $sphinxUserInfo = posix_getpwnam($this->sphinx_user);
-        if (!$sphinxUserInfo) {
-            $this->_die("No such user: {$this->sphinx_user}\n");
-        }
-        if (!posix_setuid($sphinxUserInfo['uid'])) {
-            $this->_die("Unable to change uid. Make sure you're root.\n");
         }
     }
 
@@ -190,7 +185,12 @@ class SphinxIndexesShell extends Shell {
     }
 
     public function main() {
-        $this->become_sphinx_user();
+        if (posix_getuid() !== 0) {
+            $this->_die("You need to run this command as the root user.\n");
+        }
+        if (!posix_getpwnam($this->sphinx_user)) {
+            $this->_die("No such user: {$this->sphinx_user}\n");
+        }
 
         if (file_exists(LOCK_FILE)) {
             $pid = file_get_contents(LOCK_FILE);
