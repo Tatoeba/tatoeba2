@@ -94,7 +94,7 @@ class SphinxIndexesShell extends Shell {
                 $langs
             ));
             system(
-                "sudo -u {$this->sphinx_user} indexer --sighup-each --rotate $indexes",
+                "sudo -u {$this->sphinx_user} indexer --quiet --sighup-each --rotate $indexes",
                 $return_value
             );
             echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
