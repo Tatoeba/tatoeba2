@@ -136,7 +136,13 @@ class SphinxIndexesShell extends Shell {
                 if (count($this->args)) {
                     $langs = $this->validate_langs($this->args);
                 } else {
-                    $langs = array_keys($this->tatoeba_languages);
+                    $this->loadModel('ReindexFlags');
+                    $langs = $this->ReindexFlags
+                         ->find('all')
+                         ->select('lang')
+                         ->where(['indexed' => 1])
+                         ->distinct('lang')
+                         ->extract('lang');
                 }
                 foreach ($langs as $lang) {
                     $this->merge_index($lang);
