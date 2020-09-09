@@ -101,7 +101,10 @@
                 }
 
                 function onSelectedLanguageChange() {
-                    if ($scope.selectedLanguage && $scope.onSelectedLanguageChange) {
+                    if ($scope.selectedLanguage
+                        && $scope.selectedLanguage != vm.previousSelectedItem
+                        && $scope.onSelectedLanguageChange
+                    ) {
                         $scope.onSelectedLanguageChange({
                             'window': $window,
                             'language': $scope.selectedLanguage,
