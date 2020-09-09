@@ -23,7 +23,7 @@ class AngularTemplatesController extends AppController
     {
         $this->response->header('Content-Type: application/json');
 
-        if (!LanguagesLib::languageExists($code)) {
+        if (!LanguagesLib::languageExists($code) && $code != 'unknown') {
             return $this->response->withStatus(404);
         } else {
             $this->set(compact('code'));

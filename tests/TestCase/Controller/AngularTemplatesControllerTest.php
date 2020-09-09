@@ -18,6 +18,7 @@ class AngularTemplatesControllerTest extends TestCase
             // url; user; is accessible or redirection url
             [ '/eng/angular_templates/show_all_sentences_button_text/por', null, true ],
             [ '/eng/angular_templates/show_all_sentences_button_text/por', 'contributor', true ],
+            [ '/eng/angular_templates/show_all_sentences_button_text/unknown', null, true ],
             [ '/eng/angular_templates/show_all_sentences_button_text/nonexistent', null, 404 ],
         ];
     }
