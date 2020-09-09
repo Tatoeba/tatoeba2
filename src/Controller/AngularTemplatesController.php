@@ -21,7 +21,7 @@ class AngularTemplatesController extends AppController
 
     public function show_all_sentences_button_text($code)
     {
-        $this->response->header('Content-Type: application/json');
+        $this->response = $this->response->withType('application/json');
 
         if (!LanguagesLib::languageExists($code) && $code != 'unknown') {
             return $this->response->withStatus(404);

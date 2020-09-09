@@ -28,5 +28,6 @@ class AngularTemplatesControllerTest extends TestCase
      */
     public function testControllerAccess($url, $user, $response) {
         $this->assertAjaxAccessUrlAs($url, $user, $response);
+        $this->assertContentType('application/json');
     }
 }
