@@ -18,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-03 18:16+0200\n"
-"PO-Revision-Date: 2020-08-31 20:51+0000\n"
-"Last-Translator: Karol Łacina\n"
+"POT-Creation-Date: 2020-09-14 06:06+0000\n"
+"PO-Revision-Date: 2020-09-14 06:23+0000\n"
+"Last-Translator: Andreas Perstinger <andipersti@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/tatoeba/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,23 +112,23 @@ msgstr "Jeśli otrzymałeś/otrzymałaś tę wiadomość w wyniku błędu, skont
 msgid "Changes to your comment have been saved."
 msgstr "Zmiany w komentarzu zostały zapisane."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L259
 msgid "The sentence #{id} has been deleted."
 msgstr "Zdanie nr {id} zostało usunięte."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L265
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Błąd: nie można usunąć zdania nr {id}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L883
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L875
 msgid "You are not allowed to change the license of this sentence."
 msgstr "Nie masz uprawnień do zmiany licencji tego zdania."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L890
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L882
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "Licencja zdania została zmieniona na \"{newLicense}\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L895
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L887
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "Nie można zmienić licencji na \"{newLicense}\", ponieważ:"
 
@@ -435,6 +435,7 @@ msgid "{language}"
 msgstr "{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L154
 msgid "All languages"
@@ -669,7 +670,7 @@ msgstr "Jeśli przejmujesz zdanie, ale spostrzegasz nagle przy nim nick innej os
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L97
 msgid "Improve sentences"
 msgstr "Poprawiaj zdania"
 
@@ -753,7 +754,7 @@ msgstr "Kiedy problem ze zdaniem został rozwiązany, otaguj je {tagOK}. Ogólni
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L86
 msgid "Translate sentences"
 msgstr "Tłumacz zdania"
 
@@ -807,7 +808,7 @@ msgid "Search for untranslated sentences"
 msgstr "Szukaj zdań nieprzetłumaczonych"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L139
 msgid "Sentences in:"
 msgstr "Zdania w:"
 
@@ -863,6 +864,12 @@ msgstr "Tłumacz zdania należące do {user}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L33
 msgid "Interface language"
 msgstr "Język interfejsu"
+
+#. button appearing after a language search
+#. in Browse by languages page.
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/show_all_sentences_button_text.ctp#L6
+msgid "Show all sentences in {language}"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -1039,7 +1046,7 @@ msgid "Language:"
 msgstr "Język:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L165
 msgid "Show translations in:"
 msgstr "Pokaż tłumaczenia w:"
 
@@ -1396,7 +1403,7 @@ msgstr "Jeśli podoba ci się to, co widzisz, pomyśl o <a href={}>wsparciu</a>.
 #. You shouldn't translate it unless speakers of your
 #. language cannot read the Latin script.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/header.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L210
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L205
 msgid "Tatoeba"
 msgstr "Tatoeba"
 
@@ -1404,7 +1411,7 @@ msgstr "Tatoeba"
 msgid "Select a language"
 msgstr "Wybierz język"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L36
 msgid "No language found."
 msgstr "Nie znaleziono języka."
 
@@ -1418,7 +1425,7 @@ msgstr "Lista "
 #. / title of the Register page (verb)
 #. / button to submit registration form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L234
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L58
@@ -1430,7 +1437,7 @@ msgstr "Zarejestruj się"
 #. / link to open the Login box in the sidebar menu on mobile (verb)
 #. / button to submit login form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L49
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L120
@@ -1813,6 +1820,32 @@ msgstr "Pokaż więcej funkcji dla wszystkich zdań"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L13
 msgid "Show fewer features for all sentences"
 msgstr "Pokaż mniej funkcji dla wszystkich zdań"
+
+#. section header in Browse by language page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
+msgid "0 sentences"
+msgstr ""
+
+#. section header in Browse by language page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
+msgid "1 or more sentences"
+msgstr ""
+
+#. section header in Browse by language page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L12
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L192
+msgid "{n}+ sentence"
+msgid_plural "{n}+ sentences"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#. placeholder text in search field of
+#. Browse by languages page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/search.ctp#L13
+msgid "Search a language"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -2206,88 +2239,88 @@ msgstr[2] "{number} edycji dzisiaj"
 msgstr[3] "{number} edycji dzisiaj"
 
 #. menu on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L46
 msgid "Browse"
 msgstr "Przeglądaj"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L49
 msgid "Show random sentence"
 msgstr "Wyświetl losowe zdanie"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L55
 msgid "Browse by language"
 msgstr "Przeglądaj po języku"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L60
 msgid "Browse by list"
 msgstr "Przeglądaj według listy"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L65
 msgid "Browse by tag"
 msgstr "Przeglądaj po tagu"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L70
 msgid "Browse audio"
 msgstr "Przeszukuj audio"
 
 #. menu on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L77
 msgid "Contribute"
 msgstr "Dodawaj"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L81
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L136
 msgid "Add sentences"
 msgstr "Dodaj zdania"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L91
 msgid "Adopt sentences"
 msgstr "Przejmuj zdania"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L102
 msgid "Discuss sentences"
 msgstr "Dyskutuj o zdaniach"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L107
 msgid "Add vocabulary request"
 msgstr "Dodaj prośbę o słowo."
 
 #. menu on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L115
 msgid "Community"
 msgstr "Społeczność"
 
 #. menu item on the top (verb)
 #. / title of the Wall page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L39
 msgid "Wall"
 msgstr "Tablica ogłoszeń"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L123
 msgid "List of all members"
 msgstr "Spis członków"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L58
 msgid "Languages of members"
 msgstr "Członkowie wg języka"
 
 #. menu item on the top (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L28
 msgid "Native speakers"
 msgstr "Rodzimi użytkownicy języka"
@@ -3492,6 +3525,30 @@ msgstr "Sprawdź słownictwo dla którego poszukujemy zdań."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
 msgid "Sentences wanted"
 msgstr "Zdania poszukiwane"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
+msgid "Language index"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L11
+msgid "There is {n} language on Tatoeba"
+msgid_plural "There are {n} languages on Tatoeba"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L27
+msgid "My profile languages"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L38
+msgid "Top ten"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L62
+msgid "Show all languages {arrowIcon}"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
@@ -5317,7 +5374,7 @@ msgid ""
 "translation or not."
 msgstr "Nie można jednoznacznie stwierdzić czy to zdanie pochodzi z tłumaczenia czy nie."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L176
 msgid "NOTE: Both direct and indirect translations will be shown."
 msgstr "UWAGA: Zostaną pokazane zarówno tłumaczenia bezpośrednie, jak i pośrednie."
 
