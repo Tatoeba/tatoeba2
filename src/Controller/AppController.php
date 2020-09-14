@@ -323,9 +323,10 @@ class AppController extends Controller
             $supportedLanguages[$browserCompatibleCode] = $langs[0];
         }
 
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        $header = $this->request->getHeaderLine('Accept-Language');
+        if (!empty($header)) {
 
-            $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            $browserLanguages = explode(',', $header);
 
             foreach ($browserLanguages as $browserLang) {
                 $browserLangArray = explode(';', $browserLang);
