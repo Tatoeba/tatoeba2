@@ -77,6 +77,8 @@ class AppControllerTest extends IntegrationTestCase {
 	function browserLanguagesProvider() {
 		return [
 			['/', '/cmn/', 'zh'],
+			['/', '/cmn/', 'zh-CN'],
+			['/', '/cmn/', 'zh-Hant-CN'],
 			['/', '/cmn/', 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3'],
 		];
 	}

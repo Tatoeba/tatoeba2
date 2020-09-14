@@ -330,6 +330,7 @@ class AppController extends Controller
 
             foreach ($browserLanguages as $browserLang) {
                 $browserLangArray = explode(';', $browserLang);
+                $browserLangArray = explode('-', $browserLangArray[0]);
                 $lang = $browserLangArray[0];
                 if (isset($supportedLanguages[$lang])) {
                     return $supportedLanguages[$lang];
