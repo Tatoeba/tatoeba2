@@ -3,6 +3,7 @@ $languagesJSON = h(json_encode($languages));
 $selectedLanguage = isset($selectedLanguage) ? $selectedLanguage : '';
 $placeholder = isset($placeholder) ? $placeholder : __('Select a language');
 $this->Form->unlockField($name);
+$openOnFocus = isset($openOnFocus) ? $openOnFocus : true;
 ?>
 <div language-dropdown 
      ng-init="vm.init(<?= $languagesJSON ?>, '<?= $selectedLanguage ?>', '<?= $name ?>')" 
@@ -21,7 +22,7 @@ $this->Form->unlockField($name);
         md-search-text-change="vm.onSearchTextChange()"
         md-items="language in vm.querySearch(vm.searchText)"
         md-item-text="language.name"
-        md-min-length="0"
+        md-min-length="<?= (int)!$openOnFocus; ?>"
         md-autoselect="vm.searchText.length"
         ng-blur="vm.onBlur()"
         ng-focus="vm.onFocus()"

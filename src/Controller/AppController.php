@@ -233,9 +233,6 @@ class AppController extends Controller
         $lang = $this->Cookie->read('browse_sentences_in_lang');
         $session->write('browse_sentences_in_lang', $lang);
 
-        $translationLang = $this->Cookie->read('show_translations_into_lang');
-        $session->write('show_translations_into_lang', $translationLang);
-
         $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
         $session->write('not_translated_into_lang', $notTranslatedInto);
 
