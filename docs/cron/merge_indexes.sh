@@ -3,4 +3,4 @@ set -e
 
 echo "Started at $(date -Iseconds)"
 /usr/bin/time -f "Duration: %E" /var/www-prod/bin/cake sphinx_indexes merge
-echo "Finished at $(date -Iseconds)\n"
+echo -e "Finished at $(date -Iseconds)\n"
