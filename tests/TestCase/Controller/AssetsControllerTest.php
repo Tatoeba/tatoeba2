@@ -19,6 +19,9 @@ class AssetsControllerTest extends TestCase
     }
 
     public function testSvgSpriteIsWellFormed() {
+        // Ignore output produced by GzipFilter
+        $this->setOutputCallback(function ($output) { return ''; });
+
         // Make sure cached versions are not being served instead
         $caches = [
             CACHE . 'asset_compress' . DS . 'allflags.svg',
