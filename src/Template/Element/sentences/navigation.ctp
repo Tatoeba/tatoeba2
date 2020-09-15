@@ -38,7 +38,7 @@ $sentenceUrl = $this->Url->build([
         </md-button>
 
         <div>
-        <md-tooltip>
+        <md-tooltip md-direction="top">
             <?= __('Language for previous, next or random sentence'); ?>
         </md-tooltip>
         <?php

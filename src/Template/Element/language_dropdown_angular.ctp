@@ -1,5 +1,4 @@
 <div class="language-dropdown-container"
-     title="{{selectedLanguage.name}}">
     <input type="hidden" name="{{name}}" value="{{selectedLanguage.code}}" autocomplete="off">
     <md-autocomplete
         ng-cloak
