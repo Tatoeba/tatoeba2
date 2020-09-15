@@ -21,7 +21,6 @@ namespace App\Shell;
 use App\Lib\LanguagesLib;
 use App\Model\ReindexFlag;
 use Cake\Console\Shell;
-use Cake\Core\Configure;
 
 
 define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
@@ -33,7 +32,6 @@ class SphinxIndexesShell extends Shell {
     private $tatoeba_languages;
 
     private function get_tatoeba_languages() {
-        Configure::write('Config.language', 'eng');
         $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
     }
 
@@ -54,9 +52,11 @@ class SphinxIndexesShell extends Shell {
 
     private function merge_index($lang) {
         echo "Merging indexes of $lang... ";
-        system("indexer --quiet --rotate "
-              ."--merge ${lang}_main_index ${lang}_delta_index",
-               $return_value);
+        system(
+            "sudo -u {$this->sphinx_user} indexer --quiet --rotate " .
+            "--merge ${lang}_main_index ${lang}_delta_index",
+            $return_value
+        );
         if ($return_value != 0) {
             echo "failed.\n";
             return;
@@ -76,7 +76,7 @@ class SphinxIndexesShell extends Shell {
                 $langs = $this->ReindexFlags
                      ->find('list', ['valueField' => 'lang'])
                      ->select(['lang'])
-                     ->where(['lang is not' => null])
+                     ->where(['indexed' => 0])
                      ->group('lang')
                      ->all()
                      ->toArray();
@@ -93,18 +93,11 @@ class SphinxIndexesShell extends Shell {
                 function($lang) use ($type) { return "${lang}_${type}_index"; },
                 $langs
             ));
-            system("indexer --sighup-each --rotate $indexes", $return_value);
+            system(
+                "sudo -u {$this->sphinx_user} indexer --quiet --sighup-each --rotate $indexes",
+                $return_value
+            );
             echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
-        }
-    }
-
-    private function become_sphinx_user() {
-        $sphinxUserInfo = posix_getpwnam($this->sphinx_user);
-        if (!$sphinxUserInfo) {
-            $this->_die("No such user: {$this->sphinx_user}\n");
-        }
-        if (!posix_setuid($sphinxUserInfo['uid'])) {
-            $this->_die("Unable to change uid. Make sure you're root.\n");
         }
     }
 
@@ -136,7 +129,13 @@ class SphinxIndexesShell extends Shell {
                 if (count($this->args)) {
                     $langs = $this->validate_langs($this->args);
                 } else {
-                    $langs = array_keys($this->tatoeba_languages);
+                    $this->loadModel('ReindexFlags');
+                    $langs = $this->ReindexFlags
+                         ->find('all')
+                         ->select('lang')
+                         ->where(['indexed' => 1])
+                         ->distinct('lang')
+                         ->extract('lang');
                 }
                 foreach ($langs as $lang) {
                     $this->merge_index($lang);
@@ -184,7 +183,14 @@ class SphinxIndexesShell extends Shell {
     }
 
     public function main() {
-        $this->become_sphinx_user();
+        if (!posix_getpwnam($this->sphinx_user)) {
+            $this->_die("No such user: {$this->sphinx_user}\n");
+        }
+
+        exec("sudo -u {$this->sphinx_user} indexer -h", $output, $return);
+        if ($return !== 0) {
+            $this->_die("You need to be able to run 'indexer' as user '{$this->sphinx_user}'.\n");
+        }
 
         if (file_exists(LOCK_FILE)) {
             $pid = file_get_contents(LOCK_FILE);

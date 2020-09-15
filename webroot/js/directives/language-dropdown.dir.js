@@ -35,6 +35,7 @@
                 onSelectedLanguageChange: '&?',
                 initialSelection: '@?',
                 placeholder: '@',
+                minLength: '<',
             },
             templateUrl: 'language-dropdown-template',
             controllerAs: 'vm',

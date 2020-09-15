@@ -179,7 +179,7 @@ class ClickableLinksHelper extends AppHelper
     {
         $tooltipTag = $this->Html->tag(
             'md-tooltip',
-            $this->_View->safeForAngular($sentenceText),
+            $this->_View->safeForAngular(h($sentenceText)),
             ['ng-cloak']
         );
         $linkText = format(

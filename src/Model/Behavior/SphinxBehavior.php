@@ -161,16 +161,16 @@ class SphinxBehavior extends Behavior
         // some previous ordering on the created/modified columns.
         $query->order(['FIND_IN_SET(Sentences.id, \'' . implode(',', $ids) . '\')'], true);
 
+        // CakePHP's paginator sets the limit and offset before this method is
+        // called, but we don't use them so we can remove them from the query.
+        $query->offset(null);
+        $query->limit(null);
         return $query;
     }
 
     public function findWithSphinx($query, $options)
     {
-        $query
-            ->counter(function($query) {
-                return $this->getTotal();
-            })
-            ->offset(0);
+        $query->counter(function($query) { return $this->getTotal(); });
 
         return $query;
     }

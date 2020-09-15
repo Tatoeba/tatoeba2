@@ -75,4 +75,19 @@ class LanguagesTableTest extends TestCase {
         $n = $this->Languages->getTotalSentencesNumber();
         $this->assertEquals($expected, $n);
     }
+
+    function testGetMilestonedStatistics() {
+        $milestones = [10, 5, 0];
+
+        $result = $this->Languages->getMilestonedStatistics($milestones);
+
+        foreach ($milestones as $m) {
+            $this->assertArrayHasKey($m, $result);
+        }
+        foreach ($result as $milestone => $langs) {
+            foreach ($langs as $lang) {
+                $this->assertGreaterThanOrEqual($milestone, $lang->sentences);
+            }
+        }
+    }
 }

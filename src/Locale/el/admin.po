@@ -8,6 +8,7 @@
 # Nikos Papadimoulis <glavkos@gmail.com>, 2020
 # Alex Tsen <atseniklidou@gmail.com>, 2020
 # Andreas Naziris <AndrewNaTesla@gmail.com>, 2020
+# Pantelis Bosdelekidis <bospan@hotmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-04 23:48+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Andreas Naziris <AndrewNaTesla@gmail.com>, 2020\n"
+"Last-Translator: Pantelis Bosdelekidis <bospan@hotmail.com>, 2020\n"
 "Language-Team: Greek (https://www.transifex.com/tatoeba/teams/28284/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,12 +27,12 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr "Μη έγκυρο αρχείο \"{file}\" αγνοήθηκε."
+msgstr "Άκυρο αρχείο \"{file}\" αγνοήθηκε."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
-"Απέτυχε η δημιουργία του φάκελου \"{dir}\" για την εισαγωγή του αρχείου "
+"Απέτυχε να δημιουργήσει κατάλογο\"{dir}\" για την εισαγωγή του αρχείου "
 "\"{file}\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
@@ -43,16 +44,16 @@ msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
-"Αδύνατη η ανάθεση ήχου στον \"{author}\" για την φράση {sentenceId} στην "
-"βάση δεδομένων. Βεβαιωθείτε πως είναι έγκυρο όνομα χρήστη."
+"Αδύνατη η ανάθεση ήχου στο \"{author}\" για την πρόταση{sentenceId} μέσα "
+"στην βάση δεδομένων. Βεβαιωθείτε πως είναι ένα έγκυρο όνομα χρήστη."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
-"Το αρχείο \"{file}\" εισάχθηκε επιτυχώς αλλα δεν ήταν δυνατή η αφαίρεση του "
-"από τον φάκελο εισαγωγής."
+"Το αρχείο \"{file}\" εισήχθη με επιτυχία αλλά δεν ήταν δυνατή η αφαίρεση του"
+" από τον φάκελο εισαγωγής."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
@@ -89,7 +90,7 @@ msgstr "Ήδη έχει ήχο"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
-msgstr "Δυνατότητα εισαγωγής"
+msgstr "Μπορεί να εισαχθεί"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
@@ -114,7 +115,7 @@ msgstr "Όχι"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
-msgstr "Δεν βρέθηκαν αρχεία στον φάκελο εισαγωγής."
+msgstr "Δεν εντοπίστηκαν αρχεία μέσα στον κατάλογο εισαγωγής."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
 msgid "Import"

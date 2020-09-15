@@ -9,6 +9,7 @@ $this->AngularTemplate->addTemplate(
 );
 
 $this->Form->unlockField($name);
+$openOnFocus = isset($openOnFocus) ? $openOnFocus : true;
 ?>
 <language-dropdown
 <?php if (isset($id)): ?>
@@ -24,4 +25,5 @@ $this->Form->unlockField($name);
 <?php endif; ?>
     initial-selection="<?= $initialSelection ?>"
     placeholder="<?= $placeholder ?>"
+    min-length="<?= (int)!$openOnFocus; ?>"
 ></language-dropdown>
