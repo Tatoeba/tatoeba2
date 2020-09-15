@@ -12,6 +12,7 @@
                                Browse by languages page */
               'placeholder' => __('Search a language'),
               'openOnFocus' => false,
+              'onSelectedLanguageChange' => 'vm.onSelectedLanguageChange(language)',
           )
       );
   ?>
