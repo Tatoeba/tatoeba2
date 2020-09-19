@@ -26,13 +26,9 @@ $this->AssetCompress->script('sentence-component.js', ['block' => 'scriptBottom'
 if (CurrentUser::isMember()) {
     $this->Html->script('/js/services/list-data.srv.js', array('block' => 'scriptBottom'));
     $this->Html->script('/js/directives/edit-review.dir.js', ['block' => 'scriptBottom']);
-    $this->Html->scriptBlock(
+    $this->AngularTemplate->addTemplate(
         $this->element('reviews/edit_review'),
-        [
-            'block' => 'scriptBottom',
-            'type' => 'text/ng-template',
-            'id' => 'edit-review-template'
-        ]
+        'edit-review-template'
     );
 }
 

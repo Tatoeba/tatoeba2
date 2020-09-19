@@ -30,21 +30,6 @@
 
             ///////////////////////////////////////////////////////////////////////////
 
-            $scope.$on('languageChange', function(event, data){
-                if (data.dropdownName === 'from') {
-                    vm.langFrom = data.lang;
-                }
-                if (data.dropdownName === 'to') {
-                    vm.langTo = data.lang;
-                }
-            });
-
-            $scope.$on('langToChange', function(event, data){
-                vm.langTo = data;
-            });
-
-            ///////////////////////////////////////////////////////////////////////////
-
             function clearSearch() {
                 vm.searchQuery = '';
                 angular.element(document.querySelector('#SentenceQuery')).focus();
@@ -53,8 +38,8 @@
             function swapLanguages() {
                 var newLangFrom = vm.langTo;
                 var newLangTo = vm.langFrom;
-                $scope.$broadcast('setLang', { dropdownName: 'from', lang: newLangFrom});
-                $scope.$broadcast('setLang', { dropdownName: 'to', lang: newLangTo});
+                vm.langFrom = newLangFrom;
+                vm.langTo = newLangTo;
             }
         }]);
 })();

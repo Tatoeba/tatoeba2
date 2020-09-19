@@ -208,16 +208,14 @@ $label = format(
         <?php
         $languagesList = $this->Languages->languagesArrayWithNone(false);
         $language = $language ? $language : 'none';
-        echo $this->Form->select(
-            'language',
-            $languagesList,
+        echo $this->element(
+            'language_dropdown',
             array(
-                'class' => 'language-selector',
-                'empty' => false,
-                'ng-model' => 'user.language',
-                'value' => $language,
-            ),
-            false
+                'name' => 'language',
+                'languages' => $languagesList,
+                'initialSelection' => $language,
+                'onSelectedLanguageChange' => 'user.language = language.code',
+            )
         );
         ?>
     </div>

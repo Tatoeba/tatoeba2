@@ -131,10 +131,10 @@ echo $this->Form->create(
                 array(
                     'id' => 'SentenceFrom',
                     'name' => 'from',
-                    'selectedLanguage' => $selectedLanguageFrom,
+                    'initialSelection' => $selectedLanguageFrom,
                     /* @translators: option used in language selection dropdowns in top search bar */
                     'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
-                    'setLanguage' => 'ctrl.langFromApi'
+                    'selectedLanguage' => 'ctrl.langFrom'
                 )
             );
             ?>
@@ -155,10 +155,10 @@ echo $this->Form->create(
                 array(
                     'id' => 'SentenceTo',
                     'name' => 'to',
-                    'selectedLanguage' => $selectedLanguageTo,
+                    'initialSelection' => $selectedLanguageTo,
                     /* @translators: option used in language selection dropdowns in top search bar */
                     'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
-                    'setLanguage' => 'ctrl.langToApi'
+                    'selectedLanguage' => 'ctrl.langTo'
                 )
             );
             ?>

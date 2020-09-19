@@ -40,11 +40,12 @@ $langArray = $this->Languages->languagesArrayAlone();
 
         <span>
         <?php
-        echo $this->Form->select('randomLangChoice', $langArray, [
+        echo $this->element('language_dropdown', [
+            'name' => 'randomLangChoice',
             'id' => 'randomLangChoice',
-            'class' => 'language-selector',
-            'empty' => false,
-            'ng-model' => 'vm.lang'
+            'languages' => $langArray,
+            'initialSelection' => '{{vm.lang}}',
+            'onSelectedLanguageChange' => 'vm.lang = language.code'
         ]);
         ?>
         </span>

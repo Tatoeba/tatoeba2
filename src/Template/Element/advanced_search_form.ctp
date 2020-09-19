@@ -74,7 +74,7 @@ echo $this->Form->create('AdvancedSearch', [
             <div class="param" layout="<?= $layout ?>" layout-align="center">
                 <label for="from" flex><?= __('Language:') ?></label>
                 <?php
-                echo $this->Search->selectLang('from', $from, ['label' => '']);
+                echo $this->Search->selectLang('from', $from);
                 ?>
             </div>
 
@@ -82,8 +82,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <label for="to" flex><?= __('Show translations in:') ?></label>
                 <?php
                 echo $this->Search->selectLang('to', $to, [
-                    'label' => '',
-                    'options' => $this->Languages->languagesArrayShowTranslationsIn(),
+                    'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
                 ]);
                 ?>
             </div>
@@ -249,7 +248,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="param" layout="<?= $layout ?>" layout-align="center">
                     <label for="trans-to" flex><?= __('Language:') ?></label>
                     <?php
-                    echo $this->Search->selectLang('trans_to', $trans_to, ['label' => '']);
+                    echo $this->Search->selectLang('trans_to', $trans_to);
                     ?>
                 </div>
 

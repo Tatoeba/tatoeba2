@@ -24,18 +24,17 @@
 
             vm.selectedLanguage = null;
             vm.showAllSentencesButtonText = null;
+            vm.onSelectedLanguageChange = onSelectedLanguageChange;
 
-            $scope.$on('languageChange', function(event, data) {
-                if (data.dropdownName === 'ShowAllIn') {
-                    vm.selectedLanguage = {'name': data.langName, 'code': data.lang};
-                    var url = get_tatoeba_root_url() + '/angular_templates/show_all_sentences_button_text/' + data.lang;
-                    $http.get(url).then(function(result) {
-                        vm.showAllSentencesButtonText = result.data;
-                    },
-                    function() {
-                        vm.showAllSentencesButtonText = null;
-                    });
-                }
-            });
+            function onSelectedLanguageChange(language) {
+                vm.selectedLanguage = language;
+                var url = get_tatoeba_root_url() + '/angular_templates/show_all_sentences_button_text/' + language.code;
+                $http.get(url).then(function(result) {
+                    vm.showAllSentencesButtonText = result.data;
+                },
+                function() {
+                    vm.showAllSentencesButtonText = null;
+                });
+            }
         }]);
 })();

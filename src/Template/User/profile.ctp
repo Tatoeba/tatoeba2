@@ -434,7 +434,8 @@ $userLanguages = h(json_encode($userLanguages));
                                 'language_dropdown',
                                 [
                                     'name' => 'language_code',
-                                    'languages' => $languagesList
+                                    'languages' => $languagesList,
+                                    'selectedLanguage' => 'vm.selectedLang',
                                 ]
                             );
                             ?>

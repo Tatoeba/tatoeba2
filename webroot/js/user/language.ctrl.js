@@ -90,14 +90,6 @@
             }
         }
 
-        $scope.$on('languageChange', function(event, data) {
-            vm.selectedLang = {
-               code: data.lang,
-               name: data.langName,
-               level: null
-            };
-        });
-
         function init(userLangs) {
             vm.langs = userLangs;
         }

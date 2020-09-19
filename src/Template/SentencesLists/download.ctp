@@ -100,16 +100,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             <td>
             <?php
             $langArray = $this->Languages->languagesArrayWithNone();
-            echo $this->Form->select(
-                'TranslationsLang',
-                $langArray,
+            echo $this->element(
+                'language_dropdown',
                 array(
-                    'class' => 'language-selector',
-                    "empty" => false,
-                    'ng-model' => 'trans_lang',
-                    'ng-init' => 'trans_lang = "none"',
-                ),
-                false
+                    'name' => 'TranslationsLang',
+                    'languages' => $langArray,
+                    'initialSelection' => 'none',
+                    'onSelectedLanguageChange' => 'trans_lang = language.code',
+                )
             );
             ?>
             </td>

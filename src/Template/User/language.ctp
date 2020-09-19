@@ -70,7 +70,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             );
             if (!$userLanguage) {
                 echo $this->element(
-                    'language_dropdown', 
+                    'language_dropdown',
                     array(
                         'name' => 'language_code',
                         'languages' => $languagesList

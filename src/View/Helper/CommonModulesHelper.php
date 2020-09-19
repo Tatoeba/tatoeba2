@@ -97,22 +97,19 @@ class CommonModulesHelper extends AppHelper
                 $query = '?' . $query;
             }
 
-            echo $this->Form->select(
-                'filterLanguageSelect',
-                $langs,
+            echo $this->_View->element(
+                'language_dropdown',
                 array(
-                    "value" => $lang,
-                    "onchange" => "
-                        if (this.value == 'und') {
-                            window.location.href = '$path' + '$query';
-                        } else {
-                            window.location.href = '$path/' + this.value + '$query';
-                        }",
-                    // the if is to avoid a duplicate page (with and without "und")
-                    "class" => "language-selector",
-                    "empty" => false
-                ),
-                false
+                    'name' => 'filterLanguageSelect',
+                    'languages' => $langs,
+                    'initialSelection' => $lang,
+                    'onSelectedLanguageChange' => "
+                        window.location.href =
+                        '$path'
+                        + (language.code == 'und' ? '' : '/'+language.code)
+                        + '$query'",
+                    // the check for 'und' is to avoid a duplicate page (with and without it)
+                )
             );
             ?>
         </div>
