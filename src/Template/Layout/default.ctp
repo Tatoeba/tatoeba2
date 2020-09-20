@@ -96,6 +96,12 @@ $isHomepage = $controller == 'pages' && $action == 'index';
             && empty($query)
             && !$this->Languages->preferredLanguageFilter()) {
             $cache = [ 'key' => 'search_bar_'.$lang ];
+            // When we use the cached version of the search bar we need to add
+            // the template for the 'language-dropdown' directive
+            $this->AngularTemplate->addTemplate(
+                $this->element('language_dropdown_angular'),
+                'language-dropdown-template'
+            );
         } else {
             $cache = null;
         }
