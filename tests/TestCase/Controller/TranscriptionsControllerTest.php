@@ -167,9 +167,9 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
     }
 
     public function testControllerAccess() {
-        $this->assertAccessUrlAs('/jpn/transcriptions/of/kazuki', null, true);
-        $this->assertAccessUrlAs('/jpn/transcriptions/of/kazuki', 'contributor', true);
-        $this->assertAjaxAccessUrlAs('/jpn/transcriptions/view/6', null, true);
-        $this->assertAjaxAccessUrlAs('/jpn/transcriptions/view/6', 'contributor', true);
+        $this->assertAccessUrlAs('/eng/transcriptions/of/kazuki', null, true);
+        $this->assertAccessUrlAs('/eng/transcriptions/of/kazuki', 'contributor', true);
+        $this->assertAjaxAccessUrlAs('/eng/transcriptions/view/6', null, true);
+        $this->assertAjaxAccessUrlAs('/eng/transcriptions/view/6', 'contributor', true);
     }
 }

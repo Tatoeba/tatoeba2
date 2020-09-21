@@ -74,6 +74,26 @@ class AppControllerTest extends IntegrationTestCase {
 		$this->assertInterfaceLanguageCookie('eng');
 	}
 
+	function browserLanguagesProvider() {
+		return [
+			['/eng/', '/cmn/', 'zh'],
+			['/eng/about', '/cmn/about', 'zh'],
+			['/', '/cmn/', 'zh'],
+			['/', '/cmn/', 'zh-CN'],
+			['/', '/cmn/', 'zh-Hant-CN'],
+			['/', '/cmn/', 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3'],
+		];
+	}
+
+	/**
+	 * @dataProvider browserLanguagesProvider
+	 */
+	function testBeforeFilter_honorsBrowserLanguage($landing, $redirect, $header) {
+		$this->addHeader('Accept-Language', $header);
+		$this->get($landing);
+		$this->assertRedirect($redirect);
+	}
+
 	function testBeforeFilter_redirectsFromOldAliasWithLangInUrl() {
 		$this->get('/chi/about');
 		$this->assertRedirect('/cmn/about');

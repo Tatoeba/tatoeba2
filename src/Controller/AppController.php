@@ -142,7 +142,6 @@ class AppController extends Controller
         // - By default we use the language set in the browser (or English, if the
         //   language of the browser is not supported).
         // - If the user has a cookie, we use the language set in the cookie.
-        // - If no cookie, we use the language set in the URL.
         $lang = $this->getSupportedLanguage();
         $langInCookie = $this->Cookie->read('CakeCookie.interfaceLanguage');
         $langInURL = $this->request->getParam('lang', null);
@@ -153,14 +152,12 @@ class AppController extends Controller
         } else if ($langInCookie) {
             $langInCookieAlias = $this->remapOldLangAlias($langInCookie);
             if ($langInCookieAlias != $langInCookie && !empty($langInURL)) {
-                $this->Cookie->write('CakeCookie.interfaceLanguage', $langInCookieAlias, false, "+1 month");
                 $langInCookie = $langInCookieAlias;
             }
             $lang = $langInCookie;
-        } else if (!empty($langInURL)) {
-            $lang = $langInURL;
-            $this->Cookie->write('CakeCookie.interfaceLanguage', $lang, false, "+1 month");
         }
+
+        $this->Cookie->write('CakeCookie.interfaceLanguage', $lang, false, "+1 month");
         Configure::write('Config.language', $lang);
         $locale = Locale::parseLocale(LanguagesLib::languageTag($lang));
         I18N::setLocale($locale['language']);
@@ -173,10 +170,7 @@ class AppController extends Controller
 
             // Forcing the URL to have the (correct) language in it.
             $url = $this->request->getRequestTarget();
-            if (!empty($langInURL) && (
-                  ($langInCookie && $langInURL != $langInCookie) ||
-                  ($langInURLAlias != $langInURL)
-               )) {
+            if (!empty($langInURL) && $lang != $langInURL) {
                 // We're are now going to remove the language from the URL and set
                 // $langURL to null so that we get the the correct URL through
                 // redirection (below).
@@ -323,18 +317,12 @@ class AppController extends Controller
             $supportedLanguages[$browserCompatibleCode] = $langs[0];
         }
 
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-
-            $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-
-            foreach ($browserLanguages as $browserLang) {
-                $browserLangArray = explode(';', $browserLang);
-                $lang = $browserLangArray[0];
-                if (isset($supportedLanguages[$lang])) {
-                    return $supportedLanguages[$lang];
-                }
+        $browserLanguages = $this->request->acceptLanguage();
+        foreach ($browserLanguages as $browserLang) {
+            $lang = explode('-', $browserLang)[0];
+            if (isset($supportedLanguages[$lang])) {
+                return $supportedLanguages[$lang];
             }
-
         }
         return 'eng';
     }
