@@ -14,7 +14,7 @@ $sentenceUrl = $this->Url->build([
 ]);
 ?>
 <div ng-app="app" ng-controller="SentencesNavigationController as vm" 
-     ng-init="vm.init(<?= $selectedLanguage ?>, <?= $currentId ?>, <?= $prev ?>, <?= $next ?>)" 
+     ng-init="vm.init('<?= $selectedLanguage ?>', <?= $currentId ?>, <?= $prev ?>, <?= $next ?>)" 
      class="navigation" layout="row" ng-cloak>
 
     <div layout="row" layout-align="space-around center" layout-margin flex>
