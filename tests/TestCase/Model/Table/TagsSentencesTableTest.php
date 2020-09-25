@@ -52,4 +52,19 @@ class TagsSentencesTableTest extends TestCase {
 
         I18n::setLocale($prevLocale);
     }
+
+    function testRemoveTagFromSentence_succeeds() {
+        $entity = $this->TagsSentences->get(1);
+        $rv = $this->TagsSentences->removeTagFromSentence(
+            $entity->tag_id,
+            $entity->sentence_id
+        );
+        $this->assertTrue($rv);
+        $this->assertNull($this->TagsSentences->findById(1)->first());
+    }
+
+    function testRemoveTagFromSentence_fails() {
+        $rv = $this->TagsSentences->removeTagFromSentence(9999, 9999);
+        $this->assertFalse($rv);
+    }
 }

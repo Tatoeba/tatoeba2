@@ -85,11 +85,23 @@ class TagsSentencesTable extends Table
             ->toList();
     }
 
-    public function removeTagFromSentence($tagId,$sentenceId) {
-        $this->deleteAll([
-            'tag_id' => $tagId,
-            'sentence_id' => $sentenceId
-        ]);
+    /**
+     * Remove a tag from a sentence
+     *
+     * @param int $tagId       Id of the tag
+     * @param int $sentenceId  Id of the sentence
+     *
+     * @return boolean
+     */
+    public function removeTagFromSentence($tagId, $sentenceId) {
+        $entity = $this->find()
+                       ->where(['tag_id' => $tagId, 'sentence_id' => $sentenceId])
+                       ->first();
+        if ($entity) {
+            return $this->delete($entity);
+        } else {
+            return false;
+        }
     }
 
 
