@@ -614,6 +614,7 @@ class LanguagesLib
                 'ood' => __d('languages', "O'odham"),
                 'lut' => __d('languages', 'Lushootseed'),
                 'ofs' => __d('languages', 'Old Frisian'),
+                'nus' => __d('languages', 'Nuer'),
             );
         }
         return $languages;
