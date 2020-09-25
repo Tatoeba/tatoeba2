@@ -613,6 +613,7 @@ class LanguagesLib
                 'ayl' => __d('languages', 'Libyan Arabic'),
                 'ood' => __d('languages', "O'odham"),
                 'lut' => __d('languages', 'Lushootseed'),
+                'ofs' => __d('languages', 'Old Frisian'),
             );
         }
         return $languages;
