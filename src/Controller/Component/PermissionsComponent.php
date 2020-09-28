@@ -192,46 +192,37 @@ class PermissionsComponent extends Component
     }
 
     /**
-     * Check which options user can access to and returns
-     * data that is needed for the message on the Wall.
+     * Get permissions for a wall message for the current user
      *
-     * @param array $message          Message.
-     * @param int   $ownerId          Id of the message owner.
-     * @param int   $currentUserId    Id of currently logged in user.
+     * @param boolean $lastInThread   Whether the message is the last in the thread,
+     *                                i.e. it has no children
+     * @param int     $ownerId        Id of the message owner
+     * @param int     $currentUserId  Id of currently logged in user
      *
      * @return array
      */
-    public function getWallMessageOptions(
-        $message,
-        $ownerId,
-        $currentUserId
-    ) {
+    public function getWallMessageOptions($lastInThread, $ownerId, $currentUserId) {
         $rightsOnWallMessage = array(
             "canReply"  => false,
             "canDelete" => false,
             "canEdit" => false,
             "canPM" => false
         );
-        // TODO add functions to determine options
         if (empty($currentUserId)) {
             return $rightsOnWallMessage;
         }
 
-        if (empty($message['children'])) {
-            if ($ownerId === $currentUserId) {
-                $rightsOnWallMessage['canDelete'] = true;
-            } elseif (CurrentUser::isAdmin()) {
-                $rightsOnWallMessage['canDelete'] = true;
-            }
+        $canModify = $ownerId === $currentUserId || CurrentUser::isAdmin();
+
+        if ($lastInThread && $canModify) {
+            $rightsOnWallMessage['canDelete'] = true;
         }
 
-        if ($ownerId === $currentUserId) {
-            $rightsOnWallMessage['canEdit'] = true;
-        } elseif (CurrentUser::isAdmin()) {
+        if ($canModify) {
             $rightsOnWallMessage['canEdit'] = true;
         }
 
-        if ($ownerId !== $currentUserId) {
+        if ($ownerId && $ownerId !== $currentUserId) {
             $rightsOnWallMessage['canPM'] = true;
         }
 
@@ -255,13 +246,14 @@ class PermissionsComponent extends Component
     ) {
 
         foreach ($messages as $i=>$message) {
+            $lastInThread = empty($message->children);
             $messages[$i]['Permissions'] = $this->getWallMessageOptions(
-                $message,
-                $message->user->id,
+                $lastInThread,
+                $message->owner,
                 $currentUserId
             );
 
-            if (!empty($message['children'])) {
+            if (!$lastInThread) {
                 $messages[$i]['children'] = $this->getWallMessagesOptions(
                     $message['children'],
                     $currentUserId
@@ -269,7 +261,7 @@ class PermissionsComponent extends Component
             }
 
         }
-        //pr($messages);
+
         return $messages;
     }
 }
