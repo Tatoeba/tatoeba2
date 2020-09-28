@@ -5,14 +5,13 @@ use App\Model\CurrentUser;
 $this->Html->script('/js/sentences/index.ctrl.js', ['block' => 'scriptBottom']);
 $title = __('Language index');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
-$n = count($stats, COUNT_RECURSIVE);
 $header = format(
   __n(
        'There is {n} language on Tatoeba',
        'There are {n} languages on Tatoeba',
-       $n
+       $nbrLanguages
   ),
-  compact('n')
+  ['n' => $nbrLanguages]
 );
 $top10 = $this->ShowAll->extractTopTen($stats);
 $profileLangs = $this->ShowAll->extractLanguageProfiles($stats);
