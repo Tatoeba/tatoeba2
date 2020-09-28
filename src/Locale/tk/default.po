@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Altynay Makenova <altynay811@gmail.com>, 2020
+# Ogulkeyik Hudayberdiyeva <hudayberdiyewaogulkeyik@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-19 20:07+0200\n"
-"PO-Revision-Date: 2020-09-14 06:23+0000\n"
-"Last-Translator: Andreas Perstinger <andipersti@gmail.com>\n"
+"PO-Revision-Date: 2020-09-27 17:01+0000\n"
+"Last-Translator: Ogulkeyik Hudayberdiyeva <hudayberdiyewaogulkeyik@gmail.com>\n"
 "Language-Team: Turkmen (http://www.transifex.com/tatoeba/tatoeba_website/language/tk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +34,7 @@ msgstr "{username} atly ulanyjy ýok"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
 msgid "Your audio settings have been saved."
-msgstr ""
+msgstr "Siziň audio sazlamalaryňyz ýazyldy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
@@ -41,41 +42,41 @@ msgstr ""
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "Ýazylyşyň dowamynda ýalňyşlyk ýüze çykdy. Bu barada habar bermek üçin gaýtadan synanyşyň ýa-da biziň bilen habarlaşyň."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L72
 msgid "Tatoeba, new password"
-msgstr ""
+msgstr "Tatoeba, täze açarsöz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "Sanaw täzelenýänçä garaşmagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "Ygtyýarnamanyň çalşylmagy eýýäm ýerine ýetirilýar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr ""
+msgstr "{firstNumber} we {secondNumber} belgili sözlemler indi biri-biriniň göni terjimesi bolup durýarlar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr ""
+msgstr "{firstNumber} we {secondNumber} belgili sözlemler indi biri-biriniň göni terjimesi däl."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "Baglanyşygy aýyrmakda säwlik ýüze çykdy. Bu barada habar bermek üçin gaýtadan synanyşyň ýa-da biziň bilen habarlaşyň."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
-msgstr ""
+msgstr "{name} atly bukja boşadyldy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L202
@@ -84,11 +85,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
-msgstr ""
+msgstr "Siziň teswiriňiz ýazyldy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
-msgstr ""
+msgstr "Bu teswiri redaktirlemäge rugsadyňyz ýok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
@@ -96,7 +97,7 @@ msgstr ""
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "Eger siz bu habary ýalňyşlyk bilen alan bolsaňyz, {email} elektron poçta salgysy arkaly administratorlara ýüz tutmagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
