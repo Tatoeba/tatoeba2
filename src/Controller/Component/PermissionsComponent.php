@@ -146,7 +146,7 @@ class PermissionsComponent extends Component
             }
 
             $commentPermissions = $this->getCommentOptions(
-                $comment['user_id']
+                $comment->user->id ?? null
             );
             array_push($commentsPermissions, $commentPermissions);
         }
@@ -248,7 +248,7 @@ class PermissionsComponent extends Component
             $lastInThread = empty($message->children);
             $messages[$i]['Permissions'] = $this->getWallMessageOptions(
                 $lastInThread,
-                $message->owner,
+                $message->user->id ?? null,
                 $currentUserId
             );
 
