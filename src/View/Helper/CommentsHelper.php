@@ -73,7 +73,7 @@ class CommentsHelper extends AppHelper
         $commentId = $comment['id'];
 
         //send message
-        if ($permissions['canPM'] && isset($comment->user->username)) {
+        if ($permissions['canPM']) {
             $menu[] = array(
                 'text' => __('Send message'),
                 'icon' => 'mail',

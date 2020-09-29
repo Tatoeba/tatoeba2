@@ -154,8 +154,7 @@ class PermissionsComponent extends Component
     }
 
     /**
-     * Check which options user can access to and returns
-     * data that is needed for the comments menu.
+     * Get comment permissions for the current user
      *
      * @param int   $ownerId          Id of the comment owner.
      *
@@ -184,7 +183,7 @@ class PermissionsComponent extends Component
             $rightsOnComment['canEdit'] = true;
         }
 
-        if (CurrentUser::get('id') != $ownerId) {
+        if ($ownerId && CurrentUser::get('id') != $ownerId) {
             $rightsOnComment['canPM'] = true;
         }
 

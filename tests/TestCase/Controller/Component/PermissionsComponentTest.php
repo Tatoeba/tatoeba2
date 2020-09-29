@@ -16,6 +16,7 @@ class PermissionsComponentTest extends TestCase
         'app.users',
         'app.users_languages',
         'app.walls',
+        'app.sentence_comments',
     ];
     private $component;
     private $controller;
@@ -38,6 +39,7 @@ class PermissionsComponentTest extends TestCase
     public function tearDown()
     {
         unset($this->component, $this->controller);
+        CurrentUser::store([]);
         parent::tearDown();
     }
 
@@ -99,4 +101,58 @@ class PermissionsComponentTest extends TestCase
         $this->assertFalse($wallThread[0]['children'][0]['Permissions']['canEdit']);
         $this->assertTrue($wallThread[0]['children'][0]['Permissions']['canPM']);
     }
+
+    public function CommentOptionsProvider() {
+        // owner, currentUser, expected
+        return [
+            [null, null,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            ],
+            [null, 2,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            ],
+            [null, 1,
+             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => false]
+            ],
+            [3, null,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            ],
+            [3, 3,
+             ['canHide' => false, 'canDelete' => true, 'canEdit' => true, 'canPM' => false]
+            ],
+            [3, 1,
+             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => true]
+            ],
+            [3, 2,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => true]
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider CommentOptionsProvider
+     */
+    public function testGetCommentOptions($owner, $currentUser, $expected) {
+        if ($currentUser) {
+            CurrentUser::store($this->Users->get($currentUser)->toArray());
+        }
+        $result = $this->component->getCommentOptions($owner);
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetCommentsOptions() {
+        $Comments = TableRegistry::getTableLocator()->get('SentenceComments');
+        CurrentUser::store($this->Users->get(2)->toArray());
+
+        $comments = $Comments->getCommentsForSentence(14);
+        $permissions = $this->component->getCommentsOptions($comments);
+        $this->assertTrue($permissions[0]['canEdit']);
+        $this->assertFalse($permissions[0]['canPM']);
+
+        $comments = $Comments->getCommentsForSentence(4);
+        $permissions = $this->component->getCommentsOptions($comments);
+        $this->assertFalse($permissions[0]['canEdit']);
+        $this->assertTrue($permissions[0]['canPM']);
+    }
+
 }
