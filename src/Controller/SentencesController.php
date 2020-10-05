@@ -115,7 +115,8 @@ class SentencesController extends AppController
         $this->loadModel('Languages');
         $milestones = [ 100000, 10000, 1000, 100, 10, 1, 0 ];
         $stats = $this->Languages->getMilestonedStatistics($milestones);
-        $this->set('stats', $stats);
+        $nbrLanguages = count(LanguagesLib::languagesInTatoeba());
+        $this->set(compact('stats', 'nbrLanguages'));
     }
 
     /**
