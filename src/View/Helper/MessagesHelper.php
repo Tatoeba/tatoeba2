@@ -47,54 +47,6 @@ class MessagesHelper extends AppHelper
     public $helpers = array('Html', 'ClickableLinks');
 
     /**
-     * Message is a draft.
-     *
-     * @param  int  $messageId
-     *
-     * @return boolean
-     */
-    public function isDraft($messageId)
-    {
-        return $messageId != null;
-    }
-
-    /**
-     * Message is a reply.
-     *
-     * @param  string  $recipients
-     * @param  int     $messageId
-     * @param  string  $content
-     *
-     * @return boolean
-     */
-    public function isReply($recipients, $messageId, $content)
-    {
-        return $this->request->params['action'] == 'show';
-    }
-
-    /**
-     *
-     * 
-     *
-     */
-    public function displayFormHeader($title)
-    {
-        ?>
-        <div class="header">
-            <div class="info">
-            <?php
-            $user = CurrentUser::get('User');
-            $this->displayAvatar($user);
-            ?>
-            </div>
-            <div class="title">
-            <?php echo $title ?>
-            </div>
-        </div>
-        <?php
-    }
-
-    /**
      * Get user and label of sender/receiver for current message.
      *
      * @param  array  $msg
@@ -161,77 +113,6 @@ class MessagesHelper extends AppHelper
             $msg['PrivateMessage']["draft_recpts"] != '' ||
             $originalFolder == 'Drafts';
     }
-
-    /**
-     * Display author avatar.
-     *
-     * @param array  $author [author info]
-     */
-    public function displayAvatar($author)
-    {
-        $image = $author['image'];
-
-        $username = $author['username'];
-
-        if ($username) {
-            $this->displayUserAvatar($image, $username);
-        } else {
-            $this->displayUnknownAvatar();
-        }
-    }
-
-    /**
-     * Display the user avatar.
-     *
-     * @param  string $image    [user image name]
-     * @param  string $username
-     */
-    public function displayUserAvatar($image, $username)
-    {
-        if (empty($image)) {
-            $image = 'unknown-avatar.png';
-        }
-
-        ?><div class="avatar"><?php
-        echo $this->Html->link(
-            $this->Html->image(
-                IMG_PATH . 'profiles_36/'. $image,
-                array(
-                    'alt' => $username,
-                    'title' => __("View this user's profile"),
-                    'width' => 36,
-                    'height' => 36
-                )
-            ),
-            array(
-                'controller' => 'user',
-                'action' => 'profile',
-                $username
-            ),
-            array('escape' => false)
-        );
-        ?></div><?php
-    }
-
-    /**
-     * Display the default, unknown avatar.
-     *
-     * @param  string $alt [Alt text for avatar]
-     */
-    public function displayUnknownAvatar($alt = 'Former member')
-    {
-        ?><div class="avatar"><?php
-        echo $this->Html->image(
-            IMG_PATH . 'profiles_36/unknown-avatar.png',
-            array(
-                'alt' => __($alt),
-                'width' => 36,
-                'height' => 36,
-            )
-        );
-        ?></div><?php
-    }
-
 
     /**
      * @param string $content     Text of the comment.
