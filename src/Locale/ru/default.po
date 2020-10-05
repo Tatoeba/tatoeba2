@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-19 20:07+0200\n"
-"PO-Revision-Date: 2020-09-22 13:26+0000\n"
+"PO-Revision-Date: 2020-10-02 10:45+0000\n"
 "Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -871,7 +871,7 @@ msgstr "Язык интерфейса"
 #. in Browse by languages page.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/show_all_sentences_button_text.ctp#L6
 msgid "Show all sentences in {language}"
-msgstr ""
+msgstr "Показать все предложения на {language.prep}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -1239,7 +1239,7 @@ msgstr "Мы обновили <a href=\"{termsOfUse}\">Условия испол
 #. button to accept new terms of use
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
 msgid "Accept and close"
-msgstr ""
+msgstr "Принять и закрыть"
 
 #. button to close the blue announcement banner
 #. / button to close the announcement about the new design (verb)
@@ -1826,28 +1826,28 @@ msgstr "Показывать меньше функций для всех пре�
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
 msgid "0 sentences"
-msgstr ""
+msgstr "0 предложений"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
 msgid "1 or more sentences"
-msgstr ""
+msgstr "1 и более предложений"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L12
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L190
 msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "более {n} предложения"
+msgstr[1] "более {n}предложений"
+msgstr[2] "более {n} предложений"
+msgstr[3] "более {n} предложений"
 
 #. placeholder text in search field of
 #. Browse by languages page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/search.ctp#L13
 msgid "Search a language"
-msgstr ""
+msgstr "Найти язык"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -3424,13 +3424,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L136
 msgctxt "reviews"
 msgid "Newest first"
-msgstr ""
+msgstr "Сначала новые"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L138
 msgctxt "reviews"
 msgid "Oldest first"
-msgstr ""
+msgstr "Сначала старые"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
@@ -3535,22 +3535,22 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L11
 msgid "There is {n} language on Tatoeba"
 msgid_plural "There are {n} languages on Tatoeba"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{n} язык на проекте Tatoeba"
+msgstr[1] "{n} языка на проекте Tatoeba"
+msgstr[2] "{n} языков на проекте Tatoeba"
+msgstr[3] "{n} языков на проекте Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L27
 msgid "My profile languages"
-msgstr ""
+msgstr "Языки моего профиля"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L38
 msgid "Top ten"
-msgstr ""
+msgstr "Топ 10"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L62
 msgid "Show all languages {arrowIcon}"
-msgstr ""
+msgstr "Показать все языки {arrowIcon} "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
@@ -3588,13 +3588,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L123
 msgctxt "sentences"
 msgid "Newest first"
-msgstr ""
+msgstr "Сначала новые"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L125
 msgctxt "sentences"
 msgid "Oldest first"
-msgstr ""
+msgstr "Сначала старые"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
 msgid ""
@@ -3639,7 +3639,7 @@ msgstr "Ошибка поиска"
 #. button to open the advanced search option sidebar on mobile
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L105
 msgid "Narrow search"
-msgstr ""
+msgstr "Сузить поиск"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L117
 msgid ""
@@ -3662,7 +3662,7 @@ msgstr "Поиск: {keywords}"
 #. title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L197
 msgid "Search criteria"
-msgstr ""
+msgstr "Критерий поиска"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
@@ -3816,7 +3816,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L82
 msgctxt "lists"
 msgid "Newest first"
-msgstr ""
+msgstr "Сначала новые"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3824,7 +3824,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L84
 msgctxt "lists"
 msgid "Oldest first"
-msgstr ""
+msgstr "Сначала старые"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -4476,13 +4476,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L100
 msgctxt "members"
 msgid "Newest first"
-msgstr ""
+msgstr "Сначала новые"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L102
 msgctxt "members"
 msgid "Oldest first"
-msgstr ""
+msgstr "Сначала старые"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L104
@@ -4647,7 +4647,7 @@ msgstr "Показываются только словарные статьи, �
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L67
 msgid "There are no requests."
-msgstr ""
+msgstr "Запросов нет."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L100
 msgid "This sentence already exists."
@@ -5076,7 +5076,7 @@ msgstr "Удалить предложение №{number} из списка"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L523
 msgid "Remove this sentence from '{listName}'."
-msgstr ""
+msgstr "Удалить это предложение из списка '{listName}'."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L569
 msgid "Add a sentence to this list : "
@@ -5297,7 +5297,7 @@ msgstr "Профиль пользователя"
 #. adopt sentences…) by appending the number of results.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L36
 msgid "{title} ({results})"
-msgstr ""
+msgstr "{title} ({results})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L48
 msgid "{n} result"
@@ -5310,10 +5310,10 @@ msgstr[3] "{n}&nbsp;результатов"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L60
 msgid "{thousand}&nbsp;results out of {n} occurrence"
 msgid_plural "{thousand}&nbsp;results out of {n}&nbsp;occurrences"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{thousand}&nbsp;результат из {n}вхождения"
+msgstr[1] "{thousand}&nbsp;результата из {n}вхождений"
+msgstr[2] "{thousand}&nbsp;результатов из {n}&nbsp;вхождений"
+msgstr[3] "{thousand}&nbsp;результатов из {n}&nbsp;вхождений"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L95
 msgid "Recently added sentences may not appear in search results."

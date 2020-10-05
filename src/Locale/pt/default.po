@@ -25,8 +25,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-19 20:07+0200\n"
-"PO-Revision-Date: 2020-09-14 06:23+0000\n"
-"Last-Translator: Andreas Perstinger <andipersti@gmail.com>\n"
+"PO-Revision-Date: 2020-09-28 19:22+0000\n"
+"Last-Translator: Ricardo Vernaut Jr <rvj1444@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/tatoeba/tatoeba_website/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -867,7 +867,7 @@ msgstr "Idioma da interface"
 #. in Browse by languages page.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/show_all_sentences_button_text.ctp#L6
 msgid "Show all sentences in {language}"
-msgstr ""
+msgstr "Mostrar frases em {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -1814,26 +1814,26 @@ msgstr "Exibir menos recursos para todas as frases"
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
 msgid "0 sentences"
-msgstr ""
+msgstr "Nenhuma frase"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
 msgid "1 or more sentences"
-msgstr ""
+msgstr "1 ou mais frases"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L12
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L190
 msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}frase"
+msgstr[1] "{n}+ frases"
 
 #. placeholder text in search field of
 #. Browse by languages page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/search.ctp#L13
 msgid "Search a language"
-msgstr ""
+msgstr "Procurar um idioma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -3506,25 +3506,25 @@ msgstr "Frases requeridas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"
-msgstr ""
+msgstr "Index de idiomas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L11
 msgid "There is {n} language on Tatoeba"
 msgid_plural "There are {n} languages on Tatoeba"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Há {n}idioma no Tatoeba "
+msgstr[1] "Há {n} idiomas no Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L27
 msgid "My profile languages"
-msgstr ""
+msgstr "Meu perfil de idiomas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L38
 msgid "Top ten"
-msgstr ""
+msgstr "Top dez"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L62
 msgid "Show all languages {arrowIcon}"
-msgstr ""
+msgstr "Mostrar todos os idiomas {arrowIcon}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"

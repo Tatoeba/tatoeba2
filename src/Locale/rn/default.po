@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-19 20:07+0200\n"
-"PO-Revision-Date: 2020-09-28 11:19+0000\n"
+"PO-Revision-Date: 2020-10-02 13:39+0000\n"
 "Last-Translator: Doreen\n"
 "Language-Team: Kirundi (http://www.transifex.com/tatoeba/tatoeba_website/language/rn/)\n"
 "MIME-Version: 1.0\n"
@@ -272,7 +272,7 @@ msgstr "Nta mukoresha afise iyo ID: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L78
 msgid "This language has already been added to your profile."
-msgstr ""
+msgstr "Uru rurimi rwayongewe ku mirondoro wawe."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L95
 msgid "No language selected."
@@ -677,19 +677,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
-msgstr ""
+msgstr "{tagChange}: iryungane ribwirizwa guhindurwa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr ""
+msgstr "{tagCheck}: iryungane ribwirizwa kugenzurwa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr ""
+msgstr "{tagNNC}: iryungane ribwirizwa kugenzurwa n'imvukira."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr ""
+msgstr "{tagOK}: iburiburi umuntu umwe yameje ko iri ryungane ari ryo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L102
 msgid "How to help"
@@ -947,11 +947,11 @@ msgstr "Umunsi"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
-msgstr ""
+msgstr "Amungane yongeweko."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
 msgid "Links added"
-msgstr ""
+msgstr "Sahwanya zongeweko"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L94
 msgid "Links removed"
@@ -970,8 +970,8 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L140
 msgid ", {n} link added"
 msgid_plural ", {n} links added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] ", sahwanya {n} yongeweko"
+msgstr[1] ", sahwanya {n} zongeweko"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
@@ -1853,7 +1853,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L28
 msgid "You have no lists which this sentence can be added to."
-msgstr ""
+msgstr "Nta ntonde ufise zishobora kwongerwako iri ryungane."
 
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L25
@@ -1881,7 +1881,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L119
 msgid "Your sentence was not added because the following already exists."
-msgstr ""
+msgstr "Iryungane ryawe ntiryongeweko kuko hari iryungane rikurikira."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
 msgid "This sentence belongs to a native speaker."
@@ -2290,7 +2290,7 @@ msgstr "Indimi z'abanyamuryango"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr ""
+msgstr "Imvukira z'ururimi"
 
 #. link to the user's profile in the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L33
@@ -2744,7 +2744,7 @@ msgstr ""
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L60
 msgid "Date added"
-msgstr ""
+msgstr "Itariki ry'ukwongerwako"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L62
@@ -3501,7 +3501,7 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L27
 msgid "My profile languages"
-msgstr ""
+msgstr "Indimi zamje zo mu mwidondoro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L38
 msgid "Top ten"
@@ -3872,7 +3872,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L164
 msgid "date added to list"
-msgstr ""
+msgstr "itariki ry'ukwongerwa ku rutonde"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L166
 msgid "date created"
@@ -4163,7 +4163,7 @@ msgstr "Igihugu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L282
 msgid "Birthday"
-msgstr ""
+msgstr "Itariki ry'amavuko"
 
 #. label for user's homepage in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L151
