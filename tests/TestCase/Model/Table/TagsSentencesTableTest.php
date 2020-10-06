@@ -63,8 +63,16 @@ class TagsSentencesTableTest extends TestCase {
         $this->assertNull($this->TagsSentences->findById(1)->first());
     }
 
-    function testRemoveTagFromSentence_fails() {
-        $rv = $this->TagsSentences->removeTagFromSentence(9999, 9999);
-        $this->assertFalse($rv);
+    function testRemoveTagFromSentence_worksWithDuplicates() {
+        $this->TagsSentences->getConnection()->insert('tags_sentences',
+            [
+                'tag_id' => 1,
+                'user_id' => 4,
+                'sentence_id' => 8,
+                'added_time' => '2018-04-05 22:20:12',
+            ]);
+        $rv = $this->TagsSentences->removeTagFromSentence(1, 8);
+        $this->assertTrue($rv);
+        $this->assertFalse($this->TagsSentences->exists(['tag_id' => 1, 'sentence_id' => 8]));
     }
 }
