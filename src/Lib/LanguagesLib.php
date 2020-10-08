@@ -615,6 +615,7 @@ class LanguagesLib
                 'lut' => __d('languages', 'Lushootseed'),
                 'ofs' => __d('languages', 'Old Frisian'),
                 'nus' => __d('languages', 'Nuer'),
+                'ckb' => __d('languages', 'Central Kurdish (Soranî)'),
             );
         }
         return $languages;
