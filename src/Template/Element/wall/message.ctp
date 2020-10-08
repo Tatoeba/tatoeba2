@@ -67,7 +67,7 @@ $canReply = false;
                 <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
             </span>
         <?php else: ?>
-            <i><?= __('Former member') ?></i>
+            <i><?= h(__('Former member')) ?></i>
         <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
