@@ -617,6 +617,7 @@ class LanguagesLib
                 'nus' => __d('languages', 'Nuer'),
                 'ckb' => __d('languages', 'Central Kurdish (Soranî)'),
                 'kmr' => __d('languages', 'Northern Kurdish (Kurmancî)'),
+                'sdh' => __d('languages', 'Southern Kurdish (Xwarîn)'),
             );
         }
         return $languages;
