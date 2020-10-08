@@ -2,8 +2,8 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = isset($message->user) ? $message->user->username : CurrentUser::get('username');
-$avatar = isset($message->user) ? $message->user->image : CurrentUser::get('image');
+$username = $message->user->username ?? null;
+$avatar = $message->user->image ?? null;
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 $messageId = $message->id;
@@ -23,11 +23,13 @@ $labelText = __x('wall message', '{createdDate}, edited {modifiedDate}');
 $dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
 $dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true);
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
-$userProfileUrl = $this->Url->build(array(
-    'controller' => 'user',
-    'action' => 'profile',
-    $username
-));
+if ($username) {
+    $userProfileUrl = $this->Url->build(array(
+        'controller' => 'user',
+        'action' => 'profile',
+        $username
+    ));
+}
 
 if (isset($message['Permissions'])) {
     $menu = $this->Wall->getMenuFromPermissions(
@@ -60,9 +62,13 @@ $canReply = false;
             <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
+        <?php if ($username): ?>
             <span class="md-title">
                 <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
             </span>
+        <?php else: ?>
+            <i><?= h(__('Former member')) ?></i>
+        <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
                 <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
