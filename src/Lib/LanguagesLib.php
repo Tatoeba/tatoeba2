@@ -616,6 +616,7 @@ class LanguagesLib
                 'ofs' => __d('languages', 'Old Frisian'),
                 'nus' => __d('languages', 'Nuer'),
                 'ckb' => __d('languages', 'Central Kurdish (Soranî)'),
+                'kmr' => __d('languages', 'Northern Kurdish (Kurmancî)'),
             );
         }
         return $languages;
