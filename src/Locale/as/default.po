@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-19 20:07+0200\n"
-"PO-Revision-Date: 2020-09-16 15:27+0000\n"
+"POT-Creation-Date: 2020-10-08 20:13+0200\n"
+"PO-Revision-Date: 2020-10-09 15:50+0000\n"
 "Last-Translator: Mohsin Ali <mohsin13089@gmail.com>\n"
 "Language-Team: Assamese (http://www.transifex.com/tatoeba/tatoeba_website/language/as/)\n"
 "MIME-Version: 1.0\n"
@@ -102,23 +102,23 @@ msgstr "যদি আপুনি এই বাৰ্তা ত্ৰুটি�
 msgid "Changes to your comment have been saved."
 msgstr "আপোনাৰ মন্তব্যৰ সাল-সলনি সাঁচি থোৱা হৈছে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L259
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L260
 msgid "The sentence #{id} has been deleted."
 msgstr "বাক্য #{id} মচি পেলোৱা হৈছে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L266
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "ত্ৰুটি: বাক্য #{id} মচিব পৰা নগ'ল।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L875
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L876
 msgid "You are not allowed to change the license of this sentence."
 msgstr "এই বাক্যৰ লাইচেঞ্চ সলনি কৰাৰ অনুমতি আপোনাৰ নাই।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L882
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L883
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "বাক্যটোৰ লাইচেঞ্চ “{newLicense}”লৈ সলনি কৰা হৈছে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L887
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L888
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "“{newLicense}”লৈ লাইচেঞ্চ সলনি কৰিব পৰা নগ'ল কাৰণ:"
 
@@ -327,14 +327,14 @@ msgstr "“{tagName} হিচাপে টেগ কৰা হৈছে ”, �
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
-msgstr ""
+msgstr "\"{listId}নং তালিকাৰ অন্তৰ্গত\", কাৰণ তালিকা {listId} ব্যক্তিগত নাইবা মজুত নাই"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L343
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr ""
+msgstr "\"বাক্য গৰাকীবিহীন\", কাৰণ \"বাক্যৰ গৰাকী\" ব্যৱহাৰকাৰীনাম এটালৈ নিৰ্ধাৰিত"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -342,7 +342,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L354
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr ""
+msgstr "\"অনুবাদ গৰাকীবিহীন\", কাৰণ \"অনুবাদৰ গৰাকী\" ব্যৱহাৰকাৰীনাম এটালৈ নিৰ্ধাৰিত"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -350,7 +350,7 @@ msgstr ""
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr ""
+msgstr "\"স্ব-চিনাক্ত থলুৱা ব্যক্তিৰ মালিকানাধীন\", কাৰণ \"বাক্যৰ ভাষা\" \"যিকোনো\"লৈ নিৰ্ধাৰিত"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -419,7 +419,7 @@ msgid "{language}"
 msgstr "{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L154
 msgid "All languages"
@@ -1621,31 +1621,37 @@ msgstr "নতুন ব্যৱহাৰকাৰীক \"স্বাগত�
 msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L61
 msgid "sentence deleted"
 msgstr "বাক্য মচি পেলোৱা হ'ল"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L66
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L12
 msgctxt "sentence comment"
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L95
 msgid "Sentence {number} — belongs to {username}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L106
 msgid "Sentence {number}"
 msgstr "বাক্য {number}"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L67
+msgid "Former member"
+msgstr "প্ৰাক্তন সদস্য়"
+
 #. tooltip of reply button on a comment (verb)
 #. / button to reply to a private message (verb)
 #. / reply button on a wall post (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
 msgctxt "button"
@@ -1653,13 +1659,13 @@ msgid "Reply"
 msgstr "প্ৰত্যুত্তৰ"
 
 #. tooltip of permalink button on a comment (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L128
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L44
 msgid "Permalink"
 msgstr "পাৰ্মালিংক"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L157
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L110
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -2386,11 +2392,11 @@ msgctxt "wall message"
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L133
 msgid "hide replies"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L136
 msgid "show replies"
 msgstr ""
 
@@ -3492,21 +3498,21 @@ msgstr ""
 msgid "Language index"
 msgstr "ভাষা সূচক"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L11
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L10
 msgid "There is {n} language on Tatoeba"
 msgid_plural "There are {n} languages on Tatoeba"
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L26
 msgid "My profile languages"
 msgstr "মোৰ প্ৰ'ফাইলৰ ভাষাসমূহ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L37
 msgid "Top ten"
 msgstr "শীৰ্ষ দহ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L61
 msgid "Show all languages {arrowIcon}"
 msgstr "সকলো ভাষা দেখুৱাওক {arrowIcon}"
 
@@ -5118,10 +5124,6 @@ msgstr "এগৰাকী অজ্ঞাত সদস্যৰ দ্বাৰ
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
 msgstr "{info}, {date}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L67
-msgid "Former member"
-msgstr "প্ৰাক্তন সদস্য়"
 
 #. one of the user status displayed on profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L86

@@ -38,12 +38,16 @@ msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"ডেটাবেছৰ ভিতৰত বাক্য {sentenceId}ৰ বাবে \"{author}\"লৈ অডিঅ' ধাৰ্য্য কৰিব "
+"পৰা নগ'ল। এইটো এটা বৈধ ব্যৱহাৰকাৰীনাম হোৱাটো নিশ্চিত কৰক।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"ফাইল \"{file}\" সফলতাৰে আমদানি কৰা হ'ল কিন্তু আমদানি ডাইৰেক্টৰীৰ পৰা আঁতৰাব "
+"পৰা নগ'ল।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
@@ -85,7 +89,7 @@ msgstr "আমদানি কৰা হ'ব পাৰে"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
-msgstr ""
+msgstr "প্ৰঃ/নঃ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
@@ -139,7 +143,7 @@ msgstr "বাক্য আমদানি কৰক"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr ""
+msgstr "একক বাক্যসমূহ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
@@ -154,7 +158,7 @@ msgstr "ফাইল:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "সংখ্যাগত ব্যৱহাৰকাৰী আইডি: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
