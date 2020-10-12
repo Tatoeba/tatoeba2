@@ -119,8 +119,10 @@ html, body {
     min-width: 100%;
 }
 
-body {
-    height: auto;
+@media only screen and (min-width: 960px) {
+    body {
+        height: auto;
+    }
 }
 
 textarea {
