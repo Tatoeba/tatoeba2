@@ -114,4 +114,13 @@ class LanguagesHelperTest extends TestCase {
 		$result = $this->Languages->codeToNameAlone('jpn');
 		$this->assertEquals('日本語', $result);
 	}
+
+    function testGetInterfaceLanguage() {
+        $oldLang = Configure::read('Config.language');
+        Configure::write('Config.language', 'eng');
+        $this->assertEquals('English', $this->Languages->getInterfaceLanguage());
+        Configure::write('Config.language', 'fra');
+        $this->assertEquals('Français', $this->Languages->getInterfaceLanguage());
+        Configure::write('Config.language', $oldLang);
+    }
 }

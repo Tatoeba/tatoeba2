@@ -84,11 +84,10 @@ class AppController extends Controller
 
     private function remapOldLangAlias($lang)
     {
-        $uiLangSettings = Configure::read('UI.languages');
-        foreach ($uiLangSettings as $setting) {
-            if (isset($setting[3]) && is_array($setting[3])
-                && in_array($lang, $setting[3])) {
-                return $setting[0];
+        $UiLangs = Configure::read('UI.languages');
+        foreach ($UiLangs as $code => $info) {
+            if (!empty($info[2]) && in_array($lang, $info[2])) {
+                return $code;
             }
         }
         return $lang;
@@ -145,7 +144,6 @@ class AppController extends Controller
         $lang = $this->getSupportedLanguage();
         $langInCookie = $this->Cookie->read('CakeCookie.interfaceLanguage');
         $langInURL = $this->request->getParam('lang', null);
-
         $langInURLAlias = $this->remapOldLangAlias($langInURL);
         if ($langInURLAlias != $langInURL) {
             $lang = $langInURLAlias;
@@ -312,9 +310,9 @@ class AppController extends Controller
     {
         $configUiLanguages = Configure::read('UI.languages');
         $supportedLanguages = array();
-        foreach ($configUiLanguages as $langs) {
-            $browserCompatibleCode = LanguagesLib::languageTag($langs[0]);
-            $supportedLanguages[$browserCompatibleCode] = $langs[0];
+        foreach ($configUiLanguages as $code => $info) {
+            $browserCompatibleCode = LanguagesLib::languageTag($code);
+            $supportedLanguages[$browserCompatibleCode] = $code;
         }
 
         $browserLanguages = $this->request->acceptLanguage();

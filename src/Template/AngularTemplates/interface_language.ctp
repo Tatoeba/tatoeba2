@@ -6,8 +6,8 @@ $lang = Configure::read('Config.language');
 $configUiLanguages = Configure::read('UI.languages');
 $languages = array();
 
-foreach ($configUiLanguages as $langs) {
-    list($isoCode, $suffix, $name) = $langs;
+foreach ($configUiLanguages as $isoCode => $info) {
+    list($name, $suffix, $aliases) = $info;
     $fullIsoCode = LanguagesLib::languageTag($isoCode, $suffix);
     $languages[] = array(
         'text' => $name,

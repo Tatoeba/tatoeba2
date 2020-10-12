@@ -19,11 +19,11 @@ class AppControllerTest extends IntegrationTestCase {
 
 		Cache::disable();
 		Configure::write('UI.languages', [
-			['cmn', 'Hans', '中文', ['chi']],
-			['eng', null, 'English'],
-			['jbo', null, 'Lojban'],
-			['jpn', null, '日本語'],
-			['pt_BR', 'BR', 'Português (BR)'],
+			'cmn' => ['中文', 'Hans', ['chi']],
+			'eng' => ['English', null, []],
+			'jbo' => ['Lojban', null, []],
+			'jpn' => ['日本語', null, []],
+			'pt_BR' => ['Português (BR)', 'BR', []],
 		]);
 	}
 

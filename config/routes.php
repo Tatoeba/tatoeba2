@@ -52,10 +52,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     // has been translated
     $configUiLanguages = Configure::read('UI.languages');
     $iso3LangArray = array();
-    foreach ($configUiLanguages as $lang) {
-        $iso3LangArray[] = $lang[0];
-        if (isset($lang[3]) && is_array($lang[3])) {
-            foreach ($lang[3] as $alias) {
+    foreach ($configUiLanguages as $code => $info) {
+        $iso3LangArray[] = $code;
+        if (!empty($info[2])) {
+            foreach ($info[2] as $alias) {
                 $iso3LangArray[] = $alias;
             }
         }
