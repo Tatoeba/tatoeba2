@@ -52,4 +52,27 @@ class TagsSentencesTableTest extends TestCase {
 
         I18n::setLocale($prevLocale);
     }
+
+    function testRemoveTagFromSentence_succeeds() {
+        $entity = $this->TagsSentences->get(1);
+        $rv = $this->TagsSentences->removeTagFromSentence(
+            $entity->tag_id,
+            $entity->sentence_id
+        );
+        $this->assertTrue($rv);
+        $this->assertNull($this->TagsSentences->findById(1)->first());
+    }
+
+    function testRemoveTagFromSentence_worksWithDuplicates() {
+        $this->TagsSentences->getConnection()->insert('tags_sentences',
+            [
+                'tag_id' => 1,
+                'user_id' => 4,
+                'sentence_id' => 8,
+                'added_time' => '2018-04-05 22:20:12',
+            ]);
+        $rv = $this->TagsSentences->removeTagFromSentence(1, 8);
+        $this->assertTrue($rv);
+        $this->assertFalse($this->TagsSentences->exists(['tag_id' => 1, 'sentence_id' => 8]));
+    }
 }
