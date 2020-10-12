@@ -51,15 +51,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     // Array that lists all the languages into which the Tatoeba interface
     // has been translated
     $configUiLanguages = Configure::read('UI.languages');
-    $iso3LangArray = array();
-    foreach ($configUiLanguages as $code => $info) {
-        $iso3LangArray[] = $code;
-        if (!empty($info[2])) {
-            foreach ($info[2] as $alias) {
-                $iso3LangArray[] = $alias;
-            }
-        }
-    }
+    $iso3LangArray = array_keys($configUiLanguages);
     $interfaceLanguages = join('|', $iso3LangArray);
 
     /**

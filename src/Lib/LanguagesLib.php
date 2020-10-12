@@ -26,9 +26,9 @@
  */
 namespace App\Lib;
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\I18n\I18n;
-
 
 class LanguagesLib
 {
@@ -723,5 +723,20 @@ class LanguagesLib
     {
         $available = self::languagesInTatoeba();
         return isset($available[$code]);
+    }
+
+    public static function activeUiLanguages()
+    {
+        $languages = Cache::remember(
+            'active_ui_languages',
+            function () {
+                return array_filter(
+                    Configure::read('UI.languages'),
+                    function ($val) { return is_array($val); }
+                );
+            }
+        );
+
+        return $languages;
     }
 }

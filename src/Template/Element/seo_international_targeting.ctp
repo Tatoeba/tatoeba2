@@ -28,7 +28,7 @@
 use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
 
-$uiLanguages = Configure::read('UI.languages');
+$uiLanguages = LanguagesLib::activeUiLanguages();
 $currentLang = $this->request->getParam('lang');
 
 if ($currentLang) {

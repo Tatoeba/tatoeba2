@@ -44,7 +44,7 @@ by adding it to the `UI.languages` list in the file
 `config/app_local.php.template`. Read the comments in
 that file for more information.
 
-> For instance for Italian, you would add `'ita' => ['Italiano', null, []],`
+> For instance for Italian, you would add `'ita' => ['Italiano', null],`
 
 
 #### Step 3

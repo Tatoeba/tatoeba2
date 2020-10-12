@@ -14,18 +14,19 @@ class AppControllerTest extends IntegrationTestCase {
 		'app.private_messages',
 	);
 
-	function setUp() {
-		parent::setUp();
+    function setUp() {
+        parent::setUp();
 
-		Cache::disable();
-		Configure::write('UI.languages', [
-			'cmn' => ['中文', 'Hans', ['chi']],
-			'eng' => ['English', null, []],
-			'jbo' => ['Lojban', null, []],
-			'jpn' => ['日本語', null, []],
-			'pt_BR' => ['Português (BR)', 'BR', []],
-		]);
-	}
+        Cache::disable();
+        Configure::write('UI.languages', [
+            'chi' => 'cmn',
+            'cmn' => ['中文', 'Hans'],
+            'eng' => ['English', null],
+            'jbo' => ['Lojban', null],
+            'jpn' => ['日本語', null],
+            'pt_BR' => ['Português (BR)', 'BR'],
+        ]);
+    }
 
 	function tearDown() {
 		parent::tearDown();

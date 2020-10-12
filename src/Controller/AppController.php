@@ -85,12 +85,8 @@ class AppController extends Controller
     private function remapOldLangAlias($lang)
     {
         $UiLangs = Configure::read('UI.languages');
-        foreach ($UiLangs as $code => $info) {
-            if (!empty($info[2]) && in_array($lang, $info[2])) {
-                return $code;
-            }
-        }
-        return $lang;
+        $langInfo = $UiLangs[$lang] ?? null;
+        return is_string($langInfo) ? $langInfo : $lang;
     }
 
     private function blackhole($type) {
@@ -308,9 +304,9 @@ class AppController extends Controller
      */
     public function getSupportedLanguage()
     {
-        $configUiLanguages = Configure::read('UI.languages');
+        $configUiLanguages = array_keys(LanguagesLib::activeUiLanguages());
         $supportedLanguages = array();
-        foreach ($configUiLanguages as $code => $info) {
+        foreach ($configUiLanguages as $code) {
             $browserCompatibleCode = LanguagesLib::languageTag($code);
             $supportedLanguages[$browserCompatibleCode] = $code;
         }
