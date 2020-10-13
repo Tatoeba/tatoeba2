@@ -689,6 +689,8 @@ class LanguagesLib
             "hbo",
             "ajp",
             "ayl",
+            "sdh",
+            "ckb"
         );
 
         $autoLangs = array(
