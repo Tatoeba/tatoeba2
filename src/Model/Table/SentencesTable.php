@@ -1200,26 +1200,18 @@ class SentencesTable extends Table
     /**
      * Edit the sentence.
      *
-     * @param array $data We're taking the data from the AJAX request. It has an
-     *                    'id' and a 'value', but the 'id' actually contains the
-     *                    language followed by the id, separated by an underscore.
+     * @param array $data We're taking the data from the AJAX request. It should contain
+     *                    the keys 'id', 'text', 'lang'.
      *
-     * @return array
+     * @return Entity|false
      */
     public function editSentence($data)
     {
-        $text = $this->_getEditFormText($data);
-        $idLangArray = $this->_getEditFormIdLang($data);
-        if (!$text || !$idLangArray) {
-            return array();
-        }
-
-        // Set $id and $lang
-        extract($idLangArray);
+        $id = (int)$data['id'] ?? null;
         try {
             $sentence = $this->get($id);
         } catch (RecordNotFoundException $e) {
-            return array();
+            return false;
         }
 
         if ($this->_cantEditSentence($sentence)) {
@@ -1231,8 +1223,8 @@ class SentencesTable extends Table
         }
 
         $this->patchEntity($sentence, [
-            'text' => $text,
-            'lang' => $lang
+            'text' => $data['text'] ?? null,
+            'lang' => $data['lang'] ?? null,
         ]);
 
         $sentenceSaved = $this->save($sentence);
@@ -1241,47 +1233,6 @@ class SentencesTable extends Table
         }
 
         return $sentenceSaved;
-    }
-
-    /**
-     * Get text from edit form params.
-     *
-     * @param  array $params Form parameters.
-     *
-     * @return string|boolean
-     */
-    private function _getEditFormText($params)
-    {
-        if (isset($params['value'])) {
-            return trim($params['value']);
-        }
-
-        return false;
-    }
-
-    /**
-     * Get id and lang from edit form params.
-     *
-     * @param  array $params Form parameters.
-     *
-     * @return array|boolean
-     */
-    private function _getEditFormIdLang($params)
-    {
-        if (isset($params['id'])) {
-            // ['form']['id'] contains both the sentence id and its language.
-            // Do not sanitize it directly.
-            $sentenceId = $params['id'];
-
-            $dirtyArray = explode("_", $sentenceId);
-
-            return [
-                'id' => (int)$dirtyArray[1],
-                'lang' => $dirtyArray[0]
-            ];
-        }
-
-        return false;
     }
 
     /**

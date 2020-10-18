@@ -23,7 +23,9 @@ $(document).ready(function() {
         $('.editableSentence').each(function() {
             var div = $(this);
 
-            var sentenceId = div.parent().attr('data-sentence-id');
+            var sentenceData = div.attr('id').split('_');
+            var sentenceLang = sentenceData[0];
+            var sentenceId = sentenceData[1];
             div.editable(rootUrl + '/sentences/edit_sentence', {
                 type      : 'textarea',
                 submit    : div.attr('data-submit'),
@@ -38,6 +40,11 @@ $(document).ready(function() {
                 event     : 'edit_sentence',
                 data : function(value, settings) {
                     return $(this).data('text');
+                },
+                name      : 'text',
+                submitdata : {
+                    'id': sentenceId,
+                    'lang': sentenceLang,
                 },
                 callback : function(result, settings) {
                     var text = $('<div>').html(result).text(); // fix html entities

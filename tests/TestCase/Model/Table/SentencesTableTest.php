@@ -405,8 +405,9 @@ class SentencesTableTest extends TestCase {
 		$cmnSentenceId = 2;
 		$newLang = 'por';
 		$requestData = [
-			'id' => "${newLang}_$cmnSentenceId",
-			'value' => $this->Sentence->get($cmnSentenceId)->text
+			'id' => $cmnSentenceId,
+			'lang' => $newLang,
+			'text' => $this->Sentence->get($cmnSentenceId)->text
 		];
 
 		$this->Sentence->editSentence($requestData);
@@ -902,18 +903,13 @@ class SentencesTableTest extends TestCase {
 	function editSentenceWithSuccess() {
 		$before = $this->Sentence->get(53);
 		$data = array(
-			'id' => 'eng_53',
-			'value' => 'Edited sentence.'
-		);
-		$sentence = $this->Sentence->editSentence($data);
-
-		$expected = array(
-			'id' => 53,
+			'id' => '53',
 			'lang' => 'eng',
 			'text' => 'Edited sentence.'
 		);
-		$result = array_intersect_key($sentence->toArray(), $expected);
-		$this->assertEquals($expected, $result);
+		$sentence = $this->Sentence->editSentence($data);
+
+		$this->assertArraySubset($data, $sentence->toArray());
 
 		$after = $this->Sentence->get(53);
 		$this->assertNotEquals($before->text, $after->text);
@@ -925,19 +921,13 @@ class SentencesTableTest extends TestCase {
 		CurrentUser::store($user);
 
 		$data = array(
-			'id' => '_53',
-			'value' => 'Sentence with unknown lang.'
+			'id' => '53',
+			'lang' => '',
+			'text' => 'Sentence with unknown lang.'
 		);
 		$sentence = $this->Sentence->editSentence($data);
 
-		$expected = array(
-			'id' => 53,
-			'lang' => null,
-			'text' => 'Sentence with unknown lang.'
-		);
-		$result = array_intersect_key($sentence->toArray(), $expected);
-
-		$this->assertEquals($expected, $result);
+		$this->assertArraySubset($data, $sentence->toArray());
 	}
 
 	function testEditSentence_failsBecauseHasAudio() {
@@ -945,8 +935,9 @@ class SentencesTableTest extends TestCase {
 		CurrentUser::store($user);
 
 		$data = array(
-			'id' => 'spa_3',
-			'value' => 'changing'
+			'id' => '3',
+			'lang' => 'spa',
+			'text' => 'changing'
 		);
 		$expected = $this->Sentence->get(3);
 		$result = $this->Sentence->editSentence($data);
@@ -959,8 +950,9 @@ class SentencesTableTest extends TestCase {
 		CurrentUser::store($user);
 
 		$data = array(
-			'id' => 'eng_1',
-			'value' => 'Edited sentence.'
+			'id' => '1',
+			'lang' => 'eng',
+			'text' => 'Edited sentence.'
 		);
 		$before = $this->Sentence->get(1);
 
@@ -976,8 +968,9 @@ class SentencesTableTest extends TestCase {
 		CurrentUser::store($user);
 
 		$data = array(
-			'id' => '53_eng',
-			'value' => 'Edited sentence.'
+			'id' => 'eng',
+			'lang' => '53',
+			'text' => 'Edited sentence.'
 		);
 		$result = $this->Sentence->editSentence($data);
 
@@ -987,8 +980,9 @@ class SentencesTableTest extends TestCase {
     function testEditSentence_languageChangeUpdatesReindexFlags() {
         CurrentUser::store($this->Sentence->Users->get(7));
         $data = [
-            'id' => 'ita_7',
-            'value' => 'This is a lonely sentence.'
+            'id' => '7',
+            'lang' => 'ita',
+            'text' => 'This is a lonely sentence.'
         ];
 
         $result = $this->Sentence->editSentence($data);
@@ -1003,8 +997,9 @@ class SentencesTableTest extends TestCase {
     function testEditSentence_noEntryInReindexFlagsForUnknownPreviousLanguage() {
         CurrentUser::store($this->Sentence->Users->get(3));
         $data = [
-            'id' => 'eng_9',
-            'value' => 'This sentences purposely misses its flag.'
+            'id' => '9',
+            'lang' => 'eng',
+            'text' => 'This sentence purposely misses its flag.'
         ];
 
         $sentence = $this->Sentence->editSentence($data);
@@ -1018,8 +1013,9 @@ class SentencesTableTest extends TestCase {
     function testEditSentence_noEntryInReindexFlagsForUnknownNewLanguage() {
         CurrentUser::store($this->Sentence->Users->get(7));
         $data = [
-            'id' => '_7',
-            'value' => 'This is a lonely sentence.'
+            'id' => '7',
+            'lang' => '',
+            'text' => 'This is a lonely sentence.'
         ];
         $sentence = $this->Sentence->editSentence($data);
         $this->assertTrue((bool)$sentence);
@@ -1368,8 +1364,9 @@ class SentencesTableTest extends TestCase {
 
         $old = $this->Sentence->get(7);
         $data = array(
-            'id' => 'eng_7',
-            'value' => 'This  is  a   lonely sentence. '
+            'id' => '7',
+            'lang' => 'eng',
+            'text' => 'This  is  a   lonely sentence. '
         );
         $result = $this->Sentence->editSentence($data);
 
