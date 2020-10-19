@@ -78,8 +78,6 @@ $isHomepage = $controller == 'pages' && $action == 'index';
     <?php } ?>
 </head>
 <body ng-app="app">
-    <div id="audioPlayer"></div>
-
     <!--  TOP  -->
     <?php echo $this->element('top_menu', ['htmlDir' => $htmlDir]); ?>
 
