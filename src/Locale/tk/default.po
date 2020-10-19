@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 20:13+0200\n"
-"PO-Revision-Date: 2020-10-08 17:19+0000\n"
-"Last-Translator: Azat Abdullayev <azatabd@live.com>\n"
+"PO-Revision-Date: 2020-10-15 20:02+0000\n"
+"Last-Translator: Ogulkeyik Hudayberdiyeva <hudayberdiyewaogulkeyik@gmail.com>\n"
 "Language-Team: Turkmen (http://www.transifex.com/tatoeba/tatoeba_website/language/tk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -118,11 +118,11 @@ msgstr "Bu sözlemiň ygtyýarnamasyny üýtgetmek üçin rugsadyňyz ýok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L883
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Sözlemiň ygtyýarnamasy {newLicense} diýlip üýtgedildi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L888
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "Ygtyýarnamany {newLicense} diýip üýtgedip bolmaýar, sebäbi:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L164
 msgid "You do not have permission to view this list."
@@ -135,106 +135,106 @@ msgstr "Sözlem sanawa goşulyp bilinmedi."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L502
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L534
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "Bu sanawy göçürip almaga ygtyýaryňyz ýok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L226
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr ""
+msgstr "Bu bellik üçin sözlem ýok. Gözleýän belligiňiz pozuldy ýa-da ol ýok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L81
 msgid "No user with this username: {username}"
-msgstr ""
+msgstr "{username} atly ulanyjy ýok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
 msgid "Failed to upload image"
-msgstr ""
+msgstr "Surat ýüklenmedi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L174
 msgid "Please choose an image that does not exceed 1 MB."
-msgstr ""
+msgstr "1 MB-dan ýokary bolmadyk suraty saýlamagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L185
 msgid "Please choose GIF, JPEG or PNG image format."
-msgstr ""
+msgstr "Formaty GIF, JPEG ýa-da PNG bolan suraty saýlamagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L215
 msgid "Error while saving."
-msgstr ""
+msgstr "Ýazdyrylmagyň dowamynda ýalňyşlyk ýüze çykdy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L324
 msgid "Profile saved."
-msgstr ""
+msgstr "Profil ýazylyp alyndy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L335
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr ""
+msgstr "E-poçta salgysy üýtgedilip bilinmedi. Dogry e-poçta salgysyny girizmegiňizi haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L376
 msgid "That email address already exists. Please try another."
-msgstr ""
+msgstr "Ol e-poçta salgysy eýýäm bar. Başga e-poçta salgysyny synap görmegiňizi haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L425
 msgid "The entered birthday is an invalid date. Please try again."
-msgstr ""
+msgstr "Girizilen doglan güni nädogry sene. Gaýtadan synanyşmagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L474
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr ""
+msgstr "Girizilen doglan güni doly däl. Kabul edilýän doglan günler: doly sene, aý we gün, ýyl we aý, diňe ýyl."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
 msgid "Your settings have been saved."
-msgstr ""
+msgstr "Sazlamalaryňyz ýazyldy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L614
 msgid "New password cannot be empty."
-msgstr ""
+msgstr "Täze açarsöz boş bolup bilmez."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
 msgid "New passwords do not match."
-msgstr ""
+msgstr "Täze açarsözler gabat gelenok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
 msgid "New password has been saved."
-msgstr ""
+msgstr "Täze açarsöz ýazyldy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L626
 msgid "An error occurred while saving."
-msgstr ""
+msgstr "Ýazylyp alynmagyň dowamynda ýalňyşlyk ýüze çykdy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L631
 msgid "Password error. Please try again."
-msgstr ""
+msgstr "Açarsöz ýalňyşlygy. Gaýtadan synanyşmagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
-msgstr ""
+msgstr "Täze ulanyş şertlerini kabul etdiňiz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L184
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "Bu hasap hereketsiz diýlip bellendi. Indi onuň bilen girip bilmersiňiz. Eger-de bu bir ýalňyşlyk bolsa, administrator bilen habarlaşmagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L194
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "Bu hasap spamer hökmünde bellendi. Indi onuň bilen girip bilmersiňiz. Eger-de bu bir ýalňyşlyk bolsa, administrator bilen habarlaşmagyňyzy haýyş edýäris."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
-msgstr ""
+msgstr "Ulanyjy adyňyzy we açarsözüňizi girizmeli."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L216
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
-msgstr ""
+msgstr "Giriş şowsuz. \"Caps Lock\" we \"Num Lock\" düwmeleriňiziň ýalňyşlyk bilen basylmandygyna göz ýetiriň. Siziň açarsözüňiz baş we setir harplara üns berýändir."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L328
 msgid "Welcome to Tatoeba!"
