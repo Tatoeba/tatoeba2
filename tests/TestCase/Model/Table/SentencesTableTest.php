@@ -1025,6 +1025,48 @@ class SentencesTableTest extends TestCase {
         $this->assertNull($row);
     }
 
+    function testEditSentence_onlyTextAndLangAreEditable() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $before = $this->Sentence->get(7);
+        $data = [
+            'id' => '7',
+            'text' => 'New text.',
+            'lang' => 'por',
+            'created' => '2020-10-01 12:34:56',
+            'user_id' => '1',
+        ];
+        $after = $this->Sentence->editSentence($data);
+        $this->assertEquals($before->created, $after->created);
+        $this->assertEquals($before->user_id, $after->user_id);
+    }
+
+    function testEditSentence_onlyNewText() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $before = $this->Sentence->get(7);
+        $data = ['id' => '7', 'text' => 'New text.'];
+        $after = $this->Sentence->editSentence($data);
+        $this->assertNotEquals($before->text, $after->text);
+        $this->assertEquals($before->lang, $after->lang);
+    }
+
+    function testEditSentence_onlyNewLang() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $before = $this->Sentence->get(7);
+        $data = ['id' => '7', 'lang' => 'fra'];
+        $after = $this->Sentence->editSentence($data);
+        $this->assertEquals($before->text, $after->text);
+        $this->assertNotEquals($before->lang, $after->lang);
+    }
+
+    function testEditSentence_onlyIdGiven() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $before = $this->Sentence->get(2);
+        $data = ['id' => '2'];
+        $after = $this->Sentence->editSentence($data);
+        $this->assertEquals($before, $after);
+        $this->assertFalse($this->Sentence->UsersSentences->get(1)->dirty);
+    }
+
 	function testDeleteSentence_succeedsBecauseIsOwnerAndHasNoTranslations()
 	{
 		$user = $this->Sentence->Users->get(4);

@@ -1201,7 +1201,8 @@ class SentencesTable extends Table
      * Edit the sentence.
      *
      * @param array $data We're taking the data from the AJAX request. It should contain
-     *                    the keys 'id', 'text', 'lang'.
+     *                    the key 'id' for the sentence ID and either 'text' or
+     *                    'lang' or both.
      *
      * @return Entity|false
      */
@@ -1222,17 +1223,15 @@ class SentencesTable extends Table
             return $sentence;
         }
 
-        $this->patchEntity($sentence, [
-            'text' => $data['text'] ?? null,
-            'lang' => $data['lang'] ?? null,
-        ]);
-
-        $sentenceSaved = $this->save($sentence);
-        if ($sentenceSaved) {
-            $this->UsersSentences->makeDirty($id);
+        $this->patchEntity($sentence, $data, ['fields' => ['text', 'lang']]);
+        if ($sentence->isDirty()) {
+            $sentenceSaved = $this->save($sentence);
+            if ($sentenceSaved) {
+                $this->UsersSentences->makeDirty($id);
+            }
+            return $sentenceSaved;
         }
-
-        return $sentenceSaved;
+        return $sentence;
     }
 
     /**
