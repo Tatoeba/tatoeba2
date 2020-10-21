@@ -44,7 +44,7 @@ use \Datetime;
 
 class MessagesHelper extends AppHelper
 {
-    public $helpers = array('Html', 'ClickableLinks');
+    public $helpers = array('ClickableLinks');
 
     /**
      * @param string $content     Text of the comment.
