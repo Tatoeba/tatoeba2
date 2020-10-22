@@ -92,7 +92,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         <md-list id="pm-list" ng-cloak>
             <?php
             foreach ($content as $msg) {
-                list($user, $label) = $this->Messages->getUserAndLabel($msg, $folder);
+                list($user, $label) = $this->PrivateMessages->getUserAndLabel($msg, $folder);
 
                 $unread = $msg->isnonread == 1 ? 'unread' : '';
 
