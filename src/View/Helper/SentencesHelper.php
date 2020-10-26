@@ -689,14 +689,10 @@ class SentencesHelper extends AppHelper
         if ($isEditable) {
             $classes[] = 'editableSentence';
             
-            // TODO: HACK SPOTTED id is used in edit_in_place
-            // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
-            // using jQuery.data...
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
                 array(
                     'class' => join(' ', $classes),
-                    'id' => $sentenceLang.'_'.$sentenceId,
                     /* @translators: submit button of sentence edition form */
                     'data-submit' => __('OK'),
                     /* @translators: cancel button of sentence edition form (verb) */

@@ -398,10 +398,10 @@
         }
 
         function saveSentence(sentence) {
-            var lang = sentence.lang === 'unknown' ? '' : sentence.lang;
             var data = {
-                id: [lang, sentence.id].join('_'),
-                value: sentence.text
+                id: sentence.id,
+                lang: sentence.lang === 'unknown' ? '' : sentence.lang,
+                text: sentence.text
             };
             return $http.post(rootUrl + '/sentences/edit_sentence', data);
         }

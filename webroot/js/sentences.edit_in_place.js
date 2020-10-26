@@ -39,6 +39,8 @@ $(document).ready(function() {
                 data : function(value, settings) {
                     return $(this).data('text');
                 },
+                name      : 'text',
+                submitdata : {'id': sentenceId},
                 callback : function(result, settings) {
                     var text = $('<div>').html(result).text(); // fix html entities
                     $(this).data('text', text);

@@ -265,7 +265,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     public function testEditSentence_doesntWorkForUnknownSentence() {
         $this->logInAs('contributor');
         $this->ajaxPost('/jpn/sentences/edit_sentence', [
-            'id' => 'epo_999999', 'value' => 'Forlasu!',
+            'id' => '999999', 'lang' => 'epo', 'text' => 'Forlasu!',
         ]);
         $this->assertRedirect('/jpn/home');
     }
