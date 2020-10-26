@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 20:13+0200\n"
-"PO-Revision-Date: 2020-09-14 06:23+0000\n"
-"Last-Translator: Andreas Perstinger <andipersti@gmail.com>\n"
+"POT-Creation-Date: 2020-10-22 20:04+0200\n"
+"PO-Revision-Date: 2020-10-23 04:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Esperanto (http://www.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -859,7 +859,7 @@ msgstr "Interfaca lingvo"
 #. in Browse by languages page.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/show_all_sentences_button_text.ctp#L6
 msgid "Show all sentences in {language}"
-msgstr ""
+msgstr "Montri ĉiujn frazojn en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -1661,7 +1661,7 @@ msgstr "Iama membro"
 #. / reply button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
 msgctxt "button"
 msgid "Reply"
 msgstr "Respondi"
@@ -1812,7 +1812,7 @@ msgstr "Montri malpli da ebloj pri ĉiuj frazoj."
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
 msgid "0 sentences"
-msgstr ""
+msgstr "0 frazoj"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
@@ -1824,14 +1824,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L190
 msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}+ frazo"
+msgstr[1] "{n}+ frazoj"
 
 #. placeholder text in search field of
 #. Browse by languages page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/search.ctp#L13
 msgid "Search a language"
-msgstr ""
+msgstr "Serĉi lingvo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -1976,7 +1976,7 @@ msgstr "Traduki"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L381
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
 msgid "Edit"
 msgstr "Redakti"
 
@@ -2003,7 +2003,7 @@ msgstr "Forigi el la plej ŝatataj"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L440
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
 msgid "Are you sure?"
 msgstr "Ĉu vi certas?"
 
@@ -2021,7 +2021,7 @@ msgstr "Ĉu vi certas?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L444
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L233
 msgid "Delete"
 msgstr "Forigi"
 
@@ -3514,7 +3514,7 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L26
 msgid "My profile languages"
-msgstr ""
+msgstr "Miaj profilaj lingvo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L37
 msgid "Top ten"
@@ -3522,7 +3522,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L61
 msgid "Show all languages {arrowIcon}"
-msgstr ""
+msgstr "Montri ĉiujn lingvojn {arrowIcon}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
@@ -4723,7 +4723,7 @@ msgid "#{sentenceId}"
 msgstr "n-ro {sentenceId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
 msgstr "Sendi mesaĝon"
 
@@ -5217,27 +5217,6 @@ msgid ""
 "clipboard."
 msgstr "Tatoeba povas aŭtomate entajpi la numeron de la frazo post kiam vi kopiis ĝian retadreson. Por ebligi tion permesu al via foliumilo legi de la tondujo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
-msgid "to {recipient}"
-msgstr "al {recipient}"
-
-#. private message type (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
-msgid "Draft"
-msgstr "Malneto"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
-msgid "notification from Tatoeba"
-msgstr "komuniko de Tatoeba"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L125
-msgid "from {sender}"
-msgstr "de {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
-msgid "View this user's profile"
-msgstr "Vidi la biografion de tiu uzanto"
-
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results.
@@ -5280,6 +5259,23 @@ msgstr "{sender} skribis:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
 msgstr "Marki kiel nelegitan"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L139
+msgid "to {recipient}"
+msgstr "al {recipient}"
+
+#. private message type (noun)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
+msgid "Draft"
+msgstr "Malneto"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr "komuniko de Tatoeba"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
+msgid "from {sender}"
+msgstr "de {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -5374,6 +5370,6 @@ msgstr "Alklaku por marki ĝin reviziita."
 msgid "Unknown number of sentences"
 msgstr "Nekonata kvanto de frazoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"
 msgstr "de {messageAuthor}"

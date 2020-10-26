@@ -24,9 +24,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 20:13+0200\n"
-"PO-Revision-Date: 2020-09-14 12:09+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2020-10-22 20:04+0200\n"
+"PO-Revision-Date: 2020-10-23 04:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: French (http://www.transifex.com/tatoeba/tatoeba_website/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1669,7 +1669,7 @@ msgstr "Ancien membre"
 #. / reply button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
 msgctxt "button"
 msgid "Reply"
 msgstr "Répondre"
@@ -1820,20 +1820,20 @@ msgstr "Montrer moins d'options sur toutes les phrases"
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
 msgid "0 sentences"
-msgstr "0 phrase"
+msgstr "Aucune phrase"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
 msgid "1 or more sentences"
-msgstr "1 phrase ou plus"
+msgstr "Au moins une phrase"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L12
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L190
 msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
-msgstr[0] "{n} phrase ou pluse"
-msgstr[1] "{n} phrases ou plus"
+msgstr[0] "Plus de {n} phrase"
+msgstr[1] "Plus de {n} phrases"
 
 #. placeholder text in search field of
 #. Browse by languages page
@@ -1984,7 +1984,7 @@ msgstr "Traduire"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L381
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
 msgid "Edit"
 msgstr "Éditer"
 
@@ -2011,7 +2011,7 @@ msgstr "Enlever des favoris"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L440
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
 msgid "Are you sure?"
 msgstr "Êtes-vous sûr(e) ?"
 
@@ -2029,7 +2029,7 @@ msgstr "Êtes-vous sûr(e) ?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L444
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L233
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -4731,7 +4731,7 @@ msgid "#{sentenceId}"
 msgstr "n° {sentenceId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
 msgstr "Envoyer un message"
 
@@ -5225,27 +5225,6 @@ msgid ""
 "clipboard."
 msgstr "Tatoeba peut saisir automatiquement l'ID de phrase lorsque vous avez copié une URL de phrase. Pour l'activer, veuillez autoriser votre navigateur à lire depuis le presse-papiers."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
-msgid "to {recipient}"
-msgstr "à {recipient}"
-
-#. private message type (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
-msgid "Draft"
-msgstr "Brouillon"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
-msgid "notification from Tatoeba"
-msgstr "notification de Tatoeba"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L125
-msgid "from {sender}"
-msgstr "de {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
-msgid "View this user's profile"
-msgstr "Voir le profil de cet utilisateur"
-
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results.
@@ -5288,6 +5267,23 @@ msgstr "{sender} a écrit :"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
 msgstr "Marquer comme non lu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L139
+msgid "to {recipient}"
+msgstr "à {recipient}"
+
+#. private message type (noun)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
+msgid "Draft"
+msgstr "Brouillon"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr "notification de Tatoeba"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
+msgid "from {sender}"
+msgstr "de {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -5382,6 +5378,6 @@ msgstr "Cliquez pour la marquer comme révisée."
 msgid "Unknown number of sentences"
 msgstr "Nombre de phrases inconnu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"
 msgstr "par {messageAuthor}"

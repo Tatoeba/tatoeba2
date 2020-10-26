@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 20:13+0200\n"
-"PO-Revision-Date: 2020-10-12 13:09+0000\n"
-"Last-Translator: Andreas Perstinger <andipersti@gmail.com>\n"
+"POT-Creation-Date: 2020-10-22 20:04+0200\n"
+"PO-Revision-Date: 2020-10-23 04:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/tatoeba/tatoeba_website/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1673,7 +1673,7 @@ msgstr "Bývalý člen"
 #. / reply button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
 msgctxt "button"
 msgid "Reply"
 msgstr "Odpovědět"
@@ -1990,7 +1990,7 @@ msgstr "Překládat"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L381
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
 msgid "Edit"
 msgstr "Upravit"
 
@@ -2017,7 +2017,7 @@ msgstr "Odstranit z&nbsp;oblíbených"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L440
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
 msgid "Are you sure?"
 msgstr "Víte to jistě?"
 
@@ -2035,7 +2035,7 @@ msgstr "Víte to jistě?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L444
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L233
 msgid "Delete"
 msgstr "Odstranit"
 
@@ -4765,7 +4765,7 @@ msgid "#{sentenceId}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
 msgstr ""
 
@@ -5265,27 +5265,6 @@ msgid ""
 "clipboard."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
-msgid "to {recipient}"
-msgstr "uživateli {recipient}"
-
-#. private message type (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
-msgid "Draft"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
-msgid "notification from Tatoeba"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L125
-msgid "from {sender}"
-msgstr "od uživatele {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
-msgid "View this user's profile"
-msgstr "Zobrazit profil tohoto uživatele"
-
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results.
@@ -5332,6 +5311,23 @@ msgstr "{sender} napsal/a:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
 msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L139
+msgid "to {recipient}"
+msgstr "uživateli {recipient}"
+
+#. private message type (noun)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
+msgid "Draft"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
+msgid "from {sender}"
+msgstr "od uživatele {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -5428,6 +5424,6 @@ msgstr ""
 msgid "Unknown number of sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"
 msgstr "{messageAuthor}"

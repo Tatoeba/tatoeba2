@@ -21,9 +21,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 20:13+0200\n"
-"PO-Revision-Date: 2020-10-18 21:15+0000\n"
-"Last-Translator: Yacine Bouklif <yacinebouklif@gmail.com>\n"
+"POT-Creation-Date: 2020-10-22 20:04+0200\n"
+"PO-Revision-Date: 2020-10-23 04:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Kabyle (http://www.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1666,7 +1666,7 @@ msgstr "Aɛeggal aqbuṛ"
 #. / reply button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
 msgctxt "button"
 msgid "Reply"
 msgstr "Err"
@@ -1981,7 +1981,7 @@ msgstr "Suqqel"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L381
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
 msgid "Edit"
 msgstr "Ẓreg"
 
@@ -2008,7 +2008,7 @@ msgstr "Kkes seg yinuraf"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L440
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
 msgid "Are you sure?"
 msgstr "Tebɣiḍ ?"
 
@@ -2026,7 +2026,7 @@ msgstr "Tebɣiḍ ?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L444
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L233
 msgid "Delete"
 msgstr "Kkes"
 
@@ -4728,7 +4728,7 @@ msgid "#{sentenceId}"
 msgstr "# {sentenceId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
 msgstr "Azen izen"
 
@@ -5222,27 +5222,6 @@ msgid ""
 "clipboard."
 msgstr "Izmer Tatoeba ad isekcem s wudem awurman ID n tefyirt mi ara tneɣleḍ URL n tefyirt. I wurmad n waya, ttxil sireg iminig ad iɣer seg  Ɣef afus."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
-msgid "to {recipient}"
-msgstr "i {recipient}"
-
-#. private message type (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
-msgid "Draft"
-msgstr "Arewway"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
-msgid "notification from Tatoeba"
-msgstr "alɣu sɣur Tatoeba"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L125
-msgid "from {sender}"
-msgstr "seg {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
-msgid "View this user's profile"
-msgstr "Sken-d amaɣnu-a n useqdac"
-
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results.
@@ -5285,6 +5264,23 @@ msgstr "{sender} yura:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
 msgstr "Creḍ ur ittwaɣra ara"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L139
+msgid "to {recipient}"
+msgstr "i {recipient}"
+
+#. private message type (noun)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
+msgid "Draft"
+msgstr "Arewway"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr "alɣu sɣur Tatoeba"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
+msgid "from {sender}"
+msgstr "seg {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -5379,6 +5375,6 @@ msgstr "Sit akken ad ceṛḍeḍ yettwacegger."
 msgid "Unknown number of sentences"
 msgstr "Amḍan n tefyar d arussin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"
 msgstr "sɣur {messageAuthor}"

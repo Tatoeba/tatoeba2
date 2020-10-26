@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Martijn Dekker <mcdutchie@hotmail.com>, 2015-2018
+# Martijn Dekker <mcdutchie@hotmail.com>, 2015-2018,2020
 # R K <becci@likespizza.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 20:13+0200\n"
-"PO-Revision-Date: 2020-09-14 06:23+0000\n"
-"Last-Translator: Andreas Perstinger <andipersti@gmail.com>\n"
+"POT-Creation-Date: 2020-10-22 20:04+0200\n"
+"PO-Revision-Date: 2020-10-24 19:37+0000\n"
+"Last-Translator: Martijn Dekker <mcdutchie@hotmail.com>\n"
 "Language-Team: Interlingua (http://www.transifex.com/tatoeba/tatoeba_website/language/ia/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -211,7 +211,7 @@ msgstr "Error de contrasigno. Tenta lo de novo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
-msgstr "Tu ha acceptate le nove conditiones de usa."
+msgstr "Tu ha acceptate le nove conditiones de uso."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L184
 msgid ""
@@ -393,7 +393,7 @@ msgid "The character “{kanji}” has more than one furigana: “{furiganas}”
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
 msgstr[0] "Le typo “{kanji}” ha plus que {n} furigana: “{furiganas}”."
-msgstr[1] "Le characteres “{kanji}” ha plus que {n} furiganas: ”{furiganas}”."
+msgstr[1] "Le characteres “{kanji}” ha plus de {n} furiganas: ”{furiganas}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
 msgid "The following character is not transcribed: {charsEnumeration}."
@@ -408,7 +408,7 @@ msgstr "Nulle licentia pro uso foras del sito"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L61
 msgid "Licensing issue"
-msgstr ""
+msgstr "Problema de licentia"
 
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -447,7 +447,7 @@ msgstr "Iste transcription pote continer errores perque illo ha essite generate 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
 msgid "The furigana was last edited by {author} on {date}."
-msgstr ""
+msgstr "Le furigana ha essite modificate le ultime vice per {author} le {date}."
 
 #. refers to a transcription
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L218
@@ -475,7 +475,7 @@ msgstr "Lista {listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L126
 msgid "Sentence id [tab] Sentence text"
-msgstr "Phrase id [tab] Texto de phrase"
+msgstr "ID del phrase [tab] Texto del phrase"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
 msgid "You cannot send an empty message."
@@ -846,13 +846,13 @@ msgstr "Traducer phrases que pertine a {user}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L33
 msgid "Interface language"
-msgstr ""
+msgstr "Lingua del interfacie"
 
 #. button appearing after a language search
 #. in Browse by languages page.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/show_all_sentences_button_text.ctp#L6
 msgid "Show all sentences in {language}"
-msgstr ""
+msgstr "Monstrar tote le phrases in {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -928,20 +928,20 @@ msgstr "Chronologia de activitate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L64
 msgid "Activity timeline — {month} {year}"
-msgstr ""
+msgstr "Chronologia de activitate — {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr ""
+msgstr "Statisticas sur le numero de contributiones durante iste mense."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr ""
+msgstr "Statisticas sur le numero de contributiones durante {month} {year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
 msgid "Day"
-msgstr ""
+msgstr "Die"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
@@ -951,27 +951,27 @@ msgstr "Phrases addite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
 msgid "Links added"
-msgstr ""
+msgstr "Ligamines addite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L94
 msgid "Links removed"
-msgstr ""
+msgstr "Ligamines removite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L95
 msgid "Sentences removed"
-msgstr ""
+msgstr "Phrases removite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L130
 msgid "Daily Average: {n} sentence added"
 msgid_plural "Daily Average: {n} sentences added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Media quotidian: {n} phrase addite"
+msgstr[1] "Media quotidian: {n} phrases addite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L140
 msgid ", {n} link added"
 msgid_plural ", {n} links added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] ", {n} ligamine addite"
+msgstr[1] ", {n} ligamines addite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
@@ -990,13 +990,13 @@ msgstr "Solmente le ultime {n} entratas del registro es monstrate hic."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L35
 msgid "This form is pre-filled."
-msgstr ""
+msgstr "Iste formulario es pre-completate."
 
 #. button appearing on advanced search page
 #. after clicking "Create a search template" (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L44
 msgid "Clear form"
-msgstr ""
+msgstr "Vacuar formulario"
 
 #. section title in advanced search form
 #. / link to the user's sentences on profile page sidebar
@@ -1198,25 +1198,25 @@ msgstr "Altere optiones de recerca"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L404
 msgid "Create a search template"
-msgstr ""
+msgstr "Crear un patrono de recerca"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L409
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
-msgstr ""
+msgstr "Iste button permitte usar le criterios ora seligite como base pro altere recercas. In ultra, es possibile dar le adresse del patrono de recerca a altere personas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L51
 msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>. By closing "
 "this announcement, you agree with the new Terms of Use. If you have any "
 "question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr ""
+msgstr "Nos ha actualisate nostre <a href=\"{termsOfUse}\">conditiones de uso</a>. Per clauder iste notitia, tu te declara de accordo con le nove conditiones de uso. Si tu ha questiones, non hesita de <a href=\"{contact}\">contactar nos</a>."
 
 #. button to accept new terms of use
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
 msgid "Accept and close"
-msgstr ""
+msgstr "Acceptar e clauder"
 
 #. button to close the blue announcement banner
 #. / button to close the announcement about the new design (verb)
@@ -1285,7 +1285,7 @@ msgstr "Wiki de Tatoeba"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L58
 msgctxt "footer"
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #. link text to the Help page in the footer (noun)
 #. / title of the Help page (noun)
@@ -1424,7 +1424,7 @@ msgstr "Aperir session"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
-msgstr ""
+msgstr "Solmente phrases in:"
 
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46
@@ -1467,7 +1467,7 @@ msgstr "Corbe a papiro"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L9
 msgctxt "header"
 msgid "Reply"
-msgstr ""
+msgstr "Responder"
 
 #. title of section containing a form for
 #. a new private message (noun)
@@ -1563,7 +1563,7 @@ msgstr "Recerca avantiate"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L109
 msgctxt "label"
 msgid "Search"
-msgstr ""
+msgstr "Cercar"
 
 #. search language field label in top search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L127
@@ -1654,10 +1654,10 @@ msgstr "Ex-membro"
 #. / reply button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
 msgctxt "button"
 msgid "Reply"
-msgstr ""
+msgstr "Responder"
 
 #. tooltip of permalink button on a comment (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L134
@@ -1796,35 +1796,35 @@ msgstr "Audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
 msgid "Show more features for all sentences"
-msgstr ""
+msgstr "Monstrar plus functiones pro tote le phrases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L13
 msgid "Show fewer features for all sentences"
-msgstr ""
+msgstr "Monstrar minus functiones pro tote le phrases"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
 msgid "0 sentences"
-msgstr ""
+msgstr "0 phrases"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
 msgid "1 or more sentences"
-msgstr ""
+msgstr "1 o plus phrases"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L12
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L190
 msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}+ phrase"
+msgstr[1] "{n}+ phrases"
 
 #. placeholder text in search field of
 #. Browse by languages page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/search.ctp#L13
 msgid "Search a language"
-msgstr ""
+msgstr "Cercar in un lingua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -1916,7 +1916,7 @@ msgstr "Altere lingua"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L88
 msgid "Transcription"
-msgstr ""
+msgstr "Transcription"
 
 #. reset button of transcription edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L56
@@ -1926,7 +1926,7 @@ msgstr "Reinitialisar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L61
 msgid "Mark as reviewed"
-msgstr ""
+msgstr "Marcar como revidite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L13
 msgid "This sentence is not reliable."
@@ -1969,7 +1969,7 @@ msgstr "Traducer"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L381
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
 msgid "Edit"
 msgstr "Modificar"
 
@@ -1996,7 +1996,7 @@ msgstr "Remover del favorites"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L440
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
 msgid "Are you sure?"
 msgstr "Es tu secur?"
 
@@ -2014,7 +2014,7 @@ msgstr "Es tu secur?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L444
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L233
 msgid "Delete"
 msgstr "Deler"
 
@@ -2030,31 +2030,31 @@ msgstr "Clicca pro disadoptar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L57
 msgid "Show more features"
-msgstr ""
+msgstr "Monstrar plus functiones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L62
 msgid "Show fewer features"
-msgstr ""
+msgstr "Monstrar minus functiones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
 msgid "Show unreviewed transcriptions"
-msgstr ""
+msgstr "Monstrar transcriptiones non revidite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L10
 msgid "Hide unreviewed transcriptions"
-msgstr ""
+msgstr "Celar transcriptiones non revidite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L10
 msgid "Unlink this translation"
-msgstr ""
+msgstr "Disligar iste traduction"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L14
 msgid "Make into direct translation"
-msgstr ""
+msgstr "Converter in traduction directe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L31
 msgid "Existing sentence #{number} has been added as a translation."
-msgstr ""
+msgstr "Le phrase existente #{number} ha essite addite como traduction."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L41
 msgid "Edit this translation"
@@ -2068,7 +2068,7 @@ msgstr "Traduction"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
 msgid "Add translation"
-msgstr ""
+msgstr "Adder traduction"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L40
 msgid "Edit translation"
@@ -2128,7 +2128,7 @@ msgstr "Recerca avantiate"
 #. button to open top-right sort menu on various pages (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sort_menu.ctp#L4
 msgid "Sort by"
-msgstr ""
+msgstr "Ordinar per"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L70
 msgid "My profile"
@@ -2136,7 +2136,7 @@ msgstr "Mi profilo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L79
 msgid "Language: {lang}"
-msgstr ""
+msgstr "Lingua: {lang}"
 
 #. header text for settings on profile page
 #. / title of Settings page
@@ -2203,7 +2203,7 @@ msgstr[1] "{number} linguas supportate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
 msgid "Stats per languages"
-msgstr ""
+msgstr "Statisticas per lingua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
 msgid "{number} contribution today"
@@ -2219,7 +2219,7 @@ msgstr "Percurrer"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L49
 msgid "Show random sentence"
-msgstr ""
+msgstr "Monstrar phrase aleatori"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L55
@@ -2266,7 +2266,7 @@ msgstr "Discuter phrases"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L107
 msgid "Add vocabulary request"
-msgstr ""
+msgstr "Adder requesta de vocabulario"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L115
@@ -2368,19 +2368,19 @@ msgstr "Traducer le phrases de {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L28
 msgid "Vocabulary requests"
-msgstr ""
+msgstr "Requestas de vocabulario"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L33
 msgid "My vocabulary requests"
-msgstr ""
+msgstr "Mi requestas de vocabulario"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L39
 msgid "Add vocabulary requests"
-msgstr ""
+msgstr "Adder requestas de vocabulario"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L45
 msgid "Existing vocabulary requests"
-msgstr ""
+msgstr "Requestas de vocabulario existente"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L26
@@ -2590,7 +2590,7 @@ msgstr "Le video hic infra, facite in 2010, presenta le ideas fundamental de Tat
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L43
 msgctxt "header"
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L49
 msgid ""
@@ -2699,7 +2699,7 @@ msgstr "Discargar phrases"
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L40
 msgid "Filename"
-msgstr ""
+msgstr "Nomine del file"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L42
@@ -2721,7 +2721,7 @@ msgstr "ID del phrase"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
 msgid "Base of the sentence"
-msgstr ""
+msgstr "Base del phrase"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
@@ -2811,7 +2811,7 @@ msgstr "URL pro attribution"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
 msgid "Script name"
-msgstr ""
+msgstr "Nomine del scriptura"
 
 #. header text in the Downloads page on the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L106
@@ -2881,50 +2881,50 @@ msgstr "Questiones?"
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>. In general, we answer quickly."
-msgstr ""
+msgstr "Si tu ha questiones o requestas, non hesita de <a href=\"{}\">contactar nos</a>. In general, nos responde rapidemente."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L209
 msgid ""
 "Contains all the sentences in the selected language. Each sentence is "
 "associated with a unique id and an <a href=\"{}\">ISO 639-3</a> language "
 "code."
-msgstr ""
+msgstr "Contine tote le phrases in le lingua seligite. Cata phase es associate con un ID unic e con un codice de lingua <a href=\"{}\">ISO 639-3</a>."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L224
 msgid "Detailed Sentences"
-msgstr ""
+msgstr "Phrases detaliate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L238
 msgid ""
 "Contains additional fields for each sentence (owner name, date "
 "created/modified)."
-msgstr ""
+msgstr "Contine campos additional pro cata phrase (nomine del proprietario, data de creation/modification)."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L255
 msgid "Base of Sentences"
-msgstr ""
+msgstr "Base de phrases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L264
 msgid ""
 "A sentence is based on another if it has been initially added as a "
 "translation. Each sentence is associated with a base, which can be:"
-msgstr ""
+msgstr "Un phrase es basate sur un altere si illo ha essite initialmente addite como traduction. Cata phase es associate con un base, que pote esser:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L268
 msgid "zero: The sentence is original, not based on another."
-msgstr ""
+msgstr "zero: Le phrase es original, non basate sur un altere."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L269
 msgid "greater than 0: The sentence id it is based upon."
-msgstr ""
+msgstr "superior a 0: Le ID del phrase sur que illo es basate."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L270
 msgid ""
 "\\N: We do not know. This is rare but we have a handful of sentences for "
 "which we do not know if they have been added as translations or not."
-msgstr ""
+msgstr "\\N: Nos non lo sape. Isto es rar, ma nos ha alcun poc phrases pro le quales nos non sape si illos ha essite addite como traductiones o non."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L283
@@ -3028,7 +3028,7 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr ""
+msgstr "Contine tote le transcriptiones in scripturas auxiliar o alternative. Un nomine de usator associate con un transcription indica le usator que lo revideva le ultime vice e possibilemente lo modificava. Un transcription sin nomine de usator non ha essite marcate como revidite. Le nomine del scriptura es definite secundo le standard ISO 15924."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
@@ -3198,7 +3198,7 @@ msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr ""
+msgstr "Le nove designo de phrases reimplaciara tosto le ancian. Per favor prova lo e contacta nos si tu incontra problemas. Tu pote activar lo con le option \"Monstrar phrases con le nove designo\" in tu configurationes."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
@@ -3338,15 +3338,15 @@ msgstr "Evalutationes obsolete"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L47
 msgid "Sentences in {language} marked as \"OK\""
-msgstr ""
+msgstr "Phrases in {language} marcate como \"OK\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L48
 msgid "Sentences in {language} marked as \"unsure\""
-msgstr ""
+msgstr "Phrases in {language} marcate como \"insecur\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L49
 msgid "Sentences in {language} marked as \"not OK\""
-msgstr ""
+msgstr "Phrases in {language} marcate como \"non OK\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L50
 msgid "All sentences in {language}"
@@ -4716,7 +4716,7 @@ msgid "#{sentenceId}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
 msgstr "Inviar message"
 
@@ -5045,7 +5045,7 @@ msgstr "Nomine"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L690
 msgctxt "header"
 msgid "Search"
-msgstr ""
+msgstr "Cercar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L737
 msgid "All public lists"
@@ -5210,27 +5210,6 @@ msgid ""
 "clipboard."
 msgstr "Tatoeba pote inscriber automaticamente le id del phrase quando tu ha copiate un URL de phrase. Pro accender isto, per favor permitte que tu navigator lege le clipboard."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
-msgid "to {recipient}"
-msgstr "a {recipient}"
-
-#. private message type (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
-msgid "Draft"
-msgstr "Version provisori"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
-msgid "notification from Tatoeba"
-msgstr "notification de Tatoeba"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L125
-msgid "from {sender}"
-msgstr "de {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L201
-msgid "View this user's profile"
-msgstr "Vider le profilo de iste usator"
-
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results.
@@ -5273,6 +5252,23 @@ msgstr "{sender} ha scribite:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
 msgstr "Marcar como non legite"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L139
+msgid "to {recipient}"
+msgstr "a {recipient}"
+
+#. private message type (noun)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
+msgid "Draft"
+msgstr "Version provisori"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr "notification de Tatoeba"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
+msgid "from {sender}"
+msgstr "de {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -5367,6 +5363,6 @@ msgstr "Clicca pro marcar lo como revidite."
 msgid "Unknown number of sentences"
 msgstr "Numero incogite de phrases"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"
 msgstr "per {messageAuthor}"
