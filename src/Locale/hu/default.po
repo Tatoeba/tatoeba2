@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-22 20:04+0200\n"
-"PO-Revision-Date: 2020-10-24 19:02+0000\n"
+"PO-Revision-Date: 2020-11-12 17:43+0000\n"
 "Last-Translator: Tivadar Pongó <pongo.tivadar@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/tatoeba/tatoeba_website/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -451,7 +451,7 @@ msgstr "Ez az átirat tartalmazhat hibákat, mert egy olyan szoftver által lett
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
 msgid "The furigana was last edited by {author} on {date}."
-msgstr ""
+msgstr "A furigana legutóbb {author} által volt szerkesztve, ekkor: {date}."
 
 #. refers to a transcription
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L218
@@ -521,7 +521,7 @@ msgstr "Ez a mondat már az adott licenccel rendelkezik."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L220
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "A mondatnak eredetinek kell lennie (azaz nem fordításból származónak)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -533,7 +533,7 @@ msgstr "Nem te vagy a tulajdonosa ennek a mondatnak."
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L235
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "A mondat tulajdonosának a mondat eredeti szerzőjének kell lennie."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -600,7 +600,7 @@ msgstr "A következő okból kifolyólag a {id} számú mondat licencét nem leh
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L121
 msgid "License switch started on {date} at {time} UTC."
-msgstr ""
+msgstr "A licencváltás a következő időpontban megkezdődött: {date}, UTC {time}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L126
 msgid "Successfully changed the license of {n} sentence."
@@ -677,7 +677,7 @@ msgstr "Címkék, amikről érdemes tudnia"
 msgid ""
 "The community has come up with several \"utility tags\" to improve the "
 "quality and reliability of sentences."
-msgstr ""
+msgstr "A közösség számos \"segédcímkével\" állt elő a mondatok minőségének és megbízhatóságának javítása érdekében."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
@@ -728,7 +728,7 @@ msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr ""
+msgstr "Amikor tud, böngésszen a {tagChange}, {tagCheck}, és {tagNNC} címkékkel ellátott mondatok között, hogy megvitathassa a mondatokat más tagokkal, és segíthessen eldönteni, mi legyen ezekkel a mondatokkal."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L135
 msgid ""
@@ -736,7 +736,7 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr ""
+msgstr "Miután egy hibás mondat helyesbítve lett, jelölje meg {tagOK} címkével. Ezen kívül böngészhet és ellenőrizheti mások mondatait és megcímkézheti őket, mint {tagOK}. De ezt csak akkor tegye, ha teljesen biztos abban, hogy azok helyesek, és ne használja a címkét a saját mondataihoz."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
@@ -788,7 +788,7 @@ msgstr "Ha több fordítás lehetséges, többet is hozzáadhat ugyanazon a nyel
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "A mondatok fordítása azt feltételezi, hogy legalább két nyelvet tud. Kérjük töltse ki <a href=\"{}\">profilját</a>, hogy legalább két nyelvet hozzáadjon."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L112
 msgid "Search for untranslated sentences"
@@ -1208,7 +1208,7 @@ msgstr "Keresési sablon létrehozása"
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
-msgstr ""
+msgstr "Ezzel a gombbal az aktuálisan kiválasztott feltételeket más keresések alapjául veheti. Ezen kívül elmentheti/megoszthatja másokkal a keresési sablont."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L51
 msgid ""
@@ -1396,7 +1396,7 @@ msgstr "Nem található nyelv."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
-msgstr ""
+msgstr "Érintett mondatok listája (összesen {{count}})"
 
 #. link to the Register page in the top bar (verb)
 #. / link to the Register page in the sidebar menu on mobile (verb)
@@ -1428,7 +1428,7 @@ msgstr "Bejelentkezés"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
-msgstr ""
+msgstr "Csak a következő nyelvű mondatok:"
 
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46
@@ -1539,7 +1539,7 @@ msgstr "Jelölés \"OK\"-nak"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L575
 msgid "Unmark sentence"
-msgstr ""
+msgstr "Mondat jelölésének megszüntetése"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L18
@@ -1651,7 +1651,7 @@ msgstr "Mondat {number}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L70
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L67
 msgid "Former member"
-msgstr ""
+msgstr "Korábbi tag"
 
 #. tooltip of reply button on a comment (verb)
 #. / button to reply to a private message (verb)
@@ -1667,7 +1667,7 @@ msgstr "Válasz"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L44
 msgid "Permalink"
-msgstr ""
+msgstr "Link a hozzászóláshoz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L163
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L110
@@ -1675,7 +1675,7 @@ msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr ""
+msgstr "Ennek az üzenetnek a tartalma ellentétes a <a href=\"{}\">szabályzatunkkal</a>, ezért rejtve maradt. Csak adminok és az üzenet szerzője számára jelenik meg."
 
 #. cancel button of sentence comment edition form (verb)
 #. / cancel button of sentence text edition form (verb)
@@ -1800,11 +1800,11 @@ msgstr "Hangfelvétel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
 msgid "Show more features for all sentences"
-msgstr ""
+msgstr "További funkciók mutatása az összes mondatnál"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L13
 msgid "Show fewer features for all sentences"
-msgstr ""
+msgstr "Kevesebb funkció megjelenítése az összes mondatnál"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
@@ -1832,7 +1832,7 @@ msgstr "Keressen egy nyelvet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
-msgstr ""
+msgstr "Lista keresése vagy új lista létrehozása"
 
 #. button to create a new list directly from a sentence block
 #. / button to create a new list from the lists of list page (verb)
@@ -1843,7 +1843,7 @@ msgstr "Létrehoz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L13
 msgid "Your last selected list (if any) and last updated lists"
-msgstr ""
+msgstr "Legutóbb kiválasztott listája (ha van ilyen) és utoljára frissített listája"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L14
 msgid "Search results"
@@ -1851,7 +1851,7 @@ msgstr "Keresési eredmények"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L21
 msgid "(last selected)"
-msgstr ""
+msgstr "(utoljára kiválasztott)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L24
 msgid "Collaborative list"
@@ -1859,7 +1859,7 @@ msgstr "Kooperatív lista"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L27
 msgid "No list found."
-msgstr ""
+msgstr "Nem található lista."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L28
 msgid "You have no lists which this sentence can be added to."
@@ -1891,7 +1891,7 @@ msgstr "Mutasd az alábbi számú mondatot:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L119
 msgid "Your sentence was not added because the following already exists."
-msgstr ""
+msgstr "A mondata nem lett hozzáadva, mert a következő már létezik."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
 msgid "This sentence belongs to a native speaker."
@@ -1909,7 +1909,7 @@ msgstr "Kevesebb fordítás"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L4
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L479
 msgid "You cannot edit this sentence because it has audio."
-msgstr ""
+msgstr "Nem szerkesztheti ezt a mondatot, mert tartozik hozzá hangfelvétel."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L20
 msgid "Other language"
@@ -1920,13 +1920,13 @@ msgstr "Másik nyelv"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L88
 msgid "Transcription"
-msgstr ""
+msgstr "Átirat"
 
 #. reset button of transcription edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L120
 msgid "Reset"
-msgstr ""
+msgstr "Visszaállítás"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L61
 msgid "Mark as reviewed"
@@ -1934,7 +1934,7 @@ msgstr "Jelölés ellenőrzöttnek"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L13
 msgid "This sentence is not reliable."
-msgstr ""
+msgstr "Ez a mondat nem megbízható."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L283
@@ -2025,12 +2025,12 @@ msgstr "Töröl"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L150
 msgid "Click to adopt"
-msgstr ""
+msgstr "Kattintson az örökbefogadáshoz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L157
 msgid "Click to unadopt"
-msgstr ""
+msgstr "Kattintson az örökbefogadás visszavonásához"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L57
 msgid "Show more features"
@@ -2042,23 +2042,23 @@ msgstr "Kevesebb funkció megjelenítése"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
 msgid "Show unreviewed transcriptions"
-msgstr ""
+msgstr "Ellenőrizetlen átiratok mutatása"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L10
 msgid "Hide unreviewed transcriptions"
-msgstr ""
+msgstr "Ellenőrizetlen átiratok elrejtése"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L10
 msgid "Unlink this translation"
-msgstr ""
+msgstr "Fordítás leválasztása a mondattól"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L14
 msgid "Make into direct translation"
-msgstr ""
+msgstr "Közvetlen fordítássá tétel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L31
 msgid "Existing sentence #{number} has been added as a translation."
-msgstr ""
+msgstr "A #{number} számú, már létező mondat fordításként hozzá lett adva."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L41
 msgid "Edit this translation"
@@ -2114,7 +2114,7 @@ msgstr "Keresés"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L65
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
-msgstr ""
+msgstr "Tipp: <em>=szó</em> pontos egyezést keres a <em>szó</em>ra"
 
 #. links to a page with tips to perform
 #. searches, like search operators
@@ -2363,7 +2363,7 @@ msgstr "Eseménynapló"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L520
 msgid "Transcriptions"
-msgstr ""
+msgstr "Átiratok"
 
 #. link text on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L149
@@ -2431,7 +2431,7 @@ msgstr "Letölt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L20
 msgid "Export in progress"
-msgstr ""
+msgstr "Exportálás folyamatban"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L23
 msgid "Export failed"
@@ -2443,7 +2443,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L43
 msgid "Export list"
-msgstr ""
+msgstr "Lista exportálása"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L33
 msgid "{user}'s favorite sentences"
@@ -2451,12 +2451,12 @@ msgstr "{user} kedvenc mondatai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L52
 msgid "Favorite successfully removed."
-msgstr ""
+msgstr "Sikeresen eltávolítva a kedvencek közül."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L173
 msgid "Sentence {id} has been deleted."
-msgstr ""
+msgstr "A következő mondat törölve lett: {id}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L118
 msgid "This user does not have any favorites."
@@ -2484,32 +2484,32 @@ msgstr "A mondataim CC0 licenszre módosítása"
 msgid ""
 "The license switch of your sentences is in progress. You will receive a "
 "private message when it will be completed."
-msgstr ""
+msgstr "A mondatok licencváltása folyamatban van. Amint elkészül privát üzeneteben értesítjük."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""
 "This page allows you to massively switch the license of your sentences to "
 "{CC0-link}. Among all your sentences, only the ones that meet the following "
 "conditions will be affected."
-msgstr ""
+msgstr "Ez az oldal lehetővé teszi, hogy tömegesen megváltoztassa a mondatai licencét {CC0-link}licencre. Ez csak azokra a mondataira lesz hatással, amelyek megfelelnek a következő feltételeknek."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L36
 msgid "The current license of the sentence must be CC BY 2.0 FR."
-msgstr ""
+msgstr "A mondat jelenlegi licence CC BY 2.0 FR kell hogy legyen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L37
 msgid "You must be the original creator of the sentence."
-msgstr ""
+msgstr "Önnek kell lennie a mondat eredeti létrehozójának."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L38
 msgid "The sentence must be original and not derived from translation."
-msgstr ""
+msgstr "A mondatnak eredetinek kell lennie, azaz nem származhat fordításból."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L53
 msgid ""
 "Press the following button to start or restart an analysis of which of your "
 "sentences can be switched to CC0."
-msgstr ""
+msgstr "Nyomja meg ezt a gombot, hogy megkezdje vagy újraindítsa az elemzést arról, hogy mely mondatai válthatók CC0-ra."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L55
 msgid "Start analysis"
@@ -2523,17 +2523,17 @@ msgstr "Licenc módosítása"
 msgid ""
 "Press the following button to initiate the license switch of the above-"
 "listed sentences."
-msgstr ""
+msgstr "Nyomja meg a következő gombot a fenti mondatok licencváltásának elindításához."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L68
 msgid ""
 "Be careful, this operation can not be undone. Switching from CC BY to CC0 is"
 " possible, but not the opposite."
-msgstr ""
+msgstr "Legyen óvatos, ez a művelet nem vonható vissza. A CC BY licencről CC0-ra váltás lehetséges, de fordítva nem."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L72
 msgid "Switch license to CC0 1.0"
-msgstr ""
+msgstr "Licenc váltása CC0 1.0-ra"
 
 #. alt text for unlink translation button (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/add.ctp#L6
@@ -2569,7 +2569,7 @@ msgid ""
 "Tatoeba is a large database of sentences and translations. Its content is "
 "ever-growing and results from the voluntary contributions of thousands of "
 "members."
-msgstr ""
+msgstr "Tatoeba egy nagy adatbázis mondatokat és fordítások számára. Tartalma folyamatosan növekszik, és több ezer tag önkéntes hozzájárulásából származik."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L51
 msgid ""
@@ -2584,11 +2584,11 @@ msgstr ""
 msgid ""
 "The project was founded by Trang Ho in 2006, hosted on Sourceforge under the"
 " codename of <em>multilangdict</em>."
-msgstr ""
+msgstr "A projektet Trang Ho alapította 2006-ban, amely <em>multilangdict</em> néven futott a Sourceforge platformon."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L73
 msgid "The video below, made in 2010, presents the core ideas of Tatoeba."
-msgstr ""
+msgstr "Az alábbi, 2010-ben készült videó bemutatja a Tatoeba alapgondolatait."
 
 #. section title in the Contact page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L43
@@ -2628,7 +2628,7 @@ msgstr "Véleményét megoszthatja velünk az <a href=\"{}\">Üzenőfalon</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L96
 msgid "Join our chatroom"
-msgstr ""
+msgstr "Csatlakozzon chatszobánkhoz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L101
 msgid ""
@@ -2640,7 +2640,7 @@ msgstr ""
 #. title of the Donate page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L29
 msgid "Donate"
-msgstr ""
+msgstr "Adományozás"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L34
 msgid "Any question?"
@@ -2652,11 +2652,11 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr ""
+msgstr "Ha bármilyen kérdése van az adományokkal kapcsolatban, vagy ha az itt említettektől eltérő módon szeretne adományozni, felveheti a kapcsolatot a <a href=\"{trangEmail}\">Trang</a>-gal vagy a <a href=\"{teamEmail}\">csapatunkkal</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L52
 msgid "All donations"
-msgstr "Minden adomány"
+msgstr "Összes adomány"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L61
 msgid "How to donate"
@@ -2671,14 +2671,14 @@ msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr ""
+msgstr "<b>IBAN átutalás.</b> Valószínűleg ez a legolcsóbb adományozási mód. A Tatoeba bankja franciaországi székhelyű, tehát ha európai bankszámlával rendelkezik, akkor az átutalás valószínűleg ingyenes lesz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L76
 msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
-msgstr ""
+msgstr "<b>PayPal.</b> Ha nincs lehetősége IBAN átutalásra, akkor adományozhat PayPal segítségével is. Azonban érdemes tudnia, hogy a PayPal az adomány bizonyos százalékát levonja."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L86
 msgid "IBAN transfer"
@@ -2686,7 +2686,7 @@ msgstr "IBAN átutalás"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L87
 msgid "Titular:"
-msgstr ""
+msgstr "Kedvezményezett:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L88
 msgid "IBAN:"
@@ -2703,7 +2703,7 @@ msgstr "Mondatok letöltése"
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L40
 msgid "Filename"
-msgstr "Állománynév"
+msgstr "Fájlnév"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L42
@@ -2714,7 +2714,7 @@ msgstr "Mezők és formátum"
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L44
 msgid "File description"
-msgstr "Állomány leírás"
+msgstr "Fájl leírás"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L48
@@ -2725,7 +2725,7 @@ msgstr "Mondat azonosító (id)"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
 msgid "Base of the sentence"
-msgstr ""
+msgstr "Mondat bázisa"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
@@ -2790,7 +2790,7 @@ msgstr "Lista név"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L74
 msgid "Editable by"
-msgstr ""
+msgstr "Szerkesztheti"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L76
@@ -2800,7 +2800,7 @@ msgstr "Jelentés azonosító (id)"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L78
 msgid "Skill level"
-msgstr ""
+msgstr "Tudás szint"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L80
@@ -2815,7 +2815,7 @@ msgstr "Forrásmegjelölési URL"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
 msgid "Script name"
-msgstr ""
+msgstr "Írásrendszer"
 
 #. header text in the Downloads page on the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L106
@@ -2826,24 +2826,24 @@ msgstr "Megjegyzés"
 msgid ""
 "The data you will find here will NOT be useful unless you are coding a "
 "language tool or processing data."
-msgstr ""
+msgstr "Az itt található adatok NEM lesznek hasznára, hacsak nem valamilyen nyelvi eszközt programoz vagy adatokat dolgoz fel."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L116
 msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
-msgstr ""
+msgstr "Ha egyszerűen csak olyan mondatokat szeretne, amelyek segítségével elsajátíthatja a nyelvet, nézze meg a <a href=\"{}\">listákat</a>. Készíthet sajátot, vagy megtekintheti azokat, amelyeket mások készítettek. A listák letölthetők és kinyomtathatók."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L127
 msgid "General information about the files"
-msgstr "Általános információ az állományról"
+msgstr "Általános információ a fájlokról"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L130
 msgid ""
 "The files provided here are updated every <strong>Saturday at 6:30 "
 "a.m.</strong> (UTC)."
-msgstr ""
+msgstr "Az itt megadott fájlok minden héten <strong>szombat 18:30</strong>-kor (UTC) frissülnek."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L137
 msgid ""
@@ -2854,81 +2854,81 @@ msgstr ""
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L147
 msgid "Creative commons"
-msgstr ""
+msgstr "Creative commons"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L148
 msgid "These files are released under CC BY 2.0 FR."
-msgstr ""
+msgstr "Ezek a fájlok CC BY 2.0 FR alatt kerülnek kiadásra."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L153
 msgid "A part of our sentences are also available under CC0 1.0."
-msgstr ""
+msgstr "Mondataink egy része CC0 1.0 alatt is elérhető."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L162
 msgid "Licenses covering audio"
-msgstr ""
+msgstr "Hangfelvételre vonatkozó licencek"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L165
 msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr ""
+msgstr "A hangfájlra vonatkozó licencet a készítője választja ki, és az azon az oldalon jelenik meg, amely felsorolja az összes általa hozzáadott hangfájlt."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L174
 msgid "Questions?"
-msgstr "Kérdések?"
+msgstr "Kérdése van?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L178
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>. In general, we answer quickly."
-msgstr ""
+msgstr "Ha kérdése vagy kérése van, nyugodtan <a href=\"{}\">forduljon hozzánk</a>. Általában gyorsan válaszolunk."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L209
 msgid ""
 "Contains all the sentences in the selected language. Each sentence is "
 "associated with a unique id and an <a href=\"{}\">ISO 639-3</a> language "
 "code."
-msgstr ""
+msgstr "Az összes mondatot tartalmazza a kiválasztott nyelven. Minden mondathoz egyedi azonosító és <a href=\"{}\">ISO 639-3</a> nyelvi kód tartozik."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L224
 msgid "Detailed Sentences"
-msgstr ""
+msgstr "Mondatok (részletes)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L238
 msgid ""
 "Contains additional fields for each sentence (owner name, date "
 "created/modified)."
-msgstr ""
+msgstr "Minden egyes mondat további mezőket tartalmaz (tulajdonos neve, létrehozás/módosítás dátuma)."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L255
 msgid "Base of Sentences"
-msgstr ""
+msgstr "Mondatok bázisai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L264
 msgid ""
 "A sentence is based on another if it has been initially added as a "
 "translation. Each sentence is associated with a base, which can be:"
-msgstr ""
+msgstr "Egy mondat egy másikon alapul, ha azt eredetileg fordításként adták hozzá. Minden mondathoz társítunk egy bázist, amelyek a következők lehetnek:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L268
 msgid "zero: The sentence is original, not based on another."
-msgstr ""
+msgstr "nulla: A mondat eredeti, nem egy másikon alapul."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L269
 msgid "greater than 0: The sentence id it is based upon."
-msgstr ""
+msgstr "nagyobb, mint 0: A mondat azonosítója, amelyen alapul."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L270
 msgid ""
 "\\N: We do not know. This is rare but we have a handful of sentences for "
 "which we do not know if they have been added as translations or not."
-msgstr ""
+msgstr "\\N: Nem tudjuk. Ez ritka, de van néhány olyan mondatunk, amelyekről nem tudjuk, hogy fordításként lettek hozzáadva vagy eredetiek."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L283
@@ -2937,7 +2937,7 @@ msgstr "Mondatok (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L295
 msgid "Contains all the sentences available under CC0."
-msgstr ""
+msgstr "Az összes CC0 alatt elérhető mondatot tartalmazza."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L307
@@ -2964,11 +2964,11 @@ msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr ""
+msgstr "Az egyes mondatokhoz tartozó <a href=\"{url}\">címkék</a> listáját tartalmazza. {sampleTagLine} például azt jelenti, hogy a #381279 számú mondathoz a \"proverb\" címkét rendelték."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L369
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
-msgstr ""
+msgstr "Tartalmazza a <a href=\"{}\">mondatlisták</a> listáját."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L384
@@ -2979,12 +2979,12 @@ msgstr "Mondatok listákban"
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr ""
+msgstr "Jelzi azokat a mondatokat, amelyeket bármely lista tartalmaz. {sampleListLine} például azt jelenti, hogy a #381279 számú mondatot tartalmazza a lista, amelynek az azonosítója 13."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L413
 msgid "Japanese indices"
-msgstr ""
+msgstr "Japán indexek"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L423
 msgid ""
@@ -2993,7 +2993,7 @@ msgid ""
 "format. Each entry is associated with a pair of Japanese/English sentences. "
 "{sentenceId} refers to the id of the Japanese sentence. {meaningId} refers "
 "to the id of the English sentence."
-msgstr ""
+msgstr "A Jim Breen által megosztott Tanaka Corpus fájl \"B sorok\" megfelelőjét tartalmazza. A formátumot lásd <a href=\"{url}\">ezen az oldalon</a>. Minden bejegyzéshez egy japán/angol mondatpár tartozik. {sentenceId} a japán mondat azonosítójára utal, {meaningId} pedig az angol mondat azonosítójára."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L455
 msgid ""
@@ -3001,17 +3001,17 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr ""
+msgstr "Tartalmazza minden nyelvű mondat azonosítóit, amelyekhez hangfelvétel áll rendelkezésre. A többi mező azt jelzi, hogy ki rögzítette a felvételt, annak licencét és URL-jét a szerző hivatkozásához. Ha a licenc mező üres, akkor nem használhatja fel a hangfelvételt a Tatoeba projekten kívül."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L474
 msgid "User skill level per language"
-msgstr ""
+msgstr "A felhasználók nyelvtudás szintje"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr ""
+msgstr "Jelzi a tagok önbevalláson alapuló tudásszintjét az egyes nyelveken."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L494
@@ -3023,7 +3023,7 @@ msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "Felhasználók által ellenőrzött mondatokat tartalmaz. Az ellenőrzés értéke lehet -1 (a mondat nem OK), 0 (nem eldöntött vagy bizonytalan) vagy 1 (a mondat OK). Figyelem: ezek az adatok még mindig kísérleti jellegűek."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L533
 msgid ""
@@ -3032,7 +3032,7 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr ""
+msgstr "Tartalmaz minden átiratot kiegészítő vagy alternatív írásrendszerben. Az átirathoz társított felhasználónév azt a felhasználót jelöli, aki utoljára ellenőrizte vagy esetleg módosította azt. A felhasználónév nélküli átiratok nincsenek ellenőrzöttként megjelölve. Az írásrendszer nevét az ISO 15924 szabvány határozza meg."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
@@ -3046,7 +3046,7 @@ msgstr "A <a href=\"{}\">GYIK</a> itt olvasható."
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
-msgstr ""
+msgstr "Ha nem talál választ a kérdésére, ne habozzon <a href=\"{}\">kapcsolatba lépni</a> velünk."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L62
 msgid "Getting started"
@@ -3081,19 +3081,19 @@ msgstr "Új mondat hozzáadása"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L131
 msgid "There are two ways to add new sentences."
-msgstr "Két mód van új mondatot hozzáadni."
+msgstr "Kétféleképpen adhat hozzá új mondatokat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L137
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Válassza a <a href=\"{}\">Mondatok hozzáadása</a> lehetőséget az oldal tetején található <strong>Hozzájárulás</strong> menüből."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr "Új <a href=\"{}\">lista</a> létrehozásával, módosíthatja annak tartalmát."
+msgstr "Új <a href=\"{}\">lista</a> létrehozásával és a lista szerkesztési oldalára lépéssel."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L170
 msgid ""
@@ -3171,13 +3171,13 @@ msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr ""
+msgstr "A Tatoebán létre tud hozni mondatlistákat. Alapértelmezés szerint a lista <strong>egyéni</strong>, ami azt jelenti, hogy csak az szerkesztheti, aki létrehozta (de mindenki számára látható)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L285
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr ""
+msgstr "Lehetőség van azonban arra is, hogy a Tatoeba bármely tagja hozzáadjon vagy eltávolítson mondatokat, ha listát <strong>kooperatívnak</strong> állítja be."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L30
@@ -3206,7 +3206,7 @@ msgstr "A mondatok új kinézete hamarosan teljesen lecseréli a régi megjelen�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
-msgstr ""
+msgstr "Menjen a beállításokhoz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
@@ -3257,7 +3257,7 @@ msgstr ""
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L51
 msgid "Private messages - {folderName}"
-msgstr ""
+msgstr "Privát üzenetek - {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L36
@@ -3303,7 +3303,7 @@ msgstr " - Tatoeba"
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr ""
+msgstr "Annak érdekében, hogy a Tatoeba spamtől és egyéb rosszindulatú üzenetektől mentes legyen, az új felhasználók naponta csak 5 üzenetet küldhetnek."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L48
 msgid "You have reached your message limit for today"
@@ -3311,13 +3311,13 @@ msgstr "Ön elérte az üzenetek limitjét a mai napra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L51
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "Kérjük, várjon, amíg több üzenetet küldhet."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L68
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ma egy üzenetet küldött."
+msgstr[1] "Ma {n} üzenetet küldött."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L39
 msgid "Sentences marked as \"OK\""
@@ -3383,13 +3383,13 @@ msgstr "Szűrő"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L132
 msgctxt "reviews"
 msgid "Most recently updated"
-msgstr ""
+msgstr "Legutóbb frissítve"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L134
 msgctxt "reviews"
 msgid "Least recently updated"
-msgstr ""
+msgstr "Legrégebben frissítve"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L136
@@ -3519,7 +3519,7 @@ msgstr "Top tíz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L61
 msgid "Show all languages {arrowIcon}"
-msgstr ""
+msgstr "Összes nyelv mutatása {arrowIcon}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
@@ -3527,7 +3527,7 @@ msgstr "{user} mondatai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L41
 msgid "{user}'s sentences in {language}"
-msgstr ""
+msgstr "{user} {language} nyelvű mondatai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
@@ -3545,13 +3545,13 @@ msgstr "{user} felhasználónak nincsenek mondatai"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L119
 msgctxt "sentences"
 msgid "Most recently updated"
-msgstr ""
+msgstr "Legutóbb frissítve"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L121
 msgctxt "sentences"
 msgid "Least recently updated"
-msgstr ""
+msgstr "Legrégebben frissítve"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L123
@@ -3569,7 +3569,7 @@ msgstr "Legrégebbi előre"
 msgid ""
 "An error occurred while fetching the random sentence. If this persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "Hiba történt a véletlenszerű mondat lekérdezése közben. Ha ez továbbra is fennáll, kérjük <a href=\"{}\">tudassa velünk</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L35
 msgid "Sentences with: {keywords}"
@@ -3581,7 +3581,7 @@ msgstr " {language} mondatok még nincsenek {translationLanguage} nyelven"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L43
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr ""
+msgstr "{language} nyelvű mondatok {translationLanguage} nyelvre fordítva"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L48
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L32
@@ -3590,11 +3590,11 @@ msgstr "Mondatok {language} nyelven"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L52
 msgid "Sentences not translated into {language}"
-msgstr ""
+msgstr "Mondatok, amelyek nincsenek {language} nyelvre fordítva"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L55
 msgid "Sentences translated into {language}"
-msgstr ""
+msgstr "{language} nyelvre fordított mondatok"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L67
 msgid "Warning: the following criteria have been ignored:{list}"
@@ -3626,7 +3626,7 @@ msgstr ""
 #. title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L150
 msgid "Search: {keywords}"
-msgstr ""
+msgstr "Keresés: {keywords}"
 
 #. title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L197
@@ -3636,17 +3636,17 @@ msgstr "Keresési feltételek"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
 msgid "Search disabled"
-msgstr ""
+msgstr "Keresés letiltva"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L10
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
-msgstr ""
+msgstr "Technikai okok miatt a keresés funkció jelenleg le van tiltva. Elnézést kérünk a kellemetlenségért. Kérjük, próbálja újra később."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L40
 msgid "{sentence} - {language} example sentence"
-msgstr ""
+msgstr "{sentence} - {language} példamondat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L48
 msgid ""
@@ -3664,7 +3664,7 @@ msgstr "Ellenőrizte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L97
 msgid "(outdated)"
-msgstr ""
+msgstr "(elavult)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L168
 msgid "There is no log for this sentence"
@@ -3716,19 +3716,19 @@ msgstr "Letöltés"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L65
 msgid "File format"
-msgstr "Állomány formátum"
+msgstr "Fájl formátuma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L72
 msgid "Raw text file"
-msgstr "Nyers szöveges állomány"
+msgstr "Nyers szöveges fájl"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
 msgid "Tab-separated file"
-msgstr "Tabulátorral tagolt állomány"
+msgstr "Tabulátorral tagolt fájl"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L74
 msgid "List for the Shtooka recorder"
-msgstr ""
+msgstr "Lista a Shtooka recorder programhoz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L99
 msgid "Translation (optional)"
@@ -3739,11 +3739,11 @@ msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
-msgstr ""
+msgstr "Ha kiválaszt egy nyelvet, akkor az egyes mondatoknak az adott nyelvre történő fordítása (ha létezik) kiiratásra kerül. Ezután az {Anki} program segítségével importálhatja a fájlt, és készíthet egy paklit a mondatokból."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
 msgid "Preparing download, please wait."
-msgstr "A letöltés előkészítése, kérjük, várjon."
+msgstr "A letöltés előkészítése, kérjük várjon."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
 msgid "Failed to prepare download, please try again."
@@ -3759,7 +3759,7 @@ msgstr "Összes nyilvános lista ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L38
 msgid "Collaborative lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "A következőt tartalmazó kooperatív listák: \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L40
 msgid "All public lists containing \"{search}\" ({total})"
@@ -3770,14 +3770,14 @@ msgstr "Összesnyilvános lista, amelyek tartalmazzák a következőt: \"{search
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L78
 msgid "List name (alphabetical)"
-msgstr ""
+msgstr "Listanév (ábécé sorrend)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L80
 msgid "List name (reverse alphabetical)"
-msgstr ""
+msgstr "Listanév (fordított ábécé sorrend)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3819,7 +3819,7 @@ msgstr "Legkevesebb mondat"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L90
 msgctxt "lists"
 msgid "Most recently updated"
-msgstr ""
+msgstr "Legutóbb frissítve"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3827,7 +3827,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L92
 msgctxt "lists"
 msgid "Least recently updated"
-msgstr ""
+msgstr "Legrégebben frissítve"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L38
 msgid "{username}'s lists ({total})"
@@ -3835,7 +3835,7 @@ msgstr "{username} listái ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L43
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "{username} listái, amelyek a következőt tartalmazzák: \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
@@ -3916,7 +3916,7 @@ msgstr "Ez a lista üres."
 msgid ""
 "You can create new sentences directly in this list by clicking on the "
 "{addSentenceButton} icon in the header of this section."
-msgstr ""
+msgstr "Új mondatokat hozhat létre közvetlenül ebben a listában, ha rákattint a {addSentenceButton} ikonra a szakasz fejlécében."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L213
 msgid ""
@@ -3938,12 +3938,12 @@ msgstr "Adminok"
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L34
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "Corpus fenntartók"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L36
 msgid "Advanced contributors"
-msgstr ""
+msgstr "Haladó közreműködők"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L38
@@ -3955,7 +3955,7 @@ msgstr "Közreműködők"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L35
 msgid "Legend"
-msgstr ""
+msgstr "Jelmagyarázat"
 
 #. table header text in Native speakers page
 #. / table header text in Languages of members page
@@ -3993,22 +3993,22 @@ msgstr[1] "{tagName} ({n} mondat)"
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L70
 msgid "Newest sentences first"
-msgstr ""
+msgstr "Legújabb mondatok először"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
 msgid "Oldest sentences first"
-msgstr ""
+msgstr "Legrégebbi mondatok először"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L74
 msgid "Most recently tagged"
-msgstr ""
+msgstr "Legutóbb megcímkézve"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L76
 msgid "Least recently tagged"
-msgstr ""
+msgstr "Legrégebben megcímkézve"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L28
 msgid "All existing tags"
@@ -4074,11 +4074,11 @@ msgstr "Segédeszközök"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "Furigana automatikus generálása"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "automatikus furigana generálás japán nyelven"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L51
 msgid "Chinese simplified/traditional conversion"
@@ -4090,7 +4090,7 @@ msgstr "hagyományos írásmódból egyszerűsített és oda-vissza"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L66
 msgid "Shanghainese to IPA"
-msgstr "Sanghajiból fonetikus átírásba"
+msgstr "Sanghajiból fonetikus átiratba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L74
 msgid ""
@@ -4101,7 +4101,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L67
 msgid "Convert Shanghainese into IPA"
-msgstr "Sanghaji átalakítása fonetikus átírásba"
+msgstr "Sanghaji átalakítása fonetikus átiratba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
@@ -4121,7 +4121,7 @@ msgstr "Adjon meg egy szöveget sanghaji dialektusban"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
-msgstr "{username} átírásai"
+msgstr "{username} átiratai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L52
 msgid "{username} does not have any transcriptions"
@@ -4426,12 +4426,12 @@ msgstr "Tagok (összesen {number})"
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L96
 msgid "Username (alphabetical)"
-msgstr ""
+msgstr "Felhasználónév (ábécé sorrend)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L98
 msgid "Username (reverse alphabetical)"
-msgstr ""
+msgstr "Felhasználónév (fordított ábécé sorrend)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L100
@@ -4508,7 +4508,7 @@ msgstr "jelszó megjelenítése"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L152
 msgid "Unmask password"
-msgstr ""
+msgstr "Jelszó mutatása"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L207
 msgid "Native language:"
@@ -4517,7 +4517,7 @@ msgstr "Anyanyelv"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L225
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
-msgstr ""
+msgstr "Ha nem találja anyanyelvét a listában, hagyja azt \"Egyik sem\" értékként."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L236
 msgid "We need to make sure you are human."
@@ -4610,7 +4610,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L100
 msgid "This sentence already exists."
-msgstr ""
+msgstr "Ez a mondat már létezik."
 
 #. button to submit new sentence from wanted vocabulary requests page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L141
@@ -4819,7 +4819,7 @@ msgstr "december"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L264
 msgctxt "incomplete date"
 msgid "{month} {day}"
-msgstr ""
+msgstr "{month} {day}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L270
 msgctxt "incomplete date"
@@ -4830,7 +4830,7 @@ msgstr "{hónap} {év}"
 #. see https://en.wikipedia.org/wiki/Tab_key (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L118
 msgid "tab"
-msgstr ""
+msgstr "tab"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L138
@@ -4860,7 +4860,7 @@ msgstr "más nyelv"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L218
 msgid "None"
-msgstr "Szűrés nélküli találat"
+msgstr "Egyik sem"
 
 #. option used in language selection dropdown for "Show translations in" in
 #. advanced search form
@@ -4956,7 +4956,7 @@ msgstr "Lista láthatóság"
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
-msgstr ""
+msgstr "A lista mindenki számára hozzáférhető, és szerepel a 'Böngészés listák alapján' oldalon, valamint a benne található minden mondathoz tartozó oldalon."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L353
@@ -4991,7 +4991,7 @@ msgstr "Nem listázott"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L374
 msgid "The list is accessible only to you."
-msgstr ""
+msgstr "A lista csak Ön számára érhető el."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L376
@@ -5133,7 +5133,7 @@ msgstr "{info}, {date}"
 #. one of the user status displayed on profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L86
 msgid "admin"
-msgstr ""
+msgstr "admin"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L88
@@ -5158,7 +5158,7 @@ msgstr "inaktív"
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L96
 msgid "suspended"
-msgstr ""
+msgstr "felfüggesztve"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L89
 msgid ""
@@ -5201,7 +5201,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L516
 msgid "belongs to {user}"
-msgstr "tulajdonosa {user}"
+msgstr "tulajdonos: {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L536
 msgid "(native)"

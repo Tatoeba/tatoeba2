@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-22 20:04+0200\n"
-"PO-Revision-Date: 2020-10-24 16:42+0000\n"
+"PO-Revision-Date: 2020-11-13 21:44+0000\n"
 "Last-Translator: Haci Ibrahim Aytekin <haciibrahimaytekin95@gmail.com>\n"
 "Language-Team: Zaza (http://www.transifex.com/tatoeba/tatoeba_website/language/zza/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L130
 msgid "There's no user called {username}"
-msgstr "Bi nameyê {username} xebitnayoxêk çîn o/a."
+msgstr "Bi nameyê {username} xebitnayoxêk çin o/a."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
 msgid "Your audio settings have been saved."
@@ -41,7 +41,7 @@ msgstr "Eyarê şima yê vengî ameyî qeydkerdene."
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr "Prosesê qeydkerdişî de xetayêk ame meydan. Xeyrê xo dima reyna biceribnê yan zî seba agahdarkerdişê xetayî ma reyde bikewê têkilî."
+msgstr "Prosesê qeydkerdişî de xetayêk amê meydan. Xeyrê xo dima reyna biceribnê yan zî seba agahdarkerdişê xetaye ma reyde bikewê têkilî."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L72
 msgid "Tatoeba, new password"
@@ -53,25 +53,25 @@ msgstr "Xeyrê xo heta ke lîste bêra rojanekerdene bipawê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "Yew anaxtarê lîsansî xora dewam keno."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr ""
+msgstr "Cumleyê #{firstNumber} û #{secondNumber} êdî açarnayîşê raşteraşt yê yewbînan ê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr ""
+msgstr "Cumleyê #{firstNumber} û #{secondNumber} êdî açarnayîşê raşteraşt yê yewbînan nîyê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "Wexto ke lînk wedarîyayêne xetayêk ame meydan. Xeyrê xo dima reyna biceribnê yan zî seba agahdarkerdişê xetayî ma reyde bikewê têkilî."
+msgstr "Wexto ke lînk wedarîyayêne xetayêk amê meydan. Xeyrê xo dima reyna biceribnê yan zî seba agahdarkerdişê xetaye ma reyde bikewê têkilî."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
@@ -80,7 +80,7 @@ msgstr "Klasora  \"{name}\" amê vengkerdene."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L202
 msgid "There is no sentence with id {number}"
-msgstr "Bi nasnameyê {number} cumleyêk çîn a"
+msgstr "Bi nasnameyê {number} cumleyêk çin a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
@@ -88,7 +88,7 @@ msgstr "Şiroveyê şima ame qeydkerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
-msgstr "Îzinê şima çîn o ke nê şiroveyî pergal bikerê."
+msgstr "Îzinê şima çin o ke nê şiroveyî pergal bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
@@ -112,7 +112,7 @@ msgstr "Xeta: cumleya #{id} nêeşkê bêra estiritene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L876
 msgid "You are not allowed to change the license of this sentence."
-msgstr "Îzinê şima çîn o ke lîsansê na cumle bivurnê."
+msgstr "Îzinê şima çin o ke lîsansê na cumle bivurnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L883
 msgid "The license of the sentence has been changed to “{newLicense}”."
@@ -124,7 +124,7 @@ msgstr "Lîsans sey “{newLicense}” nêeşkeno bêro vurnayene çunke:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L164
 msgid "You do not have permission to view this list."
-msgstr "Îzinê şima çîn o ke na lîste bivînê."
+msgstr "Îzinê şima çin o ke na lîste bivînê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L296
 msgid "The sentence could not be added to the list."
@@ -133,18 +133,18 @@ msgstr "Cumle, lîste rê nêeşkê bêra îlawekerdene."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L502
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L534
 msgid "You do not have permission to download this list."
-msgstr "Îzinê şima çîn o ke na lîste bîyarê war."
+msgstr "Îzinê şima çin o ke na lîste bîyarê war."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L226
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr "Seba nê etîketî cumleyî çîn ê. Etîketo ke şima cigêrenê estirîyayo yan zî mewcûd nîyo."
+msgstr "Seba nê etîketî cumleyî çin ê. Etîketo ke şima cigêrenê estirîyayo yan zî mewcûd nîyo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L81
 msgid "No user with this username: {username}"
-msgstr "Bi nê nameyê xebitnayoxî xebitnayoxêk çîn o/a: {username}"
+msgstr "Bi nê nameyê xebitnayoxî xebitnayoxêk çin o/a: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
 msgid "Failed to upload image"
@@ -210,19 +210,19 @@ msgstr "Xetaya Şîfre. Xeyrê xo reyna biceribnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
-msgstr "Şima şertanê xebitnayîşî yê neweyî qebul kerdî."
+msgstr "Şima şertê xebitnayîşî yê neweyî qebul kerdî."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L184
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
-msgstr "No hesab sey passîf ame nîşanbîyene. Şima êdî bi nê hesabî nêeşkenê dekewê sîte. Eke no xetayêk o, xeyrê xo îdarekarêk reyde bikewê têkilî."
+msgstr "No hesab sey passîf ame nîşanbîyene. Şima êdî bi nê hesabî nêeşkenê dekewê sîte. Eke na xetayêk a, xeyrê xo îdarekarêk reyde bikewê têkilî."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L194
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr "No hesab sey spammer ame nîşanbîyene. Şima êdî bi nê hesabî nêeşkenê dekewê sîte. Eke no xetayêk o, xeyrê xo îdarekarêk reyde bikewê têkilî."
+msgstr "No hesab sey spammer ame nîşanbîyene. Şima êdî bi nê hesabî nêeşkenê dekewê sîte. Eke na xetayêk a, xeyrê xo îdarekarêk reyde bikewê têkilî."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
@@ -251,27 +251,27 @@ msgstr "Xeyrê xo xetayanê formî hel bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L385
 msgid "Your new password has been sent to {email}."
-msgstr "Şîfreyê şima yo newe  adresa {email} rê ame erşawitene."
+msgstr "Şîfreyê şima yo newe adresa {email} rê ame erşawitene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L390
 msgid "You may need to check your spam folder to find this message."
-msgstr "Beno ke ganî şima biewnê klasora spamî seba vînayîşê nê mesajî."
+msgstr "Beno ke ganî şima seba vînayîşê nê mesajî biewnê bi klasora xo ya spamî."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L398
 msgid "There is no registered user with this email address: "
-msgstr "Bi na adresa emalî xebitnayoxêk qeydkerde/î nîyo/a:"
+msgstr "Bi na adresa emaîlî xebitnayoxêk qeydkerde/î nîyo/a:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L420
 msgid "No user with this username: "
-msgstr "Bi nê nameyê xebitnayoxî xebitnayoxêk çîn o/a:"
+msgstr "Bi nê nameyê xebitnayoxî xebitnayoxêk çin o/a:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L460
 msgid "No user with this ID: {id}"
-msgstr "Bi nê nasnameyî xebitnayoxêk çîn o/a: {id}"
+msgstr "Bi nê nasnameyî xebitnayoxêk çin o/a: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L78
 msgid "This language has already been added to your profile."
-msgstr "No ziwan xora profîlê şima rê ame îlawekerdene."
+msgstr "No ziwan xora profîlê şima rê amebi îlawekerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L95
 msgid "No language selected."
@@ -305,20 +305,20 @@ msgstr "Mesajo ke şima ceribnenê ke bivînê mewcûd nîyo yan zî estirîyayo
 #. the following criteria have been ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L104
 msgid "“sentence owner”, because “{username}” is not a valid username"
-msgstr ""
+msgstr "“wayîrê/a cumle”, çunke “{username}” yew nameyê xebitnayoxî/e yo vîyartbar nîyo"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L144
 msgid "“translation owner”, because “{username}” is not a valid username"
-msgstr ""
+msgstr "“wayîrê/a açarnayîşî”, çunke “{username}” yew nameyê xebitnayoxî/e yo vîyartbar nîyo"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L195
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
-msgstr ""
+msgstr "“sey {tagName} ame etîketkerdene”, çunke o yew nameyê etîketî yo vîyartbar nîyo "
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -327,14 +327,14 @@ msgstr ""
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
-msgstr ""
+msgstr "“numreyê lîste yê {listId} rê aîd a”, çunke lîsteya {listId} xususî ya yan zî mewcûd nîya"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L343
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr ""
+msgstr "“cumle sêkur a”, çunke “wayîrê/a cumle” yew nameyê xebitnayoxî/e rê eyarkerde/î yo/ya."
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -342,7 +342,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L354
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr ""
+msgstr "“açarnayîş sêkur o”, çunke “wayîrê/a açarnayîşî” yew nameyê xebitnayoxî/e rê eyarkerde/î yo/ya."
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -350,7 +350,7 @@ msgstr ""
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr ""
+msgstr "“hetê qiseykerdoxêko/a ziwanê dayîke yo/ya xonasnamekerde/î ra ameyo wayîrvejîyayîş”, çunke “ziwanê cumle” sey “yewêk” ameyo eyarkerdene"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -360,7 +360,7 @@ msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
-msgstr ""
+msgstr "“hetê qiseykerdoxêko/a ziwanê dayîke yo/ya xonasnamekerde/î ra amê wayîrvejîyayîş”, çunke krîterê “hetê ney/naye ra amê wayîrvejîyayîş: {username}” eyarkerde yo labelê O yan zî A, ziwanê ke şima cigêrenê de qiseykerdoxêko/a ziwanê dayîke yo/ya xonasnamekerde/î nîyo/a."
 
 #. This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
@@ -375,31 +375,31 @@ msgstr ","
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L212
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Karaktero cêrên de furîgana kêmî ya: {charsEnumeration}"
+msgstr[1] "Karakteranê cêrênan de furîgana kêmî ya: {charsEnumeration}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
 msgid ""
 "The provided sentence differs from the original one near “{character}”."
-msgstr ""
+msgstr "Cumleya peydakerdîye nêzdîyê  “{character}” de yewêka orîjînale ra cîya ya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L245
 msgid "The provided sentence is shorter than the original one."
-msgstr ""
+msgstr "Cumleya peydakerdîye, cumleya orîjînale ra kilmêr a."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L269
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Karekterê “{kanji}” de yew ra vêşêr furîgana estê: “{furiganas}”."
+msgstr[1] "Karekteranê “{kanji}” de {n} ra vêşêr furîganayî estê: ”{furiganas}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Karektero cêrên nêeşkeno bêro transkrîbekerdene: {charsEnumeration}."
+msgstr[1] "Karekterê cêrênî nêeşkenê bêrê transkrîbekerdene: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
@@ -435,18 +435,18 @@ msgstr "nenas/e"
 msgid ""
 "This alternative script may contain errors because it has been generated by "
 "a piece of software that is not perfect."
-msgstr ""
+msgstr "Beno ke zereyê nê skrîptê alternatîfî de xetayî bibê çunke o hetê parçeyêkê çîynermê komputure yo ke mukemel nîyo ra virazîyayo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L207
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L232
 msgid ""
 "This transcription may contain errors because it has been generated by a "
 "piece of software that is not perfect."
-msgstr ""
+msgstr "Beno ke zereyê nê transkrîpsyonî de xetayî bibê çunke o hetê parçeyêkê çîynermê komputure yo ke mukemel nîyo ra virazîyayo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
 msgid "The furigana was last edited by {author} on {date}."
-msgstr ""
+msgstr "Furîgana tewr peynî hetê {author} ra {date} de ame pergalkerdene."
 
 #. refers to a transcription
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L218
@@ -457,16 +457,16 @@ msgstr "Tewr peynî hetê {author} ra tarîxê {date} de ame pergalkerdene"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L226
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L106
 msgid "This alternative script was generated by a piece of software"
-msgstr "No emro alternatîf hetê parçeyêkê çîynermî ra ame viraştene"
+msgstr "No skrîpto alternatîf hetê parçeyêkê çîynermê komputure ra ame viraştene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L229
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L109
 msgid "This transcription was generated by a piece of software"
-msgstr "No transkrîpsyon hetê parçeyêkê çîynermî ra ame viraştene"
+msgstr "No transkrîpsyon hetê parçeyêkê çîynermê komputure ra ame viraştene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
-msgstr ""
+msgstr "Cumleyî seba bedilnayîşê bi CC0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L125
 msgid "List {listName}"
@@ -474,7 +474,7 @@ msgstr "Lîsteya {listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L126
 msgid "Sentence id [tab] Sentence text"
-msgstr ""
+msgstr "Nasnameyê cumle [tab] Metnê cumle"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
 msgid "You cannot send an empty message."
@@ -488,7 +488,7 @@ msgstr "Şima ganî cayê \"Kamî rê\" pirr bikerê."
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
-msgstr "Xebitnayox/e {username} ke şima wazenê ci rê mesaj bierşawê mewcûd nîyo/a. Xeyrê xo bi yewna nameyê xebitnayoxî/e biceribnê."
+msgstr "Xebitnayox/e {username} ke şima wazenê ci rê mesaj bierşawê mewcûd nîyo/a. Xeyrê xo bi yewna nameyê xebitnayoxî biceribnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L62
 msgid "Comments cannot be empty."
@@ -509,14 +509,14 @@ msgstr "No lîsansêko vîyartbar nîyo."
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L127
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "Na cumle xora binê ê lîsansî de ya."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L220
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "Ganî cumle orîjînale bibo (destpêk de açarnayîş ra nêameba viraştene)"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -528,13 +528,13 @@ msgstr "Şima wayîrê na cumle nîyê."
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L235
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "Ganî wayîrê/a cumle, afirnayoxê/a cumle yê eslî bibo/a."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L248
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "Şima eşkenê tena derbasê lîsansêko hîna îzindayoxî bibê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -573,7 +573,7 @@ msgstr "Adresa emaîlî vîyartbare nîya"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L100
 msgid "Username already taken."
-msgstr "No nameyê xebitnayoxî/e xora gêrîyayo."
+msgstr "No nameyê xebitnayoxî xora gêrîyayo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L193
@@ -586,26 +586,26 @@ msgstr "Şima nêeşkenê mesajêko veng qeyd bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L70
 msgid "Result of license switch to CC0 1.0"
-msgstr ""
+msgstr "Netîceya vîyartişê lîsansî bi CC0 1.0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L94
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
-msgstr ""
+msgstr "Lîsansê cumleya {id} sey “{newLicense}” nêeşkeno bêro bedilnayene çunke:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L121
 msgid "License switch started on {date} at {time} UTC."
-msgstr ""
+msgstr "Bedilnayîşê lîsansî {date} de {time} UTC de dest pêkerd. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L126
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lîsansê {n} cumle bi hawayêko serkewte ame vurnayene."
+msgstr[1] "Lîsansê {n} cumleyan bi hawayêko serkewte ame vurnayene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L133
 msgid "License switch completed on {date} at {time} UTC."
-msgstr ""
+msgstr "Bedilnayîşê lîsansî tarîxê {date} de saete {time} UTC de bi temam."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L30
 msgid "Orphan sentences"
@@ -623,7 +623,7 @@ msgstr "Derheqê wayîrvejîyayîşî de "
 msgid ""
 "Adopting is a way to vote \"this sentence is correct\". It is also an "
 "occasion to check the sentence and correct it if there is a mistake."
-msgstr ""
+msgstr "Wayîrvejîyayîş ûsulêk o seba ray dayene sey \"na cumle raşt a\". O, sewbîna seba kontrolkerdişê cumle û eke xetayêk mîyanê cumle de esta, raştkerdişê ci firsendêk o."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L58
 msgid ""
@@ -631,7 +631,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr ""
+msgstr "Yanî eke şima wazenê ke derbarê kontrolkerdiş û raştkerdişê cumleyan de hetkarîya ma bikerê, cumleyanê \"sêkuran\" ke <strong>ziwanê şima yê dayîke</strong> de yê rê wayîr vejîyê ({adoptButton}) û eke lazim keno înan raşt bikerê. Seba hîna zaf îzahatan <a href=\"{url}\">ney</a> biwanê."
 
 #. title of the help text on the Adopt sentence page
 #. / title of the help text on the Add vocabulary page
@@ -640,7 +640,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L56
 msgid "Tips"
-msgstr ""
+msgstr "Tîpî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L78
 msgid ""
@@ -648,7 +648,7 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr ""
+msgstr "Eke şima badê wayîrvejîyayîşê cumleyêk yewna nameyê xebitnayoxî/e bivînê, no yeno a mana ke şima ra çend sanîyeyan ver yewna kesî/e wayîrê a cumle vejîyayo/a. Seba taykerdişê îhtîmalê na rewşe rîpelê xo yê mewcûdî ra cumleyê ke çend rîpelî dûrî yê seba xebitnayîşî biceribnê."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
@@ -716,14 +716,14 @@ msgstr "Wexto ke şima ferq kerd ke beno ke xetayêk esta, xeyrê xo ci rê etî
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr ""
+msgstr "Wexto ke şima bi ziwanêko xerîb cumleyêk îlawe kerde û şima temamen emîn nîyê ke cumle raşt a, ci rê etîketê {tagNNC} îlawe bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L126
 msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr ""
+msgstr "Seba bi endamanê bînan cumleyan munaqeşe kerdene û hetkarî derbarê qerardayîşê şima de ke şima do bi nê cumleyan se bikerê, şima eşkenê cumleyanê etîketkerdiyanê sey {tagChange}, {tagCheck} û {tagNNC} cigêrê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L135
 msgid ""
@@ -731,7 +731,7 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr ""
+msgstr "Bado ke cumleyêka problematîke amê destgirewtene, aye sey {tagOK} etîket bikerê. Şima timûtim eşkenê cumleyanê xebitnayoxanê bînan cigêrê, kontrol bikerê û înan sey {tagOK} etîket bikerê. Labelê wexto ke şima temamen emîn benê ke ê cumleyî raşt ê înan etîket bikerê û etîketî seba cumleyanê xo mexebitnê."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
@@ -755,7 +755,7 @@ msgstr "Senîhawa açarnayîşêk îlawe beno"
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr ""
+msgstr "Wexto ke cumleyî ameyî mojnayene, seba îlawekerdişê açarnayîşêk {translateButton} rê bitiknê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L66
 msgid "About translations"
@@ -767,27 +767,27 @@ msgstr "Açarnayîşê rindî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L70
 msgid "We know it's difficult, but do NOT translate word for word!"
-msgstr ""
+msgstr "Ma zanîme ke zor o labelê çêku bi çêku MEaçarnê!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L74
 msgid "Multiple translations"
-msgstr ""
+msgstr "Açarnayîşê zafinî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L78
 msgid ""
 "If you feel there are several possible translations, you can add several "
 "translations in the same language. "
-msgstr ""
+msgstr "Eke şima fikirîyenê ke yew ra vêşêrî açarnayîşê muhtemelî estê, şima eşkenê seba ziwanêkî yew ra vêşêrî açarnayîşan îlawe bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L98
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "Açarnayîşê cumleyan yeno a mana ke şima tewr tay di ziwanî zanê. Xeyrê xo <a href=\"{}\">profîlê xo</a> de dîyar bikerê ke şima tewr tay di ziwanî zanê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L112
 msgid "Search for untranslated sentences"
-msgstr ""
+msgstr "Cigêre seba cumleyanê nêaçarnîyayeyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L137
@@ -836,7 +836,7 @@ msgstr "cumleyan bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
-msgstr ""
+msgstr "Cumleyanê {user} ke bi ziwanê {language} yê biaçarne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L39
 msgid "Translate sentences that belong to {user}"
@@ -895,7 +895,7 @@ msgstr "URL'yê têkilîronayîşî: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L58
 msgid "Leave this field empty to use your profile page."
-msgstr "Seba xebitnayîşê rîpela profîlê xo nê warî veng veradê."
+msgstr "Seba xebitnayîşê rîpelê profîlê xo nê warî veng veradê."
 
 #. submit button for saving audio contribution settings (verb)
 #. / submit button of sentence text edition form (verb)
@@ -927,15 +927,15 @@ msgstr "Demnameya aktîvîteyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L64
 msgid "Activity timeline — {month} {year}"
-msgstr ""
+msgstr "Demnameyê aktîvîte — {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr ""
+msgstr "Statîstîkî derbarê hûmara beşdarîyan hetanî na menge."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr ""
+msgstr "Statîstîkî derbarê hûmara beşdarîyan hetanî {month}{year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
@@ -977,11 +977,11 @@ msgstr[1] ", {n} lînkî ameyî îlawekerdene"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
-msgstr "Beşdarîkerdişê tewr peyênî"
+msgstr "Beşdarîyê tewr peyênî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
 msgid "Latest contributions of {user}"
-msgstr "Beşdarîkerdişê tewr peyênî yê {user}"
+msgstr "Beşdarîyê tewr peyênî yê {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} log entries are displayed here."
@@ -1095,7 +1095,7 @@ msgstr "Cumleyê ke nêameyê tesdîqkerdene muhtemelen xelet ê."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L149
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L328
 msgid "Has audio:"
-msgstr "Wayîrê vengî:"
+msgstr "Wayîrê/a vengî:"
 
 #. dropdown option of "Has audio" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L155
@@ -1114,11 +1114,11 @@ msgstr "Etîketan bi vîrgulan yewbînan ra abirne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L181
 msgid "Belongs to list:"
-msgstr ""
+msgstr "Aîdê lîste:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L202
 msgid "Owned by a self-identified native"
-msgstr ""
+msgstr "Hetê cayîyêko/a xopênaskerdox/e ra amê wayîrvejîyayîş"
 
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
@@ -1143,7 +1143,7 @@ msgstr "Xarîc"
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
-msgstr ""
+msgstr "{action} cumleyî wayîrê ê açarnayîşan ê ke heme krîteranê cêrênan musabeqa kenê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L256
 msgid "Link:"
@@ -1163,7 +1163,7 @@ msgstr "Raşteraşt"
 #. dropdown option of "Link" field in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L266
 msgid "Indirect"
-msgstr ""
+msgstr "Neraşteraşt"
 
 #. section title in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L346
@@ -1203,14 +1203,14 @@ msgstr "Şablonêkê cigêrayîşî viraze"
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
-msgstr ""
+msgstr "Nê bûtonî bixebitne, seba sey bingeyêk xebitnayîşê krîteranê weçîniteyan seba cigêrayîşanê bînan. Sewbîna şima eşkenê bi yewna merdimî/e şablonê cigêrayîşî rê nîşanê cayî ronê/vila bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L51
 msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>. By closing "
 "this announcement, you agree with the new Terms of Use. If you have any "
 "question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr ""
+msgstr "Ma <a href=\"{termsOfUse}\">Şertê Xebitnayîşî</a> yê xo kerdî rojane. Bi padayîşê nê anonsî şima Şertê neweyî yê Xebitnayîşî qebul kenê. Eke persêk şima esto, bi zerrîyêka rehete <a href=\"{contact}\">ma reyde bikewê têkilî</a>."
 
 #. button to accept new terms of use
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
@@ -1232,7 +1232,7 @@ msgstr "Pade"
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr ""
+msgstr "Îqaz: na websîte seba testî ya. Her çîyo ke şima pêşkêş kerdo do bi hawayêko qetî vîndî bibo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
@@ -1240,7 +1240,7 @@ msgstr "Goreyê ziwanî hûmara cumleyanê bivengan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr ""
+msgstr "Seba heme ziwanan cigêre vengî"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
@@ -1254,19 +1254,19 @@ msgstr "Serre"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L30
 msgid "Currently contributing"
-msgstr ""
+msgstr "Na game beşdarî keno/a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L35
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Xebitnayoxo/a ke beşdarîya peyêne kerda."
+msgstr[1] "Xebitnayoxê ke tewirê {n}&nbsp;beşdarîyanê peyênan bîyê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L61
 msgid "{n}&nbsp;sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}&nbsp;cumle"
+msgstr[1] "{n}&nbsp;cumleyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L36
 msgid "Need some help?"
@@ -1362,16 +1362,16 @@ msgstr "Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L202
 msgid "Our data is released under various Creative Commons licenses."
-msgstr ""
+msgstr "Datayê ma binê lîsansanê biçeşît yê Muşterekê Afirnayoxî de yeno neşrbîyene."
 
 #. link text (in the footer) to the section 6 of the Terms of use page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L206
 msgid "More information"
-msgstr "Hîna zaf melumat"
+msgstr "Hîna zaf melumatî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L220
 msgid "If you love this content, please consider a <a href={}>donation</a>."
-msgstr ""
+msgstr "Eke şima na muhtewa ra hes kenê, xeyrê xo seba yew <a href={}>bexişkerdiş</a>î bifikirîyê."
 
 #. top-left site name written in big.
 #. You shouldn't translate it unless speakers of your
@@ -1391,7 +1391,7 @@ msgstr "Ziwan nêvînîya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
-msgstr ""
+msgstr "Lîsteya cumleyanê tesîrdemendeyan (pêro pîya {{count}})"
 
 #. link to the Register page in the top bar (verb)
 #. / link to the Register page in the sidebar menu on mobile (verb)
@@ -1423,7 +1423,7 @@ msgstr "Dekewe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
-msgstr ""
+msgstr "Tena nê ziwanî de cumleyan bimojne:"
 
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46
@@ -1670,7 +1670,7 @@ msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr ""
+msgstr "Muhtewaya nê mesajî <a href=\"{}\">qaydeyanê ma</a> rê ters a, no semed ra mesaj ameyo nimitene. Tena îdarekarî û nuştoxê/a mesajî eşkenê muhtewaya mesajî bivînê."
 
 #. cancel button of sentence comment edition form (verb)
 #. / cancel button of sentence text edition form (verb)
@@ -1709,7 +1709,7 @@ msgstr "Betal bike"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L51
 msgid "Save changes"
-msgstr "Vurîyayîşan qeyd bike"
+msgstr "Vurnayîşan qeyd bike"
 
 #. language field label on new sentence addition form
 #. / language field label on sentence addition form
@@ -1733,7 +1733,7 @@ msgstr "Ziwan"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L17
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L134
 msgid "Auto detect"
-msgstr ""
+msgstr "Tesbîto otomatîk"
 
 #. label for licence selection dropdown in sentence addition form
 #. / licence field label on new sentence addition form
@@ -1838,7 +1838,7 @@ msgstr "Viraze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L13
 msgid "Your last selected list (if any) and last updated lists"
-msgstr ""
+msgstr "Lîsteya şima ya weçînitî ya tewr peyêne (eke esta) û lîsteyê rojanekerdî yê tewr peyênî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L14
 msgid "Search results"
@@ -1846,106 +1846,106 @@ msgstr "Netîceyê cigêrayîşan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L21
 msgid "(last selected)"
-msgstr ""
+msgstr "(weçîniteyo peyên)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L24
 msgid "Collaborative list"
-msgstr ""
+msgstr "Lîsteya hemkarî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L27
 msgid "No list found."
-msgstr ""
+msgstr "Lîsteyêk nêvînîyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L28
 msgid "You have no lists which this sentence can be added to."
-msgstr ""
+msgstr "Qet lîsteya şima çin a ke na cumle ci rê bêro îlawekerdene."
 
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L25
 msgid "previous"
-msgstr ""
+msgstr "verên"
 
 #. link to a random sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L30
 msgid "random"
-msgstr ""
+msgstr "raştameye"
 
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L36
 msgid "next"
-msgstr ""
+msgstr "dimayên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L42
 msgid "Language for previous, next or random sentence"
-msgstr ""
+msgstr "Ziwan seba cumleya verêne, dimayêne yan zî raştameyîye"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L72
 msgid "Show sentence #: "
-msgstr ""
+msgstr "Cumle bimojne #:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L119
 msgid "Your sentence was not added because the following already exists."
-msgstr ""
+msgstr "Cumleya şima nêamê îlawekerdene çunke cêrênî xora estê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
 msgid "This sentence belongs to a native speaker."
-msgstr ""
+msgstr "Na cumle aîdê qiseykerdoxêko/a ziwanê dayîke ya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L187
 msgid "Translations of translations"
-msgstr ""
+msgstr "Açarnayîşanê açarnayîşan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L203
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L237
 msgid "Fewer translations"
-msgstr ""
+msgstr "Hîna tay açarnayîşî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L4
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L479
 msgid "You cannot edit this sentence because it has audio."
-msgstr ""
+msgstr "Şima nêeşkenê na cumle pergal bikerê çunke vengê ci esto."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L20
 msgid "Other language"
-msgstr ""
+msgstr "Ziwano bîn"
 
 #. label for transcription edition/addition form
 #. / field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L88
 msgid "Transcription"
-msgstr ""
+msgstr "Transkrîpsyon"
 
 #. reset button of transcription edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L120
 msgid "Reset"
-msgstr ""
+msgstr "Newe ra eyar bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L61
 msgid "Mark as reviewed"
-msgstr ""
+msgstr "Sey etudkerde nîşan bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L13
 msgid "This sentence is not reliable."
-msgstr ""
+msgstr "Na cumle muteber nîya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L283
 msgid "Copy sentence"
-msgstr ""
+msgstr "Cumle kopya bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L26
 msgid "Go to sentence page"
-msgstr ""
+msgstr "Şo rîpelê cumle"
 
 #. translate button on sentence menu (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L87
 msgid "Translate"
-msgstr ""
+msgstr "Biaçarne"
 
 #. edit button on sentence menu (verb)
 #. / edit button on a just-posted reply of a wall post (verb)
@@ -1970,21 +1970,21 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
 msgid "Edit"
-msgstr ""
+msgstr "Pergal bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L20
 msgid "Add sentence to list"
-msgstr ""
+msgstr "Lîste rê cumle îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L215
 msgid "Add to favorites"
-msgstr ""
+msgstr "Favorîyan rê îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L206
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Favorîyan ra wedarne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L79
@@ -1997,7 +1997,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
 msgid "Are you sure?"
-msgstr ""
+msgstr "Şima emîn ê?"
 
 #. delete button on sentence menu (verb)
 #. / delete button on private message (verb)
@@ -2020,87 +2020,87 @@ msgstr "Biestire"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L150
 msgid "Click to adopt"
-msgstr ""
+msgstr "Seba qebulkerdişî bitiknê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L157
 msgid "Click to unadopt"
-msgstr ""
+msgstr "Seba redkerdişî bitiknê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L57
 msgid "Show more features"
-msgstr ""
+msgstr "Hîna zaf taybetmendîyan bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L62
 msgid "Show fewer features"
-msgstr ""
+msgstr "Hîna tay taybetmendîyan bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
 msgid "Show unreviewed transcriptions"
-msgstr ""
+msgstr "Transkrîpsyonanê etudnêkerdeyan bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L10
 msgid "Hide unreviewed transcriptions"
-msgstr ""
+msgstr "Transkrîpsyonanê etudnêkerdeyan binimne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L10
 msgid "Unlink this translation"
-msgstr ""
+msgstr "Lînkê nê açarnayîşî wedarne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L14
 msgid "Make into direct translation"
-msgstr ""
+msgstr "Bike açarnayîşo raşteraşt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L31
 msgid "Existing sentence #{number} has been added as a translation."
-msgstr ""
+msgstr "Cumleya mewcûde #{number} sey açarnayîşêk amê îlawekerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L41
 msgid "Edit this translation"
-msgstr ""
+msgstr "Nê açarnayîşî pergal bike"
 
 #. translation field label on new translation addition form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L93
 msgid "Translation"
-msgstr ""
+msgstr "Açarnayîş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
 msgid "Add translation"
-msgstr ""
+msgstr "Açarnayîş îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L40
 msgid "Edit translation"
-msgstr ""
+msgstr "Açarnayîşî pergal bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L22
 msgid "Sentence removed from list."
-msgstr ""
+msgstr "Cumle na lîste ra wedarîyê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L25
 msgid "Undo removal"
-msgstr ""
+msgstr "Wedaritişî apey bîge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L508
 msgid "Remove from list"
-msgstr ""
+msgstr "Lîste ra wedarne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/session_expired.ctp#L30
 msgid "Your session has expired."
-msgstr ""
+msgstr "Wextê roniştişê şima bi pirr."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/session_expired.ctp#L33
 msgid "Please <a href=\"{}\">log in again</a>."
-msgstr ""
+msgstr "Xeyrê xo <a href=\"{}\">newe ra dekewê</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L34
 msgid "Tatoeba is a collection of sentences and translations."
-msgstr ""
+msgstr "Tatoeba, koleksîyonêko cumleyan û açarnayîşan o."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L38
 msgid "It's collaborative, open, free and even addictive."
-msgstr ""
+msgstr "Hemkar, akerde, belaş û heta girêdayekerdox o."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L74
@@ -2109,13 +2109,13 @@ msgstr "Cigêre"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L65
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
-msgstr ""
+msgstr "Tîp: <em>=çekuye</em> do cigêro seba musabeqayêko tam <em>çekuye</em> ser o"
 
 #. links to a page with tips to perform
 #. searches, like search operators
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L83
 msgid "More tips"
-msgstr ""
+msgstr "Hîna zaf tîpî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/advanced_search.ctp#L20
@@ -2127,7 +2127,7 @@ msgstr "Cigêrayîşo xurtkerde"
 #. button to open top-right sort menu on various pages (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sort_menu.ctp#L4
 msgid "Sort by"
-msgstr ""
+msgstr "Goreyê ney/naye rêze bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L70
 msgid "My profile"
@@ -2135,7 +2135,7 @@ msgstr "Profîlê mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L79
 msgid "Language: {lang}"
-msgstr ""
+msgstr "Ziwan: {lang}"
 
 #. header text for settings on profile page
 #. / title of Settings page
@@ -2147,7 +2147,7 @@ msgstr "Eyarî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L98
 msgid "Log out"
-msgstr ""
+msgstr "Vejîye"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L110
 msgid "My sentences"
@@ -2155,11 +2155,11 @@ msgstr "Cumleyê mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L120
 msgid "My vocabulary"
-msgstr ""
+msgstr "Çekuyê mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L130
 msgid "My reviews"
-msgstr ""
+msgstr "Etudê mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L761
@@ -2185,65 +2185,65 @@ msgstr "Mesajê minê Dêsî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L190
 msgid "My sentence logs"
-msgstr ""
+msgstr "Qeydê minê cumleyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L44
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} cumle"
+msgstr[1] "{number} cumleyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} ziwano destdaye"
+msgstr[1] "{number} ziwanê destdayeyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
 msgid "Stats per languages"
-msgstr ""
+msgstr "Serê ziwanî statîstîkî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ewro {number} beşdarî"
+msgstr[1] "Ewro {number} beşdarîyî"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L46
 msgid "Browse"
-msgstr "Çim biçarne"
+msgstr "Cigêre"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L49
 msgid "Show random sentence"
-msgstr ""
+msgstr "Cumleya raştameyê bimojne"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L55
 msgid "Browse by language"
-msgstr "Goreyê ziwanî çim biçarne"
+msgstr "Goreyê ziwanî cigêre"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L60
 msgid "Browse by list"
-msgstr "Goreyê lîste çim biçarne"
+msgstr "Goreyê lîste cigêre"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L65
 msgid "Browse by tag"
-msgstr "Goreyê etîketî çim biçarne"
+msgstr "Goreyê etîketî cigêre"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L70
 msgid "Browse audio"
-msgstr "Vengî rê çim biçarne"
+msgstr "Cigêre bi veng"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L77
 msgid "Contribute"
-msgstr "Beşdarî bike"
+msgstr "Beşdarîyan bike"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L81
@@ -2255,22 +2255,22 @@ msgstr "Cumleyan îlawe bike"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L91
 msgid "Adopt sentences"
-msgstr "Wayîrê cumleyan vejîye"
+msgstr "Bibe wayîrê/a cumleyan"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L102
 msgid "Discuss sentences"
-msgstr "Cumleyan ser o munaqeşe bikerê"
+msgstr "Cumleyan munaqeşe bike"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L107
 msgid "Add vocabulary request"
-msgstr ""
+msgstr "Waştişê çekuye îlawe bike"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L115
 msgid "Community"
-msgstr ""
+msgstr "Cemat"
 
 #. menu item on the top (verb)
 #. / title of the Wall page
@@ -2295,7 +2295,7 @@ msgstr "Ziwanê endaman"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr "Qiseykerdoxê lokalî"
+msgstr "Ziwanê dayîke"
 
 #. link to the user's profile in the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L33
@@ -2305,12 +2305,12 @@ msgstr "Profîl"
 #. link to the user's vocabulary on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L51
 msgid "Vocabulary"
-msgstr ""
+msgstr "Çekuye"
 
 #. link to the user's reviews on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L60
 msgid "Reviews"
-msgstr ""
+msgstr "Etudî"
 
 #. link to the user's lists on profile page sidebar
 #. / section title in the Downloads page
@@ -2321,70 +2321,70 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L614
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L727
 msgid "Lists"
-msgstr ""
+msgstr "Lîsteyî"
 
 #. link to the user's favorite sentences on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L79
 msgid "Favorites"
-msgstr ""
+msgstr "Favorîyî"
 
 #. link to the user's sentence comments on profile page sidebar
 #. / header text in sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L216
 msgid "Comments"
-msgstr ""
+msgstr "Şiroveyî"
 
 #. link on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L40
 msgid "Comments on {user}'s sentences"
-msgstr ""
+msgstr "Şiroveyê ke cumleyanê {user} ser o ameyê kerdene"
 
 #. link to the user's wall posts on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L106
 msgid "Wall messages"
-msgstr ""
+msgstr "Mesajê Dêsî"
 
 #. link to the user's contributions on profile page sidebar
 #. / header text in sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L147
 msgid "Logs"
-msgstr ""
+msgstr "Dekewtişî"
 
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L520
 msgid "Transcriptions"
-msgstr ""
+msgstr "Transkrîpsyonî"
 
 #. link text on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L149
 msgid "Translate {user}'s sentences"
-msgstr ""
+msgstr "Cumleyanê {user} biaçarne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L28
 msgid "Vocabulary requests"
-msgstr ""
+msgstr "Waştişê çekuye"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L33
 msgid "My vocabulary requests"
-msgstr ""
+msgstr "Waştişê minê çekuye"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L39
 msgid "Add vocabulary requests"
-msgstr ""
+msgstr "Waştişanê çekuye îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L45
 msgid "Existing vocabulary requests"
-msgstr ""
+msgstr "Waştişê çekuye yê mewcûdî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L26
 msgid "Add a message: "
-msgstr ""
+msgstr "Mesajêk îlawe bike:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L8
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L22
@@ -2394,27 +2394,27 @@ msgstr "{createdDate}, {modifiedDate} de ame/ê pergalkerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L133
 msgid "hide replies"
-msgstr ""
+msgstr "cewaban binimne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L136
 msgid "show replies"
-msgstr ""
+msgstr "cewaban bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L2
 msgid "Your login: "
-msgstr ""
+msgstr "Dekewtişê to:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L3
 msgid "Your new password: "
-msgstr ""
+msgstr "Şîfreyê şima yo newe:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L7
 msgid "My exports"
-msgstr ""
+msgstr "Tebervetişê mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L8
 msgid "There are no exports."
-msgstr ""
+msgstr "Îxracatî çin ê."
 
 #. button to download a list (verb)
 #. / button to download on the download list page (verb)
@@ -2430,7 +2430,7 @@ msgstr "Tebervetiş dewam keno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L23
 msgid "Export failed"
-msgstr "Nêeşkê bêre tebervetene"
+msgstr "Nêeşkê bêra tebervetene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L30
 msgid "New export"
@@ -2442,20 +2442,20 @@ msgstr "Lîste veje teber"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L33
 msgid "{user}'s favorite sentences"
-msgstr ""
+msgstr "Cumleyê favorî yê {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L52
 msgid "Favorite successfully removed."
-msgstr ""
+msgstr "Favorî bi hawayêko serkewte wedarîya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L173
 msgid "Sentence {id} has been deleted."
-msgstr ""
+msgstr "Cumleya {id} wedarîyê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L118
 msgid "This user does not have any favorites."
-msgstr ""
+msgstr "Favorîyê nê xebitnayoxî çin ê."
 
 #. title of error page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L36
@@ -2479,22 +2479,22 @@ msgstr "Cumleyanê mi sey CC0 bivurne"
 msgid ""
 "The license switch of your sentences is in progress. You will receive a "
 "private message when it will be completed."
-msgstr ""
+msgstr "Bedilnayîşê lîsansî yê cumleyanê şima dewam keno. Wexto ke bi temam şima do mesajêko xususî bigîrê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""
 "This page allows you to massively switch the license of your sentences to "
 "{CC0-link}. Among all your sentences, only the ones that meet the following "
 "conditions will be affected."
-msgstr ""
+msgstr "No rîpel îmkan dano şima ke şima bieşkê lîsansê cumleyanê xo, hema-hema temamen, sey {CC0-link} bivurne. Mîyanê heme cumleyanê şima de tena êyê ke halanê cêrênan temîn kenê do tesîr de bimanê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L36
 msgid "The current license of the sentence must be CC BY 2.0 FR."
-msgstr ""
+msgstr "Lîsanso mewcûd yê cumle ganî CC BY 2.0 FR bibo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L37
 msgid "You must be the original creator of the sentence."
-msgstr "Ganî şima viraştoxê orîjînal yê cumle bibê."
+msgstr "Ganî şima viraştoxo orîjînal yê cumle bibê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L38
 msgid "The sentence must be original and not derived from translation."
@@ -2504,7 +2504,7 @@ msgstr "Ganî cumle orîjînal bibo û yewna cumle ra nêro viraştene."
 msgid ""
 "Press the following button to start or restart an analysis of which of your "
 "sentences can be switched to CC0."
-msgstr ""
+msgstr "Bûtonê cêrênî bitiknê seba destpêkerdişê yan zî newe ra destpêkerdişê analîzêk derbarê kamcîn cumleyê şima eşkenê sey CC0 bêrê bedilnayene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L55
 msgid "Start analysis"
@@ -2512,23 +2512,23 @@ msgstr "Analîzî bide destpêkerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L62
 msgid "Switch license"
-msgstr ""
+msgstr "Lîsansî bibedilne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L64
 msgid ""
 "Press the following button to initiate the license switch of the above-"
 "listed sentences."
-msgstr ""
+msgstr "Bûtonê cêrênî bitiknê seba destpêkerdişê bedilnayîşê lîsansî yê cumleyanê cor ra lîstekerdeyan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L68
 msgid ""
 "Be careful, this operation can not be undone. Switching from CC BY to CC0 is"
 " possible, but not the opposite."
-msgstr ""
+msgstr "Bala xo bidê, no operasyon nêeşkeno bêro apeygirewtene. Şima eşkenê CC BY sey CC0 bibedilnê labelê nêeşkenê eksê ci bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L72
 msgid "Switch license to CC0 1.0"
-msgstr ""
+msgstr "Lîsansî sey CC0 1.0 bibedilne"
 
 #. alt text for unlink translation button (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/add.ctp#L6
@@ -2557,14 +2557,14 @@ msgstr "Lînk"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/delete.ctp#L11
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L159
 msgid "Make into direct translation."
-msgstr ""
+msgstr "Bitade bi açarnayîşê raşteraştî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L42
 msgid ""
 "Tatoeba is a large database of sentences and translations. Its content is "
 "ever-growing and results from the voluntary contributions of thousands of "
 "members."
-msgstr ""
+msgstr "Tatoeba databasêko hîra yê cumleyan û açarnayîşan o. Muhtewaya ci timûtim xurt bena û no xeyrê beşdarîyanê zerrîwazî yê bi hezaran endamanê ci yo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L51
 msgid ""
@@ -2573,7 +2573,7 @@ msgid ""
 "sentences containing these words with their translations in the desired "
 "languages. The name Tatoeba (<em>for example</em> in Japanese) captures this"
 " concept."
-msgstr ""
+msgstr "Tatoeba seba şima wasitayêk peyda keno ke şima bivînê kontekstê cumle de nimûneyanê çekuyî senîhawa ameyê xebitnayene. Şima dîyar kenê ke kamcîn çekuyî şima eleqedar kenê û o, cumleyanê ke ê çekuyan îhtîwa kenê açarnayîşanê ziwananê waşteyan de tadano. Nameyê Tatoeba (<em>mesela</em> bi japonkî) nê konseptî tepişeno."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L64
 msgid ""
@@ -2595,7 +2595,7 @@ msgstr "PZP"
 msgid ""
 "Please make sure to <a href=\"{}\">read the FAQ</a> before asking a "
 "question."
-msgstr "Verê perskerdişê persêk xeyrê xo <a href=\"{}\">PZP biwane</a>."
+msgstr "Verê perskerdişê persêk, xeyrê xo <a href=\"{}\">PZP biwane</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L58
 msgid "Follow us"
@@ -2619,18 +2619,18 @@ msgstr "Dês de vila bike"
 msgid ""
 "You can also tell us what you think by posting on the <a "
 "href=\"{}\">Wall</a>."
-msgstr "Sewbîna şima eşkenê bi <a href=\"{}\">Dês</a> de nuştiş ma ra vajê ke şima çi fikirîyenê."
+msgstr "Sewbîna şima eşkenê bi <a href=\"{}\">Dês</a> de nuştene ma ra vajê ke şima çi fikirîyenê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L96
 msgid "Join our chatroom"
-msgstr "Tewrê odaya qiseykerdişî ya ma bibê"
+msgstr "Tewrê odaya ma ya xoşebere bibê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L101
 msgid ""
 "We have an <strong>XMPP room</strong>: <a "
 "href=\"{room}\">tatoeba@chat.tatoeba.org</a>.  You can join with your "
 "favorite XMPP client or <a href=\"{webclient}\">from your browser</a>."
-msgstr ""
+msgstr "Ma wayîrê yew <strong>odaya XMPP</strong> yîme: <a href=\"{room}\">tatoeba@chat.tatoeba.org</a>. Şima eşkenê bi klîentê XMPP yê xo yê favorîyî yan zî <a href=\"{webclient}\">browserê xo ra</a> tewirê ci bibê."
 
 #. title of the Donate page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L29
@@ -2681,7 +2681,7 @@ msgstr "Transferê IBAN'î"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L87
 msgid "Titular:"
-msgstr ""
+msgstr "Unwan:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L88
 msgid "IBAN:"
@@ -2725,7 +2725,7 @@ msgstr "Bingeyê cumle"
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
 msgid "Review"
-msgstr ""
+msgstr "Etud"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L54
@@ -2744,7 +2744,7 @@ msgstr "Ziwan"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L63
 msgid "Username"
-msgstr "Nameyê Xebitnayoxî/e"
+msgstr "Nameyê Xebitnayoxî"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L60
@@ -2759,7 +2759,7 @@ msgstr "Tarîx virazîya"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L64
 msgid "Date last modified"
-msgstr "Tarîxê vurnayîşî yo peyênî"
+msgstr "Tarîxo peyên yê vurnayîşî"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L66
@@ -2785,12 +2785,12 @@ msgstr "Nameyê lîste"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L74
 msgid "Editable by"
-msgstr ""
+msgstr "Hetê ney/naye ra eşkeno/a bêro/a pergalkerdene"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L76
 msgid "Meaning id"
-msgstr ""
+msgstr "Nasnameyê manayî"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L78
@@ -2805,7 +2805,7 @@ msgstr "Detayî"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L84
 msgid "Attribution URL"
-msgstr ""
+msgstr "URL'ê têkilîdarkerdişî"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
@@ -2821,123 +2821,123 @@ msgstr "Not"
 msgid ""
 "The data you will find here will NOT be useful unless you are coding a "
 "language tool or processing data."
-msgstr ""
+msgstr "Datayo ke şima do tîya bivînê hetanî şima bi wasitayêkê ziwanî kod nêkerê yan zî datayî nênejirnê do feydedar NÊBO."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L116
 msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
-msgstr ""
+msgstr "Eke şima seba musayîşê ziwanêkî gêrenê ro cumleyanê ke eşkenê bixebitnê, biewnê bi <a href=\"{}\">lîsteyanê cumle</a>. Şima eşkenê lîsteya xo virazê yan zî lîsteyê ke xebitnayoxanê bînan viraştê bivînê. Lîsteyî eşkenê bêrê warardene û prîntkerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L127
 msgid "General information about the files"
-msgstr ""
+msgstr "Derbarê dosyayan de melumatê umûmîyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L130
 msgid ""
 "The files provided here are updated every <strong>Saturday at 6:30 "
 "a.m.</strong> (UTC)."
-msgstr ""
+msgstr "Dosyayê ke tîya de yenê peydakerdene her <strong>Şeme saete 6:30 de</strong> (UTC) yenê rojanekerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L137
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
-msgstr ""
+msgstr "Zafaneyê cumleyanê japonkî û îngilizkî <a href=\"{}\">Tanaka Corpus</a> ra yo ke Tanaka Corpus aîdê malê umûmîya yo."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L147
 msgid "Creative commons"
-msgstr ""
+msgstr "Muşterekê afirnayoxî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L148
 msgid "These files are released under CC BY 2.0 FR."
-msgstr ""
+msgstr "Nê dosyayî binê CC BY 2.0 FR de yenê neşrbîyene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L153
 msgid "A part of our sentences are also available under CC0 1.0."
-msgstr ""
+msgstr "Sewbîna qisimêk cumleyê ma binê CC0 1.0. de zî musaîd ê."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L162
 msgid "Licenses covering audio"
-msgstr ""
+msgstr "Lîsansê ke veng îhtîwa kenê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L165
 msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr ""
+msgstr "Lîsanso ke dosyayanê vengî îhtîwa keno, hetê beşdarîkerdox/e ra yeno weçînitene û rîpelo ke dosyayanê vengî ke ey yan zî aye beşdarîyê ci kerdo lîste keno de yeno mojnayene."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L174
 msgid "Questions?"
-msgstr ""
+msgstr "Persî?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L178
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>. In general, we answer quickly."
-msgstr ""
+msgstr "Eke pers yan zî waştişê şima estê, xeyrê xo <a href=\"{}\">ma reyde bikewê têkilî</a>. Zafane ma rew cewab danîme."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L209
 msgid ""
 "Contains all the sentences in the selected language. Each sentence is "
 "associated with a unique id and an <a href=\"{}\">ISO 639-3</a> language "
 "code."
-msgstr ""
+msgstr "Ziwano weçînite de heme cumleyan îhtîwa keno. Her cumle bi nasnameyêko bêhempa û bi kodêkê ziwanî yê <a href=\"{}\">ISO 639-3</a> merbut o."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L224
 msgid "Detailed Sentences"
-msgstr ""
+msgstr "Cumleyê bidetayî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L238
 msgid ""
 "Contains additional fields for each sentence (owner name, date "
 "created/modified)."
-msgstr ""
+msgstr "Seba her cumle warê îlaweyî yenê îhtîwakerdene (nameyê wayîrî/e, tarîxê viraştişî/bedilnayîşî)"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L255
 msgid "Base of Sentences"
-msgstr ""
+msgstr "Bingeyê Cumleyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L264
 msgid ""
 "A sentence is based on another if it has been initially added as a "
 "translation. Each sentence is associated with a base, which can be:"
-msgstr ""
+msgstr "Eke cumleyêk destpêk de sey açarnayîş ameya îlawekerdene, a cumle bingeyê yewna cumle ser o awan bîya. Her cumle bi bingeyêk ameya têkilîdarkerdene, mesela sey ney:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L268
 msgid "zero: The sentence is original, not based on another."
-msgstr ""
+msgstr "sifir: Cumle orîjînal a, yewna cumle rê îstînad nîya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L269
 msgid "greater than 0: The sentence id it is based upon."
-msgstr ""
+msgstr "0 ra girdêr: Nasnamayê cumle îstînadkerde yo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L270
 msgid ""
 "\\N: We do not know. This is rare but we have a handful of sentences for "
 "which we do not know if they have been added as translations or not."
-msgstr ""
+msgstr "\\N: Ma nêzanîme. Na rewşêka nadir a labelê tay cumleyî estê ke ma nêzanîme ê sey açarnayîş ameyê îlawekerdene ya ney."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L283
 msgid "Sentences (CC0)"
-msgstr ""
+msgstr "Cumleyî (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L295
 msgid "Contains all the sentences available under CC0."
-msgstr ""
+msgstr "Heme cumleyê ke binê CC0 de mewcûd ê îhtîwa keno."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L307
 msgid "Links"
-msgstr ""
+msgstr "Lînkî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L316
 msgid ""
@@ -2945,41 +2945,41 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "Mabênê cumleyan de lînkan îhtîwa keno. {sampleLinkLine} yeno a mana ke cumleya #77 açarnayîşê cumleya #1 a. Lînko bimuqabele zî esto yanî dosya do rêzêk sey {sampleLinkLineReversed} nuşte ya zî îhtîwa bikero. "
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L334
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L67
 msgid "Tags"
-msgstr ""
+msgstr "Etîketî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L343
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr ""
+msgstr "Lîsteya <a href=\"{url}\">etîketan</a> ke bi her cumle têkilîdar ê îhtîwa keno. {sampleTagLine} yeno a mana ke cumleya #381279 numreyine rê etîketê \"vateyê verênan\" ameyo tayînkerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L369
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
-msgstr ""
+msgstr "Lîsteya <a href=\"{}\">lîsteyê cumle</a> îhtîwa keno."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L384
 msgid "Sentences in lists"
-msgstr ""
+msgstr "Cumleyê ke lîsteyan de yê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L396
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr ""
+msgstr "Cumleyê ke lîsteyêk de yenê îhtîwakerdene yenê mojnayene. {sampleListLine} yeno a mana ke cumleya #381279 numreyine, lîsteya ke nasnameyê xo 13 yo de yena îhtîwakerdene."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L413
 msgid "Japanese indices"
-msgstr ""
+msgstr "Nîşanê japonkî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L423
 msgid ""
@@ -2988,7 +2988,7 @@ msgid ""
 "format. Each entry is associated with a pair of Japanese/English sentences. "
 "{sentenceId} refers to the id of the Japanese sentence. {meaningId} refers "
 "to the id of the English sentence."
-msgstr ""
+msgstr "Hemerja \"rêzê B\" yê ke dosyaya Tanaka Corpus de hetê Jim Breen ra ameyê vilakerdene îhtîwa keno. Seba formatî biewnê bi <a href=\"{url}\">nê rîpelî</a>. Her dekewte, bi citeyêka cumleya japonkî/îngilizkî ameyo têkilîdarkerdene. {sentenceId} nasnameyê cumleya japonkî îfade keno. {meaningId} nasnameyê cumleya îngilizkî îfade keno."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L455
 msgid ""
@@ -2996,29 +2996,29 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr ""
+msgstr "Seba heme ziwanê ke vengê xo mewcûd ê, nasnameyanê cumleyan îhtîwa keno. Warê bînan de nê çîyî dîyar benê; kamî/e veng qeyd kerdo, lîsans û URL'yêk seba etifê nuştoxî. Eke warê lîsansî tal o, şima nêeşkenê ê vengî teberê projeyê Tatoeba de bixebitnê."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L474
 msgid "User skill level per language"
-msgstr ""
+msgstr "Serê ziwanî sewîyeya qabîlîyetî yê xebitnayoxî/e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr ""
+msgstr "Sewîyeyanê qabîlîyetî ke endaman bi xo ziwananê şexsî de dîyar kerda mojneno."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L494
 msgid "Users' sentence reviews"
-msgstr ""
+msgstr "Etudê cumle yê xebitnayoxan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L503
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "Cumleyê ke hetê xebitnayoxan ra ameyê etudkerdene îhtîwa keno. Erja etudî eşkena biba -1 (cumle TEMAM nîya), 0 (bêqerar yan zî emîn nîya), yan zî 1 (cumle TEMAM a). Îqaz: no data hema ceribkî yo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L533
 msgid ""
@@ -3027,68 +3027,68 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr ""
+msgstr "Heme transkrîpsyonanê skrîptê alternatîfî û skrîptê hetkarî îhtîwa keno. Yew nameyê xebitnayoxî/e ke bi transkrîpsyonêk têkilîdar o, dîyar keno ke ê/a xebitnayoxî/e tewr peynî o transkrîpsyon etud kerdo û muhtemelen bedilnayo. Transkrîpsyonêko bê nameyê xebitnayoxî/e sey etudkerde nêame nîşankerdene. Nameyê skrîptî goreyê standardê ISO 15924 yeno pênaskerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
-msgstr ""
+msgstr "Îhtîyacê şima bi hetkarîya zafêr esto?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L38
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "Şima eşkenê <a href=\"{}\">PZP</a> rê çim biçarnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L46
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
-msgstr ""
+msgstr "Eke şima cewabê persê xo nêdî, xeyrê xo <a href=\"{}\">ma reyde bikewê têkilî</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L62
 msgid "Getting started"
-msgstr ""
+msgstr "Destpêk"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L69
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
-msgstr ""
+msgstr "Şima qeyd bîyê, eke şima nika nêzanê ke se bikerê, şima eşkenê xo <a href=\"{wall}\">Dês</a> de bidê naskerdene yan zî tewirê <a href=\"{chatroom}\">odaya xoşebere</a> ya ma bibê. Ma do şima rê hedefêk bidîme. :) "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L85
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "Eke şima fikirîyenê ke no proje muhteşem o û eke şima wazenê bi hawayêko aktîf hetkarîye bikerê, ha yo lînkêk ke <strong>GANÎ</strong> şima biwanê:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L97
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
-msgstr ""
+msgstr "Ney reyde, şima bi xeyr ameyê bi Tatoeba! Ma hêvî kenîme ke şima do bi beşdarbîyayîşê na proje keyfweş bibê :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L108
 msgid "Important links"
-msgstr ""
+msgstr "Lînkê muhîmî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L130
 msgid "Adding new sentences"
-msgstr ""
+msgstr "Îlawekerdişê cumleyanê newîyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L131
 msgid "There are two ways to add new sentences."
-msgstr ""
+msgstr "Di ûsulê îlawekerdişê cumleyanê newîyan estê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L137
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Menuyê <strong>Beşdarîyan bike</strong> ke serê her rîpelî de esto ra <a href=\"{}\">Cumleyan îlawe bike</a> biweçîne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr ""
+msgstr "Bi viraştişê <a href=\"{}\">lîsteyêka</a> newîye, û şîyayîş bi rîpelê pergalkerdişî seba a lîste."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L170
 msgid ""
@@ -3096,44 +3096,44 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr ""
+msgstr "Her çiqas Tatoeba de zaf cumleyî bibê zî hema xeylê çekuyê ke nêameyê şamîlkerdene estê. No semed ra ma tewsîye kenîme ke eke şima nêzanê înan biaçarnê bi yewna ziwanî bîle, cumleyanê ke tede çekuyê neweyî estê îlawe bikerê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L180
 msgid "Translating sentences"
-msgstr ""
+msgstr "Açarnayîşê cumleyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L184
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
-msgstr ""
+msgstr "Açarnayîş, Tatoeba de wezîfeyanê tewr muhîman ra yewer o. Hedefo bingeyên yê proje o yo ke cumleyê ke xeylê ziwanan rê ameyê açarnayene wa bêrê arêdayene. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L194
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr ""
+msgstr "Şima hema-hema heme ca ra eşkenê cumleyêk biaçarnê. Tena wexto ke nê sembolî {translateButton} vînenê bitiknê, bes o."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L205
 msgid "Correcting mistakes"
-msgstr ""
+msgstr "Raştkerdişê xetayan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L209
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr ""
+msgstr "Şima tena eşkenê xetayanê cumleyanê xo raşt bikerê. Eke şima cumleyanê yewbînayî/e de xetayêk dî, şima eşkenê bi erşawitişê şiroveyêk xetaya ey yan zî aye pêbihesnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L218
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "Tay halan de wayîrêkê/a cumle çin o/a. Seba hîna zaf melumatî paragrafê cêrênî (qebulkerdişê cumleyan ser o) biwanê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L227
 msgid "Adopting sentences"
-msgstr ""
+msgstr "Wayîrvejîyayîşê cumleyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L231
 msgid ""
@@ -3141,7 +3141,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr ""
+msgstr "Wexto ke şima cumleyêk îlawe kerde, a cumle bena \"aîdê\" şima - tena şima eşkenê aye pergal bikerê. Sewbîna zafaneyê cumleyan ke Tatoeba de yê Tanaka Corpus ra yeno ke Tanaka Corpus kulîyatêko japonkî-îngîlîzkî yo. Nê cumleyî semedo ke teberê Tatoeba de ameyê arêdayene, bêwayîr ê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L243
 msgid ""
@@ -3149,35 +3149,35 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "Eke şima cumleyêka \"sêkure\" de xetayêk bivînê, semedo ke şima aye rê wayîr nêvejîyayê nêeşkenê aye raşt bikerê. No semed ra tercîhêk sey \"wayîr vejîye\" esto ({adoptButton}). Eke şima reyêk bibê wayîrê cumleyêk êdî eşkenê a cumle pergal bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
-msgstr ""
+msgstr "Wayîrvejîyayîşê cumleyêk eynî wext de parçeyêkê \"prosesê kalîte\" yo. Şima eşkenê derbarê ey de hîna zaf melumatî tîya de bivînê:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L272
 msgid "Sentence lists"
-msgstr ""
+msgstr "Lîsteyê cumle"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L276
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr ""
+msgstr "Şima eşkenê Tatoeba de lîsteyê cumleyan virazê. Lîste sey pêşferz <strong>şexsî</strong> ya yanî tena keso/a ke lîste viraşta eşkeno/a lîste pergal bikero/a (labelê hema zî her kes/e eşkeno/a lîste bivîno/a)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L285
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr ""
+msgstr "Sewbîna mumkun o ke şima Tatoeba ra yew endamî/e lîsteyêk rê sey <strong>hemkar</strong> eyar bikerê û bi na wesîla şima eşkenê îzin bidê ey/aye ke wa cumleyan îlawe bikero/a yan zî wedarno/a."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L30
 msgid "Tatoeba: Collection of sentences and translations"
-msgstr ""
+msgstr "Tatoeba: Arêdayîşê cumleyan û açarnayîşan"
 
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
@@ -3185,23 +3185,23 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
-msgstr ""
+msgstr "Statîstîkî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L99
 msgid "Latest messages"
-msgstr ""
+msgstr "Mesajê tewr peyênî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L93
 msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr ""
+msgstr "Dîzayno newe yê cumle do nêzdî de temamen herinda ya kehene de bêro cadayene. Xeyrê xo ey biceribnê û eke xetayêk tecrube kenê, ma pêbihesnê. Şima eşkenê ey Eyaranê xo ra bi tercîhê \"Cumleyan bi dîzaynê neweyî bimojne\" aktîf bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
-msgstr ""
+msgstr "Şo eyaran"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
@@ -3212,17 +3212,17 @@ msgstr "zafêr bimojne..."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
-msgstr ""
+msgstr "Şiroveyê tewr peyênî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L77
 msgid "Want to help?"
-msgstr ""
+msgstr "Şima wazenê hetkarî bikerê?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L82
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr ""
+msgstr "Ma cumleyan û açarnayîşanê înan arê danîme. Şima eşkenê bi açarnayîş yan zî bi îlawekerdişê cumleyanê newîyan hetkarîya ma bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L88
 msgid "Join the community"
@@ -3230,29 +3230,29 @@ msgstr "Tewrê cematî bibe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
-msgstr ""
+msgstr "Rîpel seba wextêko muweqetî ame betalkerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L47
 msgid ""
 "This page is currently disabled due to technical issues: it may be slowing "
 "down the website or is dysfunctional."
-msgstr ""
+msgstr "No rîpel, na game, rîyê problemanê teknîkî ra ameyo betalkerdene: beno ke rîpel, websîte keno yewaş yan zî nêxebitîyeno/fonksîyonel nîyo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L52
 msgid "We are sorry for the inconvenience."
-msgstr ""
+msgstr "Ma efê xo wazenîme seba narehetîye."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L6
 msgid ""
 "These Terms of Use have not been translated yet into your language. Below is"
 " the original version in French."
-msgstr ""
+msgstr "Nê Şertê Xebitnayîşî hema ziwanê şima rê nêameyê açarnayene. Cêr ra versîyono orîjînalo ke bi ziwanê franskî yo esto."
 
 #. this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L51
 msgid "Private messages - {folderName}"
-msgstr ""
+msgstr "Mesajê xususîyî - {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L36
@@ -3264,8 +3264,8 @@ msgstr "Mesajê xususîyî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L69
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{folderName} ({n}&nbsp;mesaj)"
+msgstr[1] "{folderName} ({n}&nbsp;mesajî)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L83
 msgid "Empty trash"
@@ -3274,57 +3274,57 @@ msgstr "Çopdane bike veng"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L29
 msgid "[no subject]"
-msgstr "[mewzû çîn o]"
+msgstr "[mewzû çin o]"
 
 #. button to delete a private message that has already been put in the trash
 #. (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L80
 msgid "Permanently delete"
-msgstr ""
+msgstr "Ebeden estiritene"
 
 #. button to restore a private message that has been put to trash (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L159
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L70
 msgid "Restore"
-msgstr ""
+msgstr "Restore"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L28
 msgid " - Tatoeba"
-msgstr ""
+msgstr " - Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L30
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr ""
+msgstr "Semedo ke wa Tatoeba spam û mesajanê nîyetxirabanê bînan ra dûrî bimano, xebitnayoxê neweyî rojêk de eşkenê tena 5 mesajî bierşawê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L48
 msgid "You have reached your message limit for today"
-msgstr ""
+msgstr "Şima seba ewroyî resayê lîmîtê xo yê mesajî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L51
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "Xeyrê xo hetanî ke şima bieşkê hîna zaf mesajan bierşawê bipawê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L68
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Şima ewro mesajêk erşawit."
+msgstr[1] "Şima ewro {n}&nbsp;mesajî erşawitî."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L39
 msgid "Sentences marked as \"OK\""
-msgstr ""
+msgstr "Cumleyê ke sey \"TEMAM\" nîşan bîyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L40
 msgid "Sentences marked as \"unsure\""
-msgstr ""
+msgstr "Cumleyê ke sey \"emîn nîya\" nîşan bîyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L41
 msgid "Sentences marked as \"not OK\""
-msgstr ""
+msgstr "Cumleyê ke sey \"Temam NÎYA\" nîşan bîyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L59
@@ -3333,41 +3333,41 @@ msgstr "Heme cumleyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L43
 msgid "Outdated reviews"
-msgstr ""
+msgstr "Etudê kehenî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L47
 msgid "Sentences in {language} marked as \"OK\""
-msgstr ""
+msgstr "Cumleyê ke ziwanê {language} de sey \"TEMAM\" nîşan bîyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L48
 msgid "Sentences in {language} marked as \"unsure\""
-msgstr ""
+msgstr "Cumleyê ke ziwanê {language} de sey \"emîn nîya\" nîşan bîyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L49
 msgid "Sentences in {language} marked as \"not OK\""
-msgstr ""
+msgstr "Cumleyê ke ziwanê {language} de sey \"Temam NÎYA\" nîşan bîyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L50
 msgid "All sentences in {language}"
-msgstr ""
+msgstr "Hema cumleyê ke ziwanê {language} de yê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L51
 msgid "Outdated reviews for sentences in {language}"
-msgstr ""
+msgstr "Etudê kehenî seba cumleyanê {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L65
 msgid "{user}'s reviews - {category}"
-msgstr ""
+msgstr "Etudê {user} - {category}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L80
 msgid "This feature is currently deactivated."
-msgstr ""
+msgstr "Na taybetmendî na game deaktîfkerdî ya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L83
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr ""
+msgstr "Şima eşkenê eyaranê xo de ey aktîf bikerê: \"Taybetmendî aktîf bike seba etudkerdişê cumleyan.\""
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L93
@@ -3396,7 +3396,7 @@ msgstr "Tewr newe verî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L138
 msgctxt "reviews"
 msgid "Oldest first"
-msgstr "Kehenî verî"
+msgstr "Tewr kehen verî"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
@@ -3416,7 +3416,7 @@ msgstr "Cumleyê tewr kehenî"
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr ""
+msgstr "Cumleya serêne bitiknê seba şîyayîşê tatoeba.org ke aye biaçarnê yan zî şiroveyêk binusê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L178
@@ -3425,42 +3425,42 @@ msgstr "Cumle #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
-msgstr "Şîroveyî pergal bike"
+msgstr "Şiroveyî pergal bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L27
 msgid "Edit Comment on Sentence #{number}"
-msgstr ""
+msgstr "Şiroveyo ke cumleya #{number} ser o ameyo kerdene pergal bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
-msgstr "Şîroveyê ke cumleyan ser o ameyê kerdene"
+msgstr "Şiroveyê ke cumleyan ser o ameyê kerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L40
 msgid "{user}'s comments"
-msgstr ""
+msgstr "Şiroveyê {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L62
 msgid "{user} has posted no comment"
-msgstr ""
+msgstr "{user} qet şiroveyêk vila nêkerd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L135
 msgid "Go back to previous page"
-msgstr ""
+msgstr "Agêre bi rîpelo verên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L76
 msgid "{user}'s comments (total&nbsp;{n})"
-msgstr ""
+msgstr "Şiroveyê {user} (pêro pîya&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L60
 msgid "{user} has no comment posted on his/her sentences"
-msgstr ""
+msgstr "{user} cumleyanê xo ser o qet şiroveyêk vila nêkerd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L75
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
-msgstr ""
+msgstr "Şiroveyê ke cumleyanê {user} ser o ameyê kerdene (pêro pîya&nbsp;{n})"
 
 #. header text in side bar of the "Add sentences" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L43
@@ -3471,28 +3471,28 @@ msgstr "Muhîm"
 msgid ""
 "<strong>We like quality.</strong> Every detail matters. Please do not forget"
 " punctuation and capital letters."
-msgstr ""
+msgstr "<strong>Ma kalîte ra hes kenîme.</strong> Her detay muhîm o. Xeyrê xo îşaretanê nuqtakerdişî û herfanê girdan xo vîr ra mekerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L56
 msgid ""
 "<strong>We like diversity.</strong> Unleash your creativity! Avoid using the"
 " same words, names, topics, or patterns over and over again."
-msgstr ""
+msgstr "<strong>Ma biçeşîtîye ra hes kenîme.</strong> Afirnayoxîya xo veje meydan! Eynî çekuyan, nameyan, mewzûyan yan zî qaliban reyna û reyna mexebitne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L65
 msgid ""
 "<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, or "
 "at least make sure they are not copyrighted and are compatible with the CC "
 "BY license. Otherwise we cannot use them."
-msgstr ""
+msgstr "<strong>Ma parekerdişê datayê xo ra hes kenîme.</strong> Cumleyan kopya meke û mezeliqne. Bibe emîn ke cumleyî, wayîrê heqê telîfî nîyê û bi lîsansê CC BY bifesal ê. Nêkela ma nêeşkenîme înan bixebitnîme."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
 msgid "Check out the vocabulary for which we need sentences"
-msgstr ""
+msgstr "Çim bierze bi çekuyê ke muhtacê cumleyan ê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
 msgid "Sentences wanted"
-msgstr "Cumleyî yenê cigêrayîş"
+msgstr "Cumleyî yenê waştene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"
@@ -3501,8 +3501,8 @@ msgstr "Endeksê ziwanî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L10
 msgid "There is {n} language on Tatoeba"
 msgid_plural "There are {n} languages on Tatoeba"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tatoeba de {n} ziwan esto"
+msgstr[1] "Tatoeba de {n} ziwanî estê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L26
 msgid "My profile languages"
@@ -3510,19 +3510,19 @@ msgstr "Ziwanê profîlê mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L37
 msgid "Top ten"
-msgstr ""
+msgstr "Top Des"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L61
 msgid "Show all languages {arrowIcon}"
-msgstr ""
+msgstr "Heme ziwanan bimojne {arrowIcon}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
-msgstr ""
+msgstr "Cumleyê {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L41
 msgid "{user}'s sentences in {language}"
-msgstr ""
+msgstr "Cumleyê {user} bi ziwanê {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
@@ -3530,17 +3530,17 @@ msgstr "Tena cumleyanê orîjînalan bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L89
 msgid "{user} does not own any sentences in {language}"
-msgstr ""
+msgstr "Qet cumleyê {user} bi ziwanê {language} çin ê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L94
 msgid "{user} does not own any sentences"
-msgstr ""
+msgstr "Qet cumleyê {user} çin ê"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L119
 msgctxt "sentences"
 msgid "Most recently updated"
-msgstr "Tewr peynî ame rojanekerdene"
+msgstr "Tewr peynî de ame rojanekerdene"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L121
@@ -3558,42 +3558,42 @@ msgstr "Tewr newe verî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L125
 msgctxt "sentences"
 msgid "Oldest first"
-msgstr "Kehenî verî"
+msgstr "Tewr kehen verî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
 msgid ""
 "An error occurred while fetching the random sentence. If this persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "Wexto ke cumleya raştameyîye ameyêne girewtene xetayêk amê meydan. Eke na dewam bikera xeyrê xo <a href=\"{}\">ma pêbihesnê</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L35
 msgid "Sentences with: {keywords}"
-msgstr ""
+msgstr "Cumleyê bi: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L39
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr ""
+msgstr "Cumleyê {language} ke nêaçarnîyayê bi {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L43
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr ""
+msgstr "Cumleyê {language} ke açarnîyayê bi {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L48
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L32
 msgid "Sentences in {language}"
-msgstr ""
+msgstr "Cumleyê {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L52
 msgid "Sentences not translated into {language}"
-msgstr ""
+msgstr "Cumleyê ke nêaçarnîyayê bi {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L55
 msgid "Sentences translated into {language}"
-msgstr ""
+msgstr "Cumleyê ke açarnîyayê bi {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L67
 msgid "Warning: the following criteria have been ignored:{list}"
-msgstr ""
+msgstr "Îqaz: krîterê cêrênî ameyî peygoşkerdene: {list}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L81
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L97
@@ -3603,25 +3603,25 @@ msgstr "Xetaya cigêrayîşî"
 #. button to open the advanced search option sidebar on mobile
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L105
 msgid "Narrow search"
-msgstr "Cigêrayîşo sînorkerde"
+msgstr "Cigêrayîşo teng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L117
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
-msgstr ""
+msgstr "Persayîşo nevîyartbar. Xeyrê xo seba hîna zaf detayan biewnê bi <a href=\"{}\">dokumananê cigêrayîşî</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L131
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{us}\">let us know</a> and include the error code "
 "\"{errorCode}\" in your message."
-msgstr ""
+msgstr "Wexto ke cigêrayîş ameyêne kerdene xetayêk amê meydan. Eke xeta dewam bikera xeyrê xo <a href=\"{us}\">ma pêbihesnê</a> û mesajê xo rê kodê xeta yê \"{errorCode}\" îlawe bikerê."
 
 #. title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L150
 msgid "Search: {keywords}"
-msgstr ""
+msgstr "Cigêre: {keywords}"
 
 #. title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L197
@@ -3631,70 +3631,70 @@ msgstr "Krîterê cigêrayîşî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
 msgid "Search disabled"
-msgstr ""
+msgstr "Cigêrayîş ame betalkerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L10
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
-msgstr ""
+msgstr "Taybetmendîya cigêrayîşî, na game, rîyê sebebanê teknîkî ra ameya betalkerdene. Ma efê xo wazenîme seba narehetîye. Xeyrê xo dima reyna biceribnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L40
 msgid "{sentence} - {language} example sentence"
-msgstr ""
+msgstr "{sentence} - {language} cumleya nimûne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L48
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
-msgstr ""
+msgstr "Cigêre bi cumleyanê nimûneyê açarnîyayeyan. No rîpel derbarê cumle de açarnayîşan û melumatan mojneno: {sentenceText}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L59
 msgid "Sentence does not exist: "
-msgstr ""
+msgstr "Cumle mewcûd nîya:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L78
 msgid "Reviewed by"
-msgstr ""
+msgstr "Ame etudkerdene hetê "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L97
 msgid "(outdated)"
-msgstr ""
+msgstr "(kehen)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L168
 msgid "There is no log for this sentence"
-msgstr "Seba na cumle qeyd çîn o"
+msgstr "Seba na cumle qeydêk çin o"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L245
 msgid "There are no comments for now."
-msgstr "Na game şîroveyî çîn ê."
+msgstr "Na game şiroveyî çin ê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L265
 msgid "Random Sentence"
-msgstr ""
+msgstr "Cumleya raştameyê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L267
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
-msgstr ""
+msgstr "Taybetmendîya cumleya raştameyê aktîf nîya, xeyrê xo dima reyna biceribnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L269
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "Wexto ke cumleyê raştameyêyî ameyêne ardene xetayêk amê meydan. Eke na dewam bikera xeyrê xo <a href=\"{}\">ma pêbihesnê</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L64
 msgid "Only the last {n} sentences are displayed here."
-msgstr ""
+msgstr "Tîya de tena {n} cumleyê  peyênî yenê mojnayene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
-msgstr ""
+msgstr "Wextê qeydkerdişî de problem"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L39
 msgid "Download list: "
-msgstr ""
+msgstr "Lîsteya warardişî:"
 
 #. header text in the side bar of the download list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L46
@@ -3715,50 +3715,50 @@ msgstr "Formatê dosya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L72
 msgid "Raw text file"
-msgstr ""
+msgstr "Dosyaya metnê xamî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
 msgid "Tab-separated file"
-msgstr ""
+msgstr "Dosyaya bi-tab-abirnayê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L74
 msgid "List for the Shtooka recorder"
-msgstr ""
+msgstr "Lîsteya qeydkerê Shtooka"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L99
 msgid "Translation (optional)"
-msgstr "Açarnayîş (tercîhen)"
+msgstr "Açarnayîş (opsîyonel)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L132
 msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
-msgstr ""
+msgstr "Eke şima ziwanêk biweçînê, açarnayîşê her cumle (eke esto) yê ê ziwanî do outputê şima rê bêro nuştene. Şima o wext eşkenê bi xebitnayîşê programê {Anki} dosya bigîrê zere û pê desteyêkê kartê flaşî virazê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
 msgid "Preparing download, please wait."
-msgstr ""
+msgstr "Warardiş yeno hazirkerdene, xeyrê xo bipawê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "Warardiş nêeşka bêro hazirkerdene, xeyrê xo reyna biceribnê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L31
 msgid "Collaborative lists ({total})"
-msgstr ""
+msgstr "Lîsteyê hemkarîyî ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L33
 msgid "All public lists ({total})"
-msgstr ""
+msgstr "Heme lîsteyê umûmîyî ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L38
 msgid "Collaborative lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Lîsteyê hemkarî ke \"{search}\" îhtîwa kenê ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L40
 msgid "All public lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Heme lîsteyê umûmîyî ke \"{search}\" îhtîwa kenê ({total})"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3772,7 +3772,7 @@ msgstr "Nameyê lîste (alfabetîk)"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L80
 msgid "List name (reverse alphabetical)"
-msgstr ""
+msgstr "Nameyê lîste (eks alfabetîkal)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3797,7 +3797,7 @@ msgstr "Tewr kehen verî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L91
 msgid "Highest number of sentences"
-msgstr ""
+msgstr "Hûmara tewr zafe ya cumleyan"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3806,7 +3806,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L93
 msgid "Lowest number of sentences"
-msgstr ""
+msgstr "Hûmara tewr taye ya cumleyan"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3814,7 +3814,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L90
 msgctxt "lists"
 msgid "Most recently updated"
-msgstr "Tewr peynî ame rojanekerdene"
+msgstr "Tewr peynî de ame rojanekerdene"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3826,15 +3826,15 @@ msgstr "Tewr nêzdî de ame rojanekerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L38
 msgid "{username}'s lists ({total})"
-msgstr ""
+msgstr "Lîsteyê {username} ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L43
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Lîsteyê {username}  \"{search}\" îhtîwa kenê ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
-msgstr "Cumle bi awayêko serkewte wedarîyê."
+msgstr "Cumle bi hawayêko serkewte wedarîyê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L25
@@ -3845,15 +3845,15 @@ msgstr "Derheqê na lîste de"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L179
 msgid "created by {listAuthor}"
-msgstr ""
+msgstr "hetê {listAuthor} ra virazîya/ê"
 
 #. number of sentences contained in the list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L45
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Îhtîwa keno {n}&nbsp;cumle"
+msgstr[1] "Îhtîwa keno {n} &nbsp;cumleyî"
 
 #. header text in the side bar of a list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L85
@@ -3873,15 +3873,15 @@ msgstr "Seba pergalkerdişî bitikne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L162
 msgid "Sort by:"
-msgstr ""
+msgstr "Gore rêze bike:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L164
 msgid "date added to list"
-msgstr ""
+msgstr "tarîx, lîste rê ame îlawekerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L166
 msgid "date created"
-msgstr "Tarîx virazîya"
+msgstr "tarîx virazîya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L285
@@ -3896,12 +3896,12 @@ msgstr "Na lîste biestire"
 #. sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L144
 msgid "Most recently added"
-msgstr ""
+msgstr "Îlawekerdeyo tewr peyên"
 
 #. sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L146
 msgid "Least recently added"
-msgstr ""
+msgstr "Îlawekerdeyo tewr nêzdî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L197
 msgid "This list is empty."
@@ -3911,19 +3911,19 @@ msgstr "Na lîste veng a."
 msgid ""
 "You can create new sentences directly in this list by clicking on the "
 "{addSentenceButton} icon in the header of this section."
-msgstr ""
+msgstr "Şima eşkenê na lîste de raşteraşt cumleyanê newîyan virazê, seba viraştişî bitiknê bi sembolê {addSentenceButton} yo ke sernuşteyê nê qisimî de yo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L213
 msgid ""
 "You can also add existing sentences to this list, from other pages, by "
 "clicking on the {addToListButton} icon in the menu of the sentence."
-msgstr ""
+msgstr "Şima sewbîna eşkenê na lîste rê rîpelanê bînan ra cumleyanê mewcûdan îlawe bikerê, seba ey menuya cumle de sembolê {addToListButton} ser o bitiknê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L238
 msgid ""
 "The sentence you tried to create already exists. The existing sentence was "
 "added to your list instead."
-msgstr ""
+msgstr "Cumleya ke şima ceribnê virazê xora mewcûd a. Cumleya mewcûde lîsteya şima rê amê îlawekerdene."
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L32
@@ -3933,24 +3933,24 @@ msgstr "Îdarekarî"
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L34
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "Xurtkerdoxê cematî"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L36
 msgid "Advanced contributors"
-msgstr ""
+msgstr "Beşdarîkerdoxê xurtî"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L38
 msgid "Contributors"
-msgstr ""
+msgstr "Beşdarîkerdoxî"
 
 #. header text in the side bar of the Native speakers page (noun)
 #. / header text in the side bar of the Languages of members page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L35
 msgid "Legend"
-msgstr ""
+msgstr "Efsane"
 
 #. table header text in Native speakers page
 #. / table header text in Languages of members page
@@ -3961,107 +3961,107 @@ msgstr "Pêro pîya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L29
 msgid "Number of sentences per language"
-msgstr ""
+msgstr "Serê ziwanî hûmara cumleyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L119
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yew cumle"
+msgstr[1] "{n}&nbsp;cumleyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
-msgstr ""
+msgstr "Cumleyê ke bi etîketê {tagName} yê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L58
 msgid "Show all tags"
-msgstr ""
+msgstr "Heme etîketan bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L56
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{tagName} ({n} cumle)"
+msgstr[1] "{tagName} ({n} cumleyî)"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L70
 msgid "Newest sentences first"
-msgstr ""
+msgstr "Verî cumleyê tewr newîyî"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
 msgid "Oldest sentences first"
-msgstr ""
+msgstr "Verî cumleyê tewr kehenî"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L74
 msgid "Most recently tagged"
-msgstr ""
+msgstr "Etîketkerdeyê tewr peyênî"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L76
 msgid "Least recently tagged"
-msgstr ""
+msgstr "Etîketkerdeyê tewr nêzdîyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L28
 msgid "All existing tags"
-msgstr ""
+msgstr "Heme etîketê mewcûdî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L38
 msgid "Search tags"
-msgstr ""
+msgstr "Etîketan cigêre"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L74
 msgid "All tags (total {{count}})"
-msgstr ""
+msgstr "Heme etîketî (pêro pîya  {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L78
 msgid "Tags containing: {search} (total {{count}})"
-msgstr ""
+msgstr "Etîketî îhtîwa kenê: {search} (pêro pîya {{count}})"
 
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L95
 msgid "Tag name (alphabetical)"
-msgstr ""
+msgstr "Nameyê etîketî (alfabetîkal)"
 
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L97
 msgid "Tag name (reverse alphabetical)"
-msgstr ""
+msgstr "Nameyê etîketî (eks alfabetîkal)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L58
 msgid "Chinese traditional/simplified conversion"
-msgstr ""
+msgstr "Çînkîya tradîsyonele/sadekerdîye bedilnayîş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L36
 msgid "Source code"
-msgstr ""
+msgstr "Kodê çimeyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L83
 msgid "Enter either traditional or simplified Chinese"
-msgstr ""
+msgstr "Ya çînkîya tradîsyonele yan zî çînkîya sadekerdîye dekewê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L106
 msgid "Convert"
-msgstr ""
+msgstr "Bibedilnê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L50
 msgid "Autogenerate furigana over Japanese"
-msgstr ""
+msgstr "Herinda japonkî de furîganayî otomatîk viraze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L82
 msgid "Autogenerate furigana"
-msgstr ""
+msgstr "Furîganayî otomatîk viraze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L28
 msgid "Useful tools"
-msgstr ""
+msgstr "Wasitayê feydedarî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L32
 msgid "Tools"
@@ -4069,38 +4069,38 @@ msgstr "Wasitayî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "Viraştişê furîgana yo otomatîk"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "herinda japonkî de furîganayî otomatîk viraze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L51
 msgid "Chinese simplified/traditional conversion"
-msgstr ""
+msgstr "Çînkîya sadekerdîye/tradîsyonele bedilnayîş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L59
 msgid "convert traditional Chinese to simplified and vice versa"
-msgstr ""
+msgstr "çînkîya tradîsyonele bibedilne bi çînkîya sadekerdîye û eksê ci bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L66
 msgid "Shanghainese to IPA"
-msgstr ""
+msgstr "Şangaykî ra bi IPA"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L74
 msgid ""
 "Convert a Shanghainese text into its pronunciation using the International "
 "Phonetic Alphabet"
-msgstr ""
+msgstr "Bi xebitnayîşê Alfabeya Fonetîke ya Mîyanneteweyîye metnêkê şangaykî bibedilnê bi telefuzê ci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L67
 msgid "Convert Shanghainese into IPA"
-msgstr ""
+msgstr "Şangaykî bibedilne bi IPA/AFM"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
-msgstr ""
+msgstr "Kredîyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L48
 msgid ""
@@ -4108,48 +4108,48 @@ msgid ""
 "with much more complete data files. If you're interested in his work, you "
 "can check his project page <a href='{1}'>here</a>. Without him, the "
 "Shanghainese sentences wouldn't have such a complete IPA."
-msgstr ""
+msgstr "Ma heqeten wazenîme <a href='{0}'>Kellen Parker</a> rê sipas bikerîme. Ey ma rê dosyayê data yê hîna temamî peyda kerdî. Eke şima bi xebatanê ey eleqedar ê, şima eşkenê <a href='{1}'>tîya</a> ra rîpelê ey yê projeyan kontrol bikerê. Bê ey, cumleyê şangaykî do wayîrê IPA'yêka hende temame nêbîyêne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L90
 msgid "Enter a text in shanghainese dialect"
-msgstr ""
+msgstr "Metnêk bi lehçeya şangaykî dekewe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
-msgstr ""
+msgstr "Transkrîpsyonê {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L52
 msgid "{username} does not have any transcriptions"
-msgstr ""
+msgstr "Transkrîpsyonê {username} çin ê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."
 msgid_plural "Please fix the following errors or press the Cancel button."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Xeyrê xo xetaya cêrêne raşt bikerê yan zî bûtonê Betal Bike bitiknê."
+msgstr[1] "Xeyrê xo xetayanê cêrênan raşt bikerê yan zî bûtonê Betal Bike bitiknê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L44
 msgid "Edit profile"
-msgstr ""
+msgstr "Profîlî pergal bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L57
 msgid "Current picture"
-msgstr ""
+msgstr "Resimo vîyartbar"
 
 #. button to remove profile picture
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L71
 msgid "Remove"
-msgstr ""
+msgstr "Wedarne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L81
 msgid "New picture"
-msgstr ""
+msgstr "Resimo newe"
 
 #. button to upload a new profile picture
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L97
 msgid "Upload"
-msgstr ""
+msgstr "Bar bike"
 
 #. label for user name in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L115
@@ -4162,24 +4162,24 @@ msgstr "Name"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L281
 msgid "Country"
-msgstr ""
+msgstr "Welat"
 
 #. label for user's birthday in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L282
 msgid "Birthday"
-msgstr ""
+msgstr "Roja mayaxorabîyayîşî"
 
 #. label for user's homepage in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L283
 msgid "Homepage"
-msgstr ""
+msgstr "Keyepel"
 
 #. label for user's description in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L157
 msgid "Description"
-msgstr ""
+msgstr "Îzahat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L400
@@ -4187,93 +4187,93 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L408
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L357
 msgid "Add a language"
-msgstr ""
+msgstr "Ziwanêk îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L30
 msgid "Add language"
-msgstr ""
+msgstr "Ziwan îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L32
 msgid "Edit language"
-msgstr ""
+msgstr "Ziwanî pergal bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L447
 msgid ""
 "If your language is missing, please read our article on how to <a "
 "href=\"{}\">request a new language</a>."
-msgstr ""
+msgstr "Eke Tatoeba de ziwanê şima çin o, xeyrê xo meqaleya ma ya <a href=\"{}\">ziwanêko newe taleb bike</a> biwanê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L459
 msgid "What is your level?"
-msgstr ""
+msgstr "Sewîyeya to çî ya?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L475
 msgid "Details (optional). For instance, which dialect or from which country."
-msgstr ""
+msgstr "Detayî (opsîyonel). Mesela kamcîn lehçe yan zî kamcîn welat ra."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L86
 msgid "Contact {user}"
-msgstr ""
+msgstr "{user} reyde bikewe têkilî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L94
 msgid "Comments posted"
-msgstr ""
+msgstr "Şiroveyê neşrbîyayeyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L96
 msgid "Sentences owned"
-msgstr ""
+msgstr "Cumleyê wayîrvejîyayeyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L98
 msgid "Audio recordings"
-msgstr ""
+msgstr "Qeydê vengî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L100
 msgid "Sentences favorited"
-msgstr ""
+msgstr "Cumleyê favorîyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L102
 msgid "Contributions"
-msgstr ""
+msgstr "Beşdarîyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L109
 msgid "Show latest activity"
-msgstr ""
+msgstr "Aktîvîteya tewr peyêne bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L131
 msgid "Email notifications are ENABLED."
-msgstr ""
+msgstr "Pêhesnayîşê emaîlî AKTÎF ê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L133
 msgid "Email notifications are DISABLED."
-msgstr ""
+msgstr "Pêhesnayîşê emaîlî ASTENGKERDE yê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L142
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr ""
+msgstr "Nê profîlî rê resayîş UMÛMÎ yo. Heme melumatî hetê her kesî/e ra eşkenê bêrê asayene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L147
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr ""
+msgstr "Nê profîlî rê resayîş SÎNORKERDE yo. Tena endamê Tatoeba eşkenê melumatê şexsî û îzahatî bivînê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L150
 msgid "Member since"
-msgstr ""
+msgstr "Nê tarîxî ra ke endam o/a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L253
 msgid "Contributions blocked"
-msgstr ""
+msgstr "Beşdarîyî ameyî astengkerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L306
 msgid "No description."
-msgstr ""
+msgstr "Îzahat çin o."
 
 #. header text on profile page
 #. / option label on settings page
@@ -4282,59 +4282,59 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L224
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L47
 msgid "Languages"
-msgstr ""
+msgstr "Ziwanî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L338
 msgid "No language added."
-msgstr ""
+msgstr "Ziwanêk nêame îlawekerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L343
 msgid "TIP: We encourage you to indicate the languages you know."
-msgstr ""
+msgstr "TÎP: Ma şima teşwîq kenîme ke ziwanê ke şima zanê dîyar bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L346
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
-msgstr ""
+msgstr "TÎP: Nê/Na xebitnayoxî/e teşwîq bikerê ke wa ziwanê ke o yan zî a zano/a dîyar bikero/a."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L503
 msgid "Next"
-msgstr ""
+msgstr "Dimayên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L504
 msgid "Add this language"
-msgstr ""
+msgstr "Nê ziwanî îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L54
 msgid "Main options"
-msgstr ""
+msgstr "Opsîyonê bingeyênî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L64
 msgid "Send email notifications"
-msgstr ""
+msgstr "Pêhesnayîşanê emaîlî bierşawe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L87
 msgid "Set your profile public"
-msgstr ""
+msgstr "Profîlê xo sey umûmî eyar bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L112
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr ""
+msgstr "Lîsteya peyêne ke şima ci rê cumleyêk tayîn kerdibî bîyarê vîrê xo û aye sey pêşferz biweçînê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L138
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations"
-msgstr ""
+msgstr "Wexto ke zaf açarnayîşî benê seba hîrakerdiş/tengkerdişê açarnayîşan lînkêk bimojne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L162
 msgid "Always show unreviewed transcriptions and alternative scripts"
-msgstr ""
+msgstr "Timûtim transkrîpsyonanê etudnêkerdeyan û skrîptanê alternatîfan bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L187
 msgid "Show random sentence on the homepage"
-msgstr ""
+msgstr "Keyepel de cumleya raştameyê bimojne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L210
 msgid ""
@@ -4342,30 +4342,30 @@ msgid ""
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
 "languages you indicated. You can leave this empty to display translations in"
 " all languages."
-msgstr ""
+msgstr "<a href=\"{url}\">Kodanê ISO 639-3</a> bi hawayêko bi-vîrgul-abirnaye dekewê (nimûne: jpn,epo,ara,deu). Tatoeba do o wext tena ziwanê ke şima dîyar kerdê de açarnayîşan bimojno. Eke şima nê cayî veng veradê Tatoeba do heme ziwanan de açarnayîşan bimojno."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L232
 msgid "Number of sentences per page"
-msgstr ""
+msgstr "Serê rîpel hûmara cumleyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Default license for original sentences"
-msgstr ""
+msgstr "Lîsanso pêşferz seba cumleyanê orîjînalan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
 msgid "Experimental options"
-msgstr ""
+msgstr "Opsîyonê ceribkîyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L256
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
-msgstr ""
+msgstr "Na kategorî de heme opsîyonî fonksîyonel nîyê, beno ke seba her kesî/e nêrê xebitnayene û/yan zî merheleyêka testê beta de yê. Ê eşkenê ameyox de bêrê vurnayene yan zî bêrê wedaritene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L273
 msgid "Activate the feature to review sentences"
-msgstr ""
+msgstr "Seba etudê cumleyan, taybetmendî aktîf bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L296
 msgid ""
@@ -4373,38 +4373,38 @@ msgid ""
 "native level in the language of the sentence. In the old design \"(native)\""
 " is displayed next to the username. In the new design a {star} is displayed "
 "next to the sentence."
-msgstr ""
+msgstr "Wexto ke wayîr/e profîlê xo de dîyar keno/a ke ziwanê cumle de sewîyeya înan ziwanê dayîke ya, cumleyan nîşan bikerê. Dîzaynê kehenî de hetê nameyê xebitnayoxî/e de \"(ziwanê dayîke)\" yeno mojnayene. Dîzaynê neweyî de hetê cumle de yew {star} yena mojnayena."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L324
 msgid ""
 "Display sentences with the new design. Note that some features are not yet "
 "implemented in this new design but are coming soon."
-msgstr ""
+msgstr "Bi dîzaynê neweyî cumleyan bimojnê. Wa aqilê şima de bibo ke nê dîzaynê neweyî de tay taybetmendîyî hema nînê caardene labelê ê do wextêko kilm de seba caardişî bêrê pêşkêşkerdene. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L355
 msgid "Change email address"
-msgstr ""
+msgstr "Adresa emaîlî bivurne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L368
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L160
 msgid "Email address"
-msgstr ""
+msgstr "Adresa emaîlî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L387
 msgid "Change password"
-msgstr ""
+msgstr "Şîfreyî bivurne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L400
 msgid "Old password"
-msgstr ""
+msgstr "Şîfreyo kehen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L408
 msgid "New password"
-msgstr ""
+msgstr "Şîfreyo newe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L416
 msgid "New password again"
-msgstr ""
+msgstr "Reyna şîfreyo newe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L38
 msgid "Members"
@@ -4412,21 +4412,21 @@ msgstr "Endamî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L43
 msgid "Search user"
-msgstr ""
+msgstr "Cigêre bi xebitnayoxî/e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L86
 msgid "Members (total {number})"
-msgstr ""
+msgstr "Endamî (pêro pîya {number})"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L96
 msgid "Username (alphabetical)"
-msgstr ""
+msgstr "Nameyê xebitnayoxî (alfabetîkal)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L98
 msgid "Username (reverse alphabetical)"
-msgstr ""
+msgstr "Nameyê xebitnayoxî (eks alfabetîkal)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L100
@@ -4438,21 +4438,21 @@ msgstr "Tewr newe verî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L102
 msgctxt "members"
 msgid "Oldest first"
-msgstr "Kehenî verî"
+msgstr "Tewr kehen verî"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L104
 msgid "Status (admin to contributor)"
-msgstr ""
+msgstr "Rewşe (beşdarîkerdox/e rê îdarekar/e)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L106
 msgid "Status (contributor to admin)"
-msgstr ""
+msgstr "Rewşe (îdarekar/e rê beşdarîkerdox/e)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Can switch license"
-msgstr ""
+msgstr "Lîsansê ci eşkeno bêro vurnayene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
@@ -4460,7 +4460,7 @@ msgstr "Endamî: {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L52
 msgid "Back to global stats"
-msgstr "Agêre bi statîstîkanê kurewî"
+msgstr "Agêre bi statîstîkanê global"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L96
 msgid "{lang} ({total} member)"
@@ -4512,15 +4512,15 @@ msgstr "Ziwanê dayîke:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L225
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
-msgstr ""
+msgstr "Eke şima ziwanê xoyê dayîke lîste de nêdî, ney sey 'Çin o' veradê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L236
 msgid "We need to make sure you are human."
-msgstr ""
+msgstr "Ma ganî emîn bibîme ke şima însan ê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L241
 msgid "What are the first five characters of your email address?"
-msgstr ""
+msgstr "Panc karakterê verênî yê adresa emaîlê şima çî yê?"
 
 #. captcha field name in register form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L250
@@ -4553,7 +4553,7 @@ msgstr "Cumleyê tewr peyênî"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L145
 msgid "view all"
-msgstr "Hemîne bivîne"
+msgstr "pêrune bivîne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L142
 msgid "Latest Wall messages"
@@ -4561,17 +4561,17 @@ msgstr "Mesajê Dêsî yê tewr peyênî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L31
 msgid "Add vocabulary items"
-msgstr ""
+msgstr "Elemananê çekuyan îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L43
 msgid ""
 "Add vocabulary that you are learning. If your vocabulary does not exist yet "
 "in Tatoeba, other contributors can add sentences for it."
-msgstr ""
+msgstr "Çekuyê ke şima musenê îlawe bikerê. Eke çekuya şima hema Tatoeba de mewcûd nîya, beşdarîkerdoxê bînî eşkenê seba aye cumleyî îlawe bikerê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L90
 msgid "Vocabulary item"
-msgstr ""
+msgstr "Elemanê çekuye"
 
 #. button to add a vocabulary request
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L103
@@ -4580,24 +4580,24 @@ msgstr "Îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L113
 msgid "Vocabulary items added"
-msgstr ""
+msgstr "Elemanê çekuye ameyî îlawekerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L128
 msgid "You have already added this vocabulary item."
-msgstr ""
+msgstr "To xora no elemanê çekuye îlawe kerd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L31
 msgid "Vocabulary that needs sentences"
-msgstr ""
+msgstr "Çekuya ke îhtîyacîya xo bi cumleyan esta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L34
 msgid "Vocabulary that needs sentences in {language}"
-msgstr ""
+msgstr "Çekuya ke ziwanê {language} de îhtîyacîya xo bi cumleyan esta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L58
 msgid ""
 "Only vocabulary items that match fewer than 10 sentences are displayed here."
-msgstr ""
+msgstr "Tîya de tena elemanê çekuye yê ke 10 cumleyan ra kêmêr ê yenê mojnayene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L67
 msgid "There are no requests."
@@ -4614,11 +4614,11 @@ msgstr "Pêşkêş bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/of.ctp#L33
 msgid "{username}'s vocabulary items ({number})"
-msgstr ""
+msgstr "Elemanê çekuye yê {username} ({number})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/edit.ctp#L28
 msgid "Edit message {number}"
-msgstr "Mesajê {number}. pergal bikerê"
+msgstr "Mesajê {number} pergal bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L48
 msgid "Wall (one thread)"
@@ -4634,12 +4634,12 @@ msgstr "Verê perskerdişê persêk xeyrê xo persa xo ser o <a href=\"{}\">PZP<
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
-msgstr "Ma wazenîme ke seba munaqeşeyanê medenîyan atmosferêko rindane îdame bikerîme. Xeyrê xo <a href=\"{}\">qaydeyê ma yê hemverê hereketanê xiraban</a> biwanê."
+msgstr "Ma wazenîme ke seba munaqeşeyanê medenîyan atmosferêko rindane îdame bikerîme. Xeyrê xo <a href=\"{}\">qaydeyanê ma yê verba hereketanê xiraban</a> biwanê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L86
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr "Şima eşkenê her ziwano ke şima wazenî de binusê. Tatoeba de heme ziwanî têduşt ê."
+msgstr "Şima eşkenê her ziwano ke şima wazenê de binusê. Tatoeba de heme ziwanî têduşt ê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
@@ -4678,7 +4678,7 @@ msgstr[1] "Tatoeba do seba tîmarî mîyanê {n} sanîyeyan de seba wextêko muw
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
-msgstr "Hetê nê/na kesî/e ra ame qeydkerdene: {username}"
+msgstr "Hetê ney/naye ra ame qeydkerdene: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L61
 msgid "License: {license}"
@@ -4688,25 +4688,25 @@ msgstr "Lîsans: {license}"
 msgid ""
 "You may not reuse the following audio recordings outside the Tatoeba project"
 " because {userName} has not chosen any license for them."
-msgstr ""
+msgstr "Şima nêeşkenê qeydanê vengî yê cêrênan teberê projeyê Tatoeba de newe ra bixebitnê çunke {userName} seba înan lîsansêk nêweçînayo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L78
 msgid ""
 "The following audio recordings by {userName}, are licensed under the public "
 "domain."
-msgstr ""
+msgstr "Qeydê vengî yê cêrênî ke hetê {userName} ra ameyê qeydkerdene, binê malê umûmîya de ameyê lîsanskerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L82
 msgid ""
 "The following audio recordings by {userName}, are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "Qeydê vengî yê cêrênî ke hetê {userName} ra ameyê qeydkerdene, binê lîsansê {licenseName} de ameyê lîsanskerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L86
 msgid ""
 "The following audio recordings by {userName}, are licensed under an unknown "
 "license."
-msgstr ""
+msgstr "Qeydê vengî yê cêrênî ke hetê {userName} ra ameyê qeydkerdene, binê lîsansêko nenas de ameyê lîsanskerdene."
 
 #. You can translate the sharp in the link to a sentence
 #. that appears in logs to a more natural character
@@ -4748,20 +4748,20 @@ msgstr "{date}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L140
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "vizêr"
+msgstr[1] "{n}&nbsp;rojî ver"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L142
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "yew saete ver"
+msgstr[1] "{n}&nbsp;saetî ver"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L146
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "yew deqa ver"
+msgstr[1] "{n}&nbsp;deqayî ver"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L155
 msgid "January"
@@ -4855,7 +4855,7 @@ msgstr "ziwano bîn"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L218
 msgid "None"
-msgstr "Çin"
+msgstr "Çin o"
 
 #. option used in language selection dropdown for "Show translations in" in
 #. advanced search form
@@ -4889,7 +4889,7 @@ msgstr "Nedîyar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L370
 msgid "0: Almost no knowledge"
-msgstr "0: Hema hema çîyêk nêzanîyeno"
+msgstr "0: Hema-hema çîyêk nêzanîyeno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L371
 msgid "1: Beginner"
@@ -4951,7 +4951,7 @@ msgstr "Vîzîbîlîteya lîste"
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
-msgstr "Her kes eşkeno xo biresno bi lîste. Lîste, rîpelê 'Goreyê lîste çim biaçarne' de û seba her cumleya ke mîyanê xo de hewênena zî rîpelê cumleyî de yena lîstekerdene."
+msgstr "Her kes/e eşkeno/a xo biresno/a bi lîste. Lîste, rîpelê 'Goreyê lîste cigêre' de û seba her cumleya ke mîyanê xo de îhtîwa kena zî rîpelê cumle de yena lîstekerdene."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L353
@@ -4966,7 +4966,7 @@ msgstr "newe"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L362
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
-msgstr ""
+msgstr "Her kes/e eşkeno/a xo biresno/a bi lîste û lîste, rîpelê 'Goreyê lîste cigêre' de yena lîstekerdene."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L365
@@ -4977,7 +4977,7 @@ msgstr "Lîstebîyaye"
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
-msgstr "Her kes eşkeno xo biresno bi lîste labelê lîste rîpelê 'Goreyê lîste çim biçarne' de nêeşkena bêra lîstekerdene."
+msgstr "Her kes/e eşkeno/a xo biresno/a bi lîste labelê lîste rîpelê 'Goreyê lîste cigêre' de nêeşkena bêra lîstekerdene."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L371
@@ -5022,13 +5022,13 @@ msgstr "Na cumle '{listName}' ra wedarne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L569
 msgid "Add a sentence to this list : "
-msgstr "Cumleyêk îlaweyê na lîste bike:"
+msgstr "Cumleyêk îlaweyê na lîste bike :"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L588
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
-msgstr "NOT: Sewbîna şima eşkenê bi nê îkonî {addToListButton} cumleyanê mewcûdan îlawe bikerê (meselen wextê <a href=\"{url}\">çimçarnayîş</a>î de)."
+msgstr "NOT: Sewbîna şima eşkenê bi nê sembolî {addToListButton} cumleyanê mewcûdan îlawe bikerê (mesela wextê <a href=\"{url}\">cigêrayîş</a>î de)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L655
 msgid "Create a new list"
@@ -5052,7 +5052,7 @@ msgstr "Heme lîsteyê umûmîyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L748
 msgid "Collaborative lists"
-msgstr "Lîsteyê hemkarîyî"
+msgstr "Lîsteyê hemkarî"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
@@ -5067,7 +5067,7 @@ msgstr "Lîsteyê bînî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by {user}"
-msgstr "Hetê {user}ra ame îlawekerdene"
+msgstr "hetê {user}ra ame îlawekerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by an unknown member"
@@ -5095,15 +5095,15 @@ msgstr "hetê {user} ra ame pergalkerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by an unknown member"
-msgstr "hetê endamêko/a nênas/e ra ame pergalkerdene"
+msgstr "hetê endamêko/a nenas/e ra ame pergalkerdene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
-msgstr "lîsans hetê{user} ra ame vurnayene"
+msgstr "lîsans, hetê{user} ra ame vurnayene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by an unknown member"
-msgstr "lîsans hetê endamêko/a nenas/e ra ame vurnayene"
+msgstr "lîsans, hetê endamêko/a nenas/e ra ame vurnayene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
@@ -5119,7 +5119,7 @@ msgstr "hetê {user} ra wedarîya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by an unknown member"
-msgstr "hetê endamêko/a nenas/e ra îrtîbatê ci wedarîya"
+msgstr "hetê endamêko/a nenas/e ra wedarîya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
@@ -5159,7 +5159,7 @@ msgstr "ame/ê taloqkerdene"
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
-msgstr ""
+msgstr "Na cumle na game sey tesdîqnêbîyayê amê nîşankerdene. Cumleyê tesdîqnêbîyayeyî nêeşkenê bêrê açarnayene."
 
 #. button after removing a favorite from the My favorites page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L212
@@ -5168,7 +5168,7 @@ msgstr "Apey bîge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L270
 msgid "Link to another sentence"
-msgstr ""
+msgstr "Bi cumleyêka bîne girê bide"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L284
 msgid "Sentence number"
@@ -5180,15 +5180,15 @@ msgstr "Îlaweyê lîste bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L364
 msgid "Sentence already in all possible lists"
-msgstr ""
+msgstr "Cumle xora heme lîsteyanê muhtemelan de ya"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L366
 msgid "Add to one of your lists"
-msgstr ""
+msgstr "Lîsteyanê xo ra yewere rê îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L367
 msgid "Add to a collaborative list"
-msgstr ""
+msgstr "Lîsteyêka hemkarî rê îlawe bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L425
 msgid "You cannot delete this sentence because it has audio."
@@ -5196,37 +5196,37 @@ msgstr "Şima nêeşkenê na cumle biestirê çunke vengê ci esto."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L516
 msgid "belongs to {user}"
-msgstr ""
+msgstr "aîdê {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L536
 msgid "(native)"
-msgstr "(lokal)"
+msgstr "(ziwanê dayîke)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L677
 msgid ""
 "Tatoeba can automatically enter the sentence ID when you have copied a "
 "sentence URL. To enable this, please allow your browser to read from the "
 "clipboard."
-msgstr ""
+msgstr "Wexto ke şima URL'yê cumleyêk kopya kerd Tatoeba eşkeno bi hawayêko otomatîk Nasnameyê cumle dekewo. Seba aktîfkerdişê ney xeyrê xo îzin bidê browserê xo ke wa bieşko pano ra biwano."
 
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L36
 msgid "{title} ({results})"
-msgstr ""
+msgstr "{title} ({results})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L48
 msgid "{n} result"
 msgid_plural "{n}&nbsp;results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n} netîce"
+msgstr[1] "{n}&nbsp;netîceyî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L60
 msgid "{thousand}&nbsp;results out of {n} occurrence"
 msgid_plural "{thousand}&nbsp;results out of {n}&nbsp;occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{thousand}&nbsp;netîce ra {n} wareameyîş"
+msgstr[1] "{thousand}&nbsp;netîce ra {n}&nbsp;wareameyîşî"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L95
 msgid "Recently added sentences may not appear in search results."
@@ -5242,11 +5242,11 @@ msgstr "Rîpelo verên [Ctrl+←]"
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L128
 msgid "Next page [Ctrl+→]"
-msgstr "Rîpelo dimayin [Ctrl+→]"
+msgstr "Rîpelo dimayên [Ctrl+→]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L59
 msgid "{sender} wrote:"
-msgstr ""
+msgstr "{sender} nuşt:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
@@ -5267,7 +5267,7 @@ msgstr "Tatoeba ra pêhesnayîş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
 msgid "from {sender}"
-msgstr "Hetê {sender} ra"
+msgstr "{sender} ra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -5290,23 +5290,23 @@ msgstr "Açarnayîşî pêşkêş bike"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L821
 msgid "This sentence is original and was not derived from translation."
-msgstr ""
+msgstr "Na cumle orîjînal a û açarnayîş ra nêvirazîyaya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L826
 msgid ""
 "This sentence was initially added as a translation of sentence "
 "{sentenceIdWithIdSign}."
-msgstr ""
+msgstr "Na cumle verî sey açarnayîşê cumleya {sentenceIdWithIdSign} amê îlawekerdene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L831
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
-msgstr ""
+msgstr "Ma hema nêeşkenîme dîyar bikerîme ke na cumle açarnayîşêk ra virazîyaya yan ney."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L174
 msgid "NOTE: Both direct and indirect translations will be shown."
-msgstr ""
+msgstr "NOT: Hem açarnayîşê raşteraştî hem zî neraşteraştî do bêrê mojnayene."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L92
 msgid "View all tags"
@@ -5351,17 +5351,17 @@ msgstr "Şima nêeşkenê nê transkrîpsyonî pergal bikerê."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L246
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
-msgstr ""
+msgstr "Seba sey etudkerde/î nîşan dayene bitiknê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L252
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
-msgstr ""
+msgstr "Seba sey etudkerde/î nîşan dayene bitiknê."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L41
 msgid "Unknown number of sentences"
-msgstr ""
+msgstr "Hûmarêka nenas a cumleyan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"
-msgstr "hetê {messageAuthor} ra"
+msgstr "{messageAuthor} ra"

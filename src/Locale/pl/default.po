@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-22 20:04+0200\n"
-"PO-Revision-Date: 2020-10-24 22:44+0000\n"
+"PO-Revision-Date: 2020-11-07 20:13+0000\n"
 "Last-Translator: Karol Łacina\n"
 "Language-Team: Polish (http://www.transifex.com/tatoeba/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -892,7 +892,7 @@ msgstr "Nie ma zdań z nagraniem."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L58
 msgid "(total {{count}})"
-msgstr "(ogółem {{count}})"
+msgstr "(łącznie {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L22
 msgid "Audio contributed by {username}"
@@ -945,15 +945,15 @@ msgstr "Wykres aktywności"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L64
 msgid "Activity timeline — {month} {year}"
-msgstr "Wykres aktywności - {month}{year}"
+msgstr "Wykres aktywności - {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr "Statystyki dotyczące ilości dodań w tym miesiącu."
+msgstr "Statystyki dotyczące liczby edycji w tym miesiącu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr "Statystyki dotyczące ilości dodań w {month}{year}."
+msgstr "Statystyki dotyczące liczby edycji w {month} {year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
@@ -964,7 +964,7 @@ msgstr "Dzień"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
-msgstr "Zdania dodane"
+msgstr "Dodane zdania"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
 msgid "Links added"
@@ -989,10 +989,10 @@ msgstr[3] "Średnia dzienna: {n} dodanych zdań"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L140
 msgid ", {n} link added"
 msgid_plural ", {n} links added"
-msgstr[0] ", 1 link został dodany"
-msgstr[1] ", {n} linków zostało dodanych"
-msgstr[2] ", {n} linków zostało dodanych"
-msgstr[3] ", {n} linków zostało dodanych"
+msgstr[0] ", {n} dodany link"
+msgstr[1] ", {n} dodane linki"
+msgstr[2] ", {n} dodanych linków"
+msgstr[3] ", {n} dodanego linka"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
@@ -1267,12 +1267,12 @@ msgstr "Przeszukuj nagrania audio dla wszystkich języków"
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
 msgid "Month"
-msgstr "miesiąc"
+msgstr "Miesiąc"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L72
 msgid "Year"
-msgstr "rok"
+msgstr "Rok"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L30
 msgid "Currently contributing"
@@ -1417,7 +1417,7 @@ msgstr "Nie znaleziono języka."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
-msgstr "Lista "
+msgstr "Lista dotkniętych zdań (łącznie {{count}})"
 
 #. link to the Register page in the top bar (verb)
 #. / link to the Register page in the sidebar menu on mobile (verb)
@@ -3866,11 +3866,11 @@ msgstr "Najdawniej zaktualizowanych"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L38
 msgid "{username}'s lists ({total})"
-msgstr "listy użytkownika {username} ({total})"
+msgstr "Listy użytkownika {username} ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L43
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr "listy użytkownika {username} zawierające \"{search}\" ({total})"
+msgstr "Listy użytkownika {username} zawierające \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
@@ -3999,7 +3999,7 @@ msgstr "Legenda"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L78
 msgid "Total"
-msgstr "Razem"
+msgstr "Łącznie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L29
 msgid "Number of sentences per language"
@@ -4061,11 +4061,11 @@ msgstr "Szukaj tagu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L74
 msgid "All tags (total {{count}})"
-msgstr "Wszystkie tagi (w sumie {{count}})"
+msgstr "Wszystkie tagi (łącznie {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L78
 msgid "Tags containing: {search} (total {{count}})"
-msgstr "Tagi zawierające: {search} (w sumie {{count}})"
+msgstr "Tagi zawierające: {search} (łącznie {{count}})"
 
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L95
@@ -4464,7 +4464,7 @@ msgstr "Znajdź użytkownika"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L86
 msgid "Members (total {number})"
-msgstr "Członkowie (w sumie {number})"
+msgstr "Członkowie (łącznie {number})"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L96
@@ -4827,51 +4827,51 @@ msgstr[3] "{n}&nbsp;minut temu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L155
 msgid "January"
-msgstr "styczeń"
+msgstr "Styczeń"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L156
 msgid "February"
-msgstr "luty"
+msgstr "Luty"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L157
 msgid "March"
-msgstr "marzec"
+msgstr "Marzec"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L158
 msgid "April"
-msgstr "kwiecień"
+msgstr "Kwiecień"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L159
 msgid "May"
-msgstr "maj"
+msgstr "Maj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L160
 msgid "June"
-msgstr "czerwiec"
+msgstr "Czerwiec"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L161
 msgid "July"
-msgstr "lipiec"
+msgstr "Lipiec"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L162
 msgid "August"
-msgstr "sierpień"
+msgstr "Sierpień"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L163
 msgid "September"
-msgstr "wrzesień"
+msgstr "Wrzesień"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L164
 msgid "October"
-msgstr "październik"
+msgstr "Październik"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L165
 msgid "November"
-msgstr "listopad"
+msgstr "Listopad"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L166
 msgid "December"
-msgstr "grudzień"
+msgstr "Grudzień"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L264
 msgctxt "incomplete date"
