@@ -119,7 +119,6 @@ class LanguagesLib
             'kin' => 'rw', // Kinyarwanda
             'kir' => 'ky', // Kyrgyz
             'kor' => 'ko', // Korean
-            'kur' => 'ku', // Kurdish
             'lao' => 'lo', // Lao
             'lat' => 'la', // Latin
             'lin' => 'ln', // Lingala
@@ -324,7 +323,6 @@ class LanguagesLib
                 'oci' => __d('languages', 'Occitan'),
                 'xal' => __d('languages', 'Kalmyk'),
                 'ang' => __d('languages', 'Old English'),
-                'kur' => __d('languages', 'Kurdish'),
                 'dsb' => __d('languages', 'Lower Sorbian'),
                 'hsb' => __d('languages', 'Upper Sorbian'),
                 'ksh' => __d('languages', 'Kölsch'),
