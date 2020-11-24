@@ -19,7 +19,6 @@
  */
 
 use Cake\Core\Configure;
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\InflectedRoute;
@@ -48,62 +47,39 @@ use Cake\Routing\Route\InflectedRoute;
 Router::defaultRouteClass(InflectedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
-    // Array that lists all the languages into which the Tatoeba interface
-    // has been translated
-    $configUiLanguages = Configure::read('UI.languages');
-    $iso3LangArray = array_keys($configUiLanguages);
-    $interfaceLanguages = join('|', $iso3LangArray);
+    // Regex pattern for language parameter
+    $langPattern = join(
+        '|',
+        array_keys(Configure::read('UI.languages'))
+    );
 
-    /**
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, src/Template/Pages/home.ctp)...
-     */
     $routes->connect(
         '/:lang',
-        [
-            'lang' => ':lang',
-            'controller' => 'Pages',
-            'action' => 'index'
-        ]
+        ['controller' => 'Pages', 'action' => 'index']
     )
-    ->setPatterns(['lang' => $interfaceLanguages])
+    ->setPatterns(['lang' => $langPattern])
     ->setPersist(['lang']);
+
     $routes->connect(
         '/',
-        [
-            'controller' => 'Pages',
-            'action' => 'index'
-        ]
+        ['controller' => 'Pages', 'action' => 'index']
     );
 
     $routes->connect(
         '/:lang/:action',
-        [
-            'lang' => ':lang',
-            'controller' => 'pages',
-        ]
+        ['controller' => 'Pages']
     )
-    ->setPatterns(['lang' => $interfaceLanguages])
+    ->setPatterns(['lang' => $langPattern])
     ->setPersist(['lang']);
 
     $routes->connect(
         '/:action',
-        [
-            'controller' => 'pages',
-        ]
+        ['controller' => 'Pages']
     );
 
-    /**
-     * La langue choisie sera maintenant disponible dans les contrôleurs
-     * par la variable $this->params['lang'].
-     */
-    $routes->connect(
-        '/:lang/:controller/:action/*',
-        [
-            'lang'=>'eng'
-        ]
-    )
-    ->setPatterns(['lang' => $interfaceLanguages])
+    $routes->connect('/:lang/:controller/:action/*')
+    ->setPatterns(['lang' => $langPattern])
     ->setPersist(['lang']);
+
+    $routes->connect('/:controller/:action/*');
 });
