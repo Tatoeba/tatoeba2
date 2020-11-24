@@ -43,7 +43,7 @@ class Application extends BaseApplication
             $this->addPlugin('Migrations');
         }
 
-        $this->addPlugin('Queue', ['bootstrap' => true]);
+        $this->addPlugin('Queue', ['bootstrap' => true, 'routes' => false]);
         $this->addPlugin('AssetCompress');
         $this->addPlugin('AuthActions', ['bootstrap' => false, 'routes' => false]);
     }
