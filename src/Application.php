@@ -14,6 +14,7 @@
  */
 namespace App;
 
+use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
@@ -70,7 +71,14 @@ class Application extends BaseApplication
             // Routes collection cache enabled by default, to disable route caching
             // pass null as cacheConfig, example: `new RoutingMiddleware($this)`
             // you might want to disable this cache in case your routing is extremely simple
-            ->add(new RoutingMiddleware($this, '_cake_routes_'));
+            ->add(new RoutingMiddleware($this, '_cake_routes_'))
+
+            // The language middleware should be invoked after the routing middleware
+            // in order to have access to the parsed request parameters
+            ->insertAfter(
+                RoutingMiddleware::class,
+                new LanguageSelectorMiddleware()
+            );
 
             // Can be re-enabled when we get rid of jquery.jeditable,
             // which is used for editing sentences. 

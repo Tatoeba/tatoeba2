@@ -82,13 +82,6 @@ class AppController extends Controller
         'Images'
     );
 
-    private function remapOldLangAlias($lang)
-    {
-        $UiLangs = Configure::read('UI.languages');
-        $langInfo = $UiLangs[$lang] ?? null;
-        return is_string($langInfo) ? $langInfo : $lang;
-    }
-
     private function blackhole($type) {
       var_dump("Blackholed: $type");
     }
@@ -132,58 +125,6 @@ class AppController extends Controller
         // So that we can access the current users info from models.
         // Important: needs to be done after RememberMe->check().
         CurrentUser::store($this->Auth->user());
-
-        // Language of interface:
-        // - By default we use the language set in the browser (or English, if the
-        //   language of the browser is not supported).
-        // - If the user has a cookie, we use the language set in the cookie.
-        $lang = $this->getSupportedLanguage();
-        $langInCookie = $this->Cookie->read('CakeCookie.interfaceLanguage');
-        $langInURL = $this->request->getParam('lang', null);
-        $langInURLAlias = $this->remapOldLangAlias($langInURL);
-        if ($langInURLAlias != $langInURL) {
-            $lang = $langInURLAlias;
-        } else if ($langInCookie) {
-            $langInCookieAlias = $this->remapOldLangAlias($langInCookie);
-            if ($langInCookieAlias != $langInCookie && !empty($langInURL)) {
-                $langInCookie = $langInCookieAlias;
-            }
-            $lang = $langInCookie;
-        }
-
-        $this->Cookie->write('CakeCookie.interfaceLanguage', $lang, false, "+1 month");
-        Configure::write('Config.language', $lang);
-        $locale = Locale::parseLocale(LanguagesLib::languageTag($lang));
-        I18N::setLocale($locale['language']);
-
-        // If the Router did not parse the URL, we don't know if the URL
-        // contains a language, we so cannot perform any kind of language
-        // redirection
-        $routerDidParseURL = !empty($this->request->getParam('controller'));
-        if ($routerDidParseURL) {
-
-            // Forcing the URL to have the (correct) language in it.
-            $url = $this->request->getRequestTarget();
-            if (!empty($langInURL) && $lang != $langInURL) {
-                // We're are now going to remove the language from the URL and set
-                // $langURL to null so that we get the the correct URL through
-                // redirection (below).
-                $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url);
-                $langInURL = null;
-            }
-            if (empty($langInURL)
-                && !$this->request->is('post')   // Avoid throwing away POST or
-                && !$this->request->is('put')) { // PUT data by redirecting
-                $redirectPage = "/".$lang.$url;
-                // Redirection of Ajax requests will be handled internally and all in
-                // one request thanks to RequestHandlerComponent::beforeRedirect().
-                // However, this function sets the HTTP return code and we don't want
-                // that. Instead, we want to hide the fact a redirection happened and
-                // let the sub-request return its own return code.
-                $redirectCode = $this->request->is('ajax') ? null : 301;
-                return $this->redirect($redirectPage, $redirectCode);
-            }
-        }
 
         // Restore named parameters removed in CakePHP 3
         $this->request = Router::parseNamedParams($this->request);
@@ -294,31 +235,6 @@ class AppController extends Controller
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }
-    }
-
-    /**
-     * Returns the ISO code of the language in which we should set the interface,
-     * considering the languages of the user's browser.
-     *
-     * @return string
-     */
-    public function getSupportedLanguage()
-    {
-        $configUiLanguages = array_keys(LanguagesLib::activeUiLanguages());
-        $supportedLanguages = array();
-        foreach ($configUiLanguages as $code) {
-            $browserCompatibleCode = LanguagesLib::languageTag($code);
-            $supportedLanguages[$browserCompatibleCode] = $code;
-        }
-
-        $browserLanguages = $this->request->acceptLanguage();
-        foreach ($browserLanguages as $browserLang) {
-            $lang = explode('-', $browserLang)[0];
-            if (isset($supportedLanguages[$lang])) {
-                return $supportedLanguages[$lang];
-            }
-        }
-        return 'eng';
     }
 
     /**
