@@ -20,14 +20,13 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         parent::setUp();
         $this->oldLocale = I18n::getLocale();
         Cache::disable();
-        $this->oldConfig = Configure::read('UI.languages');
+        $this->oldConfig = Configure::read();
         Configure::write('UI.languages', [
             'chi' => 'cmn',
             'cmn' => ['中文', 'Hans'],
             'eng' => ['English', null],
             'ita' => null,
             'jpn' => ['日本語', null],
-            'pt_BR' => ['Português (BR)', 'BR'],
         ]);
         $this->middleware = new LanguageSelectorMiddleware();
         $this->nextCallback = function ($req, $res) { return $res; };
@@ -35,7 +34,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
 
     function tearDown() {
         Cache::enable();
-        Configure::write('UI.languages', $this->oldConfig);
+        Configure::write($this->oldConfig);
         I18n::setLocale($this->oldLocale);
         parent::tearDown();
     }
@@ -50,6 +49,13 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         return (new ServerRequest(compact('url')))
             ->withMethod($method)
             ->withParam('lang', $lang);
+    }
+
+    public function testMiddleware_setsLocaleAndConfig() {
+        $request = $this->createRequest('/jpn/some/path', 'jpn', 'GET');
+        $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+        $this->assertEquals('ja', I18n::getLocale());
+        $this->assertEquals('jpn', Configure::read('Config.language'));
     }
 
     public function simpleRedirectsProvider() {
@@ -139,30 +145,46 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     }
 
     public function testMiddleware_setsCookie() {
-        $request = $this->createRequest('/jpn/index', 'jpn', 'GET');
-        $response = ($this->middleware)($request, new Response(), $this->nextCallback);
-        $this->assertEquals('jpn', $response->getCookie('interface_language')['value']);
+        foreach(['', 'jpn'] as $langPrefix) {
+            $request = $this->createRequest("$langPrefix/index", 'jpn', 'GET');
+            $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+            $this->assertEquals('jpn', $response->getCookie('interface_language')['value']);
+        }
     }
 
-    public function testMiddleware_specialRequests() {
-        // Non GET methods
-        foreach(['POST', 'PUT'] as $method) {
-            $request = $this->createRequest('/some/path', '', $method);
+    public function languageProvider () {
+        return [
+            ['', 'eng'],
+            ['chi', 'cmn'],
+            ['cmn', 'cmn'],
+            ['ita', 'eng'],
+            ['invalid', 'eng'],
+        ];
+    }
+
+    /**
+     * @dataProvider languageProvider
+     */
+    public function testMiddleware_specialRequests($lang, $expectedLang) {
+        foreach(['POST', 'PUT', 'AJAX'] as $method) {
+            if ($method === 'AJAX') {
+                $request = $this->createRequest("$lang/some/path", $lang, 'GET')
+                                ->withHeader('Accept', 'application/json')
+                                ->withHeader('X-Requested-With', 'XMLHttpRequest');
+            } else {
+                $request = $this->createRequest("$lang/some/path", $lang, $method);
+            }
             $response = ($this->middleware)($request, new Response(), $this->nextCallback);
             $this->assertEquals(200, $response->getStatusCode());
+            $this->assertEquals($expectedLang, Configure::read('Config.language'));
         }
+    }
 
-        // Ajax requests
-        $request = $this->createRequest('/some/path', '', 'GET')
-                        ->withHeader('Accept', 'application/json')
-                        ->withHeader('X-Requested-With', 'XMLHttpRequest');
-        $response = ($this->middleware)($request, new Response(), $this->nextCallback);
-        $this->assertEquals(200, $response->getStatusCode());
-
-        // Plugin
+    public function testMiddleware_ignorePluginPaths() {
         $request = $this->createRequest('/some/plugin', '', 'GET')
                         ->withParam('plugin', 'Plugin');
         $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+        $this->assertEquals($this->oldLocale, I18n::getLocale());
         $this->assertEquals(200, $response->getStatusCode());
     }
 }

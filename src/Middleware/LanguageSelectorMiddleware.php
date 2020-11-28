@@ -33,10 +33,12 @@ class LanguageSelectorMiddleware
 
         $langInUrl = $request->getParam('lang');
 
-        if ($request->is('post') ||  // Don't mess with the language
-            $request->is('put') ||   // of POST, PUT and AJAX requests
-            $request->is('ajax')) {
-            $lang = $this->unalias($langInUrl);
+        if ($request->is('post') || $request->is('put') || $request->is('ajax')) {
+            // Only ensure that the language in the URL of POST, PUT or AJAX
+            // requests is valid.
+            $lang = isset($this->allLanguages[$langInUrl]) ?
+                    $this->unalias($langInUrl) :
+                    'eng';
         } else {
             /* The following line is for backward compatibility
              * with old cookies and can be replaced with
