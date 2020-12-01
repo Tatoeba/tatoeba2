@@ -147,8 +147,8 @@ return [
      *   [1] Optional region or script, as explained in
      *       https://www.w3.org/International/articles/language-tags/
      *       In most cases, you can set this to null.
-     * In some cases, the language information points to another language code,
-     * which allows aliasing language codes.
+     * Old language codes can be redirected to an other language.
+     * For disabling an unmaintained language one should set it to "null".
      */
     'UI' => [
         'languages' => [
