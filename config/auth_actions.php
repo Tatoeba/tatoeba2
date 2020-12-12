@@ -108,6 +108,7 @@ $config = [
             'change_language'       => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'edit_audio'            => [ User::ROLE_ADMIN ],
             'edit_correctness'      => [ User::ROLE_ADMIN ],
+            'mark_unreliable'      => [ User::ROLE_ADMIN ],
         ],
         'sentences_lists'      => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'tags'                 => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],

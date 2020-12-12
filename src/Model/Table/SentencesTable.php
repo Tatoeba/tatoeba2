@@ -1167,6 +1167,35 @@ class SentencesTable extends Table
         return $this->save($sentence);
     }
 
+    /**
+     * Marks all sentences of the user as incorrect.
+     * Only admins can perform this action.
+     *
+     * @param string $username User name of the user.
+     *
+     * @return bool
+     */
+    public function markUnreliable($username)
+    {
+        $user = $this->Users->getInformationOfUser($username);
+        if(empty($user) || !CurrentUser::canMarkSentencesOfUser($user)) {
+            return false;
+        }
+
+        $sentences = $this->find('all')
+            ->where(['user_id' => $user['id'], 'correctness' => 0])
+            ->select(['id', 'correctness'])
+            ->toList();
+
+        $editValues = array();
+        foreach($sentences as $sentence) {
+            array_push($editValues,  [ 'id' => $sentence['id'], 'correctness' => -1 ]);
+        }
+
+        $this->patchEntities($sentences, $editValues);
+        return $this->saveMany($sentences);
+    }
+
     public function getSentencesLang($sentencesIds) {
         if (empty($sentencesIds)) {
             return [];

@@ -1299,6 +1299,31 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals(-1, $result->correctness);
 	}
 
+	function testMarkUnreliable_ofSpammer_asAdmin() {
+		CurrentUser::store($this->Sentence->Users->get(1));
+        $this->Sentence->saveNewSentence('test', 'eng', 6);
+
+		$result = $this->Sentence->markUnreliable('spammer');
+		$this->assertNotFalse($result);
+
+		$correctCount = $this->Sentence->find('all')
+            ->where(['user_id' => 6, 'correctness' => 0])
+			->count();
+		$this->assertEquals(0, $correctCount);
+	}
+
+	function testMarkUnreliable_ofSpammer_asContributor() {
+		CurrentUser::store($this->Sentence->Users->get(4));
+		$result = $this->Sentence->markUnreliable('spammer');
+		$this->assertFalse($result);
+	}
+
+	function testMarkUnreliable_ofContributor_asAdmin() {
+		CurrentUser::store($this->Sentence->Users->get(1));
+		$result = $this->Sentence->markUnreliable('contributor');
+		$this->assertFalse($result);
+	}
+
 	function testGetNeighborsSentenceIds() {
 		$result = $this->Sentence->getNeighborsSentenceIds(8, 'fra');
 		$expected = [

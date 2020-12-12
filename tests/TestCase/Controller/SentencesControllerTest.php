@@ -379,7 +379,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     }
 
     public function testEditCorrectness_asCorpusMaintainer() {
-        $this->logInAs('advanced_contributor');
+        $this->logInAs('corpus_maintainer');
         $this->post('/jpn/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
         $this->assertRedirect('/');
     }
@@ -388,6 +388,26 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->logInAs('admin');
         $this->post('/jpn/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
         $this->assertRedirect('/jpn/sentences/show/1');
+    }
+
+    public function testMarkUnreliable_asGuest() {
+        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', null, '');
+    }
+
+    public function testMarkUnreliable_asContributor() {
+        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'contributor', '/');
+    }
+
+    public function testMarkUnreliable_asAdvancedContributor() {
+        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'advanced_contributor', '/');
+    }
+
+    public function testMarkUnreliable_asCorpusMaintainer() {
+        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'corpus_maintainer', '/');
+    }
+
+    public function testMarkUnreliable() {
+        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'admin', '/eng/sentences/of_user/spammer');
     }
 
     public function testEditAudio_asGuest() {
@@ -409,7 +429,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     }
 
     public function testEditAudio_asCorpusMaintainer() {
-        $this->logInAs('advanced_contributor');
+        $this->logInAs('corpus_maintainer');
         $this->post('/jpn/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
         $this->assertRedirect('/');
     }

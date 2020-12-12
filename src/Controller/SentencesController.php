@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Form\SentencesSearchForm;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
 use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
@@ -677,6 +678,9 @@ class SentencesController extends AppController
             return;
         }
 
+        $user = $this->Users->getUserById($userId);
+        $this->set("unreliableButton", CurrentUser::canMarkSentencesOfUser($user));
+
         $this->set("userExists", true);
 
         $onlyOriginal = array_key_exists('only_original', $this->request->getQueryParams());
@@ -828,6 +832,38 @@ class SentencesController extends AppController
         }
     }
 
+    
+    /**
+     * Mark all sentences of a user as incorrect.
+     *
+     * @param string $username User name of the user. 
+     * 
+     * @return void
+     */
+    public function mark_unreliable($username)
+    {   
+        $marked = $this->Sentences->markUnreliable($username);
+        
+        if($marked) {
+            $this->Flash->set(format(
+                __d('admin', 'Marked all sentences added by {username} as unreliable.'),
+                ['username' => $username]
+            ));
+        } else {
+            $this->Flash->set(format(
+                __d('admin', 'Error: Sentences added by {username} could not be marked as unreliable.'),
+                ['username' => $username]
+            ));
+        }
+        
+        $this->redirect(
+            array(
+                "controller" => "sentences",
+                "action" => "of_user",
+                $username
+            )
+        );
+    }
 
     public function edit_audio()
     {
