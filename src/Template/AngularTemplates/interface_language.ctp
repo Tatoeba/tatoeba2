@@ -3,11 +3,11 @@ use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
 
 $lang = Configure::read('Config.language');
-$configUiLanguages = Configure::read('UI.languages');
+$configUiLanguages = LanguagesLib::activeUiLanguages();
 $languages = array();
 
-foreach ($configUiLanguages as $langs) {
-    list($isoCode, $suffix, $name) = $langs;
+foreach ($configUiLanguages as $isoCode => $info) {
+    list($name, $suffix) = $info;
     $fullIsoCode = LanguagesLib::languageTag($isoCode, $suffix);
     $languages[] = array(
         'text' => $name,

@@ -98,7 +98,7 @@
                     // Saving the cookie
                     var date = new Date();
                     date.setMonth(date.getMonth()+1);
-                    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang
+                    document.cookie = 'interface_language=' + newLang
                         + '; path=/'
                         + '; expires=' + date.toGMTString();
                     location.reload();

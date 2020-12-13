@@ -411,12 +411,7 @@ class LanguagesHelper extends AppHelper
     public function getInterfaceLanguage()
     {
         $langCode = Configure::read('Config.language');
-        $lang = array_filter(
-            Configure::read('UI.languages'),
-            function ($item) use ($langCode) {
-                return $item[0] == $langCode;
-            }
-        );
-        return current($lang)[2];
+        $UiLangs = LanguagesLib::activeUiLanguages();
+        return $UiLangs[$langCode][0];
     }
 }
