@@ -29,7 +29,6 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "test": "phpunit --colors=always"
     }
 }
