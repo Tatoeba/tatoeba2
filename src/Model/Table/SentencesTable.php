@@ -1173,7 +1173,7 @@ class SentencesTable extends Table
      *
      * @param string $username User name of the user.
      *
-     * @return bool
+     * @return array|false
      */
     public function markUnreliable($username)
     {

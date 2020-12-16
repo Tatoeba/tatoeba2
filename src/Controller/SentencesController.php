@@ -29,7 +29,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Form\SentencesSearchForm;
 use App\Model\CurrentUser;
-use App\Model\Entity\User;
 use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
@@ -844,25 +843,20 @@ class SentencesController extends AppController
     {
         $marked = $this->Sentences->markUnreliable($username);
 
-        if($marked) {
-            $this->Flash->set(format(
-                __d('admin', 'Marked all sentences added by {username} as unreliable.'),
-                ['username' => $username]
-            ));
+        if($marked === false) {
+            $message = __d(
+                'admin',
+                'Error: Sentences added by {username} could not be marked as unreliable.'
+            );
         } else {
-            $this->Flash->set(format(
-                __d('admin', 'Error: Sentences added by {username} could not be marked as unreliable.'),
-                ['username' => $username]
-            ));
+            $message = __d(
+                'admin',
+                'Marked all sentences added by {username} as unreliable.'
+            );
         }
 
-        $this->redirect(
-            array(
-                "controller" => "sentences",
-                "action" => "of_user",
-                $username
-            )
-        );
+        $this->Flash->set(format($message, ['username' => $username]));
+        $this->redirect(["controller" => "sentences", "action" => "of_user", $username]);
     }
 
     public function edit_audio()

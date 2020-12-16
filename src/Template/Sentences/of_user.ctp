@@ -74,27 +74,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     }
 
     if ($unreliableButton) {
-        ?>
-        <md-button class="md-warn md-raised"
-                   aria-label="<?= __d('admin', 'Mark as unreliable') ?>" >
-            <?php
-            echo $this->Html->link(
-                __d('admin', 'Mark as unreliable'),
-                [
-                    'controller' => 'sentences',
-                    'action' => 'mark_unreliable',
-                    $userName
-                ],
-                [
-                    'confirm' => __d('admin', 'Are you sure you want to mark all the sentences of this member as unreliable?'),
-                    'style' => 'color: white;'
-                ]
-            );
-            ?>
+        $label = __d('admin', 'Mark as unreliable');
+        $message = __d(
+            'admin',
+            'Are you sure you want to mark all the sentences of this member as unreliable?'
+        );
+        $link = $this->Html->link(
+            $label,
+            ['controller' => 'sentences', 'action' => 'mark_unreliable', $userName],
+            ['confirm' => $message, 'style' => 'color: white;']
+        ); ?>
+        <md-button class="md-warn md-raised" aria-label="<?= $label ?>">
+            <?= $link ?>
         </md-button>
         <?php
     }
-    ?>
+?>
 </div>
 <?php endif; ?>
 
