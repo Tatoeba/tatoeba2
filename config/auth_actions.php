@@ -77,7 +77,7 @@ $config = [
             'adopt_sentences'      => User::ROLE_CONTRIBUTOR_OR_HIGHER,
         ],    
         'audio' => [
-            'import' => [ User::ROLE_ADMIN ],
+            'import'        => [ User::ROLE_ADMIN ],
             'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
         ],
         'reviews'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
@@ -108,7 +108,7 @@ $config = [
             'change_language'       => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'edit_audio'            => [ User::ROLE_ADMIN ],
             'edit_correctness'      => [ User::ROLE_ADMIN ],
-            'mark_unreliable'      => [ User::ROLE_ADMIN ],
+            'mark_unreliable'       => [ User::ROLE_ADMIN ],
         ],
         'sentences_lists'      => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'tags'                 => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],

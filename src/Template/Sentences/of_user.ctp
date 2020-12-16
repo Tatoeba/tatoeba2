@@ -93,7 +93,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             ?>
         </md-button>
         <?php
-    }    
+    }
     ?>
 </div>
 <?php endif; ?>

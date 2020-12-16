@@ -832,18 +832,18 @@ class SentencesController extends AppController
         }
     }
 
-    
+
     /**
      * Mark all sentences of a user as incorrect.
      *
-     * @param string $username User name of the user. 
-     * 
+     * @param string $username User name of the user.
+     *
      * @return void
      */
     public function mark_unreliable($username)
-    {   
+    {
         $marked = $this->Sentences->markUnreliable($username);
-        
+
         if($marked) {
             $this->Flash->set(format(
                 __d('admin', 'Marked all sentences added by {username} as unreliable.'),
@@ -855,7 +855,7 @@ class SentencesController extends AppController
                 ['username' => $username]
             ));
         }
-        
+
         $this->redirect(
             array(
                 "controller" => "sentences",
