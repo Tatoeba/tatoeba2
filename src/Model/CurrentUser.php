@@ -365,4 +365,11 @@ class CurrentUser
             return self::isTrusted() && $userAccountDeactivated;
         }
     }
+
+    public static function canMarkSentencesOfUser($user)
+    {
+        $userBlocked = $user->level == -1;
+        $userSuspended = $user->role == User::ROLE_SPAMMER;
+        return (CurrentUser::isAdmin() && ($userBlocked || $userSuspended));
+    }
 }

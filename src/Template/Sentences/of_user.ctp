@@ -71,7 +71,30 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </md-checkbox>
         </div>
         <?php
-     } ?>
+    }
+
+    if ($unreliableButton) {
+        ?>
+        <md-button class="md-warn md-raised"
+                   aria-label="<?= __d('admin', 'Mark as unreliable') ?>" >
+            <?php
+            echo $this->Html->link(
+                __d('admin', 'Mark as unreliable'),
+                [
+                    'controller' => 'sentences',
+                    'action' => 'mark_unreliable',
+                    $userName
+                ],
+                [
+                    'confirm' => __d('admin', 'Are you sure you want to mark all the sentences of this member as unreliable?'),
+                    'style' => 'color: white;'
+                ]
+            );
+            ?>
+        </md-button>
+        <?php
+    }    
+    ?>
 </div>
 <?php endif; ?>
 
