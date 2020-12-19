@@ -85,14 +85,10 @@ class MailerComponent extends Component
             return;
         }
 
-        $this->Email->setTransport('gmail')
+        $transport = Configure::read('Mailer.transport');
+        $this->Email->setTransport($transport)
             ->setEmailFormat('html')
             ->setFrom([Configure::read('Mailer.username') => 'noreply'])
             ->send();
-    }
-
-    public function getTransport()
-    {
-        return 'Smtp';
     }
 }
