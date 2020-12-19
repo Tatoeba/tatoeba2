@@ -1,13 +1,16 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Model\Entity\User;
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\ORM\TableRegistry;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
-use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
 class UsersControllerTest extends IntegrationTestCase {
-    use TatoebaControllerTestTrait;
+    use EmailTrait,
+        TatoebaControllerTestTrait;
 
     public $fixtures = [
         'app.contributions',
@@ -267,5 +270,36 @@ class UsersControllerTest extends IntegrationTestCase {
         $users = TableRegistry::get('Users');
         $user = $users->find()->where(['id' => 6])->first();
         $this->assertNull($user);
+    }
+
+    public function blockedOrSuspendedProvider() {
+        return [
+            'blocking user' => [['level' => -1], 1],
+            'unblocking user' => [['level' => 0], 0],
+            'suspending user' => [['role' => User::ROLE_SPAMMER], 1],
+            'changing role' => [['role' => User::ROLE_CONTRIBUTOR], 0],
+            'changing username' => [['username' => 'abc'], 0],
+        ];
+    }
+
+    /**
+     * @dataProvider blockedOrSuspendedProvider()
+     */
+    public function testEdit_correctEmailNotification($postData, $emailCount) {
+        $this->logInAs('admin');
+        $this->post('/eng/users/edit/4', $postData);
+        $this->assertMailCount($emailCount);
+    }
+
+    public function testNewPassword_sendsEmailToUser() {
+        $address = 'contributor@example.com';
+        $this->post('/eng/users/new_password', ['email' => $address]);
+        $this->assertMailSentTo($address);
+    }
+
+    public function testNewPassword_sendsNoEmailToNonExistingUser() {
+        $address = 'non_existing_user@example.com';
+        $this->post('/eng/users/new_password', ['email' => $address]);
+        $this->assertNoMailSent();
     }
 }
