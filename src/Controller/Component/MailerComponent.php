@@ -47,14 +47,14 @@ class MailerComponent extends Component
     public function sendBlockedOrSuspendedUserNotif($username, $isSuspended) {
         $this->Email = new Email();
         $this->Email
-            ->to('tatoeba-community-admins@googlegroups.com')
-            ->subject('( ! ) ' . $username)
-            ->template('blocked_or_suspended_user');
+            ->setTo('tatoeba-community-admins@googlegroups.com')
+            ->setSubject('( ! ) ' . $username)
+            ->setTemplate('blocked_or_suspended_user');
 
         $User = TableRegistry::get('Users');
         $userId = $User->getIdFromUsername($username);
 
-        $this->Email->viewVars(array(
+        $this->Email->setViewVars(array(
           'admin' => CurrentUser::get('username'),
           'user' => $username,
           'userId' => $userId,
@@ -68,10 +68,10 @@ class MailerComponent extends Component
     {
         $this->Email = new Email();
         $this->Email
-            ->to($recipient)
-            ->subject(__('Tatoeba, new password'))
-            ->template('new_password')
-            ->viewVars(array(
+            ->setTo($recipient)
+            ->setSubject(__('Tatoeba, new password'))
+            ->setTemplate('new_password')
+            ->setViewVars(array(
               'username' => $username,
               'newPassword' => $newPassword
             ));
@@ -85,8 +85,8 @@ class MailerComponent extends Component
             return;
         }
 
-        $this->Email->transport('gmail')
-            ->emailFormat('html')
+        $this->Email->setTransport('gmail')
+            ->setEmailFormat('html')
             ->setFrom([Configure::read('Mailer.username') => 'noreply'])
             ->send();
     }

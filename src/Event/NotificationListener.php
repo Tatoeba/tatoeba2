@@ -79,10 +79,10 @@ class NotificationListener implements EventListenerInterface {
         $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
 
         $this->Email
-             ->to($recipient)
-             ->subject($subject)
-             ->template('wall_reply')
-             ->viewVars(array(
+             ->setTo($recipient)
+             ->setSubject($subject)
+             ->setTemplate('wall_reply')
+             ->setViewVars(array(
                  'author' => $author,
                  'postId' => $post['id'],
                  'messageContent' => $post['content']
@@ -106,10 +106,10 @@ class NotificationListener implements EventListenerInterface {
         $content = $message['content'];
 
         $this->Email
-            ->to($recipientEmail)
-            ->subject('Tatoeba PM - ' . $title)
-            ->template('new_private_message')
-            ->viewVars(array(
+            ->setTo($recipientEmail)
+            ->setSubject('Tatoeba PM - ' . $title)
+            ->setTemplate('new_private_message')
+            ->setViewVars(array(
               'sender' => $sender,
               'title' => $title,
               'message' => $content,
@@ -188,10 +188,10 @@ class NotificationListener implements EventListenerInterface {
         $commentText = $comment['text'];
 
         $this->Email
-            ->to($recipient)
-            ->subject($subject)
-            ->template('comment_on_sentence')
-            ->viewVars(array(
+            ->setTo($recipient)
+            ->setSubject($subject)
+            ->setTemplate('comment_on_sentence')
+            ->setViewVars(array(
               'author' => $comment['author'],
               'commentText' => $commentText,
               'sentenceIsDeleted' => $sentenceIsDeleted,
@@ -208,9 +208,9 @@ class NotificationListener implements EventListenerInterface {
         }
 
         $transport = Configure::read('Mailer.transport');
-        $this->Email->transport($transport)
-            ->emailFormat('html')
-            ->from([Configure::read('Mailer.username') => 'noreply'])
+        $this->Email->setTransport($transport)
+            ->setEmailFormat('html')
+            ->setFrom([Configure::read('Mailer.username') => 'noreply'])
             ->send();
     }
 }

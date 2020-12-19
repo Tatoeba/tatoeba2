@@ -25,9 +25,9 @@ class NotificationListenerTest extends TestCase {
         Configure::write('Mailer.transport', 'debug');
 
         $this->Email = $this->getMockBuilder(Email::class)
-            ->setMethods(['from', 'to', 'subject', 'send', 'viewVars'])
+            ->setMethods(['setFrom', 'setTo', 'setSubject', 'send', 'setViewVars'])
             ->getMock();
-        foreach (array('from', 'to', 'subject') as $method) {
+        foreach (array('setFrom', 'setTo', 'setSubject') as $method) {
             $this->Email->expects($this->any())
                         ->method($method)
                         ->will($this->returnSelf());
@@ -64,13 +64,13 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('from')
+                    ->method('setFrom')
                     ->with(array('tatoeba@example.com' => 'noreply'));
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba PM - Status');
         $this->Email->expects($this->once())
                     ->method('send');
@@ -130,13 +130,13 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('from')
+                    ->method('setFrom')
                     ->with(array('tatoeba@example.com' => 'noreply'));
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba - Comment on sentence : '
                           .'This sentences purposely misses its flag.');
         $this->Email->expects($this->once())
@@ -155,7 +155,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('corpus_maintainer@example.com');
 
         $this->NL->sendSentenceCommentNotification($event);
@@ -171,7 +171,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('corpus_maintainer@example.com');
 
         $this->NL->sendSentenceCommentNotification($event);
@@ -247,7 +247,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
 
         $this->NL->sendSentenceCommentNotification($event);
@@ -263,7 +263,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->exactly(4))
-                    ->method('to')
+                    ->method('setTo')
                     ->withConsecutive(
                         ['admin@example.com'],
                         ['corpus_maintainer@example.com'],
@@ -284,10 +284,10 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba - Comment on deleted sentence #13');
         $this->Email->expects($this->once())
                     ->method('send');
@@ -305,7 +305,7 @@ class NotificationListenerTest extends TestCase {
             'comment' => $comment
         ));
         $this->Email->expects($this->once())
-            ->method('viewVars')
+            ->method('setViewVars')
             ->with([
                 'author' => 'contributor',
                 'commentText' => $comment['text'],
@@ -335,13 +335,13 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('from')
+                    ->method('setFrom')
                     ->with(array('tatoeba@example.com' => 'noreply'));
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('admin@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba - kazuki has replied to you on the Wall');
         $this->Email->expects($this->once())
                     ->method('send');
@@ -355,7 +355,7 @@ class NotificationListenerTest extends TestCase {
         ));
         $expectedLink = 'https://example.net/wall/show_message/3#message_3';
         $this->Email->expects($this->once())
-            ->method('viewVars')
+            ->method('setViewVars')
             ->with([
                 'author' => 'kazuki',
                 'postId' => 3,
