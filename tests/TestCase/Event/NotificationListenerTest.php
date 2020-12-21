@@ -309,7 +309,7 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => $this->_wallReply(),
         ));
 
@@ -326,7 +326,7 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification_hasCorrectViewVars() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => $this->_wallReply(),
         ));
         $expectedLink = 'https://example.net/wall/show_message/3#message_3';
@@ -342,7 +342,7 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification_doesntSelfNotify() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => array(
                 'id' => 3,
                 'owner' => 1,
@@ -362,7 +362,7 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification_doesNotSendIfUserSettingsDisabled() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => array(
                 'id' => 3,
                 'owner' => 1,
@@ -370,26 +370,6 @@ class NotificationListenerTest extends TestCase {
                 'modified' => '2018-01-02 03:04:05',
                 'parent_id' => 1,
                 'content' => 'No, I was kidding!',
-                'lft' => 4,
-                'rght' => 5,
-            ),
-        ));
-
-        $this->Email->expects($this->never())
-                    ->method('send');
-
-        $this->NL->sendWallReplyNotification($event);
-    }
-
-    public function testSendWallReplyNotification_doesNotSendOnNewThread() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
-            'post' => array(
-                'id' => 3,
-                'owner' => 2,
-                'date' => '2018-01-02 03:04:05',
-                'modified' => '2018-01-02 03:04:05',
-                'parent_id' => NULL,
-                'content' => 'Hi everyone!',
                 'lft' => 4,
                 'rght' => 5,
             ),

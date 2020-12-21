@@ -104,12 +104,6 @@ class WallTable extends Table
             $this->WallThreads->save($newThreadData);
         }
 
-        if ($entity->isNew()) {
-            $event = new Event('Model.Wall.postPosted', $this, array(
-                'post' => $entity,
-            ));
-            $this->getEventManager()->dispatch($event);
-        }
     }
 
 
@@ -282,6 +276,11 @@ class WallTable extends Table
         $savedMessage = $this->save($data);
 
         if ($savedMessage) {
+            $event = new Event('Model.Wall.replyPosted', $this, [
+                'post' => $savedMessage
+            ]);
+            $this->getEventManager()->dispatch($event);
+
             return $this->get($savedMessage->id, [
                 'contain' => [
                     'Users' => [

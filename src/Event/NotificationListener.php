@@ -31,7 +31,7 @@ class NotificationListener implements EventListenerInterface {
         return array(
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
             'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',
-            'Model.Wall.postPosted' => 'sendWallReplyNotification',
+            'Model.Wall.replyPosted' => 'sendWallReplyNotification',
         );
     }
 
@@ -63,9 +63,6 @@ class NotificationListener implements EventListenerInterface {
 
     public function sendWallReplyNotification($event) {
         $post = $event->getData('post'); // $post
-        if (!$post['parent_id']) {
-            return;
-        }
 
         $parentMessage = $this->_getMessageForMail($post['parent_id']);
         if (!$parentMessage->user->send_notifications
