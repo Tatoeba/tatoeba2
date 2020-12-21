@@ -86,9 +86,8 @@ class NotificationListener implements EventListenerInterface {
                  'author' => $author,
                  'postId' => $post['id'],
                  'messageContent' => $post['content']
-             ));
-
-        $this->_send();
+             ))
+             ->send();
     }
 
     public function sendPmNotification($event) {
@@ -114,9 +113,8 @@ class NotificationListener implements EventListenerInterface {
               'title' => $title,
               'message' => $content,
               'messageId' => $message['id'],
-            ));
-
-        $this->_send();
+            ))
+            ->send();
     }
 
     private function _getMentionedUsernames($comment)
@@ -197,20 +195,7 @@ class NotificationListener implements EventListenerInterface {
               'sentenceIsDeleted' => $sentenceIsDeleted,
               'sentenceText' => $sentenceText,
               'sentenceId' => $sentenceId,
-            ));
-
-        $this->_send();
-    }
-
-    private function _send() {
-        if (Configure::read('Mailer.enabled') == false) {
-            return;
-        }
-
-        $transport = Configure::read('Mailer.transport');
-        $this->Email->setTransport($transport)
-            ->setEmailFormat('html')
-            ->setFrom([Configure::read('Mailer.username') => 'noreply'])
+            ))
             ->send();
     }
 }

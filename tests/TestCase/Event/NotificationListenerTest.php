@@ -3,12 +3,16 @@
 namespace App\Test\TestCase\Event;
 
 use App\Event\NotificationListener;
-use Cake\Mailer\Email;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Mailer\Email;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 
 class NotificationListenerTest extends TestCase {
+
+    use EmailTrait;
+
     public $fixtures = array(
         'app.users',
         'app.sentences',
@@ -19,15 +23,10 @@ class NotificationListenerTest extends TestCase {
     public function setUp() {
         parent::setUp();
 
-        Configure::write('App.fullBaseUrl', 'https://example.net');
-        Configure::write('Mailer.enabled',   true);
-        Configure::write('Mailer.username', 'tatoeba@example.com');
-        Configure::write('Mailer.transport', 'debug');
-
         $this->Email = $this->getMockBuilder(Email::class)
-            ->setMethods(['setFrom', 'setTo', 'setSubject', 'send', 'setViewVars'])
+            ->setMethods(['setTo', 'setSubject', 'send', 'setViewVars'])
             ->getMock();
-        foreach (array('setFrom', 'setTo', 'setSubject') as $method) {
+        foreach (['setTo', 'setSubject', 'setViewVars'] as $method) {
             $this->Email->expects($this->any())
                         ->method($method)
                         ->will($this->returnSelf());
@@ -64,9 +63,6 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('setFrom')
-                    ->with(array('tatoeba@example.com' => 'noreply'));
-        $this->Email->expects($this->once())
                     ->method('setTo')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->once())
@@ -91,22 +87,8 @@ class NotificationListenerTest extends TestCase {
 
         $this->NL->sendPmNotification($event);
 
-        $sentMessage = implode($this->Email->message());
-        $this->assertNotEmpty($sentMessage);
-        $this->assertNotContains('CakePHP Framework', $sentMessage);
-        $this->assertNotContains('Emails/html', $sentMessage);
-    }
-
-    public function testSendPmNotification_doNotSendIfDisabled() {
-        Configure::write('Mailer.enabled', false);
-        $event = new Event('Model.PrivateMessage.messageSent', $this, array(
-            'message' => $this->_message(),
-        ));
-
-        $this->Email->expects($this->never())
-                    ->method('send');
-
-        $this->NL->sendPmNotification($event);
+        $this->assertMailCount(1);
+        $this->assertMailContainsHtml('Why are you so advanced?');
     }
 
     public function testSendPmNotification_doNotSendIfUserSettingsDisabled() {
@@ -129,9 +111,6 @@ class NotificationListenerTest extends TestCase {
             )
         ));
 
-        $this->Email->expects($this->once())
-                    ->method('setFrom')
-                    ->with(array('tatoeba@example.com' => 'noreply'));
         $this->Email->expects($this->once())
                     ->method('setTo')
                     ->with('advanced_contributor@example.com');
@@ -334,9 +313,6 @@ class NotificationListenerTest extends TestCase {
             'post' => $this->_wallReply(),
         ));
 
-        $this->Email->expects($this->once())
-                    ->method('setFrom')
-                    ->with(array('tatoeba@example.com' => 'noreply'));
         $this->Email->expects($this->once())
                     ->method('setTo')
                     ->with('admin@example.com');
