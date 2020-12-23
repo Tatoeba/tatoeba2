@@ -23,34 +23,15 @@ class HashTraitTest extends TestCase
         $this->assertEquals("2hfxma4\0\0\0\0\0\0\0\0\0", $wrongHash);
      }
 
-    public function testNewEntity() {
-        $new = $this->Sentences->newEntity(
-            [
-                'lang' => 'jpn',
-                'text' => 'ちょっと待って。'
-            ]);
-        $this->assertFalse($new->isEmpty('hash'));
-        $this->assertTrue($new->isDirty('hash'));
-        $this->assertEquals("3cekb1u\0\0\0\0\0\0\0\0\0", $new->hash);
-    }
-
     public function testPatchedEntity() {
         $sentence = $this->Sentences->get(7);
-        $this->assertFalse($sentence->isDirty('hash'));
 
         $this->Sentences->patchEntity($sentence, ['lang' => 'fra']);
-        $this->assertTrue($sentence->isDirty('hash'));
         $this->assertFalse($sentence->isDirty('text'));
-        $this->assertFalse($sentence->isEmpty('hash'));
-        $this->assertEquals("1c7tbqo\0\0\0\0\0\0\0\0\0", $sentence->hash);
 
         $sentence = $this->Sentences->get(7);
-        $this->assertFalse($sentence->isDirty('hash'));
 
         $this->Sentences->patchEntity($sentence, ['text' => 'xxx']);
-        $this->assertTrue($sentence->isDirty('hash'));
         $this->assertFalse($sentence->isDirty('lang'));
-        $this->assertFalse($sentence->isEmpty('hash'));
-        $this->assertEquals("1v3tasn\0\0\0\0\0\0\0\0\0", $sentence->hash);
     }
 }

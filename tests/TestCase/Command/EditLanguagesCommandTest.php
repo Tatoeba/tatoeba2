@@ -60,7 +60,6 @@ class EditLanguagesCommandTest extends TestCase
 
         $sentence = $this->Sentences->get(2);
         $this->assertEquals('fra', $sentence->lang);
-        $this->assertEquals("259east\0\0\0\0\0\0\0\0\0", $sentence->hash);
     }
 
     public function successesProvider() {

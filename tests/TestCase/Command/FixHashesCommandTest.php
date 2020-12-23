@@ -41,52 +41,12 @@ class FixHashesCommandTest extends TestCase
         $this->Contributions = TableRegistry::getTableLocator()->get('Contributions');
     }
 
-    public function testExecute_completeDatabase() {
-        $oldSentence = $this->Sentences->get(3);
-        $this->exec('fix_hashes Sentences');
-        $this->assertOutputContains(
-            sprintf('%u rows checked', $this->Sentences->find()->count())
-        );
-        $this->assertOutputContains('8 rows changed');
-
-        $newSentence = $this->Sentences->get(3);
-        $this->assertEquals("2hfhma4\0\0\0\0\0\0\0\0\0", $newSentence->hash);
-        $this->assertNotEquals($oldSentence->modified, $newSentence->modified);
-    }
-
     public function inputProvider() {
         return [
             'only correct ids' => [[23, 11, 24, 9, 32, 1, 39, 43, 7], 3, false],
             'with wrong ids' => [[1, 99, 402, 5], 0, true],
             'empty file' => [[], 0, false]
         ];
-    }
-
-    /**
-     * @dataProvider inputProvider
-     **/
-    public function testExecute_withInputOption($ids, $nbrOfChanges, $containsIgnored) {
-        $path = self::TESTDIR . 'input_test';
-        $file = new File($path);
-        $file->write(implode("\n", $ids));
-        $file->close();
-
-        $this->exec(format('fix_hashes -i {path} Sentences', ['path' => $path]));
-
-        $this->assertExitCode(Command::CODE_SUCCESS);
-        $this->assertOutputContains(format('{n} rows checked', ['n' => count($ids)]));
-
-        if ($nbrOfChanges > 0) {
-            $this->assertOutputContains(format('{n} rows changed', ['n' => $nbrOfChanges]));
-        } else {
-            $this->assertOutputContains('no problems found');
-        }
-
-        if ($containsIgnored) {
-            $this->assertErrorContains('ignored');
-        } else {
-            $this->assertErrorEmpty();
-        }
     }
 
     public function testExecute_withNonexistentFile() {
