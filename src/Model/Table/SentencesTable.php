@@ -1051,7 +1051,7 @@ class SentencesTable extends Table
      */
     public function setOwner($sentenceId, $userId, $currentUserRole)
     {
-        $sentence = $this->getSentenceWith($sentenceId);
+        $sentence = $this->get($sentenceId);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         $ownerId = $currentOwner['id'];
         $ownerRole = $currentOwner['role'];

@@ -13,9 +13,9 @@ class SentencesReplaceHashWithUniqueKey extends AbstractMigration
     public function change()
     {
         $table = $this->table('sentences');
-        $table->addIndex(['lang', 'text'], [
+        $table->addIndex(['text', 'lang'], [
             'unique' => true,
-            'name' => 'unique_lang_text'
+            'name' => 'unique_text_lang'
         ])
         ->removeIndexByName('hash')
         ->removeIndexByName('dedup_idx')
