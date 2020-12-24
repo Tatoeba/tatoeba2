@@ -955,6 +955,11 @@ class SentencesTable extends Table
             } else {
                 // If sentence is owned by spammer/inactive user, and you are an advanced contributor (or higher), 
                 // adopt sentence
+                if ($sentence->user_id == $userId) {
+                    $sentence->isDuplicate = true;
+                    return $sentence;
+                }
+
                 $sentence = $this->setOwner($sentence->id, $userId, CurrentUser::get('role'));
 
                 if ($sentence->user_id != $userId) {
