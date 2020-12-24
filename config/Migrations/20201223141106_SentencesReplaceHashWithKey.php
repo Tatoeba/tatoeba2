@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class SentencesReplaceHashWithUniqueKey extends AbstractMigration
+class SentencesReplaceHashWithKey extends AbstractMigration
 {
     /**
      * Change Method.
@@ -13,10 +13,7 @@ class SentencesReplaceHashWithUniqueKey extends AbstractMigration
     public function change()
     {
         $table = $this->table('sentences');
-        $table->addIndex(['text', 'lang'], [
-            'unique' => true,
-            'name' => 'unique_text_lang'
-        ])
+        $table->addIndex(['text', 'lang'], ['name' => 'text_lang_idx'])
         ->removeIndexByName('hash')
         ->removeIndexByName('dedup_idx')
         ->removeColumn('hash')
