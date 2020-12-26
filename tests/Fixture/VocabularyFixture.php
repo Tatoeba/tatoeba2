@@ -26,6 +26,7 @@ class VocabularyFixture extends TestFixture
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'text_lang_idx' => ['type' => 'unique', 'columns' => ['text', 'lang']],
         ],
         '_options' => [
             'engine' => 'InnoDB',

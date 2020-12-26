@@ -1439,7 +1439,6 @@ class SentencesTableTest extends TestCase {
 
         $this->assertEquals($old->id, $result->id);
         $this->assertEquals($old->text, $result->text);
-        $this->assertEquals($old->hash, $result->hash);
     }
 
     function testChangeLanguage_hashChanged() {
