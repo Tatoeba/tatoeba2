@@ -31,7 +31,6 @@ class VocabularyTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('hash', 'string');
         return $schema;
     }
 
@@ -44,7 +43,6 @@ class VocabularyTable extends Table
         $this->belongsTo('Sentences');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Duplicate');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
@@ -91,22 +89,32 @@ class VocabularyTable extends Table
             return false;
         }
 
-        $result = $this->saveWithDuplicateCheck($newVocable);
-        if ($result->isDuplicate) {
-            $this->_updateNumSentences($result);
+        $vocable = $this->find()
+                        ->where([
+                            'text' => $newVocable->text,
+                            'lang' => $newVocable->lang,
+                        ])
+                        ->first();
+
+        if ($vocable) {
+            $this->_updateNumSentences($vocable);
+        } else {
+            $vocable = $this->save($newVocable);
         }
 
-        try {
-            $this->UsersVocabulary->add($result->id, CurrentUser::get('id'));
-        } catch (\PDOException $e) {
-            $result->duplicate = true;
-        }
-        
-        if (Configure::read('Search.enabled')) {
-            $result->query = Search::exactSearchQuery($text);
+        if ($vocable) {
+            try {
+                $this->UsersVocabulary->add($vocable->id, CurrentUser::get('id'));
+            } catch (\PDOException $e) {
+                $vocable->duplicate = true;
+            }
+
+            if (Configure::read('Search.enabled')) {
+                $vocable->query = Search::exactSearchQuery($vocable->text);
+            }
         }
 
-        return $result;
+        return $vocable;
     }
 
     /**
