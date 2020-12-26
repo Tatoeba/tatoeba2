@@ -90,7 +90,6 @@ class SentencesTable extends Table
             ]
         )->setConditions(['Sentences.based_on_id >' => '0']);
 
-        $this->addBehavior('Duplicate');
         $this->addBehavior('Timestamp');
         if (Configure::read('AutoTranscriptions.enabled')) {
             $this->addBehavior('Transcriptable');
