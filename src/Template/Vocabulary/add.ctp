@@ -87,6 +87,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
                 <md-input-container flex>
                     <?= $this->Form->input('text', [
+                        'id' => 'vocabulary-item',
                         'label' => __('Vocabulary item'),
                         'ng-model' => 'ctrl.data.text',
                         'ng-disabled' => 'ctrl.isAdding',
