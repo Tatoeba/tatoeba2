@@ -87,18 +87,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
                 <md-input-container flex>
                     <?= $this->Form->input('text', [
-                        'id' => 'vocabulary-item',
                         'label' => __('Vocabulary item'),
                         'ng-model' => 'ctrl.data.text',
                         'ng-disabled' => 'ctrl.isAdding',
-                        'autocomplete' => 'off'
+                        'autocomplete' => 'off',
+                        'focus-input' => 'focusInput'
                     ]);
                     ?>
                 </md-input-container>
             </div>
 
             <div layout="row" layout-align="center center">
-                <md-button type="submit" class="md-raised md-primary"
+                <md-button type="submit" class="md-raised md-primary" ng-click="focusInput=true"
                            ng-disabled="ctrl.isAdding || !ctrl.data.text || !ctrl.data.lang">
                     <?php /* @translators: button to add a vocabulary request */ ?>
                     <?= __('Add'); ?>

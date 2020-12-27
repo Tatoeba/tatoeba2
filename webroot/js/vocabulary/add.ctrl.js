@@ -20,7 +20,23 @@
 
     angular
         .module('app')
-        .controller('VocabularyAddController', ['$http', VocabularyAddController]);
+        .controller('VocabularyAddController', ['$http', VocabularyAddController])
+        .directive(
+            'focusInput', function($timeout) {
+                return {
+                    link: function($scope, $element, $attrs) {
+                        $scope.$watch($attrs.focusInput, function(value) {
+                            if(value === true) { 
+                                $timeout(function() {
+                                    $element[0].focus();
+                                    $scope[$attrs.focusInput] = false;
+                                }, 250);
+                            }
+                        });
+                    }
+                };
+            }
+        );
 
     function VocabularyAddController($http) {
         var vm = this;
@@ -59,7 +75,6 @@
                     vm.vocabularyAdded.unshift(data);
                     vm.data.text = '';
                     vm.isAdding = false;
-                    setInterval(function() { document.getElementById('vocabulary-item').focus(); }, 0);
                 }
             );
         }
