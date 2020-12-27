@@ -98,7 +98,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </div>
 
             <div layout="row" layout-align="center center">
-                <md-button type="submit" class="md-raised md-primary" ng-click="focusInput=true"
+                <md-button type="submit" class="md-raised md-primary"
                            ng-disabled="ctrl.isAdding || !ctrl.data.text || !ctrl.data.lang">
                     <?php /* @translators: button to add a vocabulary request */ ?>
                     <?= __('Add'); ?>
