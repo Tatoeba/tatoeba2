@@ -59,7 +59,7 @@
                     vm.vocabularyAdded.unshift(data);
                     vm.data.text = '';
                     vm.isAdding = false;
-                    setInterval(function() { document.getElementById('vocabulary-item').focus(); }, 1);
+                    setInterval(function() { document.getElementById('vocabulary-item').focus(); }, 0);
                 }
             );
         }
