@@ -90,7 +90,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         'label' => __('Vocabulary item'),
                         'ng-model' => 'ctrl.data.text',
                         'ng-disabled' => 'ctrl.isAdding',
-                        'autocomplete' => 'off'
+                        'autocomplete' => 'off',
+                        'focus-input' => 'focusInput'
                     ]);
                     ?>
                 </md-input-container>
