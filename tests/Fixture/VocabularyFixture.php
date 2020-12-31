@@ -24,9 +24,9 @@ class VocabularyFixture extends TestFixture
         'numSentences' => ['type' => 'integer', 'length' => 10, 'unsigned' => false, 'null' => true, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'numAdded' => ['type' => 'integer', 'length' => 10, 'unsigned' => false, 'null' => true, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
-        'hash' => ['type' => 'string', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'text_lang_idx' => ['type' => 'unique', 'columns' => ['text', 'lang']],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -50,7 +50,6 @@ class VocabularyFixture extends TestFixture
                 'numSentences' => 1,
                 'numAdded' => 1,
                 'created' => '2019-01-07 19:48:18',
-                'hash' => "4336v5\0\0\0\0\0\0\0\0\0\0"
             ],
         ];
         parent::init();
