@@ -167,6 +167,26 @@ class SentencesTableTest extends TestCase {
         $this->assertTrue($saved->isDuplicate);
     }
 
+    function testSaveNewSentence_advancedContributorCanAdoptSentenceFromSpammer() {
+        CurrentUser::store($this->Sentence->Users->get(3));
+        $this->Sentence->saveNewSentence('Bana ne önerirsin?', 'tur', 3);
+        $sentence = $this->Sentence->getSentenceWith(41);
+        $this->assertEquals(3, $sentence->user_id);
+    }
+
+    function testSaveNewSentence_contributorCannotAdoptSentenceFromSpammer() {
+        CurrentUser::store($this->Sentence->Users->get(4));
+        $sentence = $this->Sentence->saveNewSentence('Bana ne önerirsin?', 'tur', 4);
+        $this->assertEquals(6, $sentence->user_id);
+        $this->assertTrue($sentence->isDuplicate);
+    }
+
+    function testSaveNewSentence_canAdoptOrphanSentences() {
+        CurrentUser::store($this->Sentence->Users->get(4));
+        $sentence = $this->Sentence->saveNewSentence('An orphan sentence.', 'eng', 4);
+        $this->assertEquals(4, $sentence->user_id);
+    }
+
     function testSaveTranslation_links() {
         CurrentUser::store(['id' => 7]);
 
@@ -1247,7 +1267,7 @@ class SentencesTableTest extends TestCase {
         $before = $this->Sentence->get($id)->user_id;
 
         $result = $this->Sentence->setOwner($id, 7, User::ROLE_CONTRIBUTOR);
-        $this->assertTrue($result);
+        $this->assertEquals(7, $result->user_id);
 
         $after = $this->Sentence->get($id)->user_id;
         $this->assertNotEquals($before, $after);
@@ -1258,7 +1278,7 @@ class SentencesTableTest extends TestCase {
         $before = $this->Sentence->get($id)->user_id;
 
         $result = $this->Sentence->setOwner($id, 1, User::ROLE_ADMIN);
-        $this->assertFalse($result);
+        $this->assertNotEquals(1, $result->user_id);
 
         $after = $this->Sentence->get($id)->user_id;
         $this->assertEquals($before, $after);
@@ -1417,14 +1437,6 @@ class SentencesTableTest extends TestCase {
         I18n::setLocale($prevLocale);
     }
 
-    function testSaveNewSentence_correctHashStored() {
-        $expectedHash = "if0kln\0\0\0\0\0\0\0\0\0\0";
-        $sentence = $this->Sentence->saveNewSentence('  spaces   everywhere   ', 'eng', 1);
-        $storedHash = $this->Sentence->get($sentence->id)->hash;
-        $this->assertEquals($expectedHash, $storedHash);
-    }
-
-
     function testEditSentence_recognizeDuplicateWithExtraSpaces() {
         $user = $this->Sentence->Users->get(7);
         CurrentUser::store($user);
@@ -1440,14 +1452,6 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($old->id, $result->id);
         $this->assertEquals($old->text, $result->text);
         $this->assertEquals($old->hash, $result->hash);
-    }
-
-    function testChangeLanguage_hashChanged() {
-        CurrentUser::store($this->Sentence->Users->get(7));
-        $old = $this->Sentence->get(1);
-        $result = $this->Sentence->changeLanguage(1, 'jpn');
-        $new = $this->Sentence->get(1);
-        $this->assertNotEquals($old->hash, $new->hash);
     }
 
     function testSaveNewSentence_replaceControlCharactersWithSpace() {

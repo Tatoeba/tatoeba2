@@ -46,7 +46,6 @@ class SentencesTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('hash', 'string');
         return $schema;
     }
 
@@ -939,12 +938,39 @@ class SentencesTable extends Table
                 'license' => $license
             ]
         );
-
         if ($newSentence->hasErrors()) {
             return false;
         }
 
-        return $this->saveWithDuplicateCheck($newSentence);
+        $sentence = $this->find('all')
+        ->where(['text' => $newSentence->text, 'lang' => $lang])
+        ->first();
+
+        // Duplicate sentence found
+        if ($sentence != null) {
+            // If sentence is orphan
+            if(empty($sentence->user_id)) {
+                $sentence->user_id = $userId;
+                return $this->save($sentence);
+            } else {
+                // If sentence is owned by spammer/inactive user, and you are an advanced contributor (or higher), 
+                // adopt sentence
+                if ($sentence->user_id == $userId) {
+                    $sentence->isDuplicate = true;
+                    return $sentence;
+                }
+
+                $sentence = $this->setOwner($sentence->id, $userId, CurrentUser::get('role'));
+
+                if ($sentence->user_id != $userId) {
+                    $sentence->isDuplicate = true;
+                    return $sentence;
+                }
+                return $sentence;
+            }
+        }
+        
+        return $this->save($newSentence);
     }
 
     /**
@@ -1026,11 +1052,11 @@ class SentencesTable extends Table
      * @param int $userId             Id of the user.
      * @param int $currentUserRole    Role of the currently logged-in user.
      *
-     * @return bool
+     * @return Cake\ORM\Entity
      */
     public function setOwner($sentenceId, $userId, $currentUserRole)
     {
-        $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
+        $sentence = $this->get($sentenceId);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         $ownerId = $currentOwner['id'];
         $ownerRole = $currentOwner['role'];
@@ -1041,10 +1067,9 @@ class SentencesTable extends Table
 
         if ($isAdoptable) {
             $sentence->user_id = $userId;
-            $this->save($sentence);
-            return true;
+            return $this->save($sentence);
         }
-        return false;
+        return $sentence;
     }
 
 
