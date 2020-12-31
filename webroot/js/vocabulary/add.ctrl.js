@@ -21,23 +21,26 @@
     angular
         .module('app')
         .controller('VocabularyAddController', ['$http', '$scope', VocabularyAddController])
-        .directive(
-            'focusInput', function($timeout) {
-                return {
-                    scope: { trigger: '=focusInput' },
-                    link: function($scope, $element, $attrs) {
-                        $scope.$watch('trigger', function(value) {
-                            if(value === true) { 
-                                $timeout(function() {
-                                    $element[0].focus();
-                                    $scope.trigger = false;
-                                });
-                            }
-                        });
-                    }
-                };
-            }
-        );
+        .directive('focusInput', ['$timeout', FocusInputDirective]);
+
+    function FocusInputDirective($timeout) {
+        let link = function ($scope, $element, $attrs) {
+            $scope.$watch('trigger', function(value) {
+                if(value === true) {
+                    $timeout(function() {
+                        $element[0].focus();
+                        $scope.trigger = false;
+                    });
+                }
+            });
+        };
+
+        return {
+            restrict: 'A',
+            scope: { trigger: '=focusInput' },
+            link: link,
+        };
+    }
 
     function VocabularyAddController($http, $scope) {
         var vm = this;
