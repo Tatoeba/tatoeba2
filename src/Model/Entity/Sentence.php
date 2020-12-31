@@ -41,10 +41,6 @@ class Sentence extends Entity
         'highlight',
     ];
 
-    public function __construct($properties = [], $options = []) {
-        parent::__construct($properties, $options);
-    }
-
     protected function _setLang($value)
     {
         return empty($value) ? null : $value;
