@@ -943,8 +943,8 @@ class SentencesTable extends Table
         }
 
         $sentence = $this->find('all')
-        ->where(['text' => $newSentence->text, 'lang' => $lang])
-        ->first();
+                         ->where(['text' => $newSentence->text, 'lang' => $lang])
+                         ->first();
 
         // Duplicate sentence found
         if ($sentence != null) {

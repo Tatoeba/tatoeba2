@@ -14,9 +14,9 @@ class SentencesReplaceHashWithKey extends AbstractMigration
     {
         $table = $this->table('sentences');
         $table->addIndex(['text', 'lang'], ['name' => 'text_lang_idx'])
-        ->removeIndexByName('hash')
-        ->removeIndexByName('dedup_idx')
-        ->removeColumn('hash')
-        ->update();
+              ->removeIndexByName('hash')
+              ->removeIndexByName('dedup_idx')
+              ->removeColumn('hash')
+              ->update();
     }
 }
