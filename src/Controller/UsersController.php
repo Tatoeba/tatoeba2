@@ -31,6 +31,7 @@ use App\Model\Entity\User;
 use Cake\Controller\Component\AuthComponent;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Routing\Router;
 
 
@@ -45,6 +46,8 @@ use Cake\Routing\Router;
  */
 class UsersController extends AppController
 {
+    use MailerAwareTrait;
+
     public $name = 'Users';
     public $helpers = array(
         'Html',
@@ -54,7 +57,7 @@ class UsersController extends AppController
         'Sentences',
         'Pagination'
     );
-    public $components = array('Flash', 'Mailer', 'RememberMe');
+    public $components = array('Flash', 'RememberMe');
 
     /**
      * Before filter.
@@ -105,11 +108,11 @@ class UsersController extends AppController
             $isSuspended = !$wasSuspended && $this->request->getData('role') == User::ROLE_SPAMMER;
 
             $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $username = $this->request->getData('username');
+            if ($user = $this->Users->save($user)) {
                 if ($isBlocked || $isSuspended) {
-                    $this->Mailer->sendBlockedOrSuspendedUserNotif(
-                        $username, $isSuspended
+                    $this->getMailer('User')->send(
+                        'blocked_or_suspended_user',
+                        [$user, $isSuspended]
                     );
                 }
 
@@ -374,11 +377,9 @@ class UsersController extends AppController
                 $user->password = $newPassword;
 
                 if ($this->Users->save($user)) { // if saved
-                    // prepare message
-                    $this->Mailer->sendNewPassword(
-                        $user->email,
-                        $user->username,
-                        $newPassword
+                    $this->getMailer('User')->send(
+                        'new_password',
+                        [$user, $newPassword]
                     );
 
                     $flashMessage = format(

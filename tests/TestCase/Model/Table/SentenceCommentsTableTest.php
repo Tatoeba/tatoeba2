@@ -1,12 +1,12 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\SentenceCommentsTable;
-use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Model\Table\SentenceCommentsTable;
+use Cake\Event\EventList;
 use Cake\I18n\I18n;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
 
 class SentenceCommentTest extends TestCase {
 
@@ -29,26 +29,23 @@ class SentenceCommentTest extends TestCase {
     }
 
     public function testSave_newCommentfiresEvent() {
+        $eventManager = $this->SentenceComment->getEventManager();
+        $eventManager->setEventList(new EventList());
+
         $comment = $this->SentenceComment->newEntity([
             'sentence_id' => 1,
             'text' => 'What a great sentence!',
             'user_id' => 4,
         ]);
 
-        $dispatched = false;
-        $model = $this->SentenceComment;
-        $model->getEventManager()->on(
+        $saved = $this->SentenceComment->save($comment);
+
+        $this->assertEventFiredWith(
             'Model.SentenceComment.commentPosted',
-            function (Event $event) use ($model, &$dispatched, $comment) {
-                $this->assertSame($model, $event->getSubject());
-                $this->assertEquals($comment, $event->getData('comment'));
-                $dispatched = true;
-            }
+            'comment',
+            $saved,
+            $eventManager
         );
-
-        $this->SentenceComment->save($comment);
-
-        $this->assertTrue($dispatched);
     }
 
     public function testSave_savesNewComment() {

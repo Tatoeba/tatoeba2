@@ -3,12 +3,16 @@
 namespace App\Test\TestCase\Event;
 
 use App\Event\NotificationListener;
-use Cake\Mailer\Email;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Mailer\Email;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
 
 class NotificationListenerTest extends TestCase {
+
+    use EmailTrait;
+
     public $fixtures = array(
         'app.users',
         'app.sentences',
@@ -19,15 +23,10 @@ class NotificationListenerTest extends TestCase {
     public function setUp() {
         parent::setUp();
 
-        Configure::write('App.fullBaseUrl', 'https://example.net');
-        Configure::write('Mailer.enabled',   true);
-        Configure::write('Mailer.username', 'tatoeba@example.com');
-        Configure::write('Mailer.transport', 'debug');
-
         $this->Email = $this->getMockBuilder(Email::class)
-            ->setMethods(['from', 'to', 'subject', 'send', 'viewVars'])
+            ->setMethods(['setTo', 'setSubject', 'send', 'setViewVars'])
             ->getMock();
-        foreach (array('from', 'to', 'subject') as $method) {
+        foreach (['setTo', 'setSubject', 'setViewVars'] as $method) {
             $this->Email->expects($this->any())
                         ->method($method)
                         ->will($this->returnSelf());
@@ -64,13 +63,10 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('from')
-                    ->with(array('tatoeba@example.com' => 'noreply'));
-        $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba PM - Status');
         $this->Email->expects($this->once())
                     ->method('send');
@@ -91,22 +87,8 @@ class NotificationListenerTest extends TestCase {
 
         $this->NL->sendPmNotification($event);
 
-        $sentMessage = implode($this->Email->message());
-        $this->assertNotEmpty($sentMessage);
-        $this->assertNotContains('CakePHP Framework', $sentMessage);
-        $this->assertNotContains('Emails/html', $sentMessage);
-    }
-
-    public function testSendPmNotification_doNotSendIfDisabled() {
-        Configure::write('Mailer.enabled', false);
-        $event = new Event('Model.PrivateMessage.messageSent', $this, array(
-            'message' => $this->_message(),
-        ));
-
-        $this->Email->expects($this->never())
-                    ->method('send');
-
-        $this->NL->sendPmNotification($event);
+        $this->assertMailCount(1);
+        $this->assertMailContainsHtml('Why are you so advanced?');
     }
 
     public function testSendPmNotification_doNotSendIfUserSettingsDisabled() {
@@ -130,13 +112,10 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('from')
-                    ->with(array('tatoeba@example.com' => 'noreply'));
-        $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba - Comment on sentence : '
                           .'This sentences purposely misses its flag.');
         $this->Email->expects($this->once())
@@ -155,7 +134,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('corpus_maintainer@example.com');
 
         $this->NL->sendSentenceCommentNotification($event);
@@ -171,7 +150,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('corpus_maintainer@example.com');
 
         $this->NL->sendSentenceCommentNotification($event);
@@ -247,7 +226,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
 
         $this->NL->sendSentenceCommentNotification($event);
@@ -263,7 +242,7 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->exactly(4))
-                    ->method('to')
+                    ->method('setTo')
                     ->withConsecutive(
                         ['admin@example.com'],
                         ['corpus_maintainer@example.com'],
@@ -284,10 +263,10 @@ class NotificationListenerTest extends TestCase {
         ));
 
         $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba - Comment on deleted sentence #13');
         $this->Email->expects($this->once())
                     ->method('send');
@@ -305,7 +284,7 @@ class NotificationListenerTest extends TestCase {
             'comment' => $comment
         ));
         $this->Email->expects($this->once())
-            ->method('viewVars')
+            ->method('setViewVars')
             ->with([
                 'author' => 'contributor',
                 'commentText' => $comment['text'],
@@ -330,18 +309,15 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => $this->_wallReply(),
         ));
 
         $this->Email->expects($this->once())
-                    ->method('from')
-                    ->with(array('tatoeba@example.com' => 'noreply'));
-        $this->Email->expects($this->once())
-                    ->method('to')
+                    ->method('setTo')
                     ->with('admin@example.com');
         $this->Email->expects($this->once())
-                    ->method('subject')
+                    ->method('setSubject')
                     ->with('Tatoeba - kazuki has replied to you on the Wall');
         $this->Email->expects($this->once())
                     ->method('send');
@@ -350,12 +326,12 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification_hasCorrectViewVars() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => $this->_wallReply(),
         ));
         $expectedLink = 'https://example.net/wall/show_message/3#message_3';
         $this->Email->expects($this->once())
-            ->method('viewVars')
+            ->method('setViewVars')
             ->with([
                 'author' => 'kazuki',
                 'postId' => 3,
@@ -366,7 +342,7 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification_doesntSelfNotify() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => array(
                 'id' => 3,
                 'owner' => 1,
@@ -386,7 +362,7 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendWallReplyNotification_doesNotSendIfUserSettingsDisabled() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.replyPosted', $this, array(
             'post' => array(
                 'id' => 3,
                 'owner' => 1,
@@ -394,26 +370,6 @@ class NotificationListenerTest extends TestCase {
                 'modified' => '2018-01-02 03:04:05',
                 'parent_id' => 1,
                 'content' => 'No, I was kidding!',
-                'lft' => 4,
-                'rght' => 5,
-            ),
-        ));
-
-        $this->Email->expects($this->never())
-                    ->method('send');
-
-        $this->NL->sendWallReplyNotification($event);
-    }
-
-    public function testSendWallReplyNotification_doesNotSendOnNewThread() {
-        $event = new Event('Model.Wall.postPosted', $this, array(
-            'post' => array(
-                'id' => 3,
-                'owner' => 2,
-                'date' => '2018-01-02 03:04:05',
-                'modified' => '2018-01-02 03:04:05',
-                'parent_id' => NULL,
-                'content' => 'Hi everyone!',
                 'lft' => 4,
                 'rght' => 5,
             ),

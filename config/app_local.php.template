@@ -83,6 +83,10 @@ return [
      * Cf. src/Event/NotificationListener.php
      */
      'EmailTransport' => [
+        'local' => [
+            'className' => 'Local',
+            'log' => true,
+        ],
         'gmail' => [
             'host' => 'ssl://smtp.gmail.com',
             'port' => '465',
@@ -96,10 +100,13 @@ return [
         ]
     ],
         
-    'Mailer' => [
-        'enabled' => false,
-        'transport' => 'debug',
-        'username' => 'some.email@email.com',
+    'Email' => [
+        'default' => [
+            'from' => 'user@example.com',
+            'transport' => 'debug',
+            'emailFormat' => 'html',
+          //'log' => true,
+        ],
     ],
 
     /**
