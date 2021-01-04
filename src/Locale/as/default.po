@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 17:24+0100\n"
-"PO-Revision-Date: 2020-11-01 07:37+0000\n"
+"PO-Revision-Date: 2020-12-29 11:35+0000\n"
 "Last-Translator: Mohsin Ali <mohsin13089@gmail.com>\n"
 "Language-Team: Assamese (http://www.transifex.com/tatoeba/tatoeba_website/language/as/)\n"
 "MIME-Version: 1.0\n"
@@ -509,7 +509,7 @@ msgstr "এইটো এটা বৈধ লাইচেঞ্চ নহয়।"
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L127
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "এই বাক্যটো ইতিমধ্যে সেই লাইচেঞ্চৰ অধীনত আছে।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -631,7 +631,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr ""
+msgstr "গতিকে যদি আপুনি আমাক বাক্যসমূহ পৰীক্ষা আৰু শুদ্ধ কৰাত সহায় কৰিব বিচাৰে, তেনেহ'লে আপুনি আপোনাৰ <strong>থলুৱা ভাষা</strong>ত দেখা পোৱা যিকোনো \"গৰাকীবিহীন\" বাক্য তুলি লওক ({adoptButton}) আৰু প্ৰয়োজন হ'লে শুদ্ধ কৰক। অধিক ব্যাখ্যাৰ বাবে <a href=\"{url}\">এইটো</a> পঢ়ক।"
 
 #. title of the help text on the Adopt sentence page
 #. / title of the help text on the Add vocabulary page
@@ -648,7 +648,7 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr ""
+msgstr "যদি আপুনি কোনো বাক্য তুলি লোৱাৰ পাছত আন কোনো ব্যৱহাৰকাৰীনাম দেখা যায়, তাৰ মানে আপুনি তুলি লোৱাৰ অলপ পাছতেই আন কোনোবাই বাক্যটো তুলি লৈছিল। তেনেক্ষেত্ৰত আপুনি আপোনাৰ বৰ্তমানৰ পৃষ্ঠাৰ পৰা কেইবাখনো পৃষ্ঠা আঁতৰত থকা বাক্যসমূহ তুলি ল'বলৈ চেষ্টা কৰিব পাৰে যাতে পুনৰ তেনে হোৱাৰ সম্ভাৱনা কমি যায়।"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
@@ -1073,7 +1073,7 @@ msgstr "হয়"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L303
 msgid "Orphan sentences are likely to be incorrect."
-msgstr ""
+msgstr "গৰাকীবিহীন বাক্যসমূহ সম্ভৱতঃ ভুল হ'ব পাৰে।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L309
@@ -2025,7 +2025,7 @@ msgstr "তুলি ল'বলৈ ক্লিক কৰক"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L157
 msgid "Click to unadopt"
-msgstr ""
+msgstr "এৰি দিবলৈ ক্লিক কৰক"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L57
 msgid "Show more features"
@@ -2255,7 +2255,7 @@ msgstr ""
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L91
 msgid "Adopt sentences"
-msgstr ""
+msgstr "বাক্য তুলি লওক"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L102
@@ -3129,11 +3129,11 @@ msgstr ""
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "কিছুমান ক্ষেত্ৰত, বাক্যটোৰ কোনো গৰাকী নাথাকে। অধিক জানিবলৈ তলৰ অনুচ্ছেদটো (বাক্য তুলি লোৱাৰ বিষয়ে) পঢ়ক।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L227
 msgid "Adopting sentences"
-msgstr ""
+msgstr "বাক্য তুলি লোৱা"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L231
 msgid ""
@@ -3149,7 +3149,7 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "আপুনি কোনো \"গৰাকীবিহীন\" বাক্যত ভুল দেখা পালে সেইটো শুদ্ধ কৰিব নোৱাৰিব কিয়নো আপুনি গৰাকী নহয়। সেয়েহে \"তুলি লোৱা\"ৰ বিকল্প ({adoptButton}) আছে। আপুনি কোনো বাক্য তুলি লোৱাৰ পাছতেই আপুনি সেইটোৰ গৰাকী হৈ পৰে আৰু সেয়েহে সেইটো সম্পাদনা কৰিব পাৰে।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""

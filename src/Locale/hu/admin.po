@@ -8,6 +8,7 @@
 # Madarász Ernő <mrazerno@freemail.hu>, 2020
 # Viktor Széll <sz.96viktor@windowslive.com>, 2020
 # Gabor Szabo <szabo.public@gmail.com>, 2020
+# Tivadar Pongó <pongo.tivadar@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 17:24+0100\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Gabor Szabo <szabo.public@gmail.com>, 2020\n"
+"Last-Translator: Tivadar Pongó <pongo.tivadar@gmail.com>, 2020\n"
 "Language-Team: Hungarian (https://www.transifex.com/tatoeba/teams/28284/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,14 +29,17 @@ msgstr ""
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
+"Hiba: A(z) {username} által hozzáadott mondatokat nem lehet "
+"megbízhatatlannak jelölni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
+"Az összes {username} által hozzáadott mondat megbízhatatlannak lett jelölve."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "A(z) \"{file}\" érvénytelen fájl figyelmen kívül hagyva."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
@@ -76,7 +80,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
-msgstr ""
+msgstr "Fájlnév"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
@@ -161,7 +165,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr ""
+msgstr "Fájl:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
@@ -183,7 +187,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
 msgid "Mark as unreliable"
-msgstr ""
+msgstr "Megbízhatatlannak jelölés"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
 msgid ""
@@ -229,7 +233,7 @@ msgstr "Csoport"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
 msgid "Level"
-msgstr ""
+msgstr "Szint"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
