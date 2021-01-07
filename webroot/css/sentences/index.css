@@ -126,6 +126,10 @@ svg.language-icon {
 }
 .language-list li {
   display: block;
+  background-image: linear-gradient(to bottom, #e0e0e0, #e0e0e0);
+  background-size: 2px calc(100% - 30px);
+  background-repeat: no-repeat;
+  background-position: 14px calc(100% - 5px);
 }
 .language-list a {
   display: table;
