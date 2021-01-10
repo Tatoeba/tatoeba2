@@ -618,6 +618,7 @@ class LanguagesLib
                 'sdh' => __d('languages', 'Southern Kurdish'),
                 'kiu' => __d('languages', 'Northern Zaza (Kirmanjki)'),
                 'diq' => __d('languages', 'Southern Zaza (Dimli)'),
+                'zgh' => __d('languages', 'Standard Moroccan Tamazight'),
             );
         }
         return $languages;
