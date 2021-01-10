@@ -89,13 +89,9 @@ class UsersTable extends Table
             ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
-            ->email('email')
+            ->email('email', True /* Check MX records */, __('Invalid email address'))
             ->requirePresence('email', 'create')
-            ->notEmpty('email', __('Field required'))
-            ->add('email', 'email', [
-                'rule' => ['custom', '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'],
-                'message' => __('Invalid email address'),
-            ]);
+            ->notEmpty('email', __('Field required'));
 
         $validator
             ->date('since');
