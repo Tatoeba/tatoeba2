@@ -232,6 +232,32 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->assertResponseOk();
     }
 
+    public function testCheckLogin_canRegisterWithPlusInEmail() {
+        $this->post('/eng/users/register', [
+            'username' => 'polochon',
+            'password' => 'very bad password',
+            'language' => 'none',
+            'acceptation_terms_of_use' => '1',
+            'email' => 'polo+chon@example.net',
+            'quiz' => 'polo+',
+        ]);
+        $this->assertSession('polochon', 'Auth.User.username');
+        $this->assertRedirect('/eng');
+    }
+
+    public function testCheckLogin_cannotRegisterWithInvalidEmail() {
+        $this->post('/eng/users/register', [
+            'username' => 'polochon',
+            'password' => 'very bad password',
+            'language' => 'none',
+            'acceptation_terms_of_use' => '1',
+            'email' => 'polochon@example.invalid', # RFC 6761
+            'quiz' => 'poloc',
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertResponseOk();
+    }
+
     public function testCheckLogin_loginUpdatedPasswordVersion() {
         $this->post('/eng/users/check_login', [
             'username' => 'contributor',
