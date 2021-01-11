@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Andreas Perstinger <andipersti@gmail.com>, 2020
-# Kahina Messaoudi, 2020
+# Kahina Messaoudi, 2020-2021
 # marzuq UCCEN <merzouk.ouchene@laposte.net>, 2020
 # Muḥend Belqasem <belkacem77@gmail.com>, 2019-2020
 # Muḥend Belqasem <belkacem77@gmail.com>, 2018-2021
@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 17:24+0100\n"
-"PO-Revision-Date: 2021-01-03 11:23+0000\n"
-"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
+"PO-Revision-Date: 2021-01-09 14:23+0000\n"
+"Last-Translator: Kahina Messaoudi\n"
 "Language-Team: Kabyle (http://www.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,7 @@ msgstr "Ulac aseqdac s yisem {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
 msgid "Your audio settings have been saved."
-msgstr "Iɣewwaṛen-ik/m imeslawen ttwaskelsen."
+msgstr "Iɣewwaṛen-ik.m n umeslaw ttwaskelsen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
@@ -110,7 +110,7 @@ msgstr "Ur tesɛiḍ ara tasiregt i teẓrigt n uwennit-a. "
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr "Ma tremseḍ-d izen-agi s tuccḍa, nermes ma ulac aɣilif inedbalen ɣer {email}."
+msgstr "Ma tremseḍ-d izen-a s tuccḍa, nermes ma ulac aɣilif inedbalen ɣer {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
@@ -126,11 +126,11 @@ msgstr "Tuccḍa: tafyirt #{id} ur tezmir ara ad tettwakkes."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L906
 msgid "You are not allowed to change the license of this sentence."
-msgstr "Ur tesεiḍ ara tasiregt i usenfel n turagt n tifeyirt-agi."
+msgstr "Ur tesεiḍ ara tasiregt i usenfel n turagt n tifeyirt-a."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L913
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr "Turagt n tefyirt tettwabedel ɣer “{newLicense}”."
+msgstr "Turagt n tefyirt tbeddel ɣer “{newLicense}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L918
 msgid "Unable to change the license to “{newLicense}” because:"
@@ -138,7 +138,7 @@ msgstr "Ur izmir ara ad ibeddel turagt ɣer “{newLicense}” acku:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L164
 msgid "You do not have permission to view this list."
-msgstr "Ur tesɛiḍ ara tasiregt akken ad twaliḍ tabdert-agi."
+msgstr "Ur tesɛiḍ ara tasiregt akken ad twaliḍ tabdert-a."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L296
 msgid "The sentence could not be added to the list."
@@ -174,7 +174,7 @@ msgstr "Ma ulac aɣilif fren amasal n tugna GIF, JPEG neɣ PNG."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L215
 msgid "Error while saving."
-msgstr "Anezri deg usekles."
+msgstr "Tuccḍa deg usekles."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L324
 msgid "Profile saved."
@@ -301,7 +301,7 @@ msgstr "Tutlayt tettwakkes"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L137
 msgid "You cannot delete this language."
-msgstr "Ur tezmireḍ ara ad tekkseḍ tutlayt-agi."
+msgstr "Ur tezmireḍ ara ad tekkseḍ tutlayt-à. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L200
 msgid "Message saved."
@@ -563,7 +563,7 @@ msgstr "Ilaq wurti"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L94
 msgid "Username must be at least two characters long"
-msgstr "Yessefk isem n useqdac ad yili xarsum s sin n yisekkilen"
+msgstr "Yessefk isem n useqdac ad yili xersum s sin n yisekkilen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
@@ -945,7 +945,7 @@ msgstr "Amazray n urmud - {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr "Tiddadanin ɣef umḍan n yittekkiyen deg waggur."
+msgstr "Tiddadanin ɣef umḍan n yittekkiyen deg wayyur."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
@@ -999,7 +999,7 @@ msgstr "Attekki aneggaru n  {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} log entries are displayed here."
-msgstr "Ala {n} n yinekcam n uɣmis ineggura ara d-ibanen dagi."
+msgstr "Ala {n} n yinekcam n uɣmis ineggura ara d-ibanen da. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L35
 msgid "This form is pre-filled."
@@ -1437,7 +1437,7 @@ msgstr "Qqen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
-msgstr "Ḥala seg: "
+msgstr "Anagar tifyar deg: "
 
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46

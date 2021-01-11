@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 17:24+0100\n"
-"PO-Revision-Date: 2021-01-03 10:30+0000\n"
+"PO-Revision-Date: 2021-01-07 04:14+0000\n"
 "Last-Translator: Slib Majuda <slibmajuda@gmail.com>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/tatoeba/tatoeba_website/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -2995,19 +2995,19 @@ msgstr "Cấp độ kỹ năng của người dùng cho mỗi ngôn ngữ"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr ""
+msgstr "Cho thấy cấp độ kỹ năng tự khai của các thành viên qua các ngôn ngữ riêng lẻ."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L494
 msgid "Users' sentence reviews"
-msgstr ""
+msgstr "Đánh giá câu của người dùng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L503
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "Chứa các câu được người dùng đánh giá. Điểm số của đánh giá có thể là -1 (câu không OK), 0 (chưa quyết định hoặc không chắc chắn) hoặc 1 (câu OK). Cảnh báo: dữ liệu này vẫn đang được thử nghiệm."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L533
 msgid ""
@@ -3016,68 +3016,68 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr ""
+msgstr "Chứa tất cả các phiên âm trong các tập lệnh (scripts) bổ trợ hoặc thay thế. Tên người dùng được liên kết với một bản ghi âm cho biết người dùng đã xem lại lần cuối và có thể đã sửa đổi nó. Một bản phiên âm không có tên người dùng chưa được đánh dấu là đã xem xét. Tên của tập lệnh được xác định theo tiêu chuẩn ISO 15924."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
-msgstr ""
+msgstr "Cần thêm trợ giúp?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L38
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "Bạn có thể kiểm tra phần <a href=\"{}\">FAQ</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L46
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
-msgstr ""
+msgstr "Nếu bạn không thể tìm thấy câu trả lời cho câu hỏi của mình, đừng ngại <a href=\"{}\">liên hệ với chúng tôi</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L62
 msgid "Getting started"
-msgstr ""
+msgstr "Bắt đầu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L69
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
-msgstr ""
+msgstr "Nếu bạn không biết phải làm gì lúc này khi đã đăng ký, bạn có thể giới thiệu về bản thân trên <a href=\"{wall}\">Tường</a> hoặc tham gia <a href=\"{chatroom}\">phòng chat</a> của chúng tôi. Luôn cung cấp cho bạn một nhu cầu, khi bạn cần. :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L85
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "Nếu bạn cảm thấy dự án này thật tuyệt vời và muốn tích cực trợ giúp, đây là liên kết mà bạn <strong>CẦN PHẢI</strong>đọc:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L97
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
-msgstr ""
+msgstr "Chào mừng đến với Tatoeba! Chúng tôi hy vọng bạn sẽ thích tham gia dự án này :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L108
 msgid "Important links"
-msgstr ""
+msgstr "Liên kết quan trọng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L130
 msgid "Adding new sentences"
-msgstr ""
+msgstr "Thêm câu mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L131
 msgid "There are two ways to add new sentences."
-msgstr ""
+msgstr "Có hai cách để thêm câu mới."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L137
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Chọn <a href=\"{}\">Thêm câu</a> từ menu <strong>Đóng góp</strong> ở đầu mỗi trang."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr ""
+msgstr "Bằng cách tạo <a href=\"{}\">danh sách</a> mới và chuyển đến trang chỉnh sửa cho danh sách đó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L170
 msgid ""
@@ -3085,44 +3085,44 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr ""
+msgstr "Mặc dù có rất nhiều câu trong Tatoeba, nhưng vẫn còn rất nhiều từ vựng chưa được sử dụng. Đây là lý do chúng tôi khuyến khích bạn thêm các câu với từ vựng mới, ngay cả khi bạn không biết cách dịch nó sang bất kỳ ngôn ngữ nào khác."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L180
 msgid "Translating sentences"
-msgstr ""
+msgstr "Dịch câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L184
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
-msgstr ""
+msgstr "Phiên dịch là một trong những tác vụ quan trọng nhất trong Tatoeba, vì mục tiêu chính của dự án là thu thập các câu được dịch sang nhiều ngôn ngữ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L194
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr ""
+msgstr "Bạn có thể dịch một câu từ gần như bất cứ nơi đâu. Chỉ cần nhấp vào biểu tượng này {translateButton} bất cứ khi nào bạn nhìn thấy nó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L205
 msgid "Correcting mistakes"
-msgstr ""
+msgstr "Sửa lỗi sai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L209
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr ""
+msgstr "Bạn chỉ có thể sửa lỗi trong những câu thuộc về bạn. Nếu bạn thấy sai sót trong câu của người khác, hãy đăng một bình luận để thông báo cho người đó biết lỗi mà bạn phát hiện."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L218
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "Trong một số trường hợp, câu có thể ở trong tình trạng vô chủ. Đọc đoạn viết dưới đây (về việc tiếp nhận câu) để tìm hiểu thêm."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L227
 msgid "Adopting sentences"
-msgstr ""
+msgstr "Tiếp nhận câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L231
 msgid ""
@@ -3130,7 +3130,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr ""
+msgstr "Khi bạn thêm một câu, câu này \"thuộc về\" bạn - chỉ bạn mới có thể chỉnh sửa nó. Tuy nhiên, nhiều câu trong Tatoeba xuất phát từ một kho ngữ liệu tiếng Anh-Nhật có tên là Tanaka Corpus. Những câu này không có bất kỳ chủ sở hữu nào vì chúng được thu thập từ bên ngoài Tatoeba."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L243
 msgid ""
@@ -3138,7 +3138,7 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "Nếu bạn thấy lỗi trong câu \"vô chủ\", bạn sẽ không thể sửa nó vì bạn không phải là chủ sở hữu. Đây là lý do tại sao có tùy chọn \"tiếp nhận\" ({adoptButton}). Khi bạn tiếp nhận một câu, bạn trở thành chủ sở hữu của câu đó và do đó có thể chỉnh sửa nó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""
