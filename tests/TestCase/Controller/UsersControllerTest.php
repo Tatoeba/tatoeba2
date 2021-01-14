@@ -251,7 +251,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'password' => 'very bad password',
             'language' => 'none',
             'acceptation_terms_of_use' => '1',
-            'email' => 'polochon@example.invalid', # RFC 6761
+            'email' => 'polochon@',
             'quiz' => 'poloc',
         ]);
         $this->assertSession(null, 'Auth.User.username');
