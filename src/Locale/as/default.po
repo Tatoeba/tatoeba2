@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Mohsin Ali <mohsin13089@gmail.com>, 2020
+# Mohsin Ali <mohsin13089@gmail.com>, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-18 17:24+0100\n"
-"PO-Revision-Date: 2020-12-29 11:35+0000\n"
+"POT-Creation-Date: 2021-01-11 06:10+0100\n"
+"PO-Revision-Date: 2021-01-12 16:04+0000\n"
 "Last-Translator: Mohsin Ali <mohsin13089@gmail.com>\n"
 "Language-Team: Assamese (http://www.transifex.com/tatoeba/tatoeba_website/language/as/)\n"
 "MIME-Version: 1.0\n"
@@ -41,11 +41,7 @@ msgstr "আপোনাৰ অডিঅ' ছেটিংছ সাঁচি থ�
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr "সাঁচি থওঁতে কিবা ত্ৰুটি ঘটিছ। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক নাইবা ইয়াৰ কথা সদৰি কৰিবলৈ আমাৰ সৈতে যোগাযোগ কৰক।"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L72
-msgid "Tatoeba, new password"
-msgstr "Tatoeba, নতুন পাছৱৰ্ড"
+msgstr "সাঁচি থওঁতে কিবা ত্ৰুটি ঘটিছে। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক নাইবা ইয়াৰ কথা সদৰি কৰিবলৈ আমাৰ সৈতে যোগাযোগ কৰক।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
@@ -212,60 +208,60 @@ msgstr "পাছৱৰ্ড ত্ৰুটি। অনুগ্ৰহ কৰ
 msgid "You have accepted the new terms of use."
 msgstr "আপুনি ব্যৱহাৰৰ নতুন চৰ্তাৱলী গ্ৰহণ কৰিছে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L187
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "এই একাউণ্ট নিষ্ক্ৰিয় বুলি চিহ্নিত কৰা হৈছে। আপুনি এতিয়া আৰু এই একাউণ্টত লগ ইন কৰিব নোৱাৰে। অনুগ্ৰহ কৰি এগৰাকী কৰ্তৃপক্ষৰ সৈতে যোগাযোগ কৰক যদি এয়া ভুল।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L197
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "এই একাউণ্ট স্পাম কৰোঁতা বুলি চিহ্নিত কৰা হৈছে। আপুনি এতিয়া আৰু এই একাউণ্টত লগ ইন কৰিব নোৱাৰে। অনুগ্ৰহ কৰি এগৰাকী কৰ্তৃপক্ষৰ সৈতে যোগাযোগ কৰক যদি এয়া ভুল।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L211
 msgid "You must fill in your username and password."
 msgstr "আপুনি আপোনাৰ ব্যৱহাৰকাৰীনাম আৰু পাছৱৰ্ড ভৰাবই লাগিব।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L219
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "লগিন বিফল হ'ল। নিশ্চিত কৰক যে আপোনাৰ Caps Lock আৰু Num Lock অজানিতে চালু কৰা হোৱা নাই। আপোনাৰ পাছৱৰ্ড আখৰ-সংবেদনশীল।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L331
 msgid "Welcome to Tatoeba!"
 msgstr "Tatoeba-লৈ স্বাগতম!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L335
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "বস্তুবিলাক আৰম্ভ কৰিবলৈ আমি আপোনাক আপোনাৰ <a href='{url}'>প্ৰ'ফাইল</a>লৈ গৈ আপুনি কোৱা আৰু আপোনাৰ আগ্ৰহ থকা ভাষাসমূহ আমাক জনোৱাৰ পৰামৰ্শ দিম।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L352
 msgid "Please fix the form errors."
 msgstr "অনুগ্ৰহ কৰি প্ৰ-পত্ৰৰ ত্ৰুটিসমূহ ঠিক কৰক।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L386
 msgid "Your new password has been sent to {email}."
 msgstr "আপোনাৰ নতুন পাছৱৰ্ড {email}-লৈ পঠিওৱা হৈছে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L391
 msgid "You may need to check your spam folder to find this message."
 msgstr "এই বাৰ্তা বিচাৰিবলৈ আপুনি আপোনাৰ স্পাম ফ'ল্ডাৰ পৰীক্ষা কৰিব লাগিব পাৰে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L399
 msgid "There is no registered user with this email address: "
 msgstr "এই ইমেইল ঠিকনা সহ কোনো পঞ্জীকৃত ব্যৱহাৰকাৰী নাই: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L420
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L421
 msgid "No user with this username: "
 msgstr "এই ব্যৱহাৰকাৰীনাম সহ কোনো ব্যৱহাৰকাৰী নাই: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L461
 msgid "No user with this ID: {id}"
 msgstr "এই ID সহ কোনো ব্যৱহাৰকাৰী নাই: {id}"
 
@@ -409,6 +405,10 @@ msgstr "ছাইটৰ বাহিত ব্যৱহাৰ কৰিবলৈ
 msgid "Licensing issue"
 msgstr "লাইচেঞ্চিং সমস্যা"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Mailer/UserMailer.php#L30
+msgid "Tatoeba, new password"
+msgstr "Tatoeba, নতুন পাছৱৰ্ড"
+
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
 #. For instance, in language lists, on flag mouseover or on the stats
@@ -500,39 +500,39 @@ msgstr "নামবিহীন তালিকা"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L120
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
 msgid "This is not a valid license."
 msgstr "এইটো এটা বৈধ লাইচেঞ্চ নহয়।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L125
 msgid "This sentence is already under that license."
 msgstr "এই বাক্যটো ইতিমধ্যে সেই লাইচেঞ্চৰ অধীনত আছে।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L220
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L218
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "বাক্যটো মূল হ'ব লাগিব (আৰম্ভণিত অনুবাদৰ পৰা আহৰণ কৰা নহয়)।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L226
 msgid "You're not the owner of this sentence."
 msgstr "আপুনি এই বাক্যৰ গৰাকী নহয়।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L233
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "বাক্যটোৰ গৰাকী ইয়াৰ মূল সৃষ্টিকৰ্তা হ'ব লাগিব।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L248
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L246
 msgid "You can only switch to a more permissive license."
 msgstr ""
 
@@ -4574,15 +4574,15 @@ msgid "Vocabulary item"
 msgstr ""
 
 #. button to add a vocabulary request
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L104
 msgid "Add"
 msgstr "যোগ কৰক"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L114
 msgid "Vocabulary items added"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L129
 msgid "You have already added this vocabulary item."
 msgstr ""
 
