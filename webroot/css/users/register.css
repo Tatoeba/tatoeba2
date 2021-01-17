@@ -39,8 +39,7 @@
     padding: 5px 0 20px 0;
 }
 
-#native-language md-icon,
-#human-check md-icon {
+#native-language md-icon {
     color: #000000;
     padding: 0 2px;
 }
@@ -53,18 +52,8 @@
     max-width: 200px;
 }
 
-#native-language label,
-#human-check .title {
+#native-language label {
     padding: 2px 0 0 10px;
-}
-
-#human-check {
-    margin: 20px 0;
-}
-
-
-#human-check .instructions {
-    margin-top: 10px;
 }
 
 #UserRegisterForm label.md-required::after {

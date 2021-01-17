@@ -213,7 +213,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'language' => 'none',
             'acceptation_terms_of_use' => '1',
             'email' => 'polochon@example.net',
-            'quiz' => 'poloc',
+            'confirm' => '',
         ]);
         $this->assertSession('polochon', 'Auth.User.username');
         $this->assertRedirect('/eng');
@@ -226,7 +226,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'language' => 'none',
             'acceptation_terms_of_use' => '1',
             'email' => 'polochon@example.net',
-            'quiz' => 'poloc',
+            'confirm' => '',
         ]);
         $this->assertSession(null, 'Auth.User.username');
         $this->assertResponseOk();
@@ -239,7 +239,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'language' => 'none',
             'acceptation_terms_of_use' => '1',
             'email' => 'polo+chon@example.net',
-            'quiz' => 'polo+',
+            'confirm' => '',
         ]);
         $this->assertSession('polochon', 'Auth.User.username');
         $this->assertRedirect('/eng');
@@ -252,7 +252,20 @@ class UsersControllerTest extends IntegrationTestCase {
             'language' => 'none',
             'acceptation_terms_of_use' => '1',
             'email' => 'polochon@',
-            'quiz' => 'poloc',
+            'confirm' => '',
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertResponseOk();
+    }
+
+    public function testCheckLogin_cannotRegisterWithHoneypotFilledIn() {
+        $this->post('/eng/users/register', [
+            'username' => 'polochon',
+            'password' => 'very bad password',
+            'language' => 'none',
+            'acceptation_terms_of_use' => '1',
+            'email' => 'polochon@example.net',
+            'confirm' => 'polochon@example.net',
         ]);
         $this->assertSession(null, 'Auth.User.username');
         $this->assertResponseOk();
