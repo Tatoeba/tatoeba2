@@ -160,7 +160,6 @@ $label = format(
         <label for="registrationEmail"><?php echo __('Email address'); ?></label>
         <md-icon>email</md-icon>
         <?php
-        $pattern = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/';
         echo $this->Form->input(
             'email',
             array(
@@ -170,7 +169,6 @@ $label = format(
                 'ng-model' => 'user.email',
                 'server-error' => $this->Form->isFieldError('email'),
                 'required' => true,
-                'ng-pattern' => $pattern,
                 'unique-email' => '',
                 'value' => $this->Form->getSourceValue('email'),
                 'error' => false,
@@ -186,7 +184,7 @@ $label = format(
             <div ng-message="required">
                 <?= __('Field required') ?>
             </div>
-            <div ng-message="pattern">
+            <div ng-message="email">
                 <?= __('Invalid email address') ?>
             </div>
             <div ng-message="uniqueEmail">
