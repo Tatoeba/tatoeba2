@@ -1755,6 +1755,8 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
 
 md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
     color: red;
+    transition-delay: 0.2s;
+    transition-property: color;
 }
 
 .usersLanguages .languageInfo {
