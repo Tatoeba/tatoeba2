@@ -114,7 +114,9 @@
                 }
 
                 function onSearchTextChange() {
-                    vm.searchText = vm.searchText.replace(/\t/, ' ');
+                    if (typeof vm.searchText === 'string') {
+                        vm.searchText = vm.searchText.replace(/\t/, ' ');
+                    }
                 }
 
                 function onBlur() {
