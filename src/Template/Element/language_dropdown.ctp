@@ -25,5 +25,5 @@ $openOnFocus = isset($openOnFocus) ? $openOnFocus : true;
 <?php endif; ?>
     initial-selection="<?= $initialSelection ?>"
     placeholder="<?= $placeholder ?>"
-    min-length="<?= (int)!$openOnFocus; ?>"
+    open-on-focus="<?= $openOnFocus ?>"
 ></language-dropdown>

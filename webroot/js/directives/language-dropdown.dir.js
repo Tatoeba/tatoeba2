@@ -35,7 +35,10 @@
                 onSelectedLanguageChange: '&?',
                 initialSelection: '@?',
                 placeholder: '@',
-                minLength: '<',
+                openOnFocus: '<',
+            },
+            link: function($scope) {
+                $scope.minLength = $scope.openOnFocus ? 0 : 1;
             },
             templateUrl: 'language-dropdown-template',
             controllerAs: 'vm',
@@ -120,15 +123,19 @@
                 }
 
                 function onBlur() {
-                    if (!$scope.selectedLanguage) {
-                        $scope.selectedLanguage = vm.previousSelectedItem;
+                    if ($scope.openOnFocus) {
+                        if (!$scope.selectedLanguage) {
+                            $scope.selectedLanguage = vm.previousSelectedItem;
+                        }
                     }
                 }
 
                 function onFocus() {
-                    if ($scope.selectedLanguage) {
-                        vm.previousSelectedItem = $scope.selectedLanguage;
-                        vm.searchText = '';
+                    if ($scope.openOnFocus) {
+                        if ($scope.selectedLanguage) {
+                            vm.previousSelectedItem = $scope.selectedLanguage;
+                            vm.searchText = '';
+                        }
                     }
                 }
             }]

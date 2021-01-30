@@ -47,7 +47,9 @@ $sentenceUrl = $this->Url->build([
             array(
                 'name' => 'lang',
                 'initialSelection' => $selectedLanguage,
-                'languages' => $this->Languages->getSearchableLanguagesArray(),
+                /* @translators: placeholder used in language dropdown
+                                 in navigation block on sentence pages */
+                'languages' => $this->Languages->getSearchableLanguagesArray(__x('navigation', 'Any language')),
                 'onSelectedLanguageChange' => 'vm.onSelectedLanguageChange(language)',
             )
         );
