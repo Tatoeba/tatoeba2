@@ -14,6 +14,7 @@
         md-autoselect="vm.searchText.length"
         ng-blur="vm.onBlur()"
         ng-focus="vm.onFocus()"
+        md-require-match="true"
         placeholder="{{placeholder}}">
         <md-item-template>
             <span md-highlight-text="vm.searchText"

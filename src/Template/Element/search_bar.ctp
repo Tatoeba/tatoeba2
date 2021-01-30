@@ -75,7 +75,9 @@ echo $this->Form->create(
     'Sentence',
     array(
         'id' => 'SentenceSearchForm',
+        'name' => 'ctrl.form',
         "url" => array("controller" => "sentences", "action" => "search"),
+        'ng-submit' => 'ctrl.form.$valid || $event.preventDefault()',
         "type" => "get"
     )
 );

@@ -1753,6 +1753,10 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
     font-weight: bold;
 }
 
+md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
+    color: red;
+}
+
 .usersLanguages .languageInfo {
     margin: 0;
     padding: 0;
