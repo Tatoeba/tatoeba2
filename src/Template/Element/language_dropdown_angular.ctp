@@ -2,6 +2,7 @@
     <input type="hidden" name="{{name}}" value="{{selectedLanguage.code}}" autocomplete="off">
     <md-autocomplete
         ng-cloak
+        md-select-on-focus
         md-input-id="{{inputId}}"
         md-menu-class="language-dropdown"
         md-selected-item="selectedLanguage"
