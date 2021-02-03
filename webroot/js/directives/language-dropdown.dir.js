@@ -143,7 +143,10 @@
                     if ($scope.selectedLanguage) {
                         vm.previousSelectedItem = $scope.selectedLanguage;
                     }
-                    if (vm.hasSuggestions && vm.searchText !== '') {
+                    const clearButtonPressed =
+                        $event.relatedTarget &&
+                        $event.relatedTarget.tagName == 'BUTTON';
+                    if (vm.hasSuggestions && vm.searchText !== '' && !clearButtonPressed) {
                         vm.searchText += SUGGESTIONS_MARKER_HACK;
                     }
                 }
