@@ -142,7 +142,10 @@
                     }
                 }
 
-                function onFocus() {
+                function onFocus($event) {
+                    if ($event.target.tagName != 'INPUT') {
+                        return;
+                    }
                     if ($scope.selectedLanguage) {
                         vm.previousSelectedItem = $scope.selectedLanguage;
                     }

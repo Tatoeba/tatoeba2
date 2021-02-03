@@ -13,7 +13,7 @@
         md-min-length="minLength"
         md-autoselect="vm.autoselect"
         ng-blur="vm.onBlur()"
-        ng-focus="vm.onFocus()"
+        ng-focus="vm.onFocus($event)"
         md-require-match="true"
         placeholder="{{placeholder}}">
         <md-item-template>
