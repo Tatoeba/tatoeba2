@@ -133,13 +133,15 @@
                             $scope.selectedLanguage = vm.previousSelectedItem;
                         }
                     }
+                    if (vm.searchText.endsWith(SUGGESTIONS_MARKER_HACK)) {
+                        vm.searchText = vm.searchText.replace(SUGGESTIONS_MARKER_HACK, '');
+                        $scope.selectedLanguage = vm.previousSelectedItem;
+                    }
                 }
 
                 function onFocus() {
-                    if ($scope.forceItemSelection) {
-                        if ($scope.selectedLanguage) {
-                            vm.previousSelectedItem = $scope.selectedLanguage;
-                        }
+                    if ($scope.selectedLanguage) {
+                        vm.previousSelectedItem = $scope.selectedLanguage;
                     }
                     if (vm.hasSuggestions && vm.searchText !== '') {
                         vm.searchText += SUGGESTIONS_MARKER_HACK;
