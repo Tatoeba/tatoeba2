@@ -47,6 +47,7 @@
                 vm.previousSelectedItem = null;
                 vm.searchText = '';
                 vm.hasSuggestions = false;
+                vm.autoselect = true;
 
                 vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
@@ -82,6 +83,8 @@
                 }
 
                 function querySearch(value) {
+                    vm.autoselect = true;
+
                     if (!value.endsWith(SUGGESTIONS_MARKER_HACK) && value) {
                         var search = value.toLowerCase();
                         return languages.filter(function (item) {
@@ -147,6 +150,7 @@
                         $event.relatedTarget &&
                         $event.relatedTarget.tagName == 'BUTTON';
                     if (vm.hasSuggestions && vm.searchText !== '' && !clearButtonPressed) {
+                        vm.autoselect = false;
                         vm.searchText += SUGGESTIONS_MARKER_HACK;
                     }
                 }
