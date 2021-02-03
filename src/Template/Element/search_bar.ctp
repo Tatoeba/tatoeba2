@@ -138,7 +138,6 @@ echo $this->Form->create(
                     /* @translators: placeholder used in translation language selection dropdown in top search bar */
                     'placeholder' => __x('searchbar', 'Any language'),
                     'selectedLanguage' => 'ctrl.langFrom',
-                    'openOnFocus' => false,
                 )
             );
             ?>
@@ -164,7 +163,6 @@ echo $this->Form->create(
                     /* @translators: placeholder used in translation language selection dropdown in top search bar */
                     'placeholder' => __x('searchbar', 'Any language'),
                     'selectedLanguage' => 'ctrl.langTo',
-                    'openOnFocus' => false,
                 )
             );
             ?>

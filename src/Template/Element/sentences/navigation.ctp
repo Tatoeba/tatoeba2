@@ -51,6 +51,7 @@ $sentenceUrl = $this->Url->build([
                                  in navigation block on sentence pages */
                 'languages' => $this->Languages->getSearchableLanguagesArray(__x('navigation', 'Any language')),
                 'onSelectedLanguageChange' => 'vm.onSelectedLanguageChange(language)',
+                'forceItemSelection' => true,
             )
         );
         ?>

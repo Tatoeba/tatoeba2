@@ -35,19 +35,18 @@
                 onSelectedLanguageChange: '&?',
                 initialSelection: '@?',
                 placeholder: '@',
-                openOnFocus: '<',
-            },
-            link: function($scope) {
-                $scope.minLength = $scope.openOnFocus ? 0 : 1;
+                forceItemSelection: '<',
             },
             templateUrl: 'language-dropdown-template',
             controllerAs: 'vm',
             controller: ['$scope', '$window', function($scope, $window) {
                 var vm = this;
                 var languages = [];
+                const SUGGESTIONS_MARKER_HACK = '\x0d';
 
                 vm.previousSelectedItem = null;
                 vm.searchText = '';
+                vm.hasSuggestions = false;
 
                 vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
@@ -69,6 +68,7 @@
                             Object.keys(items).forEach(function (key2) {
                                 languages.push({code: key2, name: items[key2], isPriority: isPriority});
                             });
+                            vm.hasSuggestions = true;
                         } else {
                             languages.push({code: key1, name: data[key1]});
                         }
@@ -77,10 +77,12 @@
                     if ($scope.initialSelection) {
                         setLang($scope.initialSelection);
                     }
+
+                    $scope.minLength = vm.hasSuggestions ? 0 : 1;
                 }
 
                 function querySearch(value) {
-                    if (value) {
+                    if (!value.endsWith(SUGGESTIONS_MARKER_HACK) && value) {
                         var search = value.toLowerCase();
                         return languages.filter(function (item) {
                             var language = item.name.toLowerCase();
@@ -91,7 +93,10 @@
                             return nameA.indexOf(search) > nameB.indexOf(search);
                         });
                     } else {
-                        return languages;
+                        var results = languages.filter(function (item) {
+                            return item.isPriority;
+                        });
+                        return results.length ? results : languages;
                     }
                 }
 
@@ -123,7 +128,7 @@
                 }
 
                 function onBlur() {
-                    if ($scope.openOnFocus) {
+                    if ($scope.forceItemSelection) {
                         if (!$scope.selectedLanguage) {
                             $scope.selectedLanguage = vm.previousSelectedItem;
                         }
@@ -131,11 +136,13 @@
                 }
 
                 function onFocus() {
-                    if ($scope.openOnFocus) {
+                    if ($scope.forceItemSelection) {
                         if ($scope.selectedLanguage) {
                             vm.previousSelectedItem = $scope.selectedLanguage;
-                            vm.searchText = '';
                         }
+                    }
+                    if (vm.hasSuggestions && vm.searchText !== '') {
+                        vm.searchText += SUGGESTIONS_MARKER_HACK;
                     }
                 }
             }]

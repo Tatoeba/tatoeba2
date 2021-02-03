@@ -103,6 +103,7 @@ class CommonModulesHelper extends AppHelper
                     'name' => 'filterLanguageSelect',
                     'languages' => $langs,
                     'initialSelection' => $lang,
+                    'forceItemSelection' => true,
                     'onSelectedLanguageChange' => "
                         window.location.href =
                         '$path'

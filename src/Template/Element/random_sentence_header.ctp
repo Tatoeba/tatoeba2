@@ -45,7 +45,8 @@ $langArray = $this->Languages->languagesArrayAlone();
             'id' => 'randomLangChoice',
             'languages' => $langArray,
             'initialSelection' => '{{vm.lang}}',
-            'onSelectedLanguageChange' => 'vm.lang = language.code'
+            'onSelectedLanguageChange' => 'vm.lang = language.code',
+            'forceItemSelection' => true,
         ]);
         ?>
         </span>
