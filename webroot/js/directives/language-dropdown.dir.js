@@ -74,7 +74,12 @@
                             });
                             vm.hasSuggestions = true;
                         } else {
-                            languages.push({code: key1, name: data[key1]});
+                            var code = key1;
+                            var lang = {code: code, name: data[code]};
+                            if (code == 'und' || code == 'none') {
+                                lang.isPriority = true;
+                            }
+                            languages.push(lang);
                         }
                     });
 
