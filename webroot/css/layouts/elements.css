@@ -1759,6 +1759,11 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
     transition-property: color;
 }
 
+li.show-all:hover {
+    background-color: inherit;
+    cursor: default;
+}
+
 .usersLanguages .languageInfo {
     margin: 0;
     padding: 0;

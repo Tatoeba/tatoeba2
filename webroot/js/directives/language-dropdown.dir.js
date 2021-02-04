@@ -48,6 +48,7 @@
                 vm.searchText = '';
                 vm.hasSuggestions = false;
                 vm.autoselect = true;
+                vm.showAll = false;
 
                 vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
@@ -55,6 +56,7 @@
                 vm.onSearchTextChange = onSearchTextChange;
                 vm.onBlur = onBlur;
                 vm.onFocus = onFocus;
+                vm.suggestionsDisplaying = suggestionsDisplaying;
 
                 /////////////////////////////////////////////////////////////////////////
 
@@ -96,10 +98,14 @@
                             return nameA.indexOf(search) > nameB.indexOf(search);
                         });
                     } else {
-                        var results = languages.filter(function (item) {
-                            return item.isPriority;
-                        });
-                        return results.length ? results : languages;
+                        if (vm.showAll)  {
+                            return languages;
+                        } else {
+                            var results = languages.filter(function (item) {
+                                return item.isPriority;
+                            });
+                            return results.length ? results : languages;
+                        }
                     }
                 }
 
@@ -156,6 +162,11 @@
                         vm.autoselect = false;
                         vm.searchText += SUGGESTIONS_MARKER_HACK;
                     }
+                }
+
+                function suggestionsDisplaying() {
+                    return vm.searchText === ''
+                           || vm.searchText.endsWith(SUGGESTIONS_MARKER_HACK);
                 }
             }]
         };
