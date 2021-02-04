@@ -25,4 +25,7 @@ $this->Form->unlockField($name);
     initial-selection="<?= $initialSelection ?>"
     placeholder="<?= $placeholder ?>"
     force-item-selection="<?= $forceItemSelection ?? false ?>"
+<?php if ($alwaysShowAll ?? false): ?>
+    always-show-all="true"
+<?php endif; ?>
 ></language-dropdown>

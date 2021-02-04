@@ -36,6 +36,7 @@
                 initialSelection: '@?',
                 placeholder: '@',
                 forceItemSelection: '<',
+                alwaysShowAll: '<',
             },
             templateUrl: 'language-dropdown-template',
             controllerAs: 'vm',
@@ -46,9 +47,9 @@
 
                 vm.previousSelectedItem = null;
                 vm.searchText = '';
-                vm.hasSuggestions = false;
+                vm.hasSuggestions = !!$scope.alwaysShowAll;
                 vm.autoselect = true;
-                vm.showAll = false;
+                vm.showAll = !!$scope.alwaysShowAll;
 
                 vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
