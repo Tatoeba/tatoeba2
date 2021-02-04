@@ -126,8 +126,9 @@
                 }
 
                 function onSelectedLanguageChange() {
-                    if ($scope.selectedLanguage
-                        && $scope.selectedLanguage != vm.previousSelectedItem
+                    if ((!$scope.forceItemSelection
+                         || $scope.selectedLanguage
+                         && $scope.selectedLanguage != vm.previousSelectedItem)
                         && $scope.onSelectedLanguageChange
                     ) {
                         $scope.onSelectedLanguageChange({
