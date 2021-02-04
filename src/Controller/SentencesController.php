@@ -628,10 +628,6 @@ class SentencesController extends AppController
      */
     public function random($lang = null)
     {
-        if ($lang == null) {
-            $lang = $this->request->getSession()->read('random_lang_selected');
-        }
-
         $randomId = $this->Sentences->getRandomId($lang);
 
         if (is_null($randomId)) {
