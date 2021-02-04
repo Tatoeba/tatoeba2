@@ -204,13 +204,14 @@ $label = format(
         <md-icon>language</md-icon>
         <label for="UserLanguage" flex><?= __('Native language:'); ?></label>
         <?php
-        $languagesList = $this->Languages->languagesArrayWithNone(false);
-        $language = $language ? $language : 'none';
+        $languagesList = $this->Languages->onlyLanguagesArray();
         echo $this->element(
             'language_dropdown',
             array(
                 'name' => 'language',
                 'languages' => $languagesList,
+                /* @translators: native language dropdown placeholder in Register page */
+                'placeholder' => __('None'),
                 'initialSelection' => $language,
                 'onSelectedLanguageChange' => 'user.language = language.code',
             )
