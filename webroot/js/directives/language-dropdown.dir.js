@@ -43,6 +43,7 @@
             controller: ['$scope', '$window', function($scope, $window) {
                 var vm = this;
                 var languages = [];
+                var havingFocus = false;
                 const SUGGESTIONS_MARKER_HACK = '\x0d';
 
                 vm.previousSelectedItem = null;
@@ -152,10 +153,12 @@
                         vm.searchText = vm.searchText.replace(SUGGESTIONS_MARKER_HACK, '');
                         $scope.selectedLanguage = vm.previousSelectedItem;
                     }
+                    havingFocus = false;
                 }
 
                 function onFocus($event) {
-                    if ($event.target.tagName != 'INPUT') {
+                    if (havingFocus || $event.target.tagName != 'INPUT') {
+                        // we are sometimes getting called for no reason...
                         return;
                     }
                     if ($scope.selectedLanguage) {
@@ -169,6 +172,7 @@
                         vm.autoselect = false;
                         vm.searchText += SUGGESTIONS_MARKER_HACK;
                     }
+                    havingFocus = true;
                 }
 
                 function suggestionsDisplaying() {
