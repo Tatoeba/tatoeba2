@@ -34,16 +34,8 @@ $notTranslatedInto = $session->read('not_translated_into_lang');
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
-if (empty($notTranslatedInto)) {
-    $notTranslatedInto = 'none';
-}
 $langsFrom = $this->Languages->profileLanguagesArray();
-$langsTo = $this->Languages->profileLanguagesArray(false, [
-    'none' => '—',
-    /* @translators: option used in language selection dropdown
-       for "Not directly translated into", on Translate sentences page */
-    'und'  => __x('not-directly-translated-into', 'Any language'),
-]);
+$langsTo = $this->Languages->profileLanguagesArray();
 ?>
 
 <div id="annexe_content">
@@ -139,9 +131,17 @@ $langsTo = $this->Languages->profileLanguagesArray(false, [
             </fieldset>
 
             <fieldset class="select">
-                <label for="ActivityLangTo">
-                    <?php echo __('Not directly translated into:'); ?>
-                </label>
+                <md-checkbox ng-model="exclude_lang_to">
+                    <label for="ActivityLangTo">
+                        <?php echo __('Not directly translated into:'); ?>
+                    </label>
+                </md-checkbox>
+                <?=
+                    $this->Form->hidden('excludeLangTo', [
+                        'value' => '{{exclude_lang_to ? "yes" : ""}}',
+                    ]);
+                ?>
+
                 <?php
                 echo $this->element(
                     'language_dropdown',
@@ -151,6 +151,10 @@ $langsTo = $this->Languages->profileLanguagesArray(false, [
                         'languages' => $langsTo,
                         'initialSelection' => $notTranslatedInto,
                         'alwaysShowAll' => true,
+                        /* @translators: option used in language selection dropdown
+                           for "Not directly translated into", on Translate sentences page */
+                        'placeholder' => __x('not-directly-translated-into', 'Any language'),
+                        'onSelectedLanguageChange' => 'exclude_lang_to = true',
                     )
                 );
                 ?>

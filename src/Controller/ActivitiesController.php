@@ -114,10 +114,10 @@ class ActivitiesController extends AppController
         $this->helpers[] = 'Languages';
         
         $langFrom = $this->request->getQuery('langFrom');
-        $langTo = $this->request->getQuery('langTo');
-        if ($langFrom && $langTo)
+        if ($langFrom)
         {
             $sort = $this->request->getQuery('sort', 'created');
+            $langTo = $this->request->getQuery('langTo');
 
             $this->Cookie->write(
                 'not_translated_into_lang',
@@ -126,16 +126,18 @@ class ActivitiesController extends AppController
                 '+1 month'
             );
 
+            $searchParams = array(
+                'from' => $langFrom,
+                'sort' => $sort
+            );
+            if ($this->request->getQuery('excludeLangTo') == 'yes') {
+                $searchParams['trans_filter'] = 'exclude';
+                $searchParams['trans_to'] = $langTo;
+            }
             $this->redirect(array(
                 'controller' => 'sentences',
                 'action' => 'search',
-                '?' => array(
-                    'from' => $langFrom,
-                    'to' => 'none',
-                    'trans_filter' => 'exclude',
-                    'trans_to' => $langTo,
-                    'sort' => $sort
-                )
+                '?' => $searchParams
             ));
         }
     }
