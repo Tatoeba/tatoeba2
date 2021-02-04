@@ -163,7 +163,8 @@
                     }
                     const clearButtonPressed =
                         $event.relatedTarget &&
-                        $event.relatedTarget.tagName == 'BUTTON';
+                        $event.relatedTarget.tagName == 'BUTTON' &&
+                        $event.relatedTarget.parentNode == $event.target.parentNode;
                     if (vm.hasSuggestions && vm.searchText !== '' && !clearButtonPressed) {
                         vm.autoselect = false;
                         vm.searchText += SUGGESTIONS_MARKER_HACK;
