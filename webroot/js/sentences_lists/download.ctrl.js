@@ -43,9 +43,9 @@
                 fields.push('id');
             }
             fields.push('text');
-            if ($scope.trans_lang && $scope.trans_lang != 'none') {
+            if ($scope.trans_lang) {
                 fields.push('trans_text');
-                options['trans_lang'] = $scope.trans_lang;
+                options['trans_lang'] = $scope.trans_lang.code;
             }
             options['fields'] = fields;
             options['format'] = $scope.format;
