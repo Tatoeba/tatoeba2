@@ -59,6 +59,8 @@
                 vm.onBlur = onBlur;
                 vm.onFocus = onFocus;
                 vm.suggestionsDisplaying = suggestionsDisplaying;
+                vm.getLanguageIconSpriteUrl = getLanguageIconSpriteUrl;
+                vm.hasLanguageIcon = hasLanguageIcon;
 
                 /////////////////////////////////////////////////////////////////////////
 
@@ -179,6 +181,15 @@
                 function suggestionsDisplaying() {
                     return vm.searchText === ''
                            || vm.searchText.endsWith(SUGGESTIONS_MARKER_HACK);
+                }
+
+                function hasLanguageIcon(code) {
+                    // naive yet working implementation
+                    return code != 'und' && code != 'none';
+                }
+
+                function getLanguageIconSpriteUrl(code) {
+                    return '/cache_svg/allflags.svg#' + code;
                 }
             }]
         };

@@ -20,6 +20,11 @@
         placeholder="{{placeholder}}">
         <md-item-template>
             <?php /* Warning: <li> injection hack ahead, expect missing opening tags */ ?>
+                    <svg class="language-icon" ng-if="vm.hasLanguageIcon(language.code)">
+                        <use ng-attr-xlink:href="{{vm.getLanguageIconSpriteUrl(language.code)}}"
+                             xlink:href="" />
+                    </svg>
+
                     <span md-highlight-text="vm.searchText"
                           md-highlight-flags="ig"
                           ng-class="{'priority-language': language.isPriority}">{{language.name}}</span>

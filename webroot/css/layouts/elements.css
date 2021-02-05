@@ -1742,6 +1742,7 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
 
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
     min-height: 300px;
+    width: 280px;
 }
 
 .md-autocomplete-suggestions-container li .highlight{
@@ -1751,6 +1752,25 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
 
 .priority-language {
     font-weight: bold;
+}
+
+svg.language-icon {
+  width: 30px;
+  height: 20px;
+  margin-right: 0.5em;
+}
+
+/* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
+@-moz-document url-prefix() {
+  svg.language-icon {
+    filter: none;
+    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
+  }
+}
+
+.language-dropdown .language-icon {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
