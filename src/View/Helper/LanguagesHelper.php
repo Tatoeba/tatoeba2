@@ -189,7 +189,7 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-     * Return array of languages, with "None" and "All languages" options.
+     * Return array of languages, with "None" option.
      *
      * @return array
      */
