@@ -25,7 +25,9 @@ echo $this->Form->create('AdvancedSearch', [
     'url' => [
         'controller' => 'sentences',
         'action' => 'search',
-    ]
+    ],
+    'name' => 'ctrl.form',
+    'ng-submit' => 'ctrl.form.$valid || $event.preventDefault()',
 ]);
 ?>
 
