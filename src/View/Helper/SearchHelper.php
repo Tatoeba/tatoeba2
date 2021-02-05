@@ -38,6 +38,7 @@ class SearchHelper extends AppHelper
                 'name' => $fieldName,
                 'languages' => $this->langs,
                 'initialSelection' => $selectedLanguage,
+                'placeholder' => __('Any language'),
             ),
             $options
         );

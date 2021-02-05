@@ -83,6 +83,9 @@ echo $this->Form->create('AdvancedSearch', [
                 <?php
                 echo $this->Search->selectLang('to', $to, [
                     'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
+                    /* @translators: option used in language selection dropdown for
+                                     "Show translations in" in advanced search form */
+                    'placeholder' => __x('show-translations-in', 'All languages'),
                 ]);
                 ?>
             </div>

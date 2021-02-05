@@ -199,8 +199,6 @@ class LanguagesHelper extends AppHelper
         $options = [
             /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
             'none' => __('None'),
-            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
-            'und' => __x('show-translations-in', 'All languages')
         ];
 
         return $options + $languages;
