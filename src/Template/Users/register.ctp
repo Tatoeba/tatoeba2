@@ -47,7 +47,8 @@ echo $this->Form->create($user, array(
     'name' => 'registrationForm',
     'url' => array('action' => 'register'),
     'class' => 'md-whiteframe-1dp',
-    'ng-controller' => 'UsersRegisterController as ctrl'
+    'ng-controller' => 'UsersRegisterController as ctrl',
+    'ng-submit' => 'registrationForm.$valid || $event.preventDefault()',
 ));
 
 $label = format(
