@@ -1760,6 +1760,11 @@ svg.language-icon {
   margin-right: 0.5em;
 }
 
+html[dir="rtl"] svg.language-icon {
+  margin-right: 0;
+  margin-left: 0.5em;
+}
+
 /* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
 @-moz-document url-prefix() {
   svg.language-icon {
