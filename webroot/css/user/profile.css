@@ -87,10 +87,10 @@
     height: 20px;
 }
 
-.language-icon {
+md-list .language-icon {
     margin: 26px 20px 0 0;
 }
-html[dir="rtl"] .language-icon {
+html[dir="rtl"] md-list .language-icon {
     margin: 26px 0 0 20px;
 }
 
