@@ -55,6 +55,7 @@
 
         vm.togglePassword = togglePassword;
         vm.isPasswordVisible = false;
+        vm.confirm = false;
 
         ///////////////////////////////////////////////////////////////////////////
 

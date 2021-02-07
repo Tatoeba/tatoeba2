@@ -287,8 +287,7 @@ class UsersController extends AppController
 
         $newUser = $this->Users->newEntity();
 
-        $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
-        $quizOk = $this->request->getData('quiz') == $correctAnswer;
+        $honeypotTrapped = $this->request->getData('confirm') !== '';
 
         if ($this->request->is('post')) {
             $newUser = $this->Users->patchEntity(
@@ -299,7 +298,7 @@ class UsersController extends AppController
             $newUser->since = date("Y-m-d H:i:s");
             $newUser->role = User::ROLE_CONTRIBUTOR;
 
-            if ($quizOk
+            if (!$honeypotTrapped
                 && $this->request->getData('acceptation_terms_of_use')
                 && $this->Users->save($newUser)
                ) {
@@ -355,7 +354,6 @@ class UsersController extends AppController
 
         $this->set('user', $newUser);
         $this->set('language', $this->request->getData('language'));
-        $this->set('quizOk', $quizOk);
     }
 
 

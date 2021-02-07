@@ -199,6 +199,26 @@ $label = format(
     </md-input-container>
 </div>
 
+<div layout="row" layout-align="center center" ng-show="confirm">
+    <md-input-container class="md-icon-float md-icon-left md-block" flex>
+        <md-icon>email</md-icon>
+        <?php
+        echo $this->Form->input(
+            'confirm',
+            array(
+                /* @translators: hidden field in registration form. It's a
+                   honeypot for spam bots. Normal users never see this text,
+                   but visually-impaired users may listen to it using
+                   screen-readers, so please translate it correctly. */
+                'label' => __('Leave this blank'),
+                'type' => 'email',
+                'required' => false,
+            )
+        );
+        ?>
+    </md-input-container>
+</div>
+
 <div id="native-language" layout="column">
     <div class="input" layout="row">
         <md-icon>language</md-icon>
@@ -225,48 +245,6 @@ $label = format(
         )
     );
     ?>
-</div>
-
-<div id="human-check" layout="column">
-    <div layout="row" layout-align="center start">
-        <md-icon>verified_user</md-icon>
-        <div class="title" flex>
-            <?= __('We need to make sure you are human.'); ?>
-        </div>
-    </div>
-
-    <div class="instructions">
-        <?= __('What are the first five characters of your email address?'); ?>
-    </div>
-
-    <md-input-container class="md-block">
-        <?php
-        echo $this->Form->input(
-            'quiz',
-            array(
-                /* @translators: captcha field name in register form (noun) */
-                'label' => __('Answer'),
-                'ng-model' => 'registration.quizAnswer',
-                'required' => true,
-                'server-error' => !$quizOk,
-                'value' => $this->Form->getSourceValue('quiz'),
-            )
-        );
-        ?>
-        <div ng-messages="registrationForm.quiz.$error">
-            <div ng-message="serverError">
-                <?= __('Wrong answer to the question.') ?>
-            </div>
-            <div ng-message="required">
-                <?= __('Field required') ?>
-            </div>
-        </div>
-        <?php
-        echo $this->Html->div('hint',
-            __('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.')
-        );
-        ?>
-    </md-input-container>
 </div>
 
 <md-input-container class="md-block">
