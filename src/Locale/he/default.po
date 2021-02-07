@@ -5,13 +5,14 @@
 # Translators:
 # reut koltzker <reutkoltzker@gmail.com>, 2020
 # R K <becci@likespizza.com>, 2020
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 06:10+0100\n"
-"PO-Revision-Date: 2020-10-23 04:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-22 14:10+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/tatoeba/tatoeba_website/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,46 +43,46 @@ msgstr "הגדרות השמע נשמרו"
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr "שגיאה התרחשה בעת השמירה. נסי\\ה שוב או צור\\י ודווח\\י לנו  "
+msgstr "אירעה שגיאה במהלך השמירה. נא לנסות שוב או ליצור אתנו קשר כדי לדווח לנו על כך."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr "המתן\\י בבקשה בזמן שהקובץ עולה"
+msgstr "נא להמתין בזמן שהקובץ עולה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr "החלפת הרשיון כבר בתהליך"
+msgstr "הרישיון כבר בתהליכי החלפה."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr "משפט {firstNumber}ומשפט {secondNumber}כעת תרגומים ישירים אחד של השני"
+msgstr "משפטים מס׳ {firstNumber} ומס׳ {secondNumber} הם כעת תרגומים ישירים אחד של השני."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr "המשפט {firstNumber}והמשפט {secondNumber}כבר אינם תרגומים ישירים אחד של השני"
+msgstr "משפטים מס׳ {firstNumber} ומס׳ {secondNumber} אינם עוד תרגומים ישירים אחד של השני."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "תקלה התרחשה בעת ניתוק החיבור. נסי\\ה מחדש או צור\\י ודווח\\י לנו"
+msgstr "אירעה שגיאה בניתוק החיבור. נא לנסות שוב או ליצור אתנו קשר כדי לדווח על כך."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
-msgstr "התרוקנה התיקיה {name}"
+msgstr "התיקייה „{name}” התרוקנה."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L202
 msgid "There is no sentence with id {number}"
-msgstr "אין משפט בעל מספר מזהה {number}"
+msgstr "אין משפט עם המזהה {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
-msgstr "תגובתך נשמרה "
+msgstr "תגובתך נשמרה."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
@@ -93,23 +94,23 @@ msgstr "אין לך את ההרשאות לערוך את התגובה הזאת"
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr "אם קיבלת הודעה זו, צור\\י קשר עם המנהל בכתובת {email}"
+msgstr "אם קיבלת הודעה זו בטעות, נא ליצור קשר קשר עם הנהלת המערכת בכתובת {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
-msgstr "השינויים לתגובה שלך נשמרו"
+msgstr "השינויים לתגובה שלך נשמרו."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L260
 msgid "The sentence #{id} has been deleted."
-msgstr "המשפט {id} נמחק"
+msgstr "משפט מס׳ {id} נמחק."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L266
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr "שגיאה: המשפט {id} לא ניתן למחיקה"
+msgstr "שגיאה: לא ניתן למחוק את משפט מס׳ {id}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L906
 msgid "You are not allowed to change the license of this sentence."
-msgstr "אינך רשאי\\ת לשנות את הרשיון למשפט הזה"
+msgstr "אין לך הרשאה לשנות את רישיון המשפט הזה."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L913
 msgid "The license of the sentence has been changed to “{newLicense}”."
@@ -854,13 +855,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L33
 msgid "Interface language"
-msgstr ""
+msgstr "שפת המנשק"
 
 #. button appearing after a language search
 #. in Browse by languages page.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/show_all_sentences_button_text.ctp#L6
 msgid "Show all sentences in {language}"
-msgstr ""
+msgstr "להציג את כל המשפטים ב{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -1258,12 +1259,12 @@ msgstr ""
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
 msgid "Month"
-msgstr ""
+msgstr "חודש"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L72
 msgid "Year"
-msgstr ""
+msgstr "שנה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L30
 msgid "Currently contributing"
@@ -2761,7 +2762,7 @@ msgstr ""
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L56
 msgid "Lang"
-msgstr ""
+msgstr "שפה"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L58

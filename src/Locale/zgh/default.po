@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Hakim Oubouali <hakim1bal@protonmail.com>, 2020
-# Yassine Aït-El-Mouden <yaitelmouden@gmail.com>, 2020
+# Yassine Aït-El-Mouden <yaitelmouden@gmail.com>, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 06:10+0100\n"
-"PO-Revision-Date: 2020-12-21 22:35+0000\n"
-"Last-Translator: Hakim Oubouali <hakim1bal@protonmail.com>\n"
+"PO-Revision-Date: 2021-02-06 22:39+0000\n"
+"Last-Translator: Yassine Aït-El-Mouden <yaitelmouden@gmail.com>\n"
 "Language-Team: Standard Moroccan Berber (http://www.transifex.com/tatoeba/tatoeba_website/language/zgh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -233,7 +233,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L331
 msgid "Welcome to Tatoeba!"
-msgstr ""
+msgstr "ⴱⵔⵔⴽ ⴳ ⵜⴰⵜⵓⴱⴰ!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L335
 msgid ""
@@ -280,11 +280,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L135
 msgid "Language deleted"
-msgstr ""
+msgstr "ⵜⴻⵜⵜⵡⴰⴽⴽⵙ ⵜⵓⵜⵍⴰⵢⵜ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L137
 msgid "You cannot delete this language."
-msgstr ""
+msgstr "ⵓⵔ ⵜⵣⵎⵉⵔⴷ ⴰⴷ ⵜⴽⴽⵙⴷ ⵜⵓⵜⵍⴰⵢⵜ ⴰ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L200
 msgid "Message saved."
@@ -408,7 +408,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Mailer/UserMailer.php#L30
 msgid "Tatoeba, new password"
-msgstr ""
+msgstr "ⵜⴰⵜⵓⴱⴰ, ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ ⵜⴰⵎⴰⵢⵏⵓⵜ"
 
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -417,7 +417,7 @@ msgstr ""
 #. for instance {language.alone}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L19
 msgid "{language}"
-msgstr ""
+msgstr "{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
@@ -1380,7 +1380,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/header.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L205
 msgid "Tatoeba"
-msgstr ""
+msgstr "ⵜⴰⵜⵓⴱⴰ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L4
 msgid "Select a language"
@@ -2136,7 +2136,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L79
 msgid "Language: {lang}"
-msgstr ""
+msgstr "ⵜⵓⵜⵍⴰⵢⵜ: {lang}"
 
 #. header text for settings on profile page
 #. / title of Settings page
@@ -2198,8 +2198,8 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} ⵜⵓⵜⵍⴰⵢⵜ ⵉⵜⵜⵡⴰⵏⵏⴰⵍⵏ"
+msgstr[1] "{number} ⵜⵓⵜⵍⴰⵢⵉⵏ ⵜⵜⵡⴰⵏⵏⴰⵍⵏⵉⵏ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
 msgid "Stats per languages"
@@ -2290,7 +2290,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L58
 msgid "Languages of members"
-msgstr ""
+msgstr "ⵜⵓⵜⵍⴰⵢⵉⵏ ⵏ ⵉⴳⵎⴰⵎⵏ"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L133
@@ -2604,7 +2604,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L61
 msgid "Tatoeba Blog"
-msgstr ""
+msgstr "ⴰⴱⵍⵓⴳ ⵏ ⵜⴰⵜⵓⴱⴰ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L74
 msgid ""
@@ -3293,7 +3293,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L28
 msgid " - Tatoeba"
-msgstr ""
+msgstr " - ⵜⴰⵜⵓⴱⴰ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L30
 msgid ""
@@ -3502,8 +3502,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L10
 msgid "There is {n} language on Tatoeba"
 msgid_plural "There are {n} languages on Tatoeba"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ⵜⵍⵍⴰ {n} ⵜⵓⵜⵍⴰⵢⵜ ⴳ ⵜⴰⵜⵓⴱⴰ"
+msgstr[1] "ⵍⵍⴰⵏⵜ {n} ⵜⵓⵜⵍⴰⵢⵉⵏ ⴳ ⵜⴰⵜⵓⴱⴰ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L26
 msgid "My profile languages"
@@ -4544,7 +4544,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L24
 msgid "Tatoeba user: {username}"
-msgstr ""
+msgstr "ⴰⵏⵙⵙⵎⵔⵙ ⵏ ⵜⴰⵜⵓⴱⴰ: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L66
 msgid "Latest sentences"
@@ -4831,7 +4831,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L138
 msgid "Profile languages"
-msgstr ""
+msgstr "ⵜⵓⵜⵍⴰⵢⵉⵏ ⵏ ⵉⴼⵔⵙ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L92
 msgid "Last used languages"
@@ -5264,7 +5264,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
 msgid "notification from Tatoeba"
-msgstr ""
+msgstr "ⵜⴰⵏⵖⵎⵉⵙⵜ ⵙⴳ ⵖⵓⵔ ⵜⴰⵜⵓⴱⴰ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
 msgid "from {sender}"

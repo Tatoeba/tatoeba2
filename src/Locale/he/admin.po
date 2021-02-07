@@ -5,6 +5,7 @@
 # 
 # Translators:
 # reut koltzker <reutkoltzker@gmail.com>, 2020
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 17:24+0100\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: reut koltzker <reutkoltzker@gmail.com>, 2020\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2021\n"
 "Language-Team: Hebrew (https://www.transifex.com/tatoeba/teams/28284/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,15 +25,15 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
-msgstr ""
+msgstr "שגיאה: לא ניתן לסמן משפטים שנוספו על ידי {username} כבלתי־מהימנים."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
 msgid "Marked all sentences added by {username} as unreliable."
-msgstr ""
+msgstr "כל המשפטים שנוספו על ידי {username} סומנו כבלתי־מהימנים."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr "{file}קובץ לא תקין"
+msgstr "הקובץ השגוי „{file}” לא נכלל."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
@@ -61,23 +62,23 @@ msgstr "ייבוא הקלטות"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
-msgstr ""
+msgstr "ייבוא דוח"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
-msgstr "השגיאות הבאות התרחשו במהלך הייבוא "
+msgstr "השגיאות הבאות התרחשו במהלך הייבוא."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr "הקבצים נמחקו"
+msgstr "התגלו קבצים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
-msgstr "שם הקובץ"
+msgstr "שם קובץ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
-msgstr "המספר המזהה של המשפט"
+msgstr "מזהה המשפט"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "Language"
@@ -85,7 +86,7 @@ msgstr "שפה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
 msgid "Already has audio"
-msgstr "הקובץ כבר בעל קובץ שמע"
+msgstr "כבר יש קובץ שמע"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
@@ -94,11 +95,11 @@ msgstr "ניתן לייבוא"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
-msgstr ""
+msgstr "לא זמין"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
-msgstr "לא תקין"
+msgstr "שגוי"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
@@ -114,7 +115,7 @@ msgstr "לא"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
-msgstr "לא נמצאו קבצים בתוך תיקית הייבוא"
+msgstr "לא נמצאו קבצים בתוך תיקיית הייבוא."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
 msgid "Import"
@@ -126,7 +127,7 @@ msgstr "הופעל"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
-msgstr ""
+msgstr "שם הבעלים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
@@ -136,7 +137,7 @@ msgstr "הגשה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
-msgstr ""
+msgstr "תקינות"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
@@ -148,17 +149,17 @@ msgstr "משפטים מיובאים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr "משפט בודד"
+msgstr "משפטים בודדים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
-msgstr "השפה אליה שייכים המשפטים:"
+msgstr "שפת המשפטים:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr "קובץ"
+msgstr "קובץ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
@@ -190,15 +191,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
-msgstr "מחק"
+msgstr "מחיקה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr "האם את\\ה בטוח\\ה שאת\\ה למחוק את המשתמש {number}?"
+msgstr "למחוק את משתמש מס׳ {number}?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr "רשימת המשתמשים"
+msgstr "הצגת המשתמשים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
@@ -206,11 +207,11 @@ msgstr "פרופיל"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr "עריכת המשתמש"
+msgstr "עריכת משתמש"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
-msgstr ""
+msgstr "מזהה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
@@ -218,7 +219,7 @@ msgstr "שם משתמש"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
 msgid "Lang"
-msgstr ""
+msgstr "שפה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
 msgid "Group"
@@ -226,16 +227,16 @@ msgstr "קבוצה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
 msgid "Level"
-msgstr ""
+msgstr "רמה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
-msgstr "שלח התראות"
+msgstr "שליחת התראות"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
 msgid "unhide"
-msgstr "הצג"
+msgstr "הצגה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
 msgid "hide"
-msgstr "הסתר"
+msgstr "הסתרה"
