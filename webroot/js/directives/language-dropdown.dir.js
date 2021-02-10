@@ -191,6 +191,7 @@
 
                 function setShowAll(showAll) {
                     vm.showAll = showAll;
+                    $scope.minLength = 0;
                     vm.searchText = '';
                 }
 
