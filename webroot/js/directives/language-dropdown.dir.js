@@ -61,7 +61,6 @@
                 vm.suggestionsDisplaying = suggestionsDisplaying;
                 vm.getLanguageIconSpriteUrl = getLanguageIconSpriteUrl;
                 vm.hasLanguageIcon = hasLanguageIcon;
-                vm.setShowAll = setShowAll;
 
                 /////////////////////////////////////////////////////////////////////////
 
@@ -156,6 +155,7 @@
                         $scope.selectedLanguage = vm.previousSelectedItem;
                     }
                     havingFocus = false;
+                    vm.showAll = !!$scope.alwaysShowAll;
                 }
 
                 function onFocus($event) {
@@ -185,11 +185,6 @@
                 function hasLanguageIcon(code) {
                     // naive yet working implementation
                     return code != 'und' && code != 'none';
-                }
-
-                function setShowAll(showAll) {
-                    vm.showAll = showAll;
-                    vm.searchText = '';
                 }
 
                 function getLanguageIconSpriteUrl(code) {

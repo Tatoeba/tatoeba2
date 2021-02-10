@@ -16,7 +16,7 @@
         ng-blur="vm.onBlur()"
         ng-focus="vm.onFocus($event)"
         md-require-match="true"
-        md-no-cache="vm.showAll"
+        md-no-cache="vm.searchText == ''"
         placeholder="{{placeholder}}">
         <md-item-template>
            <svg class="language-icon" ng-if="vm.hasLanguageIcon(language.code)">
@@ -31,7 +31,8 @@
         <md-not-found>
             <?= __('No language found.') ?>
             <md-button class="md-primary"
-                       ng-click="vm.setShowAll(true)">
+                       ng-show="!vm.showAll"
+                       ng-click="vm.showAll = true; vm.searchText = ''">
                 <?php /* @translators: button in language dropdown
                                        to show all languages */ ?>
                 <md-icon ng-cloak>keyboard_arrow_left</md-icon>
