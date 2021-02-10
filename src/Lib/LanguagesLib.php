@@ -619,6 +619,7 @@ class LanguagesLib
                 'kiu' => __d('languages', 'Northern Zaza (Kirmanjki)'),
                 'diq' => __d('languages', 'Southern Zaza (Dimli)'),
                 'zgh' => __d('languages', 'Standard Moroccan Tamazight'),
+                'bfz' => __d('languages', 'Mahasu Pahari'),
             );
         }
         return $languages;
