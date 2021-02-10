@@ -33,9 +33,9 @@
             <md-button class="md-primary"
                        ng-show="!vm.showAll"
                        ng-click="vm.showAll = true; vm.searchText = ''">
-                <?php /* @translators: button in language dropdown
-                                       to show all languages */ ?>
                 <md-icon ng-cloak>keyboard_arrow_left</md-icon>
+                <?php /* @translators: button in language dropdown to show all
+                         languages. Appears when entered text returns no matches. */ ?>
                 <?= __('Show all') ?>
             </md-button>
         </md-not-found>
