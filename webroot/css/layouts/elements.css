@@ -1740,8 +1740,24 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
     height: 42px;
 }
 
+/* Custom md-not-found with "Show all" button */
+.md-not-found li:hover {
+    background-color: inherit;
+    cursor: default;
+}
+md-virtual-repeat-container.md-not-found {
+    min-height: 84px;
+}
+.md-not-found .language-dropdown li {
+    white-space: normal;
+    height: 84px
+}
+.md-not-found .language-dropdown button {
+    margin: 0;
+}
+
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
-    min-height: 300px;
+    width: 280px;
 }
 
 .md-autocomplete-suggestions-container li .highlight{
@@ -1751,6 +1767,36 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
 
 .priority-language {
     font-weight: bold;
+}
+
+svg.language-icon {
+  width: 30px;
+  height: 20px;
+  margin-right: 0.5em;
+}
+
+html[dir="rtl"] svg.language-icon {
+  margin-right: 0;
+  margin-left: 0.5em;
+}
+
+/* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
+@-moz-document url-prefix() {
+  svg.language-icon {
+    filter: none;
+    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
+  }
+}
+
+.language-dropdown .language-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
+    color: red;
+    transition-delay: 0.2s;
+    transition-property: color;
 }
 
 .usersLanguages .languageInfo {

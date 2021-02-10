@@ -47,7 +47,8 @@ echo $this->Form->create($user, array(
     'name' => 'registrationForm',
     'url' => array('action' => 'register'),
     'class' => 'md-whiteframe-1dp',
-    'ng-controller' => 'UsersRegisterController as ctrl'
+    'ng-controller' => 'UsersRegisterController as ctrl',
+    'ng-submit' => 'registrationForm.$valid || $event.preventDefault()',
 ));
 
 $label = format(
@@ -224,13 +225,14 @@ $label = format(
         <md-icon>language</md-icon>
         <label for="UserLanguage" flex><?= __('Native language:'); ?></label>
         <?php
-        $languagesList = $this->Languages->languagesArrayWithNone(false);
-        $language = $language ? $language : 'none';
+        $languagesList = $this->Languages->onlyLanguagesArray();
         echo $this->element(
             'language_dropdown',
             array(
                 'name' => 'language',
                 'languages' => $languagesList,
+                /* @translators: native language dropdown placeholder in Register page */
+                'placeholder' => __('None'),
                 'initialSelection' => $language,
                 'onSelectedLanguageChange' => 'user.language = language.code',
             )

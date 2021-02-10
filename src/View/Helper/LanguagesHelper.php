@@ -189,7 +189,7 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-     * Return array of languages, with "None" and "All languages" options.
+     * Return array of languages, with "None" option.
      *
      * @return array
      */
@@ -199,8 +199,6 @@ class LanguagesHelper extends AppHelper
         $options = [
             /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
             'none' => __('None'),
-            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
-            'und' => __x('show-translations-in', 'All languages')
         ];
 
         return $options + $languages;
@@ -224,17 +222,16 @@ class LanguagesHelper extends AppHelper
     /**
      * Return array of languages in which you can search.
      *
-     * @param string $anyOption String for option "Any language" (und)
+     * @param string $anyOption (optional) String for option "Any language" (und)
      * @return array
      */
     public function getSearchableLanguagesArray($anyOption = null)
     {
         $languages = $this->onlyLanguagesArray();
-        /* @translators: option used in language selection dropdowns in other places */
-        $anyOption = $anyOption ?? __('Any language');
-        $options = array('und' => $anyOption);
-        
-        return $options + $languages;
+        if (!is_null($anyOption)) {
+            $languages = array('und' => $anyOption) + $languages;
+        }
+        return $languages;
     }
 
     /**

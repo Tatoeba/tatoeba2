@@ -99,14 +99,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             <td><?php echo __('Translation (optional)'); ?></td>
             <td>
             <?php
-            $langArray = $this->Languages->languagesArrayWithNone();
+            $langArray = $this->Languages->onlyLanguagesArray();
             echo $this->element(
                 'language_dropdown',
                 array(
                     'name' => 'TranslationsLang',
                     'languages' => $langArray,
-                    'initialSelection' => 'none',
-                    'onSelectedLanguageChange' => 'trans_lang = language.code',
+                    /* @translators: placeholder in language dropdown of list download page */
+                    'placeholder' => __('None'),
+                    'selectedLanguage' => 'trans_lang',
                 )
             );
             ?>

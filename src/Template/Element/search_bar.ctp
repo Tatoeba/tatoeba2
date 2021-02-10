@@ -75,7 +75,9 @@ echo $this->Form->create(
     'Sentence',
     array(
         'id' => 'SentenceSearchForm',
+        'name' => 'ctrl.form',
         "url" => array("controller" => "sentences", "action" => "search"),
+        'ng-submit' => 'ctrl.form.$valid || $event.preventDefault()',
         "type" => "get"
     )
 );
@@ -132,9 +134,10 @@ echo $this->Form->create(
                     'id' => 'SentenceFrom',
                     'name' => 'from',
                     'initialSelection' => $selectedLanguageFrom,
-                    /* @translators: option used in language selection dropdowns in top search bar */
-                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
-                    'selectedLanguage' => 'ctrl.langFrom'
+                    'languages' => $this->Languages->getSearchableLanguagesArray(),
+                    /* @translators: placeholder used in translation language selection dropdown in top search bar */
+                    'placeholder' => __x('searchbar', 'Any language'),
+                    'selectedLanguage' => 'ctrl.langFrom',
                 )
             );
             ?>
@@ -156,9 +159,10 @@ echo $this->Form->create(
                     'id' => 'SentenceTo',
                     'name' => 'to',
                     'initialSelection' => $selectedLanguageTo,
-                    /* @translators: option used in language selection dropdowns in top search bar */
-                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
-                    'selectedLanguage' => 'ctrl.langTo'
+                    'languages' => $this->Languages->getSearchableLanguagesArray(),
+                    /* @translators: placeholder used in translation language selection dropdown in top search bar */
+                    'placeholder' => __x('searchbar', 'Any language'),
+                    'selectedLanguage' => 'ctrl.langTo',
                 )
             );
             ?>

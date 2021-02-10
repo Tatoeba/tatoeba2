@@ -523,7 +523,7 @@ class SentencesTable extends Table
      */
     public function getRandomId($lang = null)
     {
-        if (!$lang || $lang == 'und') {
+        if (!$lang) {
             return $this->getRandomIdAmongAllLanguages();
         } else {
             $arrayIds = $this->getSeveralRandomIds($lang, 1);
@@ -543,14 +543,10 @@ class SentencesTable extends Table
      *
      * @return array An array of ids.
      */
-    public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
+    public function getSeveralRandomIds($lang = null, $numberOfIdWanted = 10)
     {
         if(Configure::read('Search.enabled') == false) {
             return null;
-        }
-
-        if(empty($lang)) {
-            $lang = 'und';
         }
 
         $returnIds = array ();
@@ -598,15 +594,15 @@ class SentencesTable extends Table
      * cached after, this way we do not need to request the random id source
      * each time we need a random id
      *
-     * @param string $lang             In which language takes the ids, 'und' if from all
+     * @param string $lang             In which language takes the ids, null if from all
      * @param int    $numberOfIdWanted Size of the array we will return
      *
      * @return array An array of int
      */
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
-        $index = $lang == 'und' ?
-                 array('und_index') :
-                 array($lang . '_main_index', $lang . '_delta_index');
+        $index = $lang ?
+                 array($lang . '_main_index', $lang . '_delta_index') :
+                 array('und_index');
         $sphinx = array(
             'index' => $index,
             'sortMode' => array(SPH_SORT_EXTENDED => "@random"),

@@ -35,16 +35,22 @@
                 onSelectedLanguageChange: '&?',
                 initialSelection: '@?',
                 placeholder: '@',
-                minLength: '<',
+                forceItemSelection: '<',
+                alwaysShowAll: '<',
             },
             templateUrl: 'language-dropdown-template',
             controllerAs: 'vm',
             controller: ['$scope', '$window', function($scope, $window) {
                 var vm = this;
                 var languages = [];
+                var havingFocus = false;
+                const SUGGESTIONS_MARKER_HACK = '\x0d';
 
                 vm.previousSelectedItem = null;
                 vm.searchText = '';
+                vm.hasSuggestions = !!$scope.alwaysShowAll;
+                vm.autoselect = true;
+                vm.showAll = !!$scope.alwaysShowAll;
 
                 vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
@@ -52,6 +58,8 @@
                 vm.onSearchTextChange = onSearchTextChange;
                 vm.onBlur = onBlur;
                 vm.onFocus = onFocus;
+                vm.getLanguageIconSpriteUrl = getLanguageIconSpriteUrl;
+                vm.hasLanguageIcon = hasLanguageIcon;
 
                 /////////////////////////////////////////////////////////////////////////
 
@@ -66,8 +74,14 @@
                             Object.keys(items).forEach(function (key2) {
                                 languages.push({code: key2, name: items[key2], isPriority: isPriority});
                             });
+                            vm.hasSuggestions = true;
                         } else {
-                            languages.push({code: key1, name: data[key1]});
+                            var code = key1;
+                            var lang = {code: code, name: data[code]};
+                            if (code == 'und' || code == 'none') {
+                                lang.isPriority = true;
+                            }
+                            languages.push(lang);
                         }
                     });
 
@@ -77,7 +91,9 @@
                 }
 
                 function querySearch(value) {
-                    if (value) {
+                    vm.autoselect = true;
+
+                    if (!value.endsWith(SUGGESTIONS_MARKER_HACK) && value) {
                         var search = value.toLowerCase();
                         return languages.filter(function (item) {
                             var language = item.name.toLowerCase();
@@ -88,7 +104,14 @@
                             return nameA.indexOf(search) > nameB.indexOf(search);
                         });
                     } else {
-                        return languages;
+                        if (vm.showAll)  {
+                            return languages;
+                        } else {
+                            var results = languages.filter(function (item) {
+                                return item.isPriority;
+                            });
+                            return results.length ? results : languages;
+                        }
                     }
                 }
 
@@ -102,8 +125,9 @@
                 }
 
                 function onSelectedLanguageChange() {
-                    if ($scope.selectedLanguage
-                        && $scope.selectedLanguage != vm.previousSelectedItem
+                    if ((!$scope.forceItemSelection
+                         || $scope.selectedLanguage
+                         && $scope.selectedLanguage != vm.previousSelectedItem)
                         && $scope.onSelectedLanguageChange
                     ) {
                         $scope.onSelectedLanguageChange({
@@ -114,20 +138,51 @@
                 }
 
                 function onSearchTextChange() {
-                    vm.searchText = vm.searchText.replace(/\t/, ' ');
+                    if (typeof vm.searchText === 'string') {
+                        vm.searchText = vm.searchText.replace(/\t/, ' ');
+                    }
                 }
 
                 function onBlur() {
-                    if (!$scope.selectedLanguage) {
+                    if ($scope.forceItemSelection) {
+                        if (!$scope.selectedLanguage) {
+                            $scope.selectedLanguage = vm.previousSelectedItem;
+                        }
+                    }
+                    if (vm.searchText.endsWith(SUGGESTIONS_MARKER_HACK)) {
+                        vm.searchText = vm.searchText.replace(SUGGESTIONS_MARKER_HACK, '');
                         $scope.selectedLanguage = vm.previousSelectedItem;
                     }
+                    havingFocus = false;
+                    vm.showAll = !!$scope.alwaysShowAll;
                 }
 
-                function onFocus() {
+                function onFocus($event) {
+                    if (havingFocus || $event.target.tagName != 'INPUT') {
+                        // we are sometimes getting called for no reason...
+                        return;
+                    }
                     if ($scope.selectedLanguage) {
                         vm.previousSelectedItem = $scope.selectedLanguage;
-                        vm.searchText = '';
                     }
+                    const clearButtonPressed =
+                        $event.relatedTarget &&
+                        $event.relatedTarget.tagName == 'BUTTON' &&
+                        $event.relatedTarget.parentNode == $event.target.parentNode;
+                    if (vm.hasSuggestions && vm.searchText !== '' && !clearButtonPressed) {
+                        vm.autoselect = false;
+                        vm.searchText += SUGGESTIONS_MARKER_HACK;
+                    }
+                    havingFocus = true;
+                }
+
+                function hasLanguageIcon(code) {
+                    // naive yet working implementation
+                    return code != 'und' && code != 'none';
+                }
+
+                function getLanguageIconSpriteUrl(code) {
+                    return '/cache_svg/allflags.svg#' + code;
                 }
             }]
         };

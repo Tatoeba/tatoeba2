@@ -27,8 +27,8 @@ class SentencesSearchFormTest extends TestCase
     public function testDefaultData() {
         $expected = [
             'query' => '',
-            'to' => 'und',
-            'from' => 'und',
+            'to' => '',
+            'from' => '',
             'unapproved' => 'no',
             'orphans' => 'no',
             'user' => '',
@@ -37,7 +37,7 @@ class SentencesSearchFormTest extends TestCase
             'list' => '',
             'native' => '',
             'trans_filter' => 'limit',
-            'trans_to' => 'und',
+            'trans_to' => '',
             'trans_link' => '',
             'trans_has_audio' => '',
             'trans_unapproved' => '',
@@ -75,14 +75,14 @@ class SentencesSearchFormTest extends TestCase
             ],
 
             [ 'from', 'ain',         ['filterByLanguage', 'ain'        ], 'ain' ],
-            [ 'from', '',            ['filterByLanguage', ''           ], 'und' ],
-            [ 'from', 'invalidlang', ['filterByLanguage', 'invalidlang'], 'und' ],
+            [ 'from', '',            ['filterByLanguage', ''           ], '' ],
+            [ 'from', 'invalidlang', ['filterByLanguage', 'invalidlang'], '' ],
 
-            [ 'to', 'und',     [], 'und' ],
+            [ 'to', 'und',     [], '' ],
             [ 'to', 'none',    [], 'none' ],
             [ 'to', 'fra',     [], 'fra' ],
-            [ 'to', '',        [], 'und' ],
-            [ 'to', 'invalid', [], 'und' ],
+            [ 'to', '',        [], '' ],
+            [ 'to', 'invalid', [], '' ],
 
             [ 'unapproved', 'yes',     ['filterByCorrectness', true],  'yes' ],
             [ 'unapproved', 'no',      ['filterByCorrectness', false], 'no'  ],
@@ -121,8 +121,8 @@ class SentencesSearchFormTest extends TestCase
             [ 'trans_filter', 'invalidvalue', ['filterByTranslation'], 'limit' ],
 
             [ 'trans_to', 'ain',     ['filterByTranslationLanguage', 'ain'    ], 'ain' ],
-            [ 'trans_to', '',        ['filterByTranslationLanguage', ''       ], 'und' ],
-            [ 'trans_to', 'invalid', ['filterByTranslationLanguage', 'invalid'], 'und' ],
+            [ 'trans_to', '',        ['filterByTranslationLanguage', ''       ], '' ],
+            [ 'trans_to', 'invalid', ['filterByTranslationLanguage', 'invalid'], '' ],
 
             [ 'trans_link', 'direct',   ['filterByTranslationLink', 'direct'],  'direct'],
             [ 'trans_link', 'indirect', ['filterByTranslationLink', 'indirect'],'indirect'],
@@ -205,21 +205,21 @@ class SentencesSearchFormTest extends TestCase
         $this->Form->setData(['to' => 'none']);
         $result = $this->Form->getData();
         $this->assertEquals('none', $result['to']);
-        $this->assertEquals('und',  $result['trans_to']);
+        $this->assertEquals('',  $result['trans_to']);
     }
 
     public function testSearchParamToIsCopiedToTransTo_empty() {
         $this->Form->setData(['to' => '']);
         $result = $this->Form->getData();
-        $this->assertEquals('und', $result['to']);
-        $this->assertEquals('und', $result['trans_to']);
+        $this->assertEquals('', $result['to']);
+        $this->assertEquals('', $result['trans_to']);
     }
 
     public function testSearchParamToIsCopiedToTransTo_invalid() {
         $this->Form->setData(['to' => 'invalid']);
         $result = $this->Form->getData();
-        $this->assertEquals('und', $result['to']);
-        $this->assertEquals('und', $result['trans_to']);
+        $this->assertEquals('', $result['to']);
+        $this->assertEquals('', $result['trans_to']);
     }
 
     public function testTransFilter_limitWithoutTransFilters() {
@@ -369,7 +369,7 @@ class SentencesSearchFormTest extends TestCase
             [true, null]
         );
 
-        $this->Form->setData(['from' => 'und', 'native' => 'yes']);
+        $this->Form->setData(['from' => '', 'native' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
         $this->assertCount(1, $this->Form->getIgnoredFields());
@@ -421,13 +421,13 @@ class SentencesSearchFormTest extends TestCase
         $expected = [
             'native' => 'yes',
             'user' => '',
-            'from' => 'und',
+            'from' => '',
             'orphans' => 'no',
             'tags' => '',
             'query' => 'order should be preserved',
             'unapproved' => 'no',
             'has_audio' => '',
-            'to' => 'und',
+            'to' => '',
             'list' => '',
         ];
         $this->Form->setData($expected);

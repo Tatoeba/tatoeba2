@@ -34,7 +34,7 @@ if ($is_advanced_search) {
 } else if (!empty($query)) {
     $title = format(__('Sentences with: {keywords}'), array('keywords' => h($query)));
 } else {
-    if ($from != 'und' && $to != 'und') {
+    if (!empty($from) && !empty($to)) {
         if ($trans_filter == 'exclude') {
             $title = format(__('Sentences in {language} not translated into {translationLanguage}'),
                             array('language' => $this->Languages->codeToNameToFormat($from),
@@ -44,10 +44,10 @@ if ($is_advanced_search) {
                             array('language' => $this->Languages->codeToNameToFormat($from),
                                   'translationLanguage' => $this->Languages->codeToNameToFormat($to)));
         }
-    } elseif ($from != 'und') {
+    } elseif (!empty($from)) {
         $title = format(__('Sentences in {language}'),
                         array('language' => $this->Languages->codeToNameToFormat($from)));
-    } elseif ($to != 'und') {
+    } elseif (!empty($to)) {
         if ($trans_filter == 'exclude') {
             $title = format(__('Sentences not translated into {language}'),
                             array('language' => $language->codeToNameToFormat($to)));

@@ -23,8 +23,8 @@ class SentencesSearchForm extends Form
 
     private $defaultCriteria = [
         'query' => '',
-        'from' => 'und',
-        'to' => 'und',
+        'from' => '',
+        'to' => '',
         'tags' => '',
         'list' => '',
         'user' => '',
@@ -32,7 +32,7 @@ class SentencesSearchForm extends Form
         'unapproved' => 'no',
         'native' => '',
         'has_audio' => '',
-        'trans_to' => 'und',
+        'trans_to' => '',
         'trans_link' => '',
         'trans_user' => '',
         'trans_orphan' => '',
@@ -87,7 +87,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataFrom(string $from) {
-        return $this->search->filterByLanguage($from) ?? 'und';
+        return $this->search->filterByLanguage($from) ?? '';
     }
 
     protected function setDataUser(string $user) {
@@ -152,7 +152,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataTransTo(string $lang) {
-        return $this->search->filterByTranslationLanguage($lang) ?? 'und';
+        return $this->search->filterByTranslationLanguage($lang) ?? '';
     }
 
     protected function setDataTransHasAudio(string $trans_has_audio) {
@@ -234,7 +234,7 @@ class SentencesSearchForm extends Form
 
     protected function setDataTo(string $to) {
         if ($to != 'none') {
-            $to = LanguagesLib::languageExists($to) ? $to : 'und';
+            $to = LanguagesLib::languageExists($to) ? $to : '';
         }
         return $to;
     }
@@ -357,7 +357,7 @@ class SentencesSearchForm extends Form
             $this->_data['trans_orphan'] = $this->setDataTransOrphan('');
         }
 
-        if ($this->_data['native'] === 'yes' && $this->_data['from'] === 'und') {
+        if ($this->_data['native'] === 'yes' && $this->_data['from'] === '') {
             $this->ignored[] = __(
                 /* @translators: This string will be preceded by “Warning: the
                    following criteria have been ignored:” */

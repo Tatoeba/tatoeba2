@@ -305,7 +305,7 @@ class UsersController extends AppController
                 $this->loadModel('UsersLanguages');
                 // Save native language
                 $language = $this->request->getData('language');
-                if (!empty($language) && $language != 'none') {
+                if (!empty($language)) {
                     $userLanguage = $this->UsersLanguages->newEntity([
                         'of_user_id' => $newUser->id,
                         'by_user_id' => $newUser->id,
