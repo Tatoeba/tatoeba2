@@ -90,8 +90,6 @@
                     if ($scope.initialSelection) {
                         setLang($scope.initialSelection);
                     }
-
-                    $scope.minLength = vm.hasSuggestions ? 0 : 1;
                 }
 
                 function querySearch(value) {
@@ -191,7 +189,6 @@
 
                 function setShowAll(showAll) {
                     vm.showAll = showAll;
-                    $scope.minLength = 0;
                     vm.searchText = '';
                 }
 

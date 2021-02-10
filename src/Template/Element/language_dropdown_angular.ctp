@@ -11,7 +11,7 @@
         md-search-text-change="vm.onSearchTextChange()"
         md-items="language in vm.querySearch(vm.searchText)"
         md-item-text="language.name"
-        md-min-length="minLength"
+        md-min-length="1-+(vm.hasSuggestions||vm.showAll)"
         md-autoselect="vm.autoselect"
         ng-blur="vm.onBlur()"
         ng-focus="vm.onFocus($event)"
