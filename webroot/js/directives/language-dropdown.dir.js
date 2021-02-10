@@ -58,7 +58,6 @@
                 vm.onSearchTextChange = onSearchTextChange;
                 vm.onBlur = onBlur;
                 vm.onFocus = onFocus;
-                vm.suggestionsDisplaying = suggestionsDisplaying;
                 vm.getLanguageIconSpriteUrl = getLanguageIconSpriteUrl;
                 vm.hasLanguageIcon = hasLanguageIcon;
 
@@ -175,11 +174,6 @@
                         vm.searchText += SUGGESTIONS_MARKER_HACK;
                     }
                     havingFocus = true;
-                }
-
-                function suggestionsDisplaying() {
-                    return vm.searchText === ''
-                           || vm.searchText.endsWith(SUGGESTIONS_MARKER_HACK);
                 }
 
                 function hasLanguageIcon(code) {
