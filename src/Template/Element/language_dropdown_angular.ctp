@@ -19,29 +19,14 @@
         md-no-cache="vm.showAll"
         placeholder="{{placeholder}}">
         <md-item-template>
-            <?php /* Warning: <li> injection hack ahead, expect missing opening tags */ ?>
-                    <svg class="language-icon" ng-if="vm.hasLanguageIcon(language.code)">
-                        <use ng-attr-xlink:href="{{vm.getLanguageIconSpriteUrl(language.code)}}"
-                             xlink:href="" />
-                    </svg>
+           <svg class="language-icon" ng-if="vm.hasLanguageIcon(language.code)">
+               <use ng-attr-xlink:href="{{vm.getLanguageIconSpriteUrl(language.code)}}"
+                    xlink:href="" />
+           </svg>
 
-                    <span md-highlight-text="vm.searchText"
-                          md-highlight-flags="ig"
-                          ng-class="{'priority-language': language.isPriority}">{{language.name}}</span>
-                </md-autocomplete-parent-scope>
-            </li>
-            <li class="show-all"
-                md-autocomplete-parent-scope
-                ng-if="!$mdAutocompleteCtrl.notFoundVisible()">
-                <md-button ng-show="!vm.showAll && vm.suggestionsDisplaying()"
-                           class="md-primary"
-                           ng-mouseup="vm.showAll = true">
-                    <?php /* @translators: button in language dropdown
-                                           to show all languages */ ?>
-                    <?= __('Show all') ?>
-                    <md-icon ng-cloak>keyboard_arrow_down</md-icon>
-                </md-button>
-            </li>
+           <span md-highlight-text="vm.searchText"
+                 md-highlight-flags="ig"
+                 ng-class="{'priority-language': language.isPriority}">{{language.name}}</span>
         </md-item-template>
         <md-not-found>
         <?= __('No language found.') ?>
