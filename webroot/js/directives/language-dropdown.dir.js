@@ -61,6 +61,7 @@
                 vm.suggestionsDisplaying = suggestionsDisplaying;
                 vm.getLanguageIconSpriteUrl = getLanguageIconSpriteUrl;
                 vm.hasLanguageIcon = hasLanguageIcon;
+                vm.setShowAll = setShowAll;
 
                 /////////////////////////////////////////////////////////////////////////
 
@@ -186,6 +187,11 @@
                 function hasLanguageIcon(code) {
                     // naive yet working implementation
                     return code != 'und' && code != 'none';
+                }
+
+                function setShowAll(showAll) {
+                    vm.showAll = showAll;
+                    vm.searchText = '';
                 }
 
                 function getLanguageIconSpriteUrl(code) {

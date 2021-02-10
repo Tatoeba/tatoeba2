@@ -29,7 +29,14 @@
                  ng-class="{'priority-language': language.isPriority}">{{language.name}}</span>
         </md-item-template>
         <md-not-found>
-        <?= __('No language found.') ?>
+            <?= __('No language found.') ?>
+            <md-button class="md-primary"
+                       ng-click="vm.setShowAll(true)">
+                <?php /* @translators: button in language dropdown
+                                       to show all languages */ ?>
+                <md-icon ng-cloak>keyboard_arrow_left</md-icon>
+                <?= __('Show all') ?>
+            </md-button>
         </md-not-found>
     </md-autocomplete>
 </div>

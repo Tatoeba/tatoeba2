@@ -1740,6 +1740,22 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
     height: 42px;
 }
 
+/* Custom md-not-found with "Show all" button */
+.md-not-found li:hover {
+    background-color: inherit;
+    cursor: default;
+}
+md-virtual-repeat-container.md-not-found {
+    min-height: 84px;
+}
+.md-not-found .language-dropdown li {
+    white-space: normal;
+    height: 84px
+}
+.md-not-found .language-dropdown button {
+    margin: 0;
+}
+
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
     width: 280px;
 }
