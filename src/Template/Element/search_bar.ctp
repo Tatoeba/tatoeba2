@@ -28,14 +28,6 @@
 use Cake\Core\Configure;
 
 $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
-
-if ($selectedLanguageFrom == null) {
-    $selectedLanguageFrom = 'und';
-}
-
-if ($selectedLanguageTo == null) {
-    $selectedLanguageTo = 'und';
-}
 ?>
 
 <md-toolbar id="search-bar-minimal" ng-cloak>

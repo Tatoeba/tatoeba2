@@ -86,11 +86,11 @@ $isHomepage = $controller == 'pages' && $action == 'index';
     
     if (CurrentUser::isMember() || !$isHomepage) {
         $session = $this->request->getSession();
-        $selectedLanguageFrom = $session->read('search_from') ?? 'und';
-        $selectedLanguageTo = $session->read('search_to') ?? 'und';
+        $selectedLanguageFrom = $session->read('search_from') ?? '';
+        $selectedLanguageTo = $session->read('search_to') ?? '';
         $searchQuery = isset($query) ? $query : '';
-        if ($selectedLanguageFrom == 'und'
-            && $selectedLanguageTo == 'und'
+        if ($selectedLanguageFrom == ''
+            && $selectedLanguageTo == ''
             && empty($query)
             && !$this->Languages->preferredLanguageFilter()) {
             $cache = [ 'key' => 'search_bar_'.$lang ];
