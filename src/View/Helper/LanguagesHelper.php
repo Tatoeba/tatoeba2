@@ -206,20 +206,6 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-     * Return array of languages with, "None" option.
-     *
-     * @return array
-     */
-    public function languagesArrayWithNone()
-    {
-        $languages = $this->onlyLanguagesArray();
-        $options = ['none' => __('None')];
-
-        return $options + $languages;
-    }
-
-
-    /**
      * Return array of languages in which you can search.
      *
      * @param string $anyOption (optional) String for option "Any language" (und)
@@ -232,19 +218,6 @@ class LanguagesHelper extends AppHelper
             $languages = array('und' => $anyOption) + $languages;
         }
         return $languages;
-    }
-
-    /**
-     * Return number of languages
-     *
-     * @return int
-     */
-
-    public function getNumberOfLanguages()
-    {
-        $languages = $this->onlyLanguagesArray();
-        $numberOfLanguages = count($languages);
-        return $numberOfLanguages;
     }
 
     /**

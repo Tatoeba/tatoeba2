@@ -65,7 +65,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             <td><?php echo __('File format'); ?></td>
             <td colspan="2">
             <?php
-            $langArray = $this->Languages->languagesArrayWithNone();
             echo $this->Form->select(
                 'FileFormat',
                 array(
