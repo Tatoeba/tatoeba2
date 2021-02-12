@@ -19,7 +19,7 @@
 
     angular
         .module('app')
-        .controller('SearchBarController', ['$scope', '$httpParamSerializer', '$window', function($scope, $httpParamSerializer, $window) {
+        .controller('SearchBarController', ['$scope', 'searchService', function($scope, search) {
             var vm = this;
 
             vm.langFrom = '';
@@ -44,18 +44,12 @@
             }
 
             function submit(form) {
-                if (!form.$valid) {
-                    return;
-                }
-
-                var params = {
+                var filters = {
                     'query': vm.searchQuery,
-                    'from':  vm.langFrom ? vm.langFrom.code : '',
-                    'to':    vm.langTo ? vm.langTo.code : ''
+                    'from' : vm.langFrom,
+                    'to'   : vm.langTo
                 };
-                var target = get_tatoeba_root_url() + '/sentences/search?' + $httpParamSerializer(params);
-
-                $window.location.href = target;
+                search.submit(form, filters);
             }
         }]);
 })();

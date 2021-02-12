@@ -26,7 +26,7 @@ echo $this->Form->create('AdvancedSearch', [
     'url' => false,
     'name' => 'form',
     'ng-controller' => 'SearchController as vm',
-    'ng-submit' => "vm.submit(form, 'search')",
+    'ng-submit' => "vm.submit(form, filters, 'search')",
 ]);
 ?>
 
@@ -409,7 +409,7 @@ echo $this->Form->create('AdvancedSearch', [
             <?= __('More search options') ?>
         </md-button>
         <?php if (!(isset($isSidebar) && $isSidebar)): ?>
-            <md-button class="md-primary" ng-click="vm.submit(form, 'advanced_search')">
+            <md-button class="md-primary" ng-click="vm.submit(form, filters, 'advanced_search')">
                 <?= __('Create a search template') ?>
             </md-button>
             <span>

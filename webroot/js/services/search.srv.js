@@ -19,26 +19,27 @@
 
     angular
         .module('app')
-        .directive('ngModelInit',  ['$parse', function($parse) {
+        .factory('searchService', ['$httpParamSerializer', '$window', function($httpParamSerializer, $window) {
             return {
-                restrict: 'A',
-                require: '?ngModel',
-                link: function (scope, element, attrs) {
-                    if (attrs.ngModel) {
-                        $parse(attrs.ngModel).assign(scope, attrs.ngModelInit);
-                    }
-                }
+               submit: submit
             };
-        }])
-        .controller('SearchController', ['searchService', function(search) {
-            var vm = this;
 
-            vm.submit = submit;
+            function submit(form, filters, target = 'search') {
+                if (!form.$valid) {
+                    return;
+                }
 
-            ///////////////////////////////////////////////////////////////////////////
+                var params = angular.copy(filters);
+                ['from', 'to', 'trans_to'].forEach(function(filter) {
+                    if (filter in params) {
+                        params[filter] = params[filter] ? params[filter].code : '';
+                    }
+                });
+                var url = get_tatoeba_root_url()
+                          + '/sentences/' + target + '?'
+                          + $httpParamSerializer(params);
 
-            function submit(form, filters, target) {
-                search.submit(form, filters, target);
+                $window.location.href = url;
             }
         }]);
 })();
