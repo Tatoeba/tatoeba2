@@ -863,9 +863,20 @@ class SentencesHelper extends AppHelper
 
     private function getNumberOfExtraTranslations($sentence)
     {
-        $translations = $sentence->translations;
-        $total = count($translations[0]) + count($translations[1]);
-        return $total - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+        $userLangs = CurrentUser::getProfileLanguages();
+        if (is_array($userLangs) && count($userLangs) > 1) {
+            $count = 0;
+            foreach ($sentence->translations as $translations) {
+                foreach ($translations as $translation) {
+                    $count += !in_array($translation->lang, $userLangs);
+                }
+            }
+            return $count;
+        } else {
+            $translations = $sentence->translations;
+            $total = count($translations[0]) + count($translations[1]);
+            return $total - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+        }
     }
 }
 ?>
