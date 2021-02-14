@@ -331,13 +331,15 @@ class UsersController extends AppController
                     .'</strong></p><p>'
                     .format(
                         __(
-                            "To start things off, we encourage you to go to your ".
-                            "<a href='{url}'>profile</a> and let us know which ".
-                            "languages you speak or are interested in.",
+                            "To start things off, we encourage you to read our ".
+                            "<a href='{url}'>Quick Start Guide</a>. If you want to read it later, ".
+                            "you will find the link at the bottom of any page on the website.",
                             true
                         ),
-                        array('url' => $profileUrl)
+                        array('url' => 'https://en.wiki.tatoeba.org/articles/show/quick-start#')
                     )
+                    .'</p><p>'
+                    .__("We hope you'll enjoy your time here with us!")
                     .'</p>'
                 );
 
