@@ -148,58 +148,57 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    public function displayTranslations($id, $translations, $withAudio = true, $langFilter = 'und') {
-        list($translations, $indirectTranslations) = $translations;
+    public function displayTranslations($id, $allTranslations, $withAudio = true, $langFilter = 'und') {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
 
             <?php
-            $totalDirectTranslations = count(array_keys($translations));
-            $totalIndirectTranslations = count(array_keys($indirectTranslations));
-
-            //merge direct and indirect translations into single array
-            $allTranslations = array_merge($translations, $indirectTranslations);
-
-            $totalTranslations = count($allTranslations);
-            $showButton = true;
-
-            //if only 1 hidden sentence then show all
             $collapsibleTranslationsEnabled = !CurrentUser::isMember() || CurrentUser::get('settings.collapsible_translations');
-            if ($totalTranslations <= 6 || !$collapsibleTranslationsEnabled) {
-                $initiallyDisplayedTranslations = $totalTranslations;
-                $showButton = false;
-            } else {
-                $initiallyDisplayedTranslations = 5;
-                $displayed = $totalTranslations - $initiallyDisplayedTranslations;
+            $showButton = false;
+            $totalTranslations = count($allTranslations[0]) + count($allTranslations[1]);
+            $userLangs = CurrentUser::getProfileLanguages();
+            $langBased = is_array($userLangs) && count($userLangs) > 1;
+            $typeMap = [0 => 'directTranslation', 1 => 'indirectTranslation'];
+            $displayed = 0;
+
+            if (!$langBased) {
+                if ($totalTranslations <= 6 || !$collapsibleTranslationsEnabled) {
+                    $toGo = $totalTranslations;
+                } else {
+                    $toGo = 5;
+                }
             }
 
-            //Split 'allTranslations' array into two, visible & hidden sets of sentences
-            $visibleTranslations = array_slice($allTranslations, 0, $initiallyDisplayedTranslations);
-            $hiddenTranslations = array_slice($allTranslations, $initiallyDisplayedTranslations);
+            foreach($allTranslations as $type => $translations) {
+                foreach($translations as $translation) {
+                    if ($langBased) {
+                        $initiallyHidden = !in_array($translation->lang, $userLangs);
+                    } else {
+                        $initiallyHidden = !!$toGo;
+                        if ($toGo > 0)
+                            $toGo--;
+                    }
 
-            $sentenceCount = 0;
-
-            //visible list of translations
-            foreach ($visibleTranslations as $translation) {
-
-                if ($sentenceCount < $totalDirectTranslations)
-                    $type = 'directTranslation';
-                else
-                    $type = 'indirectTranslation';
-
-                $this->displayGenericSentence(
-                    $translation,
-                    $type,
-                    $withAudio,
-                    $id,
-                    false,
-                    $langFilter
-                );
-
-                $sentenceCount++;
+                    if ($initiallyHidden) {
+                        echo $this->Html->tag('div', null, ['class' => 'more']);
+                        $showButton = true;
+                        $displayed++;
+                    }
+                    $this->displayGenericSentence(
+                        $translation,
+                        $typeMap[$type],
+                        $withAudio,
+                        $id,
+                        false,
+                        $langFilter
+                    );
+                    if ($initiallyHidden) {
+                        echo $this->Html->tag('/div');
+                    }
+                }
             }
 
-            if($showButton){
+            if ($showButton) {
                 echo $this->Html->tag('div',
                     ' ▼ ' . format(__n(
                         'Show 1 more translation',
@@ -209,36 +208,12 @@ class SentencesHelper extends AppHelper
                     ), array('number' => $displayed)),
                     array('class' => 'showLink')
                 );
-            }
-
-            //expanded list of translations
-            echo $this->Html->tag('div', null, array('class' => 'more'));
-
-            foreach ($hiddenTranslations as $translation) {
-
-                if ($sentenceCount < $totalDirectTranslations)
-                    $type = 'directTranslation';
-                else
-                    $type = 'indirectTranslation';
-
-                $this->displayGenericSentence(
-                    $translation,
-                    $type,
-                    $withAudio,
-                    $id,
-                    false,
-                    $langFilter
-                );
-
-                $sentenceCount++;
-            }
-
-            echo $this->Html->tag('div',
+                echo $this->Html->tag('div',
                     ' ▲ ' . __('Fewer translations'),
                     array('class' => 'hideLink')
                 );
+            }
             ?>
-          </div>
         </div>
         <?php
     }

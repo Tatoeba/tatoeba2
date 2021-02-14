@@ -18,13 +18,14 @@ $(document).ready(function(){
     $(document).watch("addrule", function() {
         $(document).on("click", "div.showLink", function(){
             $(".more").hide();
+            $("div.hideLink").hide();
             $("div.showLink").show();
-            $(this).parents(".translations").find(".more").show();
             $(this).hide();
-            $("div.hideLink").show();
+            $(this).parents(".translations").find(".more").show();
+            $(this).next().show();
         });
         $(document).on("click", "div.hideLink", function(){
-            $(this).parents(".more").hide();
+            $(this).parents(".translations").find(".more").hide();
             $(this).hide();
             $("div.showLink").show();
         });
