@@ -97,5 +97,10 @@ class PagesHelper extends AppHelper
             ));
         }
     }
+
+    public function getWikiLink($englishSlug) {
+        $wikiLinkLocalizer = $this->_View->get('wikiArticleLocalizer');
+        return $wikiLinkLocalizer($englishSlug);
+    }
 }
 ?>

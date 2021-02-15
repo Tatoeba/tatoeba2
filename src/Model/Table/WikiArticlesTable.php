@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Table;
 
+use App\Lib\LanguagesLib;
+use Cake\Core\Configure;
 use Cake\ORM\Table;
 
 class WikiArticlesTable extends Table
@@ -26,6 +28,25 @@ class WikiArticlesTable extends Table
             ->enableHydration(false)
             ->combine('lang', 'slug')
             ->toArray();
+    }
+
+    public function getWikiLink($englishSlug) {
+        $uiLang = LanguagesLib::languageTag(Configure::read('Config.language'));
+        $lang = 'en';
+        $slug = $englishSlug;
+
+        $articles = $this->getArticleTranslations($lang, $slug);
+        if (isset($articles[$uiLang])) {
+            $lang = $uiLang;
+            $slug = $articles[$uiLang];
+        }
+
+        $slug = urlencode($slug);
+        return "https://$lang.wiki.tatoeba.org/articles/show/$slug";
+    }
+
+    public function wikiLinkLocalizer() {
+        return function($slug) { return $this->getWikiLink($slug); };
     }
 
     public function initialize(array $config) {

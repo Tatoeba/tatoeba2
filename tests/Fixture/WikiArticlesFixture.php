@@ -56,6 +56,15 @@ class WikiArticlesFixture extends TestFixture
                 'content' => 'Bu kılavuzda Tatoeba’da yapabileceğiniz bazı temel şeyler ele alınacaktır.',
                 'locked' => false,
             ],
+            [
+                'id' => 4,
+                'group_id' => 1,
+                'lang' => 'ru',
+                'slug' => 'краткое_руководство',
+                'title' => 'Краткое руководство',
+                'content' => 'Краткое вступительное руководство для новых пользователей.',
+                'locked' => false,
+            ],
         ];
         parent::init();
     }
