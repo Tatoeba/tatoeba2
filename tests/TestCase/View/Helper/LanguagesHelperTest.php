@@ -82,17 +82,6 @@ class LanguagesHelperTest extends TestCase {
 		$this->assertEquals('日本語', $result['jpn']);
 	}
 
-	function testLanguagesArrayWithNone_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->languagesArrayWithNone();
-		$this->assertEquals('Japanese', $result['jpn']);
-	}
-
-	function testLanguagesArrayWithNone_returnsLocalizedLangagesNames() {
-		I18N::setLocale('ja');
-		$result = $this->Languages->languagesArrayWithNone();
-		$this->assertEquals('日本語', $result['jpn']);
-	}
-
 	function testGetSearchableLanguagesArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->getSearchableLanguagesArray();
 		$this->assertEquals('Japanese', $result['jpn']);
