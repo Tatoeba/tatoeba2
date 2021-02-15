@@ -3,6 +3,7 @@ namespace App\Model\Table;
 
 use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
+use Cake\Log\Log;
 use Cake\ORM\Table;
 
 class WikiArticlesTable extends Table
@@ -12,22 +13,30 @@ class WikiArticlesTable extends Table
     }
 
     public function getArticleTranslations($lang, $slug) {
-        $article = $this->find()
-            ->select(['group_id'])
-            ->where(compact('lang', 'slug'))
-            ->first();
+        try {
+            $article = $this->find()
+                ->select(['group_id'])
+                ->where(compact('lang', 'slug'))
+                ->first();
 
-        if (!$article) {
+            if (!$article) {
+                return [];
+            }
+            $group_id = $article->group_id;
+
+            return $this->find()
+                ->select(['lang', 'slug'])
+                ->where(compact('group_id'))
+                ->enableHydration(false)
+                ->combine('lang', 'slug')
+                ->toArray();
+        }
+        catch (\PDOException $e) {
+            if ($this->getConnection()->isQueryLoggingEnabled()) {
+                Log::error('Error while connecting to the wiki: '. $e->getMessage());
+            }
             return [];
         }
-        $group_id = $article->group_id;
-
-        return $this->find()
-            ->select(['lang', 'slug'])
-            ->where(compact('group_id'))
-            ->enableHydration(false)
-            ->combine('lang', 'slug')
-            ->toArray();
     }
 
     public function getWikiLink($englishSlug) {

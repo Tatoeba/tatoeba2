@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Model\Table;
 
 use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
@@ -9,13 +10,29 @@ class WikiArticlesTableTest extends TestCase
 {
     public $WikiArticles;
 
+    public $autoFixtures = false;
+
     public $fixtures = [
         'app.WikiArticles',
     ];
 
+    public function setupFailingConnection() {
+        $config = \Cake\Datasource\ConnectionManager::getConfig('test_wiki');
+        $config['database'] = '/proc/you-should-never-be-able-to-write-here';
+        ConnectionManager::setConfig('test_wiki2', $config);
+        return ConnectionManager::get('test_wiki2');
+    }
+
     public function setUp() {
         parent::setUp();
-        $this->WikiArticles = TableRegistry::get('WikiArticles');
+
+        $options = [];
+        if ($this->getName() == 'testGetArticleTranslations_dbAccessFail') {
+            $options['connection'] = $this->setupFailingConnection();
+        } else {
+            $this->loadFixtures(); // load all $this->fixtures
+        }
+        $this->WikiArticles = TableRegistry::get('WikiArticles', $options);
     }
 
     public function tearDown() {
@@ -92,5 +109,11 @@ class WikiArticlesTableTest extends TestCase
 
     public function testDefaultConnectionName() {
         $this->assertEquals('wiki', $this->WikiArticles->defaultConnectionName());
+    }
+
+    public function testGetArticleTranslations_dbAccessFail() {
+        // See specific initialization code in setUp()
+        $result = $this->WikiArticles->getArticleTranslations('en', 'quick-start');
+        $this->assertEmpty($result);
     }
 }
