@@ -113,7 +113,7 @@ $canReply = false;
                             'and to the author of the message.',
                             true
                         ),
-                        'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+                        $this->Pages->getWikiLink('rules-against-bad-behavior')
                     ); ?>
                 </p>
             </div>

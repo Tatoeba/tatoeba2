@@ -21,6 +21,7 @@ class UserControllerTest extends IntegrationTestCase
         'app.sentence_comments',
         'app.sentences',
         'app.users_languages',
+        'app.wiki_articles',
     ];
 
     private $oldPasswords = [];

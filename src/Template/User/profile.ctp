@@ -445,7 +445,7 @@ $userLanguages = h(json_encode($userLanguages));
                     <?php
                     $hintText = format(
                         __('If your language is missing, please read our article on how to <a href="{}">request a new language</a>.'),
-                        'https://en.wiki.tatoeba.org/articles/show/new-language-request'
+                        $this->Pages->getWikiLink('new-language-request')
                     );
                     echo $this->Html->para('hint', $hintText);
                     ?>

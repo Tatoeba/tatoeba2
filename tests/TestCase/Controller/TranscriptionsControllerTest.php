@@ -13,7 +13,8 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         'app.transcriptions',
         'app.users',
         'app.users_languages',
-        'app.sentences'
+        'app.sentences',
+        'app.wiki_articles',
     );
 
     public function setUp() {

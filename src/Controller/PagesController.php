@@ -333,8 +333,9 @@ class PagesController extends AppController
      */
     public function faq()
     {
+        $this->loadModel('WikiArticles');
         $this->redirect(
-            "http://wiki.tatoeba.org/articles/show/faq",
+            $this->WikiArticles->getWikiLink('faq'),
             301
         );
     }

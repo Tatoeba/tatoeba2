@@ -15,6 +15,7 @@ class LicensingControllerTest extends IntegrationTestCase {
         'app.sentences_sentences_lists',
         'app.sentences',
         'app.private_messages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {

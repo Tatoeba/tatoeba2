@@ -17,6 +17,7 @@ class CategoriesTreeControllerTest extends TestCase
         'app.Tags',
         'app.Users',
         'app.UsersLanguages',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

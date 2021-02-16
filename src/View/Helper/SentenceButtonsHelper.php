@@ -46,7 +46,8 @@ class SentenceButtonsHelper extends AppHelper
         'Html',
         'Languages',
         'Form',
-        'Images'
+        'Images',
+        'Pages',
     );
 
     /**
@@ -198,7 +199,7 @@ class SentenceButtonsHelper extends AppHelper
         } else {
             $onClick = 'return false';
             $css = 'audioUnavailable';
-            $path = 'http://en.wiki.tatoeba.org/articles/show/contribute-audio';
+            $path = $this->Pages->getWikiLink('contribute-audio');
             $title = __('No audio for this sentence. Click to learn how to contribute.');
             $onClick = 'window.open(this.href); return false;';
         }

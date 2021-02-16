@@ -325,6 +325,7 @@ class UsersController extends AppController
                         $this->Auth->user('username')
                     )
                 );
+                $this->loadModel('WikiArticles');
                 $this->Flash->set(
                     '<p><strong>'
                     .__("Welcome to Tatoeba!")
@@ -336,7 +337,7 @@ class UsersController extends AppController
                             "you will find the link at the bottom of any page on the website.",
                             true
                         ),
-                        array('url' => 'https://en.wiki.tatoeba.org/articles/show/quick-start#')
+                        array('url' => $this->WikiArticles->getWikiLink('quick-start'))
                     )
                     .'</p><p>'
                     .__("We hope you'll enjoy your time here with us!")

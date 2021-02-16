@@ -73,7 +73,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
                 'Please read our '.
                 '<a href="{}">rules against bad behavior</a>.', true
             ),
-            'https://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+            $this->Pages->getWikiLink('rules-against-bad-behavior')
         );
         ?>
         </p>

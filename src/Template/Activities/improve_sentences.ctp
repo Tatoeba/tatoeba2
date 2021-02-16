@@ -103,7 +103,7 @@ $okURL = $this->Url->build(
     <ol><?php
         $str = format(__('You need to be an <a href="{}">advanced contributor</a>; '.
                          'otherwise you will not be able to tag sentences.', true),
-                      "http://wiki.tatoeba.org/articles/show/faq");
+                      $this->Pages->getWikiLink('faq'));
         printf('<li>%s</li>', $str);
 
         $str = format(__('Whenever you notice a sentence that is wrong or sounds strange, '.

@@ -76,7 +76,7 @@
                 </div>
 
                 <div layout="row" layout-align="center center">
-                    <md-button href="http://en.wiki.tatoeba.org/articles/show/text-search" target="_blank">
+                    <md-button href="<?= h($this->Pages->getWikiLink('text-search')) ?>" target="_blank">
                         <?php
                         /* @translators: links to a page with tips to perform
                             searches, like search operators */

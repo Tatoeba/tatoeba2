@@ -19,7 +19,7 @@ $audioBaseUrl = Configure::read('Recordings.url');
 </md-button>
 
 <md-button class="md-icon-button audioUnavailable" target="_blank" ng-if="!<?= $angularVar ?>.audios || <?= $angularVar ?>.audios.length === 0"
-            href="https://en.wiki.tatoeba.org/articles/show/contribute-audio">
+            href="<?= h($this->Pages->getWikiLink('contribute-audio')) ?>">
     <md-icon>volume_off</md-icon>
     <md-tooltip md-direction="top">
         <?= __('No audio for this sentence. Click to learn how to contribute.') ?>

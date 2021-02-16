@@ -12,7 +12,8 @@ class WallControllerTest extends IntegrationTestCase {
         'app.walls',
         'app.wall_threads',
         'app.users',
-        'app.users_languages'
+        'app.users_languages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {

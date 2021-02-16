@@ -21,6 +21,7 @@ class UsersControllerTest extends IntegrationTestCase {
         'app.sentence_comments',
         'app.sentences',
         'app.walls',
+        'app.wiki_articles',
     ];
 
     public function setUp() {

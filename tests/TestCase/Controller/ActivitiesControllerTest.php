@@ -20,6 +20,7 @@ class ActivitiesControllerTest extends IntegrationTestCase {
         'app.users',
         'app.users_languages',
         'app.users_sentences',
+        'app.wiki_articles',
     );
 
     public function accessesProvider() {

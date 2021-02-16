@@ -15,6 +15,7 @@ class VocabularyControllerTest extends IntegrationTestCase
         'app.users_languages',
         'app.users_vocabulary',
         'app.vocabulary',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {

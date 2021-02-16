@@ -26,7 +26,8 @@ class PagesControllerTest extends IntegrationTestCase
         'app.Users',
         'app.UsersLanguages',
         'app.UsersSentences',
-        'app.Walls'
+        'app.Walls',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {
@@ -52,8 +53,8 @@ class PagesControllerTest extends IntegrationTestCase
             [ '/eng/contact', 'contributor', true ],
             [ '/eng/help', null, true ],
             [ '/eng/help', 'contributor', true ],
-            [ '/eng/faq', null, 'http://wiki.tatoeba.org/articles/show/faq' ],
-            [ '/eng/faq', 'contributor', 'http://wiki.tatoeba.org/articles/show/faq' ],
+            [ '/eng/faq', null, 'https://en.wiki.tatoeba.org/articles/show/faq' ],
+            [ '/eng/faq', 'contributor', 'https://en.wiki.tatoeba.org/articles/show/faq' ],
             [ '/eng/donate', null, true ],
             [ '/eng/donate', 'contributor', true ],
         ];
@@ -63,7 +64,7 @@ class PagesControllerTest extends IntegrationTestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $this->loadFixtures('PrivateMessages', 'Users', 'UsersLanguages');
+        $this->loadFixtures('PrivateMessages', 'Users', 'UsersLanguages', 'WikiArticles');
         $this->assertAccessUrlAs($url, $user, $response);
     }
 

@@ -28,6 +28,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         'app.sentence_comments',
         'app.favorites_users',
         'app.sentences_lists',
+        'app.wiki_articles',
     ];
 
     public function setUp() {

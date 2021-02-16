@@ -17,6 +17,7 @@ class ContributionsControllerTest extends IntegrationTestCase
         'app.users_languages',
         'app.private_messages',
         'app.sentences',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {

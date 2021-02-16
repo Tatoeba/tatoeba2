@@ -12,6 +12,7 @@ class AppControllerTest extends IntegrationTestCase {
 		'app.users',
 		'app.users_languages',
 		'app.private_messages',
+		'app.wiki_articles',
 	);
 
     function setUp() {
