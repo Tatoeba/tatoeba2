@@ -14,17 +14,13 @@ class WikiArticlesTable extends Table
 
     public function getArticleTranslations($lang, $slug) {
         try {
-            $article = $this->find()
+            $group_id = $this->find()
                 ->select(['group_id'])
                 ->where(compact('lang', 'slug'))
-                ->first();
-
-            if (!$article) {
-                return [];
-            }
-            $group_id = $article->group_id;
+                ->limit(1);
 
             return $this->find()
+                ->cache("wiki_articles_${lang}_${slug}")
                 ->select(['lang', 'slug'])
                 ->where(compact('group_id'))
                 ->enableHydration(false)
