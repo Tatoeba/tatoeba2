@@ -172,10 +172,6 @@ class AppController extends Controller
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
         $mostRecentList = $this->Cookie->read('most_recent_list');
         $session->write('most_recent_list', $mostRecentList);
-
-        $this->loadModel('WikiArticles');
-        $wikiLinkLocalizer = $this->WikiArticles->wikiLinkLocalizer();
-        $this->set(compact('wikiLinkLocalizer'));
     }
 
 

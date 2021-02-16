@@ -117,7 +117,7 @@ if ($ignored) {
                     'Invalid query. '.
                     'Please refer to the '.
                     '<a href="{}">search documentation</a> for more details.', true),
-                $this->Pages->getWikiLink('text-search')
+                $this->cell('WikiLink', ['text-search'])
             );
         ?></p>
     </div>

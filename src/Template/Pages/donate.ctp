@@ -50,7 +50,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
     <div class="section md-whiteframe-1dp">
         <?php echo $this->Html->link(
             __("All donations"),
-            $this->Pages->getWikiLink('donations')
+            $this->cell('WikiLink', ['donations'])
         ); ?>
     </div>
 </div>
