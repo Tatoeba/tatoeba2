@@ -240,6 +240,12 @@ class ExportsTable extends Table
             $query->select(['id' => 'SentencesSentencesLists.sentence_id']);
         }
 
+        $query->formatResults(function($entities) use ($config) {
+            return $entities->map(function($entity) use ($config) {
+                return $this->getCSVFields($config['fields'], $entity);
+            });
+        });
+
         return $query;
     }
 
@@ -314,8 +320,7 @@ class ExportsTable extends Table
         $file->write($BOM);
 
         $results = $query->all();
-        foreach ($results as $entity) {
-            $fields = $this->getCSVFields($config['fields'], $entity);
+        foreach ($results as $fields) {
             $linefeed = "\r\n";
             if ($config['format'] == 'shtooka') {
                 $file->write(implode($fields, " - ").$linefeed);
