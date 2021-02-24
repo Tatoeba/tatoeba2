@@ -46,7 +46,9 @@
         $scope.addListExport = function () {
             $http.post(rootUrl + "/exports/add", {
                      'type': 'list',
-                     'list_id': $scope.selectedList
+                     'list_id': $scope.selectedList,
+                     'fields': ['id', 'lang', 'text'],
+                     'format': 'tsv'
                  })
                  .then(
                     function(response) {
