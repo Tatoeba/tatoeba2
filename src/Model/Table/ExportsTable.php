@@ -230,8 +230,7 @@ class ExportsTable extends Table
         $BOM = "\xEF\xBB\xBF";
         $file->write($BOM);
 
-        $results = $query->all();
-        foreach ($results as $fields) {
+        foreach ($query as $fields) {
             $linefeed = "\r\n";
             if ($config['format'] == 'shtooka') {
                 $file->write(implode($fields, " - ").$linefeed);
