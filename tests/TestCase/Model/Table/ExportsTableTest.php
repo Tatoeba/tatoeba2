@@ -336,6 +336,24 @@ class ExportsTableTest extends TestCase
         $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_with_translations.tsv', $filename);
     }
 
+    public function testRunExport_pairs_fileHasExpectedContents()
+    {
+        $options = [
+            'type' => 'pairs',
+            'from' => 'fra',
+            'to'   => 'jpn',
+            'fields' => ['id', 'text', 'trans_id', 'trans_text'],
+            'format' => 'tsv',
+        ];
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $filename = $this->Exports->get($firstExportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'pairs.tsv', $filename);
+    }
+
     public function testRunExport_fileHasExpectedContents_asTextFormat()
     {
         $options = $this->optionsWith(['list_id' => 1, 'fields' => ['text'], 'format' => 'txt']);

@@ -2,6 +2,7 @@
 namespace App\Model\Table;
 
 use App\Model\Exporter\ListExporter;
+use App\Model\Exporter\PairsExporter;
 use Cake\Core\Configure;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
@@ -153,7 +154,8 @@ class ExportsTable extends Table
     {
         if (isset($config['type'])) {
             switch ($config['type']) {
-                case 'list': return new ListExporter($config, $userId);
+                case 'list' : return new ListExporter($config, $userId);
+                case 'pairs': return new PairsExporter($config, $userId);
             }
         }
         return false;

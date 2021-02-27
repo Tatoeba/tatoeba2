@@ -29,6 +29,7 @@ class LinksTable extends Table
         $this->setTable('sentences_translations');
         
         $this->belongsTo('Sentences');
+        $this->belongsTo('Translations');
     }
 
     public function beforeSave($event, $entity, $options)
