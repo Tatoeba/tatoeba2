@@ -1741,16 +1741,12 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
 }
 
 /* Custom md-not-found with "Show all" button */
-.md-not-found li:hover {
-    background-color: inherit;
-    cursor: default;
-}
 md-virtual-repeat-container.md-not-found {
     min-height: 84px;
 }
 .md-not-found .language-dropdown li {
-    white-space: normal;
-    height: 84px
+    font-size: 14px;
+    padding: 0 15px;
 }
 .md-not-found .language-dropdown button {
     margin: 0;

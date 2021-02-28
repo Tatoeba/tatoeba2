@@ -19,37 +19,26 @@
 
     angular
         .module('app')
-        .controller('SearchBarController', ['$scope', 'searchService', function($scope, search) {
+        .directive('ngModelInit',  ['$parse', function($parse) {
+            return {
+                restrict: 'A',
+                require: '?ngModel',
+                link: function (scope, element, attrs) {
+                    if (attrs.ngModel) {
+                        $parse(attrs.ngModel).assign(scope, attrs.ngModelInit);
+                    }
+                }
+            };
+        }])
+        .controller('SearchController', ['searchService', function(search) {
             var vm = this;
 
-            vm.langFrom = '';
-            vm.langTo = '';
-            
-            vm.clearSearch = clearSearch;
-            vm.swapLanguages = swapLanguages;
             vm.submit = submit;
 
             ///////////////////////////////////////////////////////////////////////////
 
-            function clearSearch() {
-                vm.searchQuery = '';
-                angular.element(document.querySelector('#SentenceQuery')).focus();
-            }
-
-            function swapLanguages() {
-                var newLangFrom = vm.langTo;
-                var newLangTo = vm.langFrom;
-                vm.langFrom = newLangFrom;
-                vm.langTo = newLangTo;
-            }
-
-            function submit(form) {
-                var filters = {
-                    'query': vm.searchQuery,
-                    'from' : vm.langFrom,
-                    'to'   : vm.langTo
-                };
-                search.submit(form, filters);
+            function submit(form, filters, target) {
+                search.submit(form, filters, target);
             }
         }]);
 })();

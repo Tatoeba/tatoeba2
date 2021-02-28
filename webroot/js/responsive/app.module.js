@@ -105,16 +105,21 @@
                 }
             }
         }])
-        .directive('resetButton', function(){
+        .directive('resetButton', ['$parse', function($parse) {
             return function(scope, element, attrs) {
                 element.bind('click', function(e) {
                     var target = attrs.target;
                     var text_input = document.getElementById(target);
-                    text_input.value = '';
+                    var model = angular.element(text_input).attr('ng-model');
+                    if (model) {
+                        $parse(model).assign(scope, '');
+                    } else {
+                        text_input.value = '';
+                    }
                     text_input.focus();
                 });
             };
-        })
+        }])
         .directive('iconWithProgress', function() {
             return {
                 restrict: 'E',

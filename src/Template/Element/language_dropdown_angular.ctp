@@ -1,8 +1,8 @@
 <div class="language-dropdown-container">
-    <input type="hidden" name="{{name}}" value="{{selectedLanguage.code}}" autocomplete="off">
     <md-autocomplete
         ng-cloak
         md-select-on-focus
+        md-input-name="{{name}}"
         md-input-id="{{inputId}}"
         md-menu-class="language-dropdown"
         md-selected-item="selectedLanguage"
@@ -40,4 +40,5 @@
             </md-button>
         </md-not-found>
     </md-autocomplete>
+    <input type="hidden" name="{{name}}" value="{{selectedLanguage.code}}" autocomplete="off">
 </div>
