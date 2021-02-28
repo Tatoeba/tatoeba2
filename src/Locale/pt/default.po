@@ -14,7 +14,7 @@
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2019
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2016
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2017-2018
-# Ricardo Vernaut Jr <rvj1444@gmail.com>, 2020
+# Ricardo Vernaut Jr <rvj1444@gmail.com>, 2020-2021
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2019
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2015
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2015-2016,2019-2020
@@ -24,9 +24,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 21:23+0100\n"
-"PO-Revision-Date: 2021-02-10 22:16+0000\n"
-"Last-Translator: fcba0459f182b79b2f7a2ccaff2ce639\n"
+"POT-Creation-Date: 2021-02-18 15:34+0100\n"
+"PO-Revision-Date: 2021-02-18 18:28+0000\n"
+"Last-Translator: Ricardo Vernaut Jr <rvj1444@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/tatoeba/tatoeba_website/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,32 +252,36 @@ msgstr "Bem-vindo(a) a Tatoeba!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L334
 msgid ""
-"To start things off, we encourage you to go to your <a "
-"href='{url}'>profile</a> and let us know which languages you speak or are "
-"interested in."
-msgstr "Para começar, sugerimos que acesse seu <a href='{url}'>perfil</a> e nos indique os idiomas que fala e/ou aqueles por que tem interesse."
+"To start things off, we encourage you to read our <a href='{url}'>Quick "
+"Start Guide</a>. If you want to read it later, you will find the link at the"
+" bottom of any page on the website."
+msgstr "Para começar, sugerimos que você leia o nosso <a href='{url}'>Guia de Início Rápido</a>. Caso você queria ler o Guia depois, você poderá encontrá-lo na parte de baixo de qualquer página do Tatoeba."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L351
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L342
+msgid "We hope you'll enjoy your time here with us!"
+msgstr "Esperamos que você aproveite o seu tempo conosco!"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L353
 msgid "Please fix the form errors."
 msgstr "Por favor, corrija os erros do formulário."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L386
 msgid "Your new password has been sent to {email}."
 msgstr "Sua nova senha foi enviada para o e-mail {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L391
 msgid "You may need to check your spam folder to find this message."
 msgstr "Talvez você precise verificar sua pasta de spam para encontrar esta mensagem. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L397
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L399
 msgid "There is no registered user with this email address: "
 msgstr "Não há nenhum usuário registrado com este endereço de email: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L419
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L421
 msgid "No user with this username: "
 msgstr "Não há nenhum usuário com este nome:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L459
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L461
 msgid "No user with this ID: {id}"
 msgstr "Não há nenhum usuário com este número de identificação: {id}"
 
@@ -1048,7 +1052,10 @@ msgstr "Mostrar traduções para o:"
 
 #. option used in language selection dropdown for
 #. "Show translations in" in advanced search form
+#. / option used in language selection dropdown for "Show translations in" in
+#. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L206
 msgctxt "show-translations-in"
 msgid "All languages"
 msgstr "Todos os idiomas"
@@ -1314,7 +1321,7 @@ msgstr "F.A.Q."
 #. link text to the Help page in the footer (noun)
 #. / title of the Help page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L29
 msgid "Help"
 msgstr "Ajuda"
@@ -1418,7 +1425,7 @@ msgstr "Nenhum idioma encontrado."
 #. languages. Appears when entered text returns no matches.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown_angular.ctp#L39
 msgid "Show all"
-msgstr ""
+msgstr "Mostrar todos"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
@@ -1580,36 +1587,36 @@ msgid "Mark as \"not OK\""
 msgstr "Marcar com \"eu reprovo\""
 
 #. placeholder for the search input in the search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L54
 msgctxt "placeholder"
 msgid "Search"
 msgstr "Procurar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L91
 msgid "Advanced search"
 msgstr "Busca avançada"
 
 #. keywords field label in top search bar (not displayed)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L103
 msgctxt "label"
 msgid "Search"
 msgstr "Procurar"
 
 #. search language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L121
 msgid "From"
 msgstr "De"
 
 #. placeholder used in translation language selection dropdown in top search
 #. bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L156
 msgctxt "searchbar"
 msgid "Any language"
 msgstr "Qualquer idioma"
 
 #. translation language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L145
 msgctxt "language"
 msgid "To"
 msgstr "Para"
@@ -2100,7 +2107,7 @@ msgstr "Editar esta tradução"
 
 #. translation field label on new translation addition form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L7
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L92
 msgid "Translation"
 msgstr "Tradução"
 
@@ -2458,7 +2465,7 @@ msgstr "Não há exportações."
 #. button to download a list (verb)
 #. / button to download on the download list page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L18
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L150
 msgctxt "button"
 msgid "Download"
 msgstr "Fazer o download"
@@ -2741,7 +2748,7 @@ msgstr "Nome do arquivo"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L87
 msgid "Fields and structure"
 msgstr "Campos e estrutura"
 
@@ -2752,7 +2759,7 @@ msgstr "Descrição do arquivo"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L48
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L90
 msgid "Sentence id"
 msgstr "Número de identificação da frase"
 
@@ -2768,7 +2775,7 @@ msgstr "Revisão"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L54
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L91
 msgid "Text"
 msgstr "Texto"
 
@@ -3752,19 +3759,19 @@ msgstr "Download"
 msgid "File format"
 msgstr "Formato do arquivo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L71
 msgid "Raw text file"
 msgstr "Arquivo de texto bruto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L72
 msgid "Tab-separated file"
 msgstr "Arquivo separado por tabulação"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L73
 msgid "List for the Shtooka recorder"
 msgstr "Lista para o gravador Shtooka"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L98
 msgid "Translation (optional)"
 msgstr "Tradução (opcional)"
 
@@ -3772,25 +3779,24 @@ msgstr "Tradução (opcional)"
 #. / native language dropdown placeholder in Register page
 #. / option used in language selection dropdown for "Show translations in" in
 #. advanced search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L235
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L202
 msgid "None"
 msgstr "Nenhum"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L132
 msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
 msgstr "Se você selecionar um idioma, a tradução de cada frase frase para esse idioma (caso exista) aparecerá na saída. Você pode, então, importar o arquivo para produzir uma série de flashcards usando o programa {Anki}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
 msgid "Preparing download, please wait."
 msgstr "Preparando download. Por favor, aguarde."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
 msgid "Failed to prepare download, please try again."
 msgstr "Falha ao preparar o download. Por favor, tente de novo."
 
@@ -4235,7 +4241,7 @@ msgstr "Descrição"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L400
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L404
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L332
 msgid "Add a language"
 msgstr "Adicionar idioma"
 
@@ -4561,7 +4567,7 @@ msgstr "Desmascarar senha"
 #. screen-readers, so please translate it correctly.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L214
 msgid "Leave this blank"
-msgstr ""
+msgstr "Deixar em branco"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L226
 msgid "Native language:"
@@ -4885,45 +4891,45 @@ msgstr "Idioma desconhecido"
 msgid "other language"
 msgstr "outro idioma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L313
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
 msgstr "Você não pode adicionar frases porque ainda não incluiu nenhum idioma em seu perfil."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L318
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
 msgstr "Você não pode traduzir frases porque ainda não incluiu nenhum idioma em seu perfil."
 
 #. language level
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L366
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L344
 msgctxt "level"
 msgid "Unspecified"
 msgstr "Não especificado"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L345
 msgid "0: Almost no knowledge"
 msgstr "0: Quase nenhum conhecimento"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L346
 msgid "1: Beginner"
 msgstr "1: Iniciante"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L347
 msgid "2: Intermediate"
 msgstr "2: Intermediário"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L348
 msgid "3: Advanced"
 msgstr "3: Avançado"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L349
 msgid "4: Fluent"
 msgstr "4: Fluente"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L372
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L350
 msgid "5: Native level"
 msgstr "5: Nativo"
 
