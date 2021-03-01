@@ -621,6 +621,7 @@ class LanguagesLib
                 'zgh' => __d('languages', 'Standard Moroccan Tamazight'),
                 'bfz' => __d('languages', 'Mahasu Pahari'),
                 'qxq' => __d('languages', 'Qashqai'),
+                'klj' => __d('languages', 'Khalaj'),
             );
         }
         return $languages;
@@ -703,6 +704,7 @@ class LanguagesLib
             "lad",
             "xqa",
             "qxq",
+            "klj",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
