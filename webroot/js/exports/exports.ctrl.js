@@ -43,13 +43,14 @@
             $scope.maybeRefreshExportList();
         }
 
-        $scope.addListExport = function () {
-            $http.post(rootUrl + "/exports/add", {
-                     'type': 'list',
-                     'list_id': $scope.selectedList,
-                     'fields': ['id', 'lang', 'text'],
-                     'format': 'tsv'
-                 })
+        $scope.addExport = function (type, fields, extraParams = {}) {
+            var params = {
+                'type': type,
+                'fields': fields,
+                'format': 'tsv'
+            };
+            Object.assign(params, extraParams);
+            $http.post(rootUrl + "/exports/add", params)
                  .then(
                     function(response) {
                         $scope.exports.push(response.data.export);
