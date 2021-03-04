@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class PagesControllerTest extends IntegrationTestCase
@@ -30,6 +31,11 @@ class PagesControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
+    public function setUp() {
+        parent::setUp();
+        Configure::write('Tatowiki.baseHost', 'wiki.example.com');
+    }
+
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
@@ -53,8 +59,8 @@ class PagesControllerTest extends IntegrationTestCase
             [ '/eng/contact', 'contributor', true ],
             [ '/eng/help', null, true ],
             [ '/eng/help', 'contributor', true ],
-            [ '/eng/faq', null, 'https://en.wiki.tatoeba.org/articles/show/faq' ],
-            [ '/eng/faq', 'contributor', 'https://en.wiki.tatoeba.org/articles/show/faq' ],
+            [ '/eng/faq', null, 'http://en.wiki.example.com/articles/show/faq' ],
+            [ '/eng/faq', 'contributor', 'http://en.wiki.example.com/articles/show/faq' ],
             [ '/eng/donate', null, true ],
             [ '/eng/donate', 'contributor', true ],
         ];

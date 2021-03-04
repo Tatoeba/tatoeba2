@@ -333,9 +333,10 @@ class PagesController extends AppController
      */
     public function faq()
     {
+        $proto = $this->getRequest()->getUri()->getScheme();
         $this->loadModel('WikiArticles');
         $this->redirect(
-            $this->WikiArticles->getWikiLink('faq'),
+            $proto.':'.$this->WikiArticles->getWikiLink('faq'),
             301
         );
     }
