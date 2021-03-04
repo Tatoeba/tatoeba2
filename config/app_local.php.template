@@ -43,6 +43,14 @@ return [
     ],
 
     /**
+     * Tatowiki basehost without the language part.
+     * See also Datasources.wiki above.
+     */
+    'Tatowiki' => [
+        'baseHost' => '{{tatowiki_domain}}:8080',
+    ],
+
+    /**
      * Manticore configuration
      */
     'Sphinx' => [

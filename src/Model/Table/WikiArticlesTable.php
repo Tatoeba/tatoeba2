@@ -47,7 +47,8 @@ class WikiArticlesTable extends Table
         }
 
         $slug = urlencode($slug);
-        return "https://$lang.wiki.tatoeba.org/articles/show/$slug";
+        $baseHost = Configure::read('Tatowiki.baseHost');
+        return "//$lang.$baseHost/articles/show/$slug";
     }
 
     public function initialize(array $config) {
