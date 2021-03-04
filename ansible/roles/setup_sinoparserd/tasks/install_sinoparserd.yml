@@ -24,7 +24,7 @@
   command: cmake . chdir=/tmp/sinoparserd
 
 - name: Compile
-  command: make chdir=/tmp/sinoparserd
+  command: make -j2 chdir=/tmp/sinoparserd
 
 - name: Copy Binaries
   command: cp sinoparserd /usr/local/bin/sinoparserd chdir=/tmp/sinoparserd
