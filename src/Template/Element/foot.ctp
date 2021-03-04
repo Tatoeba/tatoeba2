@@ -39,7 +39,7 @@
                 <?php
                 echo $this->Html->link(
                     __('Quick Start Guide'),
-                    'http://en.wiki.tatoeba.org/articles/show/quick-start'
+                    $this->cell('WikiLink', ['quick-start'])
                 );
                 ?>
             </li>
@@ -47,7 +47,7 @@
                 <?php
                 echo $this->Html->link(
                     __('Tatoeba Wiki'),
-                    'http://en.wiki.tatoeba.org/articles/show/main'
+                    $this->cell('WikiLink', ['main'])
                 );
                 ?>
             </li>
@@ -56,7 +56,7 @@
                 echo $this->Html->link(
                     /* @translators: link text in the footer */
                     __x('footer', 'FAQ'),
-                    'http://en.wiki.tatoeba.org/articles/show/faq'
+                    $this->cell('WikiLink', ['faq'])
                 );
                 ?>
             </li>

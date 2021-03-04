@@ -251,7 +251,7 @@ if (!function_exists('format')) {
             $res = '';
             if (array_key_exists($key, $args)) {
                 $res = $args[$key];
-                $list = __format_decompose_list($res);
+                $list = __format_decompose_list((string)$res);
                 if (is_array($list)) {
                     reset($list);
                     if (!$subkey || !array_key_exists($subkey, $list))

@@ -15,6 +15,7 @@ class FavoritesControllerTest extends IntegrationTestCase
         'app.private_messages',
         'app.sentences',
         'app.transcriptions',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {

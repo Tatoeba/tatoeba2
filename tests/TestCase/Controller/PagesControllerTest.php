@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class PagesControllerTest extends IntegrationTestCase
@@ -26,8 +27,14 @@ class PagesControllerTest extends IntegrationTestCase
         'app.Users',
         'app.UsersLanguages',
         'app.UsersSentences',
-        'app.Walls'
+        'app.Walls',
+        'app.WikiArticles',
     ];
+
+    public function setUp() {
+        parent::setUp();
+        Configure::write('Tatowiki.baseHost', 'wiki.example.com');
+    }
 
     public function accessesProvider() {
         return [
@@ -52,8 +59,8 @@ class PagesControllerTest extends IntegrationTestCase
             [ '/eng/contact', 'contributor', true ],
             [ '/eng/help', null, true ],
             [ '/eng/help', 'contributor', true ],
-            [ '/eng/faq', null, 'http://wiki.tatoeba.org/articles/show/faq' ],
-            [ '/eng/faq', 'contributor', 'http://wiki.tatoeba.org/articles/show/faq' ],
+            [ '/eng/faq', null, 'http://en.wiki.example.com/articles/show/faq' ],
+            [ '/eng/faq', 'contributor', 'http://en.wiki.example.com/articles/show/faq' ],
             [ '/eng/donate', null, true ],
             [ '/eng/donate', 'contributor', true ],
         ];
@@ -63,7 +70,7 @@ class PagesControllerTest extends IntegrationTestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $this->loadFixtures('PrivateMessages', 'Users', 'UsersLanguages');
+        $this->loadFixtures('PrivateMessages', 'Users', 'UsersLanguages', 'WikiArticles');
         $this->assertAccessUrlAs($url, $user, $response);
     }
 

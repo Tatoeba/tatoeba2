@@ -19,7 +19,8 @@ class TagsControllerTest extends IntegrationTestCase {
         'app.tags_sentences',
         'app.transcriptions',
         'app.users',
-        'app.users_languages'
+        'app.users_languages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {

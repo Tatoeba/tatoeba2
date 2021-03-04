@@ -87,7 +87,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         if (!$userLanguage) {
             $hintText = format(
                 __('If your language is missing, please read our article on how to <a href="{}">request a new language</a>.'),
-                'https://en.wiki.tatoeba.org/articles/show/new-language-request'
+                $this->cell('WikiLink', ['new-language-request'])
             );
             echo $this->Html->para('hint', $hintText);
         }

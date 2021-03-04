@@ -14,6 +14,7 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
         'app.sentences',
         'app.users',
         'app.users_languages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {
