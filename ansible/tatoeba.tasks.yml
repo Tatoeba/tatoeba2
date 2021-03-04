@@ -51,3 +51,10 @@
   vars:
     repo: https://github.com/Tatoeba/Tatodetect
     force_install: no
+
+- name: Install and setup Tatowiki
+  tags: tatowiki, external_tools
+  import_tasks: install.yml
+  vars:
+    repo: https://github.com/Tatoeba/tatowiki
+    force_install: no

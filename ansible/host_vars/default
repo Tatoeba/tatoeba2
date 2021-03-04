@@ -83,6 +83,14 @@ ngrams_db_file: /etc/ngrams.db
 build_tatomecab_dict: true
 tatomecab_dict_dir: /var/lib/mecab/dic/tatomecab
 
+# Variables for tatowiki
+# ------------------------
+tatowiki_basedir: /srv/wiki.tatoeba.org
+tatowiki_sqlite_file: "{{tatowiki_basedir}}/www/data/wiki.db"
+tatowiki_resources_dir: "{{tatowiki_basedir}}/www/resources"
+tatowiki_upload_dir: "{{tatowiki_basedir}}/www/upload"
+tatowiki_domain: "wiki.{{main_server_name}}"
+
 # Variables for New Relic
 # -----------------------
 newrelic_loglevel: info

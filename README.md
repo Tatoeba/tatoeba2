@@ -163,12 +163,35 @@ cake sphinx_conf list-of-iso-codes | sudo tee /etc/manticoresearch/manticore.con
 sudo systemctl restart manticore
 ```
 
-## Accessing subdomains (audio, downloads...)
+## Accessing subdomains
 
-To access subdomains, you need to configure them in the [hosts file](https://en.wikipedia.org/wiki/Hosts_%28file%29) of your machine (not the VM, your actual computer). Add the following line to your hosts file:
+To access subdomains, you need to configure them in the [hosts file](https://en.wikipedia.org/wiki/Hosts_%28file%29) of your machine (not the VM, your actual computer).
+
+### Audio and downloads
+
+Add the following line to your hosts file:
 
 ```
 127.0.0.1 tato.test audio.tato.test downloads.tato.test
 ```
 
 Now you should be able to access http://downloads.tato.test:8080/ as well as http://tato.test:8080/ (which is the same as localhost).
+
+### Wiki
+
+Add a line to your hosts file:
+
+```
+127.0.0.1 wiki.tato.test en.wiki.tato.test de.wiki.tato.test eo.wiki.tato.test es.wiki.tato.test
+```
+
+Now you should be able to access http://en.wiki.tato.test:8080/.
+
+The above example only adds hostnames to access the English, German, Esperanto and Spanish wiki. If you want to add all the languages, here is a little command you can run from within the VM to extract all the languages from tatowiki's config file:
+
+```sh
+echo -n "127.0.0.1 wiki.tato.test"; \
+  sudo sed '1,/"languages"/d;/ \],$/,$d' /srv/wiki.tatoeba.org/www/config.js | cut -d'"' -f2 | \
+  while read lang; do echo -n " $lang.wiki.tato.test"; done; \
+  echo
+```
