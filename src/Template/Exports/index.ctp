@@ -117,12 +117,20 @@ $languagesList = $this->Languages->onlyLanguagesArray();
      ng-show="exports.length">
   <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
-      <h2><?= __('Your exports') ?></h2>
+      <h2 flex ng-show="!is_showing_all_exports"><?= __('Your latest exports') ?></h2>
+      <h2 flex ng-show="is_showing_all_exports" ><?= __('All your exports') ?></h2>
+      <md-button ng-show="!is_showing_all_exports && exports.length > MAX_LATEST_EXPORTS"
+                 ng-click="is_showing_all_exports = true">
+        <md-icon>expand_more</md-icon>
+        <?php /* @translators: button in exports list toolbar in exports page,
+                 to show all exports (as opposed to the latests only). */ ?>
+        <?= __x('exports', 'Show all') ?>
+      </md-button>
     </div>
   </md-toolbar>
 
   <md-content>
-    <md-list-item ng-repeat="export in exports | orderBy: 'generated':true | limitTo: 5">
+    <md-list-item ng-repeat="export in exports | orderBy: 'generated':true | limitTo: (is_showing_all_exports ? undefined : MAX_LATEST_EXPORTS)">
       <p>{{export.name}}</p>
       <span ng-show="export.status == 'online' && export.generated">{{export.generated | date:'yyyy-MM-dd'}}</span>
       <md-button class="md-raised md-primary uncropped-md-button"

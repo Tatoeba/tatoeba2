@@ -41,6 +41,7 @@
         $scope.init = function (exports) {
             $scope.exports = exports;
             $scope.maybeRefreshExportList();
+            $scope.MAX_LATEST_EXPORTS = 5;
         }
 
         $scope.addExport = function (type, fields, extraParams = {}) {

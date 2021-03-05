@@ -36,7 +36,7 @@
                 <md-icon ng-cloak>keyboard_arrow_left</md-icon>
                 <?php /* @translators: button in language dropdown to show all
                          languages. Appears when entered text returns no matches. */ ?>
-                <?= __('Show all') ?>
+                <?= __x('languages', 'Show all') ?>
             </md-button>
         </md-not-found>
     </md-autocomplete>
