@@ -137,7 +137,7 @@ $languagesList = $this->Languages->onlyLanguagesArray();
                  ng-href="/exports/download/{{export.id}}/{{export.pretty_filename | urlEncode}}"
                  ng-show="export.status == 'online'">
         <md-icon>get_app</md-icon>
-        <?php /* @translators: button to download a list (verb) */ ?>
+        <?php /* @translators: button to download an export (verb) */ ?>
         <span hide="" show-gt-sm=""><?= __x('button', 'Download') ?></span>
       </md-button>
       <div ng-show="export.status == 'queued'" layout="row" layout-align="none center">
