@@ -19,11 +19,14 @@
 namespace App\Model\Exporter;
 
 use App\Lib\LanguagesLib;
+use App\Model\Entity\LanguageNameTrait;
 use Cake\ORM\TableRegistry;
 use Exception;
 
 class PairsExporter
 {
+    use LanguageNameTrait;
+
     private $config;
     private $userId;
 
@@ -106,7 +109,12 @@ class PairsExporter
 
     public function getExportName()
     {
-        return format(__('Sentence pairs {language1}-{language2}'), ['language1' => $this->config['from'], 'language2' => $this->config['to']]);
+        $language1 = $this->codeToNameAlone($this->config['from']);
+        $language2 = $this->codeToNameAlone($this->config['to']);
+        return format(
+           __('Sentence pairs in {language1}-{language2}'),
+           compact('language1', 'language2')
+        );
     }
 
     public function getExportDescription()
