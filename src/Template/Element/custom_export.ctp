@@ -23,6 +23,7 @@ $this->AngularTemplate->addTemplate(
 
   <md-content layout-margin>
     <div ng-show="!new_export">
+      <p><?= __('Use this tool to generate and download customized exports on demand.') ?></p>
       <md-button class="export-card md-raised" ng-click="new_export = 'list'">
         <div>
           <md-icon>list</md-icon>
