@@ -88,6 +88,7 @@ class PairsExporter
     {
         $Links = TableRegistry::getTableLocator()->get('Links');
         $query = $Links->find()
+            ->enableBufferedResults(false)
             ->select(['sentence_id', 'translation_id'])
             ->where([
                 'Links.sentence_lang' => $this->config['from'],
