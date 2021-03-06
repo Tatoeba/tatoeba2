@@ -1,6 +1,10 @@
 <?php
 $this->Html->script('downloads/export.ctrl.js', ['block' => 'scriptBottom']);
 $languagesList = $this->Languages->onlyLanguagesArray();
+$this->AngularTemplate->addTemplate(
+  $this->element('custom_export_download_button'),
+  'custom-export-download-button-template'
+);
 ?>
 
 <div ng-cloak
@@ -36,8 +40,7 @@ $languagesList = $this->Languages->onlyLanguagesArray();
       </md-button>
     </div>
 
-    <div ng-controller="exportCtrl"
-         ng-show="new_export == 'list'">
+    <div ng-show="new_export == 'list'">
       <div layout="row" layout-align="center">
         <label for="listToExport" flex="33"><?= __('Choose a list:') ?></label>
         <div flex>
@@ -53,23 +56,17 @@ $languagesList = $this->Languages->onlyLanguagesArray();
         ?>
         </div>
       </div>
-      <div layout="row" layout-align="none center">
-        <md-button ng-click="addExport('list', ['id', 'lang', 'text'], {'list_id': selectedList})"
-                   ng-disabled="!selectedList || preparingDownload"
-                   class="md-raised md-primary uncropped-md-button">
+      <custom-export-download-button
           <?php /* @translators: button to download a list (verb) */ ?>
-          <?= __('Download list') ?>
-        </md-button>
-        <md-progress-circular ng-if="preparingDownload" md-diameter="16" /></md-progress-circular>
-        <div class="progress-info">
-          <span ng-if="preparingDownload"><?= __('Preparing download, please wait.') ?></span>
-          <span ng-if="export.status == 'failed'"><?= __('Failed to prepare download, please try again.') ?></span>
-        </div>
-      </div>
+          text="<?= h(__('Download list')) ?>"
+          type="list"
+          fields="['id', 'lang', 'text']"
+          params="{'list_id': selectedList}"
+          ng-disabled="!selectedList">
+      </custom-export-download-button>
     </div>
 
-    <div ng-controller="exportCtrl"
-         ng-show="new_export == 'pairs'">
+    <div ng-show="new_export == 'pairs'">
       <div layout="column">
         <div layout="row" layout-align="start center" flex>
         <?php
@@ -108,20 +105,15 @@ $languagesList = $this->Languages->onlyLanguagesArray();
         </div>
       </div>
 
-      <div layout="row" layout-align="none center">
-        <md-button ng-click="addExport('pairs', ['id', 'text', 'trans_id', 'trans_text'], {'from': selectedFrom.code, 'to': selectedTo.code})"
-                   ng-disabled="!selectedFrom.code || !selectedTo.code || preparingDownload"
-                   class="md-raised md-primary uncropped-md-button">
+      <custom-export-download-button
           <?php /* @translators: button to download all sentences in language A along
                    with all translations in a language B (verb) */ ?>
-          <?= __('Download language pair') ?>
-        </md-button>
-        <md-progress-circular ng-if="preparingDownload" md-diameter="16" /></md-progress-circular>
-        <div class="progress-info">
-          <span ng-if="preparingDownload"><?= __('Preparing download, please wait.') ?></span>
-          <span ng-if="export.status == 'failed'"><?= __('Failed to prepare download, please try again.') ?></span>
-        </div>
-      </div>
+          text="<?= h(__('Download language pair')) ?>"
+          type="pairs"
+          fields="['id', 'text', 'trans_id', 'trans_text']"
+          params="{'from': selectedFrom.code, 'to': selectedTo.code}"
+          ng-disabled="!selectedFrom.code || !selectedTo.code">
+      </custom-export-download-button>
     </div>
   </md-content>
 </div>

@@ -1,5 +1,7 @@
 (function(){
-    angular.module('app').controller('exportCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+    angular.module('app')
+
+    .controller('exportCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
 
         var rootUrl = get_tatoeba_root_url();
 
@@ -56,5 +58,20 @@
                     }
                  );
         };
-    }]);
+    }])
+
+    .directive('customExportDownloadButton', function() {
+        return {
+            controller:   'exportCtrl',
+            scope: {
+                'text': '@',
+                'type': '@',
+                'fields': '<',
+                'params': '<',
+                'ngDisabled': '<'
+            },
+            restrict: 'E',
+            templateUrl: 'custom-export-download-button-template'
+        };
+    });
 })();
