@@ -87,32 +87,6 @@ class ExportsTableTest extends TestCase
         }
     }
 
-    public function testGetExportsOf()
-    {
-        $expected = [
-            [
-                'id' => 1,
-                'name' => 'Kazuki\'s sentences',
-                'description' => 'Sentence id [tab] Sentence text',
-                'status' => 'online',
-                'generated' => new \Cake\I18n\FrozenTime('2019-02-01 14:54:13'),
-                'pretty_filename' => "Kazuki's sentences - 2019-02-01.zip"
-            ],
-            [
-                'id' => 2,
-                'name' => 'Japanese-Russian sentence pairs',
-                'description' => 'Japanese sentence text [tab] Russian entence text',
-                'status' => 'queued',
-                'generated' => new \Cake\I18n\FrozenTime('2019-02-01 15:04:02'),
-                'pretty_filename' => 'Japanese-Russian sentence pairs - 2019-02-01.tsv',
-            ],
-        ];
-
-        $result = $this->Exports->getExportsOf(7);
-
-        $this->assertResultSet($expected, $result->all());
-    }
-
     public function testCreateListExport_returnsExport()
     {
         $expected = [

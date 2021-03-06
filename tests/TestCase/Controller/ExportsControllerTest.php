@@ -40,11 +40,6 @@ class ExportsControllerTest extends IntegrationTestCase
     public function accessesProvider()
     {
         return [
-            [ '/eng/exports/index', null, '/eng/users/login?redirect=%2Feng%2Fexports%2Findex' ],
-            [ '/eng/exports/index', 'contributor', true ],
-            [ '/eng/exports/index', 'advanced_contributor', true ],
-            [ '/eng/exports/index', 'corpus_maintainer', true ],
-            [ '/eng/exports/index', 'admin', true ],
             [ '/eng/exports/download/1', null, false ],
             [ '/eng/exports/download/1', 'contributor', false ],
             [ '/eng/exports/download/9999999', 'kazuki', 404 ],
@@ -57,25 +52,6 @@ class ExportsControllerTest extends IntegrationTestCase
     public function testExportsControllerAccess($url, $user, $response)
     {
         $this->assertAccessUrlAs($url, $user, $response);
-    }
-
-    public function ajaxAccessesProvider()
-    {
-        return [
-            [ '/eng/exports/list', null, false ],
-            [ '/eng/exports/list', 'contributor', true ],
-            [ '/eng/exports/list', 'advanced_contributor', true ],
-            [ '/eng/exports/list', 'corpus_maintainer', true ],
-            [ '/eng/exports/list', 'admin', true ],
-        ];
-    }
-
-    /**
-     * @dataProvider ajaxAccessesProvider
-     */
-    public function testExportsControllerAjaxAccess($url, $user, $response)
-    {
-        $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
     public function assertNoHeader($header, $message = '')

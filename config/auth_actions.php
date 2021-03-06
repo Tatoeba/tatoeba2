@@ -81,7 +81,6 @@ $config = [
             'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
         ],
         'reviews'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
-        'exports'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'favorites'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'links'                => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
         'imports'              => [ '*' => [ User::ROLE_ADMIN ] ],
