@@ -545,5 +545,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 </dd>
             </dl>
         </div>
+
+        <?= $this->element('custom_export') ?>
     </div>
 </div>

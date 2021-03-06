@@ -300,6 +300,8 @@ class PagesController extends AppController
      */
     public function downloads()
     {
+        $this->loadModel('SentencesLists');
+        $this->set('searchableLists', $this->SentencesLists->getSearchableLists());
     }
 
 
