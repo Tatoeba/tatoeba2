@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\ExportRateThrottler;
 use App\Model\Exporter\ListExporter;
 use App\Model\Exporter\PairsExporter;
 use Cake\Core\Configure;
@@ -226,6 +227,8 @@ class ExportsTable extends Table
         $BOM = "\xEF\xBB\xBF";
         $file->write($BOM);
 
+        $throttler = new ExportRateThrottler();
+        $throttler->start();
         foreach ($query as $fields) {
             $linefeed = "\r\n";
             if ($config['format'] == 'shtooka') {
@@ -233,6 +236,8 @@ class ExportsTable extends Table
             } else {
                 $file->write(implode($fields, "\t").$linefeed);
             }
+            $throttler->oneMoreRecord();
+            $throttler->control();
         }
         $file->close();
 
