@@ -17,7 +17,7 @@ $this->AngularTemplate->addTemplate(
       </md-button>
       <h2 ng-show="!new_export"><?= __('Custom export') ?></h2>
       <h2 ng-show="new_export == 'list'"><?= __('List') ?></h2>
-      <h2 ng-show="new_export == 'pairs'"><?= __('Language pair') ?></h2>
+      <h2 ng-show="new_export == 'pairs'"><?= __('Sentence pairs') ?></h2>
     </div>
   </md-toolbar>
 
@@ -35,9 +35,9 @@ $this->AngularTemplate->addTemplate(
       <md-button class="export-card md-raised" ng-click="new_export = 'pairs'">
         <div>
           <md-icon>translate</md-icon>
-          <strong><?= __('Language pair') ?></strong>
+          <strong><?= __('Sentence pairs') ?></strong>
         </div>
-        <small><?= __('Download all sentences in language A along with all translations in a language B') ?></small>
+        <small><?= __('Download all sentences in language A with translations in language B') ?></small>
       </md-button>
     </div>
 
@@ -68,6 +68,8 @@ $this->AngularTemplate->addTemplate(
     </div>
 
     <div ng-show="new_export == 'pairs'">
+      <p><?= __('Download all sentences in language A that are translated '
+               .'into language B, along with the translations.') ?></p>
       <div layout="column">
         <div layout="row" layout-align="start center" flex>
         <?php
@@ -109,7 +111,7 @@ $this->AngularTemplate->addTemplate(
       <custom-export-download-button
           <?php /* @translators: button to download all sentences in language A along
                    with all translations in a language B (verb) */ ?>
-          text="<?= h(__('Download language pair')) ?>"
+          text="<?= h(__('Download sentence pairs')) ?>"
           type="pairs"
           fields="['id', 'text', 'trans_id', 'trans_text']"
           params="{'from': selectedFrom.code, 'to': selectedTo.code}"
