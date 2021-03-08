@@ -47,6 +47,32 @@ dt {
     margin-left: 0.5em;
 }
 
+/*
+ * Weekly exports
+ */
+.weekly-exports-info md-icon {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.weekly-exports-info {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.weekly-export {
+    border-top: 1.5px solid rgba(0,0,0,0.12);
+    margin-bottom: 0;
+}
+
+/*
+ * Custom export
+ */
+#custom-export {
+  margin-bottom: 20px;
+}
+
 #custom-export .export-card {
   text-transform: inherit;
   line-height: inherit;
