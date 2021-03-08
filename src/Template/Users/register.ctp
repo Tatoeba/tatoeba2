@@ -207,10 +207,17 @@ $label = format(
         echo $this->Form->input(
             'confirm',
             array(
-                /* @translators: hidden field in registration form. It's a
-                   honeypot for spam bots. Normal users never see this text,
-                   but visually-impaired users may listen to it using
-                   screen-readers, so please translate it correctly. */
+/* @translators: This is a simple countermeasure against spam bots trying to
+   automatically register on Tatoeba. There is an empty field on the
+   registration page, but you won't see it because it is purposely hidden.
+   As a result, a regular user will never fill out this field. Spam bots on
+   the other hand don't know which part of the page is visible or not and are
+   likely to carelessly fill all the fields. If anything is written in that
+   hidden field, registration won't work. This strategy is called a honeypot.
+   However, visually-impaired people browsing the page using a screen reader
+   may notice the presence of the hidden field. To help them, we leave a hidden
+   text explaining what to do with that field. This text is what you have to
+   translate here. */
                 'label' => __('Leave this blank'),
                 'type' => 'email',
                 'required' => false,
