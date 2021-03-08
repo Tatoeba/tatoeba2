@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-18 17:24+0100\n"
+"POT-Creation-Date: 2021-03-05 00:03+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2020\n"
 "Language-Team: Breton (https://www.transifex.com/tatoeba/teams/28284/br/)\n"
@@ -22,14 +22,14 @@ msgstr ""
 "Language: br\n"
 "Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L845
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "Fazi: Ar frazennoù a zo ouzhpennet gant {username} na rankont ket bezañ "
 "merket evel nann-fizius."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L850
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "Merkañ an holl frazennoù ouzhpennet gant {username} evel nann-fizius."
 
