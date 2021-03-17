@@ -622,6 +622,7 @@ class LanguagesLib
                 'bfz' => __d('languages', 'Mahasu Pahari'),
                 'qxq' => __d('languages', 'Qashqai'),
                 'klj' => __d('languages', 'Khalaj'),
+                'lbe' => __d('languages', 'Lak'),
             );
         }
         return $languages;
