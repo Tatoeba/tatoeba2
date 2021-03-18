@@ -16,7 +16,11 @@ class EditOwnersCommand extends EditCommand_
             ->setDescription('Change sentence owners.')
             ->addArgument('owner', [
                 'help' => 'username of the new owner.',
-                'required' => true,
+            ])
+            ->addOption('orphan', [
+                'help' => 'Unset owner (this orphans the sentence).',
+                'short' => 'o',
+                'boolean' => true,
             ]);
         return $parser;
     }
@@ -24,14 +28,22 @@ class EditOwnersCommand extends EditCommand_
     protected function editOwner($ids, $newOwner, $newOwnerId) {
         foreach ($ids as $id) {
             try {
-                $sentence = $this->Sentences->setOwner($id, $newOwnerId, CurrentUser::get('role'));
-                $result = $sentence && $sentence->user_id === $newOwnerId;
+                if (!$newOwnerId) {
+                    $result = $this->Sentences->unsetOwner($id, CurrentUser::get('id'));
+                } else {
+                    $sentence = $this->Sentences->setOwner($id, $newOwnerId, CurrentUser::get('role'));
+                    $result = $sentence && $sentence->user_id === $newOwnerId;
+                }
             } catch (RecordNotFoundException $e) {
                 $result = false;
             }
 
             if ($result) {
-                $this->log[] = "id $id - Owner set to $newOwner";
+                if (!$newOwnerId) {
+                    $this->log[] = "id $id - Sentence orphaned";
+                } else {
+                    $this->log[] = "id $id - Owner set to $newOwner";
+                }
             } else {
                 $this->log[] = "id $id - Record not found or could not save changes";
             }
@@ -42,11 +54,22 @@ class EditOwnersCommand extends EditCommand_
     public function execute(Arguments $args, ConsoleIo $io) {
         $this->becomeUser($args, $io);
 
+        $orphan = $args->getOption('orphan');
         $newOwner = $args->getArgument('owner');
-        $newOwnerId = $this->Users->getIdFromUsername($newOwner);
-        if (!$newOwnerId) {
-            $io->error("User '$newOwner' does not exist!");
+        if (!($orphan xor $newOwner)) {
+            $io->error('You should either use the orphan option or '.
+                       'specify a new owner as third argument.');
             $this->abort();
+        }
+
+        if ($newOwner) {
+            $newOwnerId = $this->Users->getIdFromUsername($newOwner);
+            if (!$newOwnerId) {
+                $io->error("User '$newOwner' does not exist!");
+                $this->abort();
+            }
+        } else {
+            $newOwnerId = null;
         }
 
         $ids = $this->readIdsFromFile($args, $io);

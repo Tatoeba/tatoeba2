@@ -58,6 +58,19 @@ class EditOwnersCommandTest extends TestCase
         }
     }
 
+    public function testExecute_unsetsOwner() {
+        $ids = [1, 2];
+        $path = $this->create_test_file($ids);
+        $this->exec("edit_owners -o kazuki $path");
+
+        $this->assertExitCode(Command::CODE_SUCCESS);
+
+        foreach ($ids as $id) {
+            $sentence = $this->Sentences->get($id);
+            $this->assertNull($sentence->user_id);
+        }
+    }
+
     public function successesProvider() {
         // username, ids, owner, number of changes, log
         return [
@@ -72,6 +85,14 @@ class EditOwnersCommandTest extends TestCase
             'with wrong ids' =>
                 ['admin', [14, 999999, 999998], 'contributor', 1, "id 999999 - Record not found or could not save changes"],
             'empty file' => ['admin', [], 'contributor', 0],
+
+            'all ids orphaned by kazuki' =>
+                ['kazuki', [1, 2], null, 2],
+            'some ids orphaned by kazuki' =>
+                ['kazuki', [1, 2, 9], null, 2, "id 9 - Record not found or could not save changes"],
+            'orphan with wrong ids' =>
+                ['kazuki', [1, 999999, 999998], null, 1, "id 999999 - Record not found or could not save changes"],
+            'orphan with empty file' => ['admin', [], null, 0],
         ];
     }
 
@@ -79,10 +100,14 @@ class EditOwnersCommandTest extends TestCase
         if (empty($ids)) {
             return 0;
         } else {
-            $ownerId = $this->Sentences->Users->findByUsername($owner)->first()->id;
+            if ($owner) {
+                $ownerId = $this->Sentences->Users->findByUsername($owner)->first()->id;
+            } else {
+                $ownerId = null;
+            }
             return $this->Sentences
                         ->find()
-                        ->where(['id IN' => $ids, 'user_id' => $ownerId])
+                        ->where(['id IN' => $ids, 'user_id IS' => $ownerId])
                         ->count();
         }
     }
@@ -93,7 +118,11 @@ class EditOwnersCommandTest extends TestCase
     public function testExecute_severalScenarios($user, $ids, $newOwner, $changes, $log = null) {
         $path = $this->create_test_file($ids);
         $before = $this->countOwned($ids, $newOwner);
-        $this->exec("edit_owners $user $path $newOwner");
+        if ($newOwner) {
+            $this->exec("edit_owners $user $path $newOwner");
+        } else {
+            $this->exec("edit_owners -o $user $path");
+        }
         $after = $this->countOwned($ids, $newOwner);
         $this->assertExitCode(Command::CODE_SUCCESS);
         $this->assertEquals($changes, $after - $before);
@@ -116,6 +145,7 @@ class EditOwnersCommandTest extends TestCase
             'with unknown file' => ['edit_owners admin unknown_file contributor'],
             'with unknown owner' => ['edit_owners admin stdin unknown_owner'],
             'as unknown user' => ['edit_owners unknown_user stdin contributor'],
+            'with both user and -o' => ['edit_owners -o admin stdin contributor'],
         ];
     }
 
