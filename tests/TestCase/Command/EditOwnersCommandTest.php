@@ -59,18 +59,18 @@ class EditOwnersCommandTest extends TestCase
     }
 
     public function successesProvider() {
-        // username, ids, owner, number of changes
+        // username, ids, owner, number of changes, log
         return [
             'all ids adopted by contributor' =>
                 ['contributor', [14, 15, 16], 'contributor', 3],
             'all ids adopted by advanced_contributor' =>
                 ['advanced_contributor', [14, 15, 16, 40, 41], 'advanced_contributor', 5],
             'some ids adopted by contributor' =>
-                ['contributor', [14, 15, 16, 40, 41, 8], 'contributor', 3],
+                ['contributor', [14, 15, 16, 40, 41, 8], 'contributor', 3, "id 8 - Record not found or could not save changes"],
             'some ids adopted by contributor using admin power' =>
-                ['admin', [14, 15, 16, 40, 41, 8], 'contributor', 5],
+                ['admin', [14, 15, 16, 40, 41, 8], 'contributor', 5, "id 8 - Record not found or could not save changes"],
             'with wrong ids' =>
-                ['admin', [14, 999999, 999998], 'contributor', 1],
+                ['admin', [14, 999999, 999998], 'contributor', 1, "id 999999 - Record not found or could not save changes"],
             'empty file' => ['admin', [], 'contributor', 0],
         ];
     }
@@ -90,13 +90,22 @@ class EditOwnersCommandTest extends TestCase
     /**
      * @dataProvider successesProvider
      **/
-    public function testExecute_severalScenarios($user, $ids, $newOwner, $changes) {
+    public function testExecute_severalScenarios($user, $ids, $newOwner, $changes, $log = null) {
         $path = $this->create_test_file($ids);
         $before = $this->countOwned($ids, $newOwner);
         $this->exec("edit_owners $user $path $newOwner");
         $after = $this->countOwned($ids, $newOwner);
         $this->assertExitCode(Command::CODE_SUCCESS);
         $this->assertEquals($changes, $after - $before);
+        $count = count($ids);
+        if ($count > 0) {
+            $this->assertOutputContains("$count row(s) proceeded:");
+        } else {
+            $this->assertOutputContains("There was nothing to do.");
+        }
+        if ($log) {
+            $this->assertOutputContains($log);
+        }
     }
 
     public function failuresProvider() {

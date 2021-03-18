@@ -24,7 +24,8 @@ class EditOwnersCommand extends EditCommand_
     protected function editOwner($ids, $newOwner, $newOwnerId) {
         foreach ($ids as $id) {
             try {
-                $result = $this->Sentences->setOwner($id, $newOwnerId, CurrentUser::get('role'));
+                $sentence = $this->Sentences->setOwner($id, $newOwnerId, CurrentUser::get('role'));
+                $result = $sentence && $sentence->user_id === $newOwnerId;
             } catch (RecordNotFoundException $e) {
                 $result = false;
             }
