@@ -16,7 +16,6 @@ $this->AngularTemplate->addTemplate(
         <md-icon>arrow_back</md-icon>
       </md-button>
       <h2 ng-show="!new_export"><?= __('Custom export') ?></h2>
-      <h2 ng-show="new_export == 'list'"><?= __('List') ?></h2>
       <h2 ng-show="new_export == 'pairs'"><?= __('Sentence pairs') ?></h2>
     </div>
   </md-toolbar>
@@ -24,14 +23,6 @@ $this->AngularTemplate->addTemplate(
   <md-content layout-margin>
     <div ng-show="!new_export">
       <p><?= __('Use this tool to generate and download customized exports on demand.') ?></p>
-      <md-button class="export-card md-raised" ng-click="new_export = 'list'">
-        <div>
-          <md-icon>list</md-icon>
-          <strong><?= __('List') ?></strong>
-        </div>
-        <small><?= __('Download all sentences from a list') ?></small>
-      </md-button>
-
       <md-button class="export-card md-raised" ng-click="new_export = 'pairs'">
         <div>
           <md-icon>translate</md-icon>
@@ -39,32 +30,6 @@ $this->AngularTemplate->addTemplate(
         </div>
         <small><?= __('Download all sentences in language A with translations in language B') ?></small>
       </md-button>
-    </div>
-
-    <div ng-show="new_export == 'list'">
-      <div layout="row" layout-align="center">
-        <label for="listToExport" flex="33"><?= __('Choose a list:') ?></label>
-        <div flex>
-        <?php
-          $this->loadHelper('Lists');
-          $listOptions = $this->Lists->listsAsSelectable($searchableLists);
-          echo $this->Form->input('list', [
-            'id' => 'listToExport',
-            'ng-model' => 'selectedList',
-            'options' => $this->safeForAngular($listOptions),
-            'label' => false,
-          ]);
-        ?>
-        </div>
-      </div>
-      <custom-export-download-button
-          <?php /* @translators: button to download a list (verb) */ ?>
-          text="<?= h(__('Download list')) ?>"
-          type="list"
-          fields="['id', 'lang', 'text']"
-          params="{'list_id': selectedList}"
-          ng-disabled="!selectedList">
-      </custom-export-download-button>
     </div>
 
     <div ng-show="new_export == 'pairs'">
