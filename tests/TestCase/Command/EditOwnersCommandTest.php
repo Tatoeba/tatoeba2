@@ -47,7 +47,7 @@ class EditOwnersCommandTest extends TestCase
 
     public function testExecute_changesOwner() {
         $ids = [14, 40, 41];
-        $path = $this->create_test_file([14, 40, 41]);
+        $path = $this->create_test_file($ids);
         $this->exec("edit_owners admin $path contributor");
 
         $this->assertExitCode(Command::CODE_SUCCESS);
