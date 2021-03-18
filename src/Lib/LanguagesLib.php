@@ -623,6 +623,7 @@ class LanguagesLib
                 'qxq' => __d('languages', 'Qashqai'),
                 'klj' => __d('languages', 'Khalaj'),
                 'dar' => __d('languages', 'Dargwa'),
+                'lbe' => __d('languages', 'Lak'),
             );
         }
         return $languages;
