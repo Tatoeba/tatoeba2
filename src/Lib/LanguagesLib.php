@@ -626,6 +626,7 @@ class LanguagesLib
                 'lbe' => __d('languages', 'Lak'),
                 'ava' => __d('languages', 'Avar'),
                 'mus' => __d('languages', 'Muskogee (Creek)'),
+                'abq' => __d('languages', 'Abaza'),
             );
         }
         return $languages;
