@@ -54,7 +54,7 @@ class EditLanguagesCommandTest extends TestCase
 
     public function testExecute_changesLanguage() {
         $path = $this->create_test_file([1, 2]);
-        $this->exec("edit_languages admin fra $path");
+        $this->exec("edit_languages admin $path fra");
 
         $this->assertExitCode(Command::CODE_SUCCESS);
 
@@ -63,15 +63,15 @@ class EditLanguagesCommandTest extends TestCase
     }
 
     public function successesProvider() {
-        // username, language, ids, number of changes
+        // username, ids, language, number of changes
         return [
             'all ids changed to fra' =>
-                ['admin', 'fra', [1, 2, 5], 3],
+                ['admin', [1, 2, 5], 'fra', 3],
             'some ids changed to fra' =>
-                ['admin', 'fra', [1, 3, 5, 8], 2],
+                ['admin', [1, 3, 5, 8], 'fra', 2],
             'with wrong ids' =>
-                ['admin', 'fra', [1, 99, 999], 1],
-            'empty file' => ['admin', 'fra', [], 0],
+                ['admin', [1, 99, 999], 'fra', 1],
+            'empty file' => ['admin', [], 'fra', 0],
         ];
     }
 
@@ -89,10 +89,10 @@ class EditLanguagesCommandTest extends TestCase
     /**
      * @dataProvider successesProvider
      **/
-    public function testExecute_severalScenarios($user, $newLanguage, $ids, $changes) {
+    public function testExecute_severalScenarios($user, $ids, $newLanguage, $changes) {
         $path = $this->create_test_file($ids);
         $before = $this->countLanguage($ids, $newLanguage);
-        $this->exec("edit_languages $user $newLanguage $path");
+        $this->exec("edit_languages $user $path $newLanguage");
         $after = $this->countLanguage($ids, $newLanguage);
         $this->assertExitCode(Command::CODE_SUCCESS);
         $this->assertEquals($changes, $after - $before);
@@ -101,12 +101,12 @@ class EditLanguagesCommandTest extends TestCase
     public function failuresProvider() {
         return [
             'without any required argument' => ['edit_languages'],
-            'without language' => ['edit_languages admin'],
-            'without file' => ['edit_languages admin eng'],
-            'with unknown file' => ['edit_languages admin eng unknown_file'],
-            'with invalid language' => ['edit_languages admin invalid stdin'],
-            'as unknown user' => ['edit_languages unknown_user eng stdin'],
-            'as non-moderator' => ['edit_languages contributor eng stdin'],
+            'without file' => ['edit_languages admin'],
+            'without language' => ['edit_languages admin stdin'],
+            'with unknown file' => ['edit_languages admin unknown_file eng'],
+            'with invalid language' => ['edit_languages admin stdin invalid'],
+            'as unknown user' => ['edit_languages unknown_user stdin eng'],
+            'as non-moderator' => ['edit_languages contributor stdin eng'],
         ];
     }
 

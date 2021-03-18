@@ -1,40 +1,21 @@
 <?php
 namespace App\Command;
 
+use App\Command\EditCommand_;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
-use Cake\Collection\Collection;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 
-class EditLanguagesCommand extends Command
+class EditLanguagesCommand extends EditCommand_
 {
-    protected $log;
-
-    public function initialize() {
-        parent::initialize();
-        $this->loadModel('Sentences');
-        $this->loadModel('Users');
-    }
-
     protected function buildOptionParser(ConsoleOptionParser $parser) {
+        $parser = parent::buildOptionParser($parser);
         $parser
             ->setDescription('Change sentence languages.')
-            ->addArgument('username', [
-                'help' => 'Do all the work as given user who needs to be either ' .
-                          'corpus maintainer or admin.',
-                'required' => true,
-            ])
             ->addArgument('language', [
                 'help' => 'ISO code of the new language.',
-                'required' => true,
-            ])
-            ->addArgument('file', [
-                'help' => 'Name of the file that contains the sentence ids whose ' .
-                          'language should be changed. ("stdin" will read from ' .
-                          'standard input.)',
                 'required' => true,
             ]);
         return $parser;
@@ -48,28 +29,14 @@ class EditLanguagesCommand extends Command
             } else {
                 $this->log[] = "id $id - Record not found or could not save changes";
             }
+            $this->total++;
         }
     }
 
     public function execute(Arguments $args, ConsoleIo $io) {
-        $username = $args->getArgument('username');
-        $userId = $this->Users->getIdFromUsername($username);
-        if (!$userId) {
-            $io->error("User '$username' does not exist!");
-            $this->abort();
-        } else {
-            CurrentUser::store($this->Users->get($userId));
-            if (!CurrentUser::isModerator()) {
-                $io->error('User must be corpus maintainer or admin!');
-                $this->abort();
-            }
-        }
-
-        $input = $args->getArgument('file');
-        if ($input === 'stdin') {
-            $input = 'php://stdin';
-        } elseif ($input && !file_exists($input)) {
-            $io->error("File '$input' does not exist!");
+        $this->becomeUser($args, $io);
+        if (!CurrentUser::isModerator()) {
+            $io->error('User must be corpus maintainer or admin!');
             $this->abort();
         }
 
@@ -79,20 +46,10 @@ class EditLanguagesCommand extends Command
             $this->abort();
         }
 
-        $this->log = [];
-        $ids = collection(file($input, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES))
-               ->filter(function ($v) { return preg_match('/^\d+$/', $v); });
-        $total = $ids->count();
+        $ids = $this->readIdsFromFile($args, $io);
 
         $this->editLanguage($ids, $newLanguage);
 
-        if (empty($this->log)) {
-            $io->out('There was nothing to do.');
-        } else {
-            $io->out("$total rows proceeded:");
-            foreach ($this->log as $logEntry) {
-                $io->out($logEntry);
-            }
-        }
+        $this->printLog($io);
     }
 }

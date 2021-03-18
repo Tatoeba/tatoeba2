@@ -96,7 +96,7 @@ class EditLicensesCommandTest extends TestCase
 
         $count = count($ids);
         if ($count > 0) {
-            $this->assertOutputContains("$count rows proceeded:");
+            $this->assertOutputContains("$count row(s) proceeded:");
         } else {
             $this->assertOutputContains("There was nothing to do.");
         }
