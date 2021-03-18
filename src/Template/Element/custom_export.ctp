@@ -15,7 +15,7 @@ $this->AngularTemplate->addTemplate(
       <md-button ng-show="new_export" ng-click="new_export = ''" class="md-icon-button">
         <md-icon>arrow_back</md-icon>
       </md-button>
-      <h2 ng-show="!new_export"><?= __('Custom export') ?></h2>
+      <h2 ng-show="!new_export"><?= __('Custom exports') ?></h2>
       <h2 ng-show="new_export == 'pairs'"><?= __('Sentence pairs') ?></h2>
     </div>
   </md-toolbar>
