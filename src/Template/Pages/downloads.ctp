@@ -126,12 +126,6 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
     <div class="section md-whiteframe-1dp">
         <h2><?= __('General information about the files') ?></h2>
         <p>
-            <?= __(
-                'The files provided here are updated every <strong>Saturday at 6:30 a.m.</strong> '.
-                '(UTC).'
-            ) ?>
-        </p>
-        <p>
             <?= format(
                 __(
                     'Many of the Japanese and English sentences are from the '.
@@ -185,365 +179,382 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 </div>
 
 <div id="main_content">
-    <div>
-        <?php /* @translators: title of the Downloads page */ ?>
-        <h1><?= __('Downloads') ?></h1>
+    <?php /* @translators: title of the Downloads page */ ?>
+    <h1><?= __('Downloads') ?></h1>
 
-        <!-- Sentences -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Sentences') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <?= $this->element(
-                    'per_language_files',
-                    [
-                        'model' => 'sentences',
-                        'options' => $sentencesOptions
-                    ]
+    <?= $this->element('custom_export') ?>
+
+    <div id="section" class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= __('Weekly exports') ?></h2>
+            </div>
+        </md-toolbar>
+
+        <md-content>
+            <div class="weekly-exports-info">
+                <md-icon>info</md-icon>
+                <?= __(
+                    'The files provided below are updated every Saturday at 6:30 a.m. (UTC).'
                 ) ?>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(
-                        __(
-                            'Contains all the sentences in the selected language. '.
-                            'Each sentence is associated with a unique id and an '.
-                            '<a href="{}">ISO 639-3</a> language code.'
-                        ),
-                        $iso_code_url
-                    ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd><?= $this->Downloads->fileFormat([$sentence_id, $lang, $text]) ?></dd>
-            </dl>
-        </div>
+            </div>
 
-        <!-- Sentences detailed-->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Detailed Sentences') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <?= $this->element(
-                    'per_language_files',
-                    [
-                        'model' => 'sentencesDetailed',
-                        'options' => $sentencesDetailedOptions
-                    ]
-                ) ?>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(
-                        __(
-                            'Contains additional fields for each sentence '.
-                            '(owner name, date created/modified).'
-                        )
-                    ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat(
-                        [$sentence_id, $lang, $text, $username, $date_added, $date_modified]
-                    ) ?>
-                </dd>
-            </dl>
-        </div>
-
-        <!-- Sentences based on id  -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Base of Sentences') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>sentences_base.tar.bz2">sentences_base.tar.bz2</a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(__(
-                        'A sentence is based on another if it has been initially added as a'
-                       .' translation. Each sentence is associated with a base, which can be:'
-                    )) ?>
-                    <ul>
-                        <li><?= __('zero: The sentence is original, not based on another.') ?></li>
-                        <li><?= __('greater than 0: The sentence id it is based upon.') ?></li>
-                        <li><?= __('\N: We do not know. This is rare but we have a handful of sentences for which'.
-                                   ' we do not know if they have been added as translations or not.'
-                        ) ?></li>
-                    </ul>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd><?= $this->Downloads->fileFormat([$sentence_id, $sentence_base]) ?></dd>
-            </dl>
-        </div>
-
-        <!-- Sentences CC0 -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Sentences (CC0)') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <?= $this->element(
-                    'per_language_files',
-                    [
-                        'model' => 'sentencesCC0',
-                        'options' => $sentencesCC0Options
-                    ]
-                ) ?>
-                <dt><?= $description ?></dt>
-                <dd>
-                <?= __('Contains all the sentences available under CC0.') ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat([$sentence_id, $lang, $text, $date_modified]) ?>
-                </dd>
-            </dl>
-        </div>
-
-        <!-- Links -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Links') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>links.tar.bz2">links.tar.bz2</a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(
-                        __('Contains the links between the sentences. {sampleLinkLine} '.
-                        'means that sentence #77 is the translation of sentence #1. '.
-                        'The reciprocal link is also present, so the file will '.
-                        'also contain a line that says {sampleLinkLineReversed}.'),
+            <!-- Sentences -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Sentences') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <?= $this->element(
+                        'per_language_files',
                         [
-                            'sampleLinkLine' => $link_sample,
-                            'sampleLinkLineReversed' => $link_sample_reversed
+                            'model' => 'sentences',
+                            'options' => $sentencesOptions
                         ]
                     ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd><?= $this->Downloads->fileFormat([$sentence_id, $translation_id]) ?></dd>
-            </dl>
-        </div>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(
+                            __(
+                                'Contains all the sentences in the selected language. '.
+                                'Each sentence is associated with a unique id and an '.
+                                '<a href="{}">ISO 639-3</a> language code.'
+                            ),
+                            $iso_code_url
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd><?= $this->Downloads->fileFormat([$sentence_id, $lang, $text]) ?></dd>
+                </dl>
+            </div>
 
-        <!-- Tags -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Tags') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>tags.tar.bz2">tags.tar.bz2</a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(
-                        __('Contains the list of <a href="{url}">tags</a> associated with '.
-                           'each sentence. {sampleTagLine} means that sentence #381279 has '.
-                           'been assigned the "proverb" tag.'),
+            <!-- Sentences detailed-->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Detailed Sentences') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <?= $this->element(
+                        'per_language_files',
                         [
-                            'url' => $this->Url->build(['controller' => 'tags', 'action' => 'view_all']),
-                            'sampleTagLine' => $tag_sample
+                            'model' => 'sentencesDetailed',
+                            'options' => $sentencesDetailedOptions
                         ]
                     ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd><?= $this->Downloads->fileFormat([$sentence_id, $tag_name]) ?></dd>
-            </dl>
-        </div>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(
+                            __(
+                                'Contains additional fields for each sentence '.
+                                '(owner name, date created/modified).'
+                            )
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat(
+                            [$sentence_id, $lang, $text, $username, $date_added, $date_modified]
+                        ) ?>
+                    </dd>
+                </dl>
+            </div>
 
-        <!-- Lists -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Lists') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>user_lists.tar.bz2">user_lists.tar.bz2</a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(
-                        __('Contains the list of <a href="{}">sentence lists</a>.'),
-                        $this->Url->build(['controller' => 'sentences_lists', 'action' => 'index'])
-                    ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat(
-                        [$list_id, $username, $date_created, $date_modified, $list_name, $list_editable_by]
-                    ) ?>
-                </dd>
-            </dl>
-        </div>
+            <!-- Sentences based on id  -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Base of Sentences') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>sentences_base.tar.bz2">sentences_base.tar.bz2</a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(__(
+                            'A sentence is based on another if it has been initially added as a'
+                           .' translation. Each sentence is associated with a base, which can be:'
+                        )) ?>
+                        <ul>
+                            <li><?= __('zero: The sentence is original, not based on another.') ?></li>
+                            <li><?= __('greater than 0: The sentence id it is based upon.') ?></li>
+                            <li><?= __('\N: We do not know. This is rare but we have a handful of sentences for which'.
+                                       ' we do not know if they have been added as translations or not.'
+                            ) ?></li>
+                        </ul>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd><?= $this->Downloads->fileFormat([$sentence_id, $sentence_base]) ?></dd>
+                </dl>
+            </div>
 
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Sentences in lists') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>sentences_in_lists.tar.bz2">
-                            sentences_in_lists.tar.bz2
-                    </a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(
-                        __(
-                            'Indicates the sentences that are contained by '.
-                            'any lists. {sampleListLine} means that sentence #381279 is contained '.
-                            'by the list that has an id of 13.'
-                        ),
-                        ['sampleListLine' => $list_sample]
-                    ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat([$list_id, $sentence_id]) ?>
-                </dd>
-            </dl>
-        </div>
-
-        <!-- Indices -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Japanese indices') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>jpn_indices.tar.bz2">jpn_indices.tar.bz2</a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= format(
-                        __(
-                            'Contains the equivalent of the "B lines" in the Tanaka Corpus '.
-                            'file distributed by Jim Breen. See <a href="{url}">this page</a> '.
-                            'for the format. Each entry is associated with a pair of '.
-                            'Japanese/English sentences. {sentenceId} refers to the id of the '.
-                            'Japanese sentence. {meaningId} refers to the id of the English sentence.'
-                        ),
+            <!-- Sentences CC0 -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Sentences (CC0)') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <?= $this->element(
+                        'per_language_files',
                         [
-                            'url' => $tanaka_url,
-                            'sentenceId' => '<span class="param">'.$sentence_id.'</span>',
-                            'meaningId'  => '<span class="param">'.$meaning_id.'</span>'
+                            'model' => 'sentencesCC0',
+                            'options' => $sentencesCC0Options
                         ]
                     ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd><?= $this->Downloads->fileFormat([$sentence_id, $meaning_id, $text]) ?></dd>
-            </dl>
-        </div>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                    <?= __('Contains all the sentences available under CC0.') ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat([$sentence_id, $lang, $text, $date_modified]) ?>
+                    </dd>
+                </dl>
+            </div>
 
-        <!-- Sentences with audio -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Sentences with audio') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>sentences_with_audio.tar.bz2">
-                        sentences_with_audio.tar.bz2
-                    </a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= __(
-                        'Contains the ids of the sentences, in all languages, for '.
-                        'which audio is available. Other fields indicate who recorded '.
-                        'the audio, its license and a URL to attribute the author. If '.
-                        'the license field is empty, you may not reuse the audio '.
-                        'outside the Tatoeba project.'
-                    ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat(
-                        [$sentence_id, $username, $license, $attribution_url]
-                    ) ?>
-                </dd>
-            </dl>
-        </div>
+            <!-- Links -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Links') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>links.tar.bz2">links.tar.bz2</a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(
+                            __('Contains the links between the sentences. {sampleLinkLine} '.
+                            'means that sentence #77 is the translation of sentence #1. '.
+                            'The reciprocal link is also present, so the file will '.
+                            'also contain a line that says {sampleLinkLineReversed}.'),
+                            [
+                                'sampleLinkLine' => $link_sample,
+                                'sampleLinkLineReversed' => $link_sample_reversed
+                            ]
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd><?= $this->Downloads->fileFormat([$sentence_id, $translation_id]) ?></dd>
+                </dl>
+            </div>
 
-        <!-- User skill level per language -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('User skill level per language') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>user_languages.tar.bz2">user_languages.tar.bz2</a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= __('Indicates the self-reported skill levels of members in individual languages.') ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat([$lang, $skill_level, $username, $details]) ?>
-                </dd>
-            </dl>
-        </div>
+            <!-- Tags -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Tags') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>tags.tar.bz2">tags.tar.bz2</a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(
+                            __('Contains the list of <a href="{url}">tags</a> associated with '.
+                               'each sentence. {sampleTagLine} means that sentence #381279 has '.
+                               'been assigned the "proverb" tag.'),
+                            [
+                                'url' => $this->Url->build(['controller' => 'tags', 'action' => 'view_all']),
+                                'sampleTagLine' => $tag_sample
+                            ]
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd><?= $this->Downloads->fileFormat([$sentence_id, $tag_name]) ?></dd>
+                </dl>
+            </div>
 
-        <!-- Users' reviews -->
-        <div  class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Users\' sentence reviews') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>users_sentences.csv">users_sentences.csv</a>
-                </dd>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= __(
-                        'Contains sentences reviewed by users. The value of the review ' .
-                        'can be -1 (sentence not OK), 0 (undecided or unsure), ' .
-                        'or 1 (sentence OK). Warning: this data is still experimental.'
-                    ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat(
-                        [$username, $lang, $sentence_id, $review, $date_added, $date_modified]
-                    ) ?>
-                </dd>
-            </dl>
-        </div>
+            <!-- Lists -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Lists') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>user_lists.tar.bz2">user_lists.tar.bz2</a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(
+                            __('Contains the list of <a href="{}">sentence lists</a>.'),
+                            $this->Url->build(['controller' => 'sentences_lists', 'action' => 'index'])
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat(
+                            [$list_id, $username, $date_created, $date_modified, $list_name, $list_editable_by]
+                        ) ?>
+                    </dd>
+                </dl>
+            </div>
 
-        <!-- Transcriptions -->
-        <div class="section md-whiteframe-1dp">
-            <?php /* @translators: section title in the Downloads page */ ?>
-            <h2><?= __('Transcriptions') ?></h2>
-            <dl>
-                <dt><?= $filename ?></dt>
-                <?= $this->element(
-                    'per_language_files',
-                    [
-                        'model' => 'transcriptions',
-                        'options' => $transcriptionsOptions
-                    ]
-                ) ?>
-                <dt><?= $description ?></dt>
-                <dd>
-                    <?= __(
-                        'Contains all transcriptions in auxiliary or alternative scripts. '.
-                        'A username associated with a transcription indicates the user '.
-                        'who last reviewed and possibly modified it. A transcription '.
-                        'without a username has not been marked as reviewed. '.
-                        'The script name is defined according to the ISO 15924 standard.'
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Sentences in lists') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>sentences_in_lists.tar.bz2">
+                                sentences_in_lists.tar.bz2
+                        </a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(
+                            __(
+                                'Indicates the sentences that are contained by '.
+                                'any lists. {sampleListLine} means that sentence #381279 is contained '.
+                                'by the list that has an id of 13.'
+                            ),
+                            ['sampleListLine' => $list_sample]
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat([$list_id, $sentence_id]) ?>
+                    </dd>
+                </dl>
+            </div>
+
+            <!-- Indices -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Japanese indices') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>jpn_indices.tar.bz2">jpn_indices.tar.bz2</a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= format(
+                            __(
+                                'Contains the equivalent of the "B lines" in the Tanaka Corpus '.
+                                'file distributed by Jim Breen. See <a href="{url}">this page</a> '.
+                                'for the format. Each entry is associated with a pair of '.
+                                'Japanese/English sentences. {sentenceId} refers to the id of the '.
+                                'Japanese sentence. {meaningId} refers to the id of the English sentence.'
+                            ),
+                            [
+                                'url' => $tanaka_url,
+                                'sentenceId' => '<span class="param">'.$sentence_id.'</span>',
+                                'meaningId'  => '<span class="param">'.$meaning_id.'</span>'
+                            ]
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd><?= $this->Downloads->fileFormat([$sentence_id, $meaning_id, $text]) ?></dd>
+                </dl>
+            </div>
+
+            <!-- Sentences with audio -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Sentences with audio') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>sentences_with_audio.tar.bz2">
+                            sentences_with_audio.tar.bz2
+                        </a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= __(
+                            'Contains the ids of the sentences, in all languages, for '.
+                            'which audio is available. Other fields indicate who recorded '.
+                            'the audio, its license and a URL to attribute the author. If '.
+                            'the license field is empty, you may not reuse the audio '.
+                            'outside the Tatoeba project.'
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat(
+                            [$sentence_id, $username, $license, $attribution_url]
+                        ) ?>
+                    </dd>
+                </dl>
+            </div>
+
+            <!-- User skill level per language -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('User skill level per language') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>user_languages.tar.bz2">user_languages.tar.bz2</a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= __('Indicates the self-reported skill levels of members in individual languages.') ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat([$lang, $skill_level, $username, $details]) ?>
+                    </dd>
+                </dl>
+            </div>
+
+            <!-- Users' reviews -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Users\' sentence reviews') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <dd>
+                        <a href="<?= $download_url ?>users_sentences.csv">users_sentences.csv</a>
+                    </dd>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= __(
+                            'Contains sentences reviewed by users. The value of the review ' .
+                            'can be -1 (sentence not OK), 0 (undecided or unsure), ' .
+                            'or 1 (sentence OK). Warning: this data is still experimental.'
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat(
+                            [$username, $lang, $sentence_id, $review, $date_added, $date_modified]
+                        ) ?>
+                    </dd>
+                </dl>
+            </div>
+
+            <!-- Transcriptions -->
+            <div class="section weekly-export">
+                <?php /* @translators: section title in the Downloads page */ ?>
+                <h2><?= __('Transcriptions') ?></h2>
+                <dl>
+                    <dt><?= $filename ?></dt>
+                    <?= $this->element(
+                        'per_language_files',
+                        [
+                            'model' => 'transcriptions',
+                            'options' => $transcriptionsOptions
+                        ]
                     ) ?>
-                </dd>
-                <dt><?= $format ?></dt>
-                <dd>
-                    <?= $this->Downloads->fileFormat(
-                        [$sentence_id, $lang, $script, $username, $transcription]
-                    ) ?>
-                </dd>
-            </dl>
-        </div>
+                    <dt><?= $description ?></dt>
+                    <dd>
+                        <?= __(
+                            'Contains all transcriptions in auxiliary or alternative scripts. '.
+                            'A username associated with a transcription indicates the user '.
+                            'who last reviewed and possibly modified it. A transcription '.
+                            'without a username has not been marked as reviewed. '.
+                            'The script name is defined according to the ISO 15924 standard.'
+                        ) ?>
+                    </dd>
+                    <dt><?= $format ?></dt>
+                    <dd>
+                        <?= $this->Downloads->fileFormat(
+                            [$sentence_id, $lang, $script, $username, $transcription]
+                        ) ?>
+                    </dd>
+                </dl>
+            </div>
+        </md-content>
     </div>
 </div>

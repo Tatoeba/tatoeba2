@@ -87,32 +87,6 @@ class ExportsTableTest extends TestCase
         }
     }
 
-    public function testGetExportsOf()
-    {
-        $expected = [
-            [
-                'id' => 1,
-                'name' => 'Kazuki\'s sentences',
-                'description' => 'Sentence id [tab] Sentence text',
-                'status' => 'online',
-                'generated' => new \Cake\I18n\FrozenTime('2019-02-01 14:54:13'),
-                'pretty_filename' => "Kazuki's sentences - 2019-02-01.zip"
-            ],
-            [
-                'id' => 2,
-                'name' => 'Japanese-Russian sentence pairs',
-                'description' => 'Japanese sentence text [tab] Russian entence text',
-                'status' => 'queued',
-                'generated' => new \Cake\I18n\FrozenTime('2019-02-01 15:04:02'),
-                'pretty_filename' => 'Japanese-Russian sentence pairs - 2019-02-01.tsv',
-            ],
-        ];
-
-        $result = $this->Exports->getExportsOf(7);
-
-        $this->assertResultSet($expected, $result->all());
-    }
-
     public function testCreateListExport_returnsExport()
     {
         $expected = [
@@ -334,6 +308,24 @@ class ExportsTableTest extends TestCase
 
         $filename = $this->Exports->get($firstExportId)->filename;
         $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_with_translations.tsv', $filename);
+    }
+
+    public function testRunExport_pairs_fileHasExpectedContents()
+    {
+        $options = [
+            'type' => 'pairs',
+            'from' => 'fra',
+            'to'   => 'jpn',
+            'fields' => ['id', 'text', 'trans_id', 'trans_text'],
+            'format' => 'tsv',
+        ];
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $filename = $this->Exports->get($firstExportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'pairs.tsv', $filename);
     }
 
     public function testRunExport_fileHasExpectedContents_asTextFormat()

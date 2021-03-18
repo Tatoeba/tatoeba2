@@ -19,24 +19,6 @@ class ExportsController extends AppController
         return parent::beforeFilter($event);
     }
 
-    public function index()
-    {
-        $exports = $this->Exports->getExportsOf(CurrentUser::get('id'));
-
-        $this->set(compact('exports'));
-
-        $this->loadModel('SentencesLists');
-        $this->set('searchableLists', $this->SentencesLists->getSearchableLists());
-    }
-
-    public function list()
-    {
-        $exports = $this->Exports->getExportsOf(CurrentUser::get('id'));
-        $this->set(compact('exports'));
-        $this->set('_serialize', ['exports']);
-        $this->RequestHandler->renderAs($this, 'json');
-    }
-
     public function add()
     {
         $export = false;
