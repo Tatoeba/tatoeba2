@@ -47,7 +47,7 @@ $description = __('File description');
 /* @translators: field name in Fields and structure on Downloads page */
 $sentence_id = __('Sentence id');
 /* @translators: field name in Fields and structure on Downloads page */
-$sentence_base = __('Base of the sentence');
+$sentence_base = __('Base field');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
 $review = __('Review');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
@@ -262,7 +262,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
             <!-- Sentences based on id  -->
             <div class="section weekly-export">
                 <?php /* @translators: section title in the Downloads page */ ?>
-                <h2><?= __('Base of Sentences') ?></h2>
+                <h2><?= __('Original and Translated Sentences') ?></h2>
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
@@ -271,15 +271,13 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                     <dt><?= $description ?></dt>
                     <dd>
                         <?= format(__(
-                            'A sentence is based on another if it has been initially added as a'
-                           .' translation. Each sentence is associated with a base, which can be:'
+                            'Each sentence is listed as original or a translation of another. '
+                           .'The "base" field can have the following values:'
                         )) ?>
                         <ul>
-                            <li><?= __('zero: The sentence is original, not based on another.') ?></li>
-                            <li><?= __('greater than 0: The sentence id it is based upon.') ?></li>
-                            <li><?= __('\N: We do not know. This is rare but we have a handful of sentences for which'.
-                                       ' we do not know if they have been added as translations or not.'
-                            ) ?></li>
+                            <li><?= __('zero: The sentence is original, not a translation of another.') ?></li>
+                            <li><?= __('greater than 0: The id of the sentence from which it was translated.') ?></li>
+                            <li><?= __('\N: Unknown (rare).') ?></li>
                         </ul>
                     </dd>
                     <dt><?= $format ?></dt>
