@@ -30,6 +30,7 @@ use App\Lib\LanguagesLib;
 use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
+use App\Model\Search;
 use App\Event\ContributionListener;
 use App\Event\LinksListener;
 use Cake\Utility\Hash;
@@ -600,23 +601,17 @@ class SentencesTable extends Table
      * @return array An array of int
      */
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
-        $index = $lang ?
-                 array($lang . '_main_index', $lang . '_delta_index') :
-                 array('und_index');
-        $sphinx = array(
-            'index' => $index,
-            'sortMode' => array(SPH_SORT_EXTENDED => "@random"),
-            'filter' => array(
-                array('user_id', 0, true), // exclude orphans
-                array('ucorrectness', 127, true), // exclude unapproved
-            ),
-            'limit' => $numberOfIdWanted
-        );
+        $search = new Search();
+        $search->filterByLanguage($lang);
+        $search->sort('random');
+        $search->filterByOrphanship(false); // exclude orphans
+        $search->filterByCorrectness(false); // exclude unapproved
+        $sphinx = $search->asSphinx();
+        $sphinx['limit'] = $numberOfIdWanted;
 
         $results = $this->find('all', [
             'fields' => ['id'],
             'sphinx' => $sphinx,
-            'search' => ''
         ])->toList();
 
         return Hash::extract($results, '{n}.id');
