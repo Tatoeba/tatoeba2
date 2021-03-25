@@ -276,7 +276,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                         )) ?>
                         <ul>
                             <li><?= __('zero: The sentence is original, not a translation of another.') ?></li>
-                            <li><?= __('greater than 0: The id of the sentence from which it was translated.') ?></li>
+                            <li><?= __('greater than zero: The id of the sentence from which it was translated.') ?></li>
                             <li><?= __('\N: Unknown (rare).') ?></li>
                         </ul>
                     </dd>
