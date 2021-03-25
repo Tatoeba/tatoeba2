@@ -609,12 +609,16 @@ class SentencesTable extends Table
         $sphinx = $search->asSphinx();
         $sphinx['limit'] = $numberOfIdWanted;
 
-        $results = $this->find('all', [
-            'fields' => ['id'],
-            'sphinx' => $sphinx,
-        ])->toList();
+        $results = $this
+            ->find('all', [
+                'fields' => ['id'],
+                'sphinx' => $sphinx,
+            ])
+            ->all()
+            ->extract('id')
+            ->toArray();
 
-        return Hash::extract($results, '{n}.id');
+        return $results;
     }
 
     /**
