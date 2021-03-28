@@ -9,15 +9,15 @@
 # Nikolay Korotkiy <sikmir@gmail.com>, 2018
 # Silja Ijas, 2014-2021
 # thanuir, 2020
-# thanuir, 2020
+# thanuir, 2020-2021
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 22:26+0100\n"
-"PO-Revision-Date: 2021-03-18 22:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-03-25 17:43+0100\n"
+"PO-Revision-Date: 2021-03-26 14:41+0000\n"
+"Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -488,12 +488,12 @@ msgstr "Lausenumero [tab] Lauseen teksti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/PairsExporter.php#L116
 msgid "Sentence pairs in {language1}-{language2}"
-msgstr ""
+msgstr "Lauseparit kielillä {language1} ja {language2}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/PairsExporter.php#L123
 msgid ""
 "Sentence id [tab] Sentence text [tab] Translation id [tab] Translation text"
-msgstr ""
+msgstr "Lausenumero [tab] Lauseen teksti [tab] Käännöksen tunnistenumero [tab] Käännöksen teksti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
@@ -881,7 +881,7 @@ msgstr "Äänitetyt {language.genitive}kieliset lauseet"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L27
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L452
 msgid "Sentences with audio"
 msgstr "Lauseet, joissa on äänite"
 
@@ -1302,40 +1302,40 @@ msgstr[1] "{n}&nbsp;lausetta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L18
 msgid "Custom exports"
-msgstr ""
+msgstr "Räätälöi vientiä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L29
 msgid "Sentence pairs"
-msgstr ""
+msgstr "Lauseparit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L25
 msgid "Use this tool to generate and download customized exports on demand."
-msgstr ""
+msgstr "Käytä tätä työkalua, kun haluat ladata räätälöityjä vientitiedostoja."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L31
 msgid "Download all sentences in language A with translations in language B"
-msgstr ""
+msgstr "Lataa kaikki A-kieliset lauseet, joilla on B-kielinen käännös"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L36
 msgid ""
 "Download all sentences in language A that are translated into language B, "
 "along with the translations."
-msgstr ""
+msgstr "Lataa kaikki B-kielelle käännetyt A-kieliset lauseet käännöksineen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L43
 msgid "Sentence language:"
-msgstr ""
+msgstr "Lauseiden kieli:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L61
 msgid "Translation language:"
-msgstr ""
+msgstr "Käännösten kieli:"
 
 #. button to download all sentences in language A along
 #. with all translations in a language B (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L79
 msgid "Download sentence pairs"
-msgstr ""
+msgstr "Lataa lauseparit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export_download_button.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
@@ -1593,6 +1593,11 @@ msgstr "Tallenna luonnoksena"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L60
 msgid "Send"
 msgstr "Lähetä"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr "ilmoitus Tatoebalta"
 
 #. random sentence block header on the home page for members
 #. / random sentence block header on the home page for guests
@@ -2410,7 +2415,7 @@ msgstr "Arvostelut"
 #. / header text on the sidebar of a sentence page
 #. / header text in sidebar on pages related to sentences lists
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L368
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L615
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L728
 msgid "Lists"
@@ -2449,7 +2454,7 @@ msgstr "Lokit"
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L528
 msgid "Transcriptions"
 msgstr "Transkriptiot"
 
@@ -2538,9 +2543,9 @@ msgstr "Vaihda lauseeni CC0-linsenssiin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L29
 msgid ""
-"The license switch of your sentences is in progress. You will receive a "
-"private message when it will be completed."
-msgstr "Lauseidesi lisenssinvaihto on kesken. Saat yksityisviestin, kun vaihto on valmis."
+"The license for your sentences is being switched. You will receive a private"
+" message when the operation is complete."
+msgstr "Lauseidesi lisenssejä muutetaan. Saat yksityisviestin, kun muutos on valmis."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""
@@ -2780,8 +2785,8 @@ msgstr "Lausenumero"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
-msgid "Base of the sentence"
-msgstr "Lauseen perusta"
+msgid "Base field"
+msgstr "Peruskenttä"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
@@ -2939,12 +2944,12 @@ msgstr "Jos sinulla on kysymyksiä tai pyyntöjä, <a href=\"{}\">otathan meihin
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L190
 msgid "Weekly exports"
-msgstr ""
+msgstr "Viikkoraportit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L198
 msgid ""
 "The files provided below are updated every Saturday at 6:30 a.m. (UTC)."
-msgstr ""
+msgstr "Tässä olevat tiedostot päivitetään joka lauantai kello 6.30 (UTC)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L219
 msgid ""
@@ -2966,44 +2971,43 @@ msgstr "Sisältää kunkin lauseen lisäkentät (omistajan nimi, luomispäiväm�
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L265
-msgid "Base of Sentences"
-msgstr "Lauseiden perusta"
+msgid "Original and Translated Sentences"
+msgstr "Alkuperäiset ja käännetyt lauseet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L274
 msgid ""
-"A sentence is based on another if it has been initially added as a "
-"translation. Each sentence is associated with a base, which can be:"
-msgstr "Lause perustuu toiseen lauseeseen, jos se on alunperin lisätty käännöksenä. Jokainen lause yhdistyy perustaan, joka voi olla:"
+"Each sentence is listed as original or a translation of another. The "
+"\"base\" field can have the following values:"
+msgstr "Jokainen lause on luetteloitu joko alkuperäisenä tai toisen lauseen käännöksenä. Peruskentällä voi olla seuraavat arvot:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L278
-msgid "zero: The sentence is original, not based on another."
-msgstr "nolla: lause on alkuperäinen eikä perustu toiseen lauseeseen."
+msgid "zero: The sentence is original, not a translation of another."
+msgstr "nolla: Lause on alkuperäinen, ei käännös."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L279
-msgid "greater than 0: The sentence id it is based upon."
-msgstr "suurempi kuin 0: Sen lauseen lausenumero, johon tämä lause perustuu."
+msgid ""
+"greater than zero: The id of the sentence from which it was translated."
+msgstr "yli nolla: Sen lauseen lausenumero, josta tämä lause on käännetty."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L280
-msgid ""
-"\\N: We do not know. This is rare but we have a handful of sentences for "
-"which we do not know if they have been added as translations or not."
-msgstr "\\N: Ei tiedossa. Tämä on harvinaista, mutta meillä on kourallinen lauseita, joista emme osaa sanoa onko ne lisätty käännöksinä vai ei."
+msgid "\\N: Unknown (rare)."
+msgstr "\\N: Tuntematon (harvinainen)"
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L291
 msgid "Sentences (CC0)"
 msgstr "Lauseet (CC0)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L303
 msgid "Contains all the sentences available under CC0."
 msgstr "Sisältää kaikki lauseet, jotka ovat saatavilla CC0-lisenssillä."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L317
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L315
 msgid "Links"
 msgstr "Linkit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L324
 msgid ""
 "Contains the links between the sentences. {sampleLinkLine} means that "
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
@@ -3013,39 +3017,39 @@ msgstr "Sisältää lauseiden väliset linkit. {sampleLinkLine} tarkoittaa, ett�
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L342
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L67
 msgid "Tags"
 msgstr "Tunnisteet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L351
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
 msgstr "Sisältää listan <a href=\"{url}\">tunnisteista</a>, jotka liittyvät kuhunkin lauseeseen. {sampleTagLine} tarkoittaa, että lauseessa numero 381279 on tunniste ”proverb”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L377
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
 msgstr "Sisältää luettelon <a href=\"{}\">lauselistoista</a>."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L392
 msgid "Sentences in lists"
 msgstr "Lauseet listoissa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L404
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
 msgstr "Ilmaisee lauseet, jotka ovat osana mitä tahansa listaa. {sampleListLine} tarkoittaa, että lause #381279 on listalla, jonka tunnistenumero on 13."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L421
 msgid "Japanese indices"
 msgstr "Japanin indeksoinnit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L431
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"{url}\">this page</a> for the "
@@ -3054,7 +3058,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Sisältää Jim Breenin jakeleman Tanaka-korpustiedoston ”B-rivien” vastineen. Katso <a href=\"{url}\">tältä sivulta</a> tietoja muotoilusta. Jokainen merkintä liittyy japani/englanti-lausepariin. {sentenceId} viittaa japaninkielisen lauseen numeroon. {meaningId} viittaa englanninkielisen lauseen numeroon."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L463
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -3063,28 +3067,28 @@ msgid ""
 msgstr "Sisältää lauseiden tunnistenumerot niillä kaikilla kielillä, joilla äänite on saatavilla. Muut kentät ilmaisevat kuka on äänittänyt äänitteen, sen lisenssin ja URL-osoitteen, jota käytetään tekijän nimeämisessä. Jos lisenssikenttä on tyhjä, et voi käyttää lausetta Tatoeba-projektin ulkopuollella."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L484
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
 msgid "User skill level per language"
 msgstr "Käyttäjän taitotaso kielittäin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L492
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L490
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Ilmaisee käyttäjien itse kertoman taitotason yksittäisissä kielissä."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L502
 msgid "Users' sentence reviews"
 msgstr "Käyttäjän lausearvostelut"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L513
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L511
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
 msgstr "Sisältää käyttäjien arvostelemat lauseet. Arvostelun arvo voi olla -1 (lause ei ole OK), 0 (ei osaa päättää tai epävarma) tai 1 (lause on OK). Varoitus: tämä tietoaineisto on vielä kokeiluvaiheessa."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L541
 msgid ""
 "Contains all transcriptions in auxiliary or alternative scripts. A username "
 "associated with a transcription indicates the user who last reviewed and "
@@ -5306,10 +5310,6 @@ msgstr "vastaanottaja {recipient}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
 msgid "Draft"
 msgstr "Luonnos"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
-msgid "notification from Tatoeba"
-msgstr "ilmoitus Tatoebalta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
 msgid "from {sender}"

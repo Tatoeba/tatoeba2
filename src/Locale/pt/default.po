@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 22:26+0100\n"
-"PO-Revision-Date: 2021-03-18 22:17+0000\n"
+"POT-Creation-Date: 2021-03-25 17:43+0100\n"
+"PO-Revision-Date: 2021-03-25 19:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/tatoeba/tatoeba_website/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -890,7 +890,7 @@ msgstr "Frases em {language} com áudio"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L27
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L452
 msgid "Sentences with audio"
 msgstr "Frases com áudio"
 
@@ -1602,6 +1602,11 @@ msgstr "Salvar como rascunho"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L60
 msgid "Send"
 msgstr "Enviar"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr "notificação do Tatoeba"
 
 #. random sentence block header on the home page for members
 #. / random sentence block header on the home page for guests
@@ -2419,7 +2424,7 @@ msgstr "Revisões"
 #. / header text on the sidebar of a sentence page
 #. / header text in sidebar on pages related to sentences lists
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L368
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L615
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L728
 msgid "Lists"
@@ -2458,7 +2463,7 @@ msgstr "Histórico"
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L528
 msgid "Transcriptions"
 msgstr "Transcrições"
 
@@ -2547,9 +2552,9 @@ msgstr "Alterar a licença de minhas frases para CC0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L29
 msgid ""
-"The license switch of your sentences is in progress. You will receive a "
-"private message when it will be completed."
-msgstr "A mudança de licença de suas sentenças está em progresso. Você receberá uma mensagem privada quando for completada."
+"The license for your sentences is being switched. You will receive a private"
+" message when the operation is complete."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""
@@ -2789,8 +2794,8 @@ msgstr "Número de identificação da frase"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
-msgid "Base of the sentence"
-msgstr "Base da frase"
+msgid "Base field"
+msgstr ""
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
@@ -2975,44 +2980,43 @@ msgstr "Contêm campos adicionais para cada frase (nome do proprietário, data c
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L265
-msgid "Base of Sentences"
-msgstr "Base das Frases"
+msgid "Original and Translated Sentences"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L274
 msgid ""
-"A sentence is based on another if it has been initially added as a "
-"translation. Each sentence is associated with a base, which can be:"
-msgstr "Uma frase é baseada em outra se essa tiver sido inicialmente adicionada como uma tradução. Cada frase é associada à uma base que pode ser:"
+"Each sentence is listed as original or a translation of another. The "
+"\"base\" field can have the following values:"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L278
-msgid "zero: The sentence is original, not based on another."
-msgstr "zero: A frase é original; logo, não foi baseada em nenhuma outra."
+msgid "zero: The sentence is original, not a translation of another."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L279
-msgid "greater than 0: The sentence id it is based upon."
-msgstr "maior que zero: O ID da frase é baseado acima do ID da frase de base 0."
+msgid ""
+"greater than zero: The id of the sentence from which it was translated."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L280
-msgid ""
-"\\N: We do not know. This is rare but we have a handful of sentences for "
-"which we do not know if they have been added as translations or not."
-msgstr "\\N: Nós não sabemos. Isso é raro, mas nós temos um certo número de frases do quais nós não sabemos se eles foram adicionadas como traduções ou não."
+msgid "\\N: Unknown (rare)."
+msgstr ""
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L291
 msgid "Sentences (CC0)"
 msgstr "Sentenças (CC0)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L303
 msgid "Contains all the sentences available under CC0."
 msgstr "Contêm todas as sentenças disponíveis sob a licença CC0."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L317
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L315
 msgid "Links"
 msgstr "Ligações"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L324
 msgid ""
 "Contains the links between the sentences. {sampleLinkLine} means that "
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
@@ -3022,39 +3026,39 @@ msgstr "Contém as ligações entre as frases. {sampleLinkLine} significa que a 
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L342
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L67
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L351
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
 msgstr "Contém a lista de <a href=\"{url}\">etiquetas</a> associadas a cada frase. {sampleTagLine} significa que foi designada à frase n.º 381279 a etiqueta \"provérbio\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L377
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
 msgstr "Contém a lista de <a href=\"{}\">listas de frases</a>."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L392
 msgid "Sentences in lists"
 msgstr "Frases em listas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L404
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
 msgstr "Indica as frases contidas em qualquer lista. {sampleListLine} significa que a frase n.º 381279 está contida na lista cujo número de identificação é 13."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L421
 msgid "Japanese indices"
 msgstr "Índices do japonês"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L431
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"{url}\">this page</a> for the "
@@ -3063,7 +3067,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Contém o equivalente ao \"B Lines\" do arquivo do Tanaka Corpus distribuído por Jim Breen. Veja <a href=\"{url}\">esta página</a> para o formato. Cada entrada está associada a um par de frases japonês/inglês. {sentenceId} se refere ao número de identificação da frase em japonês. {meaningId} se refere ao número de identificação da frase em inglês."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L463
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -3072,28 +3076,28 @@ msgid ""
 msgstr "Contêm as ids das sentenças, de todos os idiomas, para qual há gravações disponíveis. Outros campos indicam quem as gravou, a licença das mesmas e a URL que atribui o autor. Se o campo \"licença\" estiver vazia, você não deve reutilizar a gravação fora do Tatoeba."
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L484
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
 msgid "User skill level per language"
 msgstr "Nível do usuário por idioma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L492
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L490
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Indica o nível dos membros relatado por eles mesmos em cada língua. "
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L502
 msgid "Users' sentence reviews"
 msgstr "Revisão de frases dos usuários"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L513
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L511
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
 msgstr "Contem sentenças revisadas por usuários. O valor da revisão pode ser -1 (sentença incorreta/\"not OK\"), 0 (indeciso ou inseguro) ou 1 (sentença correta). Aviso: Essas dados são ainda experimentais."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L541
 msgid ""
 "Contains all transcriptions in auxiliary or alternative scripts. A username "
 "associated with a transcription indicates the user who last reviewed and "
@@ -5315,10 +5319,6 @@ msgstr "para {recipient}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
 msgid "Draft"
 msgstr "Rascunho"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
-msgid "notification from Tatoeba"
-msgstr "notificação do Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
 msgid "from {sender}"

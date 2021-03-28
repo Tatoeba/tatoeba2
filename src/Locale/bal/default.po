@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 22:26+0100\n"
-"PO-Revision-Date: 2021-03-18 22:17+0000\n"
+"POT-Creation-Date: 2021-03-25 17:43+0100\n"
+"PO-Revision-Date: 2021-03-25 19:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Balochi (http://www.transifex.com/tatoeba/tatoeba_website/language/bal/)\n"
 "MIME-Version: 1.0\n"
@@ -877,7 +877,7 @@ msgstr "ءِ ھما گالرد کہ آ گوں تواربَند اَنت۔{langua
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L27
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L452
 msgid "Sentences with audio"
 msgstr "گالرد گوں تواربنداں"
 
@@ -1589,6 +1589,11 @@ msgstr "سیب ءِ ھساب ءَ دَرپ کن"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L60
 msgid "Send"
 msgstr "دیم دئے"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
+msgid "notification from Tatoeba"
+msgstr "ھالنامَگ چہ ٹٹوبا ءَ"
 
 #. random sentence block header on the home page for members
 #. / random sentence block header on the home page for guests
@@ -2406,7 +2411,7 @@ msgstr "چمشانک"
 #. / header text on the sidebar of a sentence page
 #. / header text in sidebar on pages related to sentences lists
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L368
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L615
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L728
 msgid "Lists"
@@ -2445,7 +2450,7 @@ msgstr "لاگ"
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L528
 msgid "Transcriptions"
 msgstr "نَدگِیر"
 
@@ -2534,9 +2539,9 @@ msgstr " ءَ بدل کن۔CC0 منی گالرداں پہ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L29
 msgid ""
-"The license switch of your sentences is in progress. You will receive a "
-"private message when it will be completed."
-msgstr "تئی گالرد ءِ لیسن ءِ بدلی بوگان اِنت۔ وھدے سرجم بیت گُڑا ترا یک اِھوَتی کلوھے سر بیت۔"
+"The license for your sentences is being switched. You will receive a private"
+" message when the operation is complete."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""
@@ -2776,8 +2781,8 @@ msgstr "گالرِدءِ پجار"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
-msgid "Base of the sentence"
-msgstr "گالرد ءِ بُن"
+msgid "Base field"
+msgstr ""
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
@@ -2962,44 +2967,43 @@ msgstr "پہ ھر یک گالردے ءَ گیشیں پِڑ مان (واھُند 
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L265
-msgid "Base of Sentences"
-msgstr "گالردانی شرترین"
+msgid "Original and Translated Sentences"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L274
 msgid ""
-"A sentence is based on another if it has been initially added as a "
-"translation. Each sentence is associated with a base, which can be:"
-msgstr "یک گالردے ءِ بُنیاد دگہ گالردے ءِ سرا بیت اگاں آ اولسرا رجانک ءِ ھساب ءَ ھور کنگ بیتگ۔ ھریک گالردے گوں یک بُنیادے ءَ ھمگرنچ اِنت کہ آ ایش بیت کنت:۔"
+"Each sentence is listed as original or a translation of another. The "
+"\"base\" field can have the following values:"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L278
-msgid "zero: The sentence is original, not based on another."
-msgstr "زیرو: گالرد بُندَری یے، دگرے ءِ بُنیاد ءَ ایر نہ اِنت۔"
+msgid "zero: The sentence is original, not a translation of another."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L279
-msgid "greater than 0: The sentence id it is based upon."
-msgstr "چہ 0 ءَ مَستر: گالرد ءِ پَجّار کہ ھما بنیاد ءِ سرا ایر اِنت۔"
+msgid ""
+"greater than zero: The id of the sentence from which it was translated."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L280
-msgid ""
-"\\N: We do not know. This is rare but we have a handful of sentences for "
-"which we do not know if they have been added as translations or not."
-msgstr "\\N:  \nما نزانیں۔ چو سک کم بیت بلے مئے گورا چیزے گالرد ھست کہ ما نزانیں کہ رجانک ءِ ھساب ءَ ھور کنگ بیتگ اَنت یا ناں۔ "
+msgid "\\N: Unknown (rare)."
+msgstr ""
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L291
 msgid "Sentences (CC0)"
 msgstr "گالرد (CC0)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L303
 msgid "Contains all the sentences available under CC0."
 msgstr "ھما درستیں گالرد ئِے مان اَنت کہ سی سی 0 ءَ دستیاب اَنت۔"
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L317
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L315
 msgid "Links"
 msgstr "کڑی"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L324
 msgid ""
 "Contains the links between the sentences. {sampleLinkLine} means that "
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
@@ -3009,39 +3013,39 @@ msgstr "ایشی ءِ تہا ھما کڑی مان اَنت کہ گالردانی
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L342
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L67
 msgid "Tags"
 msgstr "ٹیگ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L351
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
 msgstr "ایشی ءِ تہا گالرد ءَ گوں ھمگرنچیں <a href=\"{url}\">ٹیگانی</a> لَڑ مان اِنت۔ {sampleTagLine} ءِ مانا ایش اِنت کہ گالرد#381279  ءَ را ’’بتل‘‘ ءِ ٹیگ نام ءَ دیگ بیتگ۔ "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L377
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
 msgstr "ایشی ءِ تہا <a href=\"{}\">گالردانی لڑ</a> ئِے مان اَنت۔"
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L392
 msgid "Sentences in lists"
 msgstr "گالرد ماں لَڑاں"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L404
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
 msgstr "ھما گالرداں پیشداریت کہ ھَر لَڑے ءَ مان اَنت۔ {sampleListLine} ءِ مانا ایش اِنت کہ گالرد #381279 ھما لَڑ ءَ مان اِنت کہ آئی ءِ پَجّار 13 اِنت۔ "
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L421
 msgid "Japanese indices"
 msgstr "جاپانی شونگِر"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L431
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"{url}\">this page</a> for the "
@@ -3050,7 +3054,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "ایشی ءِ تہا جِم برین ءِ بَھر ءُ بانگ کرتگیں تَناکا کورپس فائل ءِ ’’بی لائنز‘‘ ءِ ھَمبَرابر مان اِنت۔ فارمیٹ ءِ واستا <a href=\"{url}\">اے تاکدیم</a> ءَ بچار۔ ھر یک دَرجی یے گوں جُتکے جاپانی/انگریزی گالرد ءَ ھمگرنچ اِنت۔ {sentenceId} جاپانی گالرد ءِ پَجّار ءَ شون دنت۔ {meaningId} انگریزی گالرد ءِ پجّار ءَ شون دنت۔ "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L463
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -3059,28 +3063,28 @@ msgid ""
 msgstr "ایشی ءِ تہا ھما درستیں زبانانی گالردانی پجّار مان اَنت کہ پہ آھاں تواربَند دستیاب اِنت۔ ایدگہ پِڑ نشان دینت کہ تواربَند کیا زَپت کرتگ، آئی ءِ لیسن ءُ یک یو آر ایلے کہ آئی ءِ نامِشت نبشتکار ئیگ اِنت۔ اگاں لیسن ءِ پِڑ ھورک اِنت گُڑا تو بگندئے ٹٹوبا پروجیکٹ ءَ ڈَنّ تواربَند ءَ دوبرکارمرز کرت نہ کنئے۔"
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L484
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
 msgid "User skill level per language"
 msgstr "ماں زبانءَ کارمرزوک ءِ ھنرمندی ءِ لَسُون"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L492
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L490
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "اے یک یک زبانے ءِ باسکانی وت بیان کرتگیں ھنر ءِ لَسُون ءَ نشان دنت۔"
 
 #. section title in the Downloads page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L502
 msgid "Users' sentence reviews"
 msgstr "کارمرزوکانی گالرد ءِ چمشانک"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L513
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L511
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
 msgstr "ایشی ءِ تہا ھما گالرد مان اَنت کہ کارمرزوکاں چمشانک داتگ اَنت۔ چمشانک ءِ کئیل چوش بیت کننت -1 (گالرد جوان نہ اِنت)، 0 (پیسلہ نہ بیتگیں یا ناپکّائیں)، یا  1  (گالرد جوان اِنت)۔ پیژڈاہ: اے ڈیٹا انگت آزمودان اِنت۔  "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L541
 msgid ""
 "Contains all transcriptions in auxiliary or alternative scripts. A username "
 "associated with a transcription indicates the user who last reviewed and "
@@ -5302,10 +5306,6 @@ msgstr "پہ {recipient}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L145
 msgid "Draft"
 msgstr "سیب"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
-msgid "notification from Tatoeba"
-msgstr "ھالنامَگ چہ ٹٹوبا ءَ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L152
 msgid "from {sender}"
