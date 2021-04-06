@@ -25,6 +25,6 @@ CREATE TABLE `sentences_translations` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sentence_id` (`sentence_id`,`translation_id`),
   KEY `translation_id` (`translation_id`),
-  KEY `sentence_lang` (`sentence_lang`),
+  KEY `sentence_lang_translation_lang_idx` (`sentence_lang`, `translation_lang`),
   KEY `translation_lang` (`translation_lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
