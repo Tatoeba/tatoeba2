@@ -629,6 +629,7 @@ class LanguagesLib
                 'abq' => __d('languages', 'Abaza'),
                 'inh' => __d('languages', 'Ingush'),
                 'kbd' => __d('languages', 'Kabardian'),
+                'srn' => __d('languages', 'Sranan Tongo'),
             );
         }
         return $languages;
