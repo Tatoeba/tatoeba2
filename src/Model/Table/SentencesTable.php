@@ -1323,4 +1323,21 @@ class SentencesTable extends Table
 
         return $this->delete($sentence);
     }
+
+    /**
+     * Efficiently compute the list of all languages
+     * having at least one sentence.
+     *
+     * @return array Array of language codes,
+     *               including null for "unknown language"
+     */
+    public function languagesHavingSentences()
+    {
+        return $this->find()
+            ->select(['lang'])
+            ->distinct(['lang'])
+            ->all()
+            ->extract('lang')
+            ->toArray();
+    }
 }

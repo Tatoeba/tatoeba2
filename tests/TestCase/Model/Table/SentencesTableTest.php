@@ -1472,4 +1472,13 @@ class SentencesTableTest extends TestCase {
         $translation = $this->Sentence->saveTranslation(2, 'cmn', 'Lorem ipsum', 'lat');
         $this->assertEquals('CC BY 2.0 FR', $translation->license);
     }
+
+    function testLanguagesHavingSentences() {
+        $expected = [
+            null, 'ara', 'cmn', 'deu', 'eng', 'fra', 'jpn', 'pol', 'rus',
+            'spa', 'tur', 'ukr', 'wuu', 'yue'
+        ];
+        $result = $this->Sentence->languagesHavingSentences();
+        $this->assertEquals($expected, $result);
+    }
 }

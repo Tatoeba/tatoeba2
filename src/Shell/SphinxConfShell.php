@@ -740,9 +740,13 @@ EOT;
         return $conf;
     }
 
-    public function conf($only = array()) {
+    public function conf($only = null) {
         $languages = LanguagesLib::languagesInTatoeba();
-        if ($only) {
+        if (is_null($only)) {
+            $Sentences = $this->loadModel('Sentences');
+            $only = $Sentences->languagesHavingSentences();
+        }
+        if (!is_null($only)) {
             $languages = array_intersect_key($languages, array_flip($only));
         }
         $conf = '';
@@ -778,6 +782,12 @@ EOT;
         $this->dbConfig = ConnectionManager::get('default')->config();
         $this->sphinxConfig = Configure::read('Sphinx');
         
-        echo $this->escape_long_lines($this->conf($this->args));
+        if (count($this->args)) {
+            $langs = $this->args;
+        } else {
+            $langs = null;
+        }
+
+        echo $this->escape_long_lines($this->conf($langs));
     }
 }

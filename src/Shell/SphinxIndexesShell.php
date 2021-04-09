@@ -81,7 +81,9 @@ class SphinxIndexesShell extends Shell {
                      ->all()
                      ->toArray();
             } else {
-                $langs = array_keys($this->tatoeba_languages);
+                $Sentences = $this->loadModel('Sentences');
+                $langs = $Sentences->languagesHavingSentences();
+                $langs = array_filter($langs);
             }
         }
 
