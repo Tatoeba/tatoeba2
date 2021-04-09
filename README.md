@@ -25,12 +25,6 @@ cd imouto
 
 - If you need to use a proxy, follow the instructions in `README.proxy.md`.
 
-- If you have less than 8GB of RAM, edit the file `Vagrantfile` to reduce value of `v.memory`, the amount of RAM allocated to the virtual machine. It is recommended that you allocate no more than 1/4 of your actual RAM. If you set `v.memory` to less than 2GB, the system will likely swap and run slow. As a workaround, [reduce the number of indexed languages](#limiting-the-number-of-indexed-languages) once the VM is running.
-
-```
-   v.memory = 1024 # only allocate 1GB of RAM to the VM
-```
-
 - Run this command to download and start up the Tatoeba VM. Please be patient, it takes a while.
 
 ```bash
@@ -173,17 +167,6 @@ sudo ln -s /home/vagrant/Tatoeba /var/www-prod
 sudo ./docs/cron/runner.sh ./docs/cron/export.sh
 ```
 
-### Limiting the number of indexed languages
-
-To limit RAM usage, you can limit which languages Manticore indexes using the following command. Re-run this command without `list-of-iso-codes` to make Manticore index all the languages again.
-
-```bash
-# Replace list-of-iso-codes with actual ISO codes separated by spaces.
-# For example: lad eng spa por
-cake sphinx_conf list-of-iso-codes | sudo tee /etc/manticoresearch/manticore.conf
-sudo systemctl restart manticore
-```
-
 ## Accessing subdomains
 
 To access subdomains, you need to configure them in the [hosts file](https://en.wikipedia.org/wiki/Hosts_%28file%29) of your machine (not the VM, your actual computer).
@@ -215,4 +198,12 @@ echo -n "127.0.0.1 wiki.tato.test"; \
   sudo sed '1,/"languages"/d;/ \],$/,$d' /srv/wiki.tatoeba.org/www/config.js | cut -d'"' -f2 | \
   while read lang; do echo -n " $lang.wiki.tato.test"; done; \
   echo
+```
+
+## Allocating more RAM to the VM
+
+By default, 512 MB of your actual computer RAM are allocated to the VM. This should be enough to run a basic installation of Tatoeba. If you need more, edit the file `Vagrantfile` to change value of `v.memory`. For example:
+
+```
+   v.memory = 1024 # allocate 1GB of RAM to the VM
 ```

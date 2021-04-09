@@ -9,9 +9,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
   config.vm.provider "virtualbox" do |v|
-    # Adjust RAM allocated to the VM
-    # The value should be at least 1/4 of your machine's actual RAM.
-    v.memory = 2048 # in MB
+    # Here you can adjust RAM allocated to the VM:
+    v.memory = 512 # in MB
 
     if Vagrant::Util::Platform.windows?
       # configure private network for samba share
