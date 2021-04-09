@@ -21,6 +21,7 @@ namespace App\Shell;
 use App\Lib\LanguagesLib;
 use App\Model\ReindexFlag;
 use Cake\Console\Shell;
+use Cake\Core\Configure;
 
 
 define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
@@ -69,6 +70,23 @@ class SphinxIndexesShell extends Shell {
         echo "ok\n";
     }
 
+    private function reload_manticore_config() {
+        $port = Configure::read('Sphinx.sphinxql_port');
+        try {
+            $pdo = new \PDO("mysql:host=127.0.0.1;port=$port");
+            $ok = $pdo->exec("RELOAD INDEXES");
+            if ($ok === FALSE) {
+                $error = $pdo->errorInfo();
+            }
+        } catch (\PDOException $e) {
+            $error = $e->getMessage();
+        }
+        if (isset($error)) {
+            echo "Warning: unable to tell Manticore to reload its config: $error\n";
+            echo "You may have to restart Manticore if there is any new language.\n";
+        }
+    }
+
     private function update_index($type, $langs) {
         if (!$langs) {
             if ($type == 'delta') {
@@ -100,6 +118,9 @@ class SphinxIndexesShell extends Shell {
                 $return_value
             );
             echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
+            if ($return_value == 0) {
+                $this->reload_manticore_config();
+            }
         }
     }
 
