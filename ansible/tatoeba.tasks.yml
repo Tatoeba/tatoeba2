@@ -30,8 +30,6 @@
   tags: manticore
   import_role:
     name: setup_manticore
-  vars:
-    create_indexes: true
 
 - name: Install and setup Tatomecab
   tags: tatomecab, external_tools

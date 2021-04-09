@@ -34,19 +34,10 @@
   - "{{manticore_log_dir}}"
   - "{{manticore_binlog_path}}"
 
-- name: Generate manticore.conf
-  become: false
-  command: ./bin/cake sphinx_conf chdir={{code_dir}}
-  register: sphinx_conf
-
 - name: Install manticore.conf
-  copy: content="{{ sphinx_conf.stdout }}" dest="/etc/manticoresearch/manticore.conf"
-
-- name: Create indexes
-  become: true
-  become_user: manticore
-  command: indexer --all
-  when: create_indexes == true
+  template:
+    src: manticore.conf
+    dest: /etc/manticoresearch/manticore.conf
 
 - name: Start the search daemon
   service: name=manticore state=started
