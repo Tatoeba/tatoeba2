@@ -25,9 +25,10 @@ cd imouto
 
 - If you need to use a proxy, follow the instructions in `README.proxy.md`.
 
-- Run this command to install everything. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
+- Run these commands to install everything. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
 
 ```bash
+BUILD=1 vagrant box update
 BUILD=1 vagrant up
 ```
 
