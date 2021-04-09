@@ -41,6 +41,14 @@ vagrant up
 
 - You can log in using one of these accounts: `admin`, `corpus_maintainer`, `advanced_contributor`, `contributor`, `inactive` and `spammer`. For all of them the password is `123456`.
 
+## Adding new sentences and finding them using the search
+
+The default install contains no sentences at all and the search won’t work. You will have to [add a few sentences](http://localhost:8080/fra/sentences/add) on your own. Then:
+
+- Perform a reindexation by following the instructions in the [Development tools](#development-tools) section.
+- If the sentences you just added are the first sentences in that language, make sure you reindex the "delta" indexes first and then the "main" index (not the other way around).
+- Once reindexation is complete, you should be able to find the sentences you just added using the search.
+
 ## Hacking Tatoeba
 
 ### Accessing the source code
@@ -104,6 +112,32 @@ If you get the warning `failed to open stream: No such file or directory [ROOT/v
 
 Development tools are all run from the command line. Windows users can run Git Bash (which comes with Git for Windows) while Unix and MacOS users must open a terminal. From there, `cd` to Imouto’s directory and run `vagrant ssh` to ssh into the VM. Then, run `cd Tatoeba` to enter the code. From there, you can execute development tools such as:
 
+### Search
+
+#### Reindex all the sentences
+
+The search engine is configured to use a [main+delta](https://manual.manticoresearch.com/Creating_an_index/Local_indexes/Plain_index#Main+delta) schema. You can reindex all the "delta" and "main" indexes using the following commands respectively:
+
+```sh
+sudo bin/cake sphinx_indexes update delta
+sudo bin/cake sphinx_indexes update main
+```
+
+To reindex the "main" or "delta" indexes of a particular language, add the ISO code, for example Bengali (ISO code `ben`):
+
+```sh
+sudo bin/cake sphinx_indexes update main ben
+```
+
+
+#### SphinxQL console
+
+Run `sphinxql` to access the SphinxQL prompt. It will allow you to perform queries directly on the search engine, for example:
+
+```sql
+sphinxQL> SELECT id FROM eng_main_index WHERE MATCH('hello');
+```
+
 ### Tests
 
 ```bash
@@ -128,19 +162,6 @@ mysql tatoeba
     ...
 
 sudo mysql tatoeba # for operations requiring root privileges
-```
-
-### Search engine
-
-```bash
-sudo systemctl start manticore # starts the search engine
-
-sudo bin/cake sphinx_indexes # starts reindexation
-
-sphinxql # runs the SphinxQL console
-
-    sphinxQL> SELECT id FROM eng_main_index WHERE MATCH('hello');
-    ...
 ```
 
 ### Generate exports
