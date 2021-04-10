@@ -23,9 +23,11 @@ rm -f /EMPTY
 systemctl stop manticore
 
 # Recreate swap that mostly consists of zeroed blocks
-swappart=$(cat /proc/swaps | tail -n1 | awk -F ' ' '{print $1}')
-uuid=$(blkid -o value -s UUID "$swappart")
-swapoff "$swappart"
-dd if=/dev/zero of="$swappart" || true
-mkswap -U "$uuid" "$swappart"
-swapon "$swappart"
+swappart=$(cat /proc/swaps | sed '1d' | awk -F ' ' '{print $1}')
+if [ -n "$swappart" ]; then
+  uuid=$(blkid -o value -s UUID "$swappart")
+  swapoff "$swappart"
+  dd if=/dev/zero of="$swappart" || true
+  mkswap -U "$uuid" "$swappart"
+  swapon "$swappart"
+fi
