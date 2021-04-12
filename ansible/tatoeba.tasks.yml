@@ -14,11 +14,6 @@
   import_role:
     name: setup_mysql
 
-- name: Install and setup Tatoeba
-  tags: tatoeba, code
-  import_role:
-    name: update_code
-
 - name: Install and setup Tatoeba's database
   tags: tatoeba, database
   import_role:

@@ -6,3 +6,8 @@
     name: git
     state: latest
     force: yes
+
+- name: Install localization tools
+  apt:
+    name: [ 'gettext', 'transifex-client' ]
+  when: deploy_for == 'dev'
