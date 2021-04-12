@@ -52,8 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.trigger.before :destroy do |trigger|
       trigger.ruby do |env,machine|
         env.ui.warn("Warning: you are about to destroy the virtual machine.\n" +
-                    "Make sure to commit and push any ongoing work first.\n" +
-                    "Also note that the database will be deleted.")
+                    "Your code is safe, but the database will be deleted.")
         answer = env.ui.ask("Would you like to backup the database before destroying the machine? [n/Y] ")
         answer = answer.strip.downcase
         answer = "y" if answer.to_s.empty?
