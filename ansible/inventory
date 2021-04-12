@@ -1,0 +1,8 @@
+sloth ansible_host=sloth.tatoeba.org
+envy ansible_host=envy.tatoeba.org
+
+[prod]
+sloth
+
+[dev]
+envy

@@ -1,0 +1,51 @@
+---
+
+- name: Clean up home directory
+  command: rm -rf {{item}} removes=/home/{{ansible_ssh_user}}/{{item}} chdir=/home/{{ansible_ssh_user}}/
+  with_items:
+  - base.sh
+  - chef.sh
+  - cleanup.sh
+  - puppetlabs-release-wheezy.deb
+  - puppet.sh
+  - ruby.sh
+  - vagrant.sh
+  - virtualbox.sh
+  - zerodisk.sh
+
+- name: Install .bash_aliases
+  template: src=bash_aliases dest=/home/{{ansible_ssh_user}}/.bash_aliases owner={{ansible_ssh_user}}
+
+- name: Install NFS daemon
+  apt:
+    name: nfs-kernel-server
+    state: present
+
+- name: Configure NFS share
+  lineinfile:
+    path: /etc/exports
+    regexp: "^{{code_dir}}"
+    line: "{{code_dir}}  {{ansible_default_ipv4.gateway}}(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
+
+- name: Create exported directory
+  become: false
+  file:
+    path: "{{code_dir}}"
+    state: directory
+
+- name: Export NFS share
+  shell: exportfs -a
+
+- name: Install Samba
+  apt:
+    name: samba
+    state: present
+
+- name: Configure Samba share
+  template: src=smb.conf dest=/etc/samba/smb.conf
+
+- name: Restart Samba daemon
+  service:
+    name: smbd
+    state: restarted
+    enabled: yes

@@ -1,0 +1,78 @@
+# This is for developpers of Imouto
+
+This guide is for developpers of Imouto. If you want to install a local instance of Tatoeba, please refer to the file `README.md` instead.
+
+## Requirements
+
+Here are the basic requirements of the machine you’re using imouto from.
+
+* GNU/Linux or MacOS
+* Git
+* Ansible 2.4 or later (also available on pip: `pip install ansible`)
+* VirtualBox 4.0 or later, which can be installed with a package manager or with the help of [generic binaries](https://www.virtualbox.org/wiki/Downloads))
+* Vagrant 1.7 or later
+
+## Building a local VM
+
+- Install the requirements above.
+
+- Clone the repository and go to its directory:
+
+```bash
+git clone https://github.com/Tatoeba/imouto
+cd imouto
+```
+
+- If you need to use a proxy, follow the instructions in `README.proxy.md`.
+
+- Edit the file `Vagrantfile` to raise the value of `v.memory` to `1024`.
+
+- Run these commands to install everything. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
+
+```bash
+BUILD=1 vagrant box update
+BUILD=1 vagrant up
+```
+
+## Post-provisioning tasks
+
+You may want to perform certain tasks or steps independently without having to re-provision the whole machine again. To do that you can use the following command:
+
+```bash
+ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml --tag <tag>
+```
+
+where `<tag>` is one of the tags present in the file `ansible/tatoeba.tasks.yml`. You can also use `--skip-tag` to run all the tasks *but* one in particular. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
+
+```bash
+echo "alias imouto-provision='ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml'" >> ~/.bashrc
+source ~/.bashrc
+```
+
+Now you can simply use the following command to run a particular step:
+
+```bash
+imouto-provision --tag external_tools
+```
+
+## Publish the VM
+
+- Export the VM into a file
+
+```bash
+vagrant package --output tatoeba.box
+```
+
+- Upload the VM
+
+  - Log into https://app.vagrantup.com/
+
+  - Add a new version
+
+  - Add a new provider
+
+    - Type `virtualbox` for the Provider field
+
+    - Upload the exported VM
+
+  - Release the new version

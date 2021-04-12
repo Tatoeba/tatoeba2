@@ -1,0 +1,34 @@
+---
+
+- name: Install php
+  apt:
+    name: ['php-fpm', 'php-cli',
+           'php-mysql', 'php-intl', 'php-curl', 'php-memcached', 'php-imagick',
+           'php-xml', 'php-mbstring', 'php-zip', 'php-sqlite3',
+           'memcached', 'composer']
+    update_cache: yes
+    cache_valid_time: 36000
+    state: latest
+
+- name: Remove default fpm pool
+  file:
+    path: /etc/php/7.3/fpm/pool.d/www.conf
+    state: absent
+  notify: reload php-fpm
+
+- name: Drop php-fpm configuration
+  template:
+    src: tatoeba.conf
+    dest: /etc/php/7.3/fpm/pool.d
+    owner: root
+    group: root
+    mode: 0640
+  notify: reload php-fpm
+
+# Desired state
+
+- name: Start/Enable php-fpm
+  service:
+    name: php7.3-fpm
+    state: started
+    enabled: yes

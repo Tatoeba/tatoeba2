@@ -1,0 +1,43 @@
+---
+
+- name: Delete old database with same name if it exists
+  shell: echo "DROP DATABASE IF EXISTS {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
+
+- name: Create a new mysql database
+  shell: echo "CREATE DATABASE {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
+
+- name: Initialize database schema
+  shell: find {{code_dir}}/docs/database/tables -type f -exec cat {} \; | mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}}
+
+- name: Fill database with initial values
+  shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/{{item}}
+  with_items:
+  - import/users.sql
+  - import/groups.sql
+
+- name: Install database triggers
+# This task requires mysql root for creating triggers
+  shell: cat {{code_dir}}/docs/database/triggers/*.sql | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
+
+- name: Run migrations
+  become: true
+  become_user: vagrant
+  shell: "{{code_dir}}/bin/cake migrations migrate"
+
+- name: Run plugin migrations
+  become: true
+  become_user: vagrant
+  shell: "{{code_dir}}/bin/cake migrations migrate -p Queue"
+
+- name: Fill languages table
+  become: true
+  become_user: vagrant
+  shell: "{{code_dir}}/bin/cake languages_table reset"
+
+- name: Install database procedures
+  shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/procedures/{{item}}
+  with_items:
+  - add_new_language.sql
+  - clean_up_tag_sentence_count.sql
+  - create_nbr_sentences_of_list.sql
+  - revert_sentence_delete.sql
