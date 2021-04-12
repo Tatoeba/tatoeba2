@@ -1,0 +1,39 @@
+---
+- hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+  - name: Check if app_local.php exists
+    stat:
+      path: "{{code_dir}}/config/app_local.php"
+    register: stat_result
+
+  - name: Check if app_local.php exists (2)
+    set_fact:
+      app_local: "{{code_dir}}/config/app_local.php{{ stat_result.stat.exists | ternary('.new', '') }}"
+
+  - name: Generate new app_local.php
+    template:
+      src: "../config/app_local.php.template"
+      dest: "{{app_local}}"
+
+  - name: Fetch composer dependencies
+    composer:
+      command: install
+      no_dev: no
+      working_dir: "{{code_dir}}"
+
+  - name: Run migrations
+    shell: "{{code_dir}}/bin/cake migrations migrate"
+
+  - name: Run plugin migrations
+    shell: "{{code_dir}}/bin/cake migrations migrate -p Queue"
+
+  - name: Update languages table
+    shell: "{{code_dir}}/bin/cake languages_table reset"
+
+  - name: Warn about new config
+    debug:
+      msg: "Tatoeba warning: newly-generated config/app_local.php installed as config/{{app_local | basename}}. Please check for any new settings to add into your existing app_local.php."
+    when: stat_result.stat.exists
