@@ -60,10 +60,3 @@
   file:
     path: /tmp/sinoparserd
     state: absent
-
-- name: Enable auto-transcriptions
-  replace:
-    path: '{{code_dir}}/config/app_local.php'
-    regexp: "(['\"]AutoTranscriptions['\"]\\s*=>\\s*\\[\\s*['\"]enabled['\"]\\s*=>\\s*)[^,]+(,)"
-    replace: "\\1true\\2"
-    validate: 'php -l %s'

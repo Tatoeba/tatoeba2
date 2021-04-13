@@ -41,10 +41,3 @@
 
 - name: Start the search daemon
   service: name=manticore state=started
-
-- name: Enable search
-  replace:
-    path: '{{code_dir}}/config/app_local.php'
-    regexp: "(['\"]Search['\"]\\s*=>\\s*\\[\\s*['\"]enabled['\"]\\s*=>\\s*)[^,]+(,)"
-    replace: "\\1true\\2"
-    validate: 'php -l %s'
