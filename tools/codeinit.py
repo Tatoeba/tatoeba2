@@ -52,6 +52,10 @@ your existing app_local.php.
     return warning
 
 def setup():
+    # Running "composer install" twice is a workaround
+    # virtualbox bug https://www.virtualbox.org/ticket/18776.
+    # See also https://github.com/laravel/homestead/issues/1240.
+    system("composer install --no-plugins --no-scripts")
     system("composer install")
     system("bin/cake migrations migrate")
     system("bin/cake migrations migrate -p Queue")
