@@ -19,3 +19,7 @@
   copy:
     dest: /etc/profile.d/custom-path.sh
     content: 'PATH=$PATH:{{code_dir}}/bin:{{code_dir}}/vendor/bin'
+
+- name: Change hostname to tatovm
+  hostname:
+    name: tatovm
