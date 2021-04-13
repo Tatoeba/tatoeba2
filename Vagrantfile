@@ -43,13 +43,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                         :path => "tools/codeinit.py",
                         :args => ["/home/vagrant/Tatoeba"]
 
-    # Set these as :run => "never" because they are manually executed from triggers
-    config.vm.provision "db_backup", :type => "ansible", :run => "never" do |ansible|
-      ansible.playbook = "ansible/db_backup.yml"
-    end
-    config.vm.provision "db_restore", :type => "ansible", :run => "never" do |ansible|
-      ansible.playbook = "ansible/db_restore.yml"
-    end
+    config.vm.provision "db_backup",
+                        :type => "shell",
+                        :run => "never", # because this is executed from triggers
+                        :inline => "mysqldump --all-databases | gzip > /home/vagrant/Tatoeba/databases.sql.gz"
+    config.vm.provision "db_restore",
+                        :type => "shell",
+                        :run => "never", # because this is executed from triggers
+                        :inline => "zcat /home/vagrant/Tatoeba/databases.sql.gz | mysql"
 
     config.trigger.before :destroy do |trigger|
       trigger.ruby do |env,machine|
@@ -61,14 +62,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         if answer != "n"
           options = {}
           options[:provision_types] = [ :db_backup ]
-          machine.action(:provision, options)
+          action = machine.action(:provision, options)
+          if action[:result] == false
+            env.ui.error("Backup failed, aborting. Make sure the virtual machine is running.")
+            abort
+          else
+            env.ui.info("Databases backuped into databases.sql.gz. Will be restored upon new machine creation.")
+          end
         end
       end
     end
 
     config.trigger.after :up do |trigger|
       trigger.ruby do |env,machine|
-        path = File.join(env.cwd, "ansible", "databases.sql.gz")
+        path = File.join(env.cwd, "databases.sql.gz")
         if File.exist?(path)
           env.ui.warn("A database backup file was found: #{path}")
           answer = env.ui.ask("Would you like to restore that backup into the virtual machine? [n/Y]: ")
@@ -77,9 +84,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           if answer != "n"
             options = {}
             options[:provision_types] = [ :db_restore ]
-            machine.action(:provision, options)
-            env.ui.warn("Removing #{path}...")
-            File.unlink(path)
+            action = machine.action(:provision, options)
+            if action[:result] == false
+              env.ui.error("Restore failed!")
+            else
+              env.ui.info("Restore complete.")
+              env.ui.warn("Removing #{path}...")
+              File.unlink(path)
+            end
           end
         end
       end

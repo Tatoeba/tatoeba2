@@ -39,7 +39,6 @@ mysql_root_password: tatoeba
 mysql_user: tatouser
 mysql_password: tatoeba
 mysql_db_name: tatoeba
-mysqldump_backup_file: "{{playbook_dir}}/databases.sql.gz"
 
 # Set this to 'download' if you want to fetch the csv's from http://tatoeba.org/files/downloads/. This will import sentences and tags from the latest export of Tatoeba.
 # Set this to 'local' if the csv's are already present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
