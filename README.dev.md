@@ -25,8 +25,6 @@ cd imouto
 
 - If you need to use a proxy, follow the instructions in `README.proxy.md`.
 
-- Edit the file `Vagrantfile` to raise the value of `v.memory` to `1024`.
-
 - Run these commands to install everything. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
 
 ```bash

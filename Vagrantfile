@@ -25,6 +25,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     # Here you can adjust RAM allocated to the VM:
     v.memory = 512 # in MB
+
+    # This one is when we build a new VM with "BUILD=1 vagrant up"
+    v.memory = 1024 if ENV['BUILD'] == '1'
   end
 
   if ENV['BUILD'] == '1'
