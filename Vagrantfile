@@ -37,9 +37,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   else
     config.vm.box = "tatoeba/tatovm"
     config.vm.box_version = "0.1.0"
-    config.vm.provision "install", :type => "ansible" do |ansible|
-      ansible.playbook = "ansible/codeinit.yml"
-    end
+    config.vm.provision "install",
+                        :type => "shell",
+                        :privileged => false,
+                        :path => "tools/codeinit.py",
+                        :args => ["/home/vagrant/Tatoeba"]
 
     # Set these as :run => "never" because they are manually executed from triggers
     config.vm.provision "db_backup", :type => "ansible", :run => "never" do |ansible|

@@ -7,7 +7,7 @@
     state: latest
     force: yes
 
-- name: Install localization tools
+- name: Install packages needed for development
   apt:
-    name: [ 'gettext', 'transifex-client' ]
+    name: ['gettext', 'transifex-client', 'python3-jinja2', 'python3-yaml']
   when: deploy_for == 'dev'
