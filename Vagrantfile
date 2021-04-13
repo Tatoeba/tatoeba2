@@ -35,8 +35,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     config.vm.provision "strip", :type => "shell", :path => "reduce_box_size.sh"
   else
-    config.vm.box = "tatoeba/tatoeba"
-    config.vm.box_version = ">= 0.1.0"
+    config.vm.box = "tatoeba/tatovm"
+    config.vm.box_version = "0.1.0"
     config.vm.provision "install", :type => "ansible" do |ansible|
       ansible.playbook = "ansible/codeinit.yml"
     end
