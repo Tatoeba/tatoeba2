@@ -19,19 +19,18 @@ Installing Tatoeba
 
 Whether you are a user of Linux, MacOS or Windows, we recommend that you use a prebuilt
 virtual machine to install Tatoeba on your computer. Simply follow the instructions in
-the file [README.tatovm.md][3].
+the file [README.tatovm.md][2].
 
 Need help?
 ----------
 
 If you are stuck somewhere and can't figure out how to fix the problem(s) so 
 that you can run Tatoeba properly on your machine, don't hesitate to post a 
-message in our [Google group][5], ask in our [Gitter chatroom][6] or in our
-[XMPP chatroom][7].
+message in our [Google group][3], ask in our [Gitter chatroom][4] or in our
+[XMPP chatroom][5].
 
 [1]: https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer
-[2]: https://github.com/Tatoeba/imouto
-[3]: https://github.com/Tatoeba/tatoeba2/blob/dev/README.tatovm.md
-[5]: https://groups.google.com/group/tatoebaproject
-[6]: https://gitter.im/Tatoeba/tatoeba2
-[7]: https://chat.tatoeba.org/
+[2]: https://github.com/Tatoeba/tatoeba2/blob/dev/README.tatovm.md
+[3]: https://groups.google.com/group/tatoebaproject
+[4]: https://gitter.im/Tatoeba/tatoeba2
+[5]: https://chat.tatoeba.org/
