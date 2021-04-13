@@ -43,14 +43,14 @@ ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inve
 where `<tag>` is one of the tags present in the file `ansible/tatoeba.tasks.yml`. You can also use `--skip-tag` to run all the tasks *but* one in particular. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
 
 ```bash
-echo "alias imouto-provision='ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml'" >> ~/.bashrc
+echo "alias tatovm-provision='ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml'" >> ~/.bashrc
 source ~/.bashrc
 ```
 
 Now you can simply use the following command to run a particular step:
 
 ```bash
-imouto-provision --tag external_tools
+tatovm-provision --tag external_tools
 ```
 
 ## Publish the VM
