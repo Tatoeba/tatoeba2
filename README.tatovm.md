@@ -1,10 +1,10 @@
-# Imouto
+# TatoVM
 
-Imouto is a collection of automation scripts for building an instance of [Tatoeba](https://tatoeba.org/) using [ansible](http://www.ansible.com/home). This is the preferred way for developers to set up a local development environment.
+TatoVM is a ready-to-use virtual machine containing a web server, a database and other tools required to run [Tatoeba](https://tatoeba.org/). This is the preferred way for developers to set up a local development environment.
 
 ## Requirements
 
-Here are the basic requirements of the machine you’re using imouto from.
+Here are the basic requirements of the machine you’re using TatoVM from.
 
 * A machine with a 64-bit CPU (32-bit should be possible too but we do not support it)
 * GNU/Linux, MacOS or Windows
@@ -16,12 +16,7 @@ Here are the basic requirements of the machine you’re using imouto from.
 
 - Install the requirements above.
 
-- Open a terminal. Windows users can run Git Bash (which comes with Git for Windows). In the terminal, clone Imouto’s repository and go into the cloned directory by running the following commands:
-
-```bash
-git clone https://github.com/Tatoeba/imouto
-cd imouto
-```
+- Fork the [tatoeba2 repository](https://github.com/Tatoeba/tatoeba2) and clone a local copy from a terminal. Windows users can run Git Bash (which comes with Git for Windows). If you are not sure about how to do this, [here is a guide](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo).
 
 - If you need to use a proxy, follow the instructions in `README.proxy.md`.
 
@@ -45,43 +40,9 @@ The default install contains no sentences at all and the search won’t work. Yo
 
 ## Hacking Tatoeba
 
-### Accessing the source code
-
-The source code is inside the VM. While you can edit it using `vagrant ssh` and console editors, you might want to access the code directory from your machine so that you can edit it with your favorite editor or IDE. There are several ways to do this.
-
-#### Using NFS (Unix/MacOS)
-
-If you’re using GNU/Linux or MacOS, we recommend NFS because it’s fast and allows you to run `git` without noticeable delay. The source code is served over NFS by the VM.
-
-First, make sure the NFS client is installed (Debian/Ubuntu users need to install the `nfs-common` package). Then, add the following line to your /etc/fstab:
-
-```
-# Change /your/path/to/imouto/Tatoeba/ to the actual path of Imouto
-localhost:/home/vagrant/Tatoeba /your/path/to/imouto/Tatoeba/ nfs noauto,user,exec,port=8049,soft,timeo=10
-```
-
-Now you should be able to run `mount Tatoeba/` and access the source code there.
-
-#### Using Windows Shared Folder
-
-If you’re using Windows, the source code is served as a Windows share. Open *Run* from the Start menu or the search, or by pressing Win+R. In the Run prompt, type `\\172.19.119.178\tatoeba`. This should open the source code of Tatoeba in the file explorer.
-
-#### Using SSHFS (Unix/MacOS)
-
-If for some reason the above options do not work for you, you can use the script `mount.sh`:
-
-```bash
-./mount.sh -M ./Tatoeba /home/vagrant/Tatoeba/
-```
-
 ### Editing the source code
 
-We recommend that you create your own fork of Tatoeba on GitHub. You will have to change the remote URL to point it to your fork:
-
-```bash
-# Change <username> with your Github username
-git remote set-url origin git@github.com:<username>/tatoeba2.git
-```
+The source code is where you ran `vagrant up`, mostly under `src/`. Any change you do here should be reflected on http://localhost:8080/.
 
 To Windows users: you may see unwanted changes when running `git diff`, such as:
 
@@ -98,13 +59,10 @@ You can avoid this problem either by running `git config core.fileMode false`, o
 [core]
 	fileMode = false
 ```
-#### Warning after code update
-
-If you get the warning `failed to open stream: No such file or directory [ROOT/vendor/composer/ClassLoader.php, line 414]` after updating the code to the current version, you also need to update composer's autoloader by running `composer dump-autoload` from the base directory (`/home/vagrant/Tatoeba`).
 
 ## Development tools
 
-Development tools are all run from the command line. Windows users can run Git Bash (which comes with Git for Windows) while Unix and MacOS users must open a terminal. From there, `cd` to Imouto’s directory and run `vagrant ssh` to ssh into the VM. Then, run `cd Tatoeba` to enter the code. From there, you can execute development tools such as:
+Development tools are all run from the command line. Windows users can run Git Bash (which comes with Git for Windows) while Unix and MacOS users must open a terminal. From there, `cd` to Tatoeba’s directory and run `vagrant ssh` to ssh into the VM. Then, run `cd Tatoeba` to enter the code. From there, you can execute development tools such as:
 
 ### Search
 

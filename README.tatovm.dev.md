@@ -1,10 +1,10 @@
-# This is for developpers of Imouto
+# This is for developpers of TatoVM
 
-This guide is for developpers of Imouto. If you want to install a local instance of Tatoeba, please refer to the file `README.md` instead.
+This guide is for developpers of TatoVM. If you want to install a local instance of Tatoeba, please refer to the file `README.tatovm.md` instead.
 
 ## Requirements
 
-Here are the basic requirements of the machine you’re using imouto from.
+Here are the basic requirements of the machine you’re using TatoVM from.
 
 * GNU/Linux or MacOS
 * Git
@@ -19,8 +19,8 @@ Here are the basic requirements of the machine you’re using imouto from.
 - Clone the repository and go to its directory:
 
 ```bash
-git clone https://github.com/Tatoeba/imouto
-cd imouto
+git clone https://github.com/Tatoeba/tatoeba2
+cd tatoeba2
 ```
 
 - If you need to use a proxy, follow the instructions in `README.proxy.md`.
