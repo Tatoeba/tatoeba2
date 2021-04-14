@@ -10,7 +10,7 @@ Here are the basic requirements of the machine you’re using TatoVM from.
 * GNU/Linux, MacOS or Windows
 * Git (Windows users can use [Git for Windows](https://gitforwindows.org/))
 * VirtualBox 4.0 or later (via package manager or [generic binaries](https://www.virtualbox.org/wiki/Downloads))
-* Vagrant 2.2 or later (via package manager or [generic binaries](https://www.vagrantup.com/downloads.html))
+* Vagrant 2.2.6 or later (via package manager or [generic binaries](https://www.vagrantup.com/downloads.html))
 
 ## Installing a local instance
 
