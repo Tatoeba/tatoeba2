@@ -16,9 +16,11 @@ Here are the basic requirements of the machine you’re using TatoVM from.
 
 - Install the requirements above.
 
-- Fork the [tatoeba2 repository](https://github.com/Tatoeba/tatoeba2) and clone a local copy from a terminal. Windows users can run Git Bash (which comes with Git for Windows). If you are not sure about how to do this, [here is a guide](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo).
+- Fork the [tatoeba2 repository](https://github.com/Tatoeba/tatoeba2). If you already have a fork, make sure it is synched. Otherwise, clone a local copy of it and setup the upstream remote. If you are unsure about how to do any of this, refer to [this guide](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo). Replace `octocat/Spoon-Knife` with `Tatoeba/tatoeba2`, and when the guide says "Open Terminal", Windows users can run Git Bash (which comes with Git for Windows).
 
-- If you need to use a proxy, follow the instructions in `README.proxy.md`.
+- If you need to use a proxy, follow the instructions in [README.proxy.md](https://github.com/Tatoeba/tatoeba2/blob/dev/README.proxy.md).
+
+- Make sure your current working directory is the location your fork. You should see a file called `Vagrantfile` in the current directory.
 
 - Run this command to download and start up the Tatoeba VM. Please be patient, it takes a while.
 
