@@ -13,6 +13,7 @@ class StatsControllerTest extends IntegrationTestCase
         'app.users',
         'app.languages',
         'app.users_languages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {

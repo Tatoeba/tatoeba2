@@ -33,7 +33,6 @@ class SphinxIndexesShell extends Shell {
     private $tatoeba_languages;
 
     private function get_tatoeba_languages() {
-        Configure::write('Config.language', 'eng');
         $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
     }
 
@@ -54,9 +53,11 @@ class SphinxIndexesShell extends Shell {
 
     private function merge_index($lang) {
         echo "Merging indexes of $lang... ";
-        system("indexer --quiet --rotate "
-              ."--merge ${lang}_main_index ${lang}_delta_index",
-               $return_value);
+        system(
+            "sudo -u {$this->sphinx_user} indexer --quiet --rotate " .
+            "--merge ${lang}_main_index ${lang}_delta_index",
+            $return_value
+        );
         if ($return_value != 0) {
             echo "failed.\n";
             return;
@@ -69,6 +70,23 @@ class SphinxIndexesShell extends Shell {
         echo "ok\n";
     }
 
+    private function reload_manticore_config() {
+        $port = Configure::read('Sphinx.sphinxql_port');
+        try {
+            $pdo = new \PDO("mysql:host=127.0.0.1;port=$port");
+            $ok = $pdo->exec("RELOAD INDEXES");
+            if ($ok === FALSE) {
+                $error = $pdo->errorInfo();
+            }
+        } catch (\PDOException $e) {
+            $error = $e->getMessage();
+        }
+        if (isset($error)) {
+            echo "Warning: unable to tell Manticore to reload its config: $error\n";
+            echo "You may have to restart Manticore if there is any new language.\n";
+        }
+    }
+
     private function update_index($type, $langs) {
         if (!$langs) {
             if ($type == 'delta') {
@@ -76,12 +94,14 @@ class SphinxIndexesShell extends Shell {
                 $langs = $this->ReindexFlags
                      ->find('list', ['valueField' => 'lang'])
                      ->select(['lang'])
-                     ->where(['lang is not' => null])
+                     ->where(['indexed' => 0])
                      ->group('lang')
                      ->all()
                      ->toArray();
             } else {
-                $langs = array_keys($this->tatoeba_languages);
+                $Sentences = $this->loadModel('Sentences');
+                $langs = $Sentences->languagesHavingSentences();
+                $langs = array_filter($langs);
             }
         }
 
@@ -93,18 +113,14 @@ class SphinxIndexesShell extends Shell {
                 function($lang) use ($type) { return "${lang}_${type}_index"; },
                 $langs
             ));
-            system("indexer --sighup-each --rotate $indexes", $return_value);
+            system(
+                "sudo -u {$this->sphinx_user} indexer --quiet --sighup-each --rotate $indexes",
+                $return_value
+            );
             echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
-        }
-    }
-
-    private function become_sphinx_user() {
-        $sphinxUserInfo = posix_getpwnam($this->sphinx_user);
-        if (!$sphinxUserInfo) {
-            $this->_die("No such user: {$this->sphinx_user}\n");
-        }
-        if (!posix_setuid($sphinxUserInfo['uid'])) {
-            $this->_die("Unable to change uid. Make sure you're root.\n");
+            if ($return_value == 0) {
+                $this->reload_manticore_config();
+            }
         }
     }
 
@@ -136,7 +152,13 @@ class SphinxIndexesShell extends Shell {
                 if (count($this->args)) {
                     $langs = $this->validate_langs($this->args);
                 } else {
-                    $langs = array_keys($this->tatoeba_languages);
+                    $this->loadModel('ReindexFlags');
+                    $langs = $this->ReindexFlags
+                         ->find('all')
+                         ->select('lang')
+                         ->where(['indexed' => 1])
+                         ->distinct('lang')
+                         ->extract('lang');
                 }
                 foreach ($langs as $lang) {
                     $this->merge_index($lang);
@@ -184,7 +206,14 @@ class SphinxIndexesShell extends Shell {
     }
 
     public function main() {
-        $this->become_sphinx_user();
+        if (!posix_getpwnam($this->sphinx_user)) {
+            $this->_die("No such user: {$this->sphinx_user}\n");
+        }
+
+        exec("sudo -u {$this->sphinx_user} indexer -h", $output, $return);
+        if ($return !== 0) {
+            $this->_die("You need to be able to run 'indexer' as user '{$this->sphinx_user}'.\n");
+        }
 
         if (file_exists(LOCK_FILE)) {
             $pid = file_get_contents(LOCK_FILE);

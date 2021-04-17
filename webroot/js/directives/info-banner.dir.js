@@ -11,27 +11,30 @@
             };
         });
 
-    InfoBannerController.$inject = ['$cookies', '$http'];
-    function InfoBannerController($cookies, $http) {
+    InfoBannerController.$inject = ['$cookies', '$http', '$element'];
+    function InfoBannerController($cookies, $http, $element) {
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
         var cookieName = null;
-
-        vm.isInfoBannerVisible = false;
+        var expireDate =  new Date();
 
         vm.init = init;
         vm.hideAnnouncement = hideAnnouncement;
 
         ///////////////////////////////////////////////////////////////////////////
 
-        function init(cookie) {
+        function init(cookie, daysToExpiration = 7) {
             cookieName = cookie;
-            vm.isInfoBannerVisible = !$cookies.get(cookieName);
+            if ($cookies.get(cookieName)) {
+                $element.remove();
+            }
+            expireDate.setDate(expireDate.getDate() + daysToExpiration);
         }
 
         function hideAnnouncement(saveInSettings) {
-            vm.isInfoBannerVisible = false;
+            $cookies.put(cookieName, true, {'expires': expireDate});
+            $element.remove();
 
             if (saveInSettings) {
                 var data = {};

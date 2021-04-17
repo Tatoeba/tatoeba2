@@ -1,11 +1,6 @@
 <?php
-$username = $user->username;
-$avatar = $user->image;
-$userProfileUrl = $this->Url->build(array(
-    'controller' => 'user',
-    'action' => 'profile',
-    $username
-));
+$username = $user->username ?? null;
+$avatar = $user->image ?? null;
 $dateLabel = $this->Date->ago($message->date);
 $fullDateLabel = $message->date;
 $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message->type);
@@ -21,7 +16,17 @@ $messageContent = $this->safeForAngular(
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">
-                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                <?php
+                    if ($message->type == 'human') {
+                        echo $this->Html->link($username, [
+                            'controller' => 'user',
+                            'action' => 'profile',
+                            $username
+                        ]);
+                    } else {
+                        echo __('notification from Tatoeba');
+                    }
+                ?>
             </span>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>

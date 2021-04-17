@@ -49,11 +49,16 @@ class TagsTable extends Table
 
     public function initialize(array $config) 
     {
+        $this->belongsTo('CategoriesTree')->setForeignKey('category_id');
         $this->hasMany('TagsSentences');
         $this->belongsToMany('Sentences');
         $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Autocompletable', [
+            'fields' => ['id', 'name', 'nbrOfSentences'],
+            'order' => ['nbrOfSentences' => 'DESC']
+        ]);
     }
 
     public function beforeMarshal($event, $data, $options)
@@ -128,10 +133,12 @@ class TagsTable extends Table
         if (!$this->canRemoveTagFromSentence($tagId, $sentenceId)) {
             return false;
         }
-        return $this->TagsSentences->removeTagFromSentence(
+        $count = $this->TagsSentences->removeTagFromSentence(
             $tagId,
             $sentenceId
         );
+
+        return $count;
     }
 
     private function canRemoveTagFromSentence($tagId, $sentenceId) {
@@ -201,5 +208,21 @@ class TagsTable extends Table
             ->first();
 
         return $result ? $result->name : null;
+    }
+
+    public function attachToCategory($tagName, $categoryName) {
+        $query = $this->query();
+        return $query->update()
+                    ->set(['category_id' => $this->CategoriesTree->getIdFromName($categoryName)])
+                    ->where(['id' => $this->getIdFromName($tagName)])
+                    ->execute();
+    }
+
+    public function detachFromCategory($tagId) {
+        $query = $this->query();
+        return $query->update()
+                    ->set(['category_id' => null])
+                    ->where(['id' => $tagId])
+                    ->execute();
     }
 }

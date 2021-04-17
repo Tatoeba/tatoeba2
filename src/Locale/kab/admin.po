@@ -6,22 +6,34 @@
 # Translators:
 # Mhenni Xalifi <km_amaz39@yahoo.fr>, 2018
 # Muḥend Belqasem <belkacem77@gmail.com>, 2020
-# Slimane Selyan AMIRI <selyan.kab@gmail.com>, 2020
+# Slimane Selyan AMIRI <selyan.kab@protonmail.com>, 2020
+# Kahina Messaoudi, 2021
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-04 23:48+0800\n"
+"POT-Creation-Date: 2021-03-05 00:03+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Slimane Selyan AMIRI <selyan.kab@gmail.com>, 2020\n"
+"Last-Translator: Kahina Messaoudi, 2021\n"
 "Language-Team: Kabyle (https://www.transifex.com/tatoeba/teams/28284/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: kab\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L845
+msgid ""
+"Error: Sentences added by {username} could not be marked as unreliable."
+msgstr ""
+"Tuccḍa: tifyar yettwarnan sɣur {username} ur zmirent ara ad ttwacerḍent "
+"mačči d tinaflasin."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L850
+msgid "Marked all sentences added by {username} as unreliable."
+msgstr "Akk tifyar yettwarnan sɣur {username} ttwacerḍent mačči d tinaflasin."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
@@ -34,23 +46,23 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr "Ur yessaweḍ ara ad yenɣel afaylu “{file}” ar ukaram “{dir}”."
+msgstr "Ur yessaweḍ ara ad yenɣel afaylu “{file}” ɣer ukaram “{dir}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
-"Ur izmir ara ad ifek imesli i “{author}” i tefyirt {sentenceId} deg taffa n "
-"isefka. Walli isem n useqdac ma yella d ameɣtu."
+"Ur izmir ara ad ifk ameslaw i “{author}” i tefyirt {sentenceId} deg taffa n "
+"yisefka. Wali isem n useqdac ma yella d ameɣtu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
-"Afaylu “{file}” ittwakter akken iwata maca ur izmir ara ad ittwasenkez seg "
-"ukaram itwwaketren."
+"Afaylu “{file}” ittwakter akken iwata maca ur izmir ara ad ittwakkes seg "
+"ukaram ittwaketren."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
@@ -67,7 +79,7 @@ msgstr "Ḍrant-d tuccḍiwin-a deg ukter."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr "Ifuylla ttwakksen"
+msgstr "Ifuyla ttwafen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
@@ -96,7 +108,7 @@ msgstr "N/A"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
-msgstr "Arameγtu"
+msgstr "Arameɣtu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
@@ -130,7 +142,7 @@ msgstr "Isem n bab-is"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
-msgstr "Sumer"
+msgstr "Azen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
@@ -156,7 +168,7 @@ msgstr "Tutlayt n tefyar:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr "Afaylu :"
+msgstr "Afaylu:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
@@ -170,11 +182,21 @@ msgstr "Kter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr "Tifyar akked tisuqlin"
+msgstr "Tifyar akked tsuqqilin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
-msgstr "Tutlayt n tsuqlin:"
+msgstr "Tutlayt n tsuqqilin:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+msgid "Mark as unreliable"
+msgstr "Creḍ-it mačči d anaflas"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr "Tebɣiḍ s tidet ad tcerḍeḍ tifyar akk n uɛeggal-a mačči d tinaflasin?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
@@ -186,7 +208,7 @@ msgstr "Tebɣiḍ ad tekkseḍ aseqdac #{number}?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr "Tabdart n iseqdacen"
+msgstr "Tabdart n yiseqdacen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
@@ -220,10 +242,10 @@ msgstr "Aswir"
 msgid "Send notifications"
 msgstr "Azen ilɣa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
 msgid "unhide"
 msgstr "sken"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
 msgid "hide"
 msgstr "ffer"

@@ -132,7 +132,7 @@ class ClickableLinksHelper extends AppHelper
             $this::SENTENCE_ID_PATTERN, 
             function ($m) use ($self, $model) {
                 return $m[1] . $self->Html->link($m[2],
-                    'https://'.$self->request->host().'/sentences/show/'.$m[3],
+                    $self->request->scheme().'://'.$self->request->host().'/sentences/show/'.$m[3],
                     array('title' => $model->getSentenceTextForId($m[3]))
                 );
             }, $text);
@@ -166,5 +166,37 @@ class ClickableLinksHelper extends AppHelper
         return false;
     }
 
+
+    /**
+     * Build #n links where n is a sentence ID.
+     *
+     * @param int $sentenceId the ID of the sentence linked
+     * @param string $sentenceText the text of the sentence linked
+     *
+     * @return string an HTML link whose title attribute is the text of the sentence
+     */
+    public function buildSentenceLink($sentenceId, $sentenceText = null)
+    {
+        $tooltipTag = $this->Html->tag(
+            'md-tooltip',
+            $this->_View->safeForAngular(h($sentenceText)),
+            ['ng-cloak']
+        );
+        $linkText = format(
+            __(
+                /* @translators: You can translate the sharp in the link to a sentence
+                that appears in logs to a more natural character  */
+                '#{sentenceId}'),
+            array('sentenceId' => $sentenceId));
+        return $this->Html->link(
+            h($linkText).$tooltipTag,
+            array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ),
+            ['escape' => false]
+        );
+    }
 }
 ?>

@@ -30,8 +30,8 @@ use App\Lib\LanguagesLib;
 use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
+use App\Model\Search;
 use App\Event\ContributionListener;
-use App\Event\UsersLanguagesListener;
 use App\Event\LinksListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -47,7 +47,6 @@ class SentencesTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('hash', 'string');
         return $schema;
     }
 
@@ -82,8 +81,15 @@ class SentencesTable extends Table
         ]);
         $this->hasMany('SentenceComments');
         $this->hasMany('SentenceAnnotations');
+        $this->hasOne(
+            'Base',
+            [
+                'className' => 'Sentences',
+                'foreignKey' => 'id',
+                'bindingKey' => 'based_on_id',
+            ]
+        )->setConditions(['Sentences.based_on_id >' => '0']);
 
-        $this->addBehavior('Duplicate');
         $this->addBehavior('Timestamp');
         if (Configure::read('AutoTranscriptions.enabled')) {
             $this->addBehavior('Transcriptable');
@@ -91,9 +97,10 @@ class SentencesTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+        $this->addBehavior('LimitResults');
+        $this->addBehavior('NativeFinder');
 
         $this->getEventManager()->on(new ContributionListener());
-        $this->getEventManager()->on(new UsersLanguagesListener());
         $this->getEventManager()->on(new LinksListener());
     }
 
@@ -183,7 +190,9 @@ class SentencesTable extends Table
                 $user = $this->Users->get($entity->user_id);
                 if ($user) {
                     $userDefaultLicense = $user->settings['default_license'];
-                    $entity->license = $userDefaultLicense;
+                    $entity->license = $entity->based_on_id === 0 ?
+                                       $userDefaultLicense :
+                                       'CC BY 2.0 FR';
                 }
             }
         }
@@ -254,7 +263,27 @@ class SentencesTable extends Table
         ));
         $this->getEventManager()->dispatch($event);
 
+        if (!$created && $entity->isDirty('lang')) {
+            $oldLang = $entity->getOriginal('lang');
+            $this->Contributions->updateLanguage($entity->id, $entity->lang);
+            $this->Languages->incrementCountForLanguage($entity->lang);
+            $this->Languages->decrementCountForLanguage($oldLang);
+
+            // In the old language, add the sentence to the kill-list
+            // so that it doesn't appear in results any more.
+            // In addition an unknown language shouldn't be added.
+            if ($oldLang) {
+                $reindexFlag = $this->ReindexFlags->newEntity([
+                    'sentence_id' => $entity->id,
+                    'lang' => $oldLang,
+                    'type' => 'removal',
+                ]);
+                $this->ReindexFlags->save($reindexFlag);
+            }
+        }
+
         $this->updateTags($entity);
+
         if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
         }
@@ -288,17 +317,17 @@ class SentencesTable extends Table
         if (empty($ids)) {
             return;
         }
-        $result = $this->find('all')
-            ->where(['id' => $ids], ['id' => 'integer[]'])
-            ->select(['id', 'lang'])
+        $sentences = $this->find('all')
+            ->where(['id' => $ids, 'lang IS NOT' => null], ['id' => 'integer[]'])
+            ->select(['sentence_id' => 'id', 'lang'])
+            ->formatResults(function ($results) {
+                return $results->map(function ($row) {
+                    $row['type'] = 'change';
+                    return $row;
+                });
+            })
+            ->disableHydration()
             ->toList();
-        $sentences = [];
-        foreach ($result as $sentence) {
-            $sentences[] = [
-                'sentence_id' => $sentence->id,
-                'lang' => $sentence->lang
-            ];
-        }
         $data = $this->ReindexFlags->newEntities($sentences);
         $this->ReindexFlags->saveMany($data);
     }
@@ -335,13 +364,15 @@ class SentencesTable extends Table
         $translationsIds = $this->Links->findDirectAndIndirectTranslationsIds($entity->id);
         $this->needsReindex($translationsIds);
 
-        // Add the sentence to the kill-list
-        // so that it won't appear in search results anymore
-        $reindexFlag = $this->ReindexFlags->newEntity([
-            'sentence_id' => $sentenceId,
-            'lang' => $sentenceLang
-        ]);
-        $this->ReindexFlags->save($reindexFlag);
+        // Add the sentence to the kill-list so that it won't appear in search results anymore
+        if ($sentenceLang) {
+            $reindexFlag = $this->ReindexFlags->newEntity([
+                'sentence_id' => $sentenceId,
+                'lang' => $sentenceLang,
+                'type' => 'removal',
+            ]);
+            $this->ReindexFlags->save($reindexFlag);
+        }
 
         // Remove links
         $conditions = ['OR' => [
@@ -390,17 +421,14 @@ class SentencesTable extends Table
      * This allows to hide some extra fields
      * in json in a similar fashion as contain().
      */
-    public function beforeFind($event, $query, $options)
+    public function findHideFields(Query $query, array $options)
     {
-        if (isset($options['hideFields'])) {
-            $hide = $options['hideFields'];
-            return $query->formatResults(function($results) use ($hide) {
-                return $results->map(function($result) use ($hide) {
-                    return $this->applyHideFields($result, $hide);
-                });
+        $hide = $this->hideFields();
+        return $query->formatResults(function($results) use ($hide) {
+            return $results->map(function($result) use ($hide) {
+                return $this->applyHideFields($result, $hide);
             });
-        }
-        return $query;
+        });
     }
 
     private function sortOutTranslations($result, $translationLanguages) {
@@ -459,33 +487,6 @@ class SentencesTable extends Table
         });
     }
 
-    public function findWithSphinx($query, $options)
-    {
-        $query
-            ->counter(function($query) {
-                return $this->getTotal();
-            })
-            ->offset(0);
-
-        return $this->findFilteredTranslations($query, $options);
-    }
-
-    /**
-     * Custom ->find('random', ...) function.
-     */
-    public function _findRandom($state, $query, $results = array())
-    {
-        if ($state == 'before') {
-            $ids = $this->getSeveralRandomIds($query['lang'], $query['number']);
-            $query['conditions'][$this->alias.'.'.$this->primaryKey] = $ids;
-            unset($query['lang']);
-            unset($query['number']);
-            return $query;
-        } else {
-            return $results;
-        }
-    }
-
     /**
      * Fast random sentence id selection
      * when not selecting any particular language
@@ -523,7 +524,7 @@ class SentencesTable extends Table
      */
     public function getRandomId($lang = null)
     {
-        if (!$lang || $lang == 'und') {
+        if (!$lang) {
             return $this->getRandomIdAmongAllLanguages();
         } else {
             $arrayIds = $this->getSeveralRandomIds($lang, 1);
@@ -543,14 +544,10 @@ class SentencesTable extends Table
      *
      * @return array An array of ids.
      */
-    public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
+    public function getSeveralRandomIds($lang = null, $numberOfIdWanted = 10)
     {
         if(Configure::read('Search.enabled') == false) {
             return null;
-        }
-
-        if(empty($lang)) {
-            $lang = 'und';
         }
 
         $returnIds = array ();
@@ -598,32 +595,30 @@ class SentencesTable extends Table
      * cached after, this way we do not need to request the random id source
      * each time we need a random id
      *
-     * @param string $lang             In which language takes the ids, 'und' if from all
+     * @param string $lang             In which language takes the ids, null if from all
      * @param int    $numberOfIdWanted Size of the array we will return
      *
      * @return array An array of int
      */
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
-        $index = $lang == 'und' ?
-                 array('und_index') :
-                 array($lang . '_main_index', $lang . '_delta_index');
-        $sphinx = array(
-            'index' => $index,
-            'sortMode' => array(SPH_SORT_EXTENDED => "@random"),
-            'filter' => array(
-                array('user_id', 0, true), // exclude orphans
-                array('ucorrectness', 127, true), // exclude unapproved
-            ),
-            'limit' => $numberOfIdWanted
-        );
+        $search = new Search();
+        $search->filterByLanguage($lang);
+        $search->sort('random');
+        $search->filterByOrphanship(false); // exclude orphans
+        $search->filterByCorrectness(false); // exclude unapproved
+        $sphinx = $search->asSphinx();
+        $sphinx['limit'] = $numberOfIdWanted;
 
-        $results = $this->find('all', [
-            'fields' => ['id'],
-            'sphinx' => $sphinx,
-            'search' => ''
-        ])->toList();
+        $results = $this
+            ->find('all', [
+                'fields' => ['id'],
+                'sphinx' => $sphinx,
+            ])
+            ->all()
+            ->extract('id')
+            ->toArray();
 
-        return Hash::extract($results, '{n}.id');
+        return $results;
     }
 
     /**
@@ -718,6 +713,7 @@ class SentencesTable extends Table
         if (isset($what['sentenceDetails'])) {
             $contain['Audios']['Users']['fields'][] = 'audio_license';
             $contain['Audios']['Users']['fields'][] = 'audio_attribution_url';
+            $contain['Base']['fields'] = ['text'];
         }
 
         return $contain;
@@ -746,9 +742,9 @@ class SentencesTable extends Table
 
     /**
      * Value for the hideFields finder option.
-     * See beforeFind().
+     * See findHideFields().
      */
-    public function hideFields()
+    private function hideFields()
     {
         $hideAudio = ['fields' => ['user', 'external', 'sentence_id']];
         return [
@@ -770,10 +766,10 @@ class SentencesTable extends Table
     public function getSentenceWith($id, $what = [], $translationLang = null)
     {
         return $this->find('filteredTranslations', [
-                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
-                'hideFields' => $this->hideFields(),
                 'translationLang' => $translationLang
             ])
+            ->find('nativeMarker')
+            ->find('hideFields')
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
             ->select($this->fields($what))
@@ -898,7 +894,8 @@ class SentencesTable extends Table
             $translationLang,
             $userId,
             $translationCorrectness,
-            $sentenceId
+            $sentenceId,
+            'CC BY 2.0 FR'
         );
 
         // saving links
@@ -935,12 +932,39 @@ class SentencesTable extends Table
                 'license' => $license
             ]
         );
-
         if ($newSentence->hasErrors()) {
             return false;
         }
 
-        return $this->saveWithDuplicateCheck($newSentence);
+        $sentence = $this->find('all')
+                         ->where(['text' => $newSentence->text, 'lang' => $lang])
+                         ->first();
+
+        // Duplicate sentence found
+        if ($sentence != null) {
+            // If sentence is orphan
+            if(empty($sentence->user_id)) {
+                $sentence->user_id = $userId;
+                return $this->save($sentence);
+            } else {
+                // If sentence is owned by spammer/inactive user, and you are an advanced contributor (or higher), 
+                // adopt sentence
+                if ($sentence->user_id == $userId) {
+                    $sentence->isDuplicate = true;
+                    return $sentence;
+                }
+
+                $sentence = $this->setOwner($sentence->id, $userId, CurrentUser::get('role'));
+
+                if ($sentence->user_id != $userId) {
+                    $sentence->isDuplicate = true;
+                    return $sentence;
+                }
+                return $sentence;
+            }
+        }
+        
+        return $this->save($newSentence);
     }
 
     /**
@@ -1022,11 +1046,11 @@ class SentencesTable extends Table
      * @param int $userId             Id of the user.
      * @param int $currentUserRole    Role of the currently logged-in user.
      *
-     * @return bool
+     * @return Cake\ORM\Entity
      */
     public function setOwner($sentenceId, $userId, $currentUserRole)
     {
-        $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
+        $sentence = $this->get($sentenceId);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         $ownerId = $currentOwner['id'];
         $ownerRole = $currentOwner['role'];
@@ -1037,10 +1061,9 @@ class SentencesTable extends Table
 
         if ($isAdoptable) {
             $sentence->user_id = $userId;
-            $this->save($sentence);
-            return true;
+            return $this->save($sentence);
         }
-        return false;
+        return $sentence;
     }
 
 
@@ -1105,19 +1128,6 @@ class SentencesTable extends Table
         if (($ownerId == $currentUserId || CurrentUser::isModerator()) && !$this->hasAudio($sentence->id)) {
             $sentence->lang = $newLang;
             $result = $this->save($sentence);
-
-            $this->Contributions->updateLanguage($sentenceId, $newLang);
-            $this->Languages->incrementCountForLanguage($newLang);
-            $this->Languages->decrementCountForLanguage($prevLang);
-
-            // In the previous language, add the sentence to the kill-list
-            // so that it doesn't appear in results any more.
-            $reindexFlag = $this->ReindexFlags->newEntity([
-                'sentence_id' => $sentenceId,
-                'lang' => $prevLang,
-            ]);
-            $this->ReindexFlags->save($reindexFlag);
-
             return $result->lang;
         }
 
@@ -1176,6 +1186,35 @@ class SentencesTable extends Table
         return $this->save($sentence);
     }
 
+    /**
+     * Marks all sentences of the user as incorrect.
+     * Only admins can perform this action.
+     *
+     * @param string $username User name of the user.
+     *
+     * @return array|false
+     */
+    public function markUnreliable($username)
+    {
+        $user = $this->Users->getInformationOfUser($username);
+        if(empty($user) || !CurrentUser::canMarkSentencesOfUser($user)) {
+            return false;
+        }
+
+        $sentences = $this->find('all')
+            ->where(['user_id' => $user['id'], 'correctness' => 0])
+            ->select(['id', 'correctness'])
+            ->toList();
+
+        $editValues = array();
+        foreach($sentences as $sentence) {
+            array_push($editValues,  [ 'id' => $sentence['id'], 'correctness' => -1 ]);
+        }
+
+        $this->patchEntities($sentences, $editValues);
+        return $this->saveMany($sentences);
+    }
+
     public function getSentencesLang($sentencesIds) {
         if (empty($sentencesIds)) {
             return [];
@@ -1209,26 +1248,19 @@ class SentencesTable extends Table
     /**
      * Edit the sentence.
      *
-     * @param array $data We're taking the data from the AJAX request. It has an
-     *                    'id' and a 'value', but the 'id' actually contains the
-     *                    language followed by the id, separated by an underscore.
+     * @param array $data We're taking the data from the AJAX request. It should contain
+     *                    the key 'id' for the sentence ID and either 'text' or
+     *                    'lang' or both.
      *
-     * @return array
+     * @return Entity|false
      */
     public function editSentence($data)
     {
-        $text = $this->_getEditFormText($data);
-        $idLangArray = $this->_getEditFormIdLang($data);
-        if (!$text || !$idLangArray) {
-            return array();
-        }
-
-        // Set $id and $lang
-        extract($idLangArray);
+        $id = (int)$data['id'] ?? null;
         try {
             $sentence = $this->get($id);
         } catch (RecordNotFoundException $e) {
-            return array();
+            return false;
         }
 
         if ($this->_cantEditSentence($sentence)) {
@@ -1239,58 +1271,15 @@ class SentencesTable extends Table
             return $sentence;
         }
 
-        $this->patchEntity($sentence, [
-            'text' => $text,
-            'lang' => $lang
-        ]);
-
-        $sentenceSaved = $this->save($sentence);
-        if ($sentenceSaved) {
-            $this->UsersSentences->makeDirty($id);
+        $this->patchEntity($sentence, $data, ['fields' => ['text', 'lang']]);
+        if ($sentence->isDirty()) {
+            $sentenceSaved = $this->save($sentence);
+            if ($sentenceSaved) {
+                $this->UsersSentences->makeDirty($id);
+            }
+            return $sentenceSaved;
         }
-
-        return $sentenceSaved;
-    }
-
-    /**
-     * Get text from edit form params.
-     *
-     * @param  array $params Form parameters.
-     *
-     * @return string|boolean
-     */
-    private function _getEditFormText($params)
-    {
-        if (isset($params['value'])) {
-            return trim($params['value']);
-        }
-
-        return false;
-    }
-
-    /**
-     * Get id and lang from edit form params.
-     *
-     * @param  array $params Form parameters.
-     *
-     * @return array|boolean
-     */
-    private function _getEditFormIdLang($params)
-    {
-        if (isset($params['id'])) {
-            // ['form']['id'] contains both the sentence id and its language.
-            // Do not sanitize it directly.
-            $sentenceId = $params['id'];
-
-            $dirtyArray = explode("_", $sentenceId);
-
-            return [
-                'id' => (int)$dirtyArray[1],
-                'lang' => $dirtyArray[0]
-            ];
-        }
-
-        return false;
+        return $sentence;
     }
 
     /**
@@ -1333,5 +1322,22 @@ class SentencesTable extends Table
         }
 
         return $this->delete($sentence);
+    }
+
+    /**
+     * Efficiently compute the list of all languages
+     * having at least one sentence.
+     *
+     * @return array Array of language codes,
+     *               including null for "unknown language"
+     */
+    public function languagesHavingSentences()
+    {
+        return $this->find()
+            ->select(['lang'])
+            ->distinct(['lang'])
+            ->all()
+            ->extract('lang')
+            ->toArray();
     }
 }

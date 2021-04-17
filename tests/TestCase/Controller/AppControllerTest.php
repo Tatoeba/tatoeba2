@@ -12,90 +12,26 @@ class AppControllerTest extends IntegrationTestCase {
 		'app.users',
 		'app.users_languages',
 		'app.private_messages',
+		'app.wiki_articles',
 	);
 
-	function setUp() {
-		parent::setUp();
+    function setUp() {
+        parent::setUp();
 
-		Cache::disable();
-		Configure::write('UI.languages', [
-			['cmn', 'Hans', '中文', ['chi']],
-			['eng', null, 'English'],
-			['jbo', null, 'Lojban'],
-			['jpn', null, '日本語'],
-			['pt_BR', 'BR', 'Português (BR)'],
-		]);
-	}
+        Cache::disable();
+        Configure::write('UI.languages', [
+            'chi' => 'cmn',
+            'cmn' => ['中文', 'Hans'],
+            'eng' => ['English', null],
+            'jbo' => ['Lojban', null],
+            'jpn' => ['日本語', null],
+            'pt_BR' => ['Português (BR)', 'BR'],
+        ]);
+    }
 
 	function tearDown() {
 		parent::tearDown();
 		Cache::enable();
-	}
-
-	function setInterfaceLanguageCookie($lang = null) {
-		$this->cookie('CakeCookie', ['interfaceLanguage' => $lang]);
-	}
-
-	function assertInterfaceLanguageCookie($lang) {
-		$this->assertCookie(json_encode(['interfaceLanguage' => $lang]), 'CakeCookie');
-	}
-
-	function testBeforeFilter_redirectsToEnglishByDefault() {
-		$this->get('/about');
-		$this->assertRedirect('/eng/about');
-	}
-
-	function testBeforeFilter_redirectsToEnglishByDefaultWithIndexAction() {
-		$this->get('/wall/index');
-		$this->assertRedirect('/eng/wall/index');
-	}
-
-	function testBeforeFilter_redirectsToLanguageInCookie() {
-		$this->setInterfaceLanguageCookie('jpn');
-		$this->get('/eng/about');
-		$this->assertRedirect('/jpn/about');
-	}
-
-	function testBeforeFilter_redirectsToLanguageInCookieWithoutLanguageInUrl() {
-		$this->setInterfaceLanguageCookie('jpn');
-		$this->get('/about');
-		$this->assertRedirect('/jpn/about');
-	}
-
-	function testBeforeFilter_doesntRedirectIfLanguageInCookieEqualsLanguageInUrl() {
-		$this->setInterfaceLanguageCookie('eng');
-		$this->get('/eng/about');
-		$this->assertNoRedirect();
-	}
-
-	function testBeforeFilter_doesntRedirectIfEnglishWithoutCookie() {
-		$this->get('/eng/about');
-		$this->assertNoRedirect();
-		$this->assertInterfaceLanguageCookie('eng');
-	}
-
-	function testBeforeFilter_redirectsFromOldAliasWithLangInUrl() {
-		$this->get('/chi/about');
-		$this->assertRedirect('/cmn/about');
-	}
-
-	function testBeforeFilter_redirectsFromOldAliasWithCookie() {
-		$this->setInterfaceLanguageCookie('chi');
-		$this->get('/about');
-		$this->assertRedirect('/chi/about');
-	}
-
-	function testBeforeFilter_redirectsFromOldAliasWithCookieWithLangInUrl() {
-		$this->setInterfaceLanguageCookie('chi');
-		$this->get('/chi/about');
-		$this->assertRedirect('/cmn/about');
-	}
-
-	function testBeforeFilter_updatesCookieFromOldAlias() {
-		$this->setInterfaceLanguageCookie('chi');
-		$this->get('/cmn/about');
-		$this->assertNoRedirect();
-		$this->assertInterfaceLanguageCookie('cmn');
 	}
 
 	function setRememberMeCookie($username, $password) {

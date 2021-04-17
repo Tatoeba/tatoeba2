@@ -1,39 +1,24 @@
 <?php
 namespace App\Command;
 
+use App\Command\EditCommand_;
+use App\Lib\Licenses;
 use Cake\Console\Arguments;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\Console\Command;
-use Cake\Collection\Collection;
 use Cake\Datasource\Exception\RecordNotFoundException;
-use App\Model\CurrentUser;
-use App\Lib\Licenses;
 
-class EditLicensesCommand extends Command
+class EditLicensesCommand extends EditCommand_
 {
-    protected $log;
-
     public function initialize() {
         parent::initialize();
-        $this->loadModel('Sentences');
-        $this->loadModel('Users');
         $this->licenses = Licenses::nameToKeys(Licenses::getSentenceLicenses());
     }
 
     protected function buildOptionParser(ConsoleOptionParser $parser) {
+        $parser = parent::buildOptionParser($parser);
         $parser
             ->setDescription('Change sentence licenses.')
-            ->addArgument('username', [
-                'help' => 'Do all the work as given user.',
-                'required' => true,
-            ])
-            ->addArgument('file', [
-                'help' => 'Name of the file that contains the sentence ids whose ' .
-                          'license should be changed. ("stdin" will read from ' .
-                          'standard input.)',
-                'required' => true,
-            ])
             ->addArgument('license', [
                 'help' => 'New license.',
                 'choices' => array_keys($this->licenses),
@@ -79,35 +64,16 @@ class EditLicensesCommand extends Command
                     }
                 }
             );
+            $this->total++;
         }
     }
 
     public function execute(Arguments $args, ConsoleIo $io) {
-        $username = $args->getArgument('username');
-        $userId = $this->Users->getIdFromUsername($username);
-        if (!$userId) {
-            $io->error(format('User "{user}" does not exist!', ['user' => $username]));
-            $this->abort();
-        } else {
-            CurrentUser::store($this->Users->get($userId));
-        }
-
-        $input = $args->getArgument('file');
-        if ($input === 'stdin') {
-            $input = 'php://stdin';
-        } elseif ($input && !file_exists($input)) {
-            $io->error(format('{path} does not exist!', ['path' => $input]));
-            $this->abort();
-        }
+        $this->becomeUser($args, $io);
 
         $newLicense = $this->licenses[$args->getArgument('license')];
         $dryRun = $args->getOption('dry-run');
-
-        $this->log = [];
-
-        $ids = collection(file($input, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES))
-               ->filter(function ($v) { return preg_match('/^\d+$/', $v); });
-        $total = $ids->count();
+        $ids = $this->readIdsFromFile($args, $io);
 
         $this->editLicense($ids, compact('newLicense', 'dryRun', 'io'));
 
@@ -115,27 +81,24 @@ class EditLicensesCommand extends Command
             $io->out('<info>This is a dry run! No changes to the database were committed!</info>');
         }
 
-        if (empty($this->log)) {
-            $io->out('There was nothing to do.');
+        $this->printLog($io);
+    }
+
+    protected function logLinePrinter($value, $index, ConsoleIo $io) {
+        $displayNames = array_flip($this->licenses);
+        if (count($value) == 1) {
+            $io->out($value[0]);
         } else {
-            $io->out("$total rows proceeded:");
-            $displayNames = array_flip($this->licenses);
-            array_walk($this->log, function ($value, $index) use ($io, $displayNames) {
-                if (count($value) == 1) {
-                    $io->out($value);
-                } else {
-                    $io->out(
-                        format(
-                            "id {id} - license changed from {old} to {new}",
-                            [
-                                'id' => $value[0],
-                                'old' => $displayNames[$value[1]],
-                                'new' => $displayNames[$value[2]],
-                            ]
-                        )
-                    );
-                }
-            });
+            $io->out(
+                format(
+                    "id {id} - license changed from {old} to {new}",
+                    [
+                        'id' => $value[0],
+                        'old' => $displayNames[$value[1]],
+                        'new' => $displayNames[$value[2]],
+                    ]
+                )
+            );
         }
     }
 }

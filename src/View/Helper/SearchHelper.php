@@ -35,15 +35,15 @@ class SearchHelper extends AppHelper
 
         $options = array_merge(
             array(
-                'class' => 'language-selector',
-                'empty' => false,
-                'options' => $this->langs,
-                'value' => $selectedLanguage,
+                'name' => $fieldName,
+                'languages' => $this->langs,
+                'initialSelection' => $selectedLanguage,
+                'placeholder' => __('Any language'),
             ),
             $options
         );
-        return $this->Form->input(
-            $fieldName,
+        return $this->_View->element(
+            'language_dropdown',
             $options
         );
     }

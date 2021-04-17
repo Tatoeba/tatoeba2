@@ -69,6 +69,7 @@ class SentencesHelper extends AppHelper
         'Search',
         'Number',
         'SentenceLicense',
+        'ClickableLinks',
     );
 
 
@@ -153,8 +154,6 @@ class SentencesHelper extends AppHelper
         <div id="_<?php echo $id; ?>_translations" class="translations">
 
             <?php
-            $this->Html->script('sentences.collapse.js', array('block' => 'scriptBottom'));
-
             $totalDirectTranslations = count(array_keys($translations));
             $totalIndirectTranslations = count(array_keys($indirectTranslations));
 
@@ -689,18 +688,11 @@ class SentencesHelper extends AppHelper
 
         if ($isEditable) {
             $classes[] = 'editableSentence';
-
-            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
-
-            // TODO: HACK SPOTTED id is used in edit_in_place
-            // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
-            // using jQuery.data...
+            
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
                 array(
                     'class' => join(' ', $classes),
-                    'id' => $sentenceLang.'_'.$sentenceId,
                     /* @translators: submit button of sentence edition form */
                     'data-submit' => __('OK'),
                     /* @translators: cancel button of sentence edition form (verb) */
@@ -734,9 +726,6 @@ class SentencesHelper extends AppHelper
 
         // defined in config/asset_compress.ini
         $this->AssetCompress->script('sentences-block-for-members.js', $options);
-        $this->Html->script('jquery.jeditable.js', $options);
-        $this->Html->script('transcriptions.js', $options);
-        $this->Html->script('sentences.collapse.js', $options);
         $this->Html->script('clipboard.min.js', $options);
         $this->Html->script('sentences.copy.js', $options);
         $this->Html->script('sentences.play_audio.js', $options);
@@ -828,18 +817,11 @@ class SentencesHelper extends AppHelper
             $msg = __('This sentence is original and '
                      .'was not derived from translation.');
         } elseif ($baseId > 0) {
-            $baseLink = $this->Html->link(
-                $baseId,
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $baseId
-                )
-            );
+            $baseText = $sentence->base ? $sentence->base->text : null;
             $msg = format(
                 __('This sentence was initially added as a '
-                  .'translation of sentence #{n}.'),
-                array('n' => $baseLink)
+                  .'translation of sentence {sentenceIdWithIdSign}.'),
+                array('sentenceIdWithIdSign' => $this->ClickableLinks->buildSentenceLink($baseId, $baseText))
             );
         } else {
             $msg = __('We cannot determine yet whether this sentence was '
@@ -854,13 +836,15 @@ class SentencesHelper extends AppHelper
             $highlight = $sentence->highlight;
             $sentence['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
         }
-        $sentence->expandLabel = $this->getExpandLabel($sentence);
+        if (isset($sentence->translations)) {
+            $sentence->expandLabel = $this->getExpandLabel($sentence);
+        }
 
-        return htmlspecialchars(json_encode($sentence), ENT_QUOTES, 'UTF-8');
+        return h(json_encode($sentence));
     }
 
     public function translationsForAngular($translations) {
-        return htmlspecialchars(json_encode($translations), ENT_QUOTES, 'UTF-8');
+        return h(json_encode($translations));
     }
 
     public function getExpandLabel($sentence)

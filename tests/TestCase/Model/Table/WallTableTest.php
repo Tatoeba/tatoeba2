@@ -1,13 +1,14 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-use App\Model\Wall;
-use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Model\Wall;
+use Cake\Event\Event;
+use Cake\Event\EventList;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
 
 class WallTest extends TestCase {
 
@@ -161,12 +162,19 @@ class WallTest extends TestCase {
         $this->assertEquals($before, $after);
     }
 
-    public function testSave_replyFiresEvent() {
-        $reply = $this->Wall->newEntity([
+    public function testSave_doesNotFireEvent() {
+        $eventManager = $this->Wall->getEventManager();
+        $eventManager->setEventList(new EventList());
+        $post = $this->Wall->newEntity([
             'owner' => 7,
-            'parent_id' => 2,
-            'content' => 'I see.',
+            'content' => 'new post',
         ]);
+        $this->Wall->save($post);
+        $eventList = $eventManager->getEventList();
+        $this->assertFalse($eventList->hasEvent('Model.Wall.replyPosted'));
+    }
+
+    public function testSaveReply_firesEvent() {
         $expectedPost = array(
             'owner' => 7,
             'parent_id' => 2,
@@ -177,7 +185,7 @@ class WallTest extends TestCase {
         $dispatched = false;
         $model = $this->Wall;
         $model->getEventManager()->on(
-            'Model.Wall.postPosted',
+            'Model.Wall.replyPosted',
             function (Event $event) use ($model, &$dispatched, $expectedPost) {
                 $this->assertSame($model, $event->getSubject());
                 $post = $event->getData('post')->extract(
@@ -188,7 +196,7 @@ class WallTest extends TestCase {
             }
         );
 
-        $saved = $this->Wall->save($reply);
+        $this->Wall->saveReply(2, 'I see.', 7);
 
         $this->assertTrue($dispatched);
     }

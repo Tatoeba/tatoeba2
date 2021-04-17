@@ -26,6 +26,7 @@
  */
 use Cake\Core\Configure;
 
+$this->set('isResponsive', true);
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 
 $registerUrl = $this->Url->build(
@@ -37,7 +38,7 @@ $registerUrl = $this->Url->build(
 ?>
 
 <div layout="row" layout-align="center center" ng-cloak>
-<div layout="column" flex="80">
+<div layout="column" flex-gt-sm="80">
 
 <?php if(!isset($searchProblem)) { ?>
 <div layout-margin>
@@ -69,7 +70,7 @@ $registerUrl = $this->Url->build(
 </div>
 <?php } ?>
 
-<div layout="row" layout-margin>
+<div layout-gt-xs="row" layout-margin>
     <div class="join-us md-whiteframe-1dp" layout="column" layout-align="space-between" flex>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">

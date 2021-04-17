@@ -65,7 +65,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             <td><?php echo __('File format'); ?></td>
             <td colspan="2">
             <?php
-            $langArray = $this->Languages->languagesArrayWithNone();
             echo $this->Form->select(
                 'FileFormat',
                 array(
@@ -99,17 +98,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             <td><?php echo __('Translation (optional)'); ?></td>
             <td>
             <?php
-            $langArray = $this->Languages->languagesArrayWithNone();
-            echo $this->Form->select(
-                'TranslationsLang',
-                $langArray,
+            $langArray = $this->Languages->onlyLanguagesArray();
+            echo $this->element(
+                'language_dropdown',
                 array(
-                    'class' => 'language-selector',
-                    "empty" => false,
-                    'ng-model' => 'trans_lang',
-                    'ng-init' => 'trans_lang = "none"',
-                ),
-                false
+                    'name' => 'TranslationsLang',
+                    'languages' => $langArray,
+                    /* @translators: placeholder in language dropdown of list download page */
+                    'placeholder' => __('None'),
+                    'selectedLanguage' => 'trans_lang',
+                )
             );
             ?>
             </td>

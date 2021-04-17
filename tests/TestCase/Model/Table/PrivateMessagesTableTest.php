@@ -1,11 +1,12 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PrivateMessagesTable;
-use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Model\Table\PrivateMessagesTable;
+use Cake\Event\Event;
+use Cake\Event\EventList;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
 
 class PrivateMessageTest extends TestCase {
 
@@ -236,6 +237,8 @@ class PrivateMessageTest extends TestCase {
     }
 
     function testSend_firesSendingEvent() {
+        $eventManager = $this->PrivateMessage->getEventManager();
+        $eventManager->setEventList(new EventList());
         $date = '1999-12-31 23:59:59';
         $postData = array(
             'recipients' => 'advanced_contributor',
@@ -245,35 +248,15 @@ class PrivateMessageTest extends TestCase {
             'submitType' => 'send',
         );
         $currentUserId = 7;
-        $expectedMessage = array(
-            'recpt' => 3,
-            'sender' => 7,
-            'date' => '1999-12-31 23:59:59',
-            'folder' => 'Inbox',
-            'title' => 'Status',
-            'content' => 'Why are you so advanced?',
-            'isnonread' => 1,
-            'user_id' => 3,
-            'draft_recpts' => '',
-            'sent' => 1,
-        );
 
-        $dispatched = false;
-        $model = $this->PrivateMessage;
-        $model->getEventManager()->on(
+        $saved = $this->PrivateMessage->send($currentUserId, $date, $postData);
+
+        $this->assertEventFiredWith(
             'Model.PrivateMessage.messageSent',
-            function (Event $event) use ($model, &$dispatched, $expectedMessage) {
-                $this->assertSame($model, $event->getSubject());
-                $message = $event->getData('message')->toArray(); // $message
-                unset($message['id']);
-                $this->assertEquals($expectedMessage, $message);
-                $dispatched = true;
-            }
+            'message',
+            $saved[0],
+            $eventManager
         );
-
-        $this->PrivateMessage->send($currentUserId, $date, $postData);
-
-        $this->assertTrue($dispatched);
     }
 
     public function testDeleteMessage_movedToTrash()

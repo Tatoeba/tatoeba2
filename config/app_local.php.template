@@ -9,17 +9,45 @@ return [
         'salt' => '{{security_salt}}',
     ],
 
+# You can disable debug to run like production runs
+#    'debug' => false,
+
     'Datasources' => [
         'default' => [
             'username' => '{{mysql_user}}',
             'password' => '{{mysql_password}}',
             'database' => '{{mysql_db_name}}',
+#            'log' => true, // log all SQL queries to logs/queries.log
         ],
         'test' => [
             'username' => '{{mysql_test_user}}',
             'password' => '{{mysql_test_password}}',
             'database' => '{{mysql_test_db_name}}',
+#            'log' => true, // log all SQL queries to logs/cli-queries.log during tests
         ],
+        'wiki' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Sqlite',
+            'database' => '{{tatowiki_sqlite_file}}',
+            'flags' => [PDO::SQLITE_ATTR_OPEN_FLAGS => PDO::SQLITE_OPEN_READONLY],
+#            'log' => true, // log all SQL queries to logs/queries.log
+        ],
+        'test_wiki' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Sqlite',
+            'database' => ':memory:',
+            'flags' => [], // No read-only flag here to allow fixtures creation
+#            'log' => true, // log all SQL queries to logs/cli-queries.log during tests
+        ],
+
+    ],
+
+    /**
+     * Tatowiki basehost without the language part.
+     * See also Datasources.wiki above.
+     */
+    'Tatowiki' => [
+        'baseHost' => '{{tatowiki_domain}}:8080',
     ],
 
     /**
@@ -78,6 +106,10 @@ return [
      * Cf. src/Event/NotificationListener.php
      */
      'EmailTransport' => [
+        'local' => [
+            'className' => 'Local',
+            'log' => true,
+        ],
         'gmail' => [
             'host' => 'ssl://smtp.gmail.com',
             'port' => '465',
@@ -91,10 +123,13 @@ return [
         ]
     ],
         
-    'Mailer' => [
-        'enabled' => false,
-        'transport' => 'debug',
-        'username' => 'some.email@email.com',
+    'Email' => [
+        'default' => [
+            'from' => 'user@example.com',
+            'transport' => 'debug',
+            'emailFormat' => 'html',
+          //'log' => true,
+        ],
     ],
 
     /**
@@ -117,21 +152,6 @@ return [
          * Stylesheet for development website
          */
         'devStylesheet' => false,
-
-        /**
-         * Blocked IP addresses. Should be an array of strings containing the
-         * IP's you want to block. For instance:
-         *
-         *    'blockedIP' => [
-         *      "1.2.3.4",
-         *      "5.6.7.8",
-         *      "9.10.11.12"
-         *    ]
-         *
-         * Cf. src/Controller/AppController.php
-         */
-        'blockedIP' => [
-        ],
     ],
 
     /**
@@ -149,68 +169,82 @@ return [
     /**
      * Languages of the interface.
      *
-     * Each item in the UI.languages is an array of 3 items:
-     *   [0] The URL language code. It should match a 'locale' folder.
-     *   [1] Optionnal region or script, as explained in
-     *       http://www.w3.org/International/articles/language-tags/
-     *       Most of the case, you can leave this to null.
-     *   [2] This is the name of the language. The name must be in the
+     * UI.languages is a mapping from language codes to language information.
+     * Usually the language information is a two-item array:
+     *   [0] The name of the language. The name must be in the
      *       language itself, so that people who speak that language can
      *       recognize it.
+     *   [1] Optional region or script, as explained in
+     *       https://www.w3.org/International/articles/language-tags/
+     *       In most cases, you can set this to null.
+     * Old language codes can be redirected to an other language.
+     * For disabling an unmaintained language one should set it to "null".
      */
     'UI' => [
         'languages' => [
-            ['ara', null, 'العربية'],
-            ['aze', null, 'Azərbaycanca'],
-            ['bel', null, 'Беларуская'],
-            ['ben', null, 'বাংলা'],
-            ['bre', null, 'Brezhoneg'],
-            ['cat', null, 'Català'],
-            ['ces', null, 'Čeština'],
-            ['cmn', 'Hans', '中文', ['chi']],
-            ['cym', null, 'Cymraeg'],
-            ['dan', null, 'Dansk'],
-            ['deu', null, 'Deutsch'],
-            ['eng', null, 'English'],
-            ['epo', null, 'Esperanto'],
-            ['est', null, 'Eesti'],
-            ['eus', null, 'Euskara'],
-            ['fin', null, 'Suomi'],
-            ['fra', null, 'Français', ['fre']],
-            ['fry', null, 'Frysk'],
-            ['gos', null, 'Grunnegs'],
-            ['glg', null, 'Galego'],
-            ['ell', null, 'Ελληνικά', ['gre']],
-            ['hin', null, 'हिन्दी'],
-            ['hun', null, 'Magyar'],
-            ['ina', null, 'Interlingua'],
-            ['ind', null, 'Bahasa Indonesia'],
-            ['ita', null, 'Italiano'],
-            ['jbo', null, 'Lojban'],
-            ['jpn', null, '日本語'],
-            ['kab', null, 'Taqbaylit'],
-            ['kat', null, 'ქართული'],
-            ['kor', null, '한국어'],
-            ['kur', null, 'Kurdî'],
-            ['lat', null, 'Latina'],
-            ['lit', null, 'Lietuvių'],
-            ['mar', null, 'मराठी'],
-            ['nld', null, 'Nederlands'],
-            ['nds', null, 'Plattdüütsch'],
-            ['oci', null, 'Occitan'],
-            ['pol', null, 'Polski'],
-            ['por', 'BR', 'Português (Brasil)', ['pt_BR']],
-            ['ron', null, 'Română'],
-            ['rus', null, 'Русский'],
-            ['spa', null, 'Español'],
-            ['srp', null, 'српски'],
-            ['swe', null, 'Svenska'],
-            ['tgl', null, 'Tagalog'],
-            ['tur', null, 'Türkçe'],
-            ['ukr', null, 'Українська'],
-            ['uzb', null, 'Oʻzbekcha'],
-            ['vie', null, 'Tiếng Việt'],
-            ['zsm', null, 'Bahasa Melayu'],
+            'ara' => ['العربية', null],
+            'aze' => ['Azərbaycanca', null],
+            'bal' => ['بلۏچی', null],
+            'bel' => ['Беларуская', null],
+            'ben' => ['বাংলা', null],
+            'bre' => ['Brezhoneg', null],
+            'bul' => ['Български', null],
+            'cat' => ['Català', null],
+            'ces' => ['Čeština', null],
+            'chi' => 'cmn',
+            'cmn' => ['中文', 'Hans'],
+            'cym' => ['Cymraeg', null],
+            'dan' => ['Dansk', null],
+            'deu' => ['Deutsch', null],
+            'ell' => ['Ελληνικά', null],
+            'eng' => ['English', null],
+            'epo' => ['Esperanto', null],
+            'est' => ['Eesti', null],
+            'eus' => ['Euskara', null],
+            'fil' => ['Filipino', null],
+            'fin' => ['Suomi', null],
+            'fra' => ['Français', null],
+            'fre' => 'fra',
+            'fry' => ['Frysk', null],
+            'glg' => ['Galego', null],
+            'gos' => ['Grunnegs', null],
+            'gre' => 'ell',
+            'hin' => ['हिन्दी', null],
+            'hrv' => ['Hrvatski', null],
+            'hun' => ['Magyar', null],
+            'ina' => ['Interlingua', null],
+            'ind' => ['Bahasa Indonesia', null],
+            'ita' => ['Italiano', null],
+            'jbo' => ['Lojban', null],
+            'jpn' => ['日本語', null],
+            'kab' => ['Taqbaylit', null],
+            'kat' => ['ქართული', null],
+            'kor' => ['한국어', null],
+            'kur' => ['Kurdî', null],
+            'lat' => ['Latina', null],
+            'lit' => ['Lietuvių', null],
+            'mar' => ['मराठी', null],
+            'nds' => ['Plattdüütsch', null],
+            'nld' => ['Nederlands', null],
+            'oci' => ['Occitan', null],
+            'pol' => ['Polski', null],
+            'por' => ['Português (Brasil)', 'BR'],
+            'pt_BR' => 'por',
+            'ron' => ['Română', null],
+            'rus' => ['Русский', null],
+            'slk' => ['Slovenčina', null],
+            'spa' => ['Español', null],
+            'srp' => ['српски', null],
+            'swe' => ['Svenska', null],
+            'tgl' => ['Tagalog', null],
+            'tuk' => ['Türkmen dili', null],
+            'tur' => ['Türkçe', null],
+            'uig' => ['ئۇيغۇرچە', null],
+            'ukr' => ['Українська', null],
+            'uzb' => ['Oʻzbekcha', null],
+            'vie' => ['Tiếng Việt', null],
+            'zsm' => ['Bahasa Melayu', null],
+            'zza' => ['Kirmancki', null],
         ],
     ],
 

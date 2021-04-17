@@ -37,7 +37,7 @@
 }
 
 #profile .info {
-    padding-left: 20px;
+    padding: 0 20px;
 }
 
 #profile .personal-info {
@@ -58,7 +58,7 @@
 
 #profile .contributionsBlocked {
     background: url(../../img/warning-small.svg) no-repeat 0px center;
-    padding-left: 20px;
+    padding: 0 20px;
 }
 
 /*
@@ -87,23 +87,13 @@
     height: 20px;
 }
 
-.language-icon {
+md-list .language-icon {
     margin: 26px 20px 0 0;
+}
+html[dir="rtl"] md-list .language-icon {
+    margin: 26px 0 0 20px;
 }
 
 .md-list-item-text {
     padding: 5px 0;
 }
-
-.md-list-item-text h3 {
-    font-size: 16px;
-    border: none;
-    padding-left: 0;
-}
-
-.usersLanguages .label {
-    padding-left: 20px;
-    font-size: 13px;
-    color: #AAAAAA;
-}
-

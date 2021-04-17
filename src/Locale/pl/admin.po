@@ -8,21 +8,33 @@
 # Piotr Ćwiek <peterche@wp.pl>, 2018
 # Chocimier, 2020
 # Kamil Rosol <kamil.rosol@gmail.com>, 2020
+# Słońce Lettner <michalkolpanowicz@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-04 23:48+0800\n"
+"POT-Creation-Date: 2021-03-05 00:03+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Kamil Rosol <kamil.rosol@gmail.com>, 2020\n"
+"Last-Translator: Słońce Lettner <michalkolpanowicz@gmail.com>, 2021\n"
 "Language-Team: Polish (https://www.transifex.com/tatoeba/teams/28284/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L845
+msgid ""
+"Error: Sentences added by {username} could not be marked as unreliable."
+msgstr ""
+"Błąd: nie można oznaczyć zdań dodanych przez {username} jako nierzetelne."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L850
+msgid "Marked all sentences added by {username} as unreliable."
+msgstr ""
+"Wszystkie zdania dodane przez {username} zostały oznaczone jako nierzetelne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
@@ -177,6 +189,18 @@ msgstr "Zdania i tłumaczenia"
 msgid "Language of the translations:"
 msgstr "Język tłumaczeń:"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+msgid "Mark as unreliable"
+msgstr "Oznacz jako nierzetelne"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
+"Czy jesteś pewn_, że chcesz zaznaczyć wszystkie zdania dodane przez tą osobę"
+" jako nierzetelne?"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
 msgstr "Usuń"
@@ -221,10 +245,10 @@ msgstr "Poziom"
 msgid "Send notifications"
 msgstr "Wyślij powiadomienia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
 msgid "unhide"
 msgstr "pokaż"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
 msgid "hide"
 msgstr "ukryj"

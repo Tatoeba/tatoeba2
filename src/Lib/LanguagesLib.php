@@ -26,9 +26,9 @@
  */
 namespace App\Lib;
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\I18n\I18n;
-
 
 class LanguagesLib
 {
@@ -119,7 +119,6 @@ class LanguagesLib
             'kin' => 'rw', // Kinyarwanda
             'kir' => 'ky', // Kyrgyz
             'kor' => 'ko', // Korean
-            'kur' => 'ku', // Kurdish
             'lao' => 'lo', // Lao
             'lat' => 'la', // Latin
             'lin' => 'ln', // Lingala
@@ -324,7 +323,6 @@ class LanguagesLib
                 'oci' => __d('languages', 'Occitan'),
                 'xal' => __d('languages', 'Kalmyk'),
                 'ang' => __d('languages', 'Old English'),
-                'kur' => __d('languages', 'Kurdish'),
                 'dsb' => __d('languages', 'Lower Sorbian'),
                 'hsb' => __d('languages', 'Upper Sorbian'),
                 'ksh' => __d('languages', 'Kölsch'),
@@ -598,7 +596,40 @@ class LanguagesLib
                 'iii' => __d('languages', 'Nuosu'),
                 'drt' => __d('languages', 'Drents'),
                 'laa' => __d('languages', 'Southern Subanen'),
-                'chm' => __d('languages', 'Chinook Jargon'),
+                'chn' => __d('languages', 'Chinook Jargon'),
+                'bal' => __d('languages', 'Baluchi'),
+                'pli' => __d('languages', 'Pali'),
+                'hbo' => __d('languages', 'Ancient Hebrew'),
+                'ajp' => __d('languages', 'South Levantine Arabic'),
+                'hax' => __d('languages', 'Southern Haida'),
+                'hdn' => __d('languages', 'Northern Haida'),
+                'xqa' => __d('languages', 'Karakhanid'),
+                'crk' => __d('languages', 'Plains Cree'),
+                'yua' => __d('languages', 'Yucatec Maya'),
+                'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
+                'mni' => __d('languages', 'Meitei'),
+                'ayl' => __d('languages', 'Libyan Arabic'),
+                'ood' => __d('languages', "O'odham"),
+                'lut' => __d('languages', 'Lushootseed'),
+                'ofs' => __d('languages', 'Old Frisian'),
+                'nus' => __d('languages', 'Nuer'),
+                'ckb' => __d('languages', 'Central Kurdish (Soranî)'),
+                'kmr' => __d('languages', 'Northern Kurdish (Kurmancî)'),
+                'sdh' => __d('languages', 'Southern Kurdish'),
+                'kiu' => __d('languages', 'Northern Zaza (Kirmanjki)'),
+                'diq' => __d('languages', 'Southern Zaza (Dimli)'),
+                'zgh' => __d('languages', 'Standard Moroccan Tamazight'),
+                'bfz' => __d('languages', 'Mahasu Pahari'),
+                'qxq' => __d('languages', 'Qashqai'),
+                'klj' => __d('languages', 'Khalaj'),
+                'dar' => __d('languages', 'Dargwa'),
+                'lbe' => __d('languages', 'Lak'),
+                'ava' => __d('languages', 'Avar'),
+                'mus' => __d('languages', 'Muskogee (Creek)'),
+                'abq' => __d('languages', 'Abaza'),
+                'inh' => __d('languages', 'Ingush'),
+                'kbd' => __d('languages', 'Kabardian'),
+                'srn' => __d('languages', 'Sranan Tongo'),
             );
         }
         return $languages;
@@ -666,6 +697,12 @@ class LanguagesLib
             "syc",
             "phn",
             "jpa",
+            "bal",
+            "hbo",
+            "ajp",
+            "ayl",
+            "sdh",
+            "ckb"
         );
 
         $autoLangs = array(
@@ -673,6 +710,9 @@ class LanguagesLib
             "ota",
             "chg",
             "lad",
+            "xqa",
+            "qxq",
+            "klj",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
@@ -699,5 +739,20 @@ class LanguagesLib
     {
         $available = self::languagesInTatoeba();
         return isset($available[$code]);
+    }
+
+    public static function activeUiLanguages()
+    {
+        $languages = Cache::remember(
+            'active_ui_languages',
+            function () {
+                return array_filter(
+                    Configure::read('UI.languages'),
+                    function ($val) { return is_array($val); }
+                );
+            }
+        );
+
+        return $languages;
     }
 }

@@ -27,7 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-
+use Cake\Utility\Inflector;
 
 
 /**
@@ -68,11 +68,11 @@ class CommonModulesHelper extends AppHelper
             // without the language parameter
             $path ='/';
             // language of the interface
-            $path .= $this->request->params['lang'] .'/';
-            $path .= $this->request->params['controller'].'/';
-            $path .= $this->request->params['action'].'/';
+            $path .= $this->request->getParam('lang') .'/';
+            $path .= Inflector::delimit($this->request->getParam('controller')).'/';
+            $path .= $this->request->getParam('action');
 
-            $params = $this->request->params['pass'];
+            $params = $this->request->getParam('pass');
             $numberOfParams = count($params);
 
             $paramsWithoutLang = $numberOfParams;
@@ -81,7 +81,7 @@ class CommonModulesHelper extends AppHelper
             }
 
             for ($i = 0; $i < $paramsWithoutLang; $i++) {
-                $path .= $params[$i] .'/';
+                $path .= '/'.$params[$i];
             }
 
             $lang = 'und' ;
@@ -97,22 +97,20 @@ class CommonModulesHelper extends AppHelper
                 $query = '?' . $query;
             }
 
-            echo $this->Form->select(
-                'filterLanguageSelect',
-                $langs,
+            echo $this->_View->element(
+                'language_dropdown',
                 array(
-                    "value" => $lang,
-                    "onchange" => "
-                        if (this.value == 'und') {
-                            $(location).attr('href','$path' + '$query');
-                        } else {
-                            $(location).attr('href','$path' + this.value + '$query');
-                        }",
-                    // the if is to avoid a duplicate page (with and without "und")
-                    "class" => "language-selector",
-                    "empty" => false
-                ),
-                false
+                    'name' => 'filterLanguageSelect',
+                    'languages' => $langs,
+                    'initialSelection' => $lang,
+                    'forceItemSelection' => true,
+                    'onSelectedLanguageChange' => "
+                        window.location.href =
+                        '$path'
+                        + (language.code == 'und' ? '' : '/'+language.code)
+                        + '$query'",
+                    // the check for 'und' is to avoid a duplicate page (with and without it)
+                )
             );
             ?>
         </div>

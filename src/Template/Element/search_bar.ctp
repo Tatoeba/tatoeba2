@@ -30,20 +30,46 @@ use Cake\Core\Configure;
 $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
 ?>
 
-<md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
-<?php
-if ($selectedLanguageFrom == null) {
-    $selectedLanguageFrom = 'und';
-}
+<md-toolbar id="search-bar-minimal" ng-cloak>
+    <div class="md-toolbar-tools">
+    <?php
+    echo $this->Form->create('Sentence', [
+        'layout' => 'column',
+        'url' => ['controller' => 'sentences', 'action' => 'search'],
+        'type' => 'get',
+        'flex' => '',
+        'ng-cloak' => ''
+    ]);
+    ?>
 
-if ($selectedLanguageTo == null) {
-    $selectedLanguageTo = 'und';
-}
+    <div layout="row" layout-align="center center" flex>
+        <md-input-container class="md-accent" flex md-no-float>
+            <input name="query" 
+                accesskey="4" 
+                type="search"
+                dir="auto" 
+                ng-model="ctrl.searchQuery" 
+                ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
+                <?php /* @translators: placeholder for the search input in the search bar */ ?>
+                placeholder="<?= __x('placeholder', 'Search') ?>"/>
+        </md-input-container>
+        <md-button type="submit" class="md-icon-button md-raised"><md-icon>search</md-icon></md-button>
+    </div>
+    <?php
+    echo $this->Form->end();
+    ?>
+    </div>
+</md-toolbar>
+
+<md-toolbar id="search-bar" ng-controller="SearchBarController as ctrl" class="md-whiteframe-1dp md-primary">
+<?php
 echo $this->Form->create(
     'Sentence',
     array(
         'id' => 'SentenceSearchForm',
-        "url" => array("controller" => "sentences", "action" => "search"),
+        'name' => 'ctrl.form',
+        "url" => false,
+        'ng-submit' => 'ctrl.submit(ctrl.form)',
         "type" => "get"
     )
 );
@@ -56,7 +82,7 @@ echo $this->Form->create(
             <?php
             echo $this->Html->link(
                 __('Help'),
-                'http://en.wiki.tatoeba.org/articles/show/text-search',
+                $this->cell('WikiLink', ['text-search']),
                 array(
                     'target' => '_blank'
                 )
@@ -99,10 +125,11 @@ echo $this->Form->create(
                 array(
                     'id' => 'SentenceFrom',
                     'name' => 'from',
-                    'selectedLanguage' => $selectedLanguageFrom,
-                    /* @translators: option used in language selection dropdowns in top search bar */
-                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
-                    'setLanguage' => 'ctrl.langFromApi'
+                    'initialSelection' => $selectedLanguageFrom,
+                    'languages' => $this->Languages->getSearchableLanguagesArray(),
+                    /* @translators: placeholder used in translation language selection dropdown in top search bar */
+                    'placeholder' => __x('searchbar', 'Any language'),
+                    'selectedLanguage' => 'ctrl.langFrom',
                 )
             );
             ?>
@@ -123,10 +150,11 @@ echo $this->Form->create(
                 array(
                     'id' => 'SentenceTo',
                     'name' => 'to',
-                    'selectedLanguage' => $selectedLanguageTo,
-                    /* @translators: option used in language selection dropdowns in top search bar */
-                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
-                    'setLanguage' => 'ctrl.langToApi'
+                    'initialSelection' => $selectedLanguageTo,
+                    'languages' => $this->Languages->getSearchableLanguagesArray(),
+                    /* @translators: placeholder used in translation language selection dropdown in top search bar */
+                    'placeholder' => __x('searchbar', 'Any language'),
+                    'selectedLanguage' => 'ctrl.langTo',
                 )
             );
             ?>

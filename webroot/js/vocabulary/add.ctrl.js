@@ -20,9 +20,29 @@
 
     angular
         .module('app')
-        .controller('VocabularyAddController', ['$http', VocabularyAddController]);
+        .controller('VocabularyAddController', ['$http', '$scope', VocabularyAddController])
+        .directive('focusInput', ['$timeout', FocusInputDirective]);
 
-    function VocabularyAddController($http) {
+    function FocusInputDirective($timeout) {
+        let link = function ($scope, $element, $attrs) {
+            $scope.$watch('trigger', function(value) {
+                if(value === true) {
+                    $timeout(function() {
+                        $element[0].focus();
+                        $scope.trigger = false;
+                    });
+                }
+            });
+        };
+
+        return {
+            restrict: 'A',
+            scope: { trigger: '=focusInput' },
+            link: link,
+        };
+    }
+
+    function VocabularyAddController($http, $scope) {
         var vm = this;
 
         vm.data = {};
@@ -38,9 +58,6 @@
         function add() {
             vm.isAdding = true;
 
-            $('#add-vocabulary-form input[name^="_Token"]').each(function() {
-                vm.data[$(this).attr('name')] = $(this).val();
-            });
             var req = {
                 method: 'POST',
                 url: rootUrl + '/vocabulary/save',
@@ -62,6 +79,7 @@
                     vm.vocabularyAdded.unshift(data);
                     vm.data.text = '';
                     vm.isAdding = false;
+                    $scope.focusInput = true;
                 }
             );
         }
@@ -69,7 +87,7 @@
         function remove(id) {
             $http.get(rootUrl + '/vocabulary/remove/' + id).then(
                 function(response) {
-                    $('#vocabulary_' + id).hide();
+                    angular.element(document.querySelector('#vocabulary_' + id)).remove();
                 }
             );
         }

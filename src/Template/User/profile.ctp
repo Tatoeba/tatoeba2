@@ -325,7 +325,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
     </div>
 
 <?php
-$userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-8');
+$userLanguages = h(json_encode($userLanguages));
 ?>
     <div class="section md-whiteframe-1dp"
          ng-cloak
@@ -434,7 +434,8 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                                 'language_dropdown',
                                 [
                                     'name' => 'language_code',
-                                    'languages' => $languagesList
+                                    'languages' => $languagesList,
+                                    'selectedLanguage' => 'vm.selectedLang',
                                 ]
                             );
                             ?>
@@ -444,7 +445,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     <?php
                     $hintText = format(
                         __('If your language is missing, please read our article on how to <a href="{}">request a new language</a>.'),
-                        'https://en.wiki.tatoeba.org/articles/show/new-language-request'
+                        $this->cell('WikiLink', ['new-language-request'])
                     );
                     echo $this->Html->para('hint', $hintText);
                     ?>

@@ -81,7 +81,6 @@ class TagsHelper extends AppHelper
                     $this->displayTag(
                         $tagName, $tagId, $sentenceId, $userId, $username, $date, $sentenceLang
                     );
-
                 }
                 ?>
             </div>
@@ -186,8 +185,8 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
-        $this->Html->script('tags.add.js', ['block' => 'scriptBottom']);
         $this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
+        $this->Html->script('tags.add.js', ['block' => 'scriptBottom']);
 
         echo $this->Form->create('Tag', [
             'id' => 'tag-form',

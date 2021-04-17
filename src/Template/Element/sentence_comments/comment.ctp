@@ -2,8 +2,15 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $comment->user->username;
-$avatar = $comment->user->image;
+$username = $comment->user->username ?? null;
+if ($username) {
+    $userProfileUrl = $this->Url->build(array(
+        'controller' => 'user',
+        'action' => 'profile',
+        $username
+    ));
+}
+$avatar = $comment->user->image ?? null;
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 $commentId = $comment->id;
@@ -60,11 +67,6 @@ $labelText = __x('sentence comment', '{createdDate}, edited {modifiedDate}');
 $dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
 $dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true);
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
-$userProfileUrl = $this->Url->build(array(
-    'controller' => 'user',
-    'action' => 'profile',
-    $username
-));
 if ($sentenceOwnerLink) {
     $sentenceInfoLabel = __('Sentence {number} — belongs to {username}');
 } else {
@@ -110,9 +112,13 @@ if ($sentenceOwnerLink) {
             <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
+        <?php if ($username): ?>
             <span class="md-title">
                 <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
             </span>
+        <?php else: ?>
+            <i><?= h(__('Former member')) ?></i>
+        <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
                 <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
@@ -160,7 +166,7 @@ if ($sentenceOwnerLink) {
                             'and to the author of the message.',
                             true
                         ),
-                        'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+                        $this->cell('WikiLink', ['rules-against-bad-behavior'])
                     ); ?>
                 </p>
             </div>

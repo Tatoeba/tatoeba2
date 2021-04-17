@@ -111,12 +111,14 @@ class ReviewsController extends AppController
      */
     public function of($username, $correctnessLabel = null, $lang = null)
     {
+        if (!in_array($correctnessLabel, ['ok', 'unsure', 'not-ok', 'all', 'outdated'])) {
+            return $this->redirect([$username, 'all', $lang], 301);
+        }
+
         $this->helpers[] = 'Pagination';
 
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);
-
-        $this->set('username', $username);
 
         if(empty($userId)) {
             $this->set('userExists', false);
@@ -128,9 +130,11 @@ class ReviewsController extends AppController
         );
         $corpus = $this->paginate('UsersSentences');
 
+        $this->set('username', $username);
         $this->set('corpus', $corpus);
         $this->set('userExists', true);
         $this->set('correctnessLabel', $correctnessLabel);
         $this->set('lang', $lang);
+        $this->set('userIsReviewer', $userId == CurrentUser::get('id'));
     }
 }

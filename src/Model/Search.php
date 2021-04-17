@@ -21,6 +21,7 @@ class Search {
     private $native;
     private $sort;
     private $sortReversed = false;
+    private $randSeed;
 
     private $translationFilter;
     private $translationFilters = [];
@@ -92,6 +93,7 @@ class Search {
     public function asSphinx() {
         $sphinx = [
             'index' => $this->asSphinxIndex($this->lang),
+            'matchMode' => SPH_MATCH_EXTENDED2,
         ];
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
@@ -131,13 +133,14 @@ class Search {
             $sphinx['filter'][] = ['filter', $filter];
         }
         if ($this->sort) {
-            if ($this->sort == 'random') {
-                $sortOrder = '@random';
-            } elseif (empty($this->query)) {
+            $randomExpr = "RAND({$this->randSeed})*16777216";
+            if (empty($this->query)) {
                 // When the query is empty, Manticore does not perform any
                 // ranking, so we need to rely on ordering instead
                 if ($this->sort == 'created' || $this->sort == 'modified') {
                     $sortOrder = $this->orderby($this->sort, $this->sortReversed);
+                } elseif ($this->sort == 'random') {
+                    $sortOrder = $this->orderby($randomExpr, $this->sortReversed);
                 } else {
                     $sortOrder = $this->orderby('text_len', !$this->sortReversed);
                 }
@@ -150,9 +153,13 @@ class Search {
                     $rankingExpr = '-text_len+top(lcs+exact_order*100)*100';
                 } elseif ($this->sort == 'created' || $this->sort == 'modified') {
                     $rankingExpr = $this->sort;
+                } elseif ($this->sort == 'random') {
+                    $rankingExpr = $randomExpr;
                 }
             }
-            $sphinx['matchMode'] = SPH_MATCH_EXTENDED2;
+            if ($this->sort == 'random') {
+                $sortOrder .= ', '.$this->orderby('id', $this->sortReversed);
+            }
             $sphinx['sortMode'] = [SPH_SORT_EXTENDED => $sortOrder];
             if (isset($rankingExpr)) {
                 $sphinx['rankingMode'] = [SPH_RANK_EXPR => $rankingExpr];
@@ -289,5 +296,16 @@ class Search {
             $this->translationFilters,
             function ($v) { return !is_null($v); }
         );
+    }
+
+    public static function exactSearchQuery($text) {
+        $from = array('\\', '(', ')', '|', '-', '!', '@', '~', '"', '&', '/', '^', '$', '=');
+        $to = array('\\\\', '\(', '\)', '\|', '\-', '\!', '\@', '\~', '\"', '\&', '\/', '\^', '\$', '\=' );
+        $escaped = str_replace($from, $to, $text);
+        return '="'.$escaped.'"';
+    }
+
+    public function setRandSeed($seed) {
+        return $this->randSeed = $seed;
     }
 }

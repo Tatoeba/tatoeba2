@@ -14,7 +14,7 @@ $sentenceUrl = $this->Url->build([
 ]);
 ?>
 <div ng-app="app" ng-controller="SentencesNavigationController as vm" 
-     ng-init="vm.init(<?= $selectedLanguage ?>, <?= $currentId ?>, <?= $prev ?>, <?= $next ?>)" 
+     ng-init="vm.init('<?= $selectedLanguage ?>', <?= $currentId ?>, <?= $prev ?>, <?= $next ?>)" 
      class="navigation" layout="row" ng-cloak>
 
     <div layout="row" layout-align="space-around center" layout-margin flex>
@@ -38,7 +38,7 @@ $sentenceUrl = $this->Url->build([
         </md-button>
 
         <div>
-        <md-tooltip>
+        <md-tooltip md-direction="top">
             <?= __('Language for previous, next or random sentence'); ?>
         </md-tooltip>
         <?php
@@ -46,8 +46,12 @@ $sentenceUrl = $this->Url->build([
             'language_dropdown', 
             array(
                 'name' => 'lang',
-                'selectedLanguage' => $selectedLanguage,
-                'languages' => $this->Languages->getSearchableLanguagesArray(),
+                'initialSelection' => $selectedLanguage,
+                /* @translators: placeholder used in language dropdown
+                                 in navigation block on sentence pages */
+                'languages' => $this->Languages->getSearchableLanguagesArray(__x('navigation', 'Any language')),
+                'onSelectedLanguageChange' => 'vm.onSelectedLanguageChange(language)',
+                'forceItemSelection' => true,
             )
         );
         ?>

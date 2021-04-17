@@ -19,13 +19,11 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use App\Model\Entity\HashTrait;
 use App\Model\CurrentUser;
 use App\Lib\LanguagesLib;
 
 class Sentence extends Entity
 {
-    use HashTrait;
     use LanguageNameTrait;
 
     protected $_virtual = [
@@ -43,21 +41,13 @@ class Sentence extends Entity
         'highlight',
     ];
 
-    public function __construct($properties = [], $options = []) {
-        parent::__construct($properties, $options);
-        $hash = $properties['hash'] ?? null;
-        $this->initializeHash($hash, ['lang', 'text']);
-    }
-
     protected function _setLang($value)
     {
-        $this->updateHash();
         return empty($value) ? null : $value;
     }
 
     protected function _setText($value)
     {
-        $this->updateHash();
         return $this->_clean($value);
     }
 

@@ -541,7 +541,7 @@ class UserController extends AppController
             $this->Users->patchEntity($user, $data, ['fields' => $allowedFields]);
             $savedUser = $this->Users->save($user);
             if ($savedUser) {
-                $this->Auth->setUser($savedUser);
+                $this->Auth->setUser($savedUser->toArray());
                 $flashMsg = __('Your settings have been saved.');
             } else {
                 $flashMsg = __(
@@ -753,7 +753,7 @@ class UserController extends AppController
         ]);
         $savedUser = $this->Users->save($user);
         if ($savedUser) {
-            $this->Auth->setUser($savedUser);
+            $this->Auth->setUser($savedUser->toArray());
         }
 
         return $savedUser;

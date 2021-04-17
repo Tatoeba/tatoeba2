@@ -19,27 +19,28 @@ class TagsControllerTest extends IntegrationTestCase {
         'app.tags_sentences',
         'app.transcriptions',
         'app.users',
-        'app.users_languages'
+        'app.users_languages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/fra/tags/view_all', null, true ],
-            [ '/fra/tags/view_all', 'contributor', true ],
-            [ '/fra/tags/view_all/@', null, true ],
-            [ '/fra/tags/remove_tag_from_sentence/2/2', null, '/fra/users/login?redirect=%2Ffra%2Ftags%2Fremove_tag_from_sentence%2F2%2F2' ],
-            [ '/fra/tags/remove_tag_from_sentence/2/2', 'contributor', '/' ],
-            [ '/fra/tags/remove_tag_from_sentence/2/2', 'advanced_contributor', '/fra/sentences/show/2' ],
-            [ '/fra/tags/remove_tag_of_sentence_from_tags_show/2/2', null, '/fra/users/login?redirect=%2Ffra%2Ftags%2Fremove_tag_of_sentence_from_tags_show%2F2%2F2' ],
-            [ '/fra/tags/remove_tag_of_sentence_from_tags_show/2/2', 'contributor', '/' ],
-            [ '/fra/tags/remove_tag_of_sentence_from_tags_show/2/2', 'advanced_contributor', 'https://example.net/previous_page' ],
-            [ '/fra/tags/show_sentences_with_tag/2', null, true ],
-            [ '/fra/tags/show_sentences_with_tag/2', 'contributor', true ],
-            [ '/fra/tags/show_sentences_with_tag/2/cmn', null, true ],
-            [ '/fra/tags/show_sentences_with_tag/9999999999', null, '/fra/tags/view_all' ],
-            [ '/fra/tags/show_sentences_with_tag/@needs_native_check', null, '/fra/tags/show_sentences_with_tag/1' ],
-            [ '/fra/tags/show_sentences_with_tag/@needs_native_check/fra', null, '/fra/tags/show_sentences_with_tag/1/fra' ],
+            [ '/eng/tags/view_all', null, true ],
+            [ '/eng/tags/view_all', 'contributor', true ],
+            [ '/eng/tags/view_all/@', null, true ],
+            [ '/eng/tags/remove_tag_from_sentence/2/2', null, '/eng/users/login?redirect=%2Feng%2Ftags%2Fremove_tag_from_sentence%2F2%2F2' ],
+            [ '/eng/tags/remove_tag_from_sentence/2/2', 'contributor', '/' ],
+            [ '/eng/tags/remove_tag_from_sentence/2/2', 'advanced_contributor', '/eng/sentences/show/2' ],
+            [ '/eng/tags/remove_tag_of_sentence_from_tags_show/2/2', null, '/eng/users/login?redirect=%2Feng%2Ftags%2Fremove_tag_of_sentence_from_tags_show%2F2%2F2' ],
+            [ '/eng/tags/remove_tag_of_sentence_from_tags_show/2/2', 'contributor', '/' ],
+            [ '/eng/tags/remove_tag_of_sentence_from_tags_show/2/2', 'advanced_contributor', 'https://example.net/previous_page' ],
+            [ '/eng/tags/show_sentences_with_tag/2', null, true ],
+            [ '/eng/tags/show_sentences_with_tag/2', 'contributor', true ],
+            [ '/eng/tags/show_sentences_with_tag/2/cmn', null, true ],
+            [ '/eng/tags/show_sentences_with_tag/9999999999', null, '/eng/tags/view_all' ],
+            [ '/eng/tags/show_sentences_with_tag/@needs_native_check', null, '/eng/tags/show_sentences_with_tag/1' ],
+            [ '/eng/tags/show_sentences_with_tag/@needs_native_check/eng', null, '/eng/tags/show_sentences_with_tag/1/eng' ],
         ];
     }
 

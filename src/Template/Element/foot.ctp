@@ -25,17 +25,21 @@
  * @link     https://tatoeba.org
  */
 ?>
-<div id="footer">
+<div id="footer" layout="column" ng-cloak>
 
-    <div class="container">
-    <div class="category">
+    <div layout="row" layout-align="center center" flex layout-margin ng-controller="MenuController">
+        <?= $this->element('ui_language_button'); ?>
+    </div>
+
+    <div layout="row" layout-xs="column" layout-align="space-between start">
+    <div class="category" flex-gt-xs>
         <h3><?php echo __('Need some help?'); ?></h3>
         <ul>
             <li>
                 <?php
                 echo $this->Html->link(
                     __('Quick Start Guide'),
-                    'http://en.wiki.tatoeba.org/articles/show/quick-start'
+                    $this->cell('WikiLink', ['quick-start'])
                 );
                 ?>
             </li>
@@ -43,7 +47,7 @@
                 <?php
                 echo $this->Html->link(
                     __('Tatoeba Wiki'),
-                    'http://en.wiki.tatoeba.org/articles/show/main'
+                    $this->cell('WikiLink', ['main'])
                 );
                 ?>
             </li>
@@ -52,7 +56,7 @@
                 echo $this->Html->link(
                     /* @translators: link text in the footer */
                     __x('footer', 'FAQ'),
-                    'http://en.wiki.tatoeba.org/articles/show/faq'
+                    $this->cell('WikiLink', ['faq'])
                 );
                 ?>
             </li>
@@ -70,8 +74,8 @@
             </li>
         </ul>
     </div>
-
-    <div class="category">
+    
+    <div class="category" flex-gt-xs>
         <?php /* @translators: section name in the footer */ ?>
         <h3><?php echo __('Developers'); ?></h3>
         <ul>
@@ -108,8 +112,8 @@
             </li>
         </ul>
     </div>
-
-    <div class="category">
+    
+    <div class="category" flex-gt-xs>
         <?php /* @translators: section name in the footer */ ?>
         <h3><?php echo __('About'); ?></h3>
         <ul>
@@ -188,8 +192,9 @@
             </li>
         </ul>
     </div>
+    </div>
 
-    <div layout="row" layout-align="start center" class="license">
+    <div layout="row" layout-align="center center" class="license">
         <img alt="Creative Commons License" src="/img/cc-logo.png" />
         <div class="text">
             <?php
@@ -221,7 +226,5 @@
             );
             ?>
         </div>
-
-    </div>
     </div>
 </div>

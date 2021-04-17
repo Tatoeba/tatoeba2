@@ -26,8 +26,9 @@
  */
 namespace App\View\Helper;
 
+use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
-
+use Cake\Utility\Inflector;
 
 
 /**
@@ -46,6 +47,7 @@ class ShowAllHelper extends AppHelper
     public $helpers = array(
         'Languages',
         'Form',
+        'Number',
     );
 
     /**
@@ -59,9 +61,9 @@ class ShowAllHelper extends AppHelper
         // we reconstruct the path
         $path ='/';
         // language of the interface
-        $path .= $this->request->params['lang'] .'/';
-        $path .= $this->request->params['controller'].'/';
-        $path .= $this->request->params['action'];
+        $path .= $this->request->getParam('lang') .'/';
+        $path .= Inflector::delimit($this->request->getParam('controller')).'/';
+        $path .= $this->request->getParam('action');
         return $path;
     }
 
@@ -78,12 +80,12 @@ class ShowAllHelper extends AppHelper
     private function _generateJavascriptUrl($params, $position)
     {
         $baseUrl = $this->_generateBaseUrl();
-        $params[$position] = 'this.value' ;
+        $params[$position] = 'language.code' ;
 
         $paramString = '';
         foreach ($params as $param) {
-            if ($param == 'this.value') {
-                $paramString .= "+'/'+ this.value";
+            if ($param == 'language.code') {
+                $paramString .= "+'/'+ language.code";
             } else {
                 $paramString .= ("+'/'+'$param'");
             }
@@ -104,18 +106,17 @@ class ShowAllHelper extends AppHelper
     private function _generateSelect($selectedLanguage, $langs, $position)
     {
 
-        $params = $this->request->params['pass'];
+        $params = $this->request->getParam('pass');
         $javascriptUrl = $this->_generateJavascriptUrl($params, $position);
 
-        return $this->Form->select(
-            'filterLanguageSelect',
-            $langs,
+        return $this->_View->element(
+            'language_dropdown',
             array(
-                "value" => $selectedLanguage,
-                "id" => "",
-                "onchange" => "$(location).attr('href', $javascriptUrl);",
-                "class" => count($langs) > 2 ? 'language-selector' : null,
-                "empty" => false
+                'name' => 'filterLanguageSelect',
+                'initialSelection' => $selectedLanguage,
+                'languages' => $langs,
+                'onSelectedLanguageChange' => "window.location.href = $javascriptUrl",
+                'forceItemSelection' => true,
             )
         );
 
@@ -176,6 +177,56 @@ class ShowAllHelper extends AppHelper
             </p>
         </div>
     <?php
+    }
+
+    private function formatNumberOfSentences($lang)
+    {
+        $lang = clone $lang;
+        $n = $lang->sentences;
+        $digits = strlen($lang->sentences);
+        $digits = (int)($digits/2);
+        $lang->sentences -= $lang->sentences % (10**$digits);
+        $lang->sentences = $this->Number->format($lang->sentences);
+        $lang->sentences = format(
+          __n('{n}+ sentence', '{n}+ sentences', $n),
+          ['n' => $lang->sentences]
+        );
+        return $lang;
+    }
+
+    public function extractLanguageProfiles($stats)
+    {
+        $profileLangs = [];
+        $profileLangCodes = CurrentUser::getProfileLanguages();
+        foreach ($stats as $milestone => $langs) {
+            foreach ($langs as $lang) {
+                if (in_array($lang->code, $profileLangCodes)) {
+                    $profileLangs[] = $this->formatNumberOfSentences($lang);
+                }
+            }
+        }
+        return $profileLangs;
+    }
+
+    /**
+     * Extract top ten from stats grouped by milestones
+     *
+     * @param array $stats array of array Stats grouped by milestones
+     *
+     * @return array Top ten of languages with the most sentences
+     */
+    public function extractTopTen($stats)
+    {
+        $top10 = [];
+        foreach ($stats as $milestone => $languages) {
+            foreach ($languages as $language) {
+                $top10[] = $this->formatNumberOfSentences($language);
+                if (count($top10) >= 10) {
+                    break 2;
+                }
+            }
+        }
+        return $top10;
     }
 }
 ?>

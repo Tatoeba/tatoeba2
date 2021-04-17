@@ -82,17 +82,6 @@ class LanguagesHelperTest extends TestCase {
 		$this->assertEquals('日本語', $result['jpn']);
 	}
 
-	function testLanguagesArrayWithNone_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->languagesArrayWithNone();
-		$this->assertEquals('Japanese', $result['jpn']);
-	}
-
-	function testLanguagesArrayWithNone_returnsLocalizedLangagesNames() {
-		I18N::setLocale('ja');
-		$result = $this->Languages->languagesArrayWithNone();
-		$this->assertEquals('日本語', $result['jpn']);
-	}
-
 	function testGetSearchableLanguagesArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->getSearchableLanguagesArray();
 		$this->assertEquals('Japanese', $result['jpn']);
@@ -114,4 +103,13 @@ class LanguagesHelperTest extends TestCase {
 		$result = $this->Languages->codeToNameAlone('jpn');
 		$this->assertEquals('日本語', $result);
 	}
+
+    function testGetInterfaceLanguage() {
+        $oldLang = Configure::read('Config.language');
+        Configure::write('Config.language', 'eng');
+        $this->assertEquals('English', $this->Languages->getInterfaceLanguage());
+        Configure::write('Config.language', 'fra');
+        $this->assertEquals('Français', $this->Languages->getInterfaceLanguage());
+        Configure::write('Config.language', $oldLang);
+    }
 }

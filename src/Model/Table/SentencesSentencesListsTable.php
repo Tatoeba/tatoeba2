@@ -45,12 +45,15 @@ class SentencesSentencesListsTable extends Table
         return $this->find()
             ->where([
                 'sentence_id' => $sentenceId,
-                'user_id' => CurrentUser::get('id')
+                'OR' => [
+                    'user_id' => CurrentUser::get('id'),
+                    'visibility' => 'public',
+                ]
             ])
             ->select(['created'])
             ->contain([
                 'SentencesLists' => [
-                    'fields' => ['id', 'name', 'visibility']
+                    'fields' => ['id', 'name', 'visibility', 'user_id', 'editable_by']
                 ]
             ])
             ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])

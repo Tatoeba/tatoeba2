@@ -27,9 +27,14 @@
 ?>
 <?php
 $this->Html->script('/js/vocabulary/add-sentences.ctrl.js', ['block' => 'scriptBottom']);
-
-$title = __('Vocabulary that needs sentences');
-
+if (empty($langFilter)) {
+    $title = __('Vocabulary that needs sentences');
+} else {
+    $title = format(
+        __('Vocabulary that needs sentences in {language}'),
+        array('language' => $this->Languages->codeToNameToFormat($langFilter))
+    );
+}
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
@@ -55,6 +60,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             )
             ?>
         </div>
+        <?php
+            if ($vocabulary->count() == 0) {
+                echo $this->Html->div(
+                    'empty-info-text',
+                    __('There are no requests.')
+                );
+            }
+        ?>
 
         <?php
         $this->Pagination->display();
@@ -109,6 +122,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     <?= $this->Form->hidden('lang', ['value' => $lang]) ?>
                     <md-input-container flex>
                         <?= $this->Form->input('text', [
+                            'id' => 'form_'.$id.'_input',
                             /* @translators: sentence text field label of sentence addition form on vocabulary page */
                             'label' => __('Sentence'),
                             'ng-model' => "ctrl.sentence['$id']"

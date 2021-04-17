@@ -61,21 +61,7 @@
                     }
                 }
             }
-        }])
-        .directive('iconWithProgress', function() {
-            return {
-                restrict: 'E',
-                transclude: true,
-                scope: {
-                    isLoading: '=',
-                },
-                template: 
-                    '<span ng-if="!isLoading"><ng-transclude></ng-transclude></span>' +
-                    '<md-button class="md-icon-button" ng-if="isLoading">' +
-                        '<md-progress-circular md-diameter="24"></md-progress-circular>' +
-                    '</md-button>'
-            }
-        });
+        }]);
 
     angular.module('app').requires.push('ngclipboard');
 
@@ -86,7 +72,7 @@
             controllerAs: 'vm'
         };
     }
-    
+
     SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
     function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
         const MAX_TRANSLATIONS = 5;
@@ -154,8 +140,6 @@
         vm.hide = hide;
         vm.saveTranscription = saveTranscription;
         vm.saveLink = saveLink;
-        vm.setReview = setReview;
-        vm.resetReview = resetReview;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -324,7 +308,7 @@
             } else if (!vm.newTranslation.lang) {
                 vm.newTranslation.lang = vm.showAutoDetect ? 'auto' : langCodes[0];
             }
-            focusInput('#translation-form-' + id);
+            focusInput('translation-form-' + id);
         }
 
         function saveTranslation(sentenceId) {
@@ -366,19 +350,19 @@
         function editTranslation(translation) {
             show('translation_form');
             vm.newTranslation = translation;
-            focusInput('#translation-form-' + translation.parentId);
+            focusInput('translation-form-' + translation.parentId);
         }
 
         function focusInput(id) {
             setTimeout(function() {
-                var input = angular.element(id);
+                var input = document.getElementById(id);
                 input.focus();
             }, 100);
         }
 
         function edit() {
             show('sentence_form');
-            focusInput('#sentence-form-' + vm.sentence.id);
+            focusInput('sentence-form-' + vm.sentence.id);
         }
         
         function cancelEdit() {
@@ -414,10 +398,10 @@
         }
 
         function saveSentence(sentence) {
-            var lang = sentence.lang === 'unknown' ? '' : sentence.lang;
             var data = {
-                id: [lang, sentence.id].join('_'),
-                value: sentence.text
+                id: sentence.id,
+                lang: sentence.lang === 'unknown' ? '' : sentence.lang,
+                text: sentence.text
             };
             return $http.post(rootUrl + '/sentences/edit_sentence', data);
         }
@@ -469,7 +453,7 @@
                 closeList();
             } else {
                 show('list_form');
-                focusInput('#list-form-' + vm.sentence.id);
+                focusInput('list-form-' + vm.sentence.id);
                 resetLists();
             }
         }
@@ -702,37 +686,6 @@
 
         function getNumberOfTranslations() {
             return allDirectTranslations.length + allIndirectTranslations.length;
-        }
-
-        function setReview(value) {
-            var reviewType = getReviewType(value);
-            vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
-                vm.sentence.current_user_review =  parseInt(response.data.result.correctness);
-                vm.iconsInProgress[reviewType] = false;
-            });
-        }
-
-        function resetReview() {
-            var reviewType = getReviewType(vm.sentence.current_user_review);
-            vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
-                if (response.data.result) {
-                    vm.sentence.current_user_review = null;
-                    vm.iconsInProgress[reviewType] = false;
-                }
-            });
-        }
-
-        function getReviewType(correctness) {
-            if (correctness === 1) {
-                return 'reviewOk';
-            } else if (correctness === 0) {
-                return 'reviewUnsure';
-            } else if (correctness === -1) {
-                return 'reviewNotOk';
-            }
-            return null;
         }
     }
 

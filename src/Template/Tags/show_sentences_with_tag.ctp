@@ -63,23 +63,25 @@ $tagsIndexUrl = $this->Url->build([
             </h2>
             
             <?= $this->element('sentences/expand_all_menus_button'); ?>
+
+            <?php 
+                $options = array(
+                    /* @translators: sort option in a "Sentences with tag" page */
+                    array('param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences first')),
+                    /* @translators: sort option in a "Sentences with tag" page */
+                    array('param' => 'sentence_id', 'direction' => 'asc', 'label' => __('Oldest sentences first')),
+                    /* @translators: sort option in a "Sentences with tag" page */
+                    array('param' => 'added_time', 'direction' => 'desc', 'label' => __('Most recently tagged')),
+                    /* @translators: sort option in a "Sentences with tag" page */
+                    array('param' => 'added_time', 'direction' => 'asc', 'label' => __('Least recently tagged'))
+                );
+                echo $this->element('sort_menu', array('options' => $options));
+            ?>
+
         </div>
     </md-toolbar>
 
     <md-content>
-
-        <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?></strong>
-            <?php
-            /* @translators: sort option in the page that lists sentences having a certain tag */
-            echo $this->Paginator->sort('sentence_id', __('date created'));
-            ?>
-            |
-            <?php
-            /* @translators: sort option in the page that lists sentences having a certain tag */
-            echo $this->Paginator->sort('added_time', __("date of tag"));
-            ?>
-        </div>
 
         <?php $this->Pagination->display(); ?>
 

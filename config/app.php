@@ -346,6 +346,22 @@ return [
             'url' => env('LOG_QUERIES_URL', null),
             'scopes' => ['queriesLog'],
         ],
+        'queue' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
+            'file' => 'queue',
+            'url' => env('LOG_QUEUE_URL', null),
+            'scopes' => ['queue'],
+            'levels' => ['info'],
+        ],
+        // Configuration for unsent emails logging when
+        // the LocalTransport is used
+        'unsent' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
+            'file' => 'unsent-mails',
+            'scopes' => ['unsent'],
+        ],
     ],
 
     /**

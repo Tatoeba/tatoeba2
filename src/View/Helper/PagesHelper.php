@@ -29,35 +29,46 @@ class PagesHelper extends AppHelper
     }
 
     public function formatTitleWithResultCount($paginator, $title, $real_total = 0, $totalOnly = false) {
+        $results = $this->formatResultCount($paginator, $real_total, $totalOnly);
+        /* @translators: this formats title at the top of every page
+            that shows a list of sentences (search, browse by language,
+            adopt sentences…) by appending the number of results. */
+        $title = format(__('{title} ({results})'), ['title' => $title, 'results' => $results]);
+        $title = sprintf('<h2 flex>%s</h2>', $title);
+        return $title;
+    }
+
+    public function formatResultCount($paginator, $real_total = 0, $totalOnly = false) {
         $n = $totalOnly ? $real_total : $paginator->param('count');
         if ($real_total == 0 || $real_total == $n || $totalOnly) {
-            /* @translators: this formats the title at the top of every page
-               that shows a list of sentences (search, browse by language,
-               adopt sentences…) by appending the number of results. Note
-               the use of &nbsp; which is a non-breaking space. */
-            $title = format(__n('{title} ({n} result)',
-                                '{title} ({n}&nbsp;results)',
-                                $n, true),
-                            array('title' => $title, 'n' => $this->Number->format($n))
+            /* @translators: this formats the number of results on pages
+               that show a list of sentences (search, browse by language,
+               adopt sentences…). Note the use of &nbsp; which is a non-breaking space. */
+            $results = format(
+                __n('{n} result', '{n}&nbsp;results', $n, true),
+                ['n' => $this->Number->format($n)]
             );
         } else {
-            /* @translators: this formats the title at the top of the search
-               page by appending the number of results. Tatoeba is only able
+            /* @translators: this formats the number of results on pages
+               that show a list of sentences (search, browse by language,
+               adopt sentences…). Tatoeba is only able
                to display {thousand} results (that should always be turned
                into “1000”), but {n} results actually exist in the corpus.
                Note the use of &nbsp; which is a non-breaking space. */
-            $title = format(__n('{title} ({thousand}&nbsp;results out of {n} occurrence)',
-                                '{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)',
-                                $real_total, true),
-                            array(
-                                'title' => $title,
-                                'thousand' => $this->Number->format($n),
-                                'n' => $this->Number->format($real_total)
-                            )
+            $results = format(
+                __n(
+                    '{thousand}&nbsp;results out of {n} occurrence',
+                    '{thousand}&nbsp;results out of {n}&nbsp;occurrences',
+                    $real_total, true
+                ),
+                [
+                    'thousand' => $this->Number->format($n),
+                    'n' => $this->Number->format($real_total)
+                ]
             );
         }
-        $title = sprintf('<h2 flex>%s</h2>', $title);
-        return $title;
+
+        return $results;
     }
 
     public function currentPageUrl() {

@@ -124,7 +124,7 @@ class DateHelper extends AppHelper
         $diff = Time::fromNow($dateObj);
 
         if ($diff->days > 30) {
-            $formattedDate = $dateObj->nice();
+            $formattedDate = $dateObj->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::NONE]);
 
             if ($alone) {
                 return $formattedDate;

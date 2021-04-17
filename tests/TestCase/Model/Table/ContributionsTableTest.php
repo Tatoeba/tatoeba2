@@ -15,7 +15,8 @@ class ContributionTest extends TestCase {
         'app.contributions',
         'app.sentences',
         'app.languages',
-        'app.users_languages'
+        'app.links',
+        'app.users_languages',
     );
 
     public function setUp() {

@@ -17,33 +17,38 @@
  */
 
  (function(){
-    angular.module('app').controller('optionsCtrl', function ($scope){
+    angular.module('app').controller('optionsCtrl', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.visibilityProgress = false;
+        $scope.visibilityEditable = false;
 
         $scope.visibilityChanged = function () {
-            $(".is-public.loader-container").show();
-            var listId = $("input[name=visibility]").attr('data-list-id');
+            $scope.visibilityProgress = true;
+            var listId = document.querySelector("input[name=visibility]").dataset.listId;
             var rootUrl = get_tatoeba_root_url();
-            $.post(
+            $http.post(
                 rootUrl + "/sentences_lists/set_option/",
-                { "listId": listId, "option": "visibility", "value": $scope.visibility },
-                function () {$(".is-public.loader-container").hide();}
+                { "listId": listId, "option": "visibility", "value": $scope.visibility }
+            ).then(
+                function (response) { $scope.visibilityProgress = false; }
             );
         };
 
         $scope.editableChanged = function (oldSetting) {
-            $(".is-editable.loader-container").show();
-            var listId = $("input[name=editable_by]").attr('data-list-id');
+            $scope.editableProgress = true;
+            var listId = document.querySelector("input[name=editable_by]").dataset.listId;
             var rootUrl = get_tatoeba_root_url();
-            $.post(
+            $http.post(
                 rootUrl + "/sentences_lists/set_option/",
-                { "listId": listId, "option": "editable_by", "value": $scope.editable },
+                { "listId": listId, "option": "editable_by", "value": $scope.editable }
+            ).then(
                 function (response) {
-                    $(".is-editable.loader-container").hide();
-                    if (response.editable_by === "no_one" || oldSetting === "no_one")
+                    $scope.editableProgress = false;
+                    if (response.data.editable_by === "no_one" || oldSetting === "no_one")
                         location.reload();
                 }
             );
         };
-    });
+    }]);
 
 })();

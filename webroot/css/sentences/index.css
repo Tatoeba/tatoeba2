@@ -1,0 +1,160 @@
+
+h1 {
+  text-align: center;
+}
+
+/* Logo surrounded by top 10 languages */
+
+#logo-container {
+  position: relative;
+  margin: 0 auto;
+  width: 400px;
+  height: 1px;
+  text-align: center;
+}
+
+img.centered-logo {
+  position: absolute;
+  right: 100px;
+  top: 103px;
+}
+
+.languages-around-logo {
+  position: relative;
+  margin: 30px auto 30px auto;
+  height: 350px;
+  width: 500px;
+}
+
+.language-around-logo {
+  position: absolute;
+}
+.lang-card {
+  height: 70px;
+  width: 180px;
+  text-align: center;
+}
+.lang-card small {
+  color: initial;
+}
+.lang-card a {
+  display: block;
+}
+
+.lang-card .lang-name {
+  display: table;
+  margin: 0 auto;
+  padding-bottom: 7px;
+}
+.lang-card strong {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+}
+.lang-card .language-icon {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.lang1  { top: 0;   right: 60%; }
+.lang2  { top: 0;    left: 60%; }
+.lang3  { top: 20%; right: 70%; }
+.lang4  { top: 20%;  left: 70%; }
+.lang5  { top: 40%; right: 72%; }
+.lang6  { top: 40%;  left: 72%; }
+.lang7  { top: 60%; right: 70%; }
+.lang8  { top: 60%;  left: 70%; }
+.lang9  { top: 80%; right: 60%; }
+.lang10 { top: 80%;  left: 60%; }
+
+.lang-button {
+  text-transform: inherit;
+  overflow: visible;
+  letter-spacing: 0;
+  line-height: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Profile languages */
+
+.profile-language.lang-card {
+  display: inline-block;
+  margin: 5px 10px;
+}
+.profile-languages {
+  width: 500px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* Language search dropdown */
+
+#language-search {
+  text-align: center;
+}
+#language-search .language-dropdown-container {
+  display: block;
+  width: 300px;
+  margin: 15px auto;
+}
+
+/* List of all languages */
+
+.language-list {
+  column-width: 150px;
+  column-gap: 20px;
+  padding: 0 20px;
+}
+.language-list ul {
+  margin: 0;
+  padding: 0;
+  line-height: 1.8;
+}
+.language-list li {
+  display: block;
+  background-image: linear-gradient(to bottom, #e0e0e0, #e0e0e0);
+  background-size: 2px calc(100% - 30px);
+  background-repeat: no-repeat;
+  background-position: 14px calc(100% - 5px);
+}
+.language-list a {
+  display: table;
+}
+.language-list span {
+  display: table-cell;
+  vertical-align: top;
+}
+.language-list .language-icon {
+  display: table-cell;
+  vertical-align: top;
+  margin-top: 5px;
+}
+.language-list .lang-name {
+  vertical-align: middle;
+  word-wrap: anywhere;
+  hyphens: auto;
+}
+
+#content-container .header-with-hline {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 40px 0 30px 0;
+  line-height: 20px;
+}
+#content-container .hline {
+  display: block;
+  border-top: 1px solid #c8ccd1;
+  text-align: center;
+}
+#content-container h3 .hline {
+  margin: 0 20px;
+}
+#content-container .text {
+  background-color: #FFFFFF;
+  position: relative;
+  top: -11.2px;
+  padding: 0 1ex;
+}

@@ -1,14 +1,17 @@
 {
-    "name": "tatoeba",
+    "name": "tatoeba/tatoeba",
+    "type": "project",
+    "license": "AGPL-3.0-only",
+    "description": "Code for tatoeba.org, a multilingual sentence and translation database",
     "require": {
         "cakephp/cakephp": "3.7.*",
         "cakephp/plugin-installer": "^1.0",
         "dereuromark/cakephp-queue": "^3.11",
         "markstory/asset_compress": "^3.5",
         "patchwork/jsqueeze": "^2.0",
-        "natxet/CssMin": "^3.0",
+        "natxet/cssmin": "^3.0",
         "cakephp/migrations": "^2.1",
-        "codekanzlei/cake-auth-actions": "dev-master"
+        "codekanzlei/cake-auth-actions": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7|^6.0",
@@ -26,15 +29,6 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "App\\Console\\Installer::postInstall",
-        "post-create-project-cmd": "App\\Console\\Installer::postInstall",
-        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
-        "check": [
-            "@test",
-            "@cs-check"
-        ],
-        "cs-check": "phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
-        "cs-fix": "phpcbf --colors --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
         "test": "phpunit --colors=always"
     }
 }

@@ -1,13 +1,16 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Model\Entity\User;
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\ORM\TableRegistry;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
-use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
 class UsersControllerTest extends IntegrationTestCase {
-    use TatoebaControllerTestTrait;
+    use EmailTrait,
+        TatoebaControllerTestTrait;
 
     public $fixtures = [
         'app.contributions',
@@ -18,6 +21,7 @@ class UsersControllerTest extends IntegrationTestCase {
         'app.sentence_comments',
         'app.sentences',
         'app.walls',
+        'app.wiki_articles',
     ];
 
     public function setUp() {
@@ -210,7 +214,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'language' => 'none',
             'acceptation_terms_of_use' => '1',
             'email' => 'polochon@example.net',
-            'quiz' => 'poloc',
+            'confirm' => '',
         ]);
         $this->assertSession('polochon', 'Auth.User.username');
         $this->assertRedirect('/eng');
@@ -223,7 +227,46 @@ class UsersControllerTest extends IntegrationTestCase {
             'language' => 'none',
             'acceptation_terms_of_use' => '1',
             'email' => 'polochon@example.net',
-            'quiz' => 'poloc',
+            'confirm' => '',
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertResponseOk();
+    }
+
+    public function testCheckLogin_canRegisterWithPlusInEmail() {
+        $this->post('/eng/users/register', [
+            'username' => 'polochon',
+            'password' => 'very bad password',
+            'language' => 'none',
+            'acceptation_terms_of_use' => '1',
+            'email' => 'polo+chon@example.net',
+            'confirm' => '',
+        ]);
+        $this->assertSession('polochon', 'Auth.User.username');
+        $this->assertRedirect('/eng');
+    }
+
+    public function testCheckLogin_cannotRegisterWithInvalidEmail() {
+        $this->post('/eng/users/register', [
+            'username' => 'polochon',
+            'password' => 'very bad password',
+            'language' => 'none',
+            'acceptation_terms_of_use' => '1',
+            'email' => 'polochon@',
+            'confirm' => '',
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertResponseOk();
+    }
+
+    public function testCheckLogin_cannotRegisterWithHoneypotFilledIn() {
+        $this->post('/eng/users/register', [
+            'username' => 'polochon',
+            'password' => 'very bad password',
+            'language' => 'none',
+            'acceptation_terms_of_use' => '1',
+            'email' => 'polochon@example.net',
+            'confirm' => 'polochon@example.net',
         ]);
         $this->assertSession(null, 'Auth.User.username');
         $this->assertResponseOk();
@@ -267,5 +310,36 @@ class UsersControllerTest extends IntegrationTestCase {
         $users = TableRegistry::get('Users');
         $user = $users->find()->where(['id' => 6])->first();
         $this->assertNull($user);
+    }
+
+    public function blockedOrSuspendedProvider() {
+        return [
+            'blocking user' => [['level' => -1], 1],
+            'unblocking user' => [['level' => 0], 0],
+            'suspending user' => [['role' => User::ROLE_SPAMMER], 1],
+            'changing role' => [['role' => User::ROLE_CONTRIBUTOR], 0],
+            'changing username' => [['username' => 'abc'], 0],
+        ];
+    }
+
+    /**
+     * @dataProvider blockedOrSuspendedProvider()
+     */
+    public function testEdit_correctEmailNotification($postData, $emailCount) {
+        $this->logInAs('admin');
+        $this->post('/eng/users/edit/4', $postData);
+        $this->assertMailCount($emailCount);
+    }
+
+    public function testNewPassword_sendsEmailToUser() {
+        $address = 'contributor@example.com';
+        $this->post('/eng/users/new_password', ['email' => $address]);
+        $this->assertMailSentTo($address);
+    }
+
+    public function testNewPassword_sendsNoEmailToNonExistingUser() {
+        $address = 'non_existing_user@example.com';
+        $this->post('/eng/users/new_password', ['email' => $address]);
+        $this->assertNoMailSent();
     }
 }

@@ -29,7 +29,7 @@ use App\Model\CurrentUser;
 
 $this->Html->script('sentences/random.ctrl.js', ['block' => 'scriptBottom']);
 
-$langArray = $this->Languages->languagesArrayAlone();
+$langArray = $this->Languages->onlyLanguagesArray();
 ?>
 
 <div ng-controller="RandomSentenceController as vm" ng-init="vm.init()">
@@ -40,11 +40,15 @@ $langArray = $this->Languages->languagesArrayAlone();
 
         <span>
         <?php
-        echo $this->Form->select('randomLangChoice', $langArray, [
+        echo $this->element('language_dropdown', [
+            'name' => 'randomLangChoice',
             'id' => 'randomLangChoice',
-            'class' => 'language-selector',
-            'empty' => false,
-            'ng-model' => 'vm.lang'
+            'languages' => $langArray,
+            'initialSelection' => '{{vm.lang}}',
+            /* @translators: placeholder of language dropdown
+                             in homepage random sentence block */
+            'placeholder' => __('All languages'),
+            'onSelectedLanguageChange' => 'vm.lang = language.code',
         ]);
         ?>
         </span>

@@ -26,7 +26,6 @@
 
 #autocompletionDiv {
     position: absolute;
-    width: 100%;
 }
 
 #autocompletionDiv ul {
@@ -1208,7 +1207,16 @@ input.sentenceId {
     height: 20px;
 }
 
+.audioButton:focus {
+    outline: none;
+}
+
+.audioButton::-moz-focus-inner {
+    border: none;
+}
+
 .audioButton.audioAvailable {
+    border: none;
     background: url(../../img/audio.svg);
 }
 
@@ -1220,12 +1228,6 @@ input.sentenceId {
 .md-icon-button.audioUnavailable {
     opacity: 0.3;
 }
-
-#audioPlayer {
-    width: 0;
-    height: 0;
-}
-
 
 /*
  * Sentence correctness
@@ -1316,6 +1318,10 @@ div.hideLink {
     background: #fafafa;
     border-bottom-left-radius: 15px;
 }
+html[dir="rtl"] .sentence-and-translations .menu {
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: 15px;
+}
 
 .sentence-and-translations .text,
 .sentence-and-translations .lang {
@@ -1337,7 +1343,6 @@ div.hideLink {
 
 .sentence-and-translations .md-subheader {
     background: #fff;
-    border-top-right-radius: 15px;
 }
 
 .sentence-and-translations .md-subheader ._md-subheader-inner {
@@ -1414,6 +1419,9 @@ form .language-icon-div {
 .sentence-and-translations .sentence .transcription .icon {
     margin: 0 8px 0 19px;
 }
+html[dir="rtl"] .sentence-and-translations .sentence .transcription .icon {
+    margin: 0 19px 0 8px;
+}
 .sentence-and-translations .sentence .transcription .text {
     color: #A1A1A1;
     font-size: 24px;
@@ -1422,12 +1430,55 @@ form .language-icon-div {
 .sentence-and-translations .translation .transcription .icon {
     margin: 0 20px 0 40px;
 }
+html[dir="rtl"] .sentence-and-translations .translation .transcription .icon {
+    margin: 0 40px 0 20px;
+}
 .sentence-and-translations .translation.trusted-user.expanded .transcription .icon {
     margin: 0 20px 0 69px;
+}
+html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .transcription .icon {
+    margin: 0 69px 0 20px;
 }
 .sentence-and-translations .translation .transcription .text {
     color: #A1A1A1;
     padding: 0;
+}
+
+.sentence-and-translations div:focus {
+    outline: none;
+    border: 0;
+ }
+
+@media only screen and (max-width: 600px) {    
+    .sentence-and-translations .buttons {
+        display: none;
+    }
+    .sentence-and-translations .chevron {
+        display: none;
+    }
+    .sentence-and-translations .sentence .text,
+    .sentence-and-translations .sentence .transcription .text {
+        font-size: 18px;
+    }
+
+    .sentence-and-translations .text,
+    .sentence-and-translations .lang {
+        padding: 0 5px;
+    }
+
+    .sentence-and-translations .sentence .transcription .icon {
+        margin: 0 5px 0 12px;
+    }
+    .sentence-and-translations .translation .transcription .icon {
+        margin: 0 10px 0 12px;
+    }
+
+    .sentence-and-translations .md-icon-button.activated {
+        display: inherit;
+    }
+    .sentence-and-translations .md-icon-button.deactivated {
+        display: none;
+    }
 }
 
 
@@ -1644,6 +1695,9 @@ form .language-icon-div {
     vertical-align: middle;
 }
 
+.sortOption {
+    padding-right: 12px;
+}
 
 
 /*
@@ -1685,8 +1739,20 @@ form .language-icon-div {
     height: 42px;
 }
 
+/* Custom md-not-found with "Show all" button */
+md-virtual-repeat-container.md-not-found {
+    min-height: 84px;
+}
+.md-not-found .language-dropdown li {
+    font-size: 14px;
+    padding: 0 15px;
+}
+.md-not-found .language-dropdown button {
+    margin: 0;
+}
+
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
-    min-height: 300px;
+    width: 280px;
 }
 
 .md-autocomplete-suggestions-container li .highlight{
@@ -1696,6 +1762,36 @@ form .language-icon-div {
 
 .priority-language {
     font-weight: bold;
+}
+
+svg.language-icon {
+  width: 30px;
+  height: 20px;
+  margin-right: 0.5em;
+}
+
+html[dir="rtl"] svg.language-icon {
+  margin-right: 0;
+  margin-left: 0.5em;
+}
+
+/* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
+@-moz-document url-prefix() {
+  svg.language-icon {
+    filter: none;
+    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
+  }
+}
+
+.language-dropdown .language-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
+    color: red;
+    transition-delay: 0.2s;
+    transition-property: color;
 }
 
 .usersLanguages .languageInfo {
@@ -1881,4 +1977,20 @@ form .language-icon-div {
 }
 .annexe-menu md-icon {
     margin: auto 0;
+}
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Login dialog
+ *
+ * --------------------------------------------------------------------
+ */
+
+#login-dialog {
+    width: 300px;
+}
+
+#login-dialog md-dialog-content {
+    padding: 40px 20px 10px 20px;
 }

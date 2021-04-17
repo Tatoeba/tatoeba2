@@ -70,7 +70,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             );
             if (!$userLanguage) {
                 echo $this->element(
-                    'language_dropdown', 
+                    'language_dropdown',
                     array(
                         'name' => 'language_code',
                         'languages' => $languagesList
@@ -87,7 +87,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         if (!$userLanguage) {
             $hintText = format(
                 __('If your language is missing, please read our article on how to <a href="{}">request a new language</a>.'),
-                'https://en.wiki.tatoeba.org/articles/show/new-language-request'
+                $this->cell('WikiLink', ['new-language-request'])
             );
             echo $this->Html->para('hint', $hintText);
         }
@@ -102,7 +102,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             if ($userLanguage && !is_null($userLanguage->level)) {
                 $selected = $userLanguage->level;
             }
-            $selected = htmlspecialchars(json_encode($selected), ENT_QUOTES, 'UTF-8');
+            $selected = h(json_encode($selected));
 
             $radioLabels = $this->Languages->getLevelsLabels();
 

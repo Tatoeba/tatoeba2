@@ -34,16 +34,8 @@ $notTranslatedInto = $session->read('not_translated_into_lang');
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
-if (empty($notTranslatedInto)) {
-    $notTranslatedInto = 'none';
-}
 $langsFrom = $this->Languages->profileLanguagesArray();
-$langsTo = $this->Languages->profileLanguagesArray(false, [
-    'none' => '—',
-    /* @translators: option used in language selection dropdown
-       for "Not directly translated into", on Translate sentences page */
-    'und'  => __x('not-directly-translated-into', 'Any language'),
-]);
+$langsTo = $this->Languages->profileLanguagesArray();
 ?>
 
 <div id="annexe_content">
@@ -125,35 +117,45 @@ $langsTo = $this->Languages->profileLanguagesArray(false, [
                     <?php echo __('Sentences in:'); ?>
                 </label>
                 <?php
-                echo $this->Form->select(
-                    'langFrom',
-                    $langsFrom,
+                echo $this->element(
+                    'language_dropdown',
                     array(
+                        'name' => 'langFrom',
                         'id' => 'ActivityLangFrom',
-                        'value' => $currentLanguage,
-                        'class' => 'language-selector',
-                        "empty" => false
-                    ),
-                    false
+                        'languages' => $langsFrom,
+                        'initialSelection' => $currentLanguage,
+                        'alwaysShowAll' => true,
+                    )
                 );
                 ?>
             </fieldset>
 
             <fieldset class="select">
-                <label for="ActivityLangTo">
-                    <?php echo __('Not directly translated into:'); ?>
-                </label>
+                <md-checkbox ng-model="exclude_lang_to">
+                    <label for="ActivityLangTo">
+                        <?php echo __('Not directly translated into:'); ?>
+                    </label>
+                </md-checkbox>
+                <?=
+                    $this->Form->hidden('excludeLangTo', [
+                        'value' => '{{exclude_lang_to ? "yes" : ""}}',
+                    ]);
+                ?>
+
                 <?php
-                echo $this->Form->select(
-                    'langTo',
-                    $langsTo,
+                echo $this->element(
+                    'language_dropdown',
                     array(
+                        'name' => 'langTo',
                         'id' => 'ActivityLangTo',
-                        'value' => $notTranslatedInto,
-                        'class' => 'language-selector',
-                        "empty" => false
-                    ),
-                    false
+                        'languages' => $langsTo,
+                        'initialSelection' => $notTranslatedInto,
+                        'alwaysShowAll' => true,
+                        /* @translators: option used in language selection dropdown
+                           for "Not directly translated into", on Translate sentences page */
+                        'placeholder' => __x('not-directly-translated-into', 'Any language'),
+                        'onSelectedLanguageChange' => 'exclude_lang_to = true',
+                    )
                 );
                 ?>
                 <p class="hint">

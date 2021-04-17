@@ -189,33 +189,22 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-     * Return array of languages, with "None" and "All languages" options.
+     * Return array of languages, with "None" option.
      *
+     * @param $withAllLanguages Include the 'All languages' option too
      * @return array
      */
-    public function languagesArrayShowTranslationsIn()
+    public function languagesArrayShowTranslationsIn($withAllLanguages = true)
     {
         $languages = $this->onlyLanguagesArray();
         $options = [
             /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
             'none' => __('None'),
-            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
-            'und' => __x('show-translations-in', 'All languages')
         ];
-
-        return $options + $languages;
-    }
-
-
-    /**
-     * Return array of languages with, "None" option.
-     *
-     * @return array
-     */
-    public function languagesArrayWithNone()
-    {
-        $languages = $this->onlyLanguagesArray();
-        $options = ['none' => __('None')];
+        if ($withAllLanguages) {
+            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
+            $options['und'] = __x('show-translations-in', 'All languages');
+        }
 
         return $options + $languages;
     }
@@ -224,30 +213,16 @@ class LanguagesHelper extends AppHelper
     /**
      * Return array of languages in which you can search.
      *
-     * @param string $anyOption String for option "Any language" (und)
+     * @param string $anyOption (optional) String for option "Any language" (und)
      * @return array
      */
     public function getSearchableLanguagesArray($anyOption = null)
     {
         $languages = $this->onlyLanguagesArray();
-        /* @translators: option used in language selection dropdowns in other places */
-        $anyOption = $anyOption ?? __('Any language');
-        $options = array('und' => $anyOption);
-        
-        return $options + $languages;
-    }
-
-    /**
-     * Return number of languages
-     *
-     * @return int
-     */
-
-    public function getNumberOfLanguages()
-    {
-        $languages = $this->onlyLanguagesArray();
-        $numberOfLanguages = count($languages);
-        return $numberOfLanguages;
+        if (!is_null($anyOption)) {
+            $languages = array('und' => $anyOption) + $languages;
+        }
+        return $languages;
     }
 
     /**
@@ -406,5 +381,12 @@ class LanguagesHelper extends AppHelper
         );
 
         return $levelDivContainer;
+    }
+
+    public function getInterfaceLanguage()
+    {
+        $langCode = Configure::read('Config.language');
+        $UiLangs = LanguagesLib::activeUiLanguages();
+        return $UiLangs[$langCode][0];
     }
 }

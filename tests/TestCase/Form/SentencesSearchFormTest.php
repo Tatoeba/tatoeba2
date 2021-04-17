@@ -27,8 +27,8 @@ class SentencesSearchFormTest extends TestCase
     public function testDefaultData() {
         $expected = [
             'query' => '',
-            'to' => 'und',
-            'from' => 'und',
+            'to' => '',
+            'from' => '',
             'unapproved' => 'no',
             'orphans' => 'no',
             'user' => '',
@@ -37,7 +37,7 @@ class SentencesSearchFormTest extends TestCase
             'list' => '',
             'native' => '',
             'trans_filter' => 'limit',
-            'trans_to' => 'und',
+            'trans_to' => '',
             'trans_link' => '',
             'trans_has_audio' => '',
             'trans_unapproved' => '',
@@ -45,6 +45,7 @@ class SentencesSearchFormTest extends TestCase
             'trans_user' => '',
             'sort' => 'relevance',
             'sort_reverse' => '',
+            'rand_seed' => '',
         ];
         $this->Form->setData([]);
         $this->assertEquals($expected, $this->Form->getData());
@@ -74,14 +75,14 @@ class SentencesSearchFormTest extends TestCase
             ],
 
             [ 'from', 'ain',         ['filterByLanguage', 'ain'        ], 'ain' ],
-            [ 'from', '',            ['filterByLanguage', ''           ], 'und' ],
-            [ 'from', 'invalidlang', ['filterByLanguage', 'invalidlang'], 'und' ],
+            [ 'from', '',            ['filterByLanguage', ''           ], '' ],
+            [ 'from', 'invalidlang', ['filterByLanguage', 'invalidlang'], '' ],
 
-            [ 'to', 'und',     [], 'und' ],
+            [ 'to', 'und',     [], '' ],
             [ 'to', 'none',    [], 'none' ],
             [ 'to', 'fra',     [], 'fra' ],
-            [ 'to', '',        [], 'und' ],
-            [ 'to', 'invalid', [], 'und' ],
+            [ 'to', '',        [], '' ],
+            [ 'to', 'invalid', [], '' ],
 
             [ 'unapproved', 'yes',     ['filterByCorrectness', true],  'yes' ],
             [ 'unapproved', 'no',      ['filterByCorrectness', false], 'no'  ],
@@ -120,8 +121,8 @@ class SentencesSearchFormTest extends TestCase
             [ 'trans_filter', 'invalidvalue', ['filterByTranslation'], 'limit' ],
 
             [ 'trans_to', 'ain',     ['filterByTranslationLanguage', 'ain'    ], 'ain' ],
-            [ 'trans_to', '',        ['filterByTranslationLanguage', ''       ], 'und' ],
-            [ 'trans_to', 'invalid', ['filterByTranslationLanguage', 'invalid'], 'und' ],
+            [ 'trans_to', '',        ['filterByTranslationLanguage', ''       ], '' ],
+            [ 'trans_to', 'invalid', ['filterByTranslationLanguage', 'invalid'], '' ],
 
             [ 'trans_link', 'direct',   ['filterByTranslationLink', 'direct'],  'direct'],
             [ 'trans_link', 'indirect', ['filterByTranslationLink', 'indirect'],'indirect'],
@@ -156,6 +157,13 @@ class SentencesSearchFormTest extends TestCase
             [ 'sort_reverse', 'yes',     ['reverseSort', true],  'yes' ],
             [ 'sort_reverse', '',        ['reverseSort', false], '' ],
             [ 'sort_reverse', 'invalid', ['reverseSort', false], '' ],
+
+            [ 'rand_seed', 'xrgU',          ['setRandSeed',  1358022], 'xrgU' ],
+            [ 'rand_seed', '3-_a',          ['setRandSeed', 14348255], '3-_a' ],
+            [ 'rand_seed', '',              ['setRandSeed',     null], ''     ],
+            [ 'rand_seed', 'longer string', ['setRandSeed', 14715286], 'long' ],
+            [ 'rand_seed', 'sml',           ['setRandSeed',     null], ''     ],
+            [ 'rand_seed', '.!"@',          ['setRandSeed',     null], ''     ],
         ];
     }
 
@@ -197,21 +205,21 @@ class SentencesSearchFormTest extends TestCase
         $this->Form->setData(['to' => 'none']);
         $result = $this->Form->getData();
         $this->assertEquals('none', $result['to']);
-        $this->assertEquals('und',  $result['trans_to']);
+        $this->assertEquals('',  $result['trans_to']);
     }
 
     public function testSearchParamToIsCopiedToTransTo_empty() {
         $this->Form->setData(['to' => '']);
         $result = $this->Form->getData();
-        $this->assertEquals('und', $result['to']);
-        $this->assertEquals('und', $result['trans_to']);
+        $this->assertEquals('', $result['to']);
+        $this->assertEquals('', $result['trans_to']);
     }
 
     public function testSearchParamToIsCopiedToTransTo_invalid() {
         $this->Form->setData(['to' => 'invalid']);
         $result = $this->Form->getData();
-        $this->assertEquals('und', $result['to']);
-        $this->assertEquals('und', $result['trans_to']);
+        $this->assertEquals('', $result['to']);
+        $this->assertEquals('', $result['trans_to']);
     }
 
     public function testTransFilter_limitWithoutTransFilters() {
@@ -249,6 +257,19 @@ class SentencesSearchFormTest extends TestCase
         $this->assertMethodCalledWith($this->Search, 'sort', ['', 'relevance']);
         $this->Form->setData(['sort' => '']);
         $this->assertEquals('relevance', $this->Form->getData()['sort']);
+    }
+
+    public function testGenerateRandomSeedIfNeeded_unneeded() {
+        $this->Form->setData(['sort' => 'created']);
+        $this->assertFalse($this->Form->generateRandomSeedIfNeeded());
+        $this->assertEmpty($this->Form->getData()['rand_seed']);
+    }
+
+    public function testGenerateRandomSeedIfNeeded_needed() {
+        mt_srand(42);
+        $this->Form->setData(['sort' => 'random']);
+        $this->assertTrue($this->Form->generateRandomSeedIfNeeded());
+        $this->assertEquals('Ztzh', $this->Form->getData()['rand_seed']);
     }
 
     public function testGetSearchableLists_asGuest() {
@@ -348,7 +369,7 @@ class SentencesSearchFormTest extends TestCase
             [true, null]
         );
 
-        $this->Form->setData(['from' => 'und', 'native' => 'yes']);
+        $this->Form->setData(['from' => '', 'native' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
         $this->assertCount(1, $this->Form->getIgnoredFields());
@@ -384,5 +405,33 @@ class SentencesSearchFormTest extends TestCase
         $result = $this->Form->asSphinx();
 
         $this->assertEquals($stuff, $result);
+    }
+
+    private function assertSameKeyOrder(array $expected, array $tested) {
+        reset($expected);
+        reset($tested);
+        while (!is_null(key($expected))) {
+            $this->assertEquals(key($expected), key($tested));
+            next($tested);
+            next($expected);
+        }
+    }
+
+    public function testDataOrderIsPreserved() {
+        $expected = [
+            'native' => 'yes',
+            'user' => '',
+            'from' => '',
+            'orphans' => 'no',
+            'tags' => '',
+            'query' => 'order should be preserved',
+            'unapproved' => 'no',
+            'has_audio' => '',
+            'to' => '',
+            'list' => '',
+        ];
+        $this->Form->setData($expected);
+        $retreived = $this->Form->getData();
+        $this->assertSameKeyOrder($expected, $retreived);
     }
 }
