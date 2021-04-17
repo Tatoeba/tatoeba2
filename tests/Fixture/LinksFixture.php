@@ -23,8 +23,8 @@ class LinksFixture extends TestFixture
         'distance' => ['type' => 'smallinteger', 'length' => 2, 'unsigned' => false, 'null' => false, 'default' => '1', 'comment' => '', 'precision' => null],
         '_indexes' => [
             'translation_id' => ['type' => 'index', 'columns' => ['translation_id'], 'length' => []],
-            'sentence_lang' => ['type' => 'index', 'columns' => ['sentence_lang'], 'length' => []],
             'translation_lang' => ['type' => 'index', 'columns' => ['translation_lang'], 'length' => []],
+            'sentence_lang_translation_lang_idx' => ['type' => 'index', 'columns' => ['sentence_lang', 'translation_lang'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
