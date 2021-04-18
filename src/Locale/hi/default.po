@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Anushka K <anukanabar15@gmail.com>, 2021
 # Dhruv Sharma <sharmadhruv741@gmail.com>, 2020
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Mohsin Ali <mohsin13089@gmail.com>, 2020
@@ -13,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-25 17:43+0100\n"
-"PO-Revision-Date: 2021-03-25 19:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-14 16:26+0000\n"
+"Last-Translator: Anushka K <anukanabar15@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/tatoeba/tatoeba_website/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -789,7 +790,7 @@ msgstr "एकाधिक अनुवाद"
 msgid ""
 "If you feel there are several possible translations, you can add several "
 "translations in the same language. "
-msgstr ""
+msgstr "अगर आपको लगता है की काफी अनुवाद संभव हैं, तो आप एक ही भाषा में कई अनुवाद कर सकते हैं। "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L90
 msgid ""
@@ -1244,7 +1245,7 @@ msgstr ""
 #. button to accept new terms of use
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
 msgid "Accept and close"
-msgstr ""
+msgstr "स्वीकार करें और बंद करें "
 
 #. button to close the blue announcement banner
 #. / button to close the announcement about the new design (verb)
@@ -1322,11 +1323,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L43
 msgid "Sentence language:"
-msgstr ""
+msgstr "वाक्य की भाषा:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L61
 msgid "Translation language:"
-msgstr ""
+msgstr "अनुवाद की भाषा:"
 
 #. button to download all sentences in language A along
 #. with all translations in a language B (verb)
@@ -1892,7 +1893,7 @@ msgstr ""
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
 msgid "0 sentences"
-msgstr ""
+msgstr "0 वाक्य "
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
@@ -2686,7 +2687,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L96
 msgid "Join our chatroom"
-msgstr ""
+msgstr "चैटरूम जॉइन कीजिये "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L101
 msgid ""
@@ -3161,7 +3162,7 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr ""
+msgstr "हालांकि ततोयबा में काफी वाक्य हैं, इसमें बहुत सारे शब्द सम्मिलित नहीं हैं। इसीलिए हम आपको नए शब्द वाले वाक्य डालने के लिए प्रोत्साहित करते हैं, भले ही आपको इन वाक्यों को भिन्न भाषाओँ में अनुवाद करना न आता हो। "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L180
 msgid "Translating sentences"
@@ -3206,7 +3207,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr ""
+msgstr "जब आप एक वाक्य बनाते हैं, यह वाक्य आपका होता है - सिर्फ आप इसे संपादित कर सकते हैं। लेकिन ततोयबा के बहुत वाक्य एक 'तनाका' नामक जापानी-अंग्रेजी कोष से आते हैं। इन वाक्यों के कोई मालिक नहीं क्योंकि इन्हे ततोयबा के बाहर एकत्र किया गया है। "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L243
 msgid ""
@@ -3305,7 +3306,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L52
 msgid "We are sorry for the inconvenience."
-msgstr ""
+msgstr "असुविधा के लिए हमें खेद है। "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L6
 msgid ""
@@ -3371,7 +3372,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L51
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "कृपया प्रतीक्षा करें जब तक आप और संदेश भेज सकें। "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L68
 msgid "You have sent one message today."
@@ -4066,7 +4067,7 @@ msgstr ""
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
 msgid "Oldest sentences first"
-msgstr ""
+msgstr "सबसे पुराने वाक्य पहले"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L74
