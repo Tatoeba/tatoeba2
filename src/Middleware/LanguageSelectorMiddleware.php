@@ -40,12 +40,7 @@ class LanguageSelectorMiddleware
                     $this->unalias($langInUrl) :
                     'eng';
         } else {
-            /* The following line is for backward compatibility
-             * with old cookies and can be replaced with
-             * $lang = $request->getCookie('interface_language');
-             * one month (i.e. the expiration time of the old cookie)
-             * after this PR is deployed. */
-            $lang = $this->getCookieLanguage($request);
+            $lang = $request->getCookie('interface_language');
             $lang = isset($this->allLanguages[$lang]) ?
                     $this->unalias($lang) :
                     null;
@@ -80,36 +75,6 @@ class LanguageSelectorMiddleware
         ));
         $request = $request->withParam('lang', $lang);
         return $next($request, $response);
-    }
-
-    /**
-     * Helper function to get cookie value for the
-     * interface language
-     *
-     * Since CakePHP 3.5 the CookieComponent is deprecated
-     * and one should get the cookie from the request object.
-     * (The CookieComponent wouldn't be available here
-     * (i.e. inside a middleware) anyways.)
-     * But the way how the cookie is written and read using
-     * the component differs from the new way and so
-     * we should rather get rid of the namespaced
-     * 'CakeCookie.interfaceLanguage' and just use
-     * 'interface_language' for the cookie name.
-     *
-     * @param ServerRequest $request
-     *
-     * @return string|null
-     */
-    function getCookieLanguage($request) {
-        $lang = $request->getCookie('interface_language');
-        if (!$lang) {
-            $cookie = $request->getCookieCollection()->get('CakeCookie');
-            $lang = $cookie ? $cookie->read('interfaceLanguage') : null;
-        }
-        if (!$lang) {
-            $lang = $request->getCookie('CakeCookie[interfaceLanguage]');
-        }
-        return $lang;
     }
 
      /**

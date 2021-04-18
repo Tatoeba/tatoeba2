@@ -83,10 +83,6 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     public function withCookieProvider() {
         return [
             // URL, cookie, redirect-URL, status
-            'old cookie 1' =>
-            ['/eng/index', ['CakeCookie' => '{"interfaceLanguage":"jpn"}'], '/jpn/index', 302],
-            'old cookie 2' =>
-            ['/eng/index', ['CakeCookie[interfaceLanguage]' => 'jpn'], '/jpn/index', 302],
             'new cookie' =>
             ['/eng/index', ['interface_language' => 'jpn'], '/jpn/index', 302],
             'no redirect' =>
