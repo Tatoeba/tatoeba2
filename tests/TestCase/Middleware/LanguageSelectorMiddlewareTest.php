@@ -22,11 +22,14 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         Cache::disable();
         $this->oldConfig = Configure::read();
         Configure::write('UI.languages', [
-            'chi' => 'cmn',
-            'cmn' => ['中文', 'Hans'],
-            'eng' => ['English', null],
-            'ita' => null,
-            'jpn' => ['日本語', null],
+            'chi' => 'zh-cn',
+            'cmn' => 'zh-cn',
+            'zh-cn' => ['中文', 'zh', 'zh-hans-cn'],
+            'eng' => 'en',
+            'en' => ['English'],
+            'it' => null,
+            'jpn' => 'ja',
+            'ja' => ['日本語'],
         ]);
         $this->middleware = new LanguageSelectorMiddleware();
         $this->nextCallback = function ($req, $res) { return $res; };
@@ -52,23 +55,23 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     }
 
     public function testMiddleware_setsLocaleAndConfig() {
-        $request = $this->createRequest('/jpn/some/path', 'jpn', 'GET');
+        $request = $this->createRequest('/ja/some/path', 'ja', 'GET');
         $response = ($this->middleware)($request, new Response(), $this->nextCallback);
         $this->assertEquals('ja', I18n::getLocale());
-        $this->assertEquals('jpn', Configure::read('Config.language'));
     }
 
     public function simpleRedirectsProvider() {
         return [
             // URL, lang parameter, redirect-URL, status
-            'root' => ['/', '', '/eng/', 301],
-            'only action' => ['/about', '', '/eng/about', 301],
-            'controller + action' => ['/sentences/index', '', '/eng/sentences/index', 301],
+            'root' => ['/', '', '/en/', 301],
+            'only action' => ['/about', '', '/en/about', 301],
+            'controller + action' => ['/sentences/index', '', '/en/sentences/index', 301],
             'complete URL with parameters and query string' =>
-            ['/sentences/show/123?foo=bar', '', '/eng/sentences/show/123?foo=bar', 301],
-            'old language in URL' => ['/chi/index', 'chi', '/cmn/index', 302],
-            'unmaintained language in URL' => ['/ita/index', 'ita', '/eng/index', 302],
-            'no redirect' => ['/eng', 'eng', '', 200],
+            ['/sentences/show/123?foo=bar', '', '/en/sentences/show/123?foo=bar', 301],
+            'old iso-2 language in URL' => ['/chi/index', 'chi', '/zh-cn/index', 302],
+            'old iso-3 language in URL' => ['/cmn/index', 'cmn', '/zh-cn/index', 302],
+            'unmaintained language in URL' => ['/it/index', 'it', '/en/index', 302],
+            'no redirect' => ['/en', 'en', '', 200],
         ];
     }
 
@@ -84,17 +87,19 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         return [
             // URL, cookie, redirect-URL, status
             'new cookie' =>
-            ['/eng/index', ['interface_language' => 'jpn'], '/jpn/index', 302],
+            ['/en/index', ['interface_language' => 'ja'], '/ja/index', 302],
             'no redirect' =>
-            ['/eng/index', ['interface_language' => 'eng'], '', 200],
+            ['/en/index', ['interface_language' => 'en'], '', 200],
             'wrong language in cookie' =>
-            ['/jpn/index', ['interface_language' => 'invalid'], '', 200],
+            ['/ja/index', ['interface_language' => 'invalid'], '', 200],
             'unsupported language in cookie' =>
-            ['/eng/index', ['interface_language' => 'deu'], '', 200],
-            'old language in cookie' =>
-            ['/eng/index', ['interface_language' => 'chi'], '/cmn/index', 302],
+            ['/en/index', ['interface_language' => 'de'], '', 200],
+            'old iso-2 language in cookie' =>
+            ['/en/index', ['interface_language' => 'chi'], '/zh-cn/index', 302],
+            'old iso-3 language in cookie' =>
+            ['/en/index', ['interface_language' => 'jpn'], '/ja/index', 302],
             'unmaintained language in cookie' =>
-            ['/eng/index', ['interface_language' => 'ita'], '', 200],
+            ['/en/index', ['interface_language' => 'it'], '', 200],
         ];
     }
 
@@ -110,17 +115,17 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     public function withAcceptLanguageProvider() {
         return [
             // URL, header, redirect-URL, status
-            'simple header' => ['/eng/index', 'zh', '/cmn/index', 302],
-            'more specific locale' => ['/eng/index', 'zh-Hans-CN', '/cmn/index', 302],
+            'simple header' => ['/en/index', 'ja', '/ja/index', 302],
+            'more specific locale' => ['/en/index', 'zh-Hans-CN', '/zh-cn/index', 302],
             'several locales, no redirect' =>
-            ['/eng/index', 'en, fr, zh', null, 200],
+            ['/en/index', 'en, fr, zh', null, 200],
             'several locales with redirect' =>
-            ['/eng/index', 'fr, zh, en', '/cmn/index', 302],
-            'with qualifiers, no redirect' => ['/eng/index', 'fr;q=0.5,zh;q=0.1,en;q=0.2', '', 200],
-            'with qualifiers, redirect' => ['/eng/index', 'fr;q=0.5,zh;q=0.3,en;q=0.2', '/cmn/index', 302],
-            'invalid header' => ['/jpn/index', 'invalid', '', 200],
-            'unsupported languages in header' => ['/eng/index', 'de,fr,ru', '', 200],
-            'unmaintained language in header' => ['/eng/index', 'it', '', 200],
+            ['/en/index', 'fr, zh, en', '/zh-cn/index', 302],
+            'with qualifiers, no redirect' => ['/en/index', 'fr;q=0.5,zh;q=0.1,en;q=0.2', '', 200],
+            'with qualifiers, redirect' => ['/en/index', 'fr;q=0.5,zh;q=0.3,en;q=0.2', '/zh-cn/index', 302],
+            'invalid header' => ['/ja/index', 'invalid', '', 200],
+            'unsupported languages in header' => ['/en/index', 'de,fr,ru', '', 200],
+            'unmaintained language in header' => ['/en/index', 'it', '', 200],
         ];
     }
 
@@ -134,27 +139,27 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     }
 
     public function testMiddleware_cookieBeatsAll() {
-        $request = $this->createRequest('/jpn/index', 'jpn', 'GET')
+        $request = $this->createRequest('/ja/index', 'ja', 'GET')
                         ->withHeader('Accept-Language', 'pt-BR')
-                        ->withCookieParams(['interface_language' => 'cmn']);
-        $this->assertResponse($request, '/cmn/index', 302);
+                        ->withCookieParams(['interface_language' => 'zh-cn']);
+        $this->assertResponse($request, '/zh-cn/index', 302);
     }
 
     public function testMiddleware_setsCookie() {
-        foreach(['', 'jpn'] as $langPrefix) {
-            $request = $this->createRequest("$langPrefix/index", 'jpn', 'GET');
+        foreach(['', 'ja'] as $langPrefix) {
+            $request = $this->createRequest("$langPrefix/index", 'ja', 'GET');
             $response = ($this->middleware)($request, new Response(), $this->nextCallback);
-            $this->assertEquals('jpn', $response->getCookie('interface_language')['value']);
+            $this->assertEquals('ja', $response->getCookie('interface_language')['value']);
         }
     }
 
     public function languageProvider () {
         return [
-            ['', 'eng'],
-            ['chi', 'cmn'],
-            ['cmn', 'cmn'],
-            ['ita', 'eng'],
-            ['invalid', 'eng'],
+            ['', 'en'],
+            ['chi', 'zh-cn'],
+            ['cmn', 'zh-cn'],
+            ['it', 'en'],
+            ['invalid', 'en'],
         ];
     }
 
@@ -172,7 +177,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
             }
             $response = ($this->middleware)($request, new Response(), $this->nextCallback);
             $this->assertEquals(200, $response->getStatusCode());
-            $this->assertEquals($expectedLang, Configure::read('Config.language'));
+            $this->assertEquals($expectedLang, I18n::getLocale());
         }
     }
 

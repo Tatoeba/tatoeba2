@@ -38,7 +38,7 @@ class LanguageSelectorMiddleware
             // requests is valid.
             $lang = isset($this->allLanguages[$langInUrl]) ?
                     $this->unalias($langInUrl) :
-                    'eng';
+                    'en';
         } else {
             $lang = $request->getCookie('interface_language');
             $lang = isset($this->allLanguages[$lang]) ?
@@ -48,7 +48,7 @@ class LanguageSelectorMiddleware
                 $lang = $this->getBrowserLanguage($request->acceptLanguage());
             }
             if (!$lang) {
-                $lang = $this->unalias($langInUrl) ?: 'eng';
+                $lang = $this->unalias($langInUrl) ?: 'en';
             }
 
             if ($langInUrl !== $lang) {
@@ -64,9 +64,7 @@ class LanguageSelectorMiddleware
             }
         }
 
-        Configure::write('Config.language', $lang);
-        $locale = locale_parse(LanguagesLib::languageTag($lang));
-        I18n::setLocale($locale['language']);
+        I18n::setLocale($lang);
 
         $response = $response->withCookie(new Cookie(
             'interface_language',
@@ -84,17 +82,20 @@ class LanguageSelectorMiddleware
      * @return string|null
      */
     private function getBrowserLanguage($browserLanguages) {
-        $configUiLanguages = array_keys(LanguagesLib::activeUiLanguages());
-        $supportedLanguages = array();
-        foreach ($configUiLanguages as $code) {
-            $browserCompatibleCode = LanguagesLib::languageTag($code);
-            $supportedLanguages[$browserCompatibleCode] = $code;
+        $supportedLanguages = LanguagesLib::activeUiLanguages();
+        $localeVariants = [];
+        foreach ($supportedLanguages as $locale => $langDef) {
+            unset($langDef[0]); // skip language name
+            foreach ($langDef as $alias) {
+                $localeVariants[$alias] = $locale;
+            }
         }
 
         foreach ($browserLanguages as $browserLang) {
-            $lang = explode('-', $browserLang)[0];
-            if (isset($supportedLanguages[$lang])) {
-                return $supportedLanguages[$lang];
+            if (isset($supportedLanguages[$browserLang])) {
+                return $browserLang;
+            } elseif (isset($localeVariants[$browserLang])) {
+                return $localeVariants[$browserLang];
             }
         }
         return null;

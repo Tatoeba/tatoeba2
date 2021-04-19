@@ -169,82 +169,151 @@ return [
     /**
      * Languages of the interface.
      *
-     * UI.languages is a mapping from language codes to language information.
-     * Usually the language information is a two-item array:
+     * UI.languages is a mapping from URL language identifiers to language
+     * information. The URL language identifiers must identify the language by
+     * following BCP 47 (with the additional restriction of being lowercase).
+     *
+     * The language information can be either:
+     * - a string => redirects all requests to different language (only one
+     *               level of redirection is allowed)
+     * - an array containing:
      *   [0] The name of the language. The name must be in the
      *       language itself, so that people who speak that language can
      *       recognize it.
-     *   [1] Optional region or script, as explained in
-     *       https://www.w3.org/International/articles/language-tags/
-     *       In most cases, you can set this to null.
-     * Old language codes can be redirected to an other language.
-     * For disabling an unmaintained language one should set it to "null".
+     *   [other keys] Locales that should match the language if sent by the
+     *                browser in the Accept-Language HTTP header (the language
+     *                identifier itself is also considered as a valid
+     *                Accept-Language match).
+     * - null => Convenience alias for 'en' (redirect to English; used for
+     *           disabling unmaintained languages)
      */
     'UI' => [
         'languages' => [
-            'ara' => ['العربية', null],
-            'aze' => ['Azərbaycanca', null],
-            'bal' => ['بلۏچی', null],
-            'bel' => ['Беларуская', null],
-            'ben' => ['বাংলা', null],
-            'bre' => ['Brezhoneg', null],
-            'bul' => ['Български', null],
-            'cat' => ['Català', null],
-            'ces' => ['Čeština', null],
-            'chi' => 'cmn',
-            'cmn' => ['中文', 'Hans'],
-            'cym' => ['Cymraeg', null],
-            'dan' => ['Dansk', null],
-            'deu' => ['Deutsch', null],
-            'ell' => ['Ελληνικά', null],
-            'eng' => ['English', null],
-            'epo' => ['Esperanto', null],
-            'est' => ['Eesti', null],
-            'eus' => ['Euskara', null],
-            'fil' => ['Filipino', null],
-            'fin' => ['Suomi', null],
-            'fra' => ['Français', null],
-            'fre' => 'fra',
-            'fry' => ['Frysk', null],
-            'glg' => ['Galego', null],
-            'gos' => ['Grunnegs', null],
-            'gre' => 'ell',
-            'hin' => ['हिन्दी', null],
-            'hrv' => ['Hrvatski', null],
-            'hun' => ['Magyar', null],
-            'ina' => ['Interlingua', null],
-            'ind' => ['Bahasa Indonesia', null],
-            'ita' => ['Italiano', null],
-            'jbo' => ['Lojban', null],
-            'jpn' => ['日本語', null],
-            'kab' => ['Taqbaylit', null],
-            'kat' => ['ქართული', null],
-            'kor' => ['한국어', null],
-            'kur' => ['Kurdî', null],
-            'lat' => ['Latina', null],
-            'lit' => ['Lietuvių', null],
-            'mar' => ['मराठी', null],
-            'nds' => ['Plattdüütsch', null],
-            'nld' => ['Nederlands', null],
-            'oci' => ['Occitan', null],
-            'pol' => ['Polski', null],
-            'por' => ['Português (Brasil)', 'BR'],
+            // Arabic
+            'ar' => ['العربية'], 'ara' => 'ar',
+            // Azerbaijani
+            'az' => ['Azərbaycanca'], 'aze' => 'az',
+            // Baluchi
+            'bal' => ['بلۏچی'],
+            // Basque
+            'eu' => ['Euskara'], 'eus' => 'eu',
+            // Belarusian
+            'be' => ['Беларуская'], 'bel' => 'be',
+            // Bengali
+            'bn' => ['বাংলা'], 'ben' => 'bn',
+            // Bulgarian
+            'bg' => ['Български'], 'bul' => 'bg',
+            // Breton
+            'br' => ['Brezhoneg'], 'bre' => 'br',
+            // Catalan
+            'ca' => ['Català'], 'cat' => 'ca',
+            // Chinese
+            'zh-cn' => ['中文（大陆简体）',
+                        'zh', 'zh-hans-cn', 'zh-mo', 'zh-hans-mo',
+                        'zh-my', 'zh-hans-my', 'zh-sg', 'zh-hans-sg'],
+            'chi' => 'zh-cn',
+            'cmn' => 'zh-cn',
+            'zh-tw' => ['中文（臺灣正體）', 'zh-hant-tw', 'zh-hk', 'zh-hant-hk'],
+            // Croatian
+            'hr' => ['Hrvatski'], 'hrv' => 'hr',
+            // Czech
+            'cs' => ['Čeština'], 'ces' => 'cs',
+            // Danish
+            'da' => ['Dansk'], 'dan' => 'da',
+            // Dutch
+            'nl' => ['Nederlands'], 'nld' => 'nl',
+            // German
+            'de' => ['Deutsch'], 'deu' => 'de',
+            // Greek
+            'el' => ['Ελληνικά'], 'ell' => 'el', 'gre' => 'el',
+            // English
+            'en' => ['English'], 'eng' => 'en',
+            // Esperanto
+            'eo' => ['Esperanto'], 'epo' => 'eo',
+            // Estonian
+            'et' => ['Eesti'], 'est' => 'et',
+            // Filipino
+            'fil' => ['Filipino'],
+            // Finnish
+            'fi' => ['Suomi'], 'fin' => 'fi',
+            // French
+            'fr' => ['Français'], 'fra' => 'fr', 'fre' => 'fr',
+            // Frisian
+            'fy' => ['Frysk'], 'fry' => 'fy',
+            // Galician
+            'gl' => ['Galego'], 'glg' => 'gl',
+            // Georgian
+            'ka' => ['ქართული'], 'kat' => 'ka',
+            // Gronings
+            'gos' => ['Grunnegs'],
+            // Hindi
+            'hi' => ['हिन्दी'], 'hin' => 'hi',
+            // Hungarian
+            'hu' => ['Magyar'], 'hun' => 'hu',
+            // Indonesian
+            'id' => ['Bahasa Indonesia'], 'ind' => 'id',
+            // Interlingua
+            'ia' => ['Interlingua'], 'ina' => 'ia',
+            // Italian
+            'it' => ['Italiano'], 'ita' => 'it',
+            // Japanese
+            'ja' => ['日本語'], 'jpn' => 'ja',
+            // Kabyle
+            'kab' => ['Taqbaylit'],
+            // Korean
+            'ko' => ['한국어'], 'kor' => 'ko',
+            // Kurdish
+            'ku' => ['Kurdî'], 'kur' => 'ku',
+            // Latin
+            'la' => ['Latina'], 'lat' => 'la',
+            // Lithuanian
+            'lt' => ['Lietuvių'], 'lit' => 'lt',
+            // Lojban
+            'jbo' => ['Lojban'],
+            // Low German (Low Saxon)
+            'nds' => ['Plattdüütsch'],
+            // Marathi
+            'mr' => ['मराठी'], 'mar' => 'mr',
+            // Malay
+            'ms' => ['Bahasa Melayu'], 'zsm' => 'ms',
+            // Occitan
+            'oc' => ['Occitan'], 'oci' => 'oc',
+            // Polish
+            'pl' => ['Polski'], 'pol' => 'pl',
+            // Portuguese
+            'pt-br' => ['Português (Brasil)', 'pt', 'pt-pt'],
+            'por' => 'pt-br',
             'pt_BR' => 'por',
-            'ron' => ['Română', null],
-            'rus' => ['Русский', null],
-            'slk' => ['Slovenčina', null],
-            'spa' => ['Español', null],
-            'srp' => ['српски', null],
-            'swe' => ['Svenska', null],
-            'tgl' => ['Tagalog', null],
-            'tuk' => ['Türkmen dili', null],
-            'tur' => ['Türkçe', null],
-            'uig' => ['ئۇيغۇرچە', null],
-            'ukr' => ['Українська', null],
-            'uzb' => ['Oʻzbekcha', null],
-            'vie' => ['Tiếng Việt', null],
-            'zsm' => ['Bahasa Melayu', null],
-            'zza' => ['Kirmancki', null],
+            // Romanian
+            'ro' => ['Română'], 'ron' => 'ro',
+            // Russian
+            'ru' => ['Русский'], 'rus' => 'ru',
+            // Serbian
+            'sr' => ['српски'], 'srp' => 'sr',
+            // Slovak
+            'sk' => ['Slovenčina'], 'slk' => 'sk',
+            // Spanish
+            'es' => ['Español'], 'spa' => 'es',
+            // Swedish
+            'sv' => ['Svenska'], 'swe' => 'sv',
+            // Tagalog
+            'tl' => ['Tagalog'], 'tgl' => 'tl',
+            // Turkish
+            'tr' => ['Türkçe'], 'tur' => 'tr',
+            // Turkmen
+            'tk' => ['Türkmen dili'], 'tuk' => 'tk',
+            // Ukrainian
+            'uk' => ['Українська'], 'ukr' => 'uk',
+            // Uyghur
+            'ug' => ['ئۇيغۇرچە'], 'uig' => 'ug',
+            // Uzbek
+            'uz' => ['Oʻzbekcha'],  'uzb' => 'uz',
+            // Vietnamese
+            'vi' => ['Tiếng Việt'], 'vie' => 'vi',
+            // Welsh
+            'cy' => ['Cymraeg'], 'cym' => 'cy',
+            // Zaza
+            'zza' => ['Kirmancki'],
         ],
     ],
 
