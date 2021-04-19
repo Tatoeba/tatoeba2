@@ -3,7 +3,6 @@ namespace App\Test\TestCase\View\Helper;
 
 use App\Model\CurrentUser;
 use App\View\Helper\LanguagesHelper;
-use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 use Cake\I18n\I18n;
@@ -105,11 +104,11 @@ class LanguagesHelperTest extends TestCase {
 	}
 
     function testGetInterfaceLanguage() {
-        $oldLang = Configure::read('Config.language');
-        Configure::write('Config.language', 'eng');
+        $oldLang = I18n::getLocale();
+        I18n::setLocale('eng');
         $this->assertEquals('English', $this->Languages->getInterfaceLanguage());
-        Configure::write('Config.language', 'fra');
+        I18n::setLocale('fra');
         $this->assertEquals('Français', $this->Languages->getInterfaceLanguage());
-        Configure::write('Config.language', $oldLang);
+        I18n::setLocale($oldLang);
     }
 }

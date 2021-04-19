@@ -26,9 +26,9 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
-$lang = Configure::read('Config.language');
-$htmlLang = LanguagesLib::languageTag($lang);
+$lang = I18n::getLocale();
 $htmlDir = LanguagesLib::getLanguageDirection($lang);
 
 $controller = $this->request->getParam("controller");
@@ -38,7 +38,7 @@ $action = $this->request->getParam("action");
 $isHomepage = $controller == 'pages' && $action == 'index';
 ?>
 <!DOCTYPE html>
-<html lang="<?= $htmlLang ?>" dir="<?= $htmlDir ?>">
+<html lang="<?= $lang ?>" dir="<?= $htmlDir ?>">
 <head>
     <?php echo $this->Html->charset(); ?>
     <title>

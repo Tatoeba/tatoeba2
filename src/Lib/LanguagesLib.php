@@ -46,6 +46,25 @@ class LanguagesLib
     }
 
     /**
+     * Extracts the language code from a locale and converts
+     * it to its ISO-639-3 equivalent code. If not there is
+     * no equivalent, the locale language code is returned.
+     *
+     * @param string $code    Locale
+     *
+     * @return string ISO-639-3 code or locale language
+     */
+    public static function locale_To_Iso639_3($code)
+    {
+        $hyphen = strpos($code, '-');
+        if ($hyphen !== false) {
+            $code = substr($code, 0, $hyphen);
+        }
+        $map = array_flip(self::get_Iso639_3_To_Iso639_1_Map());
+        return $map[$code] ?? $code;
+    }
+
+    /**
      * Returns Tatoeba's map from ISO-639-3 to ISO-639-1.
      */
     public static function get_Iso639_3_To_Iso639_1_Map() {
@@ -212,8 +231,8 @@ class LanguagesLib
 
     /**
      * Return array of languages in Tatoeba. Do not call this function too
-     * soon in the CakePHP process, or Configure::read('Config.language')
-     * won't be set and it will defeat the purpose of the memoizer $languages,
+     * soon in the CakePHP process, or I18n::setLocale() won't be called
+     * yet and it will defeat the purpose of the memoizer $languages,
      * hitting performance down.
      *
      * @return array
@@ -666,9 +685,10 @@ class LanguagesLib
     /**
      * Get the direction (right to left or left to right) of a language
      *
-     * @param string $lang ISO-639-3 code
+     * @param string $lang ISO-639-3 code or ISO-639-1 code or locale
      *
      * @return string "rtl" (right to left) or "ltr" (left to right)
+     *                or "auto" (depends on used script)
      */
     public static function getLanguageDirection($lang) {
 
@@ -714,6 +734,8 @@ class LanguagesLib
             "qxq",
             "klj",
         );
+
+        $lang = self::locale_To_Iso639_3($lang);
 
         if (in_array($lang, $rightToLeftLangs)) {
             $direction = "rtl";

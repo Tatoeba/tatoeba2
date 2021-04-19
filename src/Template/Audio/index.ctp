@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
 if (isset($lang)){
     $title = format(
@@ -34,7 +34,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             [ 'stats' => $stats ],
             [ 'cache' => [
                 'config' => 'stats',
-                'key' => 'audio_stats_'.Configure::read('Config.language'),
+                'key' => 'audio_stats_'.I18n::getLocale(),
             ]]
     ); ?>
 </div>

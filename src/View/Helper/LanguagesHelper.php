@@ -29,7 +29,7 @@ namespace App\View\Helper;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
 use App\Model\Entity\Language;
 use App\Model\Entity\LanguageNameTrait;
 
@@ -55,8 +55,7 @@ class LanguagesHelper extends AppHelper
     public function localizedAsort(&$array)
     {
         if (class_exists('Collator')) {
-            $isoLang = Configure::read('Config.language');
-            $coll = new \Collator($isoLang);
+            $coll = new \Collator(I18n::getLocale());
             $coll->asort($array);
         } else {
             asort($array);
@@ -385,7 +384,7 @@ class LanguagesHelper extends AppHelper
 
     public function getInterfaceLanguage()
     {
-        $langCode = Configure::read('Config.language');
+        $langCode = I18n::getLocale();
         $UiLangs = LanguagesLib::activeUiLanguages();
         return $UiLangs[$langCode][0];
     }
