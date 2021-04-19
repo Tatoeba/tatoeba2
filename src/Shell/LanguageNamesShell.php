@@ -21,7 +21,6 @@ namespace App\Shell;
 use App\Lib\LanguagesLib;
 use Cake\Console\Shell;
 use Cake\I18n\I18n;
-use Locale;
 
 class LanguageNamesShell extends Shell {
 

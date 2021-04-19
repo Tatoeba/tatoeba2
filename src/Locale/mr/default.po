@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-25 17:43+0100\n"
-"PO-Revision-Date: 2021-03-25 19:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-18 07:44+0000\n"
+"Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,11 +241,11 @@ msgid ""
 "To start things off, we encourage you to read our <a href='{url}'>Quick "
 "Start Guide</a>. If you want to read it later, you will find the link at the"
 " bottom of any page on the website."
-msgstr ""
+msgstr "सुरुवात करण्यास, आम्ही तुम्हाला <a href='{url}'>झटपट मार्गदर्शिका</a> वाचण्यास प्रोत्साहित करतो. तुम्ही ही नंतर वाचू इच्छित असाल, तर तिची लिंक या संकेतस्थळाच्या कोणत्याही पानाच्या तळाला सापडेल."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L343
 msgid "We hope you'll enjoy your time here with us!"
-msgstr ""
+msgstr "आमच्यासोबत घालवलेल्या वेळेचा आपण आनंद घ्याल अशी आम्हाला आशा आहे!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L354
 msgid "Please fix the form errors."
@@ -483,12 +483,12 @@ msgstr "वाक्याची आयडी [टॅब] वाक्याच�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/PairsExporter.php#L116
 msgid "Sentence pairs in {language1}-{language2}"
-msgstr ""
+msgstr "{language1}-{language2} यांमध्ये वाक्यांच्या जोड्या "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/PairsExporter.php#L123
 msgid ""
 "Sentence id [tab] Sentence text [tab] Translation id [tab] Translation text"
-msgstr ""
+msgstr "वाक्याची आय.डी. [टॅब] वाक्याचे मजकूर [टॅब] भाषांतराची आय.डी. [टॅब] भाषांतराचे मजकूर"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
@@ -1297,16 +1297,16 @@ msgstr[1] "{n}&nbsp;वाक्ये"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L18
 msgid "Custom exports"
-msgstr ""
+msgstr "सानुकूल निर्यात"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L29
 msgid "Sentence pairs"
-msgstr ""
+msgstr "वाक्यांच्या जोड्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L25
 msgid "Use this tool to generate and download customized exports on demand."
-msgstr ""
+msgstr "या उपकरणाच्या वापराने आपण मागणीनुसार सानुकूल निर्यात निर्माण व डाउनलोड करू शकता."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L31
 msgid "Download all sentences in language A with translations in language B"
@@ -1330,7 +1330,7 @@ msgstr "भाषांतराची भाषा:"
 #. with all translations in a language B (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L79
 msgid "Download sentence pairs"
-msgstr ""
+msgstr "वाक्यांच्या जोड्या डाउनलोड करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export_download_button.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
@@ -2939,7 +2939,7 @@ msgstr "प्रश्न किंवा विनंत्या असती
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L190
 msgid "Weekly exports"
-msgstr ""
+msgstr "साप्ताहिक निर्यात"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L198
 msgid ""
@@ -2967,7 +2967,7 @@ msgstr "प्रत्येक वाक्यासाठी अधिक र
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L265
 msgid "Original and Translated Sentences"
-msgstr ""
+msgstr "मूळची आणि भाषांतरित वाक्ये"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L274
 msgid ""
@@ -2977,16 +2977,16 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L278
 msgid "zero: The sentence is original, not a translation of another."
-msgstr ""
+msgstr "शून्य: हे वाक्य मूळचे आहे, अर्थात, दुसर्‍या वाक्याचे भाषांतर नव्हे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L279
 msgid ""
 "greater than zero: The id of the sentence from which it was translated."
-msgstr ""
+msgstr "शून्यापेक्षा अधिक: ज्या वाक्यापासून भाषांतर केले त्या वाक्याची आई.डी."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L280
 msgid "\\N: Unknown (rare)."
-msgstr ""
+msgstr "\\N: अज्ञात (दुर्मिळ)."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L291
