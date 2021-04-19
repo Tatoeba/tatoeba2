@@ -83,21 +83,21 @@ class WikiArticlesTableTest extends TestCase
     }
 
     public function testGetWikiLink() {
-        I18n::setLocale('fra');
+        I18n::setLocale('fr');
         $expected = '//fr.wiki.example.com:1234/articles/show/premiers-pas';
         $result = $this->WikiArticles->getWikiLink('quick-start');
         $this->assertEquals($expected, $result);
     }
 
     public function testGetWikiLink_escape() {
-        I18n::setLocale('rus');
+        I18n::setLocale('ru');
         $expected = '//ru.wiki.example.com:1234/articles/show/%D0%BA%D1%80%D0%B0%D1%82%D0%BA%D0%BE%D0%B5_%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE';
         $result = $this->WikiArticles->getWikiLink('quick-start');
         $this->assertEquals($expected, $result);
     }
 
     public function testGetWikiLink_noSuchArticle() {
-        I18n::setLocale('fra');
+        I18n::setLocale('fr');
         $expected = '//en.wiki.example.com:1234/articles/show/does-not-exists';
         $result = $this->WikiArticles->getWikiLink('does-not-exists');
         $this->assertEquals($expected, $result);
