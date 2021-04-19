@@ -23,10 +23,10 @@ class CategoriesTreeControllerTest extends TestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/categories_tree/manage', null, '/eng/users/login?redirect=%2Feng%2Fcategories_tree%2Fmanage' ],
-            [ '/eng/categories_tree/manage', 'contributor', '/' ],
-            [ '/eng/categories_tree/manage', 'advanced_contributor', true ],
-            [ '/eng/categories_tree/manage', 'admin', true ],
+            [ '/en/categories_tree/manage', null, '/en/users/login?redirect=%2Fen%2Fcategories_tree%2Fmanage' ],
+            [ '/en/categories_tree/manage', 'contributor', '/' ],
+            [ '/en/categories_tree/manage', 'advanced_contributor', true ],
+            [ '/en/categories_tree/manage', 'admin', true ],
         ];
     }
 

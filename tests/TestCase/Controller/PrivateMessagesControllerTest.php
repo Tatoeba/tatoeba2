@@ -18,24 +18,24 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/private_messages/index', null, '/eng/users/login?redirect=%2Feng%2Fprivate_messages%2Findex' ],
-            [ '/eng/private_messages/index', 'contributor', '/eng/private_messages/folder/Inbox' ],
-            [ '/eng/private_messages/folder/Inbox', 'contributor', true ],
-            [ '/eng/private_messages/folder/Inbox/all', 'contributor', true ],
-            [ '/eng/private_messages/folder/Inbox/read', 'contributor', true ],
-            [ '/eng/private_messages/folder/Inbox/unread', 'contributor', true ],
-            [ '/eng/private_messages/folder/Drafts', 'contributor', true ],
-            [ '/eng/private_messages/folder/Drafts/all', 'contributor', true ],
-            [ '/eng/private_messages/folder/Drafts/read', 'contributor', true ],
-            [ '/eng/private_messages/folder/Drafts/unread', 'contributor', true ],
-            [ '/eng/private_messages/folder/Trash', 'contributor', true ],
-            [ '/eng/private_messages/folder/Trash/all', 'contributor', true ],
-            [ '/eng/private_messages/folder/Trash/read', 'contributor', true ],
-            [ '/eng/private_messages/folder/Trash/unread', 'contributor', true ],
-            [ '/eng/private_messages/show/1', null, '/eng/users/login?redirect=%2Feng%2Fprivate_messages%2Fshow%2F1' ],
-            [ '/eng/private_messages/show/1', 'contributor', '/eng/private_messages/folder/Inbox' ],
-            [ '/eng/private_messages/show/1', 'advanced_contributor', true ],
-            [ '/eng/private_messages/show/1', 'admin', '/eng/private_messages/folder/Inbox' ],
+            [ '/en/private_messages/index', null, '/en/users/login?redirect=%2Fen%2Fprivate_messages%2Findex' ],
+            [ '/en/private_messages/index', 'contributor', '/en/private_messages/folder/Inbox' ],
+            [ '/en/private_messages/folder/Inbox', 'contributor', true ],
+            [ '/en/private_messages/folder/Inbox/all', 'contributor', true ],
+            [ '/en/private_messages/folder/Inbox/read', 'contributor', true ],
+            [ '/en/private_messages/folder/Inbox/unread', 'contributor', true ],
+            [ '/en/private_messages/folder/Drafts', 'contributor', true ],
+            [ '/en/private_messages/folder/Drafts/all', 'contributor', true ],
+            [ '/en/private_messages/folder/Drafts/read', 'contributor', true ],
+            [ '/en/private_messages/folder/Drafts/unread', 'contributor', true ],
+            [ '/en/private_messages/folder/Trash', 'contributor', true ],
+            [ '/en/private_messages/folder/Trash/all', 'contributor', true ],
+            [ '/en/private_messages/folder/Trash/read', 'contributor', true ],
+            [ '/en/private_messages/folder/Trash/unread', 'contributor', true ],
+            [ '/en/private_messages/show/1', null, '/en/users/login?redirect=%2Fen%2Fprivate_messages%2Fshow%2F1' ],
+            [ '/en/private_messages/show/1', 'contributor', '/en/private_messages/folder/Inbox' ],
+            [ '/en/private_messages/show/1', 'advanced_contributor', true ],
+            [ '/en/private_messages/show/1', 'admin', '/en/private_messages/folder/Inbox' ],
         ];
     }
 
@@ -48,29 +48,29 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
 
     public function testSendAsGuest() {
         $this->enableCsrfToken();
-        $this->post('/eng/private_messages/send');
-        $this->assertRedirect('/eng/users/login');
+        $this->post('/en/private_messages/send');
+        $this->assertRedirect('/en/users/login');
     }
 
     public function testSendDraft() {
         $this->logInAs('contributor');
-        $this->post('/eng/private_messages/send', [
+        $this->post('/en/private_messages/send', [
             'submitType' => 'saveDraft',
             'recipients' => 'admin',
             'title' => 'Hello',
             'content' => 'Hello world!',
         ]);
-        $this->assertRedirect('/eng/private_messages/folder/Drafts');
+        $this->assertRedirect('/en/private_messages/folder/Drafts');
     }
 
     public function testSendMessage() {
         $this->logInAs('contributor');
-        $this->post('/eng/private_messages/send', [
+        $this->post('/en/private_messages/send', [
             'submitType' => 'send',
             'recipients' => 'admin',
             'title' => 'Hello',
             'content' => 'Hello world!',
         ]);
-        $this->assertRedirect('/eng/private_messages/folder/Sent');
+        $this->assertRedirect('/en/private_messages/folder/Sent');
     }
 }
