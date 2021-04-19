@@ -27,6 +27,8 @@ class WikiArticlesTableTest extends TestCase
     public function setUp() {
         parent::setUp();
 
+        $this->oldLocale = I18n::getLocale();
+
         Configure::write('Tatowiki.baseHost', 'wiki.example.com:1234');
 
         $options = [];
@@ -40,6 +42,7 @@ class WikiArticlesTableTest extends TestCase
 
     public function tearDown() {
         unset($this->WikiArticles);
+        I18n::setLocale($this->oldLocale);
         parent::tearDown();
     }
 
