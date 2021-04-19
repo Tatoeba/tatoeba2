@@ -105,9 +105,9 @@ class LanguagesHelperTest extends TestCase {
 
     function testGetInterfaceLanguage() {
         $oldLang = I18n::getLocale();
-        I18n::setLocale('eng');
+        I18n::setLocale('en');
         $this->assertEquals('English', $this->Languages->getInterfaceLanguage());
-        I18n::setLocale('fra');
+        I18n::setLocale('fr');
         $this->assertEquals('Français', $this->Languages->getInterfaceLanguage());
         I18n::setLocale($oldLang);
     }
