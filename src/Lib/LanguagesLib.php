@@ -630,6 +630,7 @@ class LanguagesLib
                 'inh' => __d('languages', 'Ingush'),
                 'kbd' => __d('languages', 'Kabardian'),
                 'srn' => __d('languages', 'Sranan Tongo'),
+                'guc' => __d('languages', 'Wayuu'),
             );
         }
         return $languages;
