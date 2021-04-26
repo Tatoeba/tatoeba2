@@ -56,13 +56,10 @@ class LanguagesLib
             'aar' => 'aa', // Afar
             'afr' => 'af', // Afrikaans
             'amh' => 'am', // Amharic
-            'ara' => 'ar', // Arabic
             'arg' => 'an', // Aragonese
             'asm' => 'as', // Assamese
             'ava' => 'av', // Avaric
             'ave' => 'ae', // Avestan
-            'aym' => 'ay', // Aymara
-            'aze' => 'az', // Azerbaijani
             'bak' => 'ba', // Bashkir
             'bam' => 'bm', // Bambara
             'bel' => 'be', // Belarusian
@@ -88,7 +85,6 @@ class LanguagesLib
             'ell' => 'el', // Greek
             'eng' => 'en', // English
             'epo' => 'eo', // Esperanto
-            'est' => 'et', // Estonian
             'eus' => 'eu', // Basque
             'ewe' => 'ee', // Ewe
             'fao' => 'fo', // Faroese
@@ -100,7 +96,6 @@ class LanguagesLib
             'gle' => 'ga', // Irish
             'glg' => 'gl', // Galician
             'glv' => 'gv', // Manx
-            'grn' => 'gn', // Guarani
             'guj' => 'gu', // Gujarati
             'hat' => 'ht', // Haitian Creole
             'hau' => 'ha', // Hausa
@@ -144,9 +139,7 @@ class LanguagesLib
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
             'mkd' => 'mk', // Macedonian
-            'mlg' => 'mg', // Malagasy
             'mlt' => 'mt', // Maltese
-            'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
             'mya' => 'my', // Burmese
             'nau' => 'na', // Nauruan
@@ -159,15 +152,11 @@ class LanguagesLib
             'nno' => 'nn', // Norwegian Nynorsk
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
-            'oji' => 'oj', // Ojibwe
-            'ori' => 'or', // Odia (Oriya)
             'oss' => 'os', // Ossetian
             'pan' => 'pa', // Punjabi (Eastern)
-            'pus' => 'ps', // Pashto
             'pli' => 'pi', // Pali
             'pol' => 'pl', // Polish
             'por' => 'pt', // Portuguese
-            'que' => 'qu', // Quechua
             'roh' => 'rm', // Romansh
             'ron' => 'ro', // Romanian
             'run' => 'rn', // Rundi
@@ -182,12 +171,10 @@ class LanguagesLib
             'sna' => 'sn', // Shona
             'snd' => 'sd', // Sindhi
             'som' => 'so', // Somali
-            'ssw' => 'ss', // Swazi
             'sot' => 'st', // Southern Sotho
             'spa' => 'es', // Spanish
-            'sqi' => 'sq', // Albanian
-            'srd' => 'sc', // Sardinian
             'srp' => 'sr', // Serbian
+            'ssw' => 'ss', // Swazi
             'sun' => 'su', // Sundanese
             'swe' => 'sv', // Swedish
             'tah' => 'ty', // Tahitian
@@ -207,21 +194,35 @@ class LanguagesLib
             'uig' => 'ug', // Uyghur
             'ukr' => 'uk', // Ukrainian
             'urd' => 'ur', // Urdu
-            'uzb' => 'uz', // Uzbek
             'ven' => 've', // Venda
             'vie' => 'vi', // Vietnamese
             'vol' => 'vo', // Volapük
-            'wol' => 'wo', // Wolof
             'wln' => 'wa', // Walloon
+            'wol' => 'wo', // Wolof
             'xho' => 'xh', // Xhosa
-            'yid' => 'yi', // Yiddish
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
 
+            // Macrolanguages that we are using because of legacy but
+            // should ideally changed into individual language codes
+            'sqi' => 'sq', // Albanian
+            'ara' => 'ar', // Arabic
+            'aym' => 'ay', // Aymara
+            'aze' => 'az', // Azerbaijani
+            'est' => 'et', // Estonian
+            'grn' => 'gn', // Guarani
+            'mlg' => 'mg', // Malagasy
+            'mon' => 'mn', // Mongolian
+            'oji' => 'oj', // Ojibwa
+            'ori' => 'or', // Oriya
+            'pus' => 'ps', // Pashto, Pushto
+            'que' => 'qu', // Quechua
+            'srd' => 'sc', // Sardinian
+            'uzb' => 'uz', // Uzbek
+            'yid' => 'yi', // Yiddish
 
-
-
-            // Macrolanguages
+            // Macrolanguages that are here because most browsers
+            // still need lang="zh-..." for proper font selection
             'yue' => 'zh',
             'wuu' => 'zh',
             'lzh' => 'zh',
