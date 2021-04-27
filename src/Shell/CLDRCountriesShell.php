@@ -86,15 +86,14 @@ class CLDRCountriesShell extends Shell {
         return true;
     }
 
-    private function get_ldml($locale_id) {
-        $filename = $locale_id.'.xml';
-        $file = TMP.$filename;
+    private function get_ldml($path) {
+        $file = TMP.str_replace('/', '_', $path);
         if (file_exists($file)) {
             echo "Using cached file $file\n";
         } else {
-            $url = 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/main/'.$filename;
+            $url = 'https://raw.githubusercontent.com/unicode-org/cldr/master/'.$path;
             if (!$this->download_ldml($url, $file)) {
-                die("Error: the '$locale_id' LDML file is required.\n");
+                die("Error: the LDML file '$path' is required.\n");
             }
         }
         return $file;
@@ -134,7 +133,7 @@ class CLDRCountriesShell extends Shell {
     }
 
     private function CLDR_to_PHP_array($lang) {
-        $ldml_file = $this->get_ldml($lang);
+        $ldml_file = $this->get_ldml("common/main/$lang.xml");
         $countries = $this->countries_from_ldml_file($ldml_file);
         $countries_as_php = $this->countries_array_to_php($countries);
 
@@ -228,7 +227,7 @@ class CountriesList {
             die("Error: no English countries found.\nTry running this script with 'en' as parameter.");
         }
 
-        $ldml_file_targ = $this->get_ldml($locale);
+        $ldml_file_targ = $this->get_ldml("common/main/$locale.xml");
         $countries_targ = $this->countries_from_ldml_file($ldml_file_targ);
 
         $tmp_po_file = $this->write_po($tatoeba_countries, $countries_targ);
