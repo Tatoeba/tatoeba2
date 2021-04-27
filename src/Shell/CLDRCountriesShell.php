@@ -187,14 +187,10 @@ class CountriesList {
         return $countries_list->list;
     }
 
-    private function write_po_header($fh) {
-        fprintf($fh,
-                $this->CLDR_copyright."\n".
-                'msgid ""'."\n".
-                'msgstr ""'."\n".
-                '"MIME-Version: 1.0\n"'."\n".
-                '"Content-Type: text/plain; charset=utf-8\n"'."\n".
-                '"Content-Transfer-Encoding: 8bit\n"'."\n");
+    private function write_po_header($fh, $locale) {
+        $orig_po_file = APP.'Locale'.DS.$locale.DS.'countries.po';
+        $orig_header = shell_exec("sed -n '0,/^$/p' '$orig_po_file'");
+        fprintf($fh, $orig_header);
     }
 
     private function write_po_translation($fh, $english, $translation) {
@@ -210,7 +206,7 @@ class CountriesList {
         }
     }
 
-    private function write_po($tatoeba_countries, $countries_targ) {
+    private function write_po($tatoeba_countries, $countries_targ, $locale) {
         $tmp_po_file = tempnam(TMP, 'countries');
         if (!$tmp_po_file) {
             die("Error: couldn’t create temporary file!\n");
@@ -219,21 +215,21 @@ class CountriesList {
             die("Error: couldn’t write $tmp_po_file!\n");
         }
 
-        $this->write_po_header($fh);
+        $this->write_po_header($fh, $locale);
         foreach ($tatoeba_countries as $code => $english) {
-            $translation = isset($countries_targ[$code]) ? $countries_targ[$code] : '';
-            $this->write_po_translation($fh, $english, $translation);
+            if (isset($countries_targ[$code])) {
+                $this->write_po_translation($fh, $english, $countries_targ[$code]);
+            }
         }
         fclose($fh);
         return $tmp_po_file;
     }
 
-    private function merge_po_with_pot($tmp_po_file, $locale) {
+    private function merge_new_translations($new_trans, $locale) {
         $this->check_if_gettext_available('msgmerge');
-        $po_file  = APP.'Locale'.DS.$locale.DS.'countries.po';
-        $pot_file = APP.'Locale'.DS.'countries.pot';
-        exec("msgmerge -o '$po_file' '$tmp_po_file' '$pot_file'", $output, $retval);
-        unlink($tmp_po_file);
+        $po_file = APP.'Locale'.DS.$locale.DS.'countries.po';
+        exec("msgmerge --no-wrap --no-fuzzy-matching -o '$po_file' '$new_trans' '$po_file'", $output, $retval);
+        unlink($new_trans);
         if ($retval != 0) {
             die("Error: a problem occurred while generating '$po_file'.\n");
         }
@@ -248,8 +244,8 @@ class CountriesList {
 
         $countries_targ = $this->get_localized_countries($locale);
 
-        $tmp_po_file = $this->write_po($tatoeba_countries, $countries_targ);
-        $this->merge_po_with_pot($tmp_po_file, $locale);
+        $tmp_po_file = $this->write_po($tatoeba_countries, $countries_targ, $locale);
+        $this->merge_new_translations($tmp_po_file, $locale);
     }
 
     private function die_usage() {
