@@ -230,6 +230,7 @@ class LanguagesLib
                            // because we're using it as UI language code and
                            // so that array_flip()'ing this array will return
                            // 'zh' => 'cmn'.
+            'zsm' => 'ms', // Malay
         );
         return $map;
     }
