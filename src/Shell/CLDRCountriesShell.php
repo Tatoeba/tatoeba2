@@ -99,14 +99,28 @@ class CLDRCountriesShell extends Shell {
         return $file;
     }
 
-    private function countries_from_ldml_file($filename) {
+    private function valid_regions_pattern($filename) {
+        $tree = simplexml_load_file($filename, 'SimpleXMLElement');
+        foreach ($tree->{'idValidity'}->{'id'} as $ids) {
+            $attr = $ids->attributes();
+            if ($attr->{'type'} == 'region' && $attr->{'idStatus'} == 'regular') {
+                $ids = preg_replace("/([A-Z])~([A-Z])/", "[\$1-\$2]", "$ids");
+                $patterns = preg_split("/[\s]+/", "$ids", -1, PREG_SPLIT_NO_EMPTY);
+                $pattern = '/^('.implode('|', $patterns).')$/';
+                return $pattern;
+            }
+        }
+        die("Could not extract valid country codes\n");
+    }
+
+    private function countries_from_ldml_file($filename, $regions) {
+        $regions_pattern = $this->valid_regions_pattern($regions);
         $countries_trans = array();
         $ldml = simplexml_load_file($filename, 'SimpleXMLElement');
         foreach ($ldml->{'localeDisplayNames'}->{'territories'}->{'territory'}
                  as $country_trans) {
             $translated_into = trim($country_trans->attributes()->{'type'});
-            if (is_numeric($translated_into) ||
-                $translated_into == 'ZZ' ||
+            if (preg_match($regions_pattern, $translated_into) === 0 ||
                 (
                     !in_array($translated_into, $this->use_short_names) &&
                     $country_trans->attributes()->{'alt'}
@@ -134,7 +148,8 @@ class CLDRCountriesShell extends Shell {
 
     private function CLDR_to_PHP_array($lang) {
         $ldml_file = $this->get_ldml("common/main/$lang.xml");
-        $countries = $this->countries_from_ldml_file($ldml_file);
+        $regions_file = $this->get_ldml("common/validity/region.xml");
+        $countries = $this->countries_from_ldml_file($ldml_file, $regions_file);
         $countries_as_php = $this->countries_array_to_php($countries);
 
         $php_file = APP.'Lib'.DS.'CountriesList.php';
@@ -228,7 +243,8 @@ class CountriesList {
         }
 
         $ldml_file_targ = $this->get_ldml("common/main/$locale.xml");
-        $countries_targ = $this->countries_from_ldml_file($ldml_file_targ);
+        $regions_file = $this->get_ldml("common/validity/region.xml");
+        $countries_targ = $this->countries_from_ldml_file($ldml_file_targ, $regions_file);
 
         $tmp_po_file = $this->write_po($tatoeba_countries, $countries_targ);
         $this->merge_po_with_pot($tmp_po_file, $locale);
