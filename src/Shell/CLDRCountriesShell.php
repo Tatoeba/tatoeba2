@@ -137,6 +137,12 @@ class CLDRCountriesShell extends Shell {
         return $countries_trans;
     }
 
+    private function get_localized_countries($lang) {
+        $lang_file = $this->get_ldml("common/main/$lang.xml");
+        $regions_file = $this->get_ldml("common/validity/region.xml");
+        return $this->countries_from_ldml_file($lang_file, $regions_file);
+    }
+
     private function countries_array_to_php($countries) {
         $lines = array();
         foreach ($countries as $code => $name) {
@@ -147,9 +153,7 @@ class CLDRCountriesShell extends Shell {
     }
 
     private function CLDR_to_PHP_array($lang) {
-        $ldml_file = $this->get_ldml("common/main/$lang.xml");
-        $regions_file = $this->get_ldml("common/validity/region.xml");
-        $countries = $this->countries_from_ldml_file($ldml_file, $regions_file);
+        $countries = $this->get_localized_countries($lang);
         $countries_as_php = $this->countries_array_to_php($countries);
 
         $php_file = APP.'Lib'.DS.'CountriesList.php';
@@ -242,9 +246,7 @@ class CountriesList {
             die("Error: no English countries found.\nTry running this script with 'en' as parameter.");
         }
 
-        $ldml_file_targ = $this->get_ldml("common/main/$locale.xml");
-        $regions_file = $this->get_ldml("common/validity/region.xml");
-        $countries_targ = $this->countries_from_ldml_file($ldml_file_targ, $regions_file);
+        $countries_targ = $this->get_localized_countries($locale);
 
         $tmp_po_file = $this->write_po($tatoeba_countries, $countries_targ);
         $this->merge_po_with_pot($tmp_po_file, $locale);
