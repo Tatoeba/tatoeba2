@@ -14,7 +14,8 @@ Here are the basic requirements of the machine you’re using TatoVM from.
 
 ## Installing a local instance
 
-- Install the requirements above.
+- Install the requirements above. Note for Windows users: during the installation of Git for Windows, you will be asked to configure line endings conversions. Make sure you select "Checkout as-is, commit as-is". If you did not, it's possible to fix it later on by running `git config --global core.autocrlf false && git checkout .`.
+  ![git_crlf](https://user-images.githubusercontent.com/5107734/116796220-29c0e800-aadb-11eb-9611-63e3afd8caa5.png)
 
 - Fork the [tatoeba2 repository](https://github.com/Tatoeba/tatoeba2). If you already have a fork, make sure it is synched. Otherwise, clone a local copy of it and setup the upstream remote. If you are unsure about how to do any of this, refer to [this guide](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo). Replace `octocat/Spoon-Knife` with `Tatoeba/tatoeba2`, and when the guide says "Open Terminal", Windows users can run Git Bash (which comes with Git for Windows).
 
