@@ -1,0 +1,48 @@
+---
+
+- name: Fetch tatomecab source
+  become: false
+  git:
+    repo: https://github.com/Tatoeba/tatomecab.git
+    dest: /tmp/tatomecab
+
+- include: build_dict.yml
+  when: build_tatomecab_dict == true
+
+- name: Install dependencies for tatomecab
+  apt:
+    name: ['python-mecab', 'python-setuptools']
+    state: present
+
+- name: Install tatomecab
+  command: python setup.py install chdir=/tmp/tatomecab/
+
+- name: Copy service file to system-wide location
+  copy: src=tatomecab.service dest=/etc/systemd/system/tatomecab.service mode=0644
+  register: service_file
+
+- name: Copy default options file to system-wide location
+  copy: src=default dest=/etc/default/tatomecab mode=0644
+
+- name: Create user tatomecab
+  user:
+    name: tatomecab
+    system: yes
+
+- name: Reload daemons
+  systemd:
+    daemon_reload: yes
+  when: service_file is changed
+
+- name: Start and enable the daemon
+  systemd:
+    name: tatomecab
+    state: restarted
+    enabled: yes
+
+- name: Remove temporary files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - /tmp/tatomecab

@@ -1,0 +1,16 @@
+---
+# Playbook to setup and install sinoparserd
+
+- name: Check if sinoparserd is already present
+  shell: which sinoparserd
+  register: install_state
+  ignore_errors: yes
+- name: Installation skip message
+  debug: msg="sinoparserd already installed and force_install == false; skipping installation"
+  when: install_state is success and force_install == false
+- name: Force install message
+  debug: msg="sinoparserd already installed; reinstalling it (force_intall == true)"
+  when: install_state is success and force_install == true
+
+- include: install_sinoparserd.yml
+  when: install_state is failed or force_install == true

@@ -75,3 +75,9 @@ docs/_build/
 
 # CakePHP Migrations Plugin
 config/Migrations/schema-dump-default.lock
+
+# Imouto
+*.template
+*.retry
+.vagrant/
+ansible/*-git/

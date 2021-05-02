@@ -1,0 +1,53 @@
+---
+- name: Install and setup nginx
+  tags: nginx, lemp
+  import_role:
+    name: setup_nginx
+
+- name: Install and setup PHP
+  tags: php, lemp
+  import_role:
+    name: setup_php
+
+- name: Install and setup MySQL
+  tags: mysql, lemp
+  import_role:
+    name: setup_mysql
+
+- name: Install and setup Tatoeba's database
+  tags: tatoeba, database
+  import_role:
+    name: setup_database
+  vars:
+    import_csv: 'no'
+
+- name: Install and setup Tatomecab
+  tags: tatomecab, external_tools
+  import_role:
+    name: setup_tatomecab
+
+- name: Install and setup Sinoparserd
+  tags: sinoparserd, external_tools
+  import_role:
+    name: setup_sinoparserd
+  vars:
+    force_install: no
+
+- name: Install and setup Tatodetect
+  tags: tatodetect, external_tools
+  import_tasks: install.yml
+  vars:
+    repo: https://github.com/Tatoeba/Tatodetect
+    force_install: no
+
+- name: Install and setup Tatowiki
+  tags: tatowiki, external_tools
+  import_tasks: install.yml
+  vars:
+    repo: https://github.com/Tatoeba/tatowiki
+    force_install: no
+
+- name: Install and setup search engine
+  tags: manticore
+  import_role:
+    name: setup_manticore
