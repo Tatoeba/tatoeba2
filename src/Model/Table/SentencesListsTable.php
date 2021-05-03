@@ -549,7 +549,7 @@ class SentencesListsTable extends Table
         // Adding to list
         $sentenceId = $sentenceSaved->id;
         if ($this->addSentenceToList($sentenceId, $listId, $currentUserId)) {
-            $sentence = $this->Sentences->get($sentenceId, ['contain' => 'Users']);
+            $sentence = $this->Sentences->getSentenceWith($sentenceId);
             return $sentence;
         } else {
             return false;
