@@ -28,7 +28,7 @@ use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
 // Just to make sure jQuery is loaded before the rest of the lists JS scripts
-$this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
+$this->Sentences->javascriptForAJAXSentencesGroup();
 
 $this->Html->script(
     JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
