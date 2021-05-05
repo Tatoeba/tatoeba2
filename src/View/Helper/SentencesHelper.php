@@ -159,7 +159,7 @@ class SentencesHelper extends AppHelper
             $userLangs = CurrentUser::getProfileLanguages();
             $langBased = is_array($userLangs) && count($userLangs) > 1;
             $typeMap = [0 => 'directTranslation', 1 => 'indirectTranslation'];
-            $displayed = 0;
+            $hidden = 0;
 
             if (!$langBased) {
                 if ($totalTranslations <= 6 || !$collapsibleTranslationsEnabled) {
@@ -182,7 +182,7 @@ class SentencesHelper extends AppHelper
                     if ($initiallyHidden) {
                         echo $this->Html->tag('div', null, ['class' => 'more']);
                         $showButton = true;
-                        $displayed++;
+                        $hidden++;
                     }
                     $this->displayGenericSentence(
                         $translation,
@@ -203,9 +203,9 @@ class SentencesHelper extends AppHelper
                     ' ▼ ' . format(__n(
                         'Show 1 more translation',
                         'Show {number} more translations',
-                        $displayed,
+                        $hidden,
                         true
-                    ), array('number' => $displayed)),
+                    ), array('number' => $hidden)),
                     array('class' => 'showLink')
                 );
                 echo $this->Html->tag('div',
