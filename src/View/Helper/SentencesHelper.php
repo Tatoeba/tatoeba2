@@ -199,17 +199,33 @@ class SentencesHelper extends AppHelper
             }
 
             if ($showButton) {
+                $downArrowIcon = ' ▼ ';
+                if ($hidden == $totalTranslations) {
+                    $buttonLabel = __n(
+                        '{downArrowIcon} Show all translations (1)',
+                        '{downArrowIcon} Show all translations ({number})',
+                        $hidden
+                    );
+                } else {
+                    $buttonLabel = __n(
+                        '{downArrowIcon} Show all translations (+1)',
+                        '{downArrowIcon} Show all translations (+{number})',
+                        $hidden
+                    );
+                }
                 echo $this->Html->tag('div',
-                    ' ▼ ' . format(__n(
-                        'Show 1 more translation',
-                        'Show {number} more translations',
-                        $hidden,
-                        true
-                    ), array('number' => $hidden)),
+                    format(
+                        $buttonLabel,
+                        ['number' => $hidden, 'downArrowIcon' => $downArrowIcon]
+                    ),
                     array('class' => 'showLink')
                 );
+                $upArrowIcon = ' ▲ ';
                 echo $this->Html->tag('div',
-                    ' ▲ ' . __('Fewer translations'),
+                    format(
+                        __('{upArrowIcon} Show fewer translations'),
+                        compact('upArrowIcon')
+                    ),
                     array('class' => 'hideLink')
                 );
             }
