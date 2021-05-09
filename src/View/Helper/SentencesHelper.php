@@ -487,6 +487,8 @@ class SentencesHelper extends AppHelper
         $isEditable = false,
         $langFilter = 'und'
     ) {
+        $this->AssetCompress->script('single-sentence.js', ['block' => 'scriptBottom']);
+
         $sentenceId = $sentence->id;
         $sentenceLang = $sentence->lang;
         $isFavoritePage = ($this->request->params['controller'] == 'Favorites' && $this->request->params['action'] == 'of_user');
@@ -726,9 +728,7 @@ class SentencesHelper extends AppHelper
 
         // defined in config/asset_compress.ini
         $this->AssetCompress->script('sentences-block-for-members.js', $options);
-        $this->Html->script('clipboard.min.js', $options);
-        $this->Html->script('sentences.copy.js', $options);
-        $this->Html->script('sentences.play_audio.js', $options);
+        $this->AssetCompress->script('single-sentence.js', $options);
     }
 
 
