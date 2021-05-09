@@ -42,7 +42,7 @@ use Cake\ORM\TableRegistry;
 
 class ClickableLinksHelper extends AppHelper
 {
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'Pages');
 
     const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n"\'<]+)/siu';
     const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
@@ -182,12 +182,7 @@ class ClickableLinksHelper extends AppHelper
             $this->_View->safeForAngular(h($sentenceText)),
             ['ng-cloak']
         );
-        $linkText = format(
-            __(
-                /* @translators: You can translate the sharp in the link to a sentence
-                that appears in logs to a more natural character  */
-                '#{sentenceId}'),
-            array('sentenceId' => $sentenceId));
+        $linkText = $this->Pages->formatSentenceIdWithSharp($sentenceId);
         return $this->Html->link(
             h($linkText).$tooltipTag,
             array(

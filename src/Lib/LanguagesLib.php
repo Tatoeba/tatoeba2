@@ -53,17 +53,18 @@ class LanguagesLib
         // Example: Khasi
         static $map = array(
             'abk' => 'ab', // Abkhaz
+            'aar' => 'aa', // Afar
             'afr' => 'af', // Afrikaans
             'amh' => 'am', // Amharic
-            'ara' => 'ar', // Arabic
             'arg' => 'an', // Aragonese
             'asm' => 'as', // Assamese
-            'aym' => 'ay', // Aymara
-            'aze' => 'az', // Azerbaijani
+            'ava' => 'av', // Avaric
+            'ave' => 'ae', // Avestan
             'bak' => 'ba', // Bashkir
             'bam' => 'bm', // Bambara
             'bel' => 'be', // Belarusian
             'ben' => 'bn', // Bengali
+            'bis' => 'bi', // Bislama
             'bod' => 'bo', // Tibetan
             'bos' => 'bs', // Bosnian
             'bre' => 'br', // Breton
@@ -72,16 +73,18 @@ class LanguagesLib
             'ces' => 'cs', // Czech
             'cha' => 'ch', // Chamorro
             'che' => 'ce', // Chechen
+            'chu' => 'cu', // Church Slavic, Old Slavonic, Church Slavonic, Old Bulgarian, Old Church Slavonic
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
             'cos' => 'co', // Corsican
             'cym' => 'cy', // Welsh
             'dan' => 'da', // Danish
             'deu' => 'de', // German
+            'div' => 'dv', // Divehi, Dhivehi, Maldivian
+            'dzo' => 'dz', // Dzongkha
             'ell' => 'el', // Greek
             'eng' => 'en', // English
             'epo' => 'eo', // Esperanto
-            'est' => 'et', // Estonian
             'eus' => 'eu', // Basque
             'ewe' => 'ee', // Ewe
             'fao' => 'fo', // Faroese
@@ -93,12 +96,13 @@ class LanguagesLib
             'gle' => 'ga', // Irish
             'glg' => 'gl', // Galician
             'glv' => 'gv', // Manx
-            'grn' => 'gn', // Guarani
             'guj' => 'gu', // Gujarati
             'hat' => 'ht', // Haitian Creole
             'hau' => 'ha', // Hausa
             'heb' => 'he', // Hebrew
+            'her' => 'hz', // Herero
             'hin' => 'hi', // Hindi
+            'hmo' => 'ho', // Hiri Motu
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
             'hye' => 'hy', // Armenian
@@ -107,49 +111,55 @@ class LanguagesLib
             'ile' => 'ie', // Interlingue
             'ina' => 'ia', // Interlingua
             'ind' => 'id', // Indonesian
+            'iii' => 'ii', // Sichuan Yi, Nuosu
             'isl' => 'is', // Icelandic
             'ita' => 'it', // Italian
             'jav' => 'jv', // Javanese
             'jpn' => 'ja', // Japanese
             'kal' => 'kl', // Greenlandic
             'kan' => 'kn', // Kannada
+            'kas' => 'ks', // Kashmiri
             'kat' => 'ka', // Georgian
             'kaz' => 'kk', // Kazakh
             'khm' => 'km', // Khmer
+            'kik' => 'ki', // Kikuyu, Gikuyu
             'kin' => 'rw', // Kinyarwanda
             'kir' => 'ky', // Kyrgyz
             'kor' => 'ko', // Korean
+            'kua' => 'kj', // Kuanyama, Kwanyama
             'lao' => 'lo', // Lao
             'lat' => 'la', // Latin
+            'lim' => 'li', // Limburgan, Limburger, Limburgish
             'lin' => 'ln', // Lingala
             'lit' => 'lt', // Lithuanian
             'ltz' => 'lb', // Luxembourgish
             'lug' => 'lg', // Luganda
+            'lub' => 'lu', // Luba-Katanga
             'mah' => 'mh', // Marshallese
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
             'mkd' => 'mk', // Macedonian
-            'mlg' => 'mg', // Malagasy
             'mlt' => 'mt', // Maltese
-            'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
             'mya' => 'my', // Burmese
             'nau' => 'na', // Nauruan
             'nav' => 'nv', // Navajo
+            'nbl' => 'nr', // South Ndebele
+            'nde' => 'nd', // North Ndebele
+            'ndo' => 'ng', // Ndonga
             'nld' => 'nl', // Dutch
             'nob' => 'nb', // Norwegian Bokmål)
+            'nno' => 'nn', // Norwegian Nynorsk
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
-            'oji' => 'oj', // Ojibwe
-            'ori' => 'or', // Odia (Oriya)
             'oss' => 'os', // Ossetian
             'pan' => 'pa', // Punjabi (Eastern)
-            'pus' => 'ps', // Pashto
+            'pli' => 'pi', // Pali
             'pol' => 'pl', // Polish
             'por' => 'pt', // Portuguese
-            'que' => 'qu', // Quechua
             'roh' => 'rm', // Romansh
             'ron' => 'ro', // Romanian
+            'run' => 'rn', // Rundi
             'rus' => 'ru', // Russian
             'sag' => 'sg', // Sango
             'san' => 'sa', // Sanskrit
@@ -161,14 +171,13 @@ class LanguagesLib
             'sna' => 'sn', // Shona
             'snd' => 'sd', // Sindhi
             'som' => 'so', // Somali
-            'ssw' => 'ss', // Swazi
             'sot' => 'st', // Southern Sotho
             'spa' => 'es', // Spanish
-            'sqi' => 'sq', // Albanian
-            'srd' => 'sc', // Sardinian
             'srp' => 'sr', // Serbian
+            'ssw' => 'ss', // Swazi
             'sun' => 'su', // Sundanese
             'swe' => 'sv', // Swedish
+            'tah' => 'ty', // Tahitian
             'tam' => 'ta', // Tamil
             'tat' => 'tt', // Tatar
             'tel' => 'te', // Telugu
@@ -181,23 +190,39 @@ class LanguagesLib
             'tso' => 'ts', // Tsonga
             'tuk' => 'tk', // Turkmen
             'tur' => 'tr', // Turkish
+            'twi' => 'tw', // Twi
             'uig' => 'ug', // Uyghur
             'ukr' => 'uk', // Ukrainian
             'urd' => 'ur', // Urdu
-            'uzb' => 'uz', // Uzbek
+            'ven' => 've', // Venda
             'vie' => 'vi', // Vietnamese
             'vol' => 'vo', // Volapük
-            'wol' => 'wo', // Wolof
             'wln' => 'wa', // Walloon
+            'wol' => 'wo', // Wolof
             'xho' => 'xh', // Xhosa
-            'yid' => 'yi', // Yiddish
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
 
+            // Macrolanguages that we are using because of legacy but
+            // should ideally changed into individual language codes
+            'sqi' => 'sq', // Albanian
+            'ara' => 'ar', // Arabic
+            'aym' => 'ay', // Aymara
+            'aze' => 'az', // Azerbaijani
+            'est' => 'et', // Estonian
+            'grn' => 'gn', // Guarani
+            'mlg' => 'mg', // Malagasy
+            'mon' => 'mn', // Mongolian
+            'oji' => 'oj', // Ojibwa
+            'ori' => 'or', // Oriya
+            'pus' => 'ps', // Pashto, Pushto
+            'que' => 'qu', // Quechua
+            'srd' => 'sc', // Sardinian
+            'uzb' => 'uz', // Uzbek
+            'yid' => 'yi', // Yiddish
 
-
-
-            // Macrolanguages
+            // Macrolanguages that are here because most browsers
+            // still need lang="zh-..." for proper font selection
             'yue' => 'zh',
             'wuu' => 'zh',
             'lzh' => 'zh',
@@ -630,6 +655,8 @@ class LanguagesLib
                 'inh' => __d('languages', 'Ingush'),
                 'kbd' => __d('languages', 'Kabardian'),
                 'srn' => __d('languages', 'Sranan Tongo'),
+                'lez' => __d('languages', 'Lezgi'),
+                'guc' => __d('languages', 'Wayuu'),
             );
         }
         return $languages;

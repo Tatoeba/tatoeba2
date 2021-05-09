@@ -1,0 +1,44 @@
+---
+
+- name: Copy csv's to /tmp folder
+  copy:
+    src: "{{ item }}"
+    dest: "/tmp/{{ item }}"
+    mode: 0777
+    owner: mysql
+    group: mysql
+  with_items:
+  - sentences.csv
+  - links.csv
+  - tag_metadata.csv
+  - tags_detailed.csv
+  when: import_csv == 'local'
+
+- name: Download packed csv's from tatoeba
+  get_url:
+    url: "{{ download_url }}{{ item }}"
+    dest: "/tmp/{{ item }}"
+  with_items:
+  - sentences.tar.bz2
+  - links.tar.bz2
+  - tag_metadata.csv
+  - tags_detailed.tar.bz2
+  when: import_csv == 'download'
+
+- name: Unpacking csv's
+  unarchive:
+    src: "/tmp/{{ item }}"
+    dest: /tmp/
+    copy: no
+    mode: 0777
+    owner: mysql
+    group: mysql
+  with_items:
+  - sentences.tar.bz2
+  - links.tar.bz2
+  - tags_detailed.tar.bz2
+  when: import_csv == 'download'
+
+- name: Import sentences in the tatoeba database
+# This task requires mysql root because restore_dumps.sql sets some global variables
+  shell: mysql -u root -p{{ mysql_root_password }} {{ mysql_db_name }} < {{ code_dir }}/docs/database/import/restore_dumps.sql

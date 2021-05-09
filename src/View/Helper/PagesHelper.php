@@ -76,6 +76,23 @@ class PagesHelper extends AppHelper
     }
 
     /**
+     * Formats the text used to display sentence numbers prefixed
+     * with a sharp symbol, such as #1234. The sharp symbol may
+     * actually be localized in to something more appropriate in
+     * the language.
+     * Warning: returned value is not HTML-escaped.
+     */
+    public function formatSentenceIdWithSharp($sentenceId) {
+        return format(
+            /* @translators: You can translate the sharp in the link
+               to a sentence that appears anywhere on the website,
+               such as in "Sentence #1234 — belongs to foobar" */
+            __('#{sentenceId}'),
+            array('sentenceId' => $sentenceId)
+        );
+    }
+
+    /**
      * Display a message if a vocabulary item exists and its numSentences count
      * is different than the Sphinx real total.
      *

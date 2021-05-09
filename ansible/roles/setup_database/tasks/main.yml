@@ -1,0 +1,16 @@
+---
+# Tasks to create the database, install updates and import sentences in it
+
+- name: Check whether tatoeba's code is present or not
+  stat:
+    path: "{{code_dir}}"
+  register: code_status
+
+- name: Database import/update fail message
+  fail: msg="Tatoeba's code is not present in {{code_dir}} or the current link is missing. Please fetch the code first using update_code.yml playbook."
+  when: not code_status.stat.isdir
+
+- include_tasks: create_db.yml
+
+- include_tasks: import_csv.yml
+  when: import_csv != 'no'

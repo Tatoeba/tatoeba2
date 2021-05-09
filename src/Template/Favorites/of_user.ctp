@@ -78,7 +78,7 @@ if ($userExists) {
                 if (empty($favorite->sentence->text)) {
                     $sentenceId = $favorite->favorite_id;
                     $linkToSentence = $this->Html->link(
-                        '#'.$sentenceId,
+                        $this->Pages->formatSentenceIdWithSharp($sentenceId),
                         array(
                             'controller' => 'sentences',
                             'action' => 'show',

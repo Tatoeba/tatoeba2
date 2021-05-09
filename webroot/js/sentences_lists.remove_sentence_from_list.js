@@ -18,21 +18,20 @@
 
 
 $(document).ready(function() {
+    $(document).watch("addrule", function() {
+        $(".removeFromListButton").click(function(){
+            var sentenceId = $(this).attr("data-sentence-id");
+            var listId = $("#sentencesList").attr('data-list-id');
+            var rootUrl = get_tatoeba_root_url();
 
-    $(".removeFromListButton").click(function(){
-        var sentenceId = $(this).attr("data-sentence-id");
-        var listId = $("#sentencesList").attr('data-list-id');
-        var rootUrl = get_tatoeba_root_url();
-        
-        $("#sentence"+sentenceId).html(
-            "<div class='block-loader loader'></div>"
-        );
-        $("#sentence"+sentenceId).load(
-            rootUrl
-            + "/sentences_lists/remove_sentence_from_list/"
-            + sentenceId + "/" + listId
-        );
-        
+            $("#sentence"+sentenceId).html(
+                "<div class='block-loader loader'></div>"
+            );
+            $("#sentence"+sentenceId).load(
+                rootUrl
+                + "/sentences_lists/remove_sentence_from_list/"
+                + sentenceId + "/" + listId
+            );
+        });
     });
-
 });

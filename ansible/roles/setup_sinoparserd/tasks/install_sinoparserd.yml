@@ -1,0 +1,62 @@
+---
+
+- name: Stop sinoparserd daemon if started
+  command: service sinoparserd stop
+  when: install_state is success and force_install == true
+  ignore_errors: yes
+
+- name: Install dependencies for sinoparserd
+  apt:
+    name: ['make', 'cmake', 'g++',
+           'libevent-dev', 'libexpat1-dev', 'libgmm++-dev']
+    state: present
+
+- name: Fetch sinoparserd source
+  git: repo=https://github.com/Tatoeba/sinoparserd.git dest=/tmp/sinoparserd force=yes
+
+- name: Fix to import the correct file in Index.h
+  replace:
+    path: /tmp/sinoparserd/src/Index.h
+    regexp: 'tree_str'
+    replace: 'TatoTreeStr'
+
+- name: Generate Makefile
+  command: cmake . chdir=/tmp/sinoparserd
+
+- name: Compile
+  command: make -j2 chdir=/tmp/sinoparserd
+
+- name: Copy Binaries
+  command: cp sinoparserd /usr/local/bin/sinoparserd chdir=/tmp/sinoparserd
+
+- name: Copy service file to system-wide location
+  copy: src=sinoparserd.service dest=/etc/systemd/system/sinoparserd.service mode=0644
+  register: service_file
+
+- name: Copy default file to system-wide location
+  copy: src=default dest=/etc/default/sinoparserd mode=0644
+
+- name: Copy dictionary files to a system wide location - 1
+  command: cp doc/cantonese.xml /etc/cantonese.xml chdir=/tmp/sinoparserd
+
+- name: Copy dictionary files to a system wide location - 2
+  command: cp doc/mandarin.xml /etc/mandarin.xml chdir=/tmp/sinoparserd
+
+- name: Create unprivileged user sinoparserd
+  user: name=sinoparserd system=yes
+
+- name: Reload daemons
+  systemd:
+    daemon_reload: yes
+  when: service_file is changed
+
+- name: Start and enable the daemon
+  systemd:
+    name: sinoparserd
+    state: started
+    enabled: yes
+
+- name: Remove temporary files
+  file:
+    path: /tmp/sinoparserd
+    state: absent
