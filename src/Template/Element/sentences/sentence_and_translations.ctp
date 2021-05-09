@@ -91,10 +91,11 @@ $sentenceUrl = $this->Url->build([
             <md-subheader flex ng-if="!vm.isMenuExpanded">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
+                    $linkText = $this->Pages->formatSentenceIdWithSharp('{{vm.sentence.id}}');
                     echo format(
                         __('Sentence {number} — belongs to {username}'),
                         array(
-                            'number' => '<a ng-href="'.$sentenceUrl.'/{{vm.sentence.id}}">#{{vm.sentence.id}}</a>',
+                            'number' => '<a ng-href="'.$sentenceUrl.'/{{vm.sentence.id}}">'.h($linkText).'</a>',
                             'username' => '<a ng-href="'.$profileUrl.'/{{vm.sentence.user.username}}">{{vm.sentence.user.username}}</a>'
                         )
                     );

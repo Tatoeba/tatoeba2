@@ -141,10 +141,10 @@ return [
      *   sentences.
      */
     'Search' => [
-        'enabled' => false,
+        'enabled' => true,
     ],
     'AutoTranscriptions' => [
-        'enabled' => false,
+        'enabled' => true,
     ],
 
     'Tatoeba' => [
