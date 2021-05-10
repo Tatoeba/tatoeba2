@@ -1,7 +1,6 @@
 <?php
 /**
- * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -16,11 +15,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
@@ -29,16 +26,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Form\SentencesSearchForm;
 use App\Model\CurrentUser;
-use App\Model\Table\SentencesTable;
-use App\Lib\LanguagesLib;
-use App\Lib\SphinxClient;
-use App\Lib\Licenses;
 use Cake\Core\Configure;
-use Cake\Database\Expression\QueryExpression;
-use Cake\Event\Event;
-use Cake\Routing\Router;
-use Cake\Utility\Hash;
-use Cake\View\ViewBuilder;
 use Exception;
 
 /**
@@ -46,52 +34,13 @@ use Exception;
  *
  * @category Sentences
  * @package  Controllers
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @author   githubshrek
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
 class ApiV1Controller extends AppController
 {
     public $name = 'Sentences';
-    public $components = array (
-        'LanguageDetection',
-        'CommonSentence',
-        'Permissions',
-    );
-    public $helpers = array(
-        'Sentences',
-        'Menu',
-        'Lists',
-        'SentenceButtons',
-        'Html',
-        'Logs',
-        'Pagination',
-        'Comments',
-        'Languages',
-        'CommonModules'
-    );
-
-    public $uses = array(
-        'Audio',
-        'Sentence',
-        'SentencesSentencesLists',
-        'SentencesList',
-        'User',
-        'UsersLanguages',
-        'Tag',
-        'UsersSentences',
-        'Vocabulary'
-    );
-
-    public function initialize() {
-        parent::initialize();
-
-        $params = $this->request->params;
-        $noCsrfActions = ['edit_sentence', 'change_language'];
-        if (in_array($params['action'], $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
 
     /**
      * Show Json of specified sentence id.
@@ -120,9 +69,7 @@ class ApiV1Controller extends AppController
     /**
      * Show in Json format a list of sentence ids which matches a given search.
      * 
-     * Note that this method is basically a copy/paste of the SentencesController.php 
-     * search() method. Only the minimum changes necessary to deliver an array of ids
-     * have been made. Therefore, there may be some redundant code below.
+     * This method is based on the SentencesController.php search() method.
      *
      * @return void
      */
@@ -206,6 +153,8 @@ class ApiV1Controller extends AppController
         }
     
         $ids_json = json_encode($ids);
-        echo '{ "ids" : ' . $ids_json . ' }';
+        $ids_json = '{ "ids" : ' . $ids_json . ' }';
+        return $this->getResponse()
+            ->withStringBody($ids_json);
     }
 }
