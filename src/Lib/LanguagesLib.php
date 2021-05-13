@@ -658,6 +658,7 @@ class LanguagesLib
                 'lez' => __d('languages', 'Lezgi'),
                 'guc' => __d('languages', 'Wayuu'),
                 'lim' => __d('languages', 'Limburgish'),
+                'zea' => __d('languages', 'Zeelandic'),
             );
         }
         return $languages;
