@@ -195,7 +195,6 @@ class SentenceButtonsHelper extends AppHelper
                     array('author' => $author)
                 );
             }
-            $this->Html->script('sentences.play_audio.js', array('block' => 'scriptBottom'));
         } else {
             $onClick = 'return false';
             $css = 'audioUnavailable';
@@ -276,8 +275,6 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function displayCopyButton($text)
     {
-        $this->Html->script('clipboard.min.js', array('block' => 'scriptBottom'));
-        $this->Html->script('sentences.copy.js', array('block' => 'scriptBottom'));
         $copyButton = $this->Images->svgIcon('copy');
         echo $this->Html->div('copy-btn', $copyButton,
             array(

@@ -159,7 +159,7 @@ class CLDRCountriesShell extends Shell {
         $php_file = APP.'Lib'.DS.'CountriesList.php';
         $fh = fopen($php_file, 'w');
         $our_name = get_class($this);
-        fprintf($fh, "<?php
+        fprintf($fh, "%s", "<?php
 {$this->CLDR_copyright}
 
 namespace App\Lib;
@@ -190,7 +190,7 @@ class CountriesList {
     private function write_po_header($fh, $locale) {
         $orig_po_file = APP.'Locale'.DS.$locale.DS.'countries.po';
         $orig_header = shell_exec("sed -n '0,/^$/p' '$orig_po_file'");
-        fprintf($fh, $orig_header);
+        fprintf($fh, "%s", $orig_header);
     }
 
     private function write_po_translation($fh, $english, $translation) {
