@@ -25,8 +25,9 @@
  * @link     https://tatoeba.org
  */
 
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
 use App\Model\CurrentUser;
+use App\Lib\LanguagesLib;
 
 // Detecting language for "adopt sentences" page
 $session = $this->request->getSession();
@@ -37,7 +38,7 @@ if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
 if (empty($currentLanguage) || $currentLanguage == 'und') {
-    $currentLanguage = Configure::read('Config.language');
+    $currentLanguage = LanguagesLib::locale_To_Iso639_3(I18n::getLocale());
 }
 
 // array containing the elements of the menu : $title => $route

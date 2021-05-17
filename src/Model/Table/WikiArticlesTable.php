@@ -3,6 +3,7 @@ namespace App\Model\Table;
 
 use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
+use Cake\I18n\I18n;
 use Cake\Log\Log;
 use Cake\ORM\Table;
 
@@ -36,7 +37,7 @@ class WikiArticlesTable extends Table
     }
 
     public function getWikiLink($englishSlug) {
-        $uiLang = LanguagesLib::languageTag(Configure::read('Config.language'));
+        $uiLang = I18n::getLocale();
         $lang = 'en';
         $slug = $englishSlug;
 

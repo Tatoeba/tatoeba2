@@ -22,21 +22,21 @@ class AudioControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/audio/import', null, '/eng/users/login?redirect=%2Feng%2Faudio%2Fimport' ],
-            [ '/eng/audio/import', 'spammer', '/' ],
-            [ '/eng/audio/import', 'inactive', '/' ],
-            [ '/eng/audio/import', 'contributor', '/' ],
-            [ '/eng/audio/import', 'advanced_contributor', '/' ],
-            [ '/eng/audio/import', 'corpus_maintainer', '/' ],
-            [ '/eng/audio/import', 'admin', true ],
-            [ '/eng/audio/index', null, true ],
-            [ '/eng/audio/index', 'contributor', true ],
-            [ '/eng/audio/index/fra', null, true ],
-            [ '/eng/audio/index/fra', 'contributor', true ],
-            [ '/eng/audio/of/contributor', null, true ],
-            [ '/eng/audio/of/contributor', 'contributor', true ],
-            [ '/eng/audio/save_settings', null, '/eng/users/login?redirect=%2Feng%2Faudio%2Fsave_settings' ],
-            [ '/eng/audio/save_settings', 'contributor', '/eng/audio/of/contributor' ],
+            [ '/en/audio/import', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fimport' ],
+            [ '/en/audio/import', 'spammer', '/' ],
+            [ '/en/audio/import', 'inactive', '/' ],
+            [ '/en/audio/import', 'contributor', '/' ],
+            [ '/en/audio/import', 'advanced_contributor', '/' ],
+            [ '/en/audio/import', 'corpus_maintainer', '/' ],
+            [ '/en/audio/import', 'admin', true ],
+            [ '/en/audio/index', null, true ],
+            [ '/en/audio/index', 'contributor', true ],
+            [ '/en/audio/index/fra', null, true ],
+            [ '/en/audio/index/fra', 'contributor', true ],
+            [ '/en/audio/of/contributor', null, true ],
+            [ '/en/audio/of/contributor', 'contributor', true ],
+            [ '/en/audio/save_settings', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fsave_settings' ],
+            [ '/en/audio/save_settings', 'contributor', '/en/audio/of/contributor' ],
         ];
     }
 

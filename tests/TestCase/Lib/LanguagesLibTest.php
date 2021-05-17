@@ -17,11 +17,14 @@ class LanguagesLibTest extends TestCase {
         Configure::write(
             'UI.languages',
             [
-                'chi' => 'cmn',
-                'cmn' => ['中文', 'Hans'],
-                'fra' => ['Français', null],
-                'fre' => 'fra',
-                'por' => ['Português (Brasil)', 'BR'],
+                'chi' => 'zh-cn',
+                'cmn' => 'zh-cn',
+                'zh-cn' => ['中文'],
+                'fr' => ['Français'],
+                'fre' => 'fr',
+                'fra' => 'fr',
+                'pt-br' => ['Português (Brasil)'],
+                'por' => 'pt-br',
             ]
         );
     }
@@ -33,7 +36,7 @@ class LanguagesLibTest extends TestCase {
     }
 
     public function testActiveUiLanguages() {
-        $expected = ['cmn', 'fra', 'por'];
+        $expected = ['zh-cn', 'fr', 'pt-br'];
         $actual = array_keys(LanguagesLib::activeUiLanguages());
         $this->assertEquals($expected, $actual);
     }

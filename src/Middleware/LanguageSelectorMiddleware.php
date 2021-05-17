@@ -38,14 +38,9 @@ class LanguageSelectorMiddleware
             // requests is valid.
             $lang = isset($this->allLanguages[$langInUrl]) ?
                     $this->unalias($langInUrl) :
-                    'eng';
+                    'en';
         } else {
-            /* The following line is for backward compatibility
-             * with old cookies and can be replaced with
-             * $lang = $request->getCookie('interface_language');
-             * one month (i.e. the expiration time of the old cookie)
-             * after this PR is deployed. */
-            $lang = $this->getCookieLanguage($request);
+            $lang = $request->getCookie('interface_language');
             $lang = isset($this->allLanguages[$lang]) ?
                     $this->unalias($lang) :
                     null;
@@ -53,7 +48,7 @@ class LanguageSelectorMiddleware
                 $lang = $this->getBrowserLanguage($request->acceptLanguage());
             }
             if (!$lang) {
-                $lang = $this->unalias($langInUrl) ?: 'eng';
+                $lang = $this->unalias($langInUrl) ?: 'en';
             }
 
             if ($langInUrl !== $lang) {
@@ -69,9 +64,7 @@ class LanguageSelectorMiddleware
             }
         }
 
-        Configure::write('Config.language', $lang);
-        $locale = locale_parse(LanguagesLib::languageTag($lang));
-        I18n::setLocale($locale['language']);
+        I18n::setLocale($lang);
 
         $response = $response->withCookie(new Cookie(
             'interface_language',
@@ -82,36 +75,6 @@ class LanguageSelectorMiddleware
         return $next($request, $response);
     }
 
-    /**
-     * Helper function to get cookie value for the
-     * interface language
-     *
-     * Since CakePHP 3.5 the CookieComponent is deprecated
-     * and one should get the cookie from the request object.
-     * (The CookieComponent wouldn't be available here
-     * (i.e. inside a middleware) anyways.)
-     * But the way how the cookie is written and read using
-     * the component differs from the new way and so
-     * we should rather get rid of the namespaced
-     * 'CakeCookie.interfaceLanguage' and just use
-     * 'interface_language' for the cookie name.
-     *
-     * @param ServerRequest $request
-     *
-     * @return string|null
-     */
-    function getCookieLanguage($request) {
-        $lang = $request->getCookie('interface_language');
-        if (!$lang) {
-            $cookie = $request->getCookieCollection()->get('CakeCookie');
-            $lang = $cookie ? $cookie->read('interfaceLanguage') : null;
-        }
-        if (!$lang) {
-            $lang = $request->getCookie('CakeCookie[interfaceLanguage]');
-        }
-        return $lang;
-    }
-
      /**
      * Returns the ISO code of the language in which we should set the interface,
      * considering the languages of the user's browser.
@@ -119,17 +82,20 @@ class LanguageSelectorMiddleware
      * @return string|null
      */
     private function getBrowserLanguage($browserLanguages) {
-        $configUiLanguages = array_keys(LanguagesLib::activeUiLanguages());
-        $supportedLanguages = array();
-        foreach ($configUiLanguages as $code) {
-            $browserCompatibleCode = LanguagesLib::languageTag($code);
-            $supportedLanguages[$browserCompatibleCode] = $code;
+        $supportedLanguages = LanguagesLib::activeUiLanguages();
+        $localeVariants = [];
+        foreach ($supportedLanguages as $locale => $langDef) {
+            unset($langDef[0]); // skip language name
+            foreach ($langDef as $alias) {
+                $localeVariants[$alias] = $locale;
+            }
         }
 
         foreach ($browserLanguages as $browserLang) {
-            $lang = explode('-', $browserLang)[0];
-            if (isset($supportedLanguages[$lang])) {
-                return $supportedLanguages[$lang];
+            if (isset($supportedLanguages[$browserLang])) {
+                return $browserLang;
+            } elseif (isset($localeVariants[$browserLang])) {
+                return $localeVariants[$browserLang];
             }
         }
         return null;
