@@ -744,7 +744,7 @@ EOT;
         $languages = LanguagesLib::languagesInTatoeba();
         if (is_null($only)) {
             $Sentences = $this->loadModel('Sentences');
-            $only = $Sentences->languagesHavingSentences();
+            $only = array_filter($Sentences->languagesHavingSentences());
         }
         if (!is_null($only)) {
             $languages = array_intersect_key($languages, array_flip($only));
