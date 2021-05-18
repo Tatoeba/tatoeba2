@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 17:43+0100\n"
+"POT-Creation-Date: 2021-05-13 21:46+0200\n"
 "PO-Revision-Date: 2021-03-25 19:17+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/tatoeba/tatoeba_website/language/eu/)\n"
@@ -77,7 +77,7 @@ msgid "Folder \"{name}\" emptied."
 msgstr "Karpeta \"{name}\" hustuta."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
 msgstr "Ez dago esaldirik ID {number} horrekin"
 
@@ -519,39 +519,39 @@ msgstr "izenik gabeko zerrenda"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L118
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L138
 msgid "This is not a valid license."
 msgstr "Lizentzia mota hau ez da hemen onartzen."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L126
 msgid "This sentence is already under that license."
 msgstr "Esaldi hau, dagoeneko, lizentzia horrekin dago."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L219
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Esaldia jatorrizkoa izan beharko luke (ez jatorrizko esaldi baten itzulpena)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L227
 msgid "You're not the owner of this sentence."
 msgstr "Ez zara esaldi honen jabea."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L234
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Esaldiaren jabeak esaldiaren jatorrizko sortzailea izan behar du."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L247
 msgid "You can only switch to a more permissive license."
 msgstr "Ezin duzu lizentzia aldatu ez bada lizentzia libreago batera."
 
@@ -1151,7 +1151,7 @@ msgstr "Jabea bere burua identifikatu duen jatorrizko hiztun bat"
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L226
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L178
 msgid "Translations"
 msgstr "Itzulpenak"
 
@@ -1684,7 +1684,7 @@ msgid "Play audio recorded by {author}"
 msgstr "Erreproduzitu {author} egilearen audioa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L25
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L202
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Audiorik ez esaldi honi atxikita. Egin klik jakiteko nola egin audioen bidezko ekarpenak."
 
@@ -1720,12 +1720,12 @@ msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, editatua {modifiedDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L96
 msgid "Sentence {number} — belongs to {username}"
 msgstr "Esaldia {number} — jabea: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L107
 msgid "Sentence {number}"
 msgstr "Esaldia {number}"
 
@@ -1786,7 +1786,7 @@ msgstr "Mezu honen edukia <a href=\"{}\">gure arauen</a> kontra doa eta horregat
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L75
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L409
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L701
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
 msgid "Cancel"
 msgstr "Bertan behera utzi"
@@ -1868,7 +1868,7 @@ msgstr "Oraindik ez da esaldirik gehitu."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L491
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L576
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L697
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
 msgid "OK"
 msgstr "Ados"
@@ -1982,15 +1982,15 @@ msgstr "Erakutsi honako esaldia #: "
 msgid "Your sentence was not added because the following already exists."
 msgstr "Ez da zure esaldia gehitu dagoeneko gure bilduman egon badagoelako."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L149
 msgid "This sentence belongs to a native speaker."
 msgstr "Esaldi honen jabetza jatorrizko hiztun baten esku dago."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L187
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L188
 msgid "Translations of translations"
 msgstr "Itzulpenen itzulpenak"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L204
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L237
 msgid "Fewer translations"
 msgstr "Itzulpen gutxiago"
@@ -2026,7 +2026,7 @@ msgid "This sentence is not reliable."
 msgstr "Esaldi hau ez da fidagarri."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L19
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L281
 msgid "Copy sentence"
 msgstr "Kopiatu esaldia"
 
@@ -2425,7 +2425,7 @@ msgstr "Gogokoenak"
 #. link to the user's sentence comments on profile page sidebar
 #. / header text in sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L88
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L213
 msgid "Comments"
 msgstr "Iruzkinak"
 
@@ -2443,7 +2443,7 @@ msgstr "Hormako mezuak"
 #. link to the user's contributions on profile page sidebar
 #. / header text in sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L144
 msgid "Logs"
 msgstr "Erregistroak"
 
@@ -3483,7 +3483,7 @@ msgid ""
 msgstr "Egin klik goiko esaldian joateko  tatoeba.org honetara esaldi hori itzultzera edo iruzkin bat uztera."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
 msgid "Sentence #{number}"
 msgstr "Esaldia #{number}"
 
@@ -3703,46 +3703,46 @@ msgid ""
 "sorry for the inconvenience. Please try again later."
 msgstr "Arrazoi teknikoengatik, bilatzeko eginbidea une honetan desgaituta dago. Sentitzen dugu. Saiatu geroago, mesedez."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
 msgstr "{sentence} - {language} esaldi-adibide"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
 msgstr "Arakatu itzulitako adibide esaldiak. Orrialde honek erakusten ditu itzulpenak eta esaldiari buruzko informazioa: {sentenceText}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
 msgstr "Esaldia ez da existitzen: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
 msgstr "Honek berrikusi du:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L94
 msgid "(outdated)"
 msgstr "(iraungita)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L165
 msgid "There is no log for this sentence"
 msgstr "Ez dago esaldi honetarako erregistrorik"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L242
 msgid "There are no comments for now."
 msgstr "Ez dago iruzkinik zuretzat oraingoz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L262
 msgid "Random Sentence"
 msgstr "Ausazko esaldia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L264
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
 msgstr "Ausazko esaldi eginbide hau, une honetan, desgaiturik dago. Saiatu geroago, mesedez."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L266
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
@@ -4773,12 +4773,6 @@ msgid ""
 "license."
 msgstr "{userName} erabiltzailearen audioak argitaratu dira lizentzia zehaztu gabe."
 
-#. You can translate the sharp in the link to a sentence
-#. that appears in logs to a more natural character
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ClickableLinksHelper.php#L189
-msgid "#{sentenceId}"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
@@ -4911,7 +4905,7 @@ msgid "Unknown language"
 msgstr "Hizkuntza ezezaguna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L185
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L238
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L237
 msgid "other language"
 msgstr "beste hizkuntza bat"
 
@@ -5274,7 +5268,14 @@ msgid_plural "{thousand}&nbsp;results out of {n}&nbsp;occurrences"
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L95
+#. You can translate the sharp in the link
+#. to a sentence that appears anywhere on the website,
+#. such as in "Sentence #1234 — belongs to foobar"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L90
+msgid "#{sentenceId}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L112
 msgid "Recently added sentences may not appear in search results."
 msgstr "Duela gutxi sartutako esaldiak agian ez dira oraindik bilaketa emaitzetan agertuko."
 

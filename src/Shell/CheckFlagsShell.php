@@ -23,6 +23,7 @@ use App\Model\Sentence;
 use App\View\Helper\Languages;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
 class CheckFlagsShell extends Shell {
 
@@ -90,7 +91,7 @@ class CheckFlagsShell extends Shell {
 
         $this->stdout = fopen('php://output', 'w');
 
-        Configure::write('Config.language', 'eng');
+        I18n::setLocale('en');
         $languagesHelper = new LanguagesHelper();
         $this->tatoeba_languages = $languagesHelper->onlyLanguagesArray();
     }

@@ -21,8 +21,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\CurrentUser;
 use App\Model\Licensing;
-use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\I18n\I18n;
 
 class LicensingController extends AppController {
 
@@ -95,7 +95,7 @@ class LicensingController extends AppController {
             } else {
                 $isSwitching = $licensing->startLicenseSwitch(
                     $currentUserId,
-                    Configure::read('Config.language')
+                    I18n::getLocale()
                 );
             }
         }

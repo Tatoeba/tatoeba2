@@ -35,10 +35,9 @@ if ($currentLang) {
     $pathWithoutLang = substr($this->request->getPath(), strlen($currentLang) + 1);
     foreach ($uiLanguages as $code => $info) {
         $alternateURL = $this->Url->build('/' . $code . $pathWithoutLang, ['fullBase' => true]);
-        $hreflang = LanguagesLib::languageTag($code, $info[1]);
         ?>
         <link rel="alternate"
-              hreflang="<?php echo $hreflang; ?>"
+              hreflang="<?php echo $code; ?>"
               href="<?php echo $alternateURL; ?>">
         <?php
     }

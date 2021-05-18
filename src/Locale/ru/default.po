@@ -14,16 +14,16 @@
 # Konstantin N <explanacion@gmail.com>, 2018-2020
 # Nikolay Korotkiy <sikmir@gmail.com>, 2016
 # Oleksii Kshenskyi <oleksii.kshenskyi@outlook.com>, 2020
-# Sergei Merchenko <corvard555@gmail.com>, 2020
+# Sergei Merchenko <corvard555@gmail.com>, 2020-2021
 # Trang, 2018
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 17:43+0100\n"
-"PO-Revision-Date: 2021-03-25 19:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-05-13 21:46+0200\n"
+"PO-Revision-Date: 2021-05-16 11:12+0000\n"
+"Last-Translator: Sergei Merchenko <corvard555@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +87,7 @@ msgid "Folder \"{name}\" emptied."
 msgstr "Папка «{name}» очищена."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
 msgstr "Предложения с номером {number} не существует"
 
@@ -256,7 +256,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L343
 msgid "We hope you'll enjoy your time here with us!"
-msgstr ""
+msgstr "Надеемся, что вам тут понравится!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L354
 msgid "Please fix the form errors."
@@ -535,39 +535,39 @@ msgstr "безымянный список"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L118
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L138
 msgid "This is not a valid license."
 msgstr "Некорректная лицензия."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L126
 msgid "This sentence is already under that license."
 msgstr "На это предложение уже распространяется данная лицензия."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L219
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Предложение должно быть оригиналом (не являться результатом перевода)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L227
 msgid "You're not the owner of this sentence."
 msgstr "Вы не являетесь владельцем этого предложения."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L234
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Владелец предложения должен изначально быль его автором."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L247
 msgid "You can only switch to a more permissive license."
 msgstr "Можно переключиться только на менее строгую лицензию."
 
@@ -1173,7 +1173,7 @@ msgstr "Принадлежит самоидентифицированному н
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L226
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L178
 msgid "Translations"
 msgstr "Переводы"
 
@@ -1494,7 +1494,7 @@ msgstr "Язык не найден."
 #. languages. Appears when entered text returns no matches.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown_angular.ctp#L39
 msgid "Show all"
-msgstr ""
+msgstr "Показать все"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
@@ -1710,7 +1710,7 @@ msgid "Play audio recorded by {author}"
 msgstr "Воспроизвести аудио, записанное {author}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L25
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L202
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "У этого предложения нет аудиозаписи. Кликните, чтобы узнать, как её добавить."
 
@@ -1746,12 +1746,12 @@ msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, изменено {modifiedDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L96
 msgid "Sentence {number} — belongs to {username}"
 msgstr "Предложение №{number} — принадлежит {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L107
 msgid "Sentence {number}"
 msgstr "Предложение №{number}"
 
@@ -1812,7 +1812,7 @@ msgstr "Содержание этого сообщения противореч�
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L75
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L409
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L701
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
 msgid "Cancel"
 msgstr "Отмена"
@@ -1894,7 +1894,7 @@ msgstr "Добавленных предложений пока нет."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L491
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L576
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L697
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
 msgid "OK"
 msgstr "OK"
@@ -2010,15 +2010,15 @@ msgstr "Показать предложение № "
 msgid "Your sentence was not added because the following already exists."
 msgstr "Предложение не было добавлено, так как существует следующее предложение."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L149
 msgid "This sentence belongs to a native speaker."
 msgstr "Это предложение принадлежит носителю языка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L187
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L188
 msgid "Translations of translations"
 msgstr "Переводы переводов"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L204
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L237
 msgid "Fewer translations"
 msgstr "Меньше переводов"
@@ -2054,7 +2054,7 @@ msgid "This sentence is not reliable."
 msgstr "Это предложение не заслуживает доверия."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L19
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L281
 msgid "Copy sentence"
 msgstr "Скопировать предложение"
 
@@ -2459,7 +2459,7 @@ msgstr "Избранные"
 #. link to the user's sentence comments on profile page sidebar
 #. / header text in sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L88
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L213
 msgid "Comments"
 msgstr "Комментарии"
 
@@ -2477,7 +2477,7 @@ msgstr "Сообщения на стене"
 #. link to the user's contributions on profile page sidebar
 #. / header text in sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L144
 msgid "Logs"
 msgstr "Журнал"
 
@@ -3521,7 +3521,7 @@ msgid ""
 msgstr "Кликните на верхнее предложение для перехода на tatoeba.org, чтобы перевести его или оставить комментарий."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
 msgid "Sentence #{number}"
 msgstr "Предложение №{number}"
 
@@ -3743,46 +3743,46 @@ msgid ""
 "sorry for the inconvenience. Please try again later."
 msgstr "В настоящее время функция поиска отключена по техническим причинам. Приносим свои извинения за неудобства. Пожалуйста, попытайтесь еще раз немного позже."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
 msgstr "{sentence} - пример предложения на {language.prep}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
 msgstr "Обзор предложений-примеров с их переводами. На данной странице показаны переводы и информация об этом предложении: {sentenceText}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
 msgstr "Предложение не существует: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
 msgstr "Проверено"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L94
 msgid "(outdated)"
 msgstr "(устарело)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L165
 msgid "There is no log for this sentence"
 msgstr "Для этого предложения нет лога"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L242
 msgid "There are no comments for now."
 msgstr "Комментариев пока нет."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L262
 msgid "Random Sentence"
 msgstr "Случайное предложение"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L264
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
 msgstr "Функция поиска случайных предложений в настоящее время отключена. Пожалуйста, попытайтесь позднее."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L266
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
@@ -4829,12 +4829,6 @@ msgid ""
 "license."
 msgstr "Следующие аудиозаписи пользователя {userName} доступны на условиях неизвестной лицензии."
 
-#. You can translate the sharp in the link to a sentence
-#. that appears in logs to a more natural character
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ClickableLinksHelper.php#L189
-msgid "#{sentenceId}"
-msgstr "№{sentenceId}"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
@@ -4973,7 +4967,7 @@ msgid "Unknown language"
 msgstr "Неизвестный язык"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L185
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L238
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L237
 msgid "other language"
 msgstr "другой язык"
 
@@ -5340,7 +5334,14 @@ msgstr[1] "{thousand}&nbsp;результата из {n}вхождений"
 msgstr[2] "{thousand}&nbsp;результатов из {n}&nbsp;вхождений"
 msgstr[3] "{thousand}&nbsp;результатов из {n}&nbsp;вхождений"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L95
+#. You can translate the sharp in the link
+#. to a sentence that appears anywhere on the website,
+#. such as in "Sentence #1234 — belongs to foobar"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L90
+msgid "#{sentenceId}"
+msgstr "№{sentenceId}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L112
 msgid "Recently added sentences may not appear in search results."
 msgstr "Недавно добавленные предложения могут отсутствовать в результатах поиска."
 

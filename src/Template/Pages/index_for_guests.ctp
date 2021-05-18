@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
 $this->set('isResponsive', true);
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
@@ -103,7 +103,7 @@ $registerUrl = $this->Url->build(
                 ],
                 [ 'cache' => [
                     'config' => 'stats',
-                    'key' => 'homepage_stats_'.Configure::read('Config.language')
+                    'key' => 'homepage_stats_'.I18n::getLocale(),
                 ]]
         ); ?>
     </div>

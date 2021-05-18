@@ -20,8 +20,8 @@ namespace App\Shell;
 
 use App\Lib\LanguagesLib;
 use Cake\Console\Shell;
-use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
+use Cake\I18n\I18n;
 
 
 class LanguagesTableShell extends Shell {
@@ -33,7 +33,7 @@ class LanguagesTableShell extends Shell {
     }
 
     private function get_tatoeba_languages() {
-        Configure::write('Config.language', 'eng');
+        I18n::setLocale('en');
         return LanguagesLib::languagesInTatoeba();
     }
 

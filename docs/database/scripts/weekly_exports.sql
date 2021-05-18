@@ -99,13 +99,13 @@ INTO OUTFILE '/var/tmp/sentences_with_audio.csv';
 
 -- User skill level per language
 SELECT ul.language_code, ul.level, u.username, ul.details
-FROM users_languages ul LEFT JOIN users u ON ul.of_user_id = u.id
+FROM users_languages ul INNER JOIN users u ON ul.of_user_id = u.id
 ORDER BY ul.language_code ASC, ul.level DESC, u.username ASC
 INTO OUTFILE '/var/tmp/user_languages.csv';
 
 -- Users sentences
 SELECT u.username, us.sentence_id, us.correctness, us.created, us.modified
-FROM users_sentences us LEFT JOIN users u ON us.user_id = u.id
+FROM users_sentences us INNER JOIN users u ON us.user_id = u.id
 INTO OUTFILE '/var/tmp/users_sentences.csv';
 
 -- Sentences under CC0

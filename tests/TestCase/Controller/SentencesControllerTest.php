@@ -39,42 +39,42 @@ class SentencesControllerTest extends IntegrationTestCase {
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/sentences/show/1', null, true ],
-            [ '/eng/sentences/show/1', 'contributor', true ],
-            [ '/eng/sentences/show', null, 302 ],
-            [ '/eng/sentences/show/random', null, 302 ],
-            [ '/eng/sentences/show/fra', null, true ], // no redirect because Search.enabled = false
-            [ '/eng/sentences/show/9999999999', null, true ],
-            [ '/eng/sentences/go_to_sentence?sentence_id=2', null, '/eng/sentences/show/2' ],
-            [ '/eng/sentences/go_to_sentence?sentence_id=2', 'contributor', '/eng/sentences/show/2' ],
-            [ '/eng/sentences/go_to_sentence?sentence_id=', null, '/eng/sentences/show/random' ],
-            [ '/eng/sentences/add', null, '/eng/users/login?redirect=%2Feng%2Fsentences%2Fadd' ],
-            [ '/eng/sentences/add', 'contributor', true ],
-            [ '/eng/sentences/delete/1', null, '/eng/users/login?redirect=%2Feng%2Fsentences%2Fdelete%2F1' ],
-            [ '/eng/sentences/delete/1', 'contributor', '/eng/sentences/show/1' ],
-            [ '/eng/sentences/delete/1', 'admin', '/eng/sentences/show/1' ],
-            [ '/eng/sentences/index', null, true ],
-            [ '/eng/sentences/index', 'contributor', true ],
-            [ '/eng/sentences/search', null, true ],
-            [ '/eng/sentences/search', 'contributor', true ],
-            [ '/eng/sentences/search?query=hacer&from=spa&to=fra', null, true ],
-            [ '/eng/sentences/search?query=hacer&from=spa&to=fra&sort=random', null, true ], // TODO no redirect because Search.enabled = false
-            [ '/eng/sentences/advanced_search', null, true ],
-            [ '/eng/sentences/advanced_search', 'contributor', true ],
-            [ '/eng/sentences/show_all_in/eng/none', null, true ],
-            [ '/eng/sentences/show_all_in/eng/none', 'contributor', true ],
-            [ '/eng/sentences/of_user/contributor', null, true ],
-            [ '/eng/sentences/of_user/contributor', 'contributor', true ],
-            [ '/eng/sentences/of_user/contributor/fra', null, true ],
-            [ '/eng/sentences/of_user/nonexistent/fra', null, true ],
-            [ '/eng/sentences/import', null, '/eng/users/login?redirect=%2Feng%2Fsentences%2Fimport' ],
-            [ '/eng/sentences/import', 'contributor', '/eng' ],
-            [ '/eng/sentences/import', 'advanced_contributor', '/eng' ],
-            [ '/eng/sentences/import', 'corpus_maintainer', '/eng' ],
-            [ '/eng/sentences/import', 'admin', true ],
-            [ '/eng/sentences/with_audio', null, '/eng/audio/index' ],
-            [ '/eng/sentences/with_audio', 'contributor', '/eng/audio/index' ],
-            [ '/eng/sentences/with_audio/spa', null, '/eng/audio/index/spa' ],
+            [ '/en/sentences/show/1', null, true ],
+            [ '/en/sentences/show/1', 'contributor', true ],
+            [ '/en/sentences/show', null, 302 ],
+            [ '/en/sentences/show/random', null, 302 ],
+            [ '/en/sentences/show/fra', null, true ], // no redirect because Search.enabled = false
+            [ '/en/sentences/show/9999999999', null, true ],
+            [ '/en/sentences/go_to_sentence?sentence_id=2', null, '/en/sentences/show/2' ],
+            [ '/en/sentences/go_to_sentence?sentence_id=2', 'contributor', '/en/sentences/show/2' ],
+            [ '/en/sentences/go_to_sentence?sentence_id=', null, '/en/sentences/show/random' ],
+            [ '/en/sentences/add', null, '/en/users/login?redirect=%2Fen%2Fsentences%2Fadd' ],
+            [ '/en/sentences/add', 'contributor', true ],
+            [ '/en/sentences/delete/1', null, '/en/users/login?redirect=%2Fen%2Fsentences%2Fdelete%2F1' ],
+            [ '/en/sentences/delete/1', 'contributor', '/en/sentences/show/1' ],
+            [ '/en/sentences/delete/1', 'admin', '/en/sentences/show/1' ],
+            [ '/en/sentences/index', null, true ],
+            [ '/en/sentences/index', 'contributor', true ],
+            [ '/en/sentences/search', null, true ],
+            [ '/en/sentences/search', 'contributor', true ],
+            [ '/en/sentences/search?query=hacer&from=spa&to=fra', null, true ],
+            [ '/en/sentences/search?query=hacer&from=spa&to=fra&sort=random', null, true ], // TODO no redirect because Search.enabled = false
+            [ '/en/sentences/advanced_search', null, true ],
+            [ '/en/sentences/advanced_search', 'contributor', true ],
+            [ '/en/sentences/show_all_in/eng/none', null, true ],
+            [ '/en/sentences/show_all_in/eng/none', 'contributor', true ],
+            [ '/en/sentences/of_user/contributor', null, true ],
+            [ '/en/sentences/of_user/contributor', 'contributor', true ],
+            [ '/en/sentences/of_user/contributor/fra', null, true ],
+            [ '/en/sentences/of_user/nonexistent/fra', null, true ],
+            [ '/en/sentences/import', null, '/en/users/login?redirect=%2Fen%2Fsentences%2Fimport' ],
+            [ '/en/sentences/import', 'contributor', '/en' ],
+            [ '/en/sentences/import', 'advanced_contributor', '/en' ],
+            [ '/en/sentences/import', 'corpus_maintainer', '/en' ],
+            [ '/en/sentences/import', 'admin', true ],
+            [ '/en/sentences/with_audio', null, '/en/audio/index' ],
+            [ '/en/sentences/with_audio', 'contributor', '/en/audio/index' ],
+            [ '/en/sentences/with_audio/spa', null, '/en/audio/index/spa' ],
         ];
     }
 
@@ -87,18 +87,18 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function ajaxAccessesProvider() {
         return [
-            [ '/eng/sentences/adopt/14', null, false ],
-            [ '/eng/sentences/adopt/14', 'contributor', true ],
-            [ '/eng/sentences/let_go/19', null, false ],
-            [ '/eng/sentences/let_go/19', 'contributor', true ],
-            [ '/eng/sentences/random/und', null, true ],
-            [ '/eng/sentences/random/und', 'contributor', true ],
-            [ '/eng/sentences/random/fra', null, true ],
-            [ '/eng/sentences/random/fra', 'contributor', true ],
-            [ '/eng/sentences/get_neighbors_for_ajax/1/eng', null, true ],
-            [ '/eng/sentences/get_neighbors_for_ajax/1/eng', 'contributor', true ],
-            [ '/eng/sentences/add_an_other_sentence', null, false ],
-            [ '/eng/sentences/add_an_other_sentence', 'contributor', true],
+            [ '/en/sentences/adopt/14', null, false ],
+            [ '/en/sentences/adopt/14', 'contributor', true ],
+            [ '/en/sentences/let_go/19', null, false ],
+            [ '/en/sentences/let_go/19', 'contributor', true ],
+            [ '/en/sentences/random/und', null, true ],
+            [ '/en/sentences/random/und', 'contributor', true ],
+            [ '/en/sentences/random/fra', null, true ],
+            [ '/en/sentences/random/fra', 'contributor', true ],
+            [ '/en/sentences/get_neighbors_for_ajax/1/eng', null, true ],
+            [ '/en/sentences/get_neighbors_for_ajax/1/eng', 'contributor', true ],
+            [ '/en/sentences/add_an_other_sentence', null, false ],
+            [ '/en/sentences/add_an_other_sentence', 'contributor', true],
         ];
     }
 
@@ -182,7 +182,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         if ($user) {
             $this->logInAs($user);
         }
-        $this->ajaxPost('/jpn/sentences/add_an_other_sentence', $data);
+        $this->ajaxPost('/ja/sentences/add_an_other_sentence', $data);
         $this->$assertion();
     }
 
@@ -251,7 +251,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     public function testAddSentence_WithLicense($user, $data, $expectedLicense) {
         $this->logInAs($user);
         $this->addHeader('Accept', 'application/json');
-        $this->ajaxPost('/jpn/sentences/add_an_other_sentence', $data);
+        $this->ajaxPost('/ja/sentences/add_an_other_sentence', $data);
 
         $response = json_decode($this->_response->getBody());
         if ($expectedLicense) {
@@ -265,15 +265,15 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testEditSentence_doesntWorkForUnknownSentence() {
         $this->logInAs('contributor');
-        $this->ajaxPost('/jpn/sentences/edit_sentence', [
+        $this->ajaxPost('/ja/sentences/edit_sentence', [
             'id' => '999999', 'lang' => 'epo', 'text' => 'Forlasu!',
         ]);
-        $this->assertRedirect('/jpn/home');
+        $this->assertRedirect('/ja/home');
     }
 
     public function testEditLicense_returnsHTTP400IfNoId() {
         $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_license', [
+        $this->post('/ja/sentences/edit_license', [
             'license' => 'CC0 1.0',
         ]);
         $this->assertResponseCode(400);
@@ -281,7 +281,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testEditLicense_returnsHTTP400IfNoLicense() {
         $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_license', [
+        $this->post('/ja/sentences/edit_license', [
             'id' => 48,
         ]);
         $this->assertResponseCode(400);
@@ -307,7 +307,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $sentences = TableRegistry::get('Sentences');
         $oldSentence = $sentences->get($sentenceId);
         $this->logInAs($username);
-        $this->post('/jpn/sentences/edit_license', [
+        $this->post('/ja/sentences/edit_license', [
             'id' => $sentenceId,
             'license' => $license,
         ]);
@@ -316,7 +316,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     }
 
     public function testSaveTranslation_asGuest() {
-        $this->ajaxPost('/jpn/sentences/save_translation', [
+        $this->ajaxPost('/ja/sentences/save_translation', [
             'id' => '26',
             'selectLang' => 'fra',
             'value' => 'Elle essaie toujours de faire ce qu\'elle pense.'
@@ -326,7 +326,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testSaveTranslation_asMember() {
         $this->logInAs('contributor');
-        $this->ajaxPost('/jpn/sentences/save_translation', [
+        $this->ajaxPost('/ja/sentences/save_translation', [
             'id' => '26',
             'selectLang' => 'fra',
             'value' => 'Elle essaie toujours de faire ce qu\'elle pense.'
@@ -336,7 +336,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testSaveTranslation_sentenceWithLicensingIssue() {
         $this->logInAs('contributor');
-        $this->ajaxPost('/eng/sentences/save_translation', [
+        $this->ajaxPost('/en/sentences/save_translation', [
             'id' => '52',
             'selectLang' => 'rus',
             'value' => 'translation text',
@@ -345,7 +345,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     }
 
     public function testChangeLanguage_asGuest() {
-        $this->ajaxPost('/jpn/sentences/change_language', [
+        $this->ajaxPost('/ja/sentences/change_language', [
             'id' => '9',
             'newLang' => 'eng',
         ]);
@@ -354,7 +354,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testChangeLanguage_asMember() {
         $this->logInAs('contributor');
-        $this->ajaxPost('/jpn/sentences/change_language', [
+        $this->ajaxPost('/ja/sentences/change_language', [
             'id' => '9',
             'newLang' => 'eng',
         ]);
@@ -363,82 +363,82 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testEditCorrectness_asGuest() {
         $this->enableCsrfToken();
-        $this->post('/jpn/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
-        $this->assertRedirect('/jpn/users/login');
+        $this->post('/ja/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
+        $this->assertRedirect('/ja/users/login');
     }
 
     public function testEditCorrectness_asContributor() {
         $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
+        $this->post('/ja/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
         $this->assertRedirect('/');
     }
 
     public function testEditCorrectness_asAdvancedContributor() {
         $this->logInAs('advanced_contributor');
-        $this->post('/jpn/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
+        $this->post('/ja/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
         $this->assertRedirect('/');
     }
 
     public function testEditCorrectness_asCorpusMaintainer() {
         $this->logInAs('corpus_maintainer');
-        $this->post('/jpn/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
+        $this->post('/ja/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
         $this->assertRedirect('/');
     }
 
     public function testEditCorrectness_asAdmin() {
         $this->logInAs('admin');
-        $this->post('/jpn/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
-        $this->assertRedirect('/jpn/sentences/show/1');
+        $this->post('/ja/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
+        $this->assertRedirect('/ja/sentences/show/1');
     }
 
     public function testMarkUnreliable_asGuest() {
-        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', null, '');
+        $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', null, '');
     }
 
     public function testMarkUnreliable_asContributor() {
-        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'contributor', '/');
+        $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'contributor', '/');
     }
 
     public function testMarkUnreliable_asAdvancedContributor() {
-        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'advanced_contributor', '/');
+        $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'advanced_contributor', '/');
     }
 
     public function testMarkUnreliable_asCorpusMaintainer() {
-        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'corpus_maintainer', '/');
+        $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'corpus_maintainer', '/');
     }
 
     public function testMarkUnreliable() {
-        $this->assertAccessUrlAs('/eng/sentences/mark_unreliable/spammer', 'admin', '/eng/sentences/of_user/spammer');
+        $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'admin', '/en/sentences/of_user/spammer');
     }
 
     public function testEditAudio_asGuest() {
         $this->enableCsrfToken();
-        $this->post('/jpn/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
-        $this->assertRedirect('/jpn/users/login');
+        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
+        $this->assertRedirect('/ja/users/login');
     }
 
     public function testEditAudio_asContributor() {
         $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
+        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
         $this->assertRedirect('/');
     }
 
     public function testEditAudio_asAdvancedContributor() {
         $this->logInAs('advanced_contributor');
-        $this->post('/jpn/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
+        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
         $this->assertRedirect('/');
     }
 
     public function testEditAudio_asCorpusMaintainer() {
         $this->logInAs('corpus_maintainer');
-        $this->post('/jpn/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
+        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
         $this->assertRedirect('/');
     }
 
     public function testEditAudio_asAdmin() {
         $this->logInAs('admin');
-        $this->post('/jpn/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
-        $this->assertRedirect('/jpn/sentences/show/1');
+        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
+        $this->assertRedirect('/ja/sentences/show/1');
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
@@ -450,8 +450,8 @@ class SentencesControllerTest extends IntegrationTestCase {
 
         $lastPage = ceil($nbSentences / $defaultNbPerPage);
 
-        $this->get("/eng/sentences/of_user/$user?page=9999999");
-        $this->assertRedirect("/eng/sentences/of_user/$user?page=$lastPage");
+        $this->get("/en/sentences/of_user/$user?page=9999999");
+        $this->assertRedirect("/en/sentences/of_user/$user?page=$lastPage");
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_withUserSetting() {
@@ -465,7 +465,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $lastPage = ceil($nbSentences / $nbPerPageSetting);
 
         $this->logInAs($user);
-        $this->get("/eng/sentences/of_user/$user?page=9999999");
-        $this->assertRedirect("/eng/sentences/of_user/$user?page=$lastPage");
+        $this->get("/en/sentences/of_user/$user?page=9999999");
+        $this->assertRedirect("/en/sentences/of_user/$user?page=$lastPage");
     }
 }
