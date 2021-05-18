@@ -840,28 +840,44 @@ class SentencesHelper extends AppHelper
 
     public function getExpandLabel($sentence)
     {
-        $extraTranslationsCount = $this->getNumberOfExtraTranslations($sentence);
+        $extraTranslationsCount = $this->getNumberOfExtraTranslations($sentence, $allHidden);
         if ($extraTranslationsCount > 0) {
-            return format(__n(
-                'Show 1 more translation',
-                'Show {number} more translations',
-                $extraTranslationsCount
-            ), ['number' => $this->Number->format($extraTranslationsCount)]);
+            if ($allHidden) {
+                $buttonLabel = __n(
+                    'Show all translations (1)',
+                    'Show all translations ({number})',
+                    $extraTranslationsCount
+                );
+            } else {
+                $buttonLabel = __n(
+                    'Show all translations (+1)',
+                    'Show all translations (+{number})',
+                    $extraTranslationsCount
+                );
+            }
+
+            return format(
+                $buttonLabel,
+                ['number' => $this->Number->format($extraTranslationsCount)]
+            );
         } else {
             return null;
         }
     }
 
-    private function getNumberOfExtraTranslations($sentence)
+    private function getNumberOfExtraTranslations($sentence, &$allHidden)
     {
+        $allHidden = false;
         $userLangs = CurrentUser::getProfileLanguages();
         if (is_array($userLangs) && count($userLangs) > 1) {
-            $count = 0;
+            $total = $count = 0;
             foreach ($sentence->translations as $translations) {
                 foreach ($translations as $translation) {
                     $count += !in_array($translation->lang, $userLangs);
+                    $total++;
                 }
             }
+            $allHidden = $count == $total;
             return $count;
         } else {
             $translations = $sentence->translations;
