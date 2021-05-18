@@ -64,25 +64,17 @@
                 /////////////////////////////////////////////////////////////////////////
 
                 function $onInit() {
-                    var data = $scope.languagesJson;
-                    var isPriority;
+                    var langs = $scope.languagesJson;
 
-                    Object.keys(data).forEach(function (key1) {
-                        if (typeof data[key1] === 'object'){
-                            var items = data[key1];
-                            isPriority = !isPriority && key1 !== '0';
-                            Object.keys(items).forEach(function (key2) {
-                                languages.push({code: key2, name: items[key2], isPriority: isPriority});
-                            });
-                            vm.hasSuggestions = true;
-                        } else {
-                            var code = key1;
-                            var lang = {code: code, name: data[code]};
-                            if (code == 'und' || code == 'none') {
-                                lang.isPriority = true;
-                            }
-                            languages.push(lang);
-                        }
+                    Object.keys(langs).forEach(function (code) {
+                        var isPriority = langs[code].prio || false;
+                        var name       = langs[code].name || langs[code];
+                        languages.push({
+                            code:       code,
+                            name:       name,
+                            isPriority: isPriority
+                        });
+                        vm.hasSuggestions = vm.hasSuggestions || isPriority;
                     });
 
                     if ($scope.initialSelection) {

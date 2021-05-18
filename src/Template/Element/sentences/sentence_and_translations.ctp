@@ -201,7 +201,7 @@ $sentenceUrl = $this->Url->build([
                 {{vm.sentence.expandLabel}}
             </span>
             <span ng-if="vm.isExpanded">
-                <?php echo __('Fewer translations') ?>
+                <?php echo __('Show fewer translations') ?>
             </span>
         </md-button>
     </div>
