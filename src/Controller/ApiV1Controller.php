@@ -40,8 +40,6 @@ use Exception;
  */
 class ApiV1Controller extends AppController
 {
-    public $name = 'Sentences';
-
     /**
      * Show Json of specified sentence id.
      * 
@@ -52,6 +50,8 @@ class ApiV1Controller extends AppController
     public function sentence($id = null) {
         // We will handle the output directly, so as not to display the header and footer
         $this->disableAutoRender();
+
+        $this->loadModel('Sentences');
 
         if (is_numeric($id)) {
             // Retrieve the sentence
@@ -77,6 +77,8 @@ class ApiV1Controller extends AppController
     {
         // We will handle the output directly, so as not to display the header and footer
         $this->disableAutoRender();
+
+        $this->loadModel('Sentences');
 
         if (!Configure::read('Search.enabled')) {
             $this->render('search_disabled');
