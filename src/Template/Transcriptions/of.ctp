@@ -65,8 +65,7 @@ if (empty($userId)) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = false;
-        foreach ($results as $result) {
-            $sentence = $result->sentence;
+        foreach ($results as $sentence) {
             $this->Sentences->displayGenericSentence(
                 $sentence,
                 $type,
