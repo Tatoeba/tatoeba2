@@ -35,7 +35,4 @@ $sentenceUrl = $this->Url->build(array(
     }
     echo $this->element('logs/log_text', compact('log'));
     ?>
-    <md-button ng-cloak class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
-        <md-icon>info</md-icon>
-    </md-button>
 </md-list-item>
