@@ -40,9 +40,9 @@ class ExportsControllerTest extends IntegrationTestCase
     public function accessesProvider()
     {
         return [
-            [ '/eng/exports/download/1', null, false ],
-            [ '/eng/exports/download/1', 'contributor', false ],
-            [ '/eng/exports/download/9999999', 'kazuki', 404 ],
+            [ '/en/exports/download/1', null, false ],
+            [ '/en/exports/download/1', 'contributor', false ],
+            [ '/en/exports/download/9999999', 'kazuki', 404 ],
         ];
     }
 
@@ -62,7 +62,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     private function exportsAdd()
     {
-        $this->ajaxPost('/eng/exports/add', [
+        $this->ajaxPost('/en/exports/add', [
             'type' => 'list',
             'list_id' => 2,
             'format' => 'tsv',
@@ -120,14 +120,14 @@ class ExportsControllerTest extends IntegrationTestCase
     public function testDownload_guestExport_asGuest()
     {
         $filesize = $this->createDownloadFile('kazuki_sentences.zip');
-        $this->get("/eng/exports/download/4/A pretty filename.zip");
+        $this->get("/en/exports/download/4/A pretty filename.zip");
         $this->assertFileDownload('kazuki_sentences.zip', $filesize);
     }
 
     public function testDownload_membersExport_asGuest()
     {
         $this->createDownloadFile('kazuki_sentences.zip');
-        $this->get("/eng/exports/download/1/A pretty filename.zip");
+        $this->get("/en/exports/download/1/A pretty filename.zip");
         $this->assertResponseCode(403);
     }
 
@@ -135,7 +135,7 @@ class ExportsControllerTest extends IntegrationTestCase
     {
         $this->logInAs('kazuki');
         $filesize = $this->createDownloadFile('kazuki_sentences.zip');
-        $this->get("/eng/exports/download/1/A pretty filename.zip");
+        $this->get("/en/exports/download/1/A pretty filename.zip");
         $this->assertFileDownload('kazuki_sentences.zip', $filesize);
     }
 
@@ -143,7 +143,7 @@ class ExportsControllerTest extends IntegrationTestCase
     {
         $this->logInAs('kazuki');
         $filesize = $this->createDownloadFile('kazuki_sentences.zip');
-        $this->get("/eng/exports/download/4/A pretty filename.zip");
+        $this->get("/en/exports/download/4/A pretty filename.zip");
         $this->assertResponseCode(403);
     }
 
@@ -155,7 +155,7 @@ class ExportsControllerTest extends IntegrationTestCase
         $file = new File($export->filename, true);
         $file->close();
 
-        $this->get("/eng/exports/download/2");
+        $this->get("/en/exports/download/2");
 
         $this->assertResponseCode(404);
         $this->assertResponseNotContains($export->filename);
