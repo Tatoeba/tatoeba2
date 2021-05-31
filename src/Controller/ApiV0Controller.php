@@ -38,7 +38,7 @@ use Exception;
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-class ApiV1Controller extends AppController
+class ApiV0Controller extends AppController
 {
     /**
      * Show Json of specified sentence id.
@@ -48,9 +48,6 @@ class ApiV1Controller extends AppController
      * @return void
      */
     public function sentence($id = null) {
-        // We will handle the output directly, so as not to display the header and footer
-        $this->disableAutoRender();
-
         $this->loadModel('Sentences');
 
         if (is_numeric($id)) {
@@ -60,8 +57,8 @@ class ApiV1Controller extends AppController
                 'sentenceDetails' => true
             ]);
 
-
-            return $this->getResponse()
+            return $this->response
+                ->withType('application/json')
                 ->withStringBody($sentence);
         }
     }
@@ -75,39 +72,19 @@ class ApiV1Controller extends AppController
      */
     public function search()
     {
-        // We will handle the output directly, so as not to display the header and footer
-        $this->disableAutoRender();
-
         $this->loadModel('Sentences');
 
-        if (!Configure::read('Search.enabled')) {
-            $this->render('search_disabled');
-            return;
-        }
-
-        /* Apply search criteria and sort */
         $search = new SentencesSearchForm();
         $search->setData($this->request->getQueryParams());
 
-        /* Control input */
-        if ($search->generateRandomSeedIfNeeded()) {
-            return $this->redirect(Router::url($search->getData()));
-        }
-        $search->checkUnwantedCombinations();
-
-        $limit = CurrentUser::getSetting('sentences_per_page');
+        $limit = 100;
         $sphinx = $search->asSphinx();
         $sphinx['page'] = $this->request->query('page');
-//        $sphinx['limit'] = $limit;
+        $sphinx['limit'] = $limit;
 
-        // TODO: improve on hard-coded limit to the number of API results
-        $sphinx['limit'] = 100; // Limit the API to returning 100 entries.
-
-        $model = 'Sentences';
         $query = $this->Sentences
             ->find('hideFields')
             ->find('withSphinx')
-            ->find('nativeMarker')
             ->find('filteredTranslations', [
                 'translationLang' => $search->getData('to'),
             ])
@@ -121,42 +98,13 @@ class ApiV1Controller extends AppController
 
         try {
             $results = $this->paginate($query);
-            $real_total = $this->Sentences->getRealTotal();
-            $results = $this->Sentences->addHighlightMarkers($results);
-            $this->set(compact('results', 'real_total'));
         } catch (Exception $e) {
-            $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
-            if ($syntax_error) {
-                $this->set('syntax_error', true);
-            } else {
-                $this->loadComponent('Error');
-                $error_code = $this->Error->traceError('Search error: ' . $e->getMessage());
-                $this->set('error_code', $error_code);
-            }
-        }
-
-        $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));
-        $this->loadModel('Vocabulary');
-        $vocabulary = $this->Vocabulary->findByText($strippedQuery);
-
-        $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
-        $ignored = $search->getIgnoredFields();
-
-        $this->set($search->getData());
-        $this->set(compact('ignored', 'searchableLists', 'vocabulary'));
-        $this->set(
-            'is_advanced_search',
-            !is_null($this->request->getQuery('trans_to'))
-        );
-
-        $ids = array();
-        foreach ($results as $sentence) {
-            $ids[] = $sentence->id;
+            throw new \Cake\Http\Exception\BadRequestException();
         }
     
-        $ids_json = json_encode($ids);
-        $ids_json = '{ "ids" : ' . $ids_json . ' }';
-        return $this->getResponse()
-            ->withStringBody($ids_json);
+        $json = json_encode($results);
+        return $this->response
+            ->withType('application/json')
+            ->withStringBody($json);
     }
 }

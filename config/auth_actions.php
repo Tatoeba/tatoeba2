@@ -5,7 +5,7 @@ $config = [
     // actions available to everyone, even guests
     'public_actions' => [
         'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
-        'api_v1' => [
+        'api_v0' => [
             'search',
             'sentence'
         ],
