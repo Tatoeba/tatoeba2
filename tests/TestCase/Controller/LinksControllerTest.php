@@ -20,16 +20,16 @@ class LinksControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/links/add/2/3', null, '/eng/users/login?redirect=%2Feng%2Flinks%2Fadd%2F2%2F3' ],
-            [ '/eng/links/add/2/3', 'contributor', '/' ],
-            [ '/eng/links/add/2/3', 'advanced_contributor', '/eng/sentences/show/2' ],
-            [ '/eng/links/add/2/3', 'corpus_maintainer', '/eng/sentences/show/2' ],
-            [ '/eng/links/add/2/3', 'admin', '/eng/sentences/show/2' ],
-            [ '/eng/links/delete/1/2', null, '/eng/users/login?redirect=%2Feng%2Flinks%2Fdelete%2F1%2F2' ],
-            [ '/eng/links/delete/1/2', 'contributor', '/' ],
-            [ '/eng/links/delete/1/2', 'advanced_contributor', '/eng/sentences/show/1' ],
-            [ '/eng/links/delete/1/2', 'corpus_maintainer', '/eng/sentences/show/1' ],
-            [ '/eng/links/delete/1/2', 'admin', '/eng/sentences/show/1' ],
+            [ '/en/links/add/2/3', null, '/en/users/login?redirect=%2Fen%2Flinks%2Fadd%2F2%2F3' ],
+            [ '/en/links/add/2/3', 'contributor', '/' ],
+            [ '/en/links/add/2/3', 'advanced_contributor', '/en/sentences/show/2' ],
+            [ '/en/links/add/2/3', 'corpus_maintainer', '/en/sentences/show/2' ],
+            [ '/en/links/add/2/3', 'admin', '/en/sentences/show/2' ],
+            [ '/en/links/delete/1/2', null, '/en/users/login?redirect=%2Fen%2Flinks%2Fdelete%2F1%2F2' ],
+            [ '/en/links/delete/1/2', 'contributor', '/' ],
+            [ '/en/links/delete/1/2', 'advanced_contributor', '/en/sentences/show/1' ],
+            [ '/en/links/delete/1/2', 'corpus_maintainer', '/en/sentences/show/1' ],
+            [ '/en/links/delete/1/2', 'admin', '/en/sentences/show/1' ],
         ];
     }
 

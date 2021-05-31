@@ -49,11 +49,11 @@ class Licensing {
         $this->startListRefresh($listId, $currentUserId);
     }
 
-    public function startLicenseSwitch($userId, $lang) {
+    public function startLicenseSwitch($userId, $locale) {
         $listId = $this->getLicenseSwitchListId($userId);
         $options = array(
             'userId' => $userId,
-            'UIlang' => $lang,
+            'locale' => $locale,
             'listId' => $listId,
             'sendReport' => true,
         );
