@@ -65,7 +65,9 @@ You can avoid this problem either by running `git config core.fileMode false`, o
 
 ## Development tools
 
-Development tools are all run from the command line. Windows users can run Git Bash (which comes with Git for Windows) while Unix and MacOS users must open a terminal. From there, `cd` to Tatoeba’s directory and run `vagrant ssh` to ssh into the VM. Then, run `cd Tatoeba` to enter the code. From there, you can execute development tools such as:
+Development tools are all run from the command line. Windows users can run Git Bash (which comes with Git for Windows) while Unix and MacOS users must open a terminal. From there, `cd` to Tatoeba’s directory and run `vagrant ssh` to ssh into the VM. Then, run `cd Tatoeba` to enter the code. 
+
+From there, you can execute development tools such as:
 
 ### Search
 
@@ -77,6 +79,8 @@ The search engine is configured to use a [main+delta](https://manual.manticorese
 sudo bin/cake sphinx_indexes update delta
 sudo bin/cake sphinx_indexes update main
 ```
+For example, if on Windows you have stored the Tatoeba VM in c:/xampp/htdocs/imouto
+![image](https://user-images.githubusercontent.com/7943077/119024717-af7dd800-b9a3-11eb-81c4-87203cd4e084.png)
 
 To reindex the "main" or "delta" indexes of a particular language, add the ISO code, for example Bengali (ISO code `ben`):
 
