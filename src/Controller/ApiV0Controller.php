@@ -77,7 +77,7 @@ class ApiV0Controller extends AppController
         $search = new SentencesSearchForm();
         $search->setData($this->request->getQueryParams());
 
-        $limit = 100;
+        $limit = 10;
         $sphinx = $search->asSphinx();
         $sphinx['page'] = $this->request->query('page');
         $sphinx['limit'] = $limit;
@@ -102,7 +102,10 @@ class ApiV0Controller extends AppController
             throw new \Cake\Http\Exception\BadRequestException();
         }
     
-        $json = json_encode($results);
+        $json = json_encode([
+            'paging' => $this->request->params['paging'],
+            'results' => $results
+        ]);
         return $this->response
             ->withType('application/json')
             ->withStringBody($json);
