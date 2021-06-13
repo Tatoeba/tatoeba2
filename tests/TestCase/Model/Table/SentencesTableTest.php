@@ -1429,7 +1429,7 @@ class SentencesTableTest extends TestCase {
         CurrentUser::store($this->Sentence->Users->get(4));
         $sentence = $this->Sentence->getSentenceWith(4);
         $result = Hash::extract($sentence->sentences_lists, '{n}.id');
-        $expected = [2, 4];
+        $expected = [];
         $this->assertEquals($expected, $result);
     }
 
