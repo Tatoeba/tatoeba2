@@ -683,9 +683,15 @@ class SentencesTable extends Table
                     return $q->select(['id', 'favorite_id'])
                              ->where(['user_id' => CurrentUser::get('id')]);
                 },
-                'SentencesLists' => [
-                    'fields' => ['id', 'SentencesSentencesLists.sentence_id']
-                ],
+                'SentencesLists' => function (Query $q) {
+                    return $q->select(['id', 'SentencesSentencesLists.sentence_id'])
+                            ->where([
+                                'OR' => [
+                                    'user_id' => CurrentUser::get('id'),
+                                    'visibility' => 'public',
+                               ]
+                            ]);
+                },
                 'UsersSentences' => function (Query $q) {
                     return $q->select(['sentence_id', 'correctness'])
                              ->where(['user_id' => CurrentUser::get('id')]);

@@ -1425,6 +1425,14 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expected, $sentence->translations);
     }
 
+    function testGetSentenceWith_doesNotReturnUnlistedLists() {
+        CurrentUser::store($this->Sentence->Users->get(4));
+        $sentence = $this->Sentence->getSentenceWith(4);
+        $result = Hash::extract($sentence->sentences_lists, '{n}.id');
+        $expected = [2, 4];
+        $this->assertEquals($expected, $result);
+    }
+
     function testSaveNewSentence_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
