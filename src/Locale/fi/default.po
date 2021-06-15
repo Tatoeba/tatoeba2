@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-13 21:46+0200\n"
-"PO-Revision-Date: 2021-03-26 14:41+0000\n"
+"PO-Revision-Date: 2021-05-30 03:15+0000\n"
 "Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -1570,7 +1570,7 @@ msgstr "Viesti"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L49
 msgctxt "message"
 msgid "To"
-msgstr "Kieleen"
+msgstr "Vastaanottaja"
 
 #. title field label in private message form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L63
@@ -2363,7 +2363,7 @@ msgstr "Keskustele lauseista"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L107
 msgid "Add vocabulary request"
-msgstr "Lisää sanapyyntö"
+msgstr "Lisää sanatoive"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L115
@@ -2465,19 +2465,19 @@ msgstr "Käännä käyttäjän {user} lauseita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L28
 msgid "Vocabulary requests"
-msgstr "Sanapyynnöt"
+msgstr "Sanatoiveet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L33
 msgid "My vocabulary requests"
-msgstr "Minun sanapyyntöni"
+msgstr "Minun sanatoiveeni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L39
 msgid "Add vocabulary requests"
-msgstr "Lisää sanapyyntöjä"
+msgstr "Lisää sanatoiveita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L45
 msgid "Existing vocabulary requests"
-msgstr "Aikaisemmat sanapyynnöt"
+msgstr "Jo esitetyt sanatoiveet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L26
@@ -4661,7 +4661,7 @@ msgstr "Sanat, jotka tarvitsevat lauseita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L34
 msgid "Vocabulary that needs sentences in {language}"
-msgstr "{language.genitive} sanasto, joka tarvitsee lauseita."
+msgstr "Lauseita kaipaava {language.genitive} sanasto."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L58
 msgid ""
