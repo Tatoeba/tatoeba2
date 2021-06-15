@@ -187,7 +187,7 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
                     <span>
                     <?php
                     /* @ŧranslators: top-right user menu item to list your contributions */
-                    echo __('My sentence logs');
+                    echo __('My latest contributions');
                     ?>
                     </span>
                 </a>

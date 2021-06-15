@@ -66,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             ?>
             <div layout-padding>
                 <?= format(
-                    __('Only the last {n} log entries are displayed here.'),
+                    __('Only the last {n} contributions are displayed here.'),
                     ['n' => $this->Number->format($totalLimit)]
                 ); ?>
             </div>
