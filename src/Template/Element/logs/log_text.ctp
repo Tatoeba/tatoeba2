@@ -38,8 +38,13 @@ $langCode = $log->sentence_lang;
             if (isset($withSentenceLink)) {
                 echo $sentenceLink.' ';
             }
-            echo $this->Languages->tagWithLang(
-                'span', $langCode, $sentenceText, [], $sentenceScript
+            echo $this->Html->link(
+                $sentenceText,
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentenceId
+                )
             );
         } elseif ($type == 'license') {
             if (isset($withSentenceLink)) {
