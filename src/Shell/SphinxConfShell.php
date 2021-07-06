@@ -97,6 +97,8 @@ class SphinxConfShell extends Shell {
         'U+220->U+19E', 'U+221', 'U+222..U+233/2', 'U+234..U+238',
         'U+239', 'U+23A->U+2C65', 'U+23B->U+23C', 'U+23C', 'U+23D->U+19A', 'U+23E->U+2C66', 'U+23F',
         'U+240', 'U+241->U+242', 'U+242', 'U+243->U+180', 'U+244->U+289', 'U+245->U+28C', 'U+246..U+24F/2',
+        # Latin extended-C, with case folding (2C60-2C7F)
+        'U+2c60..U+2c61/2', 'U+2c62->U+26b', 'U+2c63->U+1d7d', 'U+2c64->U+27d', 'U+2c65..U+2c66', 'U+2c67..U+2c6c/2', 'U+2c6d->U+251', 'U+2c6e->U+271', 'U+2c6f->U+250', 'U+2c70->U+252', 'U+2c71', 'U+2c72..U+2c73/2', 'U+2c74', 'U+2c75..U+2c76/2', 'U+2c77..U+2c7b', 'U+2c7c->U+6a', 'U+2c7d->U+56', 'U+2c7e->U+23f', 'U+2c7f->U+240',
         # IPA Extensions
         'U+250..U+2AF',
         # Phonetic Extensions
