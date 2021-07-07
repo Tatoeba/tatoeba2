@@ -285,6 +285,8 @@ class SphinxConfShell extends Shell {
         'U+2c00..U+2c2e->U+2c30..U+2c5e', 'U+2c30..U+2c5e',
         # Coptic
         'U+2c80..U+2ce3/2', 'U+2ce4', 'U+2ceb..U+2cee/2', 'U+2cef..U+2cf1', 'U+2cf2..U+2cf3/2', 'U+2cfd',
+        # Syloti Nagri
+        'U+a800..U+a827',
     );
 
     public $scriptsWithoutWordBoundaries = array(
