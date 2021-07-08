@@ -762,6 +762,8 @@ class LanguagesLib
             "xqa",
             "qxq",
             "klj",
+            "zlm",
+            "zsm",
         );
 
         $lang = self::locale_To_Iso639_3($lang);
