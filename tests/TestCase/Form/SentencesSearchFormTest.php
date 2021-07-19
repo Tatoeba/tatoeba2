@@ -86,13 +86,15 @@ class SentencesSearchFormTest extends TestCase
 
             [ 'unapproved', 'yes',     ['filterByCorrectness', true],  'yes' ],
             [ 'unapproved', 'no',      ['filterByCorrectness', false], 'no'  ],
-            [ 'unapproved', 'invalid', ['filterByCorrectness', null],  ''    ],
-            [ 'unapproved', '',        ['filterByCorrectness', null],  ''    ],
+            [ 'unapproved', 'any',     ['filterByCorrectness', null],  'any' ],
+            [ 'unapproved', 'invalid', ['filterByCorrectness', null],  'any' ],
+            [ 'unapproved', '',        ['filterByCorrectness', null],  'any' ],
 
             [ 'orphans', 'yes',     ['filterByOrphanship', true],  'yes' ],
             [ 'orphans', 'no',      ['filterByOrphanship', false], 'no'  ],
-            [ 'orphans', 'invalid', ['filterByOrphanship', null],  ''    ],
-            [ 'orphans', '',        ['filterByOrphanship', null],  ''    ],
+            [ 'orphans', 'any',     ['filterByOrphanship', null],  'any' ],
+            [ 'orphans', 'invalid', ['filterByOrphanship', null],  'any' ],
+            [ 'orphans', '',        ['filterByOrphanship', null],  'any' ],
 
             [ 'user', 'contributor', ['filterByOwnerId', 4], 'contributor' ],
             [ 'user', 'invaliduser', ['filterByOwnerId'],    '', 1 ],
