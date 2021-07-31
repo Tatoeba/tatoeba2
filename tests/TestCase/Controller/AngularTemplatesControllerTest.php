@@ -11,6 +11,7 @@ class AngularTemplatesControllerTest extends TestCase
 
     public $fixtures = [
         'app.Users',
+        'app.users_languages',
     ];
 
     public function accessesProvider() {

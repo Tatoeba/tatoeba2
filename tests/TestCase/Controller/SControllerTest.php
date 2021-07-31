@@ -18,6 +18,7 @@ class SControllerTest extends IntegrationTestCase
         'app.transcriptions',
         'app.users',
         'app.users_languages',
+        'app.users_sentences',
         'app.wiki_articles',
     ];
 
