@@ -1323,6 +1323,10 @@ html[dir="rtl"] .sentence-and-translations .menu {
     border-bottom-right-radius: 15px;
 }
 
+.sentence-and-translations .text {
+    min-width: 0;
+}
+
 .sentence-and-translations .text,
 .sentence-and-translations .lang {
     margin: 3px 0;
