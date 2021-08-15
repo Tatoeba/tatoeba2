@@ -679,6 +679,7 @@ class LanguagesLib
                 'lim' => __d('languages', 'Limburgish'),
                 'zea' => __d('languages', 'Zeelandic'),
                 'mnr' => __d('languages', 'Mono(USA)'),
+                'shi' => __d('languages', 'Tashelhit'),
             );
         }
         return $languages;
