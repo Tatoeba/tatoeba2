@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 22:47+0200\n"
-"PO-Revision-Date: 2021-07-10 19:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-08-18 20:48+0000\n"
+"PO-Revision-Date: 2021-08-08 15:43+0000\n"
+"Last-Translator: ls404 <lubomir@stefanov.biz>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/tatoeba/tatoeba_website/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,15 +80,15 @@ msgstr "Папка \"{name}\" е изпразнена."
 msgid "There is no sentence with id {number}"
 msgstr "Не съществува израз с id {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L193
 msgid "Your comment has been saved."
 msgstr "Вашият коментар беше запазен."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L234
 msgid "You do not have permission to edit this comment. "
 msgstr "Нямате правомощия за корекция на това съдържание."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L238
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L55
 msgid ""
@@ -96,7 +96,7 @@ msgid ""
 " {email}."
 msgstr "Ако сте получили това съобщени погрешка, моля свържете се с администраторите на {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L259
 msgid "Changes to your comment have been saved."
 msgstr "Промените в коментара Ви, бяха запазени."
 
@@ -334,21 +334,21 @@ msgstr "„Принадлежи към номера на списъка {listId}
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L351
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "„Изречението е сирак“, защото „собственикът на изречението“ е зададен на потребителско име"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L362
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "„Преводът е осиротял“, тъй като „собственикът на превода“ е зададен на потребителско име"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L372
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -357,7 +357,7 @@ msgstr "„Притежава се от самоопределен местен 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L394
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
@@ -488,7 +488,7 @@ msgstr "Двойки изречения на {language1} - {language2}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/PairsExporter.php#L123
 msgid ""
 "Sentence id [tab] Sentence text [tab] Translation id [tab] Translation text"
-msgstr ""
+msgstr "Идентификационен номер на изречението [tab] Текст на изречението [tab] Идентификационен номер на превода [tab] Текст на превода"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
@@ -1002,7 +1002,7 @@ msgstr "Последен принос на {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} contributions are displayed here."
-msgstr ""
+msgstr "Тук се показват само последните {n} приноса."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L36
 msgid "This form is pre-filled."
@@ -1306,41 +1306,41 @@ msgstr "Двойки изречения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L25
 msgid "Use this tool to generate and download customized exports on demand."
-msgstr ""
+msgstr "Използвайте този инструмент за генериране и изтегляне на персонализиран експорт при поискване."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L31
 msgid "Download all sentences in language A with translations in language B"
-msgstr ""
+msgstr "Изтеглете всички изречения на език A с преводи на език Б"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L36
 msgid ""
 "Download all sentences in language A that are translated into language B, "
 "along with the translations."
-msgstr ""
+msgstr "Изтегляне всички изречения на език А, които са преведени на език Б, заедно с преводите."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L43
 msgid "Sentence language:"
-msgstr ""
+msgstr "Език на изречението:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L61
 msgid "Translation language:"
-msgstr ""
+msgstr "Език на превода:"
 
 #. button to download all sentences in language A along
 #. with all translations in a language B (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L79
 msgid "Download sentence pairs"
-msgstr ""
+msgstr "Изтегляне на двойки изречения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export_download_button.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
 msgid "Preparing download, please wait."
-msgstr ""
+msgstr "Подготовка на изтеглянето, моля изчакайте."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export_download_button.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "Изтеглянето не бе подготвено успешно, моля, опитайте отново."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L36
 msgid "Need some help?"
@@ -2278,7 +2278,7 @@ msgstr "Съобщения на моята стена"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L190
 msgid "My latest contributions"
-msgstr ""
+msgstr "Последните ми приноси"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L44
@@ -2540,7 +2540,7 @@ msgstr "Превключете изреченията ми на CC0"
 msgid ""
 "The license for your sentences is being switched. You will receive a private"
 " message when the operation is complete."
-msgstr ""
+msgstr "Лицензът за изреченията ви се сменя. Когато операцията приключи, ще получите лично съобщение."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""

@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 22:47+0200\n"
+"POT-Creation-Date: 2021-08-18 20:48+0000\n"
 "PO-Revision-Date: 2021-07-10 19:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/tatoeba/tatoeba_website/language/zh_CN/)\n"
@@ -87,15 +87,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr "没有找到与{number}号句子想对应的结果。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L193
 msgid "Your comment has been saved."
 msgstr "您的评论已保存。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L234
 msgid "You do not have permission to edit this comment. "
 msgstr "您没有权限编辑这条评论。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L238
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L55
 msgid ""
@@ -103,7 +103,7 @@ msgid ""
 " {email}."
 msgstr "如果您误收到此邮件，请联系管理员{email}。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L259
 msgid "Changes to your comment have been saved."
 msgstr "评论已更新。"
 
@@ -341,21 +341,21 @@ msgstr "“属于列表{listId}”，由于列表{listId}是私密列表或不�
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L351
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "\"句子没有所有者“，因为”句子所有者“被设置为用户名"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L362
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "\"翻译没有所有者“，因为”翻译所有者“被设置为用户名"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L372
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -364,7 +364,7 @@ msgstr "“属于自称母语者”，因为“句子语言”被设置为“任
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L394
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "

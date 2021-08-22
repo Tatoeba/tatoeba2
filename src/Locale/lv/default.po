@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Eduards Lasmanis <lasmanis36@protonmail.com>, 2021
 # aa6805c9d21f7c034f934f2a55a26034_81caf7a, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 22:47+0200\n"
-"PO-Revision-Date: 2021-07-10 19:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-08-18 20:48+0000\n"
+"PO-Revision-Date: 2021-08-20 15:53+0000\n"
+"Last-Translator: Eduards Lasmanis <lasmanis36@protonmail.com>\n"
 "Language-Team: Latvian (Latvia) (http://www.transifex.com/tatoeba/tatoeba_website/language/lv_LV/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,11 +46,11 @@ msgstr "Saglabāšana neizdevās, kļūda sistēmā. Lūdzu mēģiniet vēlreiz 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "Lūdzu, uzgaidiet, līdz saraksts tiek atjaunināts."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "Licences maiņa jau notiek."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
@@ -78,15 +79,15 @@ msgstr "Mape \"{name}\" iztukšota."
 msgid "There is no sentence with id {number}"
 msgstr "Nav teikuma ar id {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L193
 msgid "Your comment has been saved."
 msgstr "Tavs komentārs ir saglabāts."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L234
 msgid "You do not have permission to edit this comment. "
 msgstr "Tev nav tiesību labot šo komentāru."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L238
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L55
 msgid ""
@@ -94,7 +95,7 @@ msgid ""
 " {email}."
 msgstr "Ja uzskatāt, ka šo paziņojumu saņēmāt kļūdas dēļ, lūdzu sazinieties ar administratoru, e-pasts {email}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L259
 msgid "Changes to your comment have been saved."
 msgstr "Izmaiņas komentārā ir saglabātas. "
 
@@ -104,19 +105,19 @@ msgstr "Teikums #{id} ir izdzēsts."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L266
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr "Kļūda: teikumu #{id} neizdevās izdzēst. "
+msgstr "Kļūda: teikumu #{id} neizdevās izdzēst."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L902
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "Jums nav atļauts mainīt šī teikuma licenci."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L909
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Teikuma licence ir mainīta uz \"'{newLicense}\"'."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L914
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "Nevar mainīt licenci uz \"{newLicense}\", jo:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L164
 msgid "You do not have permission to view this list."
@@ -124,7 +125,7 @@ msgstr "Tev nav tiesību skatīt šo sarakstu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L296
 msgid "The sentence could not be added to the list."
-msgstr ""
+msgstr "Teikumu nevarēja pievienot sarakstam."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L502
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L534
@@ -206,7 +207,7 @@ msgstr "Kļūda parolē. Lūdzu mēģiniet vēlreiz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
-msgstr ""
+msgstr "Jūs esat pieņēmis jaunos lietošanas noteikumus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L187
 msgid ""
@@ -232,7 +233,7 @@ msgstr "Ielogošanās neizdevās. Lūdzu pārbaudiet vai neesat nejauši ieslēd
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L331
 msgid "Welcome to Tatoeba!"
-msgstr "Sveicināti Tatoeba!"
+msgstr "Sveicināti Tatoebā!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L335
 msgid ""
@@ -243,11 +244,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L343
 msgid "We hope you'll enjoy your time here with us!"
-msgstr ""
+msgstr "Mēs ceram, ka jums patiks šeit pavadītais laiks kopā ar mums!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L354
 msgid "Please fix the form errors."
-msgstr ""
+msgstr "Lūdzu, izlabojiet veidlapas kļūdas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L387
 msgid "Your new password has been sent to {email}."
@@ -299,26 +300,26 @@ msgstr "Tev nav tiesību labot šo ziņu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L274
 msgid "The message you are trying to view does not exist or has been deleted."
-msgstr "Ziņas, kuru vēlāties apskatīt, nav, vai arī tā ir izdzēsta."
+msgstr "Ziņa, kuru vēlāties apskatīt, nav, vai arī tā ir izdzēsta."
 
 #. This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L104
 msgid "“sentence owner”, because “{username}” is not a valid username"
-msgstr ""
+msgstr "“teikuma īpašnieks”, jo “{username}” nav derīgs lietotājvārds"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L144
 msgid "“translation owner”, because “{username}” is not a valid username"
-msgstr ""
+msgstr "“tulkojuma īpašnieks”, jo “{username}” nav derīgs lietotājvārds"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L195
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
-msgstr ""
+msgstr "“atzīmēts kā{tagName}”, jo tas ir nederīgs atzīmes nosaukums"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -327,40 +328,40 @@ msgstr ""
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
-msgstr ""
+msgstr "“Pieder saraksta numuram {listId}”, jo saraksts {listId} ir privāts vai neeksistē"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L351
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr ""
+msgstr "“teikums ir bārenis”, jo “teikuma īpašnieks” ir iestatīts uz lietotājvārdu"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L362
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr ""
+msgstr "“tulkojums ir bārenis”, jo “tulkojuma īpašnieks” ir iestatīts uz lietotājvārdu"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L372
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr ""
+msgstr "“Pieder pašidentificētam pamatiedzīvotājam”, jo “teikuma valoda” ir iestatīta uz “jebkura”"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L394
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
-msgstr ""
+msgstr "“Pieder pašidentificētam vietējam iedzīvotājam”, jo kritērijs “pieder: {username}” ir iestatīts, turpretim viņš vai viņa nav pašidentificēts dzimtā valodā, kurā meklējat"
 
 #. This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
@@ -406,7 +407,7 @@ msgstr[2] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
-msgstr ""
+msgstr "Nav licences lietošanai ārpus vietas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L61
 msgid "Licensing issue"
@@ -423,7 +424,7 @@ msgstr "Tatoeba, jauna parole"
 #. for instance {language.alone}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L19
 msgid "{language}"
-msgstr ""
+msgstr "{language}"
 
 #. placeholder of language dropdown
 #. in homepage random sentence block
@@ -515,45 +516,45 @@ msgstr "Komentāri nevar tikt atstāti tukši. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesListsTable.php#L180
 msgid "unnamed list"
-msgstr ""
+msgstr "nenosaukts saraksts"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L119
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L138
 msgid "This is not a valid license."
-msgstr ""
+msgstr "Šī nav derīga licence."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L126
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "Šis teikums jau ir saskaņā ar šo licenci."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L219
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "Teikumam jābūt oriģinālam (nevis sākotnēji atvasinātam no tulkojuma)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L227
 msgid "You're not the owner of this sentence."
-msgstr ""
+msgstr "Jūs neesat šī teikuma īpašnieks."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L234
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "Teikuma īpašniekam ir jābūt tā oriģinālajam radītājam."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L247
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "Var pārslēgties tikai uz izdevīgāku licenci."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -628,15 +629,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L30
 msgid "Orphan sentences"
-msgstr ""
+msgstr "Bāreņteikumi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L33
 msgid "Orphan sentences in {language}"
-msgstr ""
+msgstr "Bāreņteikumi{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L44
 msgid "About adoption"
-msgstr ""
+msgstr "Par adopciju"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L48
 msgid ""
@@ -659,7 +660,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L56
 msgid "Tips"
-msgstr ""
+msgstr "Padomi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L78
 msgid ""
@@ -677,7 +678,7 @@ msgstr "Uzlabot teikumus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L61
 msgid "Related links"
-msgstr ""
+msgstr "Saistītās saites"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L63
 msgid "Tag guidelines"
@@ -3232,7 +3233,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L272
 msgid "Sentence lists"
-msgstr ""
+msgstr "Teikumu saraksti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L276
 msgid ""
@@ -3258,7 +3259,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
-msgstr ""
+msgstr "Statistika"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L99
@@ -3270,16 +3271,16 @@ msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr ""
+msgstr "Jaunais teikuma dizains drīzumā pilnībā aizstās veco. Lūdzu, izmēģiniet to un informējiet mūs, ja rodas kāda problēma. Varat to iespējot, iestatījumos izvēloties opciju \"Rādīt teikumus ar jauno dizainu\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
-msgstr ""
+msgstr "Doties uz iestatījumiem"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
 msgid "show more..."
-msgstr ""
+msgstr "rādīt vairāk..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
@@ -3289,21 +3290,21 @@ msgstr "Jaunākie komentāri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L77
 msgid "Want to help?"
-msgstr ""
+msgstr "Vēlies palīdzēt?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L82
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr ""
+msgstr "Mēs apkopojam teikumus un to tulkojumus. Jūs varat mums palīdzēt, tulkojot vai pievienojot jaunus teikumus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L88
 msgid "Join the community"
-msgstr ""
+msgstr "Pievienojieties kopienai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
-msgstr ""
+msgstr "Lapa īslaicīgi atspējota"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L47
 msgid ""
@@ -3343,44 +3344,44 @@ msgstr[2] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L83
 msgid "Empty trash"
-msgstr "Tukši atkritumi"
+msgstr "Iztukšot atkritni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L29
 msgid "[no subject]"
-msgstr ""
+msgstr "[nav tēma]"
 
 #. button to delete a private message that has already been put in the trash
 #. (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L80
 msgid "Permanently delete"
-msgstr ""
+msgstr "Neatgriezeniski izdzēst"
 
 #. button to restore a private message that has been put to trash (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L159
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L70
 msgid "Restore"
-msgstr ""
+msgstr "Atjaunot"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L28
 msgid " - Tatoeba"
-msgstr ""
+msgstr " - Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L30
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr ""
+msgstr "Lai palīdzētu saglabāt Tatoeba bez liekpasta un citiem ļaunprātīgiem ziņojumiem, jauni lietotāji var nosūtīt tikai 5 ziņojumus dienā."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L48
 msgid "You have reached your message limit for today"
-msgstr ""
+msgstr "Šodien ir sasniegts jūsu ziņojumu limits"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L51
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "Lūdzu, uzgaidiet, līdz varēsiet nosūtīt vairāk ziņojumu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L68
 msgid "You have sent one message today."
@@ -3408,11 +3409,11 @@ msgstr "Visi teikumi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L43
 msgid "Outdated reviews"
-msgstr ""
+msgstr "Novecojušas atsauksmes"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L47
 msgid "Sentences in {language} marked as \"OK\""
-msgstr ""
+msgstr "Teikumi {language} atzīmēti kā labi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L48
 msgid "Sentences in {language} marked as \"unsure\""
@@ -3442,7 +3443,7 @@ msgstr "Šī iespēja patreiz ir atslēgta."
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr ""
+msgstr "To vari aktivizēt savos iestatījumos: “Aktivizēt funkciju, lai pārskatītu teikumus.”"
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L93
@@ -3453,45 +3454,45 @@ msgstr "Filtrs"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L132
 msgctxt "reviews"
 msgid "Most recently updated"
-msgstr ""
+msgstr "Nesenāk atjaunināts"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L134
 msgctxt "reviews"
 msgid "Least recently updated"
-msgstr ""
+msgstr "Vissenāk atjaunināts"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L136
 msgctxt "reviews"
 msgid "Newest first"
-msgstr ""
+msgstr "Vispirms jaunākais"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L138
 msgctxt "reviews"
 msgid "Oldest first"
-msgstr ""
+msgstr "Vispirms vecākais"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L148
 msgid "Newest sentences"
-msgstr ""
+msgstr "Jaunākie teikumi"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L150
 msgid "Oldest sentences"
-msgstr ""
+msgstr "Vecākie teikumi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/S/s.ctp#L41
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr ""
+msgstr "Noklikšķiniet uz augšējā teikuma, lai dotos uz tatoeba.org to tulkot vai atstāt komentāru."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
@@ -3500,15 +3501,15 @@ msgstr "Teikums #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
-msgstr ""
+msgstr "Rediģēt Komentāru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L27
 msgid "Edit Comment on Sentence #{number}"
-msgstr ""
+msgstr "Rediģēt Komentāru Teikumā #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
-msgstr ""
+msgstr "Komentāri par teikumiem"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L40
 msgid "{user}'s comments"
@@ -3616,25 +3617,25 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L137
 msgctxt "sentences"
 msgid "Most recently updated"
-msgstr ""
+msgstr "Pēdējoreiz atjaunināts"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L139
 msgctxt "sentences"
 msgid "Least recently updated"
-msgstr ""
+msgstr "Vissenāk atjaunināts"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L141
 msgctxt "sentences"
 msgid "Newest first"
-msgstr ""
+msgstr "Vispirms jaunākais"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L143
 msgctxt "sentences"
 msgid "Oldest first"
-msgstr ""
+msgstr "Vispirms vecākais"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
 msgid ""
@@ -3864,7 +3865,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L82
 msgctxt "lists"
 msgid "Newest first"
-msgstr ""
+msgstr "Vispirms jaunākais"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3872,7 +3873,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L84
 msgctxt "lists"
 msgid "Oldest first"
-msgstr ""
+msgstr "Vispirms vecākais"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3898,7 +3899,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L90
 msgctxt "lists"
 msgid "Most recently updated"
-msgstr ""
+msgstr "Pēdējoreiz atjaunināts"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3906,7 +3907,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L92
 msgctxt "lists"
 msgid "Least recently updated"
-msgstr ""
+msgstr "Vissenāk atjaunināts"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L38
 msgid "{username}'s lists ({total})"
@@ -4520,13 +4521,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L100
 msgctxt "members"
 msgid "Newest first"
-msgstr ""
+msgstr "Vispirms jaunākais"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L102
 msgctxt "members"
 msgid "Oldest first"
-msgstr ""
+msgstr "Vispirms vecākais"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L104

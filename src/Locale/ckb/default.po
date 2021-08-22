@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 22:47+0200\n"
+"POT-Creation-Date: 2021-08-18 20:48+0000\n"
 "PO-Revision-Date: 2021-07-12 12:34+0000\n"
 "Last-Translator: Sarchia Khursheed\n"
 "Language-Team: Central Kurdish (http://www.transifex.com/tatoeba/tatoeba_website/language/ckb/)\n"
@@ -78,15 +78,15 @@ msgstr "بوخچەی \"{name}\" خاڵی کرا."
 msgid "There is no sentence with id {number}"
 msgstr "هیچ ڕستەیەک نییە بە پێناسەژمارەی {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L193
 msgid "Your comment has been saved."
 msgstr "لێدوانەکەت پاشەکەوت کرا."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L234
 msgid "You do not have permission to edit this comment. "
 msgstr "مافی دەستکاریکردنی ئەم لێدوانەت نییە."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L238
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L55
 msgid ""
@@ -94,7 +94,7 @@ msgid ""
 " {email}."
 msgstr "ئەگەر ئەم پەیامەت بەهەڵە بەدەست گەیشتووە، تکایە پەیوەندی بە بەڕێوەبەران بکە لە {email}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L259
 msgid "Changes to your comment have been saved."
 msgstr "گۆڕانکاری لە لێدوانەکەت پاشەکەوت کرا."
 
@@ -332,21 +332,21 @@ msgstr "«سەر بەم ژمارەی پێڕستەیە: {listId}»، چونکە �
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L351
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "«ڕستە هەتیوە»، چونکە «خاوەنی ڕستە» بۆ هەژمارناوێک دانراوە."
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L362
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "«وەرگێڕان هەتیوە»، چونکە «خاوەنی وەرگێڕان» بۆ هەژمارناوێک دانراوە."
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L372
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -355,7 +355,7 @@ msgstr ""
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L394
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
