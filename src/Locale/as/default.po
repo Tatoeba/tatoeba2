@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 22:47+0200\n"
+"POT-Creation-Date: 2021-08-18 20:48+0000\n"
 "PO-Revision-Date: 2021-07-10 19:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Assamese (http://www.transifex.com/tatoeba/tatoeba_website/language/as/)\n"
@@ -78,15 +78,15 @@ msgstr "ফ'ল্ডাৰ \"{name}\" খালী কৰা হ'ল।"
 msgid "There is no sentence with id {number}"
 msgstr "{number} আইডি সহ কোনো বাক্য নাই"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L193
 msgid "Your comment has been saved."
 msgstr "আপোনাৰ মন্তব্য সাঁচি থোৱা হৈছে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L234
 msgid "You do not have permission to edit this comment. "
 msgstr "এই মন্তব্য সম্পাদনা কৰাৰ অনুমতি আপোনাৰ নাই।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L238
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L55
 msgid ""
@@ -94,7 +94,7 @@ msgid ""
 " {email}."
 msgstr "যদি আপুনি এই বাৰ্তা ত্ৰুটিত পাইছে, অনুগ্ৰহ কৰি {email}-ত কৰ্তৃপক্ষৰ সৈতে যোগাযোগ কৰক।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L259
 msgid "Changes to your comment have been saved."
 msgstr "আপোনাৰ মন্তব্যৰ সাল-সলনি সাঁচি থোৱা হৈছে।"
 
@@ -332,21 +332,21 @@ msgstr "\"{listId}নং তালিকাৰ অন্তৰ্গত\", ক�
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L351
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "\"বাক্য গৰাকীবিহীন\", কাৰণ \"বাক্যৰ গৰাকী\" ব্যৱহাৰকাৰীনাম এটালৈ নিৰ্ধাৰিত"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L362
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "\"অনুবাদ গৰাকীবিহীন\", কাৰণ \"অনুবাদৰ গৰাকী\" ব্যৱহাৰকাৰীনাম এটালৈ নিৰ্ধাৰিত"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L372
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -355,7 +355,7 @@ msgstr "\"স্ব-চিনাক্ত থলুৱা ব্যক্তি�
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L394
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
