@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# maya b <mayababay282@gmail.com>, 2021
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 # reut koltzker <reutkoltzker@gmail.com>, 2020
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 20:48+0000\n"
-"PO-Revision-Date: 2021-07-10 19:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-09-08 10:53+0000\n"
+"PO-Revision-Date: 2021-08-22 17:34+0000\n"
+"Last-Translator: maya b <mayababay282@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/tatoeba/tatoeba_website/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -304,7 +305,7 @@ msgstr "אין לך הרשאה לערוך הודעה זו."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L274
 msgid "The message you are trying to view does not exist or has been deleted."
-msgstr ""
+msgstr "ההודעה שאת.ה מנסה להציג לא קיימת או שנמחקה."
 
 #. This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
@@ -380,10 +381,10 @@ msgstr ", "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L212
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "לאות הבאה חסר פוריגאנה: {charsEnumeration}"
+msgstr[1] "לאותיות הבאות חסר פוריגאנה: {charsEnumeration}"
+msgstr[2] "לאותיות הבאות חסר פוריגאנה: {charsEnumeration}"
+msgstr[3] "לאותיות הבאות חסרה פוריגאנה: {charsEnumeration}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
 msgid ""
@@ -398,10 +399,10 @@ msgstr ""
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "לאות {kanji} יש יותר מפוריגאנה אחת: {furiganas}"
+msgstr[1] "לאותיות {kanji} יש יותר מ - {n} פוריגאנה: {furiganas}"
+msgstr[2] "לאותיות {kanji} יש יותר מ - {n} פוריגאנה: {furiganas}"
+msgstr[3] "לאותיות {kanji} יש יותר מ - {n} פוריגאנה: {furiganas}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
 msgid "The following character is not transcribed: {charsEnumeration}."
@@ -464,7 +465,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
 msgid "The furigana was last edited by {author} on {date}."
-msgstr ""
+msgstr "הפוריגאנה נערכה לאחרונה על ידי {author} בתאריך {date}."
 
 #. refers to a transcription
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L218
@@ -575,26 +576,26 @@ msgstr "שדה חובה"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L95
 msgid "Username must be at least two characters long"
-msgstr ""
+msgstr "שם המשתמש.ת חייב להיות באורך שני תווים ומעלה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
-msgstr ""
+msgstr "שם המשתמש.ת חייב להיות באורך של עד 20 תווים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L98
 msgid "Username can only contain letters, numbers, or underscore"
-msgstr ""
+msgstr "שם המשתמש.ת יכול להכיל רק אותיות, מספרים, או קו תחתון"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L141
 msgid "Password must be at least 6 characters long"
-msgstr ""
+msgstr "הסיסמה חייבת להיות באורך של 6 תווים ומעלה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L189
 msgid "Invalid email address"
-msgstr ""
+msgstr "כתובת האימייל אינה תקינה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L101
@@ -608,7 +609,7 @@ msgstr "כבר נעשה שימוש בכתובת הדוא״ל."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L72
 msgid "You cannot save an empty message."
-msgstr ""
+msgstr "לא ניתן לשמור הודעה ריקה."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L70
 msgid "Result of license switch to CC0 1.0"
@@ -694,7 +695,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L70
 msgid "Tags you should know about"
-msgstr ""
+msgstr "תגיות שכדאי להכיר"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L72
 msgid ""
@@ -776,7 +777,7 @@ msgstr "כיצד להוסיף תרגום"
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr ""
+msgstr "ברגע שהמשפטים מוצגים, לחצו על הכפתור {translateButton} כדי להוסיף תרגום."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L58
 msgid "About translations"
@@ -808,7 +809,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L104
 msgid "Search for untranslated sentences"
-msgstr ""
+msgstr "חיפוש משפטים שאינם מתורגמים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
@@ -828,7 +829,7 @@ msgstr "כל שפה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L162
 msgid "Best practice: translate only into your native language."
-msgstr ""
+msgstr "הכי טוב: לתרגם רק לשפת האם שלך."
 
 #. field name in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L170
@@ -846,17 +847,17 @@ msgstr "אקראי"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L178
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L373
 msgid "Fewest words first"
-msgstr ""
+msgstr "הכי פחות מילים תחילה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L181
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L375
 msgid "Last modified first"
-msgstr ""
+msgstr "שונו לאחרונה תחילה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L184
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L374
 msgid "Last created first"
-msgstr ""
+msgstr "נוצרו לאחרונה תחילה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L192
 msgid "show sentences"
@@ -883,17 +884,17 @@ msgstr "להציג את כל המשפטים ב{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
-msgstr ""
+msgstr "משפטים ב{language} עם שמע"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L452
 msgid "Sentences with audio"
-msgstr ""
+msgstr "משפטים עם שמע"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L49
 msgid "There are no sentences with audio"
-msgstr ""
+msgstr "אין משפטים עם שמע"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L87
@@ -906,11 +907,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L22
 msgid "Audio contributed by {username}"
-msgstr ""
+msgstr "שמע שתרמ.ה {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L40
 msgid "My audio"
-msgstr ""
+msgstr "השמע שלי"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L51
@@ -946,7 +947,7 @@ msgstr "שמירה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L81
 msgid "{username} has not contributed any audio"
-msgstr ""
+msgstr "{username} לא תרמ.ה שמע"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
@@ -978,11 +979,11 @@ msgstr "משפטים שנוספו"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
 msgid "Links added"
-msgstr ""
+msgstr "קישורים שנוספו"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L94
 msgid "Links removed"
-msgstr ""
+msgstr "קישורים שהוסרו"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L95
 msgid "Sentences removed"
@@ -1045,7 +1046,7 @@ msgstr "מילים:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L73
 msgid "Enter a word or a phrase"
-msgstr ""
+msgstr "הכניסו מילה או ביטוי"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L257
@@ -1058,7 +1059,7 @@ msgstr "שפה:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L164
 msgid "Show translations in:"
-msgstr ""
+msgstr "הצגת תרגומים בשפה:"
 
 #. option used in language selection dropdown for
 #. "Show translations in" in advanced search form
@@ -1073,12 +1074,12 @@ msgstr "כל השפות"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L287
 msgid "Owner:"
-msgstr ""
+msgstr "שייך ל:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L296
 msgid "Enter a username"
-msgstr ""
+msgstr "הכניסו שם משתמש.ת"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L301
@@ -1090,7 +1091,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L306
 msgctxt "orphan"
 msgid "Any"
-msgstr ""
+msgstr "גם וגם"
 
 #. part of Any/No/Yes dropdown options in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L123
@@ -1127,7 +1128,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L327
 msgctxt "unapproved"
 msgid "Any"
-msgstr ""
+msgstr "גם וגם"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L337
@@ -1144,19 +1145,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L347
 msgctxt "audio"
 msgid "Any"
-msgstr ""
+msgstr "גם וגם"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L179
 msgid "Tags:"
-msgstr ""
+msgstr "תגיות:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L189
 msgid "Separate tags with commas."
-msgstr ""
+msgstr "הפרידו תגיות בפסיקים."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L194
 msgid "Belongs to list:"
-msgstr ""
+msgstr "שייך לרשימה:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L216
 msgid "Owned by a self-identified native"
@@ -1185,7 +1186,7 @@ msgstr ""
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
-msgstr ""
+msgstr "{action} משפטים בעלי תרגומים שמתאימים לכל הקריטריונים הבאים."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L266
 msgid "Link:"
@@ -1195,7 +1196,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L272
 msgctxt "link"
 msgid "Any"
-msgstr ""
+msgstr "גם וגם"
 
 #. dropdown option of "Link" field in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L274
@@ -1210,16 +1211,16 @@ msgstr ""
 #. section title in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L361
 msgid "Sort"
-msgstr ""
+msgstr "מיון"
 
 #. sort order dropdown option in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L372
 msgid "Relevance"
-msgstr ""
+msgstr "רלוונטיות"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L392
 msgid "Reverse order"
-msgstr ""
+msgstr "בסדר הפוך"
 
 #. search form submit button (verb)
 #. / search button in All tags page (verb)
@@ -1235,11 +1236,11 @@ msgstr "חיפוש"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L409
 msgid "More search options"
-msgstr ""
+msgstr "אפשרויות חיפוש נוספות"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L413
 msgid "Create a search template"
-msgstr ""
+msgstr "יצירת תבנית חיפוש"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L418
 msgid ""
@@ -1257,7 +1258,7 @@ msgstr ""
 #. button to accept new terms of use
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
 msgid "Accept and close"
-msgstr ""
+msgstr "הסכמה וסגירה"
 
 #. button to close the blue announcement banner
 #. / button to close the announcement about the new design (verb)
@@ -1268,7 +1269,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L8
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L100
 msgid "Close"
-msgstr ""
+msgstr "סגירה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L92
 msgid ""
@@ -1354,16 +1355,16 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export_download_button.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
 msgid "Preparing download, please wait."
-msgstr ""
+msgstr "ההורדה בהכנה, אנא המתינו."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export_download_button.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "הכנת ההורדה נכשלה, אנא נסו שוב."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L36
 msgid "Need some help?"
-msgstr ""
+msgstr "צריכ.ה עזרה?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L41
 msgid "Quick Start Guide"
@@ -1377,7 +1378,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L58
 msgctxt "footer"
 msgid "FAQ"
-msgstr ""
+msgstr "שאלות נפוצות"
 
 #. link text to the Help page in the footer (noun)
 #. / title of the Help page (noun)
@@ -1385,7 +1386,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L29
 msgid "Help"
-msgstr ""
+msgstr "עזרה"
 
 #. section name in the footer
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L80
@@ -1397,7 +1398,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L183
 msgid "Downloads"
-msgstr ""
+msgstr "הורדות"
 
 #. link text to the Tatoeba GitHub page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L98
@@ -1424,12 +1425,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L69
 msgid "Contact us"
-msgstr ""
+msgstr "צרו קשר"
 
 #. link text to the Status page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L146
 msgid "Status"
-msgstr ""
+msgstr "סטטוס"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L1
@@ -1439,19 +1440,19 @@ msgstr ""
 #. link text to the Blog page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L167
 msgid "Blog"
-msgstr ""
+msgstr "בלוג"
 
 #. link text to the Tatoeba Twitter account in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L177
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L60
 msgid "Twitter"
-msgstr ""
+msgstr "טוויטר"
 
 #. link text to the Tatoeba Facebook page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L187
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L62
 msgid "Facebook"
-msgstr ""
+msgstr "פייסבוק"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L202
 msgid "Our data is released under various Creative Commons licenses."
@@ -1460,7 +1461,7 @@ msgstr ""
 #. link text (in the footer) to the section 6 of the Terms of use page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L206
 msgid "More information"
-msgstr ""
+msgstr "למידע נוסף"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L220
 msgid "If you love this content, please consider a <a href={}>donation</a>."
@@ -1504,7 +1505,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L284
 msgid "Register"
-msgstr ""
+msgstr "הרשמה"
 
 #. link to open the Login box in the top bar (verb)
 #. / link to open the Login box in the sidebar menu on mobile (verb)
@@ -1518,7 +1519,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L23
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L66
 msgid "Log in"
-msgstr ""
+msgstr "התחברות"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
@@ -1527,20 +1528,20 @@ msgstr ""
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46
 msgid "Compose"
-msgstr ""
+msgstr "הודעה חדשה"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L35
 msgid "Inbox"
-msgstr ""
+msgstr "דואר נכנס"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L32
 msgid "Unread"
-msgstr ""
+msgstr "לא נקרא"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L63
@@ -1552,44 +1553,44 @@ msgstr "טיוטות"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L39
 msgid "Sent"
-msgstr ""
+msgstr "נשלח"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L42
 msgid "Trash"
-msgstr ""
+msgstr "אשפה"
 
 #. title of section containing a reply
 #. form to a private message (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L9
 msgctxt "header"
 msgid "Reply"
-msgstr ""
+msgstr "להשיב"
 
 #. title of section containing a form for
 #. a new private message (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L13
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 msgid "New message"
-msgstr ""
+msgstr "הודעה חדשה"
 
 #. title of section containing a form for
 #. a private message previously saved as draft (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L17
 msgid "Message"
-msgstr ""
+msgstr "הודעה"
 
 #. recipient field label in private message form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L49
 msgctxt "message"
 msgid "To"
-msgstr ""
+msgstr "שפת היעד"
 
 #. title field label in private message form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L63
 msgid "Title"
-msgstr ""
+msgstr "נושא"
 
 #. button to save a private message as draft
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L89
@@ -1606,7 +1607,7 @@ msgstr "שמירה כטיוטה"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L60
 msgid "Send"
-msgstr ""
+msgstr "שליחה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
@@ -1618,11 +1619,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L49
 msgid "Random sentence"
-msgstr ""
+msgstr "משפט אקראי"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L57
 msgid "show another "
-msgstr ""
+msgstr "עוד אחד"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L5
@@ -1671,7 +1672,7 @@ msgstr "חיפוש"
 #. search language field label in top search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L121
 msgid "From"
-msgstr ""
+msgstr "שפת המקור"
 
 #. placeholder used in translation language selection dropdown in top search
 #. bar
@@ -1685,7 +1686,7 @@ msgstr "כל שפה"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L145
 msgctxt "language"
 msgid "To"
-msgstr ""
+msgstr "שפת היעד"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_with_no_result.ctp#L30
 msgid "No results found."
@@ -1708,11 +1709,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L20
 msgid "Add a comment"
-msgstr ""
+msgstr "הוספת תגובה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L43
 msgid "Submit comment"
-msgstr ""
+msgstr "שליחת תגובה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L55
 msgid "Good practices"
@@ -1724,7 +1725,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L58
 msgid "Use private messages to discuss things unrelated to the sentence."
-msgstr ""
+msgstr "השתמשו בהודעות פרטיות כדי לדון בדברים שלא קשורים למשפט."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L61
@@ -1761,7 +1762,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
 msgctxt "button"
 msgid "Reply"
-msgstr ""
+msgstr "להשיב"
 
 #. tooltip of permalink button on a comment (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L134
@@ -1807,14 +1808,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L701
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
 msgid "Cancel"
-msgstr ""
+msgstr "לבטל"
 
 #. save button of sentence comment edition form (verb)
 #. / save button of wall post edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L51
 msgid "Save changes"
-msgstr ""
+msgstr "לשמור שינויים"
 
 #. language field label on new sentence addition form
 #. / language field label on sentence addition form
@@ -1872,7 +1873,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L24
 msgid "No sentences added yet."
-msgstr ""
+msgstr "עוד לא נוספו משפטים."
 
 #. submit button of new sentence addition form
 #. / submit button of list name edition form
@@ -1889,7 +1890,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
 msgid "OK"
-msgstr ""
+msgstr "אישור"
 
 #. header text in sentence page
 #. / link to the list of audio on profile page sidebar
@@ -1930,7 +1931,7 @@ msgstr[3] ""
 #. Browse by languages page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/search.ctp#L13
 msgid "Search a language"
-msgstr ""
+msgstr "חיפוש שפה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -1970,17 +1971,17 @@ msgstr ""
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L25
 msgid "previous"
-msgstr ""
+msgstr "קודם"
 
 #. link to a random sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L30
 msgid "random"
-msgstr ""
+msgstr "אקראי"
 
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L36
 msgid "next"
-msgstr ""
+msgstr "הבא"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L42
 msgid "Language for previous, next or random sentence"
@@ -2008,12 +2009,12 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L188
 msgid "Translations of translations"
-msgstr "תרגומי תרגומים"
+msgstr "תרגומים של תרגומים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L204
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L237
 msgid "Fewer translations"
-msgstr ""
+msgstr "פחות תרגומים"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L4
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L479
@@ -2039,11 +2040,11 @@ msgstr "איפוס"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L61
 msgid "Mark as reviewed"
-msgstr ""
+msgstr "לסמן כנבדק"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L13
 msgid "This sentence is not reliable."
-msgstr ""
+msgstr "משפט זה אינו מהימן."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L281
@@ -2677,7 +2678,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L43
 msgctxt "header"
 msgid "FAQ"
-msgstr ""
+msgstr "שאלות נפוצות"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L49
 msgid ""
@@ -4163,11 +4164,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L50
 msgid "Autogenerate furigana over Japanese"
-msgstr ""
+msgstr "יצירה אוטומטית של פוריגאנה מעל יפנית"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L82
 msgid "Autogenerate furigana"
-msgstr ""
+msgstr "יצירה אוטומטית של פוריגאנה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L28
 msgid "Useful tools"
@@ -4179,11 +4180,11 @@ msgstr "כלי"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "יצירה אוטומטית של פוריגאנה"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "ליצור פוריגאנה מעל יפנית באופן אוטומטי."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L51
 msgid "Chinese simplified/traditional conversion"
