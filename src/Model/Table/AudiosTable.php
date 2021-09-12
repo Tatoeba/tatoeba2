@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use App\Event\StatsListener;
+use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
@@ -70,6 +71,12 @@ class AudiosTable extends Table
             ->dateTime('modified');
 
         return $validator;
+    }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['sentence_id', 'audio_idx']));
+        return $rules;
     }
 
     public function beforeSave($event, $entity, $options = array()) {

@@ -126,6 +126,15 @@ class AudiosTableTest extends TestCase {
         $this->_assertInvalidRecordWith(1, array('external' => ''));
     }
 
+    function testSentenceIdAndAudioIdxMustBeUnique() {
+        $data = $this->_getRecord(0);
+        unset($data['id']);
+        $audio = $this->Audio->newEntity($data);
+        $result = (bool)$this->Audio->save($audio);
+
+        $this->assertFalse($result);
+    }
+
     function testSentencesReindexedOnSentenceIdUpdate() {
         $audioId = 1;
         $data = $this->Audio->get($audioId);
