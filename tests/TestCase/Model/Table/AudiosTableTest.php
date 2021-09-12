@@ -114,6 +114,10 @@ class AudiosTableTest extends TestCase {
         $this->_assertInvalidRecordWith(0, array('user_id' => 'melon'));
     }
 
+    function testAudioIdxMustBeNumeric() {
+        $this->_assertInvalidRecordWith(0, array('audio_idx' => 'melon'));
+    }
+
     function testMustHaveEitherExternalOrUserIdSet() {
         $this->_assertInvalidRecordWithout(0, array('user_id'));
         $this->_assertInvalidRecordWithout(1, array('external'));

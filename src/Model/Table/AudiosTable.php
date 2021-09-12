@@ -57,6 +57,9 @@ class AudiosTable extends Table
             ->numeric('sentence_id');
 
         $validator
+            ->numeric('audio_idx');
+
+        $validator
             ->numeric('user_id')
             ->allowEmptyString('user_id');
 
