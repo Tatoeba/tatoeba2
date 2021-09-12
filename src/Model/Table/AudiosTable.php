@@ -79,7 +79,25 @@ class AudiosTable extends Table
         return $rules;
     }
 
+    private function _autoIncrementAudioIdx($entity) {
+        if ($entity->isNew()
+            && $entity->has('sentence_id')
+            && !$entity->has('audio_idx'))
+        {
+            $query = $this->find();
+            $result = $query
+                ->select(['latest' => $query->func()->max('audio_idx')])
+                ->where(['sentence_id' => $entity->sentence_id])
+                ->first();
+            if ($result->latest != null) {
+                $entity->audio_idx = $result->latest + 1;
+            }
+        }
+    }
+
     public function beforeSave($event, $entity, $options = array()) {
+        $this->_autoIncrementAudioIdx($entity);
+
         $ok = true;
         $user_id = $entity->user_id;
         $external = $entity->external;
