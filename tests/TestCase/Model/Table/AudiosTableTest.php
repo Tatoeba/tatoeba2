@@ -50,7 +50,7 @@ class AudiosTableTest extends TestCase {
         unset($data['id']);
         $data = array_merge($data, $changedFields);
         $audio = $this->Audio->newEntity($data);
-        return $this->Audio->save($audio);
+        return (bool)$this->Audio->save($audio);
     }
 
     function _saveRecordWithout($record, $missingFields) {
@@ -61,20 +61,20 @@ class AudiosTableTest extends TestCase {
             unset($data[$field]);
         }
         $audio = $this->Audio->newEntity($data);
-        return $this->Audio->save($audio);
+        return (bool)$this->Audio->save($audio);
     }
 
     function _assertValidRecordWith($record, $changedFields) {
-        $this->assertTrue((bool)$this->_saveRecordWith($record, $changedFields));
+        $this->assertTrue($this->_saveRecordWith($record, $changedFields));
     }
     function _assertValidRecordWithout($record, $changedFields) {
-        $this->assertTrue((bool)$this->_saveRecordWithout($record, $changedFields));
+        $this->assertTrue($this->_saveRecordWithout($record, $changedFields));
     }
     function _assertInvalidRecordWith($record, $changedFields) {
-        $this->assertFalse((bool)$this->_saveRecordWith($record, $changedFields));
+        $this->assertFalse($this->_saveRecordWith($record, $changedFields));
     }
     function _assertInvalidRecordWithout($record, $missingFields) {
-        $this->assertFalse((bool)$this->_saveRecordWithout($record, $missingFields));
+        $this->assertFalse($this->_saveRecordWithout($record, $missingFields));
     }
 
     function testValidateFirstRecord() {
@@ -114,46 +114,12 @@ class AudiosTableTest extends TestCase {
         $this->_assertInvalidRecordWith(0, array('user_id' => 'melon'));
     }
 
-    function testAudioIdxMustBeNumeric() {
-        $this->_assertInvalidRecordWith(0, array('audio_idx' => 'melon'));
-    }
-
     function testMustHaveEitherExternalOrUserIdSet() {
         $this->_assertInvalidRecordWithout(0, array('user_id'));
         $this->_assertInvalidRecordWithout(1, array('external'));
     }
     function testExternalCantBeEmptyIfUserIdNotSet() {
         $this->_assertInvalidRecordWith(1, array('external' => ''));
-    }
-
-    function testAudioIdxIsAutomaticallySet() {
-        $this->_assertValidRecordWithout(0, array('audio_idx'));
-    }
-
-    function testAudioIdxDefaultsToOne() {
-        $result = $this->_saveRecordWithout(0, array('audio_idx'));
-        $record = $this->Audio->get($result->id);
-        $this->assertEquals(1, $record->audio_idx);
-    }
-
-    function testSentenceIdAndAudioIdxMustBeUnique() {
-        $data = $this->_getRecord(0);
-        unset($data['id']);
-        $audio = $this->Audio->newEntity($data);
-        $result = (bool)$this->Audio->save($audio);
-
-        $this->assertFalse($result);
-    }
-
-    function testAudioIdxAutoIncrements() {
-        $data = $this->_getRecord(0);
-        unset($data['id']);
-        unset($data['audio_idx']);
-        $audio = $this->Audio->newEntity($data);
-        $result = $this->Audio->save($audio);
-        $record = $this->Audio->get($result->id);
-
-        $this->assertEquals(2, $record->audio_idx);
     }
 
     function testSentencesReindexedOnSentenceIdUpdate() {

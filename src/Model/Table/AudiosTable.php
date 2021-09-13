@@ -19,7 +19,6 @@
 namespace App\Model\Table;
 
 use App\Event\StatsListener;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
@@ -58,9 +57,6 @@ class AudiosTable extends Table
             ->numeric('sentence_id');
 
         $validator
-            ->numeric('audio_idx');
-
-        $validator
             ->numeric('user_id')
             ->allowEmptyString('user_id');
 
@@ -73,31 +69,7 @@ class AudiosTable extends Table
         return $validator;
     }
 
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->isUnique(['sentence_id', 'audio_idx']));
-        return $rules;
-    }
-
-    private function _autoIncrementAudioIdx($entity) {
-        if ($entity->isNew()
-            && $entity->has('sentence_id')
-            && !$entity->has('audio_idx'))
-        {
-            $query = $this->find();
-            $result = $query
-                ->select(['latest' => $query->func()->max('audio_idx')])
-                ->where(['sentence_id' => $entity->sentence_id])
-                ->first();
-            if ($result->latest != null) {
-                $entity->audio_idx = $result->latest + 1;
-            }
-        }
-    }
-
     public function beforeSave($event, $entity, $options = array()) {
-        $this->_autoIncrementAudioIdx($entity);
-
         $ok = true;
         $user_id = $entity->user_id;
         $external = $entity->external;
