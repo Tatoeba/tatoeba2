@@ -59,7 +59,7 @@ if ($canEdit) {
         'value' => $license,
     );
     echo $this->Form->control('license', $options);
-    echo $this->Form->submit(__d('admin', 'Change'));
+    echo $this->Form->submit(__('Change license'));
     echo $this->Form->end();
 }
 ?>
