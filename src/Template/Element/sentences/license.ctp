@@ -52,6 +52,8 @@ if ($canEdit) {
         array('value' => $sentenceId)
     );
     $options = array(
+        /* @translators: text in front of the dropdown to modify the
+           license of the sentence text, could be CC BY 2.0 FR or CC0 */
         'label' => __('License:'),
         'options' => $this->SentenceLicense->getLicenseOptions(CurrentUser::isAdmin()),
         'value' => $license,
