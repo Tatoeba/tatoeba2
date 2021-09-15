@@ -24,6 +24,7 @@ use App\View\Helper\AppHelper;
 class AudioHelper extends AppHelper
 {
     public $helpers = array(
+        'Form',
         'Html',
         'AudioLicense'
     );
@@ -56,11 +57,41 @@ class AudioHelper extends AppHelper
         }
         $license = $this->AudioLicense->getLicenseName($license);
 ?>
-<ul>
-  <li><?php echo format(__('Recorded by: {username}'), compact('username')); ?></li>
-  <li><?php echo format(__('License: {license}'), compact('license')); ?></li>
-</ul>
+<h3>
+  <md-icon ng-cloak>volume_up</md-icon><?=
+    format(__('by {username}'), compact('username'))
+  ?>
+</h3>
+<?= format(__('License: {license}'), compact('license')) ?>
 <?php
+    }
+
+    public function displayAudioEditForm($audio) {
+        echo $this->Form->create('Audio', [
+            'type' => 'post',
+            'url' => [
+                'controller' => 'audio',
+                'action' => 'edit',
+                $audio->id
+            ],
+        ]);
+        echo __d('admin', 'Enabled');
+        echo $this->Form->control('enabled', [
+            'label' => false,
+            'type' => 'radio',
+            'options' => array(
+                1 => __d('admin', 'Yes'),
+                0 => __d('admin', 'No')
+            ),
+            'value' => $audio->enabled,
+        ]);
+
+        echo $this->Form->control('author', [
+            'label' => __d('admin', 'Author'),
+            'value' => $this->_View->safeForAngular($audio->author),
+        ]);
+        echo $this->Form->submit(__d('admin', 'Submit'));
+        echo $this->Form->end();
     }
 
     public function formatLicenceMessage($audioSettings, $username) {

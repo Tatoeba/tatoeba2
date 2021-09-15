@@ -664,7 +664,7 @@ class SentencesTable extends Table
     {
         $audioContainment = [
            'Users' => ['fields' => ['username']],
-           'fields' => ['external', 'sentence_id'],
+           'fields' => ['id', 'enabled', 'external', 'sentence_id'],
         ];
         $transcriptionsContainment =  [
             'Users' => ['fields' => ['username']],

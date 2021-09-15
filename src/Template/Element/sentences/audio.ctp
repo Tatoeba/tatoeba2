@@ -33,56 +33,17 @@ if (!$shouldDisplayBlock) {
 }
 
 ?>
-<div class="section md-whiteframe-1dp">
-    <?php /* @translators: header text in sentence page */ ?>
-    <h2><?php echo __('Audio') ?></h2>
-<?php
-
-if ($hasaudio) {
-    $this->Audio->displayAudioInfo($audios[0]);
-}
-
-if (CurrentUser::isAdmin()) {
-    if ($hasaudio) {
-        echo "<hr>";
-    }
-    echo $this->Form->create(
-        "Sentence",
-        array(
-            "url" => array("action" => "edit_audio"),
-            "type" => "post",
-        )
-    );
-    echo $this->Form->hidden(
-        "id",
-        array("value" => $sentenceId)
-    );
-    echo __d("admin", "Enabled");
-    echo $this->Form->control(
-        "hasaudio",
-        array(
-            "label" => false,
-            "type" => "radio",
-            "options" => array(
-                1 => __d("admin", "Yes"),
-                0 => __d("admin", "No")
-            ),
-            "value" => $hasaudio
-        )
-    );
-
-    $ownerName = '';
-    if ($hasaudio) {
-        $ownerName = $this->safeForAngular($audios[0]->author);
-    }
-    echo $this->Form->control("ownerName",
-        array(
-            'label' => __d("admin", "Owner name"),
-            "value" => $ownerName
-        )
-    );
-    echo $this->Form->submit(__d('admin', 'Submit'));
-    echo $this->Form->end();
-}
-?>
+<div class="section audio md-whiteframe-1dp">
+    <h2><?= __('Audio') ?></h2>
+    <?php
+        foreach ($audios as $key => $audio) {
+            $this->Audio->displayAudioInfo($audio);
+            if (CurrentUser::isAdmin()) {
+                $this->Audio->displayAudioEditForm($audio);
+                if ($key !== array_key_last($audios)) {
+                    echo "<hr>";
+                }
+            }
+        }
+    ?>
 </div>
