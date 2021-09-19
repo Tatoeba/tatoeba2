@@ -300,12 +300,7 @@ class ListsHelper extends AppHelper
     public function displayTranslationsDropdown($listId, $translationsLang = null) {
         echo __('Show translations :') . ' ';
 
-        // TODO User $this->Url->build()
-        $path = '/';
-        if (!empty($this->request->params['lang'])) {
-            $path .= $this->request->params['lang'] . '/';
-        }
-        $path .= 'sentences_lists/show/'. $listId.'/';
+        $path = $this->Url->build(['action' => 'show', $listId]) . '/';
 
         // TODO onSelectedLanguageChange should be defined in a separate js file
         echo $this->_View->element(
