@@ -309,7 +309,7 @@ class ListsHelper extends AppHelper
                 'name' => 'translationLangChoice',
                 'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
                 'initialSelection' => $translationsLang,
-                'onSelectedLanguageChange' => "window.location.href = '$path' + language.code",
+                'onSelectedLanguageChange' => "window.location.pathname = '$path' + language.code",
                 'forceItemSelection' => true,
             )
         );

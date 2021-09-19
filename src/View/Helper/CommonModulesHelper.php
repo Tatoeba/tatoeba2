@@ -91,12 +91,6 @@ class CommonModulesHelper extends AppHelper
 
             $langs = $this->Languages->languagesArrayAlone();
 
-            // Avoid loosing the query parameters
-            $query = parse_url($this->request->getRequestTarget(), PHP_URL_QUERY);
-            if (!empty($query)) {
-                $query = '?' . $query;
-            }
-
             echo $this->_View->element(
                 'language_dropdown',
                 array(
@@ -105,10 +99,9 @@ class CommonModulesHelper extends AppHelper
                     'initialSelection' => $lang,
                     'forceItemSelection' => true,
                     'onSelectedLanguageChange' => "
-                        window.location.href =
+                        window.location.pathname =
                         '$path'
-                        + (language.code == 'und' ? '' : '/'+language.code)
-                        + '$query'",
+                        + (language.code == 'und' ? '' : '/'+language.code)",
                     // the check for 'und' is to avoid a duplicate page (with and without it)
                 )
             );
