@@ -103,6 +103,10 @@ $vocabularyUrl = $this->Url->build(array(
                     <?= __('Go to Tatominer') ?>
                     <md-icon>keyboard_arrow_right</md-icon>
                 </md-button>
+                <div class="hint" layout="row" layout-align="center center">
+                    <md-icon>info</md-icon>
+                    <div><?= __('Not all languages are supported yet.'); ?></div>
+                </div>
             </div>
         </div>
     </section>
