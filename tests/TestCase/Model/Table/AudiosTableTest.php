@@ -202,20 +202,47 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(1, $result);
     }
 
-    function testAssignAudioTo() {
-        $result = $this->Audio->assignAudioTo(1, 'admin');
+    function testAssignAuthor_user() {
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $result = $this->Audio->assignAuthor($audio, 'admin');
+
         $expected = [
-            'sentence_id' => 1,
+            'external' => null,
             'user_id' => 1
         ];
         $result = array_intersect_key($result->toArray(), $expected);
         $this->assertEquals($expected, $result);
     }
 
-    function testAssignAudioTo_incrementsCount() {
+    function testAssignAuthor_external() {
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $result = $this->Audio->assignAuthor($audio, 'Barack Obama');
+
+        $expected = [
+            'external' => [
+                'username' => 'Barack Obama',
+                'license' => null,
+                'attribution_url' => null,
+            ],
+            'user_id' => null,
+        ];
+        $result = array_intersect_key($result->toArray(), $expected);
+        $this->assertEquals($expected, $result);
+    }
+
+    function testAssignAuthor_external_fails() {
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $result = $this->Audio->assignAuthor($audio, 'Barack Obama', false);
+        $this->assertFalse($result);
+    }
+
+    function testNewAudio_incrementsCount() {
         $Languages = TableRegistry::getTableLocator()->get('Languages');
         $before = $Languages->find()->where(['code' => 'eng'])->first()->audio;
-        $result = $this->Audio->assignAudioTo(1, 'admin');
+
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $this->Audio->assignAuthor($audio, 'admin');
+
         $after= $Languages->find()->where(['code' => 'eng'])->first()->audio;
         $this->assertEquals(1, $after - $before);
     }
@@ -233,7 +260,9 @@ class AudiosTableTest extends TestCase {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
 
-        $added = $this->Audio->assignAudioTo(2, 'contributor');
+        $audio = $this->Audio->newEntity(['sentence_id' => 2]);
+        $added = $this->Audio->assignAuthor($audio, 'contributor');
+
         $returned = $this->Audio->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);

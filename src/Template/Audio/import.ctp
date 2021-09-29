@@ -86,7 +86,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
             __d('admin', 'File name'),
             __d('admin', 'Sentence id'),
             __d('admin', 'Language'),
-            __d('admin', 'Already has audio'),
+            __d('admin', 'Existing audio'),
             __d('admin', 'May be imported'),
         )
     );
@@ -103,11 +103,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                           )
                       ) :
                       __d('admin', 'Invalid');
-        $hasaudio = isset($file['hasaudio']) ? (
-                        $file['hasaudio'] ?
-                        __d('admin', 'Yes') :
-                        __d('admin', 'No')
-                    ) :
+        $hasaudio = isset($file['audios']) ?
+                    count($file['audios']) :
                     __d('admin', 'N/A');
         $isValid = $file['valid'] ?
                    __d('admin', 'Yes') :

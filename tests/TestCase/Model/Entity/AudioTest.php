@@ -3,6 +3,7 @@ namespace App\Test\TestCase\Model\Entity;
 
 use App\Model\Entity\Audio;
 use Cake\TestSuite\TestCase;
+use Cake\Core\Configure;
 
 class AudioTest extends TestCase
 {
@@ -12,6 +13,7 @@ class AudioTest extends TestCase
     {
         parent::setUp();
         $this->Audio = new Audio();
+        Configure::write('Recordings.path', '/foo/bar');
     }
 
     public function tearDown()
@@ -46,5 +48,26 @@ class AudioTest extends TestCase
     public function testGet_externalDoesntTouchNullValues()
     {
         $this->assertNull($this->Audio->external);
+    }
+
+    public function filePathProvider() {
+        // audio id, sentence id, expected audio file path
+        return [
+            [       1,       2, '/foo/bar/000/001/2-1.mp3'       ],
+            [    1234,    5678, '/foo/bar/001/234/5678-1234.mp3' ],
+            [  999999,       3, '/foo/bar/999/999/3-999999.mp3'  ],
+            [ 1000000,       4, '/foo/bar/000/000/4-1000000.mp3' ],
+            [ 1000001,       4, '/foo/bar/000/001/4-1000001.mp3' ],
+        ];
+    }
+
+    /**
+     * @dataProvider filePathProvider
+     */
+    public function testGet_file_path($audioId, $sentenceId, $expectedPath)
+    {
+        $this->Audio->id = $audioId;
+        $this->Audio->sentence_id = $sentenceId;
+        $this->assertEquals($expectedPath, $this->Audio->file_path);
     }
 }

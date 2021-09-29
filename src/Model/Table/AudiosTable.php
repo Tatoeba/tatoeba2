@@ -133,35 +133,24 @@ class AudiosTable extends Table
     }
 
     /**
-     * Assign audio to a sentence.
+     * Assign author to an audio entity and save it.
      *
-     * @param int     $sentenceId                  ID of sentence.
+     * @param Audio   $entity                      Entity of the audio.
      * @param string  $ownerName                   Owner of the audio file.
      * @param boolean $allowedExternal (optional)  Whether metadata is stored as JSON.
      *
      * @return Cake\ORM\Entity|false
      */
-    public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {
-        $data = array(
-            'sentence_id' => $sentenceId,
-            'user_id' => null,
-            'external' => null,
-        );
-        
+    public function assignAuthor($entity, $ownerName, $allowExternal = true) {
         $result = $this->Users->findByUsername($ownerName)->first();
         if ($result) {
-            $data['user_id'] = $result->id;
+            $entity->user_id = $result->id;
+            $entity->external = null;
         } elseif ($allowExternal && !empty($ownerName)) {
-            $data['external'] = array('username' => $ownerName);
+            $entity->user_id = null;
+            $entity->external = array('username' => $ownerName);
         }
-        $audio = $this->findBySentenceId($sentenceId, ['fields' => ['id']])->first();
-        if ($audio) {
-            $this->patchEntity($audio, $data);
-        } else {
-            $audio = $this->newEntity($data);
-        }
-        
-        return $this->save($audio);
+        return $this->save($entity);
     }
 
     public function getFilesToImport() {
@@ -206,7 +195,7 @@ class AudiosTable extends Table
                 $id = $file['sentenceId'];
                 if (isset($sentences[$id])) {
                     $file['lang'] = $sentences[$id]['lang'];
-                    $file['hasaudio'] = count($sentences[$id]->audios) > 0;
+                    $file['audios'] = $sentences[$id]->audios;
                     $file['valid'] = !is_null($sentences[$id]['lang']);
                 }
             }
@@ -215,15 +204,14 @@ class AudiosTable extends Table
         usort($audioFiles, function($a, $b) {
             /* Sort:
              * 1. May not be imported
-             * 2. Already has audio
-             * 3. The rest by sentence id
+             * 2. Number of existing recordings (desc)
+             * 3. The rest by sentence id (asc)
              */
             if (isset($a['valid']) && isset($b['valid'])
                 && $a['valid'] != $b['valid']) {
                 return $a['valid'] ? 1 : -1;
-            } elseif (isset($a['hasaudio']) && isset($b['hasaudio'])
-                      && $a['hasaudio'] != $b['hasaudio']) {
-                return $a['hasaudio'] ? -1 : 1;
+            } elseif (isset($a['audios']) && isset($b['audios'])) {
+                return count($b['audios']) - count($a['audios']);
             } elseif (isset($a['sentenceId']) && isset($b['sentenceId'])) {
                 return $a['sentenceId'] - $b['sentenceId'];
             } else {
@@ -235,7 +223,6 @@ class AudiosTable extends Table
     }
 
     public function importFiles(&$errors, $author) {
-        $recsBaseDir = Configure::read('Recordings.path');
         $errors = array();
         $filesImported = array('total' => 0);
 
@@ -249,47 +236,51 @@ class AudiosTable extends Table
                 continue;
             }
 
-            $destDir = $recsBaseDir . DS . $file['lang'];
-            if (!file_exists($destDir)) {
-                if (!mkdir($destDir)) {
+            $this->getConnection()->transactional(function () use ($file, $author, &$errors, &$filesImported) {
+                $audio = $this->newEntity();
+                $audio->sentence_id = $file['sentenceId'];
+                $audio = $this->assignAuthor($audio, $author, false);
+
+                if (!$audio) {
                     $errors[] = format(
-                        __d('admin', "Failed to create directory “{dir}” to import file “{file}”."),
-                        array('dir' => $destDir, 'file' => $file['fileName'])
+                        __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database. Make sure it's a valid username."),
+                        array('sentenceId' => $file['sentenceId'], 'author' => $author)
                     );
-                    continue;
+                    return false;
                 }
-            }
 
-            $destFile = $destDir . DS . strtolower($file['fileName']);
-            if (!copy($file['sourcePath'], $destFile)) {
-                $errors[] = format(
-                    __d('admin', "Failed to copy file “{file}” to directory “{dir}”."),
-                    array('file' => $file['fileName'], 'dir' => $destDir)
-                );
-                continue;
-            }
+                $audioPath = $audio->file_path;
+                $destDir = dirname($audioPath);
+                if (!file_exists($destDir)) {
+                    if (!mkdir($destDir, 0777, true)) {
+                        $errors[] = format(
+                            __d('admin', "Failed to create directory “{dir}” to import file “{file}”."),
+                            array('dir' => $destDir, 'file' => $file['fileName'])
+                        );
+                        return false;
+                    }
+                }
 
-            $ok = $this->assignAudioTo($file['sentenceId'], $author, false);
-            if (!$ok) {
-                $errors[] = format(
-                    __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database. Make sure it's a valid username."),
-                    array('sentenceId' => $file['sentenceId'], 'author' => $author)
-                );
-                unlink($destFile); // cleaning up, no need to warn on error
-                continue;
-            }
+                if (!copy($file['sourcePath'], $audioPath)) {
+                    $errors[] = format(
+                        __d('admin', "Failed to copy file “{file}” to directory “{dir}”."),
+                        array('file' => $file['fileName'], 'dir' => $destDir)
+                    );
+                    return false;
+                }
 
-            if (!unlink($file['sourcePath'])) {
-                $errors[] = format(
-                    __d('admin', "File “{file}” was successfully imported but could not be removed from the import directory."),
-                    array('file' => $file['fileName'])
-                );
-            }
+                if (!unlink($file['sourcePath'])) {
+                    $errors[] = format(
+                        __d('admin', "File “{file}” was successfully imported but could not be removed from the import directory."),
+                        array('file' => $file['fileName'])
+                    );
+                }
 
-            if (!isset($filesImported[$file['lang']]))
-                $filesImported[$file['lang']] = 0;
-            $filesImported[$file['lang']]++;
-            $filesImported['total']++;
+                if (!isset($filesImported[$file['lang']]))
+                    $filesImported[$file['lang']] = 0;
+                $filesImported[$file['lang']]++;
+                $filesImported['total']++;
+            });
         }
         
         return $filesImported;

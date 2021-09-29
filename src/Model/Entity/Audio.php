@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Entity;
 
+use Cake\Core\Configure;
 use Cake\ORM\Entity;
 
 class Audio extends Entity
@@ -37,5 +38,25 @@ class Audio extends Entity
         } else {
             return $this->external['username'];
         }
+    }
+
+    private function __balancedTreePath($id) {
+        $id = substr(sprintf('%06d', $id), -6);
+        $pieces = [];
+        do {
+            $pieces[] = substr($id, 0, 3);
+            $id = substr($id, 3);
+        } while ($id != '');
+        return implode(DS, $pieces);
+    }
+
+    protected function _getFilePath() {
+       if ($this->id && $this->sentence_id) {
+           $path = $this->__balancedTreePath($this->id);
+           $audioBasePath = Configure::read('Recordings.path');
+           return $audioBasePath.DS.$path.DS.$this->sentence_id.'-'.$this->id.'.mp3';
+       } else {
+           return null;
+       }
     }
 }
