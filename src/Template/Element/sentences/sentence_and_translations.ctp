@@ -87,8 +87,8 @@ $sentenceUrl = $this->Url->build([
         <div flex><?= $duplicateWarning ?></div>
     </div>
     <div layout="column">
-        <div layout="row" class="header">
-            <md-subheader flex ng-if="!vm.isMenuExpanded">
+        <div layout="row" layout-align="end" layout-wrap class="header">
+            <md-subheader flex="auto" ng-if="!vm.isMenuExpanded">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
                     $linkText = $this->Pages->formatSentenceIdWithSharp('{{vm.sentence.id}}');
