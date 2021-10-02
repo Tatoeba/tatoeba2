@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-08 10:53+0000\n"
-"PO-Revision-Date: 2021-08-14 07:45+0000\n"
+"POT-Creation-Date: 2021-09-28 15:07+0000\n"
+"PO-Revision-Date: 2021-10-01 11:13+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -851,6 +851,26 @@ msgstr "prima le frasi create per ultime"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L192
 msgid "show sentences"
 msgstr "mostra delle frasi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L198
+msgid "Check Tatominer"
+msgstr "Controlla Tatominer"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L200
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no translations yet."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L103
+msgid "Go to Tatominer"
+msgstr "Vai su Tatominer"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L108
+msgid "Not all languages are supported yet."
+msgstr "Non tutte le lingue sono ancora supportate."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
@@ -3550,13 +3570,25 @@ msgid ""
 "BY license. Otherwise we cannot use them."
 msgstr "<strong>A noi piace condividere i nostri dati.</strong> Evita di fare un copia-incolla delle frasi, o almeno assicurati che non siano coperte da copyright e siano compatibili con la licenza CC-BY. In caso contrario, non le possiamo utilizzare."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
-msgid "Check out the vocabulary for which we need sentences"
-msgstr "Controlla tutte le voci del vocabolario senza frasi"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L87
+msgid "Not inspired?"
+msgstr "Non ispirato?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L93
+msgid ""
+"Check the vocabulary requests for which there are very few or no sentences "
+"yet."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
 msgid "Sentences wanted"
 msgstr "Frasi richieste"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L101
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no sentences yet."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"

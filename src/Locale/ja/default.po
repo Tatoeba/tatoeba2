@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-08 10:53+0000\n"
-"PO-Revision-Date: 2021-07-12 01:55+0000\n"
-"Last-Translator: Koyuki <springcomes.ki@gmail.com>\n"
+"POT-Creation-Date: 2021-09-28 15:07+0000\n"
+"PO-Revision-Date: 2021-09-28 16:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Japanese (http://www.transifex.com/tatoeba/tatoeba_website/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -851,6 +851,26 @@ msgstr "最近追加された文から"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L192
 msgid "show sentences"
 msgstr "検索"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L198
+msgid "Check Tatominer"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L200
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no translations yet."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L103
+msgid "Go to Tatominer"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L108
+msgid "Not all languages are supported yet."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
@@ -3540,13 +3560,25 @@ msgid ""
 "BY license. Otherwise we cannot use them."
 msgstr "<strong>共有</strong>： 例文を共有するのが好きです！著作権で保護されている例文は投稿しないでください。コピー＆ペーストはなるべく避けて、CC BYライセンスに準拠しているか確認してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
-msgid "Check out the vocabulary for which we need sentences"
-msgstr "例文がまだない単語や表現をチェックしてみてください。"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L87
+msgid "Not inspired?"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L93
+msgid ""
+"Check the vocabulary requests for which there are very few or no sentences "
+"yet."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
 msgid "Sentences wanted"
 msgstr "例文を募集中！"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L101
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no sentences yet."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"

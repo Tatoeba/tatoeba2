@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-08 10:53+0000\n"
-"PO-Revision-Date: 2021-08-14 09:40+0000\n"
-"Last-Translator: sabretou <sabretou@gmail.com>\n"
+"POT-Creation-Date: 2021-09-28 15:07+0000\n"
+"PO-Revision-Date: 2021-09-28 16:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -850,6 +850,26 @@ msgstr "सर्वात अलीकडची बनवलेली आधी
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L192
 msgid "show sentences"
 msgstr "वाक्ये दाखवा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L198
+msgid "Check Tatominer"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L200
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no translations yet."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L103
+msgid "Go to Tatominer"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L108
+msgid "Not all languages are supported yet."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
@@ -3549,13 +3569,25 @@ msgid ""
 "BY license. Otherwise we cannot use them."
 msgstr "<strong>आम्हाला आमची डेटा सामायिक करायला आवडतो.</strong> वाक्ये कॉपी-पेस्ट करणे टाळा. किमान त्यांच्यावर कॉपीराईट नाही, व ती वाक्ये CC BY परवान्याशी सुसंगत आहेत, याची खात्री करून घ्या. असे केले नाही तर आम्हाला ती वाक्ये वापरता येणार नाहीत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
-msgid "Check out the vocabulary for which we need sentences"
-msgstr "वाक्यांची गरज असणारे शब्द पाहा"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L87
+msgid "Not inspired?"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L93
+msgid ""
+"Check the vocabulary requests for which there are very few or no sentences "
+"yet."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
 msgid "Sentences wanted"
 msgstr "हवी असलेली वाक्ये"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L101
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no sentences yet."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"
