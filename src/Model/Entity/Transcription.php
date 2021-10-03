@@ -181,7 +181,7 @@ class Transcription extends Entity
         $editable = !$this->readonly && CurrentUser::canEditTranscription($this->user_id, $this->sentence->user_id);
         if ($editable) {
             $lang = $this->sentence->lang;
-            $text = htmlentities($this->text);
+            $text = $this->text;
             if ($this->script == 'Hrkt') {
                 $text = $this->bracketify($this->text);
             }
