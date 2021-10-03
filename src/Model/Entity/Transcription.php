@@ -161,12 +161,13 @@ class Transcription extends Entity
         }
 
         $lang = $this->sentence->lang;
-        $text = htmlentities($this->text);
 
         if ($this->script == 'Hrkt') {
             $text = $this->rubify($this->text);
         } elseif ($lang == 'cmn' && $this->script == 'Latn') {
-            $text = $this->numeric2diacritic($text);
+            $text = htmlentities($this->numeric2diacritic($this->text));
+        } else {
+            $text = htmlentities($this->text);
         }
 
         return $text;
@@ -180,10 +181,10 @@ class Transcription extends Entity
         $text = null;
         $editable = !$this->readonly && CurrentUser::canEditTranscription($this->user_id, $this->sentence->user_id);
         if ($editable) {
-            $lang = $this->sentence->lang;
-            $text = $this->text;
             if ($this->script == 'Hrkt') {
                 $text = $this->bracketify($this->text);
+            } else {
+                $text = $this->text;
             }
         }
 
