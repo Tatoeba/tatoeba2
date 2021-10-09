@@ -84,7 +84,7 @@ class AudioHelper extends AppHelper
                       'license.');
         } else {
             $msg = __('The following audio recordings by '.
-                      '{userName}, are licensed under an unknown license.');
+                      '{userName} are licensed under an unknown license.');
         }
         return format($msg, array(
             'userName' => $userLink,
