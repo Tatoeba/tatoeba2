@@ -9,7 +9,7 @@ $config = [
             'search',
             'sentence'
         ],
-        'audio' => [ 'of', 'index' ],
+        'audio' => [ 'of', 'index', 'download' ],
         'reviews' => [ 'of' ],
         'contributions' => [ '*' ],
         'pages' => [ '*' ],

@@ -130,4 +130,16 @@ class AudioController extends AppController
 
         $this->redirect(array('action' => 'of', CurrentUser::get('username')));
     }
+
+    public function download($id) {
+        $this->loadModel('Audios');
+        try {
+            $audio = $this->Audios->get($id);
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
+
+        return $this->getResponse()
+                    ->withFile($audio->file_path, ['download' => true]);
+    }
 }
