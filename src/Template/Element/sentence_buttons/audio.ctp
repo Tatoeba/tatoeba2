@@ -1,11 +1,4 @@
-<?php
-use Cake\Core\Configure;
-
-$audioBaseUrl = Configure::read('Recordings.url');
-?>
-
-<md-button class="md-icon-button audioAvailable" ng-href="<?= $audioBaseUrl ?>{{<?= $angularVar ?>.lang}}/{{<?= $angularVar ?>.id}}.mp3"
-           ng-click="vm.playAudio($event)" ng-if="<?= $angularVar ?>.audios && <?= $angularVar ?>.audios.length > 0">
+<md-button class="md-icon-button audioAvailable" ng-click="vm.playAudio(<?= $angularVar ?>)" ng-if="<?= $angularVar ?>.audios && <?= $angularVar ?>.audios.length > 0">
     <md-icon>volume_up</md-icon>
     <md-tooltip md-direction="top" ng-if="!vm.getAudioAuthor(<?= $angularVar ?>)">
         <?= __('Play audio'); ?>

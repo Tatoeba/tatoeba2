@@ -279,19 +279,33 @@
             expandOrCollapse(vm.isMenuExpanded);
         }
 
-        function playAudio($event) {
-            $event.stopPropagation();
-            $event.preventDefault();
+        function getNextPlayAudioIndex(sentence) {
+            if (sentence.audios.length == 0) {
+                return undefined;
+            } else {
+                var playIndex = sentence.lastPlayedAudioIndex === undefined ? -1 : sentence.lastPlayedAudioIndex;
+                playIndex = (playIndex + 1) % sentence.audios.length;
+                return playIndex;
+            }
+        }
 
-            var audioURL = $event.currentTarget.href;
-            var audio = new Audio(audioURL);
-            audio.play();
+        function playAudio(sentence) {
+            var playIndex = getNextPlayAudioIndex(sentence);
+            if (playIndex !== undefined) {
+                var audioURL = rootUrl + '/audio/download/' + sentence.audios[playIndex].id;
+                var audio = new Audio(audioURL);
+                audio.play();
+                sentence.lastPlayedAudioIndex = playIndex;
+            }
         }
 
         function getAudioAuthor(sentence) {
-            var audio = sentence.audios ? sentence.audios[0] : null;
-
-            return audio.author;
+            var playIndex = getNextPlayAudioIndex(sentence);
+            if (playIndex === undefined) {
+                return false;
+            } else {
+                return sentence.audios[playIndex].author;
+            }
         }
 
         function translate(id) {
