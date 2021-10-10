@@ -110,12 +110,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                    __d('admin', 'Yes') :
                    __d('admin', 'No');
 
-        if (isset($file['hasaudio']) && $file['hasaudio']) {
-            $path = Configure::read('Recordings.url')
-                .$file['lang'].'/'.$file['sentenceId'].'.mp3';
-            $hasaudio = $this->Html->Link($hasaudio, $path);
-        }
-
         echo $this->Html->tableCells(
             array(
                 $file['fileName'],
