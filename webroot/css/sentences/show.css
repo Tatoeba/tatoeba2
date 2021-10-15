@@ -160,7 +160,8 @@
 /*
  * Audio
  */
-.audio h3 md-icon {
-    margin-left: 0;
-    margin-right: 10px;
+.audio h3 {
+    display: flex;
+    align-items: center;
+    margin-left: -15px;
 }

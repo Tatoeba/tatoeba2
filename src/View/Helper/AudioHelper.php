@@ -58,9 +58,8 @@ class AudioHelper extends AppHelper
         $license = $this->AudioLicense->getLicenseName($license);
 ?>
 <h3>
-  <md-icon ng-cloak>volume_up</md-icon><?=
-    format(__('by {username}'), compact('username'))
-  ?>
+  <audio-button audios="<?= h(json_encode([$audio])) ?>"></audio-button>
+  <span><?= format(__('by {username}'), compact('username')) ?></span>
 </h3>
 <?= format(__('License: {license}'), compact('license')) ?>
 <?php

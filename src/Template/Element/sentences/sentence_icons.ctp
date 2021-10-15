@@ -5,6 +5,11 @@ $sentenceBaseUrl = $this->Url->build([
 ]);
 
 $responsiveNgClass = '{activated: translation.showActions, deactivated: !translation.showActions}';
+
+$this->AngularTemplate->addTemplate(
+    $this->element('sentence_buttons/audio'),
+    'audio-button-template'
+);
 ?>
 
 <div class="indicator" ng-if="<?= $angularVar ?>.correctness === -1">
@@ -19,7 +24,7 @@ $responsiveNgClass = '{activated: translation.showActions, deactivated: !transla
     <md-tooltip><?= __('Copy sentence') ?></md-tooltip>
 </md-button>
 
-<?= $this->element('sentence_buttons/audio', ['angularVar' => $angularVar]); ?>
+<audio-button audios="<?= $angularVar ?>.audios"></audio-button>
 
 <md-button class="md-icon-button" ng-class="<?= $responsiveNgClass ?>" ng-href="<?= $sentenceBaseUrl ?>/{{<?= $angularVar ?>.id}}">
     <md-icon>info</md-icon>
