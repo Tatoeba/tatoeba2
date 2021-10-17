@@ -87,7 +87,17 @@ $sentenceUrl = $this->Url->build([
         <div flex><?= $duplicateWarning ?></div>
     </div>
     <div layout="column">
-        <div layout="row" layout-align="end" layout-wrap class="header">
+        <div layout="row" layout-wrap class="header" style="flex-direction: row-reverse">
+            <?php
+            if (CurrentUser::isMember()) {
+                echo $this->element('sentences/sentence_menu', [
+                    'expanded' => $menuExpanded,
+                ]);
+            } else {
+                echo $this->element('sentences/transcription_button');
+            }
+            ?>
+
             <md-subheader flex="auto">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
@@ -112,16 +122,6 @@ $sentenceUrl = $this->Url->build([
                     ?>
                 </span>
             </md-subheader>
-
-            <?php
-            if (CurrentUser::isMember()) {
-                echo $this->element('sentences/sentence_menu', [
-                    'expanded' => $menuExpanded,
-                ]);
-            } else {
-                echo $this->element('sentences/transcription_button');
-            }
-            ?>
         </div>
 
         <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}" ng-if="!vm.visibility.sentence_form">
