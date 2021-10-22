@@ -87,7 +87,7 @@ $sentenceUrl = $this->Url->build([
         <div flex><?= $duplicateWarning ?></div>
     </div>
     <div layout="column">
-        <div layout="row" layout-wrap class="header" style="flex-direction: row-reverse">
+        <div layout="row" layout-wrap class="header">
             <?php
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
