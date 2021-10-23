@@ -1308,12 +1308,9 @@ div.hideLink {
 }
 
 .sentence-and-translations .header {
-    background: #fafafa;
+    flex-direction: row-reverse;
 }
 
-.sentence-and-translations .menu-wrapper {
-    background: #fff;
-}
 .sentence-and-translations .menu {
     background: #fafafa;
     border-bottom-left-radius: 15px;
