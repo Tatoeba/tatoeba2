@@ -43,25 +43,15 @@ $registerUrl = $this->Url->build(
 <?php if(!isset($searchProblem)) { ?>
 <div layout-margin>
 <div layout="column">
-    <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools">
-            <?php /* @translators: random sentence block header on the home page for guests */ ?>
-            <h2><?= __('Random sentence'); ?></h2>
-        </div>
-    </md-toolbar>
-
     <section ng-cloak>
     <?php
-    $sentence = $random;
-    $translations = $random->translations;
-    $sentenceOwner = $random->user;
-
+    echo $this->element('random_sentence_header');
     echo $this->element(
         'sentences/sentence_and_translations',
         array(
-            'sentence' => $sentence,
-            'translations' => $translations,
-            'user' => $sentenceOwner
+            'sentence' => $random,
+            'translations' => $random->translations,
+            'user' => $random->user,
         )
     );
     ?>
