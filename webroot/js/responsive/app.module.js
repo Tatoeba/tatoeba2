@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngMaterial', 'ngMessages', 'ngCookies', 'ngSanitize'])
+        .module('app', ['ngMaterial', 'ngMessages', 'ngCookies', 'ngSanitize', 'ngAnimate'])
         .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$httpParamSerializerJQLikeProvider', '$cookiesProvider',
                  '$compileProvider', function(
             $mdThemingProvider, $mdIconProvider, $httpProvider, $httpParamSerializerJQLikeProvider, $cookiesProvider, $compileProvider

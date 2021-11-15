@@ -4,18 +4,18 @@
     
     <div layout="row" layout-align="stretch" flex>
     <div ng-click="translation.showActions = !translation.showActions" layout="row" layout-align="start center" role="switch" flex>
-    <div>
+    <div style="font-size: 0">
     <icon-with-progress is-loading="vm.iconsInProgress['link' + translation.id]" ng-if="vm.menu.canLink">
-        <md-button class="md-icon-button" ng-show="vm.isMenuExpanded && translation.isDirect" ng-click="vm.saveLink('delete', translation)">
+        <md-button class="md-icon-button anim-squeeze" ng-show="vm.isMenuExpanded && translation.isDirect" ng-click="vm.saveLink('delete', translation)">
             <md-icon md-svg-src="/img/link_off.svg"></md-icon>
             <md-tooltip><?= __('Unlink this translation') ?></md-tooltip>
         </md-button>
-        <md-button class="md-icon-button" ng-show="vm.isMenuExpanded  && !translation.isDirect" ng-click="vm.saveLink('add', translation)">
+        <md-button class="md-icon-button anim-squeeze" ng-show="vm.isMenuExpanded  && !translation.isDirect" ng-click="vm.saveLink('add', translation)">
             <md-icon>link</md-icon>
             <md-tooltip><?= __('Make into direct translation') ?></md-tooltip>
         </md-button>
     </icon-with-progress>
-    <md-icon class="chevron" ng-show="!vm.isMenuExpanded || !vm.menu.canLink">chevron_right</md-icon>
+    <md-icon class="chevron anim-squeeze" ng-show="!vm.isMenuExpanded || !vm.menu.canLink">chevron_right</md-icon>
     </div>
 
     <div class="lang">
