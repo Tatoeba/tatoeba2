@@ -1,4 +1,5 @@
 <div ng-repeat="translation in <?= $translations ?>"
+     ng-hide="translation.isHidden"
      class="translation" ng-class="{'not-reliable' : translation.correctness === -1, 'expanded': vm.isMenuExpanded, 'trusted-user': vm.menu.canLink}">
     
     <div layout="row" layout-align="stretch" flex>
