@@ -3,11 +3,14 @@ namespace App\Model\Entity;
 
 use Cake\Core\Configure;
 use Cake\ORM\Entity;
+use Cake\Routing\Router;
 
 class Audio extends Entity
 {
     protected $_virtual = [
         'author',
+        'attribution_url',
+        'license',
     ];
 
     public static $defaultExternal = array(
@@ -37,6 +40,32 @@ class Audio extends Entity
             return $this->user->username;
         } else {
             return $this->external['username'];
+        }
+    }
+
+    protected function _getAttributionUrl() {
+        if ($this->user) {
+            if (!empty($this->user->audio_attribution_url)) {
+                return $this->user->audio_attribution_url;
+            } elseif ($this->user->username) {
+                return Router::url(array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $this->user->username
+                ));
+            } else {
+                return null;
+            }
+        } else {
+            return $this->external['attribution_url'];
+        }
+    }
+
+    protected function _getLicense() {
+        if ($this->user) {
+            return $this->user->audio_license;
+        } else {
+            return $this->external['license'];
         }
     }
 

@@ -24,9 +24,10 @@ use App\View\Helper\AppHelper;
 class AudioHelper extends AppHelper
 {
     public $helpers = array(
+        'AudioLicense',
         'Form',
         'Html',
-        'AudioLicense'
+        'Url',
     );
 
     private function defaultAttribUrl($username) {
@@ -38,24 +39,12 @@ class AudioHelper extends AppHelper
     }
 
     public function displayAudioInfo($audio) {
-        if ($audio->user) {
-            $username  = $audio->user->username;
-            $license   = $audio->user->audio_license;
-            $attribUrl = $audio->user->audio_attribution_url;
-            if (empty($attribUrl)) {
-                $attribUrl = $this->defaultAttribUrl($username);
-            }
-        } else {
-            $username  = $audio->external['username'];
-            $license   = $audio->external['license'];
-            $attribUrl = $audio->external['attribution_url'];
-        }
-        $username = $this->_View->safeForAngular($username);
-        $attribUrl = $this->_View->safeForAngular($attribUrl);
+        $username = $this->_View->safeForAngular($audio->author);
+        $attribUrl = $this->_View->safeForAngular($audio->attribution_url);
         if (!empty($attribUrl)) {
             $username = $this->Html->link($username, $attribUrl);
         }
-        $license = $this->AudioLicense->getLicenseName($license);
+        $license = $this->AudioLicense->getLicenseName($audio->license);
 ?>
 <h3>
   <audio-button audios="<?= h(json_encode([$audio])) ?>"></audio-button>
