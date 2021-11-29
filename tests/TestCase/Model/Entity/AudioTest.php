@@ -105,7 +105,7 @@ class AudioTest extends TestCase
         $this->assertEquals('WTFPL', $this->Audio->license);
     }
 
-    public function testGet_attributionUrl_fromUserAudioLicense() {
+    public function testGet_license_fromUserAudioLicense() {
         $this->Audio->external = ['license' => 'WTFPL'];
         $this->Audio->user = new User(['audio_license' => 'CC0']);
         $this->assertEquals('CC0', $this->Audio->license);
