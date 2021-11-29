@@ -164,4 +164,26 @@
     display: flex;
     align-items: center;
     margin-left: -15px;
+    margin-bottom: 0;
+}
+.audio .disabled h3 {
+    text-decoration: line-through;
+}
+.audio h2 {
+    margin-bottom: 0;
+}
+.audio .audio-details {
+    padding-left: 20px;
+    margin-left: 10px;
+    border-left: 2px solid rgba(0,0,0,0.12);
+}
+.audio .audio-details .license {
+    padding-top: 16px;
+    margin-bottom: 16px;
+}
+.audio .audio-details .md-errors-spacer {
+    display: none;
+}
+.audio button {
+    margin-top: 30px;
 }

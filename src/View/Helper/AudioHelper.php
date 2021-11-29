@@ -38,50 +38,6 @@ class AudioHelper extends AppHelper
         );
     }
 
-    public function displayAudioInfo($audio) {
-        $username = $this->_View->safeForAngular($audio->author);
-        $attribUrl = $this->_View->safeForAngular($audio->attribution_url);
-        if (!empty($attribUrl)) {
-            $username = $this->Html->link($username, $attribUrl);
-        }
-        $license = $this->AudioLicense->getLicenseName($audio->license);
-?>
-<h3>
-  <audio-button audios="<?= h(json_encode([$audio])) ?>"></audio-button>
-  <span><?= format(__('by {username}'), compact('username')) ?></span>
-</h3>
-<?= format(__('License: {license}'), compact('license')) ?>
-<?php
-    }
-
-    public function displayAudioEditForm($audio) {
-        echo $this->Form->create('Audio', [
-            'type' => 'post',
-            'url' => [
-                'controller' => 'audio',
-                'action' => 'edit',
-                $audio->id
-            ],
-        ]);
-        echo __d('admin', 'Enabled');
-        echo $this->Form->control('enabled', [
-            'label' => false,
-            'type' => 'radio',
-            'options' => array(
-                1 => __d('admin', 'Yes'),
-                0 => __d('admin', 'No')
-            ),
-            'value' => $audio->enabled,
-        ]);
-
-        echo $this->Form->control('author', [
-            'label' => __d('admin', 'Author'),
-            'value' => $this->_View->safeForAngular($audio->author),
-        ]);
-        echo $this->Form->submit(__d('admin', 'Submit'));
-        echo $this->Form->end();
-    }
-
     public function formatLicenceMessage($audioSettings, $username) {
         $url = empty($audioSettings['audio_attribution_url']) ?
                $this->defaultAttribUrl($username) :

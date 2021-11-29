@@ -28,11 +28,12 @@
     function audioButton() {
         return {
             scope: {
+                includeDisabled: '<',
                 audios: '<',
             },
             templateUrl: 'audio-button-template',
             controllerAs: 'vm',
-            controller: function() {
+            controller: ['$scope', function($scope) {
                 var vm = this;
                 var lastPlayedAudioIndex = -1;
 
@@ -40,6 +41,7 @@
 
                 vm.playAudio = playAudio;
                 vm.getAudioAuthor = getAudioAuthor;
+                vm.hasSomeEnabledAudios = hasSomeEnabledAudios;
 
                 /////////////////////////////////////////////////////////////////////////
 
@@ -48,8 +50,11 @@
                         return undefined;
                     } else {
                         var playIndex = lastPlayedAudioIndex;
-                        playIndex = (playIndex + 1) % audios.length;
-                        return playIndex;
+                        var maxLoop = audios.length;
+                        do {
+                            playIndex = (playIndex + 1) % audios.length;
+                        } while (!$scope.includeDisabled && audios[playIndex].enabled != '1' && --maxLoop);
+                        return $scope.includeDisabled || audios[playIndex].enabled == '1' ? playIndex : undefined;
                     }
                 }
         
@@ -71,7 +76,13 @@
                         return audios[playIndex].author;
                     }
                 }
-            }
+
+                function hasSomeEnabledAudios(audios) {
+                    return audios && audios.length > 0 && audios.some(function(audio) {
+                        return audio.enabled == '1';
+                    });
+                }
+            }]
         };
     }
 })();

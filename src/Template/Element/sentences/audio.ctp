@@ -25,6 +25,7 @@
  * @link     https://tatoeba.org
  */
 use App\Model\CurrentUser;
+use App\Lib\Licenses;
 
 $hasaudio = count($audios) > 0;
 $shouldDisplayBlock = $hasaudio || CurrentUser::isAdmin();
@@ -32,18 +33,64 @@ if (!$shouldDisplayBlock) {
     return;
 }
 
+$licenseTemplate = <<<EOT
+<a ng-if="vm.getLicenseLink(audio.license)" ng-href="{{vm.getLicenseLink(audio.license)}}">
+  {{vm.getLicenseName(audio.license)}}
+</a>
+<span ng-if="!vm.getLicenseLink(audio.license)">
+  {{vm.getLicenseName(audio.license)}}
+</span>
+EOT;
+
+$audioLicenses = json_encode(Licenses::getAudioLicenses());
+$audiosJson = json_encode($audios);
+
+// Prevent interpolation by AngularJS
+$audioLicenses = str_replace('{{', '\{\{', $audioLicenses);
+$audiosJson = str_replace('{{', '\{\{', $audiosJson);
+
+$this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBottom']);
 ?>
-<div class="section audio md-whiteframe-1dp">
-    <h2><?= __('Audio') ?></h2>
-    <?php
-        foreach ($audios as $key => $audio) {
-            $this->Audio->displayAudioInfo($audio);
-            if (CurrentUser::isAdmin()) {
-                $this->Audio->displayAudioEditForm($audio);
-                if ($key !== array_key_last($audios)) {
-                    echo "<hr>";
-                }
-            }
-        }
-    ?>
+<div ng-controller="AudioDetailsController as vm"
+     ng-init="vm.init(<?= h($audiosJson) ?>, <?= h($audioLicenses) ?>)"
+     layout="column" ng-cloak
+     class="section audio md-whiteframe-1dp">
+    <h2><?= __n('Audio', 'Audio', count($audios)) ?></h2>
+
+    <div ng-repeat="audio in vm.audios" ng-class="{'disabled': audio.enabled != '1'}">
+        <h3>
+            <audio-button include-disabled="true" audios="[audio]"></audio-button>
+            <span>
+                <?= format(__('by {username}'), [
+                    'username' => '<a ng-href="{{audio.attribution_url}}">{{audio.author}}</a>'
+                ]) ?>
+            </span>
+        </h3>
+
+        <div class="audio-details">
+            <div class="license"><?= format(__('License: {license}'), ['license' => $licenseTemplate]) ?></div>
+
+            <?php if (CurrentUser::isAdmin()): ?>
+                <md-checkbox
+                    ng-false-value="'0'"
+                    ng-true-value="'1'"
+                    ng-model="audio.enabled"
+                    class="md-primary">
+                    <?= __('Is enabled') ?>
+                </md-checkbox>
+                <md-input-container class="md-button-right">
+                    <?= $this->Form->control('author', [
+                        'label' => __d('admin', 'Audio author'),
+                        'ng-model' => 'audio.author',
+                    ]);
+                    ?>
+                </md-input-container>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php if (CurrentUser::isAdmin()): ?>
+        <md-button type="submit" class="md-primary md-raised">
+            <?= __d('admin', 'Save') ?>
+        </md-button>
+    <?php endif; ?>
 </div>
