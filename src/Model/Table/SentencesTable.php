@@ -662,11 +662,21 @@ class SentencesTable extends Table
      */
     public function contain($what = [])
     {
-        $audioContainment = [
-           'Users' => ['fields' => ['username']],
-           'fields' => ['id', 'enabled', 'external', 'sentence_id'],
-        ];
-        $transcriptionsContainment =  [
+        $audioContainment = function (Query $q) use ($what) {
+            $q = $q->select(['id', 'enabled', 'external', 'sentence_id']);
+            if (!CurrentUser::isAdmin()) {
+                $q = $q->where(['enabled' => true]);
+            }
+
+            $usersFields = ['username'];
+            if (isset($what['sentenceDetails'])) {
+                $usersFields[] = 'audio_license';
+                $usersFields[] = 'audio_attribution_url';
+            }
+            return $q->contain(['Users' => ['fields' => $usersFields]]);
+        };
+
+        $transcriptionsContainment = [
             'Users' => ['fields' => ['username']],
         ];
         $contain = [
@@ -717,8 +727,6 @@ class SentencesTable extends Table
         }
 
         if (isset($what['sentenceDetails'])) {
-            $contain['Audios']['Users']['fields'][] = 'audio_license';
-            $contain['Audios']['Users']['fields'][] = 'audio_attribution_url';
             $contain['Base']['fields'] = ['text'];
         }
 
