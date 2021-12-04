@@ -204,7 +204,8 @@ class AudiosTableTest extends TestCase {
 
     function testAssignAuthor_user() {
         $audio = $this->Audio->newEntity(['sentence_id' => 1]);
-        $result = $this->Audio->assignAuthor($audio, 'admin');
+        $this->Audio->assignAuthor($audio, 'admin');
+        $result = $this->Audio->save($audio);
 
         $expected = [
             'external' => null,
@@ -216,7 +217,8 @@ class AudiosTableTest extends TestCase {
 
     function testAssignAuthor_external() {
         $audio = $this->Audio->newEntity(['sentence_id' => 1]);
-        $result = $this->Audio->assignAuthor($audio, 'Barack Obama');
+        $this->Audio->assignAuthor($audio, 'Barack Obama');
+        $result = $this->Audio->save($audio);
 
         $expected = [
             'external' => [
@@ -232,7 +234,8 @@ class AudiosTableTest extends TestCase {
 
     function testAssignAuthor_external_fails() {
         $audio = $this->Audio->newEntity(['sentence_id' => 1]);
-        $result = $this->Audio->assignAuthor($audio, 'Barack Obama', false);
+        $this->Audio->assignAuthor($audio, 'Barack Obama', false);
+        $result = $this->Audio->save($audio);
         $this->assertFalse($result);
     }
 
@@ -242,6 +245,7 @@ class AudiosTableTest extends TestCase {
 
         $audio = $this->Audio->newEntity(['sentence_id' => 1]);
         $this->Audio->assignAuthor($audio, 'admin');
+        $this->Audio->save($audio);
 
         $after= $Languages->find()->where(['code' => 'eng'])->first()->audio;
         $this->assertEquals(1, $after - $before);
@@ -261,7 +265,8 @@ class AudiosTableTest extends TestCase {
         I18n::setLocale('ar');
 
         $audio = $this->Audio->newEntity(['sentence_id' => 2]);
-        $added = $this->Audio->assignAuthor($audio, 'contributor');
+        $this->Audio->assignAuthor($audio, 'contributor');
+        $added = $this->Audio->save($audio);
 
         $returned = $this->Audio->get($added->id);
         $this->assertEquals($added->created, $returned->created);

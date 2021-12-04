@@ -137,13 +137,11 @@ class AudiosTable extends Table
     }
 
     /**
-     * Assign author to an audio entity and save it.
+     * Assign author to an audio entity.
      *
      * @param Audio   $entity                      Entity of the audio.
      * @param string  $ownerName                   Owner of the audio file.
-     * @param boolean $allowedExternal (optional)  Whether metadata is stored as JSON.
-     *
-     * @return Cake\ORM\Entity|false
+     * @param boolean $allowedExternal (optional)  Whether metadata could be stored as JSON.
      */
     public function assignAuthor($entity, $ownerName, $allowExternal = true) {
         $result = $this->Users->findByUsername($ownerName)->first();
@@ -154,7 +152,6 @@ class AudiosTable extends Table
             $entity->user_id = null;
             $entity->external = array('username' => $ownerName);
         }
-        return $this->save($entity);
     }
 
     public function getFilesToImport() {
@@ -243,9 +240,9 @@ class AudiosTable extends Table
             $this->getConnection()->transactional(function () use ($file, $author, &$errors, &$filesImported) {
                 $audio = $this->newEntity();
                 $audio->sentence_id = $file['sentenceId'];
-                $audio = $this->assignAuthor($audio, $author, false);
+                $this->assignAuthor($audio, $author, false);
 
-                if (!$audio) {
+                if (!$this->save($audio)) {
                     $errors[] = format(
                         __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database. Make sure it's a valid username."),
                         array('sentenceId' => $file['sentenceId'], 'author' => $author)
