@@ -69,7 +69,7 @@ class AudiosTable extends Table
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options = array()) {
+    private function isAuthorConsistent($entity) {
         $ok = true;
         $user_id = $entity->user_id;
         $external = $entity->external;
@@ -81,6 +81,10 @@ class AudiosTable extends Table
         }
 
         return $ok;
+    }
+
+    public function beforeSave($event, $entity, $options = array()) {
+        return $this->isAuthorConsistent($entity);
     }
 
     public function afterSave($event, $entity, $options = array()) {
