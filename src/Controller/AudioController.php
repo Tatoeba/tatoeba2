@@ -148,7 +148,7 @@ class AudioController extends AppController
 
         if ($this->request->is('post')) {
             $this->loadModel('Audios');
-            $audioChanges = $this->request->getData(null, []);
+            $audioChanges = $this->request->input('json_decode', true);
             if ($this->Audios->massEdit($audioChanges)) {
                 return $this->response->withStringBody(''); // OK
             }

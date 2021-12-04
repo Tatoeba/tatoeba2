@@ -58,7 +58,7 @@ $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBo
     <?php /* @translators: header text in sentence page */ ?>
     <h2><?= __n('Audio', 'Audio', count($audios)) ?></h2>
 
-    <div ng-repeat="audio in vm.audios" ng-class="{'disabled': audio.enabled != '1'}">
+    <div ng-repeat="audio in vm.audios" ng-class="{'disabled': !audio.enabled}">
         <h3>
             <audio-button include-disabled="true" audios="[audio]"></audio-button>
             <span>
@@ -73,8 +73,6 @@ $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBo
 
             <?php if (CurrentUser::isAdmin()): ?>
                 <md-checkbox
-                    ng-false-value="'0'"
-                    ng-true-value="'1'"
                     ng-model="audio.enabled"
                     class="md-primary">
                     <?= __('Is enabled') ?>

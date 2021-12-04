@@ -49,7 +49,11 @@
                     enabled: audio.enabled,
                 };
             });
-            $http.post(rootUrl + '/audio/mass_edit', data).then(
+            var options = {
+                headers: {'Content-Type': 'application/json;charset=utf-8'},
+                transformRequest: angular.toJson
+            };
+            $http.post(rootUrl + '/audio/mass_edit', data, options).then(
                 function success(result) {
                     window.location.reload();
                 },

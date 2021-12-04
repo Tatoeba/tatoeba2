@@ -53,8 +53,8 @@
                         var maxLoop = audios.length;
                         do {
                             playIndex = (playIndex + 1) % audios.length;
-                        } while (!$scope.includeDisabled && audios[playIndex].enabled != '1' && --maxLoop);
-                        return $scope.includeDisabled || audios[playIndex].enabled == '1' ? playIndex : undefined;
+                        } while (!$scope.includeDisabled && !audios[playIndex].enabled && --maxLoop);
+                        return $scope.includeDisabled || audios[playIndex].enabled ? playIndex : undefined;
                     }
                 }
         
@@ -79,7 +79,7 @@
 
                 function hasSomeEnabledAudios(audios) {
                     return audios && audios.length > 0 && audios.some(function(audio) {
-                        return audio.enabled == '1';
+                        return audio.enabled;
                     });
                 }
             }]
