@@ -110,7 +110,6 @@ $config = [
             'edit_license'          => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'save_translation'      => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'change_language'       => User::ROLE_CONTRIBUTOR_OR_HIGHER,
-            'edit_audio'            => [ User::ROLE_ADMIN ],
             'edit_correctness'      => [ User::ROLE_ADMIN ],
             'mark_unreliable'       => [ User::ROLE_ADMIN ],
         ],
