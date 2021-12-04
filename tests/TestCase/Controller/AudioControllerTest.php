@@ -21,6 +21,8 @@ class AudioControllerTest extends IntegrationTestCase
         'app.users',
         'app.users_languages',
         'app.wiki_articles',
+        'app.reindex_flags',
+        'app.links',
     ];
 
     private $testAudioDir = TMP.'audio_tests'.DS;
@@ -88,5 +90,17 @@ class AudioControllerTest extends IntegrationTestCase
         $folder = new Folder($this->testAudioDir);
         $folder->delete();
         $folder->create($this->testAudioDir);
+    }
+
+    public function testAudioMassEdit_asAdmin_ok() {
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/mass_edit', json_encode([1 => ['enabled' => true, 'author' => 'kazuki']]));
+        $this->assertResponseOk();
+    }
+
+    public function testAudioMassEdit_asAdmin_invalid() {
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/mass_edit', json_encode([9999999999 => ['enabled' => true, 'author' => 'kazuki']]));
+        $this->assertResponseCode(400);
     }
 }
