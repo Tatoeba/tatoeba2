@@ -53,7 +53,9 @@ $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBo
 ?>
 <div ng-controller="AudioDetailsController as vm"
      ng-init="vm.init(<?= h($audiosJson) ?>, <?= h($audioLicenses) ?>)"
-     layout="column" ng-cloak
+     ng-cloak>
+<div ng-if="vm.audios.length > 0"
+     layout="column"
      class="section audio md-whiteframe-1dp">
     <?php /* @translators: header text in sentence page */ ?>
     <h2><?= __n('Audio', 'Audio', count($audios)) ?></h2>
@@ -92,4 +94,5 @@ $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBo
             <?= __d('admin', 'Save') ?>
         </md-button>
     <?php endif; ?>
+</div>
 </div>
