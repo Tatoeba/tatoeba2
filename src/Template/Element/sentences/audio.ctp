@@ -55,6 +55,7 @@ $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBo
      ng-init="vm.init(<?= h($audiosJson) ?>, <?= h($audioLicenses) ?>)"
      layout="column" ng-cloak
      class="section audio md-whiteframe-1dp">
+    <?php /* @translators: header text in sentence page */ ?>
     <h2><?= __n('Audio', 'Audio', count($audios)) ?></h2>
 
     <div ng-repeat="audio in vm.audios" ng-class="{'disabled': audio.enabled != '1'}">
