@@ -90,7 +90,7 @@ $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBo
         </div>
     </div>
     <?php if (CurrentUser::isAdmin()): ?>
-        <md-button type="submit" class="md-primary md-raised">
+        <md-button type="submit" class="md-primary md-raised" ng-click="vm.editAudio()">
             <?= __d('admin', 'Save') ?>
         </md-button>
     <?php endif; ?>

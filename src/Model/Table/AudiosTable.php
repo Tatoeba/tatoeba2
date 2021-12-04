@@ -22,9 +22,11 @@ use App\Event\StatsListener;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
+use InvalidArgumentException;
 
 
 class AudiosTable extends Table
@@ -285,5 +287,31 @@ class AudiosTable extends Table
         }
         
         return $filesImported;
+    }
+
+    public function massEdit($audioChangeReqs) {
+        return $this->getConnection()->transactional(function () use ($audioChangeReqs) {
+            foreach ($audioChangeReqs as $id => $audioChangeReq) {
+                try {
+                    $audio = $this->get($id);
+                } catch (RecordNotFoundException $e) {
+                    return false;
+                }
+                if (isset($audioChangeReq['enabled'])) {
+                    $audio->enabled = $audioChangeReq['enabled'];
+                }
+                if (isset($audioChangeReq['author'])) {
+                    $this->assignAuthor($audio, $audioChangeReq['author'], true);
+                }
+                try {
+                    if (!$this->save($audio)) {
+                        return false;
+                    }
+                } catch (InvalidArgumentException $e) {
+                    return false;
+                }
+            }
+            return true;
+        });
     }
 }

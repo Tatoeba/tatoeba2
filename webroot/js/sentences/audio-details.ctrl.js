@@ -3,14 +3,16 @@
 
     angular
         .module('app')
-        .controller('AudioDetailsController', AudioDetailsController);
+        .controller('AudioDetailsController', ['$http', AudioDetailsController]);
 
     function AudioDetailsController($http) {
+        const rootUrl = get_tatoeba_root_url();
         var vm = this;
 
         vm.init = init;
         vm.getLicenseName = getLicenseName;
         vm.getLicenseLink = getLicenseLink;
+        vm.editAudio = editAudio;
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -37,6 +39,23 @@
             } else {
                 return undefined;
             }
+        }
+
+        function editAudio() {
+            var data = {};
+            vm.audios.forEach(function(audio) {
+                data[audio.id] = {
+                    author: audio.author,
+                    enabled: audio.enabled,
+                };
+            });
+            $http.post(rootUrl + '/audio/mass_edit', data).then(
+                function success(result) {
+                    window.location.reload();
+                },
+                function error(result) {
+                }
+            );
         }
     }
 })();

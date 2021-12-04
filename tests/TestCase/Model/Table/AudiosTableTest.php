@@ -274,4 +274,102 @@ class AudiosTableTest extends TestCase {
 
         I18n::setLocale($prevLocale);
     }
+
+    function testMassEdit_empty_ok() {
+        $result = $this->Audio->massEdit([]);
+        $this->assertTrue($result);
+    }
+
+    function testMassEdit_invalid_id_fails() {
+        $result = $this->Audio->massEdit([
+            999999999 => ['enabled' => true],
+        ]);
+
+        $this->assertFalse($result);
+    }
+
+    function testMassEdit_enable_one_ok() {
+        $this->assertTrue($this->Audio->get(1)->enabled);
+
+        $result = $this->Audio->massEdit([
+            1 => ['enabled' => false],
+        ]);
+
+        $this->assertTrue($result);
+        $this->assertFalse($this->Audio->get(1)->enabled);
+    }
+
+    function testMassEdit_enable_one_fails() {
+        $this->assertTrue($this->Audio->get(1)->enabled);
+
+        $result = $this->Audio->massEdit([
+            1 => ['enabled' => 'invalid data here'],
+        ]);
+
+        $this->assertFalse($result);
+        $this->assertTrue($this->Audio->get(1)->enabled);
+    }
+
+    function testMassEdit_enable_two_ok() {
+        $this->assertTrue($this->Audio->get(1)->enabled);
+        $this->assertTrue($this->Audio->get(2)->enabled);
+
+        $result = $this->Audio->massEdit([
+            1 => ['enabled' => false],
+            2 => ['enabled' => false],
+        ]);
+
+        $this->assertTrue($result);
+        $this->assertFalse($this->Audio->get(1)->enabled);
+        $this->assertFalse($this->Audio->get(2)->enabled);
+    }
+
+    function testMassEdit_enable_two_fails() {
+        $this->assertTrue($this->Audio->get(1)->enabled);
+        $this->assertTrue($this->Audio->get(2)->enabled);
+
+        $result = $this->Audio->massEdit([
+            1 => ['enabled' => false],
+            2 => ['enabled' => 'invalid data here'],
+        ]);
+
+        $this->assertFalse($result);
+        $this->assertTrue($this->Audio->get(1)->enabled);
+        $this->assertTrue($this->Audio->get(2)->enabled);
+    }
+
+    function testMassEdit_change_author_ok() {
+        $this->assertEquals(4, $this->Audio->get(1)->user_id);
+
+        $result = $this->Audio->massEdit([
+            1 => ['author' => 'admin'],
+        ]);
+
+        $this->assertTrue($result);
+        $this->assertEquals(1, $this->Audio->get(1)->user_id);
+    }
+
+    function testMassEdit_change_author_empty_ok() {
+        $this->assertEquals(4, $this->Audio->get(1)->user_id);
+
+        $result = $this->Audio->massEdit([
+            1 => ['author' => ''],
+        ]);
+
+        $this->assertTrue($result);
+        $this->assertEquals(4, $this->Audio->get(1)->user_id);
+    }
+
+    function testMassEdit_change_external_author_ok() {
+        $this->assertEquals(4, $this->Audio->get(1)->user_id);
+        $this->assertNull($this->Audio->get(1)->external);
+
+        $result = $this->Audio->massEdit([
+            1 => ['author' => 'Barack Obama'],
+        ]);
+
+        $this->assertTrue($result);
+        $this->assertNull($this->Audio->get(1)->user_id);
+        $this->assertEquals('Barack Obama', $this->Audio->get(1)->external['username']);
+    }
 }

@@ -45,6 +45,10 @@ class AudioControllerTest extends IntegrationTestCase
             [ '/en/audio/save_settings', 'contributor', '/en/audio/of/contributor' ],
             [ '/en/audio/download/1', null, 404 ],            # missing file
             [ '/en/audio/download/999999999999', null, 404 ], # unknown audio
+            [ '/en/audio/mass_edit', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fmass_edit' ],
+            [ '/en/audio/mass_edit', 'contributor', '/' ],
+            [ '/en/audio/mass_edit', 'corpus_maintainer', '/' ],
+            [ '/en/audio/mass_edit', 'admin', 400 ], // 400 because it's supposed to be POST only
         ];
     }
 

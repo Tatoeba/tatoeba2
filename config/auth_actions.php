@@ -83,6 +83,7 @@ $config = [
         'audio' => [
             'import'        => [ User::ROLE_ADMIN ],
             'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'mass_edit'     => [ User::ROLE_ADMIN ],
         ],
         'reviews'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'favorites'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],

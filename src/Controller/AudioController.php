@@ -55,6 +55,9 @@ class AudioController extends AppController
 
     public function beforeFilter(Event $event)
     {
+        $this->Security->config('unlockedActions', [
+            'mass_edit',
+        ]);
 
         return parent::beforeFilter($event);
     }
@@ -138,5 +141,19 @@ class AudioController extends AppController
 
         return $this->getResponse()
                     ->withFile($audio->file_path, ['download' => true]);
+    }
+
+    public function mass_edit() {
+        $this->viewBuilder()->autoLayout(false);
+
+        if ($this->request->is('post')) {
+            $this->loadModel('Audios');
+            $audioChanges = $this->request->getData(null, []);
+            if ($this->Audios->massEdit($audioChanges)) {
+                return $this->response->withStringBody(''); // OK
+            }
+        }
+
+        throw new \Cake\Http\Exception\BadRequestException();
     }
 }
