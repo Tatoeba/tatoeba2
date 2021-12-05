@@ -48,6 +48,7 @@ class SentenceButtonsHelper extends AppHelper
         'Form',
         'Images',
         'Pages',
+        'Url',
     );
 
     /**
@@ -177,16 +178,17 @@ class SentenceButtonsHelper extends AppHelper
     public function audioButton($sentenceId, $sentenceLang, $sentenceAudios)
     {
         if (count($sentenceAudios)) {
-            $onClick = 'return false';
-            $path = Configure::read('Recordings.url')
-                .$sentenceLang.'/'.$sentenceId.'.mp3';
-            $css = 'audioAvailable';
             $audio = isset($sentenceAudios[0]) ?
                      $sentenceAudios[0] :
                      $sentenceAudios;
-            $author = isset($audio->user['username']) ?
-                      $audio->user['username'] :
-                      $this->_View->safeForAngular($audio['external']['username']);
+            $onClick = 'return false';
+            $path = $this->Url->build([
+                'controller' => 'audio',
+                'action' => 'download',
+                $audio->id
+            ]);
+            $css = 'audioAvailable';
+            $author = $this->_View->safeForAngular($audio->author);
             if (empty($author)) {
                 $title = __('Play audio');
             } else {
