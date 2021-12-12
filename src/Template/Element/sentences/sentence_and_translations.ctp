@@ -172,7 +172,9 @@ $sentenceUrl = $this->Url->build([
 
     <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
 
-    <div layout="column" class="direct translations" ng-if="vm.visibility.translations && vm.directTranslations.length > 0">
+    <div layout="column" class="direct translations"
+         ng-if="::vm.visibility.translations && vm.directTranslations.length > 0 || undefined"
+         ng-show="vm.visibility.translations && vm.directTranslations.length > 0">
         <md-divider></md-divider>
         <?php /* @translators: text divider between a sentence and its translations */ ?>
         <md-subheader><?= __('Translations') ?></md-subheader>
@@ -184,7 +186,9 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" class="indirect translations" ng-if="vm.visibility.translations && vm.indirectTranslations.length > 0">
+    <div layout="column" class="indirect translations"
+         ng-if="::vm.visibility.translations && vm.indirectTranslations.length > 0 || undefined"
+         ng-show="vm.visibility.translations && vm.indirectTranslations.length > 0">
         <md-subheader><?= __('Translations of translations') ?></md-subheader>
 
         <?php
@@ -194,7 +198,10 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" ng-if="vm.sentence.expandLabel && vm.visibility.translations">
+    <div layout="column"
+         ng-if="::vm.sentence.expandLabel && vm.visibility.translations || undefined"
+         ng-show="vm.sentence.expandLabel && vm.visibility.translations">
+
         <md-button ng-click="vm.expandOrCollapse(!vm.isExpanded)">
             <md-icon>{{vm.expandableIcon}}</md-icon>
             <span ng-if="!vm.isExpanded">
