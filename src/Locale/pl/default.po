@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 06:44+0000\n"
-"PO-Revision-Date: 2021-10-14 07:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-11-04 22:51+0000\n"
+"Last-Translator: Karol Łacina\n"
 "Language-Team: Polish (http://www.transifex.com/tatoeba/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +103,7 @@ msgstr "Nie masz uprawnień do zmiany tego komentarza. "
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr "Jeśli otrzymałeś/otrzymałaś tę wiadomość w wyniku błędu, skontaktuj się z administratorami pod {email}."
+msgstr "Jeśli otrzymałeś/łaś tę wiadomość w wyniku błędu, skontaktuj się z administratorami pod {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L259
 msgid "Changes to your comment have been saved."
@@ -217,7 +217,7 @@ msgstr "Błąd hasła. Proszę spróbować ponownie."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
-msgstr "Zaakceptował_ś nowy regulamin Warunków korzystania."
+msgstr "Zaakceptowałeś/łaś nowy regulamin Warunków korzystania."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L187
 msgid ""
@@ -521,7 +521,7 @@ msgstr "Musisz wypełnić pole \"Do\""
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
-msgstr "Użytkownik {username}, któremu chciałeś wysłać wiadomość, nie istnieje. Spróbuj inną nazwę użytkownika"
+msgstr "Użytkownik {username}, któremu chciałeś/łaś wysłać wiadomość, nie istnieje. Spróbuj inną nazwę użytkownika."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L62
 msgid "Comments cannot be empty."
@@ -870,23 +870,23 @@ msgstr "pokaż zdania"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L198
 msgid "Check Tatominer"
-msgstr ""
+msgstr "Sprawdź Tatominer"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L200
 msgid ""
 "Tatominer provides a list of the most searched words for which there are "
 "very few or no translations yet."
-msgstr ""
+msgstr "Tatominer udostępnia listę najczęściej wyszukiwanych słów, dla których jest bardzo mało lub zero tłumaczeń."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L202
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L103
 msgid "Go to Tatominer"
-msgstr ""
+msgstr "Przejdź do Tatominer"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L207
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L108
 msgid "Not all languages are supported yet."
-msgstr ""
+msgstr "Nie wszystkie języki są jeszcze wspierane."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
@@ -1043,7 +1043,7 @@ msgstr "Ostatnio dodane przez {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} contributions are displayed here."
-msgstr ""
+msgstr "Tutaj są pokazane tylko ostatnie {n} edycje/edycji."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L36
 msgid "This form is pre-filled."
@@ -1278,7 +1278,7 @@ msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>. By closing "
 "this announcement, you agree with the new Terms of Use. If you have any "
 "question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr "Zaktualizowaliśmy nasze <a href=\"{termsOfUse}\">Warunki korzystania</a>. Zamykając to ogłoszenie, zgadzasz się z nowymi warunkami korzystania. Jeśli masz jakieś pytanie, nie wahaj się <a href=\"{contact}\">z nami skontaktować</a>."
+msgstr "Zaktualizowaliśmy nasze <a href=\"{termsOfUse}\">Warunki korzystania</a>. Zamykając to ogłoszenie, zgadzasz się z nowymi Warunkami korzystania. Jeśli masz jakieś pytanie, nie wahaj się <a href=\"{contact}\">z nami skontaktować</a>."
 
 #. button to accept new terms of use
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
@@ -2325,7 +2325,7 @@ msgstr "Moje posty"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L190
 msgid "My latest contributions"
-msgstr ""
+msgstr "Moje najnowsze edycje"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L44
@@ -2411,7 +2411,7 @@ msgstr "Dyskutuj o zdaniach"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L108
 msgid "Add vocabulary request"
-msgstr "Dodaj prośbę o słowo."
+msgstr "Dodaj prośbę o słowo"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L116
@@ -3313,11 +3313,11 @@ msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr "Nowy wygląd zdań niebawem całkowicie zastąpi stary. Proszę, wypróbuj go i daj nam znać, jeśli napotkałeś jakiś problem. Możesz włączyć go opcją \"Wyświetl zdania w nowym wyglądzie.\" w ustawieniach."
+msgstr "Nowy wygląd zdań niebawem całkowicie zastąpi stary. Proszę, wypróbuj go i daj nam znać, jeśli napotkałeś/łaś jakiś problem. Możesz włączyć go opcją \"Wyświetl zdania w nowym wyglądzie.\" w ustawieniach."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
-msgstr "Idź do ustawień"
+msgstr "Przejdź do ustawień"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
@@ -3362,7 +3362,7 @@ msgstr "Przepraszamy za niedogodności."
 msgid ""
 "These Terms of Use have not been translated yet into your language. Below is"
 " the original version in French."
-msgstr "Te warunki korzystania z serwisu nie zostały jeszcze przetłumaczone na twój język. Poniżej jest oryginalna wersja przetłumaczona na francuski."
+msgstr "Te Warunki korzystania nie zostały jeszcze przetłumaczone na twój język. Poniżej jest oryginalna wersja po francusku."
 
 #. this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
@@ -3420,7 +3420,7 @@ msgstr "By chronić Tatoebę przed spamem i innymi niepożądanymi treściami, n
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L48
 msgid "You have reached your message limit for today"
-msgstr "Osiągnąłeś limit swoich wiadomości na dzisiaj."
+msgstr "Osiągnąłeś/nęłaś limit swoich wiadomości na dzisiaj."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L51
 msgid "Please wait until you can send more messages."
@@ -3429,10 +3429,10 @@ msgstr "Odczekaj, aby móc wysłać więcej wiadomości."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L68
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] "Wysłałeś dzisiaj jedną wiadomość."
-msgstr[1] "Wysłałeś dzisiaj jedną wiadomość."
-msgstr[2] "Wysłałeś dzisiaj {n} wiadomości."
-msgstr[3] "Wysłałeś dzisiaj {n} wiadomości."
+msgstr[0] "Wysłałeś/łaś dzisiaj jedną wiadomość."
+msgstr[1] "Wysłałeś/łaś dzisiaj jedną wiadomość."
+msgstr[2] "Wysłałeś/łaś dzisiaj {n} wiadomości."
+msgstr[3] "Wysłałeś/łaś dzisiaj {n} wiadomości."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L39
 msgid "Sentences marked as \"OK\""
@@ -3576,7 +3576,7 @@ msgstr "Komentarze użytkownika {user} (łącznie&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L60
 msgid "{user} has no comment posted on his/her sentences"
-msgstr "{user} nie zamieścił komentarzy przy tym zdaniu"
+msgstr "{user} nie zamieścił(a) komentarzy przy tym zdaniu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L75
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
@@ -3608,13 +3608,13 @@ msgstr "<strong>Lubimy dzielić się naszymi danymi.</strong> Unikaj kopiowania 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L87
 msgid "Not inspired?"
-msgstr ""
+msgstr "Niezainspirowany?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L93
 msgid ""
 "Check the vocabulary requests for which there are very few or no sentences "
 "yet."
-msgstr ""
+msgstr "Sprawdź prośby o słowa, dla których jest jeszcze bardzo mało lub zero zdań."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
 msgid "Sentences wanted"
@@ -3624,7 +3624,7 @@ msgstr "Zdania poszukiwane"
 msgid ""
 "Tatominer provides a list of the most searched words for which there are "
 "very few or no sentences yet."
-msgstr ""
+msgstr "Tatominer udostępnia listę najczęściej wyszukiwanych słów, dla których jest bardzo mało lub zero zdań."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"
@@ -4470,7 +4470,7 @@ msgstr "Ustaw profil jako publiczny"
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr "Zapamiętaj ostatnią listę, do której przypisałeś zdanie, i zaznacz je domyślnie."
+msgstr "Zapamiętaj ostatnią listę, do której przypisałeś/łaś zdanie, i zaznacz je domyślnie."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L138
 msgid ""
@@ -4634,7 +4634,7 @@ msgstr "Pamiętaj mnie"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L70
 msgid "Forgot your password?"
-msgstr "Zapomniałeś hasła?"
+msgstr "Zapomniałeś/łaś hasła?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L44
@@ -4647,7 +4647,7 @@ msgstr "E-mail"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L55
 msgid "I accept the <a href=\"{}\">terms of use</a>"
-msgstr "Akceptuję <a href=\"{}\">warunki użytkowania</a>"
+msgstr "Akceptuję <a href=\"{}\">Warunki korzystania</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L148
 msgid "unmask password"
@@ -4684,7 +4684,7 @@ msgstr "Jeśli nie widzisz swojego języka ojczystego na liście, zostaw to jako
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L276
 msgid "You did not accept the terms of use."
-msgstr "Nie zaakceptowałeś warunków korzystania z serwisu."
+msgstr "Nie zaakceptowałeś/łaś Warunków korzystania."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L24
 msgid "Tatoeba user: {username}"
@@ -4729,7 +4729,7 @@ msgstr "Słowa dodano"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L129
 msgid "You have already added this vocabulary item."
-msgstr "Już dodałeś/dodałaś to słowo."
+msgstr "Już dodałeś/łaś to słowo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L31
 msgid "Vocabulary that needs sentences"
@@ -4845,19 +4845,19 @@ msgstr "Nie możesz wykorzystywać następujących nagrań poza projektem Tatoeb
 msgid ""
 "The following audio recordings by {userName}, are licensed under the public "
 "domain."
-msgstr "Poniższe nagrania przez {userName}, są w publicznej domenie."
+msgstr "Poniższe nagrania użytkownika {userName} są w publicznej domenie."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L82
 msgid ""
 "The following audio recordings by {userName}, are licensed under the "
 "{licenseName} license."
-msgstr "Poniższe nagrania przez {userName}, są na licencji {licenseName}."
+msgstr "Poniższe nagrania użytkownika {userName} są na licencji {licenseName}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L86
 msgid ""
 "The following audio recordings by {userName} are licensed under an unknown "
 "license."
-msgstr ""
+msgstr "Poniższe nagrania użytkownika {userName} są na nieznanej licencji."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
@@ -5005,13 +5005,13 @@ msgstr "inny język"
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
-msgstr "Nie możesz dodawać zdań, ponieważ nie dodałeś żadnego języka w swoim profilu."
+msgstr "Nie możesz dodawać zdań, ponieważ nie dodałeś/łaś żadnego języka w swoim profilu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L317
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
-msgstr "Nie możesz tłumaczyć zdań, ponieważ nie dodałeś żadnego języka w swoim profilu."
+msgstr "Nie możesz tłumaczyć zdań, ponieważ nie dodałeś/łaś żadnego języka w swoim profilu."
 
 #. language level
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L343
@@ -5339,7 +5339,7 @@ msgid ""
 "Tatoeba can automatically enter the sentence ID when you have copied a "
 "sentence URL. To enable this, please allow your browser to read from the "
 "clipboard."
-msgstr "Tatoeba może automatycznie wpisać ID zdania, gdy skopiowałeś adres URL zdania. Aby to włączyć, pozwól swojej przeglądarce czytać zawartość schowka."
+msgstr "Tatoeba może automatycznie wpisać ID zdania, gdy skopiowałeś/łaś adres URL zdania. Aby to włączyć, pozwól swojej przeglądarce czytać zawartość schowka."
 
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,

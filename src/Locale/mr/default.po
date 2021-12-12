@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 06:44+0000\n"
-"PO-Revision-Date: 2021-10-24 02:56+0000\n"
+"PO-Revision-Date: 2021-12-11 10:50+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -1250,14 +1250,14 @@ msgstr "शोध साचा बनवा"
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
-msgstr ""
+msgstr "वर्तमान निवडलेले निकष हे इतर शोधांसाठी आधार म्हणून वापरण्याकरिता हे बटण वापरा. शोधण्याचा हा साचा तुम्ही बुकमार्क करू शकता, तसेच इतरांसोबत शेअरदेखील करू शकता."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L51
 msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>. By closing "
 "this announcement, you agree with the new Terms of Use. If you have any "
 "question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr ""
+msgstr "आम्ही आमच्या <a href=\"{termsOfUse}\">वापर अटी</a> अपडेट केल्या आहेत. ही घोषणा बंद केल्याने आपण नवीन वापर अटींना सहमती देता. कोणताही प्रश्न असल्यास आमच्याशी सहजपणे <a href=\"{contact}\">संपर्क साधा</a>."
 
 #. button to accept new terms of use
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
@@ -1330,13 +1330,13 @@ msgstr "या उपकरणाच्या वापराने आपण �
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L31
 msgid "Download all sentences in language A with translations in language B"
-msgstr ""
+msgstr "\"अ\" भाषेतील सर्व अशी वाक्ये डाउनलोड करा ज्यांची \"ब\" भाषेत भाषांतरे आहेत"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L36
 msgid ""
 "Download all sentences in language A that are translated into language B, "
 "along with the translations."
-msgstr ""
+msgstr "\"अ\" भाषेतील अशी सर्व वाक्ये डाउनलोड करा ज्यांची \"ब\" भाषेत भाषांतरे आहेत, व ती भाषांतरेसुद्धा डाउनलोड करा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L43
 msgid "Sentence language:"
@@ -2560,7 +2560,7 @@ msgstr "माझ्या वाक्यांवर CC0 परवाना �
 msgid ""
 "The license for your sentences is being switched. You will receive a private"
 " message when the operation is complete."
-msgstr ""
+msgstr "तुमच्या वाक्यांचा परवाना बदलला जात आहे. हे कार्य पूर्ण झाल्यावर आपल्याला एक खाजगी संदेश मिळेल."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""
@@ -2801,7 +2801,7 @@ msgstr "वाक्य आयडी"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
 msgid "Base field"
-msgstr ""
+msgstr "आधार रकाना"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L52
@@ -2993,7 +2993,7 @@ msgstr "मूळची आणि भाषांतरित वाक्ये
 msgid ""
 "Each sentence is listed as original or a translation of another. The "
 "\"base\" field can have the following values:"
-msgstr ""
+msgstr "प्रत्येक वाक्य हे मूळ वाक्य किंवा वेगळ्या वाक्याचे भाषांतर असे सूचीबद्ध केले जाते. \"आधार\" रकान्यात खालील मूल्य असू शकतात:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L278
 msgid "zero: The sentence is original, not a translation of another."
@@ -3577,7 +3577,7 @@ msgstr "प्रेरणा मिळाली नाही का?"
 msgid ""
 "Check the vocabulary requests for which there are very few or no sentences "
 "yet."
-msgstr ""
+msgstr "शब्दसंग्रहात अश्या विनंत्या पाहा की ज्यांच्याशी संबंधित अजूनही खूप कमी किंवा शून्य वाक्य आहेत."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
 msgid "Sentences wanted"
@@ -3587,7 +3587,7 @@ msgstr "हवी असलेली वाक्ये"
 msgid ""
 "Tatominer provides a list of the most searched words for which there are "
 "very few or no sentences yet."
-msgstr ""
+msgstr "तातोमाइनर आपल्याला अशी यादी पुरवतं की ज्यात कमी किंवा शून्य वाक्य असून सर्वात जास्त शोधले जाणारे शब्द असतात."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"
@@ -3711,7 +3711,7 @@ msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{us}\">let us know</a> and include the error code "
 "\"{errorCode}\" in your message."
-msgstr ""
+msgstr "शोध पार पाडण्यात त्रुटी आढळली. ही समस्या कायम राहिली तर कृपा करून <a href=\"{us}\">आम्हाला कळवा</a>. आपल्या संदेशात \"{errorCode}\" हा त्रुटी कोड समाविष्ट करा."
 
 #. title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L150
@@ -4802,7 +4802,7 @@ msgstr "{userName} यांनी बनवलेल्या खालील �
 msgid ""
 "The following audio recordings by {userName} are licensed under an unknown "
 "license."
-msgstr ""
+msgstr "{userName} यांचे खालील ऑडियो रेकॉर्डिंग एका अज्ञात परवान्याने परवानाकृत आहे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
@@ -5022,7 +5022,7 @@ msgstr "यादी दृश्ता"
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
-msgstr ""
+msgstr "ही यादी सर्वांसाठी सुलभ आहे व ही \"यादीनुसार चाळा\" या पानावर सूचीबद्ध आहे. त्याबरोबरच या यादीत असलेल्या प्रत्येक वाक्याच्या पानावर ती दिसून येते."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L349
@@ -5037,7 +5037,7 @@ msgstr "नवीन"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L358
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
-msgstr "ही यादी सर्वांसाठी सुलभ आहे व ही \"यादीप्रमाणे चाळा\" या पानावर सूचीबद्ध आहे."
+msgstr "ही यादी सर्वांसाठी सुलभ आहे व ही \"यादीनुसार चाळा\" या पानावर सूचीबद्ध आहे."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L361
@@ -5048,7 +5048,7 @@ msgstr "यादीत असलेली"
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
-msgstr "ही यादी सर्वांसाठी सुलभ आहे, पण ती \"यादीप्रमाणे चाळा\" या पानावर सूचीबद्ध नाही."
+msgstr "ही यादी सर्वांसाठी सुलभ आहे, पण ती \"यादीनुसार चाळा\" या पानावर सूचीबद्ध नाही."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L367
@@ -5057,7 +5057,7 @@ msgstr "असूचीगत"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L370
 msgid "The list is accessible only to you."
-msgstr "या यादीत केवळ आपणच प्रवेश करू शकता"
+msgstr "ही यादी केवळ आपल्यासाठीच सुलभ आहे."
 
 #. visibility option of a list
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L372
