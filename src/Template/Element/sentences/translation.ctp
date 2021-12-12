@@ -22,11 +22,11 @@
         <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>
     </div>
 
-    <div class="text" dir="{{::translation.dir}}" lang="{{::translation.lang_tag}}">
+    <div class="text" dir="{{translation.dir}}" lang="{{translation.lang_tag}}">
         <span ng-if="translation.furigana" ng-bind-html="translation.furigana.html">
-            <md-tooltip md-direction="top">{{::translation.furigana.info_message}}</md-tooltip>
+            <md-tooltip md-direction="top">{{translation.furigana.info_message}}</md-tooltip>
         </span>
-        <span ng-if="!translation.furigana">{{::translation.text}}</span>
+        <span ng-if="!translation.furigana">{{translation.text}}</span>
         <md-tooltip ng-if="translation.isDuplicate">
             <?= format(
                 __('Existing sentence #{number} has been added as a translation.'),

@@ -198,7 +198,7 @@ $sentenceUrl = $this->Url->build([
         <md-button ng-click="vm.expandOrCollapse(!vm.isExpanded)">
             <md-icon>{{vm.expandableIcon}}</md-icon>
             <span ng-if="!vm.isExpanded">
-                {{::vm.sentence.expandLabel}}
+                {{vm.sentence.expandLabel}}
             </span>
             <span ng-if="vm.isExpanded">
                 <?php echo __('Fewer translations') ?>
