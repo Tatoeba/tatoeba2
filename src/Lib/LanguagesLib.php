@@ -682,6 +682,7 @@ class LanguagesLib
                 'shi' => __d('languages', 'Tashelhit'),
                 'bom' => __d('languages', 'Berom'),
                 'sat' => __d('languages', 'Santali'),
+                'mik' => __d('languages', 'Hitchiti'),
             );
         }
         return $languages;

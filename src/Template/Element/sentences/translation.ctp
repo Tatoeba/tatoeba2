@@ -1,4 +1,4 @@
-<div ng-repeat="translation in <?= $translations ?>"
+<div ng-repeat="translation in <?= $translations ?> track by translation.id"
      ng-if="::!translation.isHidden || undefined"
      ng-show="!translation.isHidden"
      class="translation" ng-class="{'not-reliable' : translation.correctness === -1, 'expanded': vm.isMenuExpanded, 'trusted-user': vm.menu.canLink}">
