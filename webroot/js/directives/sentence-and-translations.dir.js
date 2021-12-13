@@ -28,8 +28,8 @@
             return {
                 restrict: 'E',
                 scope: {
-                    lang: '=',
-                    title: '='
+                    lang: '<',
+                    title: '<'
                 },
                 link: function($scope) {
                     if (!$scope.lang) {
