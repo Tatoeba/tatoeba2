@@ -76,11 +76,11 @@ class AudioHelper extends AppHelper
                       'not chosen any license for them.');
         } elseif ($license == 'Public domain') {
             $msg = __('The following audio recordings by '.
-                      '{userName}, are licensed under the public domain.');
+                      '{userName} are licensed under the public domain.');
         } elseif ($this->AudioLicense->isKnownLicense($license)) {
             $license = $this->AudioLicense->getLicenseName($license);
             $msg = __('The following audio recordings by '.
-                      '{userName}, are licensed under the {licenseName} '.
+                      '{userName} are licensed under the {licenseName} '.
                       'license.');
         } else {
             $msg = __('The following audio recordings by '.
