@@ -54,8 +54,9 @@ $langArray = $this->Languages->onlyLanguagesArray();
             ?>
             </span>
 
-            <md-button id="showRandom" ng-click="vm.showAnother(vm.lang)">
-                <?= __('show another ') ?>
+            <md-button class="md-icon-button" id="showRandom" ng-click="vm.showAnother(vm.lang)">
+                <md-icon>refresh</md-icon>
+                <md-tooltip><?= __('show another ') ?></md-tooltip>
             </md-button>
         </div>
     </div>
