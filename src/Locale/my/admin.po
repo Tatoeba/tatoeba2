@@ -4,8 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Fabian Becker <halfdan@xnorfz.de>, 2020
-# Trendyne Horse, 2022
+# zawtunlatt, 2022
 # 
 #, fuzzy
 msgid ""
@@ -14,229 +13,242 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-04 22:47+0200\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Trendyne Horse, 2022\n"
-"Language-Team: Icelandic (https://www.transifex.com/tatoeba/teams/28284/is/)\n"
+"Last-Translator: zawtunlatt, 2022\n"
+"Language-Team: Burmese (https://www.transifex.com/tatoeba/teams/28284/my/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: is\n"
-"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+"Language: my\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L845
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
+"အမှားအယွင်း ။   ။ အသုံးပြုသူအမည် {username} က ထည့်သွင်းထားသော "
+"စာကြောင်းများကို မယုံကြည်ရသော စာကြောင်းများအဖြစ် မသတ်မှတ်နိုင်ပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L850
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
+"အသုံးပြုသူအမည် {username} က ထည့်သွင်းထားသော စာကြောင်းများအားလုံးကို "
+"မယုံကြည်ရသော စာကြောင်းများ အဖြစ် သတ်မှတ်ပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "ယုတ္တိမရှိသောဖိုင် \"{file}\" ဖိုင် ကို လစ်လျူရှုခဲ့ပါတယ်။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
+"ဖိုင် \"{file}\" ကို သွင်းယူရန်အတွက် လမ်းကြောင်း \"{dir}\" ကို ဖန်တီးခြင်း "
+"မအောင်မြင်ပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "ဖိုင် \"{file}\" ကို လမ်းကြောင်း \"{dir}\" သို့ ကူးယူခြင်း မအောင်မြင်ပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"ဒေတာဘေ့စ် အတွင်းတွင် စာကြောင်းအမှတ် {sentenceId} အတွက် အသံကို ဖန်တီးသူ "
+"\"{author}\" သို့ တာဝန် မခန့်အပ်နိုင်ပါ။ ယုတ္တိရှိသော အသုံးပြုသူအမည် "
+"ဟုတ်မဟုတ် သေချာအောင် စစ်ဆေးပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"ဖိုင် \"{file}\" ကို အောင်မြင်စွာ တင်သွင်းခဲ့ပြီးပါပြီ။ သို့သော် "
+"တင်သွင်းခဲ့သော လမ်းကြောင်းတွင် မဖျက်နိုင်ပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr "Flytja inn hljóðupptökur"
+msgstr "မှတ်တမ်းများကို တင်သွင်းပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
-msgstr "Flytja inn skýrslu"
+msgstr "အစီရင်ခံစာကို တင်သွင်းပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "တင်သွင်းနေစဉ်အတွင်း အောက်ပါ အမှားအယွင်း ဖြစ်ပွားခဲ့ပါတယ်။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr ""
+msgstr "ဖိုင်များကို ဖျက်ခဲ့ပါတယ်။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
-msgstr "Skráarnafn"
+msgstr "ဖိုင်အမည်"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
-msgstr ""
+msgstr "စာကြောင်း အမှတ်"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "Language"
-msgstr "Tungumál"
+msgstr "ဘာသာစကား"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
 msgid "Already has audio"
-msgstr ""
+msgstr "အသံ ရှိနှင့်ပြီးပါပြီ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"
-msgstr "Getur verið flutt inn"
+msgstr "တင်သွင်းကောင်း တင်သွင်းပါမည်"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
 msgid "N/A"
-msgstr "Á ekki við "
+msgstr "မရရှိနိုင်ပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
-msgstr "Ógilt"
+msgstr "ယုတ္တိမရှိပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
 msgid "Yes"
-msgstr "Já"
+msgstr "ဟုတ်ပါတယ်။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
 msgid "No"
-msgstr "Nei"
+msgstr "မဟုတ်ပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "တင်သွင်းသည့် လမ်းကြောင်းတွင် ဖိုင်များကို မတွေ့ရှိရပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
 msgid "Import"
-msgstr "Flytja inn"
+msgstr "တင်သွင်းပါ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
 msgid "Enabled"
-msgstr "Virkt"
+msgstr "လုပ်ဆောင်နိုင်အောင် လုပ်ထားပြီး"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
-msgstr "Nafn eiganda"
+msgstr "ပိုင်ရှင်အမည်"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
-msgstr "Senda inn"
+msgstr "ပေးပို့ပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
-msgstr "Réttmæti"
+msgstr "အမှားပြင်ဆင်မှု"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
-msgstr "Breyta"
+msgstr "ပြောင်းလဲမှု"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
-msgstr "Flytja inn setningar"
+msgstr "စာကြောင်းများကို တင်သွင်းပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr ""
+msgstr "တခုတည်းရှိသော စာကြောင်းများ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
-msgstr ""
+msgstr "စာကြောင်းများ၏ ဘာသာစကားများ ။   ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr "Skrá:"
+msgstr "ဖိုင် ။   ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "ကိန်းဂဏန်းဖြင့်ကိုယ်စားပြုသော အသုံးပြုသူ အမှတ် ။   ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
 msgid "import"
-msgstr "flytja inn"
+msgstr "တင်သွင်းမှု"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr ""
+msgstr "စာကြောင်းများနှင့် ဘာသာပြန်ဆိုမှုများ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
-msgstr ""
+msgstr "ဘာသာပြန်ဆိုမှုများ၏ ဘာသာစကား ။   ။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
 msgid "Mark as unreliable"
-msgstr ""
+msgstr "မယုံကြည်ရတဲ့အရာ အဖြစ် သတ်မှတ်ပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
 msgid ""
 "Are you sure you want to mark all the sentences of this member as "
 "unreliable?"
 msgstr ""
+"ဤအသုံးပြုသူ၏ စာကြောင်းများအားလုံးကို မယုံကြည်ရသော စာကြောင်းများဟု သတ်မှတ်ရန်"
+" သင်သေချာပါသလား။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
-msgstr "Eyða"
+msgstr "ဖျက်ပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "အသုံးပြုသူအမှတ် {number} ကို သင်ဖျက်ရန် သေချာပါသလား။"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr "Lista Notendum"
+msgstr "အသုံးပြုသူများ၏ စာရင်း"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
-msgstr "Notandasíða"
+msgstr "ကိုယ်ရေးကိုယ်တာမှတ်တမ်း"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr "Breyta Notanda"
+msgstr "အသုံးပြုသူကို တည်းဖြတ်ပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
-msgstr "Аuðkenni"
+msgstr "အမှတ်"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
-msgstr "Notandanafn"
+msgstr "အသုံးပြုသူအမည်"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
 msgid "Lang"
-msgstr "Mál"
+msgstr "ဘာသာစကား"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
 msgid "Group"
-msgstr "Hópur"
+msgstr "အုပ်စု"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
 msgid "Level"
-msgstr "Stig"
+msgstr "အဆင့်သတ်မှတ်ချက်"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
-msgstr "Senda tilkynningar"
+msgstr "အသိပေးအကြောင်းကြားစာ ပေးပို့ပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
 msgid "unhide"
-msgstr "sýna"
+msgstr "ဖုံးကွယ်ထားခြင်းကို ပယ်ဖျက်ပါ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
 msgid "hide"
-msgstr "fela"
+msgstr "ဖုံးကွယ်ပါ"
