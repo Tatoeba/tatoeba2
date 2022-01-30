@@ -2009,7 +2009,7 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
     max-height: unset;
 }
 
-.md-toolbar-tools.layout-wrap h2 {
+.md-toolbar-tools.layout-wrap > * {
     margin: 8px 0;
 }
 
