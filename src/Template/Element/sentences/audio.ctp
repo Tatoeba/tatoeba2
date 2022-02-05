@@ -50,6 +50,11 @@ $audioLicenses = str_replace('{{', '\{\{', $audioLicenses);
 $audiosJson = str_replace('{{', '\{\{', $audiosJson);
 
 $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBottom']);
+$this->Html->script('/js/directives/audio-button.dir.js', ['block' => 'scriptBottom']);
+$this->AngularTemplate->addTemplate(
+    $this->element('sentence_buttons/audio'),
+    'audio-button-template'
+);
 ?>
 <div ng-controller="AudioDetailsController as vm"
      ng-init="vm.init(<?= h($audiosJson) ?>, <?= h($audioLicenses) ?>)"
