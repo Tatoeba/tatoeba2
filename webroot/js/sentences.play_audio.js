@@ -20,6 +20,12 @@ $(document).ready(function () {
   $(document).watch('addrule', function () {
     $('.audioAvailable').off();
     $('.audioAvailable').click(function () {
+      $(this).removeClass('nextAudioToPlay');
+      var next = $(this).next();
+      if (!next.length) {
+          next = $(this).parent().children().first();
+      }
+      next.addClass('nextAudioToPlay');
       var audioURL = $(this).attr('href');
       var audio = new Audio(audioURL);
       audio.play();

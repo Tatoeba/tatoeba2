@@ -1219,6 +1219,9 @@ input.sentenceId {
     border: none;
     background: url(../../img/audio.svg);
 }
+.audioButton.audioAvailable:not(.nextAudioToPlay) {
+    display: none;
+}
 
 .audioButton.audioUnavailable {
     background: url(../../img/audio-unavailable.svg);

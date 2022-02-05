@@ -1,4 +1,4 @@
-<md-button class="md-icon-button audioAvailable" ng-click="vm.playAudio(audios)" ng-if="includeDisabled || vm.hasSomeEnabledAudios(audios)">
+<md-button class="md-icon-button" ng-click="vm.playAudio(audios)" ng-if="includeDisabled || vm.hasSomeEnabledAudios(audios)">
     <md-icon ng-if="vm.hasSomeEnabledAudios(audios)">volume_up</md-icon>
     <md-icon ng-if="!vm.hasSomeEnabledAudios(audios)">volume_off</md-icon>
     <md-tooltip md-direction="top" ng-if="!vm.getAudioAuthor(audios)">
