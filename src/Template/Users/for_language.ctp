@@ -111,12 +111,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         foreach($users as $user) {
             
             $username = $user->user->username;
-            $userImage = $user->user->image;
             $languageLevel = $user->level;
 
             echo '<div class="user">';
             echo '<div class="profilePicture">';
-            echo $this->Members->image($username, $userImage);
+            echo $this->Members->image($user->user);
             echo '</div>';
             echo '<div class="usernameAndLevel">';
                 echo $this->Html->link(

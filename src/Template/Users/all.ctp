@@ -121,15 +121,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         foreach ($users as $i=>$user):
         $role = $user->role;
         $status = "status_$role";
-        $username = $user->username;
-        $userImage = null;
-        if (isset($user->image)) {
-            $userImage = $user->image;
-        };
         ?>
         <div class="user <?php echo $status ?> md-whiteframe-1dp">
             <div class="image">
-                <?php echo $this->Members->image($username, $userImage); ?>
+                <?php echo $this->Members->image($user); ?>
             </div>
 
 

@@ -29,7 +29,6 @@ use Cake\ORM\TableRegistry;
 
 $user = CurrentUser::get('User');
 $username = $user['username'];
-$avatar = $user['image'];
 
 $newMessages = TableRegistry::get('PrivateMessages')->numberOfUnreadMessages(
     CurrentUser::get('id')
@@ -57,7 +56,7 @@ $menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
 
     <div id="user-menu" class="dropdown">
         <div class="label">
-            <?= $this->Members->image(null, $avatar, ['width' => 24, 'height' => 24]); ?>
+            <?= $this->Members->image($user, ['width' => 24, 'height' => 24]); ?>
             <span><?= $username ?></span>
         </div>
         <div class="dropdown-content">

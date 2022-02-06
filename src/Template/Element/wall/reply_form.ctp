@@ -3,7 +3,6 @@ use App\Model\CurrentUser;
 
 $user = CurrentUser::get('User');
 $username = $user['username'];
-$avatar = $user['image'];
 $editUrl = $this->Url->build([
     'controller' => 'wall',
     'action' => 'edit'
@@ -16,7 +15,7 @@ $editUrl = $this->Url->build([
 
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">
