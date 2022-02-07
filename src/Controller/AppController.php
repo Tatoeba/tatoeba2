@@ -124,7 +124,13 @@ class AppController extends Controller
 
         // So that we can access the current users info from models.
         // Important: needs to be done after RememberMe->check().
-        CurrentUser::store($this->Auth->user());
+        $user = $this->Auth->user();
+        if ($user) {
+            // Keep the info up to date
+            $this->loadModel('Users');
+            $user = $this->Users->getInformationOfCurrentUser($user['id'])->toArray();
+        }
+        CurrentUser::store($user);
 
         // Restore named parameters removed in CakePHP 3
         $this->request = Router::parseNamedParams($this->request);
