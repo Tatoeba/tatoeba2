@@ -92,7 +92,7 @@ ORDER BY sc.created ASC
 INTO OUTFILE '/var/tmp/sentence_comments.csv';
 
 -- Sentences with audio
-SELECT a.sentence_id, u.username, u.audio_license, u.audio_attribution_url
+SELECT a.sentence_id, a.id, u.username, u.audio_license, u.audio_attribution_url
 FROM audios a LEFT JOIN users u on u.id = a.user_id
 ORDER BY sentence_id ASC
 INTO OUTFILE '/var/tmp/sentences_with_audio.csv';
