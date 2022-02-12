@@ -150,6 +150,13 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
+        $current_user = CurrentUser::get('User');
+        $auth_user = $this->Auth->user();
+        if ($auth_user && $current_user && $auth_user != $current_user) {
+            // User data changed, tell the Auth component about it.
+            $this->Auth->setUser($current_user);
+        }
+
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->request->is('ajax')) {
             $this->viewBuilder()->setLayout('ajax');
