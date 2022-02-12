@@ -173,7 +173,7 @@ class AudiosTable extends Table
                     'sourcePath' => $importPath.DS.$filename,
                     'valid'    => false,
                 );
-                if (preg_match('/^(\d+)\.mp3$/i', $filename, $matches)) {
+                if (preg_match('/^(\d+)(-\d+)?\.mp3$/i', $filename, $matches)) {
                     $fileInfos['sentenceId'] = $allSentenceIds[] = $matches[1];
                 }
                 $audioFiles[] = $fileInfos;
