@@ -196,7 +196,7 @@ class AudiosTable extends Table
         $sentences = $this->Sentences->find()
             ->where(['Sentences.id IN' => $allSentenceIds])
             ->select(['id', 'lang'])
-            ->contain(['Audios'])
+            ->contain(['Audios' => ['Users' => ['fields' => ['username']]]])
             ->toList();
             
         $sentences = Hash::combine($sentences, '{n}.id', '{n}');
@@ -206,7 +206,7 @@ class AudiosTable extends Table
                 $id = $file['sentenceId'];
                 if (isset($sentences[$id])) {
                     $file['lang'] = $sentences[$id]['lang'];
-                    $file['hasaudio'] = count($sentences[$id]->audios) > 0;
+                    $file['hasaudio'] = count($sentences[$id]->audios) > 0 ? $sentences[$id]->audios[0]->user->username : false;
                     $file['valid'] = !is_null($sentences[$id]['lang']);
                 }
             }
