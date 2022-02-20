@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Erik Pedersen <erik.pedersen@shaw.ca>, 2016-2017
+# Erik Pedersen <erik.pedersen@shaw.ca>, 2016-2017,2022
+# Nikolay Korotkiy <sikmir@disroot.org>, 2017
 # Nikolay Korotkiy <sikmir@disroot.org>, 2017
 # Paul Peeraerts <paul2711@gmail.com>, 2016-2020
 # Ricardo14 <rvj1444@gmail.com>, 2020
 # Ricardo14 <rvj1444@gmail.com>, 2020
 # R K <becci@likespizza.com>, 2020
-# Robin van der Vliet <info@robinvandervliet.nl>, 2016-2017,2020-2021
+# Robin van der Vliet <info@robinvandervliet.com>, 2016-2017,2020-2022
 # Vjaĉesláv Ivanov, 2021
 # Vjaĉesláv Ivanov, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-08 10:53+0000\n"
-"PO-Revision-Date: 2021-09-28 23:16+0000\n"
-"Last-Translator: Robin van der Vliet <info@robinvandervliet.nl>\n"
+"POT-Creation-Date: 2022-01-30 12:53+0000\n"
+"PO-Revision-Date: 2022-02-14 16:58+0000\n"
+"Last-Translator: Robin van der Vliet <info@robinvandervliet.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,7 +121,7 @@ msgstr "la sveda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L298
 msgid "Norwegian Bokmål"
-msgstr "la norvega (bokmål)"
+msgstr "la bokmål-stila norvega"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L299
 msgid "Malay"
@@ -460,7 +461,7 @@ msgstr "la kosa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L384
 msgid "Punjabi (Western)"
-msgstr "la okcident-panĝaba"
+msgstr "la panĝaba (okcidenta)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L385
 msgid "Malagasy"
@@ -736,7 +737,7 @@ msgstr "la guĝarata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L453
 msgid "Punjabi (Eastern)"
-msgstr "la orient-panĝaba"
+msgstr "la panĝaba (orienta)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L454
 msgid "Khasi"
@@ -1064,7 +1065,7 @@ msgstr "la malnov-norvega"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L535
 msgid "Odia (Oriya)"
-msgstr "la odia"
+msgstr "la odia (Odiŝo)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L536
 msgid "Iban"
@@ -1128,7 +1129,7 @@ msgstr "la kveŝteknaŭatla"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L551
 msgid "Kekchi (Q'eqchi')"
-msgstr "la kekĉia"
+msgstr "la kekĉia (Mezameriko)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L552
 msgid "Swazi"
@@ -1236,7 +1237,7 @@ msgstr "la ĵemajtia"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L578
 msgid "Láadan"
-msgstr "Laadano"
+msgstr "la laadana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L579
 msgid "Dutton World Speedwords"
@@ -1464,7 +1465,7 @@ msgstr "la nord-orient-taja"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L635
 msgid "Tonga (Zambezi)"
-msgstr "la zambi-tonga"
+msgstr "la tonga (Zambezo)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L636
 msgid "Newari"
@@ -1532,7 +1533,7 @@ msgstr "la herbej-kria"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L652
 msgid "Yucatec Maya"
-msgstr "Jukatana majaa lingvo"
+msgstr "la jukatana majaa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L653
 msgid "Middle Persian (Pahlavi)"
@@ -1540,11 +1541,11 @@ msgstr "la malnov-persa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L654
 msgid "Meitei"
-msgstr "Manipura lingvo"
+msgstr "la manipura"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L655
 msgid "Libyan Arabic"
-msgstr "Libia araba"
+msgstr "la libia araba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L656
 msgid "O'odham"
@@ -1552,51 +1553,51 @@ msgstr "la odhama"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L657
 msgid "Lushootseed"
-msgstr "Laŝucida lingvo"
+msgstr "la laŝucida"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L658
 msgid "Old Frisian"
-msgstr "Malnovfrisa lingvo"
+msgstr "la malnovfrisa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L659
 msgid "Nuer"
-msgstr ""
+msgstr "la nuera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L660
 msgid "Central Kurdish (Soranî)"
-msgstr "la centr-kurda (Soranî)"
+msgstr "la centra kurda (Soranî)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L661
 msgid "Northern Kurdish (Kurmancî)"
-msgstr "la nord-kurda (Kurmancî)"
+msgstr "la norda kurda (Kurmancî)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L662
 msgid "Southern Kurdish"
-msgstr "la sud-kurda"
+msgstr "la suda kurda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L663
 msgid "Northern Zaza (Kirmanjki)"
-msgstr ""
+msgstr "la norda zazaa (kirmanĵla)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L664
 msgid "Southern Zaza (Dimli)"
-msgstr ""
+msgstr "la suda zazaa (dimla)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L665
 msgid "Standard Moroccan Tamazight"
-msgstr ""
+msgstr "la normiga maroka maziĥa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L666
 msgid "Mahasu Pahari"
-msgstr ""
+msgstr "la mahasu-pahara"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L667
 msgid "Qashqai"
-msgstr "Kaŝgaja lingvo"
+msgstr "la kaŝgaja"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L668
 msgid "Khalaj"
-msgstr ""
+msgstr "la ĥalaĵa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L669
 msgid "Dargwa"
@@ -1604,7 +1605,7 @@ msgstr "la dargva"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L670
 msgid "Lak"
-msgstr "laka lingvo"
+msgstr "la laka"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L671
 msgid "Avar"
@@ -1612,23 +1613,23 @@ msgstr "la avara"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L672
 msgid "Muskogee (Creek)"
-msgstr ""
+msgstr "la maskokia (krika)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L673
 msgid "Abaza"
-msgstr "Abaza lingvo"
+msgstr "la abaza"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L674
 msgid "Ingush"
-msgstr "inguŝa lingvo"
+msgstr "la inguŝa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L675
 msgid "Kabardian"
-msgstr "Kabarda lingvo"
+msgstr "la kabarda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L676
 msgid "Sranan Tongo"
-msgstr "Srana lingvo"
+msgstr "la srana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L677
 msgid "Lezgi"
@@ -1636,28 +1637,32 @@ msgstr "la lezga"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L678
 msgid "Wayuu"
-msgstr "Vajua lingvo"
+msgstr "la vajua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L679
 msgid "Limburgish"
-msgstr "limburga lingvo"
+msgstr "la limburga"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L680
 msgid "Zeelandic"
-msgstr "zelanda lingvo"
+msgstr "la zelanda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L681
 msgid "Mono (USA)"
-msgstr ""
+msgstr "la monaĥa-paviotsa (Usono)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L682
 msgid "Tashelhit"
-msgstr "ŝelha lingvo"
+msgstr "la ŝelha"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L683
 msgid "Berom"
-msgstr ""
+msgstr "la beroma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L684
 msgid "Santali"
-msgstr "santala lingvo"
+msgstr "la santala"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L685
+msgid "Hitchiti"
+msgstr "la hiĉita"

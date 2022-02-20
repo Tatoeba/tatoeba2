@@ -105,7 +105,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                       __d('admin', 'Invalid');
         $hasaudio = isset($file['hasaudio']) ? (
                         $file['hasaudio'] ?
-                        __d('admin', 'Yes') :
+                        $file['hasaudio'] :
                         __d('admin', 'No')
                     ) :
                     __d('admin', 'N/A');

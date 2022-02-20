@@ -32,7 +32,6 @@
     ?>
 </head>
 <body>
-    <?php echo $this->element('google_analytics', array('cache' => true)); ?>
     <div id="sentencesListContainer">
     <?php echo $content_for_layout; ?>
     <?php echo $cakeDebug ?>

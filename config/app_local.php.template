@@ -155,18 +155,6 @@ return [
     ],
 
     /**
-     * Google Analytics.
-     * - Leave GoogleAnalytics.enabled to false if you don't want to
-     *   include the Google Analytics code.
-     * - If you do set GoogleAnalytics.enabled to true, then enter
-     *   the id for your Google Analytics account.
-     */
-    'GoogleAnalytics' => [
-        'enabled' => false,
-        'id' => '',
-    ],
-
-    /**
      * Languages of the interface.
      *
      * UI.languages is a mapping from URL language identifiers to language
