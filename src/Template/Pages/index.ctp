@@ -115,7 +115,6 @@ $moreCommentsUrl = $this->Url->build([
                     'sentence' => $random,
                     'translations' => $random->translations,
                     'user' => $random->user,
-                    'menuDisabled' => true
                 )
             );
             ?>
