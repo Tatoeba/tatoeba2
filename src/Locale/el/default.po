@@ -22,9 +22,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-30 12:53+0000\n"
-"PO-Revision-Date: 2022-01-30 13:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2022-03-15 19:29+0000\n"
+"PO-Revision-Date: 2014-10-05 13:32+0000\n"
+"Last-Translator: Pantelis Bosdelekidis <bospan@hotmail.com>, 2020\n"
 "Language-Team: Greek (http://www.transifex.com/tatoeba/tatoeba_website/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -439,7 +439,7 @@ msgstr "{language}"
 #. placeholder of language dropdown
 #. in homepage random sentence block
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L153
@@ -1023,7 +1023,7 @@ msgstr[1] ", {n} συνδέσμοι προστέθηκαν"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Τελευταίες συνεισφορές"
@@ -1626,14 +1626,12 @@ msgstr "Αποστολή"
 msgid "notification from Tatoeba"
 msgstr "ειδοποίηση από Tatoeba"
 
-#. random sentence block header on the home page for members
-#. / random sentence block header on the home page for guests
+#. random sentence block header on the home page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L49
 msgid "Random sentence"
 msgstr "Τυχαία φράση"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L59
 msgid "show another "
 msgstr "εμφάνιση άλλου "
 
@@ -3277,7 +3275,7 @@ msgstr "Tatoeba: Συλλογή από φράσεις και μεταφράσε�
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
 msgstr "Στατιστικά"
@@ -3298,28 +3296,28 @@ msgstr ""
 msgid "Go to settings"
 msgstr "Μετάβαση στις ρυθμίσεις"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L142
 msgid "show more..."
 msgstr "εμφάνιση περισσοτέρων..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Τελευταία σχόλια"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
 msgid "Want to help?"
 msgstr "Θέλετε να βοηθήσετε;"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L72
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L78
 msgid "Join the community"
 msgstr "Γίνετε μέλος της κοινότητας"
 

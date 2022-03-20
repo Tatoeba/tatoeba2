@@ -10,16 +10,16 @@
 # Paul Peeraerts <paul2711@gmail.com>, 2014-2021
 # R K <becci@likespizza.com>, 2020
 # Robin van der Vliet <info@robinvandervliet.com>, 2016,2020,2022
-# Spencer, 2015-2016
+# Spencer, 2015-2016,2022
 # Vjaĉesláv Ivanov, 2021
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-30 12:53+0000\n"
-"PO-Revision-Date: 2022-02-03 16:46+0000\n"
-"Last-Translator: Robin van der Vliet <info@robinvandervliet.com>\n"
+"POT-Creation-Date: 2022-03-15 19:29+0000\n"
+"PO-Revision-Date: 2014-10-05 13:32+0000\n"
+"Last-Translator: Spencer, 2015-2016,2022\n"
 "Language-Team: Esperanto (http://www.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -434,7 +434,7 @@ msgstr "{language}"
 #. placeholder of language dropdown
 #. in homepage random sentence block
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L153
@@ -866,7 +866,7 @@ msgstr "Kontroli la programo Tatominero"
 msgid ""
 "Tatominer provides a list of the most searched words for which there are "
 "very few or no translations yet."
-msgstr ""
+msgstr "Tatominero donas liston de la plej ofte serĉataj vortoj, por kiuj estas ankoraŭ neniuj aŭ tre malmultaj tradukoj."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L202
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L103
@@ -1018,7 +1018,7 @@ msgstr[1] ", {n} ligiloj aldonitaj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Lastaj kontribuoj"
@@ -1621,14 +1621,12 @@ msgstr "Sendi"
 msgid "notification from Tatoeba"
 msgstr "komuniko de Tatoeba"
 
-#. random sentence block header on the home page for members
-#. / random sentence block header on the home page for guests
+#. random sentence block header on the home page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L49
 msgid "Random sentence"
 msgstr "Hazarda frazo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L59
 msgid "show another "
 msgstr "Montri alian "
 
@@ -3272,7 +3270,7 @@ msgstr "Tatoeba: kolekto de frazoj kaj tradukoj"
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
 msgstr "Statistikoj"
@@ -3293,28 +3291,28 @@ msgstr "La nova fasono baldaŭ komplete anstataŭigos la malnovan, Bv. testi ĝi
 msgid "Go to settings"
 msgstr "Iri al la agordoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L142
 msgid "show more..."
 msgstr "Montri pli..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Lastaj komentoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
 msgid "Want to help?"
 msgstr "Ĉu vi deziras helpi? "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L72
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "Ni kolektas frazojn kaj iliajn tradukojn. Vi povas helpi al ni aldonante aŭ tradukante frazojn. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L78
 msgid "Join the community"
 msgstr "Aliĝu al la komunumo!"
 
@@ -3584,7 +3582,7 @@ msgstr "Ĉu vi ne havas inspiron?"
 msgid ""
 "Check the vocabulary requests for which there are very few or no sentences "
 "yet."
-msgstr ""
+msgstr "Kontrolu la privortarajn petojn, por kiuj ankoraŭ estas neniuj aŭ tre malmultaj frazoj."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
 msgid "Sentences wanted"
@@ -4797,13 +4795,13 @@ msgstr "Vi ne rajtas uzi la jenajn sonregistraĵojn ekster la projekto Tatoeba, 
 msgid ""
 "The following audio recordings by {userName} are licensed under the public "
 "domain."
-msgstr ""
+msgstr "La jenaj sonregistraĵoj de {userName}, estas licencitaj kiel publika havaĵo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L82
 msgid ""
 "The following audio recordings by {userName} are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "La jenaj sonregistraĵoj de {userName} estas licencitaj sub la jena permesilo: {licenseName}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L86
 msgid ""

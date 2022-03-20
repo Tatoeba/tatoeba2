@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Dorian Oszczęda <vxern@wordcollector.co.uk>, 2022
 # Elena Cristina <elenacristina654321@gmail.com>, 2020-2021
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
 # gillux, 2020
@@ -12,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-30 12:53+0000\n"
-"PO-Revision-Date: 2022-01-30 13:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2022-03-15 19:29+0000\n"
+"PO-Revision-Date: 2014-10-05 13:32+0000\n"
+"Last-Translator: Dorian Oszczęda <vxern@wordcollector.co.uk>, 2022\n"
 "Language-Team: Romanian (http://www.transifex.com/tatoeba/tatoeba_website/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -432,7 +433,7 @@ msgstr "{language}"
 #. placeholder of language dropdown
 #. in homepage random sentence block
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L153
@@ -1019,7 +1020,7 @@ msgstr[2] ", {n} linkuri adăugate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Ultimele contribuții"
@@ -1624,14 +1625,12 @@ msgstr "Trimiteți"
 msgid "notification from Tatoeba"
 msgstr "notificare de la Tatoeba"
 
-#. random sentence block header on the home page for members
-#. / random sentence block header on the home page for guests
+#. random sentence block header on the home page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L49
 msgid "Random sentence"
 msgstr "Propoziție aleatorie"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L59
 msgid "show another "
 msgstr "afișați alta"
 
@@ -3279,7 +3278,7 @@ msgstr "Tatoeba: o colecție de propoziții și traduceri"
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
 msgstr "Statistici"
@@ -3300,28 +3299,28 @@ msgstr "Noul design al propozițiilor îl va înlocui în curând pe cel vechi. 
 msgid "Go to settings"
 msgstr "Mergeți la setări"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L142
 msgid "show more..."
 msgstr "afișați mai mult..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Ultimele comentarii"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
 msgid "Want to help?"
 msgstr "Vreți să ajutați?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L72
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "Colectăm propoziții și traducerile acestora. Ne puteți ajuta traducând sau adăugând propoziții noi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L78
 msgid "Join the community"
 msgstr "Alăturați-vă comunității"
 
@@ -4815,13 +4814,13 @@ msgstr "Nu puteți utiliza următoarele înregistrări audio în afara proiectul
 msgid ""
 "The following audio recordings by {userName} are licensed under the public "
 "domain."
-msgstr ""
+msgstr "Următoarele înregistrări audio de către {userName} sunt licențiate în domeniul public."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L82
 msgid ""
 "The following audio recordings by {userName} are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "Următoarele înregistrări audio de către {userName} sunt licențiate sub licența {licenseName}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L86
 msgid ""
