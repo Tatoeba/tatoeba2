@@ -342,6 +342,10 @@ return [
         'shutdownWarning' => false,
     ],
 
+    'TermsOfUse' => [
+        'version' => '1',
+    ],
+
     /**
      * Base path and base URL for the downloadable database exports.
      */

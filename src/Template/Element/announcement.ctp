@@ -44,7 +44,7 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
         'class' => 'announcement md-whiteframe-1dp',
         'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
     ]);
-    echo $this->Form->hidden('settings.new_terms_of_use', ['value' => true]);
+    echo $this->Form->hidden('settings.new_terms_of_use', ['value' => Configure::read('TermsOfUse.version')]);
     ?>
     <p>
     <?= format(

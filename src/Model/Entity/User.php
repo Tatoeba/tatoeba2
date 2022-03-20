@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use App\Auth\VersionedPasswordHasher;
+use Cake\Core\Configure;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
 
@@ -59,7 +60,7 @@ class User extends Entity
         'use_new_design' => false,
         'default_license' => 'CC BY 2.0 FR',
         'can_switch_license' => false,
-        'new_terms_of_use' => '1',
+        'new_terms_of_use' => null, // set below after the class definition
         'license_switch_list_id' => null,
         'hide_new_design_announcement' => false,
     );
@@ -94,3 +95,5 @@ class User extends Entity
         }
     }
 }
+
+User::$defaultSettings['new_terms_of_use'] = Configure::read('TermsOfUse.version');

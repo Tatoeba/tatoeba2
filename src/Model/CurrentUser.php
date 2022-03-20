@@ -27,6 +27,7 @@
 namespace App\Model;
 
 use App\Model\Entity\User;
+use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use Cake\I18n\Time;
@@ -352,7 +353,7 @@ class CurrentUser
     
     public static function hasAcceptedNewTermsOfUse()
     {
-        return !self::isMember() || self::getSetting('new_terms_of_use');
+        return !self::isMember() || self::getSetting('new_terms_of_use') == Configure::read('TermsOfUse.version');
     }
     
     public static function canAdoptOrUnadoptSentenceOfUser($user)
