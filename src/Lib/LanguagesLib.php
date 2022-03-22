@@ -731,7 +731,6 @@ class LanguagesLib
 
         $rightToLeftLangs = array(
             "ara",
-            "arq",
             "heb",
             "arz",
             "uig",
@@ -762,6 +761,7 @@ class LanguagesLib
 
         $autoLangs = array(
             "apc",
+            "arq",
             "ota",
             "chg",
             "lad",
