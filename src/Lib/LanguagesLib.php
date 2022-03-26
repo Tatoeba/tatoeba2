@@ -348,7 +348,7 @@ class LanguagesLib
                 'gle' => __d('languages', 'Irish'),
                 'ina' => __d('languages', 'Interlingua'),
                 'jbo' => __d('languages', 'Lojban'),
-                'toki' => __d('languages', 'Toki Pona'),
+                'tok' => __d('languages', 'Toki Pona'),
                 'ain' => __d('languages', 'Ainu'),
                 'scn' => __d('languages', 'Sicilian'),
                 'mal' => __d('languages', 'Malayalam'),
