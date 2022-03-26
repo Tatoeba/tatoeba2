@@ -75,7 +75,7 @@
                     </md-button>
                 </div>
 
-                <div layout="row" layout-align="center center">
+                <div layout="row" layout-align="center center" layout-wrap>
                     <md-button href="<?= h($this->cell('WikiLink', ['text-search'])) ?>" target="_blank">
                         <?php
                         /* @translators: links to a page with tips to perform

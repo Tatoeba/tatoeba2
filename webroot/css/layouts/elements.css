@@ -1995,3 +1995,24 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
 #login-dialog md-dialog-content {
     padding: 40px 20px 10px 20px;
 }
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Wrapping toolbars
+ *
+ * --------------------------------------------------------------------
+ */
+
+.md-toolbar-tools.layout-wrap {
+    height: unset;
+    max-height: unset;
+}
+
+.md-toolbar-tools.layout-wrap > * {
+    margin: 8px 0;
+}
+
+.md-toolbar-tools.layout-wrap .md-icon-button {
+    margin: 6px 0px;
+}

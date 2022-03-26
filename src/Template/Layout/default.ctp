@@ -143,10 +143,6 @@ $isHomepage = $controller == 'pages' && $action == 'index';
     echo $this->AssetCompress->script('layout.js');
 
     echo $this->fetch('scriptBottom');
-
-    if (Configure::read('GoogleAnalytics.enabled')) {
-        echo $this->element('google_analytics', [], [ 'cache' => true ]);
-    }
     ?>
 </body>
 </html>
