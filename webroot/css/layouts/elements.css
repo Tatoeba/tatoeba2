@@ -271,7 +271,7 @@ html[dir="rtl"] .comment-sentence .text {
     margin: 0;
 }
 
-.comment.inappropriate .content {
+.comment.inappropriate > md-card-content > .content {
     color: #d50000;
     border-top: 1px #f1f1f1 solid;
     padding-top: 10px;
