@@ -58,16 +58,20 @@ $canReply = false;
 
 <md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
+        <?php if (!$messageHidden || $canViewContent): ?>
         <md-card-avatar>
             <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
+        <?php endif; ?>
         <md-card-header-text>
-        <?php if ($username): ?>
-            <span class="md-title">
-                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
-            </span>
-        <?php else: ?>
-            <i><?= h(__('Former member')) ?></i>
+        <?php if (!$messageHidden || $canViewContent): ?>
+            <?php if ($username): ?>
+                <span class="md-title">
+                    <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                </span>
+            <?php else: ?>
+                <i><?= h(__('Former member')) ?></i>
+            <?php endif; ?>
         <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
