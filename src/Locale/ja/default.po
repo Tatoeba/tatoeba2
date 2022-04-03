@@ -6,7 +6,7 @@
 # A G, 2019
 # Andreas Perstinger <andipersti@gmail.com>, 2020
 # gillux, 2020
-# Koyuki <springcomes.ki@gmail.com>, 2020-2021
+# Koyuki <springcomes.ki@gmail.com>, 2020-2022
 # Tommy, 2014
 # Tommy, 2014
 # Tommy, 2014-2015
@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-15 19:29+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Koyuki <springcomes.ki@gmail.com>, 2020-2021\n"
+"Last-Translator: Koyuki <springcomes.ki@gmail.com>, 2020-2022\n"
 "Language-Team: Japanese (http://www.transifex.com/tatoeba/tatoeba_website/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4315,7 +4315,7 @@ msgstr "所有している例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L98
 msgid "Audio recordings"
-msgstr "所有している音声つき例文"
+msgstr "例文につけた音声"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L100
 msgid "Sentences favorited"
@@ -4770,13 +4770,13 @@ msgstr "{userName} は音声に対しライセンスを適用していないた�
 msgid ""
 "The following audio recordings by {userName} are licensed under the public "
 "domain."
-msgstr ""
+msgstr "この音声は {userName} さんにより録音され、ライセンスはパブリックドメインに準拠しています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L82
 msgid ""
 "The following audio recordings by {userName} are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "この音声は {userName} さんにより録音され、ライセンスは {licenseName} に準拠しています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L86
 msgid ""

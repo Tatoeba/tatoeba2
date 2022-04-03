@@ -79,7 +79,7 @@ msgstr "Kalimat #{firstNumber} dan #{secondNumber} sekarang tidak lagi saling te
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "Sebuah galat terjadi ketika sedang mencoba untuk melepas tautan. Silakan coba lagi atau hubungi kami untuk melaporkan hal ini"
+msgstr "Galat terjadi saat mencoba melepas tautan. Silakan coba lagi atau hubungi kami untuk melaporkan hal ini."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
@@ -152,7 +152,7 @@ msgstr "Tidak dapat menemukan kalimat dengan label ini. Label yang Anda cari tel
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L81
 msgid "No user with this username: {username}"
-msgstr "Tidak ditemukan nama pengguna: {nama pengguna}"
+msgstr "Tidak ditemukan nama pengguna: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
 msgid "Failed to upload image"
@@ -168,7 +168,7 @@ msgstr "Silakan pilih format gambar GIF, JPEG atau PNG."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L215
 msgid "Error while saving."
-msgstr "Galat ketika sedang menyimpan."
+msgstr "Galat saat penyimpanan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L324
 msgid "Profile saved."
@@ -176,7 +176,7 @@ msgstr "Profil tersimpan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L335
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr "Gagal mengubah alamat email. Mohon masukkan alamat email dengan benar."
+msgstr "Gagal mengubah alamat email. Mohon masukkan alamat email yang benar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L376
 msgid "That email address already exists. Please try another."
@@ -346,7 +346,7 @@ msgstr "“terdapat dalam daftar nomor {listId}”, karena daftar {listId} adala
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L351
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr "\"kalimat tak berpemilik\". dikarenakan \"pemilik kalimat\" diset ke nama pengguna"
+msgstr "\"kalimat tak berpemilik\", karena \"pemilik kalimat\" diset ke nama pengguna"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -354,7 +354,7 @@ msgstr "\"kalimat tak berpemilik\". dikarenakan \"pemilik kalimat\" diset ke nam
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L362
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr "\"terjemahan tak berpemilik\", dikarenakan \"pemilik terjemahan\" diset ke nama pengguna"
+msgstr "\"terjemahan tak berpemilik\", karena \"pemilik terjemahan\" diset ke nama pengguna"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -362,7 +362,7 @@ msgstr "\"terjemahan tak berpemilik\", dikarenakan \"pemilik terjemahan\" diset 
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr "\"dimiliki oleh seorang penutur asli\", dikarenakan \"bahasa kalimat\" diset ke \"semua\""
+msgstr "\"dimiliki oleh seorang penutur asli\", karena \"bahasa kalimat\" diset ke \"semua\""
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -503,7 +503,7 @@ msgstr "Kalimat akan dialihkan ke lisensi CC0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
 msgid "You cannot send an empty message."
-msgstr "Pesan kosong tidak dapat terkirim."
+msgstr "Pesan kosong tidak dapat dikirimkan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L82
 msgid "You must fill the \"To\" field."

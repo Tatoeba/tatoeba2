@@ -4221,7 +4221,7 @@ msgstr "Транскрипции на {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L52
 msgid "{username} does not have any transcriptions"
-msgstr ""
+msgstr "{username} няма никакви транскрипции"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."
@@ -4303,7 +4303,7 @@ msgstr "Редактиране на език"
 msgid ""
 "If your language is missing, please read our article on how to <a "
 "href=\"{}\">request a new language</a>."
-msgstr ""
+msgstr "Ако вашият език липсва, моля, прочетете нашата статия за това как да <a href=\"{}\">заявите нов език</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L459
@@ -4317,7 +4317,7 @@ msgstr "Подробности (по избор). Например кой диа
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L86
 msgid "Contact {user}"
-msgstr ""
+msgstr "Свържете се с {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L94
 msgid "Comments posted"
@@ -4333,7 +4333,7 @@ msgstr "Аудио записи"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L100
 msgid "Sentences favorited"
-msgstr ""
+msgstr "Любими изречения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L102
 msgid "Contributions"
@@ -4355,13 +4355,13 @@ msgstr "Известията по имейл са ИЗКЛЮЧЕНИ."
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr ""
+msgstr "Достъпът до този профил е ПУБЛИЧЕН. Цялата информация може да бъде видяна от всеки."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L147
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr ""
+msgstr "Достъпът до този профил е ОГРАНИЧЕН. Само членовете на Tatoeba могат да видят личната информация и описанието."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L150
@@ -4411,27 +4411,27 @@ msgstr "Основни опции"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L64
 msgid "Send email notifications"
-msgstr ""
+msgstr "Изпращане на известия по имейл"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L87
 msgid "Set your profile public"
-msgstr ""
+msgstr "Настройте профила си като публичен"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L112
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr ""
+msgstr "Запомнете последния списък, към който сте присвоили изречение, и го изберете по подразбиране"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L138
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations"
-msgstr ""
+msgstr "Показване на връзка за разширяване/свиване на преводи, когато има твърде много преводи"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L162
 msgid "Always show unreviewed transcriptions and alternative scripts"
-msgstr ""
+msgstr "Винаги показвайте непрегледани транскрипции и алтернативни скриптове"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L187
 msgid "Show random sentence on the homepage"
@@ -4443,11 +4443,11 @@ msgid ""
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
 "languages you indicated. You can leave this empty to display translations in"
 " all languages."
-msgstr ""
+msgstr "Въведете <a href=\"{url}\">ISO 639-3 кодове</a>, разделени със запетая (напр.: jpn,epo,ara,deu). След това Tatoeba ще показва само преводи на езиците, които сте посочили. Можете да оставите това поле празно, за да се показват преводите на всички езици."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L232
 msgid "Number of sentences per page"
-msgstr ""
+msgstr "Брой изречения на страница"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Default license for original sentences"
