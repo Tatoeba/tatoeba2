@@ -684,6 +684,7 @@ class LanguagesLib
                 'sat' => __d('languages', 'Santali'),
                 'mik' => __d('languages', 'Hitchiti'),
                 'szl' => __d('languages', 'Silesian'),
+                'igs' => __d('languages', 'Interglossa'),
             );
         }
         return $languages;
