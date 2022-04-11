@@ -104,12 +104,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                       ) :
                       __d('admin', 'Invalid');
         $hasaudio = isset($file['audios']) ?
-                    implode(
-                        __(', '),
-                        array_map(
-                            function ($audio) { return $audio->user->username; },
-                            $file['audios']
-                        )
+                    (
+                        count($file['audios']) > 0 ?
+                        (
+                            implode(
+                                __(', '),
+                                array_map(
+                                    function ($audio) { return $audio->user->username; },
+                                    $file['audios']
+                                )
+                            )
+                        ) :
+                        __d('admin', 'None')
                     ) :
                     __d('admin', 'N/A');
         $isValid = $file['valid'] ?
