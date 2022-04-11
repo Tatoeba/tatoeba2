@@ -101,10 +101,26 @@ class AudioController extends AppController
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);
         if ($userId) {
-            $this->paginate['conditions'] = [
-                'Audios.user_id' => $userId,
-            ];
-            $sentencesWithAudio = $this->paginate('Audios');
+            $this->loadModel('Sentences');
+            $baseQuery = $this->Sentences
+                ->find()
+                ->innerJoinWith('Audios', function ($q) use ($userId) {
+                    return $q->where(['enabled' => true, 'Audios.user_id' => $userId])
+                             ->contain('Users', function ($q) {
+                                 return $q->select(['username']);
+                             });
+                })
+                ->contain('Audios', function ($q) use ($userId) {
+                    return $q->where(['enabled' => true, 'Audios.user_id' => $userId]);
+                })
+                ->contain('Transcriptions')
+                ->order(['Audios.modified' => 'DESC']);
+
+            $audioCountQuery = clone $baseQuery;
+            $this->set('totalAudio', $audioCountQuery->count());
+
+            $query = $baseQuery->distinct('Sentences.id');
+            $sentencesWithAudio = $this->paginate($query);
             $this->set(compact('sentencesWithAudio'));
 
             $audioSettings = $this->Users->getAudioSettings($userId);
