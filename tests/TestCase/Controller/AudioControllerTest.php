@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\TestCase\Controller\AudioIntegrationTestTrait;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
@@ -11,6 +12,7 @@ use Cake\TestSuite\IntegrationTestCase;
 class AudioControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
+    use AudioIntegrationTestTrait;
 
     public $fixtures = [
         'app.audios',
@@ -24,8 +26,6 @@ class AudioControllerTest extends IntegrationTestCase
         'app.reindex_flags',
         'app.links',
     ];
-
-    private $testAudioDir = TMP.'audio_tests'.DS;
 
     public function accessesProvider() {
         return [
@@ -61,35 +61,16 @@ class AudioControllerTest extends IntegrationTestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    private function createAudioFile($audioId, $contents) {
-        $audios = TableRegistry::get('Audios');
-        $audio = $audios->get($audioId);
-        mkdir(dirname($audio->file_path), 0777, true);
-
-        $file = new File($audio->file_path, true);
-        $file->write($contents);
-        $file->close();
-
-        return $contents;
-    }
-
     public function testAudioDownload_ok() {
-        Configure::write('Recordings.path', $this->testAudioDir);
-        $folder = new Folder($this->testAudioDir);
-        $folder->delete();
-        $folder->create($this->testAudioDir);
+        $this->initAudioStorageDir();
 
-        $someBinaryData = "\x96\xa1\x03\xb9\x95";
-        $this->createAudioFile(1, $someBinaryData);
+        $audioFileContents = $this->createAudioFile(1);
         $this->get('/en/audio/download/1');
         $this->assertResponseOk();
-        $this->assertResponseEquals($someBinaryData);
+        $this->assertResponseEquals($audioFileContents);
         $this->assertHeader('Content-Disposition', 'attachment; filename="3-1.mp3"');
 
-        Configure::write('Recordings.path', $this->testAudioDir);
-        $folder = new Folder($this->testAudioDir);
-        $folder->delete();
-        $folder->create($this->testAudioDir);
+        $this->initAudioStorageDir();
     }
 
     public function testAudioMassEdit_asAdmin_ok() {
