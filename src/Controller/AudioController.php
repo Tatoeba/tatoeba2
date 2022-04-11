@@ -45,12 +45,7 @@ class AudioController extends AppController
     );
 
     public $paginate = [
-        'contain' => [
-            'Users' => ['fields' => ['username']],
-            'Sentences' => ['Transcriptions']
-        ],
         'limit' => 100,
-        'order' => ['Audios.modified' => 'DESC']
     ];
 
     public function beforeFilter(Event $event)
@@ -75,18 +70,31 @@ class AudioController extends AppController
     }
 
     public function index($lang = null) {
-        $conditions = array();
+        $this->loadModel('Sentences');
+        $query = $this->Sentences
+            ->find()
+            ->distinct('Sentences.id')
+            ->innerJoinWith('Audios', function ($q) {
+                return $q->where(['enabled' => true])
+                         ->contain('Users', function ($q) {
+                             return $q->select(['username']);
+                         });
+            })
+            ->contain('Audios', function ($q) {
+                return $q->where(['enabled' => true]);
+            })
+            ->contain('Transcriptions')
+            ->order(['Audios.modified' => 'DESC']);
+
         if (LanguagesLib::languageExists($lang)) {
-            $conditions['Sentences.lang'] = $lang;
+            $query = $query->where(compact('lang'));
             $this->set(compact('lang'));
         }
-        $this->paginate['conditions'] = $conditions;
-        $sentencesWithAudio = $this->paginate('Audios');
+        $sentencesWithAudio = $this->paginate($query);
+        $this->set(compact('sentencesWithAudio'));
         
         $this->loadModel('Languages');
-        $this->set(compact('sentencesWithAudio'));
         $this->set(array('stats' => $this->Languages->getAudioStats()));
-        $this->set('lang', $lang);
     }
 
     public function of($username) {

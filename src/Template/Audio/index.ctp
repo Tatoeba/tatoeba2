@@ -68,10 +68,7 @@ if (isset($sentencesWithAudio)) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = true;
-        foreach ($sentencesWithAudio as $audio) {
-            $sentence = $audio->sentence;
-            unset($audio->sentence);
-            $sentence->audios = [$audio];
+        foreach ($sentencesWithAudio as $sentence) {
             $this->Sentences->displayGenericSentence(
                 $sentence,
                 $type,
