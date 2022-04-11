@@ -14,7 +14,7 @@ trait AudioIntegrationTestTrait
     private $testAudioDir = TMP.'audio_tests'.DS;
 
     private function createAudioFile($audioId) {
-        $contents = "\x96\xa1\x03\xb9\x95"; // random binary data
+        $contents = md5($audioId, true);
         $audios = TableRegistry::get('Audios');
         $audio = $audios->get($audioId);
         mkdir(dirname($audio->file_path), 0777, true);
