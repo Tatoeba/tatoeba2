@@ -82,7 +82,7 @@ echo $this->Form->create(
             <?php
             echo $this->Html->link(
                 __('Help'),
-                $this->cell('WikiLink', ['text-search']),
+                $this->Pages->getWikiLink('text-search'),
                 array(
                     'target' => '_blank'
                 )

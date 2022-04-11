@@ -348,7 +348,7 @@ class LanguagesLib
                 'gle' => __d('languages', 'Irish'),
                 'ina' => __d('languages', 'Interlingua'),
                 'jbo' => __d('languages', 'Lojban'),
-                'toki' => __d('languages', 'Toki Pona'),
+                'tok' => __d('languages', 'Toki Pona'),
                 'ain' => __d('languages', 'Ainu'),
                 'scn' => __d('languages', 'Sicilian'),
                 'mal' => __d('languages', 'Malayalam'),
@@ -682,6 +682,8 @@ class LanguagesLib
                 'shi' => __d('languages', 'Tashelhit'),
                 'bom' => __d('languages', 'Berom'),
                 'sat' => __d('languages', 'Santali'),
+                'mik' => __d('languages', 'Hitchiti'),
+                'szl' => __d('languages', 'Silesian'),
             );
         }
         return $languages;
@@ -729,7 +731,6 @@ class LanguagesLib
 
         $rightToLeftLangs = array(
             "ara",
-            "arq",
             "heb",
             "arz",
             "uig",
@@ -760,6 +761,7 @@ class LanguagesLib
 
         $autoLangs = array(
             "apc",
+            "arq",
             "ota",
             "chg",
             "lad",

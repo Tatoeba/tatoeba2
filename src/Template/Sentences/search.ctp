@@ -26,9 +26,10 @@
  */
 use App\Model\CurrentUser;
 
-if (!CurrentUser::isMember()) {
+if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
     $this->set('isResponsive', true);
 }
+
 if ($is_advanced_search) {
     $title = __x('title', 'Advanced search');
 } else if (!empty($query)) {
@@ -117,7 +118,7 @@ if ($ignored) {
                     'Invalid query. '.
                     'Please refer to the '.
                     '<a href="{}">search documentation</a> for more details.', true),
-                $this->cell('WikiLink', ['text-search'])
+                $this->Pages->getWikiLink('text-search')
             );
         ?></p>
     </div>

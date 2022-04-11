@@ -34,28 +34,31 @@ $langArray = $this->Languages->onlyLanguagesArray();
 
 <div ng-controller="RandomSentenceController as vm" ng-init="vm.init()">
 <md-toolbar class="md-hue-2">
-    <div class="md-toolbar-tools">
-        <?php /* @translators: random sentence block header on the home page for members */ ?>
+    <div class="md-toolbar-tools" layout-align="center center" layout-wrap>
+        <?php /* @translators: random sentence block header on the home page */ ?>
         <h2 flex><?= __('Random sentence') ?></h2>
 
-        <span>
-        <?php
-        echo $this->element('language_dropdown', [
-            'name' => 'randomLangChoice',
-            'id' => 'randomLangChoice',
-            'languages' => $langArray,
-            'initialSelection' => '{{vm.lang}}',
-            /* @translators: placeholder of language dropdown
-                             in homepage random sentence block */
-            'placeholder' => __('All languages'),
-            'onSelectedLanguageChange' => 'vm.lang = language.code',
-        ]);
-        ?>
-        </span>
+        <div layout="row" layout-align="center center" layout-wrap>
+            <span>
+            <?php
+            echo $this->element('language_dropdown', [
+                'name' => 'randomLangChoice',
+                'id' => 'randomLangChoice',
+                'languages' => $langArray,
+                'initialSelection' => '{{vm.lang}}',
+                /* @translators: placeholder of language dropdown
+                                 in homepage random sentence block */
+                'placeholder' => __('All languages'),
+                'onSelectedLanguageChange' => 'vm.lang = language.code',
+            ]);
+            ?>
+            </span>
 
-        <md-button id="showRandom" ng-click="vm.showAnother(vm.lang)">
-            <?= __('show another ') ?>
-        </md-button>
+            <md-button class="md-icon-button" id="showRandom" ng-click="vm.showAnother(vm.lang)">
+                <md-icon>refresh</md-icon>
+                <md-tooltip><?= __('show another ') ?></md-tooltip>
+            </md-button>
+        </div>
     </div>
 </md-toolbar>
 </div>

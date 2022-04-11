@@ -81,13 +81,33 @@ $vocabularyUrl = $this->Url->build(array(
     }
     ?>
 
-    <div ng-cloak class="section md-whiteframe-1dp">
-        <div layout="column" layout-align="center center">
-            <?= __('Check out the vocabulary for which we need sentences'); ?>
-            <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
-                <?= __('Sentences wanted') ?>
-                <md-icon>keyboard_arrow_right</md-icon>
-            </md-button>
+    <section>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Not inspired?'); ?></h2>
+            </div>
+        </md-toolbar>
+
+        <div layout="row" ng-cloak>
+            <div layout="column" layout-align="center center" class="section md-whiteframe-1dp" flex="50">
+                <?= __('Check the vocabulary requests for which there are very few or no sentences yet.'); ?>
+                <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
+                    <?= __('Sentences wanted') ?>
+                    <md-icon>keyboard_arrow_right</md-icon>
+                </md-button>
+            </div>
+
+            <div layout="column" layout-align="center center" class="section md-whiteframe-1dp" flex="50">
+                <?= __('Tatominer provides a list of the most searched words for which there are very few or no sentences yet.'); ?>
+                <md-button class="md-primary" href="https://tatominer.netlify.app/" target="_blank">
+                    <?= __('Go to Tatominer') ?>
+                    <md-icon>keyboard_arrow_right</md-icon>
+                </md-button>
+                <div class="hint" layout="row" layout-align="center center">
+                    <md-icon>info</md-icon>
+                    <div><?= __('Not all languages are supported yet.'); ?></div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 </div>

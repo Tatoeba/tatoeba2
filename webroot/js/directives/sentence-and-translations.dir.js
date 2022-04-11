@@ -171,7 +171,9 @@
                 var indirectTranslations = sentence.translations[1];
                 init(vm.userLanguages, sentence, directTranslations, indirectTranslations);
                 initMenu(false, sentence.permissions);
-                initLists(sentence.sentences_lists);
+                if (sentence.permissions) {
+                    initLists(sentence.sentences_lists);
+                }
             }).finally(function() {
                 vm.inProgress = false;
                 vm.isExpanded = false;

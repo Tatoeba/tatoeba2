@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 20:48+0000\n"
-"PO-Revision-Date: 2021-07-10 19:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2022-03-15 19:29+0000\n"
+"PO-Revision-Date: 2014-10-05 13:32+0000\n"
+"Last-Translator: Naguman Baloch, 2020-2021\n"
 "Language-Team: Balochi (http://www.transifex.com/tatoeba/tatoeba_website/language/bal/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L124
 msgid "There's no user called {username}"
 msgstr "نامیں کارمرزوک نیست{username}"
 
@@ -58,13 +58,13 @@ msgstr "لیسن ءِ بدلی چہ پیسرا بوگان اِنت۔"
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr "گالرد # {firstNumber} ءُ # {secondNumber} تچکءَ یکے دومیءِ رجانک انت۔ "
+msgstr "گالِد # {firstNumber} ءُ # {secondNumber} تچکءَ یکے دومیءِ رجانک انت۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr "گال # {firstNumber} ءُ # {secondNumber} نوں تچکءَ یکے دومیءِ رجانک نہ انت۔"
+msgstr "گالِد # {firstNumber} ءُ # {secondNumber} نوں تچکءَ یکے دومیءِ رجانک نہ انت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
@@ -79,7 +79,7 @@ msgstr "فولڈر’’{name}‘‘ ھورک کنگ بوت۔"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
-msgstr "چشیں گالردے نیست کہ آئی ءِ پَجّار {number} بہ بیت۔"
+msgstr "چشیں گالِدے نیست کہ آئی ءِ پَجّار {number} بہ بیت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L193
 msgid "Your comment has been saved."
@@ -103,19 +103,19 @@ msgstr "تئی دانک ءِ تہا بدلی دَرپ کنگ بیتگ اَنت۔
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L260
 msgid "The sentence #{id} has been deleted."
-msgstr "گالرِد {id} لِیکّور کنگ بیتگ۔"
+msgstr "گالِد {id} لِیکّور کنگ بیتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L266
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr "ردی: گالرد {id} لِیکّور کنگ نہ بوت۔"
+msgstr "ردی: گالِد {id} لِیکّور کنگ نہ بوت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L902
 msgid "You are not allowed to change the license of this sentence."
-msgstr "ترا اے گالرد ءِ لیسن ءِ بدل کنگ ءِ اجازت نہ اِنت۔"
+msgstr "ترا اے گالِد ءِ لیسن ءِ بدل کنگ ءِ اجازت نہ اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L909
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr "اے گالرد ءِ لیسن پہ {newLicense} بدل کنگ بیتگ۔"
+msgstr "اے گالِد ءِ لیسن پہ {newLicense} بدل کنگ بیتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L914
 msgid "Unable to change the license to “{newLicense}” because:"
@@ -127,7 +127,7 @@ msgstr "ترا اے لڑ ءِ چارگ ءِ اجازت نیست۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L296
 msgid "The sentence could not be added to the list."
-msgstr "گالرد ماں لَڑ ءَ ھور کنگ نہ بوت۔"
+msgstr "گالِد ماں لَڑ ءَ ھور کنگ نہ بوت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L502
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L534
@@ -138,7 +138,7 @@ msgstr "ترا اے لڑ ءِ ایرگیجگءِ اجازت نیست۔"
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr "پرے ٹیگ ءَ ھچ گالرد نیست۔ ھمے ٹیگ کہ تو آئی ءَ چارگائے لِیکّور کنگ بیتگ یا کہ نیست اِنت۔"
+msgstr "پرے ٹیگ ءَ ھچ گالِد نیست۔ ھمے ٹیگ کہ تو آئی ءَ چارگائے لِیکّور کنگ بیتگ یا کہ نیست اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L81
@@ -233,42 +233,42 @@ msgid ""
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "لاگن بےسوب بوت۔ پکا بکن کہ تئی کیپس لاک ءُ نم لاک بے ارادھی پچ نہ اَنت۔ تئی کلیتگال کیس ماروک اِنت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
 msgid "Welcome to Tatoeba!"
 msgstr "ٹٹوبا ءَ وَش اتکئے!۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L336
 msgid ""
 "To start things off, we encourage you to read our <a href='{url}'>Quick "
 "Start Guide</a>. If you want to read it later, you will find the link at the"
 " bottom of any page on the website."
 msgstr "پہ بندات کنگا، ما ترا اے گپا دلبڈی دئین کہ تو مئے <a href='{url}'>گشاد بُنگیجی رھشونی</a>ءَ بوانئے۔ اگاں تو ایشیا رندترا وانگ لوٹئے، ترا تَندجاھ ءِ ھر تاکدیم ءَ ایشی ءِ کڑی دست کپیت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L344
 msgid "We hope you'll enjoy your time here with us!"
 msgstr " مارا اُمیت اِنت کہ ادا گوں ما تئی وھد پہ وشنودی گوزیت!۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L355
 msgid "Please fix the form errors."
 msgstr "مہربانی کن فارم ءِ ردیاں ٹَھین۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L388
 msgid "Your new password has been sent to {email}."
 msgstr "تئی نوکیں کلیتگال{email}ءِ سرا دیم دیگ بیتگ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L393
 msgid "You may need to check your spam folder to find this message."
 msgstr "ترا پرے کلوہ ءِ درگیجگ ءَ بگندئے وتی اسپام فولڈر چارگ بہ کپیت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
 msgid "There is no registered user with this email address: "
 msgstr "چُشیں درج بیتگیں کارمرزوک نیست کہ آئی ءِ گِپّال ڈَسّ اے بہ بیت:۔ "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L423
 msgid "No user with this username: "
 msgstr "اے کارمرزی نام ءِ کارمرزوک نیست:۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L463
 msgid "No user with this ID: {id}"
 msgstr " چُشیں کارمرزوک نیست کہ آئی ءِ پَجّار اے بہ بیت: {id}۔"
 
@@ -308,7 +308,7 @@ msgstr "ھمے کلوہ ءَ کہ تو آئی ءِ چارگ ءِ جُہدائے�
 #. the following criteria have been ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L104
 msgid "“sentence owner”, because “{username}” is not a valid username"
-msgstr "’’گالرد ءِ واھند‘‘، چیاکہ {username}یک بَرجمیں کارمرزی نامے نہ اِنت"
+msgstr "’’گالِد ءِ واھند‘‘، چیاکہ {username}یک بَرجمیں کارمرزی نامے نہ اِنت"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
@@ -337,7 +337,7 @@ msgstr "’’لَڑ نمبر {listId}ءَ سیادی کنت‘‘، چیاکہ 
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L351
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr "گالرد چورہ اِنت‘‘، چیاکہ ’’گالرد ءِ واھند ‘‘ کارمرزی نامے ءِ سرا ایر اِنت۔"
+msgstr "گالِد چورہ اِنت‘‘، چیاکہ ’’گالِد ءِ واھند ‘‘ کارمرزی نامے ءِ سرا ایر اِنت۔"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -353,7 +353,7 @@ msgstr "رجانک چورہ اِنت‘‘، چیاکہ ’’رجانک ءِ و
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr "’’وت پجّارتگیں پیدائشی گپ جنوکے ایشی ءِ واھُند اِنت’’ چیاکہ ’’گالرد ءِ زبان‘‘ ’’ھرکجام‘‘ ءِ سرا ایر اِنت۔"
+msgstr "’’وت پجّارتگیں پیدائشی گپ جنوکے ایشی ءِ واھُند اِنت’’ چیاکہ ’’گالِد ءِ زبان‘‘ ’’ھرکجام‘‘ ءِ سرا ایر اِنت۔"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -384,11 +384,11 @@ msgstr[1] "جہل ءِ کارستاں فوریگانا مان نیست:{charsEnu
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
 msgid ""
 "The provided sentence differs from the original one near “{character}”."
-msgstr "داتگیں گالرد ’’{character}‘‘ ءِ جاگہ ءَ چہ بُندَری گالرد ءَ پرک کنت۔"
+msgstr "داتگیں گالِد ’’{character}‘‘ ءِ جاگہ ءَ چہ بُندَری گالِد ءَ پرک کنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L245
 msgid "The provided sentence is shorter than the original one."
-msgstr "داتگیں گالرد چہ بُندَری گالرد ءَ گونڈتر اِنت۔"
+msgstr "داتگیں گالِد چہ بُندَری گالِد ءَ گونڈتر اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L269
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
@@ -428,7 +428,7 @@ msgstr "{language}"
 #. placeholder of language dropdown
 #. in homepage random sentence block
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L153
@@ -440,36 +440,36 @@ msgstr "دراھیں زبان"
 msgid "unknown"
 msgstr "نزانتگیں"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L202
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L225
 msgid ""
 "This alternative script may contain errors because it has been generated by "
 "a piece of software that is not perfect."
 msgstr "بوت کنت بدلگیریں سیاھگ ءَ ردی مان بہ بیت چیاکہ اے ھَنچیں پَریامے ءِ گوما جوڑ کنگ بیتگ کہ سرجم نہ اِنت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L208
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L232
 msgid ""
 "This transcription may contain errors because it has been generated by a "
 "piece of software that is not perfect."
 msgstr "بوت کنت اے نَدگیر ءَ ردی مان بہ بیت چیاکہ اے ھَنچیں پَریامے ءِ گوما جوڑ کنگ بیتگ کہ سرجم نہ اِنت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L216
 msgid "The furigana was last edited by {author} on {date}."
 msgstr "فوریگانا گُڈّی رند ءَ {author}ءَ{date}ءَ رِدگ کرتگ ات۔"
 
 #. refers to a transcription
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L219
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L98
 msgid "Last edited by {author} on {date}"
 msgstr "گُڈی رند ءَ {author}ءَ {date}ءَ رِدگ کرتگ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L227
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L106
 msgid "This alternative script was generated by a piece of software"
 msgstr "اے بدلگیریں سیاھگ یک پَریامے ءَ جوڑ کرتگ ات۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L229
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L230
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L109
 msgid "This transcription was generated by a piece of software"
 msgstr "اے نَدگیر یک پَریامے ءَ سازتگ ات۔"
@@ -480,20 +480,20 @@ msgstr "لَڑے جوڑ کن{listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/ListExporter.php#L146
 msgid "Sentence id [tab] Sentence text"
-msgstr "گالرد ءِ پجّار [ٹیب] گالرد ءِ نِبشتگ"
+msgstr "گالِد ءِ پجّار [ٹیب] گالِد ءِ نِبشتگ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/PairsExporter.php#L116
 msgid "Sentence pairs in {language1}-{language2}"
-msgstr "گالردانی جُتک {language1}-{language2}۔"
+msgstr "گالِدانی جُتک {language1}-{language2}۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/PairsExporter.php#L123
 msgid ""
 "Sentence id [tab] Sentence text [tab] Translation id [tab] Translation text"
-msgstr "گالرد ءِ پَجُار [ٹیب] گالرد ءِ نِبشتگ [ٹیب] رجانک ءَ پجُار [ٹیب] رجانک ءِ نبشتگ"
+msgstr "گالِد ءِ پَجُار [ٹیب] گالِد ءِ نِبشتگ [ٹیب] رجانک ءَ پجُار [ٹیب] رجانک ءِ نبشتگ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
-msgstr "دیم پہ سی سی 0 ءَ بدل بیگ ءِ گالرد"
+msgstr "دیم پہ سی سی 0 ءَ بدل بیگ ءِ گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
 msgid "You cannot send an empty message."
@@ -528,26 +528,26 @@ msgstr "اے بَرجمیں لیسنے نہ اِنت۔"
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L126
 msgid "This sentence is already under that license."
-msgstr "اے گالرد چہ پیسرا آ لیسن ءِ تہا اِنت۔"
+msgstr "اے گالِد چہ پیسرا آ لیسن ءِ تہا اِنت۔"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L219
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr "گالرد بُندَری بہ بیت (اولسرا چہ رجانک ءَ دراتکگینے مہ بیت)۔"
+msgstr "گالِد بُندَری بہ بیت (اولسرا چہ رجانک ءَ دراتکگینے مہ بیت)۔"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L227
 msgid "You're not the owner of this sentence."
-msgstr "تو اے گالرد ءِ واھُند نئے۔"
+msgstr "تو اے گالِد ءِ واھُند نئے۔"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L234
 msgid "The owner of the sentence needs to be its original creator."
-msgstr "لازمی اِنت کہ اے گالرد ءِ واھُند ایشی ءِ بُندَری ساچشتکار بہ بیت۔"
+msgstr "لازمی اِنت کہ اے گالِد ءِ واھُند ایشی ءِ بُندَری ساچشتکار بہ بیت۔"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -609,7 +609,7 @@ msgstr "سی سی 0 1.0 ءَ لیسن بدلی ءِ آسر"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L94
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
-msgstr "گالرد {id} ءِ لیسن پہ {newLicense} ءِ بدل بیت نہ کنت چیاکہ:۔"
+msgstr "گالِد {id} ءِ لیسن پہ {newLicense} ءِ بدل بیت نہ کنت چیاکہ:۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L121
 msgid "License switch started on {date} at {time} UTC."
@@ -618,8 +618,8 @@ msgstr "لیسن ءِ بدلی {date} ءَ {time}  یو ٹی سی ءَ بِند�
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L126
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
-msgstr[0] "گالردانی لیسن پہ سوبمندی بدل بوت۔{n}"
-msgstr[1] "گالردانی لیسن پہ سوبمندی بدل بوت۔{n}"
+msgstr[0] "گالِدانی لیسن پہ سوبمندی بدل بوت۔{n}"
+msgstr[1] "گالِدانی لیسن پہ سوبمندی بدل بوت۔{n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L133
 msgid "License switch completed on {date} at {time} UTC."
@@ -627,11 +627,11 @@ msgstr "لیسن ءِ بدلی {date} ءَ {time}  یو ٹی سی ءَ سرجم 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L30
 msgid "Orphan sentences"
-msgstr "چوروئیں گالرد"
+msgstr "چوروئیں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L33
 msgid "Orphan sentences in {language}"
-msgstr "ماں {language} ءَ چوروئیں گالرد"
+msgstr "ماں {language} ءَ چوروئیں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L44
 msgid "About adoption"
@@ -641,7 +641,7 @@ msgstr "وتی کنگ ءِ بابت ءَ"
 msgid ""
 "Adopting is a way to vote \"this sentence is correct\". It is also an "
 "occasion to check the sentence and correct it if there is a mistake."
-msgstr "زیرگ اے گپ ءِ اوٹ دیگ ءِ یک وَڑے کہ ’’اے گالرد راست اِنت‘‘۔ اے گالرد ءِ تپاسگ ءِ موھے ھم کہ اگاں ایشی ءِ تہا ردی یے ھست گُڑا راست کنگ بہ بیت۔"
+msgstr "زیرگ اے گپ ءِ اوٹ دیگ ءِ یک وَڑے کہ ’’اے گالِد راست اِنت‘‘۔ اے گالِد ءِ تپاسگ ءِ موھے ھم کہ اگاں ایشی ءِ تہا ردی یے ھست گُڑا راست کنگ بہ بیت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L58
 msgid ""
@@ -649,7 +649,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr "پمیشکا اگاں تو گالردانی تپاسگ ءُ راست کنگ ءَ مارا کُمک کنگ لوٹئے گُڑا ھما ’’چورھیں‘‘ گالرد ءَ بزیر ( {adoptButton} )کہ تو آئیا وتی <strong>پیدائشی زبان</strong>زبان ءِ تہا گندئے، ءُ اگاں پَکار بوت آئیا راست کن۔ پہ گیشتر گیشواری ءَ ایشیءَ<a href=\"{url}\">بوان</a>۔   "
+msgstr "پمیشکا اگاں تو گالِدانی تپاسگ ءُ راست کنگ ءَ مارا کُمک کنگ لوٹئے گُڑا ھما ’’چورھیں‘‘ گالِد ءَ بزیر ( {adoptButton} )کہ تو آئیا وتی <strong>پیدائشی زبان</strong>زبان ءِ تہا گندئے، ءُ اگاں پَکار بوت آئیا راست کن۔ پہ گیشتر گیشواری ءَ ایشیءَ<a href=\"{url}\">بوان</a>۔   "
 
 #. title of the help text on the Adopt sentence page
 #. / title of the help text on the Add vocabulary page
@@ -666,13 +666,13 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr "اگاں یک گالردے ءِ زیرگ ءَ پد تو دگہ کارمرزی نامے گندئے گُڑا ایشی ءِ مانا ایش اِنت کہ دگہ کسے ءَ چہ تو کمے پیشتر آ زرتگ۔ اے وڑیں وھداں، تو ھما گالردانی زیرگ ءِ جہد ءَ بکن کہ چیزے تاکدیم دیمترا اَنت دانکہ پدا ھمے وَڑ مہ بئے۔"
+msgstr "اگاں یک گالِدے ءِ زیرگ ءَ پد تو دگہ کارمرزی نامے گندئے گُڑا ایشی ءِ مانا ایش اِنت کہ دگہ کسے ءَ چہ تو کمے پیشتر آ زرتگ۔ اے وڑیں وھداں، تو ھما گالِدانی زیرگ ءِ جہد ءَ بکن کہ چیزے تاکدیم دیمترا اَنت دانکہ پدا ھمے وَڑ مہ بئے۔"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L98
 msgid "Improve sentences"
-msgstr "گالرداں گہتر کن"
+msgstr "گالِداں گہتر کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L61
 msgid "Related links"
@@ -690,23 +690,23 @@ msgstr "ھما ٹیگ کہ آھانی بابت ءَ ترا زانگ لوٹیت"
 msgid ""
 "The community has come up with several \"utility tags\" to improve the "
 "quality and reliability of sentences."
-msgstr "گالردانی جوانی ءُ بروسہ ءِ گِہتر کنگ ءِ واستا ٹَکّ ءِ ھیال ءَ بازیں ’’کارمندی ٹیگ‘‘ بہ بنت۔"
+msgstr "گالِدانی جوانی ءُ بروسہ ءِ گِہتر کنگ ءِ واستا ٹَکّ ءِ ھیال ءَ بازیں ’’کارمندی ٹیگ‘‘ بہ بنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
-msgstr " گالرد بدل کنگ لوٹیت۔:{tagChange}"
+msgstr " گالِد بدل کنگ لوٹیت۔:{tagChange}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr " اے گالرد تپاسگ لوٹیت۔: {tagCheck}"
+msgstr " اے گالِد تپاسگ لوٹیت۔: {tagCheck}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr "پیدائشی گپ جنوکے ءَ اے گالرد : {tagNNC} تَپّاسگ لوٹیت۔"
+msgstr "پیدائشی گپ جنوکے ءَ اے گالِد : {tagNNC} تَپّاسگ لوٹیت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr " اے گالرد یک چہ کم یک مردمے ءِ ھیال ءَ راست اِنت۔:{tagOK}"
+msgstr " اے گالِد یک چہ کم یک مردمے ءِ ھیال ءَ راست اِنت۔:{tagOK}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L102
 msgid "How to help"
@@ -716,13 +716,13 @@ msgstr "چوں کُمک کرت کنئے"
 msgid ""
 "You need to be an <a href=\"{}\">advanced contributor</a>; otherwise you "
 "will not be able to tag sentences."
-msgstr "ترا یک <a href=\"{}\"> پیشرپتیں بَہرِشتکارے</a> بیگ لوٹیت؛ اگاں ناں گُڑا تو گالرداں ٹیگ کرت نہ کنئے۔"
+msgstr "ترا یک <a href=\"{}\"> پیشرپتیں بَہرِشتکارے</a> بیگ لوٹیت؛ اگاں ناں گُڑا تو گالِداں ٹیگ کرت نہ کنئے۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L109
 msgid ""
 "Whenever you notice a sentence that is wrong or sounds strange, add the tag "
 "{tagChange} and post a comment to suggest a correction or better phrasing."
-msgstr "ھروھدے کہ تو گندئے کہ یک گالردے رَد اِنت یا دگہ وَڑ اِنت، آئیا {tagChange} ءِ ٹیگ ءَ پِر کن ءُ پہ آئی ءِ راست کنگ یا گہتریں لبزاں بیان کنگ ءِ واستا دانکے ٹَپال بکن۔"
+msgstr "ھروھدے کہ تو گندئے کہ یک گالِدے رَد اِنت یا دگہ وَڑ اِنت، آئیا {tagChange} ءِ ٹیگ ءَ پِر کن ءُ پہ آئی ءِ راست کنگ یا گہتریں لبزاں بیان کنگ ءِ واستا دانکے ٹَپال بکن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L115
 msgid ""
@@ -734,14 +734,14 @@ msgstr "ھروھدے کہ تو بوتنی رَدی یے گندئے، {tagCheck} 
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr "ھروھدے کہ تو یک ڈنی زبانے ءَ گالردے گیش کنئے ءُ سرجما پکّا نئے کہ راست اِنت، {tagNNC}ءِ ٹیگ ءَ پِر کن۔"
+msgstr "ھروھدے کہ تو یک ڈنی زبانے ءَ گالِدے گیش کنئے ءُ سرجما پکّا نئے کہ راست اِنت، {tagNNC}ءِ ٹیگ ءَ پِر کن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L126
 msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr "ھروھد کہ بوت کنت تو ھما گالرداں براوز کن کہ آھاں {tagChange}، {tagCheck}، ءُ {tagNNC} ءِ ٹیگ پِر دانکہ تو ایدگہ باسکانی گوم ءَ ھمے گالردانی بابت ءَ گپ جت بہ کنئے ءُ اے بابت ءَ پیسلہ کنگ ءَ مَدت بہ رسیت کہ چوشیں گالرد چون کنگ بہ بنت۔"
+msgstr "ھروھد کہ بوت کنت تو ھما گالِداں براوز کن کہ آھاں {tagChange}، {tagCheck}، ءُ {tagNNC} ءِ ٹیگ پِر دانکہ تو ایدگہ باسکانی گوم ءَ ھمے گالِدانی بابت ءَ گپ جت بہ کنئے ءُ اے بابت ءَ پیسلہ کنگ ءَ مَدت بہ رسیت کہ چوشیں گالِد چون کنگ بہ بنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L135
 msgid ""
@@ -749,14 +749,14 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr "یک برے کہ یک جنجال کنوکیں گالردے ٹَھینگ بوت، آئیا {tagOK} ءِ ٹیگ ءَ بجن۔ چونایا تو ایدگہ گالرداں ھم تپاست ءُ {tagOK} ءِ ٹیگ ءَ جت کنئے بلے اے کار ءَ ھما وھد ءَ بکن کہ تو پکائے کہ اے گالرد راست اَنت ءُ وتی جند ءِ گالرداں اے ٹیگ ءَ کارمرز مکن۔"
+msgstr "یک برے کہ یک جنجال کنوکیں گالِدے ٹَھینگ بوت، آئیا {tagOK} ءِ ٹیگ ءَ بجن۔ چونایا تو ایدگہ گالِداں ھم تپاست ءُ {tagOK} ءِ ٹیگ ءَ جت کنئے بلے اے کار ءَ ھما وھد ءَ بکن کہ تو پکائے کہ اے گالِد راست اَنت ءُ وتی جند ءِ گالِداں اے ٹیگ ءَ کارمرز مکن۔"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L87
 msgid "Translate sentences"
-msgstr "گالرداں رجانک کن"
+msgstr "گالِداں رجانک کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L43
 msgid "How to add a translation"
@@ -766,7 +766,7 @@ msgstr "رجانکے ءِ ھور کنگ ءِ وَڑ "
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr "یک برے کہ گالرد پیشدارگ بیت اَنت، پہ رَجانک ءِ ھور کنگ ءَ {translateButton} ءَ کلک بکن۔"
+msgstr "یک برے کہ گالِد پیشدارگ بیت اَنت، پہ رَجانک ءِ ھور کنگ ءَ {translateButton} ءَ کلک بکن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L58
 msgid "About translations"
@@ -794,16 +794,16 @@ msgstr "اگاں تو مارئے کہ یکے ءَ گیش رجانک بیت کن�
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr "گالردانی رجانک کنگ ءِ مانا ایش اِنت کہ تو کم چہ کم دو زبان بزانئے۔ مہربانی کن <a href=\"{}\">وتی پروفائل</a> ءَ سرجم کن  ءُ کم چہ کم دو زبان نشان بدئے۔"
+msgstr "گالِدانی رجانک کنگ ءِ مانا ایش اِنت کہ تو کم چہ کم دو زبان بزانئے۔ مہربانی کن <a href=\"{}\">وتی پروفائل</a> ءَ سرجم کن  ءُ کم چہ کم دو زبان نشان بدئے۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L104
 msgid "Search for untranslated sentences"
-msgstr "رجانک نبیتگیں گالرداں شوھاز"
+msgstr "رجانک نبوتگیں گالِداں شوھاز"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
 msgid "Sentences in:"
-msgstr "گالرد ماں:۔ "
+msgstr "گالِد ماں:۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L136
 msgid "Not directly translated into:"
@@ -850,15 +850,35 @@ msgstr "درستاں رند جوڑ کرتگیناں پیسرا"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L192
 msgid "show sentences"
-msgstr "گالرداں پیشدار"
+msgstr "گالِداں پیشدار"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L198
+msgid "Check Tatominer"
+msgstr "ٹَٹومائنر ءَ بچار"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L200
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no translations yet."
+msgstr "ٹَٹومائنر ھما لَبزانی لَڑے پُجارینیت کہ درستان گیش شوھاز کنگ بوتگ انت و پَراھان رَجانک نیست یا کم دست کپیت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L103
+msgid "Go to Tatominer"
+msgstr "ٹَٹومائنر ءَ برو"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L108
+msgid "Not all languages are supported yet."
+msgstr "دنیگہ درستین زبان مان نہ اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
-msgstr "ھما گالرداں رجانک کن کہ آ{language} ءِ{user}ئیگ اَنت۔"
+msgstr "ھما گالِداں رجانک کن کہ آ{language} ءِ{user}ئیگ اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L39
 msgid "Translate sentences that belong to {user}"
-msgstr "ھما گالرداں رجانک کن کہ {user} ئیگ اَنت "
+msgstr "ھما گالِداں رجانک کن کہ {user} ئیگ اَنت "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L29
@@ -869,21 +889,21 @@ msgstr "میاندیمی زبان"
 #. in Browse by languages page.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/show_all_sentences_button_text.ctp#L6
 msgid "Show all sentences in {language}"
-msgstr "ءِ درستیں گالرداں پیش دار{language}"
+msgstr "ءِ درستیں گالِداں پیش دار{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
-msgstr "ءِ ھما گالرد کہ آ گوں تواربَند اَنت۔{language}"
+msgstr "ءِ ھما گالِد کہ آ گوں تواربَند اَنت۔{language}"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L452
 msgid "Sentences with audio"
-msgstr "گالرد گوں تواربنداں"
+msgstr "گالِد گوں تواربنداں"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L49
 msgid "There are no sentences with audio"
-msgstr "ادا چشیں گالرد نیست کہ تواربند ئِے ببیت"
+msgstr "ادا چشیں گالِد نیست کہ تواربند ئِے ببیت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L87
@@ -964,7 +984,7 @@ msgstr "روچ"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
-msgstr "گالرد ھور کنگ بیتگ اَنت"
+msgstr "گالِد ھور کنگ بیتگ اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
 msgid "Links added"
@@ -976,13 +996,13 @@ msgstr "کڑی دُور کنگ بیتگ اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L95
 msgid "Sentences removed"
-msgstr "گالرد دُور کنگ بیتگ اَنت"
+msgstr "گالِد دُور کنگ بیتگ اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L130
 msgid "Daily Average: {n} sentence added"
 msgid_plural "Daily Average: {n} sentences added"
-msgstr[0] "ھرروچی میانگ: {n}گالردے گیش کنگ بیتگ"
-msgstr[1] "ھرروچی میانگ: {n}گالرد گیش کنگ بیتگ اَنت"
+msgstr[0] "ھرروچی میانگ: {n}گالِدے گیش کنگ بیتگ"
+msgstr[1] "ھرروچی میانگ: {n}گالِد گیش کنگ بیتگ اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L140
 msgid ", {n} link added"
@@ -992,7 +1012,7 @@ msgstr[1] "، کڑی گیش کنگ بوت اَنت{n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "نوکتریں بَہرِشت"
@@ -1003,7 +1023,7 @@ msgstr "ءِ نوکتریں بَہرِشت{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} contributions are displayed here."
-msgstr ""
+msgstr "ایوکا رَندی{n} بَھرِشت پیش دارگ بوتگ اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L36
 msgid "This form is pre-filled."
@@ -1023,7 +1043,7 @@ msgstr "فارم ءَ سپاکن"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L205
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L59
 msgid "Sentences"
-msgstr "گالرد"
+msgstr "گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L62
 msgid "Words:"
@@ -1101,7 +1121,7 @@ msgstr "ھئو"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L316
 msgid "Orphan sentences are likely to be incorrect."
-msgstr "چورھیں گالرد بگندئے ناراست اَنت۔"
+msgstr "چورھیں گالِد بگندئے ناراست اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L322
@@ -1118,7 +1138,7 @@ msgstr "ھر کجام"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L337
 msgid "Unapproved sentences are likely to be incorrect."
-msgstr "نامَنزوریں گالرد بگندئے ناراست اَنت۔"
+msgstr "نامَنزوریں گالِد بگندئے ناراست اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L160
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L342
@@ -1171,7 +1191,7 @@ msgstr "دَرکشّ"
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
-msgstr "گالردانی ھما رجانک کہ جہل ءِ کَچّگاں ھمدپ اَنت۔{action}"
+msgstr "گالِدانی ھما رجانک کہ جہل ءِ کَچّگاں ھمدپ اَنت۔{action}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L266
 msgid "Link:"
@@ -1214,7 +1234,7 @@ msgstr "چَپّی ئیں رِد ءُ بند"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L404
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L712
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L707
 msgctxt "button"
 msgid "Search"
 msgstr "شوھاز"
@@ -1264,7 +1284,7 @@ msgstr "پیژڈاھ: اے تَندتاک پہ آزمودگی مکسدءَ اَ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
-msgstr "زبان ءِ رِدءَ ھما گالردانی شُمار کہ گوں تواربند اَنت"
+msgstr "زبان ءِ رِدءَ ھما گالِدانی شُمار کہ گوں تواربند اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
@@ -1293,8 +1313,8 @@ msgstr[1] "ھما کارمرزوک کہ آھاں گُڈّی {n} ءُ این بی
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L61
 msgid "{n}&nbsp;sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] "ءُ این بی ایس پی؛ گالرد{n}"
-msgstr[1] " ءُ نی بی ایس پی؛ گالرد{n}"
+msgstr[0] "ءُ این بی ایس پی؛ گالِد{n}"
+msgstr[1] " ءُ نی بی ایس پی؛ گالِد{n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L18
 msgid "Custom exports"
@@ -1303,7 +1323,7 @@ msgstr "کسٹم ایکسپورٹ"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L29
 msgid "Sentence pairs"
-msgstr "گالردانی جُتک"
+msgstr "گالِدانی جُتک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L25
 msgid "Use this tool to generate and download customized exports on demand."
@@ -1311,17 +1331,17 @@ msgstr "لوٹ ءِ رِدا کسٹمائزین ایکسپورٹانی جوڑ ک
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L31
 msgid "Download all sentences in language A with translations in language B"
-msgstr "زبان اے ءِ درستیں گالرداں گوں زبان بی ءِ رجانکاں ایرگیج کن۔"
+msgstr "زبان اے ءِ درستیں گالِداں گوں زبان بی ءِ رجانکاں ایرگیج کن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L36
 msgid ""
 "Download all sentences in language A that are translated into language B, "
 "along with the translations."
-msgstr "زبان اے ءِ درستیں گالرداں کہ زبان بی ءَ رجانک کنگ بوتگ انت، گوں رجانکاں ایرگیج کن۔"
+msgstr "زبان اے ءِ درستیں گالِداں کہ زبان بی ءَ رجانک کنگ بوتگ انت، گوں رجانکاں ایرگیج کن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L43
 msgid "Sentence language:"
-msgstr "گالرد ءِ زبان:۔"
+msgstr "گالِد ءِ زبان:۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L61
 msgid "Translation language:"
@@ -1331,7 +1351,7 @@ msgstr "رجانک ءِ زبان:۔"
 #. with all translations in a language B (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L79
 msgid "Download sentence pairs"
-msgstr "گالردانی جُتکاں ایرگیج"
+msgstr "گالِدانی جُتکاں ایرگیج"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export_download_button.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
@@ -1504,7 +1524,7 @@ msgstr "لاگِن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
-msgstr "ایوکا گالرد ماں:۔"
+msgstr "ایوکا گالِد ماں:۔"
 
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46
@@ -1595,14 +1615,12 @@ msgstr "دیم دئے"
 msgid "notification from Tatoeba"
 msgstr "ھالنامَگ چہ ٹٹوبا ءَ"
 
-#. random sentence block header on the home page for members
-#. / random sentence block header on the home page for guests
+#. random sentence block header on the home page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L49
 msgid "Random sentence"
-msgstr "پَدیمیں گالرِد"
+msgstr "پَدیمیں گالِد"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L59
 msgid "show another "
 msgstr "دگرے پیشدار"
 
@@ -1620,7 +1638,7 @@ msgstr "جوان‘‘ ءِ ھساب ءَ نشان کن"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L575
 msgid "Unmark sentence"
-msgstr "نشان نہ جتگیں گالرد"
+msgstr "نشان نہ جتگیں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/reviews/edit_review.ctp#L18
@@ -1686,7 +1704,7 @@ msgstr "ءِ زَپت کرتگیں تواربند ءَ چالوکن{author}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L202
 msgid "No audio for this sentence. Click to learn how to contribute."
-msgstr "پہ اے گالرد ءَ تواربند نیست۔ چتور وتی بہرشت ءَ دات کنئے پریشی ءِ دَربرگ ءَ ادا کلک کن۔"
+msgstr "پہ اے گالِد ءَ تواربند نیست۔ چتور وتی بہرشت ءَ دات کنئے پریشی ءِ دَربرگ ءَ ادا کلک کن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L20
 msgid "Add a comment"
@@ -1706,12 +1724,12 @@ msgstr "نوک کارمرزوکاں ’’وش اتک‘‘ بکن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L58
 msgid "Use private messages to discuss things unrelated to the sentence."
-msgstr "ھما چیز کہ گوں گالرد ءَ سیادی نہ کننت، آھانی سرا گپ ءُ تران کنگ ءِ واستا اِھوَتی کلوہاں کارمرز بکن۔"
+msgstr "ھما چیز کہ گوں گالِد ءَ سیادی نہ کننت، آھانی سرا گپ ءُ تران کنگ ءِ واستا اِھوَتی کلوہاں کارمرز بکن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L61
 msgid "sentence deleted"
-msgstr "گالرد لِیکّورگ بوت"
+msgstr "گالِد لِیکّورگ بوت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L66
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L12
@@ -1720,14 +1738,14 @@ msgid "{createdDate}, edited {modifiedDate}"
 msgstr "ءَ {modifiedDate}رِدگ کرت{createdDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L106
 msgid "Sentence {number} — belongs to {username}"
-msgstr "گالرد {username}ئیگ اِنت۔{number}"
+msgstr "گالِد {username}ئیگ اِنت۔{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L117
 msgid "Sentence {number}"
-msgstr "گالرد {number}"
+msgstr "گالِد {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L70
@@ -1841,20 +1859,20 @@ msgstr "لیسن"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L127
 msgid "Sentence"
-msgstr "گالرد"
+msgstr "گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L70
 msgid "Add sentence"
-msgstr "گالردے گیش کن"
+msgstr "گالِدے گیش کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L10
 msgid "Add new sentences"
-msgstr "نوکیں گالرد گیش کن"
+msgstr "نوکیں گالِد گیش کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L24
 msgid "No sentences added yet."
-msgstr "انگت ھچ گالرد گیش کن نبیتگ۔"
+msgstr "انگت ھچ گالِد گیش کن نبیتگ۔"
 
 #. submit button of new sentence addition form
 #. / submit button of list name edition form
@@ -1866,7 +1884,7 @@ msgstr "انگت ھچ گالرد گیش کن نبیتگ۔"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L491
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L576
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L571
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
@@ -1882,29 +1900,29 @@ msgstr "تواربند"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
 msgid "Show more features for all sentences"
-msgstr "پہ درستیں گالرداں گیشتر دروش پیشدار"
+msgstr "پہ درستیں گالِد گیشتر دروش پیشدار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L13
 msgid "Show fewer features for all sentences"
-msgstr "پہ درستیں گالرداں کمتر دروش پیشدار"
+msgstr "پہ درستیں گالِداں کمتر دروش پیشدار"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L5
 msgid "0 sentences"
-msgstr "0 گالرد"
+msgstr "0 گالِد"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L8
 msgid "1 or more sentences"
-msgstr "یک 1 یا گیشتر گالرد"
+msgstr "یک 1 یا گیشتر گالِد"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/index/all.ctp#L12
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L191
 msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
-msgstr[0] "گالرد+{n}"
-msgstr[1] "گالرد+{n}"
+msgstr[0] "گالِد+{n}"
+msgstr[1] "گالِد+{n}"
 
 #. placeholder text in search field of
 #. Browse by languages page
@@ -1919,7 +1937,7 @@ msgstr "لَڑءَ شوھاز یا نوکیں لَڑی نامے مان کن"
 #. button to create a new list directly from a sentence block
 #. / button to create a new list from the lists of list page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L9
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L673
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L668
 msgid "Create"
 msgstr "جوڑ کن"
 
@@ -1945,7 +1963,7 @@ msgstr "ھچ لَڑ دست نہ کپت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L28
 msgid "You have no lists which this sentence can be added to."
-msgstr "ترا چشیں لڑ نیست کہ آئیا اے گالرد ھور کنگ بہ بیت۔"
+msgstr "ترا چشیں لڑ نیست کہ آئیا اے گالِد ھور کنگ بہ بیت۔"
 
 #. link to neighbour sentence on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L25
@@ -1964,7 +1982,7 @@ msgstr "دیمتری"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L42
 msgid "Language for previous, next or random sentence"
-msgstr "پیسری، دیمی یا پَدیمیں گالردانی واستا زبان"
+msgstr "پیسری، دیمی یا پَدیمیں گالِدانی واستا زبان"
 
 #. placeholder used in language dropdown
 #. in navigation block on sentence pages
@@ -1975,16 +1993,16 @@ msgstr "ھر یک زبانے"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L75
 msgid "Show sentence #: "
-msgstr "  :#گالرداں پیشدار"
+msgstr "  :#گالِداں پیشدار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L119
 msgid "Your sentence was not added because the following already exists."
-msgstr "تئی گالرد ھوار کنگ نہ بوت چیاکہ اے چہ پیسرا ھست اِنت۔"
+msgstr "تئی گالِد ھوار کنگ نہ بوت چیاکہ اے چہ پیسرا ھست اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L149
 msgid "This sentence belongs to a native speaker."
-msgstr "اے گالرد پیدائشی گپ جنوکے ئیگ اِنت۔"
+msgstr "اے گالِد پیدائشی گپ جنوکے ئیگ اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L188
 msgid "Translations of translations"
@@ -1998,7 +2016,7 @@ msgstr "کمتر رجانک"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L4
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L479
 msgid "You cannot edit this sentence because it has audio."
-msgstr "تو اے گالرد ءَ رِدگ کرت نہ کنئے چیاکہ ایشیا تواربند مان۔"
+msgstr "تو اے گالِد ءَ رِدگ کرت نہ کنئے چیاکہ ایشیا تواربند مان۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L20
 msgid "Other language"
@@ -2023,19 +2041,19 @@ msgstr "چمشانک داتگین ءِ ھساب ءَ نشان کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L13
 msgid "This sentence is not reliable."
-msgstr "اے گالرد بروسہی نہ اِنت۔"
+msgstr "اے گالِد بروسہیے نہ اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L281
 msgid "Copy sentence"
-msgstr "گالرد ءَ نکل کن"
+msgstr "گالِد ءَ نکل کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L26
 msgid "Go to sentence page"
-msgstr "گالرد ءِ تاکدیم ءَ برو"
+msgstr "گالِد ءِ تاکدیم ءَ برو"
 
 #. translate button on sentence menu (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L87
 msgid "Translate"
@@ -2050,7 +2068,7 @@ msgstr "رجانک کن"
 #. / edit button on sentence comment (verb)
 #. / edit button on sentence menu (verb)
 #. / edit button on a wall post (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L15
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L132
@@ -2066,27 +2084,27 @@ msgstr "رجانک کن"
 msgid "Edit"
 msgstr "رِدگ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L21
 msgid "Add sentence to list"
-msgstr "لَڑ ءَ گالردے ھور کن"
+msgstr "لَڑ ءَ گالِدے ھور کن"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L26
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L215
 msgid "Add to favorites"
 msgstr "گوں دلپسنداں ھور کن"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L206
 msgid "Remove from favorites"
 msgstr "چہ دلپسنداں دُور کن"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L138
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L436
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
@@ -2100,7 +2118,7 @@ msgstr "تو پَکّائے؟"
 #. / delete button on sentence menu (verb)
 #. / button to put a private message in the trash (verb)
 #. / delete button on a wall post (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
@@ -2111,21 +2129,21 @@ msgstr "تو پَکّائے؟"
 msgid "Delete"
 msgstr "لِیکّور"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L150
 msgid "Click to adopt"
 msgstr "زیرگ ءِ واستا کلک بکن"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L157
 msgid "Click to unadopt"
 msgstr "نزیرگ ءِ واستا کلک بکن"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L58
 msgid "Show more features"
 msgstr "گیشتر دروش پیشدار"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L63
 msgid "Show fewer features"
 msgstr "کمتر دروش پیشدار"
 
@@ -2147,7 +2165,7 @@ msgstr "تچکیں رجانک ءِ تہا کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L31
 msgid "Existing sentence #{number} has been added as a translation."
-msgstr "ھستیں گالرد #{number}رجانک ءِ جہت ءَ گیش کنگ بیتگ۔"
+msgstr "ھستیں گالِد #{number}رجانک ءِ جہت ءَ گیش کنگ بیتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L41
 msgid "Edit this translation"
@@ -2169,14 +2187,14 @@ msgstr "رجانک ءَ رِدگ کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L22
 msgid "Sentence removed from list."
-msgstr "گالرد چہ لَڑ ءَ دُور کنگ بوت۔"
+msgstr "گالِد چہ لَڑ ءَ دُور کنگ بوت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L25
 msgid "Undo removal"
 msgstr "دُورکنگ ءَ پَدگَردین"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L36
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L509
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L504
 msgid "Remove from list"
 msgstr "چہ لَڑ ءَ دُور کن"
 
@@ -2190,7 +2208,7 @@ msgstr "مہربانی کن<a href=\"{}\"> پدا لاگن بی</a>۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L34
 msgid "Tatoeba is a collection of sentences and translations."
-msgstr "ٹٹوبا گالرد ءُ رجانکانی مُچّی یے۔"
+msgstr "ٹٹوبا گالِد ءُ رجانکانی مُچّی یے۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L38
 msgid "It's collaborative, open, free and even addictive."
@@ -2213,7 +2231,7 @@ msgstr "گیشتر سوج"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/advanced_search.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L34
 msgctxt "title"
 msgid "Advanced search"
 msgstr "دیماشتگیں شوھاز"
@@ -2245,7 +2263,7 @@ msgstr "لاگاوٹ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L110
 msgid "My sentences"
-msgstr "منی گالرد"
+msgstr "منی گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L120
 msgid "My vocabulary"
@@ -2256,8 +2274,8 @@ msgid "My reviews"
 msgstr "منی چمشانک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L762
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L788
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L757
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L783
 msgid "My lists"
 msgstr "منی لَڑ"
 
@@ -2271,7 +2289,7 @@ msgstr "منی دانک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L170
 msgid "Comments on my sentences"
-msgstr "منی گالردانی سرا دانک"
+msgstr "منی گالِدانی سرا دانک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L180
 msgid "My Wall messages"
@@ -2279,14 +2297,14 @@ msgstr "منی دیوال ءِ کلوھ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L190
 msgid "My latest contributions"
-msgstr ""
+msgstr "منی نوکترین بَھرشت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L44
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
-msgstr[0] " گالرد{number}"
-msgstr[1] " گالرِد{number}"
+msgstr[0] " گالِد{number}"
+msgstr[1] " گالِد{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
@@ -2312,7 +2330,7 @@ msgstr "براوز کن"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L50
 msgid "Show random sentence"
-msgstr "پَدیمیں گالرد ءَ پیشدار"
+msgstr "پَدیمیں گالِد ءَ پیشدار"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L56
@@ -2344,17 +2362,17 @@ msgstr "بَہرشت کن"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L136
 msgid "Add sentences"
-msgstr "گالرد ھور کن"
+msgstr "گالِد ھور کن"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L92
 msgid "Adopt sentences"
-msgstr "گالرداں بزیر"
+msgstr "گالِداں بزیر"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L103
 msgid "Discuss sentences"
-msgstr "گالرداں باوست کن"
+msgstr "گالِداں باوست کن"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L108
@@ -2412,8 +2430,8 @@ msgstr "چمشانک"
 #. / header text in sidebar on pages related to sentences lists
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L70
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L368
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L615
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L728
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L610
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L723
 msgid "Lists"
 msgstr "لَڑ"
 
@@ -2433,7 +2451,7 @@ msgstr "دانک"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L40
 msgid "Comments on {user}'s sentences"
-msgstr "ءِ گالردانی باروا دانک{user}"
+msgstr "ءِ گالِدانی باروا دانک{user}"
 
 #. link to the user's wall posts on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L106
@@ -2457,7 +2475,7 @@ msgstr "نَدگِیر"
 #. link text on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L149
 msgid "Translate {user}'s sentences"
-msgstr "{user} ءِ گالرداں رجانک کن"
+msgstr "{user} ءِ گالِداں رجانک کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L28
 msgid "Vocabulary requests"
@@ -2504,7 +2522,7 @@ msgstr "تئی نوکیں کلیتگال:۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L33
 msgid "{user}'s favorite sentences"
-msgstr "ءِ دلپسندیں گالرد{user}"
+msgstr "ءِ دلپسندیں گالِد{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L52
 msgid "Favorite successfully removed."
@@ -2513,7 +2531,7 @@ msgstr "دلپسند گوں سوبمندی دُور کنگ بوت"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L173
 msgid "Sentence {id} has been deleted."
-msgstr "گالرد {id} لِیکّور کنگ بیتگ۔"
+msgstr "گالِد {id} لِیکّور کنگ بیتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L118
 msgid "This user does not have any favorites."
@@ -2531,42 +2549,42 @@ msgstr "پُشت "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
-msgstr "منی گالردانی لیسن ءَ بدل کن"
+msgstr "منی گالِدانی لیسن ءَ بدل کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L26
 msgid "Switch my sentences to CC0"
-msgstr " ءَ بدل کن۔CC0 منی گالرداں پہ "
+msgstr " ءَ بدل کن۔CC0 منی گالِداں پہ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L29
 msgid ""
 "The license for your sentences is being switched. You will receive a private"
 " message when the operation is complete."
-msgstr "تئی گالردانی لیسن بدل بیگا اِنت۔ وھدے اے کار سرجم بیت، ترا اِھوتی کلوھے سر بیت۔"
+msgstr "تئی گالِدانی لیسن بدل بیگا اِنت۔ وھدے اے کار سرجم بیت، ترا اِھوتی کلوھے سر بیت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L32
 msgid ""
 "This page allows you to massively switch the license of your sentences to "
 "{CC0-link}. Among all your sentences, only the ones that meet the following "
 "conditions will be affected."
-msgstr "اے تاکدیم ترا گالردانی مزنیں کچے ءَ {CC0-link} ءِ تہا لیسن ءِ بدل کنگ ءَ کِلّیت۔ تئی درستیں گالردانی تہا ایوکا ھما گالرد سانجَن بنت کہ اے شرتانی تہا بیا اَنت۔ "
+msgstr "اے تاکدیم ترا گالِدانی مزنیں کچے ءَ {CC0-link} ءِ تہا لیسن ءِ بدل کنگ ءَ کِلّیت۔ تئی درستیں گالِدانی تہا ایوکا ھما سانجَن بنت کہ اے شرتانی تہا بیا اَنت۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L36
 msgid "The current license of the sentence must be CC BY 2.0 FR."
-msgstr "گالرد ءِ ھنوگیں لیسن اَلّما \nبہ بیت۔CC BY 2.0 FR"
+msgstr "گالِد ءِ ھنوگیں لیسن اَلّما \nبہ بیت۔CC BY 2.0 FR"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L37
 msgid "You must be the original creator of the sentence."
-msgstr "تو لازم گالرد ءِ بُندَری جوڑ کنوک بہ بئے۔"
+msgstr "تو لازم گالِد ءِ بُندَری جوڑ کنوک بہ بئے۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L38
 msgid "The sentence must be original and not derived from translation."
-msgstr "اے گالرد لازم  بُن اَسلی یے بہ بیت ءُ چہ رجانکاں درتکگینے مہ بیت۔"
+msgstr "اے گالِد لازم  بُن اَسلی یے بہ بیت ءُ چہ رجانکاں درتکگینے مہ بیت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L53
 msgid ""
 "Press the following button to start or restart an analysis of which of your "
 "sentences can be switched to CC0."
-msgstr "پریشی ءِ پَرّیس ءِ بُنگیج یا وابُنگیج کنگ ءِ واستا جہل ءِ بٹن ءَ بجن کہ تئی گالردانی تہا کجام سی سی0 ءِ تہا بدل بیت کنت۔ "
+msgstr "پریشی ءِ پَرّیس ءِ بُنگیج یا وابُنگیج کنگ ءِ واستا جہل ءِ بٹن ءَ بجن کہ تئی گالِدانی تہا کجام سی سی0 ءِ تہا بدل بیت کنت۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L55
 msgid "Start analysis"
@@ -2580,7 +2598,7 @@ msgstr "لیسن ءَ بدل کن"
 msgid ""
 "Press the following button to initiate the license switch of the above-"
 "listed sentences."
-msgstr "بُرز ءَ لَڑ کرتگیں گالردانی لیسن ءِ بدلینگ ءِ بندات کنگ ءِ ھاترا چیر ءِ بٹن ءَ بجن۔"
+msgstr "بُرز ءَ لَڑ کرتگیں گالِدانی لیسن ءِ بدلینگ ءِ بندات کنگ ءِ ھاترا چیر ءِ بٹن ءَ بجن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L68
 msgid ""
@@ -2626,7 +2644,7 @@ msgid ""
 "Tatoeba is a large database of sentences and translations. Its content is "
 "ever-growing and results from the voluntary contributions of thousands of "
 "members."
-msgstr "ٹٹوبا گالرد ءُ رجانکانی یک مزنیں ڈیٹابیسے۔ ایشی ءِ کچ ءُ کساس  یک پیما گیش بیان اِنت ءُ ایشی ءِ سبب ھزاراں باسکانی رزاکاریں بَہرشت اَنت۔"
+msgstr "ٹٹوبا گالِد ءُ رجانکانی یک مزنیں ڈیٹابیسے۔ ایشی ءِ کچ ءُ کساس  یک پیما گیش بیان اِنت ءُ ایشی ءِ سبب ھزاراں باسکانی رزاکاریں بَہرشت اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L51
 msgid ""
@@ -2635,7 +2653,7 @@ msgid ""
 "sentences containing these words with their translations in the desired "
 "languages. The name Tatoeba (<em>for example</em> in Japanese) captures this"
 " concept."
-msgstr "ٹٹوبا ترا یک کاربوجے پُجّارینیت کہ تو ھما دروراں بگندئے کہ چو گال ماں گالردانی پد ءُ پیشءَ کارمرز بنت۔ تو ھما گالاں دَرچین کنئے کہ ترا دوست بنت، ءُ اےتئی لوٹتگیں زبان ءِ ھما گالرداں کاریت کہ آھانی تہا ھما گال گوں رجانکاں مان اَنت۔ٹٹوبا ءِ نام (<em>پہ درور</em> ماں جاپانی ءَ) ھمے لیکہ ءَ گرپت کنت۔"
+msgstr "ٹٹوبا ترا یک کاربوجے پُجّارینیت کہ تو ھما دروراں بگندئے کہ چو گال ماں گالِدانی پد ءُ پیشءَ کارمرز بنت۔ تو ھما گالاں دَرچین کنئے کہ ترا دوست بنت، ءُ اےتئی لوٹتگیں زبان ءِ ھما گالِداں کاریت کہ آھانی تہا ھما گال گوں رجانکاں مان اَنت۔ٹٹوبا ءِ نام (<em>پہ درور</em> ماں جاپانی ءَ) ھمے لیکہ ءَ گرپت کنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L64
 msgid ""
@@ -2755,7 +2773,7 @@ msgstr "BIC/SWIFT:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L30
 msgid "Download sentences"
-msgstr "گالرداں ایرگیج"
+msgstr "گالِداں ایرگیج"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L40
@@ -2777,7 +2795,7 @@ msgstr "فائل ءِ بیان"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L48
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L90
 msgid "Sentence id"
-msgstr "گالرِدءِ پجار"
+msgstr "گالِد ءِ پجار"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
@@ -2890,7 +2908,7 @@ msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
-msgstr "اگاں تو بس گالرداں پمیشکا لوٹئے کہ زبانے دَربُرت بہ کنئے گُڑا <a href=\"{}\">گالردانی لَڑاں</a> بچار۔ تو وت ھم جوڑ کت کنئے یا دگرانی جوڑ کرتگیناں چارت کنئے۔ اے لَڑ ایرگیجگ ءُ چاپگ ھم بیت کننت۔"
+msgstr "اگاں تو بس گالِداں پمیشکا لوٹئے کہ زبانے دَربُرت بہ کنئے گُڑا <a href=\"{}\">گالِدانی لَڑاں</a> بچار۔ تو وت ھم جوڑ کت کنئے یا دگرانی جوڑ کرتگیناں چارت کنئے۔ اے لَڑ ایرگیجگ ءُ چاپگ ھم بیت کننت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L127
 msgid "General information about the files"
@@ -2900,7 +2918,7 @@ msgstr "فائلانی بابت ءَ لس مالومداری"
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
-msgstr "جاپانی ءُ انگریزی گالردانی تہا بازینے چہ <a href=\"{}\">تَنکا کورپس</a> ءَ زیرگ بیتگ اَنت کہ اُلسی میدان ئیگ اِنت۔"
+msgstr "جاپانی ءُ انگریزی گالِدانی تہا بازینے چہ <a href=\"{}\">تَنکا کورپس</a> ءَ زیرگ بیتگ اَنت کہ اُلسی میدان ئیگ اِنت۔"
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L141
@@ -2913,7 +2931,7 @@ msgstr "اے فائل سی سی بی وائی 2.0 ایف آر ءِ رِد ءَ �
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L147
 msgid "A part of our sentences are also available under CC0 1.0."
-msgstr " ءِ تہا مئے گالردانی بہرے ھم دستیاب اِنت۔CC0 1.0"
+msgstr " ءِ تہا مئے گالِدانی بہرے ھم دستیاب اِنت۔CC0 1.0"
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L156
@@ -2952,38 +2970,38 @@ msgid ""
 "Contains all the sentences in the selected language. Each sentence is "
 "associated with a unique id and an <a href=\"{}\">ISO 639-3</a> language "
 "code."
-msgstr "ایشی ءِ تہا گچین کرتگیں زبانانی درستیں گالرد مان اَنت۔ ھر یک گالردے گوں یکتائیں پجّار ءُ یک <a href=\"{}\">آئی ایس او 639-3</a> ءِ زبان ءِ کوڈے ءَ ھمگرنچ اِنت۔"
+msgstr "ایشی ءِ تہا گچین کرتگیں زبانانی درستیں گالِد مان اَنت۔ ھر یک گالِدے گوں یکتائیں پجّار ءُ یک <a href=\"{}\">آئی ایس او 639-3</a> ءِ زبان ءِ کوڈے ءَ ھمگرنچ اِنت۔"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L234
 msgid "Detailed Sentences"
-msgstr "تَپسیلیں گالرد"
+msgstr "تَپسیلیں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L248
 msgid ""
 "Contains additional fields for each sentence (owner name, date "
 "created/modified)."
-msgstr "پہ ھر یک گالردے ءَ گیشیں پِڑ مان (واھُند ءِ نام، ھما رَمس ءَ کہ جوڑ کرتگ یا بدل کرتگ)۔"
+msgstr "پہ ھر یک گالِدے ءَ گیشیں پِڑ مان (واھُند ءِ نام، ھما رَمس ءَ کہ جوڑ کرتگ یا بدل کرتگ)۔"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L265
 msgid "Original and Translated Sentences"
-msgstr "بُندری ءُ رجانک کرتگین گالرد"
+msgstr "بُندری ءُ رجانک کرتگین گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L274
 msgid ""
 "Each sentence is listed as original or a translation of another. The "
 "\"base\" field can have the following values:"
-msgstr "ھر گالردے بُندری یا دگرے ءِ رجانک ءِ ھساب ءَ لَڑ کنگ بوتگ۔ ’’بُن‘‘ پِڑ ءِ تہا اے کیلو بوت کننت:۔"
+msgstr "ھر گالِدے بُندری یا دگرے ءِ رجانک ءِ ھساب ءَ لَڑ کنگ بوتگ۔ ’’بُن‘‘ پِڑ ءِ تہا اے کیلو بوت کننت:۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L278
 msgid "zero: The sentence is original, not a translation of another."
-msgstr "زیرو: گالرد بُندری یے، دگرے ءِ رجانک نہ اِنت۔"
+msgstr "زیرو: گالِد بُندری یے، دگرے ءِ رجانک نہ اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L279
 msgid ""
 "greater than zero: The id of the sentence from which it was translated."
-msgstr "زیرو ءَ گیشتر: گالرد ءِ پَجّار چمودا بیت کہ رجانک کنگ بوتگ۔"
+msgstr "زیرو ءَ گیشتر: گالِد ءِ پَجّار چمودا بیت کہ رجانک کنگ بوتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L280
 msgid "\\N: Unknown (rare)."
@@ -2992,11 +3010,11 @@ msgstr " نزانتگیں (سک کم) :\\N"
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L291
 msgid "Sentences (CC0)"
-msgstr "گالرد (CC0)"
+msgstr "گالِد (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L303
 msgid "Contains all the sentences available under CC0."
-msgstr "ھما درستیں گالرد ئِے مان اَنت کہ سی سی 0 ءَ دستیاب اَنت۔"
+msgstr "ھما درستیں گالِد ئِے مان اَنت کہ سی سی 0 ءَ دستیاب اَنت۔"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L315
@@ -3009,7 +3027,7 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr "ایشی ءِ تہا ھما کڑی مان اَنت کہ گالردانی نیام ءَ بنت۔ {sampleLinkLine} ءِ مانا ایش اِنت کہ گالرد#77 گالرد#1 ءِ رجانک اِنت۔ دونیمگی کڑی ھم ساڑی اِنت ، پمیشکا فائل ءِ تہا یک رِدے ھم مان بیت کہ آ گوشیت{sampleLinkLineReversed}۔  "
+msgstr "ایشی ءِ تہا ھما کڑی مان اَنت کہ گالِدانی نیام ءَ بنت۔ {sampleLinkLine} ءِ مانا ایش اِنت کہ گالِد#77 گالِد#1 ءِ رجانک اِنت۔ دونیمگی کڑی ھم ساڑی اِنت ، پمیشکا فائل ءِ تہا یک رِدے ھم مان بیت کہ آ گوشیت{sampleLinkLineReversed}۔  "
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
@@ -3023,22 +3041,22 @@ msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr "ایشی ءِ تہا گالرد ءَ گوں ھمگرنچیں <a href=\"{url}\">ٹیگانی</a> لَڑ مان اِنت۔ {sampleTagLine} ءِ مانا ایش اِنت کہ گالرد#381279  ءَ را ’’بتل‘‘ ءِ ٹیگ نام ءَ دیگ بیتگ۔ "
+msgstr "ایشی ءِ تہا گالِد ءَ گوں ھمگرنچیں <a href=\"{url}\">ٹیگانی</a> لَڑ مان اِنت۔ {sampleTagLine} ءِ مانا ایش اِنت کہ گالِد#381279  ءَ را ’’بتل‘‘ ءِ ٹیگ نام ءَ دیگ بیتگ۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L377
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
-msgstr "ایشی ءِ تہا <a href=\"{}\">گالردانی لڑ</a> ئِے مان اَنت۔"
+msgstr "ایشی ءِ تہا <a href=\"{}\">گالِدانی لڑ</a> ئِے مان اَنت۔"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L392
 msgid "Sentences in lists"
-msgstr "گالرد ماں لَڑاں"
+msgstr "گالِد ماں لَڑاں"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L404
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr "ھما گالرداں پیشداریت کہ ھَر لَڑے ءَ مان اَنت۔ {sampleListLine} ءِ مانا ایش اِنت کہ گالرد #381279 ھما لَڑ ءَ مان اِنت کہ آئی ءِ پَجّار 13 اِنت۔ "
+msgstr "ھما گالِداں پیشداریت کہ ھَر لَڑے ءَ مان اَنت۔ {sampleListLine} ءِ مانا ایش اِنت کہ گالِد #381279 ھما لَڑ ءَ مان اِنت کہ آئی ءِ پَجّار 13 اِنت۔ "
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L421
@@ -3052,7 +3070,7 @@ msgid ""
 "format. Each entry is associated with a pair of Japanese/English sentences. "
 "{sentenceId} refers to the id of the Japanese sentence. {meaningId} refers "
 "to the id of the English sentence."
-msgstr "ایشی ءِ تہا جِم برین ءِ بَھر ءُ بانگ کرتگیں تَناکا کورپس فائل ءِ ’’بی لائنز‘‘ ءِ ھَمبَرابر مان اِنت۔ فارمیٹ ءِ واستا <a href=\"{url}\">اے تاکدیم</a> ءَ بچار۔ ھر یک دَرجی یے گوں جُتکے جاپانی/انگریزی گالرد ءَ ھمگرنچ اِنت۔ {sentenceId} جاپانی گالرد ءِ پَجّار ءَ شون دنت۔ {meaningId} انگریزی گالرد ءِ پجّار ءَ شون دنت۔ "
+msgstr "ایشی ءِ تہا جِم برین ءِ بَھر ءُ بانگ کرتگیں تَناکا کورپس فائل ءِ ’’بی لائنز‘‘ ءِ ھَمبَرابر مان اِنت۔ فارمیٹ ءِ واستا <a href=\"{url}\">اے تاکدیم</a> ءَ بچار۔ ھر یک دَرجی یے گوں جُتکے جاپانی/انگریزی گالِد ءَ ھمگرنچ اِنت۔ {sentenceId} جاپانی گالِد ءِ پَجّار ءَ شون دنت۔ {meaningId} انگریزی گالِد ءِ پجّار ءَ شون دنت۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L463
 msgid ""
@@ -3060,7 +3078,7 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr "ایشی ءِ تہا ھما درستیں زبانانی گالردانی پجّار مان اَنت کہ پہ آھاں تواربَند دستیاب اِنت۔ ایدگہ پِڑ نشان دینت کہ تواربَند کیا زَپت کرتگ، آئی ءِ لیسن ءُ یک یو آر ایلے کہ آئی ءِ نامِشت نبشتکار ئیگ اِنت۔ اگاں لیسن ءِ پِڑ ھورک اِنت گُڑا تو بگندئے ٹٹوبا پروجیکٹ ءَ ڈَنّ تواربَند ءَ دوبرکارمرز کرت نہ کنئے۔"
+msgstr "ایشی ءِ تہا ھما درستیں زبانانی گالِدانی پجّار مان اَنت کہ پہ آھاں تواربَند دستیاب اِنت۔ ایدگہ پِڑ نشان دینت کہ تواربَند کیا زَپت کرتگ، آئی ءِ لیسن ءُ یک یو آر ایلے کہ آئی ءِ نامِشت نبشتکار ئیگ اِنت۔ اگاں لیسن ءِ پِڑ ھورک اِنت گُڑا تو بگندئے ٹٹوبا پروجیکٹ ءَ ڈَنّ تواربَند ءَ دوبرکارمرز کرت نہ کنئے۔"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L482
@@ -3075,14 +3093,14 @@ msgstr "اے یک یک زبانے ءِ باسکانی وت بیان کرتگیں
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L502
 msgid "Users' sentence reviews"
-msgstr "کارمرزوکانی گالرد ءِ چمشانک"
+msgstr "کارمرزوکانی گالِد ءِ چمشانک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L511
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr "ایشی ءِ تہا ھما گالرد مان اَنت کہ کارمرزوکاں چمشانک داتگ اَنت۔ چمشانک ءِ کئیل چوش بیت کننت -1 (گالرد جوان نہ اِنت)، 0 (پیسلہ نہ بیتگیں یا ناپکّائیں)، یا  1  (گالرد جوان اِنت)۔ پیژڈاہ: اے ڈیٹا انگت آزمودان اِنت۔  "
+msgstr "ایشی ءِ تہا ھما گالِد مان اَنت کہ کارمرزوکاں چمشانک داتگ اَنت۔ چمشانک ءِ کئیل چوش بیت کننت -1 (گالِد جوان نہ اِنت)، 0 (پیسلہ نہ بیتگیں یا ناپکّائیں)، یا  1  (گالِد جوان اِنت)۔ پیژڈاہ: اے ڈیٹا انگت آزمودان اِنت۔  "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L541
 msgid ""
@@ -3136,17 +3154,17 @@ msgstr "ارزشتی کڑی"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L130
 msgid "Adding new sentences"
-msgstr " نوکیں گالردنی ھور کنگ"
+msgstr " نوکیں گالِدانی ھور کنگ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L131
 msgid "There are two ways to add new sentences."
-msgstr "نوکیں گالردانی ھور کنگ ءِ دو وَڑ اَنت۔"
+msgstr "نوکیں گالِدانی ھور کنگ ءِ دو وَڑ اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L137
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr "چہ <strong>بَھرشت کن</strong> ءِ پَرزون ءَ <a href=\"{}\">گالرد ھور کن</a> ءَ گچین کن کہ ھر یک تاکدیمے ءِ بُرز ءَ اِنت۔"
+msgstr "چہ <strong>بَھرشت کن</strong> ءِ پَرزون ءَ <a href=\"{}\">گالِد ھور کن</a> ءَ گچین کن کہ ھر یک تاکدیمے ءِ بُرز ءَ اِنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
@@ -3160,23 +3178,23 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr "ٹٹوباءَ باز گالرد مان بلے انگت بازیں گالَمبارے ھست کہ آرگ نہ بیتگ انت۔پمیشکا ما ترا سکین ءُ دلبڈی دئیں کہ تو نوکیں گالرد گوں نوکیں گالَمباراں ھور کن بِلّے توری تو آھاں زبانے ءَ رجانک کت مہ کنئے۔"
+msgstr "ٹٹوباءَ باز گالِد مان بلے انگت بازیں گالَمبارے ھست کہ آرگ نہ بیتگ انت۔پمیشکا ما ترا سکین ءُ دلبڈی دئیں کہ تو نوکیں گالِد گوں نوکیں گالَمباراں ھور کن بِلّے توری تو آھاں زبانے ءَ رجانک کت مہ کنئے۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L180
 msgid "Translating sentences"
-msgstr "گالردانی رجانک\nگالرداں رجانک کنگاانت"
+msgstr "گالِدانی رجانک\nگالِداں رجانک کنگاانت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L184
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
-msgstr "ٹٹوبا ءِ تہا رجانکاری درستاں اَرزشداریں کاراں یکے چیاکہ اے پروجیکٹ ءِ مستریں مول ءُ مراد ھما گالردانی چنگ ءُ یکجاہ کنگ اِنت کہ بازیں زبانے ءَ رجانک کنگ بیتگ انت۔"
+msgstr "ٹٹوبا ءِ تہا رجانکاری درستاں اَرزشداریں کاراں یکے چیاکہ اے پروجیکٹ ءِ مستریں مول ءُ مراد ھما گالِدانی چنگ ءُ یکجاہ کنگ اِنت کہ بازیں زبانے ءَ رجانک کنگ بیتگ انت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L194
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr "تو چہ ھر کجا گالردے رجانک کت کنئے۔ بس{translateButton}ءِ آئیکون ءِ سرا کلک بکن۔"
+msgstr "تو چہ ھر کجا گالِدے رجانک کت کنئے۔ بس{translateButton}ءِ آئیکون ءِ سرا کلک بکن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L205
 msgid "Correcting mistakes"
@@ -3187,17 +3205,17 @@ msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr "تو ایوکا ھما گالردانی ردیاں راست کرت کنئے کہ تئیگ اَنت۔ اگاں تو دگرے ءِ گالردءِ تہا ردی یے گندئے گڑا تو آ ردی ءِ بابت ءَ آئرا ھال دیگ ءِ واستا دانکے ٹَپال کرت کنئے۔"
+msgstr "تو ایوکا ھما گالِدانی ردیاں راست کرت کنئے کہ تئیگ اَنت۔ اگاں تو دگرے ءِ گالِد ءِ تہا ردی یے گندئے گڑا تو آ ردی ءِ بابت ءَ آئرا ھال دیگ ءِ واستا دانکے ٹَپال کرت کنئے۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L218
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr "چیزے ھالت ءَ گالرد ءَ واھند نیست۔ پہ گیشتر زانگ ءَ جہل ءِ بَھرگ ءَ بوان (کہ گالردانی زیرگ ءِ بابت ءَ اِنت)۔"
+msgstr "چیزے ھالت ءَ گالِد ءَ واھند نیست۔ پہ گیشتر زانگ ءَ جہل ءِ بَھرگ ءَ بوان (کہ گالِدانی زیرگ ءِ بابت ءَ اِنت)۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L227
 msgid "Adopting sentences"
-msgstr "گالرداں زیرگااِنت\nگالردانی زیرگ"
+msgstr "گالِدانی زیرگ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L231
 msgid ""
@@ -3205,7 +3223,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr "اگان تو یک گالردے ھور کنئے، اے گالرد ’’تئیگ‘‘ اِنت- ایوکا تو ایشیا رِدگ کرت کنئے۔  بلئے، ٹٹوبا ءِ بازیں گالردے چہ جاپانی-انگریزی کورپس ءَ اتکگ انت کہ آئیا تَناکا کورپس گوشنت۔ اے گالرداں واھُند نیست چیاکہ آ چہ ٹٹوبا ءَ ڈَن مُچ کنگ بیتگ اَنت۔"
+msgstr "اگان تو یک گالِدے ھور کنئے، اے گالِد ’’تئیگ‘‘ اِنت- ایوکا تو ایشیا رِدگ کرت کنئے۔  بلئے، ٹٹوبا ءِ بازیں گالِدے چہ جاپانی-انگریزی کورپس ءَ اتکگ انت کہ آئیا تَناکا کورپس گوشنت۔ اے گالِداں واھُند نیست چیاکہ آ چہ ٹٹوبا ءَ ڈَن مُچ کنگ بیتگ اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L243
 msgid ""
@@ -3213,40 +3231,40 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr "اگاں تو ’’چورھیں‘‘ گالردے ءِ تہا رَدی یے دیست، گُڑا تو آئیا راست کرت نہ کنئے چیا کہ تو آئی ءِ واھُند نئے۔ پمیشکا ادا یک ’’وتی کنگ‘‘ ءِ گِچیندَرے ({adoptButton})ھست۔ وھدے تو یک گالردے وتی کرت، تو آئی ءِ واھند بئے ءُ اے پئیم آئیا رِدگ کرت کنئے۔ "
+msgstr "اگاں تو ’’چورھیں‘‘ گالِدے ءِ تہا رَدی یے دیست، گُڑا تو آئیا راست کرت نہ کنئے چیا کہ تو آئی ءِ واھُند نئے۔ پمیشکا ادا یک ’’وتی کنگ‘‘ ءِ گِچیندَرے ({adoptButton})ھست۔ وھدے تو یک گالِدے وتی کرت، تو آئی ءِ واھند بئے ءُ اے پئیم آئیا رِدگ کرت کنئے۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
-msgstr "یک گالردے ءِ وتی کنگ  ’’جوانی ءِ کاریچ‘‘ ءِ ھم بَھریے۔ اے بابت ءَ ترا گیشتر مالومداری چدا رست کنت:۔"
+msgstr "یک گالِدے ءِ وتی کنگ  ’’جوانی ءِ کاریچ‘‘ ءِ ھم بَھریے۔ اے بابت ءَ ترا گیشتر مالومداری چدا رست کنت:۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L272
 msgid "Sentence lists"
-msgstr "گالردانی لَڑ"
+msgstr "گالِدانی لَڑ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L276
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr "تو ٹٹوبان ءِ تہا گالردانی لَڑ جوڑ کرت کنئے۔ چہ جَئوپ ءَ اے لَڑ <strong>زاتی</strong> اِنت، کہ ایشی ءِ مانا ایش اِنت کہ ایشیا ایوکا ھما مردم رِدگ کرت کنت کہ آئیا جوڑ کرتگ (البت ایشیا ھر کس دیست کنت)۔"
+msgstr "تو ٹٹوبان ءِ تہا گالِدانی لَڑ جوڑ کرت کنئے۔ چہ جَئوپ ءَ اے لَڑ <strong>زاتی</strong> اِنت، کہ ایشی ءِ مانا ایش اِنت کہ ایشیا ایوکا ھما مردم رِدگ کرت کنت کہ آئیا جوڑ کرتگ (البت ایشیا ھر کس دیست کنت)۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L285
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr "البت اے وَڑ ھم بوت کنت کہ ٹٹوبا ءِ ھر یک باسکے ءَ اجازت بہ بیت کہ آ <strong>ھمکاری</strong> لَڑے بہ ٹَھینیت ءُ گالرداں ھور بہ کنت ءُ دَر بہ کنت۔"
+msgstr "البت اے وَڑ ھم بوت کنت کہ ٹٹوبا ءِ ھر یک باسکے ءَ اجازت بہ بیت کہ آ <strong>ھمکاری</strong> لَڑے بہ ٹَھینیت ءُ گالِداں ھور بہ کنت ءُ دَر بہ کنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L30
 msgid "Tatoeba: Collection of sentences and translations"
-msgstr "ٹٹوبا: گالرِد ءُ رَجانکانی جَمانک"
+msgstr "ٹٹوبا: گالِد ءُ رَجانکانی جَمانک"
 
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
 msgstr "اسٹیٹ"
@@ -3261,34 +3279,34 @@ msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr "گالردانی نوکیں جَنگِن زیتاں سرجما کوھنین ءِ جاگہا گیپت۔ مہربانی کن ایشیا بہ چکّاس ءُ مارا بہ گوش گوں اگاں تو جیڑھے ءَ دوچار کپتئے۔ ایشیارا تو گوں وتی بَستبَند ءِ اے گِچیندَر ءَ کارکابِل کرت کنئے کہ  ’’نوکیں جَنگِن ءِ گالرداں پیشدار‘‘۔  "
+msgstr "گالِدانی نوکیں جَنگِن زیتاں سرجما کوھنین ءِ جاگہا گیپت۔ مہربانی کن ایشیا بہ چکّاس ءُ مارا بہ گوش گوں اگاں تو جیڑھے ءَ دوچار کپتئے۔ ایشیارا تو گوں وتی بَستبَند ءِ اے گِچیندَر ءَ کارکابِل کرت کنئے کہ  ’’نوکیں جَنگِن ءِ گالِداں پیشدار‘‘۔  "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
 msgstr "بَستبَند ءَ برو"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L130
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L142
 msgid "show more..."
 msgstr "گیشتر پیشدار۔۔۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "نوکتریں دانک"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
 msgid "Want to help?"
 msgstr "کُمک کنگ لوٹئے؟"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L72
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr "ما گالرد ءُ آھانی رجانکاں جَم کنگائیں۔ تو گوں گالردانی گیش کنگ یا رجانک کنگ ءَ مارا کُمک کرت کنئے۔"
+msgstr "ما گالِد ءُ آھانی رجانکاں جَم کنگائیں۔ تو گوں گالِدانی گیش کنگ یا رجانک کنگ ءَ مارا کُمک کرت کنئے۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L78
 msgid "Join the community"
 msgstr "ٹَکّ ءَ ھوار بی"
 
@@ -3380,20 +3398,20 @@ msgstr[1] "تو مروچی {n} ءُ این بی ایس پی ؛ کلوھ دیم �
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L39
 msgid "Sentences marked as \"OK\""
-msgstr "ھما گالرد کہ ’’جوان‘‘ نشان کنت بیتگ اَنت"
+msgstr "ھما گالِد کہ ’’جوان‘‘ نشان کنت بیتگ اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L40
 msgid "Sentences marked as \"unsure\""
-msgstr "ھما گالرد کہ ’’ناپَکّا‘‘ نشان کنگ بیتگ اَنت"
+msgstr "ھما گالِد کہ ’’ناپَکّا‘‘ نشان کنگ بیتگ اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L41
 msgid "Sentences marked as \"not OK\""
-msgstr "ھما گالرد کہ ’’جوان نہ اَنت‘‘ نشان کنگ بیتگ اَنت"
+msgstr "ھما گالِد کہ ’’جوان نہ اَنت‘‘ نشان کنگ بیتگ اَنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L60
 msgid "All sentences"
-msgstr "دراہیں گالرد"
+msgstr "دراہیں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L43
 msgid "Outdated reviews"
@@ -3401,23 +3419,23 @@ msgstr "کوھنگیں چمشانک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L47
 msgid "Sentences in {language} marked as \"OK\""
-msgstr "ءِ گالرد ’’جوان‘‘ نشان کنگ بیتگ انت{language}"
+msgstr "ءِ گالِد ’’جوان‘‘ نشان کنگ بیتگ انت{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L48
 msgid "Sentences in {language} marked as \"unsure\""
-msgstr "ءِ گالرد ’’ناپَکّا‘‘ نشان کنگ بیتگ انت{language}"
+msgstr "ءِ گالِد ’’ناپَکّا‘‘ نشان کنگ بیتگ انت{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L49
 msgid "Sentences in {language} marked as \"not OK\""
-msgstr " ءِ گالرد ’’جوان نہ انت‘‘ نشان کنگ بیتگ انت{language}"
+msgstr " ءِ گالِد ’’جوان نہ انت‘‘ نشان کنگ بیتگ انت{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L50
 msgid "All sentences in {language}"
-msgstr "ءِ سجّہیں گالرد{language}"
+msgstr "ءِ سجّہیں گالِد{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L51
 msgid "Outdated reviews for sentences in {language}"
-msgstr "ءِ گالردانی واستا کوھنگیں چمشانک{language}"
+msgstr "ءِ گالِدانی واستا کوھنگیں چمشانک{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L65
 msgid "{user}'s reviews - {category}"
@@ -3431,7 +3449,7 @@ msgstr "اے دروش اے وھدی ناکارہ کنگ بیتگ۔"
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr "تو وتی بَستبَند ءِ تہا ایشیا کاراوَر کرت کنئے: ’’گالردانی چمشانک دیگ ءِ ھاترا دروش ءَ کاراوَر بکن‘‘۔"
+msgstr "تو وتی بَستبَند ءِ تہا ایشیا کاراوَر کرت کنئے: ’’گالِدانی چمشانک دیگ ءِ ھاترا دروش ءَ کاراوَر بکن‘‘۔"
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L93
@@ -3467,25 +3485,25 @@ msgstr "درستاں کوھنترین اولسرا"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L148
 msgid "Newest sentences"
-msgstr "درستاں نوکتریں گالرد"
+msgstr "درستاں نوکتریں گالِد"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L150
 msgid "Oldest sentences"
-msgstr "درستاں کوھنتریں گالرد"
+msgstr "درستاں کوھنتریں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/S/s.ctp#L41
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr "بُرزی گالرد ءَ کلک بکن پہ ٹٹوبا۔اورگ ءَ روگ ءُ ایشی ءِ رَجانک کنگ یا دانکے اِلّگ ءَ۔"
+msgstr "بُرزی گالِد ءَ کلک بکن پہ ٹٹوبا۔اورگ ءَ روگ ءُ ایشی ءِ رَجانک کنگ یا دانکے اِلّگ ءَ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
 msgid "Sentence #{number}"
-msgstr "  {number}#گالرد "
+msgstr "  {number}#گالِد "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
@@ -3493,11 +3511,11 @@ msgstr "دانک ءَ رِدگ کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L27
 msgid "Edit Comment on Sentence #{number}"
-msgstr "گالرد# {number} ءِ دانک ءَ رِدگ کن "
+msgstr "گالِد# {number} ءِ دانک ءَ رِدگ کن "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
-msgstr "گالردانی سرا دانک"
+msgstr "گالِدانی سرا دانک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L40
 msgid "{user}'s comments"
@@ -3510,7 +3528,7 @@ msgstr " ءَ ھچ دانک ٹَپال نہ کرتگ{user}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L118
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L129
 msgid "Go back to previous page"
 msgstr "پدا پیسری تاکدیم ءَ برو"
 
@@ -3520,11 +3538,11 @@ msgstr " ءِ دانک (درستی ءُ این بی ایس پی؛{n})۔{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L60
 msgid "{user} has no comment posted on his/her sentences"
-msgstr "ءِ گالرد ءِ سرا ھچ دانک ٹَپال کنگ نہ بیتگ {user}"
+msgstr "ءِ گالِد ءِ سرا ھچ دانک ٹَپال کنگ نہ بیتگ {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L75
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
-msgstr "ءِ گالردانی سرا دانک (درستی ءُ این بی ایس پی؛{n})۔{user}"
+msgstr "ءِ گالِدانی سرا دانک (درستی ءُ این بی ایس پی؛{n})۔{user}"
 
 #. header text in side bar of the "Add sentences" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L43
@@ -3548,15 +3566,27 @@ msgid ""
 "<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, or "
 "at least make sure they are not copyrighted and are compatible with the CC "
 "BY license. Otherwise we cannot use them."
-msgstr "<strong>مارا وتی ڈیٹا ءِ بہر کنگ دوست بیت۔</strong>\nگالردان ءَ نکل کنگ ءُ لِچّینگ ءَ پَھریز کن، یا کم چہ کم پکا بکن کہ ھَکبَند نہ اَنت ءُ سی سی بی وائی لیسن ءَ گوں ھمرَوان اَنت۔ اگاں ناں ما آھاں کارمرز کرت نہ کنیں۔"
+msgstr "<strong>مارا وتی ڈیٹا ءِ بہر کنگ دوست بیت۔</strong>\nگالِدان ءَ نکل کنگ ءُ لِچّینگ ءَ پَھریز کن، یا کم چہ کم پکا بکن کہ ھَکبَند نہ اَنت ءُ سی سی بی وائی لیسن ءَ گوں ھمرَوان اَنت۔ اگاں ناں ما آھاں کارمرز کرت نہ کنیں۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
-msgid "Check out the vocabulary for which we need sentences"
-msgstr "ھما گال اَمباراں بہ چار کہ مارا پراھاں گالرد درکار اِنت"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L87
+msgid "Not inspired?"
+msgstr "سِکین نہ رست؟"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L93
+msgid ""
+"Check the vocabulary requests for which there are very few or no sentences "
+"yet."
+msgstr "ھما گال اَمباری دَزبندیان بچار که پَراهان اَنگت گالِد نیست یا کم اِنت."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
 msgid "Sentences wanted"
-msgstr "گالرد دَرکار اَنت"
+msgstr "گالِد دَرکار اَنت"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L101
+msgid ""
+"Tatominer provides a list of the most searched words for which there are "
+"very few or no sentences yet."
+msgstr "ٹَٹومائنر ھما لَبزانی لَڑے پُجارینیت کہ درستان گیش شوھاز کنگ بوتگ انت و پَراھان گالِد نیست یا کم دست کپیت۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"
@@ -3582,15 +3612,15 @@ msgstr "درستیں زباناں پیشدار{arrowIcon}۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
-msgstr "ءِ گالرد{user}"
+msgstr "ءِ گالِد{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L41
 msgid "{user}'s sentences in {language}"
-msgstr "ءِ گالرد ماں {language}ءَ{user}"
+msgstr "ءِ گالِد ماں {language}ءَ{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
-msgstr "ایوکا بُندَری گالرداں پیشدار"
+msgstr "ایوکا بُندَری گالِداں پیشدار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L107
 msgid "{user} does not own any sentences in {language}"
@@ -3630,52 +3660,52 @@ msgid ""
 "please <a href=\"{}\">let us know</a>."
 msgstr "پَدیمیں گالردانی آرگ ءِ وھد ءَ رَدی یے بوت۔ اگاں اے ردی مانیت گُڑا مہربانی کن <a href=\"{}\">مارا ھال دئے</a>۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L36
 msgid "Sentences with: {keywords}"
 msgstr "گالرد گوں: {keywords}۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L40
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr "ءِ ھما گالرد کہ {translationLanguage}ءَ رجانک نہ بیتگ انت{language}"
+msgstr "ءِ ھما گالِد کہ {translationLanguage}ءَ رجانک نہ بیتگ انت{language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L44
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr "ءِ ھما گالرد کہ {translationLanguage}ءَ رجانک بیتگ انت{language}"
+msgstr "ءِ ھما گالِد کہ {translationLanguage}ءَ رجانک بیتگ انت{language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L32
 msgid "Sentences in {language}"
-msgstr "گالرد ماں {language} ءَ"
+msgstr "گالِد ماں {language} ءَ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L53
 msgid "Sentences not translated into {language}"
-msgstr "ھما گالرد کہ {language}ءَ رجانک نہ بیتگ انت"
+msgstr "ھما گالِد کہ {language}ءَ رجانک نہ بیتگ انت"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L56
 msgid "Sentences translated into {language}"
-msgstr "ھما گالرد کہ {language}ءَ رجانک بیتگ انت"
+msgstr "ھما گالِد کہ {language}ءَ رجانک بیتگ انت"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L68
 msgid "Warning: the following criteria have been ignored:{list}"
 msgstr "پیژڈاہ: جہل ءِ کَچّگ ڈالچار کنگ بیتگ اَنت: {list}۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L81
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L98
 msgid "Search error"
 msgstr "شوھاز ءِ رَدی"
 
 #. button to open the advanced search option sidebar on mobile
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
 msgid "Narrow search"
 msgstr "تنکیں شوھاز"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
 msgstr "نابَرجمیں جُستے۔ مہربانی کن پہ گیشتر تَپسیل ءَ <a href=\"{}\">شوھاز ءِ دستاویزکاری</a> ءَ برو۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L132
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{us}\">let us know</a> and include the error code "
@@ -3683,12 +3713,12 @@ msgid ""
 msgstr "شوھاز ءِ کنگ ءِ وھد ءَ ردی یے بوت۔ اگاں اے جیڑہ مانیت، گُڑا مہربانی کن <a href=\"{us}\">مارا بگش گوں</a> ءُ وتی کلوہ ءِ تہا ردی ءِ کوڈ{errorCode} ءَ ھوار کن گوں۔"
 
 #. title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L151
 msgid "Search: {keywords}"
 msgstr "شوھاز: {keywords}۔"
 
 #. title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L197
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
 msgid "Search criteria"
 msgstr "شوھاز کنگ ءِ کَچّگ"
 
@@ -3705,17 +3735,17 @@ msgstr "تکنیکی سبباں اے وھداں شوھاز ءِ دروش کار�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
-msgstr " ءِ دَروَری گالرد{language} -{sentence}"
+msgstr " ءِ دَروَری گالِد{language} -{sentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
-msgstr "رجانک بیتگیں دَروَری گالرداں براوز بکن۔ اے تاکدیم گالرد ءِ رجانک ءُ آئی ءِ بابت ءَ مالومداری پیشداریت: {sentenceText}۔ "
+msgstr "رجانک بیتگیں دَروَری گالِداں براوز بکن۔ اے تاکدیم گالِد ءِ رجانک ءُ آئی ءِ بابت ءَ مالومداری پیشداریت: {sentenceText}۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
-msgstr "گالرد ءِ جند نیست:۔"
+msgstr "گالِد ءِ جند نیست:۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
@@ -3727,7 +3757,7 @@ msgstr "(کوھنگ)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L165
 msgid "There is no log for this sentence"
-msgstr "پہ اے گالرد ءَ لاگ نیست"
+msgstr "پہ اے گالِد ءَ لاگ نیست"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L242
 msgid "There are no comments for now."
@@ -3735,22 +3765,22 @@ msgstr "ھَنّوں دانک نیست۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L262
 msgid "Random Sentence"
-msgstr "پَدیمیں گالرد"
+msgstr "پَدیمیں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L264
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
-msgstr "پدیمیں گالرد ءِ دروش اے وھداں کارکپت اِنت، مہربانی کن رندترا پدا جہد کن۔"
+msgstr "پدیمیں گالِد ءِ دروش اے وھداں کارکپت اِنت، مہربانی کن رندترا پدا جہد کن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L266
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
-msgstr "پَدیمیں گالردانی آرگ ءِ وھد ءَ ردی یے بوت۔ اگاں اے جیڑہ مانیت، گُڑا مہربانی کن <a href=\"{}\">مارا ھال دئے</a>۔"
+msgstr "پَدیمیں گالِدانی آرگ ءِ وھد ءَ ردی یے بوت۔ اگاں اے جیڑہ مانیت، گُڑا مہربانی کن <a href=\"{}\">مارا ھال دئے</a>۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L64
 msgid "Only the last {n} sentences are displayed here."
-msgstr "ایوکا رَندی {n} گالرد ادا پیشدارگ بیتگ اَنت۔"
+msgstr "ایوکا رَندی {n} گالِد ادا پیشدارگ بیتگ اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
@@ -3808,7 +3838,7 @@ msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
-msgstr "اگاں تو یک زبانے گچین کنئے،ھریک گالردے ءِ رجانک ھما زبان ءَ (اگاں آ زبان ھست اِنت)  تئی بَروَرد ءَ نبشتہ بیت۔ پدا تو {Anki} مَراگِش ءَ کارمرز کت ءُ فائل ءَ مانگیل کرت ءُ فلش کارڈانی دَستگے جوڑ کرت کنئے۔ "
+msgstr "اگاں تو یک زبانے گچین کنئے،ھریک گالِدے ءِ رجانک ھما زبان ءَ (اگاں آ زبان ھست اِنت)  تئی بَروَرد ءَ نبشتہ بیت۔ پدا تو {Anki} مَراگِش ءَ کارمرز کت ءُ فائل ءَ مانگیل کرت ءُ فلش کارڈانی دَستگے جوڑ کرت کنئے۔ "
 
 #. button to download on the download list page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L150
@@ -3869,7 +3899,7 @@ msgstr " درستاں کوھنترین اولسرا"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L91
 msgid "Highest number of sentences"
-msgstr "گالردانی درستاں گیشتریں شمار"
+msgstr "گالِدانی درستاں گیشتریں شمار"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3878,7 +3908,7 @@ msgstr "گالردانی درستاں گیشتریں شمار"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L93
 msgid "Lowest number of sentences"
-msgstr "گالردانی درستاں کمتریں شمار"
+msgstr "گالِدانی درستاں کمتریں شمار"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
@@ -3906,7 +3936,7 @@ msgstr " ءِ لَڑ کہ آھاں ’’{search}‘‘ ءُ ({total}) مان ا
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
-msgstr "گالرد گوں سوبمندی دُور کنگ بوت"
+msgstr "گالِد گوں سوبمندی دُور کنگ بوت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L25
@@ -3925,7 +3955,7 @@ msgstr "ءَ جوڑ کرتگ{listAuthor}"
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
 msgstr[0] "ایشی ءِ تہا {n} ءُ این بی ایس پی؛ گالردے مان"
-msgstr[1] "ایشی ءِ تہا {n} ءُ این بی ایس پی؛ گالرد مان اَت"
+msgstr[1] "ایشی ءِ تہا {n} ءُ این بی ایس پی؛ گالِد مان اَت"
 
 #. header text in the side bar of a list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L85
@@ -3961,7 +3991,7 @@ msgid "Download this list"
 msgstr "اے لَڑ ءَ ایرگیج"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L120
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L441
 msgid "Delete this list"
 msgstr "اے لَڑ ءَ لِیکّورکن"
 
@@ -3983,19 +4013,19 @@ msgstr "اے لَڑ ھورک اِنت۔"
 msgid ""
 "You can create new sentences directly in this list by clicking on the "
 "{addSentenceButton} icon in the header of this section."
-msgstr "تو اے سیکشن ءِ سَرُون ءَ {addSentenceButton} ءِ آئیکون ءَ کلک کرت ءُ اے لَڑ ءِ تہا تچکا نوکیں گالرد جوڑ کرت کنئے۔ "
+msgstr "تو اے بَهرگ ءِ سَرُون ءَ {addSentenceButton} ءِ آئیکون ءَ کلک کرت ءُ اے لَڑ ءِ تہا تچکا نوکیں گالِد جوڑ کرت کنئے۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L213
 msgid ""
 "You can also add existing sentences to this list, from other pages, by "
 "clicking on the {addToListButton} icon in the menu of the sentence."
-msgstr "تو گالرد ءِ پَرزون ءَ {addToListButton} آئیکون ءَ کلک کرت ءُ چہ دگہ تاکدیماں، ساری ءَ ھستیں گالرداں ھم اے لَڑ ءَ ھوار کرت کنئے۔"
+msgstr "تو گالِد ءِ پَرزون ءَ {addToListButton} آئیکون ءَ کلک کرت ءُ چہ دگہ تاکدیماں، ساری ءَ ھستیں گالِداں ھم اے لَڑ ءَ ھوار کرت کنئے۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L238
 msgid ""
 "The sentence you tried to create already exists. The existing sentence was "
 "added to your list instead."
-msgstr "اے گالرد کہ تو جوڑ کنگ ءِ جہد کت چہ پیسرا ھست اِنت۔ ایشی ءِ جاہ ءَ چہ پیسرا ھستیں گالرد تئی لَڑ ءِ تہا ھَور کنگ بوت۔"
+msgstr "اے گالِد کہ تو جوڑ کنگ ءِ جہد کت چہ پیسرا ھست اِنت۔ ایشی ءِ جاہ ءَ چہ پیسرا ھستیں گالِد تئی لَڑ ءِ تہا ھَور کنگ بوت۔"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L32
@@ -4033,18 +4063,18 @@ msgstr "درستی"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L29
 msgid "Number of sentences per language"
-msgstr "ماں ھر یک زبانے ءَ گالردانی شمار"
+msgstr "ماں ھر یک زبانے ءَ گالِدانی شمار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L119
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] "یک گالردے"
-msgstr[1] " ءُ این بی ایس پی؛ گالرد{n}"
+msgstr[0] "یک گالِدے"
+msgstr[1] " ءُ این بی ایس پی؛ گالِد{n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
-msgstr "گالرد گوں ٹیگ ءَ {tagName}۔"
+msgstr "گالِد گوں ٹیگ ءَ {tagName}۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L58
@@ -4054,18 +4084,18 @@ msgstr "درستیں ٹیگاں پیشدار"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L56
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
-msgstr[0] "( گالرد{n}) {tagName}"
-msgstr[1] "( گالرد{n} ){tagName}"
+msgstr[0] "( گالِد{n}) {tagName}"
+msgstr[1] "( گالِد{n} ){tagName}"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L70
 msgid "Newest sentences first"
-msgstr "نوکتریں گالرد اولسرا"
+msgstr "نوکتریں گالِد اولسرا"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L72
 msgid "Oldest sentences first"
-msgstr "کوھنتریں گالرد اولسرا"
+msgstr "کوھنتریں گالِد اولسرا"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L74
@@ -4180,7 +4210,7 @@ msgid ""
 "with much more complete data files. If you're interested in his work, you "
 "can check his project page <a href='{1}'>here</a>. Without him, the "
 "Shanghainese sentences wouldn't have such a complete IPA."
-msgstr "ما راستی <a href='{0}'>کیلن پارکر</a> ءِ مِنّتواریں کہ آئیا مارا سک باز سرجمیں ڈیٹا فائل پُجّارینتگ۔ اگاں تو آئی ءِ کاراں واھگدارئے، گُڑا تو آئی ءِ پروجیکٹ ءِ تاکدیم ءَ <a href='{1}'>ادا</a> تَپاست کنئے۔ بے آئیا شانگانی گالرداں چوشیں سرجمیں آئی پی اے نہ بیتگ ات۔"
+msgstr "ما راستی <a href='{0}'>کیلن پارکر</a> ءِ مِنّتواریں کہ آئیا مارا سک باز سرجمیں ڈیٹا فائل پُجّارینتگ۔ اگاں تو آئی ءِ کاراں واھگدارئے، گُڑا تو آئی ءِ پروجیکٹ ءِ تاکدیم ءَ <a href='{1}'>ادا</a> تَپاست کنئے۔ بے آئیا شانگانی گالِداں چوشیں سرجمیں آئی پی اے نہ بیتگ ات۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L90
 msgid "Enter a text in shanghainese dialect"
@@ -4296,7 +4326,7 @@ msgstr "ھما دانک کہ ٹَپال کنگ بیتگ انت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L96
 msgid "Sentences owned"
-msgstr "ھما گالرد کہ وتی کنگ بیتگ انت"
+msgstr "ھما گالِد کہ وتی کنگ بیتگ انت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L98
 msgid "Audio recordings"
@@ -4304,7 +4334,7 @@ msgstr "تواربَندی زَپتگ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L100
 msgid "Sentences favorited"
-msgstr "ھما گالرد کہ دلپسند کنگ بیتگ انت"
+msgstr "ھما گالِد کہ دلپسند کنگ بیتگ انت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L102
 msgid "Contributions"
@@ -4392,7 +4422,7 @@ msgstr "وتی پروفائل ءَ اُلسی کن"
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr "ھما گُڈّی لَڑ ءَ یات بدار کہ تو آئیا گالردے مَیِّن کرت، ءُ آئیا چہ جئوپ ءَ گچین کن"
+msgstr "ھما گُڈّی لَڑ ءَ یات بدار کہ تو آئیا گالِدے مَیِّن کرت، ءُ آئیا چہ جئوپ ءَ گچین کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L138
 msgid ""
@@ -4406,7 +4436,7 @@ msgstr "مُدام چمشانک نداتگیں نَدگیر ءُ بدلگیری�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L187
 msgid "Show random sentence on the homepage"
-msgstr "لوگدیم ءَ پَدیمیں گالردے پیشدار"
+msgstr "لوگدیم ءَ پَدیمیں گالِدے پیشدار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L210
 msgid ""
@@ -4418,11 +4448,11 @@ msgstr " <a href=\"{url}\">آئی ایس او639-3 کوڈاں</a>\nمان کن،
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L232
 msgid "Number of sentences per page"
-msgstr "یک تاکدیمے ءَ گالردانی شمار"
+msgstr "یک تاکدیمے ءَ گالِدانی شمار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Default license for original sentences"
-msgstr "جَئوپی لیسن پہ بُندَری گالرداں"
+msgstr "جَئوپی لیسن پہ بُندَری گالِداں"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
 msgid "Experimental options"
@@ -4437,7 +4467,7 @@ msgstr "اے کیچ ءَ ھستیں گِچیندَر سرجما کارءَ نہ 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L273
 msgid "Activate the feature to review sentences"
-msgstr "گالردانی چمشانک دیگ ءِ واستا دروش ءَ کاراور بکن۔"
+msgstr "گالِدانی چمشانک دیگ ءِ واستا دروش ءَ کاراور بکن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L296
 msgid ""
@@ -4445,13 +4475,13 @@ msgid ""
 "native level in the language of the sentence. In the old design \"(native)\""
 " is displayed next to the username. In the new design a {star} is displayed "
 "next to the sentence."
-msgstr "ھما گالرداں نشان بجن وھدے واھند وتی پروفائل ءِ تہا نشاندھی کنت کہ ھمے گالرد ءِ زبان ءَ چو پیدائشی گپ جنوک ءِ کچّ ءَ زانت۔ کوھنیں جَنگِن ءِ تہا ’’(پیدائشی گپ جنوک)‘‘ کارمرزی نام ءِ کش ءَ پیشدارگ بیتگ۔ نوکیں جَنگِن ءِ تہا یک {star}ے گالرد ءِ کش ءَ پیشدارگ بیتگ۔ "
+msgstr "ھما گالِداں نشان بجن وھدے واھند وتی پروفائل ءِ تہا نشاندھی کنت کہ ھمے گالِد ءِ زبان ءَ چو پیدائشی گپ جنوک ءِ کچّ ءَ زانت۔ کوھنیں جَنگِن ءِ تہا ’’(پیدائشی گپ جنوک)‘‘ کارمرزی نام ءِ کش ءَ پیشدارگ بیتگ۔ نوکیں جَنگِن ءِ تہا یک {star}ے گالِد ءِ کش ءَ پیشدارگ بیتگ۔ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L324
 msgid ""
 "Display sentences with the new design. Note that some features are not yet "
 "implemented in this new design but are coming soon."
-msgstr "نوک جَنگِنیں گالرداں پیشدار۔ اے گپ ءِ ھیال ءَ بدار کہ نوکیں جَنگِن ءِ تہا لہتے دروش انگت کارگیجگ نہ بیتگ انت بلے زیتاں کاینت۔"
+msgstr "نوک جَنگِنیں گالِداں پیشدار۔ اے گپ ءِ ھیال ءَ بدار کہ نوکیں جَنگِن ءِ تہا لہتے دروش انگت کارگیجگ نہ بیتگ انت بلے زیتاں کاینت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L355
 msgid "Change email address"
@@ -4612,7 +4642,7 @@ msgstr "ٹٹوبا کارمرزوک: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L66
 msgid "Latest sentences"
-msgstr "نوکتریں گالرد"
+msgstr "نوکتریں گالِد"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L102
@@ -4632,7 +4662,7 @@ msgstr "گالَمباری چیز گیش کن۔"
 msgid ""
 "Add vocabulary that you are learning. If your vocabulary does not exist yet "
 "in Tatoeba, other contributors can add sentences for it."
-msgstr "ھما گالَمباراں ھَور کن کہ تو آھاں دَربرگائے۔ اگاں دنیگہ ٹٹوبا ءِ تہا تئی گالَمبار نیست اَنت، گُڑا دگہ بَھرِشتکار پریشی ءَ گالرد ھَور کرت کننت۔"
+msgstr "ھما گالَمباراں ھَور کن کہ تو آھاں دَربرگائے۔ اگاں دنیگہ ٹٹوبا ءِ تہا تئی گالَمبار نیست اَنت، گُڑا دگہ بَھرِشتکار پریشی ءَ گالِد ھَور کرت کننت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L90
 msgid "Vocabulary item"
@@ -4653,16 +4683,16 @@ msgstr "تو اے گالَمباری شئے چہ پیسرا ھور کتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L31
 msgid "Vocabulary that needs sentences"
-msgstr "ھما گالَمبار کہ آھاں گالرد درکار اِنت"
+msgstr "ھما گالَمبار کہ آھاں گالِد درکار اِنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L34
 msgid "Vocabulary that needs sentences in {language}"
-msgstr " ءِ ھما گالَمبار کہ گالرد لوٹنت{language}"
+msgstr " ءِ ھما گالَمبار کہ گالِد لوٹنت{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L58
 msgid ""
 "Only vocabulary items that match fewer than 10 sentences are displayed here."
-msgstr "ادا ھما گالَمباری شئے پیشدارگ بیتگ اَنت کہ آ گوں 10 ءَ کمتر گالرد ءَ مئیل وَرنت۔"
+msgstr "ادا ھما گالَمباری شئے پیشدارگ بیتگ اَنت کہ آ گوں 10 ءَ کمتر گالِد ءَ مئیل وَرنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L67
 msgid "There are no requests."
@@ -4670,7 +4700,7 @@ msgstr "ھچ دزبندی نیست۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L100
 msgid "This sentence already exists."
-msgstr "اے گالرد چہ پیسرا ھست اِنت۔"
+msgstr "اے گالِد چہ پیسرا ھست اِنت۔"
 
 #. button to submit new sentence from wanted vocabulary requests page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L141
@@ -4757,21 +4787,21 @@ msgstr "تو چہ ٹٹوبا پروجیکٹ ءَ ڈَن جہل ءِ تواربَ
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L78
 msgid ""
-"The following audio recordings by {userName}, are licensed under the public "
+"The following audio recordings by {userName} are licensed under the public "
 "domain."
-msgstr "جہل ءِ ءِ تواربَندی زَپتگ کہ {userName} ئیگ اَنت،  اُلسی میدان ءِ رِد ءَ لیسن کنگ بیتگ انت۔"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L82
 msgid ""
-"The following audio recordings by {userName}, are licensed under the "
+"The following audio recordings by {userName} are licensed under the "
 "{licenseName} license."
-msgstr "جہل ءِ تواربَندی زَپتگ کہ {userName} ئیگ اَنت، {licenseName} لیسن ءِ رَد ءَ لیسن کنگ بیتگ اَنت۔"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L86
 msgid ""
-"The following audio recordings by {userName}, are licensed under an unknown "
+"The following audio recordings by {userName} are licensed under an unknown "
 "license."
-msgstr "جہل ءِ تواربَندی زَپتگ کہ {userName} ئیگ اَنت، نَزانتگیں لیسنے ءِ رِد ءَ لیسن کنگ بیتگ اَنت۔"
+msgstr "جَهل ءِ توار بند چہ {userName}نَزانتگین لیسنے ءِ تہا مان کنگ بوتگ اَنت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
@@ -4913,13 +4943,13 @@ msgstr "دگہ زبان"
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
-msgstr "تو گالرد ھور کرت نہ کنئے چیاکہ تو وتی پروفائل ءَ ھچ زبان ھور نہ کرتگ۔"
+msgstr "تو گالِد ھور کرت نہ کنئے چیاکہ تو وتی پروفائل ءَ ھچ زبان ھور نہ کرتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L317
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
-msgstr "تو گالرداں رجانک کرت نہ کنئے چیاکہ تو وتی پروفائل ءَ ھچ زبان ھور نہ کرتگ۔"
+msgstr "تو گالِداں رجانک کرت نہ کنئے چیاکہ تو وتی پروفائل ءَ ھچ زبان ھور نہ کرتگ۔"
 
 #. language level
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L343
@@ -4969,7 +4999,7 @@ msgstr "(نام نہ بستگیں لَڑ)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L212
 msgid "Number of sentences"
-msgstr "گالردانی شمار"
+msgstr "گالِدانی شمار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L233
 msgid "Back to all lists"
@@ -4983,125 +5013,125 @@ msgstr "واتر پہ اے لَڑ ءَ"
 msgid "Show translations :"
 msgstr "رجانکاں پیشدار:۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L328
 msgid "List visibility"
 msgstr "لَڑ ءِ چمگندی"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L350
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L345
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
-msgstr "اے لَڑ ءَ ھریکے رسائی کرت کنت ءُ ’ لَڑ ءِ رِد ءَ براوز کن‘ ءِ تاکدیم ءِ لَڑ ءَ ھم ھوار اِنت، ءُ ایشی ءِ تہا مانیں ھر یک گالردے ءِ گالردی تاکدیم ءَ ھم  ھوار  اِنت۔"
+msgstr "اے لَڑ ءَ ھریکے رسائی کرت کنت ءُ ’ لَڑ ءِ رِد ءَ براوز کن‘ ءِ تاکدیم ءِ لَڑ ءَ ھم ھوار اِنت، ءُ ایشی ءِ تہا مانیں ھر یک گالِدے ءِ گالِدی تاکدیم ءَ ھم  ھوار  اِنت۔"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L349
 msgid "Public"
 msgstr "اُلسی"
 
 #. notice of new visibility feature of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L354
 msgid "new"
 msgstr "نوک\nنوکیں"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L358
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
 msgstr "اے لَڑ ءَ ھریکے رسائی کرت کنت ءُ ’لَڑ ءِ رِد ءَ براوز کن‘ ءِ تاکدیم ءَ ھم ھست اِنت۔"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L366
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L361
 msgid "Listed"
 msgstr "لَڑ کُرتگیں"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L364
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
 msgstr "اے لَڑ ءَ ھریکے رسائی کرت کنت بلے ’لَڑ ءِ رِد ءَ براوز کن‘ ءِ تاکدیم ءَ نیست اِنت۔"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L372
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L367
 msgid "Unlisted"
 msgstr "لَڑ نہ کرتگین"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L370
 msgid "The list is accessible only to you."
 msgstr "اے لڑ ءَ ایوکا تو رسائی کرت کنئے۔"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L372
 msgid "Private"
 msgstr "اِھوَت"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
 msgid "Who can add/remove sentences"
-msgstr "کئے گالرداں ھور کرت یا دور کرت کنت"
+msgstr "کئے گالِداں ھور کرت یا دور کرت کنت"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L412
 msgid "Anyone"
 msgstr "ھرکسے"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L421
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L416
 msgid "Only me"
 msgstr "ایوکا من"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L420
 msgid "No one (list inactive)"
 msgstr "کس (لَڑ ناکاراور اِنت)۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L500
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L495
 msgid "Remove sentence {number} from list"
-msgstr "گالرد {number} ءَ چہ لَڑ  ءَ دُور کن۔"
+msgstr "گالِد {number} ءَ چہ لَڑ  ءَ دُور کن۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L524
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L519
 msgid "Remove this sentence from '{listName}'."
-msgstr "اے گالرد ءَ چہ ’{listName}‘ ءَ دُور کن۔"
+msgstr "اے گالِد ءَ چہ ’{listName}‘ ءَ دُور کن۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L570
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L565
 msgid "Add a sentence to this list : "
-msgstr "اے لَڑ ءَ گالردے ھور کن۔"
+msgstr "اے لَڑ ءَ گالِدے ھور کن۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L589
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L584
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
-msgstr "دلگوش: تو (پہ درور <a href=\"{url}\">براوز کنگ</a> ءِ وھد ءَ) چہ پیسرا ھستیں گالرداں ھم گوں اے آئیکون {addToListButton} ءَ ھور کرت کنئے۔ "
+msgstr "دلگوش: تو (پہ درور <a href=\"{url}\">براوز کنگ</a> ءِ وھد ءَ) چہ پیسرا ھستیں گالِداں ھم گوں اے آئیکون {addToListButton} ءَ ھور کرت کنئے۔ "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L656
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L651
 msgid "Create a new list"
 msgstr "نوکیں لڑے جوڑ کن"
 
 #. field for the name of a list to create (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L668
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L663
 msgctxt "list"
 msgid "Name"
 msgstr "نام"
 
 #. header text in List of lists page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L691
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L686
 msgctxt "header"
 msgid "Search"
 msgstr "شوھاز"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L738
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L733
 msgid "All public lists"
 msgstr "درستیں اُلسی لَڑ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L749
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L744
 msgid "Collaborative lists"
 msgstr "ھمکاری لَڑ"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L777
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L772
 msgctxt "list"
 msgid "Unspecified"
 msgstr "دَرچین نہ کرتگیں"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L789
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L784
 msgid "Other lists"
 msgstr "دگہ لڑ"
 
@@ -5199,7 +5229,7 @@ msgstr "درنگ کرتگین"
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
-msgstr "اے گالرد اے وھداں نامنزور نشان کنگ بیتگ۔ منزور نہ کتگیں گالرد رجانک بیت نہ کننت۔"
+msgstr "اے گالِد اے وھداں نامنزور نشان کنگ بیتگ۔ منزور نہ کتگیں گالِد رجانک بیت نہ کننت۔"
 
 #. button after removing a favorite from the My favorites page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L212
@@ -5208,11 +5238,11 @@ msgstr "پَدگردین"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L270
 msgid "Link to another sentence"
-msgstr "گوں دگہ گالردےءَ کڑی کن"
+msgstr "گوں دگہ گالِدےءَ کڑی کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L284
 msgid "Sentence number"
-msgstr "گالرد ءِ لمبر"
+msgstr "گالِد ءِ لمبر"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L330
 msgid "Add to list"
@@ -5220,7 +5250,7 @@ msgstr "لَڑ ءَ ھوار کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L364
 msgid "Sentence already in all possible lists"
-msgstr "گالرد چہ پیسرا بوتنی ئیں لڑاں مان انت"
+msgstr "گالِد چہ پیسرا بوتنی ئیں لڑاں مان انت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L366
 msgid "Add to one of your lists"
@@ -5232,7 +5262,7 @@ msgstr "ھمکاری لَڑ ے ءَ ھوار کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L425
 msgid "You cannot delete this sentence because it has audio."
-msgstr "تو اے لڑ ءَ لِیکّور کرت نہ کنۓ پرچہ کہ ایشی ءَ تواربَند مان۔"
+msgstr "تو اے گالِد ءَ لِیکّور کرت نہ کنۓ پرچہ کہ ایشی ءَ تواربَند مان۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L516
 msgid "belongs to {user}"
@@ -5247,7 +5277,7 @@ msgid ""
 "Tatoeba can automatically enter the sentence ID when you have copied a "
 "sentence URL. To enable this, please allow your browser to read from the "
 "clipboard."
-msgstr "وھدے تو یک گالردے ءِ یو آر ایل نکل کرتگ ٹٹوبا وتکاریں وَڑے ءَ گالرد ءِ پَجّار ءَ درج کرت کنت۔ پریشی ءِ کارکابِل کنگ ءَ، مہربانی کن براوزر ءَ اجازت بدئے کہ کلپبورڈ ءَ بوانیت۔"
+msgstr "وھدے تو یک گالِدے ءِ یو آر ایل نکل کرتگ ٹٹوبا وتکاریں وَڑے ءَ گالِد ءِ پَجّار ءَ درج کرت کنت۔ پریشی ءِ کارکابِل کنگ ءَ، مہربانی کن براوزر ءَ اجازت بدئے کہ کلپبورڈ ءَ بوانیت۔"
 
 #. this formats title at the top of every page
 #. that shows a list of sentences (search, browse by language,
@@ -5277,7 +5307,7 @@ msgstr "{sentenceId}#"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L112
 msgid "Recently added sentences may not appear in search results."
-msgstr "بوت کنت کہ تاجگ ھور کرتگیں گالرد شوھاز ءِ آسرانی تہا زاھر مہ بنت۔ "
+msgstr "بوت کنت کہ تاجگ ھور کرتگیں گالِد شوھاز ءِ آسرانی تہا زاھر مہ بنت۔ "
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
@@ -5318,7 +5348,7 @@ msgstr "ھر یک زبانے"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L78
 msgid "Show sentence's details"
-msgstr "گالرد ءِ تَپسیلاں پیشدار"
+msgstr "گالِد ءِ تَپسیلاں پیشدار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L205
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L855
@@ -5337,19 +5367,19 @@ msgstr "رجانک ءَ پیش کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L817
 msgid "This sentence is original and was not derived from translation."
-msgstr "اے گالرِد بُندَری یے ءُ چہ رجانک ءَ زیرگ نہ بیتگ۔"
+msgstr "اے گالِد بُندَری یے ءُ چہ رجانک ءَ زیرگ نہ بیتگ۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L822
 msgid ""
 "This sentence was initially added as a translation of sentence "
 "{sentenceIdWithIdSign}."
-msgstr "اے گالرد بندات ءَ گالرد{sentenceIdWithIdSign} ءِ رجانک ءِ ردءَ گیش کنگ بیتگت۔"
+msgstr "اے گالِد بندات ءَ گالِد{sentenceIdWithIdSign} ءِ رجانک ءِ ردءَ گیش کنگ بیتگت۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L827
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
-msgstr "ما دنیگہ مَیّن کرت نہ کنیں کہ اے گالرد بندات ءَ چہ رجانک ءَ دَراتکگ یا ناں۔"
+msgstr "ما دنیگہ مَیّن کرت نہ کنیں کہ اے گالِد بندات ءَ چہ رجانک ءَ دَراتکگ یا ناں۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L175
 msgid "NOTE: Both direct and indirect translations will be shown."
@@ -5365,11 +5395,11 @@ msgstr "ءَ ، {date}ءَ گیش کرتگ۔{username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
 msgid "Remove tag '{tagName}' from this sentence."
-msgstr "چہ اے گالرد ءَ ٹیگ {tagName}ءَ دُور کن۔"
+msgstr "چہ اے گالِد ءَ ٹیگ {tagName}ءَ دُور کن۔"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
 msgid "Remove tag from sentence"
-msgstr "چہ گالرد ءَ ٹیگ ءَ دُور کن"
+msgstr "چہ گالِد ءَ ٹیگ ءَ دُور کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L150
 msgid "Show alternative script"
@@ -5407,7 +5437,7 @@ msgstr "ایشی ءَ کلک کن ءُ نشان کن کہ چمشانک داتگ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L41
 msgid "Unknown number of sentences"
-msgstr "گالردانی نَزانتگیں شمار"
+msgstr "گالِدانی نَزانتگیں شمار"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"

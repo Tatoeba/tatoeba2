@@ -75,8 +75,8 @@
                     </md-button>
                 </div>
 
-                <div layout="row" layout-align="center center">
-                    <md-button href="<?= h($this->cell('WikiLink', ['text-search'])) ?>" target="_blank">
+                <div layout="row" layout-align="center center" layout-wrap>
+                    <md-button href="<?= h($this->Pages->getWikiLink('text-search')) ?>" target="_blank">
                         <?php
                         /* @translators: links to a page with tips to perform
                             searches, like search operators */

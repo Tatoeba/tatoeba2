@@ -115,7 +115,7 @@ class ShowAllHelper extends AppHelper
                 'name' => 'filterLanguageSelect',
                 'initialSelection' => $selectedLanguage,
                 'languages' => $langs,
-                'onSelectedLanguageChange' => "window.location.href = $javascriptUrl",
+                'onSelectedLanguageChange' => "window.location.pathname = $javascriptUrl",
                 'forceItemSelection' => true,
             )
         );

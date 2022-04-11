@@ -194,6 +194,19 @@ $langsTo = $this->Languages->profileLanguagesArray();
             </fieldset>
             <?php echo $this->Form->end(); ?>
         </div>
+
+        <md-subheader><?php echo __('Check Tatominer'); ?></md-subheader>
+        <div layout="column" layout-margin layout-align="center center">
+            <p><?= __('Tatominer provides a list of the most searched words for which there are very few or no translations yet.'); ?></p>
+            <md-button class="md-primary" href="https://tatominer.netlify.app/" target="_blank">
+                <?= __('Go to Tatominer') ?>
+                <md-icon>keyboard_arrow_right</md-icon>
+            </md-button>
+            <div class="hint" layout="row" layout-align="center center">
+                <md-icon>info</md-icon> 
+                <div><?= __('Not all languages are supported yet.'); ?></div>
+            </div>
+        </div>
     </section>
 
 </div>

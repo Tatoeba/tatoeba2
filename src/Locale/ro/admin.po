@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 22:47+0200\n"
+"POT-Creation-Date: 2022-03-15 19:29+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Elena Cristina <elenacristina654321@gmail.com>, 2021\n"
 "Language-Team: Romanian (https://www.transifex.com/tatoeba/teams/28284/ro/)\n"
@@ -42,7 +42,8 @@ msgstr "Fișierul invalid „{file}” a fost ignorat."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
-"Creare eșuată a folderului „{dir}” pentru importul fișierului „{file}”."
+"Nu s-a reușit crearea folderului „{dir}” pentru importul fișierului "
+"„{file}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
@@ -53,8 +54,8 @@ msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
-"Nu i se poate atribui înregistrarea audio lui „{author}” pentru propoziția "
-"{sentenceId} în baza de date. Asigură-te că este un nume de utilizator "
+"Nu se poate atribui înregistrarea audio lui „{author}” pentru propoziția "
+"{sentenceId} în baza de date. Asigurați-vă că numele de utilizator este "
 "valid."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
@@ -63,16 +64,16 @@ msgid ""
 "import directory."
 msgstr ""
 "Fișierul „{file}” a fost importat cu succes, dar nu a putut fi șters din "
-"folderul sursă."
+"folderul de import."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr "Importă înregistrări audio"
+msgstr "Importați înregistrări audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
 msgid "Import report"
-msgstr "Importă raport"
+msgstr "Importați raport"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
 msgid "The following errors occurred during import."
@@ -80,7 +81,7 @@ msgstr "Următoarele erori au apărut în timpul importului."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr "Fișiere găsite"
+msgstr "Fișiere detectate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
@@ -109,13 +110,7 @@ msgstr "N/A"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
 msgid "Invalid"
-msgstr "Invalid(ă)"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
-msgid "Yes"
-msgstr "Da"
+msgstr "Nevalid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
@@ -123,13 +118,18 @@ msgstr "Da"
 msgid "No"
 msgstr "Nu"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+msgid "Yes"
+msgstr "Da"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
-msgstr "Niciun fișier nu a fost găsit în folderul sursă."
+msgstr "Niciun fișier nu a fost găsit în folderul de import."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
 msgid "Import"
-msgstr "Importă"
+msgstr "Importați"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
 msgid "Enabled"
@@ -137,13 +137,13 @@ msgstr "Activat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
-msgstr "Numele proprietarului"
+msgstr "Nume proprietar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
-msgstr "Trimite"
+msgstr "Trimiteți"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
@@ -179,11 +179,11 @@ msgstr "ID numeric utilizator:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
 msgid "import"
-msgstr "importă"
+msgstr "importați"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr "Propoziții și traduceri:"
+msgstr "Propoziții și traduceri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
@@ -202,15 +202,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
-msgstr "Şterge"
+msgstr "Ştergeți"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr "Ești sigur că vrei să ștergi utilizatorul #{number}?"
+msgstr "Sunteți sigur că vreți să ștergeți utilizatorul #{number}?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr "Listează Utilizatori"
+msgstr "Listați Utilizatori"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
@@ -218,7 +218,7 @@ msgstr "Profil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr "Editează Utilizator"
+msgstr "Editați Utilizator"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
@@ -242,12 +242,12 @@ msgstr "Nivel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
-msgstr "Trimite notificări"
+msgstr "Trimiteți notificări"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
 msgid "unhide"
-msgstr "arată"
+msgstr "reafișați"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
 msgid "hide"
-msgstr "ascunde"
+msgstr "ascundeți"

@@ -188,7 +188,7 @@ class AudiosTable extends Table
         $sentences = $this->Sentences->find()
             ->where(['Sentences.id IN' => $allSentenceIds])
             ->select(['id', 'lang'])
-            ->contain(['Audios'])
+            ->contain(['Audios' => ['Users' => ['fields' => ['username']]]])
             ->toList();
             
         $sentences = Hash::combine($sentences, '{n}.id', '{n}');

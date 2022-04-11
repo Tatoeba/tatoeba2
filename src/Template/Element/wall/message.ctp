@@ -113,7 +113,7 @@ $canReply = false;
                             'and to the author of the message.',
                             true
                         ),
-                        $this->cell('WikiLink', ['rules-against-bad-behavior'])
+                        $this->Pages->getWikiLink('rules-against-bad-behavior')
                     ); ?>
                 </p>
             </div>

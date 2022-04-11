@@ -297,6 +297,7 @@ class UsersController extends AppController
             );
             $newUser->since = date("Y-m-d H:i:s");
             $newUser->role = User::ROLE_CONTRIBUTOR;
+            $newUser->audio_license = 'CC BY 4.0';
 
             if (!$honeypotTrapped
                 && $this->request->getData('acceptation_terms_of_use')

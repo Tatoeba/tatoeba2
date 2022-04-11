@@ -213,7 +213,7 @@ class SentenceButtonsHelper extends AppHelper
         } else {
             echo $this->Html->Link(
                 null,
-                $this->_View->cell('WikiLink', ['contribute-audio']),
+                $this->Pages->getWikiLink('contribute-audio'),
                 array(
                     'title' => __('No audio for this sentence. Click to learn how to contribute.'),
                     'class' => 'audioButton audioUnavailable',
