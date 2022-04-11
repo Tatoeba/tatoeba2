@@ -44,9 +44,34 @@ use Cake\Routing\Route\InflectedRoute;
  * constructor in your `src/Application.php` file to change this behavior.
  *
  */
+
+use App\Middleware\LanguageSelectorMiddleware;
+
 Router::defaultRouteClass(InflectedRoute::class);
 
+Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes) {
+    $routes->connect(
+        '/sentences/:lang/:sentence_id.mp3',
+        ['controller' => 'main', 'action' => 'legacy_audio_url']
+    )
+    ->setHost('audio.*')
+    ->setPass(['lang', 'sentence_id'])
+    ->setPatterns(['sentence_id' => '\d+']);
+
+    $routes->connect(
+        '/*',
+        ['controller' => 'main', 'action' => 'default']
+    )
+    ->setHost('audio.*');
+});
+
 Router::scope('/', function (RouteBuilder $routes) {
+    $routes->registerMiddleware('languageSelector', new LanguageSelectorMiddleware());
+});
+
+Router::scope('/', function (RouteBuilder $routes) {
+    $routes->applyMiddleware('languageSelector');
+
     // Regex pattern for language parameter
     $langPattern = join(
         '|',
