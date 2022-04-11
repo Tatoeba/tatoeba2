@@ -198,7 +198,7 @@ class SentenceButtonsHelper extends AppHelper
         } else {
             $onClick = 'return false';
             $css = 'audioUnavailable';
-            $path = $this->_View->cell('WikiLink', ['contribute-audio']);
+            $path = $this->Pages->getWikiLink('contribute-audio');
             $title = __('No audio for this sentence. Click to learn how to contribute.');
             $onClick = 'window.open(this.href); return false;';
         }

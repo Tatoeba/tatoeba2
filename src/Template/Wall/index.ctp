@@ -73,7 +73,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
                 'Please read our '.
                 '<a href="{}">rules against bad behavior</a>.', true
             ),
-            $this->cell('WikiLink', ['rules-against-bad-behavior'])
+            $this->Pages->getWikiLink('rules-against-bad-behavior')
         );
         ?>
         </p>

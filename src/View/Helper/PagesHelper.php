@@ -114,5 +114,16 @@ class PagesHelper extends AppHelper
             ));
         }
     }
+
+    public function getWikiLink($englishSlug) {
+        $wikiLinkLocalizer = $this->_View->get('wikiLinkLocalizer');
+        if (is_callable($wikiLinkLocalizer)) {
+            return $wikiLinkLocalizer($englishSlug);
+        } else {
+            // fallback if AppController::beforeRender() wasn't called
+            $englishSlug = urlencode($englishSlug);
+            return "https://en.wiki.tatoeba.org/articles/show/$englishSlug";
+        }
+    }
 }
 ?>
