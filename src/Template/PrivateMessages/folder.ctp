@@ -96,9 +96,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 
                 $unread = $msg->isnonread == 1 ? 'unread' : '';
 
-                $username = $user ? $user->username : null;
-                $userImage = $user ? $user->image : null;
-
                 if ($msg->title == '') {
                     $messageTitle = __('[no subject]');
                 } else {
@@ -139,7 +136,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                 ]);
                 ?>
                 <md-list-item class="md-2-line <?= $unread ?>" href="<?= $url ?>">
-                    <?= $this->Members->image($username, $userImage, array('class' => 'md-avatar')); ?>
+                    <?= $this->Members->image($user, array('class' => 'md-avatar')); ?>
                     <div class="md-list-item-text" layout="column">
                         <h3><?= $this->safeForAngular($messageTitle) ?></h3>
                         <p>

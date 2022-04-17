@@ -4,7 +4,6 @@ use App\Model\CurrentUser;
 $sentenceId = $comment->sentence_id;
 $user = $comment->user;
 $username = $user['username'];
-$avatar = $user['image'];
 $text = $comment->text;
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
@@ -25,7 +24,7 @@ $cancelUrl = $this->Url->build([
 
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">

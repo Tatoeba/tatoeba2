@@ -47,8 +47,15 @@ class MembersHelper extends AppHelper
     /**
      *
      */
-    public function image($username = null, $imageName = null, $options = array())
+    public function image($user = null, $options = array())
     {
+        $username = null;
+        $imageName = null;
+        if ($user) {
+            $user = (object)$user;
+            $username = $user->username;
+            $imageName = $user->image;
+        }
         if (empty($imageName)) {
             $imageName = 'unknown-avatar.png';
         }
