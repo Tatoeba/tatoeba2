@@ -405,7 +405,7 @@ echo $this->Form->create('AdvancedSearch', [
         </md-button>
 
         <md-button class="md-primary" target="_blank"
-                   href="<?= h($this->cell('WikiLink', ['text-search'])) ?>">
+                   href="<?= h($this->Pages->getWikiLink('text-search')) ?>">
             <?= __('More search options') ?>
         </md-button>
         <?php if (!(isset($isSidebar) && $isSidebar)): ?>

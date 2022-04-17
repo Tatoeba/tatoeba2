@@ -2,8 +2,8 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $message->user->username ?? null;
-$avatar = $message->user->image ?? null;
+$user = $message->user;
+$username = $user->username ?? null;
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 $messageId = $message->id;
@@ -59,7 +59,7 @@ $canReply = false;
 <md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
         <?php if ($username): ?>
@@ -113,7 +113,7 @@ $canReply = false;
                             'and to the author of the message.',
                             true
                         ),
-                        $this->cell('WikiLink', ['rules-against-bad-behavior'])
+                        $this->Pages->getWikiLink('rules-against-bad-behavior')
                     ); ?>
                 </p>
             </div>

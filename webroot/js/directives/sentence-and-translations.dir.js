@@ -190,6 +190,12 @@
         /////////////////////////////////////////////////////////////////////////
 
         function init(langs, sentence, directTranslations, indirectTranslations, translationLanguage) {
+            editableTranslations = [];
+            duplicateTranslations = [];
+            newTranslations = [];
+            vm.newTranslation = {};
+            vm.hasHiddenTranscriptions = false;
+
             vm.userLanguages = langs;
             vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
@@ -206,6 +212,7 @@
         }
 
         function initMenu(isExpanded, menu) {
+            vm.iconsInProgress = {};
             if (isExpanded) {
                 vm.isMenuExpanded = isExpanded;
             } else {
@@ -560,6 +567,7 @@
             vm.lists = allLists.filter(function(item) {
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
+            vm.listSearch = '';
             vm.listType = 'of_user';
         }
 

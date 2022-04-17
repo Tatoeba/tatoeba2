@@ -52,6 +52,10 @@ class WikiArticlesTable extends Table
         return "//$lang.$baseHost/articles/show/$slug";
     }
 
+    public function wikiLinkLocalizer() {
+        return function($slug) { return $this->getWikiLink($slug); };
+    }
+
     public function initialize(array $config) {
         parent::initialize($config);
         $this->setTable('articles');

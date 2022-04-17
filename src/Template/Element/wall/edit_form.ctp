@@ -1,7 +1,6 @@
 <?php
 $user = $message->user;
 $username = $user['username'];
-$avatar = $user['image'];
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 
@@ -20,7 +19,7 @@ $cancelUrl = $this->Url->build([
 
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">
