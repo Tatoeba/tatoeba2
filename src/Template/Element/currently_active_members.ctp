@@ -44,7 +44,6 @@ foreach($currentContributors as $i=>$currentContributor){
     $numberOfContributions = $currentContributor->total;
     $percentage = ($numberOfContributions/$total)*100;
     $username = $currentContributor->user->username;
-    $userImage = $currentContributor->user->image;
     $url = $this->Url->build([
         'controller' => 'contributions',
         'action' => 'of_user',
@@ -52,7 +51,7 @@ foreach($currentContributors as $i=>$currentContributor){
     ]);
     ?>
     <md-list-item class="md-2-line" href="<?= $url ?>">
-        <?= $this->Members->image($username, $userImage, array('class' => 'md-avatar')); ?>
+        <?= $this->Members->image($currentContributor->user, array('class' => 'md-avatar')); ?>
         <div class="md-list-item-text" layout="column">
             <h3><?= $username ?></h3>
             <p>

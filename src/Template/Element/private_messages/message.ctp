@@ -1,6 +1,5 @@
 <?php
 $username = $user->username ?? null;
-$avatar = $user->image ?? null;
 $dateLabel = $this->Date->ago($message->date);
 $fullDateLabel = $message->date;
 $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message->type);
@@ -12,7 +11,7 @@ $messageContent = $this->safeForAngular(
 <md-card class="comment">
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">

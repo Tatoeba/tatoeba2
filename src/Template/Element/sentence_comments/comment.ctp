@@ -2,7 +2,8 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $comment->user->username ?? null;
+$user = $comment->user;
+$username = $user->username ?? null;
 if ($username) {
     $userProfileUrl = $this->Url->build(array(
         'controller' => 'user',
@@ -10,7 +11,6 @@ if ($username) {
         $username
     ));
 }
-$avatar = $comment->user->image ?? null;
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 $commentId = $comment->id;
@@ -109,7 +109,7 @@ if ($sentenceOwnerLink) {
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
         <?php if ($username): ?>

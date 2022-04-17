@@ -157,9 +157,13 @@ class UserControllerTest extends IntegrationTestCase
         $this->post('/en/user/save_basic', [
             'email' => $newEmail,
         ]);
+
+        $this->assertRedirect('/en/user/profile/contributor');
+        $redirectTarget = $this->_response->getHeaderLine('Location');
+        $this->get($redirectTarget);
+
         $this->assertEquals($this->_controller->Auth->user('username'), $username);
         $this->assertEquals($this->_controller->Auth->user('email'), $newEmail);
-        $this->assertRedirect('/en/user/profile/contributor');
     }
 
     public function testSaveBasic_ignoresUnallowedFields() {
