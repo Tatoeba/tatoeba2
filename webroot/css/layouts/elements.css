@@ -266,12 +266,12 @@ html[dir="rtl"] .comment-sentence .text {
     text-align: right;
 }
 
-.comment.inappropriate .warning-info p {
+.comment .inappropriate .warning-info p {
     padding: 0 10px;
     margin: 0;
 }
 
-.comment.inappropriate > md-card-content > .content {
+.comment .inappropriate .content {
     color: #d50000;
     border-top: 1px #f1f1f1 solid;
     padding-top: 10px;
@@ -495,38 +495,6 @@ html[dir="rtl"] .comment-sentence .text {
 
 .message .body > .textarea {
     padding: 20px 20px 0 20px;
-}
-
-
-/*
- * Inappropriate messages
- */
-
-.inappropriate .body {
-    color: #CC2828;
-}
-
-.inappropriate .warningInfo {
-    color: #999;
-    padding: 10px 10px 10px 47px;
-    background: url(../../img/warning.svg) no-repeat 7px center;
-}
-
-.inappropriate .separator {
-    border-top: 1px dotted #ccc;
-}
-
-.inappropriate .header a {
-    color: #bbb;
-    text-decoration: none;
-}
-.inappropriate .username a, .inappropriate .menu a {
-    background-color: #f7f7f7;
-    border: 1px solid #ddd;
-}
-
-.inappropriate .username a {
-    border-left: none;
 }
 
 

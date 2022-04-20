@@ -106,7 +106,7 @@ if ($sentenceOwnerLink) {
 </div>
 <?php } ?>
 
-<md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
+<md-card class="comment">
     <md-card-header>
         <?php if (!$commentHidden || $canViewContent): ?>
         <md-card-avatar>
@@ -157,7 +157,7 @@ if ($sentenceOwnerLink) {
 
     <md-divider></md-divider>
 
-    <md-card-content>
+    <md-card-content class="<?= $commentHidden ? 'inappropriate' : '' ?>">
         <?php if ($commentHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>

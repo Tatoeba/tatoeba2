@@ -56,7 +56,7 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
 $canReply = false;
 ?>
 
-<md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
+<md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?>">
     <md-card-header>
         <?php if (!$messageHidden || $canViewContent): ?>
         <md-card-avatar>
@@ -104,7 +104,7 @@ $canReply = false;
         <?php } ?>
     </md-card-header>
 
-    <md-card-content>
+    <md-card-content class="<?= $messageHidden ? 'inappropriate' : '' ?>">
         <?php if ($messageHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>
