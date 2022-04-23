@@ -165,17 +165,32 @@
     align-items: center;
     margin-left: -15px;
     margin-bottom: 0;
+    position: relative;
+    z-index: 1;
 }
 .audio .disabled h3 {
     text-decoration: line-through;
+}
+.audio .audio-button {
+    background: white;
+    align-self: end;
+}
+.audio .audio-author {
+    background: white;
+    padding-right: 8px;
+    margin-right: 2px;
+    word-wrap: anywhere;
 }
 .audio h2 {
     margin-bottom: 0;
 }
 .audio .audio-details {
-    padding-left: 20px;
+    padding: 10px 16px;
     margin-left: 10px;
-    border-left: 2px solid rgba(0,0,0,0.12);
+    margin-top: -20px;
+    border: 2px solid rgba(0,0,0,0.12);
+    z-index: 0;
+    position: relative;
 }
 .audio .audio-details .license {
     padding-top: 16px;

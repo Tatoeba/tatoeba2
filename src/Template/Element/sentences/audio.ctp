@@ -67,15 +67,15 @@ $this->AngularTemplate->addTemplate(
 
     <div ng-repeat="audio in vm.audios" ng-class="{'disabled': !audio.enabled}">
         <h3>
-            <audio-button include-disabled="true" audios="[audio]"></audio-button>
-            <span>
+            <audio-button class="audio-button" include-disabled="true" audios="[audio]"></audio-button>
+            <span class="audio-author">
                 <?= format(__('by {username}'), [
                     'username' => '<a ng-href="{{audio.attribution_url}}">{{audio.author}}</a>'
                 ]) ?>
             </span>
         </h3>
 
-        <div class="audio-details">
+        <div class="audio-details" layout="column">
             <div class="license"><?= format(__('License: {license}'), ['license' => $licenseTemplate]) ?></div>
 
             <?php if (CurrentUser::isAdmin()): ?>
