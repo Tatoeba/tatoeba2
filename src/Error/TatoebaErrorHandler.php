@@ -12,7 +12,7 @@ class TatoebaErrorHandler extends ErrorHandler
 
         // Prevent messing up with json output;
         // only log error to debug.log
-        if (!$request->accepts('application/json')) {
+        if ($request && !$request->accepts('application/json')) {
             parent::_displayError($error, $debug);
         }
     }
