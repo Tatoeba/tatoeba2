@@ -106,18 +106,22 @@ if ($sentenceOwnerLink) {
 </div>
 <?php } ?>
 
-<md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
+<md-card class="comment">
     <md-card-header>
+        <?php if (!$commentHidden || $canViewContent): ?>
         <md-card-avatar>
             <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
+        <?php endif; ?>
         <md-card-header-text>
-        <?php if ($username): ?>
-            <span class="md-title">
-                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
-            </span>
-        <?php else: ?>
-            <i><?= h(__('Former member')) ?></i>
+        <?php if (!$commentHidden || $canViewContent): ?>
+            <?php if ($username): ?>
+                <span class="md-title">
+                    <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                </span>
+            <?php else: ?>
+                <i><?= h(__('Former member')) ?></i>
+            <?php endif; ?>
         <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
@@ -153,7 +157,7 @@ if ($sentenceOwnerLink) {
 
     <md-divider></md-divider>
 
-    <md-card-content>
+    <md-card-content class="<?= $commentHidden ? 'inappropriate' : '' ?>">
         <?php if ($commentHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>
