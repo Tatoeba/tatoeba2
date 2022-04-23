@@ -289,29 +289,12 @@ class AudiosTable extends Table
         return $filesImported;
     }
 
-    public function massEdit($audioChangeReqs) {
-        return $this->getConnection()->transactional(function () use ($audioChangeReqs) {
-            foreach ($audioChangeReqs as $id => $audioChangeReq) {
-                try {
-                    $audio = $this->get($id);
-                } catch (RecordNotFoundException $e) {
-                    return false;
-                }
-                if (isset($audioChangeReq['enabled'])) {
-                    $audio->enabled = $audioChangeReq['enabled'];
-                }
-                if (isset($audioChangeReq['author'])) {
-                    $this->assignAuthor($audio, $audioChangeReq['author'], true);
-                }
-                try {
-                    if (!$this->save($audio)) {
-                        return false;
-                    }
-                } catch (InvalidArgumentException $e) {
-                    return false;
-                }
-            }
-            return true;
-        });
+    public function edit($audio, $fields) {
+        if (isset($fields['enabled'])) {
+            $audio->enabled = $fields['enabled'];
+        }
+        if (isset($fields['author'])) {
+            $this->assignAuthor($audio, $fields['author'], true);
+        }
     }
 }

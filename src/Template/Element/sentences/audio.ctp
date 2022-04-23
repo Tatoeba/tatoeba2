@@ -91,13 +91,12 @@ $this->AngularTemplate->addTemplate(
                     ]);
                     ?>
                 </md-input-container>
+                <md-button type="submit" class="md-primary md-raised" ng-click="vm.saveAudio(audio)">
+                    <?php /* @translators: audio save button on sentence page (verb) */ ?>
+                    <?= __d('admin', 'Save') ?>
+                </md-button>
             <?php endif; ?>
         </div>
     </div>
-    <?php if (CurrentUser::isAdmin()): ?>
-        <md-button type="submit" class="md-primary md-raised" ng-click="vm.editAudio()">
-            <?= __d('admin', 'Save') ?>
-        </md-button>
-    <?php endif; ?>
 </div>
 </div>

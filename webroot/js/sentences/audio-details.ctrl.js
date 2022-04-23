@@ -12,7 +12,7 @@
         vm.init = init;
         vm.getLicenseName = getLicenseName;
         vm.getLicenseLink = getLicenseLink;
-        vm.editAudio = editAudio;
+        vm.saveAudio = saveAudio;
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -41,19 +41,16 @@
             }
         }
 
-        function editAudio() {
-            var data = {};
-            vm.audios.forEach(function(audio) {
-                data[audio.id] = {
-                    author: audio.author,
-                    enabled: audio.enabled,
-                };
-            });
+        function saveAudio(audio) {
+            var data = {
+                author: audio.author,
+                enabled: audio.enabled
+            };
             var options = {
                 headers: {'Content-Type': 'application/json;charset=utf-8'},
                 transformRequest: angular.toJson
             };
-            $http.post(rootUrl + '/audio/mass_edit', data, options).then(
+            $http.post(rootUrl + '/audio/save/' + audio.id, data, options).then(
                 function success(result) {
                     window.location.reload();
                 },

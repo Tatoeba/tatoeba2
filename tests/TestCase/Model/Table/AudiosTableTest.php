@@ -275,101 +275,62 @@ class AudiosTableTest extends TestCase {
         I18n::setLocale($prevLocale);
     }
 
-    function testMassEdit_empty_ok() {
-        $result = $this->Audio->massEdit([]);
-        $this->assertTrue($result);
-    }
+    function testEdit_enable_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertTrue($audio->enabled);
 
-    function testMassEdit_invalid_id_fails() {
-        $result = $this->Audio->massEdit([
-            999999999 => ['enabled' => true],
-        ]);
+        $this->Audio->edit($audio, ['enabled' => false]);
+        $this->Audio->save($audio);
 
-        $this->assertFalse($result);
-    }
-
-    function testMassEdit_enable_one_ok() {
-        $this->assertTrue($this->Audio->get(1)->enabled);
-
-        $result = $this->Audio->massEdit([
-            1 => ['enabled' => false],
-        ]);
-
-        $this->assertTrue($result);
         $this->assertFalse($this->Audio->get(1)->enabled);
     }
 
-    function testMassEdit_enable_one_fails() {
-        $this->assertTrue($this->Audio->get(1)->enabled);
+    function testEdit_enable_fails() {
+        $audio = $this->Audio->get(1);
+        $this->assertTrue($audio->enabled);
 
-        $result = $this->Audio->massEdit([
-            1 => ['enabled' => 'invalid data here'],
-        ]);
-
-        $this->assertFalse($result);
-        $this->assertTrue($this->Audio->get(1)->enabled);
-    }
-
-    function testMassEdit_enable_two_ok() {
-        $this->assertTrue($this->Audio->get(1)->enabled);
-        $this->assertTrue($this->Audio->get(2)->enabled);
-
-        $result = $this->Audio->massEdit([
-            1 => ['enabled' => false],
-            2 => ['enabled' => false],
-        ]);
-
-        $this->assertTrue($result);
-        $this->assertFalse($this->Audio->get(1)->enabled);
-        $this->assertFalse($this->Audio->get(2)->enabled);
-    }
-
-    function testMassEdit_enable_two_fails() {
-        $this->assertTrue($this->Audio->get(1)->enabled);
-        $this->assertTrue($this->Audio->get(2)->enabled);
-
-        $result = $this->Audio->massEdit([
-            1 => ['enabled' => false],
-            2 => ['enabled' => 'invalid data here'],
-        ]);
+        $this->Audio->edit($audio, ['enabled' => 'invalid data here']);
+        try {
+            $this->Audio->save($audio);
+            $result = true;
+        } catch (\InvalidArgumentException $e) {
+            $result = false;
+        }
 
         $this->assertFalse($result);
         $this->assertTrue($this->Audio->get(1)->enabled);
-        $this->assertTrue($this->Audio->get(2)->enabled);
     }
 
-    function testMassEdit_change_author_ok() {
-        $this->assertEquals(4, $this->Audio->get(1)->user_id);
+    function testEdit_change_author_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertEquals(4, $audio->user_id);
 
-        $result = $this->Audio->massEdit([
-            1 => ['author' => 'admin'],
-        ]);
+        $this->Audio->edit($audio, ['author' => 'admin']);
+        $this->Audio->save($audio);
 
-        $this->assertTrue($result);
         $this->assertEquals(1, $this->Audio->get(1)->user_id);
     }
 
-    function testMassEdit_change_author_empty_ok() {
-        $this->assertEquals(4, $this->Audio->get(1)->user_id);
+    function testEdit_change_author_empty_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertEquals(4, $audio->user_id);
 
-        $result = $this->Audio->massEdit([
-            1 => ['author' => ''],
-        ]);
+        $this->Audio->edit($audio, ['author' => '']);
+        $this->Audio->save($audio);
 
-        $this->assertTrue($result);
         $this->assertEquals(4, $this->Audio->get(1)->user_id);
     }
 
-    function testMassEdit_change_external_author_ok() {
-        $this->assertEquals(4, $this->Audio->get(1)->user_id);
-        $this->assertNull($this->Audio->get(1)->external);
+    function testEdit_change_external_author_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertEquals(4, $audio->user_id);
+        $this->assertNull($audio->external);
 
-        $result = $this->Audio->massEdit([
-            1 => ['author' => 'Barack Obama'],
-        ]);
+        $this->Audio->edit($audio, ['author' => 'Barack Obama']);
+        $this->Audio->save($audio);
 
-        $this->assertTrue($result);
-        $this->assertNull($this->Audio->get(1)->user_id);
-        $this->assertEquals('Barack Obama', $this->Audio->get(1)->external['username']);
+        $audio = $this->Audio->get(1);
+        $this->assertNull($audio->user_id);
+        $this->assertEquals('Barack Obama', $audio->external['username']);
     }
 }

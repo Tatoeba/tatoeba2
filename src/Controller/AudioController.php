@@ -51,7 +51,7 @@ class AudioController extends AppController
     public function beforeFilter(Event $event)
     {
         $this->Security->config('unlockedActions', [
-            'mass_edit',
+            'save',
         ]);
 
         return parent::beforeFilter($event);
@@ -167,13 +167,20 @@ class AudioController extends AppController
                     ->withFile($audio->file_path, ['download' => true]);
     }
 
-    public function mass_edit() {
+    public function save($id) {
         $this->viewBuilder()->autoLayout(false);
 
         if ($this->request->is('post')) {
             $this->loadModel('Audios');
-            $audioChanges = $this->request->input('json_decode', true);
-            if ($this->Audios->massEdit($audioChanges)) {
+            try {
+                $audio = $this->Audios->get($id);
+            } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                throw new \Cake\Http\Exception\NotFoundException();
+            }
+
+            $fields = $this->request->input('json_decode', true);
+            $this->Audios->edit($audio, $fields);
+            if ($this->Audios->save($audio)) {
                 return $this->response->withStringBody(''); // OK
             }
         }

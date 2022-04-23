@@ -47,10 +47,10 @@ class AudioControllerTest extends IntegrationTestCase
             [ '/en/audio/save_settings', 'contributor', '/en/audio/of/contributor' ],
             [ '/en/audio/download/1', null, 404 ],            # missing file
             [ '/en/audio/download/999999999999', null, 404 ], # unknown audio
-            [ '/en/audio/mass_edit', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fmass_edit' ],
-            [ '/en/audio/mass_edit', 'contributor', '/' ],
-            [ '/en/audio/mass_edit', 'corpus_maintainer', '/' ],
-            [ '/en/audio/mass_edit', 'admin', 400 ], // 400 because it's supposed to be POST only
+            [ '/en/audio/save/1', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fsave%2F1' ],
+            [ '/en/audio/save/1', 'contributor', '/' ],
+            [ '/en/audio/save/1', 'corpus_maintainer', '/' ],
+            [ '/en/audio/save/1', 'admin', 400 ], // 400 because it's supposed to be POST only
         ];
     }
 
@@ -73,15 +73,15 @@ class AudioControllerTest extends IntegrationTestCase
         $this->initAudioStorageDir();
     }
 
-    public function testAudioMassEdit_asAdmin_ok() {
+    public function testAudioSave_asAdmin_ok() {
         $this->logInAs('admin');
-        $this->ajaxPost('/ja/audio/mass_edit', json_encode([1 => ['enabled' => true, 'author' => 'kazuki']]));
+        $this->ajaxPost('/ja/audio/save/1', json_encode(['enabled' => true, 'author' => 'kazuki']));
         $this->assertResponseOk();
     }
 
-    public function testAudioMassEdit_asAdmin_invalid() {
+    public function testAudioSave_asAdmin_invalid() {
         $this->logInAs('admin');
-        $this->ajaxPost('/ja/audio/mass_edit', json_encode([9999999999 => ['enabled' => true, 'author' => 'kazuki']]));
-        $this->assertResponseCode(400);
+        $this->ajaxPost('/ja/audio/save/9999999999', json_encode(['enabled' => true, 'author' => 'kazuki']));
+        $this->assertResponseCode(404);
     }
 }
