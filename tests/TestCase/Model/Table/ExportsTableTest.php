@@ -356,6 +356,9 @@ class ExportsTableTest extends TestCase
     {
         $readOnlyDir = $this->testExportDir.'readonly';
         $folder = new Folder($readOnlyDir, true, 0444);
+        if (is_writable($readOnlyDir)) {
+            $this->markTestSkipped('Unable to create a read-only directory');
+        }
         Configure::write('Exports.path', $folder->path.DS);
 
         $jobId = 3;
