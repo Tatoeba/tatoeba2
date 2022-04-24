@@ -177,8 +177,9 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function audioButton($sentenceId, $sentenceLang, $sentenceAudios)
     {
-        if (count($sentenceAudios)) {
-            $first = true;
+        $total = count($sentenceAudios);
+        if ($total) {
+            $startIn = rand(0, $total-1);
             foreach ($sentenceAudios as $audio) {
                 $author = $this->_View->safeForAngular($audio->author);
                 if (empty($author)) {
@@ -190,9 +191,8 @@ class SentenceButtonsHelper extends AppHelper
                     );
                 }
                 $class = 'audioButton audioAvailable';
-                if ($first) {
+                if ($startIn == 0) {
                     $class .= ' nextAudioToPlay';
-                    $first = false;
                 }
                 echo $this->Html->Link(
                     null,
@@ -207,6 +207,7 @@ class SentenceButtonsHelper extends AppHelper
                         'onclick' => 'return false',
                     )
                 );
+                $startIn--;
             }
         } else {
             echo $this->Html->Link(

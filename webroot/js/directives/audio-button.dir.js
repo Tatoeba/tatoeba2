@@ -34,7 +34,7 @@
             controllerAs: 'vm',
             controller: ['$scope', function($scope) {
                 var vm = this;
-                var lastPlayedAudioIndex = -1;
+                var lastPlayedAudioIndex;
 
                 const rootUrl = get_tatoeba_root_url();
 
@@ -44,6 +44,9 @@
                 /////////////////////////////////////////////////////////////////////////
 
                 function getNextPlayAudioIndex(audios) {
+                    if (lastPlayedAudioIndex === undefined) {
+                        lastPlayedAudioIndex = getRandomInt(0, audios.length);
+                    }
                     if (audios.length == 0) {
                         return undefined;
                     } else {
@@ -68,6 +71,10 @@
                     } else {
                         return audios[playIndex].author;
                     }
+                }
+
+                function getRandomInt(min, max) {
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
                 }
             }]
         };
