@@ -52,6 +52,7 @@ class AudioController extends AppController
     {
         $this->Security->config('unlockedActions', [
             'save',
+            'delete',
         ]);
 
         return parent::beforeFilter($event);
@@ -199,6 +200,36 @@ class AudioController extends AppController
                 $source = $audio->getSource();
                 $this->{$source}->edit($audio, $fields);
                 if ($this->{$source}->save($audio)) {
+                    return $this->response->withStringBody(''); // OK
+                }
+            }
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
+
+        throw new \Cake\Http\Exception\BadRequestException();
+    }
+
+    public function delete($id) {
+        $this->viewBuilder()->autoLayout(false);
+
+        if ($this->request->is('post')) {
+            $audio = false;
+            $this->loadModel('Audios');
+            try {
+                $audio = $this->Audios->get($id);
+            } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                if (CurrentUser::isAdmin()) {
+                    $this->loadModel('DisabledAudios');
+                    try {
+                        $audio = $this->DisabledAudios->get($id);
+                    } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                    }
+                }
+            }
+
+            if ($audio) {
+                $source = $audio->getSource();
+                if ($this->{$source}->delete($audio, ['deleteAudioFile' => true])) {
                     return $this->response->withStringBody(''); // OK
                 }
             }

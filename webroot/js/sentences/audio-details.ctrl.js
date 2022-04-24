@@ -13,6 +13,7 @@
         vm.getLicenseName = getLicenseName;
         vm.getLicenseLink = getLicenseLink;
         vm.saveAudio = saveAudio;
+        vm.deleteAudio = deleteAudio;
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +58,18 @@
                 function error(result) {
                 }
             );
+        }
+
+        function deleteAudio(audio, confirmMessage) {
+            if (confirm(confirmMessage)) {
+                $http.post(rootUrl + '/audio/delete/' + audio.id).then(
+                    function success(result) {
+                        window.location.reload();
+                    },
+                    function error(result) {
+                    }
+                );
+            }
         }
     }
 })();

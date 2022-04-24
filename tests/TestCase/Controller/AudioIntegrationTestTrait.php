@@ -13,13 +13,20 @@ trait AudioIntegrationTestTrait
 {
     private $testAudioDir = TMP.'audio_tests'.DS;
 
+    private function getAudioFilePath($audioId) {
+        try {
+            return TableRegistry::get('Audios')->get($audioId)->file_path;
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            return TableRegistry::get('DisabledAudios')->get($audioId)->file_path;
+        }
+    }
+
     private function createAudioFile($audioId) {
         $contents = md5($audioId, true);
-        $audios = TableRegistry::get('Audios');
-        $audio = $audios->get($audioId);
-        mkdir(dirname($audio->file_path), 0777, true);
+        $audioPath = $this->getAudioFilePath($audioId);
+        mkdir(dirname($audioPath), 0777, true);
 
-        $file = new File($audio->file_path, true);
+        $file = new File($audioPath, true);
         $file->write($contents);
         $file->close();
 

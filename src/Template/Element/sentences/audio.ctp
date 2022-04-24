@@ -61,10 +61,12 @@ EOT;
 
 $audioLicenses = json_encode(Licenses::getAudioLicenses());
 $audiosJson = json_encode($audios);
+$confirmMessage = json_encode(__('The audio file will be lost. Are you sure?'));
 
 // Prevent interpolation by AngularJS
 $audioLicenses = str_replace('{{', '\{\{', $audioLicenses);
 $audiosJson = str_replace('{{', '\{\{', $audiosJson);
+$confirmMessage = str_replace('{{', '\{\{', $confirmMessage);
 
 $this->Html->script('/js/sentences/audio-details.ctrl.js', ['block' => 'scriptBottom']);
 $this->Html->script('/js/directives/audio-button.dir.js', ['block' => 'scriptBottom']);
@@ -111,6 +113,10 @@ $this->AngularTemplate->addTemplate(
                 <md-button type="submit" class="md-primary md-raised" ng-click="vm.saveAudio(audio)">
                     <?php /* @translators: audio save button on sentence page (verb) */ ?>
                     <?= __d('admin', 'Save') ?>
+                </md-button>
+                <md-button type="submit" ng-hide="audio.enabled" class="md-warn md-raised" ng-click="vm.deleteAudio(audio, <?= h($confirmMessage) ?>)">
+                    <?php /* @translators: audio deletion button on sentence page (verb) */ ?>
+                    <?= __d('admin', 'Delete') ?>
                 </md-button>
             <?php endif; ?>
         </div>

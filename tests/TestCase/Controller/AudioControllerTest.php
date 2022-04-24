@@ -52,6 +52,10 @@ class AudioControllerTest extends IntegrationTestCase
             [ '/en/audio/save/1', 'contributor', '/' ],
             [ '/en/audio/save/1', 'corpus_maintainer', '/' ],
             [ '/en/audio/save/1', 'admin', 400 ], // 400 because it's supposed to be POST only
+            [ '/en/audio/delete/1', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fdelete%2F1' ],
+            [ '/en/audio/delete/1', 'contributor', '/' ],
+            [ '/en/audio/delete/1', 'corpus_maintainer', '/' ],
+            [ '/en/audio/delete/1', 'admin', 400 ], // 400 because it's supposed to be POST only
         ];
     }
 
@@ -83,6 +87,34 @@ class AudioControllerTest extends IntegrationTestCase
     public function testAudioSave_asAdmin_invalid() {
         $this->logInAs('admin');
         $this->ajaxPost('/ja/audio/save/9999999999', json_encode(['enabled' => true, 'author' => 'kazuki']));
+        $this->assertResponseCode(404);
+    }
+
+    protected function assertAdminDeletesAudio($id) {
+        $this->initAudioStorageDir();
+        $this->createAudioFile($id);
+        $path = $this->getAudioFilePath($id);
+        $this->assertFileExists($path);
+
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/delete/'.$id);
+        $this->assertResponseOk();
+        $this->assertFileNotExists($path);
+
+        $this->initAudioStorageDir();
+    }
+
+    public function testAudioDelete_enabledAudio_asAdmin_ok() {
+        $this->assertAdminDeletesAudio(1);
+    }
+
+    public function testAudioDelete_disabledAudio_asAdmin_ok() {
+        $this->assertAdminDeletesAudio(4);
+    }
+
+    public function testAudioDelete_asAdmin_invalid() {
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/delete/9999999999');
         $this->assertResponseCode(404);
     }
 }

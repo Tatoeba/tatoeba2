@@ -32,6 +32,6 @@ class DisabledAudiosTable extends AudiosTable
     }
 
     public function afterDelete($event, $entity, $options) {
-        /* Unlike parent class, do nothing */
+        $this->removeAudioFile($entity, $options);
     }
 }
