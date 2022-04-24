@@ -103,7 +103,7 @@ $this->AngularTemplate->addTemplate(
                     class="md-primary">
                     <?= __('Is enabled') ?>
                 </md-checkbox>
-                <md-input-container class="md-button-right">
+                <md-input-container>
                     <?= $this->Form->control('author', [
                         'label' => __d('admin', 'Audio author'),
                         'ng-model' => 'audio.author',
