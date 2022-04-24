@@ -27,7 +27,6 @@ class AudioHelper extends AppHelper
         'AudioLicense',
         'Form',
         'Html',
-        'Url',
     );
 
     private function defaultAttribUrl($username) {
