@@ -480,7 +480,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                                 __('A single sentence can have one or more audio, each from a '.
                                    'different voice. To download a particular audio, use its audio '.
                                    'id to compute the download URL. For example, to download the '.
-                                   'audio which id is 1234, the URL is {url}.'
+                                   'audio with the id 1234, the URL is {url}.'
                                 ),
                                 ['url' => $this->Html->link($audio_url_1234, $audio_url_1234)]
                         ) ?>
