@@ -14,9 +14,11 @@ class MainControllerTest extends TestCase
 
     public $fixtures = [
         'app.Audios',
+        'app.DisabledAudios',
         'app.Sentences',
         'app.ReindexFlags',
         'app.Links',
+        'app.Languages',
     ];
 
     public function setUp()
@@ -72,12 +74,12 @@ class MainControllerTest extends TestCase
     public function testLegacyAudioLink_audio_disabled()
     {
         $audioId = 1;
+        $audioFileContents = $this->createAudioFile($audioId);
         $audios = TableRegistry::get('Audios');
         $audio = $audios->get($audioId);
         $audio->enabled = false;
         $audios->save($audio);
 
-        $audioFileContents = $this->createAudioFile($audioId);
         $this->get("http://audio.example.com/sentences/spa/3.mp3");
         $this->assertResponseCode(404);
     }

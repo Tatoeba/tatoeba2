@@ -11,6 +11,7 @@ use Cake\I18n\I18n;
 class AudiosTableTest extends TestCase {
     public $fixtures = array(
         'app.audios',
+        'app.disabled_audios',
         'app.contributions',
         'app.favorites_users',
         'app.languages',
@@ -282,7 +283,16 @@ class AudiosTableTest extends TestCase {
         $this->Audio->edit($audio, ['enabled' => false]);
         $this->Audio->save($audio);
 
-        $this->assertFalse($this->Audio->get(1)->enabled);
+        try {
+            $this->Audio->get(1);
+            $result = true;
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            $result = false;
+        }
+
+        $this->assertFalse($result);
+        $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
+        $this->assertFalse($DisabledAudios->get(1)->enabled);
     }
 
     function testEdit_enable_fails() {
@@ -290,14 +300,9 @@ class AudiosTableTest extends TestCase {
         $this->assertTrue($audio->enabled);
 
         $this->Audio->edit($audio, ['enabled' => 'invalid data here']);
-        try {
-            $this->Audio->save($audio);
-            $result = true;
-        } catch (\InvalidArgumentException $e) {
-            $result = false;
-        }
+        $this->Audio->save($audio);
 
-        $this->assertFalse($result);
+        $this->assertTrue($audio->hasErrors());
         $this->assertTrue($this->Audio->get(1)->enabled);
     }
 

@@ -28,7 +28,6 @@
     function audioButton() {
         return {
             scope: {
-                includeDisabled: '<',
                 audios: '<',
             },
             templateUrl: 'audio-button-template',
@@ -41,7 +40,6 @@
 
                 vm.playAudio = playAudio;
                 vm.getAudioAuthor = getAudioAuthor;
-                vm.hasSomeEnabledAudios = hasSomeEnabledAudios;
 
                 /////////////////////////////////////////////////////////////////////////
 
@@ -49,12 +47,7 @@
                     if (audios.length == 0) {
                         return undefined;
                     } else {
-                        var playIndex = lastPlayedAudioIndex;
-                        var maxLoop = audios.length;
-                        do {
-                            playIndex = (playIndex + 1) % audios.length;
-                        } while (!$scope.includeDisabled && !audios[playIndex].enabled && --maxLoop);
-                        return $scope.includeDisabled || audios[playIndex].enabled ? playIndex : undefined;
+                        return (lastPlayedAudioIndex + 1) % audios.length;
                     }
                 }
         
@@ -75,12 +68,6 @@
                     } else {
                         return audios[playIndex].author;
                     }
-                }
-
-                function hasSomeEnabledAudios(audios) {
-                    return audios && audios.length > 0 && audios.some(function(audio) {
-                        return audio.enabled;
-                    });
                 }
             }]
         };

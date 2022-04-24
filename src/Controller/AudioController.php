@@ -75,14 +75,11 @@ class AudioController extends AppController
             ->find()
             ->distinct('Sentences.id')
             ->innerJoinWith('Audios', function ($q) {
-                return $q->where(['enabled' => true])
-                         ->contain('Users', function ($q) {
+                return $q->contain('Users', function ($q) {
                              return $q->select(['username']);
                          });
             })
-            ->contain('Audios', function ($q) {
-                return $q->where(['enabled' => true]);
-            })
+            ->contain('Audios')
             ->contain('Transcriptions')
             ->order(['Audios.modified' => 'DESC']);
 
@@ -105,13 +102,13 @@ class AudioController extends AppController
             $baseQuery = $this->Sentences
                 ->find()
                 ->innerJoinWith('Audios', function ($q) use ($userId) {
-                    return $q->where(['enabled' => true, 'Audios.user_id' => $userId])
+                    return $q->where(['Audios.user_id' => $userId])
                              ->contain('Users', function ($q) {
                                  return $q->select(['username']);
                              });
                 })
                 ->contain('Audios', function ($q) use ($userId) {
-                    return $q->where(['enabled' => true, 'Audios.user_id' => $userId]);
+                    return $q->where(['Audios.user_id' => $userId]);
                 })
                 ->contain('Transcriptions')
                 ->order(['Audios.modified' => 'DESC']);
@@ -156,33 +153,56 @@ class AudioController extends AppController
     }
 
     public function download($id) {
+        $audio = false;
+
         $this->loadModel('Audios');
         try {
             $audio = $this->Audios->get($id);
         } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
-            throw new \Cake\Http\Exception\NotFoundException();
+            if (CurrentUser::isAdmin()) {
+                $this->loadModel('DisabledAudios');
+                try {
+                    $audio = $this->DisabledAudios->get($id);
+                } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                }
+            }
         }
 
-        return $this->getResponse()
-                    ->withFile($audio->file_path, ['download' => true]);
+        if ($audio) {
+            return $this->getResponse()
+                        ->withFile($audio->file_path, ['download' => true]);
+        } else {
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
     }
 
     public function save($id) {
         $this->viewBuilder()->autoLayout(false);
 
         if ($this->request->is('post')) {
+            $audio = false;
             $this->loadModel('Audios');
             try {
                 $audio = $this->Audios->get($id);
             } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
-                throw new \Cake\Http\Exception\NotFoundException();
+                if (CurrentUser::isAdmin()) {
+                    $this->loadModel('DisabledAudios');
+                    try {
+                        $audio = $this->DisabledAudios->get($id);
+                    } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                    }
+                }
             }
 
-            $fields = $this->request->input('json_decode', true);
-            $this->Audios->edit($audio, $fields);
-            if ($this->Audios->save($audio)) {
-                return $this->response->withStringBody(''); // OK
+            if ($audio) {
+                $fields = $this->request->input('json_decode', true);
+                $source = $audio->getSource();
+                $this->{$source}->edit($audio, $fields);
+                if ($this->{$source}->save($audio)) {
+                    return $this->response->withStringBody(''); // OK
+                }
             }
+            throw new \Cake\Http\Exception\NotFoundException();
         }
 
         throw new \Cake\Http\Exception\BadRequestException();

@@ -7,6 +7,8 @@ use Cake\Routing\Router;
 
 class Audio extends Entity
 {
+    private $__wantedEnabled;
+
     protected $_virtual = [
         'author',
         'attribution_url',
@@ -33,6 +35,14 @@ class Audio extends Entity
             $external = array_merge($existingExternal, $external);
         }
         return $external;
+    }
+
+    protected function _getEnabled() {
+        return $this->__wantedEnabled ?? $this->getSource() != 'DisabledAudios';
+    }
+
+    protected function _setEnabled($enabled) {
+        return $this->__wantedEnabled = $enabled;
     }
 
     protected function _getAuthor() {

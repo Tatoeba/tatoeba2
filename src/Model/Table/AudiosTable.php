@@ -68,6 +68,9 @@ class AudiosTable extends Table
         $validator
             ->dateTime('modified');
 
+        $validator
+            ->boolean('enabled');
+
         return $validator;
     }
 
@@ -108,6 +111,22 @@ class AudiosTable extends Table
                 );
             }
         }
+
+        if (!$entity->enabled) {
+            $this->moveRecordToOtherTable($entity, $this->Sentences->DisabledAudios);
+        }
+    }
+
+    protected function moveRecordToOtherTable($entity, $tableModel) {
+        $entity->isNew(true);
+        $this->getConnection()->transactional(function () use ($entity, $tableModel) {
+            if ($tableModel->save($entity)) {
+                if ($this->delete($entity)) {
+                    return true;
+                }
+            }
+            return false;
+        });
     }
 
     public function afterDelete($event, $entity, $options) {
@@ -291,7 +310,7 @@ class AudiosTable extends Table
 
     public function edit($audio, $fields) {
         if (isset($fields['enabled'])) {
-            $audio->enabled = $fields['enabled'];
+            $this->patchEntity($audio, ['enabled' => $fields['enabled']]);
         }
         if (isset($fields['author'])) {
             $this->assignAuthor($audio, $fields['author'], true);

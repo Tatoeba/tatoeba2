@@ -27,6 +27,23 @@
 use App\Model\CurrentUser;
 use App\Lib\Licenses;
 
+$audios = $sentence->audios;
+if (CurrentUser::isAdmin() && isset($sentence->disabled_audios)) {
+    /* Combine enabled and disabled audios */
+    $audios = array_merge($audios, $sentence->disabled_audios);
+    /* Export "enabled" property to this json only */
+    $audios = array_map(
+        function ($a) {
+            $new_a = clone $a;
+            $new_a->setVirtual(['enabled'], true);
+            return $new_a;
+        },
+        $audios
+    );
+    /* Keep audios sorted by id */
+    usort($audios, function ($a, $b) { return $a->id - $b->id; });
+}
+
 $hasaudio = count($audios) > 0;
 $shouldDisplayBlock = $hasaudio || CurrentUser::isAdmin();
 if (!$shouldDisplayBlock) {
@@ -67,7 +84,7 @@ $this->AngularTemplate->addTemplate(
 
     <div ng-repeat="audio in vm.audios" ng-class="{'disabled': !audio.enabled}">
         <h3>
-            <audio-button class="audio-button" include-disabled="true" audios="[audio]"></audio-button>
+            <audio-button class="audio-button" audios="[audio]"></audio-button>
             <span class="audio-author">
                 <?= format(__('by {username}'), [
                     'username' => '<a ng-href="{{audio.attribution_url}}">{{audio.author}}</a>'

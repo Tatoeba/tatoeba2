@@ -180,35 +180,33 @@ class SentenceButtonsHelper extends AppHelper
         if (count($sentenceAudios)) {
             $first = true;
             foreach ($sentenceAudios as $audio) {
-                if ($audio->enabled) {
-                    $author = $this->_View->safeForAngular($audio->author);
-                    if (empty($author)) {
-                        $title = __('Play audio');
-                    } else {
-                        $title = format(
-                            __('Play audio recorded by {author}', true),
-                            array('author' => $author)
-                        );
-                    }
-                    $class = 'audioButton audioAvailable';
-                    if ($first) {
-                        $class .= ' nextAudioToPlay';
-                        $first = false;
-                    }
-                    echo $this->Html->Link(
-                        null,
-                        $this->Url->build([
-                            'controller' => 'audio',
-                            'action' => 'download',
-                            $audio->id
-                        ]),
-                        array(
-                            'title' => $title,
-                            'class' => $class,
-                            'onclick' => 'return false',
-                        )
+                $author = $this->_View->safeForAngular($audio->author);
+                if (empty($author)) {
+                    $title = __('Play audio');
+                } else {
+                    $title = format(
+                        __('Play audio recorded by {author}', true),
+                        array('author' => $author)
                     );
                 }
+                $class = 'audioButton audioAvailable';
+                if ($first) {
+                    $class .= ' nextAudioToPlay';
+                    $first = false;
+                }
+                echo $this->Html->Link(
+                    null,
+                    $this->Url->build([
+                        'controller' => 'audio',
+                        'action' => 'download',
+                        $audio->id
+                    ]),
+                    array(
+                        'title' => $title,
+                        'class' => $class,
+                        'onclick' => 'return false',
+                    )
+                );
             }
         } else {
             echo $this->Html->Link(

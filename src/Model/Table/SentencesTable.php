@@ -72,6 +72,7 @@ class SentencesTable extends Table
         $this->hasMany('Contributions');
         $this->hasMany('Transcriptions');
         $this->hasMany('Audios');
+        $this->hasMany('DisabledAudios');
         $this->hasMany('Links');
         $this->hasMany('ReindexFlags');
         $this->hasMany('UsersSentences');
@@ -663,10 +664,7 @@ class SentencesTable extends Table
     public function contain($what = [])
     {
         $audioContainment = function (Query $q) use ($what) {
-            $q = $q->select(['id', 'enabled', 'external', 'sentence_id']);
-            if (!CurrentUser::isAdmin()) {
-                $q = $q->where(['enabled' => true]);
-            }
+            $q = $q->select(['id', 'external', 'sentence_id']);
 
             $usersFields = ['username'];
             if (isset($what['sentenceDetails'])) {
@@ -686,6 +684,10 @@ class SentencesTable extends Table
             'Audios' => $audioContainment,
             'Transcriptions' => $transcriptionsContainment,
         ];
+
+        if (CurrentUser::isAdmin() && isset($what['sentenceDetails'])) {
+            $contain['DisabledAudios'] = $audioContainment;
+        }
 
         if (CurrentUser::isMember()) {
             $contain += [

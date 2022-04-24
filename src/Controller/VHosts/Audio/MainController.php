@@ -22,12 +22,11 @@ class MainController extends Controller
     public function legacy_audio_url($lang = null, $sentence_id = null)
     {
         $this->loadModel('Audios');
-        $enabled = true;
         try {
             $audio = $this->Audios
                 ->find()
                 ->select(['id', 'sentence_id'])
-                ->where(compact('sentence_id', 'enabled'))
+                ->where(compact('sentence_id'))
                 ->innerJoinWith('Sentences', function ($q) use ($lang) {
                     return $q->where(['lang' => $lang]);
                 })

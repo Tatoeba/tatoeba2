@@ -118,8 +118,7 @@ echo $this->element('/sentences/navigation', [
         echo $this->element(
             'sentences/audio',
             array(
-                'sentenceId' => $sentenceId,
-                'audios' => $sentence->audios
+                'sentence' => $sentence,
             )
         );
 

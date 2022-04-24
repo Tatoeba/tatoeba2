@@ -16,6 +16,7 @@ class AudioControllerTest extends IntegrationTestCase
 
     public $fixtures = [
         'app.audios',
+        'app.disabled_audios',
         'app.languages',
         'app.private_messages',
         'app.sentences',
