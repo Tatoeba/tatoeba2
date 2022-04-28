@@ -19,7 +19,6 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     function setUp() {
         parent::setUp();
         $this->oldLocale = I18n::getLocale();
-        Cache::disable();
         $this->oldConfig = Configure::read();
         Configure::write('UI.languages', [
             'chi' => 'zh-cn',
@@ -36,7 +35,6 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     }
 
     function tearDown() {
-        Cache::enable();
         Configure::write($this->oldConfig);
         I18n::setLocale($this->oldLocale);
         parent::tearDown();
