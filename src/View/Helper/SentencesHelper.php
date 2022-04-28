@@ -148,97 +148,88 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    public function displayTranslations($id, $translations, $withAudio = true, $langFilter = 'und') {
-        list($translations, $indirectTranslations) = $translations;
+    public function displayTranslations($id, $allTranslations, $withAudio = true, $langFilter = 'und') {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
 
             <?php
-            $totalDirectTranslations = count(array_keys($translations));
-            $totalIndirectTranslations = count(array_keys($indirectTranslations));
-
-            //merge direct and indirect translations into single array
-            $allTranslations = array_merge($translations, $indirectTranslations);
-
-            $totalTranslations = count($allTranslations);
-            $showButton = true;
-
-            //if only 1 hidden sentence then show all
             $collapsibleTranslationsEnabled = !CurrentUser::isMember() || CurrentUser::get('settings.collapsible_translations');
-            if ($totalTranslations <= 6 || !$collapsibleTranslationsEnabled) {
-                $initiallyDisplayedTranslations = $totalTranslations;
-                $showButton = false;
-            } else {
-                $initiallyDisplayedTranslations = 5;
-                $displayed = $totalTranslations - $initiallyDisplayedTranslations;
+            $showButton = false;
+            $totalTranslations = count($allTranslations[0]) + count($allTranslations[1]);
+            $userLangs = CurrentUser::getProfileLanguages();
+            $langBased = is_array($userLangs) && count($userLangs) > 1;
+            $typeMap = [0 => 'directTranslation', 1 => 'indirectTranslation'];
+            $hidden = 0;
+
+            if (!$langBased) {
+                if ($totalTranslations <= 6 || !$collapsibleTranslationsEnabled) {
+                    $toGo = $totalTranslations;
+                } else {
+                    $toGo = 5;
+                }
             }
 
-            //Split 'allTranslations' array into two, visible & hidden sets of sentences
-            $visibleTranslations = array_slice($allTranslations, 0, $initiallyDisplayedTranslations);
-            $hiddenTranslations = array_slice($allTranslations, $initiallyDisplayedTranslations);
+            foreach($allTranslations as $type => $translations) {
+                foreach($translations as $translation) {
+                    if ($langBased) {
+                        $initiallyHidden = !in_array($translation->lang, $userLangs);
+                    } else {
+                        $initiallyHidden = !!$toGo;
+                        if ($toGo > 0)
+                            $toGo--;
+                    }
 
-            $sentenceCount = 0;
-
-            //visible list of translations
-            foreach ($visibleTranslations as $translation) {
-
-                if ($sentenceCount < $totalDirectTranslations)
-                    $type = 'directTranslation';
-                else
-                    $type = 'indirectTranslation';
-
-                $this->displayGenericSentence(
-                    $translation,
-                    $type,
-                    $withAudio,
-                    $id,
-                    false,
-                    $langFilter
-                );
-
-                $sentenceCount++;
+                    if ($initiallyHidden) {
+                        echo $this->Html->tag('div', null, ['class' => 'more']);
+                        $showButton = true;
+                        $hidden++;
+                    }
+                    $this->displayGenericSentence(
+                        $translation,
+                        $typeMap[$type],
+                        $withAudio,
+                        $id,
+                        false,
+                        $langFilter
+                    );
+                    if ($initiallyHidden) {
+                        echo $this->Html->tag('/div');
+                    }
+                }
             }
 
-            if($showButton){
+            if ($showButton) {
+                $downArrowIcon = ' ▼ ';
+                if ($hidden == $totalTranslations) {
+                    $buttonLabel = __n(
+                        '{downArrowIcon} Show all translations (1)',
+                        '{downArrowIcon} Show all translations ({number})',
+                        $hidden
+                    );
+                } else {
+                    $buttonLabel = __n(
+                        '{downArrowIcon} Show all translations (+1)',
+                        '{downArrowIcon} Show all translations (+{number})',
+                        $hidden
+                    );
+                }
                 echo $this->Html->tag('div',
-                    ' ▼ ' . format(__n(
-                        'Show 1 more translation',
-                        'Show {number} more translations',
-                        $displayed,
-                        true
-                    ), array('number' => $displayed)),
+                    format(
+                        $buttonLabel,
+                        ['number' => $hidden, 'downArrowIcon' => $downArrowIcon]
+                    ),
                     array('class' => 'showLink')
                 );
-            }
-
-            //expanded list of translations
-            echo $this->Html->tag('div', null, array('class' => 'more'));
-
-            foreach ($hiddenTranslations as $translation) {
-
-                if ($sentenceCount < $totalDirectTranslations)
-                    $type = 'directTranslation';
-                else
-                    $type = 'indirectTranslation';
-
-                $this->displayGenericSentence(
-                    $translation,
-                    $type,
-                    $withAudio,
-                    $id,
-                    false,
-                    $langFilter
-                );
-
-                $sentenceCount++;
-            }
-
-            echo $this->Html->tag('div',
-                    ' ▲ ' . __('Fewer translations'),
+                $upArrowIcon = ' ▲ ';
+                echo $this->Html->tag('div',
+                    format(
+                        __('{upArrowIcon} Show fewer translations'),
+                        compact('upArrowIcon')
+                    ),
                     array('class' => 'hideLink')
                 );
+            }
             ?>
-          </div>
         </div>
         <?php
     }
@@ -849,23 +840,50 @@ class SentencesHelper extends AppHelper
 
     public function getExpandLabel($sentence)
     {
-        $extraTranslationsCount = $this->getNumberOfExtraTranslations($sentence);
+        $extraTranslationsCount = $this->getNumberOfExtraTranslations($sentence, $allHidden);
         if ($extraTranslationsCount > 0) {
-            return format(__n(
-                'Show 1 more translation',
-                'Show {number} more translations',
-                $extraTranslationsCount
-            ), ['number' => $this->Number->format($extraTranslationsCount)]);
+            if ($allHidden) {
+                $buttonLabel = __n(
+                    'Show all translations (1)',
+                    'Show all translations ({number})',
+                    $extraTranslationsCount
+                );
+            } else {
+                $buttonLabel = __n(
+                    'Show all translations (+1)',
+                    'Show all translations (+{number})',
+                    $extraTranslationsCount
+                );
+            }
+
+            return format(
+                $buttonLabel,
+                ['number' => $this->Number->format($extraTranslationsCount)]
+            );
         } else {
             return null;
         }
     }
 
-    private function getNumberOfExtraTranslations($sentence)
+    private function getNumberOfExtraTranslations($sentence, &$allHidden)
     {
-        $translations = $sentence->translations;
-        $total = count($translations[0]) + count($translations[1]);
-        return $total - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+        $allHidden = false;
+        $userLangs = CurrentUser::getProfileLanguages();
+        if (is_array($userLangs) && count($userLangs) > 1) {
+            $total = $count = 0;
+            foreach ($sentence->translations as $translations) {
+                foreach ($translations as $translation) {
+                    $count += !in_array($translation->lang, $userLangs);
+                    $total++;
+                }
+            }
+            $allHidden = $count == $total;
+            return $count;
+        } else {
+            $translations = $sentence->translations;
+            $total = count($translations[0]) + count($translations[1]);
+            return $total - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+        }
     }
 }
 ?>

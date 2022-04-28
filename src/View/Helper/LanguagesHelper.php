@@ -70,7 +70,7 @@ class LanguagesHelper extends AppHelper
         }
     }
 
-    private function separatePreferredLanguages($languages)
+    private function prioritizePreferredLanguages($languages, $oldDesign)
     {
         $filter = $this->preferredLanguageFilter();
         if (!$filter) {
@@ -85,18 +85,28 @@ class LanguagesHelper extends AppHelper
         }
         $this->localizedAsort($preferred);
 
-        if (CurrentUser::isMember()) {
-            $filterName = __('Profile languages');
+        if ($oldDesign) {
+            if (CurrentUser::isMember()) {
+                $filterName = __('Profile languages');
+            } else {
+                $filterName = __('Last used languages');
+            }
+            return array(
+                $filterName           => $preferred,
+                __('Other languages') => $languages,
+            );
         } else {
-            $filterName = __('Last used languages');
+            $preferred = array_map(
+                function($langName) {
+                    return ['name' => $langName, 'prio' => true];
+                },
+                $preferred
+            );
+            return $preferred + $languages;
         }
-        return array(
-            $filterName                 => $preferred,
-            __('Other languages') => $languages,
-        );
     }
 
-    public function onlyLanguagesArray($split = true)
+    public function onlyLanguagesArray($split = true, $oldDesign = false)
     {
         if (!$this->__languages_alone) {
             $this->__languages_alone = array_map(
@@ -106,11 +116,8 @@ class LanguagesHelper extends AppHelper
             $this->localizedAsort($this->__languages_alone);
         }
 
-        $languages = $this->__languages_alone;
-        if ($split) {
-            $languages = $this->separatePreferredLanguages($languages);
-        }
-        return $languages;
+        return $split ? $this->prioritizePreferredLanguages($this->__languages_alone, $oldDesign)
+                      : $this->__languages_alone;
     }
 
     /**
@@ -150,7 +157,7 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayAlone()
     {
         $languages = $this->onlyLanguagesArray();
-        $options = ['und' => $this->langAsAlone(__('All languages'))];
+        $options = ['und' => ['name' => $this->langAsAlone(__('All languages')), 'prio' => true]];
         
         return $options + $languages;
     }
@@ -180,7 +187,7 @@ class LanguagesHelper extends AppHelper
      */
     public function otherLanguagesArray()
     {
-        $languages = $this->onlyLanguagesArray();
+        $languages = $this->onlyLanguagesArray(true, true);
         $options = ['' => __('other language')];
 
         return $options + $languages;
@@ -198,11 +205,11 @@ class LanguagesHelper extends AppHelper
         $languages = $this->onlyLanguagesArray();
         $options = [
             /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
-            'none' => __('None'),
+            'none' => ['name' => __('None'), 'prio' => true],
         ];
         if ($withAllLanguages) {
             /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
-            $options['und'] = __x('show-translations-in', 'All languages');
+            $options['und'] = ['name' => __x('show-translations-in', 'All languages'), 'prio' => true];
         }
 
         return $options + $languages;
@@ -219,7 +226,7 @@ class LanguagesHelper extends AppHelper
     {
         $languages = $this->onlyLanguagesArray();
         if (!is_null($anyOption)) {
-            $languages = array('und' => $anyOption) + $languages;
+            $languages = ['und' => ['name' => $anyOption, 'prio' => true]] + $languages;
         }
         return $languages;
     }

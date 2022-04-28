@@ -271,12 +271,20 @@
         }
 
         function showFewerTranslations() {
-            vm.directTranslations = allDirectTranslations.filter(function(item, index) {
-                return index <= MAX_TRANSLATIONS - 1;
-            });
-            vm.indirectTranslations = allIndirectTranslations.filter(function(item, index) {
-                return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
-            });
+            if (Object.keys(vm.userLanguages).length > 1) {
+                function onlyUserLanguages(sentence) {
+                    return sentence.lang in vm.userLanguages;
+                }
+                vm.directTranslations = allDirectTranslations.filter(onlyUserLanguages);
+                vm.indirectTranslations = allIndirectTranslations.filter(onlyUserLanguages);
+            } else {
+                vm.directTranslations = allDirectTranslations.filter(function(item, index) {
+                    return index <= MAX_TRANSLATIONS - 1;
+                });
+                vm.indirectTranslations = allIndirectTranslations.filter(function(item, index) {
+                    return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
+                });
+            }
         }
 
         function toggleMenu() {
