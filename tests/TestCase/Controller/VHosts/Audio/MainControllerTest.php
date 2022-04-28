@@ -28,7 +28,7 @@ class MainControllerTest extends TestCase
 
     public function tearDown()
     {
-        $this->initAudioStorageDir();
+        $this->deleteAudioStorageDir();
     }
 
     public function testUnknownController()

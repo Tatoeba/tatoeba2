@@ -33,6 +33,11 @@ trait AudioIntegrationTestTrait
         return $contents;
     }
 
+    private function deleteAudioStorageDir() {
+        $folder = new Folder($this->testAudioDir);
+        $folder->delete();
+    }
+
     private function initAudioStorageDir() {
         Configure::write('Recordings.path', $this->testAudioDir);
         $folder = new Folder($this->testAudioDir);

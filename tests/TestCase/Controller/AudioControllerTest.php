@@ -75,7 +75,7 @@ class AudioControllerTest extends IntegrationTestCase
         $this->assertResponseEquals($audioFileContents);
         $this->assertHeader('Content-Disposition', 'attachment; filename="3-1.mp3"');
 
-        $this->initAudioStorageDir();
+        $this->deleteAudioStorageDir();
     }
 
     public function testAudioSave_asAdmin_ok() {
@@ -101,7 +101,7 @@ class AudioControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertFileNotExists($path);
 
-        $this->initAudioStorageDir();
+        $this->deleteAudioStorageDir();
     }
 
     public function testAudioDelete_enabledAudio_asAdmin_ok() {
