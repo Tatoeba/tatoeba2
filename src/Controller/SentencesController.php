@@ -393,16 +393,17 @@ class SentencesController extends AppController
     private function renderAdopt($id)
     {
         $acceptsJson = $this->request->accepts('application/json');
-        $sentence = $this->Sentences->get($id, [
-            'contain' => ['Users' => ['fields' => ['username']]]
-        ]);
 
         if ($acceptsJson) {
+            $sentence = $this->Sentences->getSentenceWith($id);
             $this->loadComponent('RequestHandler');
-            $this->set('user', $sentence->user);
-            $this->set('_serialize', ['user']);
+            $this->set('sentence', $sentence);
+            $this->set('_serialize', ['sentence']);
             $this->RequestHandler->renderAs($this, 'json');
         } else {
+            $sentence = $this->Sentences->get($id, [
+                'contain' => ['Users' => ['fields' => ['username']]]
+            ]);
             $this->set('sentenceId', $id);
             $this->set('owner', $sentence->user);
             $this->viewBuilder()->setLayout('ajax');
