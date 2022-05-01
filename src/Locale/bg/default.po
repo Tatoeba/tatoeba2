@@ -4474,13 +4474,13 @@ msgid ""
 "native level in the language of the sentence. In the old design \"(native)\""
 " is displayed next to the username. In the new design a {star} is displayed "
 "next to the sentence."
-msgstr ""
+msgstr "Маркирайте изречения, когато собственикът посочи в профила си, че имат родно ниво на езика на изречението. В стария дизайн \"(роден)\" се показва до потребителското име. В новия дизайн до изречението се показва {star}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L324
 msgid ""
 "Display sentences with the new design. Note that some features are not yet "
 "implemented in this new design but are coming soon."
-msgstr ""
+msgstr "Покажете изречения с новия дизайн. Имайте предвид, че някои функции все още не са внедрени в този нов дизайн, но ще се появят скоро."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L355
 msgid "Change email address"
@@ -4517,7 +4517,7 @@ msgstr "Търсене на потребител"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L86
 msgid "Members (total {number})"
-msgstr ""
+msgstr "Членове (общо {number})"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L96
@@ -4557,7 +4557,7 @@ msgstr "Може да сменя лиценза"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
-msgstr ""
+msgstr "Членове: {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L52
 msgid "Back to global stats"
@@ -4566,8 +4566,8 @@ msgstr "Обратно към глобалната статистика"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L96
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{lang}({total} член)"
+msgstr[1] "{lang}({total} членове)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L40
@@ -4637,48 +4637,48 @@ msgstr "Не приехте условията за ползване."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L24
 msgid "Tatoeba user: {username}"
-msgstr ""
+msgstr "Потребител на Tatoeba: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L66
 msgid "Latest sentences"
-msgstr ""
+msgstr "Последни изречения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L145
 msgid "view all"
-msgstr ""
+msgstr "виж всички"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L142
 msgid "Latest Wall messages"
-msgstr ""
+msgstr "Последни съобщения на стената"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L31
 msgid "Add vocabulary items"
-msgstr ""
+msgstr "Добавете елементи от речника"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L43
 msgid ""
 "Add vocabulary that you are learning. If your vocabulary does not exist yet "
 "in Tatoeba, other contributors can add sentences for it."
-msgstr ""
+msgstr "Добавете речник, който учите. Ако вашият речник все още не съществува в Tatoeba, други сътрудници могат да добавят изречения към него."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L90
 msgid "Vocabulary item"
-msgstr ""
+msgstr "Елемент от речника"
 
 #. button to add a vocabulary request
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L104
 msgid "Add"
-msgstr ""
+msgstr "Добавете"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L114
 msgid "Vocabulary items added"
-msgstr ""
+msgstr "Добавени са елементи от речника"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L129
 msgid "You have already added this vocabulary item."
-msgstr ""
+msgstr "Вече сте добавили този елемент от речника."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L31
 msgid "Vocabulary that needs sentences"
