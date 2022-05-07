@@ -64,14 +64,23 @@ class AudioController extends AppController
 
     public function import() {
         $this->loadModel('Audios');
-        $filesImported = $errors = false;
-        if ($this->request->is('post')) {
-            $author = $this->request->getData('audioAuthor');
-            $filesImported = $this->Audios->importFiles($errors, $author);
-        }
-        $filesToImport = $this->Audios->getFilesToImport();
+        $lastImportJob = $this->Audios->lastImportJob();
+        $canImport = !$lastImportJob || $lastImportJob->completed;
 
-        $this->set(compact('filesToImport', 'errors', 'filesImported'));
+        if ($canImport && $this->request->is('post')) {
+            $author = $this->request->getData('audioAuthor');
+            $lastImportJob = $this->Audios->enqueueImportTask($author);
+        }
+
+        $filesToImport = $this->Audios->getFilesToImport();
+        if ($lastImportJob) {
+            $result = unserialize($lastImportJob->failure_message);
+            $filesImported = $result['filesImported'];
+            $errors = $result['errors'];
+        } else {
+            $filesImported = $errors = [];
+        }
+        $this->set(compact('lastImportJob', 'filesToImport', 'filesImported', 'errors'));
     }
 
     public function index($lang = null) {

@@ -29,6 +29,8 @@ use Cake\Utility\Hash;
 
 class AudiosTable extends Table
 {
+    const JOB_TYPE = 'AudioImport';
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('external', 'json');
@@ -41,6 +43,7 @@ class AudiosTable extends Table
             'joinType' => 'inner',
         ]);
         $this->belongsTo('Users');
+        $this->hasOne('Queue.QueuedJobs');
 
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
@@ -293,5 +296,18 @@ class AudiosTable extends Table
         }
         
         return $filesImported;
+    }
+
+    public function lastImportJob() {
+        return $this->QueuedJobs->find()
+            ->where(['job_type' => self::JOB_TYPE])
+            ->last();
+    }
+
+    public function enqueueImportTask($author) {
+        return $this->QueuedJobs->createJob(
+            self::JOB_TYPE,
+            compact('author')
+        );
     }
 }
