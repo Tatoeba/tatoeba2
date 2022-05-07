@@ -352,7 +352,7 @@ class CurrentUser
     
     public static function hasAcceptedNewTermsOfUse()
     {
-        return !self::isMember() || self::getSetting('new_terms_of_use');
+        return !self::isMember() || self::getSetting('new_terms_of_use') == User::TERMS_OF_USE_LATEST_VERSION;
     }
     
     public static function canAdoptOrUnadoptSentenceOfUser($user)

@@ -106,12 +106,12 @@ $sentenceUrl = $this->Url->build([
             <md-subheader flex="auto">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
-                    $linkText = $this->Pages->formatSentenceIdWithSharp('{{vm.sentence.id}}');
+                    $linkText = $this->Pages->formatSentenceIdWithSharp('{{::vm.sentence.id}}');
                     echo format(
                         __('Sentence {number} — belongs to {username}'),
                         array(
-                            'number' => '<a ng-href="'.$sentenceUrl.'/{{vm.sentence.id}}">'.h($linkText).'</a>',
-                            'username' => '<a ng-href="'.$profileUrl.'/{{vm.sentence.user.username}}">{{vm.sentence.user.username}}</a>'
+                            'number' => '<a ng-href="'.$sentenceUrl.'/{{::vm.sentence.id}}">'.h($linkText).'</a>',
+                            'username' => '<a ng-href="'.$profileUrl.'/{{::vm.sentence.user.username}}">{{::vm.sentence.user.username}}</a>'
                         )
                     );
                     ?>
@@ -121,7 +121,7 @@ $sentenceUrl = $this->Url->build([
                     echo format(
                         __('Sentence {number}'),
                         array(
-                            'number' => '<a ng-href="'.$sentenceUrl.'/{{vm.sentence.id}}">#{{vm.sentence.id}}</a>'
+                            'number' => '<a ng-href="'.$sentenceUrl.'/{{::vm.sentence.id}}">#{{::vm.sentence.id}}</a>'
                         )
                     );
                     ?>
@@ -136,13 +136,13 @@ $sentenceUrl = $this->Url->build([
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
             </div>
             
-            <div class="text" dir="{{vm.sentence.dir}}" lang="{{vm.sentence.lang_tag}}">
+            <div class="text" dir="{{::vm.sentence.dir}}" lang="{{::vm.sentence.lang_tag}}">
                 <span ng-if="vm.sentence.highlightedText" ng-bind-html="vm.sentence.highlightedText"></span>
                 <span ng-if="!vm.sentence.highlightedText">
                     <span ng-if="vm.sentence.furigana" ng-bind-html="vm.sentence.furigana.html">
-                        <md-tooltip md-direction="top">{{vm.sentence.furigana.info_message}}</md-tooltip>
+                        <md-tooltip md-direction="top">{{::vm.sentence.furigana.info_message}}</md-tooltip>
                     </span>
-                    <span ng-if="!vm.sentence.furigana">{{vm.sentence.text}}</span>
+                    <span ng-if="!vm.sentence.furigana">{{::vm.sentence.text}}</span>
                 </span>
             </div>
             </div>
@@ -177,7 +177,9 @@ $sentenceUrl = $this->Url->build([
 
     <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
 
-    <div layout="column" class="direct translations" ng-if="vm.visibility.translations && vm.directTranslations.length > 0">
+    <div layout="column" class="direct translations"
+         ng-if="::vm.visibility.translations && vm.directTranslations.length > 0 || undefined"
+         ng-show="vm.visibility.translations && vm.directTranslations.length > 0">
         <md-divider></md-divider>
         <?php /* @translators: text divider between a sentence and its translations */ ?>
         <md-subheader><?= __('Translations') ?></md-subheader>
@@ -189,7 +191,9 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" class="indirect translations" ng-if="vm.visibility.translations && vm.indirectTranslations.length > 0">
+    <div layout="column" class="indirect translations"
+         ng-if="::vm.visibility.translations && vm.indirectTranslations.length > 0 || undefined"
+         ng-show="vm.visibility.translations && vm.indirectTranslations.length > 0">
         <md-subheader><?= __('Translations of translations') ?></md-subheader>
 
         <?php
@@ -199,7 +203,10 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" ng-if="vm.sentence.expandLabel && vm.visibility.translations">
+    <div layout="column"
+         ng-if="::vm.sentence.expandLabel && vm.visibility.translations || undefined"
+         ng-show="vm.sentence.expandLabel && vm.visibility.translations">
+
         <md-button ng-click="vm.expandOrCollapse(!vm.isExpanded)">
             <md-icon>{{vm.expandableIcon}}</md-icon>
             <span ng-if="!vm.isExpanded">

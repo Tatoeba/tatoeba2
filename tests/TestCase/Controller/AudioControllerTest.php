@@ -26,6 +26,7 @@ class AudioControllerTest extends IntegrationTestCase
         'app.wiki_articles',
         'app.reindex_flags',
         'app.links',
+        'app.queued_jobs',
     ];
 
     public function accessesProvider() {

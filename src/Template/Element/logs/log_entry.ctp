@@ -5,8 +5,6 @@ $obsolete = false;
 if (isset($log->obsolete)) {
     $obsolete = $log->obsolete;
 }
-$username = $log->user ? $log->user->username : null;
-$avatar = $log->user ? $log->user->image : null;
 $action =  $log->action;
 $type = 'sentence';
 if (isset($log->type)) {
@@ -23,7 +21,7 @@ $sentenceUrl = $this->Url->build(array(
 
 <md-list-item class="md-2-line <?= $type.'-'.$style ?>">
     <?php
-    echo $this->Members->image($username, $avatar, array('class' => 'md-avatar'));
+    echo $this->Members->image($log->user, array('class' => 'md-avatar'));
     if ($type != 'link') {
         echo $this->Languages->icon(
             $langCode,

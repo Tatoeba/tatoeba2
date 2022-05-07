@@ -21,13 +21,18 @@ use Cake\Core\Configure;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import recordings')));
 
+$canImport = !$lastImportJob || $lastImportJob->completed;
 ?>
 <div id="main_content">
 <div class="module">
 <h2><?php echo __d('admin', 'Import recordings'); ?></h2>
 
 <?php if ($filesImported) : ?>
-    <h3><?php echo __d('admin', 'Import report'); ?></h3>
+    <?php
+        $dateTime = $lastImportJob->completed->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::LONG]);
+    ?>
+
+    <h3><?= __d('admin', format('Last import report (completed on {dateTime})', compact('dateTime'))) ?></h3>
 
     <div id="import-totals">
         <?php echo format(
@@ -58,12 +63,34 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     </div>
 
     <?php if ($errors) : ?>
-        <p><?php echo __d('admin', 'The following errors occurred during import.'); ?></p>
+        <p><?= __d('admin', 'The following errors occurred during the last import.') ?></p>
         <div id="import-report">
             <?= $this->safeForAngular(join('<br/>', $errors)) ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>
+
+<?php
+if (!$canImport) {
+    echo $this->Html->tag('h3', __d('admin', 'Audio import status'));
+    if (!$lastImportJob->fetched) {
+        $timeAgo = $lastImportJob->created->timeAgoInWords();
+        $status = __d('admin', format(
+            'Import task enqueued {timeAgo}. Please refresh '.
+            'the page in a little while to check if import is completed.',
+            compact('timeAgo')
+        ));
+    } else {
+        $timeAgo = $lastImportJob->fetched->timeAgoInWords();
+        $status = __d('admin', format(
+            'An import is currently running since {timeAgo}. Please refresh '.
+            'the page in a little while to check if import is completed.',
+            compact('timeAgo')
+        ));
+    }
+    echo $this->Html->tag('p', $status);
+}
+?>
 
 <h3><?php echo __d('admin', 'Files detected'); ?></h3>
 <?php if ($filesToImport): ?>
@@ -142,7 +169,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
 <?php
 echo $this->Form->create(null, ['ng-non-bindable' => '']);
 echo $this->Form->input('audioAuthor', ['required' => true]);
-echo $this->Form->submit(__d('admin', 'Import'));
+echo $this->Form->submit(__d('admin', 'Import'), $canImport ? [] : ['disabled' => true]);
 echo $this->Form->end();
 ?>
 </div>

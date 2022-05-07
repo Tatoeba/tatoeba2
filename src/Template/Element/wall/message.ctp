@@ -2,8 +2,8 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $message->user->username ?? null;
-$avatar = $message->user->image ?? null;
+$user = $message->user;
+$username = $user->username ?? null;
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 $messageId = $message->id;
@@ -56,18 +56,22 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
 $canReply = false;
 ?>
 
-<md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
+<md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?>">
     <md-card-header>
+        <?php if (!$messageHidden || $canViewContent): ?>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
+        <?php endif; ?>
         <md-card-header-text>
-        <?php if ($username): ?>
-            <span class="md-title">
-                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
-            </span>
-        <?php else: ?>
-            <i><?= h(__('Former member')) ?></i>
+        <?php if (!$messageHidden || $canViewContent): ?>
+            <?php if ($username): ?>
+                <span class="md-title">
+                    <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                </span>
+            <?php else: ?>
+                <i><?= h(__('Former member')) ?></i>
+            <?php endif; ?>
         <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
@@ -100,7 +104,7 @@ $canReply = false;
         <?php } ?>
     </md-card-header>
 
-    <md-card-content>
+    <md-card-content class="<?= $messageHidden ? 'inappropriate' : '' ?>">
         <?php if ($messageHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>

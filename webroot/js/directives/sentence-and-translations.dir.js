@@ -28,8 +28,8 @@
             return {
                 restrict: 'E',
                 scope: {
-                    lang: '=',
-                    title: '='
+                    lang: '<',
+                    title: '<'
                 },
                 link: function($scope) {
                     if (!$scope.lang) {
@@ -80,8 +80,6 @@
 
         var vm = this;
         var oldSentence = null;
-        var allDirectTranslations = [];
-        var allIndirectTranslations = [];
         var allLists = [];
         var lastSelectedList = null;
         var timeout;
@@ -188,22 +186,29 @@
         /////////////////////////////////////////////////////////////////////////
 
         function init(langs, sentence, directTranslations, indirectTranslations, translationLanguage) {
+            editableTranslations = [];
+            duplicateTranslations = [];
+            newTranslations = [];
+            vm.newTranslation = {};
+            vm.hasHiddenTranscriptions = false;
+
             vm.userLanguages = langs;
             vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
-            allDirectTranslations = directTranslations ? directTranslations : [];
-            allDirectTranslations.forEach(function(translation) {
+            vm.directTranslations = directTranslations ? directTranslations : [];
+            vm.directTranslations.forEach(function(translation) {
                 initTranscriptions(translation);
             });
-            allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
-            allIndirectTranslations.forEach(function(translation) {
+            vm.indirectTranslations = indirectTranslations ? indirectTranslations : [];
+            vm.indirectTranslations.forEach(function(translation) {
                 initTranscriptions(translation);
             });
-            showFewerTranslations();
+            updateTranslationsVisibility();
             translationLang = translationLanguage ? translationLanguage : 'und';
         }
 
         function initMenu(isExpanded, menu) {
+            vm.iconsInProgress = {};
             if (isExpanded) {
                 vm.isMenuExpanded = isExpanded;
             } else {
@@ -216,7 +221,7 @@
             if (!listsDataService) {
                 listsDataService = $injector.get('listsDataService');
             }
-            var selectableLists = listsDataService.getLists();
+            var selectableLists = angular.copy(listsDataService.getLists());
 
             if (selectableLists) {
                 if (selectedLists) {
@@ -247,26 +252,22 @@
         function collapseTranslations() {
             vm.isExpanded = false;
             vm.expandableIcon = 'expand_more';
-            showFewerTranslations();
+            updateTranslationsVisibility();
         }
 
         function expandTranslations() {
             vm.isExpanded = true;
             vm.expandableIcon = 'expand_less';
-            showAllTranslations();
+            updateTranslationsVisibility();
         }
 
-        function showAllTranslations() {
-            vm.directTranslations = allDirectTranslations;
-            vm.indirectTranslations = allIndirectTranslations;
-        }
-
-        function showFewerTranslations() {
-            vm.directTranslations = allDirectTranslations.filter(function(item, index) {
-                return index <= MAX_TRANSLATIONS - 1;
+        function updateTranslationsVisibility() {
+            vm.directTranslations.forEach(function(item, index) {
+                item.isHidden = !vm.isExpanded && index >= MAX_TRANSLATIONS;
             });
-            vm.indirectTranslations = allIndirectTranslations.filter(function(item, index) {
-                return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
+            vm.indirectTranslations.forEach(function(item, index) {
+                item.isHidden = !vm.isExpanded
+                    && vm.directTranslations.length + index >= MAX_TRANSLATIONS;
             });
         }
 
@@ -321,7 +322,7 @@
                         if (translationLang === 'und') {
                             updateNewTranslationsInfo(translation, sentenceId, sentence.translations);
                         } else {
-                            allDirectTranslations.unshift(translation);
+                            vm.directTranslations.unshift(translation);
                         }
                         refreshTranslations();
                         vm.newTranslation = {};
@@ -425,8 +426,10 @@
             var action = vm.sentence.is_owned_by_current_user ? 'let_go' : 'adopt';
             vm.iconsInProgress.adopt = true;
             $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
-                vm.sentence.user = result.data.user;
-                vm.sentence.is_owned_by_current_user = vm.sentence.user && vm.sentence.user.username;
+                var sentence = result.data.sentence;
+                sentence.expandLabel = vm.sentence.expandLabel;
+                initSentence(sentence);
+                initMenu(!vm.isExpanded, sentence.permissions);
                 vm.iconsInProgress.adopt = false;
             });
         }
@@ -543,6 +546,7 @@
             vm.lists = allLists.filter(function(item) {
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
+            vm.listSearch = '';
             vm.listType = 'of_user';
         }
 
@@ -636,20 +640,15 @@
 
         function refreshTranslations(translations) {
             if (translations) {
-                allDirectTranslations = translations[0];
-                allIndirectTranslations = translations[1];
+                vm.directTranslations = translations[0];
+                vm.indirectTranslations = translations[1];
             }
-            
-            if (vm.isExpanded) {
-                showAllTranslations();
-            } else {
-                showFewerTranslations();
-            }
+            updateTranslationsVisibility();
         }
 
         function updateNewTranslationsInfo(translation, sentenceId, translations) {
-            allDirectTranslations = translations[0];
-            allIndirectTranslations = translations[1];
+            vm.directTranslations = translations[0];
+            vm.indirectTranslations = translations[1];
             
             newTranslations.push(translation.id);
             if (translation.isDuplicate) {
@@ -657,12 +656,12 @@
             } else if (translation.is_owned_by_current_user) {
                 editableTranslations.push(translation.id);
             }
-            allDirectTranslations.forEach(function(item) {
+            vm.directTranslations.forEach(function(item) {
                 item.editable = editableTranslations.indexOf(item.id) > -1;
                 item.isDuplicate = duplicateTranslations.indexOf(item.id) > -1;;
                 item.parentId = sentenceId;
             });
-            allDirectTranslations.sort(function(a, b) {
+            vm.directTranslations.sort(function(a, b) {
                 var indexA = newTranslations.indexOf(a.id);
                 var indexB = newTranslations.indexOf(b.id);
                 return indexB - indexA;
@@ -670,7 +669,7 @@
         }
 
         function getNumberOfTranslations() {
-            return allDirectTranslations.length + allIndirectTranslations.length;
+            return vm.directTranslations.length + vm.indirectTranslations.length;
         }
     }
 

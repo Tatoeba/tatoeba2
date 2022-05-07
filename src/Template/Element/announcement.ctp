@@ -27,6 +27,7 @@
 
 use Cake\Core\Configure;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
 
 $isDisplayingAnnouncement = false;
 
@@ -44,7 +45,7 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
         'class' => 'announcement md-whiteframe-1dp',
         'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
     ]);
-    echo $this->Form->hidden('settings.new_terms_of_use', ['value' => true]);
+    echo $this->Form->hidden('settings.new_terms_of_use', ['value' => User::TERMS_OF_USE_LATEST_VERSION]);
     ?>
     <p>
     <?= format(

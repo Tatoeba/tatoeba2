@@ -2,7 +2,8 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $comment->user->username ?? null;
+$user = $comment->user;
+$username = $user->username ?? null;
 if ($username) {
     $userProfileUrl = $this->Url->build(array(
         'controller' => 'user',
@@ -10,7 +11,6 @@ if ($username) {
         $username
     ));
 }
-$avatar = $comment->user->image ?? null;
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 $commentId = $comment->id;
@@ -106,18 +106,22 @@ if ($sentenceOwnerLink) {
 </div>
 <?php } ?>
 
-<md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
+<md-card class="comment">
     <md-card-header>
+        <?php if (!$commentHidden || $canViewContent): ?>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
+        <?php endif; ?>
         <md-card-header-text>
-        <?php if ($username): ?>
-            <span class="md-title">
-                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
-            </span>
-        <?php else: ?>
-            <i><?= h(__('Former member')) ?></i>
+        <?php if (!$commentHidden || $canViewContent): ?>
+            <?php if ($username): ?>
+                <span class="md-title">
+                    <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                </span>
+            <?php else: ?>
+                <i><?= h(__('Former member')) ?></i>
+            <?php endif; ?>
         <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
@@ -153,7 +157,7 @@ if ($sentenceOwnerLink) {
 
     <md-divider></md-divider>
 
-    <md-card-content>
+    <md-card-content class="<?= $commentHidden ? 'inappropriate' : '' ?>">
         <?php if ($commentHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>
