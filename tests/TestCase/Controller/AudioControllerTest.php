@@ -17,6 +17,7 @@ class AudioControllerTest extends IntegrationTestCase
         'app.users',
         'app.users_languages',
         'app.wiki_articles',
+        'app.queued_jobs',
     ];
 
     public function accessesProvider() {
