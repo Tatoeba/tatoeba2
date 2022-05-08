@@ -52,10 +52,19 @@ class UserTest extends TestCase
 
     public function testGet_settingsValidatesSettings()
     {
-        $default = User::$defaultSettings['sentences_per_page'];
+        $default = [
+            User::$defaultSettings['sentences_per_page'],
+            User::$defaultSettings['max_visible_translations']
+        ];
 
         $this->User->set('settings', ['sentences_per_page' => 33]);
+        $this->User->set('settings', ['max_visible_translations' => 99]);
 
-        $this->assertEquals($default, $this->User->settings['sentences_per_page']);
+        $result = [
+            $this->User->settings['sentences_per_page'],
+            $this->User->settings['max_visible_translations']
+        ];
+
+        $this->assertEquals($default, $result);
     }
 }

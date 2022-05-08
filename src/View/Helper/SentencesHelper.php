@@ -865,7 +865,7 @@ class SentencesHelper extends AppHelper
     {
         $translations = $sentence->translations;
         $total = count($translations[0]) + count($translations[1]);
-        return $total - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+        return $total - $sentence->max_visible_translations;
     }
 }
 ?>
