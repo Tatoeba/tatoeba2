@@ -198,7 +198,7 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column"
+    <div class="expand-collapse" layout="column"
          ng-if="::vm.sentence.expandLabel && vm.visibility.translations || undefined"
          ng-show="vm.sentence.expandLabel && vm.visibility.translations">
 

@@ -1273,6 +1273,7 @@ div.hideLink {
  */
 .sentence-and-translations {
     background-color: #fff;
+    padding-bottom: 2px;
 }
 
 .sentence-and-translations .header {
@@ -1307,7 +1308,7 @@ html[dir="rtl"] .sentence-and-translations .menu {
 }
 
 .sentence-and-translations .translation {
-    padding: 2px 10px;
+    padding: 0px 10px;
 }
 
 .sentence-and-translations .md-subheader {
@@ -1416,7 +1417,11 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
 .sentence-and-translations div:focus {
     outline: none;
     border: 0;
- }
+}
+
+.sentence-and-translations .expand-collapse .md-button {
+    margin: 2px 2px 0 2px;
+}
 
 @media only screen and (max-width: 600px) {    
     .sentence-and-translations .buttons {
