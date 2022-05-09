@@ -19,6 +19,7 @@ class ExportsControllerTest extends IntegrationTestCase
         'app.UsersLanguages',
         'app.PrivateMessages',
         'app.QueuedJobs',
+        'plugin.Queue.QueueProcesses',
     ];
 
     private $testExportDir = TMP.'export_tests'.DS;
