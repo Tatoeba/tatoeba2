@@ -62,8 +62,8 @@ class WallTest extends TestCase {
         ]);
         $saved = $this->Wall->save($newPost);
         
-        $this->assertEquals($saved->date, $saved->modified);
         $this->assertNotNull($saved->date);
+        $this->assertEquals($saved->date->format('Y-m-d H:i:s'), $saved->modified->format('Y-m-d H:i:s'));
     }
 
     public function testSave_doesNotSaveNewPostIfContentIsEmpty() {
