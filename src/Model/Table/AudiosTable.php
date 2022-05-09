@@ -305,9 +305,11 @@ class AudiosTable extends Table
     }
 
     public function enqueueImportTask($author) {
-        return $this->QueuedJobs->createJob(
+        $job = $this->QueuedJobs->createJob(
             self::JOB_TYPE,
             compact('author')
         );
+        $this->QueuedJobs->wakeUpWorkers();
+        return $job;
     }
 }
