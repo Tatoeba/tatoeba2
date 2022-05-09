@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "253f8967c84827d4cc800f0760d6f095",
+    "content-hash": "a28a015b0ea6803959568c05a2b31994",
     "packages": [
         {
             "name": "aura/intl",
@@ -356,27 +356,30 @@
         },
         {
             "name": "dereuromark/cakephp-queue",
-            "version": "3.16.2",
+            "version": "dev-cake3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "914bc5acaeac642c196e49d3bc5f53cfc7edc700"
+                "reference": "847e7ed7707562029fa5593880286f6bd1b1e6b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/914bc5acaeac642c196e49d3bc5f53cfc7edc700",
-                "reference": "914bc5acaeac642c196e49d3bc5f53cfc7edc700",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/847e7ed7707562029fa5593880286f6bd1b1e6b4",
+                "reference": "847e7ed7707562029fa5593880286f6bd1b1e6b4",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^3.7",
+                "cakephp/cakephp": "^3.8",
                 "php": ">=5.6"
             },
+            "conflict": {
+                "dereuromark/cakephp-ide-helper": "<0.14"
+            },
             "require-dev": {
-                "cakephp/migrations": "^1.0",
-                "dereuromark/cakephp-ide-helper": "^0.12",
-                "dereuromark/cakephp-tools": "^1.5.6",
-                "fig-r/psr2r-sniffer": "dev-master",
+                "cakephp/migrations": "^2.0",
+                "dereuromark/cakephp-ide-helper": "0.*",
+                "dereuromark/cakephp-tools": "^1.9.7",
+                "fig-r/psr2r-sniffer": "^0.6",
                 "friendsofcake/search": "^5.0"
             },
             "suggest": {
@@ -415,7 +418,11 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2019-04-05T00:23:37+00:00"
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-queue/issues",
+                "source": "https://github.com/dereuromark/cakephp-queue"
+            },
+            "time": "2021-03-09T19:44:02+00:00"
         },
         {
             "name": "league/climate",
@@ -3879,7 +3886,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "dereuromark/cakephp-queue": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
