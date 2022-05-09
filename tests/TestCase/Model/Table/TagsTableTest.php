@@ -165,7 +165,7 @@ class TagsTableTest extends TestCase {
 
         $added = $this->Tag->addTag('arabic', 4);
         $returned = $this->Tag->get($added->id);
-        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->created->format('Y-m-d H:i:s'), $returned->created->format('Y-m-d H:i:s'));
 
         I18n::setLocale($prevLocale);
     }

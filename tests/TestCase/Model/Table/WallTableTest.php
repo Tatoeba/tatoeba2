@@ -281,8 +281,8 @@ class WallTest extends TestCase {
         $post = $this->Wall->newEntity(['content' => 'test', 'owner' => 1]);
         $added = $this->Wall->save($post);
         $returned = $this->Wall->get($added->id);
-        $this->assertEquals($added->date, $returned->date);
-        $this->assertEquals($added->modified, $returned->modified);
+        $this->assertEquals($added->date->format('Y-m-d H:i:s'), $returned->date->format('Y-m-d H:i:s'));
+        $this->assertEquals($added->modified->format('Y-m-d H:i:s'), $returned->modified->format('Y-m-d H:i:s'));
 
         I18n::setLocale($prevLocale);
     }

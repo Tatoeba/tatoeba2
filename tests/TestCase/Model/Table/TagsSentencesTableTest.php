@@ -48,7 +48,7 @@ class TagsSentencesTableTest extends TestCase {
 
         $added = $this->TagsSentences->tagSentence(1, 2, 3);
         $returned = $this->TagsSentences->get($added->id);
-        $this->assertEquals($added->added_time, $returned->added_time);
+        $this->assertEquals($added->added_time->format('Y-m-d H:i:s'), $returned->added_time->format('Y-m-d H:i:s'));
 
         I18n::setLocale($prevLocale);
     }
