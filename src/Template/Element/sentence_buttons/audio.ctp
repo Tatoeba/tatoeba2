@@ -1,4 +1,4 @@
-<md-button class="md-icon-button" ng-click="vm.playAudio(audios)" ng-if="audios.length > 0">
+<md-button class="md-icon-button" ng-href="{{vm.getAudioUrl(audios)}}" ng-click="vm.playAudio(audios); $event.preventDefault()" ng-if="audios.length > 0">
     <md-icon ng-if="!audios[0].hasOwnProperty('enabled') || audios[0].enabled">volume_up</md-icon>
     <md-icon ng-if="audios[0].hasOwnProperty('enabled') && !audios[0].enabled">volume_off</md-icon>
     <md-tooltip md-direction="top" ng-if="!vm.getAudioAuthor(audios)">

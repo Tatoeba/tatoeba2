@@ -39,6 +39,7 @@
                 const rootUrl = get_tatoeba_root_url();
 
                 vm.playAudio = playAudio;
+                vm.getAudioUrl = getAudioUrl;
                 vm.getAudioAuthor = getAudioAuthor;
 
                 /////////////////////////////////////////////////////////////////////////
@@ -54,10 +55,15 @@
                     }
                 }
         
+                function getAudioUrl(audios, playIndex = undefined) {
+                    playIndex = (typeof playIndex !== 'undefined') ? playIndex : getNextPlayAudioIndex(audios);
+                    return rootUrl + '/audio/download/' + audios[playIndex].id;
+                }
+
                 function playAudio(audios) {
                     var playIndex = getNextPlayAudioIndex(audios);
                     if (playIndex !== undefined) {
-                        var audioURL = rootUrl + '/audio/download/' + audios[playIndex].id;
+                        var audioURL = getAudioUrl(audios, playIndex);
                         var audio = new Audio(audioURL);
                         audio.play();
                         lastPlayedAudioIndex = playIndex;
