@@ -182,8 +182,12 @@ class AudioController extends AppController
         }
 
         if ($audio) {
+            $options = [
+                'download' => true,
+                'name' => $audio->pretty_filename,
+            ];
             return $this->getResponse()
-                        ->withFile($audio->file_path, ['download' => true]);
+                        ->withFile($audio->file_path, $options);
         } else {
             throw new \Cake\Http\Exception\NotFoundException();
         }

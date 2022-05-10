@@ -90,10 +90,18 @@ class Audio extends Entity
     }
 
     protected function _getFilePath() {
-       if ($this->id && $this->sentence_id) {
+       if ($this->id) {
            $path = $this->__balancedTreePath($this->id);
            $audioBasePath = Configure::read('Recordings.path');
-           return $audioBasePath.DS.$path.DS.$this->sentence_id.'-'.$this->id.'.mp3';
+           return $audioBasePath.DS.$path.DS.$this->id.'.mp3';
+       } else {
+           return null;
+       }
+    }
+
+    protected function _getPrettyFilename() {
+       if ($this->id && $this->sentence_id) {
+           return $this->sentence_id.'-'.$this->id.'.mp3';
        } else {
            return null;
        }
