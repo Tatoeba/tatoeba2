@@ -3,7 +3,7 @@ name: Language request
 about: Add a new language on Tatoeba
 title: ''
 labels: lang-request
-assignees: RyckRichards
+assignees: 
 
 ---
 
