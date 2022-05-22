@@ -60,7 +60,7 @@ class User extends Entity
         'users_collections_ratings' => false,
         'native_indicator' => false,
         'hide_random_sentence' => false,
-        'use_new_design' => false,
+        'use_new_design' => true,
         'default_license' => 'CC BY 2.0 FR',
         'can_switch_license' => false,
         'new_terms_of_use' => self::TERMS_OF_USE_LATEST_VERSION,
