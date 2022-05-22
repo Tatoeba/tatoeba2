@@ -187,8 +187,8 @@ $sentenceUrl = $this->Url->build([
     </div>
 
     <div layout="column" class="indirect translations"
-         ng-if="::vm.visibility.translations && vm.indirectTranslations.length > 0 || undefined"
-         ng-show="vm.visibility.translations && vm.indirectTranslations.length > 0">
+         ng-if="::vm.visibility.translations && vm.indirectTranslations.length > 0 && !vm.indirectTranslations[0].isHidden || undefined"
+         ng-show="vm.visibility.translations && vm.indirectTranslations.length > 0 && !vm.indirectTranslations[0].isHidden">
         <md-subheader><?= __('Translations of translations') ?></md-subheader>
 
         <?php
