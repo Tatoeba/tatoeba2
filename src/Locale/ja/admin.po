@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 18:22+0000\n"
+"POT-Creation-Date: 2022-05-08 13:36+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Koyuki <springcomes.ki@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/tatoeba/teams/28284/ja/)\n"
@@ -23,101 +23,101 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L845
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L850
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L249
 msgid "Invalid file “{file}” ignored."
 msgstr "無効なファイル “{file}” は無視されました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L259
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "ファイル “{dir}” をインポートするためのディレクトリ “{file}” 作成に失敗しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L269
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "ファイル “{file}” のコピーに失敗しました。コピー先ディレクトリ名： “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L278
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr "“{author}” にデータベース内の例文 {sentenceId} を割り当てることができません。有効なユーザー名か確認してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L287
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr "ファイル “{file}” は正常にインポートが完了しましたが、インポートディレクトリからは削除できませんでした。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
 msgid "Import recordings"
 msgstr "音声をインポートする"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
-msgid "Import report"
-msgstr "インポート・レポート"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+msgid "The following errors occurred during the last import."
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
-msgid "The following errors occurred during import."
-msgstr "インポート中にエラーが発生しました。"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L75
+msgid "Audio import status"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L95
 msgid "Files detected"
 msgstr "検出されたファイル"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
 msgid "File name"
 msgstr "ファイル名"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
 msgid "Sentence id"
 msgstr "例文番号"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L115
 msgid "Language"
 msgstr "言語"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
 msgid "Already has audio"
 msgstr "音声は既に存在します。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
 msgid "May be imported"
 msgstr "インポート可能"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L138
 msgid "N/A"
 msgstr "該当なし"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L132
 msgid "Invalid"
 msgstr "無効"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
 msgid "No"
 msgstr "No"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
 msgid "Yes"
 msgstr "Yes"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L163
 msgid "No files have been detected inside the import directory."
 msgstr "インポートディレクトリ内にファイルが見つかりません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L169
 msgid "Import"
 msgstr "インポート"
 

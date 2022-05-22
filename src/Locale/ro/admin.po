@@ -6,16 +6,16 @@
 # Translators:
 # صفا الفليج <safaalfulaij@hotmail.com>, 2018
 # Fathe - <teoctist@hotmail.com>, 2020
-# Elena Cristina <elenacristina654321@gmail.com>, 2021
+# Elena Cristina <elenacristina654321@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 18:22+0000\n"
+"POT-Creation-Date: 2022-05-08 13:36+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Elena Cristina <elenacristina654321@gmail.com>, 2021\n"
+"Last-Translator: Elena Cristina <elenacristina654321@gmail.com>, 2022\n"
 "Language-Team: Romanian (https://www.transifex.com/tatoeba/teams/28284/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,33 +23,33 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L845
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "Eroare: propozițiile adăugate de {username} nu au putut fi marcate ca "
 "nesigure."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L850
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Toate propozițiile adăugate de {username} au fost marcate ca nesigure."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L249
 msgid "Invalid file “{file}” ignored."
 msgstr "Fișierul invalid „{file}” a fost ignorat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L259
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Nu s-a reușit crearea folderului „{dir}” pentru importul fișierului "
 "„{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L269
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Copiere eșuată a fișierului „{file}” în folderul „{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L278
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -58,7 +58,7 @@ msgstr ""
 "{sentenceId} în baza de date. Asigurați-vă că numele de utilizator este "
 "valid."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L287
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -67,67 +67,67 @@ msgstr ""
 "folderul de import."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
 msgid "Import recordings"
 msgstr "Importați înregistrări audio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L30
-msgid "Import report"
-msgstr "Importați raport"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+msgid "The following errors occurred during the last import."
+msgstr "Următoarele erori au apărut la ultimul import."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L61
-msgid "The following errors occurred during import."
-msgstr "Următoarele erori au apărut în timpul importului."
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L75
+msgid "Audio import status"
+msgstr "Starea importului audio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L95
 msgid "Files detected"
 msgstr "Fișiere detectate"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
 msgid "File name"
 msgstr "Nume fișier"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
 msgid "Sentence id"
 msgstr "ID propoziție"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L115
 msgid "Language"
 msgstr "Limbă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
 msgid "Already has audio"
 msgstr "Are deja înregistrare audio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
 msgid "May be imported"
 msgstr "Se poate importa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L138
 msgid "N/A"
 msgstr "N/A"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L132
 msgid "Invalid"
 msgstr "Nevalid"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
 msgid "No"
 msgstr "Nu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
 msgid "Yes"
 msgstr "Da"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L163
 msgid "No files have been detected inside the import directory."
 msgstr "Niciun fișier nu a fost găsit în folderul de import."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L169
 msgid "Import"
 msgstr "Importați"
 

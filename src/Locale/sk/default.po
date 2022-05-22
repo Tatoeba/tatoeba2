@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 18:22+0000\n"
+"POT-Creation-Date: 2022-05-08 13:36+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Dominika S, 2020-2021\n"
 "Language-Team: Slovak (http://www.transifex.com/tatoeba/tatoeba_website/language/sk/)\n"
@@ -31,13 +31,13 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "Užívateľ s menom {username} nejestvuje."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L132
 msgid "Your audio settings have been saved."
 msgstr "Vaše nastavenia zvuku boli uložené."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L548
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L546
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -106,15 +106,15 @@ msgstr "Veta #{id} bola vymazaná."
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Chyba: vetu #{id} sa nepodarilo odstrániť."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L902
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L903
 msgid "You are not allowed to change the license of this sentence."
 msgstr "Nemáte oprávnenie zmeniť licenciu tejto vety."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L909
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L910
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "Licencia tejto vety bola zmenená na „{newLicense}“."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L914
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L915
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "Licenciu nie je možné zmeniť na „{newLicense}“ pretože:"
 
@@ -158,53 +158,53 @@ msgstr "Prosím, zvolte obrázok vo formáte GIF, JPEG alebo PNG."
 msgid "Error while saving."
 msgstr "Pri ukladaní sa vyskytla chyba."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L324
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L323
 msgid "Profile saved."
 msgstr "Profil uložený."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L334
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Emailovú adresu sa nepodarilo zmeniť. Prosím, zadajte riadnu emailovú adresu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L376
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L375
 msgid "That email address already exists. Please try another."
 msgstr "Táto emailová adresa je už zadaná. Prosím skúste inú."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L424
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "Zadaný dátum narodenia je neplatný. Prosím, skúste to znova."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L473
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "Zadaný dátum narodenia je neúplný. Prijateľné dátumy: plný dátum, mesiac a deň, rok a mesiac, iba rok."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L543
 msgid "Your settings have been saved."
 msgstr "Vaše nastavenia boli uložené."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L614
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L612
 msgid "New password cannot be empty."
 msgstr "Políčko na nové heslo nemôže byť prázdne."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L615
 msgid "New passwords do not match."
 msgstr "Nové heslá sa nezhodujú."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L622
 msgid "New password has been saved."
 msgstr "Nové heslo bolo uložené."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L626
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
 msgid "An error occurred while saving."
 msgstr "Behom ukladania sa vyskytla chyba."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L631
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L629
 msgid "Password error. Please try again."
 msgstr "Chybné heslo. Prosím, skúste znovu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L729
 msgid "You have accepted the new terms of use."
 msgstr "Prijali ste nové podmienky používania."
 
@@ -522,39 +522,39 @@ msgstr "bezmenný zoznam"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L119
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
 msgid "This is not a valid license."
 msgstr "Toto nie je platná licencia."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L125
 msgid "This sentence is already under that license."
 msgstr "Táto veta už spadá pod túto licenciu."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L219
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L218
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Veta musí byť pôvodná (nie odvodená od prekladu)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L226
 msgid "You're not the owner of this sentence."
 msgstr "Nie ste majiteľom tejto vety."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L233
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Majiteľ vety musí byť jej pôvodným tvorcom."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L246
 msgid "You can only switch to a more permissive license."
 msgstr "Môžete iba zmeniť na viac dovoľujúcu licenciu."
 
@@ -953,9 +953,9 @@ msgstr "Zanechajte toto políčko prázdne, aby ste mohli používať svoju prof
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L172
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L344
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L375
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L433
 msgid "Save"
 msgstr "Uložiť"
 
@@ -1180,7 +1180,7 @@ msgstr "Vlastnené rodeným hovoriacim"
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L226
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L180
 msgid "Translations"
 msgstr "Preklady"
 
@@ -1262,7 +1262,7 @@ msgid ""
 "searches. You can also bookmark/share the search template with someone else."
 msgstr "Použite túto možnosť, aby ste nastavili súčasné požiadavky ako predvoľbu pre budúce vyhľadávania. Taktiež si môžete vzor vyhľadávania uložiť medzi záložky či zdieľať s druhými užívateľmi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L52
 msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>. By closing "
 "this announcement, you agree with the new Terms of Use. If you have any "
@@ -1270,14 +1270,14 @@ msgid ""
 msgstr "Obnovili sme naše <a href=\"{termsOfUse}\">Podmienky používania</a>. Zatvorením tohto oznamu súhlasíte s novými Podmienkami používania. Pokiaľ máte akékoľvek otázky, neváhajte sa s nami <a href=\"{contact}\">spojiť</a>."
 
 #. button to accept new terms of use
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L60
 msgid "Accept and close"
 msgstr "Súhlasím a zavrieť"
 
 #. button to close the blue announcement banner
 #. / button to close the announcement about the new design (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L8
@@ -1285,7 +1285,7 @@ msgstr "Súhlasím a zavrieť"
 msgid "Close"
 msgstr "Zatvoriť"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L93
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
@@ -1321,7 +1321,7 @@ msgstr[1] "Užívatelia, ktorí sa podieľali na posledných {n}&nbsp;príspevko
 msgstr[2] "Užívatelia, ktorí sa podieľali na posledných {n}&nbsp;príspevkoch."
 msgstr[3] "Užívatelia, ktorí sa podieľali na posledných {n}&nbsp;príspevkoch."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L60
 msgid "{n}&nbsp;sentence"
 msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "{n}&nbsp;veta"
@@ -1546,7 +1546,7 @@ msgstr "Napísať správu"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L48
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L35
 msgid "Inbox"
 msgstr "Doručené"
@@ -1617,13 +1617,13 @@ msgstr "Uložiť ako rozpísané"
 #. / button to send a new password by email
 #. because the password was forgotten (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L60
 msgid "Send"
 msgstr "Odoslať"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L148
 msgid "notification from Tatoeba"
 msgstr "oznámenie od Tatoeby"
@@ -1719,23 +1719,23 @@ msgstr "Prehrať zvukovú nahrávku od užívateľa {author}"
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Táto veta nemá žiadnu zvukovú nahrávku. Kliknutím zistíte, ako prispieť."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L19
 msgid "Add a comment"
 msgstr "Pridať komentár"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L42
 msgid "Submit comment"
 msgstr "Odoslať komentár"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L54
 msgid "Good practices"
 msgstr "Dobré zvyklosti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L56
 msgid "Say \"welcome\" to new users."
 msgstr "Privítajte nových užívateľov."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L57
 msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Záležitosti, ktoré sa netýkajú priamo vety, riešte pomocou súkromných správ."
 
@@ -1745,7 +1745,7 @@ msgid "sentence deleted"
 msgstr "veta odstránená"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L12
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L11
 msgctxt "sentence comment"
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, upravené {modifiedDate}"
@@ -1760,16 +1760,16 @@ msgstr "Veta {number} — patrí užívateľovi {username}"
 msgid "Sentence {number}"
 msgstr "Veta {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L120
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L74
 msgid "Former member"
 msgstr "Bývalý užívateľ"
 
 #. tooltip of reply button on a comment (verb)
 #. / button to reply to a private message (verb)
 #. / reply button on a wall post (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
 msgctxt "button"
@@ -1777,13 +1777,13 @@ msgid "Reply"
 msgstr "Odpovedať"
 
 #. tooltip of permalink button on a comment (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L44
 msgid "Permalink"
 msgstr "Trvalý odkaz"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L163
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L114
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -1805,11 +1805,11 @@ msgstr "Obsah tejto správy porušuje <a href=\"{}\">naše pravidlá</a>, a pret
 #. / cancel button of "add translation" form on a sentence (verb)
 #. / cancel button of sentence edition form (verb)
 #. / cancel button of transcription edition form (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L66
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L150
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L153
@@ -1824,8 +1824,8 @@ msgstr "Zrušiť"
 
 #. save button of sentence comment edition form (verb)
 #. / save button of wall post edition form (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L50
 msgid "Save changes"
 msgstr "Uložiť zmeny"
 
@@ -2019,11 +2019,11 @@ msgstr "Vaša veta nebola pridaná, pretože už presne taká jestvuje"
 msgid "This sentence belongs to a native speaker."
 msgstr "Táto veta patrí rodenému hovoriacemu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L188
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L192
 msgid "Translations of translations"
 msgstr "Preklady prekladov"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L211
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L237
 msgid "Fewer translations"
 msgstr "Menej prekladov"
@@ -2084,8 +2084,8 @@ msgstr "Preložiť"
 #. / edit button on sentence menu (verb)
 #. / edit button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L16
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L30
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L178
@@ -2115,7 +2115,7 @@ msgstr "Odstrániť z obľúbených"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L138
@@ -2134,7 +2134,7 @@ msgstr "Ste si istý?"
 #. / button to put a private message in the trash (verb)
 #. / delete button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
@@ -2170,19 +2170,19 @@ msgstr "Zobraziť neoverené prepisy"
 msgid "Hide unreviewed transcriptions"
 msgstr "Skryť neoverené prepisy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L10
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L12
 msgid "Unlink this translation"
 msgstr "Odpojiť tento preklad"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L14
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L16
 msgid "Make into direct translation"
 msgstr "Učiniť priamym prekladom"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L33
 msgid "Existing sentence #{number} has been added as a translation."
 msgstr "Už jestvujúca veta #{number} bola pridaná ako preklad."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L43
 msgid "Edit this translation"
 msgstr "Upraviť tento preklad"
 
@@ -2256,61 +2256,61 @@ msgstr "Pokročilé vyhľadávanie"
 msgid "Sort by"
 msgstr "Zoradiť podľa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L69
 msgid "My profile"
 msgstr "Môj profil"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L78
 msgid "Language: {lang}"
 msgstr "Jazyk: {lang}"
 
 #. header text for settings on profile page
 #. / title of Settings page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L30
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L97
 msgid "Log out"
 msgstr "Odhlásiť sa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L109
 msgid "My sentences"
 msgstr "Moje vety"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L119
 msgid "My vocabulary"
 msgstr "Moja slovná zásoba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L129
 msgid "My reviews"
 msgstr "Moje preverenia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L757
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L783
 msgid "My lists"
 msgstr "Moje zoznamy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L149
 msgid "My favorites"
 msgstr "Moje obľúbené "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L159
 msgid "My comments"
 msgstr "Moje komentáre"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L169
 msgid "Comments on my sentences"
 msgstr "Komentáre pri mojich vetách"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L179
 msgid "My Wall messages"
 msgstr "Moje správy na Nástenke"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L190
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L189
 msgid "My latest contributions"
 msgstr "Moje posledné príspevky"
 
@@ -2514,22 +2514,22 @@ msgstr "Pridať žiadosti o slovnú zásobu"
 msgid "Existing vocabulary requests"
 msgstr "Už zadaná žiadosť o slovnú zásobu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L26
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L19
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L25
 msgid "Add a message: "
 msgstr "Pridať správu:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L8
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L22
 msgctxt "wall message"
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, upravené {modifiedDate}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L137
 msgid "hide replies"
 msgstr "Skryť odpovede"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L140
 msgid "show replies"
 msgstr "Zobraziť odpovede"
 
@@ -3376,20 +3376,20 @@ msgstr[3] "{folderName} ({n}&nbsp;správ)"
 msgid "Empty trash"
 msgstr "Vyprázdniť kôš"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[bez predmetu]"
 
 #. button to delete a private message that has already been put in the trash
 #. (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L80
 msgid "Permanently delete"
 msgstr "Natrvalo odstrániť"
 
 #. button to restore a private message that has been put to trash (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L70
 msgid "Restore"
 msgstr "Obnoviť"
@@ -4400,7 +4400,7 @@ msgid ""
 msgstr "Prístup na tento profil je OBMEDZENÝ. Osobné údaje a popis sa zobrazuje iba členom Tatoeby."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L244
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L145
 msgid "Member since"
 msgstr "Členom od"
 
@@ -4486,25 +4486,29 @@ msgid "Number of sentences per page"
 msgstr "Počet viet na stránku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
+msgid "Number of translations per sentence"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L249
 msgid "Default license for original sentences"
 msgstr "Predvolená licencia pre pôvodné vety"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L260
 msgid "Experimental options"
 msgstr "Skúšobné možnosti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L265
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
 msgstr "Tento súbor možnosti nie je plne funkčný, nemusí pracovať pre každého a/alebo je v stave beta testovania. V budúcnosti môže byť zmenený alebo celkom odstránený."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L273
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L282
 msgid "Activate the feature to review sentences"
 msgstr "Zapnúť možnosť preverovania viet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L305
 msgid ""
 "Mark sentences when the owner indicated in their profile that they have a "
 "native level in the language of the sentence. In the old design \"(native)\""
@@ -4512,34 +4516,34 @@ msgid ""
 "next to the sentence."
 msgstr "Označiť vety, ak sa ich majiteľ v danom jazyku v profile označil za rodeného hovoriaceho. V starom vzhľade stránky „(rodený hovoriaci)“ bolo uvedené vedľa užívateľského mena. V novom vzhľade je vedľa vety zobrazená {star}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L324
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L333
 msgid ""
 "Display sentences with the new design. Note that some features are not yet "
 "implemented in this new design but are coming soon."
 msgstr "Zobraziť vety v novom vzhľade. Upozorňujeme, že niektoré možnosti ešte nie sú v novom vzhľade zahrnuté, čo sa však čoskoro zmení."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L355
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L364
 msgid "Change email address"
 msgstr "Zmeniť emailovú adresu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L377
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L161
 msgid "Email address"
 msgstr "Emailová adresa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L396
 msgid "Change password"
 msgstr "Zmeniť heslo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L409
 msgid "Old password"
 msgstr "Staré heslo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L417
 msgid "New password"
 msgstr "Nové heslo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L425
 msgid "New password again"
 msgstr "Nové heslo znova"
 
@@ -5245,32 +5249,32 @@ msgid "{info}, {date}"
 msgstr "{info}, {date}"
 
 #. one of the user status displayed on profile pages (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L93
 msgid "admin"
 msgstr "admin"
 
 #. one of the user status displayed on profile pages
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L95
 msgid "corpus maintainer"
 msgstr "správca korpusu"
 
 #. one of the user status displayed on profile pages
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L97
 msgid "advanced contributor"
 msgstr "pokročilý prispievateľ"
 
 #. one of the user status displayed on profile pages
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L99
 msgid "contributor"
 msgstr "prispievateľ"
 
 #. one of the user status displayed on profile pages
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L101
 msgid "inactive"
 msgstr "nečinný"
 
 #. one of the user status displayed on profile pages
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L103
 msgid "suspended"
 msgstr "pozastavený"
 
