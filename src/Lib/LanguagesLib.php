@@ -685,6 +685,7 @@ class LanguagesLib
                 'mik' => __d('languages', 'Hitchiti'),
                 'szl' => __d('languages', 'Silesian'),
                 'igs' => __d('languages', 'Interglossa'),
+                'nnb' => __d('languages', 'Nande'),
             );
         }
         return $languages;
