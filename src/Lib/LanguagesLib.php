@@ -685,6 +685,7 @@ class LanguagesLib
                 'mik' => __d('languages', 'Hitchiti'),
                 'szl' => __d('languages', 'Silesian'),
                 'igs' => __d('languages', 'Interglossa'),
+                'knc' => __d('languages', 'Central Kanuri'),
             );
         }
         return $languages;
@@ -771,6 +772,7 @@ class LanguagesLib
             "klj",
             "zlm",
             "zsm",
+            "knc",
         );
 
         $lang = self::locale_To_Iso639_3($lang);
