@@ -686,6 +686,7 @@ class LanguagesLib
                 'szl' => __d('languages', 'Silesian'),
                 'igs' => __d('languages', 'Interglossa'),
                 'nnb' => __d('languages', 'Nande'),
+                'swc' => __d('languages', 'Congo Swahili'),
             );
         }
         return $languages;
@@ -772,6 +773,7 @@ class LanguagesLib
             "klj",
             "zlm",
             "zsm",
+            "swc",
         );
 
         $lang = self::locale_To_Iso639_3($lang);
