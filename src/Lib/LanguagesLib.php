@@ -685,6 +685,7 @@ class LanguagesLib
                 'mik' => __d('languages', 'Hitchiti'),
                 'szl' => __d('languages', 'Silesian'),
                 'igs' => __d('languages', 'Interglossa'),
+                'knc' => __d('languages', 'Central Kanuri'),
                 'nnb' => __d('languages', 'Nande'),
                 'swc' => __d('languages', 'Congo Swahili'),
             );
@@ -773,6 +774,7 @@ class LanguagesLib
             "klj",
             "zlm",
             "zsm",
+            "knc",
             "swc",
         );
 
