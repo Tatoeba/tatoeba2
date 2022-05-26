@@ -347,12 +347,6 @@ class ListsHelper extends AppHelper
                                     ."for every sentence it contains.")) ?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?= __('Public') ?>
-
-                    <?php
-                    /*should be removed after 2020*/
-                    /* @translators: notice of new visibility feature of a list */?>
-                    <span style="color:red"><?= __('new')?>
-                    </span>
                 </md-radio-button>
                 <md-radio-button value='listed' class='md-primary' title=
                                  '<?= h(__("The list is accessible to anyone and is "
