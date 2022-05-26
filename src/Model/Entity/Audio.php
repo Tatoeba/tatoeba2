@@ -80,11 +80,11 @@ class Audio extends Entity
     }
 
     private function __balancedTreePath($id) {
-        $id = substr(sprintf('%06d', $id), -6);
+        $id = substr(sprintf('%04d', $id), -4);
         $pieces = [];
         do {
-            $pieces[] = substr($id, 0, 3);
-            $id = substr($id, 3);
+            $pieces[] = substr($id, 0, 2);
+            $id = substr($id, 2);
         } while ($id != '');
         return implode(DS, $pieces);
     }

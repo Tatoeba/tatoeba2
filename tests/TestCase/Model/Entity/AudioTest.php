@@ -54,11 +54,14 @@ class AudioTest extends TestCase
     public function fileProvider() {
         // audio id, sentence id, expected audio file path, expected pretty filename
         return [
-            [       1,       2, '/foo/bar/000/001/1.mp3',       '2-1.mp3'       ],
-            [    1234,    5678, '/foo/bar/001/234/1234.mp3',    '5678-1234.mp3' ],
-            [  999999,       3, '/foo/bar/999/999/999999.mp3',  '3-999999.mp3'  ],
-            [ 1000000,       4, '/foo/bar/000/000/1000000.mp3', '4-1000000.mp3' ],
-            [ 1000001,       4, '/foo/bar/000/001/1000001.mp3', '4-1000001.mp3' ],
+            [       1,       2, '/foo/bar/00/01/1.mp3',       '2-1.mp3'       ],
+            [      99,       5, '/foo/bar/00/99/99.mp3',      '5-99.mp3'      ],
+            [    1234,    5678, '/foo/bar/12/34/1234.mp3',    '5678-1234.mp3' ],
+            [    9999,       3, '/foo/bar/99/99/9999.mp3',    '3-9999.mp3'    ],
+            [   10000,       4, '/foo/bar/00/00/10000.mp3',   '4-10000.mp3'   ],
+            [   10001,       4, '/foo/bar/00/01/10001.mp3',   '4-10001.mp3'   ],
+            [ 1000000,       4, '/foo/bar/00/00/1000000.mp3', '4-1000000.mp3' ],
+            [ 1000001,       4, '/foo/bar/00/01/1000001.mp3', '4-1000001.mp3' ],
         ];
     }
 
