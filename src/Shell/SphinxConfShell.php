@@ -289,6 +289,8 @@ class SphinxConfShell extends Shell {
         'U+a800..U+a827',
         # Ol Chiki, for Santali (sat)
         'U+1c50..U+1c7d',
+        # Hanifi Rohingya
+        'U+10D00..U+10D27', 'U+10D30..U+10D39'
     );
 
     public $scriptsWithoutWordBoundaries = array(
