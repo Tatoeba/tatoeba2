@@ -15,13 +15,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-08 13:36+0000\n"
 "PO-Revision-Date: 2016-06-11 09:16+0000\n"
-"Last-Translator: Ricardo14 <rvj1444@gmail.com>, 2019\n"
+"Last-Translator: Guybrush88 <erpizzo@alice.it>, 2016-2022\n"
 "Language-Team: Italian (http://www.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L275
 msgid "Arabic"
@@ -1385,7 +1385,7 @@ msgstr "cayuga"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L616
 msgid "Ga"
-msgstr "Lingua Ga"
+msgstr "ga"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L617
 msgid "Chinese Pidgin English"
@@ -1525,7 +1525,7 @@ msgstr "karakhanide"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L651
 msgid "Plains Cree"
-msgstr "lingua cree delle pianure"
+msgstr "cree di pianura"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L652
 msgid "Yucatec Maya"
@@ -1545,11 +1545,11 @@ msgstr "arabo libico"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L656
 msgid "O'odham"
-msgstr "Lingua o'odham"
+msgstr "o'odham"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L657
 msgid "Lushootseed"
-msgstr "lingue lushootseed"
+msgstr "lushootseed"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L658
 msgid "Old Frisian"
@@ -1561,15 +1561,15 @@ msgstr "nuer"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L660
 msgid "Central Kurdish (Soranî)"
-msgstr "Curdo centrale (Sorani)"
+msgstr "curdo centrale (Sorani)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L661
 msgid "Northern Kurdish (Kurmancî)"
-msgstr "Curdo settentrionale (Kurmaci)"
+msgstr "curdo settentrionale (Kurmaci)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L662
 msgid "Southern Kurdish"
-msgstr "Curdo meridionale"
+msgstr "curdo meridionale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L663
 msgid "Northern Zaza (Kirmanjki)"

@@ -32,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ActivitiesController.php#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L123
@@ -393,6 +393,7 @@ msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
 msgstr[0] "Le caractère suivant est dépourvu de furiganas : {charsEnumeration}."
 msgstr[1] "Les caractères suivants sont dépourvus de furiganas : {charsEnumeration}."
+msgstr[2] "Les caractères suivants sont dépourvus de furiganas : {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
 msgid ""
@@ -409,6 +410,7 @@ msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
 msgstr[0] "Le caractère « {kanji} » a plus d'un furigana : « {furiganas} »."
 msgstr[1] "Les caractères « {kanji} » ont plus de {n} furiganas : « {furiganas} »."
+msgstr[2] "Les caractères « {kanji} » ont plus de {n} furiganas : « {furiganas} »."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
 msgid "The following character is not transcribed: {charsEnumeration}."
@@ -416,6 +418,7 @@ msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
 msgstr[0] "Le caractère suivant n'est pas transcrit : {charsEnumeration}."
 msgstr[1] "Les caractères suivants ne sont pas transcrits : {charsEnumeration}."
+msgstr[2] "Les caractères suivants ne sont pas transcrits : {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
@@ -633,6 +636,7 @@ msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
 msgstr[0] "Le changement de licence de {n} phrase a réussi."
 msgstr[1] "Le changement de licence de {n} phrases a réussi."
+msgstr[2] "Le changement de licence de {n} phrases a réussi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L133
 msgid "License switch completed on {date} at {time} UTC."
@@ -1016,12 +1020,14 @@ msgid "Daily Average: {n} sentence added"
 msgid_plural "Daily Average: {n} sentences added"
 msgstr[0] "Moyenne journalière : {n} phrase ajoutée"
 msgstr[1] "Moyenne journalière : {n} phrases ajoutées"
+msgstr[2] "Moyenne journalière : {n} phrases ajoutées"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L140
 msgid ", {n} link added"
 msgid_plural ", {n} links added"
 msgstr[0] ", {n} lien ajouté"
 msgstr[1] ", {n} liens ajoutés"
+msgstr[2] ", {n} liens ajoutés"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
@@ -1322,12 +1328,14 @@ msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
 msgstr[0] " Utilisateur ayant effectué la dernière contribution."
 msgstr[1] " Utilisateurs ayant participé aux {n}&nbsp;dernières contributions."
+msgstr[2] " Utilisateurs ayant participé aux {n}&nbsp;dernières contributions."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L60
 msgid "{n}&nbsp;sentence"
 msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "{n}&nbsp;phrase"
 msgstr[1] "{n}&nbsp;phrases"
+msgstr[2] "{n}&nbsp;phrases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/custom_export.ctp#L18
 msgid "Custom exports"
@@ -1936,6 +1944,7 @@ msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
 msgstr[0] "Plus de {n} phrase"
 msgstr[1] "Plus de {n} phrases"
+msgstr[2] "Plus de {n} phrases"
 
 #. placeholder text in search field of
 #. Browse by languages page
@@ -2318,12 +2327,14 @@ msgid "{number} sentence"
 msgid_plural "{number} sentences"
 msgstr[0] "{number} phrase"
 msgstr[1] "{number} phrases"
+msgstr[2] "{number} phrases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
 msgstr[0] "{number} langue supportée"
 msgstr[1] "{number} langues supportées"
+msgstr[2] "{number} langues supportées"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
 msgid "Stats per languages"
@@ -2334,6 +2345,7 @@ msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
 msgstr[0] "{number} contribution aujourd’hui"
 msgstr[1] "{number} contributions aujourd'hui"
+msgstr[2] "{number} contributions aujourd'hui"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L47
@@ -3361,6 +3373,7 @@ msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} ({n}&nbsp;message)"
 msgstr[1] "{folderName} ({n}&nbsp;messages)"
+msgstr[2] "{folderName} ({n}&nbsp;messages)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L83
 msgid "Empty trash"
@@ -3408,6 +3421,7 @@ msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "Vous avez envoyé {n}&nbsp;message aujourd'hui."
 msgstr[1] "Vous avez envoyé {n}&nbsp;messages aujourd'hui."
+msgstr[2] "Vous avez envoyé {n}&nbsp;messages aujourd'hui."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L39
 msgid "Sentences marked as \"OK\""
@@ -3610,6 +3624,7 @@ msgid "There is {n} language on Tatoeba"
 msgid_plural "There are {n} languages on Tatoeba"
 msgstr[0] "Il y a {n} langue sur Tatoeba"
 msgstr[1] "Il y a {n} langues sur Tatoeba"
+msgstr[2] "Il y a {n} langues sur Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L26
 msgid "My profile languages"
@@ -3969,6 +3984,7 @@ msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
 msgstr[0] "Contient {n}&nbsp;phrase"
 msgstr[1] "Contient {n}&nbsp;phrases"
+msgstr[2] "Contient {n}&nbsp;phrases"
 
 #. header text in the side bar of a list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L85
@@ -4084,6 +4100,7 @@ msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "{n}&nbsp;phrase"
 msgstr[1] "{n}&nbsp;phrases"
+msgstr[2] "{n}&nbsp;phrases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
@@ -4099,6 +4116,7 @@ msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
 msgstr[0] "{tagName} ({n} phrase)"
 msgstr[1] "{tagName} ({n} phrases)"
+msgstr[2] "{tagName} ({n} phrases)"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L70
@@ -4242,6 +4260,7 @@ msgid "Please fix the following error or press the Cancel button."
 msgid_plural "Please fix the following errors or press the Cancel button."
 msgstr[0] "Veuillez corriger les erreurs suivantes ou appuyer sur le bouton Annulation."
 msgstr[1] "Veuillez corriger les erreurs suivantes ou appuyer sur le bouton Annuler."
+msgstr[2] "Veuillez corriger les erreurs suivantes ou appuyer sur le bouton Annuler."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L44
@@ -4586,6 +4605,7 @@ msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
 msgstr[0] "{lang} ({total} membre)"
 msgstr[1] "{lang} ({total} membres)"
+msgstr[2] "{lang} ({total} membres)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L40
@@ -4737,6 +4757,7 @@ msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "Mur ({n}&nbsp;sujet)"
 msgstr[1] "Mur ({n}&nbsp;sujets)"
+msgstr[2] "Mur ({n}&nbsp;sujets)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L61
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
@@ -4780,6 +4801,7 @@ msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} minutes."
 msgstr[0] "En raison d'une maintenance, Tatoeba sera temporairement mis hors service dans {n} minute."
 msgstr[1] "En raison d'une maintenance, Tatoeba sera temporairement mis hors service dans {n} minutes."
+msgstr[2] "En raison d'une maintenance, Tatoeba sera temporairement mis hors service dans {n} minutes."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L66
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
@@ -4787,6 +4809,7 @@ msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} seconds."
 msgstr[0] "En raison d'une maintenance, Tatoeba sera temporairement mis hors service dans {n} seconde."
 msgstr[1] "En raison d'une maintenance, Tatoeba sera temporairement mis hors service dans {n} secondes."
+msgstr[2] "En raison d'une maintenance, Tatoeba sera temporairement mis hors service dans {n} secondes."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
@@ -4856,18 +4879,21 @@ msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
 msgstr[0] "hier"
 msgstr[1] "il y a {n}&nbsp;jours"
+msgstr[2] "il y a {n}&nbsp;jours"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L142
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
 msgstr[0] "il y a une heure"
 msgstr[1] "il y a {n}&nbsp;heures"
+msgstr[2] "il y a {n}&nbsp;heures"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L146
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
 msgstr[0] "il y a une minute"
 msgstr[1] "il y a {n}&nbsp;minutes"
+msgstr[2] "il y a {n}&nbsp;minutes"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L155
 msgid "January"
@@ -5308,12 +5334,14 @@ msgid "{n} result"
 msgid_plural "{n}&nbsp;results"
 msgstr[0] "{n} résultat"
 msgstr[1] "{n}&nbsp;résultats"
+msgstr[2] "{n}&nbsp;résultats"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L60
 msgid "{thousand}&nbsp;results out of {n} occurrence"
 msgid_plural "{thousand}&nbsp;results out of {n}&nbsp;occurrences"
 msgstr[0] "{thousand}&nbsp;résultats parmi {n}&nbsp;occurrence"
 msgstr[1] "{thousand}&nbsp;résultats parmi {n}&nbsp;occurrences"
+msgstr[2] "{thousand}&nbsp;résultats parmi {n}&nbsp;occurrences"
 
 #. You can translate the sharp in the link
 #. to a sentence that appears anywhere on the website,
@@ -5373,6 +5401,7 @@ msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Montrer 1 traduction supplémentaire"
 msgstr[1] "Montrer {number} traductions supplémentaires"
+msgstr[2] "Montrer {number} traductions supplémentaires"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L343
 msgid "Translation:"

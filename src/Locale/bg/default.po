@@ -4721,8 +4721,8 @@ msgstr "Редактиране на съобщение {number}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L48
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Стена (една нишка)"
+msgstr[1] " \nСтена ({n} &nbsp; нишки)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L61
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
@@ -4732,16 +4732,16 @@ msgstr "Преди да зададете въпрос, не забравяйте
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
-msgstr ""
+msgstr "Ние се стремим да поддържаме здравословна атмосфера за цивилизовани дискусии. Моля, прочетете нашите <a href=\"{}\">правила срещу лошо поведение</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L86
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr ""
+msgstr "Можете да пишете на всеки език, който искате. На Татоба всички езици са равни."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
-msgstr ""
+msgstr "Стена със съобщения на {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L55
 msgid "{user}'s messages on the Wall (total&nbsp;{n})"
@@ -4754,7 +4754,7 @@ msgstr "Тема №{number}"
 #. header text the side bar of the page of a Wall post
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L47
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L51
 msgid "Back to Wall"
@@ -4764,19 +4764,19 @@ msgstr "Обратно към стената"
 msgid "Tatoeba will temporarily shut down for maintenance in {n} minute."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} minutes."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tatoeba временно ще се изключи за поддръжка след {n} минута."
+msgstr[1] "Tatoeba временно ще се изключи за поддръжка след {n} минути."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L66
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tatoeba временно ще се изключи за поддръжка след {n} секунда."
+msgstr[1] "Tatoeba временно ще се изключи за поддръжка след {n} секунди."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
-msgstr ""
+msgstr "Записано от: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L61
 msgid "License: {license}"
@@ -4786,7 +4786,7 @@ msgstr "Лиценз: {license}"
 msgid ""
 "You may not reuse the following audio recordings outside the Tatoeba project"
 " because {userName} has not chosen any license for them."
-msgstr ""
+msgstr "Нямате право да използвате повторно следните аудио записи извън проекта Tatoeba, защото {userName} не е избрал никакъв лиценз за тях."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L78
 msgid ""
@@ -4809,27 +4809,27 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
 msgid "Send message"
-msgstr ""
+msgstr "Изпращане на съобщение"
 
 #. button to unhide a sentence comment (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L94
 msgid "Unhide"
-msgstr ""
+msgstr "Показване"
 
 #. button to hide a sentence comment (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L98
 msgid "Hide"
-msgstr ""
+msgstr "Скриване"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
-msgstr ""
+msgstr "Филтриране по език"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L117
 msgid "date unknown"
-msgstr ""
+msgstr "неизвестна дата"
 
 #. This date appears in a phrase (e.g. "edited April 1, 2012"), so you
 #. may want to add a preposition or an article.
@@ -4922,43 +4922,43 @@ msgstr "раздел"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L137
 msgid "Profile languages"
-msgstr ""
+msgstr "Езици на профила"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L91
 msgid "Last used languages"
-msgstr ""
+msgstr "Последно използвани езици"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L95
 msgid "Other languages"
-msgstr ""
+msgstr "Други езици"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L168
 msgctxt "dropdown-list"
 msgid "Unknown language"
-msgstr ""
+msgstr "Неизвестен език"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L184
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L237
 msgid "other language"
-msgstr ""
+msgstr "друг език"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L312
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "Не можете да добавяте изречения, защото не сте добавили никакъв език във вашия профил."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L317
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "Не можете да превеждате изречения, защото не сте добавили никакъв език във вашия профил."
 
 #. language level
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L343
 msgctxt "level"
 msgid "Unspecified"
-msgstr ""
+msgstr "Неуточнен"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L344
 msgid "0: Almost no knowledge"
@@ -5121,7 +5121,7 @@ msgstr "Търсене"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L733
 msgid "All public lists"
-msgstr ""
+msgstr "Всички публични списъци"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L744
 msgid "Collaborative lists"
@@ -5132,7 +5132,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L772
 msgctxt "list"
 msgid "Unspecified"
-msgstr ""
+msgstr "Неуточнен"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L784
 msgid "Other lists"

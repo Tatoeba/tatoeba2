@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sat\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n == 2 ? 1 : 2;\n"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L53
 msgid "Ascension Island"
