@@ -469,9 +469,9 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                         <?= __(
                             'Contains the ids of the sentences, in all languages, for '.
                             'which audio is available. Other fields indicate who recorded '.
-                            'the audio, its license and a URL to attribute the author. If '.
-                            'the license field is empty, you may not reuse the audio '.
-                            'outside the Tatoeba project.'
+                            'the audio, its license and a URL to attribute the author. '.
+                            'Note that some of the audio available on Tatoeba are not listed '.
+                            'in this file because of license restrictions.'
                         ) ?>
                     </dd>
                     <dt><?= __('Downloading audio') ?></dt>
