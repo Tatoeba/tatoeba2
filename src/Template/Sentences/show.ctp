@@ -26,6 +26,10 @@
  */
 use App\Model\CurrentUser;
 
+if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+    $this->set('isResponsive', true);
+}
+
 if (!isset($searchProblem)) {
 if (isset($sentence)) {
     $sentenceId = $sentence->id;
