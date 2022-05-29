@@ -386,7 +386,7 @@ html[dir="rtl"] #user-menu .dropdown-content {
 }
 
 #SentenceQuery {
-    width: 400px;
+    max-width: 400px;
     font-size: 20px;
     padding: 5px 30px 5px 5px;
     border: 1px solid #DDDDDD;
