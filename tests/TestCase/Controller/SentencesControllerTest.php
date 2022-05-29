@@ -411,36 +411,6 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'admin', '/en/sentences/of_user/spammer');
     }
 
-    public function testEditAudio_asGuest() {
-        $this->enableCsrfToken();
-        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
-        $this->assertRedirect('/ja/users/login');
-    }
-
-    public function testEditAudio_asContributor() {
-        $this->logInAs('contributor');
-        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
-        $this->assertRedirect('/');
-    }
-
-    public function testEditAudio_asAdvancedContributor() {
-        $this->logInAs('advanced_contributor');
-        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
-        $this->assertRedirect('/');
-    }
-
-    public function testEditAudio_asCorpusMaintainer() {
-        $this->logInAs('corpus_maintainer');
-        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
-        $this->assertRedirect('/');
-    }
-
-    public function testEditAudio_asAdmin() {
-        $this->logInAs('admin');
-        $this->post('/ja/sentences/edit_audio', ['id' => '1', 'hasaudio' => '1', 'ownerName' => 'kazuki']);
-        $this->assertRedirect('/ja/sentences/show/1');
-    }
-
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
         $user = 'kazuki';
         $userId = 7;

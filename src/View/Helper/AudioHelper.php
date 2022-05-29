@@ -24,8 +24,9 @@ use App\View\Helper\AppHelper;
 class AudioHelper extends AppHelper
 {
     public $helpers = array(
+        'AudioLicense',
+        'Form',
         'Html',
-        'AudioLicense'
     );
 
     private function defaultAttribUrl($username) {
@@ -34,33 +35,6 @@ class AudioHelper extends AppHelper
             'action' => 'profile',
             $username
         );
-    }
-
-    public function displayAudioInfo($audio) {
-        if ($audio->user) {
-            $username  = $audio->user->username;
-            $license   = $audio->user->audio_license;
-            $attribUrl = $audio->user->audio_attribution_url;
-            if (empty($attribUrl)) {
-                $attribUrl = $this->defaultAttribUrl($username);
-            }
-        } else {
-            $username  = $audio->external['username'];
-            $license   = $audio->external['license'];
-            $attribUrl = $audio->external['attribution_url'];
-        }
-        $username = $this->_View->safeForAngular($username);
-        $attribUrl = $this->_View->safeForAngular($attribUrl);
-        if (!empty($attribUrl)) {
-            $username = $this->Html->link($username, $attribUrl);
-        }
-        $license = $this->AudioLicense->getLicenseName($license);
-?>
-<ul>
-  <li><?php echo format(__('Recorded by: {username}'), compact('username')); ?></li>
-  <li><?php echo format(__('License: {license}'), compact('license')); ?></li>
-</ul>
-<?php
     }
 
     public function formatLicenceMessage($audioSettings, $username) {

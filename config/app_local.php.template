@@ -66,15 +66,11 @@ return [
 
     /**
      * Recordings paths.
-     * The web server must serve <Recordings.path> under <Recordings.url>.
-     * <Recordings.url> can be a fully qualified URL (e.g.
-     * https://audio.example.com/sentences/) or a URL on the same host (e.g.
-     * /files/audio/). It must end with a slash character.
      * Admins may import audio files located in <Recordings.uploadPath>,
-     * in which the webserver must have write access.
+     * which end up stored by CakePHP inside <Recordings.path>.
+     * Webserver must have write access in both paths.
      */
     'Recordings' => [
-        'url' => '/files/audio/',
         'path' => WWW_ROOT.'files'.DS.'audio',
         'importPath' => WWW_ROOT.'files'.DS.'audio_import',
     ],

@@ -48,6 +48,7 @@ class SentenceButtonsHelper extends AppHelper
         'Form',
         'Images',
         'Pages',
+        'Url',
     );
 
     /**
@@ -176,41 +177,49 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function audioButton($sentenceId, $sentenceLang, $sentenceAudios)
     {
-        if (count($sentenceAudios)) {
-            $onClick = 'return false';
-            $path = Configure::read('Recordings.url')
-                .$sentenceLang.'/'.$sentenceId.'.mp3';
-            $css = 'audioAvailable';
-            $audio = isset($sentenceAudios[0]) ?
-                     $sentenceAudios[0] :
-                     $sentenceAudios;
-            $author = isset($audio->user['username']) ?
-                      $audio->user['username'] :
-                      $this->_View->safeForAngular($audio['external']['username']);
-            if (empty($author)) {
-                $title = __('Play audio');
-            } else {
-                $title = format(
-                    __('Play audio recorded by {author}', true),
-                    array('author' => $author)
+        $total = count($sentenceAudios);
+        if ($total) {
+            $startIn = rand(0, $total-1);
+            foreach ($sentenceAudios as $audio) {
+                $author = $this->_View->safeForAngular($audio->author);
+                if (empty($author)) {
+                    $title = __('Play audio');
+                } else {
+                    $title = format(
+                        __('Play audio recorded by {author}', true),
+                        array('author' => $author)
+                    );
+                }
+                $class = 'audioButton audioAvailable';
+                if ($startIn == 0) {
+                    $class .= ' nextAudioToPlay';
+                }
+                echo $this->Html->Link(
+                    null,
+                    $this->Url->build([
+                        'controller' => 'audio',
+                        'action' => 'download',
+                        $audio->id
+                    ]),
+                    array(
+                        'title' => $title,
+                        'class' => $class,
+                        'onclick' => 'return false',
+                    )
                 );
+                $startIn--;
             }
         } else {
-            $onClick = 'return false';
-            $css = 'audioUnavailable';
-            $path = $this->Pages->getWikiLink('contribute-audio');
-            $title = __('No audio for this sentence. Click to learn how to contribute.');
-            $onClick = 'window.open(this.href); return false;';
+            echo $this->Html->Link(
+                null,
+                $this->Pages->getWikiLink('contribute-audio'),
+                array(
+                    'title' => __('No audio for this sentence. Click to learn how to contribute.'),
+                    'class' => 'audioButton audioUnavailable',
+                    'onclick' => 'window.open(this.href); return false;',
+                )
+            );
         }
-
-        echo $this->Html->Link(
-            null, $path,
-            array(
-                'title' => $title,
-                'class' => "audioButton $css",
-                'onclick' => $onClick
-            )
-        );
     }
 
 

@@ -31,6 +31,11 @@ if (CurrentUser::isMember()) {
         'edit-review-template'
     );
 }
+$this->Html->script('/js/directives/audio-button.dir.js', ['block' => 'scriptBottom']);
+$this->AngularTemplate->addTemplate(
+    $this->element('sentence_buttons/audio'),
+    'audio-button-template'
+);
 
 if (!isset($menuExpanded)) {
     $menuExpanded = false;

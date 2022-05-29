@@ -1,15 +1,22 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\TestCase\Controller\AudioIntegrationTestTrait;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Core\Configure;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 class AudioControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
+    use AudioIntegrationTestTrait;
 
     public $fixtures = [
         'app.audios',
+        'app.disabled_audios',
         'app.languages',
         'app.private_messages',
         'app.sentences',
@@ -17,6 +24,8 @@ class AudioControllerTest extends IntegrationTestCase
         'app.users',
         'app.users_languages',
         'app.wiki_articles',
+        'app.reindex_flags',
+        'app.links',
         'app.queued_jobs',
     ];
 
@@ -38,6 +47,16 @@ class AudioControllerTest extends IntegrationTestCase
             [ '/en/audio/of/contributor', 'contributor', true ],
             [ '/en/audio/save_settings', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fsave_settings' ],
             [ '/en/audio/save_settings', 'contributor', '/en/audio/of/contributor' ],
+            [ '/en/audio/download/1', null, 404 ],            # missing file
+            [ '/en/audio/download/999999999999', null, 404 ], # unknown audio
+            [ '/en/audio/save/1', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fsave%2F1' ],
+            [ '/en/audio/save/1', 'contributor', '/' ],
+            [ '/en/audio/save/1', 'corpus_maintainer', '/' ],
+            [ '/en/audio/save/1', 'admin', 400 ], // 400 because it's supposed to be POST only
+            [ '/en/audio/delete/1', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fdelete%2F1' ],
+            [ '/en/audio/delete/1', 'contributor', '/' ],
+            [ '/en/audio/delete/1', 'corpus_maintainer', '/' ],
+            [ '/en/audio/delete/1', 'admin', 400 ], // 400 because it's supposed to be POST only
         ];
     }
 
@@ -46,5 +65,57 @@ class AudioControllerTest extends IntegrationTestCase
      */
     public function testAudioControllerAccess($url, $user, $response) {
         $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    public function testAudioDownload_ok() {
+        $this->initAudioStorageDir();
+
+        $audioFileContents = $this->createAudioFile(1);
+        $this->get('/en/audio/download/1');
+        $this->assertResponseOk();
+        $this->assertResponseEquals($audioFileContents);
+        $this->assertHeader('Content-Disposition', 'attachment; filename="3-1.mp3"');
+
+        $this->deleteAudioStorageDir();
+    }
+
+    public function testAudioSave_asAdmin_ok() {
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/save/1', json_encode(['enabled' => true, 'author' => 'kazuki']));
+        $this->assertResponseOk();
+    }
+
+    public function testAudioSave_asAdmin_invalid() {
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/save/9999999999', json_encode(['enabled' => true, 'author' => 'kazuki']));
+        $this->assertResponseCode(404);
+    }
+
+    protected function assertAdminDeletesAudio($id) {
+        $this->initAudioStorageDir();
+        $this->createAudioFile($id);
+        $path = $this->getAudioFilePath($id);
+        $this->assertFileExists($path);
+
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/delete/'.$id);
+        $this->assertResponseOk();
+        $this->assertFileNotExists($path);
+
+        $this->deleteAudioStorageDir();
+    }
+
+    public function testAudioDelete_enabledAudio_asAdmin_ok() {
+        $this->assertAdminDeletesAudio(1);
+    }
+
+    public function testAudioDelete_disabledAudio_asAdmin_ok() {
+        $this->assertAdminDeletesAudio(4);
+    }
+
+    public function testAudioDelete_asAdmin_invalid() {
+        $this->logInAs('admin');
+        $this->ajaxPost('/ja/audio/delete/9999999999');
+        $this->assertResponseCode(404);
     }
 }

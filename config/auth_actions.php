@@ -9,7 +9,7 @@ $config = [
             'search',
             'sentence'
         ],
-        'audio' => [ 'of', 'index' ],
+        'audio' => [ 'of', 'index', 'download' ],
         'reviews' => [ 'of' ],
         'contributions' => [ '*' ],
         'pages' => [ '*' ],
@@ -83,6 +83,8 @@ $config = [
         'audio' => [
             'import'        => [ User::ROLE_ADMIN ],
             'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'save'          => [ User::ROLE_ADMIN ],
+            'delete'        => [ User::ROLE_ADMIN ],
         ],
         'reviews'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'favorites'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
@@ -109,7 +111,6 @@ $config = [
             'edit_license'          => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'save_translation'      => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'change_language'       => User::ROLE_CONTRIBUTOR_OR_HIGHER,
-            'edit_audio'            => [ User::ROLE_ADMIN ],
             'edit_correctness'      => [ User::ROLE_ADMIN ],
             'mark_unreliable'       => [ User::ROLE_ADMIN ],
         ],

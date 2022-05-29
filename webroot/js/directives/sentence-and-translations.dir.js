@@ -117,8 +117,6 @@
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
         vm.toggleTranscriptions = toggleTranscriptions;
-        vm.playAudio = playAudio;
-        vm.getAudioAuthor = getAudioAuthor;
         vm.translate = translate;
         vm.saveTranslation = saveTranslation;
         vm.editTranslation = editTranslation;
@@ -279,21 +277,6 @@
         function toggleTranscriptions() {
             toggleMenu();
             expandOrCollapse(vm.isMenuExpanded);
-        }
-
-        function playAudio($event) {
-            $event.stopPropagation();
-            $event.preventDefault();
-
-            var audioURL = $event.currentTarget.href;
-            var audio = new Audio(audioURL);
-            audio.play();
-        }
-
-        function getAudioAuthor(sentence) {
-            var audio = sentence.audios ? sentence.audios[0] : null;
-
-            return audio.author;
         }
 
         function translate(id) {

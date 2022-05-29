@@ -82,11 +82,7 @@ if (isset($sentencesWithAudio)) {
             array('username' => $username)
         ));
     } else {
-        $title = $this->Paginator->counter(
-            array(
-                'format' => $title . ' ' . __("(total {{count}})")
-            )
-        );
+        $title .= ' ' . format(__("(total {totalAudio})"), compact('totalAudio'));
         echo $this->Html->tag('h2', $title);
 
         $licenceMessage = $this->Audio->formatLicenceMessage(
@@ -102,10 +98,7 @@ if (isset($sentencesWithAudio)) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = true;
-        foreach ($sentencesWithAudio as $audio) {
-            $sentence = $audio->sentence;
-            unset($audio->sentence);
-            $sentence->audios = [$audio];
+        foreach ($sentencesWithAudio as $sentence) {
             $this->Sentences->displayGenericSentence(
                 $sentence,
                 $type,

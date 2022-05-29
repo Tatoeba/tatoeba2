@@ -856,39 +856,6 @@ class SentencesController extends AppController
         $this->redirect(["controller" => "sentences", "action" => "of_user", $username]);
     }
 
-    public function edit_audio()
-    {
-        $sentenceId = $this->request->getData('id');
-        $ownerName = $this->request->getData('ownerName');
-        $hasaudio = $this->request->getData('hasaudio');
-
-        if (CurrentUser::isAdmin()) {
-            $this->loadModel('Audios');
-            if ($hasaudio) {
-                $this->Audios->assignAudioTo($sentenceId, $ownerName);
-            } else {
-                $audioToDelete = $this->Audios->find()
-                    ->where(['sentence_id' => $sentenceId])
-                    ->first();
-                $this->Audios->delete($audioToDelete);
-            }
-            $this->redirect(
-                array(
-                    "controller" => "sentences",
-                    "action" => "show",
-                    $sentenceId
-                )
-            );
-        } else {
-            $this->redirect(
-                array(
-                    "controller" => "pages",
-                    "action" => "home",
-                )
-            );
-        }
-    }
-
     public function edit_license()
     {
         $sentenceId = $this->request->getData('id');

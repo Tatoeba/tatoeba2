@@ -71,6 +71,7 @@ class SentencesTable extends Table
         $this->hasMany('Contributions');
         $this->hasMany('Transcriptions');
         $this->hasMany('Audios');
+        $this->hasMany('DisabledAudios');
         $this->hasMany('Links');
         $this->hasMany('ReindexFlags');
         $this->hasMany('UsersSentences');
@@ -661,11 +662,18 @@ class SentencesTable extends Table
      */
     public function contain($what = [])
     {
-        $audioContainment = [
-           'Users' => ['fields' => ['username']],
-           'fields' => ['external', 'sentence_id'],
-        ];
-        $transcriptionsContainment =  [
+        $audioContainment = function (Query $q) use ($what) {
+            $q = $q->select(['id', 'external', 'sentence_id']);
+
+            $usersFields = ['username'];
+            if (isset($what['sentenceDetails'])) {
+                $usersFields[] = 'audio_license';
+                $usersFields[] = 'audio_attribution_url';
+            }
+            return $q->contain(['Users' => ['fields' => $usersFields]]);
+        };
+
+        $transcriptionsContainment = [
             'Users' => ['fields' => ['username']],
         ];
         $contain = [
@@ -675,6 +683,10 @@ class SentencesTable extends Table
             'Audios' => $audioContainment,
             'Transcriptions' => $transcriptionsContainment,
         ];
+
+        if (CurrentUser::isAdmin() && isset($what['sentenceDetails'])) {
+            $contain['DisabledAudios'] = $audioContainment;
+        }
 
         if (CurrentUser::isMember()) {
             $contain += [
@@ -716,8 +728,6 @@ class SentencesTable extends Table
         }
 
         if (isset($what['sentenceDetails'])) {
-            $contain['Audios']['Users']['fields'][] = 'audio_license';
-            $contain['Audios']['Users']['fields'][] = 'audio_attribution_url';
             $contain['Base']['fields'] = ['text'];
         }
 

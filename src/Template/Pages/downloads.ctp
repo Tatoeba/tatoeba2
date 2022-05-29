@@ -26,6 +26,7 @@
  */
 
 use Cake\Core\Configure;
+use Cake\Routing\Router;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences')));
 
@@ -34,6 +35,10 @@ $iso_code_url = "http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes";
 $tanaka_url = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29";
 $tanaka_url2 = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus";
 $download_url = Configure::read('Downloads.url');
+$audio_url_1234 = $this->Url->build(
+    ['lang' => '', 'controller' => 'audio', 'action' => 'download', '1234'],
+    ['fullBase' => true]
+);
 
 // Section Headers
 /* @translators: header text on Downloads page */
@@ -86,6 +91,8 @@ $attribution_url = __('Attribution URL');
 $script = __('Script name');
 /* @translators: field name in Fields and structure on Downloads page */
 $transcription = __('Transcription');
+/* @translators: field name in Fields and structure on Downloads page */
+$audio_id = __('Audio id');
 
 // Examples in description
 $link_sample = $this->Downloads->fileFormat(['1', '77']);
@@ -467,10 +474,21 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                             'outside the Tatoeba project.'
                         ) ?>
                     </dd>
+                    <dt><?= __('Downloading audio') ?></dt>
+                    <dd>
+                        <?= format(
+                                __('A single sentence can have one or more audio, each from a '.
+                                   'different voice. To download a particular audio, use its audio '.
+                                   'id to compute the download URL. For example, to download the '.
+                                   'audio with the id 1234, the URL is {url}.'
+                                ),
+                                ['url' => $this->Html->link($audio_url_1234, $audio_url_1234)]
+                        ) ?>
+                    </dd>
                     <dt><?= $format ?></dt>
                     <dd>
                         <?= $this->Downloads->fileFormat(
-                            [$sentence_id, $username, $license, $attribution_url]
+                            [$sentence_id, $audio_id, $username, $license, $attribution_url]
                         ) ?>
                     </dd>
                 </dl>

@@ -113,7 +113,7 @@ if (!$canImport) {
             __d('admin', 'File name'),
             __d('admin', 'Sentence id'),
             __d('admin', 'Language'),
-            __d('admin', 'Already has audio'),
+            __d('admin', 'Existing audio'),
             __d('admin', 'May be imported'),
         )
     );
@@ -130,21 +130,24 @@ if (!$canImport) {
                           )
                       ) :
                       __d('admin', 'Invalid');
-        $hasaudio = isset($file['hasaudio']) ? (
-                        $file['hasaudio'] ?
-                        $file['hasaudio'] :
-                        __d('admin', 'No')
+        $hasaudio = isset($file['audios']) ?
+                    (
+                        count($file['audios']) > 0 ?
+                        (
+                            implode(
+                                __(', '),
+                                array_map(
+                                    function ($audio) { return $audio->user->username; },
+                                    $file['audios']
+                                )
+                            )
+                        ) :
+                        __d('admin', 'None')
                     ) :
                     __d('admin', 'N/A');
         $isValid = $file['valid'] ?
                    __d('admin', 'Yes') :
                    __d('admin', 'No');
-
-        if (isset($file['hasaudio']) && $file['hasaudio']) {
-            $path = Configure::read('Recordings.url')
-                .$file['lang'].'/'.$file['sentenceId'].'.mp3';
-            $hasaudio = $this->Html->Link($hasaudio, $path);
-        }
 
         echo $this->Html->tableCells(
             array(

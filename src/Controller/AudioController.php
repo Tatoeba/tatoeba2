@@ -45,19 +45,15 @@ class AudioController extends AppController
     );
 
     public $paginate = [
-        'contain' => [
-            'Users' => ['fields' => ['username']],
-            'Sentences' => ['Transcriptions']
-        ],
         'limit' => 100,
-        'order' => ['Audios.modified' => 'DESC']
     ];
 
     public function beforeFilter(Event $event)
     {
-        $this->Security->unlockedActions = array(
-            'save_settings' // can't figure out why this is blackholed
-        );
+        $this->Security->config('unlockedActions', [
+            'save',
+            'delete',
+        ]);
 
         return parent::beforeFilter($event);
     }
@@ -87,28 +83,54 @@ class AudioController extends AppController
     }
 
     public function index($lang = null) {
-        $conditions = array();
+        $this->loadModel('Sentences');
+        $query = $this->Sentences
+            ->find()
+            ->distinct('Sentences.id')
+            ->innerJoinWith('Audios', function ($q) {
+                return $q->contain('Users', function ($q) {
+                             return $q->select(['username']);
+                         });
+            })
+            ->contain('Audios')
+            ->contain('Transcriptions')
+            ->order(['Audios.modified' => 'DESC']);
+
         if (LanguagesLib::languageExists($lang)) {
-            $conditions['Sentences.lang'] = $lang;
+            $query = $query->where(compact('lang'));
             $this->set(compact('lang'));
         }
-        $this->paginate['conditions'] = $conditions;
-        $sentencesWithAudio = $this->paginate('Audios');
+        $sentencesWithAudio = $this->paginate($query);
+        $this->set(compact('sentencesWithAudio'));
         
         $this->loadModel('Languages');
-        $this->set(compact('sentencesWithAudio'));
         $this->set(array('stats' => $this->Languages->getAudioStats()));
-        $this->set('lang', $lang);
     }
 
     public function of($username) {
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);
         if ($userId) {
-            $this->paginate['conditions'] = [
-                'Audios.user_id' => $userId,
-            ];
-            $sentencesWithAudio = $this->paginate('Audios');
+            $this->loadModel('Sentences');
+            $baseQuery = $this->Sentences
+                ->find()
+                ->innerJoinWith('Audios', function ($q) use ($userId) {
+                    return $q->where(['Audios.user_id' => $userId])
+                             ->contain('Users', function ($q) {
+                                 return $q->select(['username']);
+                             });
+                })
+                ->contain('Audios', function ($q) use ($userId) {
+                    return $q->where(['Audios.user_id' => $userId]);
+                })
+                ->contain('Transcriptions')
+                ->order(['Audios.modified' => 'DESC']);
+
+            $audioCountQuery = clone $baseQuery;
+            $this->set('totalAudio', $audioCountQuery->count());
+
+            $query = $baseQuery->distinct('Sentences.id');
+            $sentencesWithAudio = $this->paginate($query);
             $this->set(compact('sentencesWithAudio'));
 
             $audioSettings = $this->Users->getAudioSettings($userId);
@@ -141,5 +163,95 @@ class AudioController extends AppController
         }
 
         $this->redirect(array('action' => 'of', CurrentUser::get('username')));
+    }
+
+    public function download($id) {
+        $audio = false;
+
+        $this->loadModel('Audios');
+        try {
+            $audio = $this->Audios->get($id);
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            if (CurrentUser::isAdmin()) {
+                $this->loadModel('DisabledAudios');
+                try {
+                    $audio = $this->DisabledAudios->get($id);
+                } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                }
+            }
+        }
+
+        if ($audio) {
+            $options = [
+                'download' => true,
+                'name' => $audio->pretty_filename,
+            ];
+            return $this->getResponse()
+                        ->withFile($audio->file_path, $options);
+        } else {
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
+    }
+
+    public function save($id) {
+        $this->viewBuilder()->autoLayout(false);
+
+        if ($this->request->is('post')) {
+            $audio = false;
+            $this->loadModel('Audios');
+            try {
+                $audio = $this->Audios->get($id);
+            } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                if (CurrentUser::isAdmin()) {
+                    $this->loadModel('DisabledAudios');
+                    try {
+                        $audio = $this->DisabledAudios->get($id);
+                    } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                    }
+                }
+            }
+
+            if ($audio) {
+                $fields = $this->request->input('json_decode', true);
+                $source = $audio->getSource();
+                $this->{$source}->edit($audio, $fields);
+                if ($this->{$source}->save($audio)) {
+                    return $this->response->withStringBody(''); // OK
+                }
+            }
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
+
+        throw new \Cake\Http\Exception\BadRequestException();
+    }
+
+    public function delete($id) {
+        $this->viewBuilder()->autoLayout(false);
+
+        if ($this->request->is('post')) {
+            $audio = false;
+            $this->loadModel('Audios');
+            try {
+                $audio = $this->Audios->get($id);
+            } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                if (CurrentUser::isAdmin()) {
+                    $this->loadModel('DisabledAudios');
+                    try {
+                        $audio = $this->DisabledAudios->get($id);
+                    } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                    }
+                }
+            }
+
+            if ($audio) {
+                $source = $audio->getSource();
+                if ($this->{$source}->delete($audio, ['deleteAudioFile' => true])) {
+                    return $this->response->withStringBody(''); // OK
+                }
+            }
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
+
+        throw new \Cake\Http\Exception\BadRequestException();
     }
 }
