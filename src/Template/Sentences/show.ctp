@@ -71,7 +71,112 @@ echo $this->element('/sentences/navigation', [
 ]);
 ?>
 <br>
-<div id="annexe_content">
+
+<section layout="row" ng-cloak>
+<md-content class="md-whiteframe-1dp" flex>
+    <section>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2 flex><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
+                <md-button hide-gt-sm ng-controller="SidenavController" ng-click="toggle('metadata')">
+                    <md-icon>info_outline</md-icon>
+                    <?php /* @translators: button to open the sidebar on the sentence page on mobile */ ?>
+                    <?= __('Metadata') ?>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <?php
+        if (isset($sentence)) {
+            if (CurrentUser::isMember() && !CurrentUser::getSetting('use_new_design')) {
+                ?><div class="section md-whiteframe-1dp"><?php
+                $this->Sentences->displaySentencesGroup($sentence);
+                ?></div><?php
+            } else {
+                echo $this->element(
+                    'sentences/sentence_and_translations',
+                    array(
+                        'sentence' => $sentence,
+                        'translations' => $sentence->translations,
+                        'user' => $sentence->user
+                    )
+                );
+            }
+        } else {
+            echo '<div class="error">';
+                echo format(
+                    __(
+                        'There is no sentence with id {number}',
+                        true
+                    ),
+                    array('number' => $this->request->params['pass'][0])
+                );
+            echo '</div>';
+        }
+        ?>
+    </section>
+
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <?php /* @translators: header text in sentence page */ ?>
+                <h2><?= __('Comments'); ?></h2>
+            </div>
+        </md-toolbar>
+
+        <md-content>
+        <?php
+        if (!$sentenceComments->isEmpty()) {
+            foreach ($sentenceComments as $i=>$comment) {
+                $menu = $this->Comments->getMenuForComment(
+                    $comment,
+                    $commentsPermissions[$i],
+                    false
+                );
+
+                echo '<a id="comment-'.$comment->id.'"></a>';
+
+                echo $this->element(
+                    'sentence_comments/comment',
+                    array(
+                        'comment' => $comment,
+                        'menu' => $menu,
+                        'replyIcon' => false,
+                        'hideSentence' => true
+                    )
+                );
+            }
+        } else {
+            ?>
+            <div layout-padding class="center">
+                <p><?= __('There are no comments for now.') ?></p>
+            </div>
+            <?php
+        }
+
+        if ($canComment) {
+            echo $this->element('sentence_comments/add_form', [
+                'sentenceId' => $sentenceId
+            ]);
+        }
+        ?>
+        </md-content>
+    </section>
+</md-content>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-1dp"
+            md-component-id="metadata"
+            md-disable-scroll-target="body"
+            md-is-locked-open="$mdMedia('gt-sm')">
+    <md-toolbar>
+        <div class="md-toolbar-tools" ng-controller="SidenavController">
+            <?php /* @translators: title for the sidebar on the sentence page */ ?>
+            <h2 flex><?= __('Metadata'); ?></h2>
+            <md-button class="close md-icon-button" ng-click="toggle('metadata')">
+                <md-icon>close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
     <?php
     if (CurrentUser::get('settings.users_collections_ratings')) {
         echo '<div class="section correctness-info md-whiteframe-1dp">';
@@ -169,93 +274,8 @@ echo $this->element('/sentences/navigation', [
         }
         ?>
     </div>
-</div>
-
-<div id="main_content">
-    <section>
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <h2><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
-            </div>
-        </md-toolbar>
-
-        <?php
-        if (isset($sentence)) {
-            if (CurrentUser::isMember() && !CurrentUser::getSetting('use_new_design')) {
-                ?><div class="section md-whiteframe-1dp"><?php
-                $this->Sentences->displaySentencesGroup($sentence);
-                ?></div><?php
-            } else {
-                echo $this->element(
-                    'sentences/sentence_and_translations',
-                    array(
-                        'sentence' => $sentence,
-                        'translations' => $sentence->translations,
-                        'user' => $sentence->user
-                    )
-                );
-            }
-        } else {
-            echo '<div class="error">';
-                echo format(
-                    __(
-                        'There is no sentence with id {number}',
-                        true
-                    ),
-                    array('number' => $this->request->params['pass'][0])
-                );
-            echo '</div>';
-        }
-        ?>
-    </section>
-
-    <section class="md-whiteframe-1dp">
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <?php /* @translators: header text in sentence page */ ?>
-                <h2><?= __('Comments'); ?></h2>
-            </div>
-        </md-toolbar>
-        
-        <md-content>
-        <?php
-        if (!$sentenceComments->isEmpty()) {
-            foreach ($sentenceComments as $i=>$comment) {
-                $menu = $this->Comments->getMenuForComment(
-                    $comment,
-                    $commentsPermissions[$i],
-                    false
-                );
-
-                echo '<a id="comment-'.$comment->id.'"></a>';
-
-                echo $this->element(
-                    'sentence_comments/comment',
-                    array(
-                        'comment' => $comment,
-                        'menu' => $menu,
-                        'replyIcon' => false,
-                        'hideSentence' => true
-                    )
-                );
-            }
-        } else {
-            ?>
-            <div layout-padding class="center">
-                <p><?= __('There are no comments for now.') ?></p>
-            </div>
-            <?php
-        }
-
-        if ($canComment) {
-            echo $this->element('sentence_comments/add_form', [
-                'sentenceId' => $sentenceId
-            ]);
-        }
-        ?>
-        </md-content>
-    </section>
-</div>
+</md-sidenav>
+</section>
 <?php
 } else {
 ?>
