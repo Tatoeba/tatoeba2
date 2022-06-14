@@ -130,6 +130,7 @@ mysql --skip-column-names --batch tatoeba -e \
     "SELECT
        s.lang, 
        a.sentence_id, 
+       a.id,
        u.username, 
        u.audio_license, 
        u.audio_attribution_url
@@ -139,11 +140,11 @@ mysql --skip-column-names --batch tatoeba -e \
      ORDER BY sentence_id ASC" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
       lang = ($1 == "NULL" || $1 == "" ? "unknown" : $1);
-      username = ($3 == "NULL" ? "\\N" : $3);
-      audio_license = ($4 == "NULL" ? "\\N" : $4);
-      audio_attribution_url = ($5 == "NULL" ? "\\N" : $5);
+      username = ($4 == "NULL" ? "\\N" : $4);
+      audio_license = ($5 == "NULL" ? "\\N" : $5);
+      audio_attribution_url = ($6 == "NULL" ? "\\N" : $6);
       fpath = dir "/" lang "/" lang "_sentences_with_audio.tsv";
-      print $2, username, audio_license, audio_attribution_url >> fpath
+      print $2, $3, username, audio_license, audio_attribution_url >> fpath
   }'  
 
 # split sentences base by language
