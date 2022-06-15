@@ -25,6 +25,11 @@
     border: 1px solid #f1f1f1;
     margin-top: -20px;
 }
+@media only screen and (max-width: 960px) {
+    .responsive .navigation {
+        margin-top: 0;
+    }
+}
 .navigation .md-errors-spacer {
     display: none;
 }
