@@ -41,6 +41,7 @@ class Licensing {
                 compact('listId', 'userId'),
                 ['group' => $userId]
             );
+            $this->QueuedJobs->wakeUpWorkers();
         }
     }
 
