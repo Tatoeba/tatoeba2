@@ -4,22 +4,22 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# صفا الفليج <safaalfulaij@hotmail.com>, 2018
 # ficion <ficion22@gmail.com>, 2018
 # dani <pipisspam@gmail.com>, 2018
 # Eduardo Corrales <ecorralest101@gmail.com>, 2020
 # Daniel, 2020
 # a rh, 2020
 # Alejandra Martinez <ra.emartineze@gmail.com>, 2021
+# صفا الفليج <safaalfulaij@hotmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-08 13:36+0000\n"
+"POT-Creation-Date: 2022-05-29 19:12+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Alejandra Martinez <ra.emartineze@gmail.com>, 2021\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/tatoeba/teams/28284/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,20 +40,11 @@ msgstr ""
 "Se marcaron todas las oraciones agregadas por {username} como poco "
 "confiables."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
 msgid "Invalid file “{file}” ignored."
 msgstr "Archivo inválido “{file}” ignorado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L259
-msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
-"Falló al crear el directorio “{dir}” para importar el archivo “{file}”."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L269
-msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr "Falló al copiar el archivo “{file}” al directorio “{dir}”."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -61,7 +52,16 @@ msgstr ""
 "No se puede asignar la voz a “{author}” para la oración {sentenceId} dentro "
 "de la base de datos. Cerciórese de que es un nombre de usuario válido."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+msgid "Failed to create directory “{dir}” to import file “{file}”."
+msgstr ""
+"Falló al crear el directorio “{dir}” para importar el archivo “{file}”."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr "Falló al copiar el archivo “{file}” al directorio “{dir}”."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -99,15 +99,15 @@ msgid "Language"
 msgstr "Idioma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
-msgid "Already has audio"
-msgstr "Ya tiene voz"
+msgid "Existing audio"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
 msgid "May be imported"
 msgstr "Puede ser importado"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L147
 msgid "N/A"
 msgstr "No disponible"
 
@@ -115,47 +115,50 @@ msgstr "No disponible"
 msgid "Invalid"
 msgstr "Inválido"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
-msgid "No"
-msgstr "No"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L145
+msgid "None"
+msgstr "Ninguno"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L149
 msgid "Yes"
 msgstr "Sí"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L150
+msgid "No"
+msgstr "No"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L166
 msgid "No files have been detected inside the import directory."
 msgstr ""
 "No se ha detectado ningún archivo dentro del directorio de importación."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L172
 msgid "Import"
 msgstr "Importar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
-msgid "Enabled"
-msgstr "Habilitado"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
+msgid "Audio author"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
-msgid "Owner name"
-msgstr "Nombre del propietario"
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L115
+msgid "Save"
+msgstr "Guardar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
-msgid "Submit"
-msgstr "Enviar"
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "Borrar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
 msgstr "Exactitud"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
-msgid "Change"
-msgstr "Cambiar"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "Enviar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
@@ -204,10 +207,6 @@ msgid ""
 msgstr ""
 "¿Está seguro de que quiere marcar todas las oraciones de este usuario como "
 "poco confiables?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "Borrar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"

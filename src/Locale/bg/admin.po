@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Daniel Pavlov <d.pavlovq@gmail.com>, 2020
-# ls404 <lubomir@stefanov.biz>, 2021
+# ls404 <lubomir@stefanov.biz>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-08 13:36+0000\n"
+"POT-Creation-Date: 2022-05-29 19:12+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: ls404 <lubomir@stefanov.biz>, 2021\n"
+"Last-Translator: ls404 <lubomir@stefanov.biz>, 2022\n"
 "Language-Team: Bulgarian (https://www.transifex.com/tatoeba/teams/28284/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,21 +34,11 @@ msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Всички изречения, добавени от {username}, са маркирани като ненадеждни."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
 msgid "Invalid file “{file}” ignored."
 msgstr "Невалидният файл “{file}” е игнориран."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L259
-msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
-"Неуспешно създаването на директория \"{dir}\" за импортиране на файл "
-"\"{file}\"."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L269
-msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr "Неуспешно копиране на файл \"{file}\" в директория \"{dir}\"."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -56,7 +46,17 @@ msgstr ""
 "Не може да се присвои звук на „{author}” за изречение {sentenceId}  в базата"
 " данни. Уверете се, че това е валидно потребителско име."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+msgid "Failed to create directory “{dir}” to import file “{file}”."
+msgstr ""
+"Неуспешно създаването на директория \"{dir}\" за импортиране на файл "
+"\"{file}\"."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr "Неуспешно копиране на файл \"{file}\" в директория \"{dir}\"."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -71,11 +71,11 @@ msgstr "Импортиране на записи"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
 msgid "The following errors occurred during the last import."
-msgstr ""
+msgstr "Следните грешки са възникнали по време на последния внос."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L75
 msgid "Audio import status"
-msgstr ""
+msgstr "Статус на импортиране на аудио"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L95
 msgid "Files detected"
@@ -94,15 +94,15 @@ msgid "Language"
 msgstr "Език"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
-msgid "Already has audio"
-msgstr "Вече съществува аудио"
+msgid "Existing audio"
+msgstr "Съществуващо аудио"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
 msgid "May be imported"
 msgstr "Може да се импортира"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L147
 msgid "N/A"
 msgstr "N/A"
 
@@ -110,46 +110,49 @@ msgstr "N/A"
 msgid "Invalid"
 msgstr "Невалиден"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
-msgid "No"
-msgstr "Не"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L145
+msgid "None"
+msgstr "Нито един"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L149
 msgid "Yes"
 msgstr "Да"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L150
+msgid "No"
+msgstr "Не"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L166
 msgid "No files have been detected inside the import directory."
 msgstr "Не са открити файлове в директорията за импортиране."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L172
 msgid "Import"
 msgstr "Импорт"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
-msgid "Enabled"
-msgstr "Позволено"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
+msgid "Audio author"
+msgstr "Автор на аудиото"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
-msgid "Owner name"
-msgstr "Име на собственика"
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L115
+msgid "Save"
+msgstr "Запази"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
-msgid "Submit"
-msgstr "Изпращане"
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "Изтриване"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
 msgstr "Коректност."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
-msgid "Change"
-msgstr "Промени"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "Изпращане"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
@@ -198,10 +201,6 @@ msgid ""
 msgstr ""
 "Наистина ли искате да маркирате всички изречения на този потртебител като "
 "ненадеждни?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "Изтриване"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-08 13:36+0000\n"
+"POT-Creation-Date: 2022-05-29 19:12+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Lesley Kibat, 2020\n"
 "Language-Team: Kadazandusun (https://www.transifex.com/tatoeba/teams/28284/dtp/)\n"
@@ -30,21 +30,11 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
 msgid "Invalid file “{file}” ignored."
 msgstr "Nokologos no fail dot amu kotorimo “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L259
-msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
-"Amu kaanu do momonsoi do direktori “{dir}” kumaa do fail impot “{file}”."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L269
-msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
-"Amu kaanu do maan ‘copy’ do direktori “{dir}” kumaa do fail impot “{file}”."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -52,7 +42,17 @@ msgstr ""
 "Amu kaanu suraton do rolou do “{author}” kumaa do boros ayat {sentenceId} id"
 " suang do piipiro data. Mositi do kotorimo ngaran ponguno."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+msgid "Failed to create directory “{dir}” to import file “{file}”."
+msgstr ""
+"Amu kaanu do momonsoi do direktori “{dir}” kumaa do fail impot “{file}”."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr ""
+"Amu kaanu do maan ‘copy’ do direktori “{dir}” kumaa do fail impot “{file}”."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -90,15 +90,15 @@ msgid "Language"
 msgstr "Boros"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
-msgid "Already has audio"
-msgstr "Kiwaro nodi o rolou"
+msgid "Existing audio"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
 msgid "May be imported"
 msgstr "Kiwaro doti impot"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L147
 msgid "N/A"
 msgstr "Aiso nunu"
 
@@ -106,46 +106,49 @@ msgstr "Aiso nunu"
 msgid "Invalid"
 msgstr "Amu kotorimo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
-msgid "No"
-msgstr "Amu"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L145
+msgid "None"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L149
 msgid "Yes"
 msgstr "Ohoo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L150
+msgid "No"
+msgstr "Amu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L166
 msgid "No files have been detected inside the import directory."
 msgstr "Aiso nunu do piagalan mantad id suang do impot direktori."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L172
 msgid "Import"
 msgstr "Impot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
-msgid "Enabled"
-msgstr "Pinapaharo "
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
+msgid "Audio author"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
-msgid "Owner name"
-msgstr "Ngaran do sanganu"
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L115
+msgid "Save"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
-msgid "Submit"
-msgstr "Papaatod"
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "Papataam"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
 msgstr "Pointopot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
-msgid "Change"
-msgstr "Poposimban"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "Papaatod"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
@@ -192,10 +195,6 @@ msgid ""
 "Are you sure you want to mark all the sentences of this member as "
 "unreliable?"
 msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "Papataam"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"

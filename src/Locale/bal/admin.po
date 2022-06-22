@@ -6,16 +6,16 @@
 # Translators:
 # Baloch <ajmanisb@gmail.com>, 2020
 # Abdul Sattar <ghaffar1993a@gmail.com>, 2020
-# Naguman Baloch, 2021
+# Naguman Baloch, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-08 13:36+0000\n"
+"POT-Creation-Date: 2022-05-29 19:12+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Naguman Baloch, 2021\n"
+"Last-Translator: Naguman Baloch, 2022\n"
 "Language-Team: Balochi (https://www.transifex.com/tatoeba/teams/28284/bal/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,19 +35,11 @@ msgstr ""
 "{username}\n"
 "ءِ گیش کرتگیں درستیں گالرد بے بروسہ ءِ ھساب ءَ نشان جنگ بیت انت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
 msgid "Invalid file “{file}” ignored."
 msgstr "نابَرجمیں فائل ’’{file}‘‘ ڈالچار کنگ بوت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L259
-msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr "فائل {file}ءَ را مانگیل کنگ ءِ ھاترا {dir}ءِ جوڑ کنگ بے سوب بوت۔"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L269
-msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr "فائل {file}ءَ ماں {dir} نامدان ءَ نکل بے سوب بوت۔"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -55,7 +47,15 @@ msgstr ""
 "ڈیٹابیس ءِ تہا گالرد{sentenceId}ءِ ھاترا {author}ءَ را تواربنددیگ بوت نہ "
 "کنت۔ پکا بکن کہ اے یک بَرجمیں کارمرزی نامے۔    "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+msgid "Failed to create directory “{dir}” to import file “{file}”."
+msgstr "فائل {file}ءَ را مانگیل کنگ ءِ ھاترا {dir}ءِ جوڑ کنگ بے سوب بوت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr "فائل {file}ءَ ماں {dir} نامدان ءَ نکل بے سوب بوت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -92,15 +92,15 @@ msgid "Language"
 msgstr "زبان"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
-msgid "Already has audio"
-msgstr "چہ پیسرا تواربند ئٍِے مان"
+msgid "Existing audio"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
 msgid "May be imported"
 msgstr "مانگیل بیت کنت"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L147
 msgid "N/A"
 msgstr "نیست"
 
@@ -108,46 +108,49 @@ msgstr "نیست"
 msgid "Invalid"
 msgstr "نابَرجم"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
-msgid "No"
-msgstr "ناں"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L145
+msgid "None"
+msgstr "ھچ کسّ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L149
 msgid "Yes"
 msgstr "ھو"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L150
+msgid "No"
+msgstr "ناں"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L166
 msgid "No files have been detected inside the import directory."
 msgstr "مانگیل ءِ نامدان ءِ تہا ھچ فائل جاہ آرگ نہ بیتگ۔ "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L172
 msgid "Import"
 msgstr "مانگیل "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
-msgid "Enabled"
-msgstr "کابِلینتگ"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
+msgid "Audio author"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
-msgid "Owner name"
-msgstr "واھُند ءِ نام"
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L115
+msgid "Save"
+msgstr "دَرپ کن"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
-msgid "Submit"
-msgstr "پیش کن"
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "لِیکّور"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
 msgstr "درستی"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
-msgid "Change"
-msgstr "بدلین"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "پیش کن"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
@@ -195,10 +198,6 @@ msgid ""
 "unreliable?"
 msgstr ""
 "تو پکایا اے باسک ءِ گیش کرتگیں گالرداں بے بروسہ ءِ ھساب ءَ نشان جنگ لوٹئے؟"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "لِیکّور"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
