@@ -62,7 +62,7 @@ class VocabularyTableTest extends TestCase
 
         $added = $this->Vocabulary->addItem('eng', 'test');
         $returned = $this->Vocabulary->get($added->id);
-        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->created->format('Y-m-d H:i:s'), $returned->created->format('Y-m-d H:i:s'));
 
         I18n::setLocale($prevLocale);
     }

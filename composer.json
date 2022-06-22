@@ -4,9 +4,9 @@
     "license": "AGPL-3.0-only",
     "description": "Code for tatoeba.org, a multilingual sentence and translation database",
     "require": {
-        "cakephp/cakephp": "3.7.*",
+        "cakephp/cakephp": "3.8.*",
         "cakephp/plugin-installer": "^1.0",
-        "dereuromark/cakephp-queue": "^3.11",
+        "dereuromark/cakephp-queue": "dev-cake3",
         "markstory/asset_compress": "^3.5",
         "patchwork/jsqueeze": "^2.0",
         "natxet/cssmin": "^3.0",
@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7|^6.0",
-        "cakephp/bake": "^1.8"
+        "cakephp/bake": "1.*"
     },
     "autoload": {
         "psr-4": {

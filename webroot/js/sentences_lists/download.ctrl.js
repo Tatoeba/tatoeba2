@@ -12,7 +12,7 @@
             $scope.preparingDownload = false;
         }
 
-        $scope.tryToDownloadList = function() {
+        $scope.tryToDownloadList = function(waitForMs = 5000) {
             $timeout.cancel($scope.tryAgainPromise);
             $scope.tryAgainPromise = $timeout(function() {
                 $http.get(rootUrl + "/exports/get/" + $scope.export.id)
@@ -31,7 +31,7 @@
                         $scope.preparingDownload = false;
                     }
                 );
-            }, 5000);
+            }, waitForMs);
         }
 
         $scope.addListExport = function (listId) {
@@ -53,7 +53,7 @@
                  .then(
                     function(response) {
                         $scope.export = response.data.export;
-                        $scope.tryToDownloadList();
+                        $scope.tryToDownloadList(0);
                     },
                     function(errorResponse) {
                         $scope.preparingDownload = false;

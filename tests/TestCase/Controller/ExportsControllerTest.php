@@ -19,6 +19,7 @@ class ExportsControllerTest extends IntegrationTestCase
         'app.UsersLanguages',
         'app.PrivateMessages',
         'app.QueuedJobs',
+        'plugin.Queue.QueueProcesses',
     ];
 
     private $testExportDir = TMP.'export_tests'.DS;
@@ -108,11 +109,10 @@ class ExportsControllerTest extends IntegrationTestCase
     private function assertFileDownload($filename, $filesize)
     {
         $this->assertResponseOk();
-        $this->assertContentType('application/zip');
+        $this->assertContentType('application/octet-stream');
         $this->assertHeader('Content-Length', (string)$filesize);
         $this->assertHeader('Accept-Ranges', 'bytes');
         $this->assertNoHeader('Content-Disposition');
-        $this->assertHeader('Content-Type', 'application/octet-stream');
         $this->assertHeader('X-Accel-Redirect', "/export_tests/$filename");
         $this->assertResponseEquals('');
     }

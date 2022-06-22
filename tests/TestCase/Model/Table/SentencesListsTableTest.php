@@ -512,8 +512,8 @@ class SentencesListsTableTest extends TestCase {
 
         $added = $this->SentencesList->createList('arabic', 1);
         $returned = $this->SentencesList->get($added->id);
-        $this->assertEquals($added->created, $returned->created);
-        $this->assertEquals($added->modified, $returned->modified);
+        $this->assertEquals($added->created->format('Y-m-d H:i:s'), $returned->created->format('Y-m-d H:i:s'));
+        $this->assertEquals($added->modified->format('Y-m-d H:i:s'), $returned->modified->format('Y-m-d H:i:s'));
 
         I18n::setLocale($prevLocale);
     }

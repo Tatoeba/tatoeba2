@@ -124,6 +124,7 @@ class ExportsTable extends Table
                         $config,
                         ['group' => $export->user_id]
                     );
+                    $this->QueuedJobs->wakeUpWorkers();
                     $export->queued_job_id = $job->id;
                     if ($this->save($export)) {
                         return $export->extract(['id', 'name', 'status']);

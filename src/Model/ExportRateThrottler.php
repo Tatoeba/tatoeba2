@@ -72,6 +72,19 @@ class ExportRateThrottler {
         return hrtime(true) / 1000000000;
     }
 
+    /**
+     * Sleep for $waitDuration seconds,
+     * even if sleeping is interrupted by a signal handler.
+     */
+    private function signalProofSleep(float $waitDuration) {
+        $secs = (int)$waitDuration;
+        $nanosecs = ($waitDuration - $secs) * 1000000000;
+        $waitArray = ['seconds' => $secs, 'nanoseconds' => $nanosecs];
+        do {
+            $waitArray = time_nanosleep($waitArray['seconds'], $waitArray['nanoseconds']);
+        } while (is_array($waitArray));
+    }
+
     public function __construct(float $samplingPeriod = 0.5,
                                 float $decrease = 0.5,
                                 int   $increase = 1000,
@@ -110,7 +123,7 @@ class ExportRateThrottler {
 
         $waitDuration = $elapsedTime * ($perf - 1);
         if ($waitDuration > 0) {
-            usleep($waitDuration*1000000);
+            $this->signalProofSleep($waitDuration);
         }
 
         $this->recordsCount = 0;

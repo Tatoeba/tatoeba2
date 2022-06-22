@@ -41,6 +41,7 @@ class Licensing {
                 compact('listId', 'userId'),
                 ['group' => $userId]
             );
+            $this->QueuedJobs->wakeUpWorkers();
         }
     }
 
@@ -57,11 +58,15 @@ class Licensing {
             'listId' => $listId,
             'sendReport' => true,
         );
-        return (bool)$this->QueuedJobs->createJob(
+        $ok = (bool)$this->QueuedJobs->createJob(
             'SwitchSentencesLicense',
             $options,
             ['group' => $userId]
         );
+        if ($ok) {
+            $this->QueuedJobs->wakeUpWorkers();
+        }
+        return $ok;
     }
 
     public function is_refreshing($userId) {
