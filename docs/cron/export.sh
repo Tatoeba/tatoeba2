@@ -2,6 +2,7 @@
 
 set -e
 
+echo "Starting export at $(date -Iseconds)"
 ROOT='/var/www-prod'
 # To test...
 # ROOT='/home/vagrant/Tatoeba'
@@ -9,12 +10,14 @@ ROOT='/var/www-prod'
 rm -f /var/tmp/*.csv
 mkdir -p "$DL_DIR"
 
+echo "Starting SQL scripts at $(date -Iseconds)"
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < $ROOT/docs/database/scripts/weekly_exports.sql
 mv /var/tmp/*csv "$DL_DIR"
 
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < "$ROOT"/docs/database/scripts/wwwjdic.sql
 mv /var/tmp/*csv "$DL_DIR"
 
+echo "Starting tarring at $(date -Iseconds)"
 cd "$DL_DIR"
 tar -cjf sentences_base.tar.bz2 sentences_base.csv
 tar -cjf sentences_detailed.tar.bz2 sentences_detailed.csv
@@ -37,6 +40,7 @@ tar -cjf sentences_CC0.tar.bz2 sentences_CC0.csv
 tar -cjf transcriptions.tar.bz2 transcriptions.csv
 tar -cjf sentences_base.tar.bz2 sentences_base.csv
 
+echo "Starting language splitting for sentences at $(date -Iseconds)"
 # Create per-language files for the different sentences files
 TEMP_DIR='/var/tmp/per_language'
 trap "rm -rf $TEMP_DIR" EXIT
@@ -59,6 +63,7 @@ split_file sentences.csv
 split_file sentences_CC0.csv
 split_file transcriptions.csv
 
+echo "Starting language splitting for links at $(date -Iseconds)"
 # split links by language pair
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT 
@@ -75,6 +80,7 @@ mysql --skip-column-names --batch tatoeba -e \
       close(fpath)
   }'
 
+echo "Starting language splitting for user languages at $(date -Iseconds)"
 # split user languages by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
@@ -93,6 +99,7 @@ mysql --skip-column-names --batch tatoeba -e \
       print $1, level, username, $4 >> fpath
   }'
 
+echo "Starting language splitting for tags at $(date -Iseconds)"
 # split tags by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT DISTINCT 
@@ -108,6 +115,7 @@ mysql --skip-column-names --batch tatoeba -e \
       print $2, $3 >> fpath
   }'
 
+echo "Starting language splitting for sentence lists at $(date -Iseconds)"
 # split sentences in lists by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT 
@@ -125,6 +133,7 @@ mysql --skip-column-names --batch tatoeba -e \
       print $2, $3 >> fpath
   }'      
 
+echo "Starting language splitting for audio at $(date -Iseconds)"
 # split sentences with audio by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
@@ -147,6 +156,7 @@ mysql --skip-column-names --batch tatoeba -e \
       print $2, $3, username, audio_license, audio_attribution_url >> fpath
   }'  
 
+echo "Starting language splitting for sentence bases at $(date -Iseconds)"
 # split sentences base by language
 mysql --skip-column-names --batch tatoeba -e \
     "SELECT
@@ -162,7 +172,9 @@ mysql --skip-column-names --batch tatoeba -e \
       print $2, based_on_id >> fpath
   }'    
 
+echo "Starting cleanup at $(date -Iseconds)"
 find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
 rm -rf $DL_DIR/per_language
 rm transcriptions.csv
 mv -f $TEMP_DIR $DL_DIR
+echo "Finished at $(date -Iseconds)"
