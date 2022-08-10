@@ -318,7 +318,7 @@ class ListsHelper extends AppHelper
     }
 
     /**
-     * Display dropdown for 
+     * Display dropdown for selecting the language/s used to filter list
      *
      * @param [int] $listId 
      * @param [string] $translationsLang Translation languages for each sentence
