@@ -317,6 +317,36 @@ class ListsHelper extends AppHelper
 
     }
 
+    /**
+     * Display dropdown for 
+     *
+     * @param [int] $listId 
+     * @param [string] $translationsLang Translation languages for each sentence
+     * @param [string] $selectedLanguage Language whose sentences will only be displayed
+     * @return void
+     */
+    public function displayFilterByLangDropdown($listId, $translationsLang, $selectedLanguage)
+    {
+        ?>
+        <div class="section md-whiteframe-1dp">
+            <h2><?php echo __('Only sentences in:'); ?></h2>
+            <?php
+            $path = $this->Url->build(['action' => 'show', $listId]) . '/';
+            echo $this->_View->element(
+                'language_dropdown',
+                array(
+                    'name' => 'filterLanguageSelect',
+                    'languages' => $this->Languages->languagesArrayShowTranslationsIn(true, false),
+                    'initialSelection' => $selectedLanguage,
+                    'onSelectedLanguageChange' => "window.location.href = '$path' + '$translationsLang' + '/?lang='+language.code",
+                    'forceItemSelection' => true,
+                )
+            );
+            ?>
+        </div>
+    <?php
+    }
+
     public function displayVisibilityOption($listId, $value)
     {
         $this->Html->script(
