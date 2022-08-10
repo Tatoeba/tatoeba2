@@ -19,7 +19,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 ?>
 
 <div id="annexe_content">
-    <?php $this->Lists->displayFilterByLangDropdown($listId, $translationsLang, $filterLanguage); ?>
     <?php $this->Lists->displayListsLinks(); ?>
 
     <div class="section md-whiteframe-1dp">
