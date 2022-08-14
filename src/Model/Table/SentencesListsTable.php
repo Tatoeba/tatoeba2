@@ -81,7 +81,7 @@ class SentencesListsTable extends Table
         $permissions = array(
             'canView' => $visibility != 'private' || $belongsToUser,
             'canEdit' => $belongsToUser,
-            'canAddSentences' => $belongsToUser && $editableBy !== 'no_one',
+            'canAddSentences' => $editableBy == 'anyone' || $belongsToUser && $editableBy !== 'no_one',
             'canRemoveSentences' => $editableBy == 'anyone' || $belongsToUser && $editableBy == 'creator',
         );
 

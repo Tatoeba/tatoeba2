@@ -534,7 +534,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                     <dt><?= $format ?></dt>
                     <dd>
                         <?= $this->Downloads->fileFormat(
-                            [$username, $lang, $sentence_id, $review, $date_added, $date_modified]
+                            [$username, $sentence_id, $review, $date_added, $date_modified]
                         ) ?>
                     </dd>
                 </dl>
