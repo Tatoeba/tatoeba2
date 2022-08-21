@@ -297,7 +297,7 @@ class ListsHelper extends AppHelper
      *
      * @return void
      */
-    public function displayTranslationsDropdown($listId, $translationsLang = null) {
+    public function displayTranslationsDropdown($listId,$filterLanguage, $translationsLang = null) {
         echo __('Show translations :') . ' ';
 
         $path = $this->Url->build(['action' => 'show', $listId]) . '/';
@@ -309,7 +309,7 @@ class ListsHelper extends AppHelper
                 'name' => 'translationLangChoice',
                 'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
                 'initialSelection' => $translationsLang,
-                'onSelectedLanguageChange' => "window.location.pathname = '$path' + language.code",
+                'onSelectedLanguageChange' => "window.location.href = '$path' + '$filterLanguage' + '/'+language.code",
                 'forceItemSelection' => true,
             )
         );
@@ -322,14 +322,14 @@ class ListsHelper extends AppHelper
      *
      * @param [int] $listId 
      * @param [string] $translationsLang Translation languages for each sentence
-     * @param [string] $selectedLanguage Language whose sentences will only be displayed
+     * @param [string] $filterLanguage Language whose sentences will only be displayed
      * @return void
      */
-    public function displayFilterByLangDropdown($listId, $translationsLang, $selectedLanguage)
+    public function displayFilterByLangDropdown($listId, $filterLanguage, $translationsLang)
     {
         ?>
         <div class="section md-whiteframe-1dp">
-            <h2><?php echo __('Only sentences in:'); ?></h2>
+            <h2><?php echo __('Sentences in:'); ?></h2>
             <?php
             $path = $this->Url->build(['action' => 'show', $listId]) . '/';
             echo $this->_View->element(
@@ -337,8 +337,8 @@ class ListsHelper extends AppHelper
                 array(
                     'name' => 'filterLanguageSelect',
                     'languages' => $this->Languages->languagesArrayShowTranslationsIn(true, false),
-                    'initialSelection' => $selectedLanguage,
-                    'onSelectedLanguageChange' => "window.location.href = '$path' + '$translationsLang' + '/?lang='+language.code",
+                    'initialSelection' => $filterLanguage,
+                    'onSelectedLanguageChange' => "window.location.href = '$path' +language.code +'/'+ '$translationsLang'",
                     'forceItemSelection' => true,
                 )
             );

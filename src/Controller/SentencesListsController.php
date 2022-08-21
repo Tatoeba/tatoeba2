@@ -145,9 +145,14 @@ class SentencesListsController extends AppController
      *
      * @return mixed
      */
-    public function show($id = null, $translationsLang = null)
+    public function show($id = null, $lang = null, $translationsLang = null)
     {
-        $lang = $this->request->getQuery('lang')??'und';
+        // this makes me cringe but it works
+        if(!$translationsLang && $lang){
+            return $this->redirect(['controller'=>'SentencesLists','action'=>'show',$id,'und',$lang],301);
+        }
+
+        $lang = $lang ??'und';
         if (empty($translationsLang)) {
             $translationsLang = 'none';
         }
@@ -172,11 +177,7 @@ class SentencesListsController extends AppController
 
         $query = $this->SentencesSentencesLists->find();
         if ($lang!="und") {
-            if ($lang == 'unknown') {
-                $query->where(['lang IS' => null]);
-            } else {
-                $query->where(['lang' => $lang]);
-            }
+            $query->where(['lang IS' => $lang == 'unknown' ? null : $lang]);
         }
         $query->where(['sentences_list_id' => $id])
             ->contain(['Sentences' => function (Query $q) use ($translationsLang) {

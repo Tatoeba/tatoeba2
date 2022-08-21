@@ -19,7 +19,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 ?>
 
 <div id="annexe_content">
-    <?php $this->Lists->displayFilterByLangDropdown($listId, $translationsLang, $filterLanguage); ?>
+    <?php $this->Lists->displayFilterByLangDropdown($listId, $filterLanguage, $translationsLang); ?>
     <?php $this->Lists->displayListsLinks(); ?>
 
     <div class="section md-whiteframe-1dp">
@@ -79,7 +79,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Actions'); ?></h2>
     <?php
-    $this->Lists->displayTranslationsDropdown($listId, $translationsLang);
+    $this->Lists->displayTranslationsDropdown($listId,$filterLanguage, $translationsLang);
     ?>
     </div>
 
