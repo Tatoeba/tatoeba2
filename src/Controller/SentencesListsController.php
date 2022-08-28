@@ -147,7 +147,8 @@ class SentencesListsController extends AppController
      */
     public function show($id = null, $lang = null, $translationsLang = null)
     {
-        // this makes me cringe but it works
+        // if params are not in form /:id/:filterlang/:translationLang redirect to properly formed URI
+        // for backward compatability of existing links url in form /:id/langX redirected to /:id/und/langX
         if(!$translationsLang && $lang){
             return $this->redirect(['controller'=>'SentencesLists','action'=>'show',$id,'und',$lang],301);
         }
@@ -177,7 +178,7 @@ class SentencesListsController extends AppController
 
         $query = $this->SentencesSentencesLists->find();
         if ($lang!="und") {
-            $query->where(['lang IS' => $lang == 'unknown' ? null : $lang]);
+            $query->where(['lang' => $lang == 'unknown' ? null : $lang]);
         }
         $query->where(['sentences_list_id' => $id])
             ->contain(['Sentences' => function (Query $q) use ($translationsLang) {
