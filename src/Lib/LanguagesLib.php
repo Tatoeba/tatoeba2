@@ -183,6 +183,7 @@ class LanguagesLib
             'sag' => 'sg', // Sango
             'san' => 'sa', // Sanskrit
             'sin' => 'si', // Sinhala
+            'skr' => 'sr', // Saraiki
             'slk' => 'sk', // Slovak
             'slv' => 'sl', // Slovenian
             'sme' => 'se', // Northern Sami
@@ -763,7 +764,8 @@ class LanguagesLib
             "ajp",
             "ayl",
             "sdh",
-            "ckb"
+            "ckb",
+            "skr",
         );
 
         $autoLangs = array(
