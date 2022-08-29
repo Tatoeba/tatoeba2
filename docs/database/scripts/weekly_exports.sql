@@ -1,5 +1,20 @@
 -- Files that are exported every week on Saturday, at 9AM.
 
+--to prevent MYSQL duplicate function error drop it if it exists
+--since sql runs first when exporting function will be available for rest of queries
+--TODO: move the function to someplace where it is run once instead like a migration?
+DROP FUNCTION IF EXISTS SatitizeForTSV;
+
+--function that removes newlines and tabs to make fields tsv safe
+DELIMITER //
+CREATE FUNCTION SatitizeForTSV ( text TEXT )
+RETURNS TEXT
+BEGIN
+  RETURN TRIM(REPLACE(REPLACE(REPLACE(text,'\t','\\t'),'\n','\\n'),'\r','\\r'));
+END; //
+DELIMITER ;
+
+
 -- Sentences base
 SELECT s.id, s.based_on_id
 FROM sentences s
@@ -98,7 +113,7 @@ ORDER BY sentence_id ASC
 INTO OUTFILE '/var/tmp/sentences_with_audio.csv';
 
 -- User skill level per language
-SELECT ul.language_code, ul.level, u.username, ul.details
+SELECT ul.language_code, ul.level, u.username, SatitizeForTSV(ul.details) as details
 FROM users_languages ul INNER JOIN users u ON ul.of_user_id = u.id
 ORDER BY ul.language_code ASC, ul.level DESC, u.username ASC
 INTO OUTFILE '/var/tmp/user_languages.csv';
