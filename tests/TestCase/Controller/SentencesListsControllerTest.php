@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
@@ -28,74 +27,68 @@ class SentencesListsControllerTest extends IntegrationTestCase
         'app.wiki_articles',
     ];
 
-    public function accessesProvider()
-    {
+    public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            ['/en/sentences_lists/index', null, true],
-            ['/en/sentences_lists/index', 'kazuki', true],
-            ['/en/sentences_lists/index?search=list', 'kazuki', '/en/sentences_lists/index/list'],
-            ['/en/sentences_lists/index/list', 'kazuki', true],
-            ['/en/sentences_lists/collaborative', null, true],
-            ['/en/sentences_lists/collaborative', 'kazuki', true],
-            ['/en/sentences_lists/collaborative?search=list', 'kazuki', '/en/sentences_lists/collaborative/list'],
-            ['/en/sentences_lists/collaborative/list', 'kazuki', true],
-            ['/en/sentences_lists/show/', null, '/en/sentences_lists/index'],
-            ['/en/sentences_lists/show/1', null, true],
-            ['/en/sentences_lists/show/1', 'kazuki', true],
-            ['/en/sentences_lists/show/1/und/fra', 'kazuki', true],
-            ['/en/sentences_lists/show/3', null, '/en/sentences_lists/index'], // private list
-            ['/en/sentences_lists/delete/1', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fdelete%2F1'],
-            ['/en/sentences_lists/delete/1', 'contributor', '/en/sentences_lists/index'],
-            ['/en/sentences_lists/delete/1', 'kazuki', '/en/sentences_lists/index'],
-            ['/en/sentences_lists/of_user/kazuki', null, true],
-            ['/en/sentences_lists/of_user/kazuki', 'contributor', true],
-            ['/en/sentences_lists/of_user/kazuki?username=kazuki&search=foo', 'contributor', '/en/sentences_lists/of_user/kazuki/foo'],
-            ['/en/sentences_lists/of_user', 'contributor', '/en/sentences_lists/index'],
-            ['/en/sentences_lists/download', null, '/en/sentences_lists/index'],
-            ['/en/sentences_lists/download/1', null, true], // unlisted public list
-            ['/en/sentences_lists/download/1', 'contributor', true],
-            ['/en/sentences_lists/download/3', 'kazuki', true], // kazuki's private list
-            ['/en/sentences_lists/download/3', null, '/en/sentences_lists/index'],
-            ['/en/sentences_lists/download/3', 'contributor', '/en/sentences_lists/index'],
+            [ '/en/sentences_lists/index', null, true ],
+            [ '/en/sentences_lists/index', 'kazuki', true ],
+            [ '/en/sentences_lists/index?search=list', 'kazuki', '/en/sentences_lists/index/list' ],
+            [ '/en/sentences_lists/index/list', 'kazuki', true ],
+            [ '/en/sentences_lists/collaborative', null, true ],
+            [ '/en/sentences_lists/collaborative', 'kazuki', true ],
+            [ '/en/sentences_lists/collaborative?search=list', 'kazuki', '/en/sentences_lists/collaborative/list' ],
+            [ '/en/sentences_lists/collaborative/list', 'kazuki', true ],
+            [ '/en/sentences_lists/show/', null, '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/show/1', null, true ],
+            [ '/en/sentences_lists/show/1', 'kazuki', true ],
+            [ '/en/sentences_lists/show/1/und/fra', 'kazuki', true ],
+            [ '/en/sentences_lists/show/3', null, '/en/sentences_lists/index' ], // private list
+            [ '/en/sentences_lists/delete/1', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fdelete%2F1' ],
+            [ '/en/sentences_lists/delete/1', 'contributor', '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/delete/1', 'kazuki', '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/of_user/kazuki', null, true ],
+            [ '/en/sentences_lists/of_user/kazuki', 'contributor', true ],
+            [ '/en/sentences_lists/of_user/kazuki?username=kazuki&search=foo', 'contributor', '/en/sentences_lists/of_user/kazuki/foo' ],
+            [ '/en/sentences_lists/of_user', 'contributor', '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/download', null, '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/download/1', null, true ], // unlisted public list
+            [ '/en/sentences_lists/download/1', 'contributor', true ],
+            [ '/en/sentences_lists/download/3', 'kazuki', true ], // kazuki's private list
+            [ '/en/sentences_lists/download/3', null, '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/download/3', 'contributor', '/en/sentences_lists/index' ],
         ];
     }
 
     /**
      * @dataProvider accessesProvider
      */
-    public function testControllerAccess($url, $user, $response)
-    {
+    public function testControllerAccess($url, $user, $response) {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider()
-    {
+    public function ajaxAccessesProvider() {
         return [
-            ['/en/sentences_lists/add_sentence_to_list/1/1', null, false],
-            ['/en/sentences_lists/add_sentence_to_list/1/1', 'kazuki', true],
-            ['/en/sentences_lists/remove_sentence_from_list/1/4', null, false],
-            ['/en/sentences_lists/remove_sentence_from_list/1/4', 'kazuki', true],
+            [ '/en/sentences_lists/add_sentence_to_list/1/1', null, false ],
+            [ '/en/sentences_lists/add_sentence_to_list/1/1', 'kazuki', true ],
+            [ '/en/sentences_lists/remove_sentence_from_list/1/4', null, false ],
+            [ '/en/sentences_lists/remove_sentence_from_list/1/4', 'kazuki', true ],
         ];
     }
 
     /**
      * @dataProvider ajaxAccessesProvider
      */
-    public function testControllerAjaxAccess($url, $user, $response)
-    {
+    public function testControllerAjaxAccess($url, $user, $response) {
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
-    public function testAdd_asGuest()
-    {
+    public function testAdd_asGuest() {
         $this->enableCsrfToken();
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
         $this->assertRedirect('/en/users/login');
     }
 
-    public function testAdd_asMember()
-    {
+    public function testAdd_asMember() {
         $this->logInAs('contributor');
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
         $lists = TableRegistry::get('SentencesLists');
@@ -103,15 +96,13 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertRedirect("/en/sentences_lists/show/$lastId");
     }
 
-    public function testAdd_fails()
-    {
+    public function testAdd_fails() {
         $this->logInAs('contributor');
         $this->post('/en/sentences_lists/add', ['name' => '']);
         $this->assertRedirect("/en/sentences_lists/index");
     }
 
-    public function testAddSentenceToListAsUnproperBot_bans()
-    {
+    public function testAddSentenceToListAsUnproperBot_bans() {
         $username = 'kazuki';
         $this->logInAs($username);
         $this->configRequest([
@@ -131,8 +122,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertEquals('private', $list->visibility);
     }
 
-    public function testAddSentenceToListAsNormalUser_doesNotBans()
-    {
+    public function testAddSentenceToListAsNormalUser_doesNotBans() {
         $username = 'kazuki';
         $this->logInAs($username);
         $this->configRequest([
@@ -152,38 +142,33 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertNotEquals('private', $list->visibility);
     }
 
-    public function save_name()
-    {
+    public function save_name() {
         $this->ajaxPost('/en/sentences_lists/save_name', [
             'value' => 'New name',
             'id' => 'l1',
         ]);
     }
 
-    public function testSaveName_asGuest()
-    {
+    public function testSaveName_asGuest() {
         $this->save_name();
         $this->assertResponseError();
     }
 
-    public function testSaveName_asOwner()
-    {
+    public function testSaveName_asOwner() {
         $this->logInAs('kazuki');
         $this->save_name();
         $this->assertResponseOk();
         $this->assertResponseEquals('New name');
     }
 
-    public function testSaveName_asNonOwner()
-    {
+    public function testSaveName_asNonOwner() {
         $this->logInAs('admin');
         $this->save_name();
         $this->assertResponseOk();
         $this->assertResponseEquals('error');
     }
 
-    public function testAddNewSentenceToList_asGuest()
-    {
+    public function testAddNewSentenceToList_asGuest() {
         $this->ajaxPost('/en/sentences_lists/add_new_sentence_to_list/', [
             'listId' => 2,
             'sentenceText' => 'A new sentence for that list.',
@@ -191,8 +176,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertResponseError();
     }
 
-    public function testAddNewSentenceToList_asOwner()
-    {
+    public function testAddNewSentenceToList_asOwner() {
         $this->logInAs('kazuki');
         $this->ajaxPost('/en/sentences_lists/add_new_sentence_to_list/', [
             'listId' => 2,
@@ -201,8 +185,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
     }
 
-    public function testSetOption_asGuest()
-    {
+    public function testSetOption_asGuest() {
         $this->ajaxPost('/en/sentences_lists/set_option/', [
             'listId' => 1,
             'option' => 'visibility',
@@ -211,8 +194,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertResponseError();
     }
 
-    public function testSetOption_asOwner()
-    {
+    public function testSetOption_asOwner() {
         $this->logInAs('kazuki');
         $this->ajaxPost('/en/sentences_lists/set_option/', [
             'listId' => 1,
@@ -222,8 +204,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
     }
 
-    public function testExportToCsv_asGuest_unlistedList()
-    {
+    public function testExportToCsv_asGuest_unlistedList() {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
         $this->post('/en/sentences_lists/export_to_csv', [
@@ -236,8 +217,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertHeader('Content-type',        'application/vnd.ms-excel');
     }
 
-    public function testExportToCsv_asGuest_privateList()
-    {
+    public function testExportToCsv_asGuest_privateList() {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
         $this->post('/en/sentences_lists/export_to_csv', [
