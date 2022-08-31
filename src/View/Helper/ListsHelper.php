@@ -309,7 +309,7 @@ class ListsHelper extends AppHelper
                 'name' => 'translationLangChoice',
                 'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
                 'initialSelection' => $translationsLang,
-                'onSelectedLanguageChange' => "window.location.href = '$path' + '$filterLanguage' + '/'+language.code",
+                'onSelectedLanguageChange' => "window.location.pathname = '$path' + '$filterLanguage' + '/'+language.code",
                 'forceItemSelection' => true,
             )
         );
@@ -338,7 +338,7 @@ class ListsHelper extends AppHelper
                     'name' => 'filterLanguageSelect',
                     'languages' => $this->Languages->languagesArrayShowTranslationsIn(true, false),
                     'initialSelection' => $filterLanguage,
-                    'onSelectedLanguageChange' => "window.location.href = '$path' +language.code +'/'+ '$translationsLang'",
+                    'onSelectedLanguageChange' => "window.location.pathname = '$path' +language.code +'/'+ '$translationsLang'",
                     'forceItemSelection' => true,
                 )
             );
