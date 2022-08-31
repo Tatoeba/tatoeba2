@@ -183,9 +183,9 @@ class SentencesListsController extends AppController
         $query->where(['sentences_list_id' => $id])
             ->contain(['Sentences' => function (Query $q) use ($translationsLang) {
                 $q->find('filteredTranslations', ['translationLang' => $translationsLang])
-                    ->find('hideFields')
-                    ->contain($this->Sentences->contain(['translations' => true]))
-                    ->select($this->Sentences->fields());
+                  ->find('hideFields')
+                  ->contain($this->Sentences->contain(['translations' => true]))
+                  ->select($this->Sentences->fields());
                 return $q;
             }]);
 
