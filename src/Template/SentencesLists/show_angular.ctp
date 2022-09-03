@@ -20,7 +20,30 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
 <div id="annexe_content">
     <?php $this->Lists->displayFilterByLangDropdown($listId, $filterLanguage, $translationsLang); ?>
-    <?php $this->Lists->displayListsLinks(); ?>
+    <?php
+    $this->Lists->displayTranslationsDropdown($listId,$filterLanguage, $translationsLang);
+    ?>
+    <?php
+    if ($permissions['canEdit']) {
+        ?>
+        <div class="section md-whiteframe-1dp" ng-controller="optionsCtrl">
+            <?php /* @translators: header text in the side bar of a list page (noun) */ ?>
+            <h2><?php echo __('Options'); ?></h2>
+            <ul class="sentencesListActions">
+                <?php
+                echo '<p>';
+                $this->Lists->displayVisibilityOption($listId, $listVisibility);
+                echo '</p>';
+                echo '<p>';
+                $this->Lists->displayEditableByOptions($listId, $list['editable_by']);
+                echo '</p>';
+                ?>
+            </ul>
+        </div>
+        <?php
+    }
+    ?>
+    <!-- <?php $this->Lists->displayListsLinks(); ?> -->
 
     <div class="section md-whiteframe-1dp">
         <h2><?php echo __('About this list'); ?></h2>
@@ -52,35 +75,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         );
         echo $this->Html->tag('p', $numberOfSentencesMsg);
         ?>
-    </div>
-
-
-    <?php
-    if ($permissions['canEdit']) {
-        ?>
-        <div class="section md-whiteframe-1dp" ng-controller="optionsCtrl">
-            <?php /* @translators: header text in the side bar of a list page (noun) */ ?>
-            <h2><?php echo __('Options'); ?></h2>
-            <ul class="sentencesListActions">
-                <?php
-                echo '<p>';
-                $this->Lists->displayVisibilityOption($listId, $listVisibility);
-                echo '</p>';
-                echo '<p>';
-                $this->Lists->displayEditableByOptions($listId, $list['editable_by']);
-                echo '</p>';
-                ?>
-            </ul>
-        </div>
-        <?php
-    }
-    ?>
-
-    <div class="section md-whiteframe-1dp">
-    <h2><?php echo __('Actions'); ?></h2>
-    <?php
-    $this->Lists->displayTranslationsDropdown($listId,$filterLanguage, $translationsLang);
-    ?>
     </div>
 
 </div>

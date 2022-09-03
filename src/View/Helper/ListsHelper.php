@@ -298,23 +298,25 @@ class ListsHelper extends AppHelper
      * @return void
      */
     public function displayTranslationsDropdown($listId,$filterLanguage, $translationsLang = null) {
-        echo __('Show translations :') . ' ';
-
-        $path = $this->Url->build(['action' => 'show', $listId]) . '/';
-
-        // TODO onSelectedLanguageChange should be defined in a separate js file
-        echo $this->_View->element(
-            'language_dropdown',
-            array(
-                'name' => 'translationLangChoice',
-                'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
-                'initialSelection' => $translationsLang,
-                'onSelectedLanguageChange' => "window.location.pathname = '$path' + '$filterLanguage' + '/'+language.code",
-                'forceItemSelection' => true,
-            )
-        );
-
-
+        ?>
+        <div class="section md-whiteframe-1dp">
+            <h2><?php echo __('Show translations in:'); ?></h2>
+            <?php
+            $path = $this->Url->build(['action' => 'show', $listId]) . '/';
+            // TODO onSelectedLanguageChange should be defined in a separate js file
+            echo $this->_View->element(
+                'language_dropdown',
+                array(
+                    'name' => 'translationLangChoice',
+                    'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
+                    'initialSelection' => $translationsLang,
+                    'onSelectedLanguageChange' => "window.location.pathname = '$path' + '$filterLanguage' + '/'+language.code",
+                    'forceItemSelection' => true,
+                )
+            );
+            ?>
+            </div>
+        <?php
     }
 
     /**
