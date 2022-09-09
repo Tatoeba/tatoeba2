@@ -188,21 +188,18 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-     * Return array of languages, with optional "None" and "All Languages" options.
+     * Return array of languages, with "None" option.
      *
      * @param $withAllLanguages Include the 'All languages' option too
-     * @param $withNone Include the 'None' option too
      * @return array
      */
-    public function languagesArrayShowTranslationsIn($withAllLanguages = true, $withNone = true)
+    public function languagesArrayShowTranslationsIn($withAllLanguages = true)
     {
         $languages = $this->onlyLanguagesArray();
-        if($withNone){
-            $options = [
-                /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
-                'none' => __('None'),
-            ];
-        }
+        $options = [
+            /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
+            'none' => __('None'),
+        ];
         if ($withAllLanguages) {
             /* @translators: option used in language selection dropdown for "Show translations in" in advanced search form */
             $options['und'] = __x('show-translations-in', 'All languages');

@@ -338,7 +338,7 @@ class ListsHelper extends AppHelper
                 'language_dropdown',
                 array(
                     'name' => 'filterLanguageSelect',
-                    'languages' => $this->Languages->languagesArrayShowTranslationsIn(true, false),
+                    'languages' => $this->Languages->languagesArrayAlone(),
                     'initialSelection' => $filterLanguage,
                     'onSelectedLanguageChange' => "window.location.pathname = '$path' +language.code +'/'+ '$translationsLang'",
                     'forceItemSelection' => true,
