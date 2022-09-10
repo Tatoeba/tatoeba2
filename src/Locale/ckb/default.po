@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Sarchia Khursheed, 2021
+# Sarchia Khursheed, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-22 09:51+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Sarchia Khursheed, 2021\n"
+"Last-Translator: Sarchia Khursheed, 2021-2022\n"
 "Language-Team: Central Kurdish (http://www.transifex.com/tatoeba/tatoeba_website/language/ckb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,13 +172,13 @@ msgstr "ئەو ناونیشانی ئیمەیلە پێشتر هەیە. تکایە
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L424
 msgid "The entered birthday is an invalid date. Please try again."
-msgstr "ڕێکەوتی لەدایکبوونی داخلکراو ڕەوا نییە. دووبارە هەوڵ بدەنەوە."
+msgstr "ڕێکەوتی لەدایکبوونی داخڵکراو ڕەوا نییە. دووبارە هەوڵ بدەنەوە."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L473
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr "ڕێکەوتی لەدایکبوونی داخلکراو ناتەواوە. ڕۆژبوونە قبوڵکراوەکان: ڕێکەوتی تەواو، مانگ و ڕۆژ، ساڵ و مانگ، تەنیا ساڵ."
+msgstr "ڕێکەوتی لەدایکبوونی داخڵکراو ناتەواوە. ڕۆژبوونە قبوڵکراوەکان: ڕێکەوتی تەواو، مانگ و ڕۆژ، ساڵ و مانگ، تەنیا ساڵ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L543
 msgid "Your settings have been saved."
@@ -551,7 +551,7 @@ msgstr "خاوەنی ڕستە، پێویستە دروستکەرە ئەسڵییە
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L247
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "تەنیا دەتوانیت بۆ مۆڵەتێکی ڕێگەپێدراوتر بگۆڕیت."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -688,7 +688,7 @@ msgstr "ئەو تاگانەی پێویستە دەربارەیان بزانیت"
 msgid ""
 "The community has come up with several \"utility tags\" to improve the "
 "quality and reliability of sentences."
-msgstr ""
+msgstr "کۆمەڵگاکە چەندین «تاگی سوودبەخش»یان هێناوەتە ئاراوە بۆ باشترکردنی کوالیتی و متمانەپێکراویی ڕستەکان."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
@@ -764,7 +764,7 @@ msgstr "چۆنیەتی زیادکردنی وەرگێڕانێک"
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr ""
+msgstr "کاتێک ڕستەکان پیشان دەدرێن، کلیک لەسەر {translateButton} بکە بۆ زیادکردنی وەرگێڕانێک."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L58
 msgid "About translations"
@@ -868,7 +868,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L207
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L108
 msgid "Not all languages are supported yet."
-msgstr ""
+msgstr "هێشتا هەموو زمانەکان پشتگیری نەکراون."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
@@ -1026,7 +1026,7 @@ msgstr "دوایین بەشدارییەکانی {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} contributions are displayed here."
-msgstr ""
+msgstr "تەنیا {n} دوا بەشدارییەکان لێرە پیشان دەدرێن."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L36
 msgid "This form is pre-filled."
@@ -1194,7 +1194,7 @@ msgstr "دەرخستن"
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
-msgstr ""
+msgstr "{action} ئەو ڕستانەی کە وەرگێڕانیان لەگەڵ هەموو ئەم پێوەرانەی دەگونجێت."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L266
 msgid "Link:"
@@ -1254,7 +1254,7 @@ msgstr "داڕێژەیەکی گەڕان دروست بکە"
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
-msgstr ""
+msgstr "ئەم دوگمەیە بەکاربهێنە بۆ بەکارهێنانی پێوانەی هەڵبژێردراوی ئێستا وەک بنەمایەک بۆ گەڕانەکانی تر. هەروەها دەتوانیت قاڵبی گەڕانەکە لەگەڵ کەسێکی دیکە نیشان/بەش بکەیت."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L52
 msgid ""
@@ -1283,7 +1283,7 @@ msgstr "داخستن"
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr ""
+msgstr "ئاگاداری: ئەم ماڵپەڕە بۆ مەبەستی تاقیکردنەوەیە. هەموو ئەو شتانەی پێشکەشی دەکەیت بەدڵنیاییەوە لەدەست دەچن."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
@@ -1460,7 +1460,7 @@ msgstr "فەیسبووک"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L202
 msgid "Our data is released under various Creative Commons licenses."
-msgstr ""
+msgstr "داتاکانمان لەژێر مۆڵەتی جۆراوجۆری «کرێتیڤ کۆمنز» بڵاودەکرێنەوە."
 
 #. link text (in the footer) to the section 6 of the Terms of use page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L206
@@ -1894,7 +1894,7 @@ msgstr "باشە"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L64
 msgid "The audio file will be lost. Are you sure?"
-msgstr ""
+msgstr "فایلە دەنگییەکە لەدەست دەچێت. لەوە دڵنیای؟"
 
 #. header text in sentence page
 #. / link to the list of audio on profile page sidebar
@@ -1907,11 +1907,11 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
-msgstr ""
+msgstr "لەلایەن {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L98
 msgid "License: {license}"
-msgstr ""
+msgstr "مۆڵەت: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L104
 msgid "Is enabled"
@@ -1952,17 +1952,17 @@ msgstr "گەڕان بۆ زمانێک"
 #. header text on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L31
 msgid "Sentence text"
-msgstr ""
+msgstr "دەقی ڕستە"
 
 #. placeholder is the name of the license
 #. of the sentence text, could be CC BY 2.0 FR or CC0
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L37
 msgid "License: {}"
-msgstr ""
+msgstr "مۆڵەت: {}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L62
 msgid "Change license"
-msgstr ""
+msgstr "مۆڵەت بگۆڕە"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -2195,7 +2195,7 @@ msgstr "لابردنی بەستەری ئەم وەرگێڕانە"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L16
 msgid "Make into direct translation"
-msgstr ""
+msgstr "بیکە بە وەرگێڕانی ڕاستەوخۆ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L33
 msgid "Existing sentence #{number} has been added as a translation."
