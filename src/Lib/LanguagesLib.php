@@ -690,6 +690,7 @@ class LanguagesLib
                 'swc' => __d('languages', 'Congo Swahili'),
                 'rhg' => __d('languages', 'Rohingya'),
                 'mfa' => __d('languages', 'Kelantan-Pattani Malay'),
+                'skr' => __d('languages', 'Saraiki'),
             );
         }
         return $languages;
@@ -762,7 +763,8 @@ class LanguagesLib
             "ajp",
             "ayl",
             "sdh",
-            "ckb"
+            "ckb",
+            "skr",
         );
 
         $autoLangs = array(
