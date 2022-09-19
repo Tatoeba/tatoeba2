@@ -814,7 +814,9 @@ html[dir="rtl"] .md-button-right .md-button {
     right: initial;
 }
 
-
+/*
+ * Responsive search styles
+ */
 @media only screen and (max-width: 960px) {
     #search-bar {
         display: none;
