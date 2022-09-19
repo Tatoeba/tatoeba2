@@ -1,7 +1,7 @@
 <?php
 $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
 ?>
-<section ng-controller="SentencesAddController as vm" class="" style="padding-bottom: 1px; background: #fafafa">   
+<section ng-controller="SentencesAddController as vm" style="padding-bottom: 1px; background: #fafafa">   
     <?= $this->element('sentences/add_sentence_form'); ?>
 
     <md-toolbar class="md-hue-2">
@@ -14,7 +14,7 @@ $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
 
     <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
 
-    <div ng-if="vm.sentences.length === 0" layout-padding>
+    <div ng-if="vm.sentences.length === 0" class="section">
         <?= __('No sentences added yet.') ?>
     </div>
 
