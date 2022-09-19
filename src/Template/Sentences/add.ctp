@@ -43,7 +43,7 @@ $vocabularyUrl = $this->Url->build(array(
 
 <!--start layout -->
 
-<md-toolbar class="md-hue-2">
+<md-toolbar class="md-hue-2" ng-cloak>
     <div class="md-toolbar-tools">
         <h2 flex="" class="flex"><?php echo __('Add new sentences'); ?></h2>
         <span hide-gt-sm>
