@@ -43,17 +43,20 @@ $vocabularyUrl = $this->Url->build(array(
 
 <!--start layout -->
 
-<md-toolbar class="md-hue-2" ng-cloak>
+<!-- start title bar -->
+<md-toolbar class="md-hue-2" ng-cloak ng-controller="SidenavController">
     <div class="md-toolbar-tools">
-        <h2 flex="" class="flex"><?php echo __('Add new sentences'); ?></h2>
-        <span hide-gt-sm>
-            <button class="md-icon-button md-button md-ink-ripple" type="button" ng-controller="SidenavController" ng-click="toggle('sidenav')" aria-label="Add a new sentence" md-labeled-by-tooltip="md-tooltip-90">
-                <md-icon>info</md-icon>
-            </button>
-        </span>
+        <h2 flex=""><?php echo __('Add new sentences'); ?></h2>
+
+        <md-button ng-click="toggle('sidenav')" hide-gt-sm>
+            <md-icon>info</md-icon>
+            <?= __('Important') ?>
+        </md-button>
     </div>
 </md-toolbar>
+<!-- end title bar -->
 
+<!-- start content -->
 <section layout="row" ng-cloak>
     <md-content id="main_content" class="md-whiteframe-1dp" flex>
         <!-- start add sentence form -->
