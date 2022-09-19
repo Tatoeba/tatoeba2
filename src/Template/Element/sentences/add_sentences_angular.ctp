@@ -4,7 +4,7 @@ $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
 <section ng-controller="SentencesAddController as vm" class="" style="padding-bottom: 1px; background: #fafafa">   
     <?= $this->element('sentences/add_sentence_form'); ?>
 
-    <md-toolbar class="md-hue-1">
+    <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
             <h2 flex><?php echo __('Sentences added'); ?></h2>
 
