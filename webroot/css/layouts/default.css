@@ -813,3 +813,94 @@ html[dir="rtl"] .md-button-right .md-button {
     left: -8px;
     right: initial;
 }
+
+
+@media only screen and (max-width: 960px) {
+    #search-bar {
+        display: none;
+    }
+
+    #search-bar-minimal {
+        display: flex;
+    }
+    #search-bar-minimal md-input-container label {
+        color: red;
+    }
+    #search-bar-minimal .md-toolbar-tools {
+        padding: 0 5px 0 10px;
+    }
+    #search-bar-minimal .md-errors-spacer {
+        display: none;
+    }
+    #search-bar-minimal input {
+        color: #fff;
+    }
+    
+    #content {
+        padding: 0;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .md-sidenav-right .close {
+        display: none;
+    }
+}
+
+/*
+ * Search results
+ */
+.sentence-and-translations,
+.sentences_set {
+    background: #fff;
+    margin: 20px 10px;
+}
+
+.sentences_set {
+    width: 610px;
+    margin: 20px auto;
+}
+
+.match {
+    background-color: #FFFF90;
+}
+
+.empty-info-text {
+    text-align: center;
+    font-size: 2em;
+    color: #666666;
+}
+
+.sentence .content.column {
+    width: 500px;
+}
+
+/*
+ * Advanced search form
+ */
+#advanced-search .param {
+    margin: 10px 0;
+}
+
+#advanced-search .md-errors-spacer {
+    display: none;
+}
+
+#advanced-search .select select {
+    width: 100%;
+}
+
+#advanced-search .buttons {
+    margin: 20px 0;
+}
+
+#advanced-search .column-1 > .layout-column,
+#advanced-search .column-2 > .layout-column,
+#advanced-search .buttons {
+    padding: 0 20px;
+}
+
+#advanced-search .md-subheader {
+    color: #111;
+    font-weight: bold;
+}
