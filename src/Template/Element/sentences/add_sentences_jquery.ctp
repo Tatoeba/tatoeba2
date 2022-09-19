@@ -4,12 +4,7 @@ $this->Sentences->javascriptForAJAXSentencesGroup();
 $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBottom']);
 ?>
 
-<section class="md-whiteframe-1dp">
-    <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools">
-            <h2><?php echo __('Add new sentences'); ?></h2>
-        </div>
-    </md-toolbar>
+<section class="">
     
     <?php
     $langArray = $this->Languages->profileLanguagesArray(true);
@@ -90,7 +85,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
     ?>
 </section>
 
-<section class="md-whiteframe-1dp">
+<section class="">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
             <h2><?php echo __('Sentences added'); ?></h2>

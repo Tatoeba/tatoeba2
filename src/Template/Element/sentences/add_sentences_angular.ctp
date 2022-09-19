@@ -1,13 +1,7 @@
 <?php
 $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
 ?>
-<section ng-controller="SentencesAddController as vm" class="md-whiteframe-1dp" style="padding-bottom: 1px; background: #fafafa">
-    <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools">
-            <h2><?php echo __('Add new sentences'); ?></h2>
-        </div>
-    </md-toolbar>
-    
+<section ng-controller="SentencesAddController as vm" class="" style="padding-bottom: 1px; background: #fafafa">   
     <?= $this->element('sentences/add_sentence_form'); ?>
 
     <md-toolbar class="md-hue-1">
