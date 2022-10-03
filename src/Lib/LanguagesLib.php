@@ -692,6 +692,7 @@ class LanguagesLib
                 'mfa' => __d('languages', 'Kelantan-Pattani Malay'),
                 'skr' => __d('languages', 'Saraiki'),
                 'nap' => __d('languages', 'Neapolitan'),
+
             );
         }
         return $languages;
@@ -764,7 +765,8 @@ class LanguagesLib
             "ajp",
             "ayl",
             "sdh",
-            "ckb"
+            "ckb",
+            "skr",
         );
 
         $autoLangs = array(
