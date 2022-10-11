@@ -187,36 +187,36 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
     <md-content ng-cloak>
     <?php
-    if ($permissions['canAddSentences'] && count($sentencesInList) == 0) {
+    if (count($sentencesInList) == 0) {
         ?>
         <div class="no-sentence-info" ng-if="!vm.showForm && vm.sentences.length === 0">
-            <p><?= __('This list is empty.') ?></p>
-            <div class="hint">
+            <p>
                 <?php
-                echo format(
-                    __(
-                        'You can create new sentences directly in this list by clicking on the '.
-                        '{addSentenceButton} icon in the header of this section.', true
-                    ),
-                    ['addSentenceButton' => '<md-icon>add</md-icon>']
-                );
+                    echo format(
+                        __(
+                            'This list does not contain any sentences in {language}'
+                        ),
+                        ['language'=> $this->Languages->codeToNameAlone($filterLanguage)]
+                    );
                 ?>
-            </div>
-            <div class="hint">
+            </p>
+            <?php
+            if ($permissions['canAddSentences']){
+                ?>
+                <div class="hint">
+                    <?php
+                    echo format(
+                        __(
+                            'Click on the {addNewSentence} icon above to add a new sentence to the list. You can also add existing sentences to this list, from other pages, by clicking on '.
+                            'the {addToListButton} icon in the menu of the sentence.', true
+                        ),
+                        ['addNewSentence'=>'<md-icon>add</md-icon>','addToListButton' => '<md-icon>list</md-icon>']
+                    );
+                    ?>
+                </div>
                 <?php
-                echo format(
-                    __(
-                        'You can also add existing sentences to this list, from other pages, by clicking on '.
-                        'the {addToListButton} icon in the menu of the sentence.', true
-                    ),
-                    ['addToListButton' => '<md-icon>list</md-icon>']
-                );
-                ?>
-            </div>
+            }?>
         </div>
-        <?php
-    } else {
-        ?>
         <?php
     }
     ?>
