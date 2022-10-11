@@ -43,7 +43,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         <?php
     }
     ?>
-    <!-- <?php $this->Lists->displayListsLinks(); ?> -->
 
     <div class="section md-whiteframe-1dp">
         <h2><?php echo __('About this list'); ?></h2>
@@ -76,6 +75,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         echo $this->Html->tag('p', $numberOfSentencesMsg);
         ?>
     </div>
+
+    <?php $this->Lists->displayListsLinks(); ?>
 
 </div>
 
