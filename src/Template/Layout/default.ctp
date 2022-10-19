@@ -77,7 +77,11 @@ $isHomepage = $controller == 'pages' && $action == 'index';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php } ?>
 </head>
-<body ng-app="app">
+<body ng-app="app"
+    <?php if (isset($isResponsive) && $isResponsive) { ?>
+        class="responsive"
+    <?php } ?>
+>
     <!--  TOP  -->
     <?php echo $this->element('top_menu', ['htmlDir' => $htmlDir]); ?>
 

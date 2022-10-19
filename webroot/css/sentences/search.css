@@ -16,38 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@media only screen and (max-width: 960px) {
-    #search-bar {
-        display: none;
-    }
-
-    #search-bar-minimal {
-        display: flex;
-    }
-    #search-bar-minimal md-input-container label {
-        color: red;
-    }
-    #search-bar-minimal .md-toolbar-tools {
-        padding: 0 5px 0 10px;
-    }
-    #search-bar-minimal .md-errors-spacer {
-        display: none;
-    }
-    #search-bar-minimal input {
-        color: #fff;
-    }
-    
-    #content {
-        padding: 0;
-    }
-}
-
-@media only screen and (min-width: 960px) {
-    .md-sidenav-right .close {
-        display: none;
-    }
-}
-
 /*
  * Search results
  */
