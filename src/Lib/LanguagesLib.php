@@ -691,6 +691,8 @@ class LanguagesLib
                 'rhg' => __d('languages', 'Rohingya'),
                 'mfa' => __d('languages', 'Kelantan-Pattani Malay'),
                 'skr' => __d('languages', 'Saraiki'),
+                'nap' => __d('languages', 'Neapolitan'),
+
             );
         }
         return $languages;
