@@ -277,7 +277,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             }
 
             $personalInfo = array(
-                __x('user', 'Name') => $realName,
+                __x('user', 'Name') => h($realName),
                 __('Country') => $countryName,
                 __('Birthday') => $birthday,
                 __('Homepage') => $homepage
