@@ -196,7 +196,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                     __(
                         'This list is empty.'
                     ):__(
-                        'This list does not contain any sentences in {language}'
+                        'This list does not contain any sentences in {language}.'
                     )
                         ,
                         ['language'=> $this->Languages->codeToNameAlone($filterLanguage)]
