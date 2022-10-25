@@ -192,10 +192,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         <div class="no-sentence-info" ng-if="!vm.showForm && vm.sentences.length === 0">
             <p>
                 <?php
-                    echo format(
-                        __(
-                            $filterLanguage=='und'?'This list is empty.':'This list does not contain any sentences in {language}'
-                        ),
+                    echo format($filterLanguage=='und'?
+                    __(
+                        'This list is empty.'
+                    ):__(
+                        'This list does not contain any sentences in {language}'
+                    )
+                        ,
                         ['language'=> $this->Languages->codeToNameAlone($filterLanguage)]
                     );
                 ?>
@@ -205,13 +208,23 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 ?>
                 <div class="hint">
                     <?php
-                    echo format(
-                        __(
-                            'Click on the {addNewSentence} icon above to add a new sentence to the list. You can also add existing sentences to this list, from other pages, by clicking on '.
-                            'the {addToListButton} icon in the menu of the sentence.', true
-                        ),
-                        ['addNewSentence'=>'<md-icon>add</md-icon>','addToListButton' => '<md-icon>list</md-icon>']
-                    );
+                        echo format(
+                            __(
+                                'You can create new sentences directly in this list by clicking on the '.
+                                '{addSentenceButton} icon in the header of this section.', true
+                            ),
+                            ['addSentenceButton' => '<md-icon>add</md-icon>']
+                        );
+                    ?>
+                </div>
+                <div class="hint">
+                    <?php
+                        echo format(
+                            __('You can also add existing sentences to this list, from other pages, by clicking on '.
+                                'the {addToListButton} icon in the menu of the sentence.', true
+                            ),
+                            ['addToListButton' => '<md-icon>list</md-icon>']
+                        );
                     ?>
                 </div>
                 <?php
