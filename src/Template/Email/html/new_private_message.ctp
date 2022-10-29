@@ -2,7 +2,7 @@
 echo $this->Html->tag("p", "You have received a private message from <strong>$sender</strong>.");
 
 echo $this->Html->div(null,
-    "<strong>Title:</strong> $title",
+    "<strong>Title:</strong> ".h($title),
     array('style' => 'background:#666666;color:#ffffff;padding:10px;')
 );
 
