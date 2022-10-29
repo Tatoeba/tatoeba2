@@ -41,7 +41,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
             [ '/en/sentences_lists/show/', null, '/en/sentences_lists/index' ],
             [ '/en/sentences_lists/show/1', null, true ],
             [ '/en/sentences_lists/show/1', 'kazuki', true ],
-            [ '/en/sentences_lists/show/1/fra', 'kazuki', true ],
+            [ '/en/sentences_lists/show/1/und/fra', 'kazuki', true ],
             [ '/en/sentences_lists/show/3', null, '/en/sentences_lists/index' ], // private list
             [ '/en/sentences_lists/delete/1', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fdelete%2F1' ],
             [ '/en/sentences_lists/delete/1', 'contributor', '/en/sentences_lists/index' ],
@@ -226,5 +226,15 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'TranslationsLang' => 'eng',
         ]);
         $this->assertRedirect('/en/sentences_lists/index');
+    }
+
+    //test redirect /:id/langX maps to /:id/und/langX
+    public function testShowSentenceListRedirect()
+    {
+        $lists = TableRegistry::get('SentencesLists');
+        $lastId = $lists->find()->orderDesc('id')->first()->id;
+        $this->get("/en/sentences_lists/show/$lastId/cmn");
+        $this->assertResponseCode(301);
+        $this->assertRedirectContains("/en/sentences_lists/show/$lastId/und/cmn");
     }
 }

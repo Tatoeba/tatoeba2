@@ -19,7 +19,30 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 ?>
 
 <div id="annexe_content">
-    <?php $this->Lists->displayListsLinks(); ?>
+    <?php $this->Lists->displayFilterByLangDropdown($listId, $filterLanguage, $translationsLang); ?>
+    <?php
+    $this->Lists->displayTranslationsDropdown($listId,$filterLanguage, $translationsLang);
+    ?>
+    <?php
+    if ($permissions['canEdit']) {
+        ?>
+        <div class="section md-whiteframe-1dp" ng-controller="optionsCtrl">
+            <?php /* @translators: header text in the side bar of a list page (noun) */ ?>
+            <h2><?php echo __('Options'); ?></h2>
+            <ul class="sentencesListActions">
+                <?php
+                echo '<p>';
+                $this->Lists->displayVisibilityOption($listId, $listVisibility);
+                echo '</p>';
+                echo '<p>';
+                $this->Lists->displayEditableByOptions($listId, $list['editable_by']);
+                echo '</p>';
+                ?>
+            </ul>
+        </div>
+        <?php
+    }
+    ?>
 
     <div class="section md-whiteframe-1dp">
         <h2><?php echo __('About this list'); ?></h2>
@@ -53,34 +76,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         ?>
     </div>
 
-
-    <?php
-    if ($permissions['canEdit']) {
-        ?>
-        <div class="section md-whiteframe-1dp" ng-controller="optionsCtrl">
-            <?php /* @translators: header text in the side bar of a list page (noun) */ ?>
-            <h2><?php echo __('Options'); ?></h2>
-            <ul class="sentencesListActions">
-                <?php
-                echo '<p>';
-                $this->Lists->displayVisibilityOption($listId, $listVisibility);
-                echo '</p>';
-                echo '<p>';
-                $this->Lists->displayEditableByOptions($listId, $list['editable_by']);
-                echo '</p>';
-                ?>
-            </ul>
-        </div>
-        <?php
-    }
-    ?>
-
-    <div class="section md-whiteframe-1dp">
-    <h2><?php echo __('Actions'); ?></h2>
-    <?php
-    $this->Lists->displayTranslationsDropdown($listId, $translationsLang);
-    ?>
-    </div>
+    <?php $this->Lists->displayListsLinks(); ?>
 
 </div>
 
@@ -191,36 +187,49 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
     <md-content ng-cloak>
     <?php
-    if ($permissions['canAddSentences'] && count($sentencesInList) == 0) {
+    if (count($sentencesInList) == 0) {
         ?>
         <div class="no-sentence-info" ng-if="!vm.showForm && vm.sentences.length === 0">
-            <p><?= __('This list is empty.') ?></p>
-            <div class="hint">
+            <p>
                 <?php
-                echo format(
+                    echo format($filterLanguage=='und'?
                     __(
-                        'You can create new sentences directly in this list by clicking on the '.
-                        '{addSentenceButton} icon in the header of this section.', true
-                    ),
-                    ['addSentenceButton' => '<md-icon>add</md-icon>']
-                );
+                        'This list is empty.'
+                    ):__(
+                        'This list does not contain any sentences in {language}.'
+                    )
+                        ,
+                        ['language'=> $this->Languages->codeToNameAlone($filterLanguage)]
+                    );
                 ?>
-            </div>
-            <div class="hint">
+            </p>
+            <?php
+            if ($permissions['canAddSentences']){
+                ?>
+                <div class="hint">
+                    <?php
+                        echo format(
+                            __(
+                                'You can create new sentences directly in this list by clicking on the '.
+                                '{addSentenceButton} icon in the header of this section.', true
+                            ),
+                            ['addSentenceButton' => '<md-icon>add</md-icon>']
+                        );
+                    ?>
+                </div>
+                <div class="hint">
+                    <?php
+                        echo format(
+                            __('You can also add existing sentences to this list, from other pages, by clicking on '.
+                                'the {addToListButton} icon in the menu of the sentence.', true
+                            ),
+                            ['addToListButton' => '<md-icon>list</md-icon>']
+                        );
+                    ?>
+                </div>
                 <?php
-                echo format(
-                    __(
-                        'You can also add existing sentences to this list, from other pages, by clicking on '.
-                        'the {addToListButton} icon in the menu of the sentence.', true
-                    ),
-                    ['addToListButton' => '<md-icon>list</md-icon>']
-                );
-                ?>
-            </div>
+            }?>
         </div>
-        <?php
-    } else {
-        ?>
         <?php
     }
     ?>

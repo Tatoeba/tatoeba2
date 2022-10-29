@@ -145,8 +145,15 @@ class SentencesListsController extends AppController
      *
      * @return mixed
      */
-    public function show($id = null, $translationsLang = null)
+    public function show($id = null, $lang = null, $translationsLang = null)
     {
+        // if params are not in form /:id/:filterlang/:translationLang redirect to properly formed URI
+        // for backward compatability of existing links url in form /:id/langX redirected to /:id/und/langX
+        if(!$translationsLang && $lang){
+            return $this->redirect(['controller'=>'SentencesLists','action'=>'show',$id,'und',$lang],301);
+        }
+
+        $lang = $lang ??'und';
         if (empty($translationsLang)) {
             $translationsLang = 'none';
         }
@@ -169,8 +176,11 @@ class SentencesListsController extends AppController
         $this->loadModel('Sentences');
         $this->loadModel('SentencesSentencesLists');
 
-        $query = $this->SentencesSentencesLists->find()
-            ->where(['sentences_list_id' => $id])
+        $query = $this->SentencesSentencesLists->find();
+        if ($lang!="und") {
+            $query->where(['lang' => $lang == 'unknown' ? null : $lang]);
+        }
+        $query->where(['sentences_list_id' => $id])
             ->contain(['Sentences' => function (Query $q) use ($translationsLang) {
                 $q->find('filteredTranslations', ['translationLang' => $translationsLang])
                   ->find('hideFields')
@@ -184,12 +194,13 @@ class SentencesListsController extends AppController
             'order' => ['created' => 'DESC'],
         ];
         $sentencesInList = $this->paginate($query);
-
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('user', $list->user);
         $this->set('permissions', $list['Permissions']);
         $this->set('sentencesInList', $sentencesInList);
+        $this->set('listId', $id);
+        $this->set('filterLanguage', $lang);
 
         if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
             $this->render('show_angular');

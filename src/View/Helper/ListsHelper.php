@@ -297,24 +297,56 @@ class ListsHelper extends AppHelper
      *
      * @return void
      */
-    public function displayTranslationsDropdown($listId, $translationsLang = null) {
-        echo __('Show translations :') . ' ';
+    public function displayTranslationsDropdown($listId,$filterLanguage, $translationsLang = null) {
+        ?>
+        <div class="section md-whiteframe-1dp">
+            <h2><?php echo __('Show translations in:'); ?></h2>
+            <?php
+            $path = $this->Url->build(['action' => 'show', $listId]) . '/';
+            // TODO onSelectedLanguageChange should be defined in a separate js file
+            echo $this->_View->element(
+                'language_dropdown',
+                array(
+                    'name' => 'translationLangChoice',
+                    'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
+                    'initialSelection' => $translationsLang,
+                    'onSelectedLanguageChange' => "window.location.pathname = '$path' + '$filterLanguage' + '/'+language.code",
+                    'forceItemSelection' => true,
+                )
+            );
+            ?>
+            </div>
+        <?php
+    }
 
-        $path = $this->Url->build(['action' => 'show', $listId]) . '/';
-
-        // TODO onSelectedLanguageChange should be defined in a separate js file
-        echo $this->_View->element(
-            'language_dropdown',
-            array(
-                'name' => 'translationLangChoice',
-                'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
-                'initialSelection' => $translationsLang,
-                'onSelectedLanguageChange' => "window.location.pathname = '$path' + language.code",
-                'forceItemSelection' => true,
-            )
-        );
-
-
+    /**
+     * Display dropdown for selecting the language/s used to filter list
+     *
+     * @param [int] $listId 
+     * @param [string] $translationsLang Translation languages for each sentence
+     * @param [string] $filterLanguage Language whose sentences will only be displayed
+     * @return void
+     */
+    public function displayFilterByLangDropdown($listId, $filterLanguage, $translationsLang)
+    {
+        ?>
+        <div class="section md-whiteframe-1dp">
+            <h2><?php echo __('Sentences in:'); ?></h2>
+            <?php
+            $path = $this->Url->build(['action' => 'show', $listId]) . '/';
+            echo $this->_View->element(
+                'language_dropdown',
+                array(
+                    'name' => 'filterLanguageSelect',
+                    'languages' => $this->Languages->languagesArrayAlone(),
+                    'initialSelection' => $filterLanguage,
+                    'onSelectedLanguageChange' => "window.location.pathname = '$path' +language.code +'/'+ '$translationsLang'",
+                    'forceItemSelection' => true,
+                )
+            );
+            ?>
+        </div>
+    <?php
     }
 
     public function displayVisibilityOption($listId, $value)
