@@ -760,7 +760,6 @@ class LanguagesLib
             "syc",
             "phn",
             "jpa",
-            "bal",
             "hbo",
             "ajp",
             "ayl",
@@ -784,6 +783,7 @@ class LanguagesLib
             "swc",
             "rhg",
             "mfa",
+            "bal",
         );
 
         $lang = self::locale_To_Iso639_3($lang);
