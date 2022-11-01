@@ -115,7 +115,8 @@ echo $this->Form->create(
         </div>
     </div>
 
-    <div layout="row" layout-align="center end">
+    <div layout-gt-xs="row" layout-align-gt-xs="center end"
+         layout="column" layout-align="center center">
         <div layout="column">
             <?php /* @translators: search language field label in top search bar */ ?>
             <label for="SentenceFrom"><?= __('From') ?></label>

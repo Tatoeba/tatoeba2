@@ -690,6 +690,9 @@ class LanguagesLib
                 'swc' => __d('languages', 'Congo Swahili'),
                 'rhg' => __d('languages', 'Rohingya'),
                 'mfa' => __d('languages', 'Kelantan-Pattani Malay'),
+                'skr' => __d('languages', 'Saraiki'),
+                'nap' => __d('languages', 'Neapolitan'),
+
             );
         }
         return $languages;
@@ -757,12 +760,12 @@ class LanguagesLib
             "syc",
             "phn",
             "jpa",
-            "bal",
             "hbo",
             "ajp",
             "ayl",
             "sdh",
-            "ckb"
+            "ckb",
+            "skr",
         );
 
         $autoLangs = array(
@@ -780,6 +783,7 @@ class LanguagesLib
             "swc",
             "rhg",
             "mfa",
+            "bal",
         );
 
         $lang = self::locale_To_Iso639_3($lang);

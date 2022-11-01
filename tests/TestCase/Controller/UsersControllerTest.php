@@ -89,12 +89,12 @@ class UsersControllerTest extends IntegrationTestCase {
     }
 
     public function testSearch_found() {
-        $this->post('/en/users/search', [ 'username' => 'contributor' ]);
+        $this->post('/en/users/search', [ 'search_username' => 'contributor' ]);
         $this->assertRedirect('/en/users/show/4');
     }
 
     public function testSearch_notFound() {
-        $this->post('/en/users/search', [ 'username' => 'non existent' ]);
+        $this->post('/en/users/search', [ 'search_username' => 'non existent' ]);
         $this->assertRedirect('/en/users/all/');
     }
 

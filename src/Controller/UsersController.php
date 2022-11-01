@@ -413,7 +413,8 @@ class UsersController extends AppController
      */
     public function search()
     {
-        $userId = $this->Users->getIdFromUsername($this->request->getData('username'));
+        $username = $this->request->getData('search_username');
+        $userId = $this->Users->getIdFromUsername($username);
 
         if ($userId != null) {
             return $this->redirect(array("action" => "show", $userId));
@@ -421,7 +422,7 @@ class UsersController extends AppController
             $this->flash(
                 __(
                     'No user with this username: ', true
-                ).$this->request->getData('username'),
+                ).$username,
                 '/users/all/'
             );
         }

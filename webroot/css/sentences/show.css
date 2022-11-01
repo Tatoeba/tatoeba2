@@ -25,6 +25,11 @@
     border: 1px solid #f1f1f1;
     margin-top: -20px;
 }
+@media only screen and (max-width: 960px) {
+    .responsive .navigation {
+        margin-top: 0;
+    }
+}
 .navigation .md-errors-spacer {
     display: none;
 }
@@ -43,6 +48,23 @@
     margin: 20px 5px 0 5px;
 }
 
+/*
+ * Sentence content
+ */
+.sentence-and-translations,
+.sentences_set {
+    background: #fff;
+    margin: 20px 10px;
+}
+
+.sentences_set {
+    width: 610px;
+    margin: 20px auto;
+}
+
+.sentence .content.column {
+    width: 500px;
+}
 
 /* 
  * Tags
@@ -128,12 +150,12 @@
 }
 
 
-#annexe_content .sentence-lists .public-list {
+md-sidenav .sentence-lists .public-list {
     list-style-type: disc;
     margin: 5px 5px 5px 10px;
 }
 
-#annexe_content .sentence-lists .personal-list {
+md-sidenav .sentence-lists .personal-list {
     list-style-type: circle;
     margin: 5px 5px 5px 10px;
 }

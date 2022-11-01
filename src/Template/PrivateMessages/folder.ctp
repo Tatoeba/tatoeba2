@@ -138,7 +138,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                 <md-list-item class="md-2-line <?= $unread ?>" href="<?= $url ?>">
                     <?= $this->Members->image($user, array('class' => 'md-avatar')); ?>
                     <div class="md-list-item-text" layout="column">
-                        <h3><?= $this->safeForAngular($messageTitle) ?></h3>
+                        <h3><?= h($this->safeForAngular($messageTitle)) ?></h3>
                         <p>
                         <?php
                         echo $label;
