@@ -1,6 +1,6 @@
 <form layout="column" layout-margin ng-if="vm.visibility.sentence_form">
 
-<div ng-if="vm.sentence.audios && vm.sentence.audios.length > 0">
+<div ng-if="vm.sentence.audios && vm.sentence.audios.length > 0 && vm.sentence.transcriptions.length === 0">
     <p><?= __('You cannot edit this sentence because it has audio.'); ?>
 
     <div layout="row" layout-align="end center">
@@ -10,13 +10,13 @@
     </div>
 </div>
 
-<div name="sentenceForm" layout="column" ng-if="!(vm.sentence.audios && vm.sentence.audios.length > 0)">
+<div name="sentenceForm" layout="column" ng-if="!(vm.sentence.audios && vm.sentence.audios.length > 0 && vm.sentence.transcriptions.length === 0)">
 
     <div layout="row" layout-align="start center" ng-if="vm.sentence.permissions.canEdit">
         <md-input-container flex="50">
             <?php /* @translators: language field label on sentence addition form */ ?>
             <label><?= __('Language') ?></label>
-            <md-select ng-model="vm.sentence.lang">
+            <md-select ng-model="vm.sentence.lang" ng-disabled="<?php echo $hasAudio ?>">
                 <md-option value="unknown"><?= __('Other language') ?></md-option>
                 <md-option ng-repeat="(code, name) in vm.userLanguages" ng-value="code">
                     {{name}}
@@ -34,7 +34,7 @@
         <?php /* @translators: sentence text field label on new sentence addition form */ ?>
         <label><?= __('Sentence') ?></label>
         <textarea ng-attr-id="sentence-form-{{vm.sentence.id}}" ng-model="vm.sentence.text" 
-                  ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()"></textarea>
+                  ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()" ng-disabled="<?php echo $hasAudio ?>"></textarea>
     </md-input-container>
 
 

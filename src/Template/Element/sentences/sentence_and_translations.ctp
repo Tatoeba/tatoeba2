@@ -171,7 +171,7 @@ $sentenceUrl = $this->Url->build([
 
         echo $this->element('sentences/list_form');
 
-        echo $this->element('sentences/sentence_form');
+        echo $this->element('sentences/sentence_form',['hasAudio'=>isset($sentence->audios) && count($sentence->audios)]);
     }
     ?>
 
