@@ -261,6 +261,7 @@ class TagsHelper extends AppHelper
 
     private function _displayRemoveLink($tagId, $tagName, $sentenceId)
     {
+        $tagName = h($tagName);
         $removeTagFromSentenceAlt = format(
             __("Remove tag '{tagName}' from this sentence."),
             compact('tagName')
