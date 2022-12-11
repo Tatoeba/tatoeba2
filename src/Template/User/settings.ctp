@@ -325,13 +325,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
-                    ng-model="useNewDesign"
-                    ng-init="useNewDesign = <?= $useNewDesign ?>"
+                    ng-model="useOldDesign"
+                    ng-init="useOldDesign = <?= !$useNewDesign ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __(
-                    'Display sentences with the new design. '.
-                    'Note that some features are not yet implemented in this new design but are coming soon.'
+                    'Display sentences with the old design. '.
+                    'Note that the old design will be removed at some point.'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
