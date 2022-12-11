@@ -98,7 +98,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
         </md-progress-circular>
     </div>
 
-    <div id="sentencesAdded" layout-margin>
+    <div id="sentencesAdded" class="section md-whiteframe-1dp">
     <?php
     if (isset($sentence)) {
         $sentence['Translation'] = array();
