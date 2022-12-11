@@ -16,7 +16,7 @@
         <md-input-container flex="50">
             <?php /* @translators: language field label on sentence addition form */ ?>
             <label><?= __('Language') ?></label>
-            <md-select ng-model="vm.sentence.lang" ng-disabled="<?php echo $hasAudio ?>">
+            <md-select ng-model="vm.sentence.lang" ng-disabled="vm.sentence.audios && vm.sentence.audios.length > 0">
                 <md-option value="unknown"><?= __('Other language') ?></md-option>
                 <md-option ng-repeat="(code, name) in vm.userLanguages" ng-value="code">
                     {{name}}
@@ -30,11 +30,11 @@
         </div>
     </div>
 
-    <md-input-container ng-if="vm.sentence.permissions.canEdit">
+    <md-input-container >
         <?php /* @translators: sentence text field label on new sentence addition form */ ?>
         <label><?= __('Sentence') ?></label>
         <textarea ng-attr-id="sentence-form-{{vm.sentence.id}}" ng-model="vm.sentence.text" 
-                  ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()" ng-disabled="<?php echo $hasAudio ?>"></textarea>
+                  ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()" ng-disabled="!vm.sentence.permissions.canEdit || (vm.sentence.audios && vm.sentence.audios.length > 0)"></textarea>
     </md-input-container>
 
 
