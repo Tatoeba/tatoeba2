@@ -32,6 +32,8 @@ class SentencesSearchForm extends Form
         'unapproved' => 'no',
         'native' => '',
         'has_audio' => '',
+        'word_count' => '0',
+        'word_count_op' => 'ge',
         'trans_to' => '',
         'trans_link' => '',
         'trans_user' => '',
@@ -222,6 +224,17 @@ class SentencesSearchForm extends Form
         $native = $native === 'yes' ? true : null;
         $native = $this->search->filterByNativeSpeaker($native);
         return $native ? 'yes' : '';
+    }
+
+    protected function setDataWordCount(string $count) {
+        $count = ctype_digit($count) ? (int)$count : 0;
+        $count = $this->search->filterByWordCount($count);
+        return (string)$count;
+    }
+
+    protected function setDataWordCountOp(string $operator) {
+        $op = $this->search->filterByWordCountOperator($operator);
+        return $op ?? 'eq';
     }
 
     protected function setDataSort(string $sort) {
