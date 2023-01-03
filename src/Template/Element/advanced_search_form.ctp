@@ -95,6 +95,52 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
+            <div class="param word-count">
+                <div layout="row" layout-align="center">
+                    <label for="word_count_op" flex><?= __('Length:') ?></label>
+                    <label for="word_count">
+                    <?php
+                    $opField = $this->Form->select('word_count_op',
+                        [
+                            /* @translators: part of At least/At most/Exactly dropdown
+                               options in "Length" filter of search form */
+                            'ge' => __('At least'),
+                            /* @translators: part of At least/At most/Exactly dropdown
+                               options in "Length" filter of search form */
+                            'le' => __('At most'),
+                            /* @translators: part of At least/At most/Exactly dropdown
+                               options in "Length" filter of search form */
+                            'eq' => __('Exactly'),
+                        ],
+                        [
+                            'id' => 'word_count_op',
+                            'ng-model' => 'filters.word_count_op',
+                            'ng-model-init' => $word_count_op,
+                        ]
+                    );
+                    $numberField = $this->Form->number('word_count', [
+                        'id' => 'word_count',
+                        'min' => '0',
+                        'string-to-number' => '',
+                        'ng-model' => 'filters.word_count',
+                        'ng-model-init' => $word_count,
+                    ]);
+                    echo format(
+                        /* @translators: the value for the filter "Length" in the
+                           search form. {comparison} is the "At least/At most/Exactly"
+                           dropdown and {number} is the numeric field. You may change
+                           the order of the fields and add words around. */
+                        __('{comparison} {number} word(s)', true),
+                        ['comparison' => $opField, 'number' => $numberField]
+                    );
+                    ?>
+                    </label>
+                </div>
+                <div class="hint">
+                    <?= __('For languages without word boundaries, the number of characters is assumed instead.') ?>
+                </div>
+            </div>
+
             <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('user', array(
