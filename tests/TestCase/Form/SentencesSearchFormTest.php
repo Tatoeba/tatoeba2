@@ -33,6 +33,8 @@ class SentencesSearchFormTest extends TestCase
             'orphans' => 'no',
             'user' => '',
             'has_audio' => '',
+            'word_count' => '0',
+            'word_count_op' => 'ge',
             'tags' => '',
             'list' => '',
             'native' => '',
