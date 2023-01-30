@@ -226,15 +226,17 @@ class SentencesSearchForm extends Form
         return $native ? 'yes' : '';
     }
 
-    protected function setDataWordCount(string $count) {
+    protected function setDataWordCountAndOp(array &$data) {
+        $op = $data['word_count_op'];
+        $count = $data['word_count'];
         $count = ctype_digit($count) ? (int)$count : 0;
-        $count = $this->search->filterByWordCount($count);
-        return (string)$count;
-    }
 
-    protected function setDataWordCountOp(string $operator) {
-        $op = $this->search->filterByWordCountOperator($operator);
-        return $op ?? 'eq';
+        list($op, $count) = $this->search->filterByWordCount($op, $count);
+
+        $count = (string)($count ?? 0);
+        $op = $op ?? 'ge';
+        unset($data['word_count_op'], $data['word_count']);
+        return ['word_count_op' => $op, 'word_count' => $count];
     }
 
     protected function setDataSort(string $sort) {
@@ -312,7 +314,10 @@ class SentencesSearchForm extends Form
             return $k == 'trans_filter';
         });
 
-        /* Apply given criteria */
+        /* Apply word count filter */
+        $this->_data = $this->setDataWordCountAndOp($data) + $this->_data;
+
+        /* Apply other criteria */
         foreach ($data as $key => $value) {
             $keyCamel = Inflector::camelize($key);
             $setter = "setData$keyCamel";
