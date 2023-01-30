@@ -231,7 +231,9 @@ class SentencesSearchForm extends Form
         $count = $data['word_count'];
         $count = ctype_digit($count) ? (int)$count : 0;
 
-        list($op, $count) = $this->search->filterByWordCount($op, $count);
+        if ( !($op == 'ge' && $count == 0) ) {
+            list($op, $count) = $this->search->filterByWordCount($op, $count);
+        }
 
         $count = (string)($count ?? 0);
         $op = $op ?? 'ge';

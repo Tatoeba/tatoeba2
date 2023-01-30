@@ -126,6 +126,10 @@ class SentencesSearchFormTest extends TestCase
               [],
               ['word_count_op' => 'ge', 'word_count' => '0'] ],
 
+            [ ['word_count_op' => 'ge', 'word_count' => '0'],
+              ['filterByWordCount'],
+              ['word_count_op' => 'ge', 'word_count' => '0'] ],
+
             [ ['word_count_op' => 'eq', 'word_count' => '1'],
               ['filterByWordCount', 'eq', 1],
               ['word_count_op' => 'eq', 'word_count' => '1'] ],
