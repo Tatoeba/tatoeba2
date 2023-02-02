@@ -692,6 +692,7 @@ class LanguagesLib
                 'mfa' => __d('languages', 'Kelantan-Pattani Malay'),
                 'skr' => __d('languages', 'Saraiki'),
                 'nap' => __d('languages', 'Neapolitan'),
+                'syl' => __d('languages', 'Sylheti'),
 
             );
         }
