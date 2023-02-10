@@ -181,6 +181,10 @@ class AudiosTable extends Table
             ->select(['sentence_id' => 'sentence_id'])
             ->order(['id' => 'DESC']);
 
+        if (isset($options['lang'])) {
+            $subquery->where(['sentence_lang' => $options['lang']]);
+        }
+
         $query = $this->Sentences
             ->find()
             ->join([

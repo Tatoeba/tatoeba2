@@ -85,11 +85,12 @@ class AudioController extends AppController
     public function index($lang = null) {
         $this->loadModel('Audios');
 
+        $finder = ['sentences' => []];
         if (LanguagesLib::languageExists($lang)) {
-            $query = $query->where(compact('lang'));
+            $finder['sentences'] = compact('lang');
             $this->set(compact('lang'));
         }
-        $sentencesWithAudio = $this->paginate($this->Audios, ['finder' => 'sentences']);
+        $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
 
         $this->set(compact('sentencesWithAudio'));
         
