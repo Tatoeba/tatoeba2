@@ -353,4 +353,50 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(3, $result[2]->id);
         $this->assertEquals(1, count($result[2]->audios));
     }
+
+    function testSentencesFinder_lang() {
+        $result = $this->Audio->find('sentences', ['lang' => 'fra'])->all()->toList();
+
+        $this->assertEquals(2, count($result));
+
+        $this->assertEquals(12, $result[0]->id);
+        $this->assertEquals(1, count($result[0]->audios));
+
+        $this->assertEquals(4, $result[1]->id);
+        $this->assertEquals(2, count($result[1]->audios));
+    }
+
+    function testChangeSentenceLangChangesAudioSentenceLang() {
+        $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
+        $sentenceId = 3;
+
+        $before = $this->Audio->findBySentenceId($sentenceId)->all()->toList();
+        $disabledBefore = $DisabledAudios->findBySentenceId($sentenceId)->all()->toList();
+
+        $sentence = $this->Audio->Sentences->get($sentenceId);
+        $sentence->lang = 'hun';
+        $this->Audio->Sentences->save($sentence);
+
+        $after = $this->Audio->findBySentenceId($sentenceId)->all()->toList();
+        $disabledAfter = $DisabledAudios->findBySentenceId($sentenceId)->all()->toList();
+
+        $this->assertEquals(1, count($before));
+        $this->assertEquals(1, count($disabledBefore));
+        $this->assertEquals(1, count($after));
+        $this->assertEquals(1, count($disabledAfter));
+
+        $this->assertEquals('spa', $before[0]->sentence_lang);
+        $this->assertEquals('spa', $disabledBefore[0]->sentence_lang);
+        $this->assertEquals('hun', $after[0]->sentence_lang);
+        $this->assertEquals('hun', $disabledAfter[0]->sentence_lang);
+    }
+
+    function testCreatingAudioSetsSentenceLang() {
+        $sentence_id = 2;
+        $audio = $this->Audio->newEntity(compact('sentence_id'));
+        $this->Audio->assignAuthor($audio, 'contributor');
+        $result = $this->Audio->save($audio);
+
+        $this->assertEquals('cmn', $this->Audio->get($result->id)->sentence_lang);
+    }
 }

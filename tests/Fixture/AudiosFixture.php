@@ -11,6 +11,7 @@ class AudiosFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'sentence_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'sentence_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
         'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'external' => ['type' => 'json', 'length' => 500, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
@@ -33,6 +34,7 @@ class AudiosFixture extends TestFixture
             [
                 'id' => 1,
                 'sentence_id' => 3,
+                'sentence_lang' => 'spa',
                 'user_id' => 4,
                 'external' => NULL,
                 'created' => '2014-01-20 09:23:49',
@@ -41,6 +43,7 @@ class AudiosFixture extends TestFixture
             [
                 'id' => 2,
                 'sentence_id' => 4,
+                'sentence_lang' => 'fra',
                 'user_id' => NULL,
                 'external' => [ 'username' => 'Philippe Petit' ],
                 'created' => '2001-12-02 06:47:30',
@@ -49,6 +52,7 @@ class AudiosFixture extends TestFixture
             [
                 'id' => 3,
                 'sentence_id' => 12,
+                'sentence_lang' => 'fra',
                 'user_id' => NULL,
                 'external' => [ 'username' => 'Philippe Petit' ],
                 'created' => '2001-12-02 06:47:30',
@@ -61,6 +65,7 @@ class AudiosFixture extends TestFixture
             [
                 'id' => 4,
                 'sentence_id' => 3,
+                'sentence_lang' => 'spa',
                 'user_id' => 2,
                 'external' => NULL,
                 'created' => '2022-01-20 09:23:49',
@@ -70,6 +75,7 @@ class AudiosFixture extends TestFixture
             [
                 'id' => 5,
                 'sentence_id' => 4,
+                'sentence_lang' => 'fra',
                 'user_id' => 3,
                 'external' => NULL,
                 'created' => '2023-02-01 02:23:33',

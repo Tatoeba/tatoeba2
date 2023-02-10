@@ -94,6 +94,12 @@ class AudiosTable extends Table
     }
 
     public function beforeSave($event, $entity, $options = array()) {
+        if ($entity->isNew()) {
+            if ($entity->sentence_id) {
+                $sentence = $this->Sentences->get($entity->sentence_id);
+                $entity->sentence_lang = $sentence->lang;
+            }
+        }
         return $this->isAuthorConsistent($entity);
     }
 

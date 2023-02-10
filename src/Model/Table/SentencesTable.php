@@ -32,7 +32,7 @@ use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Model\Search;
 use App\Event\ContributionListener;
-use App\Event\LinksListener;
+use App\Event\DenormalizationListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
@@ -101,7 +101,7 @@ class SentencesTable extends Table
         $this->addBehavior('NativeFinder');
 
         $this->getEventManager()->on(new ContributionListener());
-        $this->getEventManager()->on(new LinksListener());
+        $this->getEventManager()->on(new DenormalizationListener());
     }
 
     public function validationDefault(Validator $validator)

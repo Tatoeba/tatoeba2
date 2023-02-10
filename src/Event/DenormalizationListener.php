@@ -21,18 +21,26 @@ namespace App\Event;
 use Cake\Event\EventListenerInterface;
 use Cake\ORM\TableRegistry;
 
-class LinksListener implements EventListenerInterface {
+class DenormalizationListener implements EventListenerInterface {
     public function implementedEvents() {
         return array(
-            'Model.Sentence.saved' => 'updateLanguageInLinksTable',
+            'Model.Sentence.saved' => 'updateDenormalizedLanguageFields',
         );
     }
 
-    public function updateLanguageInLinksTable($event, $entity, $options) {
-        $Links = TableRegistry::getTableLocator()->get('Links');
+    public function updateDenormalizedLanguageFields($event, $entity, $options) {
         $sentence = $event->getData('data');
         if ($sentence->id && $sentence->isDirty('lang')) {
+            $Links = TableRegistry::getTableLocator()->get('Links');
             $Links->updateLanguage($sentence->id, $sentence->lang);
+
+            foreach (['Audios', 'DisabledAudios'] as $tableName) {
+                $table = TableRegistry::getTableLocator()->get($tableName);
+                $table->updateAll(
+                    ['sentence_lang' => $sentence->lang],
+                    ['sentence_id'   => $sentence->id]
+                );
+            }
         }
     }
 }
