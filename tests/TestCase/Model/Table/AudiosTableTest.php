@@ -338,4 +338,19 @@ class AudiosTableTest extends TestCase {
         $this->assertNull($audio->user_id);
         $this->assertEquals('Barack Obama', $audio->external['username']);
     }
+
+    function testSentencesFinder() {
+        $result = $this->Audio->find('sentences')->all()->toList();
+
+        $this->assertEquals(3, count($result));
+
+        $this->assertEquals(12, $result[0]->id);
+        $this->assertEquals(1, count($result[0]->audios));
+
+        $this->assertEquals(4, $result[1]->id);
+        $this->assertEquals(2, count($result[1]->audios));
+
+        $this->assertEquals(3, $result[2]->id);
+        $this->assertEquals(1, count($result[2]->audios));
+    }
 }

@@ -20,6 +20,7 @@ namespace App\Model\Table;
 
 use App\Event\StatsListener;
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -168,6 +169,31 @@ class AudiosTable extends Table
         return $this->find()
             ->where(['user_id' => $userId])
             ->count();
+    }
+
+    /**
+     * Custom finder for optimized pagination of sentences having audio
+     */
+    public function findSentences(Query $query, array $options) {
+        $subquery = $query
+            ->applyOptions($options)
+            ->distinct()
+            ->select(['sentence_id' => 'sentence_id'])
+            ->order(['id' => 'DESC']);
+
+        $query = $this->Sentences
+            ->find()
+            ->join([
+                'Audios' => [
+                    'table' => $subquery,
+                    'type' => 'INNER',
+                    'conditions' => 'Sentences.id = Audios.sentence_id'
+                ],
+            ])
+            ->contain(['Audios' => ['Users' => ['fields' => ['username']]]])
+            ->contain('Transcriptions');
+
+        return $query;
     }
 
     /**

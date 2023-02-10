@@ -83,24 +83,14 @@ class AudioController extends AppController
     }
 
     public function index($lang = null) {
-        $this->loadModel('Sentences');
-        $query = $this->Sentences
-            ->find()
-            ->distinct('Sentences.id')
-            ->innerJoinWith('Audios', function ($q) {
-                return $q->contain('Users', function ($q) {
-                             return $q->select(['username']);
-                         });
-            })
-            ->contain('Audios')
-            ->contain('Transcriptions')
-            ->order(['Audios.id' => 'DESC']);
+        $this->loadModel('Audios');
 
         if (LanguagesLib::languageExists($lang)) {
             $query = $query->where(compact('lang'));
             $this->set(compact('lang'));
         }
-        $sentencesWithAudio = $this->paginate($query);
+        $sentencesWithAudio = $this->paginate($this->Audios, ['finder' => 'sentences']);
+
         $this->set(compact('sentencesWithAudio'));
         
         $this->loadModel('Languages');
