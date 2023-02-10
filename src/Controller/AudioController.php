@@ -94,7 +94,7 @@ class AudioController extends AppController
             })
             ->contain('Audios')
             ->contain('Transcriptions')
-            ->order(['Audios.modified' => 'DESC']);
+            ->order(['Audios.id' => 'DESC']);
 
         if (LanguagesLib::languageExists($lang)) {
             $query = $query->where(compact('lang'));
