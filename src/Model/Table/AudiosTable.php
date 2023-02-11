@@ -210,7 +210,10 @@ class AudiosTable extends Table
                 }
                 return $q->contain(['Users' => ['fields' => ['username']]]);
             })
-            ->contain('Transcriptions');
+            ->contain('Transcriptions')
+            ->counter(function ($query) use ($subquery) {
+                return $subquery->count();
+            });
 
         return $query;
     }
