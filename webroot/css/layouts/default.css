@@ -580,6 +580,14 @@ html[dir="rtl"] .search-bar-extra a:before {
     }
 }
 
+.md-sidenav-right {
+    position: fixed;
+}
+
+.md-sidenav-backdrop {
+    position: fixed;
+}
+
 /*
  * Footer
  */

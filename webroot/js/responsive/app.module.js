@@ -67,7 +67,6 @@
         })
         .controller('SidenavController', ['$scope', '$mdSidenav', '$window', function($scope, $mdSidenav, $window) {
             $scope.toggle = function(id) {
-                $window.scrollTo(0, 0);
                 $mdSidenav(id).toggle();
             };
         }])
