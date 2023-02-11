@@ -20,6 +20,7 @@ namespace App\Model\Table;
 
 use App\Event\StatsListener;
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -93,6 +94,12 @@ class AudiosTable extends Table
     }
 
     public function beforeSave($event, $entity, $options = array()) {
+        if ($entity->isNew()) {
+            if ($entity->sentence_id) {
+                $sentence = $this->Sentences->get($entity->sentence_id);
+                $entity->sentence_lang = $sentence->lang;
+            }
+        }
         return $this->isAuthorConsistent($entity);
     }
 
@@ -168,6 +175,44 @@ class AudiosTable extends Table
         return $this->find()
             ->where(['user_id' => $userId])
             ->count();
+    }
+
+    /**
+     * Custom finder for optimized pagination of sentences having audio
+     */
+    public function findSentences(Query $query, array $options) {
+        $subquery = $query
+            ->applyOptions($options)
+            ->distinct()
+            ->select(['sentence_id' => 'sentence_id'])
+            ->order(['id' => 'DESC']);
+
+        if (isset($options['lang'])) {
+            $subquery->where(['sentence_lang' => $options['lang']]);
+        }
+
+        if (isset($options['user_id'])) {
+            $subquery->where(['user_id' => $options['user_id']]);
+        }
+
+        $query = $this->Sentences
+            ->find()
+            ->join([
+                'Audios' => [
+                    'table' => $subquery,
+                    'type' => 'INNER',
+                    'conditions' => 'Sentences.id = Audios.sentence_id'
+                ],
+            ])
+            ->contain('Audios', function ($q) use ($options) {
+                if (isset($options['user_id'])) {
+                    $q->where(['Audios.user_id' => $options['user_id']]);
+                }
+                return $q->contain(['Users' => ['fields' => ['username']]]);
+            })
+            ->contain('Transcriptions');
+
+        return $query;
     }
 
     /**
