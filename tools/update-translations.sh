@@ -9,6 +9,12 @@ check_prerequistes() {
     exit 1
   fi
 
+  if ! tx help | grep -q "A new cli application"; then
+    echo "You need to install the new transifex client manually."
+    echo "Please check out the instructions here: https://github.com/Tatoeba/tatoeba2/wiki/Updating-your-VM-to-the-new-transifex-client"
+    exit 1
+  fi
+
   rcfile="$HOME/.transifexrc"
   if [ ! -f "$rcfile" ]; then
     echo "Creating $rcfile..."
@@ -30,14 +36,6 @@ pull_translations() {
   echo "Pulling translations from Transifex..."
 
   tx_params="-f -a"
-  tx_version=$(tx --version | cut -f1 -d, | tr -d .)
-  if [ $tx_version -ge 0133 ]; then
-    tx_params="--no-interactive $tx_params"
-  fi
-  if [ $tx_version -ge 0132 ]; then
-    tx_params="--parallel $tx_params"
-  fi
-
   if [ "$1" -eq 1 ]; then
     tx pull $tx_params
   else
