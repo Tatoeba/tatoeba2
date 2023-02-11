@@ -191,6 +191,10 @@ class AudiosTable extends Table
             $subquery->where(['sentence_lang' => $options['lang']]);
         }
 
+        if (isset($options['user_id'])) {
+            $subquery->where(['user_id' => $options['user_id']]);
+        }
+
         $query = $this->Sentences
             ->find()
             ->join([
@@ -200,7 +204,12 @@ class AudiosTable extends Table
                     'conditions' => 'Sentences.id = Audios.sentence_id'
                 ],
             ])
-            ->contain(['Audios' => ['Users' => ['fields' => ['username']]]])
+            ->contain('Audios', function ($q) use ($options) {
+                if (isset($options['user_id'])) {
+                    $q->where(['Audios.user_id' => $options['user_id']]);
+                }
+                return $q->contain(['Users' => ['fields' => ['username']]]);
+            })
             ->contain('Transcriptions');
 
         return $query;
