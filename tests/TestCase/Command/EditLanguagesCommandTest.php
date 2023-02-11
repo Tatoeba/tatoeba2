@@ -14,6 +14,7 @@ class EditLanguagesCommandTest extends TestCase
 
     public $fixtures = [
         'app.audios',
+        'app.disabled_audios',
         'app.contributions',
         'app.languages',
         'app.links',
