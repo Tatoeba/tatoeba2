@@ -55,6 +55,10 @@
 #main_content{
     margin-right:0;
 }
+.sentence{
+    display: flex;
+}
 .sentence .content.column {
     width: 500px;
+    flex:1
 }
