@@ -154,7 +154,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     );
 
     if ($permissions['canAddSentences']) {
-        echo $this->Html->div('edit-list-name', $editImage);
+        if($permissions['canEdit']){
+            echo $this->Html->div('edit-list-name', $editImage);
+        }
         $this->Lists->displayAddSentenceForm($listId);
     }
     ?>
