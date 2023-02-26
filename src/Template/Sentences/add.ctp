@@ -26,6 +26,10 @@
  */
 use App\Model\CurrentUser;
 
+if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+    $this->set('isResponsive', true);
+}
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Add sentences')));
 
 $filteredLanguage = $this->request->getSession()->read('vocabulary_requests_filtered_lang');
@@ -37,77 +41,109 @@ $vocabularyUrl = $this->Url->build(array(
 ));
 ?>
 
-<div id="annexe_content">
-    <div class="section md-whiteframe-1dp">
-    <?php /* @translators: header text in side bar of the "Add sentences" page */ ?>
-    <h2><?php echo __('Important'); ?></h2>
-    <p>
-    <?php
-    echo __(
-        "<strong>We like quality.</strong> Every detail matters. ".
-        "Please do not forget punctuation and capital letters."
-    );
-    ?>
-    </p>
+<!--start layout -->
 
-    <p>
-    <?php
-    echo __(
-        "<strong>We like diversity.</strong> Unleash your creativity! ".
-        "Avoid using the same words, names, topics, or patterns over and over again."
-    );
-    ?>
-    </p>
+<!-- start title bar -->
+<md-toolbar class="md-hue-2" ng-cloak ng-controller="SidenavController">
+    <div class="md-toolbar-tools">
+        <h2 flex=""><?php echo __('Add new sentences'); ?></h2>
 
-    <p>
-    <?php
-    echo __(
-        "<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, ".
-        "or at least make sure they are not copyrighted and are compatible with the CC BY license. ".
-        "Otherwise we cannot use them."
-    );
-    ?>
-    </p>
+        <md-button ng-click="toggle('sidenav')" hide-gt-sm>
+            <md-icon>info</md-icon>
+            <?= __('Important') ?>
+        </md-button>
     </div>
-</div>
+</md-toolbar>
+<!-- end title bar -->
 
-<div id="main_content">
+<!-- start content -->
+<section layout="row" ng-cloak>
+    <md-content id="main_content" class="md-whiteframe-1dp" flex>
+        <!-- start add sentence form -->
+        <?php
+        if (CurrentUser::getSetting('use_new_design')) {
+            echo $this->element('sentences/add_sentences_angular');
+        } else {
+            echo $this->element('sentences/add_sentences_jquery');
+        }
+        ?>
+        <!-- end add sentence section -->
 
-    <?php
-    if (CurrentUser::getSetting('use_new_design')) {
-        echo $this->element('sentences/add_sentences_angular');
-    } else {
-        echo $this->element('sentences/add_sentences_jquery');
-    }
-    ?>
+        <!-- start inspiration suggestions -->
+        <section >
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <h2><?php echo __('Not inspired?'); ?></h2>
+                </div>
+            </md-toolbar>
 
-    <section>
-        <md-toolbar class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <h2><?php echo __('Not inspired?'); ?></h2>
-            </div>
-        </md-toolbar>
-
-        <div layout="row" ng-cloak>
-            <div layout="column" layout-align="center center" class="section md-whiteframe-1dp" flex="50">
-                <?= __('Check the vocabulary requests for which there are very few or no sentences yet.'); ?>
-                <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
-                    <?= __('Sentences wanted') ?>
-                    <md-icon>keyboard_arrow_right</md-icon>
-                </md-button>
-            </div>
-
-            <div layout="column" layout-align="center center" class="section md-whiteframe-1dp" flex="50">
-                <?= __('Tatominer provides a list of the most searched words for which there are very few or no sentences yet.'); ?>
-                <md-button class="md-primary" href="https://tatominer.netlify.app/" target="_blank">
-                    <?= __('Go to Tatominer') ?>
-                    <md-icon>keyboard_arrow_right</md-icon>
-                </md-button>
-                <div class="hint" layout="row" layout-align="center center">
-                    <md-icon>info</md-icon>
-                    <div><?= __('Not all languages are supported yet.'); ?></div>
+            <div layout="column" layout-gt-sm="row" ng-cloak>
+                <div layout="column" layout-align="center center" class="section" flex="50" style="margin-bottom:0">
+                    <?= __('Check the vocabulary requests for which there are very few or no sentences yet.'); ?>
+                    <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
+                        <?= __('Sentences wanted') ?>
+                        <md-icon>keyboard_arrow_right</md-icon>
+                    </md-button>
+                </div>
+                <md-divider vertical layout-gt-sm></md-divider>
+                <div layout="column" layout-align="center center" class="section" flex="50" style="margin-bottom:0">
+                    <?= __('Tatominer provides a list of the most searched words for which there are very few or no sentences yet.'); ?>
+                    <md-button class="md-primary" href="https://tatominer.netlify.app/" target="_blank">
+                        <?= __('Go to Tatominer') ?>
+                        <md-icon>keyboard_arrow_right</md-icon>
+                    </md-button>
+                    <div class="hint" layout="row" layout-align="center center">
+                        <md-icon>info</md-icon>
+                        <div><?= __('Not all languages are supported yet.'); ?></div>
+                    </div>
                 </div>
             </div>
+        </section>
+        <!-- end inspiration suggestions -->
+    </md-content>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-1dp"
+            fullscreen
+            md-component-id="sidenav"
+            md-disable-scroll-target="body"
+            md-is-locked-open="$mdMedia('gt-sm')">
+        <md-toolbar>
+            <div class="md-toolbar-tools" ng-controller="SidenavController">
+                <h2 flex class="flex"><?php echo __('Important'); ?></h2>
+                <md-button class="close md-icon-button" ng-click="toggle('sidenav')" hide-gt-sm>
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div class="section">
+            <?php
+            echo __(
+                "<strong>We like quality.</strong> Every detail matters. ".
+                "Please do not forget punctuation and capital letters."
+            );
+            ?>
+            </p>
+
+            <p>
+            <?php
+            echo __(
+                "<strong>We like diversity.</strong> Unleash your creativity! ".
+                "Avoid using the same words, names, topics, or patterns over and over again."
+            );
+            ?>
+            </p>
+
+            <p>
+            <?php
+            echo __(
+                "<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, ".
+                "or at least make sure they are not copyrighted and are compatible with the CC BY license. ".
+                "Otherwise we cannot use them."
+            );
+            ?>
+            </p>
         </div>
-    </section>
-</div>
+    </md-sidenav>
+</section>
+
+
