@@ -61,13 +61,13 @@ msgstr "Změna licence již probíhá."
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr "Věty č.{firstNumber} a č.{secondNumber} jsou teď navzájem přímými překlady."
+msgstr "Věty #{firstNumber} a #{secondNumber} jsou teď navzájem přímými překlady."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr "Věty č.{firstNumber} a č.{secondNumber} už nejsou navzájem přímými překlady."
+msgstr "Věty #{firstNumber} a #{secondNumber} už nejsou navzájem přímými překlady."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
@@ -106,11 +106,11 @@ msgstr "Úpravy vašeho komentáře byly uloženy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L260
 msgid "The sentence #{id} has been deleted."
-msgstr "Věta č. {id} byla smazána."
+msgstr "Věta #{id} byla smazána."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L266
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr "Chyba: věta č. {id} nemohla být smazána."
+msgstr "Chyba: věta #{id} nemohla být smazána."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L870
 msgid "You are not allowed to change the license of this sentence."
@@ -2055,7 +2055,7 @@ msgstr "Jakýkoliv jazyk"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L78
 msgid "Show sentence #: "
-msgstr "Zobrazit větu č.:"
+msgstr "Zobrazit větu #:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L119
@@ -2227,7 +2227,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L33
 msgid "Existing sentence #{number} has been added as a translation."
-msgstr "Stávající věta č. {number} byla přiřazena jako překlad."
+msgstr "Stávající věta #{number} byla přiřazena jako překlad."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L43
 msgid "Edit this translation"
@@ -3100,7 +3100,7 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr "Pokrývá spoje mezi větami. {sampleLinkLine} znamená, že věta č. 77 je překladem věty č. 1. Zahrnuty jsou i vzájemné spoje, takže soubor bude obsahovat i řádky říkající {sampleLinkLineReversed}."
+msgstr "Pokrývá spoje mezi větami. {sampleLinkLine} znamená, že věta #77 je překladem věty #1. Zahrnuty jsou i vzájemné spoje, takže soubor bude obsahovat i řádky říkající {sampleLinkLineReversed}."
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
@@ -3114,7 +3114,7 @@ msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr "Obsahue seznam <a href=\"{url}\">štítků</a> náležících jednotlivým větám. {sampleTagLine} znamená, že k větě č. 381279 byl přidán štítek „proverb“."
+msgstr "Obsahue seznam <a href=\"{url}\">štítků</a> náležících jednotlivým větám. {sampleTagLine} znamená, že k větě #381279 byl přidán štítek „proverb“."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L384
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
@@ -3129,7 +3129,7 @@ msgstr "Věty v seznamech"
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr "Označuje věty, které jsou zahrnuty v seznamech. {sampleListLine} znamená, že věta č. 381279 je zahrnuta v seznamu s identifikačním číslem 13."
+msgstr "Označuje věty, které jsou zahrnuty v seznamech. {sampleListLine} znamená, že věta #381279 je zahrnuta v seznamu s identifikačním číslem 13."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L428
@@ -3591,7 +3591,7 @@ msgstr "Pro překládání či zanechání komentáře klikněte na větu nahoř
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L80
 msgid "Sentence #{number}"
-msgstr "Věta č. {number}"
+msgstr "Věta #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
@@ -3599,7 +3599,7 @@ msgstr "Upravit komentář"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L27
 msgid "Edit Comment on Sentence #{number}"
-msgstr "Upravit komentář u věty č. {number}"
+msgstr "Upravit komentář u věty #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
@@ -4862,7 +4862,7 @@ msgstr "Zprávy uživatele {user} na Zdi (celkem {n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L39
 msgid "Thread #{number}"
-msgstr "Téma č. {number}"
+msgstr "Téma #{number}"
 
 #. header text the side bar of the page of a Wall post
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L47
