@@ -137,10 +137,7 @@ $this->Languages->localizedAsort($countries);
         'minYear' => date('Y') - 100,
         'maxYear' => date('Y') - 3
     ]);
-    echo $this->Form->month('birthday', [
-        'empty' => true,
-        'value' => $month
-    ]);
+    echo $this->Form->select('birthday[month]', $this->Date->months(), ['empty' => true, 'value' => $month]);
     echo $this->Form->day('birthday', [
         'empty' => true,
         'value' => $day
