@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 18:22+0000\n"
+"POT-Creation-Date: 2023-03-11 20:00+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Martijn Dekker <mcdutchie@hotmail.com>, 2022\n"
 "Language-Team: Interlingua (https://www.transifex.com/tatoeba/teams/28284/ia/)\n"
@@ -30,11 +30,11 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Invalid file “{file}” ignored."
 msgstr "Le file invalide “{file}” ha essite ignorate."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -42,16 +42,16 @@ msgstr ""
 "Impossibile assignar audio a “{author}” pro le phrase {sentenceId} in le "
 "base de datos. Assecura te que le nomine de usator es valide."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Impossibile crear le directorio “{dir}” pro importar le file “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Impossibile copiar le “{file}” al directorio “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

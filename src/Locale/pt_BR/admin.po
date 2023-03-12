@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 18:22+0000\n"
+"POT-Creation-Date: 2023-03-11 20:00+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/tatoeba/teams/28284/pt_BR/)\n"
@@ -35,11 +35,11 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "Todas as frases de {username}foram marcadas como não-confiáveis."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Invalid file “{file}” ignored."
 msgstr "Arquivo inválido “{file}” ignorado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -48,15 +48,15 @@ msgstr ""
 "dentro do banco de dados. Certifique-se de que este é um nome de usuário "
 "válido."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "Falha ao criar o diretório “{dir}” para importar o arquivo “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Falha ao copiar o arquivo “{file}” para o diretório “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

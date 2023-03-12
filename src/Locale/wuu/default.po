@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 18:22+0000\n"
+"POT-Creation-Date: 2023-03-11 20:00+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Glossa Yao, 2021\n"
 "Language-Team: Chinese (Wu) (http://www.transifex.com/tatoeba/tatoeba_website/language/wuu/)\n"
@@ -32,11 +32,11 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "个的么使用额宁叫{username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L154
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L131
 msgid "Your audio settings have been saved."
 msgstr "侬额音频设置已经拔保存咾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L546
 msgid ""
@@ -859,12 +859,12 @@ msgid ""
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L202
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L92
 msgid "Go to Tatominer"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L207
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L97
 msgid "Not all languages are supported yet."
 msgstr ""
 
@@ -943,7 +943,7 @@ msgstr "挠搿字段留空来用侬额个宁资料页面。"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L168
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L166
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L163
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L353
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L384
@@ -982,8 +982,8 @@ msgid "Day"
 msgstr "日"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L91
 msgid "Sentences added"
 msgstr "添加句子"
 
@@ -1822,7 +1822,7 @@ msgstr "保存更改"
 #. / table header text in Languages of members page
 #. / language field label in new vocabulary request form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L25
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L18
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L75
@@ -1842,7 +1842,7 @@ msgstr "自动检测"
 #. / licence field label on new sentence addition form
 #. / field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L87
 msgid "License"
 msgstr "许可证"
@@ -1851,7 +1851,7 @@ msgstr "许可证"
 #. / sentence text field label on new sentence addition form
 #. / sentence text field label of sentence addition form on vocabulary page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L54
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L127
 msgid "Sentence"
@@ -1861,12 +1861,7 @@ msgstr "句子"
 msgid "Add sentence"
 msgstr "添加句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L7
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L10
-msgid "Add new sentences"
-msgstr "添加新额句子"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L24
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L18
 msgid "No sentences added yet."
 msgstr "还么加句子。"
 
@@ -1877,7 +1872,7 @@ msgstr "还么加句子。"
 #. / submit button to add a sentence to a list from the sentence block
 #. / submit button of sentence edition form
 #. / submit button of transcription edition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L149
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L491
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L597
@@ -2383,7 +2378,7 @@ msgstr "吾要出力"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L132
 msgid "Add sentences"
 msgstr "添加句子"
@@ -3582,49 +3577,53 @@ msgstr "{user}么来伊额句子浪相发评论"
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
 msgstr "拨{user}句子额评论（总共{n}条）"
 
-#. header text in side bar of the "Add sentences" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L49
+msgid "Add new sentences"
+msgstr "添加新额句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L112
 msgid "Important"
 msgstr "当心"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L47
-msgid ""
-"<strong>We like quality.</strong> Every detail matters. Please do not forget"
-" punctuation and capital letters."
-msgstr "<strong>阿拉欢喜品质。</strong>每额细节侪邪气重要。伐要忘记标点帮大写。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L56
-msgid ""
-"<strong>We like diversity.</strong> Unleash your creativity! Avoid using the"
-" same words, names, topics, or patterns over and over again."
-msgstr "<strong>阿拉欢喜多样。</strong>释放侬额创造力！伐要一遍遍额用同样额词，名字，主题或者模式。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L65
-msgid ""
-"<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, or "
-"at least make sure they are not copyrighted and are compatible with the CC "
-"BY license. Otherwise we cannot use them."
-msgstr "<strong>阿拉欢喜分享数据。</strong>伐要复制粘贴句子，假使必须搿能样子，啊要确认句子符合CC BY许可证标准，或者伐受版权限制。否则阿拉伐能用。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L76
 msgid "Not inspired?"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L82
 msgid ""
 "Check the vocabulary requests for which there are very few or no sentences "
 "yet."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L84
 msgid "Sentences wanted"
 msgstr "需要额句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L90
 msgid ""
 "Tatominer provides a list of the most searched words for which there are "
 "very few or no sentences yet."
 msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L121
+msgid ""
+"<strong>We like quality.</strong> Every detail matters. Please do not forget"
+" punctuation and capital letters."
+msgstr "<strong>阿拉欢喜品质。</strong>每额细节侪邪气重要。伐要忘记标点帮大写。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L130
+msgid ""
+"<strong>We like diversity.</strong> Unleash your creativity! Avoid using the"
+" same words, names, topics, or patterns over and over again."
+msgstr "<strong>阿拉欢喜多样。</strong>释放侬额创造力！伐要一遍遍额用同样额词，名字，主题或者模式。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L139
+msgid ""
+"<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, or "
+"at least make sure they are not copyrighted and are compatible with the CC "
+"BY license. Otherwise we cannot use them."
+msgstr "<strong>阿拉欢喜分享数据。</strong>伐要复制粘贴句子，假使必须搿能样子，啊要确认句子符合CC BY许可证标准，或者伐受版权限制。否则阿拉伐能用。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L6
 msgid "Language index"
@@ -4316,13 +4315,13 @@ msgid "Birthday"
 msgstr "生日"
 
 #. label for user's homepage in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L283
 msgid "Homepage"
 msgstr "主页"
 
 #. label for user's description in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L154
 msgid "Description"
 msgstr "描述"
 
@@ -4526,9 +4525,9 @@ msgstr "来所有者来伊个宁资料里向讲伊拉来句子闲话方面有母
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L333
 msgid ""
-"Display sentences with the new design. Note that some features are not yet "
-"implemented in this new design but are coming soon."
-msgstr "用新设计显示句子。 注意，搿新设计里向还么实现一些功能，伐过马上就来了。"
+"Display sentences with the old design. Note that the old design will be "
+"removed at some point."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L364
 msgid "Change email address"
@@ -5413,11 +5412,11 @@ msgstr "查看全部标签"
 msgid "Added by {username}, {date}"
 msgstr "{date}{username}添加"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."
 msgstr "从搿则句子里向删特'{tagName}'标签"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L301
 msgid "Remove tag from sentence"
 msgstr "删除标签"
 

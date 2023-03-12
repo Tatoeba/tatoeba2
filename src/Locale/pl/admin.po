@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 18:22+0000\n"
+"POT-Creation-Date: 2023-03-11 20:00+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/tatoeba/teams/28284/pl/)\n"
@@ -37,11 +37,11 @@ msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Wszystkie zdania dodane przez {username} zostały oznaczone jako nierzetelne."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Invalid file “{file}” ignored."
 msgstr "Nieprawidłowy plik “{file}” został zignorowany."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -49,16 +49,16 @@ msgstr ""
 "Nie jest możliwe przypisanie dźwięku “{author}” dla zdania {sentenceId} w "
 "tej bazie danych. Upewnij się, że jest to prawidłowa nazwa użytkownika."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Nie udało się stworzyć katalogu “{dir}” aby zaimportować plik “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Nie udało się skopiować pliku “{file}” do katalogu “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

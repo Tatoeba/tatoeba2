@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 18:22+0000\n"
+"POT-Creation-Date: 2023-03-11 20:00+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Mathias, 2022\n"
 "Language-Team: Danish (https://www.transifex.com/tatoeba/teams/28284/da/)\n"
@@ -30,11 +30,11 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Invalid file “{file}” ignored."
 msgstr "Ugyldig fil \"{file}\" ignoreret."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -42,15 +42,15 @@ msgstr ""
 "Lyden kan ikke tildeles \"{author}\" for sætning {sentenceId} inde i "
 "databasen. Sørg for at brugernavnet er korrekt."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "Mappen \"{dir}\" kunne ikke oprettes til importfilen \"{file}\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Filen \"{file}\" kunne ikke kopieres til mappen \"{dir}\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

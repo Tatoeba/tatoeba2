@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 18:22+0000\n"
+"POT-Creation-Date: 2023-03-11 20:00+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2022\n"
 "Language-Team: Breton (https://www.transifex.com/tatoeba/teams/28284/br/)\n"
@@ -33,11 +33,11 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "Merkañ an holl frazennoù ouzhpennet gant {username} evel nann-fizius."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Invalid file “{file}” ignored."
 msgstr "Restr direizh “{file}” laosket a-gostez."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -45,18 +45,18 @@ msgstr ""
 "N'hellerk et asignañ an aodio da “{author}\" evit ar frazenn {sentenceId} en"
 " diaz-roadennoù. Bezit sur ez eo un implijer mat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "C'hwitet ez eus bet war krouidiegezh ar c'havlec'h “{dir}” evit enporzhiañ "
 "ar restr “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr ""
 "C'hwitet ez eus bet war eilañ ar restr “{file}” betek ar c'havlec'h “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

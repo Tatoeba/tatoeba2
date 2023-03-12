@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 18:22+0000\n"
+"POT-Creation-Date: 2023-03-11 20:00+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Naguman Baloch, 2022\n"
 "Language-Team: Balochi (https://www.transifex.com/tatoeba/teams/28284/bal/)\n"
@@ -35,11 +35,11 @@ msgstr ""
 "{username}\n"
 "ءِ گیش کرتگیں درستیں گالرد بے بروسہ ءِ ھساب ءَ نشان جنگ بیت انت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Invalid file “{file}” ignored."
 msgstr "نابَرجمیں فائل ’’{file}‘‘ ڈالچار کنگ بوت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -47,15 +47,15 @@ msgstr ""
 "ڈیٹابیس ءِ تہا گالرد{sentenceId}ءِ ھاترا {author}ءَ را تواربنددیگ بوت نہ "
 "کنت۔ پکا بکن کہ اے یک بَرجمیں کارمرزی نامے۔    "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "فائل {file}ءَ را مانگیل کنگ ءِ ھاترا {dir}ءِ جوڑ کنگ بے سوب بوت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "فائل {file}ءَ ماں {dir} نامدان ءَ نکل بے سوب بوت۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
