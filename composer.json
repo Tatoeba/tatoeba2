@@ -15,7 +15,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7|^6.0",
-        "cakephp/bake": "1.*"
+        "cakephp/bake": "1.*",
+        "helmich/phpunit-json-assert": "v2"
     },
     "autoload": {
         "psr-4": {
@@ -30,5 +31,10 @@
     },
     "scripts": {
         "test": "phpunit --colors=always"
+    },
+    "config": {
+        "allow-plugins": {
+            "cakephp/plugin-installer": true
+        }
     }
 }
