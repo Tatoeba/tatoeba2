@@ -49,6 +49,22 @@ use App\Middleware\LanguageSelectorMiddleware;
 
 Router::defaultRouteClass(InflectedRoute::class);
 
+Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
+    $routes->connect(
+        '/:version/:controller/*',
+        ['action' => 'get']
+    )
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/*',
+        ['controller' => 'api', 'action' => 'default']
+    )
+    ->setHost('api.*');
+});
+
 Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes) {
     $routes->connect(
         '/sentences/:lang/:sentence_id.mp3',
