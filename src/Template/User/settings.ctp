@@ -124,7 +124,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
 
-            <md-list-item ng-show="!useNewDesign">
+            <md-list-item ng-show="useOldDesign">
                 <?php $collapsibleTranslations = $userSettings->settings['collapsible_translations']; ?>
                 <md-checkbox
                     ng-false-value="0"
@@ -236,7 +236,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 )); ?>
             </md-list-item>
 
-            <md-list-item ng-show="useNewDesign">
+            <md-list-item ng-show="!useOldDesign">
                 <p><?= __('Number of translations per sentence'); ?></p>
                 <?php echo $this->Form->input('settings.max_visible_translations', [
                     'options' => [5 => 5, 10 => 10, 20 => 20, 50 => 50],
@@ -321,12 +321,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $useNewDesign = $userSettings->settings['use_new_design']; ?>
+                <?php $useOldDesign = !$userSettings->settings['use_new_design']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="useOldDesign"
-                    ng-init="useOldDesign = <?= (int)!$useNewDesign ?>"
+                    ng-init="useOldDesign = <?= (int)$useOldDesign ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __(
@@ -338,7 +338,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 echo $this->Form->input(
                     'settings.use_new_design',
                     array(
-                        'value' => '{{useNewDesign}}'
+                        'value' => '{{1-useOldDesign}}'
                     )
                 );
                 ?>
