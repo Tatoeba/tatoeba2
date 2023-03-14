@@ -58,7 +58,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="sendNotifications"
-                    ng-init="sendNotifications = <?= $sendNotifications ?>"
+                    ng-init="sendNotifications = <?= (int)$sendNotifications ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p> <?php echo __('Send email notifications') ?></p>
@@ -80,7 +80,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="isPublic"
-                    ng-init="isPublic = <?= $isPublic ?>"
+                    ng-init="isPublic = <?= (int)$isPublic ?>"
                     class="md-primary">
                 </md-checkbox>
 
@@ -104,7 +104,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="useRecent"
-                    ng-init="useRecent = <?= $useRecent ?>"
+                    ng-init="useRecent = <?= (int)$useRecent ?>"
                     class="md-primary">
 
                 </md-checkbox>
@@ -130,7 +130,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="collapsibleTranslations"
-                    ng-init="collapsibleTranslations = <?= $collapsibleTranslations ?>"
+                    ng-init="collapsibleTranslations = <?= (int)$collapsibleTranslations ?>"
                     class="md-primary">
 
                 </md-checkbox>
@@ -156,7 +156,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="showTranscriptions"
-                    ng-init="showTranscriptions = <?= $showTranscriptions ?>"
+                    ng-init="showTranscriptions = <?= (int)$showTranscriptions ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Always show unreviewed transcriptions and alternative scripts') ?> </p>
@@ -276,7 +276,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="collectionRatings"
-                    ng-init="collectionRatings = <?= $collectionRatings ?>"
+                    ng-init="collectionRatings = <?= (int)$collectionRatings ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Activate the feature to review sentences') ?></p>
@@ -297,7 +297,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="nativeIndicator"
-                    ng-init="nativeIndicator = <?= $nativeIndicator ?>"
+                    ng-init="nativeIndicator = <?= (int)$nativeIndicator ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo format(
@@ -326,7 +326,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="useOldDesign"
-                    ng-init="useOldDesign = <?= !$useNewDesign ?>"
+                    ng-init="useOldDesign = <?= (int)!$useNewDesign ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __(
