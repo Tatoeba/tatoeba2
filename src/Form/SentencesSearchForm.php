@@ -186,7 +186,10 @@ class SentencesSearchForm extends Form
             $appliedTags = $this->search->filterByTags($tagsArray);
             $tags = implode(',', $appliedTags);
 
-            $ignoredTags = array_diff($tagsArray, $appliedTags);
+            $ignoredTags = array_diff(
+                    array_reduce($tagsArray, function($carry,$item){$carry[] = strtolower($item); return $carry; }), 
+                    array_reduce($appliedTags, function($carry,$item){$carry[] = strtolower($item); return $carry; }), 
+                );
             foreach ($ignoredTags as $tagName) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by
