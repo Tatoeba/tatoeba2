@@ -187,8 +187,8 @@ class SentencesSearchForm extends Form
             $tags = implode(',', $appliedTags);
 
             $ignoredTags = array_diff(
-                    array_reduce($tagsArray, function($carry,$item){$carry[] = strtolower($item); return $carry; }), 
-                    array_reduce($appliedTags, function($carry,$item){$carry[] = strtolower($item); return $carry; }), 
+                    array_reduce($tagsArray, function($carry,$item){$carry[] = strtolower($item); return $carry; },[]), 
+                    array_reduce($appliedTags, function($carry,$item){$carry[] = strtolower($item); return $carry; },[]), 
                 );
             foreach ($ignoredTags as $tagName) {
                 $this->ignored[] = format(
