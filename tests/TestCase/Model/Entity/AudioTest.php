@@ -80,6 +80,11 @@ class AudioTest extends TestCase
         $this->assertNull($this->Audio->attribution_url);
     }
 
+    public function testGet_attributionUrl_returnsEmptyWhenExternalSet() {
+        $this->Audio->external = [];
+        $this->assertEquals('', $this->Audio->attribution_url);
+    }
+
     public function testGet_attributionUrl_fromExternal() {
         $this->Audio->external = ['attribution_url' => 'https://example.com/external'];
         $this->assertEquals('https://example.com/external', $this->Audio->attribution_url);
@@ -102,6 +107,11 @@ class AudioTest extends TestCase
 
     public function testGet_license_returnsNullWithoutProperDataSet() {
         $this->assertNull($this->Audio->license);
+    }
+
+    public function testGet_license_returnsEmptyWhenExternalSet() {
+        $this->Audio->external = [];
+        $this->assertEquals('', $this->Audio->license);
     }
 
     public function testGet_license_fromExternal() {

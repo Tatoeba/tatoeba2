@@ -16,9 +16,9 @@ class Audio extends Entity
     ];
 
     public static $defaultExternal = array(
-        'username' => null,
-        'license' => null,
-        'attribution_url' => null,
+        'username' => '',
+        'license' => '',
+        'attribution_url' => '',
     );
 
     protected function _getExternal($external) {
