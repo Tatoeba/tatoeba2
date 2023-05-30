@@ -31,7 +31,7 @@ class Audio extends Entity
 
     protected function _setExternal($external) {
         $existingExternal = $this->external;
-        if (is_array($this->external) && is_array($existingExternal)) {
+        if (is_array($external) && is_array($existingExternal)) {
             $external = array_merge($existingExternal, $external);
         }
         return $external;
