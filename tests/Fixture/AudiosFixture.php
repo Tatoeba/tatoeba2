@@ -54,7 +54,11 @@ class AudiosFixture extends TestFixture
                 'sentence_id' => 12,
                 'sentence_lang' => 'fra',
                 'user_id' => NULL,
-                'external' => [ 'username' => 'Philippe Petit' ],
+                'external' => [
+                    'username' => 'Philippe Petit',
+                    'attribution_url' => 'https://example.fr/petit',
+                    'license' => 'CC BY-NC 4.0',
+                ],
                 'created' => '2001-12-02 06:47:30',
                 'modified' => '2001-12-12 06:47:30'
             ],

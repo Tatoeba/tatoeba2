@@ -416,4 +416,36 @@ class AudiosTableTest extends TestCase {
 
         $this->assertEquals('cmn', $this->Audio->get($result->id)->sentence_lang);
     }
+
+    function testGetAudio_virtualFields_hasUserWithAudioAttribution() {
+        $audio = $this->Audio->findById(1)->contain(['Users'])->first();
+
+        $this->assertEquals('https://example.com/my-audios', $audio->attribution_url);
+        $this->assertEquals('CC BY 4.0', $audio->license);
+        $this->assertEquals('contributor', $audio->author);
+    }
+
+    function testGetAudio_virtualFields_hasUserWithoutAudioAttribution() {
+        $audio = $this->Audio->findById(5)->contain(['Users'])->first();
+
+        $this->assertEquals('/user/profile/advanced_contributor', $audio->attribution_url);
+        $this->assertEquals('', $audio->license);
+        $this->assertEquals('advanced_contributor', $audio->author);
+    }
+
+    function testGetAudio_virtualFields_hasExternalUserWithAudioAttribution() {
+        $audio = $this->Audio->findById(3)->contain(['Users'])->first();
+
+        $this->assertEquals('https://example.fr/petit', $audio->attribution_url);
+        $this->assertEquals('CC BY-NC 4.0', $audio->license);
+        $this->assertEquals('Philippe Petit', $audio->author);
+    }
+
+    function testGetAudio_virtualFields_hasExternalUserWithoutAudioAttribution() {
+        $audio = $this->Audio->findById(2)->contain(['Users'])->first();
+
+        $this->assertEquals('', $audio->attribution_url);
+        $this->assertEquals('', $audio->license);
+        $this->assertEquals('Philippe Petit', $audio->author);
+    }
 }

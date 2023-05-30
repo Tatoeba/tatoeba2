@@ -92,7 +92,7 @@ class AudioTest extends TestCase
 
     public function testGet_attributionUrl_fromUsername() {
         $this->Audio->external = ['attribution_url' => 'https://example.com/external'];
-        $this->Audio->user = new User(['username' => 'kazuki']);
+        $this->Audio->user = new User(['username' => 'kazuki', 'audio_attribution_url' => '']);
         $this->assertEquals('/user/profile/kazuki', $this->Audio->attribution_url);
     }
 
@@ -123,5 +123,19 @@ class AudioTest extends TestCase
         $this->Audio->external = ['license' => 'WTFPL'];
         $this->Audio->user = new User(['audio_license' => 'CC0']);
         $this->assertEquals('CC0', $this->Audio->license);
+    }
+
+    public function testGet_author_returnsNullWithoutProperDataSet() {
+        $this->assertNull($this->Audio->author);
+    }
+
+    public function testGet_author_returnsEmptyWhenNoUsernameSet() {
+        $this->Audio->user = new User([]);
+        $this->assertNull($this->Audio->author);
+    }
+
+    public function testGet_author_returnsUsername() {
+        $this->Audio->user = new User(['username' => 'kazuki']);
+        $this->assertEquals('kazuki', $this->Audio->author);
     }
 }

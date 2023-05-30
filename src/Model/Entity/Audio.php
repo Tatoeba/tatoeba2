@@ -55,14 +55,16 @@ class Audio extends Entity
 
     protected function _getAttributionUrl() {
         if ($this->user) {
-            if (!empty($this->user->audio_attribution_url)) {
-                return $this->user->audio_attribution_url;
-            } elseif ($this->user->username) {
-                return Router::url(array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $this->user->username
-                ));
+            if (array_key_exists('audio_attribution_url', $this->user->_properties)) {
+                if (!empty($this->user->audio_attribution_url)) {
+                    return $this->user->audio_attribution_url;
+                } elseif ($this->user->username) {
+                    return Router::url(array(
+                        'controller' => 'user',
+                        'action' => 'profile',
+                        $this->user->username
+                    ));
+                }
             } else {
                 return null;
             }
