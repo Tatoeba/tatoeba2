@@ -63,7 +63,7 @@ class MainControllerTest extends TestCase
                             'type'           => 'array',
                             'items'          => [
                               'type'           => 'object',
-                              'required'       => ['script', 'text', 'needsReview', 'type', 'html', 'markup'],
+                              'required'       => ['script', 'text', 'needsReview', 'type', 'html'],
                             ],
                           ],
                           'audios'   => [

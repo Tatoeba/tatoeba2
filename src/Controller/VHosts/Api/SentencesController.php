@@ -13,7 +13,7 @@ class SentencesController extends ApiController
                 'author', 'license'
             ]],
             'transcriptions' => ['fields' => [
-                'script', 'text', 'needsReview', 'type', 'html', 'markup']
+                'script', 'text', 'needsReview', 'type', 'html']
             ],
         ];
         $exposedFields = $sentence;
