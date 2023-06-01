@@ -47,7 +47,7 @@ class MainControllerTest extends TestCase
                   'type'     => 'array',
                   'items'    => [
                     'type'     => 'object',
-                    'required' => ['author', 'license', 'attribution_url'],
+                    'required' => ['author', 'license', 'attribution_url', 'download_url'],
                   ],
                 ],
               ],
@@ -60,7 +60,7 @@ class MainControllerTest extends TestCase
           'type'     => 'array',
           'items'    => [
             'type'     => 'object',
-            'required' => ['author', 'license', 'attribution_url'],
+            'required' => ['author', 'license', 'attribution_url', 'download_url'],
           ],
         ],
         'owner'  => ['type' => ['string', 'null']],

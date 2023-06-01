@@ -126,4 +126,13 @@ class Audio extends Entity
            return null;
        }
     }
+
+    protected function _getDownloadUrl() {
+        $url = [
+            'controller' => 'audio',
+            'action' => 'download',
+            $this->id
+        ];
+        return Router::url($url);
+    }
 }

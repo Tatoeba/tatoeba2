@@ -11,7 +11,7 @@ class SentencesController extends ApiController
         $sentence = [
             'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner'],
             'audios' => ['fields' => [
-                'author', 'license', 'attribution_url',
+                'author', 'license', 'attribution_url', 'download_url',
             ]],
             'transcriptions' => ['fields' => [
                 'script', 'text', 'needsReview', 'type', 'html']
