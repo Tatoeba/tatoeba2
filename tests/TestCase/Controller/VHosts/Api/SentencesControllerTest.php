@@ -140,4 +140,17 @@ class MainControllerTest extends TestCase
         $this->get("http://api.example.com/unstable/sentences/52");
         $this->assertResponseCode(404);
     }
+
+    public function testGetSentence_cannotGetTranslationsWithLicenseIssue()
+    {
+        $this->get("http://api.example.com/unstable/sentences/58");
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$.data.translations[0]' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.data.translations[0][0].id' => 60,
+            '$.data.translations[1]' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.data.translations[1][0].id' => 62,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
 }

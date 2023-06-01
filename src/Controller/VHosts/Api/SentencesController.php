@@ -45,6 +45,7 @@ class SentencesController extends ApiController
         ];
         $indirTranslationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment) {
             $q->select($this->fields())
+              ->where(['IndirectTranslations.license !=' => ''])
               ->contain([
                   'Users' => ['fields' => ['id', 'username']],
                   'Audios' => $audioContainment,
@@ -54,6 +55,7 @@ class SentencesController extends ApiController
         };
         $translationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment, $indirTranslationsContainment) {
             $q->select($this->fields())
+              ->where(['Translations.license !=' => ''])
               ->contain([
                   'Users' => ['fields' => ['id', 'username']],
                   'Audios' => $audioContainment,
