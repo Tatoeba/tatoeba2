@@ -1,8 +1,6 @@
 <?php
 namespace App\Test\TestCase\Controller\VHosts\Api;
 
-use App\Controller\VHosts\Api\SentenceController;
-use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use App\Test\TestCase\SearchMockTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
