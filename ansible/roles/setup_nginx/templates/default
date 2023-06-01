@@ -105,6 +105,7 @@ server {
 		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
 		fastcgi_index   index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		more_set_headers 'Access-Control-Allow-Origin: *';
 	}
 }
 
