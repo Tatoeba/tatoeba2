@@ -36,6 +36,7 @@ class SentencesController extends ApiController
     private function contain() {
         $audioContainment = function (Query $q) {
             $q->select(['id', 'external', 'sentence_id'])
+              ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
               ->contain(['Users' => ['fields' => ['username', 'audio_license', 'audio_attribution_url']]]);
             return $q;
         };

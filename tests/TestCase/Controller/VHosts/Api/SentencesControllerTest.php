@@ -127,4 +127,11 @@ class MainControllerTest extends TestCase
         $expected = 'http://example.com:8080/user/profile/kazuki';
         $this->assertJsonValueEquals($actual, '$.data.audios[0].attribution_url', $expected);
     }
+
+    public function testGetSentence_doesNotReturnUnreusableAudio()
+    {
+        $this->get("http://api.example.com/unstable/sentences/15");
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.data.audios', []);
+    }
 }
