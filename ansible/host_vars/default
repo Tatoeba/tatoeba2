@@ -24,6 +24,7 @@ nginx_config_file: default
 main_server_name: tato.test
 main_server_root: "{{code_dir}}/webroot"
 audio_server_name: audio.{{main_server_name}}
+api_server_name: api.{{main_server_name}}
 downloads_server_name: downloads.{{main_server_name}}
 downloads_server_root: /var/www-downloads/
 static_server_name: static.{{main_server_name}}
