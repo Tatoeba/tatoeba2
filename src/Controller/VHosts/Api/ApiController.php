@@ -7,10 +7,15 @@ use Cake\Event\Event;
 
 class ApiController extends Controller
 {
+    const DEFAULT_RESULTS_NUMBER = 10;
+    const MAX_RESULTS_NUMBER = 100;
+
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('RequestHandler');
+        $this->loadComponent('RequestHandler', [
+            'viewClassMap' => ['json' => 'Api']
+        ]);
     }
 
     public function beforeFilter(Event $event)

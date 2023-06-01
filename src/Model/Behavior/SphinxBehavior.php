@@ -47,7 +47,8 @@ class SphinxBehavior extends Behavior
 
         $this->settings[$alias] = $settings;
 
-        $this->runtime[$alias]['sphinx'] = new SphinxClient();
+        $client = isset($databases['client']) ? $databases['client'] : new SphinxClient();
+        $this->runtime[$alias]['sphinx'] = $client;
         $this->runtime[$alias]['sphinx']->SetServer(
             $this->settings[$alias]['host'],
             $this->settings[$alias]['port']

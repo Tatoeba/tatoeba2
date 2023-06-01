@@ -291,6 +291,14 @@ class Search {
         $this->sphinxFilterArrayLimit = $limit;
     }
 
+    public function getTranslationFilter($filterName) {
+        if (array_key_exists($filterName, $this->translationFilters)) {
+            return $this->translationFilters[$filterName];
+        } else {
+            return null;
+        }
+    }
+
     public function getTranslationFilters() {
         return array_filter(
             $this->translationFilters,

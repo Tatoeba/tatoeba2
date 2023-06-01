@@ -3,6 +3,7 @@ namespace App\Test\TestCase\Controller\VHosts\Api;
 
 use App\Controller\VHosts\Api\SentenceController;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use App\Test\TestCase\SearchMockTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
@@ -11,6 +12,70 @@ class MainControllerTest extends TestCase
 {
     use IntegrationTestTrait;
     use JsonAssertions;
+    use SearchMockTrait;
+
+    const SENTENCE_AND_TRANSLATIONS_JSON_SCHEMA = [
+      'type'       => 'object',
+      'required'   => ['id', 'text', 'lang', 'script', 'license', 'translations', 'transcriptions', 'audios', 'owner'],
+      'properties' => [
+        'id'       => ['type' => 'integer'],
+        'text'     => ['type' => 'string'],
+        'lang'     => ['type' => ['string', 'null']],
+        'script'   => ['type' => ['string', 'null']],
+        'license'  => ['type' => ['string', 'null']],
+        'translations' => [
+          'type'         => 'array',
+          'items'        => [
+            'type'         => 'array',
+            'items'        => [
+              'type'         => 'object',
+              'required'     => ['id', 'text', 'lang', 'script', 'transcriptions', 'audios', 'license', 'owner'],
+              'properties'   => [
+                'id'           => ['type' => 'integer'],
+                'text'         => ['type' => 'string'],
+                'lang'         => ['type' => ['string', 'null']],
+                'script'       => ['type' => ['string', 'null']],
+                'license'      => ['type' => ['string', 'null']],
+                'transcriptions' => [
+                  'type'           => 'array',
+                  'items'          => [
+                    'type'           => 'object',
+                    'required'       => ['script', 'text', 'needsReview', 'type', 'html'],
+                  ],
+                ],
+                'audios'   => [
+                  'type'     => 'array',
+                  'items'    => [
+                    'type'     => 'object',
+                    'required' => ['author', 'license', 'attribution_url'],
+                  ],
+                ],
+              ],
+            ],
+          ],
+          'minItems' => 2,
+          'maxItems' => 2,
+        ],
+        'audios'   => [
+          'type'     => 'array',
+          'items'    => [
+            'type'     => 'object',
+            'required' => ['author', 'license', 'attribution_url'],
+          ],
+        ],
+        'owner'  => ['type' => ['string', 'null']],
+      ],
+    ];
+
+    const PAGING_JSON_SCHEMA = [
+      'type'     => 'object',
+      'properties' => [
+        'first'     => ['type' => 'string'],
+        'prev'      => ['type' => 'string'],
+        'next'      => ['type' => 'string'],
+        'last'      => ['type' => 'string'],
+      ],
+    ];
 
     public $fixtures = [
         'app.Audios',
@@ -37,58 +102,7 @@ class MainControllerTest extends TestCase
             'type'       => 'object',
             'required'   => ['data'],
             'properties' => [
-              'data'       => [
-                'type'       => 'object',
-                'required'   => ['id', 'text', 'lang', 'script', 'license', 'translations', 'transcriptions', 'audios', 'owner'],
-                'properties' => [
-                  'id'       => ['type' => 'integer'],
-                  'text'     => ['type' => 'string'],
-                  'lang'     => ['type' => ['string', 'null']],
-                  'script'   => ['type' => ['string', 'null']],
-                  'license'  => ['type' => ['string', 'null']],
-                  'translations' => [
-                    'type'         => 'array',
-                    'items'        => [
-                      'type'         => 'array',
-                      'items'        => [
-                        'type'         => 'object',
-                        'required'     => ['id', 'text', 'lang', 'script', 'transcriptions', 'audios', 'license', 'owner'],
-                        'properties'   => [
-                          'id'           => ['type' => 'integer'],
-                          'text'         => ['type' => 'string'],
-                          'lang'         => ['type' => ['string', 'null']],
-                          'script'       => ['type' => ['string', 'null']],
-                          'license'      => ['type' => ['string', 'null']],
-                          'transcriptions' => [
-                            'type'           => 'array',
-                            'items'          => [
-                              'type'           => 'object',
-                              'required'       => ['script', 'text', 'needsReview', 'type', 'html'],
-                            ],
-                          ],
-                          'audios'   => [
-                            'type'     => 'array',
-                            'items'    => [
-                              'type'     => 'object',
-                              'required' => ['author', 'license', 'attribution_url'],
-                            ],
-                          ],
-                        ],
-                      ],
-                    ],
-                    'minItems' => 2,
-                    'maxItems' => 2,
-                  ],
-                  'audios'   => [
-                    'type'     => 'array',
-                    'items'    => [
-                      'type'     => 'object',
-                      'required' => ['author', 'license', 'attribution_url'],
-                    ],
-                  ],
-                  'owner'  => ['type' => ['string', 'null']],
-                ],
-              ]
+                'data' => self::SENTENCE_AND_TRANSLATIONS_JSON_SCHEMA,
             ]
         ];
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
@@ -150,6 +164,104 @@ class MainControllerTest extends TestCase
             '$.data.translations[0][0].id' => 60,
             '$.data.translations[1]' => new \PHPUnit\Framework\Constraint\Count(1),
             '$.data.translations[1][0].id' => 62,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_requiresLangParam()
+    {
+        $this->get("http://api.example.com/unstable/sentences/search?q=hello");
+        $this->assertResponseCode(400);
+    }
+
+    public function testSearch_requiresValidLang()
+    {
+        $this->get("http://api.example.com/unstable/sentences/search?lang=invalid&q=hello");
+        $this->assertResponseCode(400);
+    }
+
+    public function testSearch_requiresValidTrans()
+    {
+        $this->get("http://api.example.com/unstable/sentences/search?lang=eng&trans=invalid&q=hello");
+        $this->assertResponseCode(400);
+    }
+
+    public function testSearch_returnsResults()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences/search?lang=eng&q=hello&limit=1&page=2");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = [
+            'type'       => 'object',
+            'required'   => ['data', 'paging'],
+            'properties' => [
+                'data'       => [
+                    'type'       => 'array',
+                    'items'      => self::SENTENCE_AND_TRANSLATIONS_JSON_SCHEMA,
+                ],
+                'paging' => self::PAGING_JSON_SCHEMA,
+            ]
+        ];
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+    }
+
+    public function testSearch_limitsTranslationsLanguage()
+    {
+        $this->enableMockedSearch([2]);
+
+        $this->get("http://api.example.com/unstable/sentences/search?lang=cmn&trans=jpn&q=hello");
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$.data[0].translations[0]' => new \PHPUnit\Framework\Constraint\Count(0),
+            '$.data[0].translations[1]' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.data[0].translations[1][0].id' => 6,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsEmptyPagination()
+    {
+        $this->enableMockedSearch([1]);
+
+        $this->get("http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello");
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.paging', (object)[]);
+    }
+
+    public function testSearch_returnsFirstPage()
+    {
+        $this->enableMockedSearch([1], 2);
+
+        $this->get("http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&limit=1");
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.paging' => (object)[
+                'first' => 'http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&limit=1',
+                'next'  => 'http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&page=2&limit=1',
+                'last'  => 'http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&page=2&limit=1',
+            ],
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsLastPage()
+    {
+        $this->enableMockedSearch([2], 2);
+
+        $this->get("http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&page=2&limit=1");
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.paging' => (object)[
+                'first' => 'http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&limit=1',
+                'prev'  => 'http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&limit=1',
+                'last'  => 'http://api.example.com/unstable/sentences/search?lang=eng&trans=fra&q=hello&page=2&limit=1',
+            ],
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
     }

@@ -2,6 +2,7 @@
 namespace App\Controller\VHosts\Api;
 
 use App\Controller\VHosts\Api\ApiController;
+use App\Model\Search;
 use Cake\ORM\Query;
 
 class SentencesController extends ApiController
@@ -92,6 +93,71 @@ class SentencesController extends ApiController
 
         $this->set('response', $response);
         $this->set('_serialize', 'response');
+        $this->RequestHandler->renderAs($this, 'json');
+    }
+
+    private function _prepareSearch() {
+        $search = new Search();
+        $q = $this->getRequest()->getQuery('q');
+        $search->filterByQuery($q);
+
+        $lang = $this->getRequest()->getQuery('lang');
+        if ($lang) {
+            $lang = $search->filterByLanguage($lang);
+            if (is_null($lang)) {
+                return $this->response->withStatus(400, 'Invalid parameter "lang"');
+            }
+        } else {
+            return $this->response->withStatus(400, 'Required parameter "lang" missing');
+        }
+
+        $trans = $this->getRequest()->getQuery('trans');
+        if ($trans) {
+            $trans = $search->filterByTranslationLanguage($trans);
+            if (is_null($trans)) {
+                return $this->response->withStatus(400, 'Invalid parameter "trans"');
+            } else {
+                $search->filterByTranslation('limit');
+            }
+        }
+
+        return $search;
+    }
+
+    public function search() {
+        $search = $this->_prepareSearch();
+        if (!($search instanceOf Search)) {
+            return $search;
+        }
+
+        $sphinx = $search->asSphinx();
+        $sphinx['page'] = $this->request->getQuery('page');
+        $limit = $this->request->getQuery('limit', self::DEFAULT_RESULTS_NUMBER);
+        $sphinx['limit'] = $limit > self::MAX_RESULTS_NUMBER ? self::MAX_RESULTS_NUMBER : $limit;
+
+        $this->loadModel('Sentences');
+
+        $query = $this->Sentences
+            ->find('withSphinx')
+            ->find('filteredTranslations', [
+                'translationLang' => $search->getTranslationFilter('language'),
+            ])
+            ->find('exposedFields', $this->exposedFields())
+            ->select($this->Sentences->fields())
+            ->contain($this->contain());
+
+        $this->paginate = [
+            'limit' => self::DEFAULT_RESULTS_NUMBER,
+            'maxLimit' => self::MAX_RESULTS_NUMBER,
+            'sphinx' => $sphinx,
+        ];
+        $results = $this->paginate($query);
+        $response = [
+            'data' => $results,
+        ];
+
+        $this->set('results', $response);
+        $this->set('_serialize', 'results');
         $this->RequestHandler->renderAs($this, 'json');
     }
 }
