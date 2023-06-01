@@ -13,6 +13,7 @@ class AudioControllerTest extends TestCase
     public $fixtures = [
         'app.Audios',
         'app.Sentences',
+        'app.Users',
     ];
 
     public function testDownload_ok()
@@ -42,5 +43,16 @@ class AudioControllerTest extends TestCase
     {
         $this->get("http://api.example.com/unstable/audio/download/9999999999");
         $this->assertResponseCode(404);
+    }
+
+    public function testDownload_nonReusableAudio()
+    {
+        $this->initAudioStorageDir();
+
+        $audioFileContents = $this->createAudioFile(6);
+        $this->get("http://api.example.com/unstable/audio/download/6");
+        $this->assertResponseCode(404);
+
+        $this->deleteAudioStorageDir();
     }
 }

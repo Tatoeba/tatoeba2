@@ -26,7 +26,8 @@ class AudioController extends ApiController
         $this->loadModel('Audios');
         $audio = $this->Audios->find()
             ->select(['id', 'sentence_id'])
-            ->where(['Audios.id' => $id])
+            ->contain(['Users' => ['fields' => ['audio_license']]])
+            ->where(['Audios.id' => $id, 'Users.audio_license !=' => ''])
             ->first();
 
         if ($audio) {
