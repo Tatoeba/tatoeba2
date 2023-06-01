@@ -94,6 +94,18 @@ class MainControllerTest extends TestCase
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
     }
 
+    public function testGetSentence_returnsOwner()
+    {
+        $this->get("http://api.example.com/unstable/sentences/1");
+        $actual = $this->_getBodyAsString();
+        $constraint = [
+            '$.data.owner' => 'kazuki',
+            '$.data.translations[0][0].owner' => 'kazuki',
+            '$.data.translations[1][0].owner' => 'kazuki',
+        ];
+        $this->assertJsonDocumentMatches($actual, $constraint);
+    }
+
     public function testGetSentence_returnsAudioUserProfileURL()
     {
         $this->get("http://api.example.com/unstable/sentences/57");

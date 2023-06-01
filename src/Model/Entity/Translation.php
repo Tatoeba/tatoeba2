@@ -33,4 +33,9 @@ class Translation extends Entity
     {
         return LanguagesLib::languageTag($this->lang, $this->script);
     }
+
+    protected function _getOwner()
+    {
+        return $this->user ? $this->user->username : null;
+    }
 }
