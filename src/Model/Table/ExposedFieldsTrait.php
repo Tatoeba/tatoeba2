@@ -21,6 +21,10 @@ namespace App\Model\Table;
 use Cake\ORM\Entity;
 use Cake\ORM\Query;
 
+// This should rather go inside the trait,
+// but only PHP 8.2 allows that.
+const EXPOSED_FIELDS_CACHE_KEY = '_';
+
 trait ExposedFieldsTrait
 {
     /**
@@ -30,24 +34,28 @@ trait ExposedFieldsTrait
      */
     public function findExposedFields(Query $query, array $options)
     {
-        $query->formatResults(function($results) use ($options) {
-            return $results->map(function($result) use ($options) {
+        $query->formatResults(function($results) use (&$options) {
+            return $results->map(function($result) use (&$options) {
                 return $this->setExposedFields($result, $options['exposedFields']);
             });
         });
         return $query;
     }
 
-    public function setExposedFields($entity, array $toExpose)
+    public function setExposedFields($entity, array &$toExpose)
     {
         if (is_array($entity)) {
-            foreach ($entity as $e) {
+            foreach ($entity as &$e) {
                 $this->setExposedFields($e, $toExpose);
             }
         } elseif ($entity instanceof Entity) {
-            if (isset($toExpose['fields'])) {
+            if (isset($toExpose[EXPOSED_FIELDS_CACHE_KEY])) {
+                list($toHide, $notExposed) = $toExpose[EXPOSED_FIELDS_CACHE_KEY];
+                $entity->setHidden($toHide);
+                $entity->setVirtual($notExposed, true);
+            }
+            else if (isset($toExpose['fields'])) {
                 $fieldsToExpose = $toExpose['fields'];
-                unset($toExpose['fields']);
 
                 $assocs = array_keys($toExpose);
                 $hidden = $entity->getHidden();
@@ -59,8 +67,10 @@ trait ExposedFieldsTrait
 
                 $notExposed = array_diff($fieldsToExpose, $exposed);
                 $entity->setVirtual($notExposed, true);
+
+                $toExpose[EXPOSED_FIELDS_CACHE_KEY] = [$toHide, $notExposed];
             }
-            foreach ($toExpose as $assoc => $fieldsToExpose) {
+            foreach ($toExpose as $assoc => &$fieldsToExpose) {
                $contained = $entity->get($assoc);
                if (!is_null($contained)) {
                    $this->setExposedFields($contained, $fieldsToExpose);
