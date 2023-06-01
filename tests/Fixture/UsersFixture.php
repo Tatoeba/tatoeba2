@@ -215,7 +215,7 @@ class UsersFixture extends TestFixture
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
-                'audio_license' => '',
+                'audio_license' => 'CC BY 4.0',
                 'audio_attribution_url' => '',
             ],
             [

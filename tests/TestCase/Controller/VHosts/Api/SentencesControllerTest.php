@@ -70,7 +70,7 @@ class MainControllerTest extends TestCase
                             'type'     => 'array',
                             'items'    => [
                               'type'     => 'object',
-                              'required' => ['author', 'license'],
+                              'required' => ['author', 'license', 'attribution_url'],
                             ],
                           ],
                         ],
@@ -83,7 +83,7 @@ class MainControllerTest extends TestCase
                     'type'     => 'array',
                     'items'    => [
                       'type'     => 'object',
-                      'required' => ['author', 'license'],
+                      'required' => ['author', 'license', 'attribution_url'],
                     ],
                   ],
                   'owner'  => ['type' => ['string', 'null']],
@@ -92,5 +92,13 @@ class MainControllerTest extends TestCase
             ]
         ];
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
+    }
+
+    public function testGetSentence_returnsAudioUserProfileURL()
+    {
+        $this->get("http://api.example.com/unstable/sentences/57");
+        $actual = $this->_getBodyAsString();
+        $expected = 'http://example.com/user/profile/kazuki';
+        $this->assertJsonValueEquals($actual, '$.data.audios[0].attribution_url', $expected);
     }
 }

@@ -342,19 +342,22 @@ class AudiosTableTest extends TestCase {
     function testSentencesFinder() {
         $result = $this->Audio->find('sentences')->all()->toList();
 
-        $this->assertEquals(4, count($result));
+        $this->assertEquals(5, count($result));
 
-        $this->assertEquals(15, $result[0]->id);
+        $this->assertEquals(57, $result[0]->id);
         $this->assertEquals(1, count($result[0]->audios));
 
-        $this->assertEquals(12, $result[1]->id);
+        $this->assertEquals(15, $result[1]->id);
         $this->assertEquals(1, count($result[1]->audios));
 
-        $this->assertEquals(4, $result[2]->id);
-        $this->assertEquals(2, count($result[2]->audios));
+        $this->assertEquals(12, $result[2]->id);
+        $this->assertEquals(1, count($result[2]->audios));
 
-        $this->assertEquals(3, $result[3]->id);
-        $this->assertEquals(1, count($result[3]->audios));
+        $this->assertEquals(4, $result[3]->id);
+        $this->assertEquals(2, count($result[3]->audios));
+
+        $this->assertEquals(3, $result[4]->id);
+        $this->assertEquals(1, count($result[4]->audios));
     }
 
     function testSentencesFinder_lang() {

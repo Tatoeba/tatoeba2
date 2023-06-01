@@ -94,6 +94,15 @@ class AudiosFixture extends TestFixture
                 'created' => '2023-02-02 02:23:33',
                 'modified' => '2023-02-02 02:23:33'
             ],
+            [
+                'id' => 7,
+                'sentence_id' => 57,
+                'sentence_lang' => 'jpn',
+                'user_id' => 7,
+                'external' => NULL,
+                'created' => '2023-03-03 13:42:42',
+                'modified' => '2023-03-03 13:42:42'
+            ],
         ];
         parent::init();
     }

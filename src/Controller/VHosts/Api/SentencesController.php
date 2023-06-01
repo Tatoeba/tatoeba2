@@ -10,7 +10,7 @@ class SentencesController extends ApiController
         $sentence = [
             'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner'],
             'audios' => ['fields' => [
-                'author', 'license'
+                'author', 'license', 'attribution_url',
             ]],
             'transcriptions' => ['fields' => [
                 'script', 'text', 'needsReview', 'type', 'html']
@@ -36,7 +36,7 @@ class SentencesController extends ApiController
     private function contain() {
         $audioContainment = function (Query $q) {
             $q->select(['id', 'external', 'sentence_id'])
-              ->contain(['Users' => ['fields' => ['username', 'audio_license']]]);
+              ->contain(['Users' => ['fields' => ['username', 'audio_license', 'audio_attribution_url']]]);
             return $q;
         };
         $transcriptionsContainment = [
