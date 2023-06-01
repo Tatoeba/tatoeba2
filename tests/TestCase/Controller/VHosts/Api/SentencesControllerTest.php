@@ -101,4 +101,18 @@ class MainControllerTest extends TestCase
         $expected = 'http://example.com/user/profile/kazuki';
         $this->assertJsonValueEquals($actual, '$.data.audios[0].attribution_url', $expected);
     }
+
+    public function testGetSentence_returnsAudioUserProfileURL_withNonStandardPort()
+    {
+        $this->configRequest([
+            // Need to set this manually, otherwise IntegrationTestTrait
+            // will strip the port from the HTTP_HOST environement variable,
+            // regardless of the URL used to perform the request
+            'headers' => ['Host' => 'api.example.com:8080']
+        ]);
+        $this->get("http://api.example.com:8080/unstable/sentences/57");
+        $actual = $this->_getBodyAsString();
+        $expected = 'http://example.com:8080/user/profile/kazuki';
+        $this->assertJsonValueEquals($actual, '$.data.audios[0].attribution_url', $expected);
+    }
 }

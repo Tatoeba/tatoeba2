@@ -63,7 +63,8 @@ class Audio extends Entity
         if ($request) {
             $isApiCall = $request->getParam('prefix') == 'VHosts/Api';
             if ($isApiCall) {
-                $host = explode('.', $request->host());
+                $host = explode(':', $request->host());
+                $host = explode('.', $host[0]);
                 $host = array_slice($host, 1);
                 $host = implode('.', $host);
                 $url['_host'] = $host;
