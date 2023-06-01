@@ -30,13 +30,11 @@ trait ExposedFieldsTrait
      */
     public function findExposedFields(Query $query, array $options)
     {
-        if (isset($options['exposedFields'])) {
-            $query->formatResults(function($results) use ($options) {
-                return $results->map(function($result) use ($options) {
-                    return $this->setExposedFields($result, $options['exposedFields']);
-                });
+        $query->formatResults(function($results) use ($options) {
+            return $results->map(function($result) use ($options) {
+                return $this->setExposedFields($result, $options['exposedFields']);
             });
-        }
+        });
         return $query;
     }
 
