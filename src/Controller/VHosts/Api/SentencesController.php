@@ -98,6 +98,8 @@ class SentencesController extends ApiController
 
     private function _prepareSearch() {
         $search = new Search();
+        $search->filterByCorrectness(false);
+
         $q = $this->getRequest()->getQuery('q');
         $search->filterByQuery($q);
 
@@ -118,6 +120,15 @@ class SentencesController extends ApiController
                 return $this->response->withStatus(400, 'Invalid parameter "trans"');
             } else {
                 $search->filterByTranslation('limit');
+            }
+        }
+
+        $includeUnapproved = $this->getRequest()->getQuery('include_unapproved');
+        if (!is_null($includeUnapproved)) {
+            if ($includeUnapproved == 'yes') {
+                $search->filterByCorrectness(null);
+            } else {
+                return $this->response->withStatus(400, 'Parameter "include_unapproved" can only have "yes" as value');
             }
         }
 

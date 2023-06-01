@@ -265,4 +265,15 @@ class MainControllerTest extends TestCase
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
     }
+
+    public function testSearch_parameterIncludeUnapprovedMustBeYes()
+    {
+        $this->enableMockedSearch([]);
+
+        $this->get("http://api.example.com/unstable/sentences/search?lang=eng&q=hello&include_unapproved=no");
+        $this->assertResponseCode(400);
+
+        $this->get("http://api.example.com/unstable/sentences/search?lang=eng&q=hello&include_unapproved=yes");
+        $this->assertResponseOk();
+    }
 }
