@@ -144,6 +144,7 @@ class SentencesController extends ApiController
             ])
             ->find('exposedFields', $this->exposedFields())
             ->select($this->Sentences->fields())
+            ->where(['Sentences.license !=' => '']) // FIXME use Manticore filter instead
             ->contain($this->contain());
 
         $this->paginate = [
