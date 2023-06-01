@@ -77,7 +77,10 @@ class SentencesController extends ApiController
             ->find('filteredTranslations')
             ->find('exposedFields', $this->exposedFields())
             ->select($this->fields())
-            ->where(['Sentences.id' => $id])
+            ->where([
+                'Sentences.id' => $id,
+                'Sentences.license !=' => '',
+            ])
             ->contain($this->contain());
 
         $results = $query->firstOrFail();

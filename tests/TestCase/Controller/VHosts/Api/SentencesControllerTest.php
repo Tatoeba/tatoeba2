@@ -134,4 +134,10 @@ class MainControllerTest extends TestCase
         $actual = $this->_getBodyAsString();
         $this->assertJsonValueEquals($actual, '$.data.audios', []);
     }
+
+    public function testGetSentence_cannotGetSentencesWithLicenseIssue()
+    {
+        $this->get("http://api.example.com/unstable/sentences/52");
+        $this->assertResponseCode(404);
+    }
 }
