@@ -119,7 +119,7 @@ class SentencesSearchFormTest extends TestCase
             [ ['native' => ''],        ['filterByNativeSpeaker', null],  ''    ],
 
             [ ['word_count_min' => ''],        ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
-            [ ['word_count_min' => '0'],       ['filterByWordCount' => [['le', null], ['ge', 0   ]]], 'any'],
+            [ ['word_count_min' => '0'],       ['filterByWordCount' => [['le', null], ['ge', 0   ]]], '0'  ],
             [ ['word_count_min' => '01'],      ['filterByWordCount' => [['le', null], ['ge', 1   ]]], '1'  ],
             [ ['word_count_min' => '42'],      ['filterByWordCount' => [['le', null], ['ge', 42  ]]], '42' ],
             [ ['word_count_min' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],

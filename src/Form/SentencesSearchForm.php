@@ -320,7 +320,10 @@ class SentencesSearchForm extends Form
             $setter = "setData$keyCamel";
             $this->_data[$key] = $this->$setter($value);
 
-            if(empty($this->_data[$key]) && !empty($this->defaultCriteria[$key])) {
+            $strippedParam = ($this->_data[$key] === null
+                              || $this->_data[$key] === false
+                              || $this->_data[$key] === '');
+            if ($strippedParam && !empty($this->defaultCriteria[$key])) {
                 /* Using Router::url() to reconstruct a URL for the given data
                  * strips out empty parameters, which would lead to a non-empty
                  * default being applied instead of the empty non-default value.
