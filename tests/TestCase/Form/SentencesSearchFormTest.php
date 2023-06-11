@@ -33,8 +33,8 @@ class SentencesSearchFormTest extends TestCase
             'orphans' => 'no',
             'user' => '',
             'has_audio' => '',
-            'word_count' => '0',
-            'word_count_op' => 'ge',
+            'word_count_min' => '1',
+            'word_count_max' => '',
             'tags' => '',
             'list' => '',
             'native' => '',
@@ -118,21 +118,17 @@ class SentencesSearchFormTest extends TestCase
             [ ['native' => 'invalid'], ['filterByNativeSpeaker', null],  ''    ],
             [ ['native' => ''],        ['filterByNativeSpeaker', null],  ''    ],
 
-            [ ['word_count_op' => '', 'word_count' => ''],
-              [],
-              ['word_count_op' => 'ge', 'word_count' => '0'] ],
+            [ ['word_count_min' => ''],        ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
+            [ ['word_count_min' => '0'],       ['filterByWordCount' => [['le', null], ['ge', 0   ]]], 'any'],
+            [ ['word_count_min' => '01'],      ['filterByWordCount' => [['le', null], ['ge', 1   ]]], '1'  ],
+            [ ['word_count_min' => '42'],      ['filterByWordCount' => [['le', null], ['ge', 42  ]]], '42' ],
+            [ ['word_count_min' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
 
-            [ ['word_count_op' => 'aa', 'word_count' => '-1'],
-              [],
-              ['word_count_op' => 'ge', 'word_count' => '0'] ],
-
-            [ ['word_count_op' => 'ge', 'word_count' => '0'],
-              ['filterByWordCount'],
-              ['word_count_op' => 'ge', 'word_count' => '0'] ],
-
-            [ ['word_count_op' => 'eq', 'word_count' => '1'],
-              ['filterByWordCount', 'eq', 1],
-              ['word_count_op' => 'eq', 'word_count' => '1'] ],
+            [ ['word_count_max' => ''],        ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
+            [ ['word_count_max' => '0'],       ['filterByWordCount' => [['le', 0   ], ['ge', 1   ]]], '0'  ],
+            [ ['word_count_max' => '01'],      ['filterByWordCount' => [['le', 1   ], ['ge', 1   ]]], '1'  ],
+            [ ['word_count_max' => '42'],      ['filterByWordCount' => [['le', 42  ], ['ge', 1   ]]], '42' ],
+            [ ['word_count_max' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
 
             [ ['trans_filter' => 'exclude'],      ['filterByTranslation', 'exclude'], 'exclude' ],
             [ ['trans_filter' => 'invalidvalue'], ['filterByTranslation'], 'limit' ],
@@ -188,9 +184,15 @@ class SentencesSearchFormTest extends TestCase
      * @dataProvider searchParamsProvider
      */
     public function testSearchParams($getParams, $method, $getParamReturned, $ignored = 0) {
-        if (count($method) == 1) {
+        if (count($method) == 1 && is_int(key($method))) { // is list array
             $this->Search->expects($this->never())
                          ->method($method[0]);
+        } elseif (!is_int(key($method))) { // is associative array
+            foreach ($method as $methodName => $calls) {
+                $this->Search->expects($this->exactly(count($calls)))
+                             ->method($methodName)
+                             ->withConsecutive(...$calls);
+            }
         } elseif ($method) {
             $methodName = array_shift($method);
             $with = array_map(

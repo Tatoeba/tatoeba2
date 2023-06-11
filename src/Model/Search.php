@@ -31,7 +31,7 @@ class Search {
     private $sort;
     private $sortReversed = false;
     private $randSeed;
-    private $wordCount;
+    private $wordCount = [];
 
     private $translationFilter;
     private $translationFilters = [];
@@ -132,11 +132,11 @@ class Search {
             $sphinx['filter'] = $sphinx['filter'] ?? [];
             array_push($sphinx['filter'], ...$this->getNativeSpeakerFilterAsSphinx());
         }
-        if (!is_null($this->wordCount)) {
-            list($op, $count) = $this->wordCount;
-            $op = self::OPERATORS_SPHINXQL_MAP[$op];
-            $sphinx['filter'][] = array('word_count_filter', 1);
-            $sphinx['select'] .= ", (text_len $op $count) as word_count_filter";
+        foreach ($this->wordCount as $op => $count) {
+            $sqlOp = self::OPERATORS_SPHINXQL_MAP[$op];
+            $filterName = "word_count_filter_$op";
+            $sphinx['filter'][] = array($filterName, 1);
+            $sphinx['select'] .= ", (text_len $sqlOp $count) as $filterName";
         }
         if (!is_null($this->translationFilter)) {
             $transFilter = $this->getTranslationFiltersAsSphinx();
@@ -265,14 +265,15 @@ class Search {
     }
 
     public function filterByWordCount($op, $count) {
-        $this->wordCount = null;
-        if (array_key_exists($op, self::OPERATORS_SPHINXQL_MAP)
-            && is_int($count) && $count >= 0) {
-            $this->wordCount = [$op, $count];
-            return $this->wordCount;
-        } else {
-            return [null, null];
+        if (array_key_exists($op, self::OPERATORS_SPHINXQL_MAP)) {
+            if (is_int($count) && $count >= 0) {
+                $this->wordCount[$op] = $count;
+                return $this->wordCount[$op];
+            } else {
+                unset($this->wordCount[$op]);
+            }
         }
+        return null;
     }
 
     public function filterByTranslation($filter) {

@@ -32,8 +32,8 @@ class SentencesSearchForm extends Form
         'unapproved' => 'no',
         'native' => '',
         'has_audio' => '',
-        'word_count' => '0',
-        'word_count_op' => 'ge',
+        'word_count_min' => '1',
+        'word_count_max' => '',
         'trans_to' => '',
         'trans_link' => '',
         'trans_user' => '',
@@ -226,19 +226,17 @@ class SentencesSearchForm extends Form
         return $native ? 'yes' : '';
     }
 
-    protected function setDataWordCountAndOp(array &$data) {
-        $op = $data['word_count_op'];
-        $count = $data['word_count'];
-        $count = ctype_digit($count) ? (int)$count : 0;
+    private function _setDataWordCountFilter(string $op, string $value) {
+        $value = is_numeric($value) ? (int)$value : null;
+        return $this->search->filterByWordCount($op, $value) ?? '';
+    }
 
-        if ( !($op == 'ge' && $count == 0) ) {
-            list($op, $count) = $this->search->filterByWordCount($op, $count);
-        }
+    protected function setDataWordCountMin(string $min) {
+        return $this->_setDataWordCountFilter('ge', $min);
+    }
 
-        $count = (string)($count ?? 0);
-        $op = $op ?? 'ge';
-        unset($data['word_count_op'], $data['word_count']);
-        return ['word_count_op' => $op, 'word_count' => $count];
+    protected function setDataWordCountMax(string $max) {
+        return $this->_setDataWordCountFilter('le', $max);
     }
 
     protected function setDataSort(string $sort) {
@@ -315,9 +313,6 @@ class SentencesSearchForm extends Form
         uksort($data, function ($k) {
             return $k == 'trans_filter';
         });
-
-        /* Apply word count filter */
-        $this->_data = $this->setDataWordCountAndOp($data) + $this->_data;
 
         /* Apply other criteria */
         foreach ($data as $key => $value) {

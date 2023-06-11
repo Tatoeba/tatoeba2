@@ -326,20 +326,17 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByWordCount_count_as_str() {
-        list($resultOp, $resultCount) = $this->Search->filterByWordCount("eq", "1");
-        $this->assertNull($resultOp);
+        $resultCount = $this->Search->filterByWordCount("eq", "1");
         $this->assertNull($resultCount);
     }
 
     public function testfilterByWordCount_count_negative() {
-        list($resultOp, $resultCount) = $this->Search->filterByWordCount("eq", -1);
-        $this->assertNull($resultOp);
+        $resultCount = $this->Search->filterByWordCount("eq", -1);
         $this->assertNull($resultCount);
     }
 
     public function testfilterByWordCount_count_invalid() {
-        list($resultOp, $resultCount) = $this->Search->filterByWordCount("eq", "'");
-        $this->assertNull($resultOp);
+        $resultCount = $this->Search->filterByWordCount("eq", "'");
         $this->assertNull($resultCount);
 
         $expected = $this->makeSphinxParams();
@@ -348,8 +345,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByWordCount_operator_invalid() {
-        list($resultOp, $resultCount) = $this->Search->filterByWordCount("=", 1);
-        $this->assertNull($resultOp);
+        $resultCount = $this->Search->filterByWordCount("=", 1);
         $this->assertNull($resultCount);
 
         $expected = $this->makeSphinxParams();
@@ -358,39 +354,36 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByWordCount_eq_1() {
-        list($resultOp, $resultCount) = $this->Search->filterByWordCount("eq", 1);
-        $this->assertEquals($resultOp, "eq");
+        $resultCount = $this->Search->filterByWordCount("eq", 1);
         $this->assertEquals($resultCount, 1);
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, (text_len = 1) as word_count_filter',
-            'filter' => [['word_count_filter', 1]],
+            'select' => '*, (text_len = 1) as word_count_filter_eq',
+            'filter' => [['word_count_filter_eq', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByWordCount_le_10() {
-        list($resultOp, $resultCount) = $this->Search->filterByWordCount("le", 10);
-        $this->assertEquals($resultOp, "le");
+        $resultCount = $this->Search->filterByWordCount("le", 10);
         $this->assertEquals($resultCount, 10);
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, (text_len <= 10) as word_count_filter',
-            'filter' => [['word_count_filter', 1]],
+            'select' => '*, (text_len <= 10) as word_count_filter_le',
+            'filter' => [['word_count_filter_le', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByWordCount_ge_8() {
-        list($resultOp, $resultCount) = $this->Search->filterByWordCount("ge", 8);
-        $this->assertEquals($resultOp, "ge");
+        $resultCount = $this->Search->filterByWordCount("ge", 8);
         $this->assertEquals($resultCount, 8);
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, (text_len >= 8) as word_count_filter',
-            'filter' => [['word_count_filter', 1]],
+            'select' => '*, (text_len >= 8) as word_count_filter_ge',
+            'filter' => [['word_count_filter_ge', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
