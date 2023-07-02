@@ -6,8 +6,10 @@
 # Andreas Perstinger <andipersti@gmail.com>, 2020
 # Kahina Messaoudi, 2020-2021,2023
 # marzuq UCCEN <merzouk.ouchene@laposte.net>, 2020
-# MozillaKab <belkacem77@gmail.com>, 2019-2020
-# MozillaKab <belkacem77@gmail.com>, 2018-2021
+# Mohammed Belkacem <belkacem77@gmail.com>, 2023
+# Mohammed Belkacem <belkacem77@gmail.com>, 2019-2020
+# Mohammed Belkacem <belkacem77@gmail.com>, 2018-2021
+# samir_t <samir_t7@yahoo.fr>, 2020
 # samir_t <samir_t7@yahoo.fr>, 2020
 # Slimane Selyan AMIRI <selyan.kab@protonmail.com>, 2019-2020
 # Slimane AMIRI, 2018
@@ -18,14 +20,15 @@
 # Trang, 2018
 # Yacine Bouklif <yacinebouklif@gmail.com>, 2020
 # ZiriSut, 2020
+# ZiriSut, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 20:00+0000\n"
+"POT-Creation-Date: 2023-03-26 17:57+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Kahina Messaoudi, 2020-2021,2023\n"
-"Language-Team: Kabyle (http://www.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
+"Last-Translator: Mohammed Belkacem <belkacem77@gmail.com>, 2023\n"
+"Language-Team: Kabyle (http://app.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3055,7 +3058,7 @@ msgstr "igerrez ugar n yilem.: Asulay id n tefyirt iseg d-tettwasuqqel. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L287
 msgid "\\N: Unknown (rare)."
-msgstr ""
+msgstr "\\N: Ur yettwassen ara (yuqa)."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L298
@@ -3132,7 +3135,7 @@ msgstr "Yegber isulayen ids n tefyar, deg tutlayin meṛṛa, i yal ameslaw yell
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L477
 msgid "Downloading audio"
-msgstr ""
+msgstr "Asader n umeslaw"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L480
 msgid ""
@@ -3616,7 +3619,7 @@ msgstr "Ɣur-k"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L76
 msgid "Not inspired?"
-msgstr ""
+msgstr "Ulac tikta?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L82
 msgid ""
@@ -4044,15 +4047,15 @@ msgstr "Ẓreg isem"
 msgid "Click to edit..."
 msgstr "Senned i teẓrigt..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L165
 msgid "Sort by:"
 msgstr "Fren s :"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L167
 msgid "date added to list"
 msgstr "azemz n tmerna ɣer tebdert"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L169
 msgid "date created"
 msgstr "azemz n tmerna"
 
@@ -4082,7 +4085,7 @@ msgstr "Tabdert-a d tilemt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L199
 msgid "This list does not contain any sentences in {language}."
-msgstr ""
+msgstr "Tabdart-a ur tegbir ara tifyar deg  {language}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L213
 msgid ""
@@ -4527,7 +4530,7 @@ msgstr "Amḍan n tefyar deg usebter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Number of translations per sentence"
-msgstr ""
+msgstr "Amḍan n tsuqilin i tefyirt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L249
 msgid "Default license for original sentences"
@@ -4560,7 +4563,7 @@ msgstr "Cṛeḍ tifyar mi ara ad yesken bab-nsent deg umaɣnu-innes d akken sε
 msgid ""
 "Display sentences with the old design. Note that the old design will be "
 "removed at some point."
-msgstr ""
+msgstr "Sken-d tifyar s ufeṣṣel aqbur. Ilaq ad teḥsuḍ dakken afeṣṣel aqbur ad yettwakkes deg kra n yimeḍqan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L364
 msgid "Change email address"

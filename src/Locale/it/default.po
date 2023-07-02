@@ -4,17 +4,18 @@
 # 
 # Translators:
 # gillux, 2020
-# Guybrush88 <erpizzo@alice.it>, 2014-2022
+# gillux, 2020
+# Guybrush88 <erpizzo@alice.it>, 2014-2023
 # Marco Ciampa <ciampix@posteo.net>, 2020
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 20:00+0000\n"
+"POT-Creation-Date: 2023-03-26 17:57+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Guybrush88 <erpizzo@alice.it>, 2014-2022\n"
-"Language-Team: Italian (http://www.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
+"Last-Translator: Guybrush88 <erpizzo@alice.it>, 2014-2023\n"
+"Language-Team: Italian (http://app.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2081,7 +2082,7 @@ msgstr "Azzera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L61
 msgid "Mark as reviewed"
-msgstr "Segna come revisionata"
+msgstr "Segna come valutata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_icons.ctp#L18
 msgid "This sentence is not reliable."
@@ -2193,11 +2194,11 @@ msgstr "Mostra meno funzioni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
 msgid "Show unreviewed transcriptions"
-msgstr "Mostra le trascrizioni non revisionate"
+msgstr "Mostra le trascrizioni non valutate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L10
 msgid "Hide unreviewed transcriptions"
-msgstr "Nascondi le trascrizioni non revisionate"
+msgstr "Nascondi le trascrizioni non valutate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L12
 msgid "Unlink this translation"
@@ -2315,7 +2316,7 @@ msgstr "Il mio vocabolario"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L129
 msgid "My reviews"
-msgstr "Le mie revisioni"
+msgstr "Le mie valutazioni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L783
@@ -2469,7 +2470,7 @@ msgstr "Vocabolario"
 #. link to the user's reviews on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L60
 msgid "Reviews"
-msgstr "Revisioni"
+msgstr "Valutazioni"
 
 #. link to the user's lists on profile page sidebar
 #. / section title in the Downloads page
@@ -2852,7 +2853,7 @@ msgstr "Campo base"
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L57
 msgid "Review"
-msgstr "Revisione"
+msgstr "Valutazione"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L59
@@ -3156,14 +3157,14 @@ msgstr "Indica i livelli di abilità assegnati dagli utenti a se stessi per ogni
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L520
 msgid "Users' sentence reviews"
-msgstr "Revisioni delle frasi degli utenti"
+msgstr "Valutazioni delle frasi degli utenti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L529
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr "Contiene le frasi revisionate dagli utenti. Il valore della revisione può essere -1 (frase errata), 0 (se si è indecisi o insicuri) oppure 1 (frase corretta). Avvertimento: questi dati sono ancora sperimentali."
+msgstr "Contiene le frasi valutate dagli utenti. Il valore della valutazione può essere -1 (frase errata), 0 (se si è indecisi o insicuri) oppure 1 (frase corretta). Avvertimento: questi dati sono ancora sperimentali."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L559
 msgid ""
@@ -3172,7 +3173,7 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr "Contiene tutte le trascrizioni in sistemi di scrittura ausiliari o alternativi. Un nome utente associato a una trascrizione indica l'utente che l'ha revisionata per l'ultima volta e possibilmente modificata. Una trascrizione senza nome utente non è stata contrassegnata come revisionata. Il nome del sistema di scrittura è definito secondo lo standard ISO 15924."
+msgstr "Contiene tutte le trascrizioni in sistemi di scrittura ausiliari o alternativi. Un nome utente associato a una trascrizione indica l'utente che l'ha valutata per l'ultima volta e possibilmente modificata. Una trascrizione senza nome utente non è stata contrassegnata come valutata. Il nome del sistema di scrittura è definito secondo lo standard ISO 15924."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
@@ -3480,7 +3481,7 @@ msgstr "Tutte le frasi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L43
 msgid "Outdated reviews"
-msgstr "Revisioni obsolete"
+msgstr "Valutazioni obsolete"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L47
 msgid "Sentences in {language} marked as \"OK\""
@@ -3500,11 +3501,11 @@ msgstr "Tutte le frasi in {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L51
 msgid "Outdated reviews for sentences in {language}"
-msgstr "Revisioni obsolete per le frasi in {language}"
+msgstr "Valutazioni obsolete per le frasi in {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L65
 msgid "{user}'s reviews - {category}"
-msgstr "Revisioni di {user} — {category}"
+msgstr "Valutazioni di {user} — {category}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L80
 msgid "This feature is currently deactivated."
@@ -3514,7 +3515,7 @@ msgstr "Questa funzione è attualmente disattivata."
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr "Puoi attivarla nelle tue impostazioni: \"Attiva la funzione per revisionare le frasi.\""
+msgstr "Puoi attivarla nelle tue impostazioni: \"Attiva la funzione per valutare le frasi.\""
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L93
@@ -3830,7 +3831,7 @@ msgstr "Non ci sono commenti per ora."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L184
 msgid "Reviewed by"
-msgstr "Revisionata da"
+msgstr "Valutata da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L203
 msgid "(outdated)"
@@ -4050,15 +4051,15 @@ msgstr "Modifica il nome"
 msgid "Click to edit..."
 msgstr "Clicca per modificare..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L165
 msgid "Sort by:"
 msgstr "Ordina per:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L167
 msgid "date added to list"
 msgstr "data di aggiunta all'elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L169
 msgid "date created"
 msgstr "data di creazione"
 
@@ -4516,7 +4517,7 @@ msgstr "Mostra un collegamento per espandere/ridurre le traduzioni quando ce ne 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L162
 msgid "Always show unreviewed transcriptions and alternative scripts"
-msgstr "Mostra sempre le trascrizioni non revisionate e i sistemi di scrittura alternativi"
+msgstr "Mostra sempre le trascrizioni non valutate e i sistemi di scrittura alternativi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L187
 msgid "Show random sentence on the homepage"
@@ -4555,7 +4556,7 @@ msgstr "Le opzioni in questa categoria non sono del tutto funzionali, potrebbero
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L282
 msgid "Activate the feature to review sentences"
-msgstr "Attiva la funzione per revisionare le frasi"
+msgstr "Attiva la funzione per valutare le frasi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L305
 msgid ""
@@ -4569,7 +4570,7 @@ msgstr "Annota le frasi quando il proprietario ha indicato nel suo profilo che h
 msgid ""
 "Display sentences with the old design. Note that the old design will be "
 "removed at some point."
-msgstr ""
+msgstr "Mostra le frasi con il vecchio stile. Tieni in mente che il vecchio stile sarà eliminato ad un certo punto nel futuro."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L364
 msgid "Change email address"
@@ -5509,12 +5510,12 @@ msgstr "Non puoi modificare questa traslitterazione."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L246
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
-msgstr "Clicca per marcarla come revisionata."
+msgstr "Clicca per marcarla come valutata."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L252
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
-msgstr "Clicca per marcarla come revisionata."
+msgstr "Clicca per marcarla come valutata."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L41
 msgid "Unknown number of sentences"

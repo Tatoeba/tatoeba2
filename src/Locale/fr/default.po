@@ -4,30 +4,31 @@
 # 
 # Translators:
 # A G, 2019-2020
-# gillux, 2015-2016,2018-2021
+# gillux, 2015-2016,2018-2021,2023
 # gillux, 2014
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Maxime Buquet <tidusx62@gmail.com>, 2014
 # Michel S <michel.smts2@gmail.com>, 2020
 # None ofyourbusiness <antoine.cl@gmail.com>, 2020
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <per.morvan.bzh29@gmail.com>, 2016
+# Ricardo14 <rvj1444@gmail.com>, 2020
 # Ricardo14 <rvj1444@gmail.com>, 2020
 # Ricardo14 <rvj1444@gmail.com>, 2020
 # Sacred Celtic <sacredceltic@gmail.com>, 2014,2016,2020
-# Trang, 2018
+# Trang, 2018,2021
 # Trang, 2014-2016
 # Trang, 2018,2021
 # gillux, 2014
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
+# Irriep Nala Novram <per.morvan.bzh29@gmail.com>, 2016
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-11 20:00+0000\n"
+"POT-Creation-Date: 2023-03-26 17:57+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: gillux, 2015-2016,2018-2021\n"
-"Language-Team: French (http://www.transifex.com/tatoeba/tatoeba_website/language/fr/)\n"
+"Last-Translator: gillux, 2015-2016,2018-2021,2023\n"
+"Language-Team: French (http://app.transifex.com/tatoeba/tatoeba_website/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -980,7 +981,7 @@ msgstr "{username} n'a fourni aucun enregistrement sonore"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
 msgid "(total {totalAudio})"
-msgstr ""
+msgstr "(total {totalAudio})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
@@ -1915,7 +1916,7 @@ msgstr "O.K."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L64
 msgid "The audio file will be lost. Are you sure?"
-msgstr ""
+msgstr "Le fichier audio sera perdu. Êtes-vous sûr(e) ?"
 
 #. header text in sentence page
 #. / link to the list of audio on profile page sidebar
@@ -1923,13 +1924,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
 msgid "Audio"
 msgid_plural "Audio"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Enregistrement sonore"
+msgstr[1] "Enregistrements sonores"
+msgstr[2] "Enregistrement sonore"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
-msgstr ""
+msgstr "par {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L98
 msgid "License: {license}"
@@ -1937,7 +1938,7 @@ msgstr "Licence : {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L104
 msgid "Is enabled"
-msgstr ""
+msgstr "Est activé"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
 msgid "Show more features for all sentences"
@@ -1975,17 +1976,17 @@ msgstr "Chercher une langue"
 #. header text on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L31
 msgid "Sentence text"
-msgstr ""
+msgstr "Texte de la phrase"
 
 #. placeholder is the name of the license
 #. of the sentence text, could be CC BY 2.0 FR or CC0
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L37
 msgid "License: {}"
-msgstr ""
+msgstr "License : {}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L62
 msgid "Change license"
-msgstr ""
+msgstr "Modifier la license"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -2955,7 +2956,7 @@ msgstr "Nom de l’écriture"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L95
 msgid "Audio id"
-msgstr ""
+msgstr "Identifiant de l'enregistrement sonore"
 
 #. header text in the Downloads page on the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L113
@@ -3147,14 +3148,14 @@ msgstr "Contient les identifiants des phrases, toutes langues confondues, pour l
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L477
 msgid "Downloading audio"
-msgstr ""
+msgstr "Télécharger les enregistrements sonores"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L480
 msgid ""
 "A single sentence can have one or more audio, each from a different voice. "
 "To download a particular audio, use its audio id to compute the download "
 "URL. For example, to download the audio with the id 1234, the URL is {url}."
-msgstr ""
+msgstr "Une phrase peut avoir un ou plusieurs enregistrements sonores, chacun d'une voix différente. Pour télécharger un enregistrement en particulier, utilisez son identifiant pour former l'URL de téléchargement. Par exemple, pour télécharger l'enregistrement ayant comme identifiant 1234, l'URL est {url}."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L500
@@ -3835,7 +3836,7 @@ msgstr "La phrase n'existe pas : "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L174
 msgid "Metadata"
-msgstr ""
+msgstr "Métadonnées"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L152
 msgid "There are no comments for now."
@@ -4063,15 +4064,15 @@ msgstr "Modifier le nom"
 msgid "Click to edit..."
 msgstr "Cliquez pour modifier…"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L165
 msgid "Sort by:"
 msgstr "Trier par :"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L167
 msgid "date added to list"
 msgstr "date d'ajout à la liste"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L169
 msgid "date created"
 msgstr "date de création"
 
@@ -4101,7 +4102,7 @@ msgstr "La liste est vide."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L199
 msgid "This list does not contain any sentences in {language}."
-msgstr ""
+msgstr "Cette liste ne contient aucune phrase en {language}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L213
 msgid ""
@@ -4549,7 +4550,7 @@ msgstr "Nombre de phrases par page"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Number of translations per sentence"
-msgstr ""
+msgstr "Nombre de traductions par phrase"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L249
 msgid "Default license for original sentences"
@@ -4582,7 +4583,7 @@ msgstr "Marquer les phrases lorsque le propriétaire a indiqué dans son profil 
 msgid ""
 "Display sentences with the old design. Note that the old design will be "
 "removed at some point."
-msgstr ""
+msgstr "Afficher les phrases avec l'ancien design. Notez que cet ancien design sera retiré au bout d'un certain temps."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L364
 msgid "Change email address"
@@ -4886,13 +4887,13 @@ msgstr "Vous ne pouvez pas réutiliser les enregistrements sonores suivants en d
 msgid ""
 "The following audio recordings by {userName} are licensed under the public "
 "domain."
-msgstr ""
+msgstr "Les enregistrements sonores suivants de {userName} sont placés dans le domaine public."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L56
 msgid ""
 "The following audio recordings by {userName} are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "Les enregistrements sonores suivants de {userName} sont placés sous licence {licenseName}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid ""
