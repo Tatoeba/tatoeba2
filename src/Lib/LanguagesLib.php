@@ -693,6 +693,7 @@ class LanguagesLib
                 'skr' => __d('languages', 'Saraiki'),
                 'nap' => __d('languages', 'Neapolitan'),
                 'syl' => __d('languages', 'Sylheti'),
+                'tum' => __d('languages', 'Tumbuka'),
 
             );
         }
