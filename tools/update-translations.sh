@@ -2,7 +2,7 @@
 
 set -e
 
-check_prerequistes() {
+check_prerequisites() {
   if ! which tx >/dev/null 2>&1; then
     echo "Please install the transifex client first:"
     echo "  https://docs.transifex.com/client/installing-the-client"
@@ -58,7 +58,7 @@ elif [ "$#" -gt 0 ]; then
   exit 1
 fi
 
-check_prerequistes
+check_prerequisites
 pull_translations $pull_all
 remove_cakephp_cached_translation
 
