@@ -59,6 +59,7 @@
                 vm.addLangStep = 'selection';
                 break;
             case 'selection':
+                vm.selectedLang.level = null;
                 vm.addLangStep = 'level';
                 break;
             case 'level':
