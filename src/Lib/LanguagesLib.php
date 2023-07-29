@@ -694,6 +694,7 @@ class LanguagesLib
                 'nap' => __d('languages', 'Neapolitan'),
                 'syl' => __d('languages', 'Sylheti'),
                 'tum' => __d('languages', 'Tumbuka'),
+                'arn' => __d('languages', 'Mapuche'),
 
             );
         }
