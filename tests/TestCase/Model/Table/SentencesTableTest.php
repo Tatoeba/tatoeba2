@@ -21,6 +21,7 @@ class SentencesTableTest extends TestCase {
         'app.users',
         'app.users_languages',
         'app.contributions',
+        'app.disabled_audios',
         'app.sentences_lists',
         'app.sentences_sentences_lists',
         'app.tags',
@@ -1227,6 +1228,12 @@ class SentencesTableTest extends TestCase {
         CurrentUser::store($this->Sentence->Users->get(2));
         $result = $this->Sentence->changeLanguage(3, 'eng');
         $this->assertEquals('spa', $result);
+    }
+
+    function testChangeLanguage_failsBecauseInvalidLang() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $result = $this->Sentence->changeLanguage(1, '123');
+        $this->assertEquals('eng', $result);
     }
 
     function testChangeLanguage_correctEntriesInReindexFlags() {
