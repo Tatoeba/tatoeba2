@@ -131,6 +131,50 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEmpty($result);
     }
 
+    function testSaveUserLanguage_failsBecauseLevelTooHigh() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => '6',
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_failsBecauseLevelTooLow() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => '-1',
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_failsBecauseLevelInvalid() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => 'invalid',
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_succeedsLevelUnknown() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => null
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertNotEmpty($result);
+    }
+
     function testDeleteUserLanguage_succeeds() {
         $result = $this->UsersLanguages->deleteUserLanguage(1, 4);
 

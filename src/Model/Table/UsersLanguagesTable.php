@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use App\Lib\LanguagesLib;
+use App\Model\Entity\Language;
 use App\Model\Entity\User;
 use App\Model\CurrentUser;
 use Cake\ORM\Table;
@@ -52,6 +53,14 @@ class UsersLanguagesTable extends Table
             ->add('language_code', [
                 'inList' => [
                     'rule' => ['inList', $languages]
+                ]
+            ]);
+
+        $validator
+            ->allowEmpty('level')
+            ->add('level', [
+                'inList' => [
+                    'rule' => ['range', 0, Language::MAX_LEVEL]
                 ]
             ]);
 
