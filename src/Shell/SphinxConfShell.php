@@ -803,6 +803,13 @@ EOT;
         return $conf;
     }
 
+    public function getOptionParser() {
+        $parser = parent::getOptionParser();
+        $parser
+            ->setDescription('Generates configuration file for Manticore Search.');
+        return $parser;
+    }
+
     public function main() {
         $this->dbConfig = ConnectionManager::get('default')->config();
         $this->sphinxConfig = Configure::read('Sphinx');
