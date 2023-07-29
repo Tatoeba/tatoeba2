@@ -90,12 +90,7 @@ class UsersLanguagesController extends AppController
         }
 
         if (!$savedLanguage) {
-            $lang = $this->request->getData('lang');
-            if (empty($lang) || $lang == 'und') {
-                $message = __('No language selected.');
-            } else {
-                $message = __('You cannot save this language.');
-            }
+            $message = __('You cannot save this language.');
             if ($isAngular) {
                 return $this->respondError($message);
             } else {
