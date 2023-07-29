@@ -32,6 +32,8 @@ class SentencesSearchForm extends Form
         'unapproved' => 'no',
         'native' => '',
         'has_audio' => '',
+        'word_count_min' => '1',
+        'word_count_max' => '',
         'trans_to' => '',
         'trans_link' => '',
         'trans_user' => '',
@@ -224,6 +226,19 @@ class SentencesSearchForm extends Form
         return $native ? 'yes' : '';
     }
 
+    private function _setDataWordCountFilter(string $op, string $value) {
+        $value = is_numeric($value) ? (int)$value : null;
+        return $this->search->filterByWordCount($op, $value) ?? '';
+    }
+
+    protected function setDataWordCountMin(string $min) {
+        return $this->_setDataWordCountFilter('ge', $min);
+    }
+
+    protected function setDataWordCountMax(string $max) {
+        return $this->_setDataWordCountFilter('le', $max);
+    }
+
     protected function setDataSort(string $sort) {
         $sort = $this->search->sort($sort);
 
@@ -299,13 +314,16 @@ class SentencesSearchForm extends Form
             return $k == 'trans_filter';
         });
 
-        /* Apply given criteria */
+        /* Apply other criteria */
         foreach ($data as $key => $value) {
             $keyCamel = Inflector::camelize($key);
             $setter = "setData$keyCamel";
             $this->_data[$key] = $this->$setter($value);
 
-            if(empty($this->_data[$key]) && !empty($this->defaultCriteria[$key])) {
+            $strippedParam = ($this->_data[$key] === null
+                              || $this->_data[$key] === false
+                              || $this->_data[$key] === '');
+            if ($strippedParam && !empty($this->defaultCriteria[$key])) {
                 /* Using Router::url() to reconstruct a URL for the given data
                  * strips out empty parameters, which would lead to a non-empty
                  * default being applied instead of the empty non-default value.

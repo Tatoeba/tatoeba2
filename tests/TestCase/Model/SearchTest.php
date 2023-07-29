@@ -25,8 +25,19 @@ class SearchTest extends TestCase
         unset($this->Search);
     }
 
+    private function makeSphinxParams($add = []) {
+        return array_merge(
+            [
+                'index' => ['und_index'],
+                'matchMode' => SPH_MATCH_EXTENDED2,
+                'select' => '*',
+            ],
+            $add
+        );
+    }
+
     public function testWithoutFilters() {
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -35,11 +46,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByQuery($query);
         $this->assertEquals($expectedQuery, $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
-            'query' => $expectedQuery
-        ];
+        $expected = $this->makeSphinxParams(['query' => $expectedQuery]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -56,10 +63,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByLanguage('por');
         $this->assertEquals('por', $result);
 
-        $expected = [
-            'index' => ['por_main_index', 'por_delta_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2
-        ];
+        $expected = $this->makeSphinxParams([
+            'index' => ['por_main_index', 'por_delta_index']
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -68,7 +74,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByLanguage('und');
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -77,7 +83,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByLanguage('1234567890');
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -91,11 +97,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByOwnerId(4);
         $this->assertEquals(4, $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['user_id', 4]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -104,7 +108,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByOwnerId(null);
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -113,11 +117,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByOrphanship(true);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['user_id', 0, false]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -126,11 +128,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByOrphanship(false);
         $this->assertFalse($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['user_id', 0, true]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -139,7 +139,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByOrphanship(null);
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -148,11 +148,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByCorrectness(true);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['ucorrectness', 127, false]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -161,11 +159,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByCorrectness(false);
         $this->assertFalse($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
-            'filter' => [['ucorrectness', 127, true]]
-        ];
+        $expected = $this->makeSphinxParams([
+            'filter' => [['ucorrectness', 127, true]],
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -174,7 +170,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByCorrectness(null);
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -183,11 +179,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByAudio(true);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['has_audio', 1]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -196,11 +190,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByAudio(false);
         $this->assertFalse($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['has_audio', 0]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -209,7 +201,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByAudio(null);
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -220,7 +212,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByListId($listId, $currentUserId);
         $this->assertFalse($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -231,11 +223,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByListId($listId, $currentUserId);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['lists_id', $listId]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -246,11 +236,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByListId($listId, $currentUserId);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['lists_id', $listId]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -261,7 +249,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByListId($listId, $currentUserId);
         $this->assertFalse($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -272,11 +260,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByListId($listId, $currentUserId);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['lists_id', $listId]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -287,7 +273,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByListId($listId, $currentUserId);
         $this->assertTrue($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -302,11 +288,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByNativeSpeaker(true);
         $this->assertTrue($result);
 
-        $expected = [
+        $expected = $this->makeSphinxParams([
             'index' => ['fra_main_index', 'fra_delta_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
             'filter' => [['user_id', [4, 3]]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -316,10 +301,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByNativeSpeaker(null);
         $this->assertNull($result);
 
-        $expected = [
+        $expected = $this->makeSphinxParams([
             'index' => ['fra_main_index', 'fra_delta_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -333,11 +317,74 @@ class SearchTest extends TestCase
         $this->Search->filterByLanguage('fra');
         $this->Search->filterByNativeSpeaker(true);
         $this->Search->setSphinxFilterArrayLimit(1);
-        $expected = [
+        $expected = $this->makeSphinxParams([
             'index' => ['fra_main_index', 'fra_delta_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
             'filter' => [['user_id', [7], true]],
-        ];
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_count_as_str() {
+        $resultCount = $this->Search->filterByWordCount("eq", "1");
+        $this->assertNull($resultCount);
+    }
+
+    public function testfilterByWordCount_count_negative() {
+        $resultCount = $this->Search->filterByWordCount("eq", -1);
+        $this->assertNull($resultCount);
+    }
+
+    public function testfilterByWordCount_count_invalid() {
+        $resultCount = $this->Search->filterByWordCount("eq", "'");
+        $this->assertNull($resultCount);
+
+        $expected = $this->makeSphinxParams();
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_operator_invalid() {
+        $resultCount = $this->Search->filterByWordCount("=", 1);
+        $this->assertNull($resultCount);
+
+        $expected = $this->makeSphinxParams();
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_eq_1() {
+        $resultCount = $this->Search->filterByWordCount("eq", 1);
+        $this->assertEquals($resultCount, 1);
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (text_len = 1) as word_count_filter_eq',
+            'filter' => [['word_count_filter_eq', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_le_10() {
+        $resultCount = $this->Search->filterByWordCount("le", 10);
+        $this->assertEquals($resultCount, 10);
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (text_len <= 10) as word_count_filter_le',
+            'filter' => [['word_count_filter_le', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_ge_8() {
+        $resultCount = $this->Search->filterByWordCount("ge", 8);
+        $this->assertEquals($resultCount, 8);
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (text_len >= 8) as word_count_filter_ge',
+            'filter' => [['word_count_filter_ge', 1]],
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -346,11 +393,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTags(['OK']);
         $this->assertEquals(['OK'], $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['tags_id', 2]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -358,11 +403,9 @@ class SearchTest extends TestCase
     public function testfilterByTags_twoTags() {
         $result = $this->Search->filterByTags(['OK', '@needs native check']);
         $this->assertEquals(['OK', '@needs native check'], $result);
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['tags_id', 2], ['tags_id', 1]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -371,7 +414,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTags(['nonexsistenttag']);
         $this->assertEmpty($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -380,11 +423,9 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTags(['OK', 'nonexsistenttag']);
         $this->assertEquals(['OK'], $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'filter' => [['tags_id', 2]]
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -393,7 +434,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTags([]);
         $this->assertEmpty($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -407,7 +448,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTags(["'"]);
         $this->assertEmpty($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -416,12 +457,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslation('limit');
         $this->assertEquals('limit', $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(1 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -430,12 +469,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslation('exclude');
         $this->assertEquals('exclude', $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(1 FOR t IN trans) as filter',
             'filter' => [['filter', 0]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -444,7 +481,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslation('invalid value');
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -453,7 +490,7 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslation(null);
         $this->assertNull($result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -468,12 +505,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationAudio(true);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.a=1 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -483,12 +518,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationAudio(false);
         $this->assertFalse($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.a=0 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -505,12 +538,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationLanguage('ain');
         $this->assertEquals('ain', $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => "*, ANY(t.l='ain' FOR t IN trans) as filter",
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -539,12 +570,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationLink('direct');
         $this->assertEquals('direct', $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.d=1 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -554,12 +583,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationLink('indirect');
         $this->assertEquals('indirect', $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.d=2 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -588,12 +615,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationOwnerId(4);
         $this->assertEquals(4, $result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.u=4 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -610,12 +635,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationOrphanship(true);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.u=0 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -625,12 +648,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationOrphanship(false);
         $this->assertFalse($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.u<>0 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -652,12 +673,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationCorrectness(true);
         $this->assertTrue($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.c=0 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -667,12 +686,10 @@ class SearchTest extends TestCase
         $result = $this->Search->filterByTranslationCorrectness(false);
         $this->assertFalse($result);
 
-        $expected = [
-            'index' => ['und_index'],
-            'matchMode' => SPH_MATCH_EXTENDED2,
+        $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.c=1 FOR t IN trans) as filter',
             'filter' => [['filter', 1]],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -690,24 +707,20 @@ class SearchTest extends TestCase
     }
 
     private function assertSortByRank($sort, $rank) {
-        $expected = [
-            'index' => ['und_index'],
+        $expected = $this->makeSphinxParams([
             'query' => 'comme ci comme ça',
-            'matchMode' => SPH_MATCH_EXTENDED2,
             'sortMode' => [SPH_SORT_EXTENDED => $sort],
             'rankingMode' => [SPH_RANK_EXPR => $rank],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     private function assertSortBy($sort) {
-        $expected = [
-            'index' => ['und_index'],
+        $expected = $this->makeSphinxParams([
             'query' => '',
-            'matchMode' => SPH_MATCH_EXTENDED2,
             'sortMode' => [SPH_SORT_EXTENDED => $sort],
-        ];
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -895,7 +908,7 @@ class SearchTest extends TestCase
         $result = $this->Search->sort('invalidsortvalue');
         $this->assertEquals('', $result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -904,7 +917,7 @@ class SearchTest extends TestCase
         $result = $this->Search->sort('');
         $this->assertEquals('', $result);
 
-        $expected = ['index' => ['und_index'], 'matchMode' => SPH_MATCH_EXTENDED2];
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }

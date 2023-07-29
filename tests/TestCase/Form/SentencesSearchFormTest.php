@@ -33,6 +33,8 @@ class SentencesSearchFormTest extends TestCase
             'orphans' => 'no',
             'user' => '',
             'has_audio' => '',
+            'word_count_min' => '1',
+            'word_count_max' => '',
             'tags' => '',
             'list' => '',
             'native' => '',
@@ -58,124 +60,139 @@ class SentencesSearchFormTest extends TestCase
 
     public function searchParamsProvider() {
         return [
-            [ 'query',
-              'your proposal',
+            [ ['query' => 'your proposal'],
               ['filterByQuery', 'your proposal' ],
               'your proposal'
             ],
-            [ 'query',
-              '散りぬるを　我が世誰ぞ',
+            [ ['query' => '散りぬるを　我が世誰ぞ'],
               ['filterByQuery', '散りぬるを 我が世誰ぞ' ],
               '散りぬるを 我が世誰ぞ'
             ],
-            [ 'query',
-              "ceci\u{a0}; cela\u{a0}",
+            [ ['query' => "ceci\u{a0}; cela\u{a0}"],
               ['filterByQuery', 'ceci ; cela ' ],
               'ceci ; cela '
             ],
 
-            [ 'from', 'ain',         ['filterByLanguage', 'ain'        ], 'ain' ],
-            [ 'from', '',            ['filterByLanguage', ''           ], '' ],
-            [ 'from', 'invalidlang', ['filterByLanguage', 'invalidlang'], '' ],
+            [ ['from' => 'ain'],         ['filterByLanguage', 'ain'        ], 'ain' ],
+            [ ['from' => ''],            ['filterByLanguage', ''           ], '' ],
+            [ ['from' => 'invalidlang'], ['filterByLanguage', 'invalidlang'], '' ],
 
-            [ 'to', 'und',     [], '' ],
-            [ 'to', 'none',    [], 'none' ],
-            [ 'to', 'fra',     [], 'fra' ],
-            [ 'to', '',        [], '' ],
-            [ 'to', 'invalid', [], '' ],
+            [ ['to' => 'und'],     [], '' ],
+            [ ['to' => 'none'],    [], 'none' ],
+            [ ['to' => 'fra'],     [], 'fra' ],
+            [ ['to' => ''],        [], '' ],
+            [ ['to' => 'invalid'], [], '' ],
 
-            [ 'unapproved', 'yes',     ['filterByCorrectness', true],  'yes' ],
-            [ 'unapproved', 'no',      ['filterByCorrectness', false], 'no'  ],
-            [ 'unapproved', 'any',     ['filterByCorrectness', null],  'any' ],
-            [ 'unapproved', 'invalid', ['filterByCorrectness', null],  'any' ],
-            [ 'unapproved', '',        ['filterByCorrectness', null],  'any' ],
+            [ ['unapproved' => 'yes'],     ['filterByCorrectness', true],  'yes' ],
+            [ ['unapproved' => 'no'],      ['filterByCorrectness', false], 'no'  ],
+            [ ['unapproved' => 'any'],     ['filterByCorrectness', null],  'any' ],
+            [ ['unapproved' => 'invalid'], ['filterByCorrectness', null],  'any' ],
+            [ ['unapproved' => ''],        ['filterByCorrectness', null],  'any' ],
 
-            [ 'orphans', 'yes',     ['filterByOrphanship', true],  'yes' ],
-            [ 'orphans', 'no',      ['filterByOrphanship', false], 'no'  ],
-            [ 'orphans', 'any',     ['filterByOrphanship', null],  'any' ],
-            [ 'orphans', 'invalid', ['filterByOrphanship', null],  'any' ],
-            [ 'orphans', '',        ['filterByOrphanship', null],  'any' ],
+            [ ['orphans' => 'yes'],     ['filterByOrphanship', true],  'yes' ],
+            [ ['orphans' => 'no'],      ['filterByOrphanship', false], 'no'  ],
+            [ ['orphans' => 'any'],     ['filterByOrphanship', null],  'any' ],
+            [ ['orphans' => 'invalid'], ['filterByOrphanship', null],  'any' ],
+            [ ['orphans' => ''],        ['filterByOrphanship', null],  'any' ],
 
-            [ 'user', 'contributor', ['filterByOwnerId', 4], 'contributor' ],
-            [ 'user', 'invaliduser', ['filterByOwnerId'],    '', 1 ],
-            [ 'user', '',            ['filterByOwnerId'],    '' ],
+            [ ['user' => 'contributor'], ['filterByOwnerId', 4], 'contributor' ],
+            [ ['user' => 'invaliduser'], ['filterByOwnerId'],    '', 1 ],
+            [ ['user' => ''],            ['filterByOwnerId'],    '' ],
 
-            [ 'has_audio', 'yes',     ['filterByAudio', true],  'yes' ],
-            [ 'has_audio', 'no',      ['filterByAudio', false], 'no'  ],
-            [ 'has_audio', 'invalid', ['filterByAudio', null],  ''    ],
-            [ 'has_audio', '',        ['filterByAudio', null],  ''    ],
+            [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
+            [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],
+            [ ['has_audio' => 'invalid'], ['filterByAudio', null],  ''    ],
+            [ ['has_audio' => ''],        ['filterByAudio', null],  ''    ],
 
-            [ 'tags', 'OK',          ['filterByTags', ['OK']],            'OK'    ],
-            [ 'tags', 'invalid tag', ['filterByTags', ['invalid tag']],   '',   1 ],
-            [ 'tags', 'OK,invalid',  ['filterByTags', ['OK', 'invalid']], 'OK', 1 ],
+            [ ['tags' => 'OK'],          ['filterByTags', ['OK']],            'OK'    ],
+            [ ['tags' => 'invalid tag'], ['filterByTags', ['invalid tag']],   '',   1 ],
+            [ ['tags' => 'OK,invalid'],  ['filterByTags', ['OK', 'invalid']], 'OK', 1 ],
 
-            [ 'list', '2',       ['filterByListId', 2, null],       '2'   ],
-            [ 'list', '9999999', ['filterByListId', 9999999, null], '', 1 ],
-            [ 'list', '',        ['filterByListId', null, null],    ''    ],
-            [ 'list', '3',       ['filterByListId', 3, null],       '', 1 ],
+            [ ['list' => '2'],       ['filterByListId', 2, null],       '2'   ],
+            [ ['list' => '9999999'], ['filterByListId', 9999999, null], '', 1 ],
+            [ ['list' => ''],        ['filterByListId', null, null],    ''    ],
+            [ ['list' => '3'],       ['filterByListId', 3, null],       '', 1 ],
 
-            [ 'native', 'yes',     ['filterByNativeSpeaker', true],  'yes' ],
-            [ 'native', 'no',      ['filterByNativeSpeaker', null],  ''    ],
-            [ 'native', 'invalid', ['filterByNativeSpeaker', null],  ''    ],
-            [ 'native', '',        ['filterByNativeSpeaker', null],  ''    ],
+            [ ['native' => 'yes'],     ['filterByNativeSpeaker', true],  'yes' ],
+            [ ['native' => 'no'],      ['filterByNativeSpeaker', null],  ''    ],
+            [ ['native' => 'invalid'], ['filterByNativeSpeaker', null],  ''    ],
+            [ ['native' => ''],        ['filterByNativeSpeaker', null],  ''    ],
 
-            [ 'trans_filter', 'exclude',      ['filterByTranslation', 'exclude'], 'exclude' ],
-            [ 'trans_filter', 'invalidvalue', ['filterByTranslation'], 'limit' ],
+            [ ['word_count_min' => ''],        ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
+            [ ['word_count_min' => '0'],       ['filterByWordCount' => [['le', null], ['ge', 0   ]]], '0'  ],
+            [ ['word_count_min' => '01'],      ['filterByWordCount' => [['le', null], ['ge', 1   ]]], '1'  ],
+            [ ['word_count_min' => '42'],      ['filterByWordCount' => [['le', null], ['ge', 42  ]]], '42' ],
+            [ ['word_count_min' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
 
-            [ 'trans_to', 'ain',     ['filterByTranslationLanguage', 'ain'    ], 'ain' ],
-            [ 'trans_to', '',        ['filterByTranslationLanguage', ''       ], '' ],
-            [ 'trans_to', 'invalid', ['filterByTranslationLanguage', 'invalid'], '' ],
+            [ ['word_count_max' => ''],        ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
+            [ ['word_count_max' => '0'],       ['filterByWordCount' => [['le', 0   ], ['ge', 1   ]]], '0'  ],
+            [ ['word_count_max' => '01'],      ['filterByWordCount' => [['le', 1   ], ['ge', 1   ]]], '1'  ],
+            [ ['word_count_max' => '42'],      ['filterByWordCount' => [['le', 42  ], ['ge', 1   ]]], '42' ],
+            [ ['word_count_max' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
 
-            [ 'trans_link', 'direct',   ['filterByTranslationLink', 'direct'],  'direct'],
-            [ 'trans_link', 'indirect', ['filterByTranslationLink', 'indirect'],'indirect'],
-            [ 'trans_link', '',         ['filterByTranslationLink', ''],        ''],
-            [ 'trans_link', 'invalid',  ['filterByTranslationLink', 'invalid'], ''],
+            [ ['trans_filter' => 'exclude'],      ['filterByTranslation', 'exclude'], 'exclude' ],
+            [ ['trans_filter' => 'invalidvalue'], ['filterByTranslation'], 'limit' ],
 
-            [ 'trans_has_audio', 'yes',     ['filterByTranslationAudio', true],  'yes' ],
-            [ 'trans_has_audio', 'no',      ['filterByTranslationAudio', false], 'no'  ],
-            [ 'trans_has_audio', 'invalid', ['filterByTranslationAudio', null],  ''    ],
-            [ 'trans_has_audio', '',        ['filterByTranslationAudio', null],  ''    ],
+            [ ['trans_to' => 'ain'],     ['filterByTranslationLanguage', 'ain'    ], 'ain' ],
+            [ ['trans_to' => ''],        ['filterByTranslationLanguage', ''       ], '' ],
+            [ ['trans_to' => 'invalid'], ['filterByTranslationLanguage', 'invalid'], '' ],
 
-            [ 'trans_unapproved', 'yes',     ['filterByTranslationCorrectness', true],  'yes' ],
-            [ 'trans_unapproved', 'no',      ['filterByTranslationCorrectness', false], 'no'  ],
-            [ 'trans_unapproved', 'invalid', ['filterByTranslationCorrectness', null],  ''    ],
-            [ 'trans_unapproved', '',        ['filterByTranslationCorrectness', null],  ''    ],
+            [ ['trans_link' => 'direct'],   ['filterByTranslationLink', 'direct'],  'direct'],
+            [ ['trans_link' => 'indirect'], ['filterByTranslationLink', 'indirect'],'indirect'],
+            [ ['trans_link' => ''],         ['filterByTranslationLink', ''],        ''],
+            [ ['trans_link' => 'invalid'],  ['filterByTranslationLink', 'invalid'], ''],
 
-            [ 'trans_orphan', 'yes',     ['filterByTranslationOrphanship', true],  'yes' ],
-            [ 'trans_orphan', 'no',      ['filterByTranslationOrphanship', false], 'no'  ],
-            [ 'trans_orphan', 'invalid', ['filterByTranslationOrphanship', null],  ''    ],
-            [ 'trans_orphan', '',        ['filterByTranslationOrphanship', null],  ''    ],
+            [ ['trans_has_audio' => 'yes'],     ['filterByTranslationAudio', true],  'yes' ],
+            [ ['trans_has_audio' => 'no'],      ['filterByTranslationAudio', false], 'no'  ],
+            [ ['trans_has_audio' => 'invalid'], ['filterByTranslationAudio', null],  ''    ],
+            [ ['trans_has_audio' => ''],        ['filterByTranslationAudio', null],  ''    ],
 
-            [ 'trans_user', 'contributor', ['filterByTranslationOwnerId', 4], 'contributor' ],
-            [ 'trans_user', 'invaliduser', ['filterByTranslationOwnerId'],    '', 1 ],
-            [ 'trans_user', '',            ['filterByTranslationOwnerId'],    ''    ],
+            [ ['trans_unapproved' => 'yes'],     ['filterByTranslationCorrectness', true],  'yes' ],
+            [ ['trans_unapproved' => 'no'],      ['filterByTranslationCorrectness', false], 'no'  ],
+            [ ['trans_unapproved' => 'invalid'], ['filterByTranslationCorrectness', null],  ''    ],
+            [ ['trans_unapproved' => ''],        ['filterByTranslationCorrectness', null],  ''    ],
 
-            [ 'sort', 'relevance', ['sort', 'relevance'], 'relevance' ],
-            [ 'sort', 'words',     ['sort', 'words'],     'words'     ],
-            [ 'sort', 'modified',  ['sort', 'modified'],  'modified'  ],
-            [ 'sort', 'created',   ['sort', 'created'],   'created'   ],
-            [ 'sort', 'random',    ['sort', 'random'],    'random'    ],
+            [ ['trans_orphan' => 'yes'],     ['filterByTranslationOrphanship', true],  'yes' ],
+            [ ['trans_orphan' => 'no'],      ['filterByTranslationOrphanship', false], 'no'  ],
+            [ ['trans_orphan' => 'invalid'], ['filterByTranslationOrphanship', null],  ''    ],
+            [ ['trans_orphan' => ''],        ['filterByTranslationOrphanship', null],  ''    ],
 
-            [ 'sort_reverse', 'yes',     ['reverseSort', true],  'yes' ],
-            [ 'sort_reverse', '',        ['reverseSort', false], '' ],
-            [ 'sort_reverse', 'invalid', ['reverseSort', false], '' ],
+            [ ['trans_user' => 'contributor'], ['filterByTranslationOwnerId', 4], 'contributor' ],
+            [ ['trans_user' => 'invaliduser'], ['filterByTranslationOwnerId'],    '', 1 ],
+            [ ['trans_user' => ''],            ['filterByTranslationOwnerId'],    ''    ],
 
-            [ 'rand_seed', 'xrgU',          ['setRandSeed',  1358022], 'xrgU' ],
-            [ 'rand_seed', '3-_a',          ['setRandSeed', 14348255], '3-_a' ],
-            [ 'rand_seed', '',              ['setRandSeed',     null], ''     ],
-            [ 'rand_seed', 'longer string', ['setRandSeed', 14715286], 'long' ],
-            [ 'rand_seed', 'sml',           ['setRandSeed',     null], ''     ],
-            [ 'rand_seed', '.!"@',          ['setRandSeed',     null], ''     ],
+            [ ['sort' => 'relevance'], ['sort', 'relevance'], 'relevance' ],
+            [ ['sort' => 'words'],     ['sort', 'words'],     'words'     ],
+            [ ['sort' => 'modified'],  ['sort', 'modified'],  'modified'  ],
+            [ ['sort' => 'created'],   ['sort', 'created'],   'created'   ],
+            [ ['sort' => 'random'],    ['sort', 'random'],    'random'    ],
+
+            [ ['sort_reverse' => 'yes'],     ['reverseSort', true],  'yes' ],
+            [ ['sort_reverse' => ''],        ['reverseSort', false], '' ],
+            [ ['sort_reverse' => 'invalid'], ['reverseSort', false], '' ],
+
+            [ ['rand_seed' => 'xrgU'],          ['setRandSeed',  1358022], 'xrgU' ],
+            [ ['rand_seed' => '3-_a'],          ['setRandSeed', 14348255], '3-_a' ],
+            [ ['rand_seed' => ''],              ['setRandSeed',     null], ''     ],
+            [ ['rand_seed' => 'longer string'], ['setRandSeed', 14715286], 'long' ],
+            [ ['rand_seed' => 'sml'],           ['setRandSeed',     null], ''     ],
+            [ ['rand_seed' => '.!"@'],          ['setRandSeed',     null], ''     ],
         ];
     }
 
     /**
      * @dataProvider searchParamsProvider
      */
-    public function testSearchParams($getParam, $getValue, $method, $getParamReturned, $ignored = 0) {
-        if (count($method) == 1) {
+    public function testSearchParams($getParams, $method, $getParamReturned, $ignored = 0) {
+        if (count($method) == 1 && is_int(key($method))) { // is list array
             $this->Search->expects($this->never())
                          ->method($method[0]);
+        } elseif (!is_int(key($method))) { // is associative array
+            foreach ($method as $methodName => $calls) {
+                $this->Search->expects($this->exactly(count($calls)))
+                             ->method($methodName)
+                             ->withConsecutive(...$calls);
+            }
         } elseif ($method) {
             $methodName = array_shift($method);
             $with = array_map(
@@ -190,8 +207,14 @@ class SentencesSearchFormTest extends TestCase
                          ->method($methodName)
                          ->with(...$with);
         }
-        $this->Form->setData([$getParam => $getValue]);
-        $this->assertEquals($getParamReturned, $this->Form->getData()[$getParam]);
+
+        $this->Form->setData($getParams);
+        if (!is_array($getParamReturned)) {
+            $getParamReturned = [key($getParams) => $getParamReturned];
+        }
+        foreach ($getParamReturned as $getParam => $expectedValue) {
+            $this->assertEquals($expectedValue, $this->Form->getData()[$getParam]);
+        }
 
         $this->assertCount($ignored, $this->Form->getIgnoredFields());
     }

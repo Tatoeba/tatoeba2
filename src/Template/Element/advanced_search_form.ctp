@@ -95,6 +95,48 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
+            <div class="param word-count">
+                <div layout="row" layout-align="center">
+                      <label flex><?= __('Length:') ?></label>
+                      <div layout="column" layout-align="end">
+                          <?php
+                              $fields = [
+                                  /* @translators: text inside the filter "Length" in the search form. */
+                                  'word_count_min' => __('At least'),
+                                  /* @translators: text inside the filter "Length" in the search form. */
+                                  'word_count_max' => __('At most'),
+                              ];
+                              foreach ($fields as $field => $label) {
+                                  $number = $this->Form->number($field, [
+                                      'id' => $field,
+                                      'min' => '0',
+                                      'string-to-number' => '',
+                                      'ng-model' => "filters.$field",
+                                      'ng-model-init' => $this->get($field),
+                                  ]);
+                                  ?>
+                                  <div layout="row" layout-align="end">
+                                      <label for="<?= $field ?>">
+                                      <?= format(
+                                          /* @translators: the value for the filter "Length" in the
+                                             search form. {label} is the "At least/At most"
+                                             text and {number} is the numeric field. You may change
+                                             the order of the fields and add words around. */
+                                          __('{label} {number} word(s)', true),
+                                          compact('label', 'number')
+                                      ) ?>
+                                      </label>
+                                  </div>
+                              <?php
+                              }
+                          ?>
+                      </div>
+                </div>
+                <div class="hint">
+                    <?= __('For languages without word boundaries, the number of characters is assumed instead.') ?>
+                </div>
+            </div>
+
             <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('user', array(

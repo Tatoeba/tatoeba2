@@ -10,6 +10,15 @@ use Cake\Utility\Hash;
 class Search {
     use \Cake\Datasource\ModelAwareTrait;
 
+    const OPERATOR_LOWER_OR_EQUAL = 'le';
+    const OPERATOR_GREATER_OR_EQUAL = 'ge';
+    const OPERATOR_EQUAL = 'eq';
+    const OPERATORS_SPHINXQL_MAP = [
+        self::OPERATOR_LOWER_OR_EQUAL   => '<=',
+        self::OPERATOR_GREATER_OR_EQUAL => '>=',
+        self::OPERATOR_EQUAL            => '=',
+    ];
+
     private $query;
     private $lang;
     private $ownerId;
@@ -22,6 +31,7 @@ class Search {
     private $sort;
     private $sortReversed = false;
     private $randSeed;
+    private $wordCount = [];
 
     private $translationFilter;
     private $translationFilters = [];
@@ -94,6 +104,7 @@ class Search {
         $sphinx = [
             'index' => $this->asSphinxIndex($this->lang),
             'matchMode' => SPH_MATCH_EXTENDED2,
+            'select' => "*",
         ];
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
@@ -121,13 +132,19 @@ class Search {
             $sphinx['filter'] = $sphinx['filter'] ?? [];
             array_push($sphinx['filter'], ...$this->getNativeSpeakerFilterAsSphinx());
         }
+        foreach ($this->wordCount as $op => $count) {
+            $sqlOp = self::OPERATORS_SPHINXQL_MAP[$op];
+            $filterName = "word_count_filter_$op";
+            $sphinx['filter'][] = array($filterName, 1);
+            $sphinx['select'] .= ", (text_len $sqlOp $count) as $filterName";
+        }
         if (!is_null($this->translationFilter)) {
             $transFilter = $this->getTranslationFiltersAsSphinx();
             if (empty($transFilter)) {
                 $transFilter = [1];
             }
             $filter = implode(' & ', $transFilter);
-            $sphinx['select'] = "*, ANY($filter FOR t IN trans) as filter";
+            $sphinx['select'] .= ", ANY($filter FOR t IN trans) as filter";
 
             $filter = $this->translationFilter == 'limit' ? 1 : 0;
             $sphinx['filter'][] = ['filter', $filter];
@@ -245,6 +262,18 @@ class Search {
 
     public function filterByNativeSpeaker($filter) {
         return $this->native = $filter;
+    }
+
+    public function filterByWordCount($op, $count) {
+        if (array_key_exists($op, self::OPERATORS_SPHINXQL_MAP)) {
+            if (is_int($count) && $count >= 0) {
+                $this->wordCount[$op] = $count;
+                return $this->wordCount[$op];
+            } else {
+                unset($this->wordCount[$op]);
+            }
+        }
+        return null;
     }
 
     public function filterByTranslation($filter) {

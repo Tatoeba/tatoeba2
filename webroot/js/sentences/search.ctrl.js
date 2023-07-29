@@ -30,6 +30,20 @@
                 }
             };
         }])
+        // This directive comes from https://code.angularjs.org/1.8.0/docs/error/ngModel/numfmt
+        .directive('stringToNumber', function() {
+            return {
+                require: 'ngModel',
+                link: function(scope, element, attrs, ngModel) {
+                    ngModel.$parsers.push(function(value) {
+                        return '' + (value ?? '');
+                    });
+                    ngModel.$formatters.push(function(value) {
+                        return parseFloat(value);
+                    });
+                }
+            };
+        })
         .controller('SearchController', ['searchService', function(search) {
             var vm = this;
 
