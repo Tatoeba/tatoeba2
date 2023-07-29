@@ -16,9 +16,9 @@ class Audio extends Entity
     ];
 
     public static $defaultExternal = array(
-        'username' => null,
-        'license' => null,
-        'attribution_url' => null,
+        'username' => '',
+        'license' => '',
+        'attribution_url' => '',
     );
 
     protected function _getExternal($external) {
@@ -53,16 +53,36 @@ class Audio extends Entity
         }
     }
 
+    private function __getUserProfileUrl($username) {
+        $url = [
+            'controller' => 'user',
+            'action' => 'profile',
+            $username
+        ];
+        $request = Router::getRequest();
+        if ($request) {
+            $isApiCall = $request->getParam('prefix') == 'VHosts/Api';
+            if ($isApiCall) {
+                $host = explode(':', $request->host());
+                $host = explode('.', $host[0]);
+                $host = array_slice($host, 1);
+                $host = implode('.', $host);
+                $url['_host'] = $host;
+                $url['_full'] = true;
+                $url['prefix'] = false;
+            }
+        }
+        return Router::url($url);
+    }
+
     protected function _getAttributionUrl() {
         if ($this->user) {
-            if (!empty($this->user->audio_attribution_url)) {
-                return $this->user->audio_attribution_url;
-            } elseif ($this->user->username) {
-                return Router::url(array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $this->user->username
-                ));
+            if (array_key_exists('audio_attribution_url', $this->user->_properties)) {
+                if (!empty($this->user->audio_attribution_url)) {
+                    return $this->user->audio_attribution_url;
+                } elseif ($this->user->username) {
+                    return $this->__getUserProfileUrl($this->user->username);
+                }
             } else {
                 return null;
             }
@@ -105,5 +125,14 @@ class Audio extends Entity
        } else {
            return null;
        }
+    }
+
+    protected function _getDownloadUrl() {
+        $url = [
+            'controller' => 'audio',
+            'action' => 'download',
+            $this->id
+        ];
+        return Router::url($url);
     }
 }

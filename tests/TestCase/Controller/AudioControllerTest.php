@@ -47,7 +47,6 @@ class AudioControllerTest extends IntegrationTestCase
             [ '/en/audio/of/contributor', 'contributor', true ],
             [ '/en/audio/save_settings', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fsave_settings' ],
             [ '/en/audio/save_settings', 'contributor', '/en/audio/of/contributor' ],
-            [ '/en/audio/download/1', null, 404 ],            # missing file
             [ '/en/audio/download/999999999999', null, 404 ], # unknown audio
             [ '/en/audio/save/1', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fsave%2F1' ],
             [ '/en/audio/save/1', 'contributor', '/' ],
@@ -65,6 +64,15 @@ class AudioControllerTest extends IntegrationTestCase
      */
     public function testAudioControllerAccess($url, $user, $response) {
         $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    public function testAudioDownload_missingFile() {
+        $this->initAudioStorageDir();
+
+        $this->get('/en/audio/download/1');
+        $this->assertResponseCode(404);
+
+        $this->deleteAudioStorageDir();
     }
 
     public function testAudioDownload_ok() {

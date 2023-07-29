@@ -10,7 +10,7 @@
 
 - name: Install nginx
   apt:
-    name: nginx
+    name: ['nginx', 'libnginx-mod-http-headers-more-filter']
     state: latest
 
 - name: Remove default nginx configurations

@@ -144,8 +144,8 @@ class UsersFixture extends TestFixture
                 'homepage' => '',
                 'image' => '93986962b3472786d9aea008f6160bfd.png',
                 'country_id' => NULL,
-                'audio_license' => '',
-                'audio_attribution_url' => '',
+                'audio_license' => 'CC BY 4.0',
+                'audio_attribution_url' => 'https://example.com/my-audios',
             ],
             [
                 'id' => '5',
@@ -215,7 +215,7 @@ class UsersFixture extends TestFixture
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
-                'audio_license' => '',
+                'audio_license' => 'CC BY 4.0',
                 'audio_attribution_url' => '',
             ],
             [

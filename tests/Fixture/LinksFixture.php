@@ -190,6 +190,102 @@ class LinksFixture extends TestFixture
                 'translation_lang' => 'fra',
                 'distance' => '1'
             ],
+            [
+                'id' => '19',
+                'sentence_id' => '58',
+                'translation_id' => '59',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '20',
+                'sentence_id' => '59',
+                'translation_id' => '58',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '21',
+                'sentence_id' => '58',
+                'translation_id' => '60',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '22',
+                'sentence_id' => '60',
+                'translation_id' => '58',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '23',
+                'sentence_id' => '60',
+                'translation_id' => '61',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '24',
+                'sentence_id' => '61',
+                'translation_id' => '60',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '25',
+                'sentence_id' => '60',
+                'translation_id' => '62',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '26',
+                'sentence_id' => '62',
+                'translation_id' => '60',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '27',
+                'sentence_id' => '59',
+                'translation_id' => '63',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '28',
+                'sentence_id' => '63',
+                'translation_id' => '59',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '29',
+                'sentence_id' => '59',
+                'translation_id' => '64',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
+            [
+                'id' => '30',
+                'sentence_id' => '64',
+                'translation_id' => '59',
+                'sentence_lang' => 'eng',
+                'translation_lang' => 'eng',
+                'distance' => '1'
+            ],
         ];
         parent::init();
     }

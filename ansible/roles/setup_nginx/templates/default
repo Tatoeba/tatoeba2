@@ -85,6 +85,32 @@ server {
 
 server {
 	listen 		80;
+	server_name	{{api_server_name}};
+
+	root		{{main_server_root}};
+	index		index.php index.html;
+	charset		utf-8;
+
+	access_log	/var/log/nginx/access.api.log;
+	error_log	/var/log/nginx/error.api.log;
+	rewrite_log	on;
+
+	location / {
+		rewrite .* /index.php?$args last;
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
+		fastcgi_index   index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		more_set_headers 'Access-Control-Allow-Origin: *';
+	}
+}
+
+server {
+	listen 		80;
 	server_name	{{downloads_server_name}};
 
 	root		{{downloads_server_root}};

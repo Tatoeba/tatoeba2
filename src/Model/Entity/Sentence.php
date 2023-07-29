@@ -145,4 +145,9 @@ class Sentence extends Entity
 
         return User::DEFAULT_MAX_VISIBLE_TRANSLATION;
     }
+
+    protected function _getOwner()
+    {
+        return $this->user ? $this->user->username : null;
+    }
 }

@@ -46,8 +46,57 @@ use Cake\Routing\Route\InflectedRoute;
  */
 
 use App\Middleware\LanguageSelectorMiddleware;
+use AssetCompress\Middleware\AssetCompressMiddleware;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Routing\Middleware\AssetMiddleware;
+
 
 Router::defaultRouteClass(InflectedRoute::class);
+
+Router::scope('/', function (RouteBuilder $routes) {
+    $routes->registerMiddleware('languageSelector', new LanguageSelectorMiddleware());
+
+    $routes->registerMiddleware('asset', new AssetMiddleware([
+        'cacheTime' => Configure::read('Asset.cacheTime')
+    ]));
+
+    $routes->registerMiddleware('assetCompress', new AssetCompressMiddleware());
+
+    // Can be re-enabled when we get rid of jquery.jeditable,
+    // which is used for editing sentences.
+    // We're using the Csrf component meanwhile, to disable
+    // CSRF only on specific actions.
+    /*
+    $routes->registerMiddleware('csrfProtection', new CsrfProtectionMiddleware([
+        'httpOnly' => true
+    ]));
+    */
+});
+
+Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
+    $routes->connect(
+        '/:version/:controller/:id',
+        ['action' => 'get']
+    )
+    ->setPass(['id'])
+    ->setPatterns(['id' => '\d+'])
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/:version/:controller/:action/*'
+    )
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/*',
+        ['controller' => 'api', 'action' => 'default']
+    )
+    ->setHost('api.*');
+});
 
 Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes) {
     $routes->connect(
@@ -66,11 +115,22 @@ Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes)
 });
 
 Router::scope('/', function (RouteBuilder $routes) {
-    $routes->registerMiddleware('languageSelector', new LanguageSelectorMiddleware());
-});
+    $routes->applyMiddleware('assetCompress');
 
-Router::scope('/', function (RouteBuilder $routes) {
+    // Handle plugin/theme assets like CakePHP normally does.
+    $routes->applyMiddleware('asset');
+
     $routes->applyMiddleware('languageSelector');
+
+    // Can be re-enabled when we get rid of jquery.jeditable,
+    // which is used for editing sentences.
+    // We're using the Csrf component meanwhile, to disable
+    // CSRF only on specific actions.
+    /*
+    // Add csrf middleware.
+    $routes->applyMiddleware('csrfProtection');
+    */
+
 
     // Regex pattern for language parameter
     $langPattern = join(

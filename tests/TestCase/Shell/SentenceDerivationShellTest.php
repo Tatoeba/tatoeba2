@@ -306,10 +306,17 @@ class SentenceDerivationShellTest extends TestCase
             #55: Already has based_on_id
             #56: Already has based_on_id
             #57: Already has based_on_id
+            #58: Already has based_on_id
+            #59: Already has based_on_id
+            #60: Already has based_on_id
+            #61: Already has based_on_id
+            #62: Already has based_on_id
+            #63: Already has based_on_id
+            #64: Already has based_on_id
         */
         
         $totalSentences = $this->Sentences->find()->count();
-        $totalSkipped = 19;
+        $totalSkipped = 26;
         $expected = $totalSentences - $totalSkipped;
         $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
