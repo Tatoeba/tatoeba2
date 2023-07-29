@@ -63,6 +63,21 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals($expected, $userLanguage);
     } 
 
+    function testSaveUserLanguage_cannotMessUpWithDates() {
+        $currentUserId = 4;
+        $data = array(
+            'language_code' => 'eng',
+            'level' => 1,
+            'details' => '',
+            'created' => '1990-01-01 00:00:00',
+            'modified' => '2000-01-01 00:00:00',
+        );
+        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId);
+
+        $this->assertNotEquals($data['created'], $userLanguage->created);
+        $this->assertNotEquals($data['modified'], $userLanguage->modified);
+    }
+
     function testSaveUserLanguage_editsLanguage() {
         $id = 1;
         $level = 2;
@@ -98,6 +113,17 @@ class UsersLanguagesTableTest extends TestCase {
     function testSaveUserLanguage_failsBecauseUndefinedLanguage() {       
         $data = array(
             'language_code' => 'und',
+            'level' => 5
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_failsBecauseInvalidLanguage() {
+        $data = array(
+            'language_code' => '000',
+            'details' => 'Details here.',
             'level' => 5
         );
         $result = $this->UsersLanguages->saveUserLanguage($data, 1);
