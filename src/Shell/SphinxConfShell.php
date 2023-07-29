@@ -768,8 +768,10 @@ EOT;
     public function conf($only = null) {
         $languages = LanguagesLib::languagesInTatoeba();
         if (is_null($only)) {
-            $Sentences = $this->loadModel('Sentences');
-            $only = array_filter($Sentences->languagesHavingSentences());
+            if (!$this->params['all']) {
+                $Sentences = $this->loadModel('Sentences');
+                $only = array_filter($Sentences->languagesHavingSentences());
+            }
         }
         if (!is_null($only)) {
             $languages = array_intersect_key($languages, array_flip($only));
@@ -806,6 +808,12 @@ EOT;
     public function getOptionParser() {
         $parser = parent::getOptionParser();
         $parser
+            ->addOption('all', [
+                'short' => 'a',
+                'boolean' => true,
+                'default' => false,
+                'help' => 'Include all languages (default is to only include languages having sentences).',
+            ])
             ->setDescription('Generates configuration file for Manticore Search.');
         return $parser;
     }
