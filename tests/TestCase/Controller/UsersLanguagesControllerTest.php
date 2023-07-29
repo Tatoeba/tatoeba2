@@ -31,11 +31,9 @@ class UsersLanguagesControllerTest extends IntegrationTestCase
     }
 
     private function add_language($langCode) {
-        $this->post('/en/users_languages/save', [
-            'id' => '',
-            'of_user_id' => '4',
+        $this->ajaxPost('/en/users_languages/save', [
             'language_code' => $langCode,
-            'level' => '-1',
+            'level' => '1',
             'details' => '',
         ]);
     }
@@ -43,7 +41,6 @@ class UsersLanguagesControllerTest extends IntegrationTestCase
     private function edit_language() {
         $this->post('/en/users_languages/save/1', [
             'id' => '1',
-            'of_user_id' => '4',
             'level' => '2',
             'details' => 'I just leveled up!',
         ]);
@@ -53,7 +50,7 @@ class UsersLanguagesControllerTest extends IntegrationTestCase
         $this->enableCsrfToken();
         $this->enableSecurityToken();
         $this->add_language('cmn');
-        $this->assertRedirect('/en/users/login');
+        $this->assertResponseCode(403);
     }
 
     public function testSaveNew_asMember() {
