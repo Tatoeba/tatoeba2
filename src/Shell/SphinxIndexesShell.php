@@ -101,9 +101,11 @@ class SphinxIndexesShell extends Shell {
             } else {
                 $Sentences = $this->loadModel('Sentences');
                 $langs = $Sentences->languagesHavingSentences();
-                $langs = array_filter($langs);
             }
         }
+        $langs = array_filter($langs, function($lang) {
+            return isset($this->tatoeba_languages[$lang]);
+        });
 
         if (empty($langs)) {
             echo "None of the $type indexes need updating\n";
