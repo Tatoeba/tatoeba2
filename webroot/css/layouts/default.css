@@ -860,3 +860,16 @@ html[dir="rtl"] .md-button-right .md-button {
     left: -8px;
     right: initial;
 }
+
+.md-tooltip {
+    font-size:   16px; /* instead of 14px */
+    height:      36px; /* instead of 32px */
+    line-height: 36px; /* instead of 32px */
+}
+@media (min-width: 960px) {
+    .md-tooltip {
+        font-size:   14px; /* instead of 10px */
+        height:      30px; /* instead of 22px */
+        line-height: 30px; /* instead of 22px */
+    }
+}
