@@ -2007,12 +2007,23 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
 }
 
 md-tooltip.multiline {
-    /* Only wrap tooltip if it takes more than 20% of page width. */
-    max-width: 20%;
+    /* Only wrap tooltip if it takes more than 90% of page width. */
+    max-width: 90%;
     height: auto;
     white-space: normal;
     /* The original md-tooltip use line-height to pad, but we want a nice
      * multi-line text, so we need to use the padding property instead. */
     line-height: normal;
     padding: 5px 8px;
+}
+
+@media (min-width: 600px) {
+    md-tooltip.multiline {
+        max-width: 60%;
+    }
+}
+@media (min-width: 960px) {
+    md-tooltip.multiline {
+        max-width: 20%;
+    }
 }
