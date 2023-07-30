@@ -122,7 +122,7 @@ echo $this->Form->create('AdvancedSearch', [
                                              search form. {label} is the "At least/At most"
                                              text and {number} is the numeric field. You may change
                                              the order of the fields and add words around. */
-                                          __('{label} {number} word(s)', true),
+                                          __('{label} {number}', true),
                                           compact('label', 'number')
                                       ) ?>
                                       </label>
@@ -131,9 +131,12 @@ echo $this->Form->create('AdvancedSearch', [
                               }
                           ?>
                       </div>
-                </div>
-                <div class="hint">
-                    <?= __('For languages without word boundaries, the number of characters is assumed instead.') ?>
+                      <div layout="column" class="infobox">
+                          <md-icon>help</md-icon>
+                          <md-tooltip class="multiline" md-direction="top">
+                              <?= __('For languages without word boundaries, the number of characters is assumed instead.') ?>
+                          </md-tooltip>
+                      </div>
                 </div>
             </div>
 

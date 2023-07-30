@@ -30,17 +30,6 @@
     align-items: center;
 }
 
-md-tooltip.multiline {
-    /* Only wrap tooltip if it takes more than 20% of page width. */
-    max-width: 20%;
-    height: auto;
-    white-space: normal;
-    /* The original md-tooltip use line-height to pad, but we want a nice
-     * multi-line text, so we need to use the padding property instead. */
-    line-height: normal;
-    padding: 5px 8px;
-}
-
 .column-1 {
     padding-right: 20px;
 }

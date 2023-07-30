@@ -1992,3 +1992,27 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
 .md-toolbar-tools.layout-wrap .md-icon-button {
     margin: 6px 0px;
 }
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Info boxes
+ *
+ * --------------------------------------------------------------------
+ */
+
+.infobox {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+md-tooltip.multiline {
+    /* Only wrap tooltip if it takes more than 20% of page width. */
+    max-width: 20%;
+    height: auto;
+    white-space: normal;
+    /* The original md-tooltip use line-height to pad, but we want a nice
+     * multi-line text, so we need to use the padding property instead. */
+    line-height: normal;
+    padding: 5px 8px;
+}
