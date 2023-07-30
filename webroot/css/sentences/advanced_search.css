@@ -30,10 +30,18 @@
     align-items: center;
 }
 
-.column-1 {
-    padding-right: 20px;
+@media (min-width: 960px) {
+    .column-1 {
+        padding-right: 20px;
+    }
+
+    .column-2 {
+        padding-left: 20px;
+    }
 }
 
-.column-2 {
-    padding-left: 20px;
+@media (min-width: 600px) and (max-width: 959px) {
+    .column-1, .column-2 {
+        max-width: 600px; /* avoid displaying overly wide form field lines */
+    }
 }

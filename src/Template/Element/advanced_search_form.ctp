@@ -49,7 +49,8 @@ echo $this->Form->create('AdvancedSearch', [
         <md-divider></md-divider>
     <?php endif; ?>
 
-    <div layout="<?= $layout ?>">
+    <div layout="column" layout-gt-sm="<?= $layout ?>"
+         layout-align="start center" layout-align-gt-sm="center start">
         <div class="column-1" layout="column" flex>
         <?php /* @translators: section title in advanced search form */ ?>
         <md-subheader><?= __('Sentences'); ?></md-subheader>
@@ -443,7 +444,7 @@ echo $this->Form->create('AdvancedSearch', [
 
     <md-divider></md-divider>
 
-    <div class="buttons" layout="<?= $layout ?>">
+    <div class="buttons" layout="column" layout-gt-sm="<?= $layout ?>">
         <md-button type="submit" class="md-primary md-raised">
             <?php /* @translators: search form submit button (verb) */ ?>
             <?= __x('button', 'Search') ?>

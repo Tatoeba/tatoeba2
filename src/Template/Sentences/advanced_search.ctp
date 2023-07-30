@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+$this->set('isResponsive', true);
+
 $title = __x('title', 'Advanced search');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
