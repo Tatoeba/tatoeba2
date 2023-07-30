@@ -134,7 +134,7 @@ echo $this->Form->create('AdvancedSearch', [
                       <div layout="column" class="infobox">
                           <md-icon>help</md-icon>
                           <md-tooltip class="multiline" md-direction="top">
-                              <?= __('For languages without word boundaries, the number of characters is assumed instead.') ?>
+                              <?= __('For languages with word boundaries, the number of words is used. For other languages, the number of characters is used.') ?>
                           </md-tooltip>
                       </div>
                 </div>
