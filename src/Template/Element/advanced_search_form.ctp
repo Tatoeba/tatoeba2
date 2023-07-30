@@ -107,10 +107,19 @@ echo $this->Form->create('AdvancedSearch', [
                                   /* @translators: text inside the filter "Length" in the search form. */
                                   'word_count_max' => __('At most'),
                               ];
+                              $mins = [
+                                  'word_count_min' => '0',
+                                  'word_count_max' => '{{filters.word_count_min}}',
+                              ];
+                              $maxs = [
+                                  'word_count_min' => '{{filters.word_count_max}}',
+                                  'word_count_max' => '',
+                              ];
                               foreach ($fields as $field => $label) {
                                   $number = $this->Form->number($field, [
                                       'id' => $field,
-                                      'min' => '0',
+                                      'min' => $mins[$field],
+                                      'max' => $maxs[$field],
                                       'string-to-number' => '',
                                       'ng-model' => "filters.$field",
                                       'ng-model-init' => $this->get($field),
