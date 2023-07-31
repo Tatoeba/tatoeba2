@@ -63,8 +63,10 @@ class FavoritesController extends AppController
             $this->set("userExists", false);
             return;
         }
-        $this->paginate = $this->Favorites->getPaginatedFavoritesOfUser($userId);
-        $favorites = $this->paginate();
+
+        $filter = $this->request->getQuery('filter');
+        $favorites = $this->paginate($this->Favorites->getPaginatedFavoritesOfUser($userId, $filter));
+        $this->set('filter', $filter);
         $this->set('favorites', $favorites);
         $this->set("userExists", true);
     }

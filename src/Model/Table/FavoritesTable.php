@@ -48,30 +48,28 @@ class FavoritesTable extends Table
      * Retrieve all favorites of a user.
      *
      * @param int $userId The user's id.
+     * @param string $filter String to filter sentence text with.
      *
      * @return array
      */
 
-    public function getPaginatedFavoritesOfUser($userId)
+    public function getPaginatedFavoritesOfUser($userId, $filter)
     {
-        $favorites = array(
-            'fields' => [
-                'favorite_id'
-            ],
-            'conditions' => [
-                'Favorites.user_id' => $userId
-            ],
-            'contain' => [
-                'Sentences' => [
-                    'fields' => ['id', 'text', 'lang', 'correctness'],
-                    'Transcriptions' => array(
-                        'Users' => ['fields' => ['username']],
-                    ),
-                ]
-            ]
-        );
-
-        return $favorites;
+        $q = $this
+            ->find()
+            ->select('favorite_id')
+            ->where(['Favorites.user_id' => $userId])
+            ->contain(['Sentences' => function ($q) use ($filter) {
+                $q->select(['id', 'text', 'lang', 'correctness']);
+                $q->contain(['Transcriptions' => ['Users' => ['fields' => ['username']]]]);
+                return $q;
+            }]);
+        if (strlen($filter) > 0) {
+            $q->matching('Sentences', function ($q) use ($filter) {
+                return $q->where(['text LIKE' => "%$filter%"]);
+            });
+        }
+        return $q;
     }
 
     /**
