@@ -98,14 +98,17 @@ echo $this->Form->create('AdvancedSearch', [
 
             <div class="param word-count">
                 <div layout="row" layout-align="center">
+                      <?php /* @translators: sentence length filter in the search form. */ ?>
                       <label flex><?= __('Length:') ?></label>
                       <div layout="column" layout-align="end">
                           <?php
                               $fields = [
-                                  /* @translators: text inside the filter "Length" in the search form. */
-                                  'word_count_min' => __('At least'),
-                                  /* @translators: text inside the filter "Length" in the search form. */
-                                  'word_count_max' => __('At most'),
+                                  /* @translators: text inside the filter "Length" in the search form.
+                                     You may move the numericField placeholder around. */
+                                  'word_count_min' => __('At least {numericField}'),
+                                  /* @translators: text inside the filter "Length" in the search form.
+                                     You may move the numericField placeholder around. */
+                                  'word_count_max' => __('At most {numericField}'),
                               ];
                               $mins = [
                                   'word_count_min' => '0',
@@ -116,7 +119,7 @@ echo $this->Form->create('AdvancedSearch', [
                                   'word_count_max' => '',
                               ];
                               foreach ($fields as $field => $label) {
-                                  $number = $this->Form->number($field, [
+                                  $numericField = $this->Form->number($field, [
                                       'id' => $field,
                                       'min' => $mins[$field],
                                       'max' => $maxs[$field],
@@ -127,14 +130,7 @@ echo $this->Form->create('AdvancedSearch', [
                                   ?>
                                   <div layout="row" layout-align="end">
                                       <label for="<?= $field ?>">
-                                      <?= format(
-                                          /* @translators: the value for the filter "Length" in the
-                                             search form. {label} is the "At least/At most"
-                                             text and {number} is the numeric field. You may change
-                                             the order of the fields and add words around. */
-                                          __('{label} {number}', true),
-                                          compact('label', 'number')
-                                      ) ?>
+                                          <?= format($label, compact('numericField')) ?>
                                       </label>
                                   </div>
                               <?php
