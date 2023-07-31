@@ -30,7 +30,11 @@ $username = h($username);
 if ($userExists) {
     $numberOfSentences = $this->Paginator->param('count');
 
-    $title = format(__("{user}'s favorite sentences"), array('user' => $username));
+    if (strlen($filter) > 0) {
+        $title = format(__("{user}'s favorite sentences matching “{filter}”"), array('user' => $username, 'filter' => $filter));
+    } else {
+        $title = format(__("{user}'s favorite sentences"), array('user' => $username));
+    }
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
 }
