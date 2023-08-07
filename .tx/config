@@ -1,6 +1,6 @@
 [main]
 host     = https://www.transifex.com
-lang_map = lv_LV: lv, vi_VN: vi
+lang_map = lv_LV: lv, vi_VN: vi, myv: hoc
 
 [o:tatoeba:p:tatoeba-terms-of-use:r:terms-of-use]
 file_filter = src/Locale/<lang>/terms-of-use.html
