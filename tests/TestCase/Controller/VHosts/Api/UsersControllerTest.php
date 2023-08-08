@@ -47,4 +47,12 @@ class UsersControllerTest extends TestCase
         ];
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
     }
+
+    public function testGetUser_doesNotReturnPreciseRegistrationTime()
+    {
+        $this->get("http://api.example.com/unstable/users/kazuki");
+        $actual = $this->_getBodyAsString();
+        $expected = '2013-04-22';
+        $this->assertJsonValueEquals($actual, '$.data.since', $expected);
+    }
 }

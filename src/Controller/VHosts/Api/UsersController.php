@@ -20,7 +20,13 @@ class UsersController extends ApiController
             ->select($this->fields())
             ->where([
                 'username' => $name,
-            ]);
+            ])
+            ->formatResults(function($entities) {
+                return $entities->map(function($entity) {
+                    $entity->since = $entity->since->toDateString();
+                    return $entity;
+                });
+            });
 
         $results = $query->firstOrFail();
         $response = [
