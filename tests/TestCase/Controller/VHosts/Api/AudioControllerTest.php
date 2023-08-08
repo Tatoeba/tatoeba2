@@ -21,7 +21,7 @@ class AudioControllerTest extends TestCase
         $this->initAudioStorageDir();
 
         $audioFileContents = $this->createAudioFile(1);
-        $this->get("http://api.example.com/unstable/audio/download/1");
+        $this->get("http://api.example.com/unstable/audio/1/file");
         $this->assertResponseOk();
         $this->assertResponseEquals($audioFileContents);
         $this->assertHeader('Content-Disposition', 'attachment; filename="3-1.mp3"');
@@ -33,7 +33,7 @@ class AudioControllerTest extends TestCase
     {
         $this->initAudioStorageDir();
 
-        $this->get("http://api.example.com/unstable/audio/download/1");
+        $this->get("http://api.example.com/unstable/audio/1/file");
         $this->assertResponseCode(404);
 
         $this->deleteAudioStorageDir();
@@ -41,7 +41,7 @@ class AudioControllerTest extends TestCase
 
     public function testDownload_nonExistingAudio()
     {
-        $this->get("http://api.example.com/unstable/audio/download/9999999999");
+        $this->get("http://api.example.com/unstable/audio/9999999999/file");
         $this->assertResponseCode(404);
     }
 
@@ -50,7 +50,7 @@ class AudioControllerTest extends TestCase
         $this->initAudioStorageDir();
 
         $audioFileContents = $this->createAudioFile(6);
-        $this->get("http://api.example.com/unstable/audio/download/6");
+        $this->get("http://api.example.com/unstable/audio/6/file");
         $this->assertResponseCode(404);
 
         $this->deleteAudioStorageDir();
