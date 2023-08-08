@@ -36,6 +36,8 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
+    use ExposedFieldsTrait;
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('birthday', 'string');
@@ -60,6 +62,10 @@ class UsersTable extends Table
         $this->hasMany('Tags');
         $this->hasMany('TagsSentences');
         $this->hasMany('Transcriptions');
+        $this->hasMany('UsersLanguages', [
+            'foreignKey' => 'of_user_id',
+            'propertyName' => 'languages',
+        ]);
         $this->hasMany('Wall', [
             'foreignKey' => 'owner'
         ]);
