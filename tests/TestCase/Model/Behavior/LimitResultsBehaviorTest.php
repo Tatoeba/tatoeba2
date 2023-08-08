@@ -41,7 +41,7 @@ class LimitResultsBehaviorTest extends TestCase
         $this->query
              ->expects($this->once())
              ->method('where')
-             ->with(['Sentences.id >=' => 45]);
+             ->with(['Sentences.id >=' => 46]);
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
@@ -113,7 +113,7 @@ class LimitResultsBehaviorTest extends TestCase
         $this->query
              ->expects($this->once())
              ->method('where')
-             ->with(['Sentences.id >=' => 45]);
+             ->with(['Sentences.id >=' => 46]);
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
