@@ -22,7 +22,7 @@ use App\Controller\VHosts\Api\ApiController;
 
 class AudioController extends ApiController
 {
-    public function download($id) {
+    public function file($id) {
         $this->loadModel('Audios');
         $audio = $this->Audios->find()
             ->select(['id', 'sentence_id'])
