@@ -12,11 +12,23 @@ class UsersControllerTest extends TestCase
 
     const USERS_JSON_SCHEMA = [
       'type'       => 'object',
-      'required'   => ['username', 'role', 'since'],
+      'required'   => ['username', 'role', 'since', 'languages'],
       'properties' => [
-        'username' => ['type' => 'string'],
-        'role'     => ['type' => 'string'],
-        'since'    => ['type' => 'string'],
+        'username'   => ['type' => 'string'],
+        'role'       => ['type' => 'string'],
+        'since'      => ['type' => 'string'],
+        'languages'  => [
+          'type'       => 'array',
+          'items'      => [
+            'type'       => 'object',
+            'required'   => ['code', 'level', 'details'],
+            'properties' => [
+              'code'       => ['type' => 'string'],
+              'level'      => ['type' => ['integer', 'null']],
+              'details'    => ['type' => 'string'],
+            ],
+          ],
+        ],
       ],
     ];
 
