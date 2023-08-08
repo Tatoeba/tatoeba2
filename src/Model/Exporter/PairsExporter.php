@@ -61,9 +61,9 @@ class PairsExporter
             function ($field) use ($entity) {
                 switch ($field) {
                     case 'id':         return $entity->sentence_id;
-                    case 'text':       return $entity->sentence->text;
-                    case 'trans_id':   return $entity->translation->id;
-                    case 'trans_text': return $entity->translation->text;
+                    case 'text':       return $entity->_matchingData['Sentences']->text;
+                    case 'trans_id':   return $entity->translation_id;
+                    case 'trans_text': return $entity->_matchingData['Translations']->text;
                     default:           return '';
                 }
             },
@@ -89,15 +89,17 @@ class PairsExporter
         $Links = TableRegistry::getTableLocator()->get('Links');
         $query = $Links->find()
             ->enableBufferedResults(false)
-            ->select(['sentence_id', 'translation_id'])
+            ->select(['sentence_id', 'Sentences.text', 'translation_id', 'Translations.text'])
             ->where([
                 'Links.sentence_lang' => $this->config['from'],
                 'Links.translation_lang' => $this->config['to'],
             ])
-            ->contain([
-                'Sentences'    => ['fields' => ['id', 'text']],
-                'Translations' => ['fields' => ['id', 'text']],
-            ]);
+            ->innerJoinWith('Sentences', function ($q) {
+                return $q->where(['Sentences.correctness >' => '-1']);
+            })
+            ->innerJoinWith('Translations', function ($q) {
+                return $q->where(['Translations.correctness >' => '-1']);
+            });
 
         $query->formatResults(function($entities) {
             return $entities->map(function($entity) {

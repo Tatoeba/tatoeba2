@@ -792,5 +792,17 @@ class SentencesFixture extends TestFixture {
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '59',
 		),
+		array(
+			'id' => '65',
+			'lang' => 'jpn',
+			'text' => 'Denwa wo kakete mo ii desu ka (unapproved sentence)',
+			'correctness' => '-1',
+			'user_id' => '6',
+			'created' => '2018-01-01 12:00:00',
+			'modified' => '2018-01-01 12:00:00',
+			'script' => null,
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => '55',
+		),
 	);
 }

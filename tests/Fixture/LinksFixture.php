@@ -286,6 +286,22 @@ class LinksFixture extends TestFixture
                 'translation_lang' => 'eng',
                 'distance' => '1'
             ],
+            [
+                'id' => '31',
+                'sentence_id' => '55',
+                'translation_id' => '65',
+                'sentence_lang' => 'fra',
+                'translation_lang' => 'jpn',
+                'distance' => '1'
+            ],
+            [
+                'id' => '32',
+                'sentence_id' => '65',
+                'translation_id' => '55',
+                'sentence_lang' => 'jpn',
+                'translation_lang' => 'fra',
+                'distance' => '1'
+            ],
         ];
         parent::init();
     }
