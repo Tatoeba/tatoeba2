@@ -20,6 +20,7 @@ class ExportsTableTest extends TestCase
         'app.Sentences',
         'app.SentencesLists',
         'app.SentencesSentencesLists',
+        'plugin.Queue.QueueProcesses',
     ];
 
     private $testExportDir = TMP.'export_tests'.DS;

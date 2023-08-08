@@ -112,6 +112,7 @@ class ListExporter
                 if (in_array('trans_text', $this->config['fields'])) {
                     $q->matching('Translations', function ($q) {
                         $q->select(['Translations.text']);
+                        $q->where(['Translations.correctness >' => '-1']);
                         if (isset($this->config['trans_lang'])) {
                             $q->where(['SentencesTranslations.translation_lang' => $this->config['trans_lang']]);
                         }
