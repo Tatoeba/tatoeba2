@@ -75,11 +75,18 @@ Router::scope('/', function (RouteBuilder $routes) {
 
 Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     $routes->connect(
+        '/:version/:controller',
+        ['action' => 'search']
+    )
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
         '/:version/:controller/:id',
         ['action' => 'get']
     )
     ->setPass(['id'])
-    ->setPatterns(['id' => '\d+'])
     ->setPersist(['version'])
     ->setMethods(['GET'])
     ->setHost('api.*');
