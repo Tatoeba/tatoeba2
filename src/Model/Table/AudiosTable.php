@@ -290,16 +290,17 @@ class AudiosTable extends Table
              * 2. Number of existing recordings (desc)
              * 3. The rest by sentence id (asc)
              */
-            if (isset($a['valid']) && isset($b['valid'])
-                && $a['valid'] != $b['valid']) {
-                return $a['valid'] ? 1 : -1;
-            } elseif (isset($a['audios']) && isset($b['audios'])) {
-                return count($b['audios']) - count($a['audios']);
-            } elseif (isset($a['sentenceId']) && isset($b['sentenceId'])) {
-                return $a['sentenceId'] - $b['sentenceId'];
-            } else {
-                return 0;
+            $ret = 0;
+            if (isset($a['valid']) || isset($b['valid'])) {
+                $ret = ($a['valid'] ?? 0) - ($b['valid'] ?? 0);
             }
+            if ($ret == 0 && (isset($a['audios']) || isset($b['audios']))) {
+                $ret = count($b['audios'] ?? []) - count($a['audios'] ?? []);
+            }
+            if ($ret == 0 && (isset($a['sentenceId']) || isset($b['sentenceId']))) {
+                $ret = ($a['sentenceId'] ?? 0) - ($b['sentenceId'] ?? 0);
+            }
+            return $ret;
         });
 
         return $audioFiles;
