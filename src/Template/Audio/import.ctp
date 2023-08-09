@@ -23,7 +23,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
 
 $canImport = !$lastImportJob || $lastImportJob->completed;
 ?>
-<div id="main_content">
 <div class="module">
 <h2><?php echo __d('admin', 'Import recordings'); ?></h2>
 
@@ -220,5 +219,4 @@ echo $this->Form->input('audioAuthor', ['required' => true]);
 echo $this->Form->submit(__d('admin', 'Import'), $canImport ? [] : ['disabled' => true]);
 echo $this->Form->end();
 ?>
-</div>
 </div>
