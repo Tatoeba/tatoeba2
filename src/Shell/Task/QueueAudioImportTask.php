@@ -27,7 +27,7 @@ class QueueAudioImportTask extends QueueTask {
     public function run(array $config, $jobId) {
         $this->loadModel('Audios');
         $errors = false;
-        $filesImported = $this->Audios->importFiles($errors, $config['author']);
+        $filesImported = $this->Audios->importFiles($errors, $config);
 
         $this->loadModel('Queue.QueuedJobs');
         $me = $this->QueuedJobs->get($jobId);

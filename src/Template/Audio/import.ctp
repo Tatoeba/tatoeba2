@@ -93,7 +93,9 @@ if (!$canImport) {
 ?>
 
 <h3><?php echo __d('admin', 'Files detected'); ?></h3>
-<?php if ($filesToImport): ?>
+<?php
+echo $this->Form->create(null, ['ng-non-bindable' => '']);
+if ($filesToImport): ?>
     <p><?php echo format(
         __dn(
             'admin',
@@ -114,6 +116,7 @@ if (!$canImport) {
             __d('admin', 'Sentence id'),
             __d('admin', 'Language'),
             __d('admin', 'Existing audio'),
+            __d('admin', 'Replace existing?'),
             __d('admin', 'May be imported'),
         )
     );
@@ -130,6 +133,17 @@ if (!$canImport) {
                           )
                       ) :
                       __d('admin', 'Invalid');
+        if ($file['valid']) {
+            $checkboxName = 'replace['.$file['sentenceId'].']';
+            $disabled = count($file['audios']) == 0;
+            $replaceCheckbox = $this->Form->checkbox($checkboxName, [
+                'value' => '1',
+                'checked' => !$disabled,
+                'disabled' => $disabled,
+            ]);
+        } else {
+            $replaceCheckbox = '';
+        }
         $hasaudio = isset($file['audios']) ?
                     (
                         count($file['audios']) > 0 ?
@@ -155,6 +169,7 @@ if (!$canImport) {
                 $sentenceId,
                 $lang,
                 $hasaudio,
+                $replaceCheckbox,
                 $isValid,
             ),
             array('class' => 'even')
@@ -167,7 +182,6 @@ if (!$canImport) {
                       'inside the import directory.'); ?></p>
 <?php endif; ?>
 <?php
-echo $this->Form->create(null, ['ng-non-bindable' => '']);
 echo $this->Form->input('audioAuthor', ['required' => true]);
 echo $this->Form->submit(__d('admin', 'Import'), $canImport ? [] : ['disabled' => true]);
 echo $this->Form->end();

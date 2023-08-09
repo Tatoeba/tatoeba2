@@ -65,7 +65,8 @@ class AudioController extends AppController
 
         if ($canImport && $this->request->is('post')) {
             $author = $this->request->getData('audioAuthor');
-            $this->Audios->enqueueImportTask($author);
+            $replace = array_filter($this->request->getData('replace', []));
+            $this->Audios->enqueueImportTask($author, $replace);
             // redirect to same URL so that refreshing the page
             // results in a GET request, not a duplicate POST
             return $this->redirect([]);

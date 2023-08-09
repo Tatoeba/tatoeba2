@@ -306,9 +306,18 @@ class AudiosTable extends Table
         return $audioFiles;
     }
 
-    public function importFiles(&$errors, $author) {
+    public function importFiles(&$errors, $config) {
         $errors = array();
         $filesImported = array('total' => 0);
+
+        $author = $this->Users->findByUsername($config['author'])->first();
+        if (!$author) {
+            $errors[] = format(
+                __d('admin', "Unable to import audio: user “{author}” not found."),
+                ['author' => $config['author']]
+            );
+            return $filesImported;
+        }
 
         $files = $this->getFilesToImport();
         foreach ($files as $file) {
@@ -320,15 +329,36 @@ class AudiosTable extends Table
                 continue;
             }
 
-            $this->getConnection()->transactional(function () use ($file, $author, &$errors, &$filesImported) {
-                $audio = $this->newEntity();
-                $audio->sentence_id = $file['sentenceId'];
-                $this->assignAuthor($audio, $author, false);
+            $this->getConnection()->transactional(function () use ($file, $author, $config, &$errors, &$filesImported) {
+                if (!empty($config['replace'][ $file['sentenceId'] ])) {
+                    $existing = $this->find()
+                        ->where(['sentence_id' => $file['sentenceId'], 'user_id' => $author->id])
+                        ->all();
+                    if ($existing->count() == 0) {
+                        unset($existing);
+                    }
+                }
+
+                if (isset($existing)) {
+                    if ($existing->count() > 1) {
+                        $errors[] = format(
+                            __d('admin', "Unable to replace audio contributed by “{author}” for sentence {sentenceId}: this user has more than one audio."),
+                            array('sentenceId' => $file['sentenceId'], 'author' => $author->username)
+                        );
+                        return false;
+                    }
+                    $audio = $existing->first();
+                    $this->touch($audio);
+                } else {
+                    $audio = $this->newEntity();
+                    $audio->sentence_id = $file['sentenceId'];
+                    $audio->user_id = $author->id;
+                }
 
                 if (!$this->save($audio)) {
                     $errors[] = format(
-                        __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database. Make sure it's a valid username."),
-                        array('sentenceId' => $file['sentenceId'], 'author' => $author)
+                        __d('admin', "Unable to save audio for sentence {sentenceId} inside the database."),
+                        array('sentenceId' => $file['sentenceId'])
                     );
                     return false;
                 }
@@ -385,10 +415,10 @@ class AudiosTable extends Table
             ->last();
     }
 
-    public function enqueueImportTask($author) {
+    public function enqueueImportTask($author, $replace = []) {
         $job = $this->QueuedJobs->createJob(
             self::JOB_TYPE,
-            compact('author')
+            compact('author', 'replace')
         );
         $this->QueuedJobs->wakeUpWorkers();
         return $job;
