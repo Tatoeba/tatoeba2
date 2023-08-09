@@ -122,13 +122,35 @@ if ($filesToImport): ?>
     ); ?></p>
     <table id="files-detected">
     <?php
+    $togglerId = 'audio-replace-toggler';
+    $replaceCheckboxName = 'replace';
+    $jsToggler = <<<JS
+    document.querySelectorAll('input[type="checkbox"][name^="{$replaceCheckboxName}["]:not([disabled])').forEach(
+        function (c) {c.checked = document.querySelector("#$togglerId").checked;
+    })
+    JS;
+    $toggler = $this->Form->checkbox('batch', [
+        'id' => $togglerId,
+        'checked' => true,
+        'onclick' => $jsToggler
+    ]);
+    $explainer = __d(
+        'admin',
+        'If checked, this will replace existing recordings '
+        .'if specified author already has audio for that sentence.'
+    );
+    $togglerLabel = $this->Form->label(
+        $togglerId,
+        __d('admin', 'Replace existing?'),
+        ['title' => $explainer]
+    );
     echo $this->Html->tableHeaders(
         array(
             __d('admin', 'File name'),
             __d('admin', 'Sentence id'),
             __d('admin', 'Language'),
             __d('admin', 'Existing audio'),
-            __d('admin', 'Replace existing?'),
+            $toggler . $togglerLabel,
             __d('admin', 'May be imported'),
         )
     );
@@ -146,7 +168,7 @@ if ($filesToImport): ?>
                       ) :
                       __d('admin', 'Invalid');
         if ($file['valid']) {
-            $checkboxName = 'replace['.$file['sentenceId'].']';
+            $checkboxName = $replaceCheckboxName.'['.$file['sentenceId'].']';
             $disabled = count($file['audios']) == 0;
             $replaceCheckbox = $this->Form->checkbox($checkboxName, [
                 'value' => '1',
