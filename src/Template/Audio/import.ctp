@@ -45,7 +45,19 @@ $canImport = !$lastImportJob || $lastImportJob->completed;
         ); ?>
         <br/>
         <?php
+        if (!empty($filesImported['replaced'])) {
+            echo format(
+                __dn('admin',
+                     '{numberOfFiles} was a replacement of an existing recording.',
+                     '{numberOfFiles} were replacements of existing recordings.',
+                     $filesImported['replaced'],
+                     true),
+                array('numberOfFiles' => $filesImported['replaced'])
+            );
+            echo '<br/>';
+        }
         unset($filesImported['total']);
+        unset($filesImported['replaced']);
         $subTotals = array();
         foreach ($filesImported as $lang => $numberOfFiles) {
             $subTotals[] = format(

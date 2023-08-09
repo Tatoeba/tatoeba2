@@ -308,7 +308,7 @@ class AudiosTable extends Table
 
     public function importFiles(&$errors, $config) {
         $errors = array();
-        $filesImported = array('total' => 0);
+        $filesImported = array('total' => 0, 'replaced' => 0);
 
         $author = $this->Users->findByUsername($config['author'])->first();
         if (!$author) {
@@ -390,6 +390,8 @@ class AudiosTable extends Table
                     );
                 }
 
+                if (isset($existing))
+                    $filesImported['replaced']++;
                 if (!isset($filesImported[$file['lang']]))
                     $filesImported[$file['lang']] = 0;
                 $filesImported[$file['lang']]++;
