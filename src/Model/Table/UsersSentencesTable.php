@@ -69,8 +69,10 @@ class UsersSentencesTable extends Table
                 'correctness' => $correctness
             ]);
         } else {
-            $userSentence->correctness = $correctness;
-            $userSentence->dirty = 0;
+            $this->patchEntity($userSentence, [
+                'correctness' => $correctness,
+                'dirty' => 0,
+            ]);
         }
 
         return $this->save($userSentence);
