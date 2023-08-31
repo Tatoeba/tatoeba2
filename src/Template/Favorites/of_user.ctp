@@ -30,7 +30,11 @@ $username = h($username);
 if ($userExists) {
     $numberOfSentences = $this->Paginator->param('count');
 
-    $title = format(__("{user}'s favorite sentences"), array('user' => $username));
+    if (strlen($filter) > 0) {
+        $title = format(__("{user}'s favorite sentences matching “{filter}”"), array('user' => $username, 'filter' => $filter));
+    } else {
+        $title = format(__("{user}'s favorite sentences"), array('user' => $username));
+    }
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
 }
@@ -66,7 +70,29 @@ if ($userExists) {
 
         <md-content layout-padding>
         <?php
-        if ($numberOfSentences > 0) {
+        if ($numberOfSentences > 0 || !empty($filter)) {
+
+            echo $this->Form->create('FavoritesSearch', ['type' => 'get']);
+            ?>
+            <div layout="row" layout-align="center start">
+                <md-input-container flex>
+                    <?php
+                    echo $this->Form->input('filter', [
+                        'label' => __('Sentence text:'),
+                        'lang' => '',
+                        'dir' => 'auto',
+                        'value' => $this->safeForAngular($filter),
+                    ]);
+                    ?>
+                </md-input-container>
+                <md-button type="submit" class="search-submit-button md-raised">
+                    <md-icon>search</md-icon>
+                    <?php /* @translators: search button in favorites page (verb) */ ?>
+                    <?= __x('button', 'Search') ?>
+                </md-button>
+            </div>
+            <?php
+            echo $this->Form->end();
 
             $this->Pagination->display();
 
@@ -111,6 +137,10 @@ if ($userExists) {
                 }
             }
             $this->Pagination->display();
+
+            if ($numberOfSentences == 0) {
+                echo format(__('This user does not have any favorites matching “{filter}”.'), compact('filter'));
+            }
             ?>
             </md-content>
             <?php
