@@ -1143,9 +1143,9 @@ class SentencesTable extends Table
         $currentUserId = CurrentUser::get('id');
 
         if (($ownerId == $currentUserId || CurrentUser::isModerator()) && !$this->hasAudio($sentence->id)) {
-            $sentence->lang = $newLang;
-            $result = $this->save($sentence);
-            return $result->lang;
+            $this->patchEntity($sentence, ['lang' => $newLang]);
+            $this->save($sentence);
+            return $sentence->lang;
         }
 
         return $prevLang;

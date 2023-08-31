@@ -45,6 +45,33 @@ class UsersSentencesTest extends TestCase {
         $this->assertEquals($expected, $userSentence);
     }
 
+    function testSaveSentence_addsSentence_failsInvalidCorrectnessOnCreate() {
+        $sentenceId = 1;
+        $correctness = 1234;
+        $userId = 1;
+
+        $result = $this->UsersSentences->saveSentence(
+            $sentenceId, $correctness, $userId
+        );
+        $this->assertFalse($result);
+    }
+
+    function testSaveSentence_addsSentence_failsInvalidCorrectnessOnUpdate() {
+        $sentenceId = 2;
+        $correctness = 1234;
+        $userId = 1;
+
+        $result = $this->UsersSentences->saveSentence(
+            $sentenceId, $correctness, $userId
+        );
+        $this->assertFalse($result);
+
+        $newCorrectness = $this->UsersSentences->findBySentenceIdAndUserId(
+            $sentenceId, $userId
+        )->first()->correctness;
+        $this->assertEquals(1, $newCorrectness);
+    }
+
     function testSaveSentence_editsDirtySentence() {
         $sentenceId = 2;
         $correctness = 1;
