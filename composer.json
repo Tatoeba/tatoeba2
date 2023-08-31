@@ -31,7 +31,10 @@
         }
     },
     "scripts": {
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "post-install-cmd": [
+            "./vendor/bin/openapi src/Controller/VHosts/Api/ -o webroot/api/openapi-unstable.json"
+        ]
     },
     "config": {
         "allow-plugins": {
