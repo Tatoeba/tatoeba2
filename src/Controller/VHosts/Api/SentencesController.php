@@ -86,7 +86,11 @@ class SentencesController extends ApiController
             ])
             ->contain($this->contain());
 
-        $results = $query->firstOrFail();
+        try {
+            $results = $query->firstOrFail();
+        } catch (\InvalidArgumentException $e) {
+            return $this->response->withStatus(400, 'Invalid parameter "id"');
+        }
         $response = [
             'data' => $results,
         ];

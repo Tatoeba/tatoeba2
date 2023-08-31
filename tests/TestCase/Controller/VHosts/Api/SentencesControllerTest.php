@@ -89,6 +89,12 @@ class MainControllerTest extends TestCase
         $this->assertResponseCode(404);
     }
 
+    public function testGetSentence_invalidId()
+    {
+        $this->get("http://api.example.com/unstable/sentences/notAnInt");
+        $this->assertResponseCode(400);
+    }
+
     public function testGetSentence_ok()
     {
         $this->get("http://api.example.com/unstable/sentences/1");
