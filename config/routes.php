@@ -45,6 +45,7 @@ use Cake\Routing\Route\InflectedRoute;
  *
  */
 
+use App\Middleware\MissingControllerSimpleHandlerMiddleware;
 use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
@@ -74,6 +75,11 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
+    $errorMessage = 'Invalid endpoint';
+    $handler = new MissingControllerSimpleHandlerMiddleware($errorMessage);
+    $routes->registerMiddleware('apiMissingControllerHandler', $handler);
+    $routes->applyMiddleware('apiMissingControllerHandler');
+
     $routes->connect(
         '/:version/:controller',
         ['action' => 'search']
