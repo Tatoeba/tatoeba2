@@ -21,6 +21,7 @@ namespace App\Model\Table;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Validation\Validator;
 
 class UsersSentencesTable extends Table
 {
@@ -32,6 +33,18 @@ class UsersSentencesTable extends Table
         $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->add('correctness', [
+                'inList' => [
+                    'rule' => ['inList', [-1, 0, 1]]
+                ]
+            ]);
+
+        return $validator;
     }
 
     /**
