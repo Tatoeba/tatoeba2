@@ -18,6 +18,15 @@ h1 {
   line-height: var(--title-line-height);
 }
 
+nav a {
+  color: white;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
 a {
   color: #4caf50;
   text-decoration: none;

@@ -11,7 +11,11 @@ echo $this->fetch('script');
 <body>
 
 <nav>
-  <h1><?= h($this->fetch('title')) ?></h1>
+  <h1><?= $this->Html->Link($this->fetch('title'), '/') ?>
+  <?php if (isset($version)): ?>
+    <?= h('> ') . $this->Html->Link($version, []) ?>
+  <?php endif; ?>
+  </h1>
 </nav>
 
 <?= $this->fetch('content') ?>
