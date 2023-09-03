@@ -29,20 +29,16 @@ class AudioController extends ApiController
                 ->select(['id', 'sentence_id'])
                 ->contain(['Users' => ['fields' => ['audio_license']]])
                 ->where(['Audios.id' => $id, 'Users.audio_license !=' => ''])
-                ->first();
+                ->firstOrFail();
         } catch (\InvalidArgumentException $e) {
             return $this->response->withStatus(400, 'Invalid parameter "id"');
         }
 
-        if ($audio) {
-            $options = [
-                'download' => true,
-                'name' => $audio->pretty_filename,
-            ];
-            return $this->getResponse()
-                        ->withFile($audio->file_path, $options);
-        } else {
-            throw new \Cake\Http\Exception\NotFoundException();
-        }
+        $options = [
+            'download' => true,
+            'name' => $audio->pretty_filename,
+        ];
+        return $this->getResponse()
+                    ->withFile($audio->file_path, $options);
     }
 }
