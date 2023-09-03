@@ -5,6 +5,13 @@ use App\Controller\VHosts\Api\ApiController;
 use App\Model\Search;
 use Cake\ORM\Query;
 
+/**
+ * @OA\Schema(
+ *   schema="Sentence",
+ *   description="A sentence object that contains both sentence text and metadata about the sentence.",
+ *   @OA\Property(property="id", description="The sentence identifier", type="integer", example="1234")
+ * )
+ */
 class SentencesController extends ApiController
 {
     private function exposedFields() {
@@ -74,6 +81,21 @@ class SentencesController extends ApiController
         ];
     }
 
+    /**
+     * @OA\PathItem(path="/unstable/sentences/{id}",
+     *   @OA\Parameter(name="id", in="path", required=true, description="The sentence identifier.",
+     *     @OA\Schema(ref="#/components/schemas/Sentence/properties/id")
+     *   ),
+     *   @OA\Get(
+     *     summary="Get a sentence",
+     *     description="Get sentence text as well as metadata about this sentence and related sentences.",
+     *     tags={"Sentences"},
+     *     @OA\Response(response="200", description="Success."),
+     *     @OA\Response(response="400", description="Invalid ID parameter."),
+     *     @OA\Response(response="404", description="There is no sentence with that ID or it has been deleted.")
+     *   )
+     * )
+     */
     public function get($id) {
         $this->loadModel('Sentences');
         $query = $this->Sentences
