@@ -22,6 +22,27 @@ use App\Controller\VHosts\Api\ApiController;
 
 class AudioController extends ApiController
 {
+    /**
+     * @OA\Schema(
+     *   schema="Audio",
+     *   description="An audio object that contains metadata about a recording.",
+     *   @OA\Property(property="id", description="The audio identifier", type="integer", example="4321")
+     * )
+     *
+     * @OA\PathItem(path="/unstable/audio/{id}/file",
+     *   @OA\Parameter(name="id", in="path", required=true, description="The audio identifier.",
+     *     @OA\Schema(ref="#/components/schemas/Audio/properties/id")
+     *   ),
+     *   @OA\Get(
+     *     summary="Get an audio file",
+     *     description="Download an audio recording of a sentence.",
+     *     tags={"Audio"},
+     *     @OA\Response(response="200", description="Success."),
+     *     @OA\Response(response="400", description="Invalid parameter."),
+     *     @OA\Response(response="404", description="There is no audio with that ID, it was removed, or the audio author does not allow reuse outside of Tatoeba.")
+     *   )
+     * )
+     */
     public function file($id) {
         $this->loadModel('Audios');
         try {
