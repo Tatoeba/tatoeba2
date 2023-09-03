@@ -91,12 +91,20 @@ class UsersController extends ApiController
      *     description="Get information about a member of Tatoeba.",
      *     tags={"Users"},
      *     @OA\Response(response="200", description="Success."),
+     *     @OA\Response(response="400", description="Invalid parameter."),
      *     @OA\Response(response="404", description="There is no user with that username or the account was removed.")
      *   )
      * )
      */
     public function get($name) {
         $this->loadModel('Users');
+
+        $validator = $this->Users->getValidator();
+        $invalid = $validator->errors(['username' => $name], false);
+        if ($invalid) {
+            return $this->response->withStatus(400, 'Invalid parameter "username"');
+        }
+
         $query = $this->Users
             ->find('exposedFields', $this->exposedFields())
             ->select($this->fields())
