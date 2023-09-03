@@ -1,0 +1,26 @@
+
+body {
+  font-family: 'Sans';
+  margin: 0;
+}
+
+nav {
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+h1 {
+  margin: 0;
+  display: inline;
+}
+
+a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #dd8800;
+}

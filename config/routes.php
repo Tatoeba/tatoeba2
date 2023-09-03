@@ -79,6 +79,13 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     $routes->applyMiddleware('apiErrorHandlerHandler');
 
     $routes->connect(
+        '/',
+        ['controller' => 'doc', 'action' => 'index']
+    )
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
         '/:version/:controller',
         ['action' => 'search']
     )
