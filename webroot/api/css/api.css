@@ -1,19 +1,21 @@
 
 body {
   font-family: 'Sans';
+  --title-padding: 20px;
+  --title-line-height: 30px;
   margin: 0;
 }
 
 nav {
   background-color: #4caf50;
   color: white;
-  padding: 20px;
+  padding: var(--title-padding);
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
 }
 
 h1 {
   margin: 0;
-  display: inline;
+  line-height: var(--title-line-height);
 }
 
 a {

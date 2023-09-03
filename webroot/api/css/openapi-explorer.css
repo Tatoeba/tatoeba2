@@ -1,0 +1,23 @@
+
+html, body {
+  height: 100%;
+}
+
+body {
+  pointer-events: none;
+}
+nav {
+  pointer-events: all;
+}
+
+openapi-explorer {
+  pointer-events: all;
+  z-index: -1;
+  height: calc(100% - 2 * var(--title-padding) - var(--title-line-height));
+}
+openapi-explorer::part(section-navbar) {
+  border-top: none;
+}
+openapi-explorer {
+  position: relative;
+}

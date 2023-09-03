@@ -4,6 +4,8 @@
 <title><?= h($this->fetch('title')); ?></title>
 <?php
 echo $this->Html->css('/css/api.css');
+echo $this->fetch('css');
+echo $this->fetch('script');
 ?>
 </head>
 <body>
