@@ -16,6 +16,7 @@ nav {
 h1 {
   margin: 0;
   line-height: var(--title-line-height);
+  display: inline;
 }
 
 nav a {
@@ -34,4 +35,9 @@ a {
 
 a:hover {
   color: #dd8800;
+}
+
+.navmenu {
+  float: right;
+  display: inline;
 }

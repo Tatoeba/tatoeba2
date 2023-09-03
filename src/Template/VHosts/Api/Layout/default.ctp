@@ -16,6 +16,9 @@ echo $this->fetch('script');
     <?= h('> ') . $this->Html->Link($version, []) ?>
   <?php endif; ?>
   </h1>
+  <span class="navmenu">
+    <?= $this->Html->Link('Go to Tatoeba', $this->Api->getTatoebaUrl()) ?>
+  </span>
 </nav>
 
 <?= $this->fetch('content') ?>
