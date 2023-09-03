@@ -20,6 +20,16 @@ When this API will be considered mature, we will release a stable version and yo
  * )
  * @OA\Server(url="https://api.tatoeba.org",     description="Tatoeba's production server")
  * @OA\Server(url="https://api.dev.tatoeba.org", description="Tatoeba's development server")
+ *
+ * @OA\Schema(
+ *   schema="LanguageCode",
+ *   description="The ISO 639-3 code of the language, or some <a href=""https://en.wiki.tatoeba.org/articles/show/tatoeba-supported-languages-exceptions"">exceptional code</a>.",
+ *   type="string",
+ *   example="epo",
+ *   minLength=3,
+ *   maxLength=4,
+ *   pattern="[a-z]+"
+ * )
  */
 class ApiController extends Controller
 {
