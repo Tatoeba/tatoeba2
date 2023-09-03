@@ -37,7 +37,15 @@ a:hover {
   color: #dd8800;
 }
 
-.navmenu {
+ul.navmenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   float: right;
+}
+ul.navmenu li {
   display: inline;
+}
+ul.navmenu li:not(:first-child)::before {
+  content: '• ';
 }
