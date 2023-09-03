@@ -5,15 +5,15 @@ use App\Controller\VHosts\Api\ApiController;
 use App\Model\Search;
 use Cake\ORM\Query;
 
-/**
- * @OA\Schema(
- *   schema="Sentence",
- *   description="A sentence object that contains both sentence text and metadata about the sentence.",
- *   @OA\Property(property="id", description="The sentence identifier", type="integer", example="1234")
- * )
- */
 class SentencesController extends ApiController
 {
+    /**
+     * @OA\Schema(
+     *   schema="Sentence",
+     *   description="A sentence object that contains both sentence text and metadata about the sentence.",
+     *   @OA\Property(property="id", description="The sentence identifier", type="integer", example="1234")
+     * )
+     */
     private function exposedFields() {
         $sentence = [
             'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner'],
