@@ -20,4 +20,13 @@ openapi-explorer::part(section-navbar) {
 }
 openapi-explorer {
   position: relative;
+  --border-radius: 5px;
+  --font-mono: 'Monospace';
+  --primary-color: #4caf50;
+  --secondary-color: #9dc189;
+  --nav-bg-color: #fafafa;
+  --nav-hover-bg-color: rgba(158,158,158,0.2);
+  --nav-text-color: var(--fg);
+  --secondary-color: rgba(0,0,0,0.87);
+  --nav-hover-text-color: rgba(0,0,0,0.87);
 }
