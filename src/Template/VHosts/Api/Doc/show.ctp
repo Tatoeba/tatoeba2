@@ -7,5 +7,6 @@ $specurl = "/openapi-$version.json";
 ?>
 <openapi-explorer
    spec-url="<?= h($specurl) ?>"
+   show-authentication="false"
    server-url="<?= h(Router::fullBaseUrl()) ?>">
 </openapi-explorer>
