@@ -161,6 +161,41 @@ class SentencesController extends ApiController
         return $search;
     }
 
+    /**
+     * @OA\PathItem(path="/unstable/sentences",
+     *   @OA\Parameter(name="lang", in="query", required=true,
+     *     description="The language to search in.",
+     *     @OA\Schema(ref="#/components/schemas/LanguageCode")
+     *   ),
+     *   @OA\Parameter(name="q", in="query",
+     *     description="The search query. The query must follow ManticoreSearch query syntax.",
+     *     @OA\Schema(type="string", example="Let's")
+     *   ),
+     *   @OA\Parameter(name="trans", in="query",
+     *     description="Limit to sentences having translations in this language.",
+     *     @OA\Schema(ref="#/components/schemas/LanguageCode")
+     *   ),
+     *   @OA\Parameter(name="include_unapproved", in="query",
+     *     description="By default, unapproved sentences are not included in the response. Set to 'yes' to include them.",
+     *     @OA\Schema(type="string", example="yes")
+     *   ),
+     *   @OA\Parameter(name="page", in="query",
+     *     description="Page number, starts at 1. Use this parameter to paginate results.",
+     *     @OA\Schema(type="integer", example="2")
+     *   ),
+     *   @OA\Parameter(name="limit", in="query",
+     *     description="Maximum number of sentences in the response.",
+     *     @OA\Schema(type="integer", example="20")
+     *   ),
+     *   @OA\Get(
+     *     summary="Search sentences",
+     *     description="Search sentences in the Tatoeba corpus.",
+     *     tags={"Sentences"},
+     *     @OA\Response(response="200", description="Success."),
+     *     @OA\Response(response="400", description="Invalid parameter.")
+     *   )
+     * )
+     */
     public function search() {
         $search = $this->_prepareSearch();
         if (!($search instanceOf Search)) {
