@@ -24,11 +24,15 @@ class AudioController extends ApiController
 {
     public function file($id) {
         $this->loadModel('Audios');
-        $audio = $this->Audios->find()
-            ->select(['id', 'sentence_id'])
-            ->contain(['Users' => ['fields' => ['audio_license']]])
-            ->where(['Audios.id' => $id, 'Users.audio_license !=' => ''])
-            ->first();
+        try {
+            $audio = $this->Audios->find()
+                ->select(['id', 'sentence_id'])
+                ->contain(['Users' => ['fields' => ['audio_license']]])
+                ->where(['Audios.id' => $id, 'Users.audio_license !=' => ''])
+                ->first();
+        } catch (\InvalidArgumentException $e) {
+            return $this->response->withStatus(400, 'Invalid parameter "id"');
+        }
 
         if ($audio) {
             $options = [
