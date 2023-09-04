@@ -38,6 +38,12 @@ class Sessions extends AbstractMigration
                 'null' => true,
                 'signed' => false,
             ])
+            ->addColumn('user_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+                'signed' => false,
+            ])
             ->create();
     }
 
