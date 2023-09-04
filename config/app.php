@@ -144,6 +144,14 @@ return [
             'duration' => '+1 years',
             'url' => env('CACHE_CAKEROUTES_URL', null),
         ],
+
+        'memcached' => [
+            'className' => 'Cake\Cache\Engine\MemcachedEngine',
+            'host' => 'localhost',
+            'port' => 11211,
+            'prefix' => 'memc.sess.key.',
+            'serialize' => 'igbinary',
+        ],
     ],
 
     /**
@@ -404,7 +412,12 @@ return [
      * To use database sessions, load the SQL file located at config/schema/sessions.sql
      */
     'Session' => [
-        'defaults' => 'php',
+        'defaults' => 'database',
+        'handler' => [
+            'engine' => 'ComboSession',
+            'model' => 'Session',
+            'cache' => 'memcached',
+        ],
         'timeout' => 120,
     ],
 ];
