@@ -124,7 +124,7 @@ class LanguagesLib
             'hmo' => 'ho', // Hiri Motu
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
-            'hye' => 'hy', // Armenian
+            'hye' => 'hy', // Eastern Armenian
             'ibo' => 'ig', // Igbo
             'ido' => 'io', // Ido
             'ile' => 'ie', // Interlingue
@@ -326,7 +326,7 @@ class LanguagesLib
                 'eus' => __d('languages', 'Basque'),
                 'slk' => __d('languages', 'Slovak'),
                 'dan' => __d('languages', 'Danish'),
-                'hye' => __d('languages', 'Armenian'),
+                'hye' => __d('languages', 'Eastern Armenian'),
                 'acm' => __d('languages', 'Iraqi Arabic'),
                 'san' => __d('languages', 'Sanskrit'),
                 'urd' => __d('languages', 'Urdu'),
