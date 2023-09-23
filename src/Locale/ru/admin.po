@@ -4,11 +4,11 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
+# Dmitry K, 2018
 # Nikolay Korotkiy <sikmir@disroot.org>, 2018
 # Konstantin N <explanacion@gmail.com>, 2018
 # Sergei Merchenko <corvard555@gmail.com>, 2021
 # Dmitrij Sigida <ruszrj@gmail.com>, 2021
-# Dmitry K, 2022
 # صفا الفليج <safaalfulaij@hotmail.com>, 2022
 # Cloud Strife, 2022
 # 
@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 17:57+0000\n"
+"POT-Creation-Date: 2023-08-31 05:02+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Cloud Strife, 2022\n"
 "Language-Team: Russian (https://app.transifex.com/tatoeba/teams/28284/ru/)\n"
@@ -39,26 +39,32 @@ msgid "Marked all sentences added by {username} as unreliable."
 msgstr "Помечены как ненадёжные все предложения добавленные {username}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
+msgid "Unable to import audio: user “{author}” not found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L326
 msgid "Invalid file “{file}” ignored."
 msgstr "Недопустимый файл “{file}” пропущен."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L345
 msgid ""
-"Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
-"database. Make sure it's a valid username."
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
 msgstr ""
-"Невозможно указать как автора аудиозаписи пользователя “{author}” для "
-"предложения {sentenceId} в базе данных. Убедитесь, что это корректное имя."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "Не удалось создать директорию “{dir}” для импорта файла “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L380
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Не удалось скопировать файл “{file}” в директорию “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -67,70 +73,21 @@ msgstr ""
 "директории импорта."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
 msgstr "Импортировать аудиозаписи"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
 msgid "The following errors occurred during the last import."
 msgstr "Следующие ошибки возникли во время последнего импорта."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "Audio import status"
 msgstr "Статус импорта аудио"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
 msgid "Files detected"
 msgstr "Обнаруженные файлы"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
-msgid "File name"
-msgstr "Имя файла"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
-msgid "Sentence id"
-msgstr "ID предложения"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L115
-msgid "Language"
-msgstr "Язык"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
-msgid "Existing audio"
-msgstr "Существующие аудио"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
-msgid "May be imported"
-msgstr "Можно импортировать"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L147
-msgid "N/A"
-msgstr "Недоступно"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L132
-msgid "Invalid"
-msgstr "Недействительно"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L145
-msgid "None"
-msgstr "без перевода"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L149
-msgid "Yes"
-msgstr "да"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L150
-msgid "No"
-msgstr "нет"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L166
-msgid "No files have been detected inside the import directory."
-msgstr "В директории импорта не обнаружено файлов."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L172
-msgid "Import"
-msgstr "Импортировать"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
 msgid "Audio author"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 17:57+0000\n"
+"POT-Creation-Date: 2023-08-31 05:02+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Prasanta Hembram <Prasantahembram720@gmail.com>, 2022\n"
 "Language-Team: Santali (https://app.transifex.com/tatoeba/teams/28284/sat/)\n"
@@ -34,26 +34,32 @@ msgstr ""
 "{username} ᱮ ᱥᱮᱞᱮᱫ ᱠᱟᱫ ᱡᱷᱚᱛᱚ ᱟᱹᱭᱟᱹᱛ ᱠᱚ ᱵᱟᱝᱯᱟᱹᱛᱤᱭᱟᱣᱜ ᱞᱮᱠᱷᱟ ᱪᱤᱱᱦᱟᱹ ᱠᱟᱜᱼᱟ ᱥᱮ ?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
+msgid "Unable to import audio: user “{author}” not found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L326
 msgid "Invalid file “{file}” ignored."
 msgstr "ᱵᱷᱩᱞ ᱨᱮᱫ “{file}” ᱮᱨᱮᱲ ᱜᱤᱰᱤ ᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L345
 msgid ""
-"Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
-"database. Make sure it's a valid username."
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
 msgstr ""
-"ᱰᱟᱴᱟᱵᱮᱥ ᱵᱷᱤᱛᱤᱨ ᱨᱮ ᱟᱹᱭᱟᱹᱛ {sentenceId} ᱞᱟᱹᱜᱤᱫ “{author}” ᱥᱟᱰᱮ ᱮᱢ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ"
-" ᱾ ᱵᱩᱡᱷᱟᱹᱣ ᱡᱚᱝ ᱢᱮ ᱡᱮ ᱱᱚᱶᱟ ᱨᱮ ᱴᱷᱤᱠ ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱧᱩᱛᱩᱢ ᱢᱮᱱᱟᱜᱼᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "ᱨᱮᱫ “{file}” ᱟᱹᱜᱩ ᱞᱟᱹᱜᱤᱫ “{dir}” ᱛᱮᱭᱟᱨ ᱨᱮ ᱵᱷᱩᱞ ᱦᱩᱭᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L380
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "ᱛᱷᱚᱠ “{dir}” ᱨᱮ ᱨᱮᱫ “{file}” ᱱᱚᱠᱚᱞ ᱨᱮ ᱵᱷᱩᱞ ᱦᱩᱭᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -62,70 +68,21 @@ msgstr ""
 "ᱞᱮᱱᱟ ᱾"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
 msgstr "ᱨᱮᱠᱚᱰᱤᱝ ᱠᱚ ᱟᱹᱜᱩ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
 msgid "The following errors occurred during the last import."
 msgstr "ᱢᱮᱲᱟᱝᱟᱜ ᱟᱹᱜᱩ ᱡᱷᱚᱜ ᱱᱚᱶᱟ ᱠᱚ ᱵᱷᱩᱞ ᱦᱩᱭᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "Audio import status"
 msgstr "ᱥᱟᱰᱮ ᱟᱹᱜᱩ ᱫᱚᱥᱟ ᱠᱚ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
 msgid "Files detected"
 msgstr "ᱨᱮᱫ ᱠᱚ ᱧᱟᱢᱮᱱᱟ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
-msgid "File name"
-msgstr "ᱨᱮᱫ ᱧᱩᱛᱩᱢ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
-msgid "Sentence id"
-msgstr "ᱟᱹᱭᱟᱹᱛ id"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L115
-msgid "Language"
-msgstr "ᱯᱟᱹᱨᱥᱤ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
-msgid "Existing audio"
-msgstr "ᱢᱟᱲᱟᱝᱟᱜ ᱥᱟᱰᱮ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
-msgid "May be imported"
-msgstr "ᱟᱹᱜᱩ ᱜᱟᱱᱚᱜ ᱜᱮᱭᱟ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L147
-msgid "N/A"
-msgstr "N/A"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L132
-msgid "Invalid"
-msgstr "ᱵᱷᱩᱞ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L145
-msgid "None"
-msgstr "ᱡᱟᱦᱱᱟᱜ ᱵᱟᱝ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L149
-msgid "Yes"
-msgstr "ᱦᱚᱭ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L150
-msgid "No"
-msgstr "ᱵᱟᱝ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L166
-msgid "No files have been detected inside the import directory."
-msgstr "ᱟᱹᱜᱩ ᱛᱷᱚᱠ ᱵᱷᱤᱛᱤᱨ ᱨᱮ ᱪᱮᱫ ᱨᱮᱫ ᱠᱚ ᱵᱟᱹᱝ ᱪᱤᱱᱦᱟᱹᱣ ᱞᱮᱱᱟ ᱾"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L172
-msgid "Import"
-msgstr "ᱟᱹᱜᱩ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
 msgid "Audio author"

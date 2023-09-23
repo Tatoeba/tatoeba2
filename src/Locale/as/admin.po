@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 17:57+0000\n"
+"POT-Creation-Date: 2023-08-31 05:02+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Mohsin Ali <mohsin13089@gmail.com>, 2022\n"
 "Language-Team: Assamese (https://app.transifex.com/tatoeba/teams/28284/as/)\n"
@@ -31,26 +31,32 @@ msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
+msgid "Unable to import audio: user “{author}” not found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L326
 msgid "Invalid file “{file}” ignored."
 msgstr "অবৈধ ফাইল “{file}” আওকাণ কৰা হৈছে।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L345
 msgid ""
-"Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
-"database. Make sure it's a valid username."
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
 msgstr ""
-"ডেটাবেছৰ ভিতৰত বাক্য {sentenceId}ৰ বাবে \"{author}\"লৈ অডিঅ' ধাৰ্য্য কৰিব "
-"পৰা নগ'ল। এইটো এটা বৈধ ব্যৱহাৰকাৰীনাম হোৱাটো নিশ্চিত কৰক।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "“{file}” ফাইল আমদানি কৰিবলৈ “{dir}” ডাইৰেক্টৰী সৃষ্টি কৰাত বিফল।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L380
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "“{dir}” ডাইৰেক্টৰীত “{file}” ফাইল কপি কৰাত বিফল।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -59,70 +65,21 @@ msgstr ""
 "পৰা নগ'ল।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
 msgstr "ৰেকৰ্ডিং আমদানি কৰক"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
 msgid "The following errors occurred during the last import."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "Audio import status"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
 msgid "Files detected"
 msgstr "ফাইল ধৰা পৰিছে"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
-msgid "File name"
-msgstr "ফাইলৰ নাম"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
-msgid "Sentence id"
-msgstr "বাক্যৰ আইডি"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L115
-msgid "Language"
-msgstr "ভাষা"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L116
-msgid "Existing audio"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L117
-msgid "May be imported"
-msgstr "আমদানি কৰা হ'ব পাৰে"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L147
-msgid "N/A"
-msgstr "প্ৰঃ/নঃ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L132
-msgid "Invalid"
-msgstr "অবৈধ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L145
-msgid "None"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L149
-msgid "Yes"
-msgstr "হয়"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L150
-msgid "No"
-msgstr "নহয়"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L166
-msgid "No files have been detected inside the import directory."
-msgstr "আমদানি ডাইৰেক্টৰীৰ ভিতৰত কোনো ফাইল ধৰা পৰা নাই।"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L172
-msgid "Import"
-msgstr "আমদানি কৰক"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
 msgid "Audio author"
