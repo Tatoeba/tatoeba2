@@ -20,6 +20,12 @@ class ApiControllerTest extends TestCase
         $this->assertResponseOk();
     }
 
+    public function test_docNonInvalidVersion()
+    {
+        $this->get("http://api.example.com/non-existent");
+        $this->assertResponseCode(404);
+    }
+
     public function test_invalidController()
     {
         $this->get("http://api.example.com/no/such/controller");

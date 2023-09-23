@@ -3,7 +3,6 @@ use Cake\Routing\Router;
 $this->Html->script('/js/openapi-explorer.min.js', ['block' => 'script', 'type' => 'module']);
 $this->Html->css('/css/openapi-explorer.css', ['block' => 'css']);
 $this->assign('title', 'Tatoeba API');
-$specurl = "/openapi-$version.json";
 $this->assign('navlinks', '<li>' . $this->Html->Link('OpenAPI file', $specurl) . '</li>');
 ?>
 <openapi-explorer
