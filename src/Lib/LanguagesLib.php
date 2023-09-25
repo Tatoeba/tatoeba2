@@ -695,6 +695,7 @@ class LanguagesLib
                 'syl' => __d('languages', 'Sylheti'),
                 'tum' => __d('languages', 'Tumbuka'),
                 'arn' => __d('languages', 'Mapuche'),
+                'hyw' => __d('languages', 'Western Armenian'),
 
             );
         }
