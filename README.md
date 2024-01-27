@@ -1,17 +1,15 @@
 Tatoeba
 =======
 
-[![Join the chat at https://gitter.im/Tatoeba/tatoeba2](https://badges.gitter.im/Tatoeba/tatoeba2.svg)](https://gitter.im/Tatoeba/tatoeba2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Join the chat at https://chat.tatoeba.org/](https://chat.tatoeba.org/badge)](https://chat.tatoeba.org/)
+Welcome to Tatoeba's source code repository 🙂
 
-This repository contains the source code of Tatoeba's website: 
-https://tatoeba.org. 
+Tatoeba is a platform which purpose is to create a collaborative and open dataset of sentences and their translations.
 
 Contributing
 ------------
 
 If you are interested in contributing to this project as a developer, please 
-read our [article about it][1] before you start coding anything.
+read our [article on how to get started][1].
 
 
 Installing Tatoeba
@@ -24,13 +22,11 @@ the file [README.tatovm.md][2].
 Need help?
 ----------
 
-If you are stuck somewhere and can't figure out how to fix the problem(s) so 
-that you can run Tatoeba properly on your machine, don't hesitate to post a 
-message in our [Google group][3], ask in our [Gitter chatroom][4] or in our
-[XMPP chatroom][5].
+If you need support to set up and run Tatoeba locally or if you have any questions
+about the code, don't hesitate to post a message in the [Discussions][3]. 
+You can also try to ask in our [XMPP chatroom][4].
 
 [1]: https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer
 [2]: https://github.com/Tatoeba/tatoeba2/blob/dev/README.tatovm.md
-[3]: https://groups.google.com/group/tatoebaproject
-[4]: https://gitter.im/Tatoeba/tatoeba2
-[5]: https://chat.tatoeba.org/
+[3]: https://github.com/Tatoeba/tatoeba2/discussions
+[4]: https://chat.tatoeba.org/
