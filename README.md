@@ -3,7 +3,7 @@ Tatoeba
 
 Welcome to Tatoeba's source code repository 🙂
 
-Tatoeba is a platform which purpose is to create a collaborative and open dataset of sentences and their translations.
+Tatoeba is a platform whose purpose is to create a collaborative and open dataset of sentences and their translations.
 
 Contributing
 ------------
