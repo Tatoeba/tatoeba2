@@ -103,7 +103,7 @@ if ($ignored) {
         <md-button ng-click="toggle('advanced-search')">
             <md-icon>filter_list</md-icon>
             <?php /* @translators: button to open the advanced search option sidebar on mobile */ ?>
-            <?= __('Narrow search') ?>
+            <?= __('Refine search') ?>
         </md-button>
     </div>
 </md-toolbar>
@@ -195,7 +195,7 @@ if ($ignored) {
     <md-toolbar>
         <div class="md-toolbar-tools" ng-controller="SidenavController">
             <?php /* @translators: title for the sidebar on the search page */ ?>
-            <h2 flex><?= __('Search criteria'); ?></h2>
+            <h2 flex><?= __('Refine search'); ?></h2>
             <md-button class="close md-icon-button" ng-click="toggle('advanced-search')">
                 <md-icon>close</md-icon>
             </md-button>
