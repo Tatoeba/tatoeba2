@@ -14,7 +14,7 @@
 # Marijn Kuiper <imarijn.kuiper@gmail.com>, 2019-2021
 # Michel S <michel.smts2@gmail.com>, 2020
 # M. <zeurniet1989@gmail.com>, 2015
-# Paul Peeraerts <paul2711@gmail.com>, 2014-2015,2019-2021
+# Paul Peeraerts <paul2711@gmail.com>, 2014-2015,2019-2021,2023
 # Rein Jonkman <rein.jonkman@gmail.com>, 2020
 # Robin van der Vliet <info@robinvandervliet.com>, 2022
 # Robin van der Vliet <info@robinvandervliet.com>, 2016-2017,2020,2022
@@ -26,9 +26,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 05:02+0000\n"
+"POT-Creation-Date: 2024-03-16 19:19+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2014\n"
+"Last-Translator: Paul Peeraerts <paul2711@gmail.com>, 2014-2015,2019-2021,2023\n"
 "Language-Team: Dutch (http://app.transifex.com/tatoeba/tatoeba_website/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -973,7 +973,7 @@ msgstr "{username} heeft geen audio bijgedragen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
 msgid "(total {totalAudio})"
-msgstr ""
+msgstr "(totaal {totalAudio})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
@@ -1097,19 +1097,19 @@ msgstr "Alle talen"
 #. sentence length filter in the search form.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L102
 msgid "Length:"
-msgstr ""
+msgstr "Lengte:"
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L108
 msgid "At least {numericField}"
-msgstr ""
+msgstr "Minimum{numericField}"
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L111
 msgid "At most {numericField}"
-msgstr ""
+msgstr "Maximum {numericField}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L143
 msgid ""
@@ -1929,20 +1929,12 @@ msgstr "OK"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L64
 msgid "The audio file will be lost. Are you sure?"
-msgstr ""
+msgstr "Het geluidsbestand zal worden gewist. Ben je zeker?"
 
 #. header text in sentence page
-#. / link to the list of audio on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
-msgid "Audio"
-msgid_plural "Audio"
-msgstr[0] ""
-msgstr[1] ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
-msgstr ""
+msgstr "van {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L98
 msgid "License: {license}"
@@ -1950,7 +1942,7 @@ msgstr "Licentie: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L104
 msgid "Is enabled"
-msgstr ""
+msgstr "Is ingeschakeld"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
 msgid "Show more features for all sentences"
@@ -1987,17 +1979,17 @@ msgstr "Zoek een taal"
 #. header text on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L31
 msgid "Sentence text"
-msgstr ""
+msgstr "Zin"
 
 #. placeholder is the name of the license
 #. of the sentence text, could be CC BY 2.0 FR or CC0
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L37
 msgid "License: {}"
-msgstr ""
+msgstr "Licentie: {}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L62
 msgid "Change license"
-msgstr ""
+msgstr "Verander de licentie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -2534,6 +2526,11 @@ msgstr "Muurberichten"
 msgid "Logs"
 msgstr "Lijst van bijdragen"
 
+#. link to the list of audio on profile page sidebar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
+msgid "Audio"
+msgstr "Audio"
+
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
@@ -2603,7 +2600,7 @@ msgstr "Favoriet met succes verwijderd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L81
 msgid "Sentence text:"
-msgstr ""
+msgstr "Zin:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L173
@@ -2612,7 +2609,7 @@ msgstr "Zin {id} is verwijderd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L142
 msgid "This user does not have any favorites matching “{filter}”."
-msgstr ""
+msgstr "Deze gebruiker heeft geen geliefkoosde zinnen met “{filter}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L148
 msgid "This user does not have any favorites."
@@ -2976,7 +2973,7 @@ msgstr "Scriptnaam"
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L95
 msgid "Audio id"
-msgstr ""
+msgstr "Audio id"
 
 #. header text in the Downloads page on the sidebar (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L113
@@ -3168,7 +3165,7 @@ msgstr "Bevat de IDs van de zinnen, in elke taal, waarvoor audio beschikbaar is.
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L477
 msgid "Downloading audio"
-msgstr ""
+msgstr "Geluidsbestand wordt gedownload"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L480
 msgid ""
@@ -3796,9 +3793,11 @@ msgid "Search error"
 msgstr "Zoekfout"
 
 #. button to open the advanced search option sidebar on mobile
+#. / title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
-msgid "Narrow search"
-msgstr "Vernauw zoekopdracht"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
+msgid "Refine search"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
 msgid ""
@@ -3817,11 +3816,6 @@ msgstr "Er is een fout opgetreden tijdens het uitvoeren van de zoekopdracht. Als
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L151
 msgid "Search: {keywords}"
 msgstr "Zoeken: {keywords}"
-
-#. title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
-msgid "Search criteria"
-msgstr "Zoek criteria"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
@@ -4563,7 +4557,7 @@ msgstr "Aantal zinnen per pagina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Number of translations per sentence"
-msgstr ""
+msgstr "Aantal vertalingen per zin."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L249
 msgid "Default license for original sentences"
@@ -4834,7 +4828,7 @@ msgstr "Bericht bewerken {number}"
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "Muur (één topic)"
-msgstr[1] "Muur ({n}&nbsp;topics)"
+msgstr[1] "Muur ({n}&nbsp;onderwerpen)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L61
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
@@ -4951,7 +4945,7 @@ msgstr[1] "{n}&nbsp;dagen geleden"
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
 msgstr[0] "een uur geleden"
-msgstr[1] "{n}&nbsp;uren geleden"
+msgstr[1] "{n}&nbsp;uur geleden"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L146
 msgid "a minute ago"

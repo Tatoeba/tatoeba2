@@ -6,7 +6,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
 # Gabor Szabo <szabo.public@gmail.com>, 2020
 # Madarász Ernő <mrazerno@freemail.hu>, 2016
-# Márton Polgár <ersterpleghthome@gmail.com>, 2021-2022
+# Márton Polgár <ersterpleghthome@gmail.com>, 2021-2022,2024
 # Max Dailene <tanyadegurechaffloli@gmail.com>, 2021
 # Tivadar Pongó <pongo.tivadar@gmail.com>, 2020
 # Viktor Széll <sz.96viktor@windowslive.com>, 2020
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 05:02+0000\n"
+"POT-Creation-Date: 2024-03-16 19:19+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2014\n"
+"Last-Translator: Márton Polgár <ersterpleghthome@gmail.com>, 2021-2022,2024\n"
 "Language-Team: Hungarian (http://app.transifex.com/tatoeba/tatoeba_website/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -962,7 +962,7 @@ msgstr "{username} nem adott hozzá hangfelvételt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
 msgid "(total {totalAudio})"
-msgstr ""
+msgstr "(összesen {totalAudio})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
@@ -1086,19 +1086,19 @@ msgstr "Minden nyelv"
 #. sentence length filter in the search form.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L102
 msgid "Length:"
-msgstr ""
+msgstr "Hossz:"
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L108
 msgid "At least {numericField}"
-msgstr ""
+msgstr "Legalább {numericField}"
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L111
 msgid "At most {numericField}"
-msgstr ""
+msgstr "Legfeljebb {numericField}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L143
 msgid ""
@@ -1921,14 +1921,6 @@ msgid "The audio file will be lost. Are you sure?"
 msgstr ""
 
 #. header text in sentence page
-#. / link to the list of audio on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
-msgid "Audio"
-msgid_plural "Audio"
-msgstr[0] ""
-msgstr[1] ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
 msgstr ""
@@ -2522,6 +2514,11 @@ msgstr "Üzenetek az üzenőfalon"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L252
 msgid "Logs"
 msgstr "Eseménynapló"
+
+#. link to the list of audio on profile page sidebar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
+msgid "Audio"
+msgstr "Hangfelvétel"
 
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
@@ -3657,7 +3654,7 @@ msgstr "Mondat kérések"
 msgid ""
 "Tatominer provides a list of the most searched words for which there are "
 "very few or no sentences yet."
-msgstr ""
+msgstr "A Tatominer felkínál egy listát azokból a leggyakrabban keresett szavakból, amikre még nagyon kevés fordítás van."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L121
 msgid ""
@@ -3785,9 +3782,11 @@ msgid "Search error"
 msgstr "Keresési hiba"
 
 #. button to open the advanced search option sidebar on mobile
+#. / title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
-msgid "Narrow search"
-msgstr "Keresés szűkítése"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
+msgid "Refine search"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
 msgid ""
@@ -3806,11 +3805,6 @@ msgstr "Hiba történt a keresés végrehajtása során. Ha a probléma továbbr
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L151
 msgid "Search: {keywords}"
 msgstr "Keresés: {keywords}"
-
-#. title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
-msgid "Search criteria"
-msgstr "Keresési feltételek"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
@@ -4107,7 +4101,7 @@ msgstr "Ez a lista üres."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L199
 msgid "This list does not contain any sentences in {language}."
-msgstr ""
+msgstr "Ezen a listán nincs {language}nyelvű mondat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L213
 msgid ""

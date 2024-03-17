@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-31 14:45+0800\n"
+"POT-Creation-Date: 2024-03-16 19:19+0000\n"
 "PO-Revision-Date: 2016-06-11 09:16+0000\n"
 "Last-Translator: 63f334ffc0709ba0fc2361b80bf3c0f0_00ffd1e <ab96c93ca0ac55ba7fa06385427e60dd_878890>, 2021\n"
 "Language-Team: Hebrew (http://app.transifex.com/tatoeba/tatoeba_website/language/he/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L275
 msgid "Arabic"
@@ -236,8 +236,8 @@ msgid "Danish"
 msgstr "דנית"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L329
-msgid "Armenian"
-msgstr "ארמנית"
+msgid "Eastern Armenian"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L330
 msgid "Iraqi Arabic"
@@ -1710,3 +1710,7 @@ msgstr "טומבוקה"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L697
 msgid "Mapuche"
 msgstr "אראוקנית"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L698
+msgid "Western Armenian"
+msgstr "ארמנית מערבית"

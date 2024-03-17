@@ -9,7 +9,7 @@
 # gillux, 2020
 # Nikolay Korotkiy <sikmir@disroot.org>, 2018
 # Nikolay Korotkiy <sikmir@disroot.org>, 2018
-# Silja Ijas, 2014-2023
+# Silja Ijas, 2014-2024
 # thanuir, 2020
 # thanuir, 2020-2023
 # Trang, 2022
@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 05:02+0000\n"
+"POT-Creation-Date: 2024-03-16 19:19+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Silja Ijas, 2014-2023\n"
+"Last-Translator: Silja Ijas, 2014-2024\n"
 "Language-Team: Finnish (http://app.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1925,14 +1925,6 @@ msgid "The audio file will be lost. Are you sure?"
 msgstr "Äänite katoaa. Oletko varma?"
 
 #. header text in sentence page
-#. / link to the list of audio on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
-msgid "Audio"
-msgid_plural "Audio"
-msgstr[0] "Äänite"
-msgstr[1] "Äänitteet"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
 msgstr "käyttäjältä {username}"
@@ -2526,6 +2518,11 @@ msgstr "Seinäviestit"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L252
 msgid "Logs"
 msgstr "Lokit"
+
+#. link to the list of audio on profile page sidebar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
+msgid "Audio"
+msgstr "Äänitteet"
 
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
@@ -3789,9 +3786,11 @@ msgid "Search error"
 msgstr "Hakuvirhe"
 
 #. button to open the advanced search option sidebar on mobile
+#. / title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
-msgid "Narrow search"
-msgstr "Tarkennettu haku"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
+msgid "Refine search"
+msgstr "Tarkenna hakua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
 msgid ""
@@ -3810,11 +3809,6 @@ msgstr "Haussa tapahtui virhe. Jos ongelma ei poistu, <a href=\"{us}\">kerrothan
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L151
 msgid "Search: {keywords}"
 msgstr "Hakutulos: {keywords}"
-
-#. title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
-msgid "Search criteria"
-msgstr "Hakuehdot"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
