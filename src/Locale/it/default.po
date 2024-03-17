@@ -5,16 +5,16 @@
 # Translators:
 # gillux, 2020
 # gillux, 2020
-# Guybrush88 <erpizzo@alice.it>, 2014-2023
+# Guybrush88 <erpizzo@alice.it>, 2014-2024
 # Marco Ciampa <ciampix@posteo.net>, 2020
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 05:02+0000\n"
+"POT-Creation-Date: 2024-03-16 19:19+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Guybrush88 <erpizzo@alice.it>, 2014-2023\n"
+"Last-Translator: Guybrush88 <erpizzo@alice.it>, 2014-2024\n"
 "Language-Team: Italian (http://app.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1926,15 +1926,6 @@ msgid "The audio file will be lost. Are you sure?"
 msgstr "Il file audio sarà perso. Sei sicuro?"
 
 #. header text in sentence page
-#. / link to the list of audio on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
-msgid "Audio"
-msgid_plural "Audio"
-msgstr[0] "Audio"
-msgstr[1] "Audio"
-msgstr[2] "Audio"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
 msgstr "di {username}"
@@ -2533,6 +2524,11 @@ msgstr "Messaggi in bacheca"
 msgid "Logs"
 msgstr "Cronologia"
 
+#. link to the list of audio on profile page sidebar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
+msgid "Audio"
+msgstr "Audio"
+
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
@@ -2590,7 +2586,7 @@ msgstr "La tua nuova password: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L34
 msgid "{user}'s favorite sentences matching “{filter}”"
-msgstr ""
+msgstr "Frasi preferite di {user} che corrispondono a \"{filter}\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L36
 msgid "{user}'s favorite sentences"
@@ -2602,7 +2598,7 @@ msgstr "Frase preferita eliminata con successo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L81
 msgid "Sentence text:"
-msgstr ""
+msgstr "Testo della frase:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L173
@@ -2611,7 +2607,7 @@ msgstr "La frase n° {id} è stata eliminata."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L142
 msgid "This user does not have any favorites matching “{filter}”."
-msgstr ""
+msgstr "Questo utente non ha delle frasi preferite che corrispondono a \"{filter}\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L148
 msgid "This user does not have any favorites."
@@ -3798,9 +3794,11 @@ msgid "Search error"
 msgstr "Errore di ricerca"
 
 #. button to open the advanced search option sidebar on mobile
+#. / title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
-msgid "Narrow search"
-msgstr "Restringi la ricerca"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
+msgid "Refine search"
+msgstr "Raffina la ricerca"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
 msgid ""
@@ -3819,11 +3817,6 @@ msgstr "Si è verificato un errore durante l'esecuzione della ricerca. Se il pro
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L151
 msgid "Search: {keywords}"
 msgstr "Cerca: {keywords}"
-
-#. title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
-msgid "Search criteria"
-msgstr "Criteri di ricerca"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7

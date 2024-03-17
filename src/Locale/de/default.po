@@ -11,7 +11,7 @@
 # Fabian Becker <halfdan@xnorfz.de>, 2017
 # gillux, 2020
 # gillux, 2020
-# Lisa <pfirsichbaeumchen@tatoeba.org>, 2014-2022
+# Lisa <pfirsichbaeumchen@tatoeba.org>, 2014-2023
 # Ricardo14 <rvj1444@gmail.com>, 2020
 # Ricardo14 <rvj1444@gmail.com>, 2020
 # Ricardo14 <rvj1444@gmail.com>, 2020
@@ -28,9 +28,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 05:02+0000\n"
+"POT-Creation-Date: 2024-03-16 19:19+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2014\n"
+"Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>, 2014-2023\n"
 "Language-Team: German (http://app.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1099,25 +1099,25 @@ msgstr "Alle Sprachen"
 #. sentence length filter in the search form.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L102
 msgid "Length:"
-msgstr ""
+msgstr "Länge:"
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L108
 msgid "At least {numericField}"
-msgstr ""
+msgstr "Mindestens {numericField}"
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L111
 msgid "At most {numericField}"
-msgstr ""
+msgstr "Höchstens {numericField}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L143
 msgid ""
 "For languages with word boundaries, the number of words is used. For other "
 "languages, the number of characters is used."
-msgstr ""
+msgstr "Bei Sprachen mit Worttrennung wird die Anzahl der Wörter verwendet, ansonsten die Anzahl der Zeichen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L152
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L338
@@ -1934,14 +1934,6 @@ msgid "The audio file will be lost. Are you sure?"
 msgstr "Bist du sicher? Die Aufnahme wird verlorengehen."
 
 #. header text in sentence page
-#. / link to the list of audio on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
-msgid "Audio"
-msgid_plural "Audio"
-msgstr[0] "Aufnahme"
-msgstr[1] "Aufnahmen"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
 msgstr "von {username}"
@@ -2536,6 +2528,11 @@ msgstr "Pinnwandeinträge"
 msgid "Logs"
 msgstr "Protokoll"
 
+#. link to the list of audio on profile page sidebar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
+msgid "Audio"
+msgstr "Audio"
+
 #. link to the list of transcriptions on profile page sidebar
 #. / section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L136
@@ -2593,7 +2590,7 @@ msgstr "Dein neues Passwort: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L34
 msgid "{user}'s favorite sentences matching “{filter}”"
-msgstr ""
+msgstr "Lieblingssätze von {user} mit „{filter}“"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L36
 msgid "{user}'s favorite sentences"
@@ -2605,7 +2602,7 @@ msgstr "Lieblingssatz entfernt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L81
 msgid "Sentence text:"
-msgstr ""
+msgstr "Durchsuchen nach:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L173
@@ -2614,7 +2611,7 @@ msgstr "Satz {id} wurde gelöscht."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L142
 msgid "This user does not have any favorites matching “{filter}”."
-msgstr ""
+msgstr "Es gibt leider keine Lieblingssätze mit „{filter}“"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L148
 msgid "This user does not have any favorites."
@@ -3798,9 +3795,11 @@ msgid "Search error"
 msgstr "Fehler bei der Suche."
 
 #. button to open the advanced search option sidebar on mobile
+#. / title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
-msgid "Narrow search"
-msgstr "Suche eingrenzen"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
+msgid "Refine search"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
 msgid ""
@@ -3819,11 +3818,6 @@ msgstr "Während der Suche ist ein Fehler aufgetreten. Sollte sich dies wiederho
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L151
 msgid "Search: {keywords}"
 msgstr "Suche: {keywords}"
-
-#. title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
-msgid "Search criteria"
-msgstr "Suchkriterien"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
@@ -4598,7 +4592,7 @@ msgstr "Muttersprachlersätze kennzeichnen. (Bisher stand es in Worten neben dem
 msgid ""
 "Display sentences with the old design. Note that the old design will be "
 "removed at some point."
-msgstr ""
+msgstr "Sätze im alten Erscheinungsbild anzeigen. (Wird irgendwann verschwinden.)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L364
 msgid "Change email address"

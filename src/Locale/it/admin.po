@@ -6,7 +6,7 @@
 # Translators:
 # Trang, 2018
 # صفا الفليج <safaalfulaij@hotmail.com>, 2022
-# Guybrush88 <erpizzo@alice.it>, 2023
+# Guybrush88 <erpizzo@alice.it>, 2024
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-31 05:02+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Guybrush88 <erpizzo@alice.it>, 2023\n"
+"Last-Translator: Guybrush88 <erpizzo@alice.it>, 2024\n"
 "Language-Team: Italian (https://app.transifex.com/tatoeba/teams/28284/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "Tutte le frasi di {username} sono state marcate come inaffidabili."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Unable to import audio: user “{author}” not found."
-msgstr ""
+msgstr "Non si è in gradi di importare l'audio: utente \"{author}\" non trovato."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L326
 msgid "Invalid file “{file}” ignored."
@@ -47,10 +47,14 @@ msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
+"Non si è in grado di sostituire l'audio contribuito da \"{author}\" per la "
+"frase {sentenceId}: questo utente ha più di un audio."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
+"Non si è in grado di salvare l'audio per la frase {sentenceId} all'interno "
+"del database."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Failed to create directory “{dir}” to import file “{file}”."
