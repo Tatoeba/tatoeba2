@@ -82,7 +82,7 @@ $this->AngularTemplate->addTemplate(
      layout="column"
      class="section audio md-whiteframe-1dp">
     <?php /* @translators: header text in sentence page */ ?>
-    <h2><?= __nx('header', 'Audio', 'Audio', count($audios)) ?></h2>
+    <h2><?= __xn('header', 'Audio', 'Audio', count($audios)) ?></h2>
 
     <div ng-repeat="audio in vm.audios" ng-class="{'disabled': !audio.enabled}">
         <h3>
