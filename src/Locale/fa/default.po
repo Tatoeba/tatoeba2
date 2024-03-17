@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 05:02+0000\n"
+"POT-Creation-Date: 2024-03-16 19:19+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Suroosh Khosh <sur.khosh@gmail.com>, 2020\n"
 "Language-Team: Persian (http://app.transifex.com/tatoeba/tatoeba_website/language/fa/)\n"
@@ -1914,14 +1914,6 @@ msgid "The audio file will be lost. Are you sure?"
 msgstr ""
 
 #. header text in sentence page
-#. / link to the list of audio on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
-msgid "Audio"
-msgid_plural "Audio"
-msgstr[0] ""
-msgstr[1] ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
 msgstr ""
@@ -2514,6 +2506,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L252
 msgid "Logs"
+msgstr ""
+
+#. link to the list of audio on profile page sidebar
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L127
+msgid "Audio"
 msgstr ""
 
 #. link to the list of transcriptions on profile page sidebar
@@ -3778,8 +3775,10 @@ msgid "Search error"
 msgstr ""
 
 #. button to open the advanced search option sidebar on mobile
+#. / title for the sidebar on the search page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
-msgid "Narrow search"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
+msgid "Refine search"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
@@ -3798,11 +3797,6 @@ msgstr ""
 #. title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L151
 msgid "Search: {keywords}"
-msgstr ""
-
-#. title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
-msgid "Search criteria"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
