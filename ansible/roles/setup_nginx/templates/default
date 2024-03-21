@@ -96,7 +96,7 @@ server {
 	rewrite_log	on;
 
 	location / {
-		rewrite .* /index.php?$args last;
+		try_files /api$uri /index.php?$args;
 	}
 
 	location ~ \.php$ {
