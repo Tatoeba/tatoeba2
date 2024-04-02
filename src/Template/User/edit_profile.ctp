@@ -27,6 +27,7 @@
 use App\Model\CurrentUser;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Edit profile')));
+$this->Html->script('user/avatar.upload.js', ['block' => 'scriptBottom']);
 $countries = $this->Countries->getAllCountries();
 $this->Languages->localizedAsort($countries);
 ?>
