@@ -218,6 +218,12 @@ md-sidenav .sentence-lists .personal-list {
     padding-top: 16px;
     margin-bottom: 16px;
 }
+.audio .audio-details .timestamp {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+}
 .audio .audio-details .md-errors-spacer {
     display: none;
 }

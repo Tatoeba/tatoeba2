@@ -96,6 +96,18 @@ $this->AngularTemplate->addTemplate(
 
         <div class="audio-details" layout="column">
             <div class="license"><?= format(__('License: {license}'), ['license' => $licenseTemplate]) ?></div>
+            <div class="timestamp">
+                <div><?= format(__('Date added')) ?>:</div>
+                <div><?= format(__('{date}'), [ 'date' => '{{ audio.created | date }}' ]) ?></div>
+            </div>
+            <div class="timestamp">
+                <div><?= format(__('Date last modified')) ?>:</div>
+                <div>
+                    <?= format(__('{date}'), [
+                    'date' => '{{ audio.modified | date }}'
+                ]) ?>
+                </div>
+            </div>
 
             <?php if (CurrentUser::isAdmin()): ?>
                 <md-checkbox

@@ -665,7 +665,7 @@ class SentencesTable extends Table
     public function contain($what = [])
     {
         $audioContainment = function (Query $q) use ($what) {
-            $q = $q->select(['id', 'external', 'sentence_id']);
+            $q = $q->select(['id', 'external', 'sentence_id', 'created', 'modified']);
 
             $usersFields = ['username'];
             if (isset($what['sentenceDetails'])) {
