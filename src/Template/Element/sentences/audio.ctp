@@ -74,6 +74,7 @@ $this->AngularTemplate->addTemplate(
     $this->element('sentence_buttons/audio'),
     'audio-button-template'
 );
+
 ?>
 <div ng-controller="AudioDetailsController as vm"
      ng-init="vm.init(<?= h($audiosJson) ?>, <?= h($audioLicenses) ?>)"
@@ -87,9 +88,14 @@ $this->AngularTemplate->addTemplate(
     <div ng-repeat="audio in vm.audios" ng-class="{'disabled': !audio.enabled}">
         <h3>
             <audio-button class="audio-button" audios="[audio]"></audio-button>
-            <span class="audio-author">
+            <span ng-if="audio.author != null" class="audio-author">
                 <?= format(__('by {username}'), [
                     'username' => '<a ng-href="{{audio.attribution_url}}">{{audio.author}}</a>'
+                ]) ?>
+            </span>
+            <span ng-if="audio.author == null" class="audio-author">
+                <?= format(__('by {username}'), [
+                    'username' => format(__('unknown'))
                 ]) ?>
             </span>
         </h3>
