@@ -769,8 +769,8 @@ html[dir="rtl"] .comment-sentence .text {
 }
 
 .sentence .column {
-    display: inline-block;
-    vertical-align: text-top;
+    display: flex;
+    align-items: center;
     margin: 0 4px;
 }
 
@@ -798,10 +798,6 @@ html[dir="rtl"] .comment-sentence .text {
     width: 515px;
 }
 
-
-.sentence .audio.column {
-}
-
 .sentence .link.button {
     float: left;
     margin: 4px 7px 0 5px;
@@ -816,8 +812,6 @@ html[dir="rtl"] .comment-sentence .text {
     width: 16px;
     height: 16px;
     cursor: pointer;
-    margin-top: 5px;
-    margin-left: 5px;
 }
 
 .sentence .copy-btn.copied {
