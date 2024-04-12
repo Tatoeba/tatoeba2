@@ -758,6 +758,8 @@ html[dir="rtl"] .comment-sentence .text {
 }
 
 .sentence {
+    display: flex;
+    align-items: center;
     padding: 4px 0px;
     background: #fff;
 }
@@ -826,10 +828,6 @@ html[dir="rtl"] .comment-sentence .text {
     margin-top: 2px;
     border-top: 1px solid #FFF;
     border-left: 1px solid #FFF;
-}
-
-.sentence .audioButton {
-    margin-top: 3px;
 }
 
 .sentence .favorite-page.column{
@@ -1198,6 +1196,17 @@ input.sentenceId {
 
 .md-icon-button.audioUnavailable {
     opacity: 0.3;
+}
+
+.audioButtonWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 2px;
+}
+
+.audioButtonCount {
+    font-size: 0.8rem;
 }
 
 /*
