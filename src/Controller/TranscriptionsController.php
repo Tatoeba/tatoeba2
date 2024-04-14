@@ -126,7 +126,7 @@ class TranscriptionsController extends AppController
         }
 
         if ($saved) {
-            $saved['User'] = array(
+            $saved['user'] = array(
                 'username' => CurrentUser::get('username')
             );
         }

@@ -92,12 +92,12 @@ class TranscriptionsHelper extends AppHelper
 
         $html = $this->transcriptionAsHTML($lang, $transcr);
         $log = '';
-        if (isset($transcr->user->username)) {
+        if (isset($transcr['user']['username'])) {
             $log = format(
                 /* @translators: refers to a transcription */
                 __('Last edited by {author} on {date}'),
                 array(
-                    'author' => $transcr->user->username,
+                    'author' => $transcr['user']['username'],
                     'date' => $this->Date->nice($transcr['modified']),
                 )
             );
@@ -218,13 +218,13 @@ class TranscriptionsHelper extends AppHelper
         $content = '';
         if ($needsReview) {
             $content = $this->Images->svgIcon('warning-small');
-            $title = $transcr->info_message;
+            $title = $transcr['info_message'];
             if ($isEditable) {
                 $content .= $this->Images->svgIcon('check', array(
                     'class' => 'check',
                 ));
                 $title .= "\n";
-                if ($transcr->type == 'altscript') {
+                if ($transcr['type'] == 'altscript') {
                     $title .= __x(
                         'alternative script',
                         'Click to mark it as reviewed.',
