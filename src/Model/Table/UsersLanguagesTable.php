@@ -186,12 +186,12 @@ class UsersLanguagesTable extends Table
         unset($data['modified']);
         unset($data['created']);
 
-        if (isset($data['id'])) {
+        if (isset($data['id']) && $data['id']) {
             try {
                 $langInfo = $this->get($data['id']);
             } catch (RecordNotFoundException $e) {
                 return false;
-            }            
+            }
             $this->patchEntity($langInfo, $data);
         } else {
             $langInfo = $this->newEntity($data);
