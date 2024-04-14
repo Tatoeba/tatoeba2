@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let upload_btn = document.querySelector(".newPicture button[type=submit]");
-    upload_btn.addEventListener("click", e => {
+    let avatar_upload_form = document.querySelector(".newPicture form");
+    avatar_upload_form.addEventListener("submit", e => {
         let files = document.querySelector(".newPicture input[type=file]").files;
         for (const f of files) {
             if (f.size > 1024 * 1024) {
