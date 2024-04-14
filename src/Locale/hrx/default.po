@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Piter Boll <piterkeo@gmail.com>, 2020-2022
+# Piter Boll <piterkeo@gmail.com>, 2020-2022,2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 19:19+0000\n"
+"POT-Creation-Date: 2024-04-14 15:25+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Piter Boll <piterkeo@gmail.com>, 2020-2022\n"
+"Last-Translator: Piter Boll <piterkeo@gmail.com>, 2020-2022,2024\n"
 "Language-Team: Hunsrik (http://app.transifex.com/tatoeba/tatoeba_website/language/hrx/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +41,7 @@ msgstr "Dein Audiokonfigurazione sin salveerd waar."
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr "Wärend de Salveerung, is en Fehler basseerd. Fersugh es bitte nommol, odder kontakteer uns, fer das Problem se melle."
+msgstr "Beim Salveere is en Fehler basseerd. Fersugh es bitte nommol, odder kontakteer uns, fer das Problem se melle."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
@@ -67,7 +67,7 @@ msgstr "Die Setz #{firstNumber} un #{secondNumber} sin jetz keen derekte Iwerset
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "Wärend de Trennunng, is en Fehler basseerd. Fersugh es bitte nommol, odder kontakteer uns, fer das Problem se melle."
+msgstr "Beim Trenne is en Fehler basseerd. Fersugh es bitte nommol, odder kontakteer uns, fer das Problem se melle."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
@@ -96,7 +96,7 @@ msgstr "Wennst-du diese Mënsaasch weche enem Fehler kried host, bitte kontaktee
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L259
 msgid "Changes to your comment have been saved."
-msgstr "Ennrunge aan deinem Kommentario sin salveerd waar."
+msgstr "Ennrunge aan deinem Kommentaar sin salveerd waar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L260
 msgid "The sentence #{id} has been deleted."
@@ -135,7 +135,7 @@ msgstr "Du host keen Erlaabnis, diese List runnerselaade."
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr "Do sin keen Setz fer diese Etikett. Die Etikett, wost-du suchst, is dëleteerd waar odder ëxistierd net."
+msgstr "Es gebbd keen Setz fer diese Etikett. Die Etikett, wost-du suchst, is dëleteerd waar odder ëxistierd net."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L81
@@ -164,11 +164,11 @@ msgstr "Profill salveerd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L334
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr "Die Adressennrung hod net bareerd. Bitte, gebb en gellene E-Mail-Adress."
+msgstr "Die Adressennrung hod net bareerd. Bitte, gebb en gellend E-Mail-Adress."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L375
 msgid "That email address already exists. Please try another."
-msgstr "Diese E-Mail-Adress existierd schun. Bitte, fersugh en annre."
+msgstr "Diese E-Mail-Adress existierd schun. Bitte, fersugh en anner."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L424
 msgid "The entered birthday is an invalid date. Please try again."
@@ -198,7 +198,7 @@ msgstr "Das nei Passwort is salveerd waar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
 msgid "An error occurred while saving."
-msgstr "En Fehler is basseerd beim Salveere."
+msgstr "Beim Salveere is en Fehler is basseerd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L629
 msgid "Password error. Please try again."
@@ -218,7 +218,7 @@ msgstr "Diese Conta is als inaktiv markeerd waar. Du kannst demit nimmi rinkomme
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr "Diese Conta is als Spammer markeerd waar. Du kannst demit nimmi rinkomme. Kontakteer bitte en Administratoer, wenn das en Fehlrer is."
+msgstr "Diese Conta is als Spammer markeerd waar. Du kannst demit nimmi rinkomme. Kontakteer bitte en Administratoer, wenn das en Fehler is."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L211
 msgid "You must fill in your username and password."
@@ -239,7 +239,7 @@ msgid ""
 "To start things off, we encourage you to read our <a href='{url}'>Quick "
 "Start Guide</a>. If you want to read it later, you will find the link at the"
 " bottom of any page on the website."
-msgstr "Fer aansefange, bringe meer for, dasst-du unser <a href='{url}'>Schnellaanfangaanleedung</a>lest. Wennst-du es speder lese willst, kannst-du en Link finne ganz unne uff jeder Seit."
+msgstr "Fer aansefange, bringe meer for, dasst-du unser <a href='{url}'>Schnellaanfangmanual</a>lest. Wennst-du es speder lese willst, kannst-du en Link ganz unne uff jeder Seit finne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L344
 msgid "We hope you'll enjoy your time here with us!"
@@ -255,7 +255,7 @@ msgstr "Dein nei Passwort is zu {email} geschickd waar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L393
 msgid "You may need to check your spam folder to find this message."
-msgstr "Fielleicht musst-du dein Spamordner priefe, fer die Mënsaasch se finne."
+msgstr "Fielleicht musst-du dein Spampasta priefe, fer die Mënsaasch se finne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
 msgid "There is no registered user with this email address: "
@@ -279,7 +279,7 @@ msgstr "Du kannst diese Sproch net salveere."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L130
 msgid "Language deleted"
-msgstr "Sproch wechgemach."
+msgstr "Sproch dëleteerd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L132
 msgid "You cannot delete this language."
@@ -314,7 +314,7 @@ msgstr "“Besitzer fun de Iwersetzung”, wal “{username}” keen gellener Be
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L197
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
-msgstr "“mit dem Ëtikett {tagName}”, well es en ungellend Ëtikett is."
+msgstr "“mit dem Ëtikett {tagName}”, wal es en ungellend Ëtikett is."
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -323,14 +323,14 @@ msgstr "“mit dem Ëtikett {tagName}”, well es en ungellend Ëtikett is."
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
-msgstr ""
+msgstr "“geheerd zu de List mit de Nummer {listId}”, wal List {listId} privaat is odder existierd net"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L369
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr ""
+msgstr "“Satz ferweesd”, wal “Besitzer fum Satz” mit enem Benutzernaame korrëspondeerd."
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -338,7 +338,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L380
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr ""
+msgstr "“Iwersetzung ferweesd”, wal “Besitzer fun de Iwersetzung” mit enem Benutzernaame korrëspondeerd."
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -346,7 +346,7 @@ msgstr ""
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr ""
+msgstr "“geheerd zu enem sellebstidëntifikeerde Muttersprochler”, wal “Sproch fum Satz” mit “qualkär” korrëspondeerd."
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -356,7 +356,7 @@ msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
-msgstr ""
+msgstr "“geheerd zu enem sellebstidëntifikeerde Muttersprochler”, wal das Kriterium “geheerd zu: {username}” is festgestelld, wärend er keen sellebstidëntifikeerder Muttersprochler fun de Sproch, wost-du drin suche dust, is."
 
 #. This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
@@ -371,31 +371,31 @@ msgstr ", "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L212
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Dem follichene Schriftzeiche fehld Furigana: : {charsEnumeration}."
+msgstr[1] "De follichene Schriftzeiche fehld Furigana: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
 msgid ""
 "The provided sentence differs from the original one near “{character}”."
-msgstr ""
+msgstr "De ingesetzde Satz unnerscheed sich fun dem uerspringliche bei “{character}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L245
 msgid "The provided sentence is shorter than the original one."
-msgstr ""
+msgstr "De ingesetzde Satz is kerzer wie de uerspringliche."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L269
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Das Schriftzeiche “{kanji}” hod iwer een Furigana: “{furiganas}”."
+msgstr[1] "Die Schriftzeiche “{kanji}” hon iwer {n} Furiganas: ”{furiganas}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Das follichend Schriftzeiche is net transkrivierd {charsEnumeration}."
+msgstr[1] "Die follichene Schriftzeiche sin net transkrivierd: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
@@ -434,37 +434,32 @@ msgid "unknown"
 msgstr "unbekannt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L202
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L225
 msgid ""
-"This alternative script may contain errors because it has been generated by "
-"a piece of software that is not perfect."
+"This alternative script was generated automatically and has not been "
+"reviewed."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L208
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L207
 msgid ""
-"This transcription may contain errors because it has been generated by a "
-"piece of software that is not perfect."
+"This transcription was generated automatically and has not been reviewed."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L214
 msgid "The furigana was last edited by {author} on {date}."
 msgstr ""
 
 #. refers to a transcription
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L219
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L217
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L98
 msgid "Last edited by {author} on {date}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L227
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L106
-msgid "This alternative script was generated by a piece of software"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L225
+msgid "This alternative script was generated automatically."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L230
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L109
-msgid "This transcription was generated by a piece of software"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L227
+msgid "This transcription was generated automatically."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Exporter/ListExporter.php#L141
@@ -1830,7 +1825,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L409
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L701
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
 msgid "Cancel"
 msgstr ""
 
@@ -1905,7 +1900,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L597
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L114
 msgid "OK"
 msgstr ""
 
@@ -1914,6 +1909,13 @@ msgid "The audio file will be lost. Are you sure?"
 msgstr ""
 
 #. header text in sentence page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L85
+msgctxt "header"
+msgid "Audio"
+msgid_plural "Audio"
+msgstr[0] ""
+msgstr[1] ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L91
 msgid "by {username}"
 msgstr ""
@@ -2074,7 +2076,7 @@ msgstr ""
 
 #. reset button of transcription edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
 msgid "Reset"
 msgstr ""
 
@@ -5475,36 +5477,36 @@ msgstr ""
 msgid "Remove tag from sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L148
 msgid "Show alternative script"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L150
 msgid "Show transcription"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L192
 msgid "Edit alternative script"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L194
 msgid "Edit transcription"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L200
 msgid "You cannot edit this script."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L202
 msgid "You cannot edit this transcription."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L230
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L236
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
 msgstr ""
