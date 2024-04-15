@@ -27,7 +27,7 @@
 use App\Model\CurrentUser;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Edit profile')));
-$this->Html->script('user/avatar.upload.js', ['block' => 'scriptBottom']);
+$this->Html->script('user/edit_profile.js', ['block' => 'scriptBottom']);
 $countries = $this->Countries->getAllCountries();
 $this->Languages->localizedAsort($countries);
 ?>
@@ -84,14 +84,16 @@ $this->Languages->localizedAsort($countries);
         echo $this->Form->create(
             'profile_image',
             array(
+                'id' => 'upload-avatar-form',
                 'url' => array(
                     'controller' => 'user',
                     'action' => 'save_image'
                 ),
-                'type' => 'file'
+                'type' => 'file',
+                'msg-too-large-image' => __('The provided image is too large. It must be less than 1MB in size.'),
             )
         );
-        echo $this->Form->file('image');
+        echo $this->Form->file('image', array('id' => 'upload-avatar-files'));
         ?>
         <md-button type="submit" class="md-raised md-primary">
                 <?php /* @translators: button to upload a new profile picture */ ?>
