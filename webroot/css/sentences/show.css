@@ -219,10 +219,15 @@ md-sidenav .sentence-lists .personal-list {
     margin-bottom: 16px;
 }
 .audio .audio-details .timestamp {
-    display: flex;
-    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    word-break: break-word;
+}
+.audio .audio-details .timestamp .since {
     color: rgba(0, 0, 0, 0.54);
-    font-size: 14px;
 }
 .audio .audio-details .md-errors-spacer {
     display: none;

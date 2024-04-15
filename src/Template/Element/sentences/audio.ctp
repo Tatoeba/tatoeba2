@@ -34,11 +34,13 @@ if (CurrentUser::isAdmin() && isset($sentence->disabled_audios)) {
     /* Keep audios sorted by id */
     usort($audios, function ($a, $b) { return $a->id - $b->id; });
 }
-/* Export "enabled" property to this json only */
+/* Export "enabled", "created_ago", and "modified_ago" properties to this json only */
 $audios = array_map(
     function ($a) {
         $new_a = clone $a;
         $new_a->setVirtual(['enabled'], true);
+        $new_a->created_ago = $this->Date->ago($new_a->created);
+        $new_a->modified_ago = $this->Date->ago($new_a->modified);
         return $new_a;
     },
     $audios
@@ -97,16 +99,12 @@ $this->AngularTemplate->addTemplate(
         <div class="audio-details" layout="column">
             <div class="license"><?= format(__('License: {license}'), ['license' => $licenseTemplate]) ?></div>
             <div class="timestamp">
-                <div><?= format(__('Date added')) ?>:</div>
-                <div><?= format(__('{date}'), [ 'date' => '{{ audio.created | date }}' ]) ?></div>
+                <div><?= format(__('Added')) ?></div>
+                <div class="since"><?= format(__('{date}'), [ 'date' => '{{ audio.created_ago }}' ]) ?></div>
             </div>
             <div class="timestamp">
-                <div><?= format(__('Date last modified')) ?>:</div>
-                <div>
-                    <?= format(__('{date}'), [
-                    'date' => '{{ audio.modified | date }}'
-                ]) ?>
-                </div>
+                <div><?= format(__('Last modified')) ?></div>
+                <div class="since"><?= format(__('{date}'), [ 'date' => '{{ audio.modified_ago }}' ]) ?></div>
             </div>
 
             <?php if (CurrentUser::isAdmin()): ?>
