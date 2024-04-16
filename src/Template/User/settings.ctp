@@ -87,7 +87,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <p><?php echo __('Set your profile public') ?></p>
                 <div ng-hide="true">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'settings.is_public',
                         array(
                         'value' => '{{isPublic}}'
@@ -114,7 +114,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 ) ?> </p>
                 <div ng-hide="true">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'settings.use_most_recent_list',
                         array(
                             'value' => '{{useRecent}}'
@@ -140,7 +140,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'settings.collapsible_translations',
                         array(
                             'value' => '{{collapsibleTranslations}}'
@@ -162,7 +162,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <p><?php echo __('Always show unreviewed transcriptions and alternative scripts') ?> </p>
                 <div ng-hide="true">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'settings.show_transcriptions',
                         array(
                             'value' => '{{showTranscriptions}}'
@@ -187,7 +187,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <p><?php echo __('Show random sentence on the homepage') ?> </p>
                 <div ng-hide="true">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'settings.hide_random_sentence',
                         array(
                             'value' => '{{hideRandomSentence}}'
@@ -230,7 +230,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
             <md-list-item>
                 <p><?= __('Number of sentences per page'); ?></p>
-                <?php echo $this->Form->input('settings.sentences_per_page', array(
+                <?php echo $this->Form->control('settings.sentences_per_page', array(
                     'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
                     'label' => ''
                 )); ?>
@@ -238,7 +238,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
             <md-list-item ng-show="!useOldDesign">
                 <p><?= __('Number of translations per sentence'); ?></p>
-                <?php echo $this->Form->input('settings.max_visible_translations', [
+                <?php echo $this->Form->control('settings.max_visible_translations', [
                     'options' => [5 => 5, 10 => 10, 20 => 20, 50 => 50],
                     'label' => ''
                 ]); ?>
@@ -247,7 +247,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             <?php if ($userSettings->settings['can_switch_license']) : ?>
                 <md-list-item>
                     <p><?= __('Default license for original sentences'); ?></p>
-                    <?= $this->Form->input('settings.default_license', [
+                    <?= $this->Form->control('settings.default_license', [
                         'options' => $this->SentenceLicense->getLicenseOptions(),
                         'label' => ''
                     ]); ?>
@@ -282,7 +282,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <p><?php echo __('Activate the feature to review sentences') ?></p>
                 <div ng-hide="true">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'settings.users_collections_ratings',
                         array(
                         'value' => '{{collectionRatings}}'
@@ -311,7 +311,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'settings.native_indicator',
                         array(
                         'value' => '{{nativeIndicator}}'
@@ -335,7 +335,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
-                echo $this->Form->input(
+                echo $this->Form->control(
                     'settings.use_new_design',
                     array(
                         'value' => '{{1-useOldDesign}}'

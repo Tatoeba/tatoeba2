@@ -15,7 +15,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
 
     } else {
         $preSelectedLang = $this->request->getSession()->read('contribute_lang');
-        echo $this->Form->create('Sentence', [
+        echo $this->Form->create(null, [
             'id' => 'sentence-form',
             'url' => '/sentences/add_an_other_sentence',
             'onsubmit' => 'return false',

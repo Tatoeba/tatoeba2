@@ -58,7 +58,7 @@ if ($isReply) {
 
         <md-input-container>
         <?php
-        echo $this->Form->input('title', [
+        echo $this->Form->control('title', [
             /* @translators: title field label in private message form */
             'label' => __('Title'),
             'value' => $this->safeForAngular($pm->title),

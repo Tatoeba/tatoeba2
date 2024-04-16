@@ -64,7 +64,7 @@ $label = format(
         <label for="registrationUsername"><?php echo __('Username'); ?></label>
         <md-icon>person</md-icon>
         <?php
-        echo $this->Form->input(
+        echo $this->Form->control(
             'username',
             array(
                 'label' => '',
@@ -114,7 +114,7 @@ $label = format(
         <label for="registrationPassword"><?php echo __('Password'); ?></label>
         <md-icon>lock</md-icon>
         <?php
-        echo $this->Form->input(
+        echo $this->Form->control(
             'password',
             array(
                 'label' => '',
@@ -161,7 +161,7 @@ $label = format(
         <label for="registrationEmail"><?php echo __('Email address'); ?></label>
         <md-icon>email</md-icon>
         <?php
-        echo $this->Form->input(
+        echo $this->Form->control(
             'email',
             array(
                 'label' => '',
@@ -204,7 +204,7 @@ $label = format(
     <md-input-container class="md-icon-float md-icon-left md-block" flex>
         <md-icon>email</md-icon>
         <?php
-        echo $this->Form->input(
+        echo $this->Form->control(
             'confirm',
             array(
 /* @translators: This is a simple countermeasure against spam bots trying to

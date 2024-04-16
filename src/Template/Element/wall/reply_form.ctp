@@ -40,14 +40,14 @@ $editUrl = $this->Url->build([
 
     <md-card-content class="content" ng-if="!vm.savedReplies[<?= $parentId ?>]">
         <?php
-        echo $this->Form->create('', [
+        echo $this->Form->create(null, [
             'ng-submit' => 'vm.saveReply('.$parentId.')',
             'onsubmit' => 'event.preventDefault()'
         ]);
         ?>
 
         <div class="hidden">
-        <?= $this->Form->input('replyTo', array('value' => '')); ?>
+        <?= $this->Form->control('replyTo', array('value' => '')); ?>
         </div>
 
         <?php

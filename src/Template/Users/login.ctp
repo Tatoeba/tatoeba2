@@ -65,7 +65,7 @@ $registerUrl = $this->Url->build(
 
 $this->Security->enableCSRFProtection();
 echo $this->Form->create(
-    'User',
+    null,
     array(
         'url' => $formTarget,
         'id' => "UserLoginForm"
@@ -78,7 +78,7 @@ echo $this->Form->create(
   <div ng-cloak>
     <md-input-container class="md-block">
         <?php
-        echo $this->Form->input(
+        echo $this->Form->control(
             'username', array(
                 'label' => __('Username'),
             )
@@ -88,7 +88,7 @@ echo $this->Form->create(
 
     <md-input-container class="md-block">
         <?php
-        echo $this->Form->input(
+        echo $this->Form->control(
             'password', array(
                 'label' => __('Password'),
             )
