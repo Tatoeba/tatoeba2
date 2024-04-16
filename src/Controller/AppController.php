@@ -233,15 +233,15 @@ class AppController extends Controller
     {
         $paging = $this->request->getParam('paging');
         $lastPage = reset($paging)['page'];
-        $queryParams = $this->request->params['?'];
+        $queryParams = $this->request->getParam('?');
         $queryParams['page'] = $lastPage;
         $url = Router::url(array_merge(
             [
-                'controller' => $this->request->params['controller'],
-                'action' => $this->request->params['action'],
+                'controller' => $this->request->getParam('controller'),
+                'action' => $this->request->getParam('action'),
                 '?' => $queryParams
             ],
-            $this->request->params['pass']
+            $this->request->getParam('pass')
         ));
         return $this->redirect($url);
     }

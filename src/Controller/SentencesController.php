@@ -86,9 +86,8 @@ class SentencesController extends AppController
     public function initialize() {
         parent::initialize();
 
-        $params = $this->request->params;
         $noCsrfActions = ['edit_sentence', 'change_language'];
-        if (in_array($params['action'], $noCsrfActions)) {
+        if (in_array($this->request->getParam('action'), $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
     }

@@ -22,7 +22,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Comments on sentenc
 
 $this->Paginator->options(
     array(
-        'url' => $this->request->params['pass']
+        'url' => $this->request->getParam('pass')
     )
 );
 ?>
