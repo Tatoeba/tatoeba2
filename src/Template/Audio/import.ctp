@@ -215,7 +215,7 @@ if ($filesToImport): ?>
                       'inside the import directory.'); ?></p>
 <?php endif; ?>
 <?php
-echo $this->Form->input('audioAuthor', ['required' => true]);
+echo $this->Form->control('audioAuthor', ['required' => true]);
 echo $this->Form->submit(__d('admin', 'Import'), $canImport ? [] : ['disabled' => true]);
 echo $this->Form->end();
 ?>

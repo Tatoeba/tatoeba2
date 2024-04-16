@@ -23,7 +23,7 @@ $username = $user['username'];
 
     <md-card-content class="content">
         <?php
-        echo $this->Form->create('', [
+        echo $this->Form->create(null, [
             'url' => ['controller' => 'sentence_comments', 'action' => 'save']
         ]);
         echo $this->Form->hidden('sentence_id', ['value' => $sentenceId]);

@@ -72,12 +72,12 @@ if ($userExists) {
         <?php
         if ($numberOfSentences > 0 || !empty($filter)) {
 
-            echo $this->Form->create('FavoritesSearch', ['type' => 'get']);
+            echo $this->Form->create(null, ['type' => 'get']);
             ?>
             <div layout="row" layout-align="center start">
                 <md-input-container flex>
                     <?php
-                    echo $this->Form->input('filter', [
+                    echo $this->Form->control('filter', [
                         'label' => __('Sentence text:'),
                         'lang' => '',
                         'dir' => 'auto',

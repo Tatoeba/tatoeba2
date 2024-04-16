@@ -37,7 +37,7 @@ $langArray = $this->Languages->onlyLanguagesArray();
         
         <?php 
         echo $this->Form->create(
-            'Import',
+            null,
             array(
                 'url' => array(
                     'action' => 'import_single_sentences'
@@ -57,7 +57,7 @@ $langArray = $this->Languages->onlyLanguagesArray();
         </div>
  
         <div>  
-        <?php echo $this->Form->input('user_id',
+        <?php echo $this->Form->control('user_id',
            array(
                'type' => 'text',
                'label' => __d('admin', 'Numeric user id: ')
@@ -75,7 +75,7 @@ $langArray = $this->Languages->onlyLanguagesArray();
         <h2><?php echo __d('admin', 'Sentences and translations'); ?></h2>
         <?php 
         echo $this->Form->create(
-            'Import',
+            null,
             array(
                 'url' => array(
                     'action' => 'import_sentences_with_translation'
@@ -100,7 +100,7 @@ $langArray = $this->Languages->onlyLanguagesArray();
         </div>
 
         <div>
-        <?php echo $this->Form->input('user_id',
+        <?php echo $this->Form->control('user_id',
            array(
                'type' => 'text',
                'label' => __d('admin', 'Numeric user id: ')

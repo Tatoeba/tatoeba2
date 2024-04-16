@@ -45,7 +45,7 @@ $countries = $this->Countries->getAllCountries();
     <div class="currentPicture">
         <?php
         echo $this->Form->create(
-            'profile_image',
+            null,
             array(
                 'url' => array(
                     'controller' => 'user',
@@ -81,7 +81,7 @@ $countries = $this->Countries->getAllCountries();
         <div class="title"><?php echo __('New picture'); ?></div>
         <?php
         echo $this->Form->create(
-            'profile_image',
+            null,
             array(
                 'id' => 'upload-avatar-form',
                 'url' => array(

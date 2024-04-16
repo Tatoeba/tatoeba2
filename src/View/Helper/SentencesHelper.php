@@ -326,7 +326,7 @@ class SentencesHelper extends AppHelper
             )
         );
 
-        echo $this->Form->create('Sentence', [
+        echo $this->Form->create(null, [
             'id' => 'translation-form',
             'url' => [
                 'controller' => 'sentences', 

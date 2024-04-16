@@ -14,7 +14,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
         $this->Languages->displayAddLanguageMessage(true);
 
     } else {
-        echo $this->Form->create('Sentence', [
+        echo $this->Form->create(null, [
             'id' => 'sentence-form',
             'url' => '/sentences/add_an_other_sentence',
             'onsubmit' => 'return false',

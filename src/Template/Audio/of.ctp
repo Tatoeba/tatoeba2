@@ -45,13 +45,13 @@ if (isset($sentencesWithAudio)) {
                    'url' => array('controller' => 'audio', 'action' => 'save_settings'),
                    'type' => 'post',
                ));
-               echo $this->Form->input('audio_license', array(
+               echo $this->Form->control('audio_license', array(
                    'label' => __('License:'),
                    'options' => $this->AudioLicense->getLicenseOptions()
                ));
             ?>
             <md-input-container class="md-block">
-                <?= $this->Form->input('audio_attribution_url', array(
+                <?= $this->Form->control('audio_attribution_url', array(
                     'label' => __('Attribution URL:'),
                 )) ?>
                 <div class='hint'>

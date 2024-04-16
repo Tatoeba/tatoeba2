@@ -53,16 +53,13 @@ class SentenceAnnotationsHelper extends AppHelper
         <div class="module">
         <h2>Go to...</h2>
         <?php
-            echo $this->Form->create('SentenceAnnotation', array(
+            echo $this->Form->create(null, array(
                 'url' => array('action' => 'show')
             ));
-            echo $this->Form->input(
-                'sentence_id',
-                array(
-                    "type" => "text",
-                    "label" => "Sentence #"
-                )
-            );
+            echo $this->Form->control('sentence_id', array(
+                "type" => "text",
+                "label" => "Sentence #"
+            ));
             echo $this->Form->button('OK');
             echo $this->Form->end();
         ?>
@@ -83,14 +80,14 @@ class SentenceAnnotationsHelper extends AppHelper
         <div class="module">
         <h2>Search</h2>
         <?php
-            echo $this->Form->create('SentenceAnnotation', array(
+            echo $this->Form->create(null, array(
                 'url' => array('action' => 'search')
             ));
-            echo $this->Form->input(
+            echo $this->Form->control(
                 'text',
                 array(
                     "label" => "",
-                    "type" => "text"
+                    "type" => "number"
                 )
             );
             echo $this->Form->button('OK');
@@ -114,13 +111,12 @@ class SentenceAnnotationsHelper extends AppHelper
         <div class="module">
         <h2>Add new index</h2>
         <?php
-        echo $this->Form->create(
-            'SentenceAnnotation', array(
+        echo $this->Form->create(null, array(
                 "url" => array("action" => "save")
             )
         );
         echo $this->Form->hidden('sentence_id', ['value' => $sentenceId]);
-        echo $this->Form->input('meaning_id', ['type' => 'text']);
+        echo $this->Form->control('meaning_id', ['type' => 'number']);
         echo $this->Form->textarea('text', ['cols' => 24, 'rows' => 3]);
         echo $this->Form->button('save');
         echo $this->Form->end();
@@ -145,8 +141,7 @@ class SentenceAnnotationsHelper extends AppHelper
             echo '<h2>Replace</h2>';
 
             $this->Html->script('sentence_annotations.preview.js', array('block' => 'scriptBottom'));
-            echo $this->Form->create(
-                'SentenceAnnotation', array(
+            echo $this->Form->create(null, array(
                     "url" => array("action" => "replace")
                 )
             );
@@ -156,7 +151,7 @@ class SentenceAnnotationsHelper extends AppHelper
                 'value' => $stringToReplace
             ]);
             echo '</div>';
-            echo $this->Form->input('textReplacing', [
+            echo $this->Form->control('textReplacing', [
                     'id' => 'SentenceAnnotationTextReplacing',
                     "label" => "Replace ". h($stringToReplace) ." by:"
             ]);

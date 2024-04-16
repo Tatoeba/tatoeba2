@@ -44,14 +44,14 @@ $editUrl = $this->Url->build([
         </ul>
 
         <?php
-        echo $this->Form->create('', [
+        echo $this->Form->create(null, [
             'ng-submit' => 'vm.saveReply('.$parentId.')',
             'onsubmit' => 'event.preventDefault()'
         ]);
         ?>
 
         <div class="hidden">
-        <?= $this->Form->input('replyTo', array('value' => '')); ?>
+        <?= $this->Form->control('replyTo', array('value' => '')); ?>
         </div>
 
         <?php

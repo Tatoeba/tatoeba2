@@ -188,7 +188,7 @@ class TagsHelper extends AppHelper
         $this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
         $this->Html->script('tags.add.js', ['block' => 'scriptBottom']);
 
-        echo $this->Form->create('Tag', [
+        echo $this->Form->create(null, [
             'id' => 'tag-form',
             'url' => ['controller' => 'tags', 'action' => 'add_tag_post'],
             'onsubmit' => 'return false'
@@ -200,7 +200,7 @@ class TagsHelper extends AppHelper
         echo '<div id="autocompletionDiv">';
         echo '</div>';
 
-        echo $this->Form->input('tag_name', [
+        echo $this->Form->control('tag_name', [
             'id' => 'TagTagName',
             'label' => '',
             'lang' => '',

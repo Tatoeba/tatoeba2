@@ -62,9 +62,9 @@ $sentenceUrl = $this->Url->build([
 
     <?php
     // go to form
-    echo $this->Form->create('Sentence', [
+    echo $this->Form->create(null, [
         'id' => 'go-to-form',
-        'url' => ['action' => 'go_to_sentence'],
+        'url' => ['controller' => 'sentences', 'action' => 'go_to_sentence'],
         'type' => 'get',
         'hide-xs' => '',
         'layout' => 'row',
@@ -73,7 +73,7 @@ $sentenceUrl = $this->Url->build([
     ?>
     <md-input-container layout="row" layout-align="start center">
         <?php
-        echo $this->Form->input('sentence_id', [
+        echo $this->Form->control('sentence_id', [
             'type' => 'text',
             'label' => __('Show sentence #: '),
             'value' => $currentId,

@@ -585,7 +585,7 @@ class ListsHelper extends AppHelper
 
         <div id="newSentenceInList" class="section md-whiteframe-1dp">
         <?php
-        echo $this->Form->input(
+        echo $this->Form->control(
             'text',
             array(
                 'label' => __('Add a sentence to this list : '),
@@ -676,7 +676,7 @@ class ListsHelper extends AppHelper
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Create a new list'); ?></h2>
             <?php
-            echo $this->Form->create('SentencesList', [
+            echo $this->Form->create(null, [
                 'url' => ['action' => 'add'],
                 'type' => 'post',
             ]);
@@ -711,7 +711,7 @@ class ListsHelper extends AppHelper
             /* @translators: header text in List of lists page (noun) */
             echo $this->Html->tag('h2', __x('header', 'Search'));
 
-            echo $this->Form->create('SentencesList', ['type' => 'get']);
+            echo $this->Form->create(null, ['type' => 'get']);
 
             if (!empty($extraHiddenParams)) {
                 foreach ($extraHiddenParams as $key => $value) {
@@ -722,7 +722,7 @@ class ListsHelper extends AppHelper
 
             <md-input-container layout="column">
                 <?php
-                echo $this->Form->input('search', [
+                echo $this->Form->control('search', [
                     'value' => $this->_View->safeForAngular($search),
                     'label' => false
                 ]);

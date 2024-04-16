@@ -56,7 +56,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </div>
         </md-toolbar>
     
-        <?= $this->Form->create('Vocabulary', [
+        <?= $this->Form->create(null, [
             'ng-cloak' => true,
             'id' => 'add-vocabulary-form',
             'ng-submit' => 'ctrl.add()',
@@ -86,7 +86,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 </div>
 
                 <md-input-container flex>
-                    <?= $this->Form->input('text', [
+                    <?= $this->Form->control('text', [
                         'label' => __('Vocabulary item'),
                         'ng-model' => 'ctrl.data.text',
                         'ng-disabled' => 'ctrl.isAdding',

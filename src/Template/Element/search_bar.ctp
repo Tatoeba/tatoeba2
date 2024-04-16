@@ -33,7 +33,7 @@ $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
 <md-toolbar id="search-bar-minimal" ng-cloak>
     <div class="md-toolbar-tools">
     <?php
-    echo $this->Form->create('Sentence', [
+    echo $this->Form->create(null, [
         'layout' => 'column',
         'url' => ['controller' => 'sentences', 'action' => 'search'],
         'type' => 'get',
@@ -63,16 +63,13 @@ $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
 
 <md-toolbar id="search-bar" ng-controller="SearchBarController as ctrl" class="md-whiteframe-1dp md-primary">
 <?php
-echo $this->Form->create(
-    'Sentence',
-    array(
-        'id' => 'SentenceSearchForm',
-        'name' => 'ctrl.form',
-        "url" => false,
-        'ng-submit' => 'ctrl.submit(ctrl.form)',
-        "type" => "get"
-    )
-);
+echo $this->Form->create(null, [
+    'id' => 'SentenceSearchForm',
+    'name' => 'ctrl.form',
+    "url" => false,
+    'ng-submit' => 'ctrl.submit(ctrl.form)',
+    "type" => "get"
+]);
 ?>
 <div ng-cloak
      layout-gt-sm="row" layout-align-gt-sm="center end" layout-margin

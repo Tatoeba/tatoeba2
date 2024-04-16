@@ -23,13 +23,13 @@ $username = $user['username'];
 
     <md-card-content class="content">
         <?php
-        echo $this->Form->create('', [
+        echo $this->Form->create(null, [
             'url' => ['controller' => 'wall', 'action' => 'save']
         ]);
         ?>
 
         <div class="hidden">
-        <?= $this->Form->input('replyTo', array('value' => '')); ?>
+        <?= $this->Form->control('replyTo', array('value' => '')); ?>
         </div>
 
         <?php

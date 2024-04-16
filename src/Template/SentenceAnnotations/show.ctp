@@ -67,7 +67,7 @@
             echo '</div>';
 
             // id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
-            echo $this->Form->input('meaning_id', ['type' => 'text']);
+            echo $this->Form->control('meaning_id', ['type' => 'text']);
 
             // annotations text
             echo $this->Form->textarea('text', ['cols' => 60, 'rows' => 3]);
