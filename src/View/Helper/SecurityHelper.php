@@ -34,7 +34,7 @@ class SecurityHelper extends AppHelper
     private $token;
 
     public function beforeRender($viewFile) {
-        $this->token = $this->request['_Token'];
+        $this->token = $this->getView()->getRequest()->getParam('_Token');
         //$this->disableCSRFProtection();
     }
 

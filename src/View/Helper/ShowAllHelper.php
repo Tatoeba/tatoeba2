@@ -61,9 +61,9 @@ class ShowAllHelper extends AppHelper
         // we reconstruct the path
         $path ='/';
         // language of the interface
-        $path .= $this->request->getParam('lang') .'/';
-        $path .= Inflector::delimit($this->request->getParam('controller')).'/';
-        $path .= $this->request->getParam('action');
+        $path .= $this->getView()->getRequest()->getParam('lang') .'/';
+        $path .= Inflector::delimit($this->getView()->getRequest()->getParam('controller')).'/';
+        $path .= $this->getView()->getRequest()->getParam('action');
         return $path;
     }
 
@@ -106,7 +106,7 @@ class ShowAllHelper extends AppHelper
     private function _generateSelect($selectedLanguage, $langs, $position)
     {
 
-        $params = $this->request->getParam('pass');
+        $params = $this->getView()->getRequest()->getParam('pass');
         $javascriptUrl = $this->_generateJavascriptUrl($params, $position);
 
         return $this->_View->element(
