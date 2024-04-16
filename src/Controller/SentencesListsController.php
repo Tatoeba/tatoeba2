@@ -64,14 +64,14 @@ class SentencesListsController extends AppController
 
     public function initialize() {
         parent::initialize();
-        $params = $this->request->params;
+        $request = $this->request;
         $noCsrfActions = [
             'set_option',
             'save_name',
             'add_new_sentence_to_list',
             'add_sentence_to_new_list'
         ];
-        if (in_array($params['action'], $noCsrfActions)) {
+        if (in_array($request->getParam('action'), $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
     }

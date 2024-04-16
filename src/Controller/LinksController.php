@@ -43,12 +43,12 @@ class LinksController extends AppController
 {
     public function initialize() {
         parent::initialize();
-        $params = $this->request->params;
+        $request = $this->request;
         $noCsrfActions = [
             'add',
             'delete'
         ];
-        if (in_array($params['action'], $noCsrfActions)) {
+        if (in_array($request->getParam('action'), $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
     }

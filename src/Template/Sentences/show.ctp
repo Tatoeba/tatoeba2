@@ -57,9 +57,9 @@ if (isset($sentence)) {
 } else {
     // Case where the sentence has been deleted
     $this->set('title_for_layout', $this->Pages->formatTitle(
-        __('Sentence does not exist: ') . $this->request->params['pass'][0]
+        __('Sentence does not exist: ') . $this->request->getParam('pass')[0]
     ));
-    $sentenceId = $this->request->params['pass'][0];
+    $sentenceId = $this->request->getParam('pass')[0];
 }
 
 
@@ -109,7 +109,7 @@ echo $this->element('/sentences/navigation', [
                         'There is no sentence with id {number}',
                         true
                     ),
-                    array('number' => $this->request->params['pass'][0])
+                    array('number' => $this->request->getParam('pass')[0])
                 );
             echo '</div>';
         }
