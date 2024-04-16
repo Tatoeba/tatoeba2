@@ -72,7 +72,7 @@ class PagesHelper extends AppHelper
     }
 
     public function currentPageUrl() {
-        return $this->request->here();
+        return $this->getView()->getRequest()->getRequestTarget();
     }
 
     /**

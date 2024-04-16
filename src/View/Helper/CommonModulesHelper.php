@@ -68,11 +68,11 @@ class CommonModulesHelper extends AppHelper
             // without the language parameter
             $path ='/';
             // language of the interface
-            $path .= $this->request->getParam('lang') .'/';
-            $path .= Inflector::delimit($this->request->getParam('controller')).'/';
-            $path .= $this->request->getParam('action');
+            $path .= $this->getView()->getRequest()->getParam('lang') .'/';
+            $path .= Inflector::delimit($this->getView()->getRequest()->getParam('controller')).'/';
+            $path .= $this->getView()->getRequest()->getParam('action');
 
-            $params = $this->request->getParam('pass');
+            $params = $this->getView()->getRequest()->getParam('pass');
             $numberOfParams = count($params);
 
             $paramsWithoutLang = $numberOfParams;

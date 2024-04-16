@@ -53,7 +53,7 @@ class PaginationHelper extends AppHelper
      */
     public function sortDefaultOrder($title, $key = null, $options =  array()){
         // direction is given or no default is specified
-        if(isset($this->request->params['direction'])
+        if(isset($this->getView()->getRequest()->params['direction'])
             || !isset($options['defaultOrders'])
             || !isset($options['defaultOrders'][$key])){
             return $this->Paginator->sort($key, $title, $options);
@@ -61,8 +61,8 @@ class PaginationHelper extends AppHelper
 
         $do = $options['defaultOrders'];
         //If no field is specified or the field ordered by is not the current field
-        if((isset($this->request->params['sort']) && $this->request->params['sort'] != $key)
-           || !isset($this->request->params['sort'])){
+        if((isset($this->getView()->getRequest()->params['sort']) && $this->getView()->getRequest()->params['sort'] != $key)
+           || !isset($this->getView()->getRequest()->params['sort'])){
             $options['direction'] = $do[$key];
         }
 

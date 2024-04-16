@@ -49,10 +49,10 @@ class AppHelper extends Helper
 
     public function url($url = null, $full = false)
     {
-        if (isset($this->request->params['lang'])
+        if (isset($this->getView()->getRequest()->params['lang'])
             && is_array($url) && !isset($url['lang'])) {
 
-            $url['lang'] = $this->request->params['lang'];
+            $url['lang'] = $this->getView()->getRequest()->params['lang'];
 
         }
 
