@@ -1,7 +1,7 @@
 <?php
 use App\Model\Entity\User;
 
-$config = [
+return [
     'user_rights' => [
     ]
 ];
