@@ -84,7 +84,7 @@ class SentencesListsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'set_option',
             'save_name',
             'add_new_sentence_to_list',
