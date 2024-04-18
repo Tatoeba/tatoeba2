@@ -28,7 +28,7 @@ class LicensingController extends AppController {
 
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'refresh_license_switch_list',
         ]);
 

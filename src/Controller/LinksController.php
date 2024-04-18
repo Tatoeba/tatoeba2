@@ -61,7 +61,7 @@ class LinksController extends AppController
     public function beforeFilter(Event $event)
     {
         if($this->request->is('ajax')) {
-            $this->Security->config('unlockedActions', [
+            $this->Security->setConfig('unlockedActions', [
                 'add',
                 'delete'
             ]);

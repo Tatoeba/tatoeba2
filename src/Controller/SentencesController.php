@@ -99,7 +99,7 @@ class SentencesController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
           'add_an_other_sentence',
           'save_translation',
           'change_language',

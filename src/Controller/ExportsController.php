@@ -9,7 +9,7 @@ class ExportsController extends AppController
 {
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'add',
         ]);
         $this->Auth->allowedActions = ['add', 'get', 'download'];
