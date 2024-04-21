@@ -564,7 +564,7 @@ class UsersController extends AppController
 
     public function login_dialog_template()
     {
-        $redirectUrl = $this->request->query('redirect');
+        $redirectUrl = $this->request->getQuery('redirect');
         $this->set('redirectUrl', $redirectUrl);
         $this->viewBuilder()->enableAutoLayout(false);
     }

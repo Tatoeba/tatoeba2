@@ -46,7 +46,7 @@
         <!-- Search -->
         <div class="search-bar" ng-controller="SearchBarController as ctrl">
             <?php
-            echo $this->Form->create('Sentence', [
+            echo $this->Form->create(null, [
                 'url' => ['controller' => 'sentences', 'action' => 'search'],
                 'type' => 'get',
                 'id' => 'new-search-bar'

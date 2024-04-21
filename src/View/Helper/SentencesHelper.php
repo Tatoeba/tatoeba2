@@ -317,7 +317,7 @@ class SentencesHelper extends AppHelper
 
     private function _translationForm($id, $langArray)
     {
-        $preSelectedLang = $this->request->getSession()->read('contribute_lang');
+        $preSelectedLang = $this->getView()->getRequest()->getSession()->read('contribute_lang');
 
         echo $this->Images->svgIcon(
             'translation',
@@ -326,7 +326,7 @@ class SentencesHelper extends AppHelper
             )
         );
 
-        echo $this->Form->create('Sentence', [
+        echo $this->Form->create(null, [
             'id' => 'translation-form',
             'url' => [
                 'controller' => 'sentences', 
@@ -491,7 +491,7 @@ class SentencesHelper extends AppHelper
 
         $sentenceId = $sentence->id;
         $sentenceLang = $sentence->lang;
-        $isFavoritePage = ($this->request->params['controller'] == 'Favorites' && $this->request->params['action'] == 'of_user');
+        $isFavoritePage = ($this->getView()->getRequest()->getParam('controller') == 'Favorites' && $this->getView()->getRequest()->getParam('action') == 'of_user');
         $classes = array('sentence', $type);
         if ($isEditable && $type == 'directTranslation') {
             $classes[] = 'editableTranslation';
@@ -551,7 +551,7 @@ class SentencesHelper extends AppHelper
             echo '</div>';
         }
 
-        if( $isFavoritePage && $this->request->params['pass'][0] == CurrentUser::get('username') ){
+        if( $isFavoritePage && $this->getView()->getRequest()->getParam('pass')[0] == CurrentUser::get('username') ){
             echo '<div class="favorite-page column">';
             $this->Menu->favoriteButton($sentenceId, true, true, true);
             echo '</div>';

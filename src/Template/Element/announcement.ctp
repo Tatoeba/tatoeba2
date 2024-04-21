@@ -41,7 +41,7 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
         'controller' => 'pages', 
         'action' => 'contact'
     ]);
-    echo $this->Form->create('Users', [
+    echo $this->Form->create(null, [
         'class' => 'announcement md-whiteframe-1dp',
         'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
     ]);

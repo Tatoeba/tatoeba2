@@ -105,7 +105,7 @@ $langsTo = $this->Languages->profileLanguagesArray();
         <div layout-margin>
             <?php
             echo $this->Form->create(
-                'Activity',
+                null,
                 array(
                     "url" => array("action" => "translate_sentences"),
                     "type" => "get"

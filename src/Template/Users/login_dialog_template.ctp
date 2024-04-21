@@ -11,11 +11,13 @@ $passwordUrl = $this->Url->build([
 
 <?php
 $this->Security->enableCSRFProtection();
-echo $this->Form->create('User', ['url' => [
-    'controller' => 'users', 
-    'action' => 'check_login',
-    '?' => [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl],
-]]);
+echo $this->Form->create(null, [
+    'url' => [
+        'controller' => 'users', 
+        'action' => 'check_login',
+        '?' => [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl],
+    ]
+]);
 ?>
 
 <md-toolbar>
@@ -27,7 +29,7 @@ echo $this->Form->create('User', ['url' => [
 <md-dialog-content>
     <md-input-container class="md-block">
         <?php
-        echo $this->Form->input('username', [
+        echo $this->Form->control('username', [
             'label' => __('Username'),
             'md-autofocus' => ''
         ]);
@@ -36,7 +38,7 @@ echo $this->Form->create('User', ['url' => [
 
     <md-input-container class="md-block">
         <?php
-        echo $this->Form->input('password', [
+        echo $this->Form->control('password', [
             'label' => __('Password')
         ]);
         ?>

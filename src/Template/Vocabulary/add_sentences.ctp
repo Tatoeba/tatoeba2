@@ -108,7 +108,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     <md-progress-linear></md-progress-linear>
                 </div>
 
-                <?= $this->Form->create('Vocabulary', [
+                <?= $this->Form->create(null, [
                     'id' => 'form_'.$id,
                     'url' => ['controller' => 'vocabulary', 'action' => 'save_sentence', $id],
                     'class' => 'sentence-form',
@@ -121,7 +121,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 ]); ?>
                     <?= $this->Form->hidden('lang', ['value' => $lang]) ?>
                     <md-input-container flex>
-                        <?= $this->Form->input('text', [
+                        <?= $this->Form->control('text', [
                             'id' => 'form_'.$id.'_input',
                             /* @translators: sentence text field label of sentence addition form on vocabulary page */
                             'label' => __('Sentence'),

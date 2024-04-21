@@ -93,7 +93,7 @@ class LimitResultsBehavior extends Behavior
      * performance.
      */
     public function findLatest(Query $query, array $options) {
-        $alias = $query->repository()->getAlias();
+        $alias = $query->getRepository()->getAlias();
         $additionalOrder = [$alias . '.id' => 'DESC'];
 
         $contain = $this->getMinimalContain($query);

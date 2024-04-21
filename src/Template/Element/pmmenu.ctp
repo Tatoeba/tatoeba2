@@ -31,9 +31,9 @@ $dratftsUrl = $this->Url->build(['action' => 'folder', 'Drafts']);
 $sentUrl = $this->Url->build(['action' => 'folder', 'Sent']);
 $trashUrl = $this->Url->build(['action' => 'folder', 'Trash']);
 
-$isTrashFolder = $this->request->params['action'] == 'folder'
-    && $this->request->params['pass']
-    && $this->request->params['pass'][0] == 'Trash';
+$isTrashFolder = $this->request->getParam('action') == 'folder'
+    && $this->request->getParam('pass')
+    && $this->request->getParam('pass')[0] == 'Trash';
 ?>
 
 <md-sidenav class="md-sidenav-left md-whiteframe-1dp"

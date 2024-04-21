@@ -36,13 +36,13 @@ $tagsIndexUrl = $this->Url->build([
     <div class="section md-whiteframe-1dp" layout="column">
         <?php
         echo $this->Html->tag('h2', __('Search tags'));
-        echo $this->Form->create('Tags', [
+        echo $this->Form->create(null, [
             'url' => array('action' => 'search'),
         ]);
         ?>
         <md-input-container layout="column">
             <?php
-                echo $this->Form->input('search', [
+                echo $this->Form->control('search', [
                     'value' => $this->safeForAngular($filter),
                     'label' => false,
                 ]);

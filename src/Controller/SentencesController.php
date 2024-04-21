@@ -86,9 +86,8 @@ class SentencesController extends AppController
     public function initialize() {
         parent::initialize();
 
-        $params = $this->request->params;
         $noCsrfActions = ['edit_sentence', 'change_language'];
-        if (in_array($params['action'], $noCsrfActions)) {
+        if (in_array($this->request->getParam('action'), $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
     }
@@ -100,7 +99,7 @@ class SentencesController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
           'add_an_other_sentence',
           'save_translation',
           'change_language',
@@ -507,7 +506,7 @@ class SentencesController extends AppController
 
         $limit = CurrentUser::getSetting('sentences_per_page');
         $sphinx = $search->asSphinx();
-        $sphinx['page'] = $this->request->query('page');
+        $sphinx['page'] = $this->request->getQuery('page');
         $sphinx['limit'] = $limit;
 
         $model = 'Sentences';

@@ -21,7 +21,7 @@ $layout = isset($isSidebar) && $isSidebar ? 'column' : 'row';
 
 $this->Html->script('sentences/search.ctrl.js', ['block' => 'scriptBottom']);
 
-echo $this->Form->create('AdvancedSearch', [
+echo $this->Form->create(null, [
     'id' => 'advanced-search',
     'url' => false,
     'name' => 'form',
@@ -59,7 +59,7 @@ echo $this->Form->create('AdvancedSearch', [
         <div layout="column">
             <md-input-container class="md-button-right">
                 <?php
-                echo $this->Form->input('query', array(
+                echo $this->Form->control('query', array(
                     'label' => __('Words:'),
                     'lang' => '',
                     'dir' => 'auto',
@@ -148,7 +148,7 @@ echo $this->Form->create('AdvancedSearch', [
 
             <md-input-container class="md-button-right">
                 <?php
-                echo $this->Form->input('user', array(
+                echo $this->Form->control('user', array(
                     'label' => __('Owner:'),
                     'id' => 'OwnerSearch',
                     'ng-model' => 'filters.user',
@@ -165,7 +165,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div layout="row" layout-align="center">
                     <label for="orphans" flex><?= __('Is orphan:') ?></label>
                     <?php
-                    echo $this->Form->input('orphans', [
+                    echo $this->Form->control('orphans', [
                         'label' => '',
                         'options' => [
                             /* @translators: dropdown option of "Is orphan" field in search form */
@@ -189,7 +189,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div layout="row" layout-align="center">
                     <label for="unapproved" flex><?= __('Is unapproved:') ?></label>
                     <?php
-                    echo $this->Form->input('unapproved', array(
+                    echo $this->Form->control('unapproved', array(
                         'label' => '',
                         'options' => array(
                             /* @translators: dropdown option of "Is unapproved" field in search form */
@@ -210,7 +210,7 @@ echo $this->Form->create('AdvancedSearch', [
             <div class="param" layout="row" layout-align="center">
                 <label for="has-audio" flex><?= __('Has audio:') ?></label>
                 <?php
-                echo $this->Form->input('has_audio', array(
+                echo $this->Form->control('has_audio', array(
                     'label' => '',
                     'options' => array(
                         /* @translators: dropdown option of "Has audio" field in search form */
@@ -226,7 +226,7 @@ echo $this->Form->create('AdvancedSearch', [
 
             <md-input-container class="md-button-right">
             <?php
-            echo $this->Form->input('tags', array(
+            echo $this->Form->control('tags', array(
                 'label' => __('Tags:'),
                 'id' => 'TagSearch',
                 'ng-model' => 'filters.tags',
@@ -246,7 +246,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div flex>
                 <?php
                 $listOptions = $this->Lists->listsAsSelectable($searchableLists->toList());
-                echo $this->Form->input('list', [
+                echo $this->Form->control('list', [
                     'class' => 'list-select',
                     'label' => '',
                     'options' => $this->safeForAngular($listOptions),
@@ -316,7 +316,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="param" layout="row" layout-align="center">
                     <label for="trans-link" flex><?= __('Link:') ?></label>
                     <?php
-                    echo $this->Form->input('trans_link', array(
+                    echo $this->Form->control('trans_link', array(
                         'label' => '',
                         'options' => array(
                             /* @translators: dropdown option of "Link" field in search form */
@@ -334,7 +334,7 @@ echo $this->Form->create('AdvancedSearch', [
 
                 <md-input-container class="md-button-right">
                     <?php
-                    echo $this->Form->input('trans_user', array(
+                    echo $this->Form->control('trans_user', array(
                         'label' => __('Owner:'),
                         'id' => 'TranslatorSearch',
                         'ng-model' => 'filters.trans_user',
@@ -351,7 +351,7 @@ echo $this->Form->create('AdvancedSearch', [
                     <div layout="row" layout-align="center">
                         <label for="trans-orphan" flex><?= __('Is orphan:') ?></label>
                         <?php
-                        echo $this->Form->input('trans_orphan', array(
+                        echo $this->Form->control('trans_orphan', array(
                             'label' => '',
                             'options' => array(
                                 '' => __x('orphan', 'Any'),
@@ -372,7 +372,7 @@ echo $this->Form->create('AdvancedSearch', [
                     <div layout="row" layout-align="center">
                         <label for="trans-unapproved" flex><?= __('Is unapproved:') ?></label>
                         <?php
-                        echo $this->Form->input('trans_unapproved', array(
+                        echo $this->Form->control('trans_unapproved', array(
                             'label' => '',
                             'options' => array(
                                 '' => __x('unapproved', 'Any'),
@@ -392,7 +392,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="param" layout="row" layout-align="center">
                     <label for="trans-has-audio" flex><?= __('Has audio:') ?></label>
                     <?php
-                    echo $this->Form->input('trans_has_audio', array(
+                    echo $this->Form->control('trans_has_audio', array(
                         'label' => '',
                         'options' => array(
                             '' => __x('audio', 'Any'),
@@ -416,7 +416,7 @@ echo $this->Form->create('AdvancedSearch', [
                     <?php /* @translators: field name in search form (noun) */ ?>
                     <label for="sort" flex><?= __('Order:') ?></label>
                     <?php
-                    echo $this->Form->input('sort', array(
+                    echo $this->Form->control('sort', array(
                         'label' => '',
                         'options' => array(
                             /* @translators: sort order dropdown option in search form */

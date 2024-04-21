@@ -55,7 +55,7 @@ class VocabularyController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save', 'save_sentence'
         ]);
         return parent::beforeFilter($event);

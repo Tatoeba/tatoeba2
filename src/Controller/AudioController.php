@@ -50,7 +50,7 @@ class AudioController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save',
             'delete',
         ]);

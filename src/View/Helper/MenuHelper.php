@@ -278,7 +278,7 @@ class MenuHelper extends AppHelper
 
         <li style="display:none" id="linkTo<?php echo $sentenceId; ?>">
         <?php
-        echo $this->Form->input('linkToSentence'.$sentenceId, array(
+        echo $this->Form->control('linkToSentence'.$sentenceId, array(
             'id' => 'linkToSentence'.$sentenceId,
             'label' => false,
             'placeholder' => __('Sentence number'),

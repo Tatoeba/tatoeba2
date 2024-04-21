@@ -30,7 +30,7 @@ if ($userExists === true) {
     $numberOfSentences = $this->Paginator->param('count');
     $this->Paginator->options(
         array(
-            'url' => $this->request->params['pass']
+            'url' => $this->request->getParam('pass')
         )
     );
 

@@ -1,7 +1,7 @@
 <?php
 use App\Model\Entity\User;
 
-$config = [
+return [
     // actions available to everyone, even guests
     'public_actions' => [
         'activities' => [ 'improve_sentences', 'translate_sentences_of' ],

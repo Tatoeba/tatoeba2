@@ -43,12 +43,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
     <h2><?php echo __('Search user') ?></h2>
     <?php
     $this->Security->enableCSRFProtection();
-    echo $this->Form->create('User', ['url' => ['action' => 'search']]);
+    echo $this->Form->create(null, ['url' => ['action' => 'search']]);
     ?>
     
     <md-input-container layout="column">
         <?php
-        echo $this->Form->input('search_username',[
+        echo $this->Form->control('search_username',[
             'id' => 'usernameInput',
             'label' => '',
         ]);

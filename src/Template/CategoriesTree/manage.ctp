@@ -56,7 +56,7 @@ $messages = [
         <div class="section md-whiteframe-1dp">
             <?php
                 echo $this->Form->create(
-                    'CreateOrEditCategory', 
+                    null, 
                     [
                         'url' => [
                             'controller' => 'categoriesTree',
@@ -68,7 +68,7 @@ $messages = [
 
             <md-input-container layout="column">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'name', 
                         [
                             'label' => __d('beta', 'Name (required)')
@@ -79,7 +79,7 @@ $messages = [
                     
             <md-input-container layout="column">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'description', 
                         [
                             'label' => __d('beta', 'Description (optional)')
@@ -90,7 +90,7 @@ $messages = [
 
             <md-input-container layout="column">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'parentName', 
                         [
                             'id' => 'parentName',
@@ -122,7 +122,7 @@ $messages = [
         <div class="section md-whiteframe-1dp">
             <?php
                 echo $this->Form->create(
-                    'AttachTag', 
+                    null, 
                     [
                         'url' => [
                             'controller' => 'categories_tree',
@@ -134,7 +134,7 @@ $messages = [
 
             <md-input-container layout="column">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'tagName',
                         [
                             'id' => 'tagName',
@@ -147,7 +147,7 @@ $messages = [
 
             <md-input-container layout="column">
                 <?php
-                    echo $this->Form->input(
+                    echo $this->Form->control(
                         'categoryName', 
                         [
                             'id' => 'categoryName',

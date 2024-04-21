@@ -42,13 +42,13 @@ $this->Security->enableCSRFProtection();
 
 <div id="reset-form" class="md-whiteframe-1dp">
     <h2><?= __('Send new password'); ?></h2>
-    <?= $this->Form->create('User', array(
+    <?= $this->Form->create(null, array(
             "ng-cloak" => true,
             "url" => array("action" => "new_password")
         ));
     ?>
     <md-input-container class="md-block">
-        <?= $this->Form->input('email', [
+        <?= $this->Form->control('email', [
                 'label' => __('Email'),
             ]) ?>
      </md-input-container>
