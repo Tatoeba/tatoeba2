@@ -1193,14 +1193,18 @@ input.sentenceId {
 }
 
 .audioButtonWrapper {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     gap: 2px;
+    margin-right: 1.5rem;
 }
 
 .audioButtonCount {
+    position: absolute;
     font-size: 0.8rem;
+    left: calc(100% + 0.25rem);
 }
 
 /*

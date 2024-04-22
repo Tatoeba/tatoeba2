@@ -195,7 +195,10 @@ class SentenceButtonsHelper extends AppHelper
                 $class = 'audioButton audioAvailable';
                 if ($startIn == 0) {
                     $class .= ' nextAudioToPlay';
-                    $audioCount = $this->Html->div("audioButtonCount", $total);
+
+                    // Only display audio counts for sentences with more than 1 audio
+                    $countContent = $total > 1 ? $total : "";
+                    $audioCount = $this->Html->div("audioButtonCount", $countContent);
                 }
                 $audioLink = $this->Html->Link(
                     null,
