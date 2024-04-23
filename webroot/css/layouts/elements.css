@@ -1993,6 +1993,16 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
     margin: 6px 0px;
 }
 
+.md-toolbar-tools > h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-height: 1.25rem; /* fallback */
+    height: calc(1.35rem * 2); /* fallback */
+}
+
 /*
  * --------------------------------------------------------------------
  *
