@@ -94,9 +94,7 @@ $this->AngularTemplate->addTemplate(
                 ]) ?>
             </span>
             <span ng-if="audio.author == null" class="audio-author">
-                <?= format(__('by {username}'), [
-                    'username' => format(__('unknown'))
-                ]) ?>
+                <?php echo format(__('Unknown author')) ?>
             </span>
         </h3>
 
