@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     form_too_large = true;
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 alert(avatar_upload_form.getAttribute("msg-too-large-image"));
                 avatar_upload_form.reset();
             });
