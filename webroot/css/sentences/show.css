@@ -222,9 +222,13 @@ md-sidenav .sentence-lists .personal-list {
     font-size: 0.75rem;
     font-weight: 500;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
     word-break: break-word;
+}
+.audio .audio-details .timestamp:last-of-type {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 0.5rem;
 }
 .audio .audio-details .timestamp .since {
     color: rgba(0, 0, 0, 0.54);
