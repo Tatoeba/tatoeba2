@@ -1999,8 +1999,8 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2; /* number of lines to show */
-    line-height: 1.25rem; /* fallback */
-    height: calc(1.35rem * 2); /* fallback */
+    line-height: 1.55rem; /* fallback */
+    height: calc(1.55rem * 2); /* fallback */
 }
 
 /*
