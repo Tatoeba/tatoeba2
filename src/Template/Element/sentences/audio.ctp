@@ -99,12 +99,15 @@ $this->AngularTemplate->addTemplate(
         <div class="audio-details" layout="column">
             <div class="license"><?= format(__('License: {license}'), ['license' => $licenseTemplate]) ?></div>
             <div class="timestamp">
-                <div><?= format(__('Added')) ?></div>
-                <div class="since"><?= format(__('{date}'), [ 'date' => '{{ audio.created_ago }}' ]) ?></div>
+                <?php /* @translators: header text of the date an audio recording was added */ ?>
+                <div><?= __('Added') ?></div>
+                <div class="since">{{ audio.created_ago }}</div>
             </div>
-            <div class="timestamp">
-                <div><?= format(__('Last modified')) ?></div>
-                <div class="since"><?= format(__('{date}'), [ 'date' => '{{ audio.modified_ago }}' ]) ?></div>
+
+            <div ng-if="audio.created_ago !== audio.modified_ago" class="timestamp">
+                <?php /* @translators: header text of the date an audio recording was last modified */ ?>
+                <div><?= __('Last modified') ?></div>
+                <div class="since">{{ audio.modified_ago }}</div>
             </div>
 
             <?php if (CurrentUser::isAdmin()): ?>
