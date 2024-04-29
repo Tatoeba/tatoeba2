@@ -675,7 +675,7 @@ class SentencesTable extends Table
             }
 
             $q = $q->select($audioFields);
-            return $q->contain(array_merge(['Users' => ['fields' => $usersFields]]));
+            return $q->contain(['Users' => ['fields' => $usersFields]]);
         };
 
         $transcriptionsContainment = [
