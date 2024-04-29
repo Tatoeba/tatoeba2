@@ -1,0 +1,32 @@
+
+html, body {
+  height: 100%;
+}
+
+body {
+  pointer-events: none;
+}
+nav {
+  pointer-events: all;
+}
+
+openapi-explorer {
+  pointer-events: all;
+  z-index: -1;
+  height: calc(100% - 2 * var(--title-padding) - var(--title-line-height));
+}
+openapi-explorer::part(section-navbar) {
+  border-top: none;
+}
+openapi-explorer {
+  position: relative;
+  --border-radius: 5px;
+  --font-mono: 'Monospace';
+  --primary-color: #4caf50;
+  --secondary-color: #9dc189;
+  --nav-bg-color: #fafafa;
+  --nav-hover-bg-color: rgba(158,158,158,0.2);
+  --nav-text-color: var(--fg);
+  --secondary-color: rgba(0,0,0,0.87);
+  --nav-hover-text-color: rgba(0,0,0,0.87);
+}

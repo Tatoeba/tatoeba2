@@ -10,16 +10,20 @@ class ApiControllerTest extends TestCase
 
     public function test_docIndex()
     {
-        $this->markTestSkipped('Enable after api-docs branch is merged');
         $this->get("http://api.example.com/");
         $this->assertResponseOk();
     }
 
     public function test_docUnstable()
     {
-        $this->markTestSkipped('Enable after api-docs branch is merged');
         $this->get("http://api.example.com/unstable");
         $this->assertResponseOk();
+    }
+
+    public function test_docNonInvalidVersion()
+    {
+        $this->get("http://api.example.com/non-existent");
+        $this->assertResponseCode(404);
     }
 
     public function test_invalidController()

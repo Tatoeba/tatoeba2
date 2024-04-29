@@ -43,6 +43,12 @@ class UsersControllerTest extends TestCase
         $this->assertResponseCode(404);
     }
 
+    public function testGetUser_invalidUsername()
+    {
+        $this->get("http://api.example.com/unstable/users/a");
+        $this->assertResponseCode(400);
+    }
+
     public function testGetUser_ok()
     {
         $this->get("http://api.example.com/unstable/users/kazuki");

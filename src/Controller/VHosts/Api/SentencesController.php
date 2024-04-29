@@ -7,6 +7,13 @@ use Cake\ORM\Query;
 
 class SentencesController extends ApiController
 {
+    /**
+     * @OA\Schema(
+     *   schema="Sentence",
+     *   description="A sentence object that contains both sentence text and metadata about the sentence.",
+     *   @OA\Property(property="id", description="The sentence identifier", type="integer", example="1234")
+     * )
+     */
     private function exposedFields() {
         $sentence = [
             'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner'],
@@ -74,6 +81,21 @@ class SentencesController extends ApiController
         ];
     }
 
+    /**
+     * @OA\PathItem(path="/unstable/sentences/{id}",
+     *   @OA\Parameter(name="id", in="path", required=true, description="The sentence identifier.",
+     *     @OA\Schema(ref="#/components/schemas/Sentence/properties/id")
+     *   ),
+     *   @OA\Get(
+     *     summary="Get a sentence",
+     *     description="Get sentence text as well as metadata about this sentence and related sentences.",
+     *     tags={"Sentences"},
+     *     @OA\Response(response="200", description="Success."),
+     *     @OA\Response(response="400", description="Invalid ID parameter."),
+     *     @OA\Response(response="404", description="There is no sentence with that ID or it has been deleted.")
+     *   )
+     * )
+     */
     public function get($id) {
         $this->loadModel('Sentences');
         $query = $this->Sentences
@@ -139,6 +161,41 @@ class SentencesController extends ApiController
         return $search;
     }
 
+    /**
+     * @OA\PathItem(path="/unstable/sentences",
+     *   @OA\Parameter(name="lang", in="query", required=true,
+     *     description="The language to search in.",
+     *     @OA\Schema(ref="#/components/schemas/LanguageCode")
+     *   ),
+     *   @OA\Parameter(name="q", in="query",
+     *     description="The search query. The query must follow ManticoreSearch query syntax.",
+     *     @OA\Schema(type="string", example="Let's")
+     *   ),
+     *   @OA\Parameter(name="trans", in="query",
+     *     description="Limit to sentences having translations in this language.",
+     *     @OA\Schema(ref="#/components/schemas/LanguageCode")
+     *   ),
+     *   @OA\Parameter(name="include_unapproved", in="query",
+     *     description="By default, unapproved sentences are not included in the response. Set to 'yes' to include them.",
+     *     @OA\Schema(type="string", example="yes")
+     *   ),
+     *   @OA\Parameter(name="page", in="query",
+     *     description="Page number, starts at 1. Use this parameter to paginate results.",
+     *     @OA\Schema(type="integer", example="2")
+     *   ),
+     *   @OA\Parameter(name="limit", in="query",
+     *     description="Maximum number of sentences in the response.",
+     *     @OA\Schema(type="integer", example="20")
+     *   ),
+     *   @OA\Get(
+     *     summary="Search sentences",
+     *     description="Search sentences in the Tatoeba corpus.",
+     *     tags={"Sentences"},
+     *     @OA\Response(response="200", description="Success."),
+     *     @OA\Response(response="400", description="Invalid parameter.")
+     *   )
+     * )
+     */
     public function search() {
         $search = $this->_prepareSearch();
         if (!($search instanceOf Search)) {

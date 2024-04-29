@@ -130,7 +130,7 @@ class Audio extends Entity
     protected function _getDownloadUrl() {
         $url = [
             'controller' => 'audio',
-            'action' => 'download',
+            'action' => 'file',
             $this->id
         ];
         return Router::url($url);
