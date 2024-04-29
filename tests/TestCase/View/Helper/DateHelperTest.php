@@ -33,18 +33,18 @@ class DateHelperTest extends TestCase {
             '0000-00-00 00:00:00 eng' => ['0000-00-00 00:00:00', false, 'en', 'date unknown'],
             'old valid date alone eng' => ['2010-01-02 12:34:56', true, 'en', 'January 2, 2010'],
             'old valid date in phrase eng' => ['2013-04-25 02:37:23', false, 'en', 'April 25, 2013'],
-            'date within 30 days eng' => ['2016-06-06 14:52:11', true, 'en', '17&nbsp;days ago'],
+            'date within 30 days eng' => ['2016-06-06 14:52:11', true, 'en', "17\u{00A0}days ago"],
             'date yesterday eng' => ['2016-06-23 13:32:12', false, 'en', 'yesterday'],
-            'date within last 24 hours eng' => ['2016-06-24 09:43:17', false, 'en', '4&nbsp;hours ago'],
+            'date within last 24 hours eng' => ['2016-06-24 09:43:17', false, 'en', "4\u{00A0}hours ago"],
             'date one hour ago eng' => ['2016-06-24 12:45:34', true, 'en', 'an hour ago'],
-            'date within last hour eng' => ['2016-06-24 13:06:16', true, 'en', '44&nbsp;minutes ago'],
+            'date within last hour eng' => ['2016-06-24 13:06:16', true, 'en', "44\u{00A0}minutes ago"],
             'date one minute ago eng' => ['2016-06-24 13:49:20', false, 'en', 'a minute ago'],
             /*
             'null date fra' => [NULL, false, 'fr', 'date inconnue'],
             '0000-00-00 00:00:00 fra' => ['0000-00-00 00:00:00', true, 'fr', 'date inconnue'],
             'old valid date alone fra' => ['1965-02-01 11:35:36', true, 'fr', '1 février 1965 à 11:35'],
             'old valid date in phrase fra' => ['1969-05-10 21:39:21', false, 'fr', 'le 10 mai 1969 à 21:39'],
-            'date within 30 days fra' => ['2016-06-20 10:23:42', true, 'fr', 'il y a 4&nbsp;jours'],
+            'date within 30 days fra' => ['2016-06-20 10:23:42', true, 'fr', 'il y " 4\u{00A0}jours"],
             'date yesterday fra' => ['2016-06-23 12:32:19', true, 'fr', 'hier'],
             'date within last 24 hours fra' => ['2016-06-23 19:40:32', false, 'fr', 'il y a 18&nbsp;heures'],
             'date one hour ago fra' => ['2016-06-24 11:59:12', false, 'fr', 'il y a une heure'],
@@ -96,11 +96,11 @@ class DateHelperTest extends TestCase {
     public function getDateLabelContentProvider() {
         return [
             'created within 30 days eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-09-29 09:12:34', false, 'en', '25&nbsp;days ago'],
+            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-09-29 09:12:34', false, 'en', "25\u{00A0}days ago"],
             'created within 30 days tooltip eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-09-09 09:12:34', true, 'en', 'September 9, 2018 at 9:12 AM'],
             'created and modified within 30 days eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-10-10 01:23:45', false, 'en', '25&nbsp;days ago, edited 14&nbsp;days ago'],
+            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-10-10 01:23:45', false, 'en', "25\u{00A0}days ago, edited 14\u{00A0}days ago"],
             'created and modified within 30 days tooltip eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-10-10 01:23:45', true, 'en', 'September 9, 2018 at 9:12 AM, edited October 10, 2018 at 1:23 AM'],
             'created eng' =>

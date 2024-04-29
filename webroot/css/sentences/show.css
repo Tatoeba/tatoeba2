@@ -218,6 +218,21 @@ md-sidenav .sentence-lists .personal-list {
     padding-top: 16px;
     margin-bottom: 16px;
 }
+.audio .audio-details .timestamp {
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    word-break: break-word;
+}
+.audio .audio-details .timestamp:last-of-type {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 0.5rem;
+}
+.audio .audio-details .timestamp .since {
+    color: rgba(0, 0, 0, 0.54);
+}
 .audio .audio-details .md-errors-spacer {
     display: none;
 }
