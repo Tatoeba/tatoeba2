@@ -158,6 +158,17 @@ class SentencesController extends ApiController
             }
         }
 
+        $sort = $this->request->getQuery('sort');
+        if (!is_null($sort)) {
+            if (strlen($sort) && $sort[0] == '-') {
+                $search->reverseSort(true);
+                $sort = substr($sort, 1);
+            }
+            if (!$search->sort($sort)) {
+                return $this->response->withStatus(400, 'Invalid parameter "sort"');
+            }
+        }
+
         return $search;
     }
 
@@ -178,6 +189,18 @@ class SentencesController extends ApiController
      *   @OA\Parameter(name="include_unapproved", in="query",
      *     description="By default, unapproved sentences are not included in the response. Set to 'yes' to include them.",
      *     @OA\Schema(type="string", example="yes")
+     *   ),
+     *   @OA\Parameter(name="sort", in="query", description="
+Sort order of the sentences. Prefix the value with minus '-' to reverse that order. Value can be one of:
+<dl>
+<dt>relevance</dt><dd>prioritize sentences with exact matches, then sentences containing all the searched words, then shortest sentences</dd>
+<dt>words</dt><dd>order by number of words (or, if the language does not use spaces as word separators, by number of characters), shortest first</dd>
+<dt>created</dt><dd>order by sentence creation date (newest first)</dd>
+<dt>modified</dt><dd>order by last sentence modification (last modified first)</dd>
+<dt>random</dt><dd>randomly sort results</dd>
+</dl>
+           ",
+     *     @OA\Schema(type="string", example="-words")
      *   ),
      *   @OA\Parameter(name="page", in="query",
      *     description="Page number, starts at 1. Use this parameter to paginate results.",

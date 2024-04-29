@@ -190,6 +190,28 @@ class MainControllerTest extends TestCase
         $this->assertResponseCode(400);
     }
 
+    public function testSearch_requiresValidSort()
+    {
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=invalid");
+        $this->assertResponseCode(400);
+    }
+
+    public function testSearch_acceptsSort()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created");
+        $this->assertResponseOk();
+    }
+
+    public function testSearch_acceptsReversedSort()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=-created");
+        $this->assertResponseOk();
+    }
+
     public function testSearch_returnsResults()
     {
         $this->enableMockedSearch([1,2,3]);
