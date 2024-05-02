@@ -39,11 +39,13 @@ class SecurityHelper extends AppHelper
     }
 
     public function enableCSRFProtection() {
-        $this->request['_Token'] = $this->token;
+        $request = $this->getView()->getRequest()->withParam('_Token', $this->token);
+        $this->getView()->setRequest($request);
     }
 
     public function disableCSRFProtection() {
-        unset($this->request['_Token']);
+        $request = $this->getView()->getRequest()->withoutAttribute('_Token');
+        $this->getView()->setRequest($request);
     }
 }
 ?>
