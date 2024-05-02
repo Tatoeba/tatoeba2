@@ -74,7 +74,7 @@ class WallController extends AppController
         ]);
         
         $eventManager = $this->Wall->getEventManager();
-        $eventManager->attach(new NotificationListener());
+        $eventManager->on(new NotificationListener());
 
         return parent::beforeFilter($event);
     }
