@@ -29,12 +29,9 @@ namespace App\Controller;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use Cake\Controller\Controller;
-use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Http\ServerRequest;
 use Cake\Routing\Router;
-use Cake\Utility\Security;
-use Cake\I18n\I18n;
-use Locale;
 
 /**
  * Controller for contributions.
@@ -93,6 +90,63 @@ class AppController extends Controller
     }
 
     /**
+     * This function is imported from CakePHP's 3.x Router.php
+     * It provides legacy support for named parameters on incoming URLs.
+     *
+     * Checks the passed parameters for elements containing `$options['separator']`
+     * Those parameters are split and parsed as if they were old style named parameters.
+     *
+     * The parsed parameters will be moved from params['pass'] to params['named'].
+     *
+     * ### Options
+     *
+     * - `separator` The string to use as a separator. Defaults to `:`.
+     *
+     * @param \Cake\Http\ServerRequest $request The request object to modify.
+     * @param array $options The array of options.
+     * @return \Cake\Http\ServerRequest The modified request
+     * @deprecated 3.3.0 Named parameter backwards compatibility will be removed in 4.0.
+     */
+    private function parseNamedParams(ServerRequest $request, array $options = [])
+    {
+        $options += ['separator' => ':'];
+        if (!$request->getParam('pass')) {
+            return $request->withParam('named', []);
+        }
+        $named = [];
+        $pass = $request->getParam('pass');
+        foreach ((array)$pass as $key => $value) {
+            if (strpos($value, $options['separator']) === false) {
+                continue;
+            }
+            unset($pass[$key]);
+            list($key, $value) = explode($options['separator'], $value, 2);
+
+            if (preg_match_all('/\[([A-Za-z0-9_-]+)?\]/', $key, $matches, PREG_SET_ORDER)) {
+                $matches = array_reverse($matches);
+                $parts = explode('[', $key);
+                $key = array_shift($parts);
+                $arr = $value;
+                foreach ($matches as $match) {
+                    if (empty($match[1])) {
+                        $arr = [$arr];
+                    } else {
+                        $arr = [
+                            $match[1] => $arr,
+                        ];
+                    }
+                }
+                $value = $arr;
+            }
+            $named = array_merge_recursive($named, [$key => $value]);
+        }
+
+        return $request
+            ->withParam('pass', $pass)
+            ->withParam('named', $named);
+    }
+
+    /**
      *
      *
      * @return void
@@ -133,7 +187,7 @@ class AppController extends Controller
         CurrentUser::store($user);
 
         // Restore named parameters removed in CakePHP 3
-        $this->request = Router::parseNamedParams($this->request);
+        $this->request = $this->parseNamedParams($this->request);
 
         // Parse named parameters (e.g. /page:123)
         // as if they were query params (e.g. ?page=123)
