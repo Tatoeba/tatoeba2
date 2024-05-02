@@ -16,12 +16,12 @@ class DocController extends Controller
 
         // assign 'title' block from view var $title, if set
         // or default to 'Tatoeba API'
-        $this->getEventManager()->attach(
+        $this->getEventManager()->on(
+            'View.beforeRender',
             function (Event $event) {
                 $view = $event->subject;
                 $view->assign('title', $view->get('title') ?? 'Tatoeba API');
-            },
-            'View.beforeRender'
+            }
         );
     }
 

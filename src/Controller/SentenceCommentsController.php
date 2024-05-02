@@ -91,7 +91,7 @@ class SentenceCommentsController extends AppController
         );
 
         $eventManager = $this->SentenceComments->getEventManager();
-        $eventManager->attach(new NotificationListener());
+        $eventManager->on(new NotificationListener());
 
         // disable Form Tampering Protection for actions where it's no big deal
         // (it was only protecting against changing the sentence_id)
