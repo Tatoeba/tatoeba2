@@ -132,7 +132,7 @@ class ClickableLinksHelper extends AppHelper
             $this::SENTENCE_ID_PATTERN, 
             function ($m) use ($self, $model) {
                 return $m[1] . $self->Html->link($m[2],
-                    $self->request->scheme().'://'.$self->request->host().'/sentences/show/'.$m[3],
+                    $self->getView()->getRequest()->scheme().'://'.$self->getView()->getRequest()->host().'/sentences/show/'.$m[3],
                     array('title' => $model->getSentenceTextForId($m[3]))
                 );
             }, $text);
