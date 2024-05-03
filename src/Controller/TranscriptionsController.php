@@ -210,6 +210,6 @@ class TranscriptionsController extends AppController
 
         $this->set('transcr', $transcriptions);
         $this->set('validationErrors', $this->Transcriptions->validationErrors);
-        $this->viewBuilder()->autoLayout(false);
+        $this->viewBuilder()->enableAutoLayout(false);
     }
 }
