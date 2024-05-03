@@ -10,9 +10,9 @@ use Cake\I18n\I18n;
 
 class TranscriptionsTableTest extends TestCase {
     public $fixtures = array(
-        'app.transcriptions',
-        'app.sentences',
-        'app.users'
+        'app.Transcriptions',
+        'app.Sentences',
+        'app.Users'
     );
 
     public function setUp() {

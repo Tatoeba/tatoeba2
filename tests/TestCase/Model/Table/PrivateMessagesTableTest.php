@@ -11,9 +11,9 @@ use Cake\TestSuite\TestCase;
 class PrivateMessageTest extends TestCase {
 
     public $fixtures = array(
-        'app.private_messages',
-        'app.users',
-        'app.users_languages'
+        'app.PrivateMessages',
+        'app.Users',
+        'app.UsersLanguages'
     );
 
     public function setUp() {

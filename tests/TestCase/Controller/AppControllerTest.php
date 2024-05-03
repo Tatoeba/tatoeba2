@@ -9,10 +9,10 @@ class AppControllerTest extends IntegrationTestCase {
 	use TatoebaControllerTestTrait;
 
 	public $fixtures = array(
-		'app.users',
-		'app.users_languages',
-		'app.private_messages',
-		'app.wiki_articles',
+		'app.Users',
+		'app.UsersLanguages',
+		'app.PrivateMessages',
+		'app.WikiArticles',
 	);
 
 	function setRememberMeCookie($username, $password) {

@@ -13,12 +13,12 @@ class UsersTableTest extends TestCase
     public $Users;
 
     public $fixtures = [
-        'app.users',
-        'app.users_languages',
-        'app.sentences',
-        'app.contributions',
-        'app.sentence_comments',
-        'app.walls',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Sentences',
+        'app.Contributions',
+        'app.SentenceComments',
+        'app.Walls',
     ];
 
     public function setUp()

@@ -9,13 +9,13 @@ class FavoritesControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.favorites_users',
-        'app.users',
-        'app.users_languages',
-        'app.private_messages',
-        'app.sentences',
-        'app.transcriptions',
-        'app.wiki_articles',
+        'app.FavoritesUsers',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.Transcriptions',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

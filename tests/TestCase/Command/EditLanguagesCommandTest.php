@@ -13,19 +13,19 @@ class EditLanguagesCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.disabled_audios',
-        'app.contributions',
-        'app.languages',
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.tags',
-        'app.tags_sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Contributions',
+        'app.Languages',
+        'app.Links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
     ];
 
     const TESTDIR = TMP . 'edit_languages_tests' . DS;

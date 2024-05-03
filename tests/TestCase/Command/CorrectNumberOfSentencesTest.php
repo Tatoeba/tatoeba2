@@ -12,8 +12,8 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = array(
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
     );
 
     function setUp() {

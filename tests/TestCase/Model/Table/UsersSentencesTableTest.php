@@ -9,9 +9,9 @@ use Cake\I18n\Time;
 
 class UsersSentencesTest extends TestCase {
     public $fixtures = array(
-        'app.users',
-        'app.users_sentences',
-        'app.sentences'
+        'app.Users',
+        'app.UsersSentences',
+        'app.Sentences'
     );
 
     function setUp() {

@@ -8,10 +8,10 @@ use Cake\TestSuite\TestCase;
 class LicensingTest extends TestCase
 {
     public $fixtures = array(
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.users',
-        'app.queued_jobs',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Users',
+        'app.QueuedJobs',
     );
 
     public function setUp()

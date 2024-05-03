@@ -11,8 +11,8 @@ class FillContributionsStatsCommand extends TestCase {
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = array(
-        'app.contributions',
-        'app.contributions_stats'
+        'app.Contributions',
+        'app.ContributionsStats'
     );
 
     function setUp() {

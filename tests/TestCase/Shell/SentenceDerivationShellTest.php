@@ -12,14 +12,14 @@ use Cake\Utility\Hash;
 class SentenceDerivationShellTest extends TestCase
 {
     public $fixtures = array(
-        'app.audios',
-        'app.disabled_audios',
-        'app.contributions',
-        'app.sentences',
-        'app.languages',
-        'app.reindex_flags',
-        'app.links',
-        'app.users'
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Contributions',
+        'app.Sentences',
+        'app.Languages',
+        'app.ReindexFlags',
+        'app.Links',
+        'app.Users'
     );
 
     public function setUp()

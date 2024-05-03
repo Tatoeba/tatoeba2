@@ -13,15 +13,15 @@ class UserControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.contributions',
-        'app.favorites_users',
-        'app.users',
-        'app.private_messages',
-        'app.sentence_comments',
-        'app.sentences',
-        'app.users_languages',
-        'app.wiki_articles',
+        'app.Audios',
+        'app.Contributions',
+        'app.FavoritesUsers',
+        'app.Users',
+        'app.PrivateMessages',
+        'app.SentenceComments',
+        'app.Sentences',
+        'app.UsersLanguages',
+        'app.WikiArticles',
     ];
 
     private $oldPasswords = [];

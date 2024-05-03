@@ -16,12 +16,12 @@ class ReportContentControllerTest extends TestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.sentence_comments',
-        'app.users',
-        'app.users_languages',
-        'app.walls',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.SentenceComments',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Walls',
+        'app.WikiArticles',
     ];
 
     public function setUp() {

@@ -10,11 +10,11 @@ use Cake\TestSuite\ConsoleIntegrationTestCase;
 class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 {
     public $fixtures = [
-        'app.sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.contributions',
-        'app.reindex_flags',
+        'app.Sentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.Contributions',
+        'app.ReindexFlags',
     ];
 
     public $io;

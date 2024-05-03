@@ -12,10 +12,10 @@ class VocabularyTableTest extends TestCase
     use \App\Test\TestCase\SearchMockTrait;
 
     public $fixtures = [
-        'app.vocabulary',
-        'app.users_vocabulary',
-        'app.sentences',
-        'app.users_languages'
+        'app.Vocabulary',
+        'app.UsersVocabulary',
+        'app.Sentences',
+        'app.UsersLanguages'
     ];
 
     public function setUp()

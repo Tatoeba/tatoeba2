@@ -8,9 +8,9 @@ use Cake\TestSuite\TestCase;
 class QueueSentencesReindexTaskTest extends TestCase
 {
     public $fixtures = [
-        'app.reindex_flags',
-        'app.sentences',
-        'app.links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.Links',
     ];
     public $io;
     public $task;

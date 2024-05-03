@@ -8,8 +8,8 @@ use Cake\Utility\Hash;
 
 class LastContributionsTableTest extends TestCase {
 	public $fixtures = array(
-        'app.last_contributions',
-        'app.users',
+        'app.LastContributions',
+        'app.Users',
     );
 
     function setUp() {

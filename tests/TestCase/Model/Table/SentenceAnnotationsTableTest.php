@@ -10,9 +10,9 @@ use Cake\Utility\Hash;
 
 class SentenceAnnotationsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentence_annotations',
-        'app.users',
-        'app.sentences',
+        'app.SentenceAnnotations',
+        'app.Users',
+        'app.Sentences',
     );
 
     function setUp() {

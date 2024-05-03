@@ -9,7 +9,7 @@ use Cake\I18n\I18n;
 
 class LanguagesHelperTest extends TestCase {
 	public $fixtures = array(
-		'app.users_languages'
+		'app.UsersLanguages'
 	);
 
 	private $prevLocale;

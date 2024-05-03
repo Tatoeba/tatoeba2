@@ -12,11 +12,11 @@ class TagsTableTest extends TestCase {
     use TatoebaTableTestTrait;
 
     public $fixtures = array(
-        'app.sentences',
-        'app.users',
-        'app.tags',
-        'app.tags_sentences',
-        'app.users_languages',
+        'app.Sentences',
+        'app.Users',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.UsersLanguages',
     );
 
     public function setUp() {

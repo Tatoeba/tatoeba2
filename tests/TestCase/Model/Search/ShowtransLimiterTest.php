@@ -17,12 +17,12 @@ use Cake\TestSuite\TestCase;
 class ShowtransLimiterTest extends TestCase
 {
     public $fixtures = [
-        'app.audios',
-        'app.links',
-        'app.sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
+        'app.Audios',
+        'app.Links',
+        'app.Sentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
     public function setUp()

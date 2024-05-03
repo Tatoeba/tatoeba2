@@ -10,24 +10,24 @@ use Cake\I18n\I18n;
 
 class AudiosTableTest extends TestCase {
     public $fixtures = array(
-        'app.audios',
-        'app.disabled_audios',
-        'app.contributions',
-        'app.favorites_users',
-        'app.languages',
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.sentence_annotations',
-        'app.sentence_comments',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.tags',
-        'app.tags_sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.walls',
-        'app.wall_threads'
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Contributions',
+        'app.FavoritesUsers',
+        'app.Languages',
+        'app.Links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.SentenceAnnotations',
+        'app.SentenceComments',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.Walls',
+        'app.WallThreads'
     );
 
     function setUp() {

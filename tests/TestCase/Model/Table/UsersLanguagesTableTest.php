@@ -9,10 +9,10 @@ use Cake\I18n\Time;
 
 class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
-        'app.users',
-        'app.users_languages',
-        'app.languages',
-        'app.queued_jobs',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Languages',
+        'app.QueuedJobs',
         'plugin.Queue.QueueProcesses',
     );
     public $autoFixtures = false;

@@ -7,7 +7,7 @@ use Cake\ORM\TableRegistry;
 
 class FavoritesTableTest extends TestCase {
     public $fixtures = array(
-        'app.favorites_users',
+        'app.FavoritesUsers',
     );
 
     function setUp() {

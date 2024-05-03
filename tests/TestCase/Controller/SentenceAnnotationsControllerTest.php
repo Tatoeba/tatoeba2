@@ -9,12 +9,12 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.sentence_annotations',
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.SentenceAnnotations',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

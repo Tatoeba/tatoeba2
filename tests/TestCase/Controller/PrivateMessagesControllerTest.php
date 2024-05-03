@@ -12,11 +12,11 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

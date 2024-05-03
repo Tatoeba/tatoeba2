@@ -9,23 +9,23 @@ use Cake\View\View;
 
 class TranscriptionsHelperTest extends TestCase {
     public $fixtures = array(
-        'app.contributions',
-        'app.favorites_users',
-        'app.languages',
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.sentence_comments',
-        'app.sentence_annotations',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.tags',
-        'app.tags_sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.walls',
-        'app.wall_threads'
+        'app.Contributions',
+        'app.FavoritesUsers',
+        'app.Languages',
+        'app.Links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.SentenceComments',
+        'app.SentenceAnnotations',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Walls',
+        'app.WallThreads'
     );
 
     function setUp() {

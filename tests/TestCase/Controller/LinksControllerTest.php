@@ -9,12 +9,12 @@ class LinksControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.contributions',
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
+        'app.Contributions',
+        'app.Links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
     public function accessesProvider() {

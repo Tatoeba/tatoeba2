@@ -12,11 +12,11 @@ use Cake\Event\Event;
 class ContributionTest extends TestCase {
 
     public $fixtures = array(
-        'app.contributions',
-        'app.sentences',
-        'app.languages',
-        'app.links',
-        'app.users_languages',
+        'app.Contributions',
+        'app.Sentences',
+        'app.Languages',
+        'app.Links',
+        'app.UsersLanguages',
     );
 
     public function setUp() {

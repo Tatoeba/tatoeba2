@@ -8,10 +8,10 @@ use Cake\Utility\Hash;
 
 class TranslationsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences',
-        'app.links',
-        'app.transcriptions',
-        'app.users'
+        'app.Sentences',
+        'app.Links',
+        'app.Transcriptions',
+        'app.Users'
     );
 
     function setUp() {

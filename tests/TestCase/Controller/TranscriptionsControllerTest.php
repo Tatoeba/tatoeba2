@@ -9,12 +9,12 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = array(
-        'app.private_messages',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.sentences',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Sentences',
+        'app.WikiArticles',
     );
 
     public function setUp() {

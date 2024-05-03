@@ -13,10 +13,10 @@ use Cake\TestSuite\TestCase;
 class SentenceCommentTest extends TestCase {
 
     public $fixtures = array(
-        'app.sentence_comments',
-        'app.users_languages',
-        'app.users',
-        'app.sentences',
+        'app.SentenceComments',
+        'app.UsersLanguages',
+        'app.Users',
+        'app.Sentences',
     );
 
     public function setUp() {

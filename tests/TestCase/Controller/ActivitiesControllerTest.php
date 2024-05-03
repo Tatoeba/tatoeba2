@@ -9,18 +9,18 @@ class ActivitiesControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = array(
-        'app.audios',
-        'app.favorites_users',
-        'app.links',
-        'app.private_messages',
-        'app.sentences',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
-        'app.wiki_articles',
+        'app.Audios',
+        'app.FavoritesUsers',
+        'app.Links',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
+        'app.WikiArticles',
     );
 
     public function accessesProvider() {
