@@ -172,7 +172,7 @@ class AudioController extends AppController
     }
 
     public function save($id) {
-        $this->viewBuilder()->autoLayout(false);
+        $this->viewBuilder()->enableAutoLayout(false);
 
         if ($this->request->is('post')) {
             $audio = false;
@@ -204,7 +204,7 @@ class AudioController extends AppController
     }
 
     public function delete($id) {
-        $this->viewBuilder()->autoLayout(false);
+        $this->viewBuilder()->enableAutoLayout(false);
 
         if ($this->request->is('post')) {
             $audio = false;
