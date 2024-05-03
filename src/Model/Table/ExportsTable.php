@@ -77,10 +77,10 @@ class ExportsTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         $rules->add(function ($entity) {
-            $data = $entity->extract($this->schema()->columns(), true);
-            $validator = $this->validator('default');
-            $errors = $validator->errors($data, $entity->isNew());
-            $entity->errors($errors);
+            $data = $entity->extract($this->getSchema()->columns(), true);
+            $validator = $this->getValidator('default');
+            $errors = $validator->validate($data, $entity->isNew());
+            $entity->getErrors($errors);
             return empty($errors);
         });
 
