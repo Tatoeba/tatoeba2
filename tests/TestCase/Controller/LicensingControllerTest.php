@@ -8,14 +8,14 @@ class LicensingControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.users',
-        'app.users_languages',
-        'app.queued_jobs',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.sentences',
-        'app.private_messages',
-        'app.wiki_articles',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.QueuedJobs',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Sentences',
+        'app.PrivateMessages',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

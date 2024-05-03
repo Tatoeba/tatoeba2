@@ -13,15 +13,15 @@ class UsersControllerTest extends IntegrationTestCase {
         TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.contributions',
-        'app.users',
-        'app.users_languages',
-        'app.last_contributions',
-        'app.private_messages',
-        'app.sentence_comments',
-        'app.sentences',
-        'app.walls',
-        'app.wiki_articles',
+        'app.Contributions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.LastContributions',
+        'app.PrivateMessages',
+        'app.SentenceComments',
+        'app.Sentences',
+        'app.Walls',
+        'app.WikiArticles',
     ];
 
     public function setUp() {

@@ -13,10 +13,10 @@ use Cake\TestSuite\TestCase;
 class WallTest extends TestCase {
 
     public $fixtures = array(
-        'app.walls',
-        'app.wall_threads',
-        'app.users',
-        'app.users_languages',
+        'app.Walls',
+        'app.WallThreads',
+        'app.Users',
+        'app.UsersLanguages',
     );
 
     public function setUp() {

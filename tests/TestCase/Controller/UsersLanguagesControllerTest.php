@@ -10,8 +10,8 @@ class UsersLanguagesControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.users',
-        'app.users_languages',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
     public function accessesProvider() {

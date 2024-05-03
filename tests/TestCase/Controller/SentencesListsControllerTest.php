@@ -10,21 +10,21 @@ class SentencesListsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.contributions',
-        'app.favorites_users',
-        'app.languages',
-        'app.links',
-        'app.private_messages',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
-        'app.wiki_articles',
+        'app.Audios',
+        'app.Contributions',
+        'app.FavoritesUsers',
+        'app.Languages',
+        'app.Links',
+        'app.PrivateMessages',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

@@ -11,8 +11,8 @@ class FixLinksTableLangsCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.sentences',
-        'app.links',
+        'app.Sentences',
+        'app.Links',
     ];
 
     public function setUp() {

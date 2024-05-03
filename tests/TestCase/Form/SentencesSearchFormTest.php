@@ -6,10 +6,10 @@ use Cake\TestSuite\TestCase;
 class SentencesSearchFormTest extends TestCase
 {
     public $fixtures = [
-        'app.users',
-        'app.sentences_lists',
-        'app.tags',
-        'app.users_languages',
+        'app.Users',
+        'app.SentencesLists',
+        'app.Tags',
+        'app.UsersLanguages',
     ];
 
     public function setUp() {

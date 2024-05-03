@@ -15,18 +15,18 @@ class AudioControllerTest extends IntegrationTestCase
     use AudioIntegrationTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.disabled_audios',
-        'app.languages',
-        'app.private_messages',
-        'app.sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.wiki_articles',
-        'app.reindex_flags',
-        'app.links',
-        'app.queued_jobs',
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Languages',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.WikiArticles',
+        'app.ReindexFlags',
+        'app.Links',
+        'app.QueuedJobs',
     ];
 
     public function accessesProvider() {

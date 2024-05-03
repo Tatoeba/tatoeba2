@@ -9,7 +9,7 @@ use Cake\View\View;
 class LogsHelperTest extends TestCase
 {
     public $fixtures = [
-        'app.contributions',
+        'app.Contributions',
     ];
 
     public $LogsHelper;

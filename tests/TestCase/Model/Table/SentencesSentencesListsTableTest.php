@@ -7,9 +7,9 @@ use Cake\ORM\TableRegistry;
 
 class SentencesSentencesListsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences_sentences_lists',
-        'app.sentences_lists',
-        'app.sentences'
+        'app.SentencesSentencesLists',
+        'app.SentencesLists',
+        'app.Sentences'
     );
 
     function setUp() {

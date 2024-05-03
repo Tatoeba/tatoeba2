@@ -17,22 +17,22 @@ use Cake\I18n\I18n;
 
 class SentencesTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
-        'app.contributions',
-        'app.disabled_audios',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.tags',
-        'app.tags_sentences',
-        'app.languages',
-        'app.links',
-        'app.transcriptions',
-        'app.reindex_flags',
-        'app.audios',
-        'app.users_sentences',
-        'app.favorites_users',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Contributions',
+        'app.DisabledAudios',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Languages',
+        'app.Links',
+        'app.Transcriptions',
+        'app.ReindexFlags',
+        'app.Audios',
+        'app.UsersSentences',
+        'app.FavoritesUsers',
     );
 
     function setUp() {

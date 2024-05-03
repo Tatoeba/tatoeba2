@@ -13,14 +13,14 @@ class EditLicensesCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.sentences',
-        'app.reindex_flags',
-        'app.transcriptions',
-        'app.contributions',
-        'app.tags',
-        'app.tags_sentences',
-        'app.users',
-        'app.users_languages',
+        'app.Sentences',
+        'app.ReindexFlags',
+        'app.Transcriptions',
+        'app.Contributions',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
     const TESTDIR = TMP . 'edit_licenses_tests' . DS;

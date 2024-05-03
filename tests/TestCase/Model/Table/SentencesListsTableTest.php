@@ -10,18 +10,18 @@ use Cake\I18n\I18n;
 
 class SentencesListsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.sentences',
-        'app.favorites_users',
-        'app.users',
-        'app.users_languages',
-        'app.contributions',
-        'app.languages',
-        'app.reindex_flags',
-        'app.links',
-        'app.audios',
-        'app.transcriptions'
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Sentences',
+        'app.FavoritesUsers',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Contributions',
+        'app.Languages',
+        'app.ReindexFlags',
+        'app.Links',
+        'app.Audios',
+        'app.Transcriptions'
     );
 
     function setUp() {

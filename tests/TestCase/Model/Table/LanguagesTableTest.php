@@ -8,7 +8,7 @@ use Cake\Utility\Hash;
 
 class LanguagesTableTest extends TestCase {
     public $fixtures = array(
-        'app.languages',
+        'app.Languages',
     );
 
     function setUp() {

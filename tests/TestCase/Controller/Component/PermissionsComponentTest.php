@@ -13,10 +13,10 @@ use Cake\TestSuite\TestCase;
 class PermissionsComponentTest extends TestCase
 {
     public $fixtures = [
-        'app.users',
-        'app.users_languages',
-        'app.walls',
-        'app.sentence_comments',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Walls',
+        'app.SentenceComments',
     ];
     private $component;
     private $controller;

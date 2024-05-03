@@ -8,8 +8,8 @@ use Cake\I18n\I18n;
 
 class TagsSentencesTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences',
-        'app.tags_sentences'
+        'app.Sentences',
+        'app.TagsSentences'
     );
 
     function setUp() {

@@ -11,10 +11,10 @@ use Cake\Utility\Hash;
 class QueueRefreshLicenseSwitchListTaskTest extends TestCase
 {
     public $fixtures = array(
-        'app.sentences',
-        'app.contributions',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
+        'app.Sentences',
+        'app.Contributions',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
     );
 
     public function setUp()

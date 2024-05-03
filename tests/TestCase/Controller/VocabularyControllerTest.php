@@ -9,13 +9,13 @@ class VocabularyControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
-        'app.users_vocabulary',
-        'app.vocabulary',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersVocabulary',
+        'app.Vocabulary',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

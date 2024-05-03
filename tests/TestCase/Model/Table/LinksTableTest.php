@@ -8,22 +8,22 @@ use Cake\Utility\Hash;
 
 class LinksTableTest extends TestCase {
 	public $fixtures = array(
-		'app.sentences',
-		'app.users',
-		'app.sentence_comments',
-		'app.contributions',
-		'app.sentences_lists',
-		'app.sentences_sentences_lists',
-		'app.walls',
-		'app.wall_threads',
-		'app.favorites_users',
-		'app.tags',
-		'app.tags_sentences',
-		'app.languages',
-		'app.links',
-		'app.sentence_annotations',
-		'app.transcriptions',
-		'app.reindex_flags'
+		'app.Sentences',
+		'app.Users',
+		'app.SentenceComments',
+		'app.Contributions',
+		'app.SentencesLists',
+		'app.SentencesSentencesLists',
+		'app.Walls',
+		'app.WallThreads',
+		'app.FavoritesUsers',
+		'app.Tags',
+		'app.TagsSentences',
+		'app.Languages',
+		'app.Links',
+		'app.SentenceAnnotations',
+		'app.Transcriptions',
+		'app.ReindexFlags'
 	);
 
 	function setUp() {

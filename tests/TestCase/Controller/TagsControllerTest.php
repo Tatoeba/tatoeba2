@@ -8,20 +8,20 @@ class TagsControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.favorites_users',
-        'app.private_messages',
-        'app.sentences',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.links',
-        'app.tags',
-        'app.tags_sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
-        'app.wiki_articles',
+        'app.Audios',
+        'app.FavoritesUsers',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Links',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

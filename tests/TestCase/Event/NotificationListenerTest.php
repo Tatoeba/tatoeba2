@@ -14,10 +14,10 @@ class NotificationListenerTest extends TestCase {
     use EmailTrait;
 
     public $fixtures = array(
-        'app.users',
-        'app.sentences',
-        'app.sentence_comments',
-        'app.walls'
+        'app.Users',
+        'app.Sentences',
+        'app.SentenceComments',
+        'app.Walls'
     );
 
     public function setUp() {

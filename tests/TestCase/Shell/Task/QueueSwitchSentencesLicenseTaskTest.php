@@ -12,13 +12,13 @@ use App\Model\CurrentUser;
 class QueueSwitchSentencesLicenseTaskTest extends TestCase
 {
     public $fixtures = array(
-        'app.sentences',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.users_languages',
-        'app.contributions',
-        'app.reindex_flags',
-        'app.private_messages',
+        'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.UsersLanguages',
+        'app.Contributions',
+        'app.ReindexFlags',
+        'app.PrivateMessages',
     );
 
     public function setUp()

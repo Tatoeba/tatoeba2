@@ -1,5 +1,5 @@
-<?php
 namespace App\Test\TestCase\Model\Entity;
+<?php
 
 use App\Model\CurrentUser;
 use App\Model\Entity\Sentence;
@@ -9,7 +9,7 @@ use Cake\TestSuite\TestCase;
 class TranscriptionTest extends TestCase
 {
     public $fixtures = array(
-            'app.users_languages'
+            'app.UsersLanguages'
     );
 
     public function setUp()

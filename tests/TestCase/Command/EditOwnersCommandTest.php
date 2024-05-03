@@ -13,11 +13,11 @@ class EditOwnersCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
+        'app.Links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
     const TESTDIR = TMP . 'edit_owners_tests' . DS;

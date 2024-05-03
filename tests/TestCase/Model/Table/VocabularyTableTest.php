@@ -10,10 +10,10 @@ use Cake\I18n\I18n;
 class VocabularyTableTest extends TestCase
 {
     public $fixtures = [
-        'app.vocabulary',
-        'app.users_vocabulary',
-        'app.sentences',
-        'app.users_languages'
+        'app.Vocabulary',
+        'app.UsersVocabulary',
+        'app.Sentences',
+        'app.UsersLanguages'
     ];
 
     public function setUp()

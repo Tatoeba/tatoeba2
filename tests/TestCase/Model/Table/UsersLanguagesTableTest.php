@@ -9,9 +9,9 @@ use Cake\I18n\Time;
 
 class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
-        'app.users',
-        'app.users_languages',
-        'app.languages'
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Languages'
     );
 
     function setUp() {

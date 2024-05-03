@@ -10,14 +10,14 @@ class ContributionsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.contributions',
-        'app.contributions_stats',
-        'app.last_contributions',
-        'app.users',
-        'app.users_languages',
-        'app.private_messages',
-        'app.sentences',
-        'app.wiki_articles',
+        'app.Contributions',
+        'app.ContributionsStats',
+        'app.LastContributions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {
