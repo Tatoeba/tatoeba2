@@ -35,7 +35,7 @@ class ExportsTableTest extends TestCase
             'maxSizeInBytes' => 0,
         ]);
 
-        \Cake\Core\Plugin::load('Queue');
+        parent::loadPlugins(['Queue']);
 
         $folder = new Folder($this->testExportDir);
         $folder->delete();

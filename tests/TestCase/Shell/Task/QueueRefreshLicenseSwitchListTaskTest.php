@@ -6,7 +6,6 @@ use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOutput;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Plugin;
 use Cake\Utility\Hash;
 
 class QueueRefreshLicenseSwitchListTaskTest extends TestCase
@@ -21,7 +20,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Plugin::load('Queue');
+        parent::loadPlugins(['Queue']);
 
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
         $this->task = $this->getMockBuilder(QueueRefreshLicenseSwitchListTask::class)
