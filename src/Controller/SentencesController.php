@@ -336,7 +336,7 @@ class SentencesController extends AppController
     public function edit_sentence()
     {
         $acceptsJson = $this->request->accepts('application/json');
-        $sentence = $this->Sentences->editSentence($this->request->data);
+        $sentence = $this->Sentences->editSentence($this->request->getData());
         if ($acceptsJson) {
             $sentence = $this->Sentences->getSentenceWith($sentence->id);
             $this->loadComponent('RequestHandler');
@@ -732,11 +732,11 @@ class SentencesController extends AppController
      */
     public function change_language()
     {
-        if (isset($this->request->data['id'])
-            && isset($this->request->data['newLang'])
+        if (null !== $this->request->getData('id')
+            && null !== $this->request->getData('newLang')
         ) {
-            $newLang = $this->request->data['newLang'];
-            $id = $this->request->data['id'];
+            $newLang = $this->request->getData('newLang');
+            $id = $this->request->getData('id');
 
             $lang = $this->Sentences->changeLanguage($id, $newLang);
             $this->loadModel('UsersSentences');

@@ -118,13 +118,13 @@ class AudioController extends AppController
     }
 
     public function save_settings() {
-        if (!empty($this->request->data)) {
+        if (!empty($this->request->getData())) {
             $currentUserId = CurrentUser::get('id');
             $allowedFields = array(
                 'audio_license',
                 'audio_attribution_url',
             );
-            $dataToSave = $this->filterKeys($this->request->data, $allowedFields);
+            $dataToSave = $this->filterKeys($this->request->getData(), $allowedFields);
             $this->loadModel('Users');
             $user = $this->Users->get($currentUserId);
             $this->Users->patchEntity($user, $dataToSave);

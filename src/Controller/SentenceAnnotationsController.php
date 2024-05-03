@@ -91,7 +91,7 @@ class SentenceAnnotationsController extends AppController
      */
     public function save()
     {
-        if (empty($this->request->data)) {
+        if (empty($this->request->getData())) {
             return;
         }
         
