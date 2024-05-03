@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\Licensing;
-use Cake\Core\Plugin;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
@@ -18,7 +17,7 @@ class LicensingTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Plugin::load('Queue');
+        parent::loadPlugins(['Queue']);
 
         $this->Licensing = new Licensing();
     }
