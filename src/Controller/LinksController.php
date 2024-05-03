@@ -73,7 +73,7 @@ class LinksController extends AppController
     private function _renderTranslationsOf($sentenceId, $message)
     {
         $this->loadModel('Sentences');
-        $langFilter = $this->request->data['langFilter'] ?? 'und';
+        $langFilter = $this->request->getData('langFilter') ?? 'und';
         $translations = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $langFilter)->translations;
 
         $this->set('sentenceId', $sentenceId);
@@ -128,8 +128,8 @@ class LinksController extends AppController
         if ($acceptsJson) {
             $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
-            if (isset($this->request->data['returnTranslations'])
-                && (bool)$this->request->data['returnTranslations'])
+            if (null !== $this->request->getData('returnTranslations')
+                && (bool)$this->request->getData('returnTranslations'))
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
@@ -172,8 +172,8 @@ class LinksController extends AppController
         if ($acceptsJson) {
             $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
-            if (isset($this->request->data['returnTranslations'])
-                && (bool)$this->request->data['returnTranslations'])
+            if (null !== $this->request->getData('returnTranslations')
+                && (bool)$this->request->getData('returnTranslations'))
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);

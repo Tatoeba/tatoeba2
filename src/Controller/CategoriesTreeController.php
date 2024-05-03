@@ -71,9 +71,9 @@ class CategoriesTreeController extends AppController
     }
 
     public function createorEditCategory() {
-        $name = $this->request->data('name');
-        $description = $this->request->data('description');
-        $parentName = $this->request->data('parentName');
+        $name = $this->request->getData('name');
+        $description = $this->request->getData('description');
+        $parentName = $this->request->getData('parentName');
 
         $res = $this->CategoriesTree->createOrEdit($name, $description, $parentName);
 
@@ -95,8 +95,8 @@ class CategoriesTreeController extends AppController
     }
 
     public function attachTagToCategory() {
-        $tagName = $this->request->data('tagName');
-        $categoryName = $this->request->data('categoryName');
+        $tagName = $this->request->getData('tagName');
+        $categoryName = $this->request->getData('categoryName');
 
         $this->loadModel('Tags');
         $res = $this->Tags->attachToCategory($tagName, $categoryName);

@@ -122,11 +122,11 @@ class ToolsController extends AppController
      */
     public function conversion_simplified_traditional_chinese()
     {
-        if (empty($this->request->data['Tool'])) {
+        if (empty($this->request->getData('Tool'))) {
             return;
         }
 
-        $text = $this->request->data['Tool']['query'];
+        $text = $this->request->getData('Tool')['query'];
 
         if (!empty($text)) {
             $script = $this->Transcription->detectScript('cmn', $text);
@@ -161,8 +161,8 @@ class ToolsController extends AppController
      */
     public function shanghainese_to_ipa($text = null)
     {
-        if (empty($text) && !empty($this->request->data['Tool'])) {
-            $text = $this->request->data['Tool']['query'];
+        if (empty($text) && !empty($this->request->getData('Tool'))) {
+            $text = $this->request->getData('Tool')['query'];
         }
 
         if (!empty($text)) {
