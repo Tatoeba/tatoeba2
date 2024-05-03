@@ -75,16 +75,17 @@ class NotificationListener implements EventListenerInterface {
         $author = $User->getUsernameFromId($post['owner']);
         $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
 
-        $this->Email
+        $email = $this->Email
              ->setTo($recipient)
              ->setSubject($subject)
-             ->setTemplate('wall_reply')
              ->setViewVars(array(
                  'author' => $author,
                  'postId' => $post['id'],
                  'messageContent' => $post['content']
-             ))
-             ->send();
+             ));
+
+        $email->viewBuilder()->setTemplate('wall_reply');
+        $email->send();
     }
 
     public function sendPmNotification($event) {
@@ -101,17 +102,18 @@ class NotificationListener implements EventListenerInterface {
         $title = $message['title'];
         $content = $message['content'];
 
-        $this->Email
+        $email = $this->Email
             ->setTo($recipientEmail)
             ->setSubject('Tatoeba PM - ' . $title)
-            ->setTemplate('new_private_message')
             ->setViewVars(array(
               'sender' => $sender,
               'title' => $title,
               'message' => $content,
               'messageId' => $message['id'],
-            ))
-            ->send();
+            ));
+
+        $email->viewBuilder()->setTemplate('new_private_message');
+        $email->send();
     }
 
     private function _getMentionedUsernames($comment)
@@ -182,17 +184,18 @@ class NotificationListener implements EventListenerInterface {
         }
         $commentText = $comment['text'];
 
-        $this->Email
+        $email = $this->Email
             ->setTo($recipient)
             ->setSubject($subject)
-            ->setTemplate('comment_on_sentence')
             ->setViewVars(array(
               'author' => $comment['author'],
               'commentText' => $commentText,
               'sentenceIsDeleted' => $sentenceIsDeleted,
               'sentenceText' => $sentenceText,
               'sentenceId' => $sentenceId,
-            ))
-            ->send();
+            ));
+
+        $email->viewBuilder()->setTemplate('comment_on_sentence');
+        $email->send();
     }
 }
