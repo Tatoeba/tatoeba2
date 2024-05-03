@@ -33,9 +33,9 @@ $messages = [
 
 <div id="main_content">
     <?php
-        if (isset($this->request['?'])) {
-            $action = array_keys($this->request['?'])[0];
-            $error = ($this->request['?'][$action] == '0');
+        if (null !== $this->request->getParam('?')) {
+            $action = array_keys($this->request->getParam('?'))[0];
+            $error = ($this->request->getParam('?')[$action] == '0');
             if (array_key_exists($action, $messages) && $error) {
     ?>
         <div class="warning">
