@@ -94,7 +94,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                     __("Unable to change the license of sentence {id} to “{newLicense}” because:"),
                     compact('id', 'newLicense')
                 );
-                $errors = $data->errors('license');
+                $errors = $data->getError('license');
                 $this->out($message."\n - ".implode("\n - ", $errors));
             }
         }
