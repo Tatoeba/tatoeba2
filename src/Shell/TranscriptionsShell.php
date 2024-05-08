@@ -42,7 +42,7 @@ class TranscriptionsShell extends Shell {
             $text = $entity->text;
             $entity->script = $this->Transcriptions->detectScript($lang, $text);
             if ($entity->has('modified'))
-                $entity->dirty('modified', true);
+                $entity->setDirty('modified', true);
         }
         return $entities;
     }
