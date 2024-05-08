@@ -67,7 +67,7 @@ class VocabularyTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        if ($entity->isNew() || $entity->dirty('lang') || $entity->dirty('text')) {
+        if ($entity->isNew() || $entity->isDirty('lang') || $entity->isDirty('text')) {
             $lang = $entity->lang;
             $text = $entity->text;
             $entity->numSentences = $this->_getNumberOfSentences($lang, $text);
