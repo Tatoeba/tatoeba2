@@ -32,6 +32,7 @@ class SentencesSearchFormTest extends TestCase
             'unapproved' => 'no',
             'orphans' => 'no',
             'user' => '',
+            'origin' => 'any',
             'has_audio' => '',
             'word_count_min' => '1',
             'word_count_max' => '',
