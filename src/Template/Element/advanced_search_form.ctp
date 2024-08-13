@@ -161,6 +161,27 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
+            <div class="param" layout="<?= $layout ?>" layout-align="center">
+                <label for="origin" flex><?= __('Initially added:') ?></label>
+                <div flex>
+                <?php
+                echo $this->Form->input('origin', [
+                    'label' => '',
+                    'options' => [
+                        /* @translators: dropdown option of "Initially added" field in search form */
+                        'any' => __x('origin', 'Any'),
+                        'translation' => __('As a translation of another sentence'),
+                        'original' => __('Not as translation (original)'),
+                        /* @translators: dropdown option of "Initially added" field in search form */
+                        'unknown' => __('Unknown'),
+                    ],
+                    'ng-model' => 'filters.origin',
+                    'ng-model-init' => $origin,
+                ]);
+                ?>
+                </div>
+            </div>
+
             <div class="param">
                 <div layout="row" layout-align="center">
                     <label for="orphans" flex><?= __('Is orphan:') ?></label>

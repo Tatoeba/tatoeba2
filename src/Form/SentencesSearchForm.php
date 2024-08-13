@@ -28,6 +28,7 @@ class SentencesSearchForm extends Form
         'tags' => '',
         'list' => '',
         'user' => '',
+        'origin' => 'any',
         'orphans' => 'no',
         'unapproved' => 'no',
         'native' => '',
@@ -111,6 +112,9 @@ class SentencesSearchForm extends Form
             }
         }
         return $user;
+    }
+
+    protected function setDataOrigin(string $origin) {
     }
 
     protected function setDataTransFilter(string $trans_filter) {
