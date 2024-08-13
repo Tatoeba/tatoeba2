@@ -113,6 +113,46 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByOriginKnown() {
+        $result = $this->Search->filterByOriginKnown(false);
+        $this->assertFalse($result);
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['origin_known', false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByOriginKnown_null() {
+        $result = $this->Search->filterByOriginKnown(null);
+        $this->assertNull($result);
+
+        $expected = $this->makeSphinxParams();
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByAddedAsTranslation() {
+        $result = $this->Search->filterByAddedAsTranslation(true);
+        $this->assertTrue($result);
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['added_as_translation', true]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByAddedAsTranslation_null() {
+        $result = $this->Search->filterByAddedAsTranslation(null);
+        $this->assertNull($result);
+
+        $expected = $this->makeSphinxParams();
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByOrphanship_true() {
         $result = $this->Search->filterByOrphanship(true);
         $this->assertTrue($result);
