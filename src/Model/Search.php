@@ -22,6 +22,8 @@ class Search {
     private $query;
     private $lang;
     private $ownerId;
+    private $originKnown;
+    private $addedAsTranslation;
     private $isOrphan;
     private $correctness;
     private $hasAudio;
@@ -112,6 +114,12 @@ class Search {
         if ($this->ownerId) {
             $sphinx['filter'][] = ['user_id', $this->ownerId];
         }
+        if (!is_null($this->originKnown)) {
+            $sphinx['filter'][] = ['origin_known', $this->originKnown];
+        }
+        if (!is_null($this->addedAsTranslation)) {
+            $sphinx['filter'][] = ['added_as_translation', $this->addedAsTranslation];
+        }
         if (!is_null($this->isOrphan)) {
             $sphinx['filter'][] = ['user_id', 0, !$this->isOrphan];
         }
@@ -199,6 +207,14 @@ class Search {
 
     public function filterByOwnerId($ownerId) {
         return $this->ownerId = $ownerId;
+    }
+
+    public function filterByOriginKnown($originKnown) {
+        return $this->originKnown = $originKnown;
+    }
+
+    public function filterByAddedAsTranslation($addedAsTranslation) {
+        return $this->addedAsTranslation = $addedAsTranslation;
     }
 
     public function filterByOrphanship($isOrphan) {

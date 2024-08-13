@@ -115,6 +115,21 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataOrigin(string $origin) {
+        if ($origin == 'unknown') {
+            $this->search->filterByOriginKnown(false);
+            $this->search->filterByAddedAsTranslation(null);
+        } elseif ($origin == 'translation') {
+            $this->search->filterByOriginKnown(true);
+            $this->search->filterByAddedAsTranslation(true);
+        } elseif ($origin == 'original') {
+            $this->search->filterByOriginKnown(true);
+            $this->search->filterByAddedAsTranslation(false);
+        } else {
+            $origin = 'any';
+            $this->search->filterByOriginKnown(null);
+            $this->search->filterByAddedAsTranslation(null);
+        }
+        return $origin;
     }
 
     protected function setDataTransFilter(string $trans_filter) {
