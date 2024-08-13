@@ -44,10 +44,11 @@ class SphinxIndexesShell extends Shell {
            ."Merges the (big and slow to refresh) main index with "
            ."the (small and quick to refresh) delta index of the given "
            ."language ISO codes, or all the languages if none provided.\n\n"
-           ."Usage:   $myself [-w] update (main|delta) [lang]...\n"
+           ."Usage:   $myself [-w|-f] update (main|delta) [lang]...\n"
            ."Example 1: $myself update delta\n"
            ."Example 2: $myself update main epo lit swh\n"
            ."Updates all indexes (or only the given ones) of type main or delta.\n\n"
+           ."-f:      force updating all indexes (useful for delta)\n"
            ."-w:      wait for running $myself to exit\n");
     }
 
@@ -87,9 +88,9 @@ class SphinxIndexesShell extends Shell {
         }
     }
 
-    private function update_index($type, $langs) {
+    private function update_index($type, $langs, $force) {
         if (!$langs) {
-            if ($type == 'delta') {
+            if ($type == 'delta' && !$force) {
                 $this->loadModel('ReindexFlags');
                 $langs = $this->ReindexFlags
                      ->find('list', ['valueField' => 'lang'])
@@ -131,6 +132,10 @@ class SphinxIndexesShell extends Shell {
         $parser = parent::getOptionParser();
         $parser->addOption('wait', [
             'short' => 'w',
+            'boolean' => true,
+        ]);
+        $parser->addOption('force', [
+            'short' => 'f',
             'boolean' => true,
         ]);
         return $parser;
@@ -178,7 +183,7 @@ class SphinxIndexesShell extends Shell {
                 } else {
                     $langs = null;
                 }
-                $this->update_index($type, $langs);
+                $this->update_index($type, $langs, $this->param('force'));
                 break;
 
             default:
