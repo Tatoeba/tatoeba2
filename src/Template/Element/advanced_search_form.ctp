@@ -161,24 +161,20 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
-            <div class="param" layout="<?= $layout ?>" layout-align="center">
-                <label for="origin" flex><?= __('Initially added:') ?></label>
-                <div flex>
-                <?php
-                echo $this->Form->input('origin', [
-                    'label' => '',
-                    'options' => [
-                        /* @translators: dropdown option of "Initially added" field in search form */
-                        'any' => __x('origin', 'Any'),
-                        'translation' => __('As a translation of another sentence'),
-                        'original' => __('Not as translation (original)'),
-                        /* @translators: dropdown option of "Initially added" field in search form */
-                        'unknown' => __('Unknown'),
-                    ],
-                    'ng-model' => 'filters.origin',
-                    'ng-model-init' => $origin,
-                ]);
-                ?>
+            <div class="param" layout="row">
+                <md-checkbox
+                    ng-false-value="''"
+                    ng-true-value="'yes'"
+                    ng-model="filters.original"
+                    ng-model-init="<?= h($original) ?>"
+                    class="md-primary">
+                    <?= __('Is original') ?>
+                </md-checkbox>
+                <div class="infobox">
+                    <md-icon>help</md-icon>
+                    <md-tooltip class="multiline" md-direction="top">
+                        <?= __('Original sentences are the ones initially added as examples in that language only, as opposed to the ones initially added as translations of another sentence. Such sentences are likely to feature more traits specific to that language.') ?>
+                    </md-tooltip>
                 </div>
             </div>
 

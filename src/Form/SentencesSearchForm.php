@@ -28,7 +28,7 @@ class SentencesSearchForm extends Form
         'tags' => '',
         'list' => '',
         'user' => '',
-        'origin' => 'any',
+        'original' => '',
         'orphans' => 'no',
         'unapproved' => 'no',
         'native' => '',
@@ -114,22 +114,11 @@ class SentencesSearchForm extends Form
         return $user;
     }
 
-    protected function setDataOrigin(string $origin) {
-        if ($origin == 'unknown') {
-            $this->search->filterByOriginKnown(false);
-            $this->search->filterByAddedAsTranslation(null);
-        } elseif ($origin == 'translation') {
-            $this->search->filterByOriginKnown(true);
-            $this->search->filterByAddedAsTranslation(true);
-        } elseif ($origin == 'original') {
-            $this->search->filterByOriginKnown(true);
-            $this->search->filterByAddedAsTranslation(false);
-        } else {
-            $origin = 'any';
-            $this->search->filterByOriginKnown(null);
-            $this->search->filterByAddedAsTranslation(null);
-        }
-        return $origin;
+    protected function setDataOriginal(string $original) {
+        $original = $original === 'yes';
+        $this->search->filterByOriginKnown($original ? true : null);
+        $this->search->filterByAddedAsTranslation($original ? false : null);
+        return $original ? 'yes' : '';
     }
 
     protected function setDataTransFilter(string $trans_filter) {
