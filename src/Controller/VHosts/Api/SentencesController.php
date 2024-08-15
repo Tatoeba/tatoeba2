@@ -50,6 +50,7 @@ class SentencesController extends ApiController
         };
         $transcriptionsContainment = [
             'fields' => ['sentence_id', 'script', 'text', 'needsReview'],
+            'Sentences' => ['fields' => ['lang']],
         ];
         $indirTranslationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment) {
             $q->select($this->fields())
