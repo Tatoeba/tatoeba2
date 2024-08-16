@@ -134,18 +134,18 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByAddedAsTranslation() {
-        $result = $this->Search->filterByAddedAsTranslation(true);
+        $result = $this->Search->filterByIsOriginal(true);
         $this->assertTrue($result);
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['added_as_translation', true]]
+            'filter' => [['is_original', true]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByAddedAsTranslation_null() {
-        $result = $this->Search->filterByAddedAsTranslation(null);
+        $result = $this->Search->filterByIsOriginal(null);
         $this->assertNull($result);
 
         $expected = $this->makeSphinxParams();

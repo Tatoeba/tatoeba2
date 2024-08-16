@@ -100,12 +100,12 @@ class SentencesSearchFormTest extends TestCase
             [ ['user' => 'invaliduser'], ['filterByOwnerId'],    '', 1 ],
             [ ['user' => ''],            ['filterByOwnerId'],    '' ],
 
-            [ ['original' => 'yes'],       ['filterByOriginKnown'        => [[true]],
-                                            'filterByAddedAsTranslation' => [[false]]], 'yes' ],
-            [ ['original' => 'invalid'],   ['filterByOriginKnown'        => [[null]],
-                                            'filterByAddedAsTranslation' => [[null]]],  '' ],
-            [ ['original' => ''],          ['filterByOriginKnown'        => [[null]],
-                                            'filterByAddedAsTranslation' => [[null]]],  '' ],
+            [ ['original' => 'yes'],     ['filterByOriginKnown' => [[true]],
+                                          'filterByIsOriginal'  => [[true]]], 'yes' ],
+            [ ['original' => 'invalid'], ['filterByOriginKnown' => [[null]],
+                                          'filterByIsOriginal'  => [[null]]],  '' ],
+            [ ['original' => ''],        ['filterByOriginKnown' => [[null]],
+                                          'filterByIsOriginal'  => [[null]]],  '' ],
 
             [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
             [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],

@@ -115,9 +115,9 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataOriginal(string $original) {
-        $original = $original === 'yes';
-        $this->search->filterByOriginKnown($original ? true : null);
-        $this->search->filterByAddedAsTranslation($original ? false : null);
+        $original = $original === 'yes' ? true : null;
+        $this->search->filterByOriginKnown($original);
+        $this->search->filterByIsOriginal($original);
         return $original ? 'yes' : '';
     }
 
