@@ -184,7 +184,7 @@ if ($filesToImport): ?>
                             implode(
                                 __(', '),
                                 array_map(
-                                    function ($audio) { return $audio->user->username; },
+                                    function ($audio) { return $audio->author; },
                                     $file['audios']
                                 )
                             )
