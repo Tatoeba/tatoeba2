@@ -137,13 +137,13 @@ class DateHelper extends AppHelper
                 );
             }
         } elseif ($diff->days > 0) {
-            return format(__n('yesterday', "{n}\u{00A0}days ago", $diff->days), array('n' => $diff->days));
+            return format(__n('yesterday', '{n}&nbsp;days ago', $diff->days), array('n' => $diff->days));
         } elseif ($diff->h > 0) {
-            return format(__n('an hour ago', "{n}\u{00A0}hours ago", $diff->h), array('n' => $diff->h));
+            return format(__n('an hour ago', '{n}&nbsp;hours ago', $diff->h), array('n' => $diff->h));
         } else {
             // we stop at minute accuracy
             $minutes = max($diff->i, 1);
-            return format(__n('a minute ago', "{n}\u{00A0}minutes ago", $minutes), array('n' => $minutes));
+            return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes), array('n' => $minutes));
         }
     }
 

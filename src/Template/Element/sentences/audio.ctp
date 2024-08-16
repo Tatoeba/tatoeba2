@@ -101,13 +101,13 @@ $this->AngularTemplate->addTemplate(
             <div class="timestamp">
                 <?php /* @translators: header text of the date an audio recording was added */ ?>
                 <div><?= __('Added') ?></div>
-                <div class="since">{{ audio.created_ago }}</div>
+                <div ng-bind-html="audio.created_ago" class="since"></div>
             </div>
 
             <div ng-if="audio.created_ago !== audio.modified_ago" class="timestamp">
                 <?php /* @translators: header text of the date an audio recording was last modified */ ?>
                 <div><?= __('Last modified') ?></div>
-                <div class="since">{{ audio.modified_ago }}</div>
+                <div ng-bind-html="audio.modified_ago" class="since"></div>
             </div>
 
             <?php if (CurrentUser::isAdmin()): ?>
