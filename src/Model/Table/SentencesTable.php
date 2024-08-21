@@ -604,7 +604,7 @@ class SentencesTable extends Table
      */
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
         $search = new Search();
-        $search->filterByLanguage($lang);
+        $search->filterByLanguage([$lang]);
         $search->sort('random');
         $search->filterByOrphanship(false); // exclude orphans
         $search->filterByCorrectness(false); // exclude unapproved

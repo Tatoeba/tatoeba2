@@ -60,8 +60,8 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_validLang() {
-        $result = $this->Search->filterByLanguage('por');
-        $this->assertEquals('por', $result);
+        $result = $this->Search->filterByLanguage(['por']);
+        $this->assertEquals(['por'], $result);
 
         $expected = $this->makeSphinxParams([
             'index' => ['por_main_index', 'por_delta_index']
@@ -70,9 +70,20 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByLanguage_multiLang() {
+        $result = $this->Search->filterByLanguage(['por', 'spa']);
+        $this->assertEquals(['por', 'spa'], $result);
+
+        $expected = $this->makeSphinxParams([
+            'index' => ['por_main_index', 'por_delta_index', 'spa_main_index', 'spa_delta_index']
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByLanguage_und() {
-        $result = $this->Search->filterByLanguage('und');
-        $this->assertNull($result);
+        $result = $this->Search->filterByLanguage(['und']);
+        $this->assertEquals([], $result);
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
@@ -80,10 +91,21 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_invalidLang() {
-        $result = $this->Search->filterByLanguage('1234567890');
-        $this->assertNull($result);
+        $result = $this->Search->filterByLanguage(['1234567890']);
+        $this->assertEquals([], $result);
 
         $expected = $this->makeSphinxParams();
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByLanguage_multiLang_withInvalid() {
+        $result = $this->Search->filterByLanguage(['npi', '1234567890', 'spa']);
+        $this->assertEquals(['npi', 'spa'], $result);
+
+        $expected = $this->makeSphinxParams([
+            'index' => ['npi_main_index', 'npi_delta_index', 'spa_main_index', 'spa_delta_index']
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
@@ -284,7 +306,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByNativeSpeaker_fra() {
-        $this->Search->filterByLanguage('fra');
+        $this->Search->filterByLanguage(['fra']);
         $result = $this->Search->filterByNativeSpeaker(true);
         $this->assertTrue($result);
 
@@ -297,12 +319,24 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByNativeSpeaker_null() {
-        $this->Search->filterByLanguage('fra');
+        $this->Search->filterByLanguage(['fra']);
         $result = $this->Search->filterByNativeSpeaker(null);
         $this->assertNull($result);
 
         $expected = $this->makeSphinxParams([
             'index' => ['fra_main_index', 'fra_delta_index'],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByNativeSpeaker_multiLang() {
+        $this->Search->filterByLanguage(['fra', 'frm']);
+        $result = $this->Search->filterByNativeSpeaker(true);
+        $this->assertTrue($result);
+
+        $expected = $this->makeSphinxParams([
+            'index' => ['fra_main_index', 'fra_delta_index', 'frm_main_index', 'frm_delta_index'],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
@@ -314,7 +348,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByNativeSpeaker_withLimit() {
-        $this->Search->filterByLanguage('fra');
+        $this->Search->filterByLanguage(['fra']);
         $this->Search->filterByNativeSpeaker(true);
         $this->Search->setSphinxFilterArrayLimit(1);
         $expected = $this->makeSphinxParams([

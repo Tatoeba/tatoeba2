@@ -89,7 +89,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataFrom(string $from) {
-        return $this->search->filterByLanguage($from) ?? '';
+        return $this->search->filterByLanguage([$from])[0] ?? '';
     }
 
     protected function setDataUser(string $user) {

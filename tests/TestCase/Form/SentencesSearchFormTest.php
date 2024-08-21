@@ -73,9 +73,9 @@ class SentencesSearchFormTest extends TestCase
               'ceci ; cela '
             ],
 
-            [ ['from' => 'ain'],         ['filterByLanguage', 'ain'        ], 'ain' ],
-            [ ['from' => ''],            ['filterByLanguage', ''           ], '' ],
-            [ ['from' => 'invalidlang'], ['filterByLanguage', 'invalidlang'], '' ],
+            [ ['from' => 'ain'],         ['filterByLanguage', ['ain']        ], 'ain' ],
+            [ ['from' => ''],            ['filterByLanguage', ['']           ], '' ],
+            [ ['from' => 'invalidlang'], ['filterByLanguage', ['invalidlang']], '' ],
 
             [ ['to' => 'und'],     [], '' ],
             [ ['to' => 'none'],    [], 'none' ],

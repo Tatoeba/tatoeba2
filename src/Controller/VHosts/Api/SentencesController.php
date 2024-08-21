@@ -132,7 +132,7 @@ class SentencesController extends ApiController
 
         $lang = $this->getRequest()->getQuery('lang');
         if ($lang) {
-            $lang = $search->filterByLanguage($lang);
+            $lang = $search->filterByLanguage([$lang]);
             if (is_null($lang)) {
                 return $this->response->withStatus(400, 'Invalid parameter "lang"');
             }

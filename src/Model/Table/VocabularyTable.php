@@ -134,7 +134,7 @@ class VocabularyTable extends Table
             return null;
         }
         $search = new Search();
-        $search->filterByLanguage($lang);
+        $search->filterByLanguage([$lang]);
         $search->filterByQuery(Search::exactSearchQuery($text));
 
         return $this->Sentences->find('withSphinx', [

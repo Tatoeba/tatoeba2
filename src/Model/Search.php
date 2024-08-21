@@ -20,7 +20,7 @@ class Search {
     ];
 
     private $query;
-    private $lang;
+    private $langs = [];
     private $ownerId;
     private $isOrphan;
     private $correctness;
@@ -42,7 +42,7 @@ class Search {
         $this->loadModel('UsersLanguages');
         $natives = $this->UsersLanguages->find()
             ->where([
-                'language_code' => $this->lang,
+                'language_code' => $this->langs[0],
                 'level' => 5,
             ])
             ->select(['of_user_id'])
@@ -57,7 +57,7 @@ class Search {
                 ->where(function (QueryExpression $exp) {
                     $isNonNative = $exp->or(['level is' => null])->notEq('level', 5);
                     return $exp->add($isNonNative)
-                               ->eq('language_code', $this->lang);
+                               ->eq('language_code', $this->langs[0]);
                 })
                 ->select(['of_user_id'])
                 ->enableHydration(false)
@@ -92,9 +92,14 @@ class Search {
         return $expr . ($order ? ' ASC' : ' DESC');
     }
 
-    private function asSphinxIndex($lang) {
-        if ($lang) {
-            return [$lang. '_main_index', $lang . '_delta_index'];
+    private function asSphinxIndex($langs) {
+        if (count($langs) > 0) {
+            $indexes = [];
+            foreach ($langs as $lang) {
+                $indexes[] = $lang . '_main_index';
+                $indexes[] = $lang . '_delta_index';
+            }
+            return $indexes;
         } else {
             return ['und_index'];
         }
@@ -102,7 +107,7 @@ class Search {
 
     public function asSphinx() {
         $sphinx = [
-            'index' => $this->asSphinxIndex($this->lang),
+            'index' => $this->asSphinxIndex($this->langs),
             'matchMode' => SPH_MATCH_EXTENDED2,
             'select' => "*",
         ];
@@ -128,7 +133,7 @@ class Search {
         foreach ($this->tagsIds as $id) {
             $sphinx['filter'][] = ['tags_id', $id];
         }
-        if (!is_null($this->native)) {
+        if (!is_null($this->native) && count($this->langs) == 1) {
             $sphinx['filter'] = $sphinx['filter'] ?? [];
             array_push($sphinx['filter'], ...$this->getNativeSpeakerFilterAsSphinx());
         }
@@ -189,12 +194,14 @@ class Search {
         return $this->query = $query;
     }
 
-    public function filterByLanguage($lang) {
-        $this->lang = null;
-        if (LanguagesLib::languageExists($lang)) {
-            $this->lang = $lang;
+    public function filterByLanguage(array $langs) {
+        $this->langs = [];
+        foreach ($langs as $lang) {
+            if (LanguagesLib::languageExists($lang)) {
+                $this->langs[] = $lang;
+            }
         }
-        return $this->lang;
+        return $this->langs;
     }
 
     public function filterByOwnerId($ownerId) {
