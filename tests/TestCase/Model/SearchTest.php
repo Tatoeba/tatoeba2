@@ -116,19 +116,30 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByOwnerId() {
-        $result = $this->Search->filterByOwnerId(4);
-        $this->assertEquals(4, $result);
+        $result = $this->Search->filterByOwnerId([4]);
+        $this->assertEquals([4], $result);
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['user_id', 4]]
+            'filter' => [['user_id', [4]]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnerId_null() {
-        $result = $this->Search->filterByOwnerId(null);
-        $this->assertNull($result);
+    public function testfilterByOwnerId_multi() {
+        $result = $this->Search->filterByOwnerId([4, 5]);
+        $this->assertEquals([4, 5], $result);
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['user_id', [4, 5]]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByOwnerId_empty() {
+        $result = $this->Search->filterByOwnerId([]);
+        $this->assertEquals([], $result);
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();

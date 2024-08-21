@@ -97,7 +97,7 @@ class SentencesSearchForm extends Form
             $this->loadModel('Users');
             $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
             if ($result) {
-                $this->search->filterByOwnerId($result->id);
+                $this->search->filterByOwnerId([$result->id]);
                 $this->ownerId = $result->id;
             } else {
                 $this->ignored[] = format(

@@ -95,9 +95,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['orphans' => 'invalid'], ['filterByOrphanship', null],  'any' ],
             [ ['orphans' => ''],        ['filterByOrphanship', null],  'any' ],
 
-            [ ['user' => 'contributor'], ['filterByOwnerId', 4], 'contributor' ],
-            [ ['user' => 'invaliduser'], ['filterByOwnerId'],    '', 1 ],
-            [ ['user' => ''],            ['filterByOwnerId'],    '' ],
+            [ ['user' => 'contributor'], ['filterByOwnerId', [4]], 'contributor' ],
+            [ ['user' => 'invaliduser'], ['filterByOwnerId'],      '', 1 ],
+            [ ['user' => ''],            ['filterByOwnerId'],      '' ],
 
             [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
             [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],

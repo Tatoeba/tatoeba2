@@ -21,7 +21,7 @@ class Search {
 
     private $query;
     private $langs = [];
-    private $ownerId;
+    private $ownersIds;
     private $isOrphan;
     private $correctness;
     private $hasAudio;
@@ -114,8 +114,8 @@ class Search {
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
         }
-        if ($this->ownerId) {
-            $sphinx['filter'][] = ['user_id', $this->ownerId];
+        if ($this->ownersIds) {
+            $sphinx['filter'][] = ['user_id', $this->ownersIds];
         }
         if (!is_null($this->isOrphan)) {
             $sphinx['filter'][] = ['user_id', 0, !$this->isOrphan];
@@ -204,8 +204,8 @@ class Search {
         return $this->langs;
     }
 
-    public function filterByOwnerId($ownerId) {
-        return $this->ownerId = $ownerId;
+    public function filterByOwnerId(array $ownersIds) {
+        return $this->ownersIds = $ownersIds;
     }
 
     public function filterByOrphanship($isOrphan) {
