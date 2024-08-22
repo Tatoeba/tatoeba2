@@ -2,6 +2,7 @@
 namespace App\Controller\VHosts\Api;
 
 use App\Controller\VHosts\Api\ApiController;
+use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use Cake\ORM\Query;
 
@@ -132,8 +133,9 @@ class SentencesController extends ApiController
 
         $lang = $this->getRequest()->getQuery('lang');
         if ($lang) {
-            $lang = $search->filterByLanguage([$lang]);
-            if (is_null($lang)) {
+            try {
+                $search->filterByLanguage([$lang]);
+            } catch (InvalidValueException $e) {
                 return $this->response->withStatus(400, 'Invalid parameter "lang"');
             }
         } else {

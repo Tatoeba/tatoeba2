@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Model\CurrentUser;
+use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
@@ -89,7 +90,12 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataFrom(string $from) {
-        return $this->search->filterByLanguage([$from])[0] ?? '';
+        try {
+            $this->search->filterByLanguage([$from]);
+            return $from;
+        } catch (InvalidValueException $e) {
+            return '';
+        }
     }
 
     protected function setDataUser(string $user) {

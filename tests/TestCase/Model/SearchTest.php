@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Model;
 
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
+use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use Cake\TestSuite\TestCase;
 
@@ -60,8 +61,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_validLang() {
-        $result = $this->Search->filterByLanguage(['por']);
-        $this->assertEquals(['por'], $result);
+        $this->Search->filterByLanguage(['por']);
 
         $expected = $this->makeSphinxParams([
             'index' => ['por_main_index', 'por_delta_index']
@@ -70,9 +70,16 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByLanguage_empty() {
+        $this->Search->filterByLanguage([]);
+
+        $expected = $this->makeSphinxParams();
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByLanguage_multiLang() {
-        $result = $this->Search->filterByLanguage(['por', 'spa']);
-        $this->assertEquals(['por', 'spa'], $result);
+        $this->Search->filterByLanguage(['por', 'spa']);
 
         $expected = $this->makeSphinxParams([
             'index' => ['por_main_index', 'por_delta_index', 'spa_main_index', 'spa_delta_index']
@@ -82,8 +89,12 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_und() {
-        $result = $this->Search->filterByLanguage(['und']);
-        $this->assertEquals([], $result);
+        try {
+            $this->Search->filterByLanguage(['und']);
+            $this->fail("'und' language did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
@@ -91,8 +102,12 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_invalidLang() {
-        $result = $this->Search->filterByLanguage(['1234567890']);
-        $this->assertEquals([], $result);
+        try {
+            $this->Search->filterByLanguage(['1234567890']);
+            $this->fail('Invalid language did not generate InvalidValueException');
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
@@ -100,19 +115,21 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_multiLang_withInvalid() {
-        $result = $this->Search->filterByLanguage(['npi', '1234567890', 'spa']);
-        $this->assertEquals(['npi', 'spa'], $result);
+        try {
+            $this->Search->filterByLanguage(['npi', '1234567890', 'spa']);
+            $this->fail('Invalid language did not generate InvalidValueException');
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
 
-        $expected = $this->makeSphinxParams([
-            'index' => ['npi_main_index', 'npi_delta_index', 'spa_main_index', 'spa_delta_index']
-        ]);
+        $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByLanguage_resets() {
         $this->testfilterByLanguage_validLang();
-        $this->testfilterByLanguage_und();
+        $this->testfilterByLanguage_empty();
     }
 
     public function testfilterByOwnerId() {

@@ -30,6 +30,7 @@ use App\Lib\LanguagesLib;
 use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
+use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
@@ -604,7 +605,11 @@ class SentencesTable extends Table
      */
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
         $search = new Search();
-        $search->filterByLanguage([$lang]);
+        try {
+            $search->filterByLanguage([$lang]);
+        } catch (InvalidValueException $e) {
+            // normal outcome when $lang == 'und'
+        }
         $search->sort('random');
         $search->filterByOrphanship(false); // exclude orphans
         $search->filterByCorrectness(false); // exclude unapproved

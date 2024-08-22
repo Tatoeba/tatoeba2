@@ -23,6 +23,7 @@ use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Validation\Validator;
 use App\Model\CurrentUser;
+use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Lib\LanguagesLib;
 
@@ -134,7 +135,11 @@ class VocabularyTable extends Table
             return null;
         }
         $search = new Search();
-        $search->filterByLanguage([$lang]);
+        try {
+            $search->filterByLanguage([$lang]);
+        } catch (InvalidValueException $e) {
+            return null;
+        }
         $search->filterByQuery(Search::exactSearchQuery($text));
 
         return $this->Sentences->find('withSphinx', [

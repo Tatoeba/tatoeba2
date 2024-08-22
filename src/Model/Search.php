@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use App\Lib\LanguagesLib;
+use App\Model\Exception\InvalidValueException;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use Cake\Database\Expression\FunctionExpression;
 use Cake\Database\Expression\QueryExpression;
@@ -195,13 +196,15 @@ class Search {
     }
 
     public function filterByLanguage(array $langs) {
-        $this->langs = [];
+        $newlangs = [];
         foreach ($langs as $lang) {
             if (LanguagesLib::languageExists($lang)) {
-                $this->langs[] = $lang;
+                $newlangs[] = $lang;
+            } else {
+                throw new InvalidValueException("Invalid language code '$lang'");
             }
         }
-        return $this->langs;
+        $this->langs = $newlangs;
     }
 
     public function filterByOwnerId(array $ownersIds) {
