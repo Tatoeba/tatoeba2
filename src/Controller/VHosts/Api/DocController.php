@@ -20,7 +20,7 @@ class DocController extends Controller
         if ($specFile->exists()) {
             return "/$specFilename";
         } else {
-            throw new NotFoundException();
+            throw new NotFoundException("Unknown API version code: $version");
         }
     }
 

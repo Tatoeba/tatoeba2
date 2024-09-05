@@ -4,6 +4,7 @@ namespace App\Controller\VHosts\Api;
 use App\Controller\VHosts\Api\ApiController;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use Cake\Http\Exception\BadRequestException;
 use Cake\ORM\Query;
 
 class SentencesController extends ApiController
@@ -113,7 +114,7 @@ class SentencesController extends ApiController
         try {
             $results = $query->firstOrFail();
         } catch (\InvalidArgumentException $e) {
-            return $this->response->withStatus(400, 'Invalid parameter "id"');
+            throw new BadRequestException('Invalid sentence id');
         }
         $response = [
             'data' => $results,

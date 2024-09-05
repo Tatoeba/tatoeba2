@@ -3,6 +3,7 @@
 namespace App\Controller\VHosts\Api;
 
 use Cake\Controller\Controller;
+use Cake\Http\Exception\BadRequestException;
 use Cake\Event\Event;
 
 /**
@@ -46,16 +47,9 @@ class ApiController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        if ($this->getRequest()->getParam('version') != 'unstable') {
-            return $this->default();
+        $version = $this->getRequest()->getParam('version');
+        if ($version != 'unstable') {
+            throw new BadRequestException("Invalid API version code: $version");
         }
-    }
-
-    public function default()
-    {
-        $this->autoRender = false;
-        return $this
-            ->getResponse()
-            ->withStatus(404);
     }
 }
