@@ -173,7 +173,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="infobox">
                     <md-icon>help</md-icon>
                     <md-tooltip class="multiline" md-direction="top">
-                        <?= __('Original sentences are the ones initially added as examples in that language only, as opposed to the ones initially added as translations of another sentence. Such sentences are likely to feature more traits specific to that language.') ?>
+                        <?= __('Original sentences are ones that were not added as translations of other sentences.') ?>
                     </md-tooltip>
                 </div>
             </div>
