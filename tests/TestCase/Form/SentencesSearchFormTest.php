@@ -32,6 +32,7 @@ class SentencesSearchFormTest extends TestCase
             'unapproved' => 'no',
             'orphans' => 'no',
             'user' => '',
+            'original' => '',
             'has_audio' => '',
             'word_count_min' => '1',
             'word_count_max' => '',
@@ -98,6 +99,13 @@ class SentencesSearchFormTest extends TestCase
             [ ['user' => 'contributor'], ['filterByOwnerId', 4], 'contributor' ],
             [ ['user' => 'invaliduser'], ['filterByOwnerId'],    '', 1 ],
             [ ['user' => ''],            ['filterByOwnerId'],    '' ],
+
+            [ ['original' => 'yes'],     ['filterByOriginKnown' => [[true]],
+                                          'filterByIsOriginal'  => [[true]]], 'yes' ],
+            [ ['original' => 'invalid'], ['filterByOriginKnown' => [[null]],
+                                          'filterByIsOriginal'  => [[null]]],  '' ],
+            [ ['original' => ''],        ['filterByOriginKnown' => [[null]],
+                                          'filterByIsOriginal'  => [[null]]],  '' ],
 
             [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
             [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],

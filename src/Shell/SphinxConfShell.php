@@ -622,6 +622,7 @@ EOT;
         sql_query = \
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
+                r.origin_known, r.is_original, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                 GROUP_CONCAT(distinct lists.sentences_list_id) as lists_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct r.trans),''), ']') as trans \
@@ -634,6 +635,8 @@ EOT;
                     sent_start.user_id as user_id, \
                     (sent_start.correctness + 128) as ucorrectness, \
                     (COUNT(audios_sent_start.id) > 0) as has_audio, \
+                    (sent_start.based_on_id IS NOT NULL) as origin_known, \
+                    (sent_start.based_on_id = 0) as is_original, \
                     \
                     CONCAT('{', \
                         'l:\"',sent_end.lang,'\",', \
@@ -685,6 +688,8 @@ EOT;
         sql_attr_bool = has_audio
         sql_attr_multi = uint tags_id from field; SELECT id FROM tags ;
         sql_attr_multi = uint lists_id from field; SELECT id FROM sentences_lists ;
+        sql_attr_bool = origin_known
+        sql_attr_bool = is_original
         sql_attr_json = trans
 
         sql_joined_field = \

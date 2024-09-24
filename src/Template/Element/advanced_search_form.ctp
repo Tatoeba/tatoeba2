@@ -161,6 +161,23 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
+            <div class="param" layout="row">
+                <md-checkbox
+                    ng-false-value="''"
+                    ng-true-value="'yes'"
+                    ng-model="filters.original"
+                    ng-model-init="<?= h($original) ?>"
+                    class="md-primary">
+                    <?= __('Is original') ?>
+                </md-checkbox>
+                <div class="infobox">
+                    <md-icon>help</md-icon>
+                    <md-tooltip class="multiline" md-direction="top">
+                        <?= __('Original sentences are ones that were not added as translations of other sentences.') ?>
+                    </md-tooltip>
+                </div>
+            </div>
+
             <div class="param">
                 <div layout="row" layout-align="center">
                     <label for="orphans" flex><?= __('Is orphan:') ?></label>
