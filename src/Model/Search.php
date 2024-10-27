@@ -195,16 +195,16 @@ class Search {
         return $this->query = $query;
     }
 
-    public function filterByLanguage(array $langs) {
-        $newlangs = [];
-        foreach ($langs as $lang) {
-            if (LanguagesLib::languageExists($lang)) {
-                $newlangs[] = $lang;
-            } else {
-                throw new InvalidValueException("Invalid language code '$lang'");
-            }
+    public static function validateLanguage($lang) {
+        if (LanguagesLib::languageExists($lang)) {
+            return $lang;
+        } else {
+            throw new InvalidValueException("Invalid language code '$lang'");
         }
-        $this->langs = $newlangs;
+    }
+
+    public function filterByLanguage(array $langs) {
+        $this->langs = array_map('self::validateLanguage', $langs);
     }
 
     public function filterByOwnerId(array $ownersIds) {
