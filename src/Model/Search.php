@@ -25,15 +25,6 @@ class FiltersCollection {
 class Search {
     use \Cake\Datasource\ModelAwareTrait;
 
-    const OPERATOR_LOWER_OR_EQUAL = 'le';
-    const OPERATOR_GREATER_OR_EQUAL = 'ge';
-    const OPERATOR_EQUAL = 'eq';
-    const OPERATORS_SPHINXQL_MAP = [
-        self::OPERATOR_LOWER_OR_EQUAL   => '<=',
-        self::OPERATOR_GREATER_OR_EQUAL => '>=',
-        self::OPERATOR_EQUAL            => '=',
-    ];
-
     private $query;
     private $filters;
     private $langs = [];
@@ -45,7 +36,6 @@ class Search {
     private $sort;
     private $sortReversed = false;
     private $randSeed;
-    private $wordCount = [];
     private $translationFilter;
     private $translationFilters = [];
 
@@ -150,12 +140,6 @@ class Search {
         if (!is_null($this->native) && count($this->langs) == 1) {
             $sphinx['filter'] = $sphinx['filter'] ?? [];
             array_push($sphinx['filter'], ...$this->getNativeSpeakerFilterAsSphinx());
-        }
-        foreach ($this->wordCount as $op => $count) {
-            $sqlOp = self::OPERATORS_SPHINXQL_MAP[$op];
-            $filterName = "word_count_filter_$op";
-            $sphinx['filter'][] = array($filterName, 1);
-            $sphinx['select'] .= ", (text_len $sqlOp $count) as $filterName";
         }
         if (!is_null($this->translationFilter)) {
             $transFilter = $this->getTranslationFiltersAsSphinx();
@@ -262,18 +246,6 @@ class Search {
         return $this->native = $filter;
     }
 
-    public function filterByWordCount($op, $count) {
-        if (array_key_exists($op, self::OPERATORS_SPHINXQL_MAP)) {
-            if (is_int($count) && $count >= 0) {
-                $this->wordCount[$op] = $count;
-                return $this->wordCount[$op];
-            } else {
-                unset($this->wordCount[$op]);
-            }
-        }
-        return null;
-    }
-
     public function filterByTranslation($filter) {
         $this->translationFilter = null;
         if (in_array($filter, ['exclude', 'limit'])) {
@@ -292,6 +264,10 @@ class Search {
 
     public function getFilters() {
         return $this->filters;
+    }
+
+    public function getFilter($class) {
+        return $this->filters->{$class::getName()} ?? null;
     }
 
     public function setFilter($filter) {

@@ -7,6 +7,7 @@ use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
+use App\Model\Search\WordCountFilter;
 use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
 use Cake\Form\Form;
@@ -246,17 +247,26 @@ class SentencesSearchForm extends Form
         return $native ? 'yes' : '';
     }
 
-    private function _setDataWordCountFilter(string $op, string $value) {
-        $value = is_numeric($value) ? (int)$value : null;
-        return $this->search->filterByWordCount($op, $value) ?? '';
+    private function _setDataWordCountFilter(string $value, $before, $after) {
+        $value = is_numeric($value) ? (int)$value : '';
+        $filter = $this->search->getFilter(WordCountFilter::class) ?? new WordCountFilter();
+        try {
+            $range = $before . $value . $after;
+            $filter->anyOf([$range])->and();
+            $filter->compile(); // trigger validation
+            $this->search->setFilter($filter);
+            return $value;
+        } catch (InvalidValueException $e) {
+            return '';
+        }
     }
 
     protected function setDataWordCountMin(string $min) {
-        return $this->_setDataWordCountFilter('ge', $min);
+        return $this->_setDataWordCountFilter($min, '', '-');
     }
 
     protected function setDataWordCountMax(string $max) {
-        return $this->_setDataWordCountFilter('le', $max);
+        return $this->_setDataWordCountFilter($max, '-', '');
     }
 
     protected function setDataSort(string $sort) {

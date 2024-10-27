@@ -6,6 +6,7 @@ use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\OwnersFilter;
+use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
 
 class SearchTest extends TestCase
@@ -389,65 +390,108 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByWordCount_count_as_str() {
-        $resultCount = $this->Search->filterByWordCount("eq", "1");
-        $this->assertNull($resultCount);
-    }
-
-    public function testfilterByWordCount_count_negative() {
-        $resultCount = $this->Search->filterByWordCount("eq", -1);
-        $this->assertNull($resultCount);
-    }
-
     public function testfilterByWordCount_count_invalid() {
-        $resultCount = $this->Search->filterByWordCount("eq", "'");
-        $this->assertNull($resultCount);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+        try {
+            $this->Search->setFilter((new WordCountFilter())->anyOf(["'"]));
+            $this->Search->asSphinx();
+            $this->fail("\"'\" word count did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
     }
 
-    public function testfilterByWordCount_operator_invalid() {
-        $resultCount = $this->Search->filterByWordCount("=", 1);
-        $this->assertNull($resultCount);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+    public function testfilterByWordCount_range_invalid() {
+        try {
+            $this->Search->setFilter((new WordCountFilter())->anyOf(['0-3-6']));
+            $this->Search->asSphinx();
+            $this->fail("\"'\" word count did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testfilterByWordCount_eq_1() {
-        $resultCount = $this->Search->filterByWordCount("eq", 1);
-        $this->assertEquals($resultCount, 1);
+        $this->Search->setFilter((new WordCountFilter())->anyOf(['1']));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, (text_len = 1) as word_count_filter_eq',
-            'filter' => [['word_count_filter_eq', 1]],
+            'select' => '*, text_len = 1 as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByWordCount_le_10() {
-        $resultCount = $this->Search->filterByWordCount("le", 10);
-        $this->assertEquals($resultCount, 10);
+        $this->Search->setFilter((new WordCountFilter())->anyOf(['-10']));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, (text_len <= 10) as word_count_filter_le',
-            'filter' => [['word_count_filter_le', 1]],
+            'select' => '*, text_len <= 10 as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByWordCount_ge_8() {
-        $resultCount = $this->Search->filterByWordCount("ge", 8);
-        $this->assertEquals($resultCount, 8);
+        $this->Search->setFilter((new WordCountFilter())->anyOf(['8-']));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, (text_len >= 8) as word_count_filter_ge',
-            'filter' => [['word_count_filter_ge', 1]],
+            'select' => '*, text_len >= 8 as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_between_0_and_10() {
+        $this->Search->setFilter((new WordCountFilter())->anyOf(['0-10']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (text_len >= 0 and text_len <= 10) as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_full_range() {
+        try {
+            $this->Search->setFilter((new WordCountFilter())->anyOf(['-']));
+            $result = $this->Search->asSphinx();
+            $this->fail("'-' range did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testfilterByWordCount_exclude_range() {
+        $this->Search->setFilter((new WordCountFilter())->not()->anyOf(['7-10']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, not (text_len >= 7 and text_len <= 10) as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_multirange_OR() {
+        $this->Search->setFilter((new WordCountFilter())->anyOf(['0-2', '4-']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ((text_len >= 0 and text_len <= 2) or text_len >= 4) as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_multirange_AND() {
+        $this->Search->setFilter((new WordCountFilter())->anyOf(['0-10', '15'])->and()->not()->anyOf(['4']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (((text_len >= 0 and text_len <= 10) or text_len = 15) and not text_len = 4) as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);

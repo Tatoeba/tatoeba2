@@ -2,6 +2,7 @@
 
 use App\Form\SentencesSearchForm;
 use App\Model\Search\SearchFilter;
+use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
 
 class SentencesSearchFormTest extends TestCase
@@ -119,17 +120,20 @@ class SentencesSearchFormTest extends TestCase
             [ ['native' => 'invalid'], ['filterByNativeSpeaker', null],  ''    ],
             [ ['native' => ''],        ['filterByNativeSpeaker', null],  ''    ],
 
-            [ ['word_count_min' => ''],        ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
-            [ ['word_count_min' => '0'],       ['filterByWordCount' => [['le', null], ['ge', 0   ]]], '0'  ],
-            [ ['word_count_min' => '01'],      ['filterByWordCount' => [['le', null], ['ge', 1   ]]], '1'  ],
-            [ ['word_count_min' => '42'],      ['filterByWordCount' => [['le', null], ['ge', 42  ]]], '42' ],
-            [ ['word_count_min' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
+            [ ['word_count_min' => ''],        ['WordCountFilter' => null],                                           'any'],
+            [ ['word_count_min' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['0-'])->and()],  '0'  ],
+            [ ['word_count_min' => '01'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  '1'  ],
+            [ ['word_count_min' => '42'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['42-'])->and()], '42' ],
+            [ ['word_count_min' => 'invalid'], ['WordCountFilter' => null],                                           'any'],
 
-            [ ['word_count_max' => ''],        ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
-            [ ['word_count_max' => '0'],       ['filterByWordCount' => [['le', 0   ], ['ge', 1   ]]], '0'  ],
-            [ ['word_count_max' => '01'],      ['filterByWordCount' => [['le', 1   ], ['ge', 1   ]]], '1'  ],
-            [ ['word_count_max' => '42'],      ['filterByWordCount' => [['le', 42  ], ['ge', 1   ]]], '42' ],
-            [ ['word_count_max' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
+            [ ['word_count_max' => ''],        ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
+            [ ['word_count_max' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['-0'])->and()
+                                                                                            ->anyOf(['1-'])->and()],  '0'  ],
+            [ ['word_count_max' => '01'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['-1'])->and()
+                                                                                            ->anyOf(['1-'])->and()],  '1'  ],
+            [ ['word_count_max' => '42'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['-42'])->and()
+                                                                                            ->anyOf(['1-'])->and()],  '42' ],
+            [ ['word_count_max' => 'invalid'], ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
 
             [ ['trans_filter' => 'exclude'],      ['filterByTranslation', 'exclude'], 'exclude' ],
             [ ['trans_filter' => 'invalidvalue'], ['filterByTranslation'], 'limit' ],
@@ -188,13 +192,7 @@ class SentencesSearchFormTest extends TestCase
         if (count($method) == 1 && is_int(key($method))) { // is list array
             $this->Search->expects($this->never())
                          ->method($method[0]);
-        } elseif (!is_int(key($method))) { // is associative array
-            foreach ($method as $methodName => $calls) {
-                $this->Search->expects($this->exactly(count($calls)))
-                             ->method($methodName)
-                             ->withConsecutive(...$calls);
-            }
-        } elseif ($method) {
+        } elseif (is_int(key($method))) { // is list array but with more than 1 element
             $methodName = array_shift($method);
             $with = array_map(
                 function ($expected) {
@@ -215,6 +213,20 @@ class SentencesSearchFormTest extends TestCase
         }
 
         $this->Form->setData($getParams);
+
+        if (!is_int(key($method))) { // is associative array
+            $allfilters = $this->Search->getFilters();
+            foreach ($method as $filterkey => $expected) {
+                if (is_null($expected)) {
+                    $this->assertFalse(isset($allfilters->{$filterkey}), "$filterkey was set");
+                } elseif (isset($allfilters->{$filterkey})) {
+                    $result = $allfilters->{$filterkey};
+                    $this->assertEquals($expected, $result, "$filterkey does not contain expected filter");
+                } else {
+                    $this->fail("$filterkey was not set");
+                }
+            }
+        }
         if (!is_array($getParamReturned)) {
             $getParamReturned = [key($getParams) => $getParamReturned];
         }
