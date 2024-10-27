@@ -222,7 +222,7 @@ class SentencesSearchFormTest extends TestCase
             $this->assertEquals($expectedValue, $this->Form->getData()[$getParam]);
         }
 
-        $this->assertCount($ignored, $this->Form->getIgnoredFields());
+        $this->assertCount($ignored, $this->Form->getIgnoredFields(), 'ignored fields count');
     }
 
     public function testSearchParamToIsCopiedToTransTo_fra() {
