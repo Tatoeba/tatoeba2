@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\OwnersFilter;
 use Cake\TestSuite\TestCase;
 
 class SearchTest extends TestCase
@@ -12,6 +13,7 @@ class SearchTest extends TestCase
         'app.sentences_lists',
         'app.users_languages',
         'app.tags',
+        'app.users',
     ];
 
     public function setUp()
@@ -132,33 +134,32 @@ class SearchTest extends TestCase
         $this->testfilterByLanguage_empty();
     }
 
-    public function testfilterByOwnerId() {
-        $result = $this->Search->filterByOwnerId([4]);
-        $this->assertEquals([4], $result);
+    public function testfilterByOwners_oneUser() {
+        $this->Search->setFilter((new OwnersFilter())->anyOf(['contributor']));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['user_id', [4]]]
+            'filter' => [['user_id', [4], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnerId_multi() {
-        $result = $this->Search->filterByOwnerId([4, 5]);
-        $this->assertEquals([4, 5], $result);
+    public function testfilterByOwners_twoUsers() {
+        $this->Search->setFilter((new OwnersFilter())->anyOf(['contributor', 'admin']));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['user_id', [4, 5]]]
+            'filter' => [['user_id', [4, 1], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnerId_empty() {
-        $result = $this->Search->filterByOwnerId([]);
-        $this->assertEquals([], $result);
+    public function testfilterByOwners_exclude_oneUser() {
+        $this->Search->setFilter((new OwnersFilter())->not()->anyOf(['contributor']));
 
-        $expected = $this->makeSphinxParams();
+        $expected = $this->makeSphinxParams([
+            'filter' => [['user_id', [4], true]]
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }

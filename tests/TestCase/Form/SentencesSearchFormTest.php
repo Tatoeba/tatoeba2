@@ -1,6 +1,7 @@
 <?php
 
 use App\Form\SentencesSearchForm;
+use App\Model\Search\SearchFilter;
 use Cake\TestSuite\TestCase;
 
 class SentencesSearchFormTest extends TestCase
@@ -95,9 +96,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['orphans' => 'invalid'], ['filterByOrphanship', null],  'any' ],
             [ ['orphans' => ''],        ['filterByOrphanship', null],  'any' ],
 
-            [ ['user' => 'contributor'], ['filterByOwnerId', [4]], 'contributor' ],
-            [ ['user' => 'invaliduser'], ['filterByOwnerId'],      '', 1 ],
-            [ ['user' => ''],            ['filterByOwnerId'],      '' ],
+            [ ['user' => 'contributor'], ['setFilter', [['user_id', [4], false]]], 'contributor', 0 ],
+            [ ['user' => 'invaliduser'], ['setFilter', []],                        '',            1 ],
+            [ ['user' => ''],            ['setFilter'],                            '',            0 ],
 
             [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
             [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],
@@ -198,7 +199,12 @@ class SentencesSearchFormTest extends TestCase
             $with = array_map(
                 function ($expected) {
                     return $this->callback(function($param) use ($expected) {
-                        return $expected === $param;
+                        if ($param instanceof SearchFilter) {
+                            // custom comparison because properties of type Closure prevent equality
+                            return $expected === $param->compile();
+                        } else {
+                            return $expected === $param;
+                        }
                     });
                 },
                 $method

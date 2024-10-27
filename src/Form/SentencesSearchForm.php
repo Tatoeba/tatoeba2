@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\OwnersFilter;
 use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
 use Cake\Form\Form;
@@ -100,20 +101,22 @@ class SentencesSearchForm extends Form
 
     protected function setDataUser(string $user) {
         if (!empty($user)) {
-            $this->loadModel('Users');
-            $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
-            if ($result) {
-                $this->search->filterByOwnerId([$result->id]);
-                $this->ownerId = $result->id;
-            } else {
+            $filter = new OwnersFilter();
+            $filter->setInvalidValueHandler(function($value) use (&$user) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by “Warning:
                        the following criteria have been ignored:” */
                     __("“sentence owner”, because “{username}” is not a ".
                        "valid username", true),
-                    array('username' => h($user))
+                    array('username' => h($value))
                 );
                 $user = '';
+            });
+            $filter->anyOf([$user]);
+            $this->search->setFilter($filter);
+            $compiled = $filter->compile();
+            if (count($compiled) > 0) {
+                list(list(, list($this->ownerId))) = $compiled;
             }
         }
         return $user;

@@ -8,6 +8,20 @@ use Cake\Database\Expression\FunctionExpression;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
 
+class FiltersCollection {
+    public function compile(&$select = "") {
+        $output = [];
+        foreach ($this as $filter) {
+            if (!is_null($filter)) {
+                foreach ($filter->compile($select) as $compiled) {
+                    $output[] = $compiled;
+                }
+            }
+        }
+        return $output;
+    }
+}
+
 class Search {
     use \Cake\Datasource\ModelAwareTrait;
 
@@ -21,8 +35,8 @@ class Search {
     ];
 
     private $query;
+    private $filters;
     private $langs = [];
-    private $ownersIds;
     private $isOrphan;
     private $correctness;
     private $hasAudio;
@@ -38,6 +52,10 @@ class Search {
     private $translationFilters = [];
 
     private $sphinxFilterArrayLimit = 4096;
+
+    public function __construct() {
+        $this->filters = new FiltersCollection();
+    }
 
     private function getNativeSpeakerFilterAsSphinx() {
         $this->loadModel('UsersLanguages');
@@ -115,9 +133,6 @@ class Search {
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
         }
-        if ($this->ownersIds) {
-            $sphinx['filter'][] = ['user_id', $this->ownersIds];
-        }
         if (!is_null($this->isOrphan)) {
             $sphinx['filter'][] = ['user_id', 0, !$this->isOrphan];
         }
@@ -133,6 +148,9 @@ class Search {
         }
         foreach ($this->tagsIds as $id) {
             $sphinx['filter'][] = ['tags_id', $id];
+        }
+        foreach ($this->filters->compile($sphinx['select']) as $compiled) {
+            $sphinx['filter'][] = $compiled;
         }
         if (!is_null($this->native) && count($this->langs) == 1) {
             $sphinx['filter'] = $sphinx['filter'] ?? [];
@@ -205,10 +223,6 @@ class Search {
 
     public function filterByLanguage(array $langs) {
         $this->langs = array_map('self::validateLanguage', $langs);
-    }
-
-    public function filterByOwnerId(array $ownersIds) {
-        return $this->ownersIds = $ownersIds;
     }
 
     public function filterByOrphanship($isOrphan) {
@@ -300,6 +314,18 @@ class Search {
             $this->translationFilters['language'] = $lang;
         }
         return $this->translationFilters['language'];
+    }
+
+    public function getFilters() {
+        return $this->filters;
+    }
+
+    public function setFilter($filter) {
+        $this->filters->{$filter::getName()} = $filter;
+    }
+
+    public function unsetFilter($class) {
+        unset($this->filters->{$class::getName()});
     }
 
     public function filterByTranslationLink($link) {
