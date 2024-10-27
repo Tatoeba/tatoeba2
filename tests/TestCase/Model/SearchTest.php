@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\TagsFilter;
 use App\Model\Search\OwnersFilter;
 use Cake\TestSuite\TestCase;
 
@@ -453,49 +454,54 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTags_oneTag() {
-        $result = $this->Search->filterByTags(['OK']);
-        $this->assertEquals(['OK'], $result);
+        $this->Search->setFilter((new TagsFilter())->anyOf(['OK']));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['tags_id', 2]]
+            'filter' => [['tags_id', [2], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTags_twoTags() {
-        $result = $this->Search->filterByTags(['OK', '@needs native check']);
-        $this->assertEquals(['OK', '@needs native check'], $result);
+    public function testfilterByTags_twoTags_AND() {
+        $this->Search->setFilter((new TagsFilter())->anyOf(['OK'])->and()->anyOf(['@needs native check']));
         $expected = $this->makeSphinxParams([
-            'filter' => [['tags_id', 2], ['tags_id', 1]]
+            'filter' => [['tags_id', [2], false], ['tags_id', [1], false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTags_twoTags_OR() {
+        $this->Search->setFilter((new TagsFilter())->anyOf(['OK', '@needs native check']));
+        $expected = $this->makeSphinxParams([
+            'filter' => [['tags_id', [2, 1], false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTags_oneTag_exclude() {
+        $this->Search->setFilter((new TagsFilter())->not()->anyOf(['OK']));
+        $expected = $this->makeSphinxParams([
+            'filter' => [['tags_id', [2], true]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTags_oneTag_oneInvalid() {
-        $result = $this->Search->filterByTags(['nonexsistenttag']);
-        $this->assertEmpty($result);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByTags_twoTags_oneInvalid() {
-        $result = $this->Search->filterByTags(['OK', 'nonexsistenttag']);
-        $this->assertEquals(['OK'], $result);
-
-        $expected = $this->makeSphinxParams([
-            'filter' => [['tags_id', 2]]
-        ]);
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+        try {
+            $this->Search->setFilter((new TagsFilter())->anyOf(['nonexsistenttag']));
+            $this->Search->asSphinx();
+            $this->fail("'nonexsistenttag' tag did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testfilterByTags_empty() {
-        $result = $this->Search->filterByTags([]);
-        $this->assertEmpty($result);
+        $this->Search->setFilter(new TagsFilter());
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
@@ -508,12 +514,13 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTags_sqlInjection() {
-        $result = $this->Search->filterByTags(["'"]);
-        $this->assertEmpty($result);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+        try {
+            $this->Search->setFilter((new TagsFilter())->anyOf(["'"]));
+            $this->Search->asSphinx();
+            $this->fail("\"'\" tag did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testfilterByTranslation_limit() {

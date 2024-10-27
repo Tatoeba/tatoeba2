@@ -105,9 +105,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['has_audio' => 'invalid'], ['filterByAudio', null],  ''    ],
             [ ['has_audio' => ''],        ['filterByAudio', null],  ''    ],
 
-            [ ['tags' => 'OK'],          ['filterByTags', ['OK']],            'OK'    ],
-            [ ['tags' => 'invalid tag'], ['filterByTags', ['invalid tag']],   '',   1 ],
-            [ ['tags' => 'OK,invalid'],  ['filterByTags', ['OK', 'invalid']], 'OK', 1 ],
+            [ ['tags' => 'OK'],          ['setFilter', [['tags_id', [2], false]]], 'OK'    ],
+            [ ['tags' => 'invalid tag'], ['setFilter', []],                        '',   1 ],
+            [ ['tags' => 'OK,invalid'],  ['setFilter', [['tags_id', [2], false]]], 'OK', 1 ],
 
             [ ['list' => '2'],       ['filterByListId', 2, null],       '2'   ],
             [ ['list' => '9999999'], ['filterByListId', 9999999, null], '', 1 ],

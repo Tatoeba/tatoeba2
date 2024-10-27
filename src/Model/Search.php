@@ -3,8 +3,8 @@ namespace App\Model;
 
 use App\Lib\LanguagesLib;
 use App\Model\Exception\InvalidValueException;
+use App\Model\Search\TagsFilter;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
-use Cake\Database\Expression\FunctionExpression;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
 
@@ -41,13 +41,11 @@ class Search {
     private $correctness;
     private $hasAudio;
     private $listId;
-    private $tagsIds = [];
     private $native;
     private $sort;
     private $sortReversed = false;
     private $randSeed;
     private $wordCount = [];
-
     private $translationFilter;
     private $translationFilters = [];
 
@@ -145,9 +143,6 @@ class Search {
         }
         if (!is_null($this->listId)) {
             $sphinx['filter'][] = array('lists_id', $this->listId);
-        }
-        foreach ($this->tagsIds as $id) {
-            $sphinx['filter'][] = ['tags_id', $id];
         }
         foreach ($this->filters->compile($sphinx['select']) as $compiled) {
             $sphinx['filter'][] = $compiled;
@@ -261,27 +256,6 @@ class Search {
             }
         }
         return true;
-    }
-
-    public function filterByTags($tags) {
-        $appliedTagsNames = [];
-        $this->tagsIds = [];
-        if ($tags) {
-            $this->loadModel('Tags');
-            $order = new FunctionExpression(
-                'FIND_IN_SET',
-                ['Tags.name' => 'literal', implode(',', $tags)]
-            );
-            $result = $this->Tags->find()
-                ->where(['name IN' => $tags])
-                ->select(['id', 'name'])
-                ->order($order)
-                ->enableHydration(false)
-                ->toList();
-            $this->tagsIds = Hash::extract($result, '{n}.id');
-            $appliedTagsNames = Hash::extract($result, '{n}.name');
-        }
-        return $appliedTagsNames;
     }
 
     public function filterByNativeSpeaker($filter) {

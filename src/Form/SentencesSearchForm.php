@@ -6,6 +6,7 @@ use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\OwnersFilter;
+use App\Model\Search\TagsFilter;
 use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
 use Cake\Form\Form;
@@ -192,12 +193,22 @@ class SentencesSearchForm extends Form
 
     protected function setDataTags(string $tags) {
         if (!empty($tags)) {
+            $ignoredTags = [];
+            $filter = new TagsFilter();
+            $filter->setInvalidValueHandler(function($tagName) use (&$ignoredTags) {
+                $ignoredTags[] = $tagName;
+            });
+
             $tagsArray = explode(',', $tags);
             $tagsArray = array_map('trim', $tagsArray);
-            $appliedTags = $this->search->filterByTags($tagsArray);
-            $tags = implode(',', $appliedTags);
+            foreach ($tagsArray as $tag) {
+                $filter->anyOf([$tag])->and();
+            }
+            $this->search->setFilter($filter);
+            $filter->compile(); // trigger validation: fills $ignoredTags
 
-            $ignoredTags = array_diff($tagsArray, $appliedTags);
+            $appliedTagsNames = array_diff($tagsArray, $ignoredTags);
+            $tags = implode(',', $appliedTagsNames);
             foreach ($ignoredTags as $tagName) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by
