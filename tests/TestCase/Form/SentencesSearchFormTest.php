@@ -3,6 +3,7 @@
 use App\Form\SentencesSearchForm;
 use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
+use App\Model\Search\TagsFilter;
 use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
 
@@ -107,9 +108,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['has_audio' => 'invalid'], ['filterByAudio', null],  ''    ],
             [ ['has_audio' => ''],        ['filterByAudio', null],  ''    ],
 
-            [ ['tags' => 'OK'],          ['setFilter', [['tags_id', [2], false]]], 'OK'    ],
-            [ ['tags' => 'invalid tag'], ['setFilter', []],                        '',   1 ],
-            [ ['tags' => 'OK,invalid'],  ['setFilter', [['tags_id', [2], false]]], 'OK', 1 ],
+            [ ['tags' => 'OK'],          ['TagsFilter' => (new TagsFilter())->anyOf(['OK'])], 'OK'    ],
+            [ ['tags' => 'invalid tag'], ['TagsFilter' => new TagsFilter()],                  '',   1 ],
+            [ ['tags' => 'OK,invalid'],  ['TagsFilter' => (new TagsFilter())->anyOf(['OK'])], 'OK', 1 ],
 
             [ ['list' => '2'],       ['filterByListId', 2, null],       '2'   ],
             [ ['list' => '9999999'], ['filterByListId', 9999999, null], '', 1 ],
