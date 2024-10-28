@@ -5,6 +5,7 @@ include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\TagsFilter;
+use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
@@ -167,34 +168,36 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByOrphanship_true() {
-        $result = $this->Search->filterByOrphanship(true);
-        $this->assertTrue($result);
+        $this->Search->setFilter(new OrphanFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['user_id', 0, false]]
+            'filter' => [['user_id', [0], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByOrphanship_false() {
-        $result = $this->Search->filterByOrphanship(false);
-        $this->assertFalse($result);
+        $this->Search->setFilter(new OrphanFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['user_id', 0, true]]
+            'filter' => [['user_id', [0], true]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByOrphanship_null() {
-        $result = $this->Search->filterByOrphanship(null);
-        $this->assertNull($result);
+        $this->Search->unsetFilter(OrphanFilter::class);
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByOrphanship_resets() {
+        $this->testfilterByOrphanship_false();
+        $this->testfilterByOrphanship_null();
     }
 
     public function testfilterByCorrectness_true() {

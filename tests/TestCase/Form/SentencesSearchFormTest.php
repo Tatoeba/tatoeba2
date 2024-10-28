@@ -1,6 +1,7 @@
 <?php
 
 use App\Form\SentencesSearchForm;
+use App\Model\Search\OrphanFilter;
 use App\Model\Search\SearchFilter;
 use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
@@ -91,11 +92,11 @@ class SentencesSearchFormTest extends TestCase
             [ ['unapproved' => 'invalid'], ['filterByCorrectness', null],  'any' ],
             [ ['unapproved' => ''],        ['filterByCorrectness', null],  'any' ],
 
-            [ ['orphans' => 'yes'],     ['filterByOrphanship', true],  'yes' ],
-            [ ['orphans' => 'no'],      ['filterByOrphanship', false], 'no'  ],
-            [ ['orphans' => 'any'],     ['filterByOrphanship', null],  'any' ],
-            [ ['orphans' => 'invalid'], ['filterByOrphanship', null],  'any' ],
-            [ ['orphans' => ''],        ['filterByOrphanship', null],  'any' ],
+            [ ['orphans' => 'yes'],     ['OrphanFilter' => new OrphanFilter(true)],  'yes' ],
+            [ ['orphans' => 'no'],      ['OrphanFilter' => new OrphanFilter(false)], 'no'  ],
+            [ ['orphans' => 'any'],     ['OrphanFilter' => null],                    'any' ],
+            [ ['orphans' => 'invalid'], ['OrphanFilter' => null],                    'any' ],
+            [ ['orphans' => ''],        ['OrphanFilter' => null],                    'any' ],
 
             [ ['user' => 'contributor'], ['setFilter', [['user_id', [4], false]]], 'contributor', 0 ],
             [ ['user' => 'invaliduser'], ['setFilter', []],                        '',            1 ],
@@ -378,15 +379,10 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testCheckUnwantedCombinations_orphanWithUser() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByOrphanship',
-            [true, null]
-        );
-
         $this->Form->setData(['user' => 'contributor', 'orphans' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
+        $this->assertNull($this->Search->getFilter(OrphanFilter::class), 'orphan filter is set');
         $this->assertCount(1, $this->Form->getIgnoredFields());
         $this->assertEquals('', $this->Form->getData()['orphans']);
     }

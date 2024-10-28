@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\WordCountFilter;
@@ -77,9 +78,19 @@ class SentencesSearchForm extends Form
         return $value == 'yes' ? true : ($value == 'no' ? false : null);
     }
 
-    protected function setBoolFilter(string $method, string $value) {
+    protected function setBoolFilterOld(string $method, string $value) {
         $value = $this->parseBoolNull($value);
         $value = $this->search->$method($value);
+        return $this->parseYesNoEmpty($value);
+    }
+
+    protected function setBoolFilter(string $class, string $value) {
+        $value = $this->parseBoolNull($value);
+        if (is_null($value)) {
+            $this->search->unsetFilter($class);
+        } else {
+            $this->search->setFilter(new $class($value));
+        }
         return $this->parseYesNoEmpty($value);
     }
 
@@ -169,27 +180,27 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataTransHasAudio(string $trans_has_audio) {
-        return $this->setBoolFilter('filterByTranslationAudio', $trans_has_audio);
+        return $this->setBoolFilterOld('filterByTranslationAudio', $trans_has_audio);
     }
 
     protected function setDataTransUnapproved(string $trans_unapproved) {
-        return $this->setBoolFilter('filterByTranslationCorrectness', $trans_unapproved);
+        return $this->setBoolFilterOld('filterByTranslationCorrectness', $trans_unapproved);
     }
 
     protected function setDataTransOrphan(string $trans_orphan) {
-        return $this->setBoolFilter('filterByTranslationOrphanship', $trans_orphan);
+        return $this->setBoolFilterOld('filterByTranslationOrphanship', $trans_orphan);
     }
 
     protected function setDataUnapproved(string $unapproved) {
-        return $this->setBoolFilter('filterByCorrectness', $unapproved);
+        return $this->setBoolFilterOld('filterByCorrectness', $unapproved);
     }
 
     protected function setDataOrphans(string $orphans) {
-        return $this->setBoolFilter('filterByOrphanship', $orphans);
+        return $this->setBoolFilter(OrphanFilter::class, $orphans);
     }
 
     protected function setDataHasAudio(string $has_audio) {
-        return $this->setBoolFilter('filterByAudio', $has_audio);
+        return $this->setBoolFilterOld('filterByAudio', $has_audio);
     }
 
     protected function setDataTags(string $tags) {

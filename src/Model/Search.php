@@ -28,7 +28,6 @@ class Search {
     private $query;
     private $filters;
     private $langs = [];
-    private $isOrphan;
     private $correctness;
     private $hasAudio;
     private $listId;
@@ -121,9 +120,6 @@ class Search {
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
         }
-        if (!is_null($this->isOrphan)) {
-            $sphinx['filter'][] = ['user_id', 0, !$this->isOrphan];
-        }
         if (!is_null($this->correctness)) {
             // See the indexation SQL request for the value 127
             $sphinx['filter'][] = ['ucorrectness', 127, !$this->correctness];
@@ -202,10 +198,6 @@ class Search {
 
     public function filterByLanguage(array $langs) {
         $this->langs = array_map('self::validateLanguage', $langs);
-    }
-
-    public function filterByOrphanship($isOrphan) {
-        return $this->isOrphan = $isOrphan;
     }
 
     public function sort($sort) {
