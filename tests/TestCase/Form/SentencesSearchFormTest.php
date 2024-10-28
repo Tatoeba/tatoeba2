@@ -2,7 +2,7 @@
 
 use App\Form\SentencesSearchForm;
 use App\Model\Search\OrphanFilter;
-use App\Model\Search\SearchFilter;
+use App\Model\Search\OwnersFilter;
 use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
 
@@ -98,9 +98,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['orphans' => 'invalid'], ['OrphanFilter' => null],                    'any' ],
             [ ['orphans' => ''],        ['OrphanFilter' => null],                    'any' ],
 
-            [ ['user' => 'contributor'], ['setFilter', [['user_id', [4], false]]], 'contributor', 0 ],
-            [ ['user' => 'invaliduser'], ['setFilter', []],                        '',            1 ],
-            [ ['user' => ''],            ['setFilter'],                            '',            0 ],
+            [ ['user' => 'contributor'], ['OwnersFilter' => (new OwnersFilter())->anyOf(['contributor'])], 'contributor', 0 ],
+            [ ['user' => 'invaliduser'], ['OwnersFilter' => new OwnersFilter()],                           '',            1 ],
+            [ ['user' => ''],            ['OwnersFilter' => null],                                         '',            0 ],
 
             [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
             [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],
@@ -198,12 +198,7 @@ class SentencesSearchFormTest extends TestCase
             $with = array_map(
                 function ($expected) {
                     return $this->callback(function($param) use ($expected) {
-                        if ($param instanceof SearchFilter) {
-                            // custom comparison because properties of type Closure prevent equality
-                            return $expected === $param->compile();
-                        } else {
-                            return $expected === $param;
-                        }
+                        return $expected === $param;
                     });
                 },
                 $method
@@ -222,7 +217,7 @@ class SentencesSearchFormTest extends TestCase
                     $this->assertFalse(isset($allfilters->{$filterkey}), "$filterkey was set");
                 } elseif (isset($allfilters->{$filterkey})) {
                     $result = $allfilters->{$filterkey};
-                    $this->assertEquals($expected, $result, "$filterkey does not contain expected filter");
+                    $this->assertEquals($expected->compile(), $result->compile(), "$filterkey does not contain expected filter");
                 } else {
                     $this->fail("$filterkey was not set");
                 }
