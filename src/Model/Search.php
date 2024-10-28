@@ -3,7 +3,6 @@ namespace App\Model;
 
 use App\Lib\LanguagesLib;
 use App\Model\Exception\InvalidValueException;
-use App\Model\Search\TagsFilter;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
