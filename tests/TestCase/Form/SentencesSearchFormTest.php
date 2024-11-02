@@ -6,6 +6,7 @@ use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
+use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\WordCountFilter;
@@ -158,10 +159,10 @@ class SentencesSearchFormTest extends TestCase
             [ ['trans_link' => ''],         ['filterByTranslationLink', ''],        ''],
             [ ['trans_link' => 'invalid'],  ['filterByTranslationLink', 'invalid'], ''],
 
-            [ ['trans_has_audio' => 'yes'],     ['filterByTranslationAudio', true],  'yes' ],
-            [ ['trans_has_audio' => 'no'],      ['filterByTranslationAudio', false], 'no'  ],
-            [ ['trans_has_audio' => 'invalid'], ['filterByTranslationAudio', null],  ''    ],
-            [ ['trans_has_audio' => ''],        ['filterByTranslationAudio', null],  ''    ],
+            [ ['trans_has_audio' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(true))],  'yes' ],
+            [ ['trans_has_audio' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(false))], 'no'  ],
+            [ ['trans_has_audio' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
+            [ ['trans_has_audio' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
             [ ['trans_unapproved' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(true))],  'yes' ],
             [ ['trans_unapproved' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(false))], 'no'  ],

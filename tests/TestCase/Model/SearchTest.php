@@ -9,6 +9,7 @@ use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\WordCountFilter;
 use App\Model\Search\TranslationCountFilter;
+use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use Cake\TestSuite\TestCase;
@@ -609,36 +610,25 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationAudio_true() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationAudio(true);
-        $this->assertTrue($result);
+        $this->Search->setTranslationFilter(new TranslationHasAudioFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.a=1 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(t.a=1 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTranslationAudio_false() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationAudio(false);
-        $this->assertFalse($result);
+        $this->Search->setTranslationFilter(new TranslationHasAudioFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.a=0 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(not (t.a=1) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByTranslationAudio_null() {
-        $result = $this->Search->filterByTranslationAudio(null);
-        $this->assertNull($result);
-
-        $this->testfilterByTranslation_limit();
     }
 
     public function testfilterByTranslationLanguage_ainu() {

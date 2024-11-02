@@ -9,6 +9,7 @@ use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
+use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\WordCountFilter;
@@ -193,7 +194,11 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataTransHasAudio(string $trans_has_audio) {
-        return $this->setBoolFilterOld('filterByTranslationAudio', $trans_has_audio);
+        return $this->setBoolFilter(
+            TranslationHasAudioFilter::class,
+            $trans_has_audio,
+            $this->search->getTranslationFilters()
+        );
     }
 
     protected function setDataTransUnapproved(string $trans_unapproved) {
