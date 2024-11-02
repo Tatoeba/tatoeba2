@@ -13,6 +13,7 @@ use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationOwnerFilter;
 use App\Model\Search\WordCountFilter;
 use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
@@ -170,11 +171,8 @@ class SentencesSearchForm extends Form
 
     protected function setDataTransUser(string $trans_user) {
         if (strlen($trans_user)) {
-            $this->loadModel('Users');
-            $result = $this->Users->findByUsername($trans_user, ['fields' => ['id']])->first();
-            if ($result) {
-                $this->search->filterByTranslationOwnerId($result->id);
-            } else {
+            $filter = new TranslationOwnerFilter();
+            $filter->setInvalidValueHandler(function($value) use (&$trans_user) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by
                        “Warning: the following criteria have been ignored:” */
@@ -183,7 +181,10 @@ class SentencesSearchForm extends Form
                     ['username' => h($trans_user)]
                 );
                 $trans_user = '';
-            }
+            });
+            $filter->anyOf([$trans_user]);
+            $this->search->setTranslationFilter($filter);
+            $filter->compile(); // trigger validation so that we can return updated $trans_user
         }
         return $trans_user;
     }

@@ -10,6 +10,7 @@ use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationOwnerFilter;
 use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
 
@@ -175,9 +176,11 @@ class SentencesSearchFormTest extends TestCase
             [ ['trans_orphan' => 'invalid'], ['filterByTranslationOrphanship', null],  ''    ],
             [ ['trans_orphan' => ''],        ['filterByTranslationOrphanship', null],  ''    ],
 
-            [ ['trans_user' => 'contributor'], ['filterByTranslationOwnerId', 4], 'contributor' ],
-            [ ['trans_user' => 'invaliduser'], ['filterByTranslationOwnerId'],    '', 1 ],
-            [ ['trans_user' => ''],            ['filterByTranslationOwnerId'],    ''    ],
+            [ ['trans_user' => 'contributor'], ['tf' => (new TranslationFilterGroup())->setFilter(
+                                                               (new TranslationOwnerFilter())->anyOf(['contributor'])
+                                                           )], 'contributor' ],
+            [ ['trans_user' => 'invaliduser'], ['tf' => new TranslationFilterGroup()], '', 1 ],
+            [ ['trans_user' => ''],            ['tf' => new TranslationFilterGroup()], '' ],
 
             [ ['sort' => 'relevance'], ['sort', 'relevance'], 'relevance' ],
             [ ['sort' => 'words'],     ['sort', 'words'],     'words'     ],

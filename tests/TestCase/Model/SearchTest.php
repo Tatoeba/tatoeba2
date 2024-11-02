@@ -13,6 +13,7 @@ use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationIsDirectFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
+use App\Model\Search\TranslationOwnerFilter;
 use Cake\TestSuite\TestCase;
 
 class SearchTest extends TestCase
@@ -696,24 +697,39 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationOwnerId() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOwnerId(4);
-        $this->assertEquals(4, $result);
+    public function testfilterByTranslationOwner() {
+        $filter = new TranslationOwnerFilter();
+        $this->Search->setTranslationFilter($filter->anyOf(['contributor']));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.u=4 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(t.u=4 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationOwnerId_null() {
-        $result = $this->Search->filterByTranslationOwnerId(null);
-        $this->assertNull($result);
+    public function testfilterByTranslationOwner_multi() {
+        $filter = new TranslationOwnerFilter();
+        $this->Search->setTranslationFilter($filter->anyOf(['contributor', 'admin']));
 
-        $this->testfilterByTranslation_limit();
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ANY((t.u=4 | t.u=1) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationOwner_invalid() {
+        $filter = new TranslationOwnerFilter();
+        $this->Search->setTranslationFilter($filter->anyOf(['invalid']));
+        try {
+            $result = $this->Search->asSphinx();
+            $this->fail("'invalid' for translation username filter did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testfilterByTranslationOrphanship_true() {

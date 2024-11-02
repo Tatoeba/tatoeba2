@@ -292,10 +292,6 @@ class Search {
         return $filter ? $filter->getAllValues() : null;
     }
 
-    public function filterByTranslationOwnerId($ownerId) {
-        return $this->translationFilters['ownerId'] = $ownerId;
-    }
-
     public function filterByTranslationOrphanship($isOrphan) {
         return $this->translationFilters['isOrphan'] = $isOrphan;
     }
