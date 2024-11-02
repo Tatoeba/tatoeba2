@@ -292,14 +292,6 @@ class Search {
         return $filter ? $filter->getAllValues() : null;
     }
 
-    public function filterByTranslationLink($link) {
-        $this->translationFilters['link'] = null;
-        if (in_array($link, ['direct', 'indirect'])) {
-            $this->translationFilters['link'] = $link;
-        }
-        return $this->translationFilters['link'];
-    }
-
     public function filterByTranslationOwnerId($ownerId) {
         return $this->translationFilters['ownerId'] = $ownerId;
     }

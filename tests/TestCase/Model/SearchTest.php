@@ -11,6 +11,7 @@ use App\Model\Search\WordCountFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationIsDirectFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use Cake\TestSuite\TestCase;
 
@@ -674,48 +675,25 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationLink_direct() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationLink('direct');
-        $this->assertEquals('direct', $result);
+        $this->Search->setTranslationFilter(new TranslationIsDirectFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.d=1 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(t.d=1 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTranslationLink_indirect() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationLink('indirect');
-        $this->assertEquals('indirect', $result);
+        $this->Search->setTranslationFilter(new TranslationIsDirectFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.d=2 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(not (t.d=1) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByTranslationLink_invalid() {
-        $result = $this->Search->filterByTranslationLink('invalid value');
-        $this->assertNull($result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationLink_null() {
-        $result = $this->Search->filterByTranslationLink(null);
-        $this->assertNull($result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationLink_resets() {
-        $this->testfilterByTranslationLink_direct();
-        $this->testfilterByTranslationLink_null();
     }
 
     public function testfilterByTranslationOwnerId() {

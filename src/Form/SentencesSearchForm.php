@@ -10,6 +10,7 @@ use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
+use App\Model\Search\TranslationIsDirectFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\WordCountFilter;
@@ -159,7 +160,12 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataTransLink(string $link) {
-        return $this->search->filterByTranslationLink($link) ?? '';
+        if (!in_array($link, ['direct', 'indirect'])) {
+            return '';
+        }
+        $filter = new TranslationIsDirectFilter($link == 'direct');
+        $this->search->setTranslationFilter($filter);
+        return $link;
     }
 
     protected function setDataTransUser(string $trans_user) {
