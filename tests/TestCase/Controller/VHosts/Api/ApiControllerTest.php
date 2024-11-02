@@ -29,6 +29,6 @@ class ApiControllerTest extends TestCase
     public function test_invalidController()
     {
         $this->get("http://api.example.com/no/such/controller");
-        $this->assertResponseCode(400);
+        $this->assertResponseCode(404);
     }
 }
