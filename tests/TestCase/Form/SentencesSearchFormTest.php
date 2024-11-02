@@ -4,6 +4,8 @@ use App\Form\SentencesSearchForm;
 use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
+use App\Model\Search\TranslationFilterGroup;
+use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
 
@@ -140,9 +142,11 @@ class SentencesSearchFormTest extends TestCase
             [ ['trans_filter' => 'exclude'],      ['filterByTranslation', 'exclude'], 'exclude' ],
             [ ['trans_filter' => 'invalidvalue'], ['filterByTranslation'], 'limit' ],
 
-            [ ['trans_to' => 'ain'],     ['filterByTranslationLanguage', 'ain'    ], 'ain' ],
-            [ ['trans_to' => ''],        ['filterByTranslationLanguage', ''       ], '' ],
-            [ ['trans_to' => 'invalid'], ['filterByTranslationLanguage', 'invalid'], '' ],
+            [ ['trans_to' => 'ain'],     ['tf' => (new TranslationFilterGroup())->setFilter(
+                                                         (new TranslationLangFilter())->anyOf(['ain'])
+                                                     )], 'ain' ],
+            [ ['trans_to' => ''],        ['tf' => (new TranslationFilterGroup())], '' ],
+            [ ['trans_to' => 'invalid'], ['tf' => (new TranslationFilterGroup())], '' ],
 
             [ ['trans_link' => 'direct'],   ['filterByTranslationLink', 'direct'],  'direct'],
             [ ['trans_link' => 'indirect'], ['filterByTranslationLink', 'indirect'],'indirect'],
@@ -218,7 +222,10 @@ class SentencesSearchFormTest extends TestCase
                     $this->assertFalse(isset($allfilters->{$filterkey}), "$filterkey was set");
                 } elseif (isset($allfilters->{$filterkey})) {
                     $result = $allfilters->{$filterkey};
-                    $this->assertEquals($expected->compile(), $result->compile(), "$filterkey does not contain expected filter");
+                    $a = "*";
+                    $b = "*";
+                    $this->assertEquals($expected->compile($a), $result->compile($b), "$filterkey does not contain expected filter");
+                    $this->assertEquals($a, $b, "$filterkey does not contain expected filter");
                 } else {
                     $this->fail("$filterkey was not set");
                 }

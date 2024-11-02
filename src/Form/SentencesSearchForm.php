@@ -8,6 +8,7 @@ use App\Model\Search;
 use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
+use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\WordCountFilter;
 use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
@@ -143,7 +144,7 @@ class SentencesSearchForm extends Form
 
         /* Only set translation filter to 'limit' if at least
            one translation filter is set */
-        if ($trans_filter == 'limit' && $this->search->getTranslationFilters()
+        if ($trans_filter == 'limit' && $this->search->getTranslationFiltersOld()
             || $trans_filter == 'exclude') {
             $trans_filter = $this->search->filterByTranslation($trans_filter);
         }
@@ -176,7 +177,14 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataTransTo(string $lang) {
-        return $this->search->filterByTranslationLanguage($lang) ?? '';
+        try {
+            $filter = new TranslationLangFilter();
+            $filter->anyOf([$lang]);
+            $this->search->setTranslationFilter($filter);
+            return $lang;
+        } catch (InvalidValueException $e) {
+            return '';
+        }
     }
 
     protected function setDataTransHasAudio(string $trans_has_audio) {

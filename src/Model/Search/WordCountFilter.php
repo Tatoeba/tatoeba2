@@ -37,17 +37,6 @@ class WordCountFilter extends BaseSearchFilter {
         return $ret;
     }
 
-    private function _join($op, $exprs, $negate = false) {
-        $expr = implode(" $op ", $exprs);
-        if (count($exprs) > 1) {
-            $expr = "($expr)";
-        }
-        if ($negate) {
-            $expr = "not $expr";
-        }
-        return $expr;
-    }
-
     public function compile(&$select = "*") {
         $exprs = array_filter(array_map(
             function ($set) {

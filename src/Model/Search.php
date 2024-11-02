@@ -3,6 +3,8 @@ namespace App\Model;
 
 use App\Lib\LanguagesLib;
 use App\Model\Exception\InvalidValueException;
+use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationFilterGroup;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
@@ -87,7 +89,7 @@ class Search {
             'isOrphan' => function($v) { return 't.u'.($v ? '=' : '<>').'0'; },
             'correctness' => function($v) { return 't.c='.(int)!$v; },
         ];
-        foreach ($this->getTranslationFilters() as $filter => $value) {
+        foreach ($this->getTranslationFiltersOld() as $filter => $value) {
             $transFilter[] = $sphinxMap[$filter]($value);
         }
         return $transFilter;
@@ -245,14 +247,6 @@ class Search {
         return $this->translationFilter;
     }
 
-    public function filterByTranslationLanguage($lang) {
-        $this->translationFilters['language'] = null;
-        if (LanguagesLib::languageExists($lang)) {
-            $this->translationFilters['language'] = $lang;
-        }
-        return $this->translationFilters['language'];
-    }
-
     public function getFilters() {
         return $this->filters;
     }
@@ -267,6 +261,35 @@ class Search {
 
     public function unsetFilter($class) {
         unset($this->filters->{$class::getName()});
+    }
+
+    public function getTranslationFilters($index = '') {
+        $filterKey = TranslationFilterGroup::getName($index);
+        if (isset($this->filters->{$filterKey})) {
+            return $this->filters->{$filterKey};
+        } else {
+            // autocreate
+            $filter = new TranslationFilterGroup($index);
+            $this->setFilter($filter);
+            return $filter;
+        }
+    }
+
+    public function getTranslationFilter($class, $index = '') {
+        return $this->getTranslationFilters($index)->getFilter($class);
+    }
+
+    public function setTranslationFilter($filter, $index = '') {
+        $this->getTranslationFilters($index)->setFilter($filter);
+    }
+
+    public function unsetTranslationFilter($class, $index = '') {
+        $this->getTranslationFilters($index)->unsetFilter($class);
+    }
+
+    public function getFilteredTranslationLanguages($index = '') {
+        $filter = $this->getTranslationFilter(TranslationLangFilter::class, $index);
+        return $filter ? $filter->getAllValues() : null;
     }
 
     public function filterByTranslationLink($link) {
@@ -297,15 +320,7 @@ class Search {
         $this->sphinxFilterArrayLimit = $limit;
     }
 
-    public function getTranslationFilter($filterName) {
-        if (array_key_exists($filterName, $this->translationFilters)) {
-            return $this->translationFilters[$filterName];
-        } else {
-            return null;
-        }
-    }
-
-    public function getTranslationFilters() {
+    public function getTranslationFiltersOld() {
         return array_filter(
             $this->translationFilters,
             function ($v) { return !is_null($v); }

@@ -8,6 +8,7 @@ use App\Model\Search\TagsFilter;
 use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\WordCountFilter;
+use App\Model\Search\TranslationLangFilter;
 use Cake\TestSuite\TestCase;
 
 class SearchTest extends TestCase
@@ -651,35 +652,45 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationLanguage_ainu() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationLanguage('ain');
-        $this->assertEquals('ain', $result);
+        $this->Search->setTranslationFilter((new TranslationLangFilter())->anyOf(['ain']));
 
         $expected = $this->makeSphinxParams([
-            'select' => "*, ANY(t.l='ain' FOR t IN trans) as filter",
-            'filter' => [['filter', 1]],
+            'select' => "*, ANY(t.l='ain' FOR t IN trans) as tf",
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationLanguage_multilang() {
+        $this->Search->setTranslationFilter((new TranslationLangFilter())->anyOf(['ain', 'pol']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => "*, ANY((t.l='ain' | t.l='pol') FOR t IN trans) as tf",
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationLanguage_multilang_exclude() {
+        $this->Search->setTranslationFilter((new TranslationLangFilter())->not()->anyOf(['ain', 'pol']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => "*, ANY(not (t.l='ain' | t.l='pol') FOR t IN trans) as tf",
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTranslationLanguage_invalid() {
-        $result = $this->Search->filterByTranslationLanguage('invalid value');
-        $this->assertNull($result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationLanguage_null() {
-        $result = $this->Search->filterByTranslationLanguage(null);
-        $this->assertNull($result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationLanguage_resets() {
-        $this->testfilterByTranslationLanguage_ainu();
-        $this->testfilterByTranslationLanguage_null();
+        try {
+            $this->Search->setTranslationFilter((new TranslationLangFilter())->anyOf(['invalid value']));
+            $this->fail("'invalid value' language did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testfilterByTranslationLink_direct() {

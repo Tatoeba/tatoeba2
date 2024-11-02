@@ -25,6 +25,17 @@ abstract class BaseSearchFilter {
         return array_keys($values);
     }
 
+    protected function _join(string $op, array $exprs, bool $negate = false) {
+        $expr = implode(" $op ", $exprs);
+        if (count($exprs) > 1) {
+            $expr = "($expr)";
+        }
+        if ($negate) {
+            $expr = "not $expr";
+        }
+        return $expr;
+    }
+
     public function and() {
         $this->current++;
         $this->exclude = false;

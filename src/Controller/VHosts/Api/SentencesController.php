@@ -4,6 +4,7 @@ namespace App\Controller\VHosts\Api;
 use App\Controller\VHosts\Api\ApiController;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\TranslationLangFilter;
 use Cake\Http\Exception\BadRequestException;
 use Cake\ORM\Query;
 
@@ -145,11 +146,11 @@ class SentencesController extends ApiController
 
         $trans = $this->getRequest()->getQuery('trans');
         if ($trans) {
-            $trans = $search->filterByTranslationLanguage($trans);
-            if (is_null($trans)) {
+            try {
+                $filter = new TranslationLangFilter();
+                $search->setTranslationFilter($filter->anyOf([$trans]));
+            } catch (InvalidValueException $e) {
                 return $this->response->withStatus(400, 'Invalid parameter "trans"');
-            } else {
-                $search->filterByTranslation('limit');
             }
         }
 
@@ -239,7 +240,7 @@ Sort order of the sentences. Prefix the value with minus '-' to reverse that ord
         $query = $this->Sentences
             ->find('withSphinx')
             ->find('filteredTranslations', [
-                'translationLang' => $search->getTranslationFilter('language'),
+                'translationLang' => $search->getFilteredTranslationLanguages(),
             ])
             ->find('exposedFields', $this->exposedFields())
             ->select($this->Sentences->fields())
