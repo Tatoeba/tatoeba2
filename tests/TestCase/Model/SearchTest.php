@@ -10,6 +10,7 @@ use App\Model\Search\OwnersFilter;
 use App\Model\Search\WordCountFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationIsUnapprovedFilter;
 use Cake\TestSuite\TestCase;
 
 class SearchTest extends TestCase
@@ -786,41 +787,25 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationCorrectness_true() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationCorrectness(true);
-        $this->assertTrue($result);
+        $this->Search->setTranslationFilter(new TranslationIsUnapprovedFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.c=0 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(t.c=0 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTranslationCorrectness_false() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationCorrectness(false);
-        $this->assertFalse($result);
+        $this->Search->setTranslationFilter(new TranslationIsUnapprovedFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.c=1 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(not (t.c=0) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByTranslationCorrectness_null() {
-        $result = $this->Search->filterByTranslationCorrectness(null);
-        $this->assertNull($result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationCorrectness_resets() {
-        $this->testfilterByTranslationCorrectness_true();
-        $this->testfilterByTranslationCorrectness_null();
     }
 
     private function assertSortByRank($sort, $rank) {

@@ -308,10 +308,6 @@ class Search {
         return $this->translationFilters['isOrphan'] = $isOrphan;
     }
 
-    public function filterByTranslationCorrectness($correctness) {
-        return $this->translationFilters['correctness'] = $correctness;
-    }
-
     public function filterByTranslationAudio($filter) {
         return $this->translationFilters['hasAudio'] = $filter;
     }

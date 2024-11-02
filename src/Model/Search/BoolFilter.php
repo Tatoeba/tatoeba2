@@ -3,9 +3,11 @@
 namespace App\Model\Search;
 
 class BoolFilter extends BaseSearchFilter {
+    protected $valueForTrue = 1;
+
     public function __construct(bool $value) {
         $this->exclude = !$value;
-        $this->anyOf([1]);
+        $this->anyOf([$this->valueForTrue]);
     }
 
     public function compile() {

@@ -5,6 +5,7 @@ use App\Controller\VHosts\Api\ApiController;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationIsUnapprovedFilter;
 use Cake\Http\Exception\BadRequestException;
 use Cake\ORM\Query;
 
@@ -128,7 +129,7 @@ class SentencesController extends ApiController
 
     private function _prepareSearch() {
         $search = new Search();
-        $search->filterByCorrectness(false);
+        $search->setTranslationFilter(new TranslationIsUnapprovedFilter(false));
 
         $q = $this->getRequest()->getQuery('q');
         $search->filterByQuery($q);
@@ -157,7 +158,7 @@ class SentencesController extends ApiController
         $includeUnapproved = $this->getRequest()->getQuery('include_unapproved');
         if (!is_null($includeUnapproved)) {
             if ($includeUnapproved == 'yes') {
-                $search->filterByCorrectness(null);
+                $search->unsetFilter(TranslationIsUnapprovedFilter::class);
             } else {
                 return $this->response->withStatus(400, 'Parameter "include_unapproved" can only have "yes" as value');
             }

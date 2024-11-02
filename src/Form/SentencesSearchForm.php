@@ -87,12 +87,12 @@ class SentencesSearchForm extends Form
         return $this->parseYesNoEmpty($value);
     }
 
-    protected function setBoolFilter(string $class, string $value) {
+    protected function setBoolFilter(string $class, $value, object $collection) {
         $value = $this->parseBoolNull($value);
         if (is_null($value)) {
-            $this->search->unsetFilter($class);
+            $collection->unsetFilter($class);
         } else {
-            $this->search->setFilter(new $class($value));
+            $collection->setFilter(new $class($value));
         }
         return $this->parseYesNoEmpty($value);
     }
@@ -197,7 +197,11 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataTransUnapproved(string $trans_unapproved) {
-        return $this->setBoolFilterOld('filterByTranslationCorrectness', $trans_unapproved);
+        return $this->setBoolFilter(
+            TranslationIsUnapprovedFilter::class,
+            $trans_unapproved,
+            $this->search->getTranslationFilters()
+        );
     }
 
     protected function setDataTransOrphan(string $trans_orphan) {
@@ -209,7 +213,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataOrphans(string $orphans) {
-        return $this->setBoolFilter(OrphanFilter::class, $orphans);
+        return $this->setBoolFilter(OrphanFilter::class, $orphans, $this->search);
     }
 
     protected function setDataHasAudio(string $has_audio) {
