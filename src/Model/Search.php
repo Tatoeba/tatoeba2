@@ -292,10 +292,6 @@ class Search {
         return $filter ? $filter->getAllValues() : null;
     }
 
-    public function filterByTranslationOrphanship($isOrphan) {
-        return $this->translationFilters['isOrphan'] = $isOrphan;
-    }
-
     public function setSphinxFilterArrayLimit($limit) {
         $this->sphinxFilterArrayLimit = $limit;
     }

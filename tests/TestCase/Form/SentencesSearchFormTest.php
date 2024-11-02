@@ -8,6 +8,7 @@ use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationOwnerFilter;
@@ -171,10 +172,10 @@ class SentencesSearchFormTest extends TestCase
             [ ['trans_unapproved' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
             [ ['trans_unapproved' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
-            [ ['trans_orphan' => 'yes'],     ['filterByTranslationOrphanship', true],  'yes' ],
-            [ ['trans_orphan' => 'no'],      ['filterByTranslationOrphanship', false], 'no'  ],
-            [ ['trans_orphan' => 'invalid'], ['filterByTranslationOrphanship', null],  ''    ],
-            [ ['trans_orphan' => ''],        ['filterByTranslationOrphanship', null],  ''    ],
+            [ ['trans_orphan' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(true))],  'yes' ],
+            [ ['trans_orphan' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(false))], 'no'  ],
+            [ ['trans_orphan' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
+            [ ['trans_orphan' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
             [ ['trans_user' => 'contributor'], ['tf' => (new TranslationFilterGroup())->setFilter(
                                                                (new TranslationOwnerFilter())->anyOf(['contributor'])
@@ -410,15 +411,10 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testCheckUnwantedCombinations_transOrphanWithTransUser() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByTranslationOrphanship',
-            [true, null]
-        );
-
         $this->Form->setData(['trans_user' => 'contributor', 'trans_orphan' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
+        $this->assertNull($this->Search->getTranslationFilter(TranslationIsOrphanFilter::class), 'translation orphan filter is set');
         $this->assertCount(1, $this->Form->getIgnoredFields());
         $this->assertEquals('', $this->Form->getData()['trans_orphan']);
     }

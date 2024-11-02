@@ -11,6 +11,7 @@ use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationOwnerFilter;
@@ -217,7 +218,11 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataTransOrphan(string $trans_orphan) {
-        return $this->setBoolFilterOld('filterByTranslationOrphanship', $trans_orphan);
+        return $this->setBoolFilter(
+            TranslationIsOrphanFilter::class,
+            $trans_orphan,
+            $this->search->getTranslationFilters()
+        );
     }
 
     protected function setDataUnapproved(string $unapproved) {

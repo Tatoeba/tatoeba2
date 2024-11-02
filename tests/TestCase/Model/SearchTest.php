@@ -12,6 +12,7 @@ use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationOwnerFilter;
 use Cake\TestSuite\TestCase;
@@ -733,41 +734,25 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationOrphanship_true() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOrphanship(true);
-        $this->assertTrue($result);
+        $this->Search->setTranslationFilter(new TranslationIsOrphanFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.u=0 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(t.u=0 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTranslationOrphanship_false() {
-        $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOrphanship(false);
-        $this->assertFalse($result);
+        $this->Search->setTranslationFilter(new TranslationIsOrphanFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(t.u<>0 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
+            'select' => '*, ANY(not (t.u=0) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByTranslationOrphanship_null() {
-        $result = $this->Search->filterByTranslationOrphanship(null);
-        $this->assertNull($result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationOrphanship_resets() {
-        $this->testfilterByTranslationOrphanship_true();
-        $this->testfilterByTranslationOrphanship_null();
     }
 
     public function testfilterByTranslationCorrectness_true() {
