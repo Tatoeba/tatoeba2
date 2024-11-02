@@ -36,8 +36,6 @@ class Search {
     private $sort;
     private $sortReversed = false;
     private $randSeed;
-    private $translationFilter;
-    private $translationFilters = [];
 
     private $sphinxFilterArrayLimit = 4096;
 
@@ -77,22 +75,6 @@ class Search {
             }
         }
         return $filter;
-    }
-
-    private function getTranslationFiltersAsSphinx() {
-        $transFilter = [];
-        $sphinxMap = [
-            'hasAudio' => function($v) { return 't.a='.(int)$v; },
-            'language' => function($v) { return "t.l='$v'"; },
-            'link'     => function($v) { return 't.d='.($v == 'direct' ? 1 : 2); },
-            'ownerId'  => function($v) { return 't.u='.(int)$v; },
-            'isOrphan' => function($v) { return 't.u'.($v ? '=' : '<>').'0'; },
-            'correctness' => function($v) { return 't.c='.(int)!$v; },
-        ];
-        foreach ($this->getTranslationFiltersOld() as $filter => $value) {
-            $transFilter[] = $sphinxMap[$filter]($value);
-        }
-        return $transFilter;
     }
 
     private function orderby($expr, $order) {
@@ -137,17 +119,6 @@ class Search {
         if (!is_null($this->native) && count($this->langs) == 1) {
             $sphinx['filter'] = $sphinx['filter'] ?? [];
             array_push($sphinx['filter'], ...$this->getNativeSpeakerFilterAsSphinx());
-        }
-        if (!is_null($this->translationFilter)) {
-            $transFilter = $this->getTranslationFiltersAsSphinx();
-            if (empty($transFilter)) {
-                $transFilter = [1];
-            }
-            $filter = implode(' & ', $transFilter);
-            $sphinx['select'] .= ", ANY($filter FOR t IN trans) as filter";
-
-            $filter = $this->translationFilter == 'limit' ? 1 : 0;
-            $sphinx['filter'][] = ['filter', $filter];
         }
         if ($this->sort) {
             $randomExpr = "RAND({$this->randSeed})*16777216";
@@ -239,14 +210,6 @@ class Search {
         return $this->native = $filter;
     }
 
-    public function filterByTranslation($filter) {
-        $this->translationFilter = null;
-        if (in_array($filter, ['exclude', 'limit'])) {
-            $this->translationFilter = $filter;
-        }
-        return $this->translationFilter;
-    }
-
     public function getFilters() {
         return $this->filters;
     }
@@ -294,13 +257,6 @@ class Search {
 
     public function setSphinxFilterArrayLimit($limit) {
         $this->sphinxFilterArrayLimit = $limit;
-    }
-
-    public function getTranslationFiltersOld() {
-        return array_filter(
-            $this->translationFilters,
-            function ($v) { return !is_null($v); }
-        );
     }
 
     public static function exactSearchQuery($text) {

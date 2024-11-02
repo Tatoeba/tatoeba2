@@ -577,18 +577,6 @@ class SearchTest extends TestCase
         }
     }
 
-    public function testfilterByTranslation_limit() {
-        $result = $this->Search->filterByTranslation('limit');
-        $this->assertEquals('limit', $result);
-
-        $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(1 FOR t IN trans) as filter',
-            'filter' => [['filter', 1]],
-        ]);
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
     public function testfilterByTranslationCount() {
         $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf([0]));
 
