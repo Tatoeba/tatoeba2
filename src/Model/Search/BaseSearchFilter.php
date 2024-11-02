@@ -27,7 +27,7 @@ abstract class BaseSearchFilter {
 
     protected function _join(string $op, array $exprs, bool $negate = false) {
         $expr = implode(" $op ", $exprs);
-        if (count($exprs) > 1) {
+        if (count($exprs) > 1 || ($negate && $exprs[0][0] != '(')) {
             $expr = "($expr)";
         }
         if ($negate) {

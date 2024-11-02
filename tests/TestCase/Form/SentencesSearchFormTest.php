@@ -4,6 +4,7 @@ use App\Form\SentencesSearchForm;
 use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
+use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\WordCountFilter;
@@ -139,8 +140,11 @@ class SentencesSearchFormTest extends TestCase
                                                                                             ->anyOf(['1-'])->and()],  '42' ],
             [ ['word_count_max' => 'invalid'], ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
 
-            [ ['trans_filter' => 'exclude'],      ['filterByTranslation', 'exclude'], 'exclude' ],
-            [ ['trans_filter' => 'invalidvalue'], ['filterByTranslation'], 'limit' ],
+            [ ['trans_filter' => 'exclude'],      ['tf' => (new TranslationFilterGroup())
+                                                              ->setExclude(true)->setFilter(
+                                                                  (new TranslationCountFilter())->not()->anyOf([0])
+                                                              )], 'exclude' ],
+            [ ['trans_filter' => 'invalidvalue'], ['tf' => (new TranslationFilterGroup())], 'limit'],
 
             [ ['trans_to' => 'ain'],     ['tf' => (new TranslationFilterGroup())->setFilter(
                                                          (new TranslationLangFilter())->anyOf(['ain'])
@@ -270,18 +274,27 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testTransFilter_limitWithoutTransFilters() {
-        $this->Search->expects($this->never())
-                     ->method('filterByTranslation');
         $this->Form->setData(['trans_filter' => 'limit']);
         $this->assertEquals('limit', $this->Form->getData()['trans_filter']);
+        $this->assertNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
     }
 
     public function testTransFilter_limitWithTranslationFilters() {
-        $this->Search->expects($this->once())
-                     ->method('filterByTranslation')
-                     ->with($this->equalTo('limit'));
         $this->Form->setData(['trans_filter' => 'limit', 'trans_to' => 'hun']);
         $this->assertEquals('limit', $this->Form->getData()['trans_filter']);
+        $this->assertNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
+    }
+
+    public function testTransFilter_excludeWithoutTranslationFilters() {
+        $this->Form->setData(['trans_filter' => 'exclude']);
+        $this->assertEquals('exclude', $this->Form->getData()['trans_filter']);
+        $this->assertNotNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
+    }
+
+    public function testTransFilter_excludeWithTranslationFilters() {
+        $this->Form->setData(['trans_filter' => 'exclude', 'trans_to' => 'hun']);
+        $this->assertEquals('exclude', $this->Form->getData()['trans_filter']);
+        $this->assertNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
     }
 
     private function assertMethodCalledWith($stub, $methodName, $expectedParams) {

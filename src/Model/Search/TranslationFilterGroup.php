@@ -37,16 +37,24 @@ class TranslationFilterGroup extends BaseSearchFilter {
 
     public function compile(&$select = "*") {
         $transFilters = [];
+        $exprs = [];
         foreach ($this->filters as $filter) {
             $compiled = $filter->compile($select);
             if (!is_null($compiled)) {
-                array_push($transFilters, $compiled);
+                if (is_array($compiled)) {
+                    array_push($exprs, ...$compiled);
+                } else {
+                    array_push($transFilters, $compiled);
+                }
             }
         }
         if (count($transFilters) > 0) {
             $filter = $this->_join('&', $transFilters);
+            $exprs[] = "ANY($filter FOR t IN trans)";
+        }
+        if (count($exprs) > 0) {
+            $expr = $this->_join('and', $exprs);
             $filterName = $this::getName($this->id);
-            $expr = "ANY($filter FOR t IN trans)";
             $select .= ", $expr as $filterName";
 
             $exclude = (int)!$this->exclude;

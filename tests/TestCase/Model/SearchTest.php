@@ -8,6 +8,7 @@ use App\Model\Search\TagsFilter;
 use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\WordCountFilter;
+use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationLangFilter;
 use Cake\TestSuite\TestCase;
 
@@ -494,7 +495,7 @@ class SearchTest extends TestCase
         $this->Search->setFilter((new WordCountFilter())->anyOf(['0-10', '15'])->and()->not()->anyOf(['4']));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, (((text_len >= 0 and text_len <= 10) or text_len = 15) and not text_len = 4) as WordCountFilter',
+            'select' => '*, (((text_len >= 0 and text_len <= 10) or text_len = 15) and not (text_len = 4)) as WordCountFilter',
             'filter' => [['WordCountFilter', 1]],
         ]);
         $result = $this->Search->asSphinx();
@@ -583,39 +584,27 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslation_exclude() {
-        $result = $this->Search->filterByTranslation('exclude');
-        $this->assertEquals('exclude', $result);
+    public function testfilterByTranslationCount() {
+        $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf([0]));
 
         $expected = $this->makeSphinxParams([
-            'select' => '*, ANY(1 FOR t IN trans) as filter',
-            'filter' => [['filter', 0]],
+            'select' => '*, (length(trans) = 0) as tf',
+            'filter' => [['tf', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslation_invalid() {
-        $result = $this->Search->filterByTranslation('invalid value');
-        $this->assertNull($result);
+    public function testfilterByTranslationCount_exclude() {
+        $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf([0]));
+        $this->Search->getTranslationFilters()->setExclude(true);
 
-        $expected = $this->makeSphinxParams();
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (length(trans) = 0) as tf',
+            'filter' => [['tf', 0]],
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByTranslation_null() {
-        $result = $this->Search->filterByTranslation(null);
-        $this->assertNull($result);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByTranslation_resets() {
-        $this->testfilterByTranslation_limit();
-        $this->testfilterByTranslation_null();
     }
 
     public function testfilterByTranslationAudio_true() {

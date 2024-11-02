@@ -8,6 +8,8 @@ use App\Model\Search;
 use App\Model\Search\OrphanFilter;
 use App\Model\Search\OwnersFilter;
 use App\Model\Search\TagsFilter;
+use App\Model\Search\TranslationCountFilter;
+use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\WordCountFilter;
 use App\Lib\LanguagesLib;
@@ -142,11 +144,14 @@ class SentencesSearchForm extends Form
             $trans_filter = 'limit';
         }
 
-        /* Only set translation filter to 'limit' if at least
-           one translation filter is set */
-        if ($trans_filter == 'limit' && $this->search->getTranslationFiltersOld()
-            || $trans_filter == 'exclude') {
-            $trans_filter = $this->search->filterByTranslation($trans_filter);
+        /* 'limit' is the default form value and does not actually do any filtering
+           on the existence of translations; only 'exclude' does. Also we need to set
+           at least one translation filter otherwise setExclude() won't have any effect.
+           That's why we only set the count filter if a) we are in exclude mode
+           and b) no translation filter is set. */
+        $this->search->getTranslationFilters()->setExclude($trans_filter == 'exclude');
+        if ($trans_filter == 'exclude' && count($this->search->getTranslationFilters()->compile()) == 0) {
+            $this->search->setTranslationFilter((new TranslationCountFilter())->not()->anyOf([0]));
         }
 
         return $trans_filter;
