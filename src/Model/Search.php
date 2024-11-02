@@ -10,7 +10,7 @@ use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
 
 class FiltersCollection {
-    public function compile(&$select = "") {
+    public function compile(&$select = "*") {
         $output = [];
         foreach ($this as $filter) {
             if (!is_null($filter)) {
