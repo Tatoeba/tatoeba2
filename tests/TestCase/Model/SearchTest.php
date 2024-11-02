@@ -6,7 +6,7 @@ use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\OrphanFilter;
-use App\Model\Search\OwnersFilter;
+use App\Model\Search\OwnerFilter;
 use App\Model\Search\WordCountFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
@@ -141,8 +141,8 @@ class SearchTest extends TestCase
         $this->testfilterByLanguage_empty();
     }
 
-    public function testfilterByOwners_oneUser() {
-        $this->Search->setFilter((new OwnersFilter())->anyOf(['contributor']));
+    public function testfilterByOwner_oneUser() {
+        $this->Search->setFilter((new OwnerFilter())->anyOf(['contributor']));
 
         $expected = $this->makeSphinxParams([
             'filter' => [['user_id', [4], false]]
@@ -151,8 +151,8 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwners_twoUsers() {
-        $this->Search->setFilter((new OwnersFilter())->anyOf(['contributor', 'admin']));
+    public function testfilterByOwner_twoUsers() {
+        $this->Search->setFilter((new OwnerFilter())->anyOf(['contributor', 'admin']));
 
         $expected = $this->makeSphinxParams([
             'filter' => [['user_id', [4, 1], false]]
@@ -161,8 +161,8 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwners_exclude_oneUser() {
-        $this->Search->setFilter((new OwnersFilter())->not()->anyOf(['contributor']));
+    public function testfilterByOwner_exclude_oneUser() {
+        $this->Search->setFilter((new OwnerFilter())->not()->anyOf(['contributor']));
 
         $expected = $this->makeSphinxParams([
             'filter' => [['user_id', [4], true]]

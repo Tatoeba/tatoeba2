@@ -6,7 +6,7 @@ use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\OrphanFilter;
-use App\Model\Search\OwnersFilter;
+use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
@@ -118,7 +118,7 @@ class SentencesSearchForm extends Form
 
     protected function setDataUser(string $user) {
         if (!empty($user)) {
-            $filter = new OwnersFilter();
+            $filter = new OwnerFilter();
             $filter->setInvalidValueHandler(function($value) use (&$user) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by “Warning:

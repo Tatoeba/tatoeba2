@@ -2,7 +2,7 @@
 
 use App\Form\SentencesSearchForm;
 use App\Model\Search\OrphanFilter;
-use App\Model\Search\OwnersFilter;
+use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
@@ -104,9 +104,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['orphans' => 'invalid'], ['OrphanFilter' => null],                    'any' ],
             [ ['orphans' => ''],        ['OrphanFilter' => null],                    'any' ],
 
-            [ ['user' => 'contributor'], ['OwnersFilter' => (new OwnersFilter())->anyOf(['contributor'])], 'contributor', 0 ],
-            [ ['user' => 'invaliduser'], ['OwnersFilter' => new OwnersFilter()],                           '',            1 ],
-            [ ['user' => ''],            ['OwnersFilter' => null],                                         '',            0 ],
+            [ ['user' => 'contributor'], ['OwnerFilter' => (new OwnerFilter())->anyOf(['contributor'])], 'contributor', 0 ],
+            [ ['user' => 'invaliduser'], ['OwnerFilter' => new OwnerFilter()],                           '',            1 ],
+            [ ['user' => ''],            ['OwnerFilter' => null],                                        '',            0 ],
 
             [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
             [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],

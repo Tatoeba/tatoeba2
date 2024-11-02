@@ -7,7 +7,7 @@ use Cake\Database\Expression\FunctionExpression;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Utility\Hash;
 
-class OwnersFilter extends SearchFilter {
+class OwnerFilter extends SearchFilter {
     use ModelAwareTrait;
 
     protected function getAttributeName() {
