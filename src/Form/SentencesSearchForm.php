@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\OwnerFilter;
@@ -84,12 +85,6 @@ class SentencesSearchForm extends Form
 
     protected function parseBoolNull($value) {
         return $value == 'yes' ? true : ($value == 'no' ? false : null);
-    }
-
-    protected function setBoolFilterOld(string $method, string $value) {
-        $value = $this->parseBoolNull($value);
-        $value = $this->search->$method($value);
-        return $this->parseYesNoEmpty($value);
     }
 
     protected function setBoolFilter(string $class, $value, object $collection) {
@@ -235,7 +230,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataHasAudio(string $has_audio) {
-        return $this->setBoolFilterOld('filterByAudio', $has_audio);
+        return $this->setBoolFilter(HasAudioFilter::class, $has_audio, $this->search);
     }
 
     protected function setDataTags(string $tags) {

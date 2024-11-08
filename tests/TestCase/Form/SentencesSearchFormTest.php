@@ -1,6 +1,7 @@
 <?php
 
 use App\Form\SentencesSearchForm;
+use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\OwnerFilter;
@@ -112,10 +113,10 @@ class SentencesSearchFormTest extends TestCase
             [ ['user' => 'invaliduser'], ['OwnerFilter' => new OwnerFilter()],                           '',            1 ],
             [ ['user' => ''],            ['OwnerFilter' => null],                                        '',            0 ],
 
-            [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
-            [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],
-            [ ['has_audio' => 'invalid'], ['filterByAudio', null],  ''    ],
-            [ ['has_audio' => ''],        ['filterByAudio', null],  ''    ],
+            [ ['has_audio' => 'yes'],     ['HasAudioFilter' => new HasAudioFilter(true)],  'yes' ],
+            [ ['has_audio' => 'no'],      ['HasAudioFilter' => new HasAudioFilter(false)], 'no'  ],
+            [ ['has_audio' => 'invalid'], ['HasAudioFilter' => null], '' ],
+            [ ['has_audio' => ''],        ['HasAudioFilter' => null], '' ],
 
             [ ['tags' => 'OK'],          ['TagsFilter' => (new TagsFilter())->anyOf(['OK'])], 'OK'    ],
             [ ['tags' => 'invalid tag'], ['TagsFilter' => new TagsFilter()],                  '',   1 ],

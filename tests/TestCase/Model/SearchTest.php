@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\TagsFilter;
@@ -237,30 +238,27 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByAudio_true() {
-        $result = $this->Search->filterByAudio(true);
-        $this->assertTrue($result);
+        $this->Search->setFilter(new HasAudioFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['has_audio', 1]]
+            'filter' => [['has_audio', [1], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByAudio_false() {
-        $result = $this->Search->filterByAudio(false);
-        $this->assertFalse($result);
+        $this->Search->setFilter(new HasAudioFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['has_audio', 0]]
+            'filter' => [['has_audio', [1], true]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByAudio_null() {
-        $result = $this->Search->filterByAudio(null);
-        $this->assertNull($result);
+        $this->Search->unsetFilter(HasAudioFilter::class);
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
