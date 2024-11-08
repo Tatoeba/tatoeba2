@@ -6,6 +6,7 @@ use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\HasAudioFilter;
+use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
@@ -290,7 +291,16 @@ class SentencesSearchForm extends Form
 
     protected function setDataNative(string $native) {
         $native = $native === 'yes' ? true : null;
-        $native = $this->search->filterByNativeSpeaker($native);
+        if ($native) {
+            try {
+                $this->search->setFilter(new IsNativeFilter($this->_data['from']));
+            } catch (InvalidValueException $e) {
+                // expected when 'from' is not a valid language,
+                // return 'yes' so that checkUnwantedCombinations() warns about it
+            }
+        } else {
+            $this->search->unsetFilter(IsNativeFilter::class);
+        }
         return $native ? 'yes' : '';
     }
 
@@ -386,9 +396,10 @@ class SentencesSearchForm extends Form
         $data = array_merge($this->defaultCriteria, $data);
 
         /* Make sure trans_filter is applied at the end
-           because it depends on other trans_* filters */
+           because it depends on other trans_* filters.
+           Also 'native' depends on 'from'. */
         uksort($data, function ($k) {
-            return $k == 'trans_filter';
+            return $k == 'trans_filter' || $k == 'native';
         });
 
         /* Apply other criteria */

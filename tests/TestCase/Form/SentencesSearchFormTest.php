@@ -2,6 +2,7 @@
 
 use App\Form\SentencesSearchForm;
 use App\Model\Search\HasAudioFilter;
+use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
@@ -128,10 +129,10 @@ class SentencesSearchFormTest extends TestCase
             [ ['list' => ''],        ['ListFilter' => null],                           ''    ],
             [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
 
-            [ ['native' => 'yes'],     ['filterByNativeSpeaker', true],  'yes' ],
-            [ ['native' => 'no'],      ['filterByNativeSpeaker', null],  ''    ],
-            [ ['native' => 'invalid'], ['filterByNativeSpeaker', null],  ''    ],
-            [ ['native' => ''],        ['filterByNativeSpeaker', null],  ''    ],
+            [ ['native' => 'yes', 'from' => 'eng'], ['IsNativeFilter' => new IsNativeFilter('eng')], 'yes'],
+            [ ['native' => 'no'],      ['IsNativeFilter' => null], '' ],
+            [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
+            [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
 
             [ ['word_count_min' => ''],        ['WordCountFilter' => null],                                           'any'],
             [ ['word_count_min' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['0-'])->and()],  '0'  ],
@@ -423,12 +424,6 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testCheckUnwantedCombinations_nativeWithoutLanguage() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByNativeSpeaker',
-            [true, null]
-        );
-
         $this->Form->setData(['from' => '', 'native' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
@@ -437,12 +432,6 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testCheckUnwantedCombinations_userNotNative() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByNativeSpeaker',
-            [true, null]
-        );
-
         $this->Form->setData([
             'from' => 'eng',
             'user' => 'contributor',

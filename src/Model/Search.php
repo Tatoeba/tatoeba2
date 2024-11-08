@@ -6,8 +6,6 @@ use App\Model\Exception\InvalidValueException;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationFilterGroup;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
-use Cake\Database\Expression\QueryExpression;
-use Cake\Utility\Hash;
 
 class FiltersCollection {
     public function compile(&$select = "*") {
@@ -29,49 +27,12 @@ class Search {
     private $query;
     private $filters;
     private $langs = [];
-    private $native;
     private $sort;
     private $sortReversed = false;
     private $randSeed;
 
-    private $sphinxFilterArrayLimit = 4096;
-
     public function __construct() {
         $this->filters = new FiltersCollection();
-    }
-
-    private function getNativeSpeakerFilterAsSphinx() {
-        $this->loadModel('UsersLanguages');
-        $natives = $this->UsersLanguages->find()
-            ->where([
-                'language_code' => $this->langs[0],
-                'level' => 5,
-            ])
-            ->select(['of_user_id'])
-            ->enableHydration(false)
-            ->toList();
-        $natives = Hash::extract($natives, '{n}.of_user_id');
-
-        if (count($natives) <= $this->sphinxFilterArrayLimit) {
-            $filter = [['user_id', $natives]];
-        } else {
-            $nonNatives = $this->UsersLanguages->find()
-                ->where(function (QueryExpression $exp) {
-                    $isNonNative = $exp->or(['level is' => null])->notEq('level', 5);
-                    return $exp->add($isNonNative)
-                               ->eq('language_code', $this->langs[0]);
-                })
-                ->select(['of_user_id'])
-                ->enableHydration(false)
-                ->toList();
-            $nonNatives = Hash::extract($nonNatives, '{n}.of_user_id');
-            $filter = [];
-            while (count($nonNatives)) {
-                $excludedIds = array_splice($nonNatives, 0, $this->sphinxFilterArrayLimit);
-                $filter[] = ['user_id', $excludedIds, true];
-            }
-        }
-        return $filter;
     }
 
     private function orderby($expr, $order) {
@@ -102,10 +63,6 @@ class Search {
         }
         foreach ($this->filters->compile($sphinx['select']) as $compiled) {
             $sphinx['filter'][] = $compiled;
-        }
-        if (!is_null($this->native) && count($this->langs) == 1) {
-            $sphinx['filter'] = $sphinx['filter'] ?? [];
-            array_push($sphinx['filter'], ...$this->getNativeSpeakerFilterAsSphinx());
         }
         if ($this->sort) {
             $randomExpr = "RAND({$this->randSeed})*16777216";
@@ -171,10 +128,6 @@ class Search {
         return $this->sortReversed = $reversed;
     }
 
-    public function filterByNativeSpeaker($filter) {
-        return $this->native = $filter;
-    }
-
     public function getFilters() {
         return $this->filters;
     }
@@ -218,10 +171,6 @@ class Search {
     public function getFilteredTranslationLanguages($index = '') {
         $filter = $this->getTranslationFilter(TranslationLangFilter::class, $index);
         return $filter ? $filter->getAllValues() : null;
-    }
-
-    public function setSphinxFilterArrayLimit($limit) {
-        $this->sphinxFilterArrayLimit = $limit;
     }
 
     public static function exactSearchQuery($text) {
