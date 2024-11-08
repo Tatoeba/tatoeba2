@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
-use App\Model\Search\OrphanFilter;
+use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -230,7 +230,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataOrphans(string $orphans) {
-        return $this->setBoolFilter(OrphanFilter::class, $orphans, $this->search);
+        return $this->setBoolFilter(IsOrphanFilter::class, $orphans, $this->search);
     }
 
     protected function setDataHasAudio(string $has_audio) {

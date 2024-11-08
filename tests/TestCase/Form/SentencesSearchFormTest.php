@@ -1,7 +1,7 @@
 <?php
 
 use App\Form\SentencesSearchForm;
-use App\Model\Search\OrphanFilter;
+use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -101,11 +101,11 @@ class SentencesSearchFormTest extends TestCase
             [ ['unapproved' => 'invalid'], ['filterByCorrectness', null],  'any' ],
             [ ['unapproved' => ''],        ['filterByCorrectness', null],  'any' ],
 
-            [ ['orphans' => 'yes'],     ['OrphanFilter' => new OrphanFilter(true)],  'yes' ],
-            [ ['orphans' => 'no'],      ['OrphanFilter' => new OrphanFilter(false)], 'no'  ],
-            [ ['orphans' => 'any'],     ['OrphanFilter' => null],                    'any' ],
-            [ ['orphans' => 'invalid'], ['OrphanFilter' => null],                    'any' ],
-            [ ['orphans' => ''],        ['OrphanFilter' => null],                    'any' ],
+            [ ['orphans' => 'yes'],     ['IsOrphanFilter' => new IsOrphanFilter(true)],  'yes' ],
+            [ ['orphans' => 'no'],      ['IsOrphanFilter' => new IsOrphanFilter(false)], 'no'  ],
+            [ ['orphans' => 'any'],     ['IsOrphanFilter' => null],                      'any' ],
+            [ ['orphans' => 'invalid'], ['IsOrphanFilter' => null],                      'any' ],
+            [ ['orphans' => ''],        ['IsOrphanFilter' => null],                      'any' ],
 
             [ ['user' => 'contributor'], ['OwnerFilter' => (new OwnerFilter())->anyOf(['contributor'])], 'contributor', 0 ],
             [ ['user' => 'invaliduser'], ['OwnerFilter' => new OwnerFilter()],                           '',            1 ],
@@ -405,7 +405,7 @@ class SentencesSearchFormTest extends TestCase
         $this->Form->setData(['user' => 'contributor', 'orphans' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
-        $this->assertNull($this->Search->getFilter(OrphanFilter::class), 'orphan filter is set');
+        $this->assertNull($this->Search->getFilter(IsOrphanFilter::class), 'orphan filter is set');
         $this->assertCount(1, $this->Form->getIgnoredFields());
         $this->assertEquals('', $this->Form->getData()['orphans']);
     }

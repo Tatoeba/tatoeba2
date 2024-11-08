@@ -2,7 +2,7 @@
 
 namespace App\Model\Search;
 
-class OrphanFilter extends BoolFilter {
+class IsOrphanFilter extends BoolFilter {
 
     protected $valueForTrue = 0;
 
