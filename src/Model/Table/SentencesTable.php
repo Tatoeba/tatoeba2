@@ -32,6 +32,8 @@ use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\IsOrphanFilter;
+use App\Model\Search\IsUnapprovedFilter;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
 use Cake\Utility\Hash;
@@ -611,8 +613,8 @@ class SentencesTable extends Table
             // normal outcome when $lang == 'und'
         }
         $search->sort('random');
-        $search->filterByOrphanship(false); // exclude orphans
-        $search->filterByCorrectness(false); // exclude unapproved
+        $search->setFilter(new IsOrphanFilter(false)); // exclude orphans
+        $search->setFilter(new IsUnapprovedFilter(false)); // exclude unapproved
         $sphinx = $search->asSphinx();
         $sphinx['limit'] = $numberOfIdWanted;
 
