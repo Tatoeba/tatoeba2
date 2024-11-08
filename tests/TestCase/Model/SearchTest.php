@@ -5,6 +5,7 @@ include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\IsOrphanFilter;
+use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\WordCountFilter;
@@ -208,30 +209,27 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByCorrectness_true() {
-        $result = $this->Search->filterByCorrectness(true);
-        $this->assertTrue($result);
+        $this->Search->setFilter(new IsUnapprovedFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['ucorrectness', 127, false]]
+            'filter' => [['ucorrectness', [127], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByCorrectness_false() {
-        $result = $this->Search->filterByCorrectness(false);
-        $this->assertFalse($result);
+        $this->Search->setFilter(new IsUnapprovedFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['ucorrectness', 127, true]],
+            'filter' => [['ucorrectness', [127], true]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
     public function testfilterByCorrectness_null() {
-        $result = $this->Search->filterByCorrectness(null);
-        $this->assertNull($result);
+        $this->Search->unsetFilter(IsUnapprovedFilter::class);
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();

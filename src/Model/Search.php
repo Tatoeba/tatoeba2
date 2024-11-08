@@ -29,7 +29,6 @@ class Search {
     private $query;
     private $filters;
     private $langs = [];
-    private $correctness;
     private $hasAudio;
     private $listId;
     private $native;
@@ -102,10 +101,6 @@ class Search {
         ];
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
-        }
-        if (!is_null($this->correctness)) {
-            // See the indexation SQL request for the value 127
-            $sphinx['filter'][] = ['ucorrectness', 127, !$this->correctness];
         }
         if (!is_null($this->hasAudio)) {
             $sphinx['filter'][] = array('has_audio', $this->hasAudio);
@@ -182,10 +177,6 @@ class Search {
 
     public function reverseSort(bool $reversed) {
         return $this->sortReversed = $reversed;
-    }
-
-    public function filterByCorrectness($correctness) {
-        return $this->correctness = $correctness;
     }
 
     public function filterByAudio($hasAudio) {

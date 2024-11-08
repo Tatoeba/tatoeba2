@@ -6,6 +6,7 @@ use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\IsOrphanFilter;
+use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -226,7 +227,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataUnapproved(string $unapproved) {
-        return $this->setBoolFilterOld('filterByCorrectness', $unapproved);
+        return $this->setBoolFilter(IsUnapprovedFilter::class, $unapproved, $this->search);
     }
 
     protected function setDataOrphans(string $orphans) {

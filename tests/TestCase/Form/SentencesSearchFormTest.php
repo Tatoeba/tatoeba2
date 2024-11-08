@@ -2,6 +2,7 @@
 
 use App\Form\SentencesSearchForm;
 use App\Model\Search\IsOrphanFilter;
+use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -95,11 +96,11 @@ class SentencesSearchFormTest extends TestCase
             [ ['to' => ''],        [], '' ],
             [ ['to' => 'invalid'], [], '' ],
 
-            [ ['unapproved' => 'yes'],     ['filterByCorrectness', true],  'yes' ],
-            [ ['unapproved' => 'no'],      ['filterByCorrectness', false], 'no'  ],
-            [ ['unapproved' => 'any'],     ['filterByCorrectness', null],  'any' ],
-            [ ['unapproved' => 'invalid'], ['filterByCorrectness', null],  'any' ],
-            [ ['unapproved' => ''],        ['filterByCorrectness', null],  'any' ],
+            [ ['unapproved' => 'yes'],     ['IsUnapprovedFilter' => new IsUnapprovedFilter(true)],  'yes' ],
+            [ ['unapproved' => 'no'],      ['IsUnapprovedFilter' => new IsUnapprovedFilter(false)], 'no'  ],
+            [ ['unapproved' => 'any'],     ['IsUnapprovedFilter' => null],  'any' ],
+            [ ['unapproved' => 'invalid'], ['IsUnapprovedFilter' => null],  'any' ],
+            [ ['unapproved' => ''],        ['IsUnapprovedFilter' => null],  'any' ],
 
             [ ['orphans' => 'yes'],     ['IsOrphanFilter' => new IsOrphanFilter(true)],  'yes' ],
             [ ['orphans' => 'no'],      ['IsOrphanFilter' => new IsOrphanFilter(false)], 'no'  ],
