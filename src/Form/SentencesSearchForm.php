@@ -8,6 +8,7 @@ use App\Model\Search;
 use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\ListFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -266,18 +267,23 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataList(string $list) {
-        $searcher = CurrentUser::get('id');
-        $list = is_numeric($list) ? (int)$list : null;
-        if (!$this->search->filterByListId($list, $searcher)) {
-            $this->ignored[] = format(
-                /* @translators: This string will be preceded by
-                   “Warning: the following criteria have been
-                   ignored:” */
-                __("“belongs to list number {listId}”, because list ".
-                   "{listId} is private or does not exist", true),
-                array('listId' => $list)
-            );
-            $list = '';
+        if (!empty($list)) {
+            $searcher = CurrentUser::get('id');
+            $filter = new ListFilter($searcher);
+            $filter->anyOf([$list]);
+            $filter->setInvalidValueHandler(function($listId) use (&$list) {
+                $this->ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been
+                       ignored:” */
+                    __("“belongs to list number {listId}”, because list ".
+                       "{listId} is private or does not exist", true),
+                    array('listId' => h($listId))
+                );
+                $list = '';
+            });
+            $this->search->setFilter($filter);
+            $filter->compile(); // trigger validation: update $this->ignored[] and $list
         }
         return $list;
     }

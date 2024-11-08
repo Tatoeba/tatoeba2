@@ -4,6 +4,7 @@ use App\Form\SentencesSearchForm;
 use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\ListFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -122,10 +123,10 @@ class SentencesSearchFormTest extends TestCase
             [ ['tags' => 'invalid tag'], ['TagsFilter' => new TagsFilter()],                  '',   1 ],
             [ ['tags' => 'OK,invalid'],  ['TagsFilter' => (new TagsFilter())->anyOf(['OK'])], 'OK', 1 ],
 
-            [ ['list' => '2'],       ['filterByListId', 2, null],       '2'   ],
-            [ ['list' => '9999999'], ['filterByListId', 9999999, null], '', 1 ],
-            [ ['list' => ''],        ['filterByListId', null, null],    ''    ],
-            [ ['list' => '3'],       ['filterByListId', 3, null],       '', 1 ],
+            [ ['list' => '2'],       ['ListFilter' => (new ListFilter())->anyOf([2])], '2'   ],
+            [ ['list' => '9999999'], ['ListFilter' => new ListFilter()],               '', 1 ],
+            [ ['list' => ''],        ['ListFilter' => null],                           ''    ],
+            [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
 
             [ ['native' => 'yes'],     ['filterByNativeSpeaker', true],  'yes' ],
             [ ['native' => 'no'],      ['filterByNativeSpeaker', null],  ''    ],

@@ -29,7 +29,6 @@ class Search {
     private $query;
     private $filters;
     private $langs = [];
-    private $listId;
     private $native;
     private $sort;
     private $sortReversed = false;
@@ -101,9 +100,6 @@ class Search {
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
         }
-        if (!is_null($this->listId)) {
-            $sphinx['filter'][] = array('lists_id', $this->listId);
-        }
         foreach ($this->filters->compile($sphinx['select']) as $compiled) {
             $sphinx['filter'][] = $compiled;
         }
@@ -173,20 +169,6 @@ class Search {
 
     public function reverseSort(bool $reversed) {
         return $this->sortReversed = $reversed;
-    }
-
-    public function filterByListId($listId, $currentUserId) {
-        $this->listId = null;
-        if (strlen($listId)) {
-            $this->loadModel('SentencesLists');
-            $list = $this->SentencesLists->isSearchableList($listId, $currentUserId);
-            if ($list) {
-                $this->listId = $list->id;
-            } else {
-                return false;
-            }
-        }
-        return true;
     }
 
     public function filterByNativeSpeaker($filter) {

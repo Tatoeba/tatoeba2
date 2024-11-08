@@ -7,6 +7,7 @@ use App\Model\Search;
 use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\ListFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\WordCountFilter;
@@ -265,25 +266,29 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function assertInvalidListId($listId) {
+        try {
+            $this->Search->asSphinx();
+            $this->fail("list id '$listId' did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
     public function testfilterByListId_invalid() {
         $currentUserId = null;
         $listId = 999999999999;
-        $result = $this->Search->filterByListId($listId, $currentUserId);
-        $this->assertFalse($result);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
+        $this->assertInvalidListId($listId);
     }
 
     public function testfilterByListId_public() {
         $currentUserId = null;
         $listId = 2;
-        $result = $this->Search->filterByListId($listId, $currentUserId);
-        $this->assertTrue($result);
+        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['lists_id', $listId]]
+            'filter' => [['lists_id', [$listId], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
@@ -292,11 +297,10 @@ class SearchTest extends TestCase
     public function testfilterByListId_unlisted() {
         $currentUserId = null;
         $listId = 1;
-        $result = $this->Search->filterByListId($listId, $currentUserId);
-        $this->assertTrue($result);
+        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['lists_id', $listId]]
+            'filter' => [['lists_id', [$listId], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
@@ -305,22 +309,17 @@ class SearchTest extends TestCase
     public function testfilterByListId_private_isNotOwner() {
         $currentUserId = 1;
         $listId = 3;
-        $result = $this->Search->filterByListId($listId, $currentUserId);
-        $this->assertFalse($result);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
+        $this->assertInvalidListId($listId);
     }
 
     public function testfilterByListId_private_isOwner() {
         $currentUserId = 7;
         $listId = 3;
-        $result = $this->Search->filterByListId($listId, $currentUserId);
-        $this->assertTrue($result);
+        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['lists_id', $listId]]
+            'filter' => [['lists_id', [$listId], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
@@ -329,12 +328,8 @@ class SearchTest extends TestCase
     public function testfilterByListId_empty() {
         $currentUserId = null;
         $listId = '';
-        $result = $this->Search->filterByListId($listId, $currentUserId);
-        $this->assertTrue($result);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
+        $this->assertInvalidListId($listId);
     }
 
     public function testfilterByListId_resets() {
