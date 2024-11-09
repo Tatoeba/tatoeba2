@@ -6,6 +6,7 @@ use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
+use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -121,12 +122,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['has_audio' => 'invalid'], ['HasAudioFilter' => null], '' ],
             [ ['has_audio' => ''],        ['HasAudioFilter' => null], '' ],
 
-            [ ['original' => 'yes'],     ['filterByOriginKnown' => [[true]],
-                                          'filterByIsOriginal'  => [[true]]], 'yes' ],
-            [ ['original' => 'invalid'], ['filterByOriginKnown' => [[null]],
-                                          'filterByIsOriginal'  => [[null]]],  '' ],
-            [ ['original' => ''],        ['filterByOriginKnown' => [[null]],
-                                          'filterByIsOriginal'  => [[null]]],  '' ],
+            [ ['original' => 'yes'],     ['OriginFilter' => (new OriginFilter())->anyOf([OriginFilter::ORIGIN_ORIGINAL])], 'yes' ],
+            [ ['original' => 'invalid'], ['OriginFilter' => null], ''],
+            [ ['original' => ''],        ['OriginFilter' => null], ''],
 
             [ ['tags' => 'OK'],          ['TagFilter' => (new TagFilter())->anyOf(['OK'])], 'OK'    ],
             [ ['tags' => 'invalid tag'], ['TagFilter' => new TagFilter()],                  '',   1 ],

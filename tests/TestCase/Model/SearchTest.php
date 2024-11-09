@@ -10,6 +10,7 @@ use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\TagFilter;
+use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\WordCountFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -178,9 +179,8 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOriginKnown() {
-        $result = $this->Search->filterByOriginKnown(false);
-        $this->assertFalse($result);
+    public function testfilterByOriginUnknown() {
+        $this->Search->setFilter((new OriginFilter())->anyOf([OriginFilter::ORIGIN_UNKNOWN]));
 
         $expected = $this->makeSphinxParams([
             'filter' => [['origin_known', false]]
@@ -189,33 +189,61 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOriginKnown_null() {
-        $result = $this->Search->filterByOriginKnown(null);
-        $this->assertNull($result);
-
-        $expected = $this->makeSphinxParams();
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByAddedAsTranslation() {
-        $result = $this->Search->filterByIsOriginal(true);
-        $this->assertTrue($result);
+    public function testfilterByOriginKnown() {
+        $this->Search->setFilter((new OriginFilter())->anyOf([OriginFilter::ORIGIN_KNOWN]));
 
         $expected = $this->makeSphinxParams([
-            'filter' => [['is_original', true]]
+            'filter' => [['origin_known', true]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByAddedAsTranslation_null() {
-        $result = $this->Search->filterByIsOriginal(null);
-        $this->assertNull($result);
+    public function testfilterByAddedAsOriginal() {
+        $this->Search->setFilter((new OriginFilter())->anyOf([OriginFilter::ORIGIN_ORIGINAL]));
 
-        $expected = $this->makeSphinxParams();
+        $expected = $this->makeSphinxParams([
+            'filter' => [['origin_known', true], ['is_original', true]]
+        ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByAddedAsTranslation() {
+        $this->Search->setFilter((new OriginFilter())->anyOf([OriginFilter::ORIGIN_TRANSLATION]));
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['origin_known', true], ['is_original', false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByOrigin_invalid() {
+        try {
+            $this->Search->setFilter((new OriginFilter())->anyOf(['invalid']));
+            $this->fail("origin 'invalid' did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testfilterByOrigin_two_values() {
+        try {
+            $this->Search->setFilter((new OriginFilter())->anyOf([OriginFilter::ORIGIN_KNOWN, OriginFilter::ORIGIN_UNKNOWN]));
+            $this->fail("two origin values did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testfilterByOrigin_not() {
+        try {
+            $this->Search->setFilter((new OriginFilter())->not()->anyOf([OriginFilter::ORIGIN_KNOWN]));
+            $this->fail("negating origin filter did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testfilterByOrphanship_true() {

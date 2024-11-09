@@ -10,6 +10,7 @@ use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
+use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -142,9 +143,10 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataOriginal(string $original) {
-        $original = $original === 'yes' ? true : null;
-        $this->search->filterByOriginKnown($original);
-        $this->search->filterByIsOriginal($original);
+        $original = $original === 'yes';
+        if ($original) {
+            $this->search->setFilter((new OriginFilter())->anyOf([OriginFilter::ORIGIN_ORIGINAL]));
+        }
         return $original ? 'yes' : '';
     }
 

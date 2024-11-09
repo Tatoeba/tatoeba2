@@ -27,8 +27,6 @@ class Search {
     private $query;
     private $filters;
     private $langs = [];
-    private $originKnown;
-    private $isOriginal;
     private $sort;
     private $sortReversed = false;
     private $randSeed;
@@ -65,12 +63,6 @@ class Search {
         }
         foreach ($this->filters->compile($sphinx['select']) as $compiled) {
             $sphinx['filter'][] = $compiled;
-        }
-        if (!is_null($this->originKnown)) {
-            $sphinx['filter'][] = ['origin_known', $this->originKnown];
-        }
-        if (!is_null($this->isOriginal)) {
-            $sphinx['filter'][] = ['is_original', $this->isOriginal];
         }
         if ($this->sort) {
             $randomExpr = "RAND({$this->randSeed})*16777216";
@@ -122,14 +114,6 @@ class Search {
 
     public function filterByLanguage(array $langs) {
         $this->langs = array_map('self::validateLanguage', $langs);
-    }
-
-    public function filterByOriginKnown($originKnown) {
-        return $this->originKnown = $originKnown;
-    }
-
-    public function filterByIsOriginal($isOriginal) {
-        return $this->isOriginal = $isOriginal;
     }
 
     public function sort($sort) {
