@@ -7,7 +7,7 @@ use Cake\Database\Expression\FunctionExpression;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Utility\Hash;
 
-class TagsFilter extends SearchFilter {
+class TagFilter extends SearchFilter {
     use ModelAwareTrait;
 
     protected function getAttributeName() {

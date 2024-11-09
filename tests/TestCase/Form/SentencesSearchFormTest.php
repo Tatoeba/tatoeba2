@@ -7,7 +7,7 @@ use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\OwnerFilter;
-use App\Model\Search\TagsFilter;
+use App\Model\Search\TagFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
@@ -120,9 +120,9 @@ class SentencesSearchFormTest extends TestCase
             [ ['has_audio' => 'invalid'], ['HasAudioFilter' => null], '' ],
             [ ['has_audio' => ''],        ['HasAudioFilter' => null], '' ],
 
-            [ ['tags' => 'OK'],          ['TagsFilter' => (new TagsFilter())->anyOf(['OK'])], 'OK'    ],
-            [ ['tags' => 'invalid tag'], ['TagsFilter' => new TagsFilter()],                  '',   1 ],
-            [ ['tags' => 'OK,invalid'],  ['TagsFilter' => (new TagsFilter())->anyOf(['OK'])], 'OK', 1 ],
+            [ ['tags' => 'OK'],          ['TagFilter' => (new TagFilter())->anyOf(['OK'])], 'OK'    ],
+            [ ['tags' => 'invalid tag'], ['TagFilter' => new TagFilter()],                  '',   1 ],
+            [ ['tags' => 'OK,invalid'],  ['TagFilter' => (new TagFilter())->anyOf(['OK'])], 'OK', 1 ],
 
             [ ['list' => '2'],       ['ListFilter' => (new ListFilter())->anyOf([2])], '2'   ],
             [ ['list' => '9999999'], ['ListFilter' => new ListFilter()],               '', 1 ],

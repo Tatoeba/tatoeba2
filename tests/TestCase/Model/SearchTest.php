@@ -9,7 +9,7 @@ use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
-use App\Model\Search\TagsFilter;
+use App\Model\Search\TagFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\WordCountFilter;
 use App\Model\Search\TranslationCountFilter;
@@ -498,7 +498,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTags_oneTag() {
-        $this->Search->setFilter((new TagsFilter())->anyOf(['OK']));
+        $this->Search->setFilter((new TagFilter())->anyOf(['OK']));
 
         $expected = $this->makeSphinxParams([
             'filter' => [['tags_id', [2], false]]
@@ -508,7 +508,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTags_twoTags_AND() {
-        $this->Search->setFilter((new TagsFilter())->anyOf(['OK'])->and()->anyOf(['@needs native check']));
+        $this->Search->setFilter((new TagFilter())->anyOf(['OK'])->and()->anyOf(['@needs native check']));
         $expected = $this->makeSphinxParams([
             'filter' => [['tags_id', [2], false], ['tags_id', [1], false]]
         ]);
@@ -517,7 +517,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTags_twoTags_OR() {
-        $this->Search->setFilter((new TagsFilter())->anyOf(['OK', '@needs native check']));
+        $this->Search->setFilter((new TagFilter())->anyOf(['OK', '@needs native check']));
         $expected = $this->makeSphinxParams([
             'filter' => [['tags_id', [2, 1], false]]
         ]);
@@ -526,7 +526,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTags_oneTag_exclude() {
-        $this->Search->setFilter((new TagsFilter())->not()->anyOf(['OK']));
+        $this->Search->setFilter((new TagFilter())->not()->anyOf(['OK']));
         $expected = $this->makeSphinxParams([
             'filter' => [['tags_id', [2], true]]
         ]);
@@ -536,7 +536,7 @@ class SearchTest extends TestCase
 
     public function testfilterByTags_oneTag_oneInvalid() {
         try {
-            $this->Search->setFilter((new TagsFilter())->anyOf(['nonexsistenttag']));
+            $this->Search->setFilter((new TagFilter())->anyOf(['nonexsistenttag']));
             $this->Search->asSphinx();
             $this->fail("'nonexsistenttag' tag did not generate InvalidValueException");
         } catch (InvalidValueException $e) {
@@ -545,7 +545,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTags_empty() {
-        $this->Search->setFilter(new TagsFilter());
+        $this->Search->setFilter(new TagFilter());
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
@@ -559,7 +559,7 @@ class SearchTest extends TestCase
 
     public function testfilterByTags_sqlInjection() {
         try {
-            $this->Search->setFilter((new TagsFilter())->anyOf(["'"]));
+            $this->Search->setFilter((new TagFilter())->anyOf(["'"]));
             $this->Search->asSphinx();
             $this->fail("\"'\" tag did not generate InvalidValueException");
         } catch (InvalidValueException $e) {

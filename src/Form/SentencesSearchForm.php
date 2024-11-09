@@ -11,7 +11,7 @@ use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\OwnerFilter;
-use App\Model\Search\TagsFilter;
+use App\Model\Search\TagFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
@@ -238,7 +238,7 @@ class SentencesSearchForm extends Form
     protected function setDataTags(string $tags) {
         if (!empty($tags)) {
             $ignoredTags = [];
-            $filter = new TagsFilter();
+            $filter = new TagFilter();
             $filter->setInvalidValueHandler(function($tagName) use (&$ignoredTags) {
                 $ignoredTags[] = $tagName;
             });
