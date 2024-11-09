@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
+use App\Test\TestCase\SearchMockTrait;
 use App\Model\Table\SentencesTable;
 use App\Behavior\Sphinx;
 use Cake\Core\Configure;
@@ -16,6 +17,8 @@ use Cake\Utility\Hash;
 use Cake\I18n\I18n;
 
 class SentencesTableTest extends TestCase {
+    use SearchMockTrait;
+
     public $fixtures = array(
         'app.sentences',
         'app.users',
@@ -38,6 +41,11 @@ class SentencesTableTest extends TestCase {
     function setUp() {
         parent::setUp();
         Configure::write('AutoTranscriptions.enabled', true);
+
+        $foundIds = [1, 2, 3, 4, 5, 16, 17, 18, 19, 20];
+        $totalResults = 10;
+        $this->enableMockedSearch($foundIds, $totalResults);
+
         $this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
         $autotranscription = $this->_installAutotranscriptionMock();
         $autotranscription
@@ -1494,6 +1502,14 @@ class SentencesTableTest extends TestCase {
             'spa', 'tur', 'ukr', 'wuu', 'yue'
         ];
         $result = $this->Sentence->languagesHavingSentences();
+        $this->assertEquals($expected, $result);
+    }
+
+    function testGetSeveralRandomIds() {
+        $expected = [ 20, 19, 18, 17, 16, 5, 4, 3, 2, 1 ];
+
+        $result = $this->Sentence->getSeveralRandomIds('nch');
+
         $this->assertEquals($expected, $result);
     }
 }

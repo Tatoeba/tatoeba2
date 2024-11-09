@@ -34,11 +34,13 @@ if (CurrentUser::isAdmin() && isset($sentence->disabled_audios)) {
     /* Keep audios sorted by id */
     usort($audios, function ($a, $b) { return $a->id - $b->id; });
 }
-/* Export "enabled" property to this json only */
+/* Export "enabled", "created_ago", and "modified_ago" properties to this json only */
 $audios = array_map(
     function ($a) {
         $new_a = clone $a;
         $new_a->setVirtual(['enabled'], true);
+        $new_a->created_ago = $this->Date->ago($new_a->created);
+        $new_a->modified_ago = $this->Date->ago($new_a->modified);
         return $new_a;
     },
     $audios
@@ -100,6 +102,17 @@ $this->AngularTemplate->addTemplate(
 
         <div class="audio-details" layout="column">
             <div class="license"><?= format(__('License: {license}'), ['license' => $licenseTemplate]) ?></div>
+            <div class="timestamp">
+                <?php /* @translators: header text of the date an audio recording was added */ ?>
+                <div><?= __('Added') ?></div>
+                <div ng-bind-html="audio.created_ago" class="since"></div>
+            </div>
+
+            <div ng-if="audio.created_ago !== audio.modified_ago" class="timestamp">
+                <?php /* @translators: header text of the date an audio recording was last modified */ ?>
+                <div><?= __('Last modified') ?></div>
+                <div ng-bind-html="audio.modified_ago" class="since"></div>
+            </div>
 
             <?php if (CurrentUser::isAdmin()): ?>
                 <md-checkbox

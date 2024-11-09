@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Prasanta Hembram <Prasantahembram720@gmail.com>, 2022
+# Prasanta Hembram <Prasantahembram720@gmail.com>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 19:19+0000\n"
+"POT-Creation-Date: 2024-04-14 15:25+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Prasanta Hembram <Prasantahembram720@gmail.com>, 2022\n"
+"Last-Translator: Prasanta Hembram <Prasantahembram720@gmail.com>, 2024\n"
 "Language-Team: Santali (https://app.transifex.com/tatoeba/teams/28284/sat/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
 msgid "Unable to import audio: user “{author}” not found."
-msgstr ""
+msgstr "ᱥᱟᱰᱮ ᱞᱟᱫᱮ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ : ᱵᱷᱵᱷᱟᱨᱤᱭᱟᱹ “{author}” ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L326
 msgid "Invalid file “{file}” ignored."
@@ -46,10 +46,13 @@ msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
+"“{author}”  ᱮᱱᱮᱢ ᱠᱟᱫ ᱥᱟᱰᱮ {sentenceId} ᱟᱹᱲᱟᱹ ᱞᱟᱹᱜᱤᱫ ᱵᱟᱭ ᱵᱚᱫᱚᱞ ᱞᱮᱱᱟ ᱺ ᱱᱩᱭ "
+"ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱴᱷᱮᱱ ᱢᱤᱫᱴᱟᱹᱝ ᱠᱷᱚᱱ ᱰᱷᱮᱨ ᱥᱟᱰᱮ ᱢᱮᱱᱟᱜ ᱠᱟᱫᱟ ᱾"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
+"ᱰᱟᱴᱟᱵᱮᱥ ᱵᱷᱤᱛᱤᱨ ᱨᱮ {sentenceId}ᱟᱹᱭᱟᱹᱛ ᱞᱟᱹᱜᱤᱫ ᱛᱮ ᱥᱟᱰᱮ ᱥᱟᱧᱪᱟᱣ ᱵᱟᱭ ᱜᱚᱱᱚᱜ ᱠᱟᱱᱟ ᱾ "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Failed to create directory “{dir}” to import file “{file}”."

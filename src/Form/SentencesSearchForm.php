@@ -44,6 +44,7 @@ class SentencesSearchForm extends Form
         'tags' => '',
         'list' => '',
         'user' => '',
+        'original' => '',
         'orphans' => 'no',
         'unapproved' => 'no',
         'native' => '',
@@ -138,6 +139,13 @@ class SentencesSearchForm extends Form
             }
         }
         return $user;
+    }
+
+    protected function setDataOriginal(string $original) {
+        $original = $original === 'yes' ? true : null;
+        $this->search->filterByOriginKnown($original);
+        $this->search->filterByIsOriginal($original);
+        return $original ? 'yes' : '';
     }
 
     protected function setDataTransFilter(string $trans_filter) {

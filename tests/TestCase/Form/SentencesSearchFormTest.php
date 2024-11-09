@@ -48,6 +48,7 @@ class SentencesSearchFormTest extends TestCase
             'unapproved' => 'no',
             'orphans' => 'no',
             'user' => '',
+            'original' => '',
             'has_audio' => '',
             'word_count_min' => '1',
             'word_count_max' => '',
@@ -119,6 +120,13 @@ class SentencesSearchFormTest extends TestCase
             [ ['has_audio' => 'no'],      ['HasAudioFilter' => new HasAudioFilter(false)], 'no'  ],
             [ ['has_audio' => 'invalid'], ['HasAudioFilter' => null], '' ],
             [ ['has_audio' => ''],        ['HasAudioFilter' => null], '' ],
+
+            [ ['original' => 'yes'],     ['filterByOriginKnown' => [[true]],
+                                          'filterByIsOriginal'  => [[true]]], 'yes' ],
+            [ ['original' => 'invalid'], ['filterByOriginKnown' => [[null]],
+                                          'filterByIsOriginal'  => [[null]]],  '' ],
+            [ ['original' => ''],        ['filterByOriginKnown' => [[null]],
+                                          'filterByIsOriginal'  => [[null]]],  '' ],
 
             [ ['tags' => 'OK'],          ['TagFilter' => (new TagFilter())->anyOf(['OK'])], 'OK'    ],
             [ ['tags' => 'invalid tag'], ['TagFilter' => new TagFilter()],                  '',   1 ],

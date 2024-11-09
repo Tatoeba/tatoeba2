@@ -21,11 +21,15 @@ trait SearchMockTrait
         $results = compact('matches', 'total', 'total_found');
 
         $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
-                       ->setMethods(['Query'])
+                       ->setMethods(['Query', 'UpdateAttributes'])
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')
                ->will($this->returnValue($results));
+        $numberOfUpdatedDocuments = 42;
+        $client->expects($this->any())
+               ->method('UpdateAttributes')
+               ->will($this->returnValue($numberOfUpdatedDocuments));
         Configure::write('Sphinx.client', $client);
 
         Configure::write('Search.enabled', true);
