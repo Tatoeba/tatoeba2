@@ -9,9 +9,9 @@ include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 
 class Search {
     use \Cake\Datasource\ModelAwareTrait;
+    use Search\FiltersCollectionTrait;
 
     private $query;
-    private $filters = [];
     private $langs = [];
     private $sort;
     private $sortReversed = false;
@@ -125,23 +125,6 @@ class Search {
 
     public function reverseSort(bool $reversed) {
         return $this->sortReversed = $reversed;
-    }
-
-    public function getFilters() {
-        return $this->filters;
-    }
-
-    public function getFilter($class, $index = '') {
-        return $this->filters[ $class::getName($index) ] ?? null;
-    }
-
-    public function setFilter($filter) {
-        $this->filters[ $filter->getAlias() ] = $filter;
-        return $this;
-    }
-
-    public function unsetFilter($class, $index = '') {
-        unset($this->filters[ $class::getName($index) ]);
     }
 
     public function getTranslationFilters($index = '') {

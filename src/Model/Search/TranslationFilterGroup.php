@@ -3,6 +3,8 @@
 namespace App\Model\Search;
 
 class TranslationFilterGroup extends BaseSearchFilter {
+    use FiltersCollectionTrait;
+
     private $alias;
 
     public function getAlias() {
@@ -15,25 +17,11 @@ class TranslationFilterGroup extends BaseSearchFilter {
 
     public function __construct(string $id = '') {
         $this->alias = self::getName($id);
-        $this->filters = [];
     }
 
     public function setExclude(bool $exclude = true) {
         $this->exclude = $exclude;
         return $this;
-    }
-
-    public function getFilter($class, $index = '') {
-        return $this->filters[ $class::getName($index) ] ?? null;
-    }
-
-    public function setFilter($filter) {
-        $this->filters[ $filter->getAlias() ] = $filter;
-        return $this;
-    }
-
-    public function unsetFilter($class, $index = '') {
-        unset($this->filters[ $class::getName($index) ]);
     }
 
     public function compile() {
