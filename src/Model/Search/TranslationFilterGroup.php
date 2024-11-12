@@ -6,14 +6,18 @@ class TranslationFiltersCollection {
 }
 
 class TranslationFilterGroup extends BaseSearchFilter {
-    private $id;
+    private $alias;
 
-    public static function getName(string $id = '') {
+    public function getAlias() {
+        return $this->alias;
+    }
+
+    public static function getName($id = '') {
         return "tf{$id}";
     }
 
     public function __construct(string $id = '') {
-        $this->id = $id;
+        $this->alias = self::getName($id);
         $this->filters = new TranslationFiltersCollection();
     }
 
@@ -22,17 +26,17 @@ class TranslationFilterGroup extends BaseSearchFilter {
         return $this;
     }
 
+    public function getFilter($class, $index = '') {
+        return $this->filters->{$class::getName($index)} ?? null;
+    }
+
     public function setFilter($filter) {
-        $this->filters->{$filter::getName()} = $filter;
+        $this->filters->{$filter->getAlias()} = $filter;
         return $this;
     }
 
-    public function getFilter($class) {
-        return $this->filters->{$class::getName()} ?? null;
-    }
-
-    public function unsetFilter($class) {
-        unset($this->filters->{$class::getName()});
+    public function unsetFilter($class, $index = '') {
+        unset($this->filters->{$class::getName($index)});
     }
 
     public function compile(&$select = "*") {
@@ -54,7 +58,7 @@ class TranslationFilterGroup extends BaseSearchFilter {
         }
         if (count($exprs) > 0) {
             $expr = $this->_join('and', $exprs);
-            $filterName = $this::getName($this->id);
+            $filterName = $this->getAlias();
             $select .= ", $expr as $filterName";
 
             $exclude = (int)!$this->exclude;

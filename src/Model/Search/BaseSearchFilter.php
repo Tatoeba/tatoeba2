@@ -14,6 +14,10 @@ abstract class BaseSearchFilter {
         return substr($class, $pos);
     }
 
+    public function getAlias() {
+        return self::getName();
+    }
+
     public function getAllValues() {
         $values = [];
         foreach ($this->filters as $filter) {

@@ -132,22 +132,23 @@ class Search {
         return $this->filters;
     }
 
-    public function getFilter($class) {
-        return $this->filters->{$class::getName()} ?? null;
+    public function getFilter($class, $index = '') {
+        return $this->filters->{$class::getName($index)} ?? null;
     }
 
     public function setFilter($filter) {
-        $this->filters->{$filter::getName()} = $filter;
+        $this->filters->{$filter->getAlias()} = $filter;
+        return $this;
     }
 
-    public function unsetFilter($class) {
-        unset($this->filters->{$class::getName()});
+    public function unsetFilter($class, $index = '') {
+        unset($this->filters->{$class::getName($index)});
     }
 
     public function getTranslationFilters($index = '') {
-        $filterKey = TranslationFilterGroup::getName($index);
-        if (isset($this->filters->{$filterKey})) {
-            return $this->filters->{$filterKey};
+        $filter = $this->getFilter(TranslationFilterGroup::class, $index);
+        if ($filter) {
+            return $filter;
         } else {
             // autocreate
             $filter = new TranslationFilterGroup($index);
