@@ -7,38 +7,15 @@ use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationFilterGroup;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 
-class FiltersCollection {
-    public function compile(&$select = "*") {
-        $output = [];
-        foreach ($this as $filter) {
-            if (!is_null($filter)) {
-                foreach ($filter->compile() as $compiled) {
-                    if (isset($compiled[1]) && is_string($compiled[1])) {
-                        $select .= ", ${compiled[1]} as ${compiled[0]}";
-                        $compiled[1] = (int)!($compiled[2] ?? false);
-                        unset($compiled[2]);
-                    }
-                    $output[] = $compiled;
-                }
-            }
-        }
-        return $output;
-    }
-}
-
 class Search {
     use \Cake\Datasource\ModelAwareTrait;
 
     private $query;
-    private $filters;
+    private $filters = [];
     private $langs = [];
     private $sort;
     private $sortReversed = false;
     private $randSeed;
-
-    public function __construct() {
-        $this->filters = new FiltersCollection();
-    }
 
     private function orderby($expr, $order) {
         return $expr . ($order ? ' ASC' : ' DESC');
@@ -57,6 +34,23 @@ class Search {
         }
     }
 
+    public function compile(&$select = "*") {
+        $output = [];
+        foreach ($this->filters as $filter) {
+            if (!is_null($filter)) {
+                foreach ($filter->compile() as $compiled) {
+                    if (isset($compiled[1]) && is_string($compiled[1])) {
+                        $select .= ", ${compiled[1]} as ${compiled[0]}";
+                        $compiled[1] = (int)!($compiled[2] ?? false);
+                        unset($compiled[2]);
+                    }
+                    $output[] = $compiled;
+                }
+            }
+        }
+        return $output;
+    }
+
     public function asSphinx() {
         $sphinx = [
             'index' => $this->asSphinxIndex($this->langs),
@@ -66,7 +60,7 @@ class Search {
         if (!is_null($this->query)) {
             $sphinx['query'] = $this->query;
         }
-        foreach ($this->filters->compile($sphinx['select']) as $compiled) {
+        foreach ($this->compile($sphinx['select']) as $compiled) {
             $sphinx['filter'][] = $compiled;
         }
         if ($this->sort) {
@@ -138,16 +132,16 @@ class Search {
     }
 
     public function getFilter($class, $index = '') {
-        return $this->filters->{$class::getName($index)} ?? null;
+        return $this->filters[ $class::getName($index) ] ?? null;
     }
 
     public function setFilter($filter) {
-        $this->filters->{$filter->getAlias()} = $filter;
+        $this->filters[ $filter->getAlias() ] = $filter;
         return $this;
     }
 
     public function unsetFilter($class, $index = '') {
-        unset($this->filters->{$class::getName($index)});
+        unset($this->filters[ $class::getName($index) ]);
     }
 
     public function getTranslationFilters($index = '') {

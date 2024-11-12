@@ -240,9 +240,9 @@ class SentencesSearchFormTest extends TestCase
             $allfilters = $this->Search->getFilters();
             foreach ($method as $filterkey => $expected) {
                 if (is_null($expected)) {
-                    $this->assertFalse(isset($allfilters->{$filterkey}), "$filterkey was set");
-                } elseif (isset($allfilters->{$filterkey})) {
-                    $result = $allfilters->{$filterkey};
+                    $this->assertFalse(isset($allfilters[$filterkey]), "$filterkey was set");
+                } elseif (isset($allfilters[$filterkey])) {
+                    $result = $allfilters[$filterkey];
                     $a = "*";
                     $b = "*";
                     $this->assertEquals($expected->compile($a), $result->compile($b), "$filterkey does not contain expected filter");

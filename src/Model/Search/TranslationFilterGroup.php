@@ -2,9 +2,6 @@
 
 namespace App\Model\Search;
 
-class TranslationFiltersCollection {
-}
-
 class TranslationFilterGroup extends BaseSearchFilter {
     private $alias;
 
@@ -18,7 +15,7 @@ class TranslationFilterGroup extends BaseSearchFilter {
 
     public function __construct(string $id = '') {
         $this->alias = self::getName($id);
-        $this->filters = new TranslationFiltersCollection();
+        $this->filters = [];
     }
 
     public function setExclude(bool $exclude = true) {
@@ -27,16 +24,16 @@ class TranslationFilterGroup extends BaseSearchFilter {
     }
 
     public function getFilter($class, $index = '') {
-        return $this->filters->{$class::getName($index)} ?? null;
+        return $this->filters[ $class::getName($index) ] ?? null;
     }
 
     public function setFilter($filter) {
-        $this->filters->{$filter->getAlias()} = $filter;
+        $this->filters[ $filter->getAlias() ] = $filter;
         return $this;
     }
 
     public function unsetFilter($class, $index = '') {
-        unset($this->filters->{$class::getName($index)});
+        unset($this->filters[ $class::getName($index) ]);
     }
 
     public function compile() {
