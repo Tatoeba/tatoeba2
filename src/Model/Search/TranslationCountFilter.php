@@ -21,9 +21,9 @@ class TranslationCountFilter extends BaseSearchFilter {
             if ($exclude) {
                 $expr = "not $expr";
             }
-            return [$expr];
+            return [[self::getName(), $expr]];
         } else {
-            return null;
+            return [];
         }
     }
 }

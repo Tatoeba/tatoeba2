@@ -37,7 +37,7 @@ class WordCountFilter extends BaseSearchFilter {
         return $ret;
     }
 
-    public function compile(&$select = "*") {
+    public function compile() {
         $exprs = array_filter(array_map(
             function ($set) {
                 $exclude = array_shift($set);
@@ -57,8 +57,7 @@ class WordCountFilter extends BaseSearchFilter {
         if (count($exprs) > 0) {
             $filterName = self::getName();
             $expr = $this->_join('and', $exprs);
-            $select .= ", $expr as $filterName";
-            return [[$filterName, 1]];
+            return [[$filterName, $expr]];
         } else {
             return [];
         }

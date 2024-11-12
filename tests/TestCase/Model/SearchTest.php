@@ -14,6 +14,7 @@ use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\WordCountFilter;
 use App\Model\Search\TranslationCountFilter;
+use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationIsDirectFilter;
@@ -818,6 +819,31 @@ class SearchTest extends TestCase
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(not (t.c=0) FOR t IN trans) as tf',
             'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testNestedFilterGroups() {
+        $group1 = new TranslationFilterGroup('a');
+        $group1->setFilter((new TranslationLangFilter())->anyOf(['eng']))
+               ->setFilter(new TranslationIsDirectFilter(true));
+
+        $group2 = new TranslationFilterGroup('b');
+        $group2->setFilter((new TranslationLangFilter())->anyOf(['ita']))
+               ->setFilter(new TranslationIsDirectFilter(false))
+               ->setExclude(true);
+
+        $this->Search->getTranslationFilters('0')
+                     ->setFilter($group1)
+                     ->setFilter($group2)
+                     ->setExclude(true);
+        $this->Search->getTranslationFilters('1')
+                     ->setFilter(new TranslationIsUnapprovedFilter(false));
+
+        $expected = $this->makeSphinxParams([
+            'select' => "*, (ANY((t.l='eng' & t.d=1) FOR t IN trans) and not (ANY((t.l='ita' & not (t.d=1)) FOR t IN trans))) as tf0, ANY(not (t.c=0) FOR t IN trans) as tf1",
+            'filter' => [['tf0', 0], ['tf1', 1]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
