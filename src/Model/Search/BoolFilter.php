@@ -2,15 +2,13 @@
 
 namespace App\Model\Search;
 
-class BoolFilter extends BaseSearchFilter {
+abstract class BoolFilter extends SearchFilter {
     protected $valueForTrue = 1;
+
+    protected abstract function getAttributeName();
 
     public function __construct(bool $value = true) {
         $this->exclude = !$value;
         $this->anyOf([$this->valueForTrue]);
-    }
-
-    protected function _compile() {
-        return [[$this->getAttributeName(), $this->getAllValues(), $this->exclude]];
     }
 }

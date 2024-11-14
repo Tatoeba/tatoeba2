@@ -408,9 +408,9 @@ class SearchTest extends TestCase
         $this->testfilterByListId_empty();
     }
 
-    public function testfilterByNativeSpeaker_fra() {
+    public function testfilterIsNativeSpeaker_true_fra() {
         $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
-        $this->Search->setFilter((new IsNativeFilter())->setLang('fra'));
+        $this->Search->setFilter((new IsNativeFilter(true))->setLang('fra'));
 
         $expected = $this->makeSphinxParams([
             'index' => ['fra_main_index', 'fra_delta_index'],
@@ -420,7 +420,19 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByNativeSpeaker_invalid_lang() {
+    public function testfilterIsNativeSpeaker_false_fra() {
+        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
+        $this->Search->setFilter((new IsNativeFilter(false))->setLang('fra'));
+
+        $expected = $this->makeSphinxParams([
+            'index' => ['fra_main_index', 'fra_delta_index'],
+            'filter' => [['user_id', [4, 3], true]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterIsNativeSpeaker_invalid_lang() {
         try {
             $this->Search->setFilter((new IsNativeFilter())->setLang('invalid'));
             $this->fail("'invalid' language did not generate InvalidValueException");
@@ -429,7 +441,7 @@ class SearchTest extends TestCase
         }
     }
 
-    public function testfilterByNativeSpeaker_no_setLang() {
+    public function testfilterIsNativeSpeaker_no_setLang() {
         $this->Search->setFilter(new IsNativeFilter());
         try {
             $this->Search->compile();
@@ -439,7 +451,7 @@ class SearchTest extends TestCase
         }
     }
 
-    public function testfilterByNativeSpeaker_unset() {
+    public function testfilterIsNativeSpeaker_unset() {
         $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
         $this->Search->unsetFilter(IsNativeFilter::class);
 
@@ -450,19 +462,34 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByNativeSpeaker_resets() {
-        $this->testfilterByNativeSpeaker_fra();
-        $this->testfilterByNativeSpeaker_unset();
+    public function testfilterIsNativeSpeaker_resets() {
+        $this->testfilterIsNativeSpeaker_true_fra();
+        $this->testfilterIsNativeSpeaker_unset();
     }
 
-    public function testfilterByNativeSpeaker_withLimit() {
+    public function testfilterIsNativeSpeaker_withLimit_true() {
         $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
-        $filter = (new IsNativeFilter())->setLang('fra');;
+        $filter = (new IsNativeFilter(true))->setLang('fra');
         $filter->setSphinxFilterArrayLimit(1);
         $this->Search->setFilter($filter);
         $expected = $this->makeSphinxParams([
             'index' => ['fra_main_index', 'fra_delta_index'],
             'filter' => [['user_id', [7], true]],
+        ]);
+
+        $result = $this->Search->asSphinx();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterIsNativeSpeaker_withLimit_false() {
+        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
+        $filter = (new IsNativeFilter(false))->setLang('fra');
+        $filter->setSphinxFilterArrayLimit(1);
+        $this->Search->setFilter($filter);
+        $expected = $this->makeSphinxParams([
+            'index' => ['fra_main_index', 'fra_delta_index'],
+            'filter' => [['user_id', [4], true], ['user_id', [3], true]],
         ]);
 
         $result = $this->Search->asSphinx();
