@@ -303,12 +303,7 @@ class SentencesSearchForm extends Form
     protected function setDataNative(string $native) {
         $native = $native === 'yes' ? true : null;
         if ($native) {
-            try {
-                $this->search->setFilter(new IsNativeFilter($this->_data['from']));
-            } catch (InvalidValueException $e) {
-                // expected when 'from' is not a valid language,
-                // return 'yes' so that checkUnwantedCombinations() warns about it
-            }
+            $this->search->setFilter(new IsNativeFilter());
         } else {
             $this->search->unsetFilter(IsNativeFilter::class);
         }
@@ -407,10 +402,9 @@ class SentencesSearchForm extends Form
         $data = array_merge($this->defaultCriteria, $data);
 
         /* Make sure trans_filter is applied at the end
-           because it depends on other trans_* filters.
-           Also 'native' depends on 'from'. */
+           because it depends on other trans_* filters */
         uksort($data, function ($k) {
-            return $k == 'trans_filter' || $k == 'native';
+            return $k == 'trans_filter';
         });
 
         /* Apply other criteria */
@@ -428,6 +422,15 @@ class SentencesSearchForm extends Form
                  * default being applied instead of the empty non-default value.
                  * So represent them by "any" instead. */
                 $this->_data[$key] = 'any';
+            }
+        }
+
+        /* Handle native filter */
+        if ($nativeFilter = $this->search->getFilter(IsNativeFilter::class)) {
+            try {
+                $nativeFilter->setLang($this->_data['from']);
+            } catch (InvalidValueException $e) {
+                $this->search->unsetFilter(IsNativeFilter::class);
             }
         }
     }

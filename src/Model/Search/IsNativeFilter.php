@@ -14,15 +14,19 @@ class IsNativeFilter extends SearchFilter {
     private $sphinxFilterArrayLimit = 4096;
     private $lang;
 
-    public function __construct($lang) {
-        $this->lang = Search::validateLanguage($lang);
-    }
-
     protected function getAttributeName() {
         return 'user_id';
     }
 
+    public function setLang(string $lang) {
+        $this->lang = Search::validateLanguage($lang);
+        return $this;
+    }
+
     private function calcFilter() {
+        if (is_null($this->lang)) {
+            throw new \RuntimeException("Precondition failed: setLang() was not called first");
+        }
         $this->loadModel('UsersLanguages');
         $natives = $this->UsersLanguages->find()
             ->where([
