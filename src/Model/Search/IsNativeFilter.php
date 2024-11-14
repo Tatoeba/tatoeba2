@@ -38,7 +38,12 @@ class IsNativeFilter extends BoolFilter {
             ->toList();
         $natives = Hash::extract($natives, '{n}.of_user_id');
 
-        if (count($natives) <= $this->sphinxFilterArrayLimit) {
+        if (count($natives) == 0) {
+            // There are no native speakers in this language, so no sentences should
+            // match at all. But if we set the filter with an empty array, it won't do
+            // any filtering at all, so we use the dummy value of -1 to force a non-match.
+            $this->anyOf([-1]);
+        } elseif (count($natives) <= $this->sphinxFilterArrayLimit) {
             $this->anyOf($natives);
         } else {
             if (!$this->exclude) {
