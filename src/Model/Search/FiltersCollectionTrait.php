@@ -2,6 +2,8 @@
 
 namespace App\Model\Search;
 
+use App\Model\Search\TranslationFilterGroup;
+
 trait FiltersCollectionTrait {
 
     protected $filters = [];
@@ -21,5 +23,17 @@ trait FiltersCollectionTrait {
 
     public function unsetFilter($class, $index = '') {
         unset($this->filters[ $class::getName($index) ]);
+    }
+
+    public function getTranslationFilters($index = '') {
+        $filter = $this->getFilter(TranslationFilterGroup::class, $index);
+        if ($filter) {
+            return $filter;
+        } else {
+            // autocreate
+            $filter = new TranslationFilterGroup($index);
+            $this->setFilter($filter);
+            return $filter;
+        }
     }
 }

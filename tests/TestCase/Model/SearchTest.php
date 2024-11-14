@@ -826,19 +826,16 @@ class SearchTest extends TestCase
     }
 
     public function testNestedFilterGroups() {
-        $group1 = new TranslationFilterGroup('a');
-        $group1->setFilter((new TranslationLangFilter())->anyOf(['eng']))
+        $group0 = $this->Search->getTranslationFilters('0');
+        $group0->getTranslationFilters('a')
+               ->setFilter((new TranslationLangFilter())->anyOf(['eng']))
                ->setFilter(new TranslationIsDirectFilter(true));
-
-        $group2 = new TranslationFilterGroup('b');
-        $group2->setFilter((new TranslationLangFilter())->anyOf(['ita']))
+        $group0->getTranslationFilters('b')
+               ->setFilter((new TranslationLangFilter())->anyOf(['ita']))
                ->setFilter(new TranslationIsDirectFilter(false))
                ->setExclude(true);
+        $group0->setExclude(true);
 
-        $this->Search->getTranslationFilters('0')
-                     ->setFilter($group1)
-                     ->setFilter($group2)
-                     ->setExclude(true);
         $this->Search->getTranslationFilters('1')
                      ->setFilter(new TranslationIsUnapprovedFilter(false));
 

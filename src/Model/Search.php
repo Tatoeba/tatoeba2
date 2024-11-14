@@ -4,7 +4,6 @@ namespace App\Model;
 use App\Lib\LanguagesLib;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search\TranslationLangFilter;
-use App\Model\Search\TranslationFilterGroup;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 
 class Search {
@@ -124,18 +123,6 @@ class Search {
 
     public function reverseSort(bool $reversed) {
         return $this->sortReversed = $reversed;
-    }
-
-    public function getTranslationFilters($index = '') {
-        $filter = $this->getFilter(TranslationFilterGroup::class, $index);
-        if ($filter) {
-            return $filter;
-        } else {
-            // autocreate
-            $filter = new TranslationFilterGroup($index);
-            $this->setFilter($filter);
-            return $filter;
-        }
     }
 
     public function getTranslationFilter($class, $index = '') {
