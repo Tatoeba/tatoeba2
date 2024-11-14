@@ -55,9 +55,9 @@ class IsNativeFilter extends SearchFilter {
         }
     }
 
-    public function compile() {
+    protected function _compile() {
         $this->calcFilter();
-        return parent::compile();
+        return parent::_compile();
     }
 
     public function setSphinxFilterArrayLimit($limit) {

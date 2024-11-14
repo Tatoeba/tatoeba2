@@ -10,7 +10,7 @@ class BoolFilter extends BaseSearchFilter {
         $this->anyOf([$this->valueForTrue]);
     }
 
-    public function compile() {
+    protected function _compile() {
         return [[$this->getAttributeName(), $this->getAllValues(), $this->exclude]];
     }
 }

@@ -24,6 +24,8 @@ class TranslationFilterGroup extends BaseSearchFilter {
         return $this;
     }
 
+    protected function _compile() {}
+
     public function compile() {
         $transFilters = [];
         $exprs = [];

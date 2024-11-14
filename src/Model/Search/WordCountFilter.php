@@ -37,7 +37,7 @@ class WordCountFilter extends BaseSearchFilter {
         return $ret;
     }
 
-    public function compile() {
+    protected function _compile() {
         $exprs = array_filter(array_map(
             function ($set) {
                 $exclude = array_shift($set);

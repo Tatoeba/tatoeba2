@@ -7,8 +7,8 @@ trait TranslationFilterTrait {
         throw new \RuntimeException('Cannot use and() in ' . self::class);
     }
 
-    public function compile() {
-        $compiled = parent::compile();
+    protected function _compile() {
+        $compiled = parent::_compile();
         if (count($compiled)) {
             list($key, $values, $exclude) = $compiled[0];
             $values = array_map(

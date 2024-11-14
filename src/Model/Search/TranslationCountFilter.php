@@ -13,7 +13,7 @@ class TranslationCountFilter extends BaseSearchFilter {
         }
     }
 
-    public function compile() {
+    protected function _compile() {
         if (count($this->filters)) {
             $values = $this->filters[0];
             $exclude = array_shift($values);

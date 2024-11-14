@@ -3,6 +3,8 @@
 namespace App\Model\Search;
 
 abstract class BaseSearchFilter {
+    private $cache;
+    private $cacheInvalid = true;
     protected $filters = [];
     protected $current = 0;
     protected $exclude = false;
@@ -43,19 +45,30 @@ abstract class BaseSearchFilter {
     public function and() {
         $this->current++;
         $this->exclude = false;
+        $this->cacheInvalid = true;
         return $this;
     }
 
     public function not() {
         $this->exclude = true;
+        $this->cacheInvalid = true;
         return $this;
     }
 
     public function anyOf(array $values) {
         array_unshift($values, $this->exclude);
         $this->filters[$this->current] = $values;
+        $this->cacheInvalid = true;
         return $this;
     }
 
-    abstract public function compile();
+    abstract protected function _compile();
+
+    public function compile() {
+        if ($this->cacheInvalid) {
+            $this->cache = $this->_compile();
+            $this->cacheInvalid = false;
+        }
+        return $this->cache;
+    }
 }

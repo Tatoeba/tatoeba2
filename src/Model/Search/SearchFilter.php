@@ -3,7 +3,6 @@
 namespace App\Model\Search;
 
 abstract class SearchFilter extends BaseSearchFilter {
-    private $cache;
     private $invalidValueHandler;
 
     protected abstract function getAttributeName();
@@ -25,10 +24,7 @@ abstract class SearchFilter extends BaseSearchFilter {
     protected function getValuesMap() {
     }
 
-    public function compile() {
-        if (isset($this->cache)) {
-            return $this->cache;
-        }
+    protected function _compile() {
         $output = [];
         $valuesMap = $this->getValuesMap();
         foreach ($this->filters as $values) {
@@ -51,6 +47,6 @@ abstract class SearchFilter extends BaseSearchFilter {
                 $output[] = [$this->getAttributeName(), $values, $exclude];
             }
         }
-        return $this->cache = $output;
+        return $output;
     }
 }

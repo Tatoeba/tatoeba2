@@ -25,7 +25,7 @@ class OriginFilter extends BaseSearchFilter {
         throw new InvalidValueException("Filter cannot be negated");
     }
 
-    public function compile() {
+    protected function _compile() {
         $output = [];
         foreach ($this->filters as $values) {
             array_shift($values);
