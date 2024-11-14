@@ -9,6 +9,7 @@ use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\LangFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
@@ -112,7 +113,7 @@ class SentencesSearchForm extends Form
 
     protected function setDataFrom(string $from) {
         try {
-            $this->search->filterByLanguage([$from]);
+            $this->search->setFilter((new LangFilter())->anyOf([$from]));
             return $from;
         } catch (InvalidValueException $e) {
             return '';

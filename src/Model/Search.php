@@ -12,7 +12,6 @@ class Search {
     use Search\FiltersCollectionTrait;
 
     private $query;
-    private $langs = [];
     private $sort;
     private $sortReversed = false;
     private $randSeed;
@@ -53,7 +52,7 @@ class Search {
 
     public function asSphinx() {
         $sphinx = [
-            'index' => $this->asSphinxIndex($this->langs),
+            'index' => $this->asSphinxIndex([]),
             'matchMode' => SPH_MATCH_EXTENDED2,
             'select' => "*",
         ];
@@ -61,7 +60,11 @@ class Search {
             $sphinx['query'] = $this->query;
         }
         foreach ($this->compile($sphinx['select']) as $compiled) {
-            $sphinx['filter'][] = $compiled;
+            if ($compiled[0] == 'lang') {
+                $sphinx['index'] = $this->asSphinxIndex($compiled[1]);
+            } else {
+                $sphinx['filter'][] = $compiled;
+            }
         }
         if ($this->sort) {
             $randomExpr = "RAND({$this->randSeed})*16777216";
@@ -109,10 +112,6 @@ class Search {
         } else {
             throw new InvalidValueException("Invalid language code '$lang'");
         }
-    }
-
-    public function filterByLanguage(array $langs) {
-        $this->langs = array_map('self::validateLanguage', $langs);
     }
 
     public function sort($sort) {

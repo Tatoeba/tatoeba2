@@ -25,6 +25,7 @@ use Cake\Validation\Validator;
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\LangFilter;
 use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
@@ -136,7 +137,7 @@ class VocabularyTable extends Table
         }
         $search = new Search();
         try {
-            $search->filterByLanguage([$lang]);
+            $search->setFilter((new LangFilter())->anyOf([$lang]));
         } catch (InvalidValueException $e) {
             return null;
         }

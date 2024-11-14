@@ -8,6 +8,7 @@ use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\LangFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\TagFilter;
 use App\Model\Search\OriginFilter;
@@ -79,7 +80,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_validLang() {
-        $this->Search->filterByLanguage(['por']);
+        $this->Search->setFilter((new LangFilter())->anyOf(['por']));
 
         $expected = $this->makeSphinxParams([
             'index' => ['por_main_index', 'por_delta_index']
@@ -89,7 +90,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_empty() {
-        $this->Search->filterByLanguage([]);
+        $this->Search->setFilter((new LangFilter())->anyOf([]));
 
         $expected = $this->makeSphinxParams();
         $result = $this->Search->asSphinx();
@@ -97,7 +98,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByLanguage_multiLang() {
-        $this->Search->filterByLanguage(['por', 'spa']);
+        $this->Search->setFilter((new LangFilter())->anyOf(['por', 'spa']));
 
         $expected = $this->makeSphinxParams([
             'index' => ['por_main_index', 'por_delta_index', 'spa_main_index', 'spa_delta_index']
@@ -108,7 +109,7 @@ class SearchTest extends TestCase
 
     public function testfilterByLanguage_und() {
         try {
-            $this->Search->filterByLanguage(['und']);
+            $this->Search->setFilter((new LangFilter())->anyOf(['und']));
             $this->fail("'und' language did not generate InvalidValueException");
         } catch (InvalidValueException $e) {
             $this->assertTrue(true);
@@ -121,7 +122,7 @@ class SearchTest extends TestCase
 
     public function testfilterByLanguage_invalidLang() {
         try {
-            $this->Search->filterByLanguage(['1234567890']);
+            $this->Search->setFilter((new LangFilter())->anyOf(['1234567890']));
             $this->fail('Invalid language did not generate InvalidValueException');
         } catch (InvalidValueException $e) {
             $this->assertTrue(true);
@@ -134,7 +135,7 @@ class SearchTest extends TestCase
 
     public function testfilterByLanguage_multiLang_withInvalid() {
         try {
-            $this->Search->filterByLanguage(['npi', '1234567890', 'spa']);
+            $this->Search->setFilter((new LangFilter())->anyOf(['npi', '1234567890', 'spa']));
             $this->fail('Invalid language did not generate InvalidValueException');
         } catch (InvalidValueException $e) {
             $this->assertTrue(true);
@@ -408,7 +409,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByNativeSpeaker_fra() {
-        $this->Search->filterByLanguage(['fra']);
+        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
         $this->Search->setFilter(new IsNativeFilter('fra'));
 
         $expected = $this->makeSphinxParams([
@@ -429,7 +430,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByNativeSpeaker_unset() {
-        $this->Search->filterByLanguage(['fra']);
+        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
         $this->Search->unsetFilter(IsNativeFilter::class);
 
         $expected = $this->makeSphinxParams([
@@ -445,7 +446,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByNativeSpeaker_withLimit() {
-        $this->Search->filterByLanguage(['fra']);
+        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
         $filter = new IsNativeFilter('fra');;
         $filter->setSphinxFilterArrayLimit(1);
         $this->Search->setFilter($filter);

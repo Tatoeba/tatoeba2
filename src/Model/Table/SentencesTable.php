@@ -34,6 +34,7 @@ use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\LangFilter;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
 use Cake\Utility\Hash;
@@ -608,7 +609,7 @@ class SentencesTable extends Table
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
         $search = new Search();
         try {
-            $search->filterByLanguage([$lang]);
+            $search->setFilter((new LangFilter())->anyOf([$lang]));
         } catch (InvalidValueException $e) {
             // normal outcome when $lang == 'und'
         }

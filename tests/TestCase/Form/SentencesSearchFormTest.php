@@ -5,6 +5,7 @@ use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\LangFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
@@ -91,9 +92,9 @@ class SentencesSearchFormTest extends TestCase
               'ceci ; cela '
             ],
 
-            [ ['from' => 'ain'],         ['filterByLanguage', ['ain']        ], 'ain' ],
-            [ ['from' => ''],            ['filterByLanguage', ['']           ], '' ],
-            [ ['from' => 'invalidlang'], ['filterByLanguage', ['invalidlang']], '' ],
+            [ ['from' => 'ain'],         ['LangFilter' => (new LangFilter())->anyOf(['ain'])], 'ain' ],
+            [ ['from' => ''],            ['LangFilter' => null,                             ], '' ],
+            [ ['from' => 'invalidlang'], ['LangFilter' => null,                             ], '' ],
 
             [ ['to' => 'und'],     [], '' ],
             [ ['to' => 'none'],    [], 'none' ],
