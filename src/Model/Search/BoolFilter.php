@@ -5,7 +5,7 @@ namespace App\Model\Search;
 class BoolFilter extends BaseSearchFilter {
     protected $valueForTrue = 1;
 
-    public function __construct(bool $value) {
+    public function __construct(bool $value = true) {
         $this->exclude = !$value;
         $this->anyOf([$this->valueForTrue]);
     }
