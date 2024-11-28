@@ -7,6 +7,10 @@ class LangFilter extends SearchFilter {
         return 'lang';
     }
 
+    public function and() {
+        throw new \App\Model\Exception\InvalidAndOperatorException();
+    }
+
     public function anyOf(array $values) {
         array_map('\App\Model\Search::validateLanguage', $values);
         return parent::anyOf($values);

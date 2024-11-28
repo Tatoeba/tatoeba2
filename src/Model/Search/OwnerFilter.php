@@ -20,6 +20,10 @@ class OwnerFilter extends SearchFilter {
         });
     }
 
+    public function and() {
+        throw new \App\Model\Exception\InvalidAndOperatorException();
+    }
+
     protected function handleInvalidValue($invalidValue) {
         if (is_null($invalidValue)) {
             return 0;

@@ -4,7 +4,7 @@ namespace App\Model\Search;
 
 trait TranslationFilterTrait {
     public function and() {
-        throw new \RuntimeException('Cannot use and() in ' . self::class);
+        throw new \App\Model\Exception\InvalidAndOperatorException();
     }
 
     protected function _compile() {

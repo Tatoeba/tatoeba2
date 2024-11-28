@@ -25,6 +25,10 @@ class OriginFilter extends BaseSearchFilter {
         throw new \App\Model\Exception\InvalidNotOperatorException();
     }
 
+    public function and() {
+        throw new \App\Model\Exception\InvalidAndOperatorException();
+    }
+
     protected function _compile() {
         $output = [];
         foreach ($this->filters as $values) {

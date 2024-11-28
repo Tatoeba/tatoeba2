@@ -7,6 +7,10 @@ abstract class BoolFilter extends SearchFilter {
 
     protected abstract function getAttributeName();
 
+    public function and() {
+        throw new \App\Model\Exception\InvalidAndOperatorException();
+    }
+
     public function __construct(bool $value = true) {
         if (!$value) {
             $this->not();

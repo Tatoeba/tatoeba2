@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Model;
 
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
+use App\Model\Exception\InvalidAndOperatorException;
 use App\Model\Exception\InvalidNotOperatorException;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
@@ -918,6 +919,42 @@ class SearchTest extends TestCase
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    private function assertFilterThrowsException($filtername, $op, $expectedException) {
+        $filter = new $filtername();
+        try {
+            $filter->$op();
+        } catch (\Exception $e) {
+            $actual = get_class($e);
+            $this->assertEquals($expectedException, $actual, "$filtername->$op() did not throw expected $expectedException (but throwed $actual instead)");
+            return;
+        }
+        $this->fail("$filtername->$op() did not throw expected $expectedException");
+    }
+
+    public function filtersExceptionsAndProvider() {
+        return [
+            [HasAudioFilter::class],
+            [IsNativeFilter::class],
+            [IsOrphanFilter::class],
+            [IsUnapprovedFilter::class],
+            [TranslationHasAudioFilter::class],
+            [TranslationLangFilter::class],
+            [TranslationIsDirectFilter::class],
+            [TranslationIsOrphanFilter::class],
+            [TranslationIsUnapprovedFilter::class],
+            [TranslationOwnerFilter::class],
+            [OriginFilter::class],
+            [OwnerFilter::class],
+        ];
+    }
+
+    /**
+     * @dataProvider filtersExceptionsAndProvider
+     */
+    public function testFiltersExceptionsAnd($filtername) {
+        $this->assertFilterThrowsException($filtername, 'and', InvalidAndOperatorException::class);
     }
 
     private function assertSortByRank($sort, $rank) {
