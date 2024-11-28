@@ -7,6 +7,10 @@ class LangFilter extends SearchFilter {
         return 'lang';
     }
 
+    public function not() {
+        throw new \App\Model\Exception\InvalidNotOperatorException();
+    }
+
     public function and() {
         throw new \App\Model\Exception\InvalidAndOperatorException();
     }

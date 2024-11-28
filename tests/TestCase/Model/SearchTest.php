@@ -241,15 +241,6 @@ class SearchTest extends TestCase
         }
     }
 
-    public function testfilterByOrigin_not() {
-        try {
-            $this->Search->setFilter((new OriginFilter())->not()->anyOf([OriginFilter::ORIGIN_KNOWN]));
-            $this->fail("negating origin filter did not generate InvalidNotOperatorException");
-        } catch (InvalidNotOperatorException $e) {
-            $this->assertTrue(true);
-        }
-    }
-
     public function testfilterByOrphanship_true() {
         $this->Search->setFilter(new IsOrphanFilter(true));
 
@@ -955,6 +946,20 @@ class SearchTest extends TestCase
      */
     public function testFiltersExceptionsAnd($filtername) {
         $this->assertFilterThrowsException($filtername, 'and', InvalidAndOperatorException::class);
+    }
+
+    public function filtersExceptionsNotProvider() {
+        return [
+            [LangFilter::class],
+            [OriginFilter::class],
+        ];
+    }
+
+    /**
+     * @dataProvider filtersExceptionsNotProvider
+     */
+    public function testFiltersExceptionsNot($filtername) {
+        $this->assertFilterThrowsException($filtername, 'not', InvalidNotOperatorException::class);
     }
 
     private function assertSortByRank($sort, $rank) {
