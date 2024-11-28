@@ -25,6 +25,9 @@ class WordCountFilter extends BaseSearchFilter {
             if (is_null($from) && is_null($to)) {
                 throw new InvalidValueException("Invalid infinite range: '$range'");
             }
+            if (!is_null($from) && !is_null($to) && $from > $to) {
+                throw new InvalidValueException("Invalid range: left number must be lower or equal to right number");
+            }
             if (!is_null($from)) {
                 $ret[] = $this->_expr('>=', $from);
             }

@@ -534,6 +534,16 @@ class SearchTest extends TestCase
         }
     }
 
+    public function testfilterByWordCount_range_decreasing() {
+        try {
+            $this->Search->setFilter((new WordCountFilter())->anyOf(['6-3']));
+            $this->Search->asSphinx();
+            $this->fail("\"6-3\" word count did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
     public function testfilterByWordCount_eq_1() {
         $this->Search->setFilter((new WordCountFilter())->anyOf(['1']));
 
@@ -572,6 +582,17 @@ class SearchTest extends TestCase
 
         $expected = $this->makeSphinxParams([
             'select' => '*, (text_len >= 0 and text_len <= 10) as WordCountFilter',
+            'filter' => [['WordCountFilter', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByWordCount_range_equal_bounds() {
+        $this->Search->setFilter((new WordCountFilter())->anyOf(['1-1']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (text_len >= 1 and text_len <= 1) as WordCountFilter',
             'filter' => [['WordCountFilter', 1]],
         ]);
         $result = $this->Search->asSphinx();
