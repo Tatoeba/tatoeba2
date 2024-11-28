@@ -22,7 +22,7 @@ class OriginFilter extends BaseSearchFilter {
     }
 
     public function not() {
-        throw new InvalidValueException("Filter cannot be negated");
+        throw new \App\Model\Exception\InvalidNotOperatorException();
     }
 
     protected function _compile() {

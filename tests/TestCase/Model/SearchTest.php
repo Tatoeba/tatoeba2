@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Model;
 
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
+use App\Model\Exception\InvalidNotOperatorException;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\HasAudioFilter;
@@ -242,8 +243,8 @@ class SearchTest extends TestCase
     public function testfilterByOrigin_not() {
         try {
             $this->Search->setFilter((new OriginFilter())->not()->anyOf([OriginFilter::ORIGIN_KNOWN]));
-            $this->fail("negating origin filter did not generate InvalidValueException");
-        } catch (InvalidValueException $e) {
+            $this->fail("negating origin filter did not generate InvalidNotOperatorException");
+        } catch (InvalidNotOperatorException $e) {
             $this->assertTrue(true);
         }
     }
