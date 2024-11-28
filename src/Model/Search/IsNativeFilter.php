@@ -23,7 +23,7 @@ class IsNativeFilter extends BoolFilter {
         return $this;
     }
 
-    private function calcFilter() {
+    protected function calcFilter() {
         if (is_null($this->lang)) {
             throw new \RuntimeException("Precondition failed: setLang() was not called first");
         }
@@ -64,11 +64,6 @@ class IsNativeFilter extends BoolFilter {
                 $this->not()->anyOf($excludedIds)->and();
             }
         }
-    }
-
-    protected function _compile() {
-        $this->calcFilter();
-        return parent::_compile();
     }
 
     public function setSphinxFilterArrayLimit($limit) {

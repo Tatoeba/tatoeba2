@@ -864,6 +864,17 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByTranslationOrphanship_false_using_not() {
+        $this->Search->setTranslationFilter((new TranslationIsOrphanFilter())->not());
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ANY(not (t.u=0) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByTranslationCorrectness_true() {
         $this->Search->setTranslationFilter(new TranslationIsUnapprovedFilter(true));
 
