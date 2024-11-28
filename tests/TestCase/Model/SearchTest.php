@@ -528,7 +528,7 @@ class SearchTest extends TestCase
         try {
             $this->Search->setFilter((new WordCountFilter())->anyOf(['0-3-6']));
             $this->Search->asSphinx();
-            $this->fail("\"'\" word count did not generate InvalidValueException");
+            $this->fail("\"0-3-6\" word count did not generate InvalidValueException");
         } catch (InvalidValueException $e) {
             $this->assertTrue(true);
         }
