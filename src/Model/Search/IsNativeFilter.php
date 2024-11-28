@@ -61,7 +61,7 @@ class IsNativeFilter extends BoolFilter {
             $filter = [];
             while (count($natives)) {
                 $excludedIds = array_splice($natives, 0, $this->sphinxFilterArrayLimit);
-                $this->not()->anyOf($excludedIds)->and();
+                $this->not()->anyOf($excludedIds)->_and();
             }
         }
     }

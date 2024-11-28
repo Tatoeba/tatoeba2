@@ -42,11 +42,15 @@ abstract class BaseSearchFilter {
         return $expr;
     }
 
-    public function and() {
+    protected function _and() {
         $this->current++;
         $this->exclude = false;
         $this->cacheInvalid = true;
         return $this;
+    }
+
+    public function and() {
+        return $this->_and();
     }
 
     public function not() {
