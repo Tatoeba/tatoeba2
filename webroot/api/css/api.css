@@ -39,13 +39,24 @@ a:hover {
 
 ul.navmenu {
   margin: 0;
-  padding: 0;
+  margin-top: calc(var(--title-padding) * -1);
   list-style: none;
   float: right;
+  text-align: right;
 }
 ul.navmenu li {
-  display: inline;
+  line-height: calc(( var(--title-padding) * 2 + var(--title-line-height) ) / 2);
 }
-ul.navmenu li:not(:first-child)::before {
-  content: '• ';
+
+@media (min-width:576px) {
+  ul.navmenu {
+    margin-top: 0;
+  }
+  ul.navmenu li {
+    display: inline;
+    line-height: var(--title-line-height);
+  }
+  ul.navmenu li:not(:first-child)::before {
+    content: '• ';
+  }
 }
