@@ -248,10 +248,7 @@ class SentencesSearchFormTest extends TestCase
                     if (method_exists($expected, 'setSearch')) {
                         $expected->setSearch($this->Search);
                     }
-                    $a = "*";
-                    $b = "*";
-                    $this->assertEquals($expected->compile($a), $result->compile($b), "$filterkey does not contain expected filter");
-                    $this->assertEquals($a, $b, "$filterkey does not contain expected filter");
+                    $this->assertEquals($expected->compile(), $result->compile(), "$filterkey does not contain expected filter");
                 } else {
                     $this->fail("$filterkey was not set");
                 }
