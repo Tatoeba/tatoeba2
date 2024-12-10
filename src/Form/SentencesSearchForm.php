@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
+use App\Model\Exception\InvalidFilterUsageException;
 use App\Model\Search;
 use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsNativeFilter;
@@ -303,7 +304,9 @@ class SentencesSearchForm extends Form
     protected function setDataNative(string $native) {
         $native = $native === 'yes' ? true : null;
         if ($native) {
-            $this->search->setFilter(new IsNativeFilter());
+            $filter = new IsNativeFilter();
+            $this->search->setFilter($filter);
+            $filter->setSearch($this->search);
         } else {
             $this->search->unsetFilter(IsNativeFilter::class);
         }
@@ -425,11 +428,11 @@ class SentencesSearchForm extends Form
             }
         }
 
-        /* Handle native filter */
+        /* Validate native filter */
         if ($nativeFilter = $this->search->getFilter(IsNativeFilter::class)) {
             try {
-                $nativeFilter->setLang($this->_data['from']);
-            } catch (InvalidValueException $e) {
+                $nativeFilter->compile();
+            } catch (InvalidFilterUsageException $e) {
                 $this->search->unsetFilter(IsNativeFilter::class);
             }
         }

@@ -136,8 +136,8 @@ class SentencesSearchFormTest extends TestCase
             [ ['list' => ''],        ['ListFilter' => null],                           ''    ],
             [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
 
-            [ ['native' => 'yes', 'from' => 'eng'],     ['IsNativeFilter' => (new IsNativeFilter())->setLang('eng')], 'yes'],
-            [ ['native' => 'yes', 'from' => 'invalid'], ['IsNativeFilter' => null],                                   'yes'],
+            [ ['native' => 'yes', 'from' => 'eng'],     ['IsNativeFilter' => new IsNativeFilter()], 'yes'],
+            [ ['native' => 'yes', 'from' => 'invalid'], ['IsNativeFilter' => null],                 'yes'],
             [ ['native' => 'no'],      ['IsNativeFilter' => null], '' ],
             [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
             [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
@@ -245,6 +245,9 @@ class SentencesSearchFormTest extends TestCase
                     $this->assertFalse(isset($allfilters[$filterkey]), "$filterkey was set");
                 } elseif (isset($allfilters[$filterkey])) {
                     $result = $allfilters[$filterkey];
+                    if (method_exists($expected, 'setSearch')) {
+                        $expected->setSearch($this->Search);
+                    }
                     $a = "*";
                     $b = "*";
                     $this->assertEquals($expected->compile($a), $result->compile($b), "$filterkey does not contain expected filter");

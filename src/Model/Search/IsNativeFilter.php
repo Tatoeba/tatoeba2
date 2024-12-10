@@ -9,28 +9,36 @@ use Cake\Datasource\ModelAwareTrait;
 use Cake\Utility\Hash;
 
 class IsNativeFilter extends BoolFilter {
+    use NeedsSearchRefTrait;
     use ModelAwareTrait;
 
     private $sphinxFilterArrayLimit = 4096;
-    private $lang;
 
     protected function getAttributeName() {
         return 'user_id';
     }
 
-    public function setLang(string $lang) {
-        $this->lang = Search::validateLanguage($lang);
-        return $this;
+    private function getSearchLang() {
+        if (is_null($this->search)) {
+            throw new \RuntimeException("Precondition failed: setSearch() was not called first");
+        }
+        $filter = $this->search->getFilter(LangFilter::class);
+        $langs = $filter ? $filter->getAllValues() : [];
+        if (count($langs) == 0) {
+            throw new \App\Model\Exception\InvalidFilterUsageException("must be used with a language (no language were provided to the language filter)");
+        } elseif (count($langs) > 1) {
+            $langList = implode(' ', $langs);
+            throw new \App\Model\Exception\InvalidFilterUsageException("must be used with a single language (multiple languages were provided to the language filter: $langList)");
+        }
+        return $langs[0];
     }
 
     protected function calcFilter() {
-        if (is_null($this->lang)) {
-            throw new \RuntimeException("Precondition failed: setLang() was not called first");
-        }
+        $lang = $this->getSearchLang();
         $this->loadModel('UsersLanguages');
         $natives = $this->UsersLanguages->find()
             ->where([
-                'language_code' => $this->lang,
+                'language_code' => $lang,
                 'level' => 5,
             ])
             ->select(['of_user_id'])
@@ -48,10 +56,10 @@ class IsNativeFilter extends BoolFilter {
         } else {
             if (!$this->exclude) {
                 $natives = $this->UsersLanguages->find()
-                    ->where(function (QueryExpression $exp) {
+                    ->where(function (QueryExpression $exp) use ($lang) {
                         $isNonNative = $exp->or(['level is' => null])->notEq('level', 5);
                         return $exp->add($isNonNative)
-                                   ->eq('language_code', $this->lang);
+                                   ->eq('language_code', $lang);
                     })
                     ->select(['of_user_id'])
                     ->enableHydration(false)
