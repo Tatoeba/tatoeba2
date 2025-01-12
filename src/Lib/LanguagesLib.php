@@ -683,7 +683,7 @@ class LanguagesLib
                 'bom' => __d('languages', 'Berom'),
                 'sat' => __d('languages', 'Santali'),
                 'mik' => __d('languages', 'Hitchiti'),
-                'szl' => __d('languages', 'Silesian'),
+                'szl' => __d('languages', 'Silesian (Ślabikŏrz)'),
                 'igs' => __d('languages', 'Interglossa'),
                 'knc' => __d('languages', 'Central Kanuri'),
                 'nnb' => __d('languages', 'Nande'),
