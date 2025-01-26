@@ -1,5 +1,6 @@
 <?php
 
+use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
 class OldTupiCodeRename extends AbstractMigration
@@ -29,6 +30,10 @@ class OldTupiCodeRename extends AbstractMigration
                      ->where([$column => $from])
                      ->execute();
             }
+        }
+        $audioBasePath = Configure::read('Recordings.path');
+        if (is_dir($audioBasePath.DS.$from)) {
+            rename($audioBasePath.DS.$from, $audioBasePath.DS.$to);
         }
     }
 
