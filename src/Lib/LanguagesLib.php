@@ -388,7 +388,7 @@ class LanguagesLib
                 'pms' => __d('languages', 'Piedmontese'),
                 'avk' => __d('languages', 'Kotava'),
                 'mar' => __d('languages', 'Marathi'),
-                'tpw' => __d('languages', 'Old Tupi'),
+                'tpn' => __d('languages', 'Tupinambá'),
                 'tgk' => __d('languages', 'Tajik'),
                 'prg' => __d('languages', 'Old Prussian'),
                 'npi' => __d('languages', 'Nepali'),
