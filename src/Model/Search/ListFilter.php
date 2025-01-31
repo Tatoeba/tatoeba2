@@ -23,6 +23,15 @@ class ListFilter extends SearchFilter {
         });
     }
 
+    public function anyOf(array $values) {
+        foreach ($values as $value) {
+            if (!is_numeric($value)) {
+                throw new InvalidValueException("Invalid list id: '$value'");
+            }
+        }
+        return parent::anyOf($values);
+    }
+
     public function getValuesMap() {
         $listIds = $this->getAllValues();
         if ($listIds) {

@@ -330,8 +330,9 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function assertInvalidListId($listId) {
+    public function assertInvalidListId($currentUserId, $listId) {
         try {
+            $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
             $this->Search->asSphinx();
             $this->fail("list id '$listId' did not generate InvalidValueException");
         } catch (InvalidValueException $e) {
@@ -339,11 +340,16 @@ class SearchTest extends TestCase
         }
     }
 
-    public function testfilterByListId_invalid() {
+    public function testfilterByListId_unknown() {
         $currentUserId = null;
         $listId = 999999999999;
-        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
-        $this->assertInvalidListId($listId);
+        $this->assertInvalidListId($currentUserId, $listId);
+    }
+
+    public function testfilterByListId_invalid() {
+        $currentUserId = null;
+        $listId = 'invalid';
+        $this->assertInvalidListId($currentUserId, $listId);
     }
 
     public function testfilterByListId_public() {
@@ -373,8 +379,7 @@ class SearchTest extends TestCase
     public function testfilterByListId_private_isNotOwner() {
         $currentUserId = 1;
         $listId = 3;
-        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
-        $this->assertInvalidListId($listId);
+        $this->assertInvalidListId($currentUserId, $listId);
     }
 
     public function testfilterByListId_private_isOwner() {
@@ -392,8 +397,7 @@ class SearchTest extends TestCase
     public function testfilterByListId_empty() {
         $currentUserId = null;
         $listId = '';
-        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
-        $this->assertInvalidListId($listId);
+        $this->assertInvalidListId($currentUserId, $listId);
     }
 
     public function testfilterByListId_resets() {
