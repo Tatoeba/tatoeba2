@@ -9,7 +9,7 @@ class TranslationCountFilter extends BaseSearchFilter {
         if (count($values) == 1 and $values[0] == 0) {
             return parent::anyOf($values);
         } else {
-            throw InvalidValueException('Only a single value of 0 is allowed');
+            throw new InvalidValueException('Only a single value of 0 is allowed');
         }
     }
 

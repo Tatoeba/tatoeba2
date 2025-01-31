@@ -730,6 +730,26 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByTranslationCount_one() {
+        try {
+            $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf([1]));
+            $this->Search->asSphinx();
+            $this->fail("'1' translation count did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testfilterByTranslationCount_two_zeros() {
+        try {
+            $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf([0, 0]));
+            $this->Search->asSphinx();
+            $this->fail("two '0' translation counts did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
     public function testfilterByTranslationAudio_true() {
         $this->Search->setTranslationFilter(new TranslationHasAudioFilter(true));
 
