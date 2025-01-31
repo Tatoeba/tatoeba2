@@ -283,7 +283,11 @@ class SentencesSearchForm extends Form
         if (!empty($list)) {
             $searcher = CurrentUser::get('id');
             $filter = new ListFilter($searcher);
-            $filter->anyOf([$list]);
+            try {
+                $filter->anyOf([$list]);
+            } catch (InvalidValueException $e) {
+                return '';
+            }
             $filter->setInvalidValueHandler(function($listId) use (&$list) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by
