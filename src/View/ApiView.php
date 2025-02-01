@@ -1,34 +1,52 @@
 <?php
 namespace App\View;
 
+use App\Controller\VHosts\Api\SentencesController;
 use Cake\Core\Configure;
 use Cake\View\JsonView;
 
 class ApiView extends JsonView
 {
     public $helpers = [
-        'Paginator',
+        'Url',
     ];
+
+    private function buildUrl($originalParams, $newParams = [])
+    {
+        $params = $originalParams;
+        foreach ($newParams as $newParam => $newValue) {
+            $params[$newParam] = $newValue;
+        }
+        if (isset($params['page']) && $params['page'] == 1) {
+            unset($params['page']);
+        }
+        $query = SentencesController::encodeQueryParameters($params);
+        $url = $this->Url->build(['?' => null], ['escape' => false, 'fullBase' => true]);
+        $url .= rtrim('?'.$query, '?');
+        return $url;
+    }
 
     protected function pagination($params)
     {
         $links = new \stdClass();
 
+        $query = SentencesController::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
+
         if ($params['pageCount'] == 1) {
             return $links;
         }
 
-        $links->first = $this->Paginator->generateUrl(['page' => 1], null, ['escape' => false, 'fullBase' => true]);
+        $links->first = $this->buildUrl($query, ['page' => 1]);
 
         if ($this->Paginator->hasPrev()) {
-            $links->prev = $this->Paginator->generateUrl(['page' => $params['page'] - 1], null, ['escape' => false, 'fullBase' => true]);
+            $links->prev = $this->buildUrl($query, ['page' => $params['page'] - 1]);
         }
 
         if ($this->Paginator->hasNext()) {
-            $links->next = $this->Paginator->generateUrl(['page' => $params['page'] + 1], null, ['escape' => false, 'fullBase' => true]);
+            $links->next = $this->buildUrl($query, ['page' => $params['page'] + 1]);
         }
 
-        $links->last = $this->Paginator->generateUrl(['page' => $params['pageCount']], null, ['escape' => false, 'fullBase' => true]);
+        $links->last = $this->buildUrl($query, ['page' => $params['pageCount']]);
 
         return $links;
     }

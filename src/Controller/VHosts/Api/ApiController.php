@@ -31,6 +31,53 @@ When this API will be considered mature, we will release a stable version and yo
  *   maxLength=4,
  *   pattern="[a-z]+"
  * )
+ * @OA\Schema(
+ *   schema="LanguageCodeList",
+ *   description="A list of ISO 639-3 codes or some <a href=""https://en.wiki.tatoeba.org/articles/show/tatoeba-supported-languages-exceptions"">exceptional code</a>. The codes will be combined with a boolean OR.",
+ *   type="array",
+ *   items=@OA\Items(type="string", minLength=3, maxLength=4, pattern="[a-z]+", example="epo")
+ * )
+ * @OA\Schema(
+ *   schema="NegatableRangeList",
+ *   description="A comma-separated list of inclusive ranges of the form <em>n</em>-<em>m</em>, <em>n</em> and <em>m</em> being integers. A range may be open-ended by omitting <em>n</em> or <em>m</em> (but not both). The list of ranges can be negated by prefixing it with <em>!</em>.",
+ *   type="string",
+ *   example="10-20",
+ *   minLength=1,
+ *   pattern="!?([0-9]+-[0-9]+|[0-9]+-|-[0-9]+)(,([0-9]+-[0-9]+|[0-9]+-|-[0-9]+))*"
+ * )
+ * @OA\Schema(
+ *   schema="NegatableMemberList",
+ *   description="A comma-separated list of usernames. The list of usernames can be negated by prefixing it with <em>!</em>. Empty username means orphan sentence.",
+ *   type="string",
+ *   example="gillux",
+ *   pattern="!?[0-9a-zA-Z_]*(,[0-9a-zA-Z_]*)*"
+ * )
+ * @OA\Schema(
+ *   schema="NegatableTagList",
+ *   description="A comma-separated list of tags. The list of tags can be negated by prefixing it with <em>!</em>.",
+ *   type="string",
+ *   example="OK",
+ *   pattern="!?[^,]+(,[^,]+)*"
+ * )
+ * @OA\Schema(
+ *   schema="NegatableListIdList",
+ *   description="A comma-separated list of list ids. The list of ids can be negated by prefixing it with <em>!</em>.",
+ *   type="string",
+ *   example="123",
+ *   pattern="!?[0-9]+(,[0-9]+)*"
+ * )
+ * @OA\Schema(
+ *   schema="NegatableLanguageCodeList",
+ *   description="A comma-separated list of ISO 639-3 codes or some <a href=""https://en.wiki.tatoeba.org/articles/show/tatoeba-supported-languages-exceptions"">exceptional code</a>. The list of languages can be negated by prefixing it with <em>!</em>.",
+ *   type="string",
+ *   example="epo",
+ *   pattern="!?[a-z]{3,4}(,[a-z]{3,4})*"
+ * )
+ * @OA\Schema(
+ *   schema="Boolean",
+ *   type="enum",
+ *   enum={"yes", "no"}
+ * )
  */
 class ApiController extends Controller
 {
