@@ -707,8 +707,19 @@ class SearchTest extends TestCase
         }
     }
 
-    public function testfilterByTranslationCount() {
+    public function testfilterByTranslationCount_int() {
         $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf([0]));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (length(trans) = 0) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationCount_str() {
+        $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf(['0']));
 
         $expected = $this->makeSphinxParams([
             'select' => '*, (length(trans) = 0) as tf',
@@ -745,6 +756,16 @@ class SearchTest extends TestCase
             $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf([0, 0]));
             $this->Search->asSphinx();
             $this->fail("two '0' translation counts did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testfilterByTranslationCount_invalid() {
+        try {
+            $this->Search->setTranslationFilter((new TranslationCountFilter())->anyOf(['invalid']));
+            $this->Search->asSphinx();
+            $this->fail("'invalid' translation counts did not generate InvalidValueException");
         } catch (InvalidValueException $e) {
             $this->assertTrue(true);
         }

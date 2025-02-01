@@ -6,7 +6,7 @@ use App\Model\Exception\InvalidValueException;
 
 class TranslationCountFilter extends BaseSearchFilter {
     public function anyOf(array $values) {
-        if (count($values) == 1 and $values[0] == 0) {
+        if (count($values) == 1 && ($values[0] === 0 || $values[0] === '0')) {
             return parent::anyOf($values);
         } else {
             throw new InvalidValueException('Only a single value of 0 is allowed');
