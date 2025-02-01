@@ -3,8 +3,14 @@
 namespace App\Model\Search;
 
 use App\Model\Exception\InvalidValueException;
+use App\Model\Exception\InvalidAndOperatorException;
 
 class TranslationCountFilter extends BaseSearchFilter {
+
+    public function and() {
+        throw new InvalidAndOperatorException();
+    }
+
     public function anyOf(array $values) {
         if (count($values) == 1 && ($values[0] === 0 || $values[0] === '0')) {
             return parent::anyOf($values);

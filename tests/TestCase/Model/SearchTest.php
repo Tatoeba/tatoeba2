@@ -987,6 +987,7 @@ class SearchTest extends TestCase
             [IsNativeFilter::class],
             [IsOrphanFilter::class],
             [IsUnapprovedFilter::class],
+            [TranslationCountFilter::class],
             [TranslationHasAudioFilter::class],
             [TranslationLangFilter::class],
             [TranslationIsDirectFilter::class],
