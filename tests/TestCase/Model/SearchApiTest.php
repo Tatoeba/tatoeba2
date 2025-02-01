@@ -671,4 +671,45 @@ class SearchApiTest extends TestCase
             $this->assertFalse(isset($params['showtrans']));
         }
     }
+
+    public function limitProvider() {
+        return [
+            'absent limit' => [ [], 200 ],
+            'empty limit' => [
+                ['limit' => ''],
+                new BadRequestException("Invalid value for parameter 'limit': must be a positive integer")
+            ],
+            'invalid limit' => [
+                ['limit' => 'invalid'],
+                new BadRequestException("Invalid value for parameter 'limit': must be a positive integer")
+            ],
+            'negative limit' => [
+                ['limit' => '-1'],
+                new BadRequestException("Invalid value for parameter 'limit': must be a positive integer")
+            ],
+            'multiple limit params' => [
+                ['limit' => ['100', '200']],
+                new BadRequestException("Invalid usage of parameter 'limit': cannot be provided multiple times")
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider limitProvider()
+     */
+    public function testConsumeInt_limit($params, $expected) {
+        try {
+            $result = $this->SearchApi->consumeInt('limit', $params, 200);
+        } catch (\Exception $actual) {
+            $this->assertEquals($expected, $actual);
+            return;
+        }
+
+        if ($expected instanceOf \Exception) {
+            $this->fail(get_class($expected) . " was not thrown");
+        } else {
+            $this->assertEquals($expected, $result);
+            $this->assertFalse(isset($params['limit']));
+        }
+    }
 }

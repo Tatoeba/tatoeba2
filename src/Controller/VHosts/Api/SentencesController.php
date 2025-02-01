@@ -475,14 +475,10 @@ class SentencesController extends ApiController
         $params = self::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
         $this->setRequest($this->getRequest()->withQueryParams($params));
 
-        $page = $params['page'] ?? null;
-        unset($params['page']);
-
-        $limit = $params['limit'] ?? self::DEFAULT_RESULTS_NUMBER;
-        unset($params['limit']);
-
         $api = new SearchApi();
         $showtrans = $api->consumeShowTrans($params);
+        $page = $api->consumeInt('page', $params);
+        $limit = $api->consumeInt('limit', $params, self::DEFAULT_RESULTS_NUMBER);
         $api->consumeSort($params);
         $api->setFilters($params);
 

@@ -148,27 +148,47 @@ class SearchApi
         unset($params['sort']);
     }
 
-    public function consumeShowTrans(&$params) {
-        if (isset($params['showtrans'])) {
-            if (is_array($params['showtrans'])) {
-                throw new BadRequestException("Invalid usage of parameter 'showtrans': cannot be provided multiple times");
-            } elseif (strlen($params['showtrans']) == 0) {
-                $showtrans = ['none'];
+    public function consumeValue($key, &$params, $default = null) {
+        if (isset($params[$key])) {
+            if (is_array($params[$key])) {
+                throw new BadRequestException("Invalid usage of parameter '$key': cannot be provided multiple times");
             } else {
-                $showtrans = explode(',', $params['showtrans']);
-                try {
-                    $showtrans = array_map('\App\Model\Search::validateLanguage', $showtrans);
-                } catch (InvalidValueException $e) {
-                    throw new BadRequestException("Invalid value for parameter 'showtrans': ".$e->getMessage());
-                }
+                $value = $params[$key];
             }
         } else {
-            $showtrans = [];
+            $value = $default;
         }
 
-        unset($params['showtrans']);
+        unset($params[$key]);
 
+        return $value;
+    }
+
+    public function consumeShowTrans(&$params) {
+        $showtrans = $this->consumeValue('showtrans', $params, []);
+        if ($showtrans === '') {
+            $showtrans = ['none'];
+        } elseif (is_string($showtrans)) {
+            $showtrans = explode(',', $showtrans);
+            try {
+                $showtrans = array_map('\App\Model\Search::validateLanguage', $showtrans);
+            } catch (InvalidValueException $e) {
+                throw new BadRequestException("Invalid value for parameter 'showtrans': ".$e->getMessage());
+            }
+        }
         return $showtrans;
+    }
+
+    public function consumeInt($key, &$params, $default = null) {
+        $value = $this->consumeValue($key, $params, $default);
+        if ($value !== $default) {
+            if (ctype_digit($value)) {
+                $value = (int)$value;
+            } else {
+                throw new BadRequestException("Invalid value for parameter '$key': must be a positive integer");
+            }
+        }
+        return $value;
     }
 
     public function setFilters(array $filters) {
