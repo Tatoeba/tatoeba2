@@ -9,6 +9,7 @@ class OldTupiCodeRename extends AbstractMigration
         'contributions' => ['sentence_lang', 'translation_lang'],
         'contributions_stats' => ['lang'],
         'languages' => ['code'],
+        'audios' => = ['sentence_lang'],
         'last_contributions' => ['sentence_lang', 'translation_lang'],
         'reindex_flags' => ['lang'],
         'sentence_comments' => ['lang'],
@@ -31,10 +32,7 @@ class OldTupiCodeRename extends AbstractMigration
                      ->execute();
             }
         }
-        $audioBasePath = Configure::read('Recordings.path');
-        if (is_dir($audioBasePath.DS.$from)) {
-            rename($audioBasePath.DS.$from, $audioBasePath.DS.$to);
-        }
+       
     }
 
     public function up() {
