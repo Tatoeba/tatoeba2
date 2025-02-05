@@ -122,7 +122,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-list flex ng-show="ctrl.vocabularyAdded.length > 0">
             <md-list-item id="vocabulary_{{item.id}}"
                           ng-repeat="item in ctrl.vocabularyAdded">
-                <img class="vocabulary-lang" ng-src="/img/flags/{{item.lang}}.svg"/>
+                <img class="vocabulary-lang" width="30" height="20"
+                     ng-src="/img/flags/{{item.lang}}.svg"/>
                 <div class="vocabulary-text" flex>{{item.text}}</div>
                 <md-icon ng-show="item.duplicate">warning</md-icon>
                 <md-tooltip md-direction="top" ng-show="item.duplicate">
