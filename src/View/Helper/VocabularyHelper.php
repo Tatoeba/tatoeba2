@@ -64,7 +64,7 @@ class VocabularyHelper extends AppHelper
             ));
         }
         ?>
-        <img class="vocabulary-lang" width="30" height="20"
+        <img class="vocabulary-lang language-icon" width="30" height="20"
              src="/img/flags/<?= $lang ?>.svg"/>
         <div class="vocabulary-text" flex><?= $text ?></div>
         <md-button ng-cloak class="md-primary" <?= isset($url) ? "href=\"$url\"" : 'ng-disabled="1"' ?>>
