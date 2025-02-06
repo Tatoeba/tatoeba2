@@ -13,10 +13,16 @@ class Search {
     private $query;
     private $sort;
     private $sortReversed = false;
+    private $sortOrder = [];
+    private $rankingExpr;
     private $randSeed;
 
     private function orderby($expr, $order) {
         return $expr . ($order ? ' ASC' : ' DESC');
+    }
+
+    private function orderby_(array $order) {
+        return $this->orderby(...$order);
     }
 
     private function asSphinxIndex($langs) {
@@ -33,6 +39,11 @@ class Search {
     }
 
     public function compile(&$select = "*") {
+        if ($this->sort) {
+            // make $this->sortOrder and $this->rankingExpr available
+            // for filters during compilation
+            $this->computeSortAndRanking();
+        }
         $output = [];
         foreach ($this->filters as $filter) {
             if (!is_null($filter)) {
@@ -65,36 +76,13 @@ class Search {
                 $sphinx['filter'][] = $compiled;
             }
         }
-        if ($this->sort) {
-            $randomExpr = "RAND({$this->randSeed})*16777216";
-            if (empty($this->query)) {
-                // When the query is empty, Manticore does not perform any
-                // ranking, so we need to rely on ordering instead
-                if ($this->sort == 'created' || $this->sort == 'modified') {
-                    $sortOrder = $this->orderby($this->sort, $this->sortReversed);
-                } elseif ($this->sort == 'random') {
-                    $sortOrder = $this->orderby($randomExpr, $this->sortReversed);
-                } else {
-                    $sortOrder = $this->orderby('text_len', !$this->sortReversed);
-                }
-            } else {
-                // When there are keywords, Manticore will perform ranking
-                $sortOrder = $this->orderby('@rank', $this->sortReversed);
-                if ($this->sort == 'words') {
-                    $rankingExpr = '-text_len';
-                } elseif ($this->sort == 'relevance') {
-                    $rankingExpr = '-text_len+top(lcs+exact_order*100)*100';
-                } elseif ($this->sort == 'created' || $this->sort == 'modified') {
-                    $rankingExpr = $this->sort;
-                } elseif ($this->sort == 'random') {
-                    $rankingExpr = $randomExpr;
-                }
-            }
-            $sortOrder .= ', '.$this->orderby('id', $this->sortReversed);
-            $sphinx['sortMode'] = [SPH_SORT_EXTENDED => $sortOrder];
-            if (isset($rankingExpr)) {
-                $sphinx['rankingMode'] = [SPH_RANK_EXPR => $rankingExpr];
-            }
+        if ($this->sortOrder) {
+            $sphinx['sortMode'] = [
+                SPH_SORT_EXTENDED => implode(', ', array_map([$this, 'orderby_'], $this->sortOrder))
+            ];
+        }
+        if (isset($this->rankingExpr)) {
+            $sphinx['rankingMode'] = [SPH_RANK_EXPR => $this->rankingExpr];
         }
         return $sphinx;
     }
@@ -109,6 +97,39 @@ class Search {
         } else {
             throw new InvalidValueException("Invalid language code '$lang'");
         }
+    }
+
+    private function computeSortAndRanking() {
+        $this->sortOrder = [];
+        $randomExpr = "RAND({$this->randSeed})*16777216";
+        if (empty($this->query)) {
+            // When the query is empty, Manticore does not perform any
+            // ranking, so we need to rely on ordering instead
+            if ($this->sort == 'created' || $this->sort == 'modified') {
+                $this->sortOrder[] = [$this->sort, $this->sortReversed];
+            } elseif ($this->sort == 'random') {
+                $this->sortOrder[] = [$randomExpr, $this->sortReversed];
+            } else {
+                $this->sortOrder[] = ['text_len', !$this->sortReversed];
+            }
+        } else {
+            // When there are keywords, Manticore will perform ranking
+            $this->sortOrder[] = ['@rank', $this->sortReversed];
+            if ($this->sort == 'words') {
+                $this->rankingExpr = '-text_len';
+            } elseif ($this->sort == 'relevance') {
+                $this->rankingExpr = '-text_len+top(lcs+exact_order*100)*100';
+            } elseif ($this->sort == 'created' || $this->sort == 'modified') {
+                $this->rankingExpr = $this->sort;
+            } elseif ($this->sort == 'random') {
+                $this->rankingExpr = $randomExpr;
+            }
+        }
+        $this->sortOrder[] = ['id', $this->sortReversed];
+    }
+
+    public function getInternalSortOrder() {
+        return $this->sortOrder;
     }
 
     public function sort($sort) {

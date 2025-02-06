@@ -1255,4 +1255,48 @@ class SearchTest extends TestCase
     public function testExactSearchQuery($expected, $query) {
         $this->assertEquals($expected, Search::exactSearchQuery($query));
     }
+
+    public function testGetInternalSortOrder_nonEmptyQuery() {
+        $this->Search->sort('relevance');
+        $this->Search->filterByQuery('hello world');
+        $this->Search->compile();
+        $expected = [['@rank', false], ['id', false]];
+
+        $result = $this->Search->getInternalSortOrder();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetInternalSortOrder_nonEmptyQuery_reversed() {
+        $this->Search->sort('relevance');
+        $this->Search->reverseSort(true);
+        $this->Search->filterByQuery('hello world');
+        $this->Search->compile();
+        $expected = [['@rank', true], ['id', true]];
+
+        $result = $this->Search->getInternalSortOrder();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetInternalSortOrder_emptyQuery() {
+        $this->Search->sort('relevance');
+        $this->Search->compile();
+        $expected = [['text_len', true], ['id', false]];
+
+        $result = $this->Search->getInternalSortOrder();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetInternalSortOrder_emptyQuery_reversed() {
+        $this->Search->sort('relevance');
+        $this->Search->reverseSort(true);
+        $this->Search->compile();
+        $expected = [['text_len', false], ['id', true]];
+
+        $result = $this->Search->getInternalSortOrder();
+
+        $this->assertEquals($expected, $result);
+    }
 }
