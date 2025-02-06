@@ -1042,105 +1042,105 @@ class SearchTest extends TestCase
     public function testSortByRelevance_withNonEmptyQuery() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('relevance', $this->Search->sort('relevance'));
-        $this->assertSortByRank('@rank DESC', '-text_len+top(lcs+exact_order*100)*100');
+        $this->assertSortByRank('@rank DESC, id DESC', '-text_len+top(lcs+exact_order*100)*100');
     }
 
     public function testSortByRelevance_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('relevance', $this->Search->sort('relevance'));
         $this->Search->reverseSort(true);
-        $this->assertSortByRank('@rank ASC', '-text_len+top(lcs+exact_order*100)*100');
+        $this->assertSortByRank('@rank ASC, id ASC', '-text_len+top(lcs+exact_order*100)*100');
     }
 
     public function testSortByRelevance_withEmptyQuery() {
         $this->Search->filterByQuery('');
         $this->assertEquals('relevance', $this->Search->sort('relevance'));
-        $this->assertSortBy('text_len ASC');
+        $this->assertSortBy('text_len ASC, id DESC');
     }
 
     public function testSortByRelevance_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('relevance', $this->Search->sort('relevance'));
         $this->Search->reverseSort(true);
-        $this->assertSortBy('text_len DESC');
+        $this->assertSortBy('text_len DESC, id ASC');
     }
 
     public function testSortByWords_withNonEmptyQuery() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('words', $this->Search->sort('words'));
-        $this->assertSortByRank('@rank DESC', '-text_len');
+        $this->assertSortByRank('@rank DESC, id DESC', '-text_len');
     }
 
     public function testSortByWords_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('words', $this->Search->sort('words'));
         $this->Search->reverseSort(true);
-        $this->assertSortByRank('@rank ASC', '-text_len');
+        $this->assertSortByRank('@rank ASC, id ASC', '-text_len');
     }
 
     public function testSortByWords_withEmptyQuery() {
         $this->Search->filterByQuery('');
         $this->assertEquals('words', $this->Search->sort('words'));
-        $this->assertSortBy('text_len ASC');
+        $this->assertSortBy('text_len ASC, id DESC');
     }
 
     public function testSortByWords_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('words', $this->Search->sort('words'));
         $this->Search->reverseSort(true);
-        $this->assertSortBy('text_len DESC');
+        $this->assertSortBy('text_len DESC, id ASC');
     }
 
     public function testSortByCreated_withEmptyQuery() {
         $this->Search->filterByQuery('');
         $this->assertEquals('created', $this->Search->sort('created'));
-        $this->assertSortBy('created DESC');
+        $this->assertSortBy('created DESC, id DESC');
     }
 
     public function testSortByCreated_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('created', $this->Search->sort('created'));
         $this->Search->reverseSort(true);
-        $this->assertSortBy('created ASC');
+        $this->assertSortBy('created ASC, id ASC');
     }
 
     public function testSortByCreated_withNonEmptyQuery() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('created', $this->Search->sort('created'));
-        $this->assertSortByRank('@rank DESC', 'created');
+        $this->assertSortByRank('@rank DESC, id DESC', 'created');
     }
 
     public function testSortByCreated_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('created', $this->Search->sort('created'));
         $this->Search->reverseSort(true);
-        $this->assertSortByRank('@rank ASC', 'created');
+        $this->assertSortByRank('@rank ASC, id ASC', 'created');
     }
 
     public function testSortByModified_withEmptyQuery() {
         $this->Search->filterByQuery('');
         $this->assertEquals('modified', $this->Search->sort('modified'));
-        $this->assertSortBy('modified DESC');
+        $this->assertSortBy('modified DESC, id DESC');
     }
 
     public function testSortByModified_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('modified', $this->Search->sort('modified'));
         $this->Search->reverseSort(true);
-        $this->assertSortBy('modified ASC');
+        $this->assertSortBy('modified ASC, id ASC');
     }
 
     public function testSortByModified_withNonEmptyQuery() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('modified', $this->Search->sort('modified'));
-        $this->assertSortByRank('@rank DESC', 'modified');
+        $this->assertSortByRank('@rank DESC, id DESC', 'modified');
     }
 
     public function testSortByModified_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('modified', $this->Search->sort('modified'));
         $this->Search->reverseSort(true);
-        $this->assertSortByRank('@rank ASC', 'modified');
+        $this->assertSortByRank('@rank ASC, id ASC', 'modified');
     }
 
     public function testReverseSort_returnsTrue() {

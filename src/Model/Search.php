@@ -90,9 +90,7 @@ class Search {
                     $rankingExpr = $randomExpr;
                 }
             }
-            if ($this->sort == 'random') {
-                $sortOrder .= ', '.$this->orderby('id', $this->sortReversed);
-            }
+            $sortOrder .= ', '.$this->orderby('id', $this->sortReversed);
             $sphinx['sortMode'] = [SPH_SORT_EXTENDED => $sortOrder];
             if (isset($rankingExpr)) {
                 $sphinx['rankingMode'] = [SPH_RANK_EXPR => $rankingExpr];
