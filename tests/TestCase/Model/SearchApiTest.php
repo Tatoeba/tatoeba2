@@ -4,6 +4,7 @@ use App\Model\Search;
 use App\Model\SearchApi;
 use App\Model\Exception\InvalidValueException;
 
+use App\Model\Search\CursorFilter;
 use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
@@ -537,12 +538,32 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:1::lang' => 'sun' ],
                 new BadRequestException("Unknown parameter 'trans:1::lang': unknown suffix ':lang'"),
             ],
+
+            'invalid after parameter, non-integer' => [
+                [ 'lang' => 'epo', 'sort' => 'words', 'after' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'after': 'invalid' is not an integer"),
+            ],
+            'invalid after parameter, only one value' => [
+                [ 'lang' => 'epo', 'sort' => 'words', 'after' => '123' ],
+                new BadRequestException("Invalid value for parameter 'after': Expected 2 value(s), got 1 instead"),
+            ],
+            'multiple after parameters' => [
+                [ 'lang' => 'epo', 'sort' => 'words', 'after' => ['123', '456'] ],
+                new BadRequestException("Invalid usage of parameter 'after': cannot be provided multiple times"),
+            ],
+            'negated after parameter' => [
+                [ 'lang' => 'epo', 'sort' => 'words', 'after' => '!123,456' ],
+                new BadRequestException("Invalid usage of parameter 'after': value cannot be negated with '!'"),
+            ],
         ];
     }
 
     private function assertFiltersThrowException($filters, $exception) {
         $expectedName = get_class($exception);
         try {
+            if (isset($filters['sort'])) {
+                $this->SearchApi->consumeSort($filters);
+            }
             $this->SearchApi->setFilters($filters);
         } catch(\Exception $actual) {
             $this->assertEquals($exception, $actual);
@@ -605,6 +626,20 @@ class SearchApiTest extends TestCase
         $expectedSearch->reverseSort(true);
 
         $params = ['sort' => '-modified', 'lang' => 'epo'];
+        $this->SearchApi->consumeSort($params);
+        $this->SearchApi->setFilters($params);
+
+        $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
+    }
+
+    public function testCursorFilter_OK() {
+        $expectedSearch = new Search();
+        $expectedSearch->setFilter((new LangFilter())->anyOf(['epo']));
+        $expectedSearch->setFilter((new CursorFilter())->anyOf([123, 456])->setSearch($expectedSearch));
+        $expectedSearch->sort('modified');
+        $expectedSearch->reverseSort(true);
+
+        $params = ['sort' => '-modified', 'lang' => 'epo', 'after' => '123,456'];
         $this->SearchApi->consumeSort($params);
         $this->SearchApi->setFilters($params);
 

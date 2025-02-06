@@ -67,6 +67,7 @@ class SearchApi
         if (count($ns) == 1) {
             $key = $ns[0];
             $filterMap = [
+                'after'         => Search\CursorFilter::class,
                 'has_audio'     => Search\HasAudioFilter::class,
                 'is_native'     => Search\IsNativeFilter::class,
                 'is_orphan'     => Search\IsOrphanFilter::class,
