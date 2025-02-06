@@ -1,13 +1,7 @@
 <?php
 namespace App\Controller\VHosts\Api;
 
-use App\Controller\VHosts\Api\ApiController;
-use App\Model\Exception\InvalidValueException;
 use App\Model\SearchApi;
-use App\Model\Search;
-use App\Model\Search\LangFilter;
-use App\Model\Search\TranslationLangFilter;
-use App\Model\Search\TranslationIsUnapprovedFilter;
 use Cake\Http\Exception\BadRequestException;
 use Cake\ORM\Query;
 
