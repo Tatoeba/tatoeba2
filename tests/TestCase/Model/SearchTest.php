@@ -3,9 +3,11 @@ namespace App\Test\TestCase\Model;
 
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use App\Model\Exception\InvalidAndOperatorException;
+use App\Model\Exception\InvalidFilterUsageException;
 use App\Model\Exception\InvalidNotOperatorException;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\CursorFilter;
 use App\Model\Search\HasAudioFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsNativeFilter;
@@ -945,6 +947,84 @@ class SearchTest extends TestCase
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testCursorFilter() {
+        $this->Search->setFilter((new CursorFilter())->anyOf([123, 456])->setSearch($this->Search));
+        $this->Search->sort('modified');
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (modified <= 123 AND NOT (modified = 123 AND id >= 456)) as keyset',
+            'filter' => [['keyset', 1]],
+            'sortMode' => [SPH_SORT_EXTENDED => 'modified DESC, id DESC'],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testCursorFilter_reversed() {
+        $this->Search->setFilter((new CursorFilter())->anyOf([123, 456])->setSearch($this->Search));
+        $this->Search->sort('modified');
+        $this->Search->reverseSort(true);
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (modified >= 123 AND NOT (modified = 123 AND id <= 456)) as keyset',
+            'filter' => [['keyset', 1]],
+            'sortMode' => [SPH_SORT_EXTENDED => 'modified ASC, id ASC'],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testCursorFilter_withQuery() {
+        $this->Search->setFilter((new CursorFilter())->anyOf([123, 456])->setSearch($this->Search));
+        $this->Search->sort('modified');
+        $this->Search->filterByQuery('hello world');
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, (WEIGHT() <= 123 AND NOT (WEIGHT() = 123 AND id >= 456)) as keyset',
+            'filter' => [['keyset', 1]],
+            'sortMode' => [SPH_SORT_EXTENDED => '@rank DESC, id DESC'],
+            'query' => 'hello world',
+            'rankingMode' => [SPH_RANK_EXPR => 'modified'],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testCursorFilter_noSortOrderDefined() {
+        $this->Search->setFilter((new CursorFilter())->anyOf([123, 456])->setSearch($this->Search));
+
+        try {
+            $this->Search->asSphinx();
+        } catch (InvalidFilterUsageException $e) {
+            $this->assertEquals("No sort order defined", $e->getMessage());
+            return;
+        }
+        $this->fail('InvalidFilterUsageException was not thrown');
+    }
+
+    public function testCursorFilter_noTwoValuesProvided() {
+        $this->Search->setFilter((new CursorFilter())->anyOf([123])->setSearch($this->Search));
+        $this->Search->sort('modified');
+
+        try {
+            $this->Search->asSphinx();
+        } catch (InvalidValueException $e) {
+            $this->assertEquals("Expected 2 value(s), got 1 instead", $e->getMessage());
+            return;
+        }
+        $this->fail('InvalidValueException was not thrown');
+    }
+
+    public function testCursorFilter_nonIntegerProvided() {
+        try {
+            (new CursorFilter())->anyOf(['invalid']);
+        } catch (InvalidValueException $e) {
+            $this->assertEquals("'invalid' is not an integer", $e->getMessage());
+            return;
+        }
+        $this->fail('InvalidValueException was not thrown');
     }
 
     public function testNestedFilterGroups() {
