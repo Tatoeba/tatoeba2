@@ -107,7 +107,7 @@ class ClickableLinksHelper extends AppHelper
                 $pattern2 = '/'.$escapedUrl.'(['.$stopChars.'< \n])|'.$escapedUrl.'$/u';
                 $text = preg_replace(
                     $pattern2,
-                    "<a href=\"$url\" target=\"_blank\">$urlText</a>$1",
+                    "<a href=\"$url\" target=\"_blank\" rel=\"nofollow\">$urlText</a>$1",
                     $text
                 );
             }
