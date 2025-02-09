@@ -1027,6 +1027,35 @@ class SearchTest extends TestCase
         $this->fail('InvalidValueException was not thrown');
     }
 
+    public function testComputeCursor_withoutQuery() {
+        $this->Search->sort('modified');
+        $this->Search->setComputeCursor(true);
+        $expected = $this->makeSphinxParams([
+            'select' => "*, CONCAT(TO_STRING(modified), ',', TO_STRING(id)) as cursor",
+            'sortMode' => [SPH_SORT_EXTENDED => 'modified DESC, id DESC'],
+        ]);
+
+        $result = $this->Search->asSphinx();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testComputeCursor_withQuery() {
+        $this->Search->sort('modified');
+        $this->Search->setComputeCursor(true);
+        $this->Search->filterByQuery('hello world');
+        $expected = $this->makeSphinxParams([
+            'select' => "*, CONCAT(TO_STRING(WEIGHT()), ',', TO_STRING(id)) as cursor",
+            'sortMode' => [SPH_SORT_EXTENDED => '@rank DESC, id DESC'],
+            'query' => 'hello world',
+            'rankingMode' => [SPH_RANK_EXPR => 'modified'],
+        ]);
+
+        $result = $this->Search->asSphinx();
+
+        $this->assertEquals($expected, $result);
+    }
+
     public function testNestedFilterGroups() {
         $group0 = $this->Search->getTranslationFilters('0');
         $group0->getTranslationFilters('a')

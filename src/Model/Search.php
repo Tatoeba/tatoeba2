@@ -10,12 +10,15 @@ class Search {
     use \Cake\Datasource\ModelAwareTrait;
     use Search\FiltersCollectionTrait;
 
+    const CURSOR_FIELD = 'cursor'; // name for calculated field
+
     private $query;
     private $sort;
     private $sortReversed = false;
     private $sortOrder = [];
     private $rankingExpr;
     private $randSeed;
+    private $computeCursor = false;
 
     private function orderby($expr, $order) {
         return $expr . ($order ? ' ASC' : ' DESC');
@@ -80,6 +83,9 @@ class Search {
             $sphinx['sortMode'] = [
                 SPH_SORT_EXTENDED => implode(', ', array_map([$this, 'orderby_'], $this->sortOrder))
             ];
+            if ($this->computeCursor) {
+                $sphinx['select'] .= $this->computeCursor();
+            }
         }
         if (isset($this->rankingExpr)) {
             $sphinx['rankingMode'] = [SPH_RANK_EXPR => $this->rankingExpr];
@@ -97,6 +103,17 @@ class Search {
         } else {
             throw new InvalidValueException("Invalid language code '$lang'");
         }
+    }
+
+    private function computeCursor() {
+        $attrs = array_map(
+            function($s) {
+                $attr = $s[0] == '@rank' ? 'WEIGHT()' : $s[0];
+                return "TO_STRING($attr)";
+            },
+            $this->sortOrder
+        );
+        return ', CONCAT('. implode(", ',', ", $attrs) .') as '.self::CURSOR_FIELD;
     }
 
     private function computeSortAndRanking() {
@@ -170,5 +187,9 @@ class Search {
 
     public function setRandSeed($seed) {
         return $this->randSeed = $seed;
+    }
+
+    public function setComputeCursor(bool $computeCursor) {
+        $this->computeCursor = $computeCursor;
     }
 }
