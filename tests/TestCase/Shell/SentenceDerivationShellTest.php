@@ -12,6 +12,8 @@ use Cake\Utility\Hash;
 class SentenceDerivationShellTest extends TestCase
 {
     public $fixtures = array(
+        'app.audios',
+        'app.disabled_audios',
         'app.contributions',
         'app.sentences',
         'app.languages',
