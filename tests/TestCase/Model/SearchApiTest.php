@@ -611,6 +611,7 @@ class SearchApiTest extends TestCase
         $expectedSearch = new Search();
         $expectedSearch->setFilter((new LangFilter())->anyOf(['epo']));
         $expectedSearch->sort('modified');
+        $expectedSearch->setComputeCursor(true);
 
         $params = ['sort' => 'modified', 'lang' => 'epo'];
         $this->SearchApi->consumeSort($params);
@@ -624,6 +625,7 @@ class SearchApiTest extends TestCase
         $expectedSearch->setFilter((new LangFilter())->anyOf(['epo']));
         $expectedSearch->sort('modified');
         $expectedSearch->reverseSort(true);
+        $expectedSearch->setComputeCursor(true);
 
         $params = ['sort' => '-modified', 'lang' => 'epo'];
         $this->SearchApi->consumeSort($params);
@@ -638,6 +640,7 @@ class SearchApiTest extends TestCase
         $expectedSearch->setFilter((new CursorFilter())->anyOf([123, 456])->setSearch($expectedSearch));
         $expectedSearch->sort('modified');
         $expectedSearch->reverseSort(true);
+        $expectedSearch->setComputeCursor(true);
 
         $params = ['sort' => '-modified', 'lang' => 'epo', 'after' => '123,456'];
         $this->SearchApi->consumeSort($params);

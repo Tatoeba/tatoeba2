@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\VHosts\Api;
 
+use App\Model\Search;
 use App\Model\SearchApi;
 use Cake\Http\Exception\BadRequestException;
 use Cake\ORM\Query;
@@ -502,6 +503,10 @@ class SentencesController extends ApiController
             'data' => $results,
         ];
 
+        $last = $results->last();
+        if ($last) {
+            $this->set('cursor_end', $last[Search::CURSOR_FIELD]);
+        }
         $this->set('results', $response);
         $this->set('_serialize', 'results');
         $this->RequestHandler->renderAs($this, 'json');

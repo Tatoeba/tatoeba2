@@ -16,6 +16,7 @@ class SearchApi
 
     public function __construct($search = null) {
         $this->search = $search ?? new Search();
+        $this->search->setComputeCursor(true);
     }
 
     private function parseParamValueBool($value, BaseSearchFilter $filter) {
