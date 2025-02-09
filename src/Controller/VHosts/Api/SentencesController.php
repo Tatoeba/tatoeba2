@@ -493,7 +493,6 @@ class SentencesController extends ApiController
 
         $this->paginate = [
             'limit' => self::DEFAULT_RESULTS_NUMBER,
-            'maxLimit' => self::MAX_RESULTS_NUMBER,
             'sphinx' => $sphinx,
         ];
         $results = $this->paginate($query);
