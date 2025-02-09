@@ -15,10 +15,11 @@ class ApiView extends JsonView
     {
         $params = $originalParams;
         foreach ($newParams as $newParam => $newValue) {
-            $params[$newParam] = $newValue;
-        }
-        if (isset($params['page']) && $params['page'] == 1) {
-            unset($params['page']);
+            if (is_null($newValue)) {
+                unset($params[$newParam]);
+            } else {
+                $params[$newParam] = $newValue;
+            }
         }
         $query = SentencesController::encodeQueryParameters($params);
         $url = $this->Url->build(['?' => null], ['escape' => false, 'fullBase' => true]);
@@ -32,21 +33,17 @@ class ApiView extends JsonView
 
         $query = SentencesController::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
 
-        if ($params['pageCount'] == 1) {
-            return $links;
+        if (isset($query['after'])) {
+            $links->first = $this->buildUrl($query, ['after' => null]);
+        } else {
+            $links->total = $this->get('total');
         }
 
-        $links->first = $this->buildUrl($query, ['page' => 1]);
-
-        if ($this->Paginator->hasPrev()) {
-            $links->prev = $this->buildUrl($query, ['page' => $params['page'] - 1]);
+        $links->has_next = $this->get('has_next');
+        if ($links->has_next) {
+            $links->cursor_end = $this->get('cursor_end');
+            $links->next = $this->buildUrl($query, ['after' => $this->get('cursor_end')]);
         }
-
-        if ($this->Paginator->hasNext()) {
-            $links->next = $this->buildUrl($query, ['page' => $params['page'] + 1]);
-        }
-
-        $links->last = $this->buildUrl($query, ['page' => $params['pageCount']]);
 
         return $links;
     }

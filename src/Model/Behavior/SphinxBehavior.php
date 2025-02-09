@@ -194,12 +194,17 @@ class SphinxBehavior extends Behavior
 
     public function getTotal()
     {
-        return $this->_cached_result['total'];
+        return (int)$this->_cached_result['total'];
     }
 
     public function getRealTotal()
     {
-        return $this->_cached_result['total_found'];
+        return (int)$this->_cached_result['total_found'];
+    }
+
+    public function getReturnedResultsCount()
+    {
+        return count($this->_cached_result['matches'] ?? []);
     }
 
     public function addHighlightMarkers($results) {

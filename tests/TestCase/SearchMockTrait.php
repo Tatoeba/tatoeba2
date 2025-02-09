@@ -11,7 +11,7 @@ trait SearchMockTrait
         // SphinxClient->Query() returns matches as an array
         // having document ids (sentence ids) as keys
         $matches = array_reduce($sentencesIds, function ($matches, $id) {
-            $matches[$id] = [];
+            $matches[$id] = ['attrs' => ['cursor' => "123456,$id"]];
             return $matches;
         });
         if (is_null($total)) {

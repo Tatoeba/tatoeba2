@@ -299,9 +299,9 @@ class SentencesController extends ApiController
      *     @OA\Examples(example="7", value="random",    summary="randomly sort results"),
      *     @OA\Schema(type="string", pattern="-?(relevance|words|created|modified|random)")
      *   ),
-     *   @OA\Parameter(name="page", in="query",
-     *     description="Page number, starts at 1. Use this parameter to paginate results.",
-     *     @OA\Schema(type="integer", example="2")
+     *   @OA\Parameter(name="after", in="query",
+     *     description="Cursor start position. This parameter is used to paginate results using keyset pagination method. After fetching the first page, if there are more results, you get a <code>cursor_end</code> value along with the results. To get the second page of results, execute the same query with the added <code>after=&lt;cursor_end&gt;</code> parameter. If there are more results, the second page will containg another <code>cursor_end</code> you can use to get the third page, and so on.",
+     *     @OA\Schema(type="string")
      *   ),
      *   @OA\Parameter(name="limit", in="query",
      *     description="Maximum number of sentences in the response.",
@@ -472,13 +472,11 @@ class SentencesController extends ApiController
 
         $api = new SearchApi();
         $showtrans = $api->consumeShowTrans($params);
-        $page = $api->consumeInt('page', $params);
         $limit = $api->consumeInt('limit', $params, self::DEFAULT_RESULTS_NUMBER);
         $api->consumeSort($params);
         $api->setFilters($params);
 
         $sphinx = $api->search->asSphinx();
-        $sphinx['page'] = $page;
         $sphinx['limit'] = $limit > self::MAX_RESULTS_NUMBER ? self::MAX_RESULTS_NUMBER : $limit;
 
         $this->loadModel('Sentences');
@@ -502,6 +500,9 @@ class SentencesController extends ApiController
         $response = [
             'data' => $results,
         ];
+
+        $this->set('has_next', $this->Sentences->getRealTotal() > $this->Sentences->getReturnedResultsCount());
+        $this->set('total', $this->Sentences->getRealTotal());
 
         $last = $results->last();
         if ($last) {

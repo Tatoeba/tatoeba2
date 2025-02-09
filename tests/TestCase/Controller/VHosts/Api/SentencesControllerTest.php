@@ -68,10 +68,11 @@ class MainControllerTest extends TestCase
     const PAGING_JSON_SCHEMA = [
       'type'     => 'object',
       'properties' => [
-        'first'     => ['type' => 'string'],
-        'prev'      => ['type' => 'string'],
-        'next'      => ['type' => 'string'],
-        'last'      => ['type' => 'string'],
+        'total'      => ['type' => 'integer'],
+        'first'      => ['type' => 'string'],
+        'has_next'   => ['type' => 'boolean'],
+        'cursor_end' => ['type' => 'string'],
+        'next'       => ['type' => 'string'],
       ],
     ];
 
@@ -222,7 +223,7 @@ class MainControllerTest extends TestCase
     {
         $this->enableMockedSearch([1,2,3]);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&limit=1&page=2");
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&limit=1");
         $this->assertResponseOk();
         $this->assertContentType('application/json');
 
@@ -261,7 +262,11 @@ class MainControllerTest extends TestCase
 
         $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello");
         $actual = $this->_getBodyAsString();
-        $this->assertJsonValueEquals($actual, '$.paging', (object)[]);
+        $expectedPaging = (object)[
+            'total' => 1,
+            'has_next' => false,
+        ];
+        $this->assertJsonValueEquals($actual, '$.paging', $expectedPaging);
     }
 
     public function testSearch_returnsFirstPage()
@@ -273,9 +278,28 @@ class MainControllerTest extends TestCase
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
             '$.paging' => (object)[
+                'total' => 2,
+                'has_next' => true,
+                'cursor_end' => '123456,1',
+                'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
+            ],
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsMiddlePage()
+    {
+        $this->enableMockedSearch([1], 2);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123,345");
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.paging' => (object)[
                 'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
-                'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&page=2',
-                'last'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&page=2',
+                'has_next' => true,
+                'cursor_end' => '123456,1',
+                'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
             ],
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
@@ -283,16 +307,15 @@ class MainControllerTest extends TestCase
 
     public function testSearch_returnsLastPage()
     {
-        $this->enableMockedSearch([2], 2);
+        $this->enableMockedSearch([2], 1);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&page=2&limit=1");
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123,456");
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
             '$.paging' => (object)[
                 'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
-                'prev'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
-                'last'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&page=2&limit=1',
+                'has_next' => false,
             ],
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
