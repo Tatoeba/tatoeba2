@@ -8,6 +8,7 @@ use Cake\View\JsonView;
 class ApiView extends JsonView
 {
     public $helpers = [
+        'Paginator',
         'Url',
     ];
 
