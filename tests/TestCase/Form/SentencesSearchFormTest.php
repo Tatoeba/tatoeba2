@@ -1,6 +1,24 @@
 <?php
 
 use App\Form\SentencesSearchForm;
+use App\Model\Search\HasAudioFilter;
+use App\Model\Search\IsNativeFilter;
+use App\Model\Search\IsOrphanFilter;
+use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\LangFilter;
+use App\Model\Search\ListFilter;
+use App\Model\Search\OriginFilter;
+use App\Model\Search\OwnerFilter;
+use App\Model\Search\TagFilter;
+use App\Model\Search\TranslationCountFilter;
+use App\Model\Search\TranslationFilterGroup;
+use App\Model\Search\TranslationHasAudioFilter;
+use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsOrphanFilter;
+use App\Model\Search\TranslationIsUnapprovedFilter;
+use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationOwnerFilter;
+use App\Model\Search\WordCountFilter;
 use Cake\TestSuite\TestCase;
 
 class SentencesSearchFormTest extends TestCase
@@ -74,9 +92,9 @@ class SentencesSearchFormTest extends TestCase
               'ceci ; cela '
             ],
 
-            [ ['from' => 'ain'],         ['filterByLanguage', 'ain'        ], 'ain' ],
-            [ ['from' => ''],            ['filterByLanguage', ''           ], '' ],
-            [ ['from' => 'invalidlang'], ['filterByLanguage', 'invalidlang'], '' ],
+            [ ['from' => 'ain'],         ['LangFilter' => (new LangFilter())->anyOf(['ain'])], 'ain' ],
+            [ ['from' => ''],            ['LangFilter' => null,                             ], '' ],
+            [ ['from' => 'invalidlang'], ['LangFilter' => null,                             ], '' ],
 
             [ ['to' => 'und'],     [], '' ],
             [ ['to' => 'none'],    [], 'none' ],
@@ -84,90 +102,99 @@ class SentencesSearchFormTest extends TestCase
             [ ['to' => ''],        [], '' ],
             [ ['to' => 'invalid'], [], '' ],
 
-            [ ['unapproved' => 'yes'],     ['filterByCorrectness', true],  'yes' ],
-            [ ['unapproved' => 'no'],      ['filterByCorrectness', false], 'no'  ],
-            [ ['unapproved' => 'any'],     ['filterByCorrectness', null],  'any' ],
-            [ ['unapproved' => 'invalid'], ['filterByCorrectness', null],  'any' ],
-            [ ['unapproved' => ''],        ['filterByCorrectness', null],  'any' ],
+            [ ['unapproved' => 'yes'],     ['IsUnapprovedFilter' => new IsUnapprovedFilter(true)],  'yes' ],
+            [ ['unapproved' => 'no'],      ['IsUnapprovedFilter' => new IsUnapprovedFilter(false)], 'no'  ],
+            [ ['unapproved' => 'any'],     ['IsUnapprovedFilter' => null],  'any' ],
+            [ ['unapproved' => 'invalid'], ['IsUnapprovedFilter' => null],  'any' ],
+            [ ['unapproved' => ''],        ['IsUnapprovedFilter' => null],  'any' ],
 
-            [ ['orphans' => 'yes'],     ['filterByOrphanship', true],  'yes' ],
-            [ ['orphans' => 'no'],      ['filterByOrphanship', false], 'no'  ],
-            [ ['orphans' => 'any'],     ['filterByOrphanship', null],  'any' ],
-            [ ['orphans' => 'invalid'], ['filterByOrphanship', null],  'any' ],
-            [ ['orphans' => ''],        ['filterByOrphanship', null],  'any' ],
+            [ ['orphans' => 'yes'],     ['IsOrphanFilter' => new IsOrphanFilter(true)],  'yes' ],
+            [ ['orphans' => 'no'],      ['IsOrphanFilter' => new IsOrphanFilter(false)], 'no'  ],
+            [ ['orphans' => 'any'],     ['IsOrphanFilter' => null],                      'any' ],
+            [ ['orphans' => 'invalid'], ['IsOrphanFilter' => null],                      'any' ],
+            [ ['orphans' => ''],        ['IsOrphanFilter' => null],                      'any' ],
 
-            [ ['user' => 'contributor'], ['filterByOwnerId', 4], 'contributor' ],
-            [ ['user' => 'invaliduser'], ['filterByOwnerId'],    '', 1 ],
-            [ ['user' => ''],            ['filterByOwnerId'],    '' ],
+            [ ['user' => 'contributor'], ['OwnerFilter' => (new OwnerFilter())->anyOf(['contributor'])], 'contributor', 0 ],
+            [ ['user' => 'invaliduser'], ['OwnerFilter' => new OwnerFilter()],                           '',            1 ],
+            [ ['user' => ''],            ['OwnerFilter' => null],                                        '',            0 ],
 
-            [ ['original' => 'yes'],     ['filterByOriginKnown' => [[true]],
-                                          'filterByIsOriginal'  => [[true]]], 'yes' ],
-            [ ['original' => 'invalid'], ['filterByOriginKnown' => [[null]],
-                                          'filterByIsOriginal'  => [[null]]],  '' ],
-            [ ['original' => ''],        ['filterByOriginKnown' => [[null]],
-                                          'filterByIsOriginal'  => [[null]]],  '' ],
+            [ ['has_audio' => 'yes'],     ['HasAudioFilter' => new HasAudioFilter(true)],  'yes' ],
+            [ ['has_audio' => 'no'],      ['HasAudioFilter' => new HasAudioFilter(false)], 'no'  ],
+            [ ['has_audio' => 'invalid'], ['HasAudioFilter' => null], '' ],
+            [ ['has_audio' => ''],        ['HasAudioFilter' => null], '' ],
 
-            [ ['has_audio' => 'yes'],     ['filterByAudio', true],  'yes' ],
-            [ ['has_audio' => 'no'],      ['filterByAudio', false], 'no'  ],
-            [ ['has_audio' => 'invalid'], ['filterByAudio', null],  ''    ],
-            [ ['has_audio' => ''],        ['filterByAudio', null],  ''    ],
+            [ ['original' => 'yes'],     ['OriginFilter' => (new OriginFilter())->anyOf([OriginFilter::ORIGIN_ORIGINAL])], 'yes' ],
+            [ ['original' => 'invalid'], ['OriginFilter' => null], ''],
+            [ ['original' => ''],        ['OriginFilter' => null], ''],
 
-            [ ['tags' => 'OK'],          ['filterByTags', ['OK']],            'OK'    ],
-            [ ['tags' => 'invalid tag'], ['filterByTags', ['invalid tag']],   '',   1 ],
-            [ ['tags' => 'OK,invalid'],  ['filterByTags', ['OK', 'invalid']], 'OK', 1 ],
+            [ ['tags' => 'OK'],          ['TagFilter' => (new TagFilter())->anyOf(['OK'])], 'OK'    ],
+            [ ['tags' => 'invalid tag'], ['TagFilter' => new TagFilter()],                  '',   1 ],
+            [ ['tags' => 'OK,invalid'],  ['TagFilter' => (new TagFilter())->anyOf(['OK'])], 'OK', 1 ],
 
-            [ ['list' => '2'],       ['filterByListId', 2, null],       '2'   ],
-            [ ['list' => '9999999'], ['filterByListId', 9999999, null], '', 1 ],
-            [ ['list' => ''],        ['filterByListId', null, null],    ''    ],
-            [ ['list' => '3'],       ['filterByListId', 3, null],       '', 1 ],
+            [ ['list' => '2'],       ['ListFilter' => (new ListFilter())->anyOf([2])], '2'   ],
+            [ ['list' => '9999999'], ['ListFilter' => new ListFilter()],               '', 1 ],
+            [ ['list' => ''],        ['ListFilter' => null],                           ''    ],
+            [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
+            [ ['list' => 'invalid'], ['ListFilter' => null],                           '',   ],
 
-            [ ['native' => 'yes'],     ['filterByNativeSpeaker', true],  'yes' ],
-            [ ['native' => 'no'],      ['filterByNativeSpeaker', null],  ''    ],
-            [ ['native' => 'invalid'], ['filterByNativeSpeaker', null],  ''    ],
-            [ ['native' => ''],        ['filterByNativeSpeaker', null],  ''    ],
+            [ ['native' => 'yes', 'from' => 'eng'],     ['IsNativeFilter' => new IsNativeFilter()], 'yes'],
+            [ ['native' => 'yes', 'from' => 'invalid'], ['IsNativeFilter' => null],                 'yes'],
+            [ ['native' => 'no'],      ['IsNativeFilter' => null], '' ],
+            [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
+            [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
 
-            [ ['word_count_min' => ''],        ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
-            [ ['word_count_min' => '0'],       ['filterByWordCount' => [['le', null], ['ge', 0   ]]], '0'  ],
-            [ ['word_count_min' => '01'],      ['filterByWordCount' => [['le', null], ['ge', 1   ]]], '1'  ],
-            [ ['word_count_min' => '42'],      ['filterByWordCount' => [['le', null], ['ge', 42  ]]], '42' ],
-            [ ['word_count_min' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', null]]], 'any'],
+            [ ['word_count_min' => ''],        ['WordCountFilter' => null],                                           'any'],
+            [ ['word_count_min' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['0-'])->and()],  '0'  ],
+            [ ['word_count_min' => '01'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  '1'  ],
+            [ ['word_count_min' => '42'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['42-'])->and()], '42' ],
+            [ ['word_count_min' => 'invalid'], ['WordCountFilter' => null],                                           'any'],
 
-            [ ['word_count_max' => ''],        ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
-            [ ['word_count_max' => '0'],       ['filterByWordCount' => [['le', 0   ], ['ge', 1   ]]], '0'  ],
-            [ ['word_count_max' => '01'],      ['filterByWordCount' => [['le', 1   ], ['ge', 1   ]]], '1'  ],
-            [ ['word_count_max' => '42'],      ['filterByWordCount' => [['le', 42  ], ['ge', 1   ]]], '42' ],
-            [ ['word_count_max' => 'invalid'], ['filterByWordCount' => [['le', null], ['ge', 1   ]]], ''   ],
+            [ ['word_count_max' => ''],        ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
+            [ ['word_count_max' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['-0'])->and()
+                                                                                            ->anyOf(['1-'])->and()],  '0'  ],
+            [ ['word_count_max' => '01'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['-1'])->and()
+                                                                                            ->anyOf(['1-'])->and()],  '1'  ],
+            [ ['word_count_max' => '42'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['-42'])->and()
+                                                                                            ->anyOf(['1-'])->and()],  '42' ],
+            [ ['word_count_max' => 'invalid'], ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
 
-            [ ['trans_filter' => 'exclude'],      ['filterByTranslation', 'exclude'], 'exclude' ],
-            [ ['trans_filter' => 'invalidvalue'], ['filterByTranslation'], 'limit' ],
+            [ ['trans_filter' => 'exclude'],      ['tf' => (new TranslationFilterGroup())
+                                                              ->setExclude(true)->setFilter(
+                                                                  (new TranslationCountFilter())->not()->anyOf([0])
+                                                              )], 'exclude' ],
+            [ ['trans_filter' => 'invalidvalue'], ['tf' => (new TranslationFilterGroup())], 'limit'],
 
-            [ ['trans_to' => 'ain'],     ['filterByTranslationLanguage', 'ain'    ], 'ain' ],
-            [ ['trans_to' => ''],        ['filterByTranslationLanguage', ''       ], '' ],
-            [ ['trans_to' => 'invalid'], ['filterByTranslationLanguage', 'invalid'], '' ],
+            [ ['trans_to' => 'ain'],     ['tf' => (new TranslationFilterGroup())->setFilter(
+                                                         (new TranslationLangFilter())->anyOf(['ain'])
+                                                     )], 'ain' ],
+            [ ['trans_to' => ''],        ['tf' => (new TranslationFilterGroup())], '' ],
+            [ ['trans_to' => 'invalid'], ['tf' => (new TranslationFilterGroup())], '' ],
 
-            [ ['trans_link' => 'direct'],   ['filterByTranslationLink', 'direct'],  'direct'],
-            [ ['trans_link' => 'indirect'], ['filterByTranslationLink', 'indirect'],'indirect'],
-            [ ['trans_link' => ''],         ['filterByTranslationLink', ''],        ''],
-            [ ['trans_link' => 'invalid'],  ['filterByTranslationLink', 'invalid'], ''],
+            [ ['trans_link' => 'direct'],   ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsDirectFilter(true))],  'direct'],
+            [ ['trans_link' => 'indirect'], ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsDirectFilter(false))], 'indirect'],
+            [ ['trans_link' => ''],         ['tf' => new TranslationFilterGroup()],                                                    ''],
+            [ ['trans_link' => 'invalid'],  ['tf' => new TranslationFilterGroup()],                                                    ''],
 
-            [ ['trans_has_audio' => 'yes'],     ['filterByTranslationAudio', true],  'yes' ],
-            [ ['trans_has_audio' => 'no'],      ['filterByTranslationAudio', false], 'no'  ],
-            [ ['trans_has_audio' => 'invalid'], ['filterByTranslationAudio', null],  ''    ],
-            [ ['trans_has_audio' => ''],        ['filterByTranslationAudio', null],  ''    ],
+            [ ['trans_has_audio' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(true))],  'yes' ],
+            [ ['trans_has_audio' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(false))], 'no'  ],
+            [ ['trans_has_audio' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
+            [ ['trans_has_audio' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
-            [ ['trans_unapproved' => 'yes'],     ['filterByTranslationCorrectness', true],  'yes' ],
-            [ ['trans_unapproved' => 'no'],      ['filterByTranslationCorrectness', false], 'no'  ],
-            [ ['trans_unapproved' => 'invalid'], ['filterByTranslationCorrectness', null],  ''    ],
-            [ ['trans_unapproved' => ''],        ['filterByTranslationCorrectness', null],  ''    ],
+            [ ['trans_unapproved' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(true))],  'yes' ],
+            [ ['trans_unapproved' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(false))], 'no'  ],
+            [ ['trans_unapproved' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
+            [ ['trans_unapproved' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
-            [ ['trans_orphan' => 'yes'],     ['filterByTranslationOrphanship', true],  'yes' ],
-            [ ['trans_orphan' => 'no'],      ['filterByTranslationOrphanship', false], 'no'  ],
-            [ ['trans_orphan' => 'invalid'], ['filterByTranslationOrphanship', null],  ''    ],
-            [ ['trans_orphan' => ''],        ['filterByTranslationOrphanship', null],  ''    ],
+            [ ['trans_orphan' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(true))],  'yes' ],
+            [ ['trans_orphan' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(false))], 'no'  ],
+            [ ['trans_orphan' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
+            [ ['trans_orphan' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
-            [ ['trans_user' => 'contributor'], ['filterByTranslationOwnerId', 4], 'contributor' ],
-            [ ['trans_user' => 'invaliduser'], ['filterByTranslationOwnerId'],    '', 1 ],
-            [ ['trans_user' => ''],            ['filterByTranslationOwnerId'],    ''    ],
+            [ ['trans_user' => 'contributor'], ['tf' => (new TranslationFilterGroup())->setFilter(
+                                                               (new TranslationOwnerFilter())->anyOf(['contributor'])
+                                                           )], 'contributor' ],
+            [ ['trans_user' => 'invaliduser'], ['tf' => new TranslationFilterGroup()], '', 1 ],
+            [ ['trans_user' => ''],            ['tf' => new TranslationFilterGroup()], '' ],
 
             [ ['sort' => 'relevance'], ['sort', 'relevance'], 'relevance' ],
             [ ['sort' => 'words'],     ['sort', 'words'],     'words'     ],
@@ -195,13 +222,7 @@ class SentencesSearchFormTest extends TestCase
         if (count($method) == 1 && is_int(key($method))) { // is list array
             $this->Search->expects($this->never())
                          ->method($method[0]);
-        } elseif (!is_int(key($method))) { // is associative array
-            foreach ($method as $methodName => $calls) {
-                $this->Search->expects($this->exactly(count($calls)))
-                             ->method($methodName)
-                             ->withConsecutive(...$calls);
-            }
-        } elseif ($method) {
+        } elseif (is_int(key($method))) { // is list array but with more than 1 element
             $methodName = array_shift($method);
             $with = array_map(
                 function ($expected) {
@@ -217,6 +238,23 @@ class SentencesSearchFormTest extends TestCase
         }
 
         $this->Form->setData($getParams);
+
+        if (!is_int(key($method))) { // is associative array
+            $allfilters = $this->Search->getFilters();
+            foreach ($method as $filterkey => $expected) {
+                if (is_null($expected)) {
+                    $this->assertFalse(isset($allfilters[$filterkey]), "$filterkey was set");
+                } elseif (isset($allfilters[$filterkey])) {
+                    $result = $allfilters[$filterkey];
+                    if (method_exists($expected, 'setSearch')) {
+                        $expected->setSearch($this->Search);
+                    }
+                    $this->assertEquals($expected->compile(), $result->compile(), "$filterkey does not contain expected filter");
+                } else {
+                    $this->fail("$filterkey was not set");
+                }
+            }
+        }
         if (!is_array($getParamReturned)) {
             $getParamReturned = [key($getParams) => $getParamReturned];
         }
@@ -224,7 +262,7 @@ class SentencesSearchFormTest extends TestCase
             $this->assertEquals($expectedValue, $this->Form->getData()[$getParam]);
         }
 
-        $this->assertCount($ignored, $this->Form->getIgnoredFields());
+        $this->assertCount($ignored, $this->Form->getIgnoredFields(), 'ignored fields count');
     }
 
     public function testSearchParamToIsCopiedToTransTo_fra() {
@@ -256,18 +294,27 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testTransFilter_limitWithoutTransFilters() {
-        $this->Search->expects($this->never())
-                     ->method('filterByTranslation');
         $this->Form->setData(['trans_filter' => 'limit']);
         $this->assertEquals('limit', $this->Form->getData()['trans_filter']);
+        $this->assertNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
     }
 
     public function testTransFilter_limitWithTranslationFilters() {
-        $this->Search->expects($this->once())
-                     ->method('filterByTranslation')
-                     ->with($this->equalTo('limit'));
         $this->Form->setData(['trans_filter' => 'limit', 'trans_to' => 'hun']);
         $this->assertEquals('limit', $this->Form->getData()['trans_filter']);
+        $this->assertNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
+    }
+
+    public function testTransFilter_excludeWithoutTranslationFilters() {
+        $this->Form->setData(['trans_filter' => 'exclude']);
+        $this->assertEquals('exclude', $this->Form->getData()['trans_filter']);
+        $this->assertNotNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
+    }
+
+    public function testTransFilter_excludeWithTranslationFilters() {
+        $this->Form->setData(['trans_filter' => 'exclude', 'trans_to' => 'hun']);
+        $this->assertEquals('exclude', $this->Form->getData()['trans_filter']);
+        $this->assertNull($this->Search->getTranslationFilter(TranslationCountFilter::class));
     }
 
     private function assertMethodCalledWith($stub, $methodName, $expectedParams) {
@@ -368,40 +415,24 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testCheckUnwantedCombinations_orphanWithUser() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByOrphanship',
-            [true, null]
-        );
-
         $this->Form->setData(['user' => 'contributor', 'orphans' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
+        $this->assertNull($this->Search->getFilter(IsOrphanFilter::class), 'orphan filter is set');
         $this->assertCount(1, $this->Form->getIgnoredFields());
         $this->assertEquals('', $this->Form->getData()['orphans']);
     }
 
     public function testCheckUnwantedCombinations_transOrphanWithTransUser() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByTranslationOrphanship',
-            [true, null]
-        );
-
         $this->Form->setData(['trans_user' => 'contributor', 'trans_orphan' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
+        $this->assertNull($this->Search->getTranslationFilter(TranslationIsOrphanFilter::class), 'translation orphan filter is set');
         $this->assertCount(1, $this->Form->getIgnoredFields());
         $this->assertEquals('', $this->Form->getData()['trans_orphan']);
     }
 
     public function testCheckUnwantedCombinations_nativeWithoutLanguage() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByNativeSpeaker',
-            [true, null]
-        );
-
         $this->Form->setData(['from' => '', 'native' => 'yes']);
         $this->Form->checkUnwantedCombinations();
 
@@ -410,12 +441,6 @@ class SentencesSearchFormTest extends TestCase
     }
 
     public function testCheckUnwantedCombinations_userNotNative() {
-        $this->assertMethodCalledWith(
-            $this->Search,
-            'filterByNativeSpeaker',
-            [true, null]
-        );
-
         $this->Form->setData([
             'from' => 'eng',
             'user' => 'contributor',

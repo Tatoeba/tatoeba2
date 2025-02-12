@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Database\Schema\TableSchema;
@@ -118,16 +119,31 @@ class SentencesListsTable extends Table
      */
     public function isSearchableList($listId, $byUserId)
     {
-        return $this->find()
-            ->where([
-                'id' => $listId,
-                'OR' => [
-                    'user_id' => $byUserId,
-                    'NOT' => ['visibility' => 'private']
-                ]
-            ])
+        return $this->find('searchableBy', ['user_id' => $byUserId])
+            ->where(['id' => $listId])
             ->select(['id', 'user_id', 'name'])
             ->first();
+    }
+
+    /**
+     * Custom finder to only include lists that can be used
+     * as search criterion, optionally by a specific user id
+     * provided as option user_id:
+     *
+     * $this->find('searchableBy', ['user_id' => 1234])
+     *
+     */
+    public function findSearchableBy(Query $query, array $options)
+    {
+        $userId = $options['user_id'] ?? null;
+
+        return $query->where(function ($exp, $query) use ($userId) {
+            $exp = $query->newExpr()->add(['NOT' => ['visibility' => 'private']]);
+            if ($userId) {
+                $exp = $exp->add(['user_id' => $userId])->tieWith('OR');
+            }
+            return $exp;
+        });
     }
 
     /**

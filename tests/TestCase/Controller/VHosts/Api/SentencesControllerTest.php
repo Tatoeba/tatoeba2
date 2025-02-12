@@ -68,10 +68,11 @@ class MainControllerTest extends TestCase
     const PAGING_JSON_SCHEMA = [
       'type'     => 'object',
       'properties' => [
-        'first'     => ['type' => 'string'],
-        'prev'      => ['type' => 'string'],
-        'next'      => ['type' => 'string'],
-        'last'      => ['type' => 'string'],
+        'total'      => ['type' => 'integer'],
+        'first'      => ['type' => 'string'],
+        'has_next'   => ['type' => 'boolean'],
+        'cursor_end' => ['type' => 'string'],
+        'next'       => ['type' => 'string'],
       ],
     ];
 
@@ -172,21 +173,27 @@ class MainControllerTest extends TestCase
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
-    public function testSearch_requiresLangParam()
+    public function testSearch_requiresLangAndSortParam()
     {
         $this->get("http://api.example.com/unstable/sentences?q=hello");
         $this->assertResponseCode(400);
     }
 
-    public function testSearch_requiresValidLang()
+    public function testSearch_requiresSortParam()
     {
-        $this->get("http://api.example.com/unstable/sentences?lang=invalid&q=hello");
+        $this->get("http://api.example.com/unstable/sentences?q=hello&lang=epo");
         $this->assertResponseCode(400);
     }
 
-    public function testSearch_requiresValidTrans()
+    public function testSearch_requiresLangParam()
     {
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&trans=invalid&q=hello");
+        $this->get("http://api.example.com/unstable/sentences?q=hello&sort=created");
+        $this->assertResponseCode(400);
+    }
+
+    public function testSearch_requiresValidLang()
+    {
+        $this->get("http://api.example.com/unstable/sentences?lang=invalid&q=hello&sort=created");
         $this->assertResponseCode(400);
     }
 
@@ -216,7 +223,7 @@ class MainControllerTest extends TestCase
     {
         $this->enableMockedSearch([1,2,3]);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&limit=1&page=2");
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&limit=1");
         $this->assertResponseOk();
         $this->assertContentType('application/json');
 
@@ -239,7 +246,7 @@ class MainControllerTest extends TestCase
     {
         $this->enableMockedSearch([2]);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=cmn&trans=jpn&q=hello");
+        $this->get("http://api.example.com/unstable/sentences?lang=cmn&sort=created&showtrans=jpn&q=hello");
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data[0].translations[0]' => new \PHPUnit\Framework\Constraint\Count(0),
@@ -253,23 +260,46 @@ class MainControllerTest extends TestCase
     {
         $this->enableMockedSearch([1]);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello");
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello");
         $actual = $this->_getBodyAsString();
-        $this->assertJsonValueEquals($actual, '$.paging', (object)[]);
+        $expectedPaging = (object)[
+            'total' => 1,
+            'has_next' => false,
+        ];
+        $this->assertJsonValueEquals($actual, '$.paging', $expectedPaging);
     }
 
     public function testSearch_returnsFirstPage()
     {
         $this->enableMockedSearch([1], 2);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&limit=1");
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1");
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
             '$.paging' => (object)[
-                'first' => 'http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&limit=1',
-                'next'  => 'http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&page=2&limit=1',
-                'last'  => 'http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&page=2&limit=1',
+                'total' => 2,
+                'has_next' => true,
+                'cursor_end' => '123456,1',
+                'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
+            ],
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsMiddlePage()
+    {
+        $this->enableMockedSearch([1], 2);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123,345");
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.paging' => (object)[
+                'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
+                'has_next' => true,
+                'cursor_end' => '123456,1',
+                'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
             ],
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
@@ -277,29 +307,17 @@ class MainControllerTest extends TestCase
 
     public function testSearch_returnsLastPage()
     {
-        $this->enableMockedSearch([2], 2);
+        $this->enableMockedSearch([2], 1);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&page=2&limit=1");
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123,456");
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
             '$.paging' => (object)[
-                'first' => 'http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&limit=1',
-                'prev'  => 'http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&limit=1',
-                'last'  => 'http://api.example.com/unstable/sentences?lang=eng&trans=fra&q=hello&page=2&limit=1',
+                'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
+                'has_next' => false,
             ],
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
-    }
-
-    public function testSearch_parameterIncludeUnapprovedMustBeYes()
-    {
-        $this->enableMockedSearch([]);
-
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&include_unapproved=no");
-        $this->assertResponseCode(400);
-
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&include_unapproved=yes");
-        $this->assertResponseOk();
     }
 }

@@ -19,6 +19,7 @@
 namespace App\Controller\VHosts\Api;
 
 use App\Controller\VHosts\Api\ApiController;
+use Cake\Http\Exception\BadRequestException;
 
 class AudioController extends ApiController
 {
@@ -52,7 +53,7 @@ class AudioController extends ApiController
                 ->where(['Audios.id' => $id, 'Users.audio_license !=' => ''])
                 ->firstOrFail();
         } catch (\InvalidArgumentException $e) {
-            return $this->response->withStatus(400, 'Invalid parameter "id"');
+            throw new BadRequestException('Invalid audio id');
         }
 
         $options = [
