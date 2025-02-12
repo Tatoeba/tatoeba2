@@ -1,10 +1,13 @@
 <?php
 
 use Cake\Core\Configure;
+use Cake\Datasource\ModelAwareTrait;
 use Migrations\AbstractMigration;
 
 class OldTupiCodeRename extends AbstractMigration
 {
+    use ModelAwareTrait;
+
     private $langColumns = [
         'audios' => ['sentence_lang'],
         'contributions' => ['sentence_lang', 'translation_lang'],
@@ -35,8 +38,21 @@ class OldTupiCodeRename extends AbstractMigration
        
     }
 
+    private function reindexAffectedSentences(string $lang) {
+        $this->loadModel('Sentences');
+        $ids = $this->Sentences->find()
+            ->select('id')
+            ->where(['lang' => $lang])
+            ->extract('id')
+            ->toList();
+        foreach ($ids as $id) {
+            $this->Sentences->flagSentenceAndTranslationsToReindex($id);
+        }
+    }
+
     public function up() {
         $this->updateCode($this->oldCode, $this->newCode);
+        $this->reindexAffectedSentences($this->newCode);
     }
 
     public function down() {
