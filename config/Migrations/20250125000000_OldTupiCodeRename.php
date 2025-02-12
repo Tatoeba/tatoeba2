@@ -6,10 +6,10 @@ use Migrations\AbstractMigration;
 class OldTupiCodeRename extends AbstractMigration
 {
     private $langColumns = [
+        'audios' => ['sentence_lang'],
         'contributions' => ['sentence_lang', 'translation_lang'],
         'contributions_stats' => ['lang'],
         'languages' => ['code'],
-        'audios' => = ['sentence_lang'],
         'last_contributions' => ['sentence_lang', 'translation_lang'],
         'reindex_flags' => ['lang'],
         'sentence_comments' => ['lang'],
