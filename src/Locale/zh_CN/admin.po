@@ -7,15 +7,16 @@
 # Darcy Shen <sadhen1992@gmail.com>, 2018
 # Eason Wang <522971474@qq.com>, 2020
 # صفا الفليج <safaalfulaij@hotmail.com>, 2022
+# Yufan Lou <loganlyf@gmail.com>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-14 15:25+0000\n"
+"POT-Creation-Date: 2025-02-12 02:47+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2022\n"
+"Last-Translator: Yufan Lou <loganlyf@gmail.com>, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/tatoeba/teams/28284/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,72 +27,72 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
-msgstr ""
+msgstr "错误：用户{username} 添加的句子不能标记为不可靠。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
 msgid "Marked all sentences added by {username} as unreliable."
-msgstr ""
+msgstr "已标记用户{username}添加的所有句子为不可靠。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
 msgid "Unable to import audio: user “{author}” not found."
-msgstr ""
+msgstr "无法导入声音：用户 “{author}” 找不到。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "无效文件 “{file}” 已忽略。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
-msgstr ""
+msgstr "无法替换声音，投稿用户 “{author}” 句子 {sentenceId}: 该用户有不只一项声音。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
-msgstr ""
+msgstr "无法保存句子 {sentenceId}的声音到数据库。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
 msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L380
-msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "无法创建文件夹 “{dir}” ，因而无法导入文件 “{file}”。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr "无法复制文件 “{file}” 到文件夹 “{dir}”。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
-msgstr ""
+msgstr "文件 “{file}” 已成功导入但是无法从导入文件夹移除。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr "导入记录"
+msgstr "导入录音"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
 msgid "The following errors occurred during the last import."
-msgstr ""
+msgstr "上次导入时发生了以下错误。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "Audio import status"
-msgstr ""
+msgstr "声音导入情况"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
 msgid "Files detected"
 msgstr "检测到的文件"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
 msgid "Audio author"
-msgstr ""
+msgstr "声音作者"
 
 #. audio save button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
 msgid "Save"
 msgstr "保存"
 
 #. audio deletion button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
 msgstr "删除"
