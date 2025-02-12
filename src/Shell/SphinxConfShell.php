@@ -583,6 +583,7 @@ EOT;
     private function conf_language_indexes($languages) {
         $conf = '';
         $sourcePath = $this->sphinxConfig['indexdir'];
+        $transcriptableLangs = $this->loadModel('Transcriptions')->transcriptableLanguages();
         foreach ($languages as $lang => $name) {
             foreach (array('main', 'delta') as $type) {
                 $parent = array(
@@ -616,6 +617,9 @@ EOT;
                     '' :
                     "sql_query_killlist = select sentence_id from reindex_flags \
                         where lang = '$lang' and indexed = 1 and type = 'removal'";
+                $transcriptions_query = in_array($lang, $transcriptableLangs) ?
+                    'select sentence_id, text from transcriptions order by sentence_id asc' :
+                    'select 1, 1 from dual where 1 = 0'; # a no-op query with 2-column empty result
                 $conf .= "
         sql_query_range = select min(id), max(id) from sentences
         sql_range_step = 100000
@@ -694,7 +698,7 @@ EOT;
 
         sql_joined_field = \
             transcription from query; \
-            select sentence_id, text from transcriptions order by sentence_id asc
+            $transcriptions_query
     }
 ";
                 // generate index for this pair
