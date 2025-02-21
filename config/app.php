@@ -147,7 +147,7 @@ return [
 
         'memcached' => [
             'className' => 'Cake\Cache\Engine\MemcachedEngine',
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => 11211,
             'prefix' => 'memc.sess.key.',
             'serialize' => 'igbinary',
