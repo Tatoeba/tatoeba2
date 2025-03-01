@@ -149,6 +149,7 @@ return [
             'className' => 'Cake\Cache\Engine\MemcachedEngine',
             'host' => '127.0.0.1',
             'port' => 11211,
+            'duration' => 120 * 60, // same as Session.timeout, converted to seconds
             'prefix' => 'memc.sess.key.',
             'serialize' => 'igbinary',
         ],

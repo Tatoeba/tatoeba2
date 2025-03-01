@@ -3,7 +3,26 @@
 namespace App\Form;
 
 use App\Model\CurrentUser;
+use App\Model\Exception\InvalidValueException;
+use App\Model\Exception\InvalidFilterUsageException;
 use App\Model\Search;
+use App\Model\Search\HasAudioFilter;
+use App\Model\Search\IsNativeFilter;
+use App\Model\Search\IsOrphanFilter;
+use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\LangFilter;
+use App\Model\Search\ListFilter;
+use App\Model\Search\OriginFilter;
+use App\Model\Search\OwnerFilter;
+use App\Model\Search\TagFilter;
+use App\Model\Search\TranslationCountFilter;
+use App\Model\Search\TranslationHasAudioFilter;
+use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsOrphanFilter;
+use App\Model\Search\TranslationIsUnapprovedFilter;
+use App\Model\Search\TranslationLangFilter;
+use App\Model\Search\TranslationOwnerFilter;
+use App\Model\Search\WordCountFilter;
 use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
 use Cake\Form\Form;
@@ -28,6 +47,7 @@ class SentencesSearchForm extends Form
         'tags' => '',
         'list' => '',
         'user' => '',
+        'original' => '',
         'orphans' => 'no',
         'unapproved' => 'no',
         'native' => '',
@@ -73,9 +93,13 @@ class SentencesSearchForm extends Form
         return $value == 'yes' ? true : ($value == 'no' ? false : null);
     }
 
-    protected function setBoolFilter(string $method, string $value) {
+    protected function setBoolFilter(string $class, $value, object $collection) {
         $value = $this->parseBoolNull($value);
-        $value = $this->search->$method($value);
+        if (is_null($value)) {
+            $collection->unsetFilter($class);
+        } else {
+            $collection->setFilter(new $class($value));
+        }
         return $this->parseYesNoEmpty($value);
     }
 
@@ -89,28 +113,43 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataFrom(string $from) {
-        return $this->search->filterByLanguage($from) ?? '';
+        try {
+            $this->search->setFilter((new LangFilter())->anyOf([$from]));
+            return $from;
+        } catch (InvalidValueException $e) {
+            return '';
+        }
     }
 
     protected function setDataUser(string $user) {
         if (!empty($user)) {
-            $this->loadModel('Users');
-            $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
-            if ($result) {
-                $this->search->filterByOwnerId($result->id);
-                $this->ownerId = $result->id;
-            } else {
+            $filter = new OwnerFilter();
+            $filter->setInvalidValueHandler(function($value) use (&$user) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by “Warning:
                        the following criteria have been ignored:” */
                     __("“sentence owner”, because “{username}” is not a ".
                        "valid username", true),
-                    array('username' => h($user))
+                    array('username' => h($value))
                 );
                 $user = '';
+            });
+            $filter->anyOf([$user]);
+            $this->search->setFilter($filter);
+            $compiled = $filter->compile();
+            if (count($compiled) > 0) {
+                list(list(, list($this->ownerId))) = $compiled;
             }
         }
         return $user;
+    }
+
+    protected function setDataOriginal(string $original) {
+        $original = $original === 'yes';
+        if ($original) {
+            $this->search->setFilter((new OriginFilter())->anyOf([OriginFilter::ORIGIN_ORIGINAL]));
+        }
+        return $original ? 'yes' : '';
     }
 
     protected function setDataTransFilter(string $trans_filter) {
@@ -119,27 +158,32 @@ class SentencesSearchForm extends Form
             $trans_filter = 'limit';
         }
 
-        /* Only set translation filter to 'limit' if at least
-           one translation filter is set */
-        if ($trans_filter == 'limit' && $this->search->getTranslationFilters()
-            || $trans_filter == 'exclude') {
-            $trans_filter = $this->search->filterByTranslation($trans_filter);
+        /* 'limit' is the default form value and does not actually do any filtering
+           on the existence of translations; only 'exclude' does. Also we need to set
+           at least one translation filter otherwise setExclude() won't have any effect.
+           That's why we only set the count filter if a) we are in exclude mode
+           and b) no translation filter is set. */
+        $this->search->getTranslationFilters()->setExclude($trans_filter == 'exclude');
+        if ($trans_filter == 'exclude' && count($this->search->getTranslationFilters()->compile()) == 0) {
+            $this->search->setTranslationFilter((new TranslationCountFilter())->not()->anyOf([0]));
         }
 
         return $trans_filter;
     }
 
     protected function setDataTransLink(string $link) {
-        return $this->search->filterByTranslationLink($link) ?? '';
+        if (!in_array($link, ['direct', 'indirect'])) {
+            return '';
+        }
+        $filter = new TranslationIsDirectFilter($link == 'direct');
+        $this->search->setTranslationFilter($filter);
+        return $link;
     }
 
     protected function setDataTransUser(string $trans_user) {
         if (strlen($trans_user)) {
-            $this->loadModel('Users');
-            $result = $this->Users->findByUsername($trans_user, ['fields' => ['id']])->first();
-            if ($result) {
-                $this->search->filterByTranslationOwnerId($result->id);
-            } else {
+            $filter = new TranslationOwnerFilter();
+            $filter->setInvalidValueHandler(function($value) use (&$trans_user) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by
                        “Warning: the following criteria have been ignored:” */
@@ -148,47 +192,79 @@ class SentencesSearchForm extends Form
                     ['username' => h($trans_user)]
                 );
                 $trans_user = '';
-            }
+            });
+            $filter->anyOf([$trans_user]);
+            $this->search->setTranslationFilter($filter);
+            $filter->compile(); // trigger validation so that we can return updated $trans_user
         }
         return $trans_user;
     }
 
     protected function setDataTransTo(string $lang) {
-        return $this->search->filterByTranslationLanguage($lang) ?? '';
+        try {
+            $filter = new TranslationLangFilter();
+            $filter->anyOf([$lang]);
+            $this->search->setTranslationFilter($filter);
+            return $lang;
+        } catch (InvalidValueException $e) {
+            return '';
+        }
     }
 
     protected function setDataTransHasAudio(string $trans_has_audio) {
-        return $this->setBoolFilter('filterByTranslationAudio', $trans_has_audio);
+        return $this->setBoolFilter(
+            TranslationHasAudioFilter::class,
+            $trans_has_audio,
+            $this->search->getTranslationFilters()
+        );
     }
 
     protected function setDataTransUnapproved(string $trans_unapproved) {
-        return $this->setBoolFilter('filterByTranslationCorrectness', $trans_unapproved);
+        return $this->setBoolFilter(
+            TranslationIsUnapprovedFilter::class,
+            $trans_unapproved,
+            $this->search->getTranslationFilters()
+        );
     }
 
     protected function setDataTransOrphan(string $trans_orphan) {
-        return $this->setBoolFilter('filterByTranslationOrphanship', $trans_orphan);
+        return $this->setBoolFilter(
+            TranslationIsOrphanFilter::class,
+            $trans_orphan,
+            $this->search->getTranslationFilters()
+        );
     }
 
     protected function setDataUnapproved(string $unapproved) {
-        return $this->setBoolFilter('filterByCorrectness', $unapproved);
+        return $this->setBoolFilter(IsUnapprovedFilter::class, $unapproved, $this->search);
     }
 
     protected function setDataOrphans(string $orphans) {
-        return $this->setBoolFilter('filterByOrphanship', $orphans);
+        return $this->setBoolFilter(IsOrphanFilter::class, $orphans, $this->search);
     }
 
     protected function setDataHasAudio(string $has_audio) {
-        return $this->setBoolFilter('filterByAudio', $has_audio);
+        return $this->setBoolFilter(HasAudioFilter::class, $has_audio, $this->search);
     }
 
     protected function setDataTags(string $tags) {
         if (!empty($tags)) {
+            $ignoredTags = [];
+            $filter = new TagFilter();
+            $filter->setInvalidValueHandler(function($tagName) use (&$ignoredTags) {
+                $ignoredTags[] = $tagName;
+            });
+
             $tagsArray = explode(',', $tags);
             $tagsArray = array_map('trim', $tagsArray);
-            $appliedTags = $this->search->filterByTags($tagsArray);
-            $tags = implode(',', $appliedTags);
+            foreach ($tagsArray as $tag) {
+                $filter->anyOf([$tag])->and();
+            }
+            $this->search->setFilter($filter);
+            $filter->compile(); // trigger validation: fills $ignoredTags
 
-            $ignoredTags = array_diff($tagsArray, $appliedTags);
+            $appliedTagsNames = array_diff($tagsArray, $ignoredTags);
+            $tags = implode(',', $appliedTagsNames);
             foreach ($ignoredTags as $tagName) {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by
@@ -204,39 +280,63 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataList(string $list) {
-        $searcher = CurrentUser::get('id');
-        $list = is_numeric($list) ? (int)$list : null;
-        if (!$this->search->filterByListId($list, $searcher)) {
-            $this->ignored[] = format(
-                /* @translators: This string will be preceded by
-                   “Warning: the following criteria have been
-                   ignored:” */
-                __("“belongs to list number {listId}”, because list ".
-                   "{listId} is private or does not exist", true),
-                array('listId' => $list)
-            );
-            $list = '';
+        if (!empty($list)) {
+            $searcher = CurrentUser::get('id');
+            $filter = new ListFilter($searcher);
+            try {
+                $filter->anyOf([$list]);
+            } catch (InvalidValueException $e) {
+                return '';
+            }
+            $filter->setInvalidValueHandler(function($listId) use (&$list) {
+                $this->ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been
+                       ignored:” */
+                    __("“belongs to list number {listId}”, because list ".
+                       "{listId} is private or does not exist", true),
+                    array('listId' => h($listId))
+                );
+                $list = '';
+            });
+            $this->search->setFilter($filter);
+            $filter->compile(); // trigger validation: update $this->ignored[] and $list
         }
         return $list;
     }
 
     protected function setDataNative(string $native) {
         $native = $native === 'yes' ? true : null;
-        $native = $this->search->filterByNativeSpeaker($native);
+        if ($native) {
+            $filter = new IsNativeFilter();
+            $this->search->setFilter($filter);
+            $filter->setSearch($this->search);
+        } else {
+            $this->search->unsetFilter(IsNativeFilter::class);
+        }
         return $native ? 'yes' : '';
     }
 
-    private function _setDataWordCountFilter(string $op, string $value) {
-        $value = is_numeric($value) ? (int)$value : null;
-        return $this->search->filterByWordCount($op, $value) ?? '';
+    private function _setDataWordCountFilter(string $value, $before, $after) {
+        $value = is_numeric($value) ? (int)$value : '';
+        $filter = $this->search->getFilter(WordCountFilter::class) ?? new WordCountFilter();
+        try {
+            $range = $before . $value . $after;
+            $filter->anyOf([$range])->and();
+            $filter->compile(); // trigger validation
+            $this->search->setFilter($filter);
+            return $value;
+        } catch (InvalidValueException $e) {
+            return '';
+        }
     }
 
     protected function setDataWordCountMin(string $min) {
-        return $this->_setDataWordCountFilter('ge', $min);
+        return $this->_setDataWordCountFilter($min, '', '-');
     }
 
     protected function setDataWordCountMax(string $max) {
-        return $this->_setDataWordCountFilter('le', $max);
+        return $this->_setDataWordCountFilter($max, '-', '');
     }
 
     protected function setDataSort(string $sort) {
@@ -329,6 +429,15 @@ class SentencesSearchForm extends Form
                  * default being applied instead of the empty non-default value.
                  * So represent them by "any" instead. */
                 $this->_data[$key] = 'any';
+            }
+        }
+
+        /* Validate native filter */
+        if ($nativeFilter = $this->search->getFilter(IsNativeFilter::class)) {
+            try {
+                $nativeFilter->compile();
+            } catch (InvalidFilterUsageException $e) {
+                $this->search->unsetFilter(IsNativeFilter::class);
             }
         }
     }

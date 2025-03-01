@@ -101,15 +101,6 @@
                 );
                 ?>
             </li>
-            <li>
-                <?php
-                echo $this->Html->link(
-                    /* @translators: link text to the Google group page in the footer (noun) */
-                    __('Google group'),
-                    'https://groups.google.com/forum/#!forum/tatoebaproject'
-                );
-                ?>
-            </li>
         </ul>
     </div>
     

@@ -45,7 +45,6 @@ use Cake\Routing\Route\InflectedRoute;
  *
  */
 
-use App\Middleware\ApiErrorHandlerMiddleware;
 use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
@@ -75,8 +74,20 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
-    $routes->registerMiddleware('apiErrorHandlerHandler', new ApiErrorHandlerMiddleware());
-    $routes->applyMiddleware('apiErrorHandlerHandler');
+    $routes->connect(
+        '/',
+        ['controller' => 'doc', 'action' => 'index']
+    )
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/:version',
+        ['controller' => 'doc', 'action' => 'show']
+    )
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
 
     $routes->connect(
         '/:version/:controller',
@@ -101,12 +112,6 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setPass(['id'])
     ->setPersist(['version'])
     ->setMethods(['GET'])
-    ->setHost('api.*');
-
-    $routes->connect(
-        '/*',
-        ['controller' => 'api', 'action' => 'default']
-    )
     ->setHost('api.*');
 });
 

@@ -10,6 +10,7 @@
 namespace App\Model\Behavior;
 
 use App\Lib\SphinxClient;
+use App\Model\Search;
 use Cake\Core\Configure;
 use Cake\ORM\Behavior;
 use Cake\ORM\TableRegistry;
@@ -173,17 +174,37 @@ class SphinxBehavior extends Behavior
     {
         $query->counter(function($query) { return $this->getTotal(); });
 
+        $query = $this->insertSphinxAttrIntoResults($query, Search::CURSOR_FIELD);
+
         return $query;
+    }
+
+    private function insertSphinxAttrIntoResults($query, string $attrName)
+    {
+        return $query->formatResults(function($results) use ($attrName) {
+            return $results->map(function($result) use ($attrName) {
+                if (isset($result['id']) &&
+                    isset($this->_cached_result['matches'][ $result['id'] ]['attrs'][$attrName])) {
+                    $result[$attrName] = $this->_cached_result['matches'][ $result['id'] ]['attrs'][$attrName];
+                }
+                return $result;
+            });
+        });
     }
 
     public function getTotal()
     {
-        return $this->_cached_result['total'];
+        return (int)$this->_cached_result['total'];
     }
 
     public function getRealTotal()
     {
-        return $this->_cached_result['total_found'];
+        return (int)$this->_cached_result['total_found'];
+    }
+
+    public function getReturnedResultsCount()
+    {
+        return count($this->_cached_result['matches'] ?? []);
     }
 
     public function addHighlightMarkers($results) {

@@ -9,6 +9,8 @@ use Cake\I18n\I18n;
 
 class VocabularyTableTest extends TestCase
 {
+    use \App\Test\TestCase\SearchMockTrait;
+
     public $fixtures = [
         'app.vocabulary',
         'app.users_vocabulary',
@@ -42,6 +44,16 @@ class VocabularyTableTest extends TestCase
         CurrentUser::store(['id' => 7]);
         $result = $this->Vocabulary->addItem('eng', 'hashtag');
         $this->assertEquals(2, $result->id);
+    }
+
+    public function testAddItem_updatesCurrentNumberOfSentences()
+    {
+        $this->enableMockedSearch([21, 11, 12], 4);
+        CurrentUser::store(['id' => 7]);
+
+        $result = $this->Vocabulary->addItem('eng', 'hashtag');
+
+        $this->assertEquals(4, $result->numSentences);
     }
 
     public function testIncrementNumSentences_succeeds()

@@ -583,6 +583,7 @@ EOT;
     private function conf_language_indexes($languages) {
         $conf = '';
         $sourcePath = $this->sphinxConfig['indexdir'];
+        $transcriptableLangs = $this->loadModel('Transcriptions')->transcriptableLanguages();
         foreach ($languages as $lang => $name) {
             foreach (array('main', 'delta') as $type) {
                 $parent = array(
@@ -616,12 +617,16 @@ EOT;
                     '' :
                     "sql_query_killlist = select sentence_id from reindex_flags \
                         where lang = '$lang' and indexed = 1 and type = 'removal'";
+                $transcriptions_query = in_array($lang, $transcriptableLangs) ?
+                    'select sentence_id, text from transcriptions order by sentence_id asc' :
+                    'select 1, 1 from dual where 1 = 0'; # a no-op query with 2-column empty result
                 $conf .= "
         sql_query_range = select min(id), max(id) from sentences
         sql_range_step = 100000
         sql_query = \
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
+                r.origin_known, r.is_original, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                 GROUP_CONCAT(distinct lists.sentences_list_id) as lists_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct r.trans),''), ']') as trans \
@@ -634,6 +639,8 @@ EOT;
                     sent_start.user_id as user_id, \
                     (sent_start.correctness + 128) as ucorrectness, \
                     (COUNT(audios_sent_start.id) > 0) as has_audio, \
+                    (sent_start.based_on_id IS NOT NULL) as origin_known, \
+                    (sent_start.based_on_id = 0) as is_original, \
                     \
                     CONCAT('{', \
                         'l:\"',sent_end.lang,'\",', \
@@ -685,11 +692,13 @@ EOT;
         sql_attr_bool = has_audio
         sql_attr_multi = uint tags_id from field; SELECT id FROM tags ;
         sql_attr_multi = uint lists_id from field; SELECT id FROM sentences_lists ;
+        sql_attr_bool = origin_known
+        sql_attr_bool = is_original
         sql_attr_json = trans
 
         sql_joined_field = \
             transcription from query; \
-            select sentence_id, text from transcriptions order by sentence_id asc
+            $transcriptions_query
     }
 ";
                 // generate index for this pair

@@ -88,8 +88,16 @@ class AudiosTable extends Table
         }
         if (!($user_id xor !empty($external))) {
             $ok = false;
+            if (!$user_id) {
+                $err = "Both 'user_id' and 'external' fields are empty.";
+            } else {
+                $err = "Both 'user_id' and 'external' fields are non-empty.";
+            }
+            $entity->setErrors([
+                'user_id' => $err,
+                'external' => $err,
+            ]);
         }
-
         return $ok;
     }
 

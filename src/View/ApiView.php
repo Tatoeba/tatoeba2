@@ -1,6 +1,7 @@
 <?php
 namespace App\View;
 
+use App\Controller\VHosts\Api\SentencesController;
 use Cake\Core\Configure;
 use Cake\View\JsonView;
 
@@ -8,27 +9,42 @@ class ApiView extends JsonView
 {
     public $helpers = [
         'Paginator',
+        'Url',
     ];
+
+    private function buildUrl($originalParams, $newParams = [])
+    {
+        $params = $originalParams;
+        foreach ($newParams as $newParam => $newValue) {
+            if (is_null($newValue)) {
+                unset($params[$newParam]);
+            } else {
+                $params[$newParam] = $newValue;
+            }
+        }
+        $query = SentencesController::encodeQueryParameters($params);
+        $url = $this->Url->build(['?' => null], ['escape' => false, 'fullBase' => true]);
+        $url .= rtrim('?'.$query, '?');
+        return $url;
+    }
 
     protected function pagination($params)
     {
         $links = new \stdClass();
 
-        if ($params['pageCount'] == 1) {
-            return $links;
+        $query = SentencesController::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
+
+        if (isset($query['after'])) {
+            $links->first = $this->buildUrl($query, ['after' => null]);
+        } else {
+            $links->total = $this->get('total');
         }
 
-        $links->first = $this->Paginator->generateUrl(['page' => 1], null, ['escape' => false, 'fullBase' => true]);
-
-        if ($this->Paginator->hasPrev()) {
-            $links->prev = $this->Paginator->generateUrl(['page' => $params['page'] - 1], null, ['escape' => false, 'fullBase' => true]);
+        $links->has_next = $this->get('has_next');
+        if ($links->has_next) {
+            $links->cursor_end = $this->get('cursor_end');
+            $links->next = $this->buildUrl($query, ['after' => $this->get('cursor_end')]);
         }
-
-        if ($this->Paginator->hasNext()) {
-            $links->next = $this->Paginator->generateUrl(['page' => $params['page'] + 1], null, ['escape' => false, 'fullBase' => true]);
-        }
-
-        $links->last = $this->Paginator->generateUrl(['page' => $params['pageCount']], null, ['escape' => false, 'fullBase' => true]);
 
         return $links;
     }

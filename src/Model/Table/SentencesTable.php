@@ -30,7 +30,11 @@ use App\Lib\LanguagesLib;
 use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
+use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
+use App\Model\Search\IsOrphanFilter;
+use App\Model\Search\IsUnapprovedFilter;
+use App\Model\Search\LangFilter;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
 use Cake\Utility\Hash;
@@ -477,7 +481,7 @@ class SentencesTable extends Table
 
     public function findFilteredTranslations($query, $options) {
         if (!empty($options['translationLang']) && $options['translationLang'] != 'und') {
-            $translationLanguages = [$options['translationLang']];
+            $translationLanguages = (array)$options['translationLang'];
         } else {
             $translationLanguages = CurrentUser::getLanguages();
         }
@@ -604,10 +608,14 @@ class SentencesTable extends Table
      */
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
         $search = new Search();
-        $search->filterByLanguage($lang);
+        try {
+            $search->setFilter((new LangFilter())->anyOf([$lang]));
+        } catch (InvalidValueException $e) {
+            // normal outcome when $lang == 'und'
+        }
         $search->sort('random');
-        $search->filterByOrphanship(false); // exclude orphans
-        $search->filterByCorrectness(false); // exclude unapproved
+        $search->setFilter(new IsOrphanFilter(false)); // exclude orphans
+        $search->setFilter(new IsUnapprovedFilter(false)); // exclude unapproved
         $sphinx = $search->asSphinx();
         $sphinx['limit'] = $numberOfIdWanted;
 
@@ -665,13 +673,16 @@ class SentencesTable extends Table
     public function contain($what = [])
     {
         $audioContainment = function (Query $q) use ($what) {
-            $q = $q->select(['id', 'external', 'sentence_id']);
-
+            $audioFields = ['id', 'external', 'sentence_id'];
             $usersFields = ['username'];
             if (isset($what['sentenceDetails'])) {
+                $audioFields[] = 'created';
+                $audioFields[] = 'modified';
                 $usersFields[] = 'audio_license';
                 $usersFields[] = 'audio_attribution_url';
             }
+
+            $q = $q->select($audioFields);
             return $q->contain(['Users' => ['fields' => $usersFields]]);
         };
 

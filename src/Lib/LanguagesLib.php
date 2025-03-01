@@ -124,7 +124,7 @@ class LanguagesLib
             'hmo' => 'ho', // Hiri Motu
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
-            'hye' => 'hy', // Armenian
+            'hye' => 'hy', // Eastern Armenian
             'ibo' => 'ig', // Igbo
             'ido' => 'io', // Ido
             'ile' => 'ie', // Interlingue
@@ -326,7 +326,7 @@ class LanguagesLib
                 'eus' => __d('languages', 'Basque'),
                 'slk' => __d('languages', 'Slovak'),
                 'dan' => __d('languages', 'Danish'),
-                'hye' => __d('languages', 'Armenian'),
+                'hye' => __d('languages', 'Eastern Armenian'),
                 'acm' => __d('languages', 'Iraqi Arabic'),
                 'san' => __d('languages', 'Sanskrit'),
                 'urd' => __d('languages', 'Urdu'),
@@ -388,7 +388,7 @@ class LanguagesLib
                 'pms' => __d('languages', 'Piedmontese'),
                 'avk' => __d('languages', 'Kotava'),
                 'mar' => __d('languages', 'Marathi'),
-                'tpw' => __d('languages', 'Old Tupi'),
+                'tpn' => __d('languages', 'Tupinambá'),
                 'tgk' => __d('languages', 'Tajik'),
                 'prg' => __d('languages', 'Old Prussian'),
                 'npi' => __d('languages', 'Nepali'),
@@ -695,6 +695,10 @@ class LanguagesLib
                 'syl' => __d('languages', 'Sylheti'),
                 'tum' => __d('languages', 'Tumbuka'),
                 'arn' => __d('languages', 'Mapuche'),
+                'hyw' => __d('languages', 'Western Armenian'),
+                'guw' => __d('languages', 'Gun'),
+                'gaz' => __d('languages', 'West-Central Oromo'),
+                'isv' => __d('languages', 'Interslavic'),
 
             );
         }

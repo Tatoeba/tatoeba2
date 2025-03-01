@@ -30,6 +30,9 @@ return [
             'driver' => 'Cake\Database\Driver\Sqlite',
             'database' => '{{tatowiki_sqlite_file}}',
             'flags' => [PDO::SQLITE_ATTR_OPEN_FLAGS => PDO::SQLITE_OPEN_READONLY],
+            'init' => [
+                'PRAGMA journal_mode=WAL', // Enable WAL mode to fix locking issues
+            ],
 #            'log' => true, // log all SQL queries to logs/queries.log
         ],
         'test_wiki' => [
@@ -282,6 +285,8 @@ return [
             'ru' => ['Русский'], 'rus' => 'ru',
             // Santali
             'sat' => ['ᱥᱟᱱᱛᱟᱲᱤ'],
+            // Saraiki
+            'skr' => ['سرائیکی'],
             // Serbian
             'sr' => ['српски'], 'srp' => 'sr',
             // Slovak

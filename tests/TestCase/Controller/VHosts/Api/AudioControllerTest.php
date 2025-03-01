@@ -16,6 +16,12 @@ class AudioControllerTest extends TestCase
         'app.Users',
     ];
 
+    public function testDownload_invalidId()
+    {
+        $this->get("http://api.example.com/unstable/audio/notAnInt/file");
+        $this->assertResponseCode(400);
+    }
+
     public function testDownload_ok()
     {
         $this->initAudioStorageDir();
