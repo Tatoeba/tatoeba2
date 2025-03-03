@@ -659,6 +659,16 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByTags_oneTag_isCaseInsensitive() {
+        $this->Search->setFilter((new TagFilter())->anyOf(['ok']));
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['tags_id', [2], false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByTags_twoTags_AND() {
         $this->Search->setFilter((new TagFilter())->anyOf(['OK'])->and()->anyOf(['@needs native check']));
         $expected = $this->makeSphinxParams([

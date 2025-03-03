@@ -3,6 +3,7 @@
 namespace App\Model\Search;
 
 use App\Model\Exception\InvalidValueException;
+use App\Utility\MappedKeysArray;
 use Cake\Database\Expression\FunctionExpression;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Utility\Hash;
@@ -34,7 +35,10 @@ class TagFilter extends SearchFilter {
                 ->order($order)
                 ->enableHydration(false)
                 ->toList();
-            return Hash::combine($result, '{n}.name', '{n}.id');
+            $mapper = function ($key) {
+                return is_string($key) ? mb_strtolower($key) : $key;
+            };
+            return new MappedKeysArray($mapper, Hash::combine($result, '{n}.name', '{n}.id'));
         } else {
             return [];
         }
