@@ -165,6 +165,16 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByOwner_oneUser_isCaseInsensitive() {
+        $this->Search->setFilter((new OwnerFilter())->anyOf(['Contributor']));
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['user_id', [4], false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByOwner_twoUsers() {
         $this->Search->setFilter((new OwnerFilter())->anyOf(['contributor', 'admin']));
 
@@ -862,6 +872,18 @@ class SearchTest extends TestCase
     public function testfilterByTranslationOwner() {
         $filter = new TranslationOwnerFilter();
         $this->Search->setTranslationFilter($filter->anyOf(['contributor']));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ANY(t.u=4 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationOwner_isCaseInsensitive() {
+        $filter = new TranslationOwnerFilter();
+        $this->Search->setTranslationFilter($filter->anyOf(['Contributor']));
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.u=4 FOR t IN trans) as tf',

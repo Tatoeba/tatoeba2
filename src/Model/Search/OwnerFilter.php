@@ -2,6 +2,7 @@
 
 namespace App\Model\Search;
 
+use App\Utility\MappedKeysArray;
 use App\Model\Exception\InvalidValueException;
 use Cake\Database\Expression\FunctionExpression;
 use Cake\Datasource\ModelAwareTrait;
@@ -46,7 +47,10 @@ class OwnerFilter extends SearchFilter {
                 ->order($order)
                 ->enableHydration(false)
                 ->toList();
-            return Hash::combine($result, '{n}.username', '{n}.id');
+            $mapper = function ($key) {
+                return is_string($key) ? strtolower($key) : $key;
+            };
+            return new MappedKeysArray($mapper, Hash::combine($result, '{n}.username', '{n}.id'));
         } else {
             return [];
         }
