@@ -2,6 +2,10 @@
 
 set -e
 
+# be nice, give priority to other processes
+renice -n 19 -p $$ >/dev/null
+ionice -c idle -p $$
+
 echo "Starting export at $(date -Iseconds)"
 ROOT='/var/www-prod'
 # To test...
