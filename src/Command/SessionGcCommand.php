@@ -30,19 +30,13 @@ class SessionGcCommand extends Command
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        $sessionConfig = (array)Configure::read('Session') + [
-            'ini' => [
-                # Set chance of running garbage collector to 100%
-                # (Can be replaced with executing session_gc() after we upgrade to PHP 7)
-                'session.gc_probability' => '1',
-                'session.gc_divisor'     => '1',
-            ],
-        ];
+        $sessionConfig = (array)Configure::read('Session');
         $session = Session::create($sessionConfig);
         # In theory we could use $session->start(); $session->destroy();
         # but CakePHP's Session skips running session_start() and
         # session_destroy() when we are running CLI
         session_start();
+        session_gc();
         session_destroy();
     }
 }
