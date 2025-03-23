@@ -162,26 +162,19 @@ class AppController extends Controller
             $this->viewBuilder()->setLayout('ajax');
         }
 
-        // TODO
-        // We're passing the value from the cookie to the session because it is
-        // needed for the translation form (in helpers/sentences.php), but we
-        // cannot access the Cookie component from a view.
-        // This is not optimized, but I'm too lazy to do otherwise.
-        $session = $this->request->getSession();
+        // Make some cookie values accessible to views
+        // used in translation form and new sentence form
         $preSelectedLang = $this->Cookie->read('contribute_lang');
-        $session->write('contribute_lang', $preSelectedLang);
+        $this->set('contribute_lang', $preSelectedLang);
 
-        // Same for these cookies, used in show_all_in.
+        // used in show_all_in
         $lang = $this->Cookie->read('browse_sentences_in_lang');
-        $session->write('browse_sentences_in_lang', $lang);
-
-        $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
-        $session->write('not_translated_into_lang', $notTranslatedInto);
+        $this->set('browse_sentences_in_lang', $lang);
 
         // Use this when displaying the list to which a sentence should be assigned.
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
         $mostRecentList = $this->Cookie->read('most_recent_list');
-        $session->write('most_recent_list', $mostRecentList);
+        $this->set('most_recent_list', $mostRecentList);
 
         $this->loadModel('WikiArticles');
         $wikiLinkLocalizer = $this->WikiArticles->wikiLinkLocalizer();

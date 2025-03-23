@@ -29,8 +29,7 @@ use App\Model\CurrentUser;
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Translate sentences')));
 
 $session = $this->request->getSession();
-$currentLanguage = $session->read('browse_sentences_in_lang');
-$notTranslatedInto = $session->read('not_translated_into_lang');
+$currentLanguage = $browse_sentences_in_lang; // view var set by AppController
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
@@ -149,7 +148,7 @@ $langsTo = $this->Languages->profileLanguagesArray();
                         'name' => 'langTo',
                         'id' => 'ActivityLangTo',
                         'languages' => $langsTo,
-                        'initialSelection' => $notTranslatedInto,
+                        'initialSelection' => $not_translated_into_lang, // view var set by AppController
                         'alwaysShowAll' => true,
                         /* @translators: option used in language selection dropdown
                            for "Not directly translated into", on Translate sentences page */

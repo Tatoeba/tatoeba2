@@ -14,7 +14,6 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
         $this->Languages->displayAddLanguageMessage(true);
 
     } else {
-        $preSelectedLang = $this->request->getSession()->read('contribute_lang');
         echo $this->Form->create('Sentence', [
             'id' => 'sentence-form',
             'url' => '/sentences/add_an_other_sentence',
@@ -34,7 +33,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
                         $langArray,
                         array(
                             'id' => 'contributionLang',
-                            "value" => $preSelectedLang,
+                            "value" => $contribute_lang, // view var set by AppController
                             "class" => "language-selector",
                             "empty" => false
                         ),

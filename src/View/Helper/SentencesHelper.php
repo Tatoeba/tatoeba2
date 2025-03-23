@@ -317,7 +317,7 @@ class SentencesHelper extends AppHelper
 
     private function _translationForm($id, $langArray)
     {
-        $preSelectedLang = $this->request->getSession()->read('contribute_lang');
+        $preSelectedLang = $this->getView()->get('contribute_lang');
 
         echo $this->Images->svgIcon(
             'translation',

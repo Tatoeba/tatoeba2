@@ -30,8 +30,11 @@ use App\Model\CurrentUser;
 use App\Lib\LanguagesLib;
 
 // Detecting language for "adopt sentences" page
+// $browse_sentences_in_lang is normally set by AppController,
+// unless we are displaying an error page
+$currentLanguage = $browse_sentences_in_lang ?? null;
+
 $session = $this->request->getSession();
-$currentLanguage = $session->read('browse_sentences_in_lang');
 $filteredLanguage = $session->read('vocabulary_requests_filtered_lang');
 
 if (empty($currentLanguage)) {

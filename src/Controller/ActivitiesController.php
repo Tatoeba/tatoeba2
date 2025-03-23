@@ -140,6 +140,8 @@ class ActivitiesController extends AppController
                 '?' => $searchParams
             ));
         }
+        $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
+        $this->set('not_translated_into_lang', $notTranslatedInto);
     }
     
 

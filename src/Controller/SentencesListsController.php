@@ -276,10 +276,10 @@ class SentencesListsController extends AppController
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
             // not been set, or has been set to false.
-            $mostRecentList = $this->request->getSession()->read('most_recent_list');
+            $mostRecentList = $this->Cookie->read('most_recent_list');
             if ($mostRecentList == $listId)
             {
-                $this->request->getSession()->delete('most_recent_list');
+                $this->Cookie->delete('most_recent_list');
             }
         }
 

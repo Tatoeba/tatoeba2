@@ -312,7 +312,7 @@ class MenuHelper extends AppHelper
     {
         $useMostRecentList = CurrentUser::get('settings.use_most_recent_list');
         if ($useMostRecentList != null && $useMostRecentList) {
-            $mostRecentList = $this->request->getSession()->read('most_recent_list');
+            $mostRecentList = $this->getView()->get('most_recent_list');
         } else {
             $mostRecentList = null;
         }
