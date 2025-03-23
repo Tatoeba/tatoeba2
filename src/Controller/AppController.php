@@ -178,9 +178,6 @@ class AppController extends Controller
         $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
         $session->write('not_translated_into_lang', $notTranslatedInto);
 
-        $filterAudioOnly = $this->Cookie->read('filter_audio_only');
-        $session->write('filter_audio_only', $filterAudioOnly);
-
         // Use this when displaying the list to which a sentence should be assigned.
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
         $mostRecentList = $this->Cookie->read('most_recent_list');
