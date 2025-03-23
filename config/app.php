@@ -147,7 +147,7 @@ return [
 
         'memcached' => [
             'className' => 'Cake\Cache\Engine\MemcachedEngine',
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => 11211,
             'duration' => 120 * 60, // same as Session.timeout, converted to seconds
             'prefix' => 'memc.sess.key.',
@@ -413,9 +413,11 @@ return [
      * To use database sessions, load the SQL file located at config/schema/sessions.sql
      */
     'Session' => [
-        'defaults' => 'cache',
+        'defaults' => 'database',
         'handler' => [
-            'config' => 'memcached',
+            'engine' => 'ComboSession',
+            'model' => 'Session',
+            'cache' => 'memcached',
         ],
         'timeout' => 120,
     ],
