@@ -52,7 +52,8 @@ class EditCommand_ extends Command
         }
 
         return Collection(file($input, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES))
-               ->filter(function ($v) { return preg_match('/^\d+$/', $v); });
+               ->filter(function ($v) { return preg_match('/^\d+$/', $v); })
+               ->toList();
     }
 
     protected function becomeUser(Arguments $args, ConsoleIo $io) {
