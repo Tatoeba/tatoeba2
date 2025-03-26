@@ -1811,6 +1811,10 @@ md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
  * --------------------------------------------------------------------
  */
 
+.listSummary {
+    font-size: 16px;
+}
+
 .listSummary td {
     padding: 5px;
     border-top: 1px dotted #DDD;
