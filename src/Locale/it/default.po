@@ -33,7 +33,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L124
 msgid "There's no user called {username}"
-msgstr "Non esiste alcun utente chiamato {username}"
+msgstr "Non esistono utenti chiamati {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L132
 msgid "Your audio settings have been saved."
@@ -975,7 +975,7 @@ msgstr "Statistiche riguardanti il numero di contributi di questo mese."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr "Statistiche riguardanti il numero di contributi in {month} {year}."
+msgstr "Statistiche riguardanti il numero di contributi a {month} {year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
@@ -1116,13 +1116,13 @@ msgstr "Inserisci un nome utente"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L171
 msgid "Is original"
-msgstr ""
+msgstr "è l'originale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L176
 msgid ""
 "Original sentences are ones that were not added as translations of other "
 "sentences."
-msgstr ""
+msgstr "Le frasi originali sono quelle che non sono state aggiunte come traduzioni di altre frasi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L369
@@ -1940,7 +1940,7 @@ msgstr "di {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L99
 msgid "Unknown author"
-msgstr ""
+msgstr "Autore sconosciuto"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L104
 msgid "License: {license}"
@@ -1949,12 +1949,12 @@ msgstr "Licenza: {license}"
 #. header text of the date an audio recording was added
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L107
 msgid "Added"
-msgstr ""
+msgstr "Aggiunto il"
 
 #. header text of the date an audio recording was last modified
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L113
 msgid "Last modified"
-msgstr ""
+msgstr "Modificato per l'ultima volta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L121
 msgid "Is enabled"
@@ -4382,7 +4382,7 @@ msgstr "Nuova immagine"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L93
 msgid "The provided image is too large. It must be less than 1MB in size."
-msgstr ""
+msgstr "L'immagine fornita è troppo grande. Deve essere minore di 1 MB come dimensione."
 
 #. button to upload a new profile picture
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L100
