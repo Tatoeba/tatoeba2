@@ -33,7 +33,6 @@
         }
 
         function hideAnnouncement(saveInSettings) {
-            $cookies.put(cookieName, true, {'expires': expireDate});
             $element.remove();
 
             if (saveInSettings) {
@@ -41,7 +40,7 @@
                 data[cookieName] = 1;
                 $http.post(rootUrl + '/user/save_banner_setting', data);
             } else {
-                $cookies.put(cookieName, true);
+                $cookies.put(cookieName, true, {'expires': expireDate});
             }
         }
     }
