@@ -64,10 +64,6 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
 }
 
 if ($this->Announcement->isDisplayed()) {
-    if ($warning = $this->Announcement->shutdownWarning()) {
-        echo $this->Html->div('maintenance', $warning);
-    } 
-    
     $isDisplayingAnnouncement = true;
     ?>
     <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_announcement')" ng-cloak>
@@ -80,6 +76,28 @@ if ($this->Announcement->isDisplayed()) {
         </div>
     </div>
     <?php
+}
+
+if ($message = $this->Announcement->getMaintenanceMessage()) {
+    if ($this->Announcement->isMaintenanceImminent()) {
+        // Forcefully display alarming maintenance message
+        echo $this->Html->div('maintenance', $message);
+    } else {
+        // Display maintenance message as closeable banner
+        $isDisplayingAnnouncement = true;
+        ?>
+        <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_maintenance')" ng-cloak>
+            <div layout="row">
+                <md-icon>warning</md-icon>
+                <p><?= h($message) ?></p>
+            </div>
+            <div layout="row" layout-align="end center">
+                <?php /* @translators: button to close the blue announcement banner */ ?>
+                <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+            </div>
+        </div>
+        <?php
+    }
 }
 
 if (Configure::read('Tatoeba.devStylesheet')) {

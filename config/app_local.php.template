@@ -339,14 +339,19 @@ return [
      *   enabled: set to true to activate announcement, false otherwise.
      * hideAfter: set to a date time to make it automatically disappear at
      *            some point, comment out otherwise.
-     * shutdownWarning: used for scheduled maintenance. Set to true to
-     *                  replace the announcement by warning message starting
-     *                  from 10 minutes before 'hideAfter'.
+     * maintenance: used for scheduled maintenance. Set 'start' to a datetime
+     *              in the future to display a maintenance announcement,
+     *              (in addition to the announcement above). Additionally, you
+     *              can set 'end' to a datetime after 'start' to include the
+     *              estimated maintenance duration in the maintenance message.
      */
     'Announcement' => [
         'enabled' => false,
 #        'hideAfter' => '2020-05-21 18:20 UTC',
-        'shutdownWarning' => false,
+        'maintenance' => [
+            'start' => '2025-01-02 01:00 UTC',
+            'end'   => '2025-01-02 02:00 UTC',
+        ]
     ],
 
     /**
