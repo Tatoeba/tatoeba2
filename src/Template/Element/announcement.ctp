@@ -81,7 +81,7 @@ if ($this->Announcement->isDisplayed()) {
 if ($message = $this->Announcement->getMaintenanceMessage()) {
     if ($this->Announcement->isMaintenanceImminent()) {
         // Forcefully display alarming maintenance message
-        echo $this->Html->div('maintenance', $message);
+        echo $this->Html->div('maintenance', $this->Html->tag('span', $message));
     } else {
         // Display maintenance message as closeable banner
         $isDisplayingAnnouncement = true;
