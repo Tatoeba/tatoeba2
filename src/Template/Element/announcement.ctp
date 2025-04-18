@@ -85,8 +85,9 @@ if ($message = $this->Announcement->getMaintenanceMessage()) {
     } else {
         // Display maintenance message as closeable banner
         $isDisplayingAnnouncement = true;
+        $secsToGo = (int)$this->Announcement->getMaintenanceStartsIn();
         ?>
-        <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_maintenance')" ng-cloak>
+        <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_maintenance', <?= $secsToGo ?>)" ng-cloak>
             <div layout="row">
                 <md-icon>warning</md-icon>
                 <p><?= h($message) ?></p>

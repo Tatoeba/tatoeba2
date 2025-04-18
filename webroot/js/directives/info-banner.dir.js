@@ -24,12 +24,12 @@
 
         ///////////////////////////////////////////////////////////////////////////
 
-        function init(cookie, daysToExpiration = 7) {
+        function init(cookie, secsToExpiration = 3600 * 24 * 7) {
             cookieName = cookie;
             if ($cookies.get(cookieName)) {
                 $element.remove();
             }
-            expireDate.setDate(expireDate.getDate() + daysToExpiration);
+            expireDate.setTime(expireDate.getTime() + secsToExpiration * 1000);
         }
 
         function hideAnnouncement(saveInSettings) {

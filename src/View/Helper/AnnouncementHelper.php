@@ -120,6 +120,14 @@ class AnnouncementHelper extends Helper
         return implode(' ', $messages);
     }
 
+    public function getMaintenanceStartsIn() {
+        $start = $this->getConfigAsTime('maintenance.start');
+        if ($start && $start->isFuture()) {
+            $now = new Time();
+            return $now->diffInSeconds($start, false);
+        }
+    }
+
     public function isMaintenanceImminent() {
         if ($start = $this->getConfigAsTime('maintenance.start')) {
             $now = new Time();
