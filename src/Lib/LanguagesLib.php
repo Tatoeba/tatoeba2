@@ -157,6 +157,7 @@ class LanguagesLib
             'mah' => 'mh', // Marshallese
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
+            'mdr' => 'md', // Mandar
             'mkd' => 'mk', // Macedonian
             'mlt' => 'mt', // Maltese
             'mri' => 'mi', // Maori
@@ -543,6 +544,7 @@ class LanguagesLib
                 'urh' => __d('languages', 'Urhobo'),
                 'mvv' => __d('languages', 'Tagal Murut'),
                 'mdf' => __d('languages', 'Moksha'),
+                'mdr' => __d('languages', 'Mandar'),
                 'pag' => __d('languages', 'Pangasinan'),
                 'cos' => __d('languages', 'Corsican'),
                 'hnj' => __d('languages', 'Hmong Njua (Green)'),
