@@ -543,6 +543,7 @@ class LanguagesLib
                 'urh' => __d('languages', 'Urhobo'),
                 'mvv' => __d('languages', 'Tagal Murut'),
                 'mdf' => __d('languages', 'Moksha'),
+                'mdr' => __d('languages', 'Mandar'),
                 'pag' => __d('languages', 'Pangasinan'),
                 'cos' => __d('languages', 'Corsican'),
                 'hnj' => __d('languages', 'Hmong Njua (Green)'),
