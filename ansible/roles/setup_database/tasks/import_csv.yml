@@ -19,10 +19,10 @@
     url: "{{ download_url }}{{ item }}"
     dest: "/tmp/{{ item }}"
   with_items:
-  - sentences.tar.bz2
-  - links.tar.bz2
+  - sentences.csv.zst
+  - links.csv.zst
   - tag_metadata.csv
-  - tags_detailed.tar.bz2
+  - tags_detailed.csv.zst
   when: import_csv == 'download'
 
 - name: Unpacking csv's
@@ -34,9 +34,9 @@
     owner: mysql
     group: mysql
   with_items:
-  - sentences.tar.bz2
-  - links.tar.bz2
-  - tags_detailed.tar.bz2
+  - sentences.csv.zst
+  - links.csv.zst
+  - tags_detailed.csv.zst
   when: import_csv == 'download'
 
 - name: Import sentences in the tatoeba database
