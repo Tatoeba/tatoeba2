@@ -167,8 +167,8 @@ class PrivateMessagesHelper extends AppHelper
      */
     private function _getFolder($folder, $msg)
     {
-        if (isset($msg['PrivateMessage']['origin'])) {
-            return $msg['PrivateMessage']['origin'];
+        if ($folder == 'Trash') {
+            return $msg->origin;
         }
 
         return $folder;
@@ -185,7 +185,7 @@ class PrivateMessagesHelper extends AppHelper
     private function _isDraftMessage($originalFolder, $msg)
     {
         return
-            $msg['PrivateMessage']["draft_recpts"] != '' ||
+            $msg->draft_recpts != '' ||
             $originalFolder == 'Drafts';
     }
 }
