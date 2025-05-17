@@ -246,11 +246,6 @@ class SphinxConfShell extends Shell {
         'U+AB5..U+AB9', 'U+ABC..U+AC5', 'U+AC7..U+AC9', 'U+ACB..U+ACD', 'U+AD0', 'U+AE0..U+AE3', 'U+AE6..U+AEF',
         # Latin fullwidth to halfwidth
         'U+FF10..U+FF19->U+30..U+39', 'U+FF21..U+FF3A->U+61..U+7A', 'U+FF41..U+FF5A->U+61..U+7A',
-        # Hangul
-        'U+1100..U+11FF', 'U+3130..U+318F', 'U+A960..U+A97F', 'U+AC00..U+D7FF',
-        # Hangul halfwidth to fullwidth
-        'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
-        'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
         # Neo-Tifinagh (one of the Berber scripts)
         'U+2D30..U+2D67', 'U+2D6F',
         # Syriac (script of Assyrian)
@@ -297,6 +292,11 @@ class SphinxConfShell extends Shell {
         # CJK
         'U+3000..U+312F', 'U+3300..U+9FFF', 'U+F900..U+FAFF',
         'U+1B000..U+1B16F', 'U+20000..U+2EBEF', 'U+2F800..U+2FA1F',
+        # Hangul
+        'U+1100..U+11FF', 'U+3130..U+318F', 'U+A960..U+A97F', 'U+AC00..U+D7FF',
+        # Hangul halfwidth to fullwidth
+        'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
+        'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
         # Katakana halfwidth to fullwidth
         'U+FF66->U+30F2', 'U+FF67->U+30A1', 'U+FF68->U+30A3', 'U+FF69->U+30A5', 'U+FF6A->U+30A7',
         'U+FF6B->U+30A9', 'U+FF6C->U+30E3', 'U+FF6D->U+30E5', 'U+FF6E->U+30E7', 'U+FF6F->U+30C3',
