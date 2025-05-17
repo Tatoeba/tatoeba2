@@ -18,5 +18,9 @@ $_SERVER['PHP_SELF'] = '/';
 // update of Sphinx attributes in SphinxBehavior.
 Configure::write('Search.enabled', false);
 
+// Disable transcriptions by default
+// This can be activated for some specific tests
+Configure::write('AutoTranscriptions.enabled', false);
+
 // Avoid caching any data produced by tests
 Cache::disable();

@@ -9,18 +9,18 @@ class AnnouncementHelper extends Helper
 {
     protected $_defaultConfig = [
         'enabled' => false,
-        'shutdownWarning' => false,
+        'maintenance' => false,
     ];
 
     public function initialize(array $config) {
         $this->setConfig(Configure::read('Announcement'));
     }
 
-    private function getHideAfterAsTime() {
-        $hideAfter = $this->getConfig('hideAfter');
-        if (strlen($hideAfter)) {
+    private function getConfigAsTime(string $configKey) {
+        $time = $this->getConfig($configKey);
+        if (strlen($time)) {
             try {
-                return new Time($hideAfter);
+                return new Time($time);
             } catch (\Exception $e) {
             }
         }
@@ -29,7 +29,7 @@ class AnnouncementHelper extends Helper
 
     public function isDisplayed() {
         if ($this->getConfig('enabled')) {
-            $hideAfter = $this->getHideAfterAsTime();
+            $hideAfter = $this->getConfigAsTime('hideAfter');
             if (is_null($hideAfter)) {
                 return true;
             } else {
@@ -40,38 +40,100 @@ class AnnouncementHelper extends Helper
         }
     }
 
-    public function shutdownWarning() {
-        if ($this->isDisplayed() && $this->getConfig('shutdownWarning')) {
-            $hideAfter = $this->getHideAfterAsTime();
-            if (is_null($hideAfter)) {
-                return null;
+    public function getMaintenanceMessage() {
+        $messages = [];
+        $start = $this->getConfigAsTime('maintenance.start');
+        if ($start && $start->isFuture()) {
+            $now = new Time();
+            $time = $start->i18nFormat([\IntlDateFormatter::NONE, \IntlDateFormatter::SHORT]);
+            $datetime = $start->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT]);
+            $secsToGo = $now->diffInSeconds($start, false);
+            $minsToGo = $now->diffInMinutes($start, false);
+            $hoursToGo = $now->diffInHours($start, false);
+            $daysToGo = $now->diffInDays($start, false);
+            if ($secsToGo < 60) {
+                $messages[] = format(
+                    __n(
+                        'Tatoeba will temporarily shut down for maintenance in {n} second.',
+                        'Tatoeba will temporarily shut down for maintenance in {n} seconds.',
+                        $secsToGo
+                    ),
+                    ['n' => $secsToGo]
+                );
+            } elseif ($minsToGo < 60) {
+                $messages[] = format(
+                    __n(
+                        'Tatoeba will temporarily shut down for maintenance in {n} minute.',
+                        'Tatoeba will temporarily shut down for maintenance in {n} minutes.',
+                        $minsToGo
+                    ),
+                    ['n' => $minsToGo]
+                );
+            } elseif ($hoursToGo < 24) {
+                $messages[] = format(
+                    __n(
+                        'Tatoeba will temporarily shut down for maintenance at {time} UTC,'
+                        .' which is in {n} hour.',
+                        'Tatoeba will temporarily shut down for maintenance at {time} UTC,'
+                        .' which is in {n} hours.',
+                        $hoursToGo
+                    ),
+                    ['time' => $time, 'n' => $hoursToGo]
+                );
+            } else {
+                $messages[] = format(
+                    __n(
+                        'Tatoeba will temporarily shut down for maintenance on {datetime} UTC,'
+                        .' which is in {n} day.',
+                        'Tatoeba will temporarily shut down for maintenance on {datetime} UTC,'
+                        .' which is in {n} days.',
+                        $daysToGo
+                    ),
+                    ['datetime' => $datetime, 'n' => $daysToGo]
+                );
             }
 
-            $now = new Time();
-            $secs = $now->diffInSeconds($hideAfter, false);
-            $mins = (int)($secs/60);
-            if ($secs > 0 && $mins <= 10) {
-                if ($mins >= 1) {
-                    return format(
+            if ($end = $this->getConfigAsTime('maintenance.end')) {
+                $hoursEstimated = $start->diffInHours($end, false);
+                $minsEstimated = $start->diffInMinutes($end, false);
+                if ($hoursEstimated > 0) {
+                    $messages[] = format(
                         __n(
-                            'Tatoeba will temporarily shut down for maintenance in {n} minute.',
-                            'Tatoeba will temporarily shut down for maintenance in {n} minutes.',
-                            $mins
+                            'The maintenance is estimated to take no longer than {n} hour.',
+                            'The maintenance is estimated to take no longer than {n} hours.',
+                            $hoursEstimated
                         ),
-                        ['n' => $mins]
+                        ['n' => $hoursEstimated]
                     );
-                } else {
-                    return format(
+                } elseif ($minsEstimated > 0) {
+                    $messages[] = format(
                         __n(
-                            'Tatoeba will temporarily shut down for maintenance in {n} second.',
-                            'Tatoeba will temporarily shut down for maintenance in {n} seconds.',
-                            $secs
+                            'The maintenance is estimated to take no longer than {n} minute.',
+                            'The maintenance is estimated to take no longer than {n} minutes.',
+                            $minsEstimated
                         ),
-                        ['n' => $secs]
+                        ['n' => $minsEstimated]
                     );
                 }
             }
         }
-        return null;
+        return implode(' ', $messages);
+    }
+
+    public function getMaintenanceStartsIn() {
+        $start = $this->getConfigAsTime('maintenance.start');
+        if ($start && $start->isFuture()) {
+            $now = new Time();
+            return $now->diffInSeconds($start, false);
+        }
+    }
+
+    public function isMaintenanceImminent() {
+        if ($start = $this->getConfigAsTime('maintenance.start')) {
+            $now = new Time();
+            return $now->diffInMinutes($start, false) <= 10;
+        } else {
+            return false;
+        }
     }
 }

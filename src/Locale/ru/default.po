@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Cloud Strife, 2020,2022
-# Cloud Strife, 2020,2022-2023
+# Cloud Strife, 2020,2022-2023,2025
 # Dmitrij Sigida <ruszrj@gmail.com>, 2021
 # Dmitry K, 2014
 # Dmitry K, 2014
@@ -29,7 +29,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 02:47+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Konstantin N <explanacion@gmail.com>, 2018-2020,2024\n"
+"Last-Translator: Cloud Strife, 2020,2022-2023,2025\n"
 "Language-Team: Russian (http://app.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -462,12 +462,12 @@ msgstr "неизвестный"
 msgid ""
 "This alternative script was generated automatically and has not been "
 "reviewed."
-msgstr ""
+msgstr "Эта альтернативная форма записи была создана автоматически и ещё не была проверена."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L207
 msgid ""
 "This transcription was generated automatically and has not been reviewed."
-msgstr ""
+msgstr "Эта транскрипция была создана автоматически и ещё не была проверена."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L214
 msgid "The furigana was last edited by {author} on {date}."
@@ -481,7 +481,7 @@ msgstr "Последний раз редактировалось пользов�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L225
 msgid "This alternative script was generated automatically."
-msgstr ""
+msgstr "Данная альтернативная форма записи была создана автоматически."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L227
 msgid "This transcription was generated automatically."
@@ -1137,13 +1137,13 @@ msgstr "Введите имя пользователя"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L171
 msgid "Is original"
-msgstr ""
+msgstr "Оригинальные предложения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L176
 msgid ""
 "Original sentences are ones that were not added as translations of other "
 "sentences."
-msgstr ""
+msgstr "Предложения, которые не были добавлены в качестве перевода других предложений"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L369
@@ -1964,7 +1964,7 @@ msgstr "Автор: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L99
 msgid "Unknown author"
-msgstr ""
+msgstr "Неизвестный автор"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L104
 msgid "License: {license}"
@@ -1973,12 +1973,12 @@ msgstr "Лицензия: {license}"
 #. header text of the date an audio recording was added
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L107
 msgid "Added"
-msgstr ""
+msgstr "Добавлено"
 
 #. header text of the date an audio recording was last modified
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L113
 msgid "Last modified"
-msgstr ""
+msgstr "Последнее изменение"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L121
 msgid "Is enabled"
@@ -3851,7 +3851,7 @@ msgstr "Ошибка поиска"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L198
 msgid "Refine search"
-msgstr ""
+msgstr "Уточнить поиск"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L118
 msgid ""
@@ -4417,7 +4417,7 @@ msgstr "Новое изображение"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L93
 msgid "The provided image is too large. It must be less than 1MB in size."
-msgstr ""
+msgstr "Размер изображения не должен превышать 1 МБ."
 
 #. button to upload a new profile picture
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L100

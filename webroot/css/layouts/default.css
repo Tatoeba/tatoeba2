@@ -791,12 +791,16 @@ html[dir="rtl"] .search-bar-extra a:before {
     background-color: #fff;
     overflow: hidden;
 }
+.maintenance span {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 20px;
+    max-width: 960px;
+}
 .maintenance {
     text-align: center;
     padding: 10px;
-    color: #ffffff;
     background: #d11;
-    font-size: 20px;
 }
 .announcement {
     max-width: 960px;

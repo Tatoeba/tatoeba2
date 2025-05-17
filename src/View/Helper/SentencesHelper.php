@@ -802,7 +802,8 @@ class SentencesHelper extends AppHelper
                     'controller' => 'sentences',
                     'action' => 'show',
                     $sentence->id
-                )
+                ),
+                ['target' => '_blank']
             );
         } else {
             echo $this->Html->div(null, $sentence->text);
