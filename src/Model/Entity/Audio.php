@@ -49,7 +49,7 @@ class Audio extends Entity
         if ($this->user && $this->user->username) {
             return $this->user->username;
         } else {
-            return $this->external['username'];
+            return $this->external['username'] ?? null;
         }
     }
 
@@ -87,7 +87,7 @@ class Audio extends Entity
                 return null;
             }
         } else {
-            return $this->external['attribution_url'];
+            return $this->external['attribution_url'] ?? null;
         }
     }
 
@@ -95,7 +95,7 @@ class Audio extends Entity
         if ($this->user) {
             return $this->user->audio_license;
         } else {
-            return $this->external['license'];
+            return $this->external['license'] ?? null;
         }
     }
 

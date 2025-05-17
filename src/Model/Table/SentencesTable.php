@@ -1080,12 +1080,12 @@ class SentencesTable extends Table
     {
         $sentence = $this->get($sentenceId);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
-        $ownerId = $currentOwner['id'];
-        $ownerRole = $currentOwner['role'];
+        $ownerId = $currentOwner['id'] ?? null;
+        $ownerRole = $currentOwner['role'] ?? null;
 
         $isOwnerInactive = in_array($ownerRole, [User::ROLE_SPAMMER, User::ROLE_INACTIVE]);
         $isCurrentUserTrusted = in_array($currentUserRole, User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER);
-        $isAdoptable = $ownerId == 0 || ($isOwnerInactive && $isCurrentUserTrusted);
+        $isAdoptable = is_null($ownerId) || ($isOwnerInactive && $isCurrentUserTrusted);
 
         if ($isAdoptable) {
             $sentence->user_id = $userId;
