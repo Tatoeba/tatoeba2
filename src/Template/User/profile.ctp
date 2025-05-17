@@ -253,7 +253,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                         $options = array('title' => __('Contributions blocked'));
                     }
                     echo $this->Html->div(
-                        join($cssClasses, ' '),
+                        join(' ', $cssClasses),
                         $userStatus,
                         $options
                     );
