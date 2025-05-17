@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   if ENV['BUILD'] == '1'
-    config.vm.box = "debian/contrib-buster64"
+    config.vm.box = "debian/bullseye64"
     config.vm.provision "install", :type => "ansible" do |ansible|
       # ansible.verbose = "vvvv"
       ansible.playbook = "ansible/vagrant.yml"
