@@ -12,5 +12,5 @@
   debug: msg="sinoparserd already installed; reinstalling it (force_intall == true)"
   when: install_state is success and force_install == true
 
-- include: install_sinoparserd.yml
+- include_tasks: install_sinoparserd.yml
   when: install_state is failed or force_install == true

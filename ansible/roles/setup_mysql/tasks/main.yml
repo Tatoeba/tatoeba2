@@ -1,9 +1,10 @@
 ---
 # Tasks for setting up mysql
 
-- name: Ensure python-mysqldb is installed
+# python3-mysqldb is required to run the root password update task below
+- name: Ensure python3-mysqldb is installed
   apt:
-    name: python-mysqldb
+    name: python3-mysqldb
     state: latest
 
 - name: Install mysql-server
