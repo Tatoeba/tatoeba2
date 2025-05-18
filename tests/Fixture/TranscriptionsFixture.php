@@ -53,7 +53,7 @@ class TranscriptionsFixture extends TestFixture {
 		),
 		array(
 			'id' => 4,
-			'sentence_id' => 58,
+			'sentence_id' => 66,
 			'script' => 'Latn',
 			'text' => 'Ishingni qil!',
 			'user_id' => null,

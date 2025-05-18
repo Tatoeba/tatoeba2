@@ -311,7 +311,7 @@ class TranscriptionsTableTest extends TestCase {
         $created = $this->Transcription->generateTranscription($jpnSentence, 'Hrkt', true, $data);
 
         $expected = array(
-            'id' => 4,
+            'id' => 5,
             'sentence_id' => 10,
             'script' => 'Hrkt',
             'text' => 'あああ',
