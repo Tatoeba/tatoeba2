@@ -1,33 +1,34 @@
 [main]
-host = https://www.transifex.com
-lang_map = lv_LV:lv, pt_BR:pt, vi_VN:vi, zh_CN:zh
+host     = https://www.transifex.com
+lang_map = lv_LV: lv, vi_VN: vi, sma: hoc
 
-[tatoeba_website.tatoebaResource]
-source_file = src/Locale/default.pot
-source_lang = en
-type = PO
-file_filter = src/Locale/<lang>/default.po
-
-[tatoeba_website.countries]
-source_file = src/Locale/countries.pot
-source_lang = en
-type = PO
-file_filter = src/Locale/<lang>/countries.po
-
-[tatoeba_website.tatoeba-languages]
-source_file = src/Locale/languages.pot
-source_lang = en
-type = PO
-file_filter = src/Locale/<lang>/languages.po
-
-[tatoeba_website.admin]
-source_file = src/Locale/admin.pot
-source_lang = en
-type = PO
-file_filter = src/Locale/<lang>/admin.po
-
-[tatoeba-terms-of-use.terms-of-use]
+[o:tatoeba:p:tatoeba-terms-of-use:r:terms-of-use]
 file_filter = src/Locale/<lang>/terms-of-use.html
 source_file = src/Locale/fr/terms-of-use.html
 source_lang = fr
-type = HTML
+type        = HTML
+
+[o:tatoeba:p:tatoeba_website:r:admin]
+file_filter = src/Locale/<lang>/admin.po
+source_file = src/Locale/admin.pot
+source_lang = en
+type        = PO
+
+[o:tatoeba:p:tatoeba_website:r:countries]
+file_filter = src/Locale/<lang>/countries.po
+source_file = src/Locale/countries.pot
+source_lang = en
+type        = PO
+
+[o:tatoeba:p:tatoeba_website:r:tatoeba-languages]
+file_filter = src/Locale/<lang>/languages.po
+source_file = src/Locale/languages.pot
+source_lang = en
+type        = PO
+
+[o:tatoeba:p:tatoeba_website:r:tatoebaResource]
+file_filter = src/Locale/<lang>/default.po
+source_file = src/Locale/default.pot
+source_lang = en
+type        = PO
+

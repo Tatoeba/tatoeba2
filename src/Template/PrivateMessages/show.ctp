@@ -54,7 +54,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         <md-toolbar class="md-hue-1">
             <div class="md-toolbar-tools">
                 <h2 flex>
-                    <?= $message->title ?>
+                    <?= h($this->safeForAngular($message->title)) ?>
                 </h2>
             </div>
         </md-toolbar>
@@ -70,7 +70,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         <?php
         if ($message->folder == 'Inbox' && $message->type == 'human') {
             echo $this->element('private_messages/form', [
-                'headerTitle' => __('Reply'),
                 'pm' => $message,
                 'recipients' => $author->username,
                 'isReply' => true

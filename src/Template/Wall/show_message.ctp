@@ -43,6 +43,7 @@ echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
 ?>
 <div id="annexe_content">
     <div class="module">
+    <?php /* @translators: header text the side bar of the page of a Wall post */ ?>
     <h2><?php echo __('Menu'); ?></h2>
         <p>
             <?php

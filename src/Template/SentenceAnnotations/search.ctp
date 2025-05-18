@@ -18,7 +18,7 @@
 */
 ?>
 
-<div id="annexe_content">
+<div id="annexe_content" ng-non-bindable>
     <?php
     $this->SentenceAnnotations->displayGoToBox();
     
@@ -30,7 +30,7 @@
     
 </div>
 
-<div id="main_content">
+<div id="main_content" ng-non-bindable>
     <div class="module">
     <?php
     $numberOfResults = count($annotations);

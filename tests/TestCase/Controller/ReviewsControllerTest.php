@@ -19,12 +19,16 @@ class ReviewsControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/reviews/of/admin', null, true ],
-            [ '/eng/reviews/of/admin', 'contributor', true ],
-            [ '/eng/reviews/of/admin/ok', null, true ],
-            [ '/eng/reviews/of/admin/ok', 'contributor', true ],
-            [ '/eng/reviews/of/admin/ok/cmn', null, true ],
-            [ '/eng/reviews/of/admin/ok/cmn', 'contributor', true ],
+            [ '/en/reviews/of/admin', null, '/en/reviews/of/admin/all' ],
+            [ '/en/reviews/of/admin', 'contributor', '/en/reviews/of/admin/all' ],
+            [ '/en/reviews/of/admin/all', null, true ],
+            [ '/en/reviews/of/admin/all', 'contributor', true ],
+            [ '/en/reviews/of/admin/ok', null, true ],
+            [ '/en/reviews/of/admin/ok', 'contributor', true ],
+            [ '/en/reviews/of/admin/ok/cmn', null, true ],
+            [ '/en/reviews/of/admin/ok/cmn', 'contributor', true ],
+            [ '/en/reviews/of/admin/foobar', null, '/en/reviews/of/admin/all' ],
+            [ '/en/reviews/of/admin/foobar/eng', null, '/en/reviews/of/admin/all/eng' ],
         ];
     }
 
@@ -37,11 +41,11 @@ class ReviewsControllerTest extends IntegrationTestCase
 
     public function ajaxAccessesProvider() {
         return [
-            [ '/eng/reviews/add_sentence/30/-1', null, false ],
-            [ '/eng/reviews/add_sentence/30/-1', 'contributor', true ],
-            [ '/eng/reviews/delete_sentence/30', null, false ],
-            [ '/eng/reviews/delete_sentence/30', 'contributor', true ], // does not exist
-            [ '/eng/reviews/delete_sentence/2', 'admin', true ], // does exist
+            [ '/en/reviews/add_sentence/30/-1', null, false ],
+            [ '/en/reviews/add_sentence/30/-1', 'contributor', true ],
+            [ '/en/reviews/delete_sentence/30', null, false ],
+            [ '/en/reviews/delete_sentence/30', 'contributor', true ], // does not exist
+            [ '/en/reviews/delete_sentence/2', 'admin', true ], // does exist
         ];
     }
 

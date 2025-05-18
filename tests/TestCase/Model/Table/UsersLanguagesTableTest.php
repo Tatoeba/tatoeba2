@@ -57,11 +57,26 @@ class UsersLanguagesTableTest extends TestCase {
             'of_user_id' => $currentUserId,
             'by_user_id' =>  $currentUserId
         );
-        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId);
-        $result = array_intersect_key($userLanguage['UsersLanguages'], $expected);
+        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId)
+            ->extract(['language_code', 'level', 'details', 'of_user_id', 'by_user_id']);
 
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userLanguage);
     } 
+
+    function testSaveUserLanguage_cannotMessUpWithDates() {
+        $currentUserId = 4;
+        $data = array(
+            'language_code' => 'eng',
+            'level' => 1,
+            'details' => '',
+            'created' => '1990-01-01 00:00:00',
+            'modified' => '2000-01-01 00:00:00',
+        );
+        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId);
+
+        $this->assertNotEquals($data['created'], $userLanguage->created);
+        $this->assertNotEquals($data['modified'], $userLanguage->modified);
+    }
 
     function testSaveUserLanguage_editsLanguage() {
         $id = 1;
@@ -78,10 +93,10 @@ class UsersLanguagesTableTest extends TestCase {
             'of_user_id' => $currentUserId,
             'by_user_id' =>  $currentUserId
         );
-        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId);
-        $result = array_intersect_key($userLanguage['UsersLanguages'], $expected);
+        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId)
+            ->extract(['id', 'language_code', 'level', 'of_user_id', 'by_user_id']);
 
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userLanguage);
     } 
 
     
@@ -105,6 +120,61 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEmpty($result);
     }
 
+    function testSaveUserLanguage_failsBecauseInvalidLanguage() {
+        $data = array(
+            'language_code' => '000',
+            'details' => 'Details here.',
+            'level' => 5
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_failsBecauseLevelTooHigh() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => '6',
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_failsBecauseLevelTooLow() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => '-1',
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_failsBecauseLevelInvalid() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => 'invalid',
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    }
+
+    function testSaveUserLanguage_succeedsLevelUnknown() {
+        $data = array(
+            'language_code' => 'eng',
+            'details' => 'Details here.',
+            'level' => null
+        );
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertNotEmpty($result);
+    }
+
     function testDeleteUserLanguage_succeeds() {
         $result = $this->UsersLanguages->deleteUserLanguage(1, 4);
 
@@ -118,7 +188,7 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testDeleteUserLanguage_failsBecauseUnknownId() {
-        $result = $this->UsersLanguages->deleteUserLanguage(2, 4);
+        $result = $this->UsersLanguages->deleteUserLanguage(9999999, 4);
         $this->assertFalse($result);
     }
 
@@ -145,20 +215,24 @@ class UsersLanguagesTableTest extends TestCase {
 
     function testGetNumberOfUsersForEachLanguage() {
         $result = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
-        $this->assertEquals(1, count($result));
+        $this->assertEquals(2, count($result));
     }
 
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = Time::now();
+        $now = new Time('2020-01-02 03:04:05');
         Time::setTestNow($now);
+
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
             100
         );
-        $id = $added['UsersLanguages']['id'];
-        $returned = $this->UsersLanguages->get($id);
+        $returned = $this->UsersLanguages->get($added->id);
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
+
+        Time::setTestNow();
+        I18n::setLocale($prevLocale);
     }
 }

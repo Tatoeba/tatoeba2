@@ -12,13 +12,17 @@ class DateHelperTest extends TestCase {
 
     public $DateHelper;
 
+    private $prevLocale;
+
     public function setUp() {
         parent::setUp();
         $View = new View();
         $this->DateHelper = new DateHelper($View);
+        $this->prevLocale = I18n::getLocale();
     }
 
     public function tearDown() {
+        I18n::setLocale($this->prevLocale);
         unset($this->DateHelper);
         parent::tearDown();
     }
@@ -27,8 +31,8 @@ class DateHelperTest extends TestCase {
         return [
             'null date eng' => [NULL, true, 'en', 'date unknown'],
             '0000-00-00 00:00:00 eng' => ['0000-00-00 00:00:00', false, 'en', 'date unknown'],
-            'old valid date alone eng' => ['2010-01-02 12:34:56', true, 'en', 'January 2, 2010 at 12:34 PM'],
-            'old valid date in phrase eng' => ['2013-04-25 02:37:23', false, 'en', 'April 25, 2013 at 2:37 AM'],
+            'old valid date alone eng' => ['2010-01-02 12:34:56', true, 'en', 'January 2, 2010'],
+            'old valid date in phrase eng' => ['2013-04-25 02:37:23', false, 'en', 'April 25, 2013'],
             'date within 30 days eng' => ['2016-06-06 14:52:11', true, 'en', '17&nbsp;days ago'],
             'date yesterday eng' => ['2016-06-23 13:32:12', false, 'en', 'yesterday'],
             'date within last 24 hours eng' => ['2016-06-24 09:43:17', false, 'en', '4&nbsp;hours ago'],
@@ -100,11 +104,11 @@ class DateHelperTest extends TestCase {
             'created and modified within 30 days tooltip eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-10-10 01:23:45', true, 'en', 'September 9, 2018 at 9:12 AM, edited October 10, 2018 at 1:23 AM'],
             'created eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-09-29 09:12:34', false, 'en', 'September 29, 2017 at 9:12 AM'],
+            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-09-29 09:12:34', false, 'en', 'September 29, 2017'],
             'created tooltip eng' =>
             ['{createdDate}, edited {modifiedDate}', '2017-09-09 09:12:34', '2017-09-09 09:12:34', true, 'en', 'September 9, 2017 at 9:12 AM'],
             'created and modified eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-10-10 01:23:45', false, 'en', 'September 29, 2017 at 9:12 AM, edited October 10, 2017 at 1:23 AM'],
+            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-10-10 01:23:45', false, 'en', 'September 29, 2017, edited October 10, 2017'],
             'created and modified tooltip eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-02-09 09:12:34', '2018-02-10 01:23:45', true, 'en', 'February 9, 2018 at 9:12 AM, edited February 10, 2018 at 1:23 AM'],
             'empty date eng' =>
@@ -133,7 +137,7 @@ class DateHelperTest extends TestCase {
             'CakePHP Time instance' =>
                 [new Time('1987-06-05 23:45:19'), 'June 5, 1987 at 11:45 PM'],
             'CakePHP FrozenTime instance' =>
-                [new FrozenTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45 PM'],
+                [new FrozenTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45:19 PM UTC'],
             'string' => ['2000-12-07 01:23:45', 'December 7, 2000 at 1:23 AM']
         ];
     }
@@ -155,17 +159,17 @@ class DateHelperTest extends TestCase {
         $this->assertEquals('date unknown', $this->DateHelper->ago('0000-00-00 00:00:00'));
         $this->assertEquals('date unknown', $this->DateHelper->ago(''));
         $this->assertEquals('date unknown', $this->DateHelper->ago('2017-03-04'));
-        $expected = 'March 5, 2004 at 9:27 AM';
+        $expected = 'March 5, 2004';
         $this->assertEquals($expected, $this->DateHelper->ago('2004-03-05 09:27:00'));
     }
 
     public function testAgoWorksWithDateTimeObjects() {
-        $expected = 'November 23, 1988 at 1:45 PM';
+        $expected = 'November 23, 1988';
         $this->assertEquals($expected, $this->DateHelper->ago(new Time('1988-11-23 13:45:00')));
     }
 
     public function testAgoWorksWithFrozenTimeObjects() {
-        $expected = 'November 24, 1988 at 1:45 PM';
+        $expected = 'November 24, 1988';
         $this->assertEquals($expected, $this->DateHelper->ago(new FrozenTime('1988-11-24 13:45:00')));
     }
 }

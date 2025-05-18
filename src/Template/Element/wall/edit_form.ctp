@@ -1,7 +1,6 @@
 <?php
 $user = $message->user;
 $username = $user['username'];
-$avatar = $user['image'];
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 
@@ -20,7 +19,7 @@ $cancelUrl = $this->Url->build([
 
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">
@@ -35,17 +34,19 @@ $cancelUrl = $this->Url->build([
 
     <md-card-content class="content">
         <?php
+        $message->content = $this->safeForAngular($message->content);
         echo $this->Form->create($message);
-
         echo $this->Form->textarea('content');
         ?>
 
         <div layout="row" layout-align="end center" layout-padding>
             <md-button class="md-raised" href="<?= $cancelUrl; ?>">
+                <?php /* @translators: cancel button of wall post edition form (verb) */ ?>
                 <?php echo __('Cancel'); ?>
             </md-button>
 
             <md-button type="submit" class="md-raised md-primary">
+                <?php /* @translators: save button of wall post edition form (verb) */ ?>
                 <?php echo __('Save changes'); ?>
             </md-button>
         </div>

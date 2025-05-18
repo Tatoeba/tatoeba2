@@ -48,6 +48,7 @@ if ($userExists === true) {
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
+<?php if ($userExists): ?>
 <div id="annexe_content" ng-cloak>
     <?php
     echo $this->element(
@@ -70,8 +71,27 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </md-checkbox>
         </div>
         <?php
-     } ?>
+    }
+
+    if ($unreliableButton) {
+        $label = __d('admin', 'Mark as unreliable');
+        $message = __d(
+            'admin',
+            'Are you sure you want to mark all the sentences of this member as unreliable?'
+        );
+        $link = $this->Html->link(
+            $label,
+            ['controller' => 'sentences', 'action' => 'mark_unreliable', $userName],
+            ['confirm' => $message, 'style' => 'color: white;']
+        ); ?>
+        <md-button class="md-warn md-raised" aria-label="<?= $label ?>">
+            <?= $link ?>
+        </md-button>
+        <?php
+    }
+?>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
 
@@ -103,24 +123,32 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $this->Paginator->counter($title . ' ' . __("(total {{count}})")); ?></h2>
+
+                <?php
+                    if ($onlyOriginal) {
+                        $urlOptions = $this->Paginator->generateUrlParams(
+                            array('?' => array('only_original' => ''))
+                        );
+                        $this->Paginator->options(array('url' => $urlOptions));
+                    }
+                
+                    $options = array(
+                        /* @translators: sort option in the "Sentences of user" page */
+                        array('param' => 'modified', 'direction' => 'desc', 'label' => __x('sentences', 'Most recently updated')),
+                        /* @translators: sort option in the "Sentences of user" page */
+                        array('param' => 'modified', 'direction' => 'asc', 'label' => __x('sentences', 'Least recently updated')),
+                        /* @translators: sort option in the "Sentences of user" page */
+                        array('param' => 'created', 'direction' => 'desc', 'label' => __x('sentences', 'Newest first')),
+                        /* @translators: sort option in the "Sentences of user" page */
+                        array('param' => 'created', 'direction' => 'asc', 'label' => __x('sentences', 'Oldest first'))
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
+
             </div>
         </md-toolbar>
 
         <md-content layout-padding>
-        <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            if ($onlyOriginal) {
-                $urlOptions = $this->Paginator->generateUrlParams(
-                    array('?' => array('only_original' => ''))
-                );
-                $this->Paginator->options(array('url' => $urlOptions));
-            }
-            echo $this->Paginator->sort('modified', __('date modified'));
-            echo " | ";
-            echo $this->Paginator->sort('created', __('date created'));
-            ?>
-        </div>
 
         <?php
         $this->Pagination->display();

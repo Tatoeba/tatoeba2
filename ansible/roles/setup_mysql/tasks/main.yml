@@ -1,0 +1,85 @@
+---
+# Tasks for setting up mysql
+
+- name: Ensure python-mysqldb is installed
+  apt:
+    name: python-mysqldb
+    state: latest
+
+- name: Install mysql-server
+  apt:
+    name: default-mysql-server
+    update_cache: yes
+    state: latest
+
+- name: Update mysql root password for all root accounts
+  mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mysql_root_password }}"
+
+- name: Install root's my.cnf
+  template:
+    src: my.cnf.root
+    dest: /root/.my.cnf
+    mode: 0600
+
+- name: Install user's my.cnf
+  become: false
+  template:
+    src: my.cnf.user
+    dest: /home/{{ansible_ssh_user}}/.my.cnf
+    mode: 0600
+
+- name: Install Tatoeba's MySQL config
+  copy:
+    src: tatoeba.cnf
+    dest: /etc/mysql/conf.d/tatoeba.cnf
+
+- name: Update mysql root password for all root accounts
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_password }}"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+
+- name: Create the tatoeba database
+  mysql_db:
+    name: "{{ mysql_db_name }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    state: present
+
+- debug:
+    var: mysql_password
+
+- name: Create and give privileges to mysql_user to the tatoeba database
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    priv: "{{ mysql_db_name }}.*:ALL/*.*:FILE"
+    state: present
+  when: mysql_user != "root"
+
+- name: Create the tatoeba test database
+  mysql_db:
+    name: "{{ mysql_test_db_name }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    state: present
+
+- name: Create and give privileges to mysql_test_user to the tatoeba test database
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_test_user }}"
+    password: "{{ mysql_test_password }}"
+    priv: "{{ mysql_test_db_name }}.*:ALL/*.*:FILE"
+    append_privs: yes
+    state: present
+  when: mysql_test_user != "root"

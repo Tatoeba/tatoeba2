@@ -4,50 +4,68 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Anne <a.vangulick@hotmail.com>, 2018
+# Spencer, 2018
 # Paul Peeraerts <paul2711@gmail.com>, 2019
-# Spencer, 2020
-# Els, 2020
-# Marijn Kuiper <imarijn.kuiper@gmail.com>, 2020
+# Anne <a.vangulick@hotmail.com>, 2022
+# Marijn Kuiper <imarijn.kuiper@gmail.com>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 05:32+0000\n"
+"POT-Creation-Date: 2025-02-12 02:47+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Marijn Kuiper <imarijn.kuiper@gmail.com>, 2020\n"
-"Language-Team: Dutch (https://www.transifex.com/tatoeba/teams/28284/nl/)\n"
+"Last-Translator: Marijn Kuiper <imarijn.kuiper@gmail.com>, 2024\n"
+"Language-Team: Dutch (https://app.transifex.com/tatoeba/teams/28284/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+msgid ""
+"Error: Sentences added by {username} could not be marked as unreliable."
+msgstr ""
+"Fout: zinnen die door {username} zijn toegevoegd kunnen niet als "
+"onbetrouwbaar worden gemarkeerd."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+msgid "Marked all sentences added by {username} as unreliable."
+msgstr "Alle door {username} toegevoegde zinnen gemarkeerd als onbetrouwbaar."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+msgid "Unable to import audio: user “{author}” not found."
+msgstr "Kan audio niet importeren: gebruiker “{author}” niet gevonden."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
 msgid "Invalid file “{file}” ignored."
 msgstr "Het ongeldige bestand “{file}” werd buiten beschouwing gelaten."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+msgid ""
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
+msgstr ""
+"Kan de audio die is bijgedragen door “{author}” voor de zin {sentenceId} "
+"niet vervangen: deze gebruiker heeft meer dan één audio."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr "Kan audio voor zin {sentenceId} niet opslaan in de database."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Het creëren van map „{dir}” om het bestand „{file}” te importeren, is "
 "mislukt."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Het kopiëren van bestand „{file}” naar map „{dir}” is mislukt."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
-msgid ""
-"Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
-"database. Make sure it's a valid username."
-msgstr ""
-"Het is onmogelijk om het geluidsbestand van zin {sentenceId} toe te kennen "
-"aan „{author}”. Kijk eens na of het een geldige gebruikersnaam is."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -55,89 +73,46 @@ msgstr ""
 "Het bestand „{file}” is met succes geïmporteerd maar het kon niet worden "
 "verwijderd uit de importmap."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
 msgstr "Opnames importeren"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
-msgid "Import report"
-msgstr "Rapport importeren"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
+msgid "The following errors occurred during the last import."
+msgstr "De volgende fouten zijn opgetreden tijdens de laatste import."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L59
-msgid "The following errors occurred during import."
-msgstr "De volgende fouten kwamen tijdens de import voor:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+msgid "Audio import status"
+msgstr "Importstatus van audio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
 msgid "Files detected"
 msgstr "Opgemerkte bestanden"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L84
-msgid "File name"
-msgstr "Bestandsnaam"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
+msgid "Audio author"
+msgstr "Auteur van audio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L85
-msgid "Sentence id"
-msgstr "Zin-ID"
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
+msgid "Save"
+msgstr "Opslaan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
-msgid "Language"
-msgstr "Taal"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
-msgid "Already has audio"
-msgstr "Heeft reeds een geluidsbestand."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
-msgid "May be imported"
-msgstr "Kan worden geïmporteerd."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
-msgid "N/A"
-msgstr "Niet van toepassing"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L103
-msgid "Invalid"
-msgstr "Ongeldig"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L127
-msgid "No files have been detected inside the import directory."
-msgstr "Er werden geen bestanden in de importmap gevonden."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L133
-msgid "Import"
-msgstr "Import"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L59
-msgid "Enabled"
-msgstr "Toegestaan"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
-msgid "Yes"
-msgstr "Ja"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
-msgid "No"
-msgstr "Nee"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
-msgid "Owner name"
-msgstr "Naam eigenaar"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L88
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
-msgid "Submit"
-msgstr "Verzenden"
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "Verwijderen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
 msgstr "Juistheid"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
-msgid "Change"
-msgstr "Wijzig"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "Verzenden"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
@@ -175,9 +150,17 @@ msgstr "Zinnen en vertalingen"
 msgid "Language of the translations:"
 msgstr "Taal van de vertalingen:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "Verwijderen"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+msgid "Mark as unreliable"
+msgstr "Markeer als onbetrouwbaar"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
+"Weet je zeker dat je alle zinnen van dit lid als onbetrouwbaar wilt "
+"markeren?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
@@ -219,10 +202,10 @@ msgstr "Niveau"
 msgid "Send notifications"
 msgstr "Stuur notificaties"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
 msgid "unhide"
 msgstr "zichbaar maken"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
 msgid "hide"
 msgstr "onzichtbaar maken"

@@ -39,7 +39,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Contact us')));
 ?>
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
-        <h2><?php echo __('FAQ'); ?></h2>
+        <?php /* @translators: section title in the Contact page */ ?>
+        <h2><?php echo __x('header', 'FAQ'); ?></h2>
         <p>
         <?php
         $faqUrl = $this->Url->build(array('action' => 'faq'));

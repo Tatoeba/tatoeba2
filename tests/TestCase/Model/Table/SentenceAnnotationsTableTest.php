@@ -2,6 +2,8 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\SentenceAnnotationsTable;
+use Cake\I18n\I18n;
+use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
@@ -16,10 +18,12 @@ class SentenceAnnotationsTableTest extends TestCase {
     function setUp() {
         parent::setUp();
         $this->SentenceAnnotation = TableRegistry::getTableLocator()->get('SentenceAnnotations');
+        Time::setTestNow(new Time('2020-06-01 01:01:01'));
     }
 
     function tearDown() {
         unset($this->SentenceAnnotation);
+        Time::setTestNow();
         parent::tearDown();
     }
 
@@ -48,7 +52,8 @@ class SentenceAnnotationsTableTest extends TestCase {
             'sentence_id' => 6,
             'meaning_id' => 1,
             'text' => 'Trim me please',
-            'user_id' => $userId
+            'user_id' => $userId,
+            'modified' => Time::now(),
         );
         $result = array_intersect_key(
             $sentenceAnnotation->toArray(), $expected
@@ -74,7 +79,8 @@ class SentenceAnnotationsTableTest extends TestCase {
             'sentence_id' => 6,
             'meaning_id' => 1,
             'text' => 'Some new text',
-            'user_id' => $userId
+            'user_id' => $userId,
+            'modified' => Time::now(),
         );
         $result = array_intersect_key(
             $sentenceAnnotation->toArray(), $expected

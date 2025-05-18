@@ -42,7 +42,7 @@
         </div>
     </md-toolbar>
 
-    <div class="container">
+    <div class="container" ng-cloak>
         <!-- Search -->
         <div class="search-bar" ng-controller="SearchBarController as ctrl">
             <?php
@@ -51,104 +51,41 @@
                 'type' => 'get',
                 'id' => 'new-search-bar'
             ]);
-
-            if (!isset($selectedLanguageFrom)) {
-                $selectedLanguageFrom = 'und';
-            }
-
-            if (!isset($selectedLanguageTo)) {
-                $selectedLanguageTo = 'und';
-            }
-
             ?>
-            <fieldset class="input text languages" style="line-height: 40px">
-                <?php
-                $langFrom = $this->element(
-                    'language_dropdown', 
-                    array(
-                        'name' => 'from',
-                        'selectedLanguage' => $selectedLanguageFrom,
-                        'languages' => $this->Search->getLangs()
-                    )
-                );
-
-                $langTo = $this->element(
-                    'language_dropdown', 
-                    array(
-                        'name' => 'to',
-                        'selectedLanguage' => $selectedLanguageTo,
-                        'languages' => $this->Search->getLangs()
-                    )
-                );
-                echo format(
-                    __('Search sentences in {langFrom} '.
-                        'translated into {langTo} containing:', true),
-                    array('langFrom' => $langFrom, 'langTo' => $langTo)
-                );
-                ?>
-            </fieldset>
-
-            <fieldset class="input text search-input">
-                <?php
-                $clearButton = $this->Html->tag('button', '✖', array(
-                    'id' => 'clearSearch',
-                    'type' => 'button',
-                    'title' => __('Clear search'),
-                    'ng-click' => 'ctrl.clearSearch()'
-                ));
-                echo $this->Form->input(
-                    'query',
-                    array(
-                        'id' => 'SentenceQuery',
-                        'label' => '',
-                        'accesskey' => 4,
-                        'lang' => '',
-                        'dir' => 'auto',
-                        'after' => $clearButton,
-                        'ng-model' => 'ctrl.searchQuery',
-                        'placeholder' => __('Enter a word or a phrase')
-                    )
-                );
-                ?>
-            </fieldset>
-
-            <fieldset class="submit">
-                <md-button type="submit" class="search-submit-button md-raised md-primary">
-                    <md-icon ng-cloak>search</md-icon>
+           
+            <md-input-container class="md-icon-float md-button-right md-block md-title">
+                <label><?= __('Search') ?></label>
+                <md-icon>search</md-icon>
+                <input id="query" name="query" accesskey="4" dir="auto" ng-model="ctrl.searchQuery" />                
+                <md-button class="md-icon-button" reset-button target="query">
+                    <md-icon>clear</md-icon>
                 </md-button>
-            </fieldset>
-
-
-            <div class="extra-links">
-                <div class="advanced-search">
-                    <?php
-                    echo $this->Html->link(
-                        __x('title', 'Advanced search'),
-                        array(
-                            'controller' => 'sentences',
-                            'action' => 'advanced_search'
-                        )
-                    );
-                    ?>
-                </div>
-
-                <div class="tip">
-                    <?php
-                    echo __(
+                <div class="hint">
+                    <?= __(
                         "Tip: <em>=word</em> will search for ".
                         "an exact match on <em>word</em>"
-                    );
-                    echo "<br/>";
-                    echo $this->Html->link(
+                    ); ?>
+                </div>
+            </md-input-container>
+
+            <div layout="row" layout-xs="column" layout-align="end" layout-align-xs="center">
+                <div layout="row" layout-align="center center" flex-order="1" flex-order-xs="-1">
+                    <md-button type="submit" class="md-raised md-primary">
+                        <?= __('Search') ?>
+                    </md-button>
+                </div>
+
+                <div layout="row" layout-align="center center" layout-wrap>
+                    <md-button href="<?= h($this->Pages->getWikiLink('text-search')) ?>" target="_blank">
+                        <?php
                         /* @translators: links to a page with tips to perform
-                           searches, like search operators */
-                        __('More tips'),
-                        'http://en.wiki.tatoeba.org/articles/show/text-search',
-                        array(
-                            'target' => '_blank'
-                        )
-                    );
-                    ?>
+                            searches, like search operators */
+                        echo __('More tips');
+                        ?>
+                    </md-button>
+                    <md-button href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'advanced_search']) ?>">
+                        <?= __x('title', 'Advanced search') ?>
+                    </md-button>
                 </div>
             </div>
 

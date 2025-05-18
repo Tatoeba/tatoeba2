@@ -82,18 +82,6 @@ class AppController extends Controller
         'Images'
     );
 
-    private function remapOldLangAlias($lang)
-    {
-        $uiLangSettings = Configure::read('UI.languages');
-        foreach ($uiLangSettings as $setting) {
-            if (isset($setting[3]) && is_array($setting[3])
-                && in_array($lang, $setting[3])) {
-                return $setting[0];
-            }
-        }
-        return $lang;
-    }
-
     private function blackhole($type) {
       var_dump("Blackholed: $type");
     }
@@ -102,29 +90,6 @@ class AppController extends Controller
     {
         $this->loadComponent('Cookie');
         $this->loadComponent('Csrf');
-    }
-
-    // This code allows smooth transition from User.group_id
-    // to User.role for users who are logged-in while we
-    // update the code on the server.
-    // This code can be safely removed once it has been running
-    // on the server for longer than the session expiration time.
-    private function roleAuthCompat() {
-        $user = $this->Auth->user();
-        if (isset($user['group_id']) && !isset($user['role'])) {
-            $map = [
-                1 => \App\Model\Entity\User::ROLE_ADMIN,
-                2 => \App\Model\Entity\User::ROLE_CORPUS_MAINTAINER,
-                3 => \App\Model\Entity\User::ROLE_ADV_CONTRIBUTOR,
-                4 => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
-                5 => \App\Model\Entity\User::ROLE_INACTIVE,
-                6 => \App\Model\Entity\User::ROLE_SPAMMER
-            ];
-            if (isset($map[$user['group_id']])) {
-                $user['role'] = $map[$user['group_id']];
-                $this->Auth->setUser($user);
-            }
-        }
     }
 
     /**
@@ -157,69 +122,15 @@ class AppController extends Controller
         $this->initAuthActions();
         $this->RememberMe->check();
 
-        $this->roleAuthCompat();
         // So that we can access the current users info from models.
         // Important: needs to be done after RememberMe->check().
-        CurrentUser::store($this->Auth->user());
-
-        // Language of interface:
-        // - By default we use the language set in the browser (or English, if the
-        //   language of the browser is not supported).
-        // - If the user has a cookie, we use the language set in the cookie.
-        // - If no cookie, we use the language set in the URL.
-        $lang = $this->getSupportedLanguage();
-        $langInCookie = $this->Cookie->read('CakeCookie.interfaceLanguage');
-        $langInURL = $this->request->getParam('lang', null);
-
-        $langInURLAlias = $this->remapOldLangAlias($langInURL);
-        if ($langInURLAlias != $langInURL) {
-            $lang = $langInURLAlias;
-        } else if ($langInCookie) {
-            $langInCookieAlias = $this->remapOldLangAlias($langInCookie);
-            if ($langInCookieAlias != $langInCookie && !empty($langInURL)) {
-                $this->Cookie->write('CakeCookie.interfaceLanguage', $langInCookieAlias, false, "+1 month");
-                $langInCookie = $langInCookieAlias;
-            }
-            $lang = $langInCookie;
-        } else if (!empty($langInURL)) {
-            $lang = $langInURL;
-            $this->Cookie->write('CakeCookie.interfaceLanguage', $lang, false, "+1 month");
+        $user = $this->Auth->user();
+        if ($user) {
+            // Keep the info up to date
+            $this->loadModel('Users');
+            $user = $this->Users->getInformationOfCurrentUser($user['id'])->toArray();
         }
-        Configure::write('Config.language', $lang);
-        $locale = Locale::parseLocale(LanguagesLib::languageTag($lang));
-        I18N::setLocale($locale['language']);
-
-        // If the Router did not parse the URL, we don't know if the URL
-        // contains a language, we so cannot perform any kind of language
-        // redirection
-        $routerDidParseURL = !empty($this->request->getParam('controller'));
-        if ($routerDidParseURL) {
-
-            // Forcing the URL to have the (correct) language in it.
-            $url = $this->request->getRequestTarget();
-            if (!empty($langInURL) && (
-                  ($langInCookie && $langInURL != $langInCookie) ||
-                  ($langInURLAlias != $langInURL)
-               )) {
-                // We're are now going to remove the language from the URL and set
-                // $langURL to null so that we get the the correct URL through
-                // redirection (below).
-                $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url);
-                $langInURL = null;
-            }
-            if (empty($langInURL)
-                && !$this->request->is('post')   // Avoid throwing away POST or
-                && !$this->request->is('put')) { // PUT data by redirecting
-                $redirectPage = "/".$lang.$url;
-                // Redirection of Ajax requests will be handled internally and all in
-                // one request thanks to RequestHandlerComponent::beforeRedirect().
-                // However, this function sets the HTTP return code and we don't want
-                // that. Instead, we want to hide the fact a redirection happened and
-                // let the sub-request return its own return code.
-                $redirectCode = $this->request->is('ajax') ? null : 301;
-                return $this->redirect($redirectPage, $redirectCode);
-            }
-        }
+        CurrentUser::store($user);
 
         // Restore named parameters removed in CakePHP 3
         $this->request = Router::parseNamedParams($this->request);
@@ -239,37 +150,35 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
+        $current_user = CurrentUser::get('User');
+        $auth_user = $this->Auth->user();
+        if ($auth_user && $current_user && $auth_user != $current_user) {
+            // User data changed, tell the Auth component about it.
+            $this->Auth->setUser($current_user);
+        }
+
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->request->is('ajax')) {
             $this->viewBuilder()->setLayout('ajax');
         }
 
-        // TODO
-        // We're passing the value from the cookie to the session because it is
-        // needed for the translation form (in helpers/sentences.php), but we
-        // cannot access the Cookie component from a view.
-        // This is not optimized, but I'm too lazy to do otherwise.
-        $session = $this->request->getSession();
+        // Make some cookie values accessible to views
+        // used in translation form and new sentence form
         $preSelectedLang = $this->Cookie->read('contribute_lang');
-        $session->write('contribute_lang', $preSelectedLang);
+        $this->set('contribute_lang', $preSelectedLang);
 
-        // Same for these cookies, used in show_all_in.
+        // used in show_all_in
         $lang = $this->Cookie->read('browse_sentences_in_lang');
-        $session->write('browse_sentences_in_lang', $lang);
-
-        $translationLang = $this->Cookie->read('show_translations_into_lang');
-        $session->write('show_translations_into_lang', $translationLang);
-
-        $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
-        $session->write('not_translated_into_lang', $notTranslatedInto);
-
-        $filterAudioOnly = $this->Cookie->read('filter_audio_only');
-        $session->write('filter_audio_only', $filterAudioOnly);
+        $this->set('browse_sentences_in_lang', $lang);
 
         // Use this when displaying the list to which a sentence should be assigned.
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
         $mostRecentList = $this->Cookie->read('most_recent_list');
-        $session->write('most_recent_list', $mostRecentList);
+        $this->set('most_recent_list', $mostRecentList);
+
+        $this->loadModel('WikiArticles');
+        $wikiLinkLocalizer = $this->WikiArticles->wikiLinkLocalizer();
+        $this->set(compact('wikiLinkLocalizer'));
     }
 
 
@@ -327,92 +236,12 @@ class AppController extends Controller
         return $this->redirect($url);
     }
 
-    /**
-     * Calculate minimal associations for a query
-     *
-     * Helper function for paginateLatest which filters the associations to
-     * load for the given query. Only the associations mentioned in the 'select'
-     * and 'order' part are necessary for calculating the lowest id we need.
-     *
-     * @param array $conditions The conditions for the query
-     * @param array $order      The ordering for the query
-     * @param array $contain    The original contain part of the query
-     *
-     * @return array
-     **/
-    private function getMinimalContain($conditions, $order, $contain) {
-        $neededAssociations = array_map(function ($key) {
-            $splitPos = strpos($key, '.');
-            if ($splitPos) {
-                return substr($key, 0, $splitPos);
-            } else {
-                return '';
-            }
-        }, array_keys(array_merge($conditions, $order)));
-
-        return array_filter(
-            $contain,
-            function ($key) use ($neededAssociations) {
-                return in_array($key, $neededAssociations);
-            },
-            ARRAY_FILTER_USE_KEY);
-    }
-
-    public function paginateLatest($model, $totalLimit) {
-        $alias = $model->getAlias();
-        $conditions = $this->paginate['conditions'] ?? [];
-        $contain = $this->paginate['contain'] ?? [];
-        $order = $this->paginate['order'] ?? [];
-        $order += [$alias . '.id' => 'DESC'];
-
-        $contain = $this->getMinimalContain($conditions, $order, $contain);
-
-        $lastId = $model->find('list')
-            ->select([$alias . '.id'])
-            ->where($conditions)
-            ->contain($contain)
-            ->order($order)
-            ->limit($totalLimit)
-            ->last();
-
-        $this->paginate['conditions'][$alias . '.id >='] = $lastId;
-
+    public function paginateOrRedirect($object = null, array $settings = []) {
         try {
-            return $this->paginate();
+            return $this->paginate($object, $settings);
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }
-    }
-
-    /**
-     * Returns the ISO code of the language in which we should set the interface,
-     * considering the languages of the user's browser.
-     *
-     * @return string
-     */
-    public function getSupportedLanguage()
-    {
-        $configUiLanguages = Configure::read('UI.languages');
-        $supportedLanguages = array();
-        foreach ($configUiLanguages as $langs) {
-            $browserCompatibleCode = LanguagesLib::languageTag($langs[0]);
-            $supportedLanguages[$browserCompatibleCode] = $langs[0];
-        }
-
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-
-            $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-
-            foreach ($browserLanguages as $browserLang) {
-                $browserLangArray = explode(';', $browserLang);
-                $lang = $browserLangArray[0];
-                if (isset($supportedLanguages[$lang])) {
-                    return $supportedLanguages[$lang];
-                }
-            }
-
-        }
-        return 'eng';
     }
 
     /**

@@ -36,6 +36,8 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
+    use ExposedFieldsTrait;
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('birthday', 'string');
@@ -60,6 +62,10 @@ class UsersTable extends Table
         $this->hasMany('Tags');
         $this->hasMany('TagsSentences');
         $this->hasMany('Transcriptions');
+        $this->hasMany('UsersLanguages', [
+            'foreignKey' => 'of_user_id',
+            'propertyName' => 'languages',
+        ]);
         $this->hasMany('Wall', [
             'foreignKey' => 'owner'
         ]);
@@ -89,13 +95,9 @@ class UsersTable extends Table
             ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
-            ->email('email')
+            ->email('email', False /* Don't check MX records */, __('Invalid email address'))
             ->requirePresence('email', 'create')
-            ->notEmpty('email', __('Field required'))
-            ->add('email', 'email', [
-                'rule' => ['custom', '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'],
-                'message' => __('Invalid email address'),
-            ]);
+            ->notEmpty('email', __('Field required'));
 
         $validator
             ->date('since');
@@ -137,6 +139,7 @@ class UsersTable extends Table
             ->maxLength('country_id', 2);
 
         $validator
+            ->allowEmptyString('audio_license')
             ->scalar('audio_license')
             ->maxLength('audio_license', 50);
 

@@ -23,7 +23,9 @@ use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Validation\Validator;
 use App\Model\CurrentUser;
-use App\Utility\Search;
+use App\Model\Exception\InvalidValueException;
+use App\Model\Search;
+use App\Model\Search\LangFilter;
 use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
@@ -31,7 +33,6 @@ class VocabularyTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('hash', 'string');
         return $schema;
     }
 
@@ -44,7 +45,6 @@ class VocabularyTable extends Table
         $this->belongsTo('Sentences');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Duplicate');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
@@ -91,22 +91,32 @@ class VocabularyTable extends Table
             return false;
         }
 
-        $result = $this->saveWithDuplicateCheck($newVocable);
-        if ($result->isDuplicate) {
-            $this->_updateNumSentences($result);
+        $vocable = $this->find()
+                        ->where([
+                            'text' => $newVocable->text,
+                            'lang' => $newVocable->lang,
+                        ])
+                        ->first();
+
+        if ($vocable) {
+            $this->_updateNumSentences($vocable);
+        } else {
+            $vocable = $this->save($newVocable);
         }
 
-        try {
-            $this->UsersVocabulary->add($result->id, CurrentUser::get('id'));
-        } catch (\PDOException $e) {
-            $result->duplicate = true;
-        }
-        
-        if (Configure::read('Search.enabled')) {
-            $result->query = Search::exactSearchQuery($text);
+        if ($vocable) {
+            try {
+                $this->UsersVocabulary->add($vocable->id, CurrentUser::get('id'));
+            } catch (\PDOException $e) {
+                $vocable->duplicate = true;
+            }
+
+            if (Configure::read('Search.enabled')) {
+                $vocable->query = Search::exactSearchQuery($vocable->text);
+            }
         }
 
-        return $result;
+        return $vocable;
     }
 
     /**
@@ -125,15 +135,16 @@ class VocabularyTable extends Table
         if (!Configure::read('Search.enabled')) {
             return null;
         }
-        $index = array($lang . '_main_index', $lang . '_delta_index');
-        $sphinx = array(
-            'index' => $index,
-            'matchMode' => SPH_MATCH_EXTENDED2
-        );
-        $query = Search::exactSearchQuery($text);
+        $search = new Search();
+        try {
+            $search->setFilter((new LangFilter())->anyOf([$lang]));
+        } catch (InvalidValueException $e) {
+            return null;
+        }
+        $search->filterByQuery(Search::exactSearchQuery($text));
+
         return $this->Sentences->find('withSphinx', [
-            'sphinx' => $sphinx,
-            'search' => $query
+            'sphinx' => $search->asSphinx()
         ])->count();
     }
 

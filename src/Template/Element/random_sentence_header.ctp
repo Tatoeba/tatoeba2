@@ -25,40 +25,40 @@
  * @link     https://tatoeba.org
  */
 
-$this->Html->script(JS_PATH . 'sentences.show_another.js', array('block' => 'scriptBottom'));
-$this->Sentences->javascriptForAJAXSentencesGroup();
+use App\Model\CurrentUser;
 
-$langArray = $this->Languages->languagesArrayAlone();
-$selectedLanguage = $this->request->getSession()->read('random_lang_selected');
+$this->Html->script('sentences/random.ctrl.js', ['block' => 'scriptBottom']);
 
-if ($selectedLanguage == null) {
-    $selectedLanguage == 'und';
-}
-
+$langArray = $this->Languages->onlyLanguagesArray();
 ?>
 
-
+<div ng-controller="RandomSentenceController as vm" ng-init="vm.init()">
 <md-toolbar class="md-hue-2">
-    <div class="md-toolbar-tools">
+    <div class="md-toolbar-tools" layout-align="center center" layout-wrap>
+        <?php /* @translators: random sentence block header on the home page */ ?>
         <h2 flex><?= __('Random sentence') ?></h2>
-        <span>
-        <?php
-        echo $this->Form->select(
-            "randomLangChoice",
-            $langArray,
-            array(
-                'id' => 'randomLangChoice',
-                'value' => $selectedLanguage,
-                'class' => 'language-selector',
-                "empty" => false
-            ),
-            false
-        );
-        ?>
-        </span>
 
-        <md-button id="showRandom" onclick="return false;">
-            <?= __('show another ') ?>
-        </md-button>
+        <div layout="row" layout-align="center center" layout-wrap>
+            <span>
+            <?php
+            echo $this->element('language_dropdown', [
+                'name' => 'randomLangChoice',
+                'id' => 'randomLangChoice',
+                'languages' => $langArray,
+                'initialSelection' => '{{vm.lang}}',
+                /* @translators: placeholder of language dropdown
+                                 in homepage random sentence block */
+                'placeholder' => __('All languages'),
+                'onSelectedLanguageChange' => 'vm.lang = language.code',
+            ]);
+            ?>
+            </span>
+
+            <md-button class="md-icon-button" id="showRandom" ng-click="vm.showAnother(vm.lang)">
+                <md-icon>refresh</md-icon>
+                <md-tooltip><?= __('show another ') ?></md-tooltip>
+            </md-button>
+        </div>
     </div>
 </md-toolbar>
+</div>

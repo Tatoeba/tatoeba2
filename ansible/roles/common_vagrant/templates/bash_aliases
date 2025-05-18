@@ -1,0 +1,2 @@
+alias crontab='crontab -i'
+alias sphinxql="MYSQL_HISTFILE=~/.sphinxql_history mysql -P9306 --protocol=tcp --prompt='sphinxQL> '"

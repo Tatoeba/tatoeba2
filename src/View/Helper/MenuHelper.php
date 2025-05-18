@@ -97,7 +97,6 @@ class MenuHelper extends AppHelper
             echo '</a>';
 
         } else if ($isLogged) {
-            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
             ?>
             <a><?php echo $translateButton;?></a>
            <?php
@@ -209,6 +208,7 @@ class MenuHelper extends AppHelper
             $type = 'add';
             if($withRemoveAndUndo){
                 $image = 'undo';
+                /* @translators: button after removing a favorite from the My favorites page (verb) */
                 $tooltip = __('Undo');
             } else {
                 $image = 'favorite-add';
@@ -286,6 +286,7 @@ class MenuHelper extends AppHelper
         ));
 
         echo $this->Form->button(
+            /* @translators: button to link translations (verb) */
             __('Link'),
             array(
                 'type' => 'button',
@@ -311,7 +312,7 @@ class MenuHelper extends AppHelper
     {
         $useMostRecentList = CurrentUser::get('settings.use_most_recent_list');
         if ($useMostRecentList != null && $useMostRecentList) {
-            $mostRecentList = $this->request->getSession()->read('most_recent_list');
+            $mostRecentList = $this->getView()->get('most_recent_list');
         } else {
             $mostRecentList = null;
         }
@@ -380,12 +381,14 @@ class MenuHelper extends AppHelper
                 'id' => 'listSelection'.$sentenceId,
                 "value" => $mostRecentList,
                 "class" => "listOfLists",
-                "empty" => false
+                "empty" => false,
+                "ng-non-bindable" => "",
             )
         );
 
         // ok button
         echo $this->Form->button(
+            /* @translators: submit button to add a sentence to a list from the sentence block */
             __('OK'),
             array(
                 'type' => 'button',
@@ -427,6 +430,7 @@ class MenuHelper extends AppHelper
 
         } else {
 
+            /* @translators: delete button on sentence menu (verb) */
             $title = __('Delete');
             $liContent = $this->Html->link(
                 $deleteImage,
@@ -477,6 +481,7 @@ class MenuHelper extends AppHelper
                 'a', $editImage, array('class' => 'disabled')
             );
         } else {
+            /* @translators: edit button on sentence menu (verb) */
             $title = __('Edit');
             $liContent = $editImage;
         }
@@ -606,7 +611,8 @@ class MenuHelper extends AppHelper
         $chineseScript = null,
         $canTranslate,
         $langFilter = 'und',
-        $hasAudio = true
+        $hasAudio = true,
+        $isFavorited
     ) {
         ?>
         <ul class="menu">
@@ -627,7 +633,6 @@ class MenuHelper extends AppHelper
         }
 
         // Favorite
-        $isFavorited = CurrentUser::hasFavorited($sentenceId);
         $this->favoriteButton($sentenceId, $isFavorited, $isLogged);
 
         // Add to list

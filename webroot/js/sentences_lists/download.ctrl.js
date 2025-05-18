@@ -12,7 +12,7 @@
             $scope.preparingDownload = false;
         }
 
-        $scope.tryToDownloadList = function() {
+        $scope.tryToDownloadList = function(waitForMs = 5000) {
             $timeout.cancel($scope.tryAgainPromise);
             $scope.tryAgainPromise = $timeout(function() {
                 $http.get(rootUrl + "/exports/get/" + $scope.export.id)
@@ -31,7 +31,7 @@
                         $scope.preparingDownload = false;
                     }
                 );
-            }, 5000);
+            }, waitForMs);
         }
 
         $scope.addListExport = function (listId) {
@@ -39,20 +39,21 @@
             $scope.preparingDownload = true;
             var fields = [];
             var options = {'type': 'list', 'list_id': listId};
-            if ($scope.showid) {
+            if ($scope.format === 'tsv') {
                 fields.push('id');
             }
             fields.push('text');
-            if ($scope.trans_lang != 'none') {
+            if ($scope.trans_lang) {
                 fields.push('trans_text');
-                options['trans_lang'] = $scope.trans_lang;
+                options['trans_lang'] = $scope.trans_lang.code;
             }
             options['fields'] = fields;
+            options['format'] = $scope.format;
             $http.post(rootUrl + "/exports/add", options)
                  .then(
                     function(response) {
                         $scope.export = response.data.export;
-                        $scope.tryToDownloadList();
+                        $scope.tryToDownloadList(0);
                     },
                     function(errorResponse) {
                         $scope.preparingDownload = false;

@@ -31,7 +31,7 @@
         function remove(id) {
             $http.get(get_tatoeba_root_url() + '/vocabulary/remove/' + id).then(
                 function(response) {
-                    $('#vocabulary_' + id).hide();
+                    angular.element(document.querySelector('#vocabulary_' + id)).remove();
                 }
             );
         }

@@ -30,22 +30,27 @@ $username = h($username);
 if ($userExists) {
     $numberOfSentences = $this->Paginator->param('count');
 
-    $title = format(__("{user}'s favorite sentences"), array('user' => $username));
+    if (strlen($filter) > 0) {
+        $title = format(__("{user}'s favorite sentences matching “{filter}”"), array('user' => $username, 'filter' => $filter));
+    } else {
+        $title = format(__("{user}'s favorite sentences"), array('user' => $username));
+    }
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
 }
 
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
-?>
 
-<div id="annexe_content">
-    <?php
-        echo $this->element(
-        'users_menu',
-        array('username' => $username)
+$this->Html->script('/js/favorites.add.js', ['block' => 'scriptBottom']);
+
+// Sidebar menu
+if ($userExists) {
+    echo $this->Html->div(
+        null,
+        $this->element('users_menu', array('username' => $username)),
+        ['id' => "annexe_content"]
     );
-    ?>
-</div>
+} ?>
 
 <div id="main_content">
     <section class="md-whiteframe-1dp" id="favorites-list" data-success="<?php echo __("Favorite successfully removed."); ?>" >
@@ -65,7 +70,29 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         <md-content layout-padding>
         <?php
-        if ($numberOfSentences > 0) {
+        if ($numberOfSentences > 0 || !empty($filter)) {
+
+            echo $this->Form->create('FavoritesSearch', ['type' => 'get']);
+            ?>
+            <div layout="row" layout-align="center start">
+                <md-input-container flex>
+                    <?php
+                    echo $this->Form->input('filter', [
+                        'label' => __('Sentence text:'),
+                        'lang' => '',
+                        'dir' => 'auto',
+                        'value' => $this->safeForAngular($filter),
+                    ]);
+                    ?>
+                </md-input-container>
+                <md-button type="submit" class="search-submit-button md-raised">
+                    <md-icon>search</md-icon>
+                    <?php /* @translators: search button in favorites page (verb) */ ?>
+                    <?= __x('button', 'Search') ?>
+                </md-button>
+            </div>
+            <?php
+            echo $this->Form->end();
 
             $this->Pagination->display();
 
@@ -77,7 +104,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 if (empty($favorite->sentence->text)) {
                     $sentenceId = $favorite->favorite_id;
                     $linkToSentence = $this->Html->link(
-                        '#'.$sentenceId,
+                        $this->Pages->formatSentenceIdWithSharp($sentenceId),
                         array(
                             'controller' => 'sentences',
                             'action' => 'show',
@@ -110,6 +137,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 }
             }
             $this->Pagination->display();
+
+            if ($numberOfSentences == 0) {
+                echo format(__('This user does not have any favorites matching “{filter}”.'), compact('filter'));
+            }
             ?>
             </md-content>
             <?php

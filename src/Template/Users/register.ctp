@@ -36,6 +36,7 @@ use Cake\Core\Configure;
  * @link     https://tatoeba.org
  */
 
+/* @translators: title of the Register page (verb) */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));
 
 $this->Html->script('users/register.ctrl.js', ['block' => 'scriptBottom']);
@@ -46,13 +47,13 @@ echo $this->Form->create($user, array(
     'name' => 'registrationForm',
     'url' => array('action' => 'register'),
     'class' => 'md-whiteframe-1dp',
-    'ng-controller' => 'UsersRegisterController as ctrl'
+    'ng-controller' => 'UsersRegisterController as ctrl',
+    'ng-submit' => 'registrationForm.$valid || $event.preventDefault()',
 ));
 
-$lang = Configure::read('Config.language');
 $label = format(
     __('I accept the <a href="{}">terms of use</a>'),
-    $this->Url->build(array("controller"=>"pages", "action"=>"terms_of_use", "#"=>$lang))
+    $this->Url->build(array("controller"=>"pages", "action"=>"terms_of_use"))
 );
 ?>
 <h2><?= __('Register'); ?></h2>
@@ -160,7 +161,6 @@ $label = format(
         <label for="registrationEmail"><?php echo __('Email address'); ?></label>
         <md-icon>email</md-icon>
         <?php
-        $pattern = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/';
         echo $this->Form->input(
             'email',
             array(
@@ -170,7 +170,6 @@ $label = format(
                 'ng-model' => 'user.email',
                 'server-error' => $this->Form->isFieldError('email'),
                 'required' => true,
-                'ng-pattern' => $pattern,
                 'unique-email' => '',
                 'value' => $this->Form->getSourceValue('email'),
                 'error' => false,
@@ -186,7 +185,7 @@ $label = format(
             <div ng-message="required">
                 <?= __('Field required') ?>
             </div>
-            <div ng-message="pattern">
+            <div ng-message="email">
                 <?= __('Invalid email address') ?>
             </div>
             <div ng-message="uniqueEmail">
@@ -201,23 +200,49 @@ $label = format(
     </md-input-container>
 </div>
 
+<div layout="row" layout-align="center center" ng-show="confirm">
+    <md-input-container class="md-icon-float md-icon-left md-block" flex>
+        <md-icon>email</md-icon>
+        <?php
+        echo $this->Form->input(
+            'confirm',
+            array(
+/* @translators: This is a simple countermeasure against spam bots trying to
+   automatically register on Tatoeba. There is an empty field on the
+   registration page, but you won't see it because it is purposely hidden.
+   As a result, a regular user will never fill out this field. Spam bots on
+   the other hand don't know which part of the page is visible or not and are
+   likely to carelessly fill all the fields. If anything is written in that
+   hidden field, registration won't work. This strategy is called a honeypot.
+   However, visually-impaired people browsing the page using a screen reader
+   may notice the presence of the hidden field. To help them, we leave a hidden
+   text explaining what to do with that field. This text is what you have to
+   translate here. */
+                'label' => __('Leave this blank'),
+                'type' => 'email',
+                'required' => false,
+            )
+        );
+        ?>
+    </md-input-container>
+</div>
+
 <div id="native-language" layout="column">
     <div class="input" layout="row">
         <md-icon>language</md-icon>
         <label for="UserLanguage" flex><?= __('Native language:'); ?></label>
         <?php
-        $languagesList = $this->Languages->languagesArrayWithNone(false);
-        $language = $language ? $language : 'none';
-        echo $this->Form->select(
-            'language',
-            $languagesList,
+        $languagesList = $this->Languages->onlyLanguagesArray();
+        echo $this->element(
+            'language_dropdown',
             array(
-                'class' => 'language-selector',
-                'empty' => false,
-                'ng-model' => 'user.language',
-                'value' => $language,
-            ),
-            false
+                'name' => 'language',
+                'languages' => $languagesList,
+                /* @translators: native language dropdown placeholder in Register page */
+                'placeholder' => __('None'),
+                'initialSelection' => $language,
+                'onSelectedLanguageChange' => 'user.language = language.code',
+            )
         );
         ?>
     </div>
@@ -229,47 +254,6 @@ $label = format(
         )
     );
     ?>
-</div>
-
-<div id="human-check" layout="column">
-    <div layout="row" layout-align="center start">
-        <md-icon>verified_user</md-icon>
-        <div class="title" flex>
-            <?= __('We need to make sure you are human.'); ?>
-        </div>
-    </div>
-
-    <div class="instructions">
-        <?= __('What are the first five characters of your email address?'); ?>
-    </div>
-
-    <md-input-container class="md-block">
-        <?php
-        echo $this->Form->input(
-            'quiz',
-            array(
-                'label' => __('Answer'),
-                'ng-model' => 'registration.quizAnswer',
-                'required' => true,
-                'server-error' => !$quizOk,
-                'value' => $this->Form->getSourceValue('quiz'),
-            )
-        );
-        ?>
-        <div ng-messages="registrationForm.quiz.$error">
-            <div ng-message="serverError">
-                <?= __('Wrong answer to the question.') ?>
-            </div>
-            <div ng-message="required">
-                <?= __('Field required') ?>
-            </div>
-        </div>
-        <?php
-        echo $this->Html->div('hint',
-            __('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.')
-        );
-        ?>
-    </md-input-container>
 </div>
 
 <md-input-container class="md-block">
@@ -296,6 +280,7 @@ $label = format(
 
 <div layout="column">
     <md-button type="submit" class="md-raised md-primary">
+        <?php /* @translators: button to submit registration form (verb) */ ?>
         <?php echo __('Register'); ?>
     </md-button>
 </div>

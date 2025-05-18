@@ -19,27 +19,11 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use App\Model\Entity\HashTrait;
 
 class Vocable extends Entity
 {
-    use HashTrait;
-
-    public function __construct($properties = [], $options = []) {
-        parent::__construct($properties, $options);
-        $hash = $properties['hash'] ?? null;
-        $this->initializeHash($hash, ['lang', 'text']);
-    }
-
-    protected function _setLang($value)
-    {
-        $this->updateHash();
-        return $value;
-    }
-
     protected function _setText($value)
     {
-        $this->updateHash();
         return trim($value);
     }
 }

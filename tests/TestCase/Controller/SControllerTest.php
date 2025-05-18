@@ -18,15 +18,17 @@ class SControllerTest extends IntegrationTestCase
         'app.transcriptions',
         'app.users',
         'app.users_languages',
+        'app.users_sentences',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/s/s/1', null, true ],
-            [ '/eng/s/s/1', 'contributor', true ],
-            [ '/eng/s/s/99999999999999', null, 404 ],
-            [ '/eng/s/s/99999999999999', 'contributor', 404 ],
+            [ '/en/s/s/1', null, true ],
+            [ '/en/s/s/1', 'contributor', true ],
+            [ '/en/s/s/99999999999999', null, 404 ],
+            [ '/en/s/s/99999999999999', 'contributor', 404 ],
         ];
     }
 

@@ -222,7 +222,10 @@ class PagesController extends AppController
         if (is_null($randomId)) {
             $this->set('searchProblem', true);
         } else {
-            $randomSentence = $this->Sentences->getSentenceWithId($randomId);
+            $randomSentence = $this->Sentences->getSentenceWith(
+                $randomId,
+                ['translations' => true]
+            );
             $this->set('random', $randomSentence);
         }
 
@@ -330,8 +333,10 @@ class PagesController extends AppController
      */
     public function faq()
     {
+        $proto = $this->getRequest()->getUri()->getScheme();
+        $this->loadModel('WikiArticles');
         $this->redirect(
-            "http://wiki.tatoeba.org/articles/show/faq",
+            $proto.':'.$this->WikiArticles->getWikiLink('faq'),
             301
         );
     }

@@ -24,9 +24,7 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-?>
 
-<?php
 if (isset($translation)) {
     $type = 'directTranslation';
     $isEditable = true;

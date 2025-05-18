@@ -36,9 +36,6 @@
 #sentencesAdded {
     padding: 10px;
 }
-#sentencesAdded .sentences_set {
-    margin: 0 0 20px 0;
-}
 
 .sentences_duplicate_icon {
     display: inline-block;
@@ -47,3 +44,18 @@
     vertical-align: middle;
 }
 
+.sentence-and-translations,
+.sentences_set {
+    margin: 20px 10px;
+    background: #fff;
+}
+#main_content{
+    margin-right:0;
+}
+.sentences_set {
+    width: 610px;
+    margin: 20px auto;
+}
+.sentence .content.column {
+    width: 500px;
+}

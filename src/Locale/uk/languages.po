@@ -9,1412 +9,1716 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 05:32+0000\n"
-"PO-Revision-Date: 2020-02-18 12:35+0000\n"
-"Last-Translator: Denis Tishchenko <deniko76@gmail.com>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
+"POT-Creation-Date: 2025-02-12 02:47+0000\n"
+"PO-Revision-Date: 2016-06-11 09:16+0000\n"
+"Last-Translator: Denis Tishchenko <deniko76@gmail.com>, 2020\n"
+"Language-Team: Ukrainian (http://app.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L275
 msgid "Arabic"
 msgstr "; alone: Арабська; nom: арабська; ins: арабською; pl: арабські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L276
 msgid "English"
 msgstr "; alone: Англійська; nom: англійська; ins: англійською; pl: англійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L277
 msgid "Japanese"
 msgstr "; alone: Японська; nom: японська; ins: японською; pl: японські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L278
 msgid "French"
 msgstr "; alone: Французька; nom: французька; ins: французькою; pl: французькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L279
 msgid "German"
 msgstr "; alone: Німецька; nom: німецька; ins: німецькою; pl: німецькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L280
 msgid "Spanish"
 msgstr "; alone: Іспанська; nom: іспанська; ins: іспанською; pl: іспанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L238
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L281
 msgid "Italian"
 msgstr "; alone: Італійська; nom: італійська; ins: італійською; pl: італійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L282
 msgid "Vietnamese"
 msgstr "; alone: В'єтнамська; nom: в'єтнамська; ins: в'єтнамською; pl: в'єтнамські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L283
 msgid "Russian"
 msgstr "; alone: Російська; nom: російська; ins: російською; pl: російські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L241
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L284
 msgid "Mandarin Chinese"
 msgstr "; alone: Китайська; nom: китайська; ins: китайською; pl: китайські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L285
 msgid "Korean"
 msgstr "; alone: Корейська; nom: корейська; ins: корейською; pl: корейські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L286
 msgid "Dutch"
 msgstr "; alone: Нідерландська; nom: нідерландська; ins: нідерландською; pl: нідерландські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L287
 msgid "Hebrew"
 msgstr "; alone: Іврит; nom: іврит; ins: івритом; pl: івритські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L288
 msgid "Indonesian"
 msgstr "; alone: Індонезійська; nom: індонезійська; ins: індонезійською; pl: індонезійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L289
 msgid "Portuguese"
 msgstr "; alone: Португальська; nom: португальська; ins: португальською; pl: португальські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L290
 msgid "Finnish"
 msgstr "; alone: Фінська; nom: фінська; ins: фінською; pl: фінські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L248
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L291
 msgid "Bulgarian"
 msgstr "; alone: Болгарська; nom: болгарська; ins: болгарською; pl: болгарські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L292
 msgid "Ukrainian"
 msgstr "; alone: Українська; nom: українська; ins: українською; pl: українські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L293
 msgid "Czech"
 msgstr "; alone: Чеська; nom: чеська; ins: чеською; pl: чеські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L294
 msgid "Esperanto"
 msgstr "Есперанто"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L295
 msgid "Greek"
 msgstr "; alone: Грецька; nom: грецька; ins: грецькою; pl: грецькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L296
 msgid "Turkish"
 msgstr "; alone: Турецька; nom: турецька; ins: турецькою; pl: турецькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L254
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L297
 msgid "Swedish"
 msgstr "; alone: Шведська; nom: шведська; ins: шведською; pl: шведські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L298
 msgid "Norwegian Bokmål"
 msgstr "норвезька (букмол)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L299
 msgid "Malay"
 msgstr "; alone: Малайська; nom: малайська; ins: малайською; pl: малайські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L257
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L300
 msgid "Estonian"
 msgstr "; alone: Естонська; nom: естонська; ins: естонською; pl: естонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L301
 msgid "Georgian"
 msgstr "; alone: Грузинська; nom: грузинська; ins: грузинською; pl: грузинські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L259
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L302
 msgid "Polish"
 msgstr "; alone: Польська; nom: польська; ins: польською; pl: польські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L260
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L303
 msgid "Swahili"
 msgstr "Суахілі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L304
 msgid "Latin"
 msgstr "; alone: Латина; nom: латина; ins: латиною; pl: латинські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L263
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L306
 msgid "Shanghainese"
 msgstr "; alone: Шанхайська; nom: шанхайська; ins: шанхайською; pl: шанхайські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L307
 msgid "Egyptian Arabic"
 msgstr "Єгипетська арабська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L308
 msgid "Belarusian"
 msgstr "; alone: Білоруська; nom: білоруська; ins: білоруською; pl: білоруські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L309
 msgid "Hungarian"
 msgstr "; alone: Угорська; nom: угорська; ins: угорською; pl: угорські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L310
 msgid "Icelandic"
 msgstr "; alone: Ісландська; nom: ісландська; ins: ісландською; pl: ісландські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L311
 msgid "Albanian"
 msgstr "; alone: Албанська; nom: албанська; ins: албанською; pl: албанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L312
 msgid "Cantonese"
 msgstr "; alone: Кантонська; nom: кантонська; ins: кантонською; pl: кантонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L270
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L313
 msgid "Afrikaans"
 msgstr "Африкаанс"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L271
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L314
 msgid "Faroese"
 msgstr "; alone: Фарерська; nom: фарерська; ins: фарерською; pl: фарерські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L315
 msgid "Frisian"
 msgstr "; alone: Фризька; nom: фризька; ins: фризькою; pl: фризькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L273
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L316
 msgid "Breton"
 msgstr "; alone: Бретонська; nom: бретонська; ins: бретонською; pl: бретонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L274
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L317
 msgid "Romanian"
 msgstr "; alone: Румунська; nom: румунська; ins: румунською; pl: румунські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L318
 msgid "Uyghur"
 msgstr "; alone: Уйгурська; nom: уйгурська; ins: уйгурською; pl: уйгурські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L319
 msgid "Uzbek"
 msgstr "; alone: Узбецька; nom: узбецька; ins: узбецькою; pl: узбецькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L320
 msgid "Norwegian Nynorsk"
 msgstr "норвезька (нюношк)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L321
 msgid "Serbian"
 msgstr "; alone: Сербська; nom: сербська; ins: сербською; pl: сербські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L322
 msgid "Tatar"
 msgstr "; alone: Татарська; nom: татарська; ins: татарською; pl: татарські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L280
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L323
 msgid "Yiddish"
 msgstr "Ідиш"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L324
 msgid "Persian"
 msgstr "; alone: Перська; nom: перська; ins: перською; pl: перські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L282
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L325
 msgid "Min Nan Chinese"
 msgstr "; alone: Південноміньська; nom: південноміньська; ins: південноміньською; pl: південноміньські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L283
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L326
 msgid "Basque"
 msgstr "; alone: Баскська; nom: баскська; ins: баскською; pl: баскські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L327
 msgid "Slovak"
 msgstr "; alone: Словацька; nom: словацька; ins: словацькою; pl: словацькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L328
 msgid "Danish"
 msgstr "; alone: Данська; nom: данська; ins: данською; pl: данські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L286
-msgid "Armenian"
-msgstr "; alone: Вірменська; nom: вірменська; ins: вірменською; pl: вірменські"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L329
+msgid "Eastern Armenian"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L330
 msgid "Iraqi Arabic"
 msgstr "Іракська арабська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L331
 msgid "Sanskrit"
 msgstr "; alone: Санскрит; nom: санскрит; ins: санскритом; pl: санскритські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L289
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L332
 msgid "Urdu"
 msgstr "Урду"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L333
 msgid "Hindi"
 msgstr "Гінді"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L291
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L334
 msgid "Bengali"
 msgstr "; alone: Бенгальська; nom: бенгальська; ins: бенгальською; pl: бенгальські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L335
 msgid "CycL"
 msgstr "CycL"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L336
 msgid "Catalan"
 msgstr "; alone: Каталонська; nom: каталонська; ins: каталонською; pl: каталонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L337
 msgid "Kazakh"
 msgstr "; alone: Казахська; nom: казахська; ins: казахською; pl: казахські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L338
 msgid "Latvian"
 msgstr "; alone: Латиська; nom: латиська; ins: латиською; pl: латиські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L339
 msgid "Bosnian"
 msgstr "; alone: Боснійська; nom: боснійська; ins: боснійською; pl: боснійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L340
 msgid "Croatian"
 msgstr "; alone: Хорватська; nom: хорватська; ins: хорватською; pl: хорватські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L298
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L341
 msgid "Old East Slavic"
 msgstr "; alone: Давньосхіднослов'янська; nom: давньосхіднослов'янська; ins: давньосхіднослов'янською; pl: давньосхіднослов'янські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L299
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L342
 msgid "Chamorro"
 msgstr "Чаморро"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L343
 msgid "Tagalog"
 msgstr "; alone: Тагальська; nom: тагальська; ins: тагальською; pl: тагальські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L344
 msgid "Quechua"
 msgstr "Кечуа"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L302
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L345
 msgid "Mongolian"
 msgstr "; alone: Монгольська; nom: монгольська; ins: монгольською; pl: монгольські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L346
 msgid "Lithuanian"
 msgstr "; alone: Литовська; nom: литовська; ins: литовською; pl: литовські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L347
 msgid "Galician"
 msgstr "; alone: Галісійська; nom: галісійська; ins: галісійською; pl: галісійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L348
 msgid "Irish"
 msgstr "; alone: Ірландська; nom: ірландська; ins: ірландською; pl: ірландські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L349
 msgid "Interlingua"
 msgstr "Інтерлінгва"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L307
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L350
 msgid "Lojban"
 msgstr "Ложбан"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L351
 msgid "Toki Pona"
 msgstr "Токі пона"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L352
 msgid "Ainu"
 msgstr "; alone: Айнська; nom: айнська; ins: айнською; pl: айнські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L310
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L353
 msgid "Sicilian"
 msgstr "; alone: Сицилійська; nom: сицилійська; ins: сицилійською; pl: сицилійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L311
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L354
 msgid "Malayalam"
 msgstr "Малаялам"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L355
 msgid "Low German (Low Saxon)"
-msgstr ""
+msgstr "; alone: Нижньонімецька; nom: нижньонімецька; ins: нижньонімецькою; pl: нижньонімецькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L313
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L356
 msgid "Klingon"
 msgstr "; alone: Клінгонська; nom: клінгонська; ins: клінгонською; pl: клінгонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L357
 msgid "Slovenian"
 msgstr "; alone: Словенська; nom: словенська; ins: словенською; pl: словенські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L358
 msgid "Thai"
 msgstr "; alone: Тайська; nom: тайська; ins: тайською; pl: тайські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L359
 msgid "Literary Chinese"
 msgstr "Класична китайська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L317
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L360
 msgid "Ossetian"
 msgstr "; alone: Осетинська; nom: осетинська; ins: осетинською; pl: осетинські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L361
 msgid "Romansh"
 msgstr "; alone: Ретороманська; nom: ретороманська; ins: ретороманською; pl: ретороманські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L319
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L362
 msgid "Volapük"
 msgstr "Волапюк"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L363
 msgid "Scottish Gaelic"
 msgstr "Шотландська гельська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L364
 msgid "Ido"
 msgstr "Ідо"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L365
 msgid "Asturian"
 msgstr "; alone: Астурійська; nom: астурійська; ins: астурійською; pl: астурійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L323
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L366
 msgid "Interlingue"
 msgstr "Окциденталь"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L324
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L367
 msgid "Occitan"
 msgstr "; alone: Окситанська; nom: окситанська; ins: окситанською; pl: окситанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L325
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L368
 msgid "Kalmyk"
 msgstr "; alone: Калмицька; nom: калмицька; ins: калмицькою; pl: калмицькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L369
 msgid "Old English"
 msgstr "; alone: Давньоанглійська; nom: давньоанглійська; ins: давньоанглійською; pl: давньоанглійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L327
-msgid "Kurdish"
-msgstr "; alone: Курдська; nom: курдська; ins: курдською; pl: курдські"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L370
 msgid "Lower Sorbian"
 msgstr "; alone: Нижньолужицька; nom: нижньолужицька; ins: нижньолужицькою; pl: нижньолужицькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L371
 msgid "Upper Sorbian"
 msgstr "; alone: Верхньолужицька; nom: верхньолужицька; ins: верхньолужицькою; pl: верхньолужицькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L330
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L372
 msgid "Kölsch"
 msgstr "; alone: Кельнська; nom: кельнська; ins: кельнською; pl: кельнські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L373
 msgid "Welsh"
 msgstr "; alone: Валлійська; nom: валлійська; ins: валлійською; pl: валлійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L374
 msgid "Ewe"
 msgstr "Еве"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L375
 msgid "Sindarin"
 msgstr "Синдарин"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L376
 msgid "Telugu"
 msgstr "Телугу"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L377
 msgid "Tok Pisin"
 msgstr "Ток-пісін"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L378
 msgid "Quenya"
 msgstr "Квен'я"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L379
 msgid "Novial"
 msgstr "Новіаль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L338
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L380
 msgid "Maori"
 msgstr "Маорі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L381
 msgid "Ladin"
 msgstr "; alone: Ладинська; nom: ладинська; ins: ладинською; pl: ладинські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L382
 msgid "Berber"
 msgstr "; alone: Берберська; nom: берберська; ins: берберською; pl: берберські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L341
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L383
 msgid "Xhosa"
 msgstr "Коса"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L384
 msgid "Punjabi (Western)"
 msgstr "Панджабі (західна)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L385
 msgid "Malagasy"
 msgstr "; alone: Малагасійська; nom: малагасійська; ins: малагасійською; pl: малагасійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L386
 msgid "Guarani"
 msgstr "Гуарані"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L387
 msgid "Ladino"
 msgstr "Ладіно"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L388
 msgid "Piedmontese"
 msgstr "; alone: П'ємонтська; nom: п'ємонтська; ins: п'ємонтською; pl: п'ємонтські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L389
 msgid "Kotava"
 msgstr "Котава"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L390
 msgid "Marathi"
 msgstr "Маратхі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L349
-msgid "Old Tupi"
-msgstr "Стара мова Тупі"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L391
+msgid "Tupinambá"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L350
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L392
 msgid "Tajik"
 msgstr "; alone: Таджицька; nom: таджицька; ins: таджицькою; pl: таджицькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L351
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L393
 msgid "Old Prussian"
 msgstr "; alone: Прусська; nom: прусська; ins: прусською; pl: прусські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L352
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L394
 msgid "Nepali"
 msgstr "; alone: Непальська; nom: непальська; ins: непальською; pl: непальські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L395
 msgid "Maltese"
 msgstr "; alone: Мальтійська; nom: мальтійська; ins: мальтійською; pl: мальтійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L396
 msgid "Chukchi"
 msgstr "; alone: Чукотська; nom: чукотська; ins: чукотською; pl: чукотські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L355
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L397
 msgid "Cornish"
 msgstr "; alone: Корнська; nom: корнська; ins: корнською; pl: корнські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L398
 msgid "Azerbaijani"
 msgstr "; alone: Азербайджанська; nom: азербайджанська; ins: азербайджанською; pl: азербайджанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L399
 msgid "Khmer"
 msgstr "; alone: Кхмерська; nom: кхмерська; ins: кхмерською; pl: кхмерські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L400
 msgid "Lao"
 msgstr "; alone: Лаоська; nom: лаоська; ins: лаоською; pl: лаоські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L401
 msgid "Tibetan"
 msgstr "; alone: Тибетська; nom: тибетська; ins: тибетською; pl: тибетські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L402
 msgid "Hiligaynon"
 msgstr "Хілігайнон"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L403
 msgid "Algerian Arabic"
 msgstr "Алжирська арабська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L404
 msgid "Picard"
 msgstr "; alone: Пікардійська; nom: пікардійська; ins: пікардійською; pl: пікардійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L405
 msgid "Ancient Greek"
 msgstr "; alone: Давньогрецька; nom: давньогрецька; ins: давньогрецькою; pl: давньогрецькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L406
 msgid "Amharic"
 msgstr "; alone: Амхарська; nom: амхарська; ins: амхарською; pl: амхарські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L365
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L407
 msgid "Awadhi"
 msgstr "Авадхі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L366
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L408
 msgid "Bhojpuri"
 msgstr "Бходжпурі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L409
 msgid "Chavacano"
 msgstr "Чавакано"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L410
 msgid "Middle English"
 msgstr "; alone: Середньоанглійська; nom: середньоанглійська; ins: середньоанглійською; pl: середньоанглійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L411
 msgid "Middle French"
 msgstr "; alone: Середньофранцузька; nom: середньофранцузька; ins: середньофранцузькою; pl: середньофранцузькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L412
 msgid "Haitian Creole"
 msgstr "Гаїтянська креольська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L413
 msgid "Juhuri (Judeo-Tat)"
 msgstr "Джухурі (гірсько-єврейська)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L372
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L414
 msgid "Greenlandic"
 msgstr "; alone: Ґренландська; nom: ґренландська; ins: ґренландською; pl: ґренландські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L415
 msgid "Meadow Mari"
 msgstr "; alone: Марійська; nom: марійська; ins: марійською; pl: марійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L416
 msgid "Nahuatl"
 msgstr "Науатль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L417
 msgid "Pennsylvania German"
 msgstr "; alone: Пенсильвансько-німецька; nom: пенсильвансько-німецька; ins: пенсильвансько-німецькою; pl: пенсильвансько-німецькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L376
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L418
 msgid "Sinhala"
 msgstr "; alone: Сингальська; nom: сингальська; ins: сингальською; pl: сингальські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L419
 msgid "Turkmen"
 msgstr "; alone: Туркменська; nom: туркменська; ins: туркменською; pl: туркменські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L378
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L420
 msgid "Walloon"
 msgstr "; alone: Валлонська; nom: валлонська; ins: валлонською; pl: валлонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L421
 msgid "Bashkir"
 msgstr "; alone: Башкирська; nom: башкирська; ins: башкирською; pl: башкирські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L380
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L422
 msgid "Hausa"
 msgstr "Хауса"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L423
 msgid "Luxembourgish"
 msgstr "; alone: Люксембурзька; nom: люксембурзька; ins: люксембурзькою; pl: люксембурзькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L424
 msgid "Mambae"
 msgstr "Мамбаі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L383
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L425
 msgid "Somali"
 msgstr "; alone: Сомалійська; nom: сомалійська; ins: сомалійською; pl: сомалійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L426
 msgid "Zulu"
 msgstr "Зулу"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L427
 msgid "Hawaiian"
 msgstr "; alone: Гавайська; nom: гавайська; ins: гавайською; pl: гавайські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L428
 msgid "Kyrgyz"
 msgstr "; alone: Киргизька; nom: киргизька; ins: киргизькою; pl: киргизькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L429
 msgid "Macedonian"
 msgstr "; alone: Македонська; nom: македонська; ins: македонською; pl: македонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L430
 msgid "Hill Mari"
 msgstr "; alone: Гірськомарійська; nom: гірськомарійська; ins: гірськомарійською; pl: гірськомарійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L431
 msgid "Pipil"
 msgstr "Піпіль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L432
 msgid "Yoruba"
 msgstr "Йоруба"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L391
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L433
 msgid "Kinyarwanda"
 msgstr "; alone: Руандійська; nom: руандійська; ins: руандійською; pl: руандійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L434
 msgid "Shuswap"
 msgstr "Шусвап"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L435
 msgid "Chuvash"
 msgstr "; alone: Чувашська; nom: чувашська; ins: чувашською; pl: чувашські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L436
 msgid "Lakota"
 msgstr "Лакота"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L437
 msgid "Ottoman Turkish"
 msgstr "; alone: Османська; nom: османська; ins: османською; pl: османські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L438
 msgid "Shona"
 msgstr "; alone: Шонська; nom: шонська; ins: шонською; pl: шонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L397
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L439
 msgid "Mon"
 msgstr "; alone: Монська; nom: монська; ins: монською; pl: монські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L440
 msgid "Nogai"
 msgstr "; alone: Ногайська; nom: ногайська; ins: ногайською; pl: ногайські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L441
 msgid "Yakut"
 msgstr "; alone: Якутська; nom: якутська; ins: якутською; pl: якутські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L442
 msgid "Abkhaz"
 msgstr "; alone: Абхазька; nom: абхазька; ins: абхазькою; pl: абхазькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L443
 msgid "Tetun"
 msgstr "Тетум"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L444
 msgid "Tamil"
 msgstr "; alone: Тамільська; nom: тамільська; ins: тамільською; pl: тамільські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L445
 msgid "Udmurt"
 msgstr "; alone: Удмуртська; nom: удмуртська; ins: удмуртською; pl: удмуртські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L404
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L446
 msgid "Kumyk"
 msgstr "; alone: Кумицька; nom: кумицька; ins: кумицькою; pl: кумицькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L447
 msgid "Crimean Tatar"
 msgstr "; alone: Кримськотатарська; nom: кримськотатарська; ins: кримськотатарською; pl: кримськотатарські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L448
 msgid "Chinyanja"
 msgstr "Ньянджа"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L449
 msgid "Livonian"
 msgstr "; alone: Лівонська; nom: лівонська; ins: лівонською; pl: лівонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L450
 msgid "Navajo"
 msgstr "Навахо"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L409
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L451
 msgid "Cherokee"
 msgstr "Черокі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L410
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L452
 msgid "Gujarati"
 msgstr "Гуджараті"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L411
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L453
 msgid "Punjabi (Eastern)"
 msgstr "Панджабі (східна)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L412
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L454
 msgid "Khasi"
 msgstr "Кхасі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L413
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L455
 msgid "Javanese"
 msgstr "; alone: Яванська; nom: яванська; ins: яванською; pl: яванські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L456
 msgid "Zaza"
 msgstr "Зазакі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L457
 msgid "Emilian"
 msgstr "; alone: Емілійська; nom: емілійська; ins: емілійською; pl: емілійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L458
 msgid "Tigrinya"
 msgstr "Тигринья"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L459
 msgid "Northern Sami"
 msgstr "; alone: Північносаамська; nom: північносаамська; ins: північносаамською; pl: північносаамські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L460
 msgid "North Moluccan Malay"
 msgstr "Північна молуккська малайська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L419
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L461
 msgid "Kapampangan"
 msgstr "Пампанґо"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L420
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L462
 msgid "Central Dusun"
 msgstr "Центральна дусунська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L421
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L463
 msgid "Choctaw"
 msgstr "; alone: Чоктавська; nom: чоктавська; ins: чоктавською; pl: чоктавські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L464
 msgid "Coastal Kadazan"
 msgstr "Прибережна кадазанська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L465
 msgid "Samoan"
 msgstr "; alone: Самоанська; nom: самоанська; ins: самоанською; pl: самоанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L466
 msgid "Fijian"
 msgstr "; alone: Фіджійська; nom: фіджійська; ins: фіджійською; pl: фіджійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L467
 msgid "Wolof"
 msgstr "Волоф"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L426
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L468
 msgid "Chechen"
 msgstr "; alone: Чеченська; nom: чеченська; ins: чеченською; pl: чеченські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L469
 msgid "Sango"
 msgstr "Санго"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L428
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L470
 msgid "Fiji Hindi"
 msgstr "Фіджійська гінді"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L429
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L471
 msgid "Tongan"
 msgstr "; alone: Тонганська; nom: тонганська; ins: тонганською; pl: тонганські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L472
 msgid "Ngeq "
 msgstr "Таой"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L431
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L473
 msgid "Kamba"
 msgstr "Камба"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L474
 msgid "Venetian"
 msgstr "; alone: Венеційська; nom: венеційська; ins: венеційською; pl: венеційські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L475
 msgid "Burmese"
 msgstr "; alone: Бірманська; nom: бірманська; ins: бірманською; pl: бірманські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L434
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L476
 msgid "Gilbertese"
 msgstr "Кірибаті"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L477
 msgid "Erzya"
 msgstr "; alone: Ерзянська; nom: ерзянська; ins: ерзянською; pl: ерзянські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L436
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L478
 msgid "Niuean"
 msgstr "Ніуе"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L437
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L479
 msgid "Võro"
 msgstr "Виро"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L480
 msgid "Manx"
 msgstr "; alone: Менська; nom: менська; ins: менською; pl: менські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L439
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L481
 msgid "Lingala"
 msgstr "Лінґала"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L440
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L482
 msgid "Lingua Franca Nova"
 msgstr "Лінгва франка-нова"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L483
 msgid "Pashto"
 msgstr "Пушту"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L442
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L484
 msgid "Khakas"
 msgstr "; alone: Хакаська; nom: хакаська; ins: хакаською; pl: хакаські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L485
 msgid "Dungan"
 msgstr "; alone: Дунганська; nom: дунганська; ins: дунганською; pl: дунганські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L444
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L486
 msgid "Friulian"
 msgstr "; alone: Фріульська; nom: фріульська; ins: фріульською; pl: фріульські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L445
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L487
 msgid "Marshallese"
 msgstr "; alone: Маршальська; nom: маршальська; ins: маршальською; pl: маршальські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L488
 msgid "Palatine German"
 msgstr "Пфальцська німецька"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L489
 msgid "Kannada"
 msgstr "Каннада"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L490
 msgid "Seychellois Creole"
 msgstr "Сейшельська креольська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L449
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L491
 msgid "Swiss German"
 msgstr "Швейцарська німецька"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L450
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L492
 msgid "Old Saxon"
 msgstr "; alone: Старонижньонімецька; nom: старонижньонімецька; ins: старонижньонімецькою; pl: старонижньонімецьські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L493
 msgid "Sumerian"
 msgstr "; alone: Шумерська; nom: шумерська; ins: шумерською; pl: шумерські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L452
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L494
 msgid "Scots"
 msgstr "Шотландська рівнинна"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L453
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L495
 msgid "Mohawk"
 msgstr "Могавк"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L496
 msgid "Cebuano"
 msgstr "; alone: Себуанська; nom: себуанська; ins: себуанською; pl: себуанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L497
 msgid "Lombard"
 msgstr "; alone: Ломбардська; nom: ломбардська; ins: ломбардською; pl: ломбардські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L498
 msgid "Tsonga"
 msgstr "Тсонга"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L457
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L499
 msgid "Buryat"
 msgstr "; alone: Бурятська; nom: бурятська; ins: бурятською; pl: бурятські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L458
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L500
 msgid "Aymara"
 msgstr "Аймара"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L459
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L501
 msgid "Ilocano"
 msgstr "Ілоко"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L502
 msgid "Karakalpak"
 msgstr "; alone: Каракалпацька; nom: каракалпацька; ins: каракалпацькою; pl: каракалпацькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L503
 msgid "Orizaba Nahuatl"
 msgstr "Орісабський науатль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L504
 msgid "Guerrero Nahuatl"
 msgstr "Геррерський науатль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L463
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L505
 msgid "Adyghe"
 msgstr "; alone: Адигейська; nom: адигейська; ins: адигейською; pl: адигейські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L464
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L506
 msgid "Bodo"
 msgstr "Бодо"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L507
 msgid "Gagauz"
 msgstr "; alone: Гагаузька; nom: гагаузька; ins: гагаузькою; pl: гагаузькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L466
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L508
 msgid "Romani"
 msgstr "; alone: Циганська; nom: циганська; ins: циганською; pl: циганські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L509
 msgid "Laz"
 msgstr "; alone: Лазська; nom: лазська; ins: лазською; pl: лазські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L510
 msgid "Pulaar"
 msgstr "Пулаар"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L469
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L511
 msgid "Umbundu"
 msgstr "Умбунду"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L470
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L512
 msgid "Tokelauan"
 msgstr "Токелау"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L513
 msgid "Southern Sotho"
 msgstr "Південна сото"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L472
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L514
 msgid "Southern Altai"
 msgstr "Південна алтайська "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L473
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L515
 msgid "Waray"
 msgstr "; alone: Варайська; nom: варайська; ins: варайською; pl: варайські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L516
 msgid "Sindhi"
 msgstr "Сіндхі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L517
 msgid "Setswana"
 msgstr "Сетсвана"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L518
 msgid "Sardinian"
 msgstr "; alone: Сардська; nom: сардська; ins: сардською; pl: сардські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L477
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L519
 msgid "Palauan"
 msgstr "; alone: Палауська; nom: палауська; ins: палауською; pl: палауські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L478
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L520
 msgid "Garhwali"
 msgstr "Ґархвалі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L479
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L521
 msgid "Ojibwe"
 msgstr "Оджибве"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L480
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L522
 msgid "Luganda"
 msgstr "Луганда"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L481
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L523
 msgid "Hakka Chinese"
 msgstr "; alone: Хаккаська; nom: хаккаська; ins: хаккаською; pl: хаккаські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L482
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L524
 msgid "Bambara"
 msgstr "Бамбара"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L483
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L525
 msgid "Aragonese"
 msgstr "; alone: Арагонська; nom: арагонська; ins: арагонською; pl: арагонські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L484
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L526
 msgid "Assamese"
 msgstr "; alone: Асамська; nom: асамська; ins: асамською; pl: асамські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L485
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L527
 msgid "Nigerian Fulfulde"
 msgstr "Нігерійська фульфульде"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L528
 msgid "Ho"
 msgstr "Хо"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L487
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L529
 msgid "Sundanese"
 msgstr "; alone: Сунданська; nom: сунданська; ins: сунданською; pl: сунданські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L488
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L530
 msgid "North Levantine Arabic"
 msgstr "Північнолевантійська арабська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L531
 msgid "Tuvinian"
 msgstr "; alone: Тувинська; nom: тувинська; ins: тувинською; pl: тувинські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L490
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L532
 msgid "Karachay-Balkar"
 msgstr "; alone: Карачаєво-балкарська; nom: карачаєво-балкарська; ins: карачаєво-балкарською; pl: карачаєво-балкарські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L491
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L533
 msgid "Papiamento"
 msgstr "Пап'яменто"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L492
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L534
 msgid "Old Norse"
 msgstr "; alone: Давньоскандинавська; nom: давньоскандинавська; ins: давньоскандинавською; pl: давньоскандинавські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L535
 msgid "Odia (Oriya)"
 msgstr "Орія"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L494
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L536
 msgid "Iban"
 msgstr "; alone: Ібанська; nom: ібанська; ins: ібанською; pl: ібанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L495
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L537
 msgid "Old Aramaic"
 msgstr "; alone: Староарамейська; nom: староарамейська; ins: староарамейською; pl: староарамейські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L496
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L538
 msgid "Moroccan Arabic"
 msgstr "Марокканська арабська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L497
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L539
 msgid "Cuyonon"
 msgstr "Куйонон"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L498
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L540
 msgid "Igbo"
 msgstr "Ігбо"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L499
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L541
 msgid "Kashubian"
 msgstr "; alone: Кашубська; nom: кашубська; ins: кашубською; pl: кашубські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L500
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L542
 msgid "Louisiana Creole"
 msgstr "Луізіанська креольська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L501
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L543
 msgid "Urhobo"
 msgstr "Урхобо"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L502
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L544
 msgid "Tagal Murut"
 msgstr "Таґол-мурут"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L545
 msgid "Moksha"
 msgstr "; alone: Мокшанська; nom: мокшанська; ins: мокшанською; pl: мокшанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L546
 msgid "Pangasinan"
 msgstr "; alone: Панґасінанська; nom: панґасінанська; ins: панґасінанською; pl: панґасінанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L505
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L547
 msgid "Corsican"
 msgstr "; alone: Корсиканська; nom: корсиканська; ins: корсиканською; pl: корсиканські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L506
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L548
 msgid "Hmong Njua (Green)"
 msgstr "Хмонг лен (зелена)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L507
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L549
 msgid "Tarifit"
 msgstr "; alone: Рифська; nom: рифська; ins: рифською; pl: рифські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L508
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L550
 msgid "Central Huasteca Nahuatl"
 msgstr "Центрально-уастекський науатль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L509
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L551
 msgid "Kekchi (Q'eqchi')"
 msgstr "Кекчі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L552
 msgid "Swazi"
 msgstr "Сваті"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L511
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L553
 msgid "Balinese"
 msgstr "; alone: Балійська; nom: балійська; ins: балійською; pl: балійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L512
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L554
 msgid "Assyrian Neo-Aramaic"
 msgstr "Ассирійська новоарамейська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L513
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L555
 msgid "Tuvaluan"
 msgstr "Тувалу"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L514
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L556
 msgid "Keningau Murut"
 msgstr "Кенінгау-мурут"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L515
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L557
 msgid "Baybayanon"
 msgstr "Байбаянон"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L516
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L558
 msgid "Morisyen"
 msgstr "Маврикійська креольська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L517
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L559
 msgid "Hmong Daw (White)"
 msgstr "Хмонг дау (біла)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L518
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L560
 msgid "Central Bikol"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L519
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L561
 msgid "Nauruan"
 msgstr "; alone: Науруанська; nom: науруанська; ins: науруанською; pl: науруанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L520
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L562
 msgid "Malay (Vernacular)"
 msgstr "Малайська вернакулярна"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L563
 msgid "Naga (Tangshang)"
 msgstr "Нага (тангшанг)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L522
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L564
 msgid "K'iche'"
 msgstr "Кіче"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L565
 msgid "Gulf Arabic"
-msgstr ""
+msgstr "Арабський діалект Перської затоки"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L524
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L566
 msgid "Minangkabau"
 msgstr "Мінангкабау"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L525
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L567
 msgid "Temuan"
 msgstr "; alone: Темуанська; nom: темуанська; ins: темуанською; pl: темуанські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L526
-msgid "Chinese (Jin)"
-msgstr "Китайська (цзінь)"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L568
+msgid "Jin Chinese"
+msgstr "Цзінська мова"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L527
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L569
 msgid "Maithili"
 msgstr "Майтхілі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L528
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L570
 msgid "Madurese"
 msgstr "; alone: Мадурська; nom: мадурська; ins: мадурською; pl: мадурські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L529
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L571
 msgid "Banjar"
 msgstr "; alone: Банджарська; nom: банджарська; ins: банджарською; pl: банджарські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L572
 msgid "Gothic"
 msgstr "; alone: Готська; nom: готська; ins: готською; pl: готські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L573
 msgid "Xiang Chinese"
 msgstr "; alone: Сянська; nom: сянська; ins: сянською; pl: сянські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L532
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L574
 msgid "Gan Chinese"
 msgstr "Ґань"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L533
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L575
 msgid "Bavarian"
 msgstr "; alone: Баварська; nom: баварська; ins: баварською; pl: баварські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L534
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L576
 msgid "Talossan"
 msgstr "; alone: Талоська; nom: талоська; ins: талоською; pl: талоські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L535
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L577
 msgid "Samogitian"
 msgstr "; alone: Жмудська; nom: жмудська; ins: жмудською; pl: жмудські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L536
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L578
 msgid "Láadan"
 msgstr "Лаадан"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L537
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L579
 msgid "Dutton World Speedwords"
 msgstr "Швидкопис Даттона"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L538
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L580
 msgid "Afrihili"
 msgstr "Афрігілі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L581
 msgid "Karelian"
 msgstr "; alone: Карельська; nom: карельська; ins: карельською; pl: карельські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L540
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L582
 msgid "Veps"
 msgstr "; alone: Вепська; nom: вепська; ins: вепською; pl: вепські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L541
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L583
 msgid "Rusyn"
 msgstr "; alone: Русинська; nom: русинська; ins: русинською; pl: русинські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L584
 msgid "Tahitian"
 msgstr "; alone: Таїтянська; nom: таїтянська; ins: таїтянською; pl: таїтянські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L585
 msgid "Talysh"
 msgstr "; alone: Талиська; nom: талиська; ins: талиською; pl: талиські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L544
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L586
 msgid "Mi'kmaq"
 msgstr "; alone: Мікмакська; nom: мікмакська; ins: мікмакською; pl: мікмакські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L587
 msgid "Extremaduran"
 msgstr "; alone: Естремадурська; nom: естремадурська; ins: естремадурською; pl: естремадурські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L546
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L588
 msgid "Swabian"
 msgstr "; alone: Швабська; nom: швабська; ins: швабською; pl: швабські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L547
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L589
 msgid "Ingrian"
 msgstr "; alone: Іжорська; nom: іжорська; ins: іжорською; pl: іжорські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L548
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L590
 msgid "Southern Sami"
 msgstr "; alone: Південно-саамська; nom: південно-саамська; ins: південно-саамською; pl: південно-саамські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L549
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L591
 msgid "Jamaican Patois"
 msgstr "; alone: Ямайське патуа; nom: ямайське патуа; ins: ямайським патуа; pl: ямайські патуа"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L550
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L592
 msgid "Mirandese"
 msgstr "; alone: Мірандська; nom: мірандська; ins: мірандською; pl: мірандські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L551
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L593
 msgid "Komi-Zyrian"
 msgstr "; alone: Комі-зирянська; nom: комі-зирянська; ins: комі-зирянською; pl: комі-зирянські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L552
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L594
 msgid "Central Mnong"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L553
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L595
 msgid "Komi-Permyak"
 msgstr "; alone: Комі-перм'яцька; nom: комі-перм'яцька; ins: комі-перм'яцькою; pl: комі-перм'яцькі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L596
 msgid "Inuktitut"
 msgstr "Інуктитут"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L555
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L597
 msgid "Kabyle"
 msgstr "; alone: Кабільська; nom: кабільська; ins: кабільською; pl: кабільські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L556
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L598
 msgid "Kirundi"
 msgstr "Кірунді"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L557
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L599
 msgid "Gheg Albanian"
 msgstr "гегський говір"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L558
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L600
 msgid "Aklanon"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L559
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L601
 msgid "Manchu"
 msgstr "; alone: Маньчжурська; nom: маньчжурська; ins: маньчжурською; pl: маньчжурські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L560
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L602
 msgid "Kashmiri"
 msgstr "; alone: Кашмірська; nom: кашмірська; ins: кашмірською; pl: кашмірські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L561
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L603
 msgid "Old Turkish"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L562
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L604
 msgid "Uab Meto"
 msgstr "Уаб-мето"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L563
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L605
 msgid "Tachawit"
 msgstr "; alone: Шавія; nom: шавія; ins: шавією; pl: шавійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L564
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L606
 msgid "Kven Finnish"
 msgstr "; alone: Квенська; nom: квенська; ins: квенською; pl: квенські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L565
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L607
 msgid "Rapa Nui"
 msgstr "Рапануйська мова"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L566
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L608
 msgid "Guadeloupean Creole French"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L567
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L609
 msgid "Gronings"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L568
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L610
 msgid "Ligurian"
 msgstr "; alone: Лігурійська; nom: лігурійська; ins: лігурійською; pl: лігурійські"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L569
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L611
 msgid "Tigre"
 msgstr "Тиґре"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L570
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L612
 msgid "Tahaggart Tamahaq"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L571
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L613
 msgid "Dhivehi"
 msgstr "мальдівська мова"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L572
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L614
 msgid "Hunsrik"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L573
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L615
 msgid "Cayuga"
 msgstr "кайюга"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L574
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L616
 msgid "Ga"
 msgstr "га"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L575
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L617
 msgid "Chinese Pidgin English"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L576
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L618
 msgid "Brithenig"
 msgstr "Brithenig"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L577
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L619
 msgid "Latgalian"
 msgstr "Латгальська мова"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L578
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L620
 msgid "Erromintxela"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L579
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L621
 msgid "Konkani (Goan)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L580
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L622
 msgid "Chagatai"
 msgstr "чагатайська"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L581
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L623
 msgid "Mingrelian"
 msgstr "Мегрельська мова"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L624
 msgid "Old Spanish"
 msgstr "староіспанська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L625
+msgid "Jewish Babylonian Aramaic"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L626
+msgid "Okinawan"
+msgstr "Окінавська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L627
+msgid "Evenki"
+msgstr "Евенкійська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L628
+msgid "Bislama"
+msgstr "біслама"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L629
+msgid "Saterland Frisian"
+msgstr "Затерландська фризька мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L630
+msgid "Old French"
+msgstr "давньофранцузька"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L631
+msgid "Syriac"
+msgstr "сирійська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L632
+msgid "North Frisian"
+msgstr "північнофризька мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L633
+msgid "Nyungar"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L634
+msgid "Isan"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L635
+msgid "Tonga (Zambezi)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L636
+msgid "Newari"
+msgstr "неварі"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L637
+msgid "Jewish Palestinian Aramaic"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L638
+msgid "Phoenician"
+msgstr "фінікійсько-пунічна"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L639
+msgid "Rendille"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L640
+msgid "Nuosu"
+msgstr "Носу"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L641
+msgid "Drents"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L642
+msgid "Southern Subanen"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L643
+msgid "Chinook Jargon"
+msgstr "чинук жаргон"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L644
+msgid "Baluchi"
+msgstr "балучі"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L645
+msgid "Pali"
+msgstr "палі"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L646
+msgid "Ancient Hebrew"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L647
+msgid "South Levantine Arabic"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L648
+msgid "Southern Haida"
+msgstr "південна гайда"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L649
+msgid "Northern Haida"
+msgstr "хайда"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L650
+msgid "Karakhanid"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L651
+msgid "Plains Cree"
+msgstr "рівнинна крі"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L652
+msgid "Yucatec Maya"
+msgstr "Юкатанська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L653
+msgid "Middle Persian (Pahlavi)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L654
+msgid "Meitei"
+msgstr "маніпурі"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L655
+msgid "Libyan Arabic"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L656
+msgid "O'odham"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L657
+msgid "Lushootseed"
+msgstr "лушуцід"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L658
+msgid "Old Frisian"
+msgstr "Старофризька мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L659
+msgid "Nuer"
+msgstr "нуер"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L660
+msgid "Central Kurdish (Soranî)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L661
+msgid "Northern Kurdish (Kurmancî)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L662
+msgid "Southern Kurdish"
+msgstr "південнокурдська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L663
+msgid "Northern Zaza (Kirmanjki)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L664
+msgid "Southern Zaza (Dimli)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L665
+msgid "Standard Moroccan Tamazight"
+msgstr "стандартна марокканська берберська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L666
+msgid "Mahasu Pahari"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L667
+msgid "Qashqai"
+msgstr "Кашкайська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L668
+msgid "Khalaj"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L669
+msgid "Dargwa"
+msgstr "даргінська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L670
+msgid "Lak"
+msgstr "лакська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L671
+msgid "Avar"
+msgstr "Аварська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L672
+msgid "Muskogee (Creek)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L673
+msgid "Abaza"
+msgstr "Абазинська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L674
+msgid "Ingush"
+msgstr "інгуська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L675
+msgid "Kabardian"
+msgstr "кабардинська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L676
+msgid "Sranan Tongo"
+msgstr "сранан тонго"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L677
+msgid "Lezgi"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L678
+msgid "Wayuu"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L679
+msgid "Limburgish"
+msgstr "лімбургійська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L680
+msgid "Zeelandic"
+msgstr "зеландська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L681
+msgid "Mono (USA)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L682
+msgid "Tashelhit"
+msgstr "Ташельхіт мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L683
+msgid "Berom"
+msgstr "Бером"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L684
+msgid "Santali"
+msgstr "сантальська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L685
+msgid "Hitchiti"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L686
+msgid "Silesian"
+msgstr "Сілезька мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L687
+msgid "Interglossa"
+msgstr "Інтерглосса"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L688
+msgid "Central Kanuri"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L689
+msgid "Nande"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L690
+msgid "Congo Swahili"
+msgstr "суахілі (Конго)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L691
+msgid "Rohingya"
+msgstr "рогінджа"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L692
+msgid "Kelantan-Pattani Malay"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L693
+msgid "Saraiki"
+msgstr "сараїкі"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L694
+msgid "Neapolitan"
+msgstr "неаполітанська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L695
+msgid "Sylheti"
+msgstr "мова силеті"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L696
+msgid "Tumbuka"
+msgstr "тумбука"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L697
+msgid "Mapuche"
+msgstr "арауканська"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L698
+msgid "Western Armenian"
+msgstr "західновірменська мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L699
+msgid "Gun"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L700
+msgid "West-Central Oromo"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/LanguagesLib.php#L701
+msgid "Interslavic"
+msgstr ""

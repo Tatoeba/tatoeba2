@@ -9,6 +9,8 @@ use Cake\I18n\I18n;
 
 class VocabularyTableTest extends TestCase
 {
+    use \App\Test\TestCase\SearchMockTrait;
+
     public $fixtures = [
         'app.vocabulary',
         'app.users_vocabulary',
@@ -44,6 +46,16 @@ class VocabularyTableTest extends TestCase
         $this->assertEquals(2, $result->id);
     }
 
+    public function testAddItem_updatesCurrentNumberOfSentences()
+    {
+        $this->enableMockedSearch([21, 11, 12], 4);
+        CurrentUser::store(['id' => 7]);
+
+        $result = $this->Vocabulary->addItem('eng', 'hashtag');
+
+        $this->assertEquals(4, $result->numSentences);
+    }
+
     public function testIncrementNumSentences_succeeds()
     {
         $result = $this->Vocabulary->incrementNumSentences(1, 'This happened out of the blue.');
@@ -57,9 +69,13 @@ class VocabularyTableTest extends TestCase
     }
 
     public function testAddItem_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->Vocabulary->addItem('eng', 'test');
         $returned = $this->Vocabulary->get($added->id);
-        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->created->format('Y-m-d H:i:s'), $returned->created->format('Y-m-d H:i:s'));
+
+        I18n::setLocale($prevLocale);
     }
 }

@@ -24,14 +24,8 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
- 
-$query = h($query);
-if (empty($query)) {
-    $noResultLabel = __('No results found.');
-} else {
-    $noResultLabel = format(
-        __('No results found for: {search}'),
-        array('search' => $query)
-    );
-}
-echo $this->Html->tag('h2', $noResultLabel);
+?>
+
+<div class="empty-info-text">
+    <p><?= __('No results found.') ?></p>
+</div>

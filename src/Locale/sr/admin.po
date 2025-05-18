@@ -1,0 +1,201 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Lazar Ljubenović <lazar.ljubenovic.1995@gmail.com>, 2022
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-12 02:47+0000\n"
+"PO-Revision-Date: 2018-05-16 13:53+0000\n"
+"Last-Translator: Lazar Ljubenović <lazar.ljubenovic.1995@gmail.com>, 2022\n"
+"Language-Team: Serbian (https://app.transifex.com/tatoeba/teams/28284/sr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+msgid ""
+"Error: Sentences added by {username} could not be marked as unreliable."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+msgid "Marked all sentences added by {username} as unreliable."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+msgid "Unable to import audio: user “{author}” not found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
+msgid "Invalid file “{file}” ignored."
+msgstr "Невалидна датотека „{file}” игнорисана."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+msgid ""
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
+msgid "Failed to create directory “{dir}” to import file “{file}”."
+msgstr ""
+"Креирање директоријума „{dir}” ради увоза датотеке „{file}” није успело."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr "Копирање датотеке „{file}” у директоријум „{dir}” није успело."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
+msgid ""
+"File “{file}” was successfully imported but could not be removed from the "
+"import directory."
+msgstr ""
+"Датотека „{file}” је успешно увезена али није уклоњена из увозног "
+"директоријума."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
+msgid "Import recordings"
+msgstr "Увези снимке"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
+msgid "The following errors occurred during the last import."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+msgid "Audio import status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
+msgid "Files detected"
+msgstr "Детектоване датотеке"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
+msgid "Audio author"
+msgstr ""
+
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
+msgid "Save"
+msgstr "Сачувај"
+
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "Обриши"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
+msgid "Correctness"
+msgstr "Исправност"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "Пошаљи"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
+msgid "Import sentences"
+msgstr "Увези реченице"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
+msgid "Single sentences"
+msgstr "Појединачне реченице"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
+msgid "Language of the sentences:"
+msgstr "Језици реченица:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
+msgid "File:"
+msgstr "Датотека:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
+msgid "Numeric user id: "
+msgstr "Нумерички ID корисника:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
+msgid "import"
+msgstr "увоз"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
+msgid "Sentences and translations"
+msgstr "Реченице и преводи"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
+msgid "Language of the translations:"
+msgstr "Језик превода:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+msgid "Mark as unreliable"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
+msgid "Are you sure you want to delete user #{number}?"
+msgstr "Јесте ли сигурни да желите да обришете корисника #{number}?"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
+msgid "List Users"
+msgstr "Списак корисника"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
+msgid "Profile"
+msgstr "Профил"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
+msgid "Edit User"
+msgstr "Измени корисника"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
+msgid "Id"
+msgstr "ID"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+msgid "Username"
+msgstr "Корисничко име"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
+msgid "Lang"
+msgstr "Језик"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
+msgid "Group"
+msgstr "Група"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+msgid "Level"
+msgstr "Ниво"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
+msgid "Send notifications"
+msgstr "Шаљи нотификације"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
+msgid "unhide"
+msgstr "прикажи"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
+msgid "hide"
+msgstr "сакриј"

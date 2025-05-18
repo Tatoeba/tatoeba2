@@ -18,12 +18,15 @@
  */
 namespace App\Model\Table;
 
+use App\Lib\LanguagesLib;
+use App\Model\Entity\Language;
 use App\Model\Entity\User;
 use App\Model\CurrentUser;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
 use Cake\Database\Schema\TableSchema;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Validation\Validator;
 
 class UsersLanguagesTable extends Table
 {
@@ -41,6 +44,33 @@ class UsersLanguagesTable extends Table
         $this->belongsTo('Languages', ['foreignKey' => 'language_code']);
 
         $this->addBehavior('Timestamp');
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $languages = array_keys(LanguagesLib::languagesInTatoeba());
+        $validator
+            ->add('language_code', [
+                'inList' => [
+                    'rule' => ['inList', $languages]
+                ]
+            ]);
+
+        $validator
+            ->allowEmpty('level')
+            ->add('level', [
+                'inList' => [
+                    'rule' => ['range', 0, Language::MAX_LEVEL]
+                ]
+            ]);
+
+        $validator
+            ->dateTime('created');
+
+        $validator
+            ->dateTime('modified');
+
+        return $validator;
     }
 
     public function getLanguagesOfUser($userId)
@@ -88,7 +118,8 @@ class UsersLanguagesTable extends Table
     public function getLanguageInfo($id)
     {
         try  {
-            $result = $this->get($id)->language_info;
+            $result = $this->get($id)
+                ->extract(['language_code', 'by_user_id']);
         } catch (RecordNotFoundException $e) {
             $result = null;
         }
@@ -142,54 +173,35 @@ class UsersLanguagesTable extends Table
     }
 
     /**
-     * Executed on Sentence's beforeFind
-     */
-    public function reportNativeness($query) {
-        $query->join([
-            'table' => 'users_languages',
-            'alias' => 'UsersLanguages',
-            'type' => 'LEFT',
-            'conditions' => [
-                'Sentences.user_id = UsersLanguages.of_user_id',
-                'Sentences.lang = UsersLanguages.language_code',
-                'UsersLanguages.level' => 5
-            ]
-        ]);
-        $isNative = $query->newExpr()
-                          ->isNotNull('UsersLanguages.id')
-                          ->notEq('Users.role', 'spammer')
-                          ->gt('Users.level', '-1');
-        $query->select(['Users__is_native' => $isNative]);
-        return $query;
-    }
-
+     * Save a language for the user
+     *
+     * @param array   $data          The request data
+     * @param integer $currentUserId The user id
+     *
+     * @return Entity|false
+     **/
     public function saveUserLanguage($data, $currentUserId) 
     {
-        if (empty($data['id'])) {
-            $canSave = !empty($data['language_code']) && $data['language_code'] != 'und';
-            $langInfo = $this->newEntity();
-            $langInfo->language_code = $data['language_code'];
-        } else {
-            $id = $data['id'];
+        $data['of_user_id'] = $data['by_user_id'] = $currentUserId;
+        unset($data['modified']);
+        unset($data['created']);
+
+        if (isset($data['id']) && $data['id']) {
             try {
-                $langInfo = $this->get($id);
+                $langInfo = $this->get($data['id']);
             } catch (RecordNotFoundException $e) {
-                $langInfo = $this->newEntity();
-            }            
-            $canSave = $langInfo->by_user_id == $currentUserId;
+                return false;
+            }
+            $this->patchEntity($langInfo, $data);
+        } else {
+            $langInfo = $this->newEntity($data);
         }
 
-        if ($canSave) {
-            $langInfo->of_user_id = $currentUserId;
-            $langInfo->by_user_id = $currentUserId;
-            $langInfo->level = isset($data['level']) && is_numeric($data['level']) ? $data['level'] : null;
-            $langInfo->details = isset($data['details']) ? $data['details'] : null;
-            
-            $result = $this->save($langInfo);
-            return $result->old_format;
-        } else {
-            return array();
+        if ($langInfo->by_user_id != $currentUserId) {
+            return false;
         }
+
+        return $this->save($langInfo);
     }
 
     public function deleteUserLanguage($id, $currentUserId)

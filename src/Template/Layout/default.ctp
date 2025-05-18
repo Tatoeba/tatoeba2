@@ -26,9 +26,19 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
+use Cake\I18n\I18n;
+
+$lang = I18n::getLocale();
+$htmlDir = LanguagesLib::getLanguageDirection($lang);
+
+$controller = $this->request->getParam("controller");
+$controller = Cake\Utility\Inflector::delimit($controller);
+$action = $this->request->getParam("action");
+
+$isHomepage = $controller == 'pages' && $action == 'index';
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo LanguagesLib::languageTag(Configure::read('Config.language')); ?>">
+<html lang="<?= $lang ?>" dir="<?= $htmlDir ?>">
 <head>
     <?php echo $this->Html->charset(); ?>
     <title>
@@ -52,9 +62,6 @@ use Cake\Core\Configure;
         echo $this->AssetCompress->css('layout.css');
 
         // Specific
-        $controller = $this->request->getParam("controller");
-        $controller = Cake\Utility\Inflector::delimit($controller);
-        $action = $this->request->getParam("action");
         $specificCSS = "$controller/$action.css";
         if (file_exists(Configure::read('App.cssBaseUrl') . $specificCSS)) {
             echo $this->Html->css($specificCSS);
@@ -65,26 +72,38 @@ use Cake\Core\Configure;
 
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
+    
+    <?php if (isset($isResponsive) && $isResponsive) { ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php } ?>
 </head>
-<body ng-app="app">
-    <div id="audioPlayer"></div>
-
+<body ng-app="app"
+    <?php if (isset($isResponsive) && $isResponsive) { ?>
+        class="responsive"
+    <?php } ?>
+>
     <!--  TOP  -->
-    <?php echo $this->element('top_menu'); ?>
+    <?php echo $this->element('top_menu', ['htmlDir' => $htmlDir]); ?>
 
     <!--  SEARCH BAR  -->
     <?php
-    $isHomepage = $controller == 'pages' && $action == 'index';
+    
     if (CurrentUser::isMember() || !$isHomepage) {
         $session = $this->request->getSession();
-        $selectedLanguageFrom = $session->read('search_from') ?? 'und';
-        $selectedLanguageTo = $session->read('search_to') ?? 'und';
+        $selectedLanguageFrom = $session->read('search_from') ?? '';
+        $selectedLanguageTo = $session->read('search_to') ?? '';
         $searchQuery = isset($query) ? $query : '';
-        if ($selectedLanguageFrom == 'und'
-            && $selectedLanguageTo == 'und'
+        if ($selectedLanguageFrom == ''
+            && $selectedLanguageTo == ''
             && empty($query)
             && !$this->Languages->preferredLanguageFilter()) {
-            $cache = [ 'key' => 'search_bar_'.Configure::read('Config.language') ];
+            $cache = [ 'key' => 'search_bar_'.$lang ];
+            // When we use the cached version of the search bar we need to add
+            // the template for the 'language-dropdown' directive
+            $this->AngularTemplate->addTemplate(
+                $this->element('language_dropdown_angular'),
+                'language-dropdown-template'
+            );
         } else {
             $cache = null;
         }
@@ -94,16 +113,19 @@ use Cake\Core\Configure;
         );
     } else {
         echo $this->element('short_description', [], [
-            'cache' => [ 'key' => 'short_description_'.Configure::read('Config.language') ]
+            'cache' => [ 'key' => 'short_description_'.$lang ]
         ]);
     }
     ?>
+
+    <div class="announcement-container">
+        <?= $this->element('announcement'); ?>
+    </div>
 
     <!--  CONTENT -->
     <div id="content">
         <div class="container">
         <?php
-        echo $this->element('announcement');
         echo $this->Flash->render('flash', array('element' => 'flash_message'));
 
         echo $this->fetch('content');
@@ -125,15 +147,6 @@ use Cake\Core\Configure;
     echo $this->AssetCompress->script('layout.js');
 
     echo $this->fetch('scriptBottom');
-
-    if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        echo $this->Html->script(JS_PATH . 'jquery.cookie.js');
-        echo $this->Html->script(JS_PATH . 'announcement.js');
-    }
-
-    if (Configure::read('GoogleAnalytics.enabled')) {
-        echo $this->element('google_analytics', [], [ 'cache' => true ]);
-    }
     ?>
 </body>
 </html>

@@ -1,0 +1,12 @@
+[Unit]
+Description=Tatomecab Deamon
+
+[Service]
+User=tatomecab
+Group=tatomecab
+Environment=DAEMON_OPTS=
+EnvironmentFile=-/etc/default/tatomecab
+ExecStart=/usr/local/bin/tatomecab-webserver $DAEMON_OPTS
+
+[Install]
+WantedBy=multi-user.target

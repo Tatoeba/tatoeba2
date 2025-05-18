@@ -129,9 +129,9 @@ class SentencesListsTableTest extends TestCase {
             'id' => $listId,
             'name' => $newName
         );
-        $result = array_intersect_key($list['SentencesList'], $expected);
+        $result = $list->extract(['id', 'name']);
 
-        $this->assertEquals($result, $expected);
+        $this->assertEquals($expected, $result);
     }
 
     function testEditName_fails() {
@@ -146,9 +146,9 @@ class SentencesListsTableTest extends TestCase {
             'id' => 1,
             'editable_by' => 'everyone'
         );
-        $result = array_intersect_key($list['SentencesList'], $expected);
+        $result = $list->extract(['id', 'editable_by']);
 
-        $this->assertEquals($result, $expected);
+        $this->assertEquals($expected, $result);
     }
 
     function testEditOption_fails() {
@@ -441,16 +441,18 @@ class SentencesListsTableTest extends TestCase {
         CurrentUser::store(['id' => null]);
         $lists = $this->SentencesList->getSearchableLists();
         $result = Hash::extract($lists, '{n}.id');
-        $expected = [2, 5];
-        $this->assertEquals(asort($expected), asort($result));
+        sort($result);
+        $expected = [2, 5, 6];
+        $this->assertEquals($expected, $result);
     }
 
     function testGetSearchableLists_asMember() {
         CurrentUser::store(['id' => 7]);
         $lists = $this->SentencesList->getSearchableLists();
         $result = Hash::extract($lists, '{n}.id');
-        $expected = [1, 3, 2, 5];
-        $this->assertEquals(asort($expected), asort($result));
+        sort($result);
+        $expected = [1, 2, 3, 5, 6];
+        $this->assertEquals($expected, $result);
     }
 
     function testGetNameForListWithId() {
@@ -479,8 +481,8 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals(count($ids), count($translations));
     }
 
-    function testIsSearchableList_isSearchable() {
-        $result = $this->SentencesList->isSearchableList(1);
+    function testIsSearchableList_public_asGuest() {
+        $result = $this->SentencesList->isSearchableList(1, null);
         $expected = [
             'id' => 1,
             'user_id' => 7,
@@ -489,17 +491,30 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals($expected, $result->toArray());
     }
 
-    function testIsSearchableList_isNotSearchable() {
-        CurrentUser::store(null);
-        $result = $this->SentencesList->isSearchableList(3);
+    function testIsSearchableList_private_asOwner() {
+        $result = $this->SentencesList->isSearchableList(3, 7);
+        $expected = [
+            'id' => 3,
+            'user_id' => 7,
+            'name' => 'Private list'
+        ];
+        $this->assertEquals($expected, $result->toArray());
+    }
+
+    function testIsSearchableList_private_asGuest() {
+        $result = $this->SentencesList->isSearchableList(3, null);
         $this->assertNull($result);
     }
 
     function testCreateList_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->SentencesList->createList('arabic', 1);
         $returned = $this->SentencesList->get($added->id);
-        $this->assertEquals($added->created, $returned->created);
-        $this->assertEquals($added->modified, $returned->modified);
+        $this->assertEquals($added->created->format('Y-m-d H:i:s'), $returned->created->format('Y-m-d H:i:s'));
+        $this->assertEquals($added->modified->format('Y-m-d H:i:s'), $returned->modified->format('Y-m-d H:i:s'));
+
+        I18n::setLocale($prevLocale);
     }
 }

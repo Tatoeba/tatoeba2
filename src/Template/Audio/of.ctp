@@ -39,30 +39,32 @@ if (isset($sentencesWithAudio)) {
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('My audio'); ?></h2>
             <?php
+               $audioSettings->audio_attribution_url =
+                   $this->safeForAngular($audioSettings->audio_attribution_url);
                echo $this->Form->create($audioSettings, array(
                    'url' => array('controller' => 'audio', 'action' => 'save_settings'),
                    'type' => 'post',
                ));
                echo $this->Form->input('audio_license', array(
                    'label' => __('License:'),
-                   'options' => $this->Audio->License->getLicenseOptions()
+                   'options' => $this->AudioLicense->getLicenseOptions()
                ));
             ?>
             <md-input-container class="md-block">
-            <?php
-               $tip = __('Leave this field empty to use your profile page.');
-               echo $this->Form->input('audio_attribution_url', array(
-                   'label' => __('Attribution URL:'),
-                   'after' => '<div class="hint">'.$tip.'</div>',
-               ));
-            ?>
+                <?= $this->Form->input('audio_attribution_url', array(
+                    'label' => __('Attribution URL:'),
+                )) ?>
+                <div class='hint'>
+                    <?=__('Leave this field empty to use your profile page.') ?>
+                </div>
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button for saving audio contribution settings (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
-            <?= $this->Form->end(); ?>
+            <?= $this->Form->end() ?>
         </div>
     <?php endif; ?>
     </div>
@@ -80,27 +82,23 @@ if (isset($sentencesWithAudio)) {
             array('username' => $username)
         ));
     } else {
-        $title = $this->Paginator->counter(
-            array(
-                'format' => $title . ' ' . __("(total {{count}})")
-            )
-        );
+        $title .= ' ' . format(__("(total {totalAudio})"), compact('totalAudio'));
         echo $this->Html->tag('h2', $title);
 
         $licenceMessage = $this->Audio->formatLicenceMessage(
             $audioSettings, $username
         );
-        echo $this->Html->tag('p', $licenceMessage);
+        echo $this->Html->tag(
+            'p',
+            $this->safeForAngular($licenceMessage)
+        );
 
         $this->Pagination->display();
 
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = true;
-        foreach ($sentencesWithAudio as $audio) {
-            $sentence = $audio->sentence;
-            unset($audio->sentence);
-            $sentence->audios = [$audio];
+        foreach ($sentencesWithAudio as $sentence) {
             $this->Sentences->displayGenericSentence(
                 $sentence,
                 $type,
@@ -112,10 +110,13 @@ if (isset($sentencesWithAudio)) {
         $this->Pagination->display();
     }
 } else {
-    echo $this->Html->tag('h2', format(
-        __("There's no user called {username}"),
-        array('username' => $username)
-    ));
+    echo $this->Html->tag(
+        'h2',
+        format(
+            __("There's no user called {username}"),
+            array('username' => $this->safeForAngular($username))
+        )
+    );
 }
 ?>
 </div>

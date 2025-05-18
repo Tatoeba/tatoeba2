@@ -31,6 +31,7 @@ use App\Model\Entity\User;
 use Cake\Controller\Component\AuthComponent;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Routing\Router;
 
 
@@ -45,6 +46,8 @@ use Cake\Routing\Router;
  */
 class UsersController extends AppController
 {
+    use MailerAwareTrait;
+
     public $name = 'Users';
     public $helpers = array(
         'Html',
@@ -52,10 +55,9 @@ class UsersController extends AppController
         'Date',
         'Logs',
         'Sentences',
-        'Navigation',
         'Pagination'
     );
-    public $components = array('Flash', 'Mailer', 'RememberMe');
+    public $components = array('Flash', 'RememberMe');
 
     /**
      * Before filter.
@@ -106,11 +108,11 @@ class UsersController extends AppController
             $isSuspended = !$wasSuspended && $this->request->getData('role') == User::ROLE_SPAMMER;
 
             $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $username = $this->request->getData('username');
+            if ($user = $this->Users->save($user)) {
                 if ($isBlocked || $isSuspended) {
-                    $this->Mailer->sendBlockedOrSuspendedUserNotif(
-                        $username, $isSuspended
+                    $this->getMailer('User')->send(
+                        'blocked_or_suspended_user',
+                        [$user, $isSuspended]
                     );
                 }
 
@@ -285,8 +287,7 @@ class UsersController extends AppController
 
         $newUser = $this->Users->newEntity();
 
-        $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
-        $quizOk = $this->request->getData('quiz') == $correctAnswer;
+        $honeypotTrapped = $this->request->getData('confirm') !== '';
 
         if ($this->request->is('post')) {
             $newUser = $this->Users->patchEntity(
@@ -296,15 +297,16 @@ class UsersController extends AppController
             );
             $newUser->since = date("Y-m-d H:i:s");
             $newUser->role = User::ROLE_CONTRIBUTOR;
+            $newUser->audio_license = 'CC BY 4.0';
 
-            if ($quizOk
+            if (!$honeypotTrapped
                 && $this->request->getData('acceptation_terms_of_use')
                 && $this->Users->save($newUser)
                ) {
                 $this->loadModel('UsersLanguages');
                 // Save native language
                 $language = $this->request->getData('language');
-                if (!empty($language) && $language != 'none') {
+                if (!empty($language)) {
                     $userLanguage = $this->UsersLanguages->newEntity([
                         'of_user_id' => $newUser->id,
                         'by_user_id' => $newUser->id,
@@ -324,19 +326,22 @@ class UsersController extends AppController
                         $this->Auth->user('username')
                     )
                 );
+                $this->loadModel('WikiArticles');
                 $this->Flash->set(
                     '<p><strong>'
                     .__("Welcome to Tatoeba!")
                     .'</strong></p><p>'
                     .format(
                         __(
-                            "To start things off, we encourage you to go to your ".
-                            "<a href='{url}'>profile</a> and let us know which ".
-                            "languages you speak or are interested in.",
+                            "To start things off, we encourage you to read our ".
+                            "<a href='{url}'>Quick Start Guide</a>. If you want to read it later, ".
+                            "you will find the link at the bottom of any page on the website.",
                             true
                         ),
-                        array('url' => $profileUrl)
+                        array('url' => $this->WikiArticles->getWikiLink('quick-start'))
                     )
+                    .'</p><p>'
+                    .__("We hope you'll enjoy your time here with us!")
                     .'</p>'
                 );
 
@@ -353,7 +358,6 @@ class UsersController extends AppController
 
         $this->set('user', $newUser);
         $this->set('language', $this->request->getData('language'));
-        $this->set('quizOk', $quizOk);
     }
 
 
@@ -375,11 +379,9 @@ class UsersController extends AppController
                 $user->password = $newPassword;
 
                 if ($this->Users->save($user)) { // if saved
-                    // prepare message
-                    $this->Mailer->sendNewPassword(
-                        $user->email,
-                        $user->username,
-                        $newPassword
+                    $this->getMailer('User')->send(
+                        'new_password',
+                        [$user, $newPassword]
                     );
 
                     $flashMessage = format(
@@ -411,7 +413,8 @@ class UsersController extends AppController
      */
     public function search()
     {
-        $userId = $this->Users->getIdFromUsername($this->request->getData('username'));
+        $username = $this->request->getData('search_username');
+        $userId = $this->Users->getIdFromUsername($username);
 
         if ($userId != null) {
             return $this->redirect(array("action" => "show", $userId));
@@ -419,7 +422,7 @@ class UsersController extends AppController
             $this->flash(
                 __(
                     'No user with this username: ', true
-                ).$this->request->getData('username'),
+                ).$username,
                 '/users/all/'
             );
         }
@@ -484,15 +487,11 @@ class UsersController extends AppController
 
         $this->paginate = array(
             'limit' => 20,
-            'order' => array('role', 'id'),
+            'order' => array('role' => 'desc', 'id' => 'asc'),
             'fields' => array('id', 'username', 'since', 'image', 'role'),
+            'sort' => $this->request->getQuery('sort', 'role'),
+            'direction' => $this->request->getQuery('direction', 'asc'),
         );
-
-        // We use two columns for ordering the results so in order to indicate the
-        // initial sorting direction we need to set the 'sort' key manually
-        if (empty($this->request->getQuery('sort'))) {
-            $this->paginate['sort'] = 'role';
-        }
 
         $query = $this->Users->find()->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
         try {
@@ -561,5 +560,12 @@ class UsersController extends AppController
         $this->set('users', $users);
         $this->set('usersLanguages', $usersLanguages);
         $this->set('lang', $lang);
+    }
+
+    public function login_dialog_template()
+    {
+        $redirectUrl = $this->request->query('redirect');
+        $this->set('redirectUrl', $redirectUrl);
+        $this->viewBuilder()->enableAutoLayout(false);
     }
 }

@@ -25,6 +25,7 @@
  * @link     https://tatoeba.org
  */
 
+/* @translators: title of the Donate page */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
 ?>
 
@@ -49,7 +50,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
     <div class="section md-whiteframe-1dp">
         <?php echo $this->Html->link(
             __("All donations"),
-            'http://en.wiki.tatoeba.org/articles/show/donations'
+            $this->Pages->getWikiLink('donations')
         ); ?>
     </div>
 </div>

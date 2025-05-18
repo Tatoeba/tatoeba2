@@ -181,8 +181,7 @@ class TranscriptionsTableTest extends TestCase {
     function testJapaneseCanBeTranscriptedToKanas() {
         $jpnSentence = $this->Transcription->Sentences->find()
             ->where(['lang' => 'jpn'])
-            ->first()
-            ->old_format;
+            ->first();
         $result = $this->Transcription->transcriptableToWhat($jpnSentence);
         $this->assertTrue(isset($result['Hrkt']));
     }
@@ -286,8 +285,7 @@ class TranscriptionsTableTest extends TestCase {
 
     function testFindOnExistingRecordsReturnsReadonlyField() {
         $transcr = $this->Transcription->get(1);
-        $result = array_key_exists('readonly', $transcr->old_format['Transcription']);
-        $this->assertTrue($result);
+        $this->assertTrue($transcr->has('readonly'));
     }
 
     function testGenerateTranscriptionCreatesGenerated() {
@@ -312,8 +310,6 @@ class TranscriptionsTableTest extends TestCase {
 
         $created = $this->Transcription->generateTranscription($jpnSentence, 'Hrkt', true, $data);
 
-        unset($created['modified']);
-        unset($created['created']);
         $expected = array(
             'id' => 4,
             'sentence_id' => 10,
@@ -324,7 +320,7 @@ class TranscriptionsTableTest extends TestCase {
             'needsReview' => false,
             'type' => 'altscript',
         );
-        $this->assertEquals($expected, $created);
+        $this->assertArraySubset($expected, $created);
     }
 
     function testGenerateTranscriptionUpdatesProvidedTranscription() {
@@ -339,8 +335,6 @@ class TranscriptionsTableTest extends TestCase {
 
         $updated = $this->Transcription->generateTranscription($jpnSentence, 'Hrkt', true, $data);
 
-        unset($updated['modified']);
-        unset($updated['created']);
         $expected = array(
             'id' => 3,
             'sentence_id' => 10,
@@ -351,7 +345,7 @@ class TranscriptionsTableTest extends TestCase {
             'needsReview' => false,
             'type' => 'altscript',
         );
-        $this->assertEquals($expected, $updated);
+        $this->assertArraySubset($expected, $updated);
     }
 
     function testGenerateTranscriptionUpdates() {
@@ -361,8 +355,10 @@ class TranscriptionsTableTest extends TestCase {
         );
         $transcr->text = 'あああ';
 
+        $transcrAsArray = $transcr->toArray();
+        unset($transcrAsArray['sentence']);
         $this->Transcription->generateTranscription(
-            $jpnSentence, 'Hrkt', true, $transcr->old_format['Transcription']
+            $jpnSentence, 'Hrkt', true, $transcrAsArray
         );
 
         $updated = $this->Transcription->find('all')
@@ -440,9 +436,10 @@ class TranscriptionsTableTest extends TestCase {
             ->first();
         $this->Transcription->delete($transcr);
 
-        $transcr = $transcr->old_format;
-        unset($transcr['Transcription']['id']);
-        $transcr['Transcription']['user_id'] = 4;
+        $transcr = $transcr->toArray();
+        unset($transcr['sentence']);
+        unset($transcr['id']);
+        $transcr['user_id'] = 4;
 
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr
@@ -450,7 +447,7 @@ class TranscriptionsTableTest extends TestCase {
             ->method('jpn_Jpan_to_Hrkt_validate')
             ->will($this->returnValue(false));
 
-        $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
+        $result = (bool)$this->Transcription->saveTranscription($transcr);
         $this->assertFalse($result);
     }
 
@@ -460,8 +457,9 @@ class TranscriptionsTableTest extends TestCase {
             ->first();
         $this->Transcription->delete($transcr);
 
-        $transcr = $transcr->old_format;
-        unset($transcr['Transcription']['id']);
+        $transcr = $transcr->toArray();
+        unset($transcr['sentence']);
+        unset($transcr['id']);
 
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr
@@ -469,16 +467,18 @@ class TranscriptionsTableTest extends TestCase {
             ->method('jpn_Jpan_to_Hrkt_validate')
             ->will($this->returnValue(false));
 
-        $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
+        $result = (bool)$this->Transcription->saveTranscription($transcr);
         $this->assertTrue($result);
     }
 
     function testSaveTranscriptionChecksUserProvidedTranscriptionValidityOnUpdate() {
         $transcr = $this->Transcription->find()
             ->where(['sentence_id' => 10])
-            ->first()->old_format;
-        $transcr['Transcription']['text'] = 'something new';
-        $transcr['Transcription']['user_id'] = 4;
+            ->disableHydration()
+            ->first();
+        unset($transcr['sentence']);
+        $transcr['text'] = 'something new';
+        $transcr['user_id'] = 4;
 
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr
@@ -486,15 +486,17 @@ class TranscriptionsTableTest extends TestCase {
             ->method('jpn_Jpan_to_Hrkt_validate')
             ->will($this->returnValue(false));
 
-        $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
+        $result = (bool)$this->Transcription->saveTranscription($transcr);
         $this->assertFalse($result);
     }
 
     function testSaveTranscriptionDontCheckGeneratedTranscriptionValidityOnUpdate() {
         $transcr = $this->Transcription->find()
             ->where(['sentence_id' => 10])
-            ->first()->old_format;
-        $transcr['Transcription']['text'] = 'something new';
+            ->disableHydration()
+            ->first();
+        unset($transcr['sentence']);
+        $transcr['text'] = 'something new';
 
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr
@@ -502,23 +504,25 @@ class TranscriptionsTableTest extends TestCase {
             ->method('jpn_Jpan_to_Hrkt_validate')
             ->will($this->returnValue(false));
 
-        $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
+        $result = (bool)$this->Transcription->saveTranscription($transcr);
         $this->assertTrue($result);
     }
 
     function testSaveTranscriptionSetsNeedsReviewToFalseWhenSavedByAUser() {
         $transcr = $this->Transcription->find()
             ->where(['sentence_id' => 10])
-            ->first()->old_format;
-        $transcr['Transcription']['text'] = 'something new';
-        $transcr['Transcription']['user_id'] = 4;
+            ->disableHydration()
+            ->first();
+        unset($transcr['sentence']);
+        $transcr['text'] = 'something new';
+        $transcr['user_id'] = 4;
 
-        $this->Transcription->saveTranscription($transcr['Transcription']);
+        $this->Transcription->saveTranscription($transcr);
 
         $transcr = $this->Transcription->find()
             ->where(['sentence_id' => 10])
-            ->first()->old_format;
-        $this->assertFalse($transcr['Transcription']['needsReview']);
+            ->first();
+        $this->assertFalse($transcr->needsReview);
     }
 
     function testAddGeneratedTranscriptionsAddsEverything() {
@@ -602,14 +606,18 @@ class TranscriptionsTableTest extends TestCase {
     }
 
     function testSave_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $data = $this->_getRecord(0);
         $this->Transcription->deleteAll('true');
         unset($data['id'], $data['created'], $data['modified']);
         $transcription = $this->Transcription->newEntity($data);
         $added = $this->Transcription->save($transcription);
         $returned = $this->Transcription->get($added->id);
-        $this->assertEquals($added->created, $returned->created);
-        $this->assertEquals($added->modified, $returned->modified);
+        $this->assertEquals($added->created->format('Y-m-d H:i:s'), $returned->created->format('Y-m-d H:i:s'));
+        $this->assertEquals($added->modified->format('Y-m-d H:i:s'), $returned->modified->format('Y-m-d H:i:s'));
+
+        I18n::setLocale($prevLocale);
     }
 }

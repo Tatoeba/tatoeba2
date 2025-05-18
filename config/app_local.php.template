@@ -9,17 +9,48 @@ return [
         'salt' => '{{security_salt}}',
     ],
 
+# You can disable debug to run like production runs
+#    'debug' => false,
+
     'Datasources' => [
         'default' => [
             'username' => '{{mysql_user}}',
             'password' => '{{mysql_password}}',
             'database' => '{{mysql_db_name}}',
+#            'log' => true, // log all SQL queries to logs/queries.log
         ],
         'test' => [
             'username' => '{{mysql_test_user}}',
             'password' => '{{mysql_test_password}}',
             'database' => '{{mysql_test_db_name}}',
+#            'log' => true, // log all SQL queries to logs/cli-queries.log during tests
         ],
+        'wiki' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Sqlite',
+            'database' => '{{tatowiki_sqlite_file}}',
+            'flags' => [PDO::SQLITE_ATTR_OPEN_FLAGS => PDO::SQLITE_OPEN_READONLY],
+            'init' => [
+                'PRAGMA journal_mode=WAL', // Enable WAL mode to fix locking issues
+            ],
+#            'log' => true, // log all SQL queries to logs/queries.log
+        ],
+        'test_wiki' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Sqlite',
+            'database' => ':memory:',
+            'flags' => [], // No read-only flag here to allow fixtures creation
+#            'log' => true, // log all SQL queries to logs/cli-queries.log during tests
+        ],
+
+    ],
+
+    /**
+     * Tatowiki basehost without the language part.
+     * See also Datasources.wiki above.
+     */
+    'Tatowiki' => [
+        'baseHost' => '{{tatowiki_domain}}:8080',
     ],
 
     /**
@@ -38,15 +69,11 @@ return [
 
     /**
      * Recordings paths.
-     * The web server must serve <Recordings.path> under <Recordings.url>.
-     * <Recordings.url> can be a fully qualified URL (e.g.
-     * https://audio.example.com/sentences/) or a URL on the same host (e.g.
-     * /files/audio/). It must end with a slash character.
      * Admins may import audio files located in <Recordings.uploadPath>,
-     * in which the webserver must have write access.
+     * which end up stored by CakePHP inside <Recordings.path>.
+     * Webserver must have write access in both paths.
      */
     'Recordings' => [
-        'url' => '/files/audio/',
         'path' => WWW_ROOT.'files'.DS.'audio',
         'importPath' => WWW_ROOT.'files'.DS.'audio_import',
     ],
@@ -78,6 +105,10 @@ return [
      * Cf. src/Event/NotificationListener.php
      */
      'EmailTransport' => [
+        'local' => [
+            'className' => 'Local',
+            'log' => true,
+        ],
         'gmail' => [
             'host' => 'ssl://smtp.gmail.com',
             'port' => '465',
@@ -91,10 +122,13 @@ return [
         ]
     ],
         
-    'Mailer' => [
-        'enabled' => false,
-        'transport' => 'debug',
-        'username' => 'some.email@email.com',
+    'Email' => [
+        'default' => [
+            'from' => 'user@example.com',
+            'transport' => 'debug',
+            'emailFormat' => 'html',
+          //'log' => true,
+        ],
     ],
 
     /**
@@ -106,10 +140,10 @@ return [
      *   sentences.
      */
     'Search' => [
-        'enabled' => false,
+        'enabled' => true,
     ],
     'AutoTranscriptions' => [
-        'enabled' => false,
+        'enabled' => true,
     ],
 
     'Tatoeba' => [
@@ -117,97 +151,170 @@ return [
          * Stylesheet for development website
          */
         'devStylesheet' => false,
-
-        /**
-         * Blocked IP addresses. Should be an array of strings containing the
-         * IP's you want to block. For instance:
-         *
-         *    'blockedIP' => [
-         *      "1.2.3.4",
-         *      "5.6.7.8",
-         *      "9.10.11.12"
-         *    ]
-         *
-         * Cf. src/Controller/AppController.php
-         */
-        'blockedIP' => [
-        ],
-    ],
-
-    /**
-     * Google Analytics.
-     * - Leave GoogleAnalytics.enabled to false if you don't want to
-     *   include the Google Analytics code.
-     * - If you do set GoogleAnalytics.enabled to true, then enter
-     *   the id for your Google Analytics account.
-     */
-    'GoogleAnalytics' => [
-        'enabled' => false,
-        'id' => '',
     ],
 
     /**
      * Languages of the interface.
      *
-     * Each item in the UI.languages is an array of 3 items:
-     *   [0] The URL language code. It should match a 'locale' folder.
-     *   [1] Optionnal region or script, as explained in
-     *       http://www.w3.org/International/articles/language-tags/
-     *       Most of the case, you can leave this to null.
-     *   [2] This is the name of the language. The name must be in the
+     * UI.languages is a mapping from URL language identifiers to language
+     * information. The URL language identifiers must identify the language by
+     * following BCP 47 (with the additional restriction of being lowercase).
+     *
+     * The language information can be either:
+     * - a string => redirects all requests to different language (only one
+     *               level of redirection is allowed)
+     * - an array containing:
+     *   [0] The name of the language. The name must be in the
      *       language itself, so that people who speak that language can
      *       recognize it.
+     *   [other keys] Locales that should match the language if sent by the
+     *                browser in the Accept-Language HTTP header (the language
+     *                identifier itself is also considered as a valid
+     *                Accept-Language match).
+     * - null => Convenience alias for 'en' (redirect to English; used for
+     *           disabling unmaintained languages)
      */
     'UI' => [
         'languages' => [
-            ['ara', null, 'ﺎﻠﻋﺮﺒﻳﺓ'],
-            ['aze', null, 'Azərbaycanca'],
-            ['bel', null, 'Беларуская'],
-            ['ben', null, 'বাংলা'],
-            ['bre', null, 'Brezhoneg'],
-            ['cat', null, 'Català'],
-            ['ces', null, 'Čeština'],
-            ['cmn', 'Hans', '中文', ['chi']],
-            ['cym', null, 'Cymraeg'],
-            ['dan', null, 'Dansk'],
-            ['deu', null, 'Deutsch'],
-            ['eng', null, 'English'],
-            ['epo', null, 'Esperanto'],
-            ['est', null, 'Eesti'],
-            ['eus', null, 'Euskara'],
-            ['fin', null, 'Suomi'],
-            ['fra', null, 'Français', ['fre']],
-            ['fry', null, 'Frysk'],
-            ['glg', null, 'Galego'],
-            ['ell', null, 'Ελληνικά', ['gre']],
-            ['hin', null, 'हिन्दी'],
-            ['hun', null, 'Magyar'],
-            ['ina', null, 'Interlingua'],
-            ['ind', null, 'Bahasa Indonesia'],
-            ['ita', null, 'Italiano'],
-            ['jbo', null, 'Lojban'],
-            ['jpn', null, '日本語'],
-            ['kab', null, 'Taqbaylit'],
-            ['kat', null, 'ქართული'],
-            ['kor', null, '한국어'],
-            ['lat', null, 'Latina'],
-            ['lit', null, 'Lietuvių'],
-            ['mar', null, 'मराठी'],
-            ['nld', null, 'Nederlands'],
-            ['nds', null, 'Plattdüütsch'],
-            ['oci', null, 'Occitan'],
-            ['pol', null, 'Polski'],
-            ['por', 'BR', 'Português (Brasil)', ['pt_BR']],
-            ['ron', null, 'Română'],
-            ['rus', null, 'Русский'],
-            ['spa', null, 'Español'],
-            ['swe', null, 'Svenska'],
-            ['tgl', null, 'Tagalog'],
-            ['tur', null, 'Türkçe'],
-            ['ukr', null, 'Українська'],
-            ['uzb', null, 'Oʻzbekcha'],
-            ['vie', null, 'Tiếng Việt'],
-            ['zsm', null, 'Bahasa Melayu'],
+            // Assamese
+            'as' => ['অসমীয়া'], 'asm' => 'as',
+            // Arabic
+            'ar' => ['العربية'], 'ara' => 'ar',
+            // Azerbaijani
+            'az' => ['Azərbaycanca'], 'aze' => 'az',
+            // Baluchi
+            'bal' => ['بلۏچی'],
+            // Basque
+            'eu' => ['Euskara'], 'eus' => 'eu',
+            // Belarusian
+            'be' => ['Беларуская'], 'bel' => 'be',
+            // Bengali
+            'bn' => ['বাংলা'], 'ben' => 'bn',
+            // Bulgarian
+            'bg' => ['Български'], 'bul' => 'bg',
+            // Breton
+            'br' => ['Brezhoneg'], 'bre' => 'br',
+            // Catalan
+            'ca' => ['Català'], 'cat' => 'ca',
+            // Chinese
+            'zh-cn' => ['中文（大陆简体）',
+                        'zh', 'zh-hans-cn', 'zh-mo', 'zh-hans-mo',
+                        'zh-my', 'zh-hans-my', 'zh-sg', 'zh-hans-sg'],
+            'chi' => 'zh-cn',
+            'cmn' => 'zh-cn',
+            'zh-tw' => ['中文（臺灣正體）', 'zh-hant-tw', 'zh-hk', 'zh-hant-hk'],
+            // Chinese (Wu)
+            'wuu' => ['吳語'],
+            // Croatian
+            'hr' => ['Hrvatski'], 'hrv' => 'hr',
+            // Czech
+            'cs' => ['Čeština'], 'ces' => 'cs',
+            // Danish
+            'da' => ['Dansk'], 'dan' => 'da',
+            // Dutch
+            'nl' => ['Nederlands'], 'nld' => 'nl',
+            // German
+            'de' => ['Deutsch'], 'deu' => 'de',
+            // Greek
+            'el' => ['Ελληνικά'], 'ell' => 'el', 'gre' => 'el',
+            // English
+            'en' => ['English'], 'eng' => 'en',
+            // Esperanto
+            'eo' => ['Esperanto'], 'epo' => 'eo',
+            // Estonian
+            'et' => ['Eesti'], 'est' => 'et',
+            // Filipino
+            'fil' => ['Filipino'],
+            // Finnish
+            'fi' => ['Suomi'], 'fin' => 'fi',
+            // French
+            'fr' => ['Français'], 'fra' => 'fr', 'fre' => 'fr',
+            // Frisian
+            'fy' => ['Frysk'], 'fry' => 'fy',
+            // Galician
+            'gl' => ['Galego'], 'glg' => 'gl',
+            // Georgian
+            'ka' => ['ქართული'], 'kat' => 'ka',
+            // Gronings
+            'gos' => ['Grunnegs'],
+            // Hindi
+            'hi' => ['हिन्दी'], 'hin' => 'hi',
+            // Ho
+            'hoc' => ['𑢹𑣉𑣉 𑣎𑣁𑣋𑣁𑣜'],
+            // Hungarian
+            'hu' => ['Magyar'], 'hun' => 'hu',
+            // Indonesian
+            'id' => ['Bahasa Indonesia'], 'ind' => 'id',
+            // Interlingua
+            'ia' => ['Interlingua'], 'ina' => 'ia',
+            // Icelandic
+            'is' => ['Íslenska'],
+            // Italian
+            'it' => ['Italiano'], 'ita' => 'it',
+            // Japanese
+            'ja' => ['日本語'], 'jpn' => 'ja',
+            // Kabyle
+            'kab' => ['Taqbaylit'],
+            // Korean
+            'ko' => ['한국어'], 'kor' => 'ko',
+            // Kurdish
+            'ku' => ['Kurdî'], 'kur' => 'ku',
+            // Latin
+            'la' => ['Latina'], 'lat' => 'la',
+            // Lithuanian
+            'lt' => ['Lietuvių'], 'lit' => 'lt',
+            // Lojban
+            'jbo' => ['Lojban'],
+            // Low German (Low Saxon)
+            'nds' => ['Plattdüütsch'],
+            // Marathi
+            'mr' => ['मराठी'], 'mar' => 'mr',
+            // Malay
+            'ms' => ['Bahasa Melayu'], 'zsm' => 'ms',
+            // Occitan
+            'oc' => ['Occitan'], 'oci' => 'oc',
+            // Polish
+            'pl' => ['Polski'], 'pol' => 'pl',
+            // Portuguese
+            'pt-br' => ['Português (Brasil)', 'pt', 'pt-pt'],
+            'por' => 'pt-br',
+            'pt_BR' => 'por',
+            // Romanian
+            'ro' => ['Română'], 'ron' => 'ro',
+            // Russian
+            'ru' => ['Русский'], 'rus' => 'ru',
+            // Santali
+            'sat' => ['ᱥᱟᱱᱛᱟᱲᱤ'],
+            // Saraiki
+            'skr' => ['سرائیکی'],
+            // Serbian
+            'sr' => ['српски'], 'srp' => 'sr',
+            // Slovak
+            'sk' => ['Slovenčina'], 'slk' => 'sk',
+            // Spanish
+            'es' => ['Español'], 'spa' => 'es',
+            // Swedish
+            'sv' => ['Svenska'], 'swe' => 'sv',
+            // Tagalog
+            'tl' => ['Tagalog'], 'tgl' => 'tl',
+            // Turkish
+            'tr' => ['Türkçe'], 'tur' => 'tr',
+            // Turkmen
+            'tk' => ['Türkmen dili'], 'tuk' => 'tk',
+            // Toki Pona
+            'tok' => ['toki pona'],
+            // Ukrainian
+            'uk' => ['Українська'], 'ukr' => 'uk',
+            // Uyghur
+            'ug' => ['ئۇيغۇرچە'], 'uig' => 'ug',
+            // Uzbek
+            'uz' => ['Oʻzbekcha'],  'uzb' => 'uz',
+            // Vietnamese
+            'vi' => ['Tiếng Việt'], 'vie' => 'vi',
+            // Welsh
+            'cy' => ['Cymraeg'], 'cym' => 'cy',
+            // Zaza
+            'zza' => ['Kirmancki'],
         ],
     ],
 
@@ -228,8 +335,30 @@ return [
      *
      * The message of the announcement has to be set in
      * src/Template/Element/announcement.ctp
+     *
+     *   enabled: set to true to activate announcement, false otherwise.
+     * hideAfter: set to a date time to make it automatically disappear at
+     *            some point, comment out otherwise.
+     * maintenance: used for scheduled maintenance. Set 'start' to a datetime
+     *              in the future to display a maintenance announcement,
+     *              (in addition to the announcement above). Additionally, you
+     *              can set 'end' to a datetime after 'start' to include the
+     *              estimated maintenance duration in the maintenance message.
      */
     'Announcement' => [
         'enabled' => false,
+#        'hideAfter' => '2020-05-21 18:20 UTC',
+        'maintenance' => [
+            'start' => '2025-01-02 01:00 UTC',
+            'end'   => '2025-01-02 02:00 UTC',
+        ]
+    ],
+
+    /**
+     * Base path and base URL for the downloadable database exports.
+     */
+    'Downloads' => [
+        'path' => '/var/www-downloads/exports/',
+        'url' => 'http://downloads.tato.test:8080/exports/',
     ],
 ];

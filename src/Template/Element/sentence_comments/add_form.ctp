@@ -3,14 +3,13 @@ use App\Model\CurrentUser;
 
 $user = CurrentUser::get('User');
 $username = $user['username'];
-$avatar = $user['image'];
 ?>
 
 <md-card class="comment form">
 
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">

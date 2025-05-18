@@ -1,18 +1,23 @@
 {
-    "name": "tatoeba",
+    "name": "tatoeba/tatoeba",
+    "type": "project",
+    "license": "AGPL-3.0-only",
+    "description": "Code for tatoeba.org, a multilingual sentence and translation database",
     "require": {
-        "cakephp/cakephp": "3.7.*",
+        "cakephp/cakephp": "3.8.*",
         "cakephp/plugin-installer": "^1.0",
-        "dereuromark/cakephp-queue": "^3.11",
+        "dereuromark/cakephp-queue": "dev-cake3",
         "markstory/asset_compress": "^3.5",
         "patchwork/jsqueeze": "^2.0",
-        "natxet/CssMin": "^3.0",
+        "natxet/cssmin": "^3.0",
         "cakephp/migrations": "^2.1",
-        "codekanzlei/cake-auth-actions": "dev-master"
+        "codekanzlei/cake-auth-actions": "^3.0",
+        "zircote/swagger-php": "^4.7"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7|^6.0",
-        "cakephp/bake": "^1.8"
+        "cakephp/bake": "1.*",
+        "helmich/phpunit-json-assert": "v2"
     },
     "autoload": {
         "psr-4": {
@@ -26,15 +31,14 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "App\\Console\\Installer::postInstall",
-        "post-create-project-cmd": "App\\Console\\Installer::postInstall",
-        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
-        "check": [
-            "@test",
-            "@cs-check"
-        ],
-        "cs-check": "phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
-        "cs-fix": "phpcbf --colors --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "post-install-cmd": [
+            "./vendor/bin/openapi src/Controller/VHosts/Api/ -o webroot/api/openapi-unstable.json"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "cakephp/plugin-installer": true
+        }
     }
 }

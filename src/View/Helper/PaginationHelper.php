@@ -132,27 +132,5 @@ class PaginationHelper extends AppHelper
         </ul>
         <?php
     }
-
-    /**
-     * Swap sort link templates for ordering by user role
-     *
-     * User roles are stored as an enum in the database where the highest role
-     * (admin) is represented by the smallest value (1). Thus using the default
-     * templates for Paginator->sort() would produce the wrong arrows. In order
-     * to display the correct arrows, we need to swap the 'sortAsc' and 'sortDesc'
-     * templates before calling Paginator->sort().
-     *
-     * @return string
-     **/
-    public function sortForRole() {
-        $templates = $this->Paginator->getTemplates();
-        $this->Paginator->setTemplates([
-            'sortAsc' => $this->Paginator->getTemplates('sortDesc'),
-            'sortDesc' => $this->Paginator->getTemplates('sortAsc')
-        ]);
-        $sortLink = $this->Paginator->sort('role', __('Member status'));
-        $this->Paginator->setTemplates($templates);
-        return $sortLink;
-    }
 }
 ?>

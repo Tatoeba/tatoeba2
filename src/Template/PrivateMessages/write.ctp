@@ -26,12 +26,10 @@
  */
 
 $this->set('title_for_layout', __('New message') . __(' - Tatoeba'));
-
-if (!$pm->id) {
-    $headerTitle = __('New message');
-} else {
-    $headerTitle = __('Message');
-}
+$message_limit = __(
+    'To help keep Tatoeba free of spam and other malicious messages ' .
+    'new users can send only 5 messages per day.'
+);
 ?>
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
@@ -48,9 +46,7 @@ if (!$pm->id) {
             ?>
             <div class="section md-whiteframe-1dp">
             <h2><?= __('You have reached your message limit for today') ?></h2>
-            <p>
-                <?= __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day.") ?>
-            </p>
+            <p><?= $message_limit ?></p>
             <p>
                 <?= __("Please wait until you can send more messages.") ?>
             </p>
@@ -65,10 +61,7 @@ if (!$pm->id) {
         } else if ($isNewUser) {
             ?>
             <div class="section md-whiteframe-1dp">
-            <p><?= __(
-                "To help keep Tatoeba free of spam and other malicious messages
-                new users can send only 5 messages per day."
-            ); ?></p>
+            <p><?= $message_limit ?></p>
 
             <p><?= format(
                 __n(
@@ -86,7 +79,6 @@ if (!$pm->id) {
         <?php
         if ($canSend) {
             echo $this->element('private_messages/form', [
-                'headerTitle' => __('New message'),
                 'pm' => $pm,
                 'recipients' => $recipients
             ]);

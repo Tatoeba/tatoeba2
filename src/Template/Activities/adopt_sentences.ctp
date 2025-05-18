@@ -70,6 +70,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     </div>
     
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: title of the help text on the Adopt sentence page */ ?>
         <h2><?php echo __('Tips'); ?></h2>
         <p>
         <?php 

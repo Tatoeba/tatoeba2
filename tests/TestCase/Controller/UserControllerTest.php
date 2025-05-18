@@ -21,6 +21,7 @@ class UserControllerTest extends IntegrationTestCase
         'app.sentence_comments',
         'app.sentences',
         'app.users_languages',
+        'app.wiki_articles',
     ];
 
     private $oldPasswords = [];
@@ -49,18 +50,18 @@ class UserControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/user/profile/contributor', null, true ],
-            [ '/eng/user/profile/contributor', 'contributor', true ],
-            [ '/eng/user/profile', null, '/eng/home' ],
-            [ '/eng/user/profile', 'contributor', '/eng/user/profile/contributor' ],
-            [ '/eng/user/profile/nonexistent', null, '/eng/users/all' ],
-            [ '/eng/user/edit_profile', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Fedit_profile' ],
-            [ '/eng/user/edit_profile', 'contributor', true ],
-            [ '/eng/user/settings', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Fsettings' ],
-            [ '/eng/user/settings', 'contributor', true ],
-            [ '/eng/user/language', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Flanguage' ],
-            [ '/eng/user/language', 'contributor', true ],
-            [ '/eng/user/language/jpn', 'contributor', true ],
+            [ '/en/user/profile/contributor', null, true ],
+            [ '/en/user/profile/contributor', 'contributor', true ],
+            [ '/en/user/profile', null, '/en/home' ],
+            [ '/en/user/profile', 'contributor', '/en/user/profile/contributor' ],
+            [ '/en/user/profile/nonexistent', null, '/en/users/all' ],
+            [ '/en/user/edit_profile', null, '/en/users/login?redirect=%2Fen%2Fuser%2Fedit_profile' ],
+            [ '/en/user/edit_profile', 'contributor', true ],
+            [ '/en/user/settings', null, '/en/users/login?redirect=%2Fen%2Fuser%2Fsettings' ],
+            [ '/en/user/settings', 'contributor', true ],
+            [ '/en/user/language', null, '/en/users/login?redirect=%2Fen%2Fuser%2Flanguage' ],
+            [ '/en/user/language', 'contributor', true ],
+            [ '/en/user/language/jpn', 'contributor', true ],
         ];
     }
 
@@ -95,13 +96,13 @@ class UserControllerTest extends IntegrationTestCase
         $oldPassword = '123456';
         $newPassword = '9{FA0E;pL#R(5JllB{wHWTO;6';
         $this->logInAs($username);
-        $this->post('/eng/user/save_password', [
+        $this->post('/en/user/save_password', [
             'old_password' => $oldPassword,
             'new_password' => $newPassword,
             'new_password2' => $newPassword,
         ]);
         $this->assertPassword('changed', $username);
-        $this->assertRedirect('/eng/user/settings');
+        $this->assertRedirect('/en/user/settings');
     }
 
     public function testSavePassword_failsIfNewPasswordIsEmpty() {
@@ -110,14 +111,14 @@ class UserControllerTest extends IntegrationTestCase
         $newPassword = '';
         $this->logInAs($username);
         $this->enableRetainFlashMessages();
-        $this->post('/eng/user/save_password', [
+        $this->post('/en/user/save_password', [
             'old_password' => $oldPassword,
             'new_password' => $newPassword,
             'new_password2' => $newPassword,
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New password cannot be empty.');
-        $this->assertRedirect('/eng/user/settings');
+        $this->assertRedirect('/en/user/settings');
     }
 
     public function testSavePassword_failsIfOldPasswordDoesntMatch() {
@@ -125,40 +126,44 @@ class UserControllerTest extends IntegrationTestCase
         $oldPassword = 'incorrect password';
         $newPassword = '9{FA0E;pL#R(5JllB{wHWTO;6';
         $this->logInAs($username);
-        $this->post('/eng/user/save_password', [
+        $this->post('/en/user/save_password', [
             'old_password' => $oldPassword,
             'new_password' => $newPassword,
             'new_password2' => $newPassword,
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('Password error. Please try again.');
-        $this->assertRedirect('/eng/user/settings');
+        $this->assertRedirect('/en/user/settings');
     }
 
     public function testSavePassword_failsIfNewPasswordDoesntMatch() {
         $username = 'contributor';
         $oldPassword = '123456';
         $this->logInAs($username);
-        $this->post('/eng/user/save_password', [
+        $this->post('/en/user/save_password', [
             'old_password' => $oldPassword,
             'new_password' => 'something',
             'new_password2' => 'something different',
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New passwords do not match.');
-        $this->assertRedirect('/eng/user/settings');
+        $this->assertRedirect('/en/user/settings');
     }
 
     public function testSaveBasic_changingEmailUpdatesAuthData() {
         $username = 'contributor';
         $newEmail = 'contributor_newemail@example.org';
         $this->logInAs($username);
-        $this->post('/eng/user/save_basic', [
+        $this->post('/en/user/save_basic', [
             'email' => $newEmail,
         ]);
+
+        $this->assertRedirect('/en/user/profile/contributor');
+        $redirectTarget = $this->_response->getHeaderLine('Location');
+        $this->get($redirectTarget);
+
         $this->assertEquals($this->_controller->Auth->user('username'), $username);
         $this->assertEquals($this->_controller->Auth->user('email'), $newEmail);
-        $this->assertRedirect('/eng/user/profile/contributor');
     }
 
     public function testSaveBasic_ignoresUnallowedFields() {
@@ -166,7 +171,7 @@ class UserControllerTest extends IntegrationTestCase
         $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
-        $this->post('/eng/user/save_basic', [
+        $this->post('/en/user/save_basic', [
             'name' => 'Contributor',
             'country_id' => 'CL',
             'birthday' => [
@@ -187,14 +192,14 @@ class UserControllerTest extends IntegrationTestCase
     public function testSaveSettings() {
         $this->logInAs('contributor');
 
-        $this->post('/eng/user/save_settings', [
+        $this->post('/en/user/save_settings', [
             'send_notifications' => '1',
             'settings' => [
                 'is_public' => '1',
                 'lang' => 'fra',
             ],
         ]);
-        $this->assertRedirect('/eng/user/settings');
+        $this->assertRedirect('/en/user/settings');
     }
 
     public function testSaveSettings_ignoresUnallowedFields() {
@@ -202,7 +207,7 @@ class UserControllerTest extends IntegrationTestCase
         $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
-        $this->post('/eng/user/save_settings', [
+        $this->post('/en/user/save_settings', [
             'send_notifications' => '1',
             'settings' => [
                 'is_public' => '1',
@@ -250,11 +255,11 @@ class UserControllerTest extends IntegrationTestCase
         require __DIR__ . '/UserControllerTestFakeFunctions.php';
         $username = 'contributor';
         $this->logInAs($username);
-        $this->post('/eng/user/save_image', [
+        $this->post('/en/user/save_image', [
             'image' => $this->prepareImageUpload()
         ]);
         $this->assertNoFlashMessage();
-        $this->assertRedirect("/eng/user/profile/$username");
+        $this->assertRedirect("/en/user/profile/$username");
         $this->assertProfilePictureUploaded($username);
     }
 
@@ -272,8 +277,8 @@ class UserControllerTest extends IntegrationTestCase
         }
 
         $this->logInAs('contributor');
-        $this->post('/eng/user/remove_image');
-        $this->assertRedirect('/eng/user/profile/contributor');
+        $this->post('/en/user/remove_image');
+        $this->assertRedirect('/en/user/profile/contributor');
 
         $contributor = $users->get(4);
         $this->assertEmpty($contributor->image);
@@ -285,7 +290,7 @@ class UserControllerTest extends IntegrationTestCase
     public function testAcceptNewTermsOfUser_asGuest() {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
-        $this->post('/eng/user/accept_new_terms_of_use', [
+        $this->post('/en/user/accept_new_terms_of_use', [
             'settings' => [ 'new_terms_of_use' => true ],
         ]);
         $this->assertResponseCode(404);
@@ -294,7 +299,7 @@ class UserControllerTest extends IntegrationTestCase
     public function testAcceptNewTermsOfUser_asMember() {
         $this->logInAs('contributor');
         $this->addHeader('Referer', 'https://example.net/referer');
-        $this->post('/eng/user/accept_new_terms_of_use', [
+        $this->post('/en/user/accept_new_terms_of_use', [
             'settings' => [ 'new_terms_of_use' => true ],
         ]);
         $this->assertRedirect('https://example.net/referer');

@@ -15,7 +15,8 @@ class ContributionTest extends TestCase {
         'app.contributions',
         'app.sentences',
         'app.languages',
-        'app.users_languages'
+        'app.links',
+        'app.users_languages',
     );
 
     public function setUp() {
@@ -57,9 +58,9 @@ class ContributionTest extends TestCase {
         $log = $this->Contribution->find()
             ->where(['sentence_id' => 48])
             ->order(['id' => 'DESC'])
+            ->disableHydration()
             ->first();
-        $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
-        $this->assertEquals($expectedLog, $newLog);
+        $this->assertArraySubset($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsSentenceUpdate() {
@@ -89,9 +90,12 @@ class ContributionTest extends TestCase {
         
         $this->Contribution->Sentences->getEventManager()->dispatch($event);
 
-        $log = $this->Contribution->find()->order(['id' => 'DESC'])->first();
-        $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
-        $this->assertEquals($expectedLog, $newLog);
+        $log = $this->Contribution
+                    ->find()
+                    ->order(['id' => 'DESC'])
+                    ->disableHydration()
+                    ->first();
+        $this->assertArraySubset($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsLicenseInsert() {
@@ -118,9 +122,12 @@ class ContributionTest extends TestCase {
         
         $this->Contribution->Sentences->getEventManager()->dispatch($event);
 
-        $log = $this->Contribution->find()->order(['id' => 'DESC'])->first();
-        $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
-        $this->assertEquals($expectedLog, $newLog);
+        $log = $this->Contribution
+                    ->find()
+                    ->order(['id' => 'DESC'])
+                    ->disableHydration()
+                    ->first();
+        $this->assertArraySubset($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsLicenseUpdate() {
@@ -146,9 +153,12 @@ class ContributionTest extends TestCase {
 
         $this->Contribution->Sentences->getEventManager()->dispatch($event);
 
-        $log = $this->Contribution->find()->order(['id' => 'DESC'])->first();
-        $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
-        $this->assertEquals($expectedLog, $newLog);
+        $log = $this->Contribution
+                    ->find()
+                    ->order(['id' => 'DESC'])
+                    ->disableHydration()
+                    ->first();
+        $this->assertArraySubset($expectedLog, $log);
     }
 
     public function testGetTodayContributions() {

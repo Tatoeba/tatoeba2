@@ -19,8 +19,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Event\SuggestdListener;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 use App\Model\CurrentUser;
 
 
@@ -46,9 +46,6 @@ class TagsController extends AppController
             'add_tag_post'
         ];
 
-        $eventManager = $this->Tags->getEventManager();
-        $eventManager->attach(new SuggestdListener());
-
         return parent::beforeFilter($event);
     }
 
@@ -69,15 +66,15 @@ class TagsController extends AppController
             $username = CurrentUser::get("username");
             $tag = $this->Tags->addTag($tagName, $userId, $sentenceId);
 
-            $isSaved = $tag && $tag->id;
+            $isSaved = $tag && $tag->link && !$tag->link->alreadyExists;
             $this->set('isSaved', $isSaved);
             if ($isSaved) {
-                $this->set('tagName', $tagName);
-                $this->set('tagId', $tag->tag_id);
+                $this->set('tagName', $tag->name);
+                $this->set('tagId', $tag->id);
                 $this->set('userId', $userId);
                 $this->set('username', $username);
                 $this->set('sentenceId', $sentenceId);
-                $this->set('date', date("Y-m-d H:i:s"));
+                $this->set('date', $tag->link->added_time);
                 $this->loadModel('Sentences');
                 $sentence = $this->Sentences->get($sentenceId, ['fields' => ['lang']]);
                 $this->set('sentenceLang', $sentence->lang);
@@ -105,14 +102,10 @@ class TagsController extends AppController
             'limit' => 50,
             'fields' => ['name', 'id', 'nbrOfSentences'],
             'order' => ['nbrOfSentences' => 'DESC', 'id' => 'ASC'],
-            'conditions' => $conditions
+            'conditions' => $conditions,
+            'sort' => $this->request->getQuery('sort', 'nbrOfSentences'),
+            'direction' => $this->request->getQuery('direction', 'desc'),
         ];
-
-        // We use two columns for ordering the results so in order to indicate the
-        // initial sorting direction we need to set the 'sort' key manually
-        if (empty($this->request->getQuery('sort'))) {
-            $this->paginate['sort'] = 'nbrOfSentences';
-        }
 
         $allTags = $this->paginate();
         $this->set("allTags", $allTags);
@@ -196,23 +189,27 @@ class TagsController extends AppController
 
         if ($tagExists) {
             $this->loadModel('Sentences');
-            $contain = $this->Sentences->paginateContain();
-            $contain['finder'] = 'filteredTranslations';
+            $this->loadModel('TagsSentences');
+            $query = $this->TagsSentences
+                ->find()
+                ->contain(['Sentences' => function ($q) {
+                    return $q
+                        ->find('hideFields')
+                        ->find('filteredTranslations')
+                        ->select($this->Sentences->fields())
+                        ->contain($this->Sentences->contain(['translations' => true]));
+                }])
+                ->where(['tag_id' => $tagId]);
 
-            $conditions = ['tag_id' => $tagId];
             if (!empty($lang) && $lang != 'und') {
-                $conditions['Sentences.lang'] = $lang;
+                $query->where(['Sentences.lang' => $lang]);
             }
 
-            $pagination = [
-                'contain' => ['Sentences' => $contain],
-                'conditions' => $conditions,
+            $this->paginate = [
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['sentence_id' => 'DESC']
+                'order' => ['added_time' => 'DESC']
             ];
-            $this->paginate = $pagination;
-
-            $sentences = $this->paginate('TagsSentences');
+            $sentences = $this->paginate($query);
 
             $taggerIds = [];
             foreach ($sentences as $sentence) {
@@ -245,5 +242,15 @@ class TagsController extends AppController
             'action' => 'view_all',
             $search
         ]);
+    }
+
+    public function autocomplete($search)
+    {
+        $allTags = $this->Tags->Autocomplete($search);
+
+        $this->loadComponent('RequestHandler');
+        $this->set('results', $allTags);
+        $this->set('_serialize', ['results']);
+        $this->RequestHandler->renderAs($this, 'json');
     }
 }

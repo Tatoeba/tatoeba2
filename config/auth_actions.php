@@ -4,12 +4,15 @@ use App\Model\Entity\User;
 $config = [
     // actions available to everyone, even guests
     'public_actions' => [
-        'activities' => '*',
-        'audio' => [ 'of', 'index' ],
-        'autocompletions' => '*',
+        'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
+        'api_v0' => [
+            'search',
+            'sentence'
+        ],
+        'audio' => [ 'of', 'index', 'download' ],
         'reviews' => [ 'of' ],
-        'contributions' => '*',
-        'pages' => '*',
+        'contributions' => [ '*' ],
+        'pages' => [ '*' ],
         'favorites' => [ 'of_user' ],
         's' => [ 's' ],
         'sentence_annotations' => [ 'last_modified' ],
@@ -35,13 +38,14 @@ $config = [
             'search',
             'collaborative',
         ],
-        'stats' => '*',
+        'stats' => [ '*' ],
         'tags' => [
             'show_sentences_with_tag',
             'view_all',
-            'search'
+            'search',
+            'autocomplete'
         ],
-        'tools' => '*',
+        'tools' => [ '*' ],
         'transcriptions' => [ 'view', 'of' ],
         'user' => [
             'profile',
@@ -59,6 +63,7 @@ $config = [
             'check_username',
             'check_email',
             'for_language',
+            'login_dialog_template',
         ],
         'vocabulary' => [ 'of' ],
         'wall' => [
@@ -66,16 +71,22 @@ $config = [
             'show_message',
             'messages_of_user',
         ],
+        'angular_templates' => [ '*' ],
     ],
 
     // actions not available for guests or some users
     'auth_actions' => [
+        'activities' => [
+            'translate_sentences'  => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'adopt_sentences'      => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+        ],    
         'audio' => [
-            'import' => [ User::ROLE_ADMIN ],
+            'import'        => [ User::ROLE_ADMIN ],
             'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'save'          => [ User::ROLE_ADMIN ],
+            'delete'        => [ User::ROLE_ADMIN ],
         ],
         'reviews'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
-        'exports'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'favorites'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'links'                => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
         'imports'              => [ '*' => [ User::ROLE_ADMIN ] ],
@@ -100,11 +111,12 @@ $config = [
             'edit_license'          => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'save_translation'      => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'change_language'       => User::ROLE_CONTRIBUTOR_OR_HIGHER,
-            'edit_audio'            => [ User::ROLE_ADMIN ],
             'edit_correctness'      => [ User::ROLE_ADMIN ],
+            'mark_unreliable'       => [ User::ROLE_ADMIN ],
         ],
         'sentences_lists'      => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'tags'                 => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
+        'categories_tree'      => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
         'transcriptions'       => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'user'                 => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'users'                => [ '*' => [ User::ROLE_ADMIN ] ],

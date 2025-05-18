@@ -34,17 +34,16 @@
 
         vm.init = init;
         vm.updateNavigation = updateNavigation;
+        vm.onSelectedLanguageChange = onSelectedLanguageChange;
 
         ///////////////////////////////////////////////////////////////////////////
 
-        $scope.$on('languageChange', function(event, data){
-            if (data.dropdownName === 'lang') {
-                vm.lang = data.lang;
-                if (vm.currentId) {
-                    updateNavigation(vm.currentId, vm.lang);
-                }
+        function onSelectedLanguageChange(language) {
+            vm.lang = language.code;
+            if (vm.currentId) {
+                updateNavigation(vm.currentId, vm.lang);
             }
-        });
+        }
 
         ///////////////////////////////////////////////////////////////////////////
 

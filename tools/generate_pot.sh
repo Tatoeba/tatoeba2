@@ -21,9 +21,11 @@ throw_to_gettext() {
         "$@"
 }
 
-adjust_file_refs() {
+cosmetics() {
+    tr -d '\r' | \
     sed 's/#: \([^ ]\+\) \([^ ]\+\)/#: \1\n#: \2/g' | \
-    sed 's/^#: \([^:]\+\):\([0-9]\+\)/#: github.com\/Tatoeba\/tatoeba2\/tree\/dev\/\1#L\2/'
+    sed 's/^#: \([^:]\+\):\([0-9]\+\)/#: github.com\/Tatoeba\/tatoeba2\/tree\/dev\/\1#L\2/' | \
+    sed '/#\. @translators:/ {s/@translators: *//; :a; /^#[^.]/!{s,@translators: *,/ ,; n; ba;};}'
 }
 
 get_all_contexts_from() {
@@ -57,7 +59,7 @@ xgettext --version >/dev/null 2>&1 || {
 DEFAULT_DOMAIN_K='--keyword=__ --keyword=__x:1c,2 --keyword=__n:1,2 --keyword=__xn:1c,2,3'
 list_source_files | \
     throw_to_gettext $DEFAULT_DOMAIN_K | \
-    adjust_file_refs > "$POT" \
+    cosmetics > "$POT" \
     && echo "$POT created." \
     || echo "Something went wrong while creating $POT."
 
@@ -70,7 +72,7 @@ list_source_files | \
 OTHER_DOMAINS_K='--keyword=__d:1c,2'
 list_source_files | \
     throw_to_gettext $OTHER_DOMAINS_K | \
-    adjust_file_refs > "$POT_TMP"
+    cosmetics > "$POT_TMP"
 
 # sounds like the charset is autodetected and the autodetection fails
 sed -i 's/charset=CHARSET/charset=utf-8/' "$POT_TMP"

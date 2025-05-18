@@ -20,15 +20,21 @@ namespace App\Model\Table;
 
 use App\Event\StatsListener;
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
+use Cake\Filesystem\File;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
+use InvalidArgumentException;
 
 
 class AudiosTable extends Table
 {
+    const JOB_TYPE = 'AudioImport';
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('external', 'json');
@@ -41,6 +47,7 @@ class AudiosTable extends Table
             'joinType' => 'inner',
         ]);
         $this->belongsTo('Users');
+        $this->hasOne('Queue.QueuedJobs');
 
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
@@ -66,10 +73,13 @@ class AudiosTable extends Table
         $validator
             ->dateTime('modified');
 
+        $validator
+            ->boolean('enabled');
+
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options = array()) {
+    private function isAuthorConsistent($entity) {
         $ok = true;
         $user_id = $entity->user_id;
         $external = $entity->external;
@@ -78,9 +88,27 @@ class AudiosTable extends Table
         }
         if (!($user_id xor !empty($external))) {
             $ok = false;
+            if (!$user_id) {
+                $err = "Both 'user_id' and 'external' fields are empty.";
+            } else {
+                $err = "Both 'user_id' and 'external' fields are non-empty.";
+            }
+            $entity->setErrors([
+                'user_id' => $err,
+                'external' => $err,
+            ]);
         }
-
         return $ok;
+    }
+
+    public function beforeSave($event, $entity, $options = array()) {
+        if ($entity->isNew()) {
+            if ($entity->sentence_id) {
+                $sentence = $this->Sentences->get($entity->sentence_id);
+                $entity->sentence_lang = $sentence->lang;
+            }
+        }
+        return $this->isAuthorConsistent($entity);
     }
 
     public function afterSave($event, $entity, $options = array()) {
@@ -102,9 +130,34 @@ class AudiosTable extends Table
                 );
             }
         }
+
+        if (!$entity->enabled) {
+            $this->moveRecordToOtherTable($entity, $this->Sentences->DisabledAudios);
+        }
+    }
+
+    protected function moveRecordToOtherTable($entity, $tableModel) {
+        $entity->isNew(true);
+        $this->getConnection()->transactional(function () use ($entity, $tableModel) {
+            if ($tableModel->save($entity)) {
+                if ($this->delete($entity)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+    }
+
+    protected function removeAudioFile($entity, $options) {
+        if ($options['deleteAudioFile'] ?? false) {
+            $file = new File($entity->file_path);
+            $file->delete();
+        }
     }
 
     public function afterDelete($event, $entity, $options) {
+        $this->removeAudioFile($entity, $options);
+
         $event = new Event('Model.Audio.audioDeleted', $this, [
             'audio' => $entity,
         ]);
@@ -133,35 +186,62 @@ class AudiosTable extends Table
     }
 
     /**
-     * Assign audio to a sentence.
-     *
-     * @param int     $sentenceId                  ID of sentence.
-     * @param string  $ownerName                   Owner of the audio file.
-     * @param boolean $allowedExternal (optional)  Whether metadata is stored as JSON.
-     *
-     * @return Cake\ORM\Entity|false
+     * Custom finder for optimized pagination of sentences having audio
      */
-    public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {
-        $data = array(
-            'sentence_id' => $sentenceId,
-            'user_id' => null,
-            'external' => null,
-        );
-        
+    public function findSentences(Query $query, array $options) {
+        $subquery = $query
+            ->applyOptions($options)
+            ->distinct()
+            ->select(['sentence_id' => 'sentence_id'])
+            ->order(['id' => 'DESC']);
+
+        if (isset($options['lang'])) {
+            $subquery->where(['sentence_lang' => $options['lang']]);
+        }
+
+        if (isset($options['user_id'])) {
+            $subquery->where(['user_id' => $options['user_id']]);
+        }
+
+        $query = $this->Sentences
+            ->find()
+            ->join([
+                'Audios' => [
+                    'table' => $subquery,
+                    'type' => 'INNER',
+                    'conditions' => 'Sentences.id = Audios.sentence_id'
+                ],
+            ])
+            ->contain('Audios', function ($q) use ($options) {
+                if (isset($options['user_id'])) {
+                    $q->where(['Audios.user_id' => $options['user_id']]);
+                }
+                return $q->contain(['Users' => ['fields' => ['username']]]);
+            })
+            ->contain('Transcriptions')
+            ->counter(function ($query) use ($subquery) {
+                return $subquery->count();
+            });
+
+        return $query;
+    }
+
+    /**
+     * Assign author to an audio entity.
+     *
+     * @param Audio   $entity                      Entity of the audio.
+     * @param string  $ownerName                   Owner of the audio file.
+     * @param boolean $allowedExternal (optional)  Whether metadata could be stored as JSON.
+     */
+    public function assignAuthor($entity, $ownerName, $allowExternal = true) {
         $result = $this->Users->findByUsername($ownerName)->first();
         if ($result) {
-            $data['user_id'] = $result->id;
+            $entity->user_id = $result->id;
+            $entity->external = null;
         } elseif ($allowExternal && !empty($ownerName)) {
-            $data['external'] = array('username' => $ownerName);
+            $entity->user_id = null;
+            $entity->external = array('username' => $ownerName);
         }
-        $audio = $this->findBySentenceId($sentenceId, ['fields' => ['id']])->first();
-        if ($audio) {
-            $this->patchEntity($audio, $data);
-        } else {
-            $audio = $this->newEntity($data);
-        }
-        
-        return $this->save($audio);
     }
 
     public function getFilesToImport() {
@@ -181,7 +261,7 @@ class AudiosTable extends Table
                     'sourcePath' => $importPath.DS.$filename,
                     'valid'    => false,
                 );
-                if (preg_match('/^(\d+)\.mp3$/i', $filename, $matches)) {
+                if (preg_match('/^(\d+)(-.+)?\.mp3$/i', $filename, $matches)) {
                     $fileInfos['sentenceId'] = $allSentenceIds[] = $matches[1];
                 }
                 $audioFiles[] = $fileInfos;
@@ -196,7 +276,7 @@ class AudiosTable extends Table
         $sentences = $this->Sentences->find()
             ->where(['Sentences.id IN' => $allSentenceIds])
             ->select(['id', 'lang'])
-            ->contain(['Audios'])
+            ->contain(['Audios' => ['Users' => ['fields' => ['username']]]])
             ->toList();
             
         $sentences = Hash::combine($sentences, '{n}.id', '{n}');
@@ -206,7 +286,7 @@ class AudiosTable extends Table
                 $id = $file['sentenceId'];
                 if (isset($sentences[$id])) {
                     $file['lang'] = $sentences[$id]['lang'];
-                    $file['hasaudio'] = count($sentences[$id]->audios) > 0;
+                    $file['audios'] = $sentences[$id]->audios;
                     $file['valid'] = !is_null($sentences[$id]['lang']);
                 }
             }
@@ -215,29 +295,37 @@ class AudiosTable extends Table
         usort($audioFiles, function($a, $b) {
             /* Sort:
              * 1. May not be imported
-             * 2. Already has audio
-             * 3. The rest by sentence id
+             * 2. Number of existing recordings (desc)
+             * 3. The rest by sentence id (asc)
              */
-            if (isset($a['valid']) && isset($b['valid'])
-                && $a['valid'] != $b['valid']) {
-                return $a['valid'] ? 1 : -1;
-            } elseif (isset($a['hasaudio']) && isset($b['hasaudio'])
-                      && $a['hasaudio'] != $b['hasaudio']) {
-                return $a['hasaudio'] ? -1 : 1;
-            } elseif (isset($a['sentenceId']) && isset($b['sentenceId'])) {
-                return $a['sentenceId'] - $b['sentenceId'];
-            } else {
-                return 0;
+            $ret = 0;
+            if (isset($a['valid']) || isset($b['valid'])) {
+                $ret = ($a['valid'] ?? 0) - ($b['valid'] ?? 0);
             }
+            if ($ret == 0 && (isset($a['audios']) || isset($b['audios']))) {
+                $ret = count($b['audios'] ?? []) - count($a['audios'] ?? []);
+            }
+            if ($ret == 0 && (isset($a['sentenceId']) || isset($b['sentenceId']))) {
+                $ret = ($a['sentenceId'] ?? 0) - ($b['sentenceId'] ?? 0);
+            }
+            return $ret;
         });
 
         return $audioFiles;
     }
 
-    public function importFiles(&$errors, $author) {
-        $recsBaseDir = Configure::read('Recordings.path');
+    public function importFiles(&$errors, $config) {
         $errors = array();
-        $filesImported = array('total' => 0);
+        $filesImported = array('total' => 0, 'replaced' => 0);
+
+        $author = $this->Users->findByUsername($config['author'])->first();
+        if (!$author) {
+            $errors[] = format(
+                __d('admin', "Unable to import audio: user “{author}” not found."),
+                ['author' => $config['author']]
+            );
+            return $filesImported;
+        }
 
         $files = $this->getFilesToImport();
         foreach ($files as $file) {
@@ -249,49 +337,100 @@ class AudiosTable extends Table
                 continue;
             }
 
-            $destDir = $recsBaseDir . DS . $file['lang'];
-            if (!file_exists($destDir)) {
-                if (!mkdir($destDir)) {
-                    $errors[] = format(
-                        __d('admin', "Failed to create directory “{dir}” to import file “{file}”."),
-                        array('dir' => $destDir, 'file' => $file['fileName'])
-                    );
-                    continue;
+            $this->getConnection()->transactional(function () use ($file, $author, $config, &$errors, &$filesImported) {
+                if (!empty($config['replace'][ $file['sentenceId'] ])) {
+                    $existing = $this->find()
+                        ->where(['sentence_id' => $file['sentenceId'], 'user_id' => $author->id])
+                        ->all();
+                    if ($existing->count() == 0) {
+                        unset($existing);
+                    }
                 }
-            }
 
-            $destFile = $destDir . DS . strtolower($file['fileName']);
-            if (!copy($file['sourcePath'], $destFile)) {
-                $errors[] = format(
-                    __d('admin', "Failed to copy file “{file}” to directory “{dir}”."),
-                    array('file' => $file['fileName'], 'dir' => $destDir)
-                );
-                continue;
-            }
+                if (isset($existing)) {
+                    if ($existing->count() > 1) {
+                        $errors[] = format(
+                            __d('admin', "Unable to replace audio contributed by “{author}” for sentence {sentenceId}: this user has more than one audio."),
+                            array('sentenceId' => $file['sentenceId'], 'author' => $author->username)
+                        );
+                        return false;
+                    }
+                    $audio = $existing->first();
+                    $this->touch($audio);
+                } else {
+                    $audio = $this->newEntity();
+                    $audio->sentence_id = $file['sentenceId'];
+                    $audio->user_id = $author->id;
+                }
 
-            $ok = $this->assignAudioTo($file['sentenceId'], $author, false);
-            if (!$ok) {
-                $errors[] = format(
-                    __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database. Make sure it's a valid username."),
-                    array('sentenceId' => $file['sentenceId'], 'author' => $author)
-                );
-                unlink($destFile); // cleaning up, no need to warn on error
-                continue;
-            }
+                if (!$this->save($audio)) {
+                    $errors[] = format(
+                        __d('admin', "Unable to save audio for sentence {sentenceId} inside the database."),
+                        array('sentenceId' => $file['sentenceId'])
+                    );
+                    return false;
+                }
 
-            if (!unlink($file['sourcePath'])) {
-                $errors[] = format(
-                    __d('admin', "File “{file}” was successfully imported but could not be removed from the import directory."),
-                    array('file' => $file['fileName'])
-                );
-            }
+                $audioPath = $audio->file_path;
+                $destDir = dirname($audioPath);
+                if (!file_exists($destDir)) {
+                    if (!mkdir($destDir, 0777, true)) {
+                        $errors[] = format(
+                            __d('admin', "Failed to create directory “{dir}” to import file “{file}”."),
+                            array('dir' => $destDir, 'file' => $file['fileName'])
+                        );
+                        return false;
+                    }
+                }
 
-            if (!isset($filesImported[$file['lang']]))
-                $filesImported[$file['lang']] = 0;
-            $filesImported[$file['lang']]++;
-            $filesImported['total']++;
+                if (!copy($file['sourcePath'], $audioPath)) {
+                    $errors[] = format(
+                        __d('admin', "Failed to copy file “{file}” to directory “{dir}”."),
+                        array('file' => $file['fileName'], 'dir' => $destDir)
+                    );
+                    return false;
+                }
+
+                if (!unlink($file['sourcePath'])) {
+                    $errors[] = format(
+                        __d('admin', "File “{file}” was successfully imported but could not be removed from the import directory."),
+                        array('file' => $file['fileName'])
+                    );
+                }
+
+                if (isset($existing))
+                    $filesImported['replaced']++;
+                if (!isset($filesImported[$file['lang']]))
+                    $filesImported[$file['lang']] = 0;
+                $filesImported[$file['lang']]++;
+                $filesImported['total']++;
+            });
         }
         
         return $filesImported;
+    }
+
+    public function edit($audio, $fields) {
+        if (isset($fields['enabled'])) {
+            $this->patchEntity($audio, ['enabled' => $fields['enabled']]);
+        }
+        if (isset($fields['author'])) {
+            $this->assignAuthor($audio, $fields['author'], true);
+        }
+    }
+
+    public function lastImportJob() {
+        return $this->QueuedJobs->find()
+            ->where(['job_type' => self::JOB_TYPE])
+            ->last();
+    }
+
+    public function enqueueImportTask($author, $replace = []) {
+        $job = $this->QueuedJobs->createJob(
+            self::JOB_TYPE,
+            compact('author', 'replace')
+        );
+        $this->QueuedJobs->wakeUpWorkers();
+        return $job;
     }
 }

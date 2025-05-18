@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class PagesControllerTest extends IntegrationTestCase
@@ -25,36 +26,43 @@ class PagesControllerTest extends IntegrationTestCase
         'app.Transcriptions',
         'app.Users',
         'app.UsersLanguages',
-        'app.Walls'
+        'app.UsersSentences',
+        'app.Walls',
+        'app.WikiArticles',
     ];
+
+    public function setUp() {
+        parent::setUp();
+        Configure::write('Tatowiki.baseHost', 'wiki.example.com');
+    }
 
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/terms-of-use', null, '/eng/terms_of_use' ],
-            [ '/eng/terms-of-use', 'contributor', '/eng/terms_of_use' ],
-            [ '/eng/terms_of_use', null, true ],
-            [ '/eng/terms_of_use', 'contributor', true ],
-            [ '/eng/tatoeba-team-and-credits', null, '/eng/tatoeba_team_and_credits' ],
-            [ '/eng/tatoeba-team-and-credits', 'contributor', '/eng/tatoeba_team_and_credits' ],
-            [ '/eng/tatoeba_team_and_credits', null, '/eng/home' ],
-            [ '/eng/tatoeba_team_and_credits', 'contributor', '/eng/home' ],
-            [ '/eng/download-tatoeba-example-sentences', null, '/eng/downloads' ],
-            [ '/eng/download-tatoeba-example-sentences', 'contributor', '/eng/downloads' ],
-            [ '/eng/downloads', null, true ],
-            [ '/eng/downloads', 'contributor', true ],
-            [ '/eng/home', null, '/eng' ],
-            [ '/eng/home', 'contributor', '/eng' ],
-            [ '/eng/about', null, true ],
-            [ '/eng/about', 'contributor', true ],
-            [ '/eng/contact', null, true ],
-            [ '/eng/contact', 'contributor', true ],
-            [ '/eng/help', null, true ],
-            [ '/eng/help', 'contributor', true ],
-            [ '/eng/faq', null, 'http://wiki.tatoeba.org/articles/show/faq' ],
-            [ '/eng/faq', 'contributor', 'http://wiki.tatoeba.org/articles/show/faq' ],
-            [ '/eng/donate', null, true ],
-            [ '/eng/donate', 'contributor', true ],
+            [ '/en/terms-of-use', null, '/en/terms_of_use' ],
+            [ '/en/terms-of-use', 'contributor', '/en/terms_of_use' ],
+            [ '/en/terms_of_use', null, true ],
+            [ '/en/terms_of_use', 'contributor', true ],
+            [ '/en/tatoeba-team-and-credits', null, '/en/tatoeba_team_and_credits' ],
+            [ '/en/tatoeba-team-and-credits', 'contributor', '/en/tatoeba_team_and_credits' ],
+            [ '/en/tatoeba_team_and_credits', null, '/en/home' ],
+            [ '/en/tatoeba_team_and_credits', 'contributor', '/en/home' ],
+            [ '/en/download-tatoeba-example-sentences', null, '/en/downloads' ],
+            [ '/en/download-tatoeba-example-sentences', 'contributor', '/en/downloads' ],
+            [ '/en/downloads', null, true ],
+            [ '/en/downloads', 'contributor', true ],
+            [ '/en/home', null, '/en' ],
+            [ '/en/home', 'contributor', '/en' ],
+            [ '/en/about', null, true ],
+            [ '/en/about', 'contributor', true ],
+            [ '/en/contact', null, true ],
+            [ '/en/contact', 'contributor', true ],
+            [ '/en/help', null, true ],
+            [ '/en/help', 'contributor', true ],
+            [ '/en/faq', null, 'http://en.wiki.example.com/articles/show/faq' ],
+            [ '/en/faq', 'contributor', 'http://en.wiki.example.com/articles/show/faq' ],
+            [ '/en/donate', null, true ],
+            [ '/en/donate', 'contributor', true ],
         ];
     }
 
@@ -62,13 +70,13 @@ class PagesControllerTest extends IntegrationTestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $this->loadFixtures('PrivateMessages', 'Users', 'UsersLanguages');
+        $this->loadFixtures('PrivateMessages', 'Users', 'UsersLanguages', 'WikiArticles');
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
     public function testHomeAccess() {
         $this->loadFixtures(); // load all $this->fixtures
-        $this->assertAccessUrlAs('/eng', null, true);
-        $this->assertAccessUrlAs('/eng', 'contributor', true);
+        $this->assertAccessUrlAs('/en', null, true);
+        $this->assertAccessUrlAs('/en', 'contributor', true);
     }
 }

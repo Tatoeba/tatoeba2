@@ -59,6 +59,7 @@
                 vm.addLangStep = 'selection';
                 break;
             case 'selection':
+                vm.selectedLang.level = null;
                 vm.addLangStep = 'level';
                 break;
             case 'level':
@@ -89,14 +90,6 @@
                 break;
             }
         }
-
-        $scope.$on('languageChange', function(event, data) {
-            vm.selectedLang = {
-               code: data.lang,
-               name: data.langName,
-               level: null
-            };
-        });
 
         function init(userLangs) {
             vm.langs = userLangs;

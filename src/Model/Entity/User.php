@@ -7,6 +7,10 @@ use Cake\ORM\TableRegistry;
 
 class User extends Entity
 {
+    protected $_hidden = [
+        'password',
+    ];
+
     const ROLE_ADMIN = 'admin';
     const ROLE_CORPUS_MAINTAINER = 'corpus_maintainer';
     const ROLE_ADV_CONTRIBUTOR = 'advanced_contributor';
@@ -42,6 +46,9 @@ class User extends Entity
     const MIN_LEVEL = -1; // trustworthy
     const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
+    public const TERMS_OF_USE_LATEST_VERSION = '2';
+    public const DEFAULT_MAX_VISIBLE_TRANSLATION = 5;
+
     public static $defaultSettings = array(
         'is_public' => false,
         'lang' => null,
@@ -49,18 +56,21 @@ class User extends Entity
         'collapsible_translations' => false,
         'show_transcriptions' => false,
         'sentences_per_page' => 10,
+        'max_visible_translations' => self::DEFAULT_MAX_VISIBLE_TRANSLATION,
         'users_collections_ratings' => false,
         'native_indicator' => false,
         'hide_random_sentence' => false,
-        'use_new_design' => false,
+        'use_new_design' => true,
         'default_license' => 'CC BY 2.0 FR',
         'can_switch_license' => false,
-        'new_terms_of_use' => false,
+        'new_terms_of_use' => self::TERMS_OF_USE_LATEST_VERSION,
         'license_switch_list_id' => null,
+        'hide_new_design_announcement' => false,
     );
 
     private $settingsValidation = array(
         'sentences_per_page' => array(10, 20, 50, 100),
+        'max_visible_translations' => array(5, 10, 20, 50),
     );
 
     protected function _setPassword($password) {

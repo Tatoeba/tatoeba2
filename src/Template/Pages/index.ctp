@@ -24,7 +24,8 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
+use App\Model\CurrentUser;
 
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 
@@ -41,6 +42,7 @@ $moreCommentsUrl = $this->Url->build([
 ?>
 <div id="annexe_content">
     <div class="stats annexe-menu md-whiteframe-1dp" layout="column" flex>
+        <?php /* @translators: header text in the home page (noun) */ ?>
         <md-subheader><?= __('Stats')?></md-subheader>
         <?= $this->element('stats/homepage_stats',
                 [ 'contribToday' => $contribToday,
@@ -49,7 +51,7 @@ $moreCommentsUrl = $this->Url->build([
                 ],
                 [ 'cache' => [
                     'config' => 'stats',
-                    'key' => 'homepage_stats_'.Configure::read('Config.language')
+                    'key' => 'homepage_stats_'.I18n::getLocale(),
                 ]]
         ); ?>
     </div>
@@ -81,17 +83,41 @@ $moreCommentsUrl = $this->Url->build([
 </div>
 
 <div id="main_content">
-    <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
-        <section>
-            <?php echo $this->element('random_sentence_header'); ?>
-            <div class="random_sentences_set">
-                <md-progress-circular md-mode="indeterminate" class="block-loader" id="random-progress" style="display: none;"></md-progress-circular>
-                <div id="random_sentence_display" class="md-whiteframe-1dp">
-                    <?php
-                    $this->Sentences->displaySentencesGroup($random);
-                    ?>
+    <?php
+    if (!CurrentUser::getSetting('use_new_design') && !CurrentUser::getSetting('hide_new_design_announcement')) {
+        $this->Html->script('directives/info-banner.dir.js', ['block' => 'scriptBottom']); 
+        ?>
+        <div info-banner ng-init="vm.init('hide_new_design_announcement')" ng-cloak>
+            <div class="md-whiteframe-1dp" layout-padding style="background: #fafafa" ng-if="vm.isInfoBannerVisible">
+                <p><?= __(
+                    'The new sentence design will soon completely replace the old one. Please try it out and let us know if you experience any issue. '.
+                    'You can enable it with the option '.
+                    '"Display sentences with the new design" in your Settings.'
+                ) ?></p>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-primary" href="/user/settings"><?= __('Go to settings') ?></md-button>
+                    <?php /* @translators: button to close the announcement about the new design (verb) */ ?>
+                    <md-button class="md-primary" ng-click="vm.hideAnnouncement(true)"><?= __('Close') ?></md-button>
                 </div>
             </div>
+        </div>
+        <?php 
+    } 
+    ?>
+
+    <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
+        <section>
+            <?php 
+            echo $this->element('random_sentence_header');
+            echo $this->element(
+                'sentences/sentence_and_translations',
+                array(
+                    'sentence' => $random,
+                    'translations' => $random->translations,
+                    'user' => $random->user,
+                )
+            );
+            ?>
      </section>
     <?php } ?>
 

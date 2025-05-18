@@ -1,0 +1,13 @@
+---
+
+- name: Pull code from {{repo}}
+  delegate_to: localhost
+  become: false
+  git:
+    repo: "{{repo}}"
+    dest: "{{repo | basename}}-git"
+    depth: 1
+
+- name: Execute {{repo | basename}} install role
+  include_role:
+    name: "{{repo | basename}}-git/ansible/"

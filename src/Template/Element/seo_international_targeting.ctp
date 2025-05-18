@@ -28,19 +28,16 @@
 use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
 
-$uiLanguages = Configure::read('UI.languages');
+$uiLanguages = LanguagesLib::activeUiLanguages();
 $currentLang = $this->request->getParam('lang');
 
 if ($currentLang) {
     $pathWithoutLang = substr($this->request->getPath(), strlen($currentLang) + 1);
-    $host = $this->request->host();
-    $scheme = $this->request->scheme();
-    foreach ($uiLanguages as $lang) {
-        $alternateURL = $scheme . '://' . $host . '/' . $lang[0] . $pathWithoutLang;
-        $hreflang = LanguagesLib::languageTag($lang[0], $lang[1]);
+    foreach ($uiLanguages as $code => $info) {
+        $alternateURL = $this->Url->build('/' . $code . $pathWithoutLang, ['fullBase' => true]);
         ?>
         <link rel="alternate"
-              hreflang="<?php echo $hreflang; ?>"
+              hreflang="<?php echo $code; ?>"
               href="<?php echo $alternateURL; ?>">
         <?php
     }

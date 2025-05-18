@@ -3,14 +3,13 @@ use App\Model\CurrentUser;
 
 $user = CurrentUser::get('User');
 $username = $user['username'];
-$avatar = $user['image'];
 ?>
 
 <md-card class="comment form">
 
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">
@@ -43,6 +42,7 @@ $avatar = $user['image'];
 
         <div ng-cloak layout="row" layout-align="end center">
             <md-button type="submit" class="md-raised md-primary submit">
+                <?php /* @translators: button to post a new message on the Wall (verb) */ ?>
                 <?php echo __('Send'); ?>
             </md-button>
         </div>

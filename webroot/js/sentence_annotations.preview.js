@@ -17,33 +17,29 @@
  */
 
 
-$(document).ready(function() { 
+document.addEventListener('DOMContentLoaded', function(){ 
     
-    var textToReplace = $("#SentenceAnnotationTextToReplace").val();
+    var textToReplace = document.getElementById('SentenceAnnotationTextToReplace').value;
     var textReplacing = '';
     
     textToReplace = textToReplace.replace(/<space>/g, " ");
     
-    $("#previewButton").click( function() {
+    document.getElementById('previewButton').addEventListener('click', function() {
         
         // reset first...
         if(textReplacing != ''){
-            $(".annotation").each( function() {
-                $(this).html( 
-                    $(this).html().replace(textReplacing, textToReplace) 
-                );
+            document.querySelectorAll('.annotation').forEach(function(item) {
+                item.innerHTML = item.innerHTML.replace(textReplacing, textToReplace);
             });
         }
         
         // update the new text to replace with...
         textReplacing = '<span style="background-color:#FFE07C;">' 
-            + $("#SentenceAnnotationTextReplacing").val() + '</span>';
+            + document.getElementById('SentenceAnnotationTextReplacing').value + '</span>';
         
         // replace
-        $(".annotation").each( function() {
-            $(this).html(
-                $(this).html().replace(textToReplace, textReplacing)
-            );
+        document.querySelectorAll('.annotation').forEach(function(item) {
+            item.innerHTML = item.innerHTML.replace(textToReplace, textReplacing);
         });
         
     });

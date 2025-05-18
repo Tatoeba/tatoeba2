@@ -1,11 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
-check_prerequistes() {
+check_prerequisites() {
   if ! which tx >/dev/null 2>&1; then
     echo "Please install the transifex client first:"
     echo "  https://docs.transifex.com/client/installing-the-client"
+    exit 1
+  fi
+
+  if ! tx help | grep -q "A new cli application"; then
+    echo "You need to install the new transifex client manually."
+    echo "Please check out the instructions here: https://github.com/Tatoeba/tatoeba2/wiki/Updating-your-VM-to-the-new-transifex-client"
     exit 1
   fi
 
@@ -30,27 +36,12 @@ pull_translations() {
   echo "Pulling translations from Transifex..."
 
   tx_params="-f -a"
-  tx_version=$(tx --version | cut -f1 -d, | tr -d .)
-  if [ $tx_version -ge 0133 ]; then
-    tx_params="--no-interactive $tx_params"
-  fi
-  if [ $tx_version -ge 0132 ]; then
-    tx_params="--parallel $tx_params"
-  fi
-
   if [ "$1" -eq 1 ]; then
     tx pull $tx_params
   else
     tx pull $tx_params -r tatoeba_website.tatoebaResource,tatoeba_website.countries,tatoeba_website.tatoeba-languages,tatoeba_website.admin
     tx pull $tx_params --minimum-perc 100 -r tatoeba-terms-of-use.terms-of-use
   fi
-}
-
-compile_po_files() {
-  echo "Compiling PO files..."
-  for file in src/Locale/*/*.po; do
-    msgfmt -o ${file%po}mo "$file"
-  done
 }
 
 remove_cakephp_cached_translation() {
@@ -67,9 +58,8 @@ elif [ "$#" -gt 0 ]; then
   exit 1
 fi
 
-check_prerequistes
+check_prerequisites
 pull_translations $pull_all
-compile_po_files
 remove_cakephp_cached_translation
 
 exit 0

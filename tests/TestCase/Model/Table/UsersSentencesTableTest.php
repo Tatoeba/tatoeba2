@@ -35,15 +35,41 @@ class UsersSentencesTest extends TestCase {
 
         $userSentence = $this->UsersSentences->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        )->first()->old_format;
+        )->first()->extract(['user_id', 'sentence_id', 'correctness']);
         $expected = array(
             'user_id' => $userId,
             'sentence_id' => $sentenceId,
             'correctness' => $correctness,
         );
 
-        $result = array_intersect_key($userSentence['UsersSentences'], $expected);
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userSentence);
+    }
+
+    function testSaveSentence_addsSentence_failsInvalidCorrectnessOnCreate() {
+        $sentenceId = 1;
+        $correctness = 1234;
+        $userId = 1;
+
+        $result = $this->UsersSentences->saveSentence(
+            $sentenceId, $correctness, $userId
+        );
+        $this->assertFalse($result);
+    }
+
+    function testSaveSentence_addsSentence_failsInvalidCorrectnessOnUpdate() {
+        $sentenceId = 2;
+        $correctness = 1234;
+        $userId = 1;
+
+        $result = $this->UsersSentences->saveSentence(
+            $sentenceId, $correctness, $userId
+        );
+        $this->assertFalse($result);
+
+        $newCorrectness = $this->UsersSentences->findBySentenceIdAndUserId(
+            $sentenceId, $userId
+        )->first()->correctness;
+        $this->assertEquals(1, $newCorrectness);
     }
 
     function testSaveSentence_editsDirtySentence() {
@@ -57,7 +83,7 @@ class UsersSentencesTest extends TestCase {
 
         $userSentence = $this->UsersSentences->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        )->first()->old_format;
+        )->first()->extract(['user_id', 'sentence_id', 'correctness', 'dirty']);
         $expected = array(
             'user_id' => $userId,
             'sentence_id' => $sentenceId,
@@ -65,8 +91,7 @@ class UsersSentencesTest extends TestCase {
             'dirty' => false
         );
 
-        $result = array_intersect_key($userSentence['UsersSentences'], $expected);
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userSentence);
     }
 
     function testDeleteSentence_succeeds() {
@@ -112,11 +137,16 @@ class UsersSentencesTest extends TestCase {
     }
 
     function testSaveSentence_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = Time::now();
+        $now = new Time('2020-01-02 03:04:05');
         Time::setTestNow($now);
+
         $this->UsersSentences->saveSentence(1, 1, 4);
         $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
         $this->assertEquals($now, $returned->created);
+
+        Time::setTestNow();
+        I18n::setLocale($prevLocale);
     }
 }

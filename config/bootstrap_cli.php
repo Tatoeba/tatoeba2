@@ -12,8 +12,10 @@
  * @since         3.0.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
+use Cake\I18n\I18n;
 use Cake\Core\Plugin;
 
 /**
@@ -29,3 +31,13 @@ use Cake\Core\Plugin;
 Configure::write('Log.debug.file', 'cli-debug');
 Configure::write('Log.error.file', 'cli-error');
 Configure::write('Log.queries.file', 'cli-queries');
+
+// Use 'en' locale for CLI so that we use the same locale
+// as browsers without an Accept-Language HTTP header
+// (otherwise it defaults to 'en_US')
+I18n::setLocale('en');
+
+// Disable caching to avoid permission errors produced by FileEngine
+// when CLI tools are executed by unpriviledged users such as
+// manticore
+Cache::disable();

@@ -4,148 +4,124 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# lipao <lipao@email.cz>, 2020
+# Yanis Batura <yanis.batura@gmail.com>, 2020
+# Polyglot Enthusiast <rvj1404@gmail.com>, 2020
+# lipao <lipao@email.cz>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-03 05:32+0000\n"
+"POT-Creation-Date: 2025-02-12 02:47+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: lipao <lipao@email.cz>, 2020\n"
-"Language-Team: Czech (https://www.transifex.com/tatoeba/teams/28284/cs/)\n"
+"Last-Translator: lipao <lipao@email.cz>, 2022\n"
+"Language-Team: Czech (https://app.transifex.com/tatoeba/teams/28284/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
-msgid "Invalid file “{file}” ignored."
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+msgid ""
+"Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+msgid "Marked all sentences added by {username} as unreliable."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+msgid "Unable to import audio: user “{author}” not found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
+msgid "Invalid file “{file}” ignored."
+msgstr "Neplatný soubor  “{file}” ignored."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+msgid ""
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
-msgid ""
-"Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
-"database. Make sure it's a valid username."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
 msgid "Import recordings"
-msgstr ""
+msgstr "Importovat nahrávku"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
-msgid "Import report"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
+msgid "The following errors occurred during the last import."
 msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L59
-msgid "The following errors occurred during import."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
-msgid "Files detected"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L84
-msgid "File name"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L85
-msgid "Sentence id"
-msgstr "Číslo věty"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
-msgid "Language"
-msgstr "Jazyk"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
-msgid "Already has audio"
+msgid "Audio import status"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
-msgid "May be imported"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
+msgid "Files detected"
+msgstr "Byly detekovány soubory."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
+msgid "Audio author"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
-msgid "N/A"
-msgstr ""
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
+msgid "Save"
+msgstr "Uložit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L103
-msgid "Invalid"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L127
-msgid "No files have been detected inside the import directory."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L133
-msgid "Import"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L59
-msgid "Enabled"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
-msgid "Yes"
-msgstr "Ano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
-msgid "No"
-msgstr "Ne"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
-msgid "Owner name"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L88
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
-msgid "Submit"
-msgstr ""
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "Odstranit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
-msgstr ""
+msgstr "Správnost"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
-msgid "Change"
-msgstr ""
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "Odevzdat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
-msgstr ""
+msgstr "Import vět"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr ""
+msgstr "Jednotlivé věty"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
-msgstr ""
+msgstr "Jazyk vět:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
-msgstr ""
+msgstr "Soubor:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
@@ -155,27 +131,33 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
 msgid "import"
-msgstr ""
+msgstr "Importovat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr ""
+msgstr "Věty a překlady"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
+msgstr "Jazyk překladů"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+msgid "Mark as unreliable"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "Odstranit"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "Určitě chcete odstranit uživatele #{number}?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr ""
+msgstr "Seznam Uživatelů"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
@@ -183,11 +165,11 @@ msgstr "Profil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr ""
+msgstr "Editace Uživatele"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
-msgstr ""
+msgstr "Identifikace"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
@@ -199,20 +181,20 @@ msgstr "Jazyk"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
 msgid "Group"
-msgstr ""
+msgstr "Skupina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
 msgid "Level"
-msgstr ""
+msgstr "Úroveň"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
-msgstr ""
+msgstr "Zaslat oznámení"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
 msgid "unhide"
 msgstr "zobrazit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
 msgid "hide"
 msgstr "skrýt"

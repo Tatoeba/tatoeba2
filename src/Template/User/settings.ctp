@@ -26,6 +26,7 @@
  */
 use App\Model\CurrentUser;
 
+/* @translators: title of Settings page */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 ?>
 <div id="annexe_content">
@@ -57,7 +58,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="sendNotifications"
-                    ng-init="sendNotifications = <?= $sendNotifications ?>"
+                    ng-init="sendNotifications = <?= (int)$sendNotifications ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p> <?php echo __('Send email notifications') ?></p>
@@ -79,7 +80,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="isPublic"
-                    ng-init="isPublic = <?= $isPublic ?>"
+                    ng-init="isPublic = <?= (int)$isPublic ?>"
                     class="md-primary">
                 </md-checkbox>
 
@@ -103,7 +104,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="useRecent"
-                    ng-init="useRecent = <?= $useRecent ?>"
+                    ng-init="useRecent = <?= (int)$useRecent ?>"
                     class="md-primary">
 
                 </md-checkbox>
@@ -123,13 +124,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
 
-            <md-list-item>
+            <md-list-item ng-show="useOldDesign">
                 <?php $collapsibleTranslations = $userSettings->settings['collapsible_translations']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="collapsibleTranslations"
-                    ng-init="collapsibleTranslations = <?= $collapsibleTranslations ?>"
+                    ng-init="collapsibleTranslations = <?= (int)$collapsibleTranslations ?>"
                     class="md-primary">
 
                 </md-checkbox>
@@ -155,10 +156,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="showTranscriptions"
-                    ng-init="showTranscriptions = <?= $showTranscriptions ?>"
+                    ng-init="showTranscriptions = <?= (int)$showTranscriptions ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Always show transcriptions and alternative scripts') ?> </p>
+                <p><?php echo __('Always show unreviewed transcriptions and alternative scripts') ?> </p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -219,6 +220,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <md-input-container class="md-block">
                     <?php
                     echo $this->Form->control('settings.lang', [
+                        /* @translators: option label on settings page */
                         'label' => __('Languages')
                     ]);
                     ?>
@@ -233,6 +235,24 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     'label' => ''
                 )); ?>
             </md-list-item>
+
+            <md-list-item ng-show="!useOldDesign">
+                <p><?= __('Number of translations per sentence'); ?></p>
+                <?php echo $this->Form->input('settings.max_visible_translations', [
+                    'options' => [5 => 5, 10 => 10, 20 => 20, 50 => 50],
+                    'label' => ''
+                ]); ?>
+            </md-list-item>
+
+            <?php if ($userSettings->settings['can_switch_license']) : ?>
+                <md-list-item>
+                    <p><?= __('Default license for original sentences'); ?></p>
+                    <?= $this->Form->input('settings.default_license', [
+                        'options' => $this->SentenceLicense->getLicenseOptions(),
+                        'label' => ''
+                    ]); ?>
+                </md-list-item>
+            <?php endif; ?>
         </md-list>
         <br>
 
@@ -256,7 +276,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="collectionRatings"
-                    ng-init="collectionRatings = <?= $collectionRatings ?>"
+                    ng-init="collectionRatings = <?= (int)$collectionRatings ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Activate the feature to review sentences') ?></p>
@@ -277,7 +297,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="nativeIndicator"
-                    ng-init="nativeIndicator = <?= $nativeIndicator ?>"
+                    ng-init="nativeIndicator = <?= (int)$nativeIndicator ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo format(
@@ -301,25 +321,24 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $useNewDesign = $userSettings->settings['use_new_design']; ?>
+                <?php $useOldDesign = !$userSettings->settings['use_new_design']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
-                    ng-model="useNewDesign"
-                    ng-init="useNewDesign = <?= $useNewDesign ?>"
+                    ng-model="useOldDesign"
+                    ng-init="useOldDesign = <?= (int)$useOldDesign ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __(
-                    'Display sentences with the new design. '.
-                    'Note that you will not have all the features '.
-                    'from the old design'
+                    'Display sentences with the old design. '.
+                    'Note that the old design will be removed at some point.'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
                 echo $this->Form->input(
                     'settings.use_new_design',
                     array(
-                        'value' => '{{useNewDesign}}'
+                        'value' => '{{1-useOldDesign}}'
                     )
                 );
                 ?>
@@ -330,6 +349,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
         <div layout="row" layout-align="center center">
             <md-button type="submit" class="md-raised md-primary">
+                <?php /* @translators: submit button of settings edition form in settings page (verb) */ ?>
                 <?php echo __('Save'); ?>
             </md-button>
         </div>
@@ -360,6 +380,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button of email address edition form in settings page (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
@@ -408,6 +429,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button of password edition form in settings page (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>

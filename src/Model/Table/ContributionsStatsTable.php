@@ -53,9 +53,7 @@ class ContributionsStatsTable extends Table
 
         $conditions = [
             'date >=' => $startDate,
-            'date <' => $endDate,
-            'type' => 'sentence',
-            'action' => 'insert'
+            'date <' => $endDate
         ];
 
         if ($lang) {
@@ -64,17 +62,41 @@ class ContributionsStatsTable extends Table
             $conditions['lang IS'] = null;
         }
 
-        return $this->find()
+        $contributionsStats = $this->find()
             ->where($conditions)
             ->select([
                 'lang',
                 'sentences',
+                'type',
+                'action',
                 'date',
             ])
             ->order([
-                'date' => 'ASC', 
-                'sentences' => 'DESC'
+                'date' => 'ASC',
+                'type' => 'ASC'
             ])
             ->toList();
+
+        // The number of "link" sentences is two times what we want
+        foreach ($contributionsStats as $contributionsStat) {
+            if ($contributionsStat->type === 'sentence' && $contributionsStat->action === 'insert') {
+                $stats[$contributionsStat->date]['added'] = $contributionsStat->sentences;
+            } elseif ($contributionsStat->type === 'sentence' && $contributionsStat->action === 'delete') {
+                    $stats[$contributionsStat->date]['deleted'] = $contributionsStat->sentences;
+            } elseif ($contributionsStat->type === 'link' && $contributionsStat->action === 'insert') {
+                    $stats[$contributionsStat->date]['linked'] = floor($contributionsStat->sentences / 2);
+            } elseif ($contributionsStat->type === 'link' && $contributionsStat->action === 'delete') {
+                    $stats[$contributionsStat->date]['unlinked'] = floor($contributionsStat->sentences / 2);
+            }
+        }
+
+        if (!isset($stats)) {
+            return [];
+        } else {
+            foreach ($stats as $date => $stat) {
+                $stats[$date]['total'] = array_sum($stats[$date]);
+            }
+            return $stats;
+        }
     }
 }

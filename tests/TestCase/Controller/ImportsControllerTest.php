@@ -16,16 +16,16 @@ class ImportsControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/imports/import_single_sentences', null, '/eng/users/login?redirect=%2Feng%2Fimports%2Fimport_single_sentences' ],
-            [ '/eng/imports/import_single_sentences', 'contributor', '/' ],
-            [ '/eng/imports/import_single_sentences', 'advanced_contributor', '/' ],
-            [ '/eng/imports/import_single_sentences', 'corpus_maintainer', '/' ],
-            [ '/eng/imports/import_single_sentences', 'admin', '/eng/sentences/import' ],
-            [ '/eng/imports/import_sentences_with_translation', null, '/eng/users/login?redirect=%2Feng%2Fimports%2Fimport_sentences_with_translation' ],
-            [ '/eng/imports/import_sentences_with_translation', 'contributor', '/' ],
-            [ '/eng/imports/import_sentences_with_translation', 'advanced_contributor', '/' ],
-            [ '/eng/imports/import_sentences_with_translation', 'corpus_maintainer', '/' ],
-            [ '/eng/imports/import_sentences_with_translation', 'admin', '/eng/sentences/import' ],
+            [ '/en/imports/import_single_sentences', null, '/en/users/login?redirect=%2Fen%2Fimports%2Fimport_single_sentences' ],
+            [ '/en/imports/import_single_sentences', 'contributor', '/' ],
+            [ '/en/imports/import_single_sentences', 'advanced_contributor', '/' ],
+            [ '/en/imports/import_single_sentences', 'corpus_maintainer', '/' ],
+            [ '/en/imports/import_single_sentences', 'admin', '/en/sentences/import' ],
+            [ '/en/imports/import_sentences_with_translation', null, '/en/users/login?redirect=%2Fen%2Fimports%2Fimport_sentences_with_translation' ],
+            [ '/en/imports/import_sentences_with_translation', 'contributor', '/' ],
+            [ '/en/imports/import_sentences_with_translation', 'advanced_contributor', '/' ],
+            [ '/en/imports/import_sentences_with_translation', 'corpus_maintainer', '/' ],
+            [ '/en/imports/import_sentences_with_translation', 'admin', '/en/sentences/import' ],
         ];
     }
 

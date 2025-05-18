@@ -1,11 +1,12 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PrivateMessagesTable;
-use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Model\Table\PrivateMessagesTable;
+use Cake\Event\Event;
+use Cake\Event\EventList;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
 
 class PrivateMessageTest extends TestCase {
 
@@ -53,8 +54,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => 'advanced_contributor',
         );
-        $pm = $this->PrivateMessage->get($id)->old_format;
-        $this->assertEquals($expectedPm, $pm['PrivateMessage']);
+        $pm = $this->PrivateMessage->get($id)->toArray();
+        $this->assertEquals($expectedPm, $pm);
     }
 
     public function testSaveDraft_editsExistingDraft() {
@@ -84,8 +85,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => 'advanced_contributor',
         );
-        $pm = $this->PrivateMessage->get($draftId)->old_format;
-        $this->assertEquals($expectedPm, $pm['PrivateMessage']);
+        $pm = $this->PrivateMessage->get($draftId)->toArray();
+        $this->assertEquals($expectedPm, $pm);
     }
 
     public function testSave_failsIfEmptyContent() {
@@ -176,8 +177,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 0,
             'draft_recpts' => '',
         );
-        $sent = $this->PrivateMessage->get($sentId)->old_format;
-        $this->assertEquals($expectedSent, $sent['PrivateMessage']);
+        $sent = $this->PrivateMessage->get($sentId)->toArray();
+        $this->assertEquals($expectedSent, $sent);
 
         $receivedId = $sentId - 1;
         $expectedReceived = array(
@@ -194,8 +195,8 @@ class PrivateMessageTest extends TestCase {
             'draft_recpts' => '',
         );
         CurrentUser::store(['id' => $recpt]);
-        $received = $this->PrivateMessage->get($receivedId)->old_format;
-        $this->assertEquals($expectedReceived, $received['PrivateMessage']);
+        $received = $this->PrivateMessage->get($receivedId)->toArray();
+        $this->assertEquals($expectedReceived, $received);
     }
 
     public function testSend_limitExceeded() {
@@ -236,6 +237,8 @@ class PrivateMessageTest extends TestCase {
     }
 
     function testSend_firesSendingEvent() {
+        $eventManager = $this->PrivateMessage->getEventManager();
+        $eventManager->setEventList(new EventList());
         $date = '1999-12-31 23:59:59';
         $postData = array(
             'recipients' => 'advanced_contributor',
@@ -245,35 +248,15 @@ class PrivateMessageTest extends TestCase {
             'submitType' => 'send',
         );
         $currentUserId = 7;
-        $expectedMessage = array(
-            'recpt' => 3,
-            'sender' => 7,
-            'date' => '1999-12-31 23:59:59',
-            'folder' => 'Inbox',
-            'title' => 'Status',
-            'content' => 'Why are you so advanced?',
-            'isnonread' => 1,
-            'user_id' => 3,
-            'draft_recpts' => '',
-            'sent' => 1,
-        );
 
-        $dispatched = false;
-        $model = $this->PrivateMessage;
-        $model->getEventManager()->on(
+        $saved = $this->PrivateMessage->send($currentUserId, $date, $postData);
+
+        $this->assertEventFiredWith(
             'Model.PrivateMessage.messageSent',
-            function (Event $event) use ($model, &$dispatched, $expectedMessage) {
-                $this->assertSame($model, $event->getSubject());
-                $message = $event->getData('message')->old_format['PrivateMessage']; // $message
-                unset($message['id']);
-                $this->assertEquals($expectedMessage, $message);
-                $dispatched = true;
-            }
+            'message',
+            $saved[0],
+            $eventManager
         );
-
-        $this->PrivateMessage->send($currentUserId, $date, $postData);
-
-        $this->assertTrue($dispatched);
     }
 
     public function testDeleteMessage_movedToTrash()

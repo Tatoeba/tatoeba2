@@ -59,5 +59,11 @@ class SentencesSentencesListsFixture extends TestFixture {
 			'sentence_id' => '20',
 			'created' => '2018-10-13 00:43:42',
 		),
+		array( # Ghost link inserted on purpose
+			'id' => '8',
+			'sentences_list_id' => '999999',
+			'sentence_id' => '20',
+			'created' => '2018-10-13 01:23:45',
+		)
 	);
 }

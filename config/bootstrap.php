@@ -29,6 +29,7 @@ require __DIR__ . '/paths.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
+use App\Error\TatoebaErrorHandler;
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\App;
@@ -37,7 +38,7 @@ use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
 use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
-use Cake\Error\ErrorHandler;
+use Cake\Error\Debugger;
 use Cake\Http\ServerRequest;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
@@ -78,22 +79,35 @@ try {
  */
 Configure::load('app_local', 'default');
 
-/*
- * When debug = true the metadata cache should only last
- * for a short time.
- */
 if (Configure::read('debug')) {
+    /*
+     * When debug = true the metadata cache should only last
+     * for a short time.
+     */
     Configure::write('Cache._cake_model_.duration', '+2 minutes');
     Configure::write('Cache._cake_core_.duration', '+2 minutes');
     // disable router cache during development
     Configure::write('Cache._cake_routes_.duration', '+2 seconds');
-}
 
-/*
- * Make cache files world-writable on dev environments
- * to ease file permissions setup.
- */
-if (Configure::read('debug')) {
+    /**
+     * In debug mode errors and warnings will be displayed in the browser.
+     * But whenever the output contains {{ the app will crash because they
+     * will be interpreted by the AngularJS compiler.
+     * We can prevent the crash if we modify the template string by adding
+     * the ng-non-bindable directive. Unfortunately the template string
+     * isn't easily accessible so we need to use PHP's Reflection feature.
+     */
+    $debugger = new ReflectionClass('Cake\Error\Debugger');
+    $templates = $debugger->getProperty('_templates');
+    $templates->setAccessible(true);
+    $error = $templates->getValue(Debugger::getInstance())['js']['error'];
+    $error = preg_replace('/>/', ' ng-non-bindable>', $error, 1);
+    Debugger::addFormat('js', ['error' => $error]);
+
+    /*
+     * Make cache files world-writable on dev environments
+     * to ease file permissions setup.
+     */
     $confCache = Configure::read('Cache');
     foreach ($confCache as $cache => $config) {
         if (Configure::read('debug')) {
@@ -127,7 +141,7 @@ $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
     (new ConsoleErrorHandler(Configure::read('Error')))->register();
 } else {
-    (new ErrorHandler(Configure::read('Error')))->register();
+    (new TatoebaErrorHandler(Configure::read('Error')))->register();
 }
 
 /*
@@ -237,7 +251,7 @@ if (!function_exists('format')) {
             $res = '';
             if (array_key_exists($key, $args)) {
                 $res = $args[$key];
-                $list = __format_decompose_list($res);
+                $list = __format_decompose_list((string)$res);
                 if (is_array($list)) {
                     reset($list);
                     if (!$subkey || !array_key_exists($subkey, $list))
@@ -252,7 +266,7 @@ if (!function_exists('format')) {
 if (!function_exists('__format_decompose_list')) {
     function __format_decompose_list($string) {
         $result = $string;
-        if ($string[0] == ';') {
+        if ($string !== '' && $string[0] == ';') {
             $list = explode(';', $string);
             $result = array();
             array_shift($list);
@@ -268,7 +282,8 @@ if (!function_exists('__format_decompose_list')) {
 }
 
 Cake\I18n\I18n::setDefaultFormatter('sprintf');
+Cake\I18n\I18n::useFallback(false);
 Cake\I18n\Time::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 Cake\I18n\Time::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT];
 Cake\I18n\FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss');
-Cake\I18n\FrozenTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT];
+Cake\I18n\FrozenTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::LONG];

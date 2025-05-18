@@ -17,15 +17,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Cake\Core\Configure;
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import recordings')));
 
+$canImport = !$lastImportJob || $lastImportJob->completed;
 ?>
-<div id="main_content">
 <div class="module">
 <h2><?php echo __d('admin', 'Import recordings'); ?></h2>
 
 <?php if ($filesImported) : ?>
-    <h3><?php echo __d('admin', 'Import report'); ?></h3>
+    <?php
+        $dateTime = $lastImportJob->completed->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::LONG]);
+    ?>
+
+    <h3><?= __d('admin', format('Last import report (completed on {dateTime})', compact('dateTime'))) ?></h3>
 
     <div id="import-totals">
         <?php echo format(
@@ -38,7 +44,19 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
         ); ?>
         <br/>
         <?php
+        if (!empty($filesImported['replaced'])) {
+            echo format(
+                __dn('admin',
+                     '{numberOfFiles} was a replacement of an existing recording.',
+                     '{numberOfFiles} were replacements of existing recordings.',
+                     $filesImported['replaced'],
+                     true),
+                array('numberOfFiles' => $filesImported['replaced'])
+            );
+            echo '<br/>';
+        }
         unset($filesImported['total']);
+        unset($filesImported['replaced']);
         $subTotals = array();
         foreach ($filesImported as $lang => $numberOfFiles) {
             $subTotals[] = format(
@@ -56,15 +74,39 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     </div>
 
     <?php if ($errors) : ?>
-        <p><?php echo __d('admin', 'The following errors occurred during import.'); ?></p>
+        <p><?= __d('admin', 'The following errors occurred during the last import.') ?></p>
         <div id="import-report">
-            <?php echo join('<br/>', $errors); ?>
+            <?= $this->safeForAngular(join('<br/>', $errors)) ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>
 
+<?php
+if (!$canImport) {
+    echo $this->Html->tag('h3', __d('admin', 'Audio import status'));
+    if (!$lastImportJob->fetched) {
+        $timeAgo = $lastImportJob->created->timeAgoInWords();
+        $status = __d('admin', format(
+            'Import task enqueued {timeAgo}. Please refresh '.
+            'the page in a little while to check if import is completed.',
+            compact('timeAgo')
+        ));
+    } else {
+        $timeAgo = $lastImportJob->fetched->timeAgoInWords();
+        $status = __d('admin', format(
+            'An import is currently running since {timeAgo}. Please refresh '.
+            'the page in a little while to check if import is completed.',
+            compact('timeAgo')
+        ));
+    }
+    echo $this->Html->tag('p', $status);
+}
+?>
+
 <h3><?php echo __d('admin', 'Files detected'); ?></h3>
-<?php if ($filesToImport): ?>
+<?php
+echo $this->Form->create(null, ['ng-non-bindable' => '']);
+if ($filesToImport): ?>
     <p><?php echo format(
         __dn(
             'admin',
@@ -79,12 +121,35 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     ); ?></p>
     <table id="files-detected">
     <?php
+    $togglerId = 'audio-replace-toggler';
+    $replaceCheckboxName = 'replace';
+    $jsToggler = <<<JS
+    document.querySelectorAll('input[type="checkbox"][name^="{$replaceCheckboxName}["]:not([disabled])').forEach(
+        function (c) {c.checked = document.querySelector("#$togglerId").checked;
+    })
+    JS;
+    $toggler = $this->Form->checkbox('batch', [
+        'id' => $togglerId,
+        'checked' => true,
+        'onclick' => $jsToggler
+    ]);
+    $explainer = __d(
+        'admin',
+        'If checked, this will replace existing recordings '
+        .'if specified author already has audio for that sentence.'
+    );
+    $togglerLabel = $this->Form->label(
+        $togglerId,
+        __d('admin', 'Replace existing?'),
+        ['title' => $explainer]
+    );
     echo $this->Html->tableHeaders(
         array(
             __d('admin', 'File name'),
             __d('admin', 'Sentence id'),
             __d('admin', 'Language'),
-            __d('admin', 'Already has audio'),
+            __d('admin', 'Existing audio'),
+            $toggler . $togglerLabel,
             __d('admin', 'May be imported'),
         )
     );
@@ -101,21 +166,43 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                           )
                       ) :
                       __d('admin', 'Invalid');
-        $hasaudio = isset($file['hasaudio']) ? (
-                        $file['hasaudio'] ?
-                        __('Yes') :
-                        __('No')
+        if ($file['valid']) {
+            $checkboxName = $replaceCheckboxName.'['.$file['sentenceId'].']';
+            $disabled = count($file['audios']) == 0;
+            $replaceCheckbox = $this->Form->checkbox($checkboxName, [
+                'value' => '1',
+                'checked' => !$disabled,
+                'disabled' => $disabled,
+            ]);
+        } else {
+            $replaceCheckbox = '';
+        }
+        $hasaudio = isset($file['audios']) ?
+                    (
+                        count($file['audios']) > 0 ?
+                        (
+                            implode(
+                                __(', '),
+                                array_map(
+                                    function ($audio) { return $audio->author; },
+                                    $file['audios']
+                                )
+                            )
+                        ) :
+                        __d('admin', 'None')
                     ) :
                     __d('admin', 'N/A');
         $isValid = $file['valid'] ?
-                   __('Yes') :
-                   __('No');
+                   __d('admin', 'Yes') :
+                   __d('admin', 'No');
+
         echo $this->Html->tableCells(
             array(
                 $file['fileName'],
                 $sentenceId,
                 $lang,
                 $hasaudio,
+                $replaceCheckbox,
                 $isValid,
             ),
             array('class' => 'even')
@@ -128,10 +215,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                       'inside the import directory.'); ?></p>
 <?php endif; ?>
 <?php
-echo $this->Form->create();
-echo $this->Form->input('audioAuthor');
-echo $this->Form->submit(__d('admin', 'Import'));
+echo $this->Form->input('audioAuthor', ['required' => true]);
+echo $this->Form->submit(__d('admin', 'Import'), $canImport ? [] : ['disabled' => true]);
 echo $this->Form->end();
 ?>
-</div>
 </div>

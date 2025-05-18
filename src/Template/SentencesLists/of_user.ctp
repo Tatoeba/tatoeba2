@@ -70,28 +70,34 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <section class="md-whiteframe-1dp">
             <md-toolbar class="md-hue-2">
                 <div class="md-toolbar-tools">
-                    <h2><?= $title ?></h2>
+                    <h2><?= $this->safeForAngular($title) ?></h2>
+
+                    <?php 
+                        $options = array(
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'name', 'direction' => 'asc', 'label' => __('List name (alphabetical)')),
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'name', 'direction' => 'desc', 'label' => __('List name (reverse alphabetical)')),
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'created', 'direction' => 'desc', 'label' => __x('lists', 'Newest first')),
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'created', 'direction' => 'asc', 'label' => __x('lists', 'Oldest first')),
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'numberOfSentences', 'direction' => 'desc', 'label' => __('Highest number of sentences')),
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'numberOfSentences', 'direction' => 'asc', 'label' => __('Lowest number of sentences')),
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'modified', 'direction' => 'desc', 'label' => __x('lists', 'Most recently updated')),
+                            /* @translators: sort option in the "Lists of user" page */
+                            array('param' => 'modified', 'direction' => 'asc', 'label' => __x('lists', 'Least recently updated'))
+                        );
+                        echo $this->element('sort_menu', array('options' => $options));
+                    ?>
+
                 </div>
             </md-toolbar>
             
             <div layout-padding>
-            <div class="sortBy">
-                <strong><?php echo __("Sort by:") ?> </strong>
-                <?php
-                echo $this->Paginator->sort('name', __('list name'));
-                echo " | ";
-                echo $this->Paginator->sort('created', __('date created'));
-                echo " | ";
-                echo $this->Paginator->sort(
-                  'numberOfSentences',
-                    __('number of sentences')
-                );
-                echo " | ";
-                $options = array('defaultOrders' => array('modified' => 'desc'));
-                echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
-                ?>
-
-            </div>
 
             <?php
             $this->Pagination->display();

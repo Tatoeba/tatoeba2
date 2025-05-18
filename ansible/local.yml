@@ -1,0 +1,12 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  vars_files:
+  - host_vars/default
+  become: true
+  gather_facts: yes
+  roles:
+  - common
+
+  tasks:
+  - import_tasks: tatoeba.tasks.yml

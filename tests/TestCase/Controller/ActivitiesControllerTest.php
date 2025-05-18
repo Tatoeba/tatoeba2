@@ -18,22 +18,24 @@ class ActivitiesControllerTest extends IntegrationTestCase {
         'app.sentences_sentences_lists',
         'app.transcriptions',
         'app.users',
-        'app.users_languages'
+        'app.users_languages',
+        'app.users_sentences',
+        'app.wiki_articles',
     );
 
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/activities/adopt_sentences', null, true ],
-            [ '/eng/activities/adopt_sentences', 'contributor', true ],
-            [ '/eng/activities/adopt_sentences/jav', null, true ],
-            [ '/eng/activities/adopt_sentences/jav', 'contributor', true ],
-            [ '/eng/activities/translate_sentences', null, true ],
-            [ '/eng/activities/translate_sentences', 'contributor', true ],
-            [ '/eng/activities/translate_sentences_of/admin', null, true ],
-            [ '/eng/activities/translate_sentences_of/admin', 'contributor', true ],
-            [ '/eng/activities/translate_sentences_of/admin/fra', null, true ],
-            [ '/eng/activities/translate_sentences_of/admin/fra', 'contributor', true ],
+            [ '/en/activities/adopt_sentences', null, '/en/users/login?redirect=%2Fen%2Factivities%2Fadopt_sentences' ],
+            [ '/en/activities/adopt_sentences', 'contributor', true ],
+            [ '/en/activities/adopt_sentences/jav', null, '/en/users/login?redirect=%2Fen%2Factivities%2Fadopt_sentences%2Fjav' ],
+            [ '/en/activities/adopt_sentences/jav', 'contributor', true ],
+            [ '/en/activities/translate_sentences', null, '/en/users/login?redirect=%2Fen%2Factivities%2Ftranslate_sentences' ],
+            [ '/en/activities/translate_sentences', 'contributor', true ],
+            [ '/en/activities/translate_sentences_of/admin', null, true ],
+            [ '/en/activities/translate_sentences_of/admin', 'contributor', true ],
+            [ '/en/activities/translate_sentences_of/admin/fra', null, true ],
+            [ '/en/activities/translate_sentences_of/admin/fra', 'contributor', true ],
         ];
     }
 
@@ -49,8 +51,8 @@ class ActivitiesControllerTest extends IntegrationTestCase {
         $userId = 7;
         $lastPage = 3;
 
-        $this->get("/eng/activities/translate_sentences_of/$user?page=9999999");
+        $this->get("/en/activities/translate_sentences_of/$user?page=9999999");
 
-        $this->assertRedirect("/eng/activities/translate_sentences_of/$user?page=$lastPage");
+        $this->assertRedirect("/en/activities/translate_sentences_of/$user?page=$lastPage");
     }
 }

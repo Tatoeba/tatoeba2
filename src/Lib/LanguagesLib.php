@@ -26,9 +26,9 @@
  */
 namespace App\Lib;
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\I18n\I18n;
-
 
 class LanguagesLib
 {
@@ -46,6 +46,25 @@ class LanguagesLib
     }
 
     /**
+     * Extracts the language code from a locale and converts
+     * it to its ISO-639-3 equivalent code. If not there is
+     * no equivalent, the locale language code is returned.
+     *
+     * @param string $code    Locale
+     *
+     * @return string ISO-639-3 code or locale language
+     */
+    public static function locale_To_Iso639_3($code)
+    {
+        $hyphen = strpos($code, '-');
+        if ($hyphen !== false) {
+            $code = substr($code, 0, $hyphen);
+        }
+        $map = array_flip(self::get_Iso639_3_To_Iso639_1_Map());
+        return $map[$code] ?? $code;
+    }
+
+    /**
      * Returns Tatoeba's map from ISO-639-3 to ISO-639-1.
      */
     public static function get_Iso639_3_To_Iso639_1_Map() {
@@ -53,17 +72,18 @@ class LanguagesLib
         // Example: Khasi
         static $map = array(
             'abk' => 'ab', // Abkhaz
+            'aar' => 'aa', // Afar
             'afr' => 'af', // Afrikaans
             'amh' => 'am', // Amharic
-            'ara' => 'ar', // Arabic
             'arg' => 'an', // Aragonese
             'asm' => 'as', // Assamese
-            'aym' => 'ay', // Aymara
-            'aze' => 'az', // Azerbaijani
+            'ava' => 'av', // Avaric
+            'ave' => 'ae', // Avestan
             'bak' => 'ba', // Bashkir
             'bam' => 'bm', // Bambara
             'bel' => 'be', // Belarusian
             'ben' => 'bn', // Bengali
+            'bis' => 'bi', // Bislama
             'bod' => 'bo', // Tibetan
             'bos' => 'bs', // Bosnian
             'bre' => 'br', // Breton
@@ -72,16 +92,18 @@ class LanguagesLib
             'ces' => 'cs', // Czech
             'cha' => 'ch', // Chamorro
             'che' => 'ce', // Chechen
+            'chu' => 'cu', // Church Slavic, Old Slavonic, Church Slavonic, Old Bulgarian, Old Church Slavonic
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
             'cos' => 'co', // Corsican
             'cym' => 'cy', // Welsh
             'dan' => 'da', // Danish
             'deu' => 'de', // German
+            'div' => 'dv', // Divehi, Dhivehi, Maldivian
+            'dzo' => 'dz', // Dzongkha
             'ell' => 'el', // Greek
             'eng' => 'en', // English
             'epo' => 'eo', // Esperanto
-            'est' => 'et', // Estonian
             'eus' => 'eu', // Basque
             'ewe' => 'ee', // Ewe
             'fao' => 'fo', // Faroese
@@ -93,64 +115,70 @@ class LanguagesLib
             'gle' => 'ga', // Irish
             'glg' => 'gl', // Galician
             'glv' => 'gv', // Manx
-            'grn' => 'gn', // Guarani
             'guj' => 'gu', // Gujarati
             'hat' => 'ht', // Haitian Creole
             'hau' => 'ha', // Hausa
             'heb' => 'he', // Hebrew
+            'her' => 'hz', // Herero
             'hin' => 'hi', // Hindi
+            'hmo' => 'ho', // Hiri Motu
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
-            'hye' => 'hy', // Armenian
+            'hye' => 'hy', // Eastern Armenian
             'ibo' => 'ig', // Igbo
             'ido' => 'io', // Ido
             'ile' => 'ie', // Interlingue
             'ina' => 'ia', // Interlingua
             'ind' => 'id', // Indonesian
+            'iii' => 'ii', // Sichuan Yi, Nuosu
             'isl' => 'is', // Icelandic
             'ita' => 'it', // Italian
             'jav' => 'jv', // Javanese
             'jpn' => 'ja', // Japanese
             'kal' => 'kl', // Greenlandic
             'kan' => 'kn', // Kannada
+            'kas' => 'ks', // Kashmiri
             'kat' => 'ka', // Georgian
             'kaz' => 'kk', // Kazakh
             'khm' => 'km', // Khmer
+            'kik' => 'ki', // Kikuyu, Gikuyu
             'kin' => 'rw', // Kinyarwanda
             'kir' => 'ky', // Kyrgyz
             'kor' => 'ko', // Korean
-            'kur' => 'ku', // Kurdish
+            'kua' => 'kj', // Kuanyama, Kwanyama
             'lao' => 'lo', // Lao
             'lat' => 'la', // Latin
+            'lim' => 'li', // Limburgan, Limburger, Limburgish
             'lin' => 'ln', // Lingala
             'lit' => 'lt', // Lithuanian
             'ltz' => 'lb', // Luxembourgish
             'lug' => 'lg', // Luganda
+            'lub' => 'lu', // Luba-Katanga
             'mah' => 'mh', // Marshallese
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
             'mkd' => 'mk', // Macedonian
-            'mlg' => 'mg', // Malagasy
             'mlt' => 'mt', // Maltese
-            'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
             'mya' => 'my', // Burmese
             'nau' => 'na', // Nauruan
             'nav' => 'nv', // Navajo
+            'nbl' => 'nr', // South Ndebele
+            'nde' => 'nd', // North Ndebele
+            'ndo' => 'ng', // Ndonga
             'nld' => 'nl', // Dutch
             'nob' => 'nb', // Norwegian Bokmål)
+            'nno' => 'nn', // Norwegian Nynorsk
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
-            'oji' => 'oj', // Ojibwe
-            'ori' => 'or', // Odia (Oriya)
             'oss' => 'os', // Ossetian
             'pan' => 'pa', // Punjabi (Eastern)
-            'pus' => 'ps', // Pashto
+            'pli' => 'pi', // Pali
             'pol' => 'pl', // Polish
             'por' => 'pt', // Portuguese
-            'que' => 'qu', // Quechua
             'roh' => 'rm', // Romansh
             'ron' => 'ro', // Romanian
+            'run' => 'rn', // Rundi
             'rus' => 'ru', // Russian
             'sag' => 'sg', // Sango
             'san' => 'sa', // Sanskrit
@@ -162,14 +190,13 @@ class LanguagesLib
             'sna' => 'sn', // Shona
             'snd' => 'sd', // Sindhi
             'som' => 'so', // Somali
-            'ssw' => 'ss', // Swazi
             'sot' => 'st', // Southern Sotho
             'spa' => 'es', // Spanish
-            'sqi' => 'sq', // Albanian
-            'srd' => 'sc', // Sardinian
             'srp' => 'sr', // Serbian
+            'ssw' => 'ss', // Swazi
             'sun' => 'su', // Sundanese
             'swe' => 'sv', // Swedish
+            'tah' => 'ty', // Tahitian
             'tam' => 'ta', // Tamil
             'tat' => 'tt', // Tatar
             'tel' => 'te', // Telugu
@@ -182,23 +209,39 @@ class LanguagesLib
             'tso' => 'ts', // Tsonga
             'tuk' => 'tk', // Turkmen
             'tur' => 'tr', // Turkish
+            'twi' => 'tw', // Twi
             'uig' => 'ug', // Uyghur
             'ukr' => 'uk', // Ukrainian
             'urd' => 'ur', // Urdu
-            'uzb' => 'uz', // Uzbek
+            'ven' => 've', // Venda
             'vie' => 'vi', // Vietnamese
             'vol' => 'vo', // Volapük
-            'wol' => 'wo', // Wolof
             'wln' => 'wa', // Walloon
+            'wol' => 'wo', // Wolof
             'xho' => 'xh', // Xhosa
-            'yid' => 'yi', // Yiddish
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
 
+            // Macrolanguages that we are using because of legacy but
+            // should ideally changed into individual language codes
+            'sqi' => 'sq', // Albanian
+            'ara' => 'ar', // Arabic
+            'aym' => 'ay', // Aymara
+            'aze' => 'az', // Azerbaijani
+            'est' => 'et', // Estonian
+            'grn' => 'gn', // Guarani
+            'mlg' => 'mg', // Malagasy
+            'mon' => 'mn', // Mongolian
+            'oji' => 'oj', // Ojibwa
+            'ori' => 'or', // Oriya
+            'pus' => 'ps', // Pashto, Pushto
+            'que' => 'qu', // Quechua
+            'srd' => 'sc', // Sardinian
+            'uzb' => 'uz', // Uzbek
+            'yid' => 'yi', // Yiddish
 
-
-
-            // Macrolanguages
+            // Macrolanguages that are here because most browsers
+            // still need lang="zh-..." for proper font selection
             'yue' => 'zh',
             'wuu' => 'zh',
             'lzh' => 'zh',
@@ -213,8 +256,8 @@ class LanguagesLib
 
     /**
      * Return array of languages in Tatoeba. Do not call this function too
-     * soon in the CakePHP process, or Configure::read('Config.language')
-     * won't be set and it will defeat the purpose of the memoizer $languages,
+     * soon in the CakePHP process, or I18n::setLocale() won't be called
+     * yet and it will defeat the purpose of the memoizer $languages,
      * hitting performance down.
      *
      * @return array
@@ -283,7 +326,7 @@ class LanguagesLib
                 'eus' => __d('languages', 'Basque'),
                 'slk' => __d('languages', 'Slovak'),
                 'dan' => __d('languages', 'Danish'),
-                'hye' => __d('languages', 'Armenian'),
+                'hye' => __d('languages', 'Eastern Armenian'),
                 'acm' => __d('languages', 'Iraqi Arabic'),
                 'san' => __d('languages', 'Sanskrit'),
                 'urd' => __d('languages', 'Urdu'),
@@ -305,7 +348,7 @@ class LanguagesLib
                 'gle' => __d('languages', 'Irish'),
                 'ina' => __d('languages', 'Interlingua'),
                 'jbo' => __d('languages', 'Lojban'),
-                'toki' => __d('languages', 'Toki Pona'),
+                'tok' => __d('languages', 'Toki Pona'),
                 'ain' => __d('languages', 'Ainu'),
                 'scn' => __d('languages', 'Sicilian'),
                 'mal' => __d('languages', 'Malayalam'),
@@ -324,7 +367,6 @@ class LanguagesLib
                 'oci' => __d('languages', 'Occitan'),
                 'xal' => __d('languages', 'Kalmyk'),
                 'ang' => __d('languages', 'Old English'),
-                'kur' => __d('languages', 'Kurdish'),
                 'dsb' => __d('languages', 'Lower Sorbian'),
                 'hsb' => __d('languages', 'Upper Sorbian'),
                 'ksh' => __d('languages', 'Kölsch'),
@@ -346,7 +388,7 @@ class LanguagesLib
                 'pms' => __d('languages', 'Piedmontese'),
                 'avk' => __d('languages', 'Kotava'),
                 'mar' => __d('languages', 'Marathi'),
-                'tpw' => __d('languages', 'Old Tupi'),
+                'tpn' => __d('languages', 'Tupinambá'),
                 'tgk' => __d('languages', 'Tajik'),
                 'prg' => __d('languages', 'Old Prussian'),
                 'npi' => __d('languages', 'Nepali'),
@@ -523,7 +565,7 @@ class LanguagesLib
                 'afb' => __d('languages', 'Gulf Arabic'),
                 'min' => __d('languages', 'Minangkabau'),
                 'tmw' => __d('languages', 'Temuan'),
-                'cjy' => __d('languages', 'Chinese (Jin)'),
+                'cjy' => __d('languages', 'Jin Chinese'),
                 'mai' => __d('languages', 'Maithili'),
                 'mad' => __d('languages', 'Madurese'),
                 'bjn' => __d('languages', 'Banjar'),
@@ -551,15 +593,15 @@ class LanguagesLib
                 'kpv' => __d('languages', 'Komi-Zyrian'),
                 'cmo' => __d('languages', 'Central Mnong'),
                 'koi' => __d('languages', 'Komi-Permyak'),
-                'ike' => __d('languages', 'Inuktitut'), 
-                'kab' => __d('languages', 'Kabyle'), 
-                'run' => __d('languages', 'Kirundi'), 
+                'ike' => __d('languages', 'Inuktitut'),
+                'kab' => __d('languages', 'Kabyle'),
+                'run' => __d('languages', 'Kirundi'),
                 'aln' => __d('languages', 'Gheg Albanian'),
                 'akl' => __d('languages', 'Aklanon'),
-                'mnc' => __d('languages', 'Manchu'), 
+                'mnc' => __d('languages', 'Manchu'),
                 'kas' => __d('languages', 'Kashmiri'),
                 'otk' => __d('languages', 'Old Turkish'),
-                'aoz' => __d('languages', 'Uab Meto'), 
+                'aoz' => __d('languages', 'Uab Meto'),
                 'shy' => __d('languages', 'Tachawit'),
                 'fkv' => __d('languages', 'Kven Finnish'),
                 'rap' => __d('languages', 'Rapa Nui'),
@@ -580,6 +622,84 @@ class LanguagesLib
                 'chg' => __d('languages', 'Chagatai'),
                 'xmf' => __d('languages', 'Mingrelian'),
                 'osp' => __d('languages', 'Old Spanish'),
+                'tmr' => __d('languages', 'Jewish Babylonian Aramaic'),
+                'ryu' => __d('languages', 'Okinawan'),
+                'evn' => __d('languages', 'Evenki'),
+                'bis' => __d('languages', 'Bislama'),
+                'stq' => __d('languages', 'Saterland Frisian'),
+                'fro' => __d('languages', 'Old French'),
+                'syc' => __d('languages', 'Syriac'),
+                'frr' => __d('languages', 'North Frisian'),
+                'nys' => __d('languages', 'Nyungar'),
+                'tts' => __d('languages', 'Isan'),
+                'toi' => __d('languages', 'Tonga (Zambezi)'),
+                'new' => __d('languages', 'Newari'),
+                'jpa' => __d('languages', 'Jewish Palestinian Aramaic'),
+                'phn' => __d('languages', 'Phoenician'),
+                'rel' => __d('languages', 'Rendille'),
+                'iii' => __d('languages', 'Nuosu'),
+                'drt' => __d('languages', 'Drents'),
+                'laa' => __d('languages', 'Southern Subanen'),
+                'chn' => __d('languages', 'Chinook Jargon'),
+                'bal' => __d('languages', 'Baluchi'),
+                'pli' => __d('languages', 'Pali'),
+                'hbo' => __d('languages', 'Ancient Hebrew'),
+                'ajp' => __d('languages', 'South Levantine Arabic'),
+                'hax' => __d('languages', 'Southern Haida'),
+                'hdn' => __d('languages', 'Northern Haida'),
+                'xqa' => __d('languages', 'Karakhanid'),
+                'crk' => __d('languages', 'Plains Cree'),
+                'yua' => __d('languages', 'Yucatec Maya'),
+                'pal' => __d('languages', 'Middle Persian (Pahlavi)'),
+                'mni' => __d('languages', 'Meitei'),
+                'ayl' => __d('languages', 'Libyan Arabic'),
+                'ood' => __d('languages', "O'odham"),
+                'lut' => __d('languages', 'Lushootseed'),
+                'ofs' => __d('languages', 'Old Frisian'),
+                'nus' => __d('languages', 'Nuer'),
+                'ckb' => __d('languages', 'Central Kurdish (Soranî)'),
+                'kmr' => __d('languages', 'Northern Kurdish (Kurmancî)'),
+                'sdh' => __d('languages', 'Southern Kurdish'),
+                'kiu' => __d('languages', 'Northern Zaza (Kirmanjki)'),
+                'diq' => __d('languages', 'Southern Zaza (Dimli)'),
+                'zgh' => __d('languages', 'Standard Moroccan Tamazight'),
+                'bfz' => __d('languages', 'Mahasu Pahari'),
+                'qxq' => __d('languages', 'Qashqai'),
+                'klj' => __d('languages', 'Khalaj'),
+                'dar' => __d('languages', 'Dargwa'),
+                'lbe' => __d('languages', 'Lak'),
+                'ava' => __d('languages', 'Avar'),
+                'mus' => __d('languages', 'Muskogee (Creek)'),
+                'abq' => __d('languages', 'Abaza'),
+                'inh' => __d('languages', 'Ingush'),
+                'kbd' => __d('languages', 'Kabardian'),
+                'srn' => __d('languages', 'Sranan Tongo'),
+                'lez' => __d('languages', 'Lezgi'),
+                'guc' => __d('languages', 'Wayuu'),
+                'lim' => __d('languages', 'Limburgish'),
+                'zea' => __d('languages', 'Zeelandic'),
+                'mnr' => __d('languages', 'Mono (USA)'),
+                'shi' => __d('languages', 'Tashelhit'),
+                'bom' => __d('languages', 'Berom'),
+                'sat' => __d('languages', 'Santali'),
+                'mik' => __d('languages', 'Hitchiti'),
+                'szl' => __d('languages', 'Silesian'),
+                'igs' => __d('languages', 'Interglossa'),
+                'knc' => __d('languages', 'Central Kanuri'),
+                'nnb' => __d('languages', 'Nande'),
+                'swc' => __d('languages', 'Congo Swahili'),
+                'rhg' => __d('languages', 'Rohingya'),
+                'mfa' => __d('languages', 'Kelantan-Pattani Malay'),
+                'skr' => __d('languages', 'Saraiki'),
+                'nap' => __d('languages', 'Neapolitan'),
+                'syl' => __d('languages', 'Sylheti'),
+                'tum' => __d('languages', 'Tumbuka'),
+                'arn' => __d('languages', 'Mapuche'),
+                'hyw' => __d('languages', 'Western Armenian'),
+                'guw' => __d('languages', 'Gun'),
+                'gaz' => __d('languages', 'West-Central Oromo'),
+                'isv' => __d('languages', 'Interslavic'),
+
             );
         }
         return $languages;
@@ -616,9 +736,10 @@ class LanguagesLib
     /**
      * Get the direction (right to left or left to right) of a language
      *
-     * @param string $lang ISO-639-3 code
+     * @param string $lang ISO-639-3 code or ISO-639-1 code or locale
      *
      * @return string "rtl" (right to left) or "ltr" (left to right)
+     *                or "auto" (depends on used script)
      */
     public static function getLanguageDirection($lang) {
 
@@ -626,7 +747,6 @@ class LanguagesLib
 
         $rightToLeftLangs = array(
             "ara",
-            "arq",
             "heb",
             "arz",
             "uig",
@@ -643,14 +763,37 @@ class LanguagesLib
             "snd",
             "div",
             "otk",
+            "tmr",
+            "syc",
+            "phn",
+            "jpa",
+            "hbo",
+            "ajp",
+            "ayl",
+            "sdh",
+            "ckb",
+            "skr",
         );
 
         $autoLangs = array(
             "apc",
+            "arq",
             "ota",
             "chg",
             "lad",
+            "xqa",
+            "qxq",
+            "klj",
+            "zlm",
+            "zsm",
+            "knc",
+            "swc",
+            "rhg",
+            "mfa",
+            "bal",
         );
+
+        $lang = self::locale_To_Iso639_3($lang);
 
         if (in_array($lang, $rightToLeftLangs)) {
             $direction = "rtl";
@@ -676,5 +819,20 @@ class LanguagesLib
     {
         $available = self::languagesInTatoeba();
         return isset($available[$code]);
+    }
+
+    public static function activeUiLanguages()
+    {
+        $languages = Cache::remember(
+            'active_ui_languages',
+            function () {
+                return array_filter(
+                    Configure::read('UI.languages'),
+                    function ($val) { return is_array($val); }
+                );
+            }
+        );
+
+        return $languages;
     }
 }

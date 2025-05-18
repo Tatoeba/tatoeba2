@@ -15,6 +15,7 @@ class TagsFixture extends TestFixture {
 		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
 		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'nbrOfSentences' => ['type' => 'integer', 'null' => false, 'default' => '0'],
+		'category_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
 		'_indexes' => [
 			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
 			'nbr_sentences_idx' => ['type' => 'index', 'columns' => ['nbrOfSentences'], 'length' => []],
@@ -32,6 +33,7 @@ class TagsFixture extends TestFixture {
 			'user_id' => '2',
 			'created' => '2013-04-14 13:10:02',
 			'nbrOfSentences' => '1',
+			'category_id' => null,
 		),
 		array(
 			'id' => '2',
@@ -41,6 +43,7 @@ class TagsFixture extends TestFixture {
 			'user_id' => '1',
 			'created' => '2014-02-13 10:46:09',
 			'nbrOfSentences' => '1',
+			'category_id' => null,
 		),
 		array(
 			'id' => '3',
@@ -50,6 +53,7 @@ class TagsFixture extends TestFixture {
 			'user_id' => '1',
 			'created' => '2014-02-13 10:46:09',
 			'nbrOfSentences' => '1',
+			'category_id' => null,
 		),
 	);
 }

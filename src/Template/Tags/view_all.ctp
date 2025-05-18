@@ -42,13 +42,14 @@ $tagsIndexUrl = $this->Url->build([
         ?>
         <md-input-container layout="column">
             <?php
-            echo $this->Form->input('search', [
-                'value' => $filter,
-                'label' => false
-            ]);
+                echo $this->Form->input('search', [
+                    'value' => $this->safeForAngular($filter),
+                    'label' => false,
+                ]);
             ?>
             <md-button type="submit" class="md-raised md-default">
-                <?= __('Search') ?>
+                <?php /* @translators: search button in All tags page (verb) */ ?>
+                <?= __x('button', 'Search') ?>
             </md-button>
         </md-input-container>
 
@@ -82,25 +83,32 @@ $tagsIndexUrl = $this->Url->build([
 
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $title ?></h2>
+                <h2><?= $this->safeForAngular($title) ?></h2>
+                
+                <?php 
+                    $options = array(
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'nbrOfSentences', 'direction' => 'desc', 'label' => __('Highest number of sentences')),
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'nbrOfSentences', 'direction' => 'asc', 'label' => __('Lowest number of sentences') ),
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'name', 'direction' => 'asc', 'label' => __('Tag name (alphabetical)')),
+                        /* @translators: sort option in the All tags page */
+                        array('param' => 'name', 'direction' => 'desc', 'label' => __('Tag name (reverse alphabetical)'))
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
+                
             </div>
         </md-toolbar>
 
         <div layout-padding>
-        <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            echo $this->Paginator->sort('nbrOfSentences', __("count"));
-            echo " | ";
-            echo $this->Paginator->sort('name', __("name"));
-            ?>
-        </div>
 
         <?php $this->Pagination->display(); ?>
 
         <md-list>
             <?php foreach( $allTags as $tag) {
-                $tagName = $tag->name;
+                $tagName = $this->safeForAngular($tag->name);
                 $tagUrl = $this->Url->build([
                     'controller' => 'tags',
                     'action' => 'show_sentences_with_tag',

@@ -19,7 +19,6 @@
  */
 
 use Cake\Core\Configure;
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\InflectedRoute;
@@ -45,73 +44,144 @@ use Cake\Routing\Route\InflectedRoute;
  * constructor in your `src/Application.php` file to change this behavior.
  *
  */
+
+use App\Middleware\LanguageSelectorMiddleware;
+use AssetCompress\Middleware\AssetCompressMiddleware;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Routing\Middleware\AssetMiddleware;
+
+
 Router::defaultRouteClass(InflectedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
-    // Array that lists all the languages into which the Tatoeba interface
-    // has been translated
-    $configUiLanguages = Configure::read('UI.languages');
-    $iso3LangArray = array();
-    foreach ($configUiLanguages as $lang) {
-        $iso3LangArray[] = $lang[0];
-        if (isset($lang[3]) && is_array($lang[3])) {
-            foreach ($lang[3] as $alias) {
-                $iso3LangArray[] = $alias;
-            }
-        }
-    }
-    $interfaceLanguages = join('|', $iso3LangArray);
+    $routes->registerMiddleware('languageSelector', new LanguageSelectorMiddleware());
 
-    /**
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, src/Template/Pages/home.ctp)...
-     */
-    $routes->connect(
-        '/:lang',
-        [
-            'lang' => ':lang',
-            'controller' => 'Pages',
-            'action' => 'index'
-        ]
-    )
-    ->setPatterns(['lang' => $interfaceLanguages])
-    ->setPersist(['lang']);
+    $routes->registerMiddleware('asset', new AssetMiddleware([
+        'cacheTime' => Configure::read('Asset.cacheTime')
+    ]));
+
+    $routes->registerMiddleware('assetCompress', new AssetCompressMiddleware());
+
+    // Can be re-enabled when we get rid of jquery.jeditable,
+    // which is used for editing sentences.
+    // We're using the Csrf component meanwhile, to disable
+    // CSRF only on specific actions.
+    /*
+    $routes->registerMiddleware('csrfProtection', new CsrfProtectionMiddleware([
+        'httpOnly' => true
+    ]));
+    */
+});
+
+Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     $routes->connect(
         '/',
-        [
-            'controller' => 'Pages',
-            'action' => 'index'
-        ]
+        ['controller' => 'doc', 'action' => 'index']
+    )
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/:version',
+        ['controller' => 'doc', 'action' => 'show']
+    )
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/:version/:controller',
+        ['action' => 'search']
+    )
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/:version/:controller/:id',
+        ['action' => 'get']
+    )
+    ->setPass(['id'])
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
+        '/:version/:controller/:id/:action'
+    )
+    ->setPass(['id'])
+    ->setPersist(['version'])
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+});
+
+Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes) {
+    $routes->connect(
+        '/sentences/:lang/:sentence_id.mp3',
+        ['controller' => 'main', 'action' => 'legacy_audio_url']
+    )
+    ->setHost('audio.*')
+    ->setPass(['lang', 'sentence_id'])
+    ->setPatterns(['sentence_id' => '\d+']);
+
+    $routes->connect(
+        '/*',
+        ['controller' => 'main', 'action' => 'default']
+    )
+    ->setHost('audio.*');
+});
+
+Router::scope('/', function (RouteBuilder $routes) {
+    $routes->applyMiddleware('assetCompress');
+
+    // Handle plugin/theme assets like CakePHP normally does.
+    $routes->applyMiddleware('asset');
+
+    $routes->applyMiddleware('languageSelector');
+
+    // Can be re-enabled when we get rid of jquery.jeditable,
+    // which is used for editing sentences.
+    // We're using the Csrf component meanwhile, to disable
+    // CSRF only on specific actions.
+    /*
+    // Add csrf middleware.
+    $routes->applyMiddleware('csrfProtection');
+    */
+
+
+    // Regex pattern for language parameter
+    $langPattern = join(
+        '|',
+        array_keys(Configure::read('UI.languages'))
+    );
+
+    $routes->connect(
+        '/:lang',
+        ['controller' => 'Pages', 'action' => 'index']
+    )
+    ->setPatterns(['lang' => $langPattern])
+    ->setPersist(['lang']);
+
+    $routes->connect(
+        '/',
+        ['controller' => 'Pages', 'action' => 'index']
     );
 
     $routes->connect(
         '/:lang/:action',
-        [
-            'lang' => ':lang',
-            'controller' => 'pages',
-        ]
+        ['controller' => 'Pages']
     )
-    ->setPatterns(['lang' => $interfaceLanguages])
+    ->setPatterns(['lang' => $langPattern])
     ->setPersist(['lang']);
 
     $routes->connect(
         '/:action',
-        [
-            'controller' => 'pages',
-        ]
+        ['controller' => 'Pages']
     );
 
-    /**
-     * La langue choisie sera maintenant disponible dans les contrôleurs
-     * par la variable $this->params['lang'].
-     */
-    $routes->connect(
-        '/:lang/:controller/:action/*',
-        [
-            'lang'=>'eng'
-        ]
-    )
-    ->setPatterns(['lang' => $interfaceLanguages])
+    $routes->connect('/:lang/:controller/:action/*')
+    ->setPatterns(['lang' => $langPattern])
     ->setPersist(['lang']);
+
+    $routes->connect('/:controller/:action/*');
 });

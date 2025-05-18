@@ -5,7 +5,7 @@ namespace App\Shell\Task;
 use App\Model\CurrentUser;
 use App\Shell\BatchOperationTrait;
 use Cake\Console\Shell;
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
 use Queue\Shell\Task\QueueTask;
 
 class QueueSwitchSentencesLicenseTask extends QueueTask {
@@ -145,9 +145,9 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
  * @return bool Success
  */
     public function run(array $options, $id = null) {
-        if (isset($options['UIlang'])) {
-            $prevLang = Configure::read('Config.language');
-            Configure::write('Config.language', $options['UIlang']);
+        if (isset($options['locale'])) {
+            $prevLocale = I18n::getLocale();
+            I18n::setLocale($options['locale']);
         }
 
         if (isset($options['sendReport'])) {
@@ -162,8 +162,8 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             $this->sendReport($options['userId']);
         }
 
-        if (isset($prevLang)) {
-            Configure::write('Config.language', $prevLang);
+        if (isset($prevLocale)) {
+            I18n::setLocale($prevLocale);
         }
         return true;
     }

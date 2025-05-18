@@ -4,6 +4,12 @@ namespace App\Test\TestCase;
 
 use Cake\TestSuite\TestCase;
 
+class BootstrapTestStringifiableObject {
+    public function __toString() {
+        return 'stringified!';
+    }
+}
+
 class BootstrapTest extends TestCase {
     function testFormat() {
         # Basic {} functionality
@@ -24,6 +30,7 @@ class BootstrapTest extends TestCase {
         # Support named parameters
         $this->assertEquals('I love Tatoeba.', format('I {what} Tatoeba.', array('what' => 'love')));
         $this->assertEquals('I  Tatoeba.', format('I {what} Tatoeba.', array('what' => null)));
+        $this->assertEquals('I  Tatoeba.', format('I {what} Tatoeba.', array('what' => '')));
 
         # Support lists, fallback on first key
         $loveConjugation = '; first: love; third: loves';
@@ -71,5 +78,11 @@ class BootstrapTest extends TestCase {
         $asArray = array('a' => '; k: a_v', 'b' => '; k: b_v');
         $this->assertEquals('a_v-b_v.', format('{a.k}-{b.k}.', $asArray));
         $this->assertEquals('b_v-a_v.', format('{b.k}-{a.k}.', $asArray));
+
+        # Support passing object that implements __toString()
+        $this->assertEquals(
+            'object: stringified!',
+            format('object: {}', new BootstrapTestStringifiableObject())
+        );
     }
 }

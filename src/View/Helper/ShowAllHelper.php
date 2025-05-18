@@ -26,8 +26,9 @@
  */
 namespace App\View\Helper;
 
+use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
-
+use Cake\Utility\Inflector;
 
 
 /**
@@ -46,8 +47,7 @@ class ShowAllHelper extends AppHelper
     public $helpers = array(
         'Languages',
         'Form',
-        'Html',
-        'Url'
+        'Number',
     );
 
     /**
@@ -61,9 +61,9 @@ class ShowAllHelper extends AppHelper
         // we reconstruct the path
         $path ='/';
         // language of the interface
-        $path .= $this->request->params['lang'] .'/';
-        $path .= $this->request->params['controller'].'/';
-        $path .= $this->request->params['action'];
+        $path .= $this->request->getParam('lang') .'/';
+        $path .= Inflector::delimit($this->request->getParam('controller')).'/';
+        $path .= $this->request->getParam('action');
         return $path;
     }
 
@@ -80,12 +80,12 @@ class ShowAllHelper extends AppHelper
     private function _generateJavascriptUrl($params, $position)
     {
         $baseUrl = $this->_generateBaseUrl();
-        $params[$position] = 'this.value' ;
+        $params[$position] = 'language.code' ;
 
         $paramString = '';
         foreach ($params as $param) {
-            if ($param == 'this.value') {
-                $paramString .= "+'/'+ this.value";
+            if ($param == 'language.code') {
+                $paramString .= "+'/'+ language.code";
             } else {
                 $paramString .= ("+'/'+'$param'");
             }
@@ -106,18 +106,17 @@ class ShowAllHelper extends AppHelper
     private function _generateSelect($selectedLanguage, $langs, $position)
     {
 
-        $params = $this->request->params['pass'];
+        $params = $this->request->getParam('pass');
         $javascriptUrl = $this->_generateJavascriptUrl($params, $position);
 
-        return $this->Form->select(
-            'filterLanguageSelect',
-            $langs,
+        return $this->_View->element(
+            'language_dropdown',
             array(
-                "value" => $selectedLanguage,
-                "id" => "",
-                "onchange" => "$(location).attr('href', $javascriptUrl);",
-                "class" => count($langs) > 2 ? 'language-selector' : null,
-                "empty" => false
+                'name' => 'filterLanguageSelect',
+                'initialSelection' => $selectedLanguage,
+                'languages' => $langs,
+                'onSelectedLanguageChange' => "window.location.pathname = $javascriptUrl",
+                'forceItemSelection' => true,
             )
         );
 
@@ -164,7 +163,7 @@ class ShowAllHelper extends AppHelper
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Show translations in:'); ?></h2>
             <?php
-            $langs = $this->Languages->languagesArrayForPositiveLists();
+            $langs = $this->Languages->languagesArrayShowTranslationsIn();
 
             echo $this->_generateSelect(
                 $selectedLanguage,
@@ -180,74 +179,54 @@ class ShowAllHelper extends AppHelper
     <?php
     }
 
-    /**
-     * Diplsay the module to filter main sentences with no direct translation in
-     * the language specified by select
-     *
-     * @todo This should be completely removed at some point.
-     *
-     * @param string $selectedLanguage The default selected language
-     *
-     * @return void
-     */
-
-    public function displayShowNotTranslatedInto($selectedLanguage = 'none')
+    private function formatNumberOfSentences($lang)
     {
-        ?>
-        <div class="module">
-            <h2><?php echo __('Not directly translated into:'); ?></h2>
-            <?php
-            echo format(
-                __(
-                    'This option has been removed. '.
-                    'Please use the <a href={}>Translate sentences</a> page '.
-                    'to find untranslated sentences.', true
-                ),
-                $this->Url->build(array(
-                    'controller' => 'activities',
-                    'action' => 'translate_sentences'
-                ))
-            );
-            ?>
-            </p>
-        </div>
-    <?php
+        $lang = clone $lang;
+        $n = $lang->sentences;
+        $digits = strlen($lang->sentences);
+        $digits = (int)($digits/2);
+        $lang->sentences -= $lang->sentences % (10**$digits);
+        $lang->sentences = $this->Number->format($lang->sentences);
+        $lang->sentences = format(
+          __n('{n}+ sentence', '{n}+ sentences', $n),
+          ['n' => $lang->sentences]
+        );
+        return $lang;
+    }
+
+    public function extractLanguageProfiles($stats)
+    {
+        $profileLangs = [];
+        $profileLangCodes = CurrentUser::getProfileLanguages();
+        foreach ($stats as $milestone => $langs) {
+            foreach ($langs as $lang) {
+                if (in_array($lang->code, $profileLangCodes)) {
+                    $profileLangs[] = $this->formatNumberOfSentences($lang);
+                }
+            }
+        }
+        return $profileLangs;
     }
 
     /**
-     * Display the module to filter (or not) only main sentences with audio
+     * Extract top ten from stats grouped by milestones
      *
-     * @param string $selectedOption The default selected option
+     * @param array $stats array of array Stats grouped by milestones
      *
-     * @return void
+     * @return array Top ten of languages with the most sentences
      */
-
-    public function displayFilterOrNotAudioOnly($selectedOption = 'indifferent')
+    public function extractTopTen($stats)
     {
-        ?>
-        <div class="module">
-            <h2><?php echo __('Only sentences with audio:'); ?></h2>
-            <?php
-            $options = array(
-                'indifferent' => __('no'),
-                'only-with-audio' =>  __('yes'),
-            );
-
-            echo $this->_generateSelect(
-                $selectedOption,
-                $options,
-                3
-            );
-            ?>
-            <p>
-            <?php echo __('NOTE: Not all languages have audio at the moment.');
-            ?>
-            </p>
-        </div>
-    <?php
+        $top10 = [];
+        foreach ($stats as $milestone => $languages) {
+            foreach ($languages as $language) {
+                $top10[] = $this->formatNumberOfSentences($language);
+                if (count($top10) >= 10) {
+                    break 2;
+                }
+            }
+        }
+        return $top10;
     }
-
-
-
 }
 ?>

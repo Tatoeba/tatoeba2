@@ -35,5 +35,71 @@ dt {
 
 .symbol {
     color: #97BC5C;
+    padding: 0 0.2em;
 }
 
+.file-selection {
+    margin: 0;
+}
+
+.file-selection md-select-value {
+    min-width: 200px;
+    margin-left: 0.5em;
+}
+
+/*
+ * Weekly exports
+ */
+.weekly-exports-info md-icon {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.weekly-exports-info {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.weekly-export {
+    border-top: 1.5px solid rgba(0,0,0,0.12);
+    margin-bottom: 0;
+}
+
+/*
+ * Custom export
+ */
+#custom-export {
+  margin-bottom: 20px;
+}
+
+#custom-export .export-card {
+  text-transform: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  letter-spacing: 0;
+  padding: 10px 20px 15px;
+  white-space: initial;
+  max-width: 320px;
+}
+
+#custom-export .export-card strong {
+  vertical-align: middle;
+}
+
+#custom-export select#listToExport {
+  width: 100%;
+}
+
+#custom-export label {
+  margin-right: 1em;
+}
+
+#custom-export .progress-info {
+  margin-left: 10px;
+}
+
+#custom-export .uncropped-md-button {
+  min-width: unset;
+  overflow: visible;
+}

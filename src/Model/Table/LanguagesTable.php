@@ -47,6 +47,38 @@ class LanguagesTable extends Table
     }
 
     /**
+     * Return number of sentences per language grouped by milestones.
+     *
+     * @param array of int $milestones Milestones in decreasing order
+     *
+     * @return array of array Number of sentences grouped by milestones
+     */
+    public function getMilestonedStatistics($milestones)
+    {
+        $mapper = function ($stat, $key, $mapReduce) use ($milestones) {
+            for ($i = 0; $i < count($milestones); $i++) {
+                if ($stat->sentences >= $milestones[$i]) {
+                    break;
+                }
+            }
+            $mapReduce->emitIntermediate($stat, $milestones[$i]);
+        };
+        $reducer = function ($languages, $milestone, $mapReduce) {
+            $mapReduce->emit($languages, $milestone);
+        };
+        $results = $this->find()
+            ->select([
+                'code',
+                'sentences',
+            ])
+            ->order(['sentences' => 'DESC'])
+            ->mapReduce($mapper, $reducer)
+            ->toArray();
+
+        return $results;
+    }
+
+    /**
      * Return stats for number of audio per language.
      *
      * @return array

@@ -48,6 +48,8 @@ class ReviewsController extends AppController
     {
         $this->loadModel('UsersSentences');
 
+        $this->loadComponent('RequestHandler');
+
         return parent::beforeFilter($event);
     }
 
@@ -59,13 +61,20 @@ class ReviewsController extends AppController
      */
     public function add_sentence($sentenceId, $correctness)
     {
-        $this->UsersSentences->saveSentence(
+        $result = $this->UsersSentences->saveSentence(
             $sentenceId, $correctness, CurrentUser::get('id')
         );
 
         $this->set('sentenceId', $sentenceId);
 
-        $this->render('add_delete');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->set('result', $result);
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
+        } else {
+            $this->render('add_delete');
+        }
     }
 
     /**
@@ -75,13 +84,20 @@ class ReviewsController extends AppController
      */
     public function delete_sentence($sentenceId)
     {
-        $this->UsersSentences->deleteSentence(
+        $result = $this->UsersSentences->deleteSentence(
             $sentenceId, CurrentUser::get('id')
         );
 
         $this->set('sentenceId', $sentenceId);
 
-        $this->render('add_delete');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->set('result', $result);
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
+        } else {
+            $this->render('add_delete');
+        }
     }
 
     /**
@@ -95,12 +111,14 @@ class ReviewsController extends AppController
      */
     public function of($username, $correctnessLabel = null, $lang = null)
     {
+        if (!in_array($correctnessLabel, ['ok', 'unsure', 'not-ok', 'all', 'outdated'])) {
+            return $this->redirect([$username, 'all', $lang], 301);
+        }
+
         $this->helpers[] = 'Pagination';
 
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);
-
-        $this->set('username', $username);
 
         if(empty($userId)) {
             $this->set('userExists', false);
@@ -112,9 +130,11 @@ class ReviewsController extends AppController
         );
         $corpus = $this->paginate('UsersSentences');
 
+        $this->set('username', $username);
         $this->set('corpus', $corpus);
         $this->set('userExists', true);
         $this->set('correctnessLabel', $correctnessLabel);
         $this->set('lang', $lang);
+        $this->set('userIsReviewer', $userId == CurrentUser::get('id'));
     }
 }

@@ -3,7 +3,6 @@ namespace App\Test\TestCase\View\Helper;
 
 use App\Model\CurrentUser;
 use App\View\Helper\LanguagesHelper;
-use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 use Cake\I18n\I18n;
@@ -13,12 +12,18 @@ class LanguagesHelperTest extends TestCase {
 		'app.users_languages'
 	);
 
+	private $prevLocale;
+
 	function setUp() {
 		parent::setUp();
         $View = new View();
 		$this->Languages = new LanguagesHelper($View);
-		I18N::setLocale('en');
+		$this->prevLocale = I18n::getLocale();
 		CurrentUser::store(null);
+	}
+
+	function tearDown() {
+		I18n::setLocale($this->prevLocale);
 	}
 
 	function _beRegularUser() {
@@ -30,32 +35,6 @@ class LanguagesHelperTest extends TestCase {
 			)
 		);
 		CurrentUser::store($admin);
-	}
-
-	function testUserLanguagesArray_returnsManyManyLanguages() {
-		$result = $this->Languages->userLanguagesArray();
-		$this->assertTrue(count($result) > 100);
-	}
-
-	function testUserLanguagesArray_returnsPreferredLanguagesIfAny() {
-		$this->_beRegularUser();
-		$expectedUserLanguages = array('jpn', 'epo', 'ara', 'deu');
-
-		$result = $this->Languages->userLanguagesArray();
-		$result = array_keys($result);
-
-		$this->assertEquals($expectedUserLanguages, $result);
-	}
-
-	function testTranslationsArray_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->translationsArray();
-		$this->assertEquals('Japanese', $result['jpn']);
-	}
-
-	function testTranslationsArray_returnsLocalizedLangagesNames() {
-		I18N::setLocale('ja');
-		$result = $this->Languages->translationsArray();
-		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testLanguagesArray_returnsUnlocalizedLangagesNames() {
@@ -92,24 +71,13 @@ class LanguagesHelperTest extends TestCase {
 	}
 
 	function testLanguagesArrayForLists_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->languagesArrayForPositiveLists();
+		$result = $this->Languages->languagesArrayShowTranslationsIn();
 		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testLanguagesArrayForLists_returnsLocalizedLangagesNames() {
 		I18N::setLocale('ja');
-		$result = $this->Languages->languagesArrayForPositiveLists();
-		$this->assertEquals('日本語', $result['jpn']);
-	}
-
-	function testLanguagesArrayWithNone_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->languagesArrayWithNone();
-		$this->assertEquals('Japanese', $result['jpn']);
-	}
-
-	function testLanguagesArrayWithNone_returnsLocalizedLangagesNames() {
-		I18N::setLocale('ja');
-		$result = $this->Languages->languagesArrayWithNone();
+		$result = $this->Languages->languagesArrayShowTranslationsIn();
 		$this->assertEquals('日本語', $result['jpn']);
 	}
 
@@ -134,4 +102,13 @@ class LanguagesHelperTest extends TestCase {
 		$result = $this->Languages->codeToNameAlone('jpn');
 		$this->assertEquals('日本語', $result);
 	}
+
+    function testGetInterfaceLanguage() {
+        $oldLang = I18n::getLocale();
+        I18n::setLocale('en');
+        $this->assertEquals('English', $this->Languages->getInterfaceLanguage());
+        I18n::setLocale('fr');
+        $this->assertEquals('Français', $this->Languages->getInterfaceLanguage());
+        I18n::setLocale($oldLang);
+    }
 }

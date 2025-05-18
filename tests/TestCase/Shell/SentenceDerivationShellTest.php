@@ -12,6 +12,8 @@ use Cake\Utility\Hash;
 class SentenceDerivationShellTest extends TestCase
 {
     public $fixtures = array(
+        'app.audios',
+        'app.disabled_audios',
         'app.contributions',
         'app.sentences',
         'app.languages',
@@ -172,7 +174,23 @@ class SentenceDerivationShellTest extends TestCase
         return Hash::combine($result, '{n}.id', '{n}.based_on_id');
     }
 
-    public function testRun_findsBasicDerivation()
+    public function testRun()
+    {
+        $result = $this->SentenceDerivationShell->run();
+
+        // execute all the _testRun*() methods
+        // they only contain assertions about the above code
+        foreach (get_class_methods($this) as $method) {
+            if (substr($method, 0, 8) === "_testRun") {
+                $this->{$method}($result);
+            }
+        }
+    }
+
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_findsBasicDerivation()
     {
         $expectedDerivation = array(
             1 => 0,    /* sentence 1 is original */
@@ -189,23 +207,25 @@ class SentenceDerivationShellTest extends TestCase
             14 => 0,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $actualDerivation = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
 
-    public function testRun_doesNotRecreateRemovedSentences()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_doesNotRecreateRemovedSentences()
     {
         $removedSentenceId = 13;
-
-        $this->SentenceDerivationShell->run();
 
         $result = $this->Sentences->findById($removedSentenceId)->toList();
         $this->assertEmpty($result);
     }
 
-    public function testRun_doesNotTouchSentencesWithoutLog()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_doesNotTouchSentencesWithoutLog()
     {
         $expectedDerivation = array(
             15 => null,
@@ -213,50 +233,54 @@ class SentenceDerivationShellTest extends TestCase
             17 => null,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $actualDerivation = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
 
-    public function testRun_doesNotTouchSentencesCreatedWithDatetimeZero()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_doesNotTouchSentencesCreatedWithDatetimeZero()
     {
         $expectedDerivation = array(
             18 => null,
             19 => null,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_pattern_createA_linkBA_linkAB()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_pattern_createA_linkBA_linkAB()
     {
         $expectedDerivation = array(
             20 => 18
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_pattern_linkBA_linkAB_createA()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_pattern_linkBA_linkAB_createA()
     {
         $expectedDerivation = array(
             21 => 19
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_twoPairsAddedAtTheSameTime()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_twoPairsAddedAtTheSameTime()
     {
         $expectedDerivation = array(
             22 => 0,
@@ -266,27 +290,30 @@ class SentenceDerivationShellTest extends TestCase
             26 => 16,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_longDatetimeDifference()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_longDatetimeDifference()
     {
         $expectedDerivation = array(
             28 => 27,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
-    public function testRun_returnsNumberOfSentencesProceeded()
+
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_returnsNumberOfSentencesProceeded($actual)
     {
         /* 
-        Among existing sentences, 19 are being skipped:
+        Among existing sentences, 27 are being skipped:
             #10: doesn't have logs
             #15: no log of type 'sentence'
             #16: no log of type 'sentence'
@@ -306,12 +333,19 @@ class SentenceDerivationShellTest extends TestCase
             #55: Already has based_on_id
             #56: Already has based_on_id
             #57: Already has based_on_id
+            #58: Already has based_on_id
+            #59: Already has based_on_id
+            #60: Already has based_on_id
+            #61: Already has based_on_id
+            #62: Already has based_on_id
+            #63: Already has based_on_id
+            #64: Already has based_on_id
+            #65: Already has based_on_id
         */
         
         $totalSentences = $this->Sentences->find()->count();
-        $totalSkipped = 19;
+        $totalSkipped = 27;
         $expected = $totalSentences - $totalSkipped;
-        $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }
 
@@ -334,32 +368,37 @@ class SentenceDerivationShellTest extends TestCase
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_multipleCreationRecords()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_multipleCreationRecords()
     {
         $expectedDerivation = array(
             29 => '0',
             30 => 29,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_linkedMoreThanOnceJustAfterCreation()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_linkedMoreThanOnceJustAfterCreation()
     {
         $expectedDerivation = array(
             31 => 28,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_threePairsAddedAtTheSameTime()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_threePairsAddedAtTheSameTime()
     {
         $expectedDerivation = array(
             32 => 1,
@@ -367,25 +406,27 @@ class SentenceDerivationShellTest extends TestCase
             34 => 3,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_updatedJustAfterCreation()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_updatedJustAfterCreation()
     {
         $expectedDerivation = array(
             35 => '0',
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_fivePairsAddedAtTheSameTime()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_fivePairsAddedAtTheSameTime()
     {
         $expectedDerivation = array(
             36 => '0',
@@ -397,32 +438,32 @@ class SentenceDerivationShellTest extends TestCase
             42 => 2,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_doesntUpdateIfBasedOnIdAlreadySet()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_doesntUpdateIfBasedOnIdAlreadySet()
     {
         $expectedDerivation = array(
             43 => 42424242,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_multipleCreationRecordsWithConfusingLogs()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_multipleCreationRecordsWithConfusingLogs()
     {
         $expectedDerivation = array(
             44 => '0',
             45 => '0',
         );
-
-        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
@@ -443,7 +484,6 @@ class SentenceDerivationShellTest extends TestCase
                 'action' => 'insert',
                 'user_id' => '1',
                 'datetime' => 'NOW()',
-                'ip' => '127.0.0.1',
                 'type' => 'sentence',
             ]);
             $Contributions->save($contribution);
@@ -497,25 +537,27 @@ class SentenceDerivationShellTest extends TestCase
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_sentencesWithOneLinkAreLeftUntouched()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_sentencesWithOneLinkAreLeftUntouched()
     {
         $expectedDerivation = array(
             46 => null,
         );
 
-        $this->SentenceDerivationShell->run();
-
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testRun_sentencesLinkedByDifferentUser()
+    /**
+     * Executed by testRun(), for faster tests
+     */
+    public function _testRun_sentencesLinkedByDifferentUser()
     {
         $expectedDerivation = array(
             47 => '0',
         );
-
-        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);

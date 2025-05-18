@@ -26,6 +26,15 @@
  */
 use App\Model\CurrentUser;
 
+
+if (CurrentUser::isMember()) {
+    $this->Html->script('/js/directives/edit-review.dir.js', ['block' => 'scriptBottom']);
+    $this->AngularTemplate->addTemplate(
+        $this->element('reviews/edit_review'),
+        'edit-review-template'
+    );
+}
+
 $categories = array(
     'ok' => ['check_circle', __('Sentences marked as "OK"')],
     'unsure' => ['help', __('Sentences marked as "unsure"')],
@@ -34,17 +43,27 @@ $categories = array(
     'outdated' => ['keyboard_arrow_right', __("Outdated reviews")]
 );
 
-if ($correctnessLabel) {
-    $category = $correctnessLabel;
-} else {
-    $category = 'all';
-}
+$categoriesWithLang = [
+    'ok' => __('Sentences in {language} marked as "OK"'),
+    'unsure' => __('Sentences in {language} marked as "unsure"'),
+    'not-ok' => __('Sentences in {language} marked as "not OK"'),
+    'all' => __('All sentences in {language}'),
+    'outdated' => __('Outdated reviews for sentences in {language}')
+];
 
+if ($lang) {
+    $category = format(
+        $categoriesWithLang[$correctnessLabel],
+        ['language' => $this->Languages->codeToNameToFormat($lang)]
+    );
+} else {
+    $category = $categories[$correctnessLabel][1];
+}
 
 if ($userExists) {
     $title = format(
         __("{user}'s reviews - {category}"),
-        array('user' => $username, 'category' => $categories[$category][1])
+        array('user' => $username, 'category' => $category)
     );
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
@@ -53,6 +72,7 @@ if ($userExists) {
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
+<?php if ($userExists) : ?>
 <div id="annexe_content" ng-cloak>
     <?php
     if (!CurrentUser::get('settings.users_collections_ratings')) {
@@ -69,6 +89,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     ?>
 
     <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+        <?php /* @translators: header text in the sidebar of a list of reviews (verb) */ ?>
         <md-subheader><?= __('Filter') ?></md-subheader>
         <?php
         foreach($categories as $categoryKey => $categoryValue) {
@@ -79,14 +100,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             ]);
             ?>
             <md-list-item href="<?= $url ?>">
-                <md-icon><?= $categoryValue[0] ?></md-icon>
+                <md-icon class="<?= $categoryKey ?>"><?= $categoryValue[0] ?></md-icon>
                 <p><?= $categoryValue[1] ?></p>
             </md-list-item>
             <?php
         }
         ?>
     </md-list>
+
+    <?php $this->CommonModules->createFilterByLangMod(3); ?>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
     <section class="md-whiteframe-1dp correctness-info">
@@ -101,19 +125,28 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $title ?></h2>
+
+                <?php 
+                    $options = array(
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'modified', 'direction' => 'desc', 'label' => __x('reviews', 'Most recently updated')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'modified', 'direction' => 'asc', 'label' => __x('reviews', 'Least recently updated')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'created', 'direction' => 'desc', 'label' => __x('reviews', 'Newest first')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'created', 'direction' => 'asc', 'label' => __x('reviews', 'Oldest first')),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences') ),
+                        /* @translators: sort option in the list of reviews */
+                        array('param' => 'sentence_id', 'direction' => 'asc', 'label' => __('Oldest sentences') )
+                    );
+                    echo $this->element('sort_menu', array('options' => $options));
+                ?>
+
             </div>
         </md-toolbar>
 
-        <div class="sortBy">
-            <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            echo $this->Paginator->sort('modified', __("date modified"));
-            echo " | ";
-            echo $this->Paginator->sort('created', __("date created"));
-            echo " | ";
-            echo $this->Paginator->sort('sentence_id', __("sentence id"));
-            ?>
-        </div>
         <?php
             $this->Pagination->display();
 
@@ -122,7 +155,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $withAudio = false;
             foreach ($corpus as $item) {
                 $sentence = $item->sentence;
-                echo '<div>';
+                $correctness = $item->correctness;
 
                 if (empty($sentence->id)) {
                     $sentenceId = $item->sentence_id;
@@ -142,26 +175,46 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         )
                     );
                 } else {
+                    echo '<div>';
                     $this->Sentences->displayGenericSentence(
                         $sentence,
                         $type,
                         $parentId,
                         $withAudio
                     );
+
+                    if ($userIsReviewer) {
+                        echo $this->Html->tag(
+                            'edit-review',
+                            '',
+                            [
+                                'sentence-id' => $sentence->id,
+                                'correctness' => $correctness,
+                                'class' => 'correctness-icons',
+                            ]
+                        );
+                    } else {
+                        $categoryLabel = $correctness == 1 ?
+                                         'ok' :
+                                         ($correctness == 0 ? 'unsure' : 'not-ok');
+                        $icon = $this->Html->tag(
+                            'md-icon',
+                            $categories[$categoryLabel][0],
+                            [ 'class' => $categoryLabel ]
+                        );
+                        echo $this->Html->div(
+                            'correctness-icons',
+                            $icon,
+                            [
+                                'title' => $this->Date->nice($item->modified),
+                                'ng-cloak' => '',
+                            ]
+                        );
+                    }
+                    echo '</div>';
                 }
-
-                $correctness = $item->correctness;
-                echo $this->Html->div(
-                    'correctness',
-                    $this->Images->correctnessIcon($correctness),
-                    array('title' => $this->Date->nice($item->modified))
-                );
-
-                echo '</div>';
             }
-
             $this->Pagination->display();
-        }
-        ?>
-    </div>
+        } ?>
+    </section>
 </div>

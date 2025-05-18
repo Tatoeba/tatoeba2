@@ -19,27 +19,36 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use App\Model\Entity\HashTrait;
+use App\Model\CurrentUser;
+use App\Lib\LanguagesLib;
 
 class Sentence extends Entity
 {
-    use HashTrait;
+    use LanguageNameTrait;
 
-    public function __construct($properties = [], $options = []) {
-        parent::__construct($properties, $options);
-        $hash = $properties['hash'] ?? null;
-        $this->initializeHash($hash, ['lang', 'text']);
-    }
+    protected $_virtual = [
+        'lang_name',
+        'dir',
+        'lang_tag',
+        'is_favorite',
+        'is_owned_by_current_user',
+        'permissions',
+        'max_visible_translations',
+        'current_user_review'
+    ];
+
+    protected $_hidden = [
+        'favorites_users',
+        'highlight',
+    ];
 
     protected function _setLang($value)
     {
-        $this->updateHash();
         return empty($value) ? null : $value;
     }
 
     protected function _setText($value)
     {
-        $this->updateHash();
         return $this->_clean($value);
     }
 
@@ -51,9 +60,11 @@ class Sentence extends Entity
         $text = preg_replace('/[\p{Z}\p{Cc}]+$/u', '', $text);
         // Strip out any byte-order mark that might be present.
         $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
-        // Replace any series of whitespace or control characters
+        // Replace all control characters and any series of whitespace
         // with a single space.
-        $text = preg_replace('/[\p{Z}\p{Cc}]{2,}/u', ' ', $text);
+        // The control characters must be replaced first, so that a possibly
+        // resulting series of whitespace is replaced too.
+        $text = preg_replace(['/\p{Cc}+/u', '/\p{Z}{2,}/u'], ' ', $text);
         // Normalize to NFC
         $text = \Normalizer::normalize($text, \Normalizer::FORM_C);
         // MySQL will truncate to a byte length of 1500, which may split
@@ -65,25 +76,78 @@ class Sentence extends Entity
         return $text;
     }
 
-    protected function _getOldFormat() 
+    protected function _getLangName()
     {
-        $result['Sentence'] = [
-            'id' => $this->id,
-            'lang' => $this->lang,
-            'text' => $this->text,
-            'hash' => $this->hash,
-            'script' => $this->script,
-            'user_id' => $this->user_id
-        ];
-        
-        if ($this->user) {
-            $result['User'] = [
-                'id' => $this->user->id,
-                'username' => $this->user->username,
-                'image' => $this->user->image
+        return $this->codeToNameAlone($this->lang);
+    }
+
+    protected function _getDir()
+    {
+        return LanguagesLib::getLanguageDirection($this->lang);
+    }
+
+    protected function _getLangTag()
+    {
+        return LanguagesLib::languageTag($this->lang, $this->script);
+    }
+
+    protected function _getIsFavorite()
+    {
+        if ($this->has('favorites_users')) {
+            return count($this->favorites_users) > 0;
+        }
+    }
+
+    protected function _getIsOwnedByCurrentUser()
+    {
+        return $this->user_id === CurrentUser::get('id');
+    }
+
+    protected function _getPermissions()
+    {
+        if (CurrentUser::isMember()) {
+            $user = $this->user;
+            $userId = $user ? $user->id : null;
+            if (!empty($this->transcriptions)) {
+                $editableTranscription = array_filter($this->transcriptions, function($transcription) {
+                    return $transcription->markup;
+                });    
+            } else {
+                $editableTranscription = false;
+            }
+    
+            return [
+                'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
+                'canTranscribe' => (bool)$editableTranscription,
+                'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
+                'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
+                'canDelete' => CurrentUser::canRemoveSentence($this->id, $userId),
+                'canLink' => CurrentUser::isTrusted(),
             ];
+        } else {
+            return null;
+        }
+    }
+    
+    protected function _getCurrentUserReview()
+    {
+        if (!empty($this->users_sentences)) {
+            return $this->users_sentences[0]->correctness;
+        }
+        return null;
+    }
+
+    protected function _getMaxVisibleTranslations()
+    {
+        if (CurrentUser::isMember() && (int)CurrentUser::getSetting('max_visible_translations') > 0) {
+            return CurrentUser::getSetting('max_visible_translations');
         }
 
-        return $result;
+        return User::DEFAULT_MAX_VISIBLE_TRANSLATION;
+    }
+
+    protected function _getOwner()
+    {
+        return $this->user ? $this->user->username : null;
     }
 }

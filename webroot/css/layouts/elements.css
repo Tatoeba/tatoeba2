@@ -26,7 +26,6 @@
 
 #autocompletionDiv {
     position: absolute;
-    width: 100%;
 }
 
 #autocompletionDiv ul {
@@ -267,12 +266,12 @@ html[dir="rtl"] .comment-sentence .text {
     text-align: right;
 }
 
-.comment.inappropriate .warning-info p {
+.comment .inappropriate .warning-info p {
     padding: 0 10px;
     margin: 0;
 }
 
-.comment.inappropriate .content {
+.comment .inappropriate .content {
     color: #d50000;
     border-top: 1px #f1f1f1 solid;
     padding-top: 10px;
@@ -496,38 +495,6 @@ html[dir="rtl"] .comment-sentence .text {
 
 .message .body > .textarea {
     padding: 20px 20px 0 20px;
-}
-
-
-/*
- * Inappropriate messages
- */
-
-.inappropriate .body {
-    color: #CC2828;
-}
-
-.inappropriate .warningInfo {
-    color: #999;
-    padding: 10px 10px 10px 47px;
-    background: url(../../img/warning.svg) no-repeat 7px center;
-}
-
-.inappropriate .separator {
-    border-top: 1px dotted #ccc;
-}
-
-.inappropriate .header a {
-    color: #bbb;
-    text-decoration: none;
-}
-.inappropriate .username a, .inappropriate .menu a {
-    background-color: #f7f7f7;
-    border: 1px solid #ddd;
-}
-
-.inappropriate .username a {
-    border-left: none;
 }
 
 
@@ -1208,8 +1175,20 @@ input.sentenceId {
     height: 20px;
 }
 
+.audioButton:focus {
+    outline: none;
+}
+
+.audioButton::-moz-focus-inner {
+    border: none;
+}
+
 .audioButton.audioAvailable {
+    border: none;
     background: url(../../img/audio.svg);
+}
+.audioButton.audioAvailable:not(.nextAudioToPlay) {
+    display: none;
 }
 
 .audioButton.audioUnavailable {
@@ -1220,12 +1199,6 @@ input.sentenceId {
 .md-icon-button.audioUnavailable {
     opacity: 0.3;
 }
-
-#audioPlayer {
-    width: 0;
-    height: 0;
-}
-
 
 /*
  * Sentence correctness
@@ -1301,16 +1274,26 @@ div.hideLink {
 /*
  *
  */
-.sentence-and-translations .header {
-    background: #fafafa;
+.sentence-and-translations {
+    background-color: #fff;
+    padding-bottom: 2px;
 }
 
-.sentence-and-translations .menu-wrapper {
-    background: #fff;
+.sentence-and-translations .header {
+    flex-direction: row-reverse;
 }
+
 .sentence-and-translations .menu {
     background: #fafafa;
     border-bottom-left-radius: 15px;
+}
+html[dir="rtl"] .sentence-and-translations .menu {
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: 15px;
+}
+
+.sentence-and-translations .text {
+    min-width: 0;
 }
 
 .sentence-and-translations .text,
@@ -1320,17 +1303,19 @@ div.hideLink {
 }
 
 .sentence-and-translations .sentence {
-    font-size: 24px;
     padding: 10px;
 }
 
+.sentence-and-translations .sentence .text {
+    font-size: 24px;
+}
+
 .sentence-and-translations .translation {
-    padding: 2px 10px;
+    padding: 0px 10px;
 }
 
 .sentence-and-translations .md-subheader {
     background: #fff;
-    border-top-right-radius: 15px;
 }
 
 .sentence-and-translations .md-subheader ._md-subheader-inner {
@@ -1366,6 +1351,11 @@ div.hideLink {
     background: #f1f1f1;
 }
 
+.sentence-and-translations .indicator md-icon {
+    padding: 8px;
+    cursor: help;
+}
+
 .sentence-and-translations .list-form {
     border-top: 1px solid #f1f1f1;
     padding-top: 10px;
@@ -1381,6 +1371,93 @@ div.hideLink {
     color: grey;
     padding: 0 5px;
 }
+
+.sentence-and-translations .duplicate-warning {
+    border-bottom: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .translation-form {
+    background: #fafafa; 
+    border-top: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .sentence-form,
+.sentence-and-translations .translation-form form {
+    padding-top: 10px;
+}
+
+form .language-icon-div {
+    padding: 10px 10px 0 10px;
+}
+.sentence-and-translations .sentence .transcription .icon {
+    margin: 0 8px 0 19px;
+}
+html[dir="rtl"] .sentence-and-translations .sentence .transcription .icon {
+    margin: 0 19px 0 8px;
+}
+.sentence-and-translations .sentence .transcription .text {
+    color: #A1A1A1;
+    font-size: 24px;
+}
+
+.sentence-and-translations .translation .transcription .icon {
+    margin: 0 20px 0 40px;
+}
+html[dir="rtl"] .sentence-and-translations .translation .transcription .icon {
+    margin: 0 40px 0 20px;
+}
+.sentence-and-translations .translation.trusted-user.expanded .transcription .icon {
+    margin: 0 20px 0 69px;
+}
+html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .transcription .icon {
+    margin: 0 69px 0 20px;
+}
+.sentence-and-translations .translation .transcription .text {
+    color: #A1A1A1;
+    padding: 0;
+}
+
+.sentence-and-translations div:focus {
+    outline: none;
+    border: 0;
+}
+
+.sentence-and-translations .expand-collapse .md-button {
+    margin: 2px 2px 0 2px;
+}
+
+@media only screen and (max-width: 600px) {    
+    .sentence-and-translations .buttons {
+        display: none;
+    }
+    .sentence-and-translations .chevron {
+        display: none;
+    }
+    .sentence-and-translations .sentence .text,
+    .sentence-and-translations .sentence .transcription .text {
+        font-size: 18px;
+    }
+
+    .sentence-and-translations .text,
+    .sentence-and-translations .lang {
+        padding: 0 5px;
+    }
+
+    .sentence-and-translations .sentence .transcription .icon {
+        margin: 0 5px 0 12px;
+    }
+    .sentence-and-translations .translation .transcription .icon {
+        margin: 0 10px 0 12px;
+    }
+
+    .sentence-and-translations .md-icon-button.activated {
+        display: inherit;
+    }
+    .sentence-and-translations .md-icon-button.deactivated {
+        display: none;
+    }
+}
+
 
 /*
  * --------------------------------------------------------------------
@@ -1595,6 +1672,9 @@ div.hideLink {
     vertical-align: middle;
 }
 
+.sortOption {
+    padding-right: 12px;
+}
 
 
 /*
@@ -1636,8 +1716,20 @@ div.hideLink {
     height: 42px;
 }
 
+/* Custom md-not-found with "Show all" button */
+md-virtual-repeat-container.md-not-found {
+    min-height: 84px;
+}
+.md-not-found .language-dropdown li {
+    font-size: 14px;
+    padding: 0 15px;
+}
+.md-not-found .language-dropdown button {
+    margin: 0;
+}
+
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
-    min-height: 300px;
+    width: 280px;
 }
 
 .md-autocomplete-suggestions-container li .highlight{
@@ -1649,6 +1741,36 @@ div.hideLink {
     font-weight: bold;
 }
 
+svg.language-icon {
+  width: 30px;
+  height: 20px;
+  margin-right: 0.5em;
+}
+
+html[dir="rtl"] svg.language-icon {
+  margin-right: 0;
+  margin-left: 0.5em;
+}
+
+/* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
+@-moz-document url-prefix() {
+  svg.language-icon {
+    filter: none;
+    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
+  }
+}
+
+.language-dropdown .language-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+md-autocomplete-wrap:not(.md-menu-showing) input.ng-invalid {
+    color: red;
+    transition-delay: 0.2s;
+    transition-property: color;
+}
+
 .usersLanguages .languageInfo {
     margin: 0;
     padding: 0;
@@ -1656,20 +1778,6 @@ div.hideLink {
 
 .usersLanguages td {
     padding: 5px;
-}
-
-.languageLevel {
-}
-
-.languageLevel.unknown {
-    color: #AAAAAA;
-}
-
-.languageLevel .level {
-    background: #06A;
-    width: 20px;
-    height: 100%;
-    display: inline-block;
 }
 
 .warning-add-language {
@@ -1846,4 +1954,76 @@ div.hideLink {
 }
 .annexe-menu md-icon {
     margin: auto 0;
+}
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Login dialog
+ *
+ * --------------------------------------------------------------------
+ */
+
+#login-dialog {
+    width: 300px;
+}
+
+#login-dialog md-dialog-content {
+    padding: 40px 20px 10px 20px;
+}
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Wrapping toolbars
+ *
+ * --------------------------------------------------------------------
+ */
+
+.md-toolbar-tools.layout-wrap {
+    height: unset;
+    max-height: unset;
+}
+
+.md-toolbar-tools.layout-wrap > * {
+    margin: 8px 0;
+}
+
+.md-toolbar-tools.layout-wrap .md-icon-button {
+    margin: 6px 0px;
+}
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Info boxes
+ *
+ * --------------------------------------------------------------------
+ */
+
+.infobox {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+md-tooltip.multiline {
+    /* Only wrap tooltip if it takes more than 90% of page width. */
+    max-width: 90%;
+    height: auto;
+    white-space: normal;
+    /* The original md-tooltip use line-height to pad, but we want a nice
+     * multi-line text, so we need to use the padding property instead. */
+    line-height: normal;
+    padding: 5px 8px;
+}
+
+@media (min-width: 600px) {
+    md-tooltip.multiline {
+        max-width: 60%;
+    }
+}
+@media (min-width: 960px) {
+    md-tooltip.multiline {
+        max-width: 20%;
+    }
 }

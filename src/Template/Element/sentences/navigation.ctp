@@ -14,28 +14,33 @@ $sentenceUrl = $this->Url->build([
 ]);
 ?>
 <div ng-app="app" ng-controller="SentencesNavigationController as vm" 
-     ng-init="vm.init(<?= $selectedLanguage ?>, <?= $currentId ?>, <?= $prev ?>, <?= $next ?>)" 
-     class="navigation" layout="row" ng-cloak>
+     ng-init="vm.init('<?= $selectedLanguage ?>', <?= $currentId ?>, <?= $prev ?>, <?= $next ?>)" 
+     class="navigation" layout="row" layout-align="center center" layout-wrap ng-cloak>
 
-    <div layout="row" layout-align="space-around center" layout-margin flex>
-        <md-button ng-href="<?= $sentenceUrl ?>/{{vm.prev}}" class="md-primary"
-                   ng-disabled="!vm.prev">
-            <md-icon>keyboard_arrow_left</md-icon>
-            <?= __('previous') ?>
-        </md-button>
+    <div layout="row" layout-align="space-around center" layout-margin layout-wrap flex="auto">
+        <div layout="row" layout-align="space-around center" flex="noshrink">
+            <md-button ng-href="<?= $sentenceUrl ?>/{{vm.prev}}" class="md-primary"
+                       ng-disabled="!vm.prev">
+                <md-icon>keyboard_arrow_left</md-icon>
+                <?php /* @translators: link to neighbour sentence on sentence page */ ?>
+                <span hide-xs><?= __('previous') ?></span>
+            </md-button>
 
-        <md-button ng-href="<?= $sentenceUrl ?>/{{vm.lang}}" class="md-primary">
-            <?= __('random') ?>
-        </md-button>
+            <md-button ng-href="<?= $sentenceUrl ?>/{{vm.lang}}" class="md-primary">
+                <?php /* @translators: link to a random sentence on sentence page */ ?>
+                <?= __('random') ?>
+            </md-button>
 
-        <md-button ng-href="<?= $sentenceUrl ?>/{{vm.next}}" class="md-primary"
-                   ng-disabled="!vm.next">
-            <?= __('next') ?>
-            <md-icon>keyboard_arrow_right</md-icon>
-        </md-button>
+            <md-button ng-href="<?= $sentenceUrl ?>/{{vm.next}}" class="md-primary"
+                       ng-disabled="!vm.next">
+                <?php /* @translators: link to neighbour sentence on sentence page */ ?>
+                <span hide-xs><?= __('next') ?></span>
+                <md-icon>keyboard_arrow_right</md-icon>
+            </md-button>
+        </div>
 
         <div>
-        <md-tooltip>
+        <md-tooltip md-direction="top">
             <?= __('Language for previous, next or random sentence'); ?>
         </md-tooltip>
         <?php
@@ -43,8 +48,12 @@ $sentenceUrl = $this->Url->build([
             'language_dropdown', 
             array(
                 'name' => 'lang',
-                'selectedLanguage' => $selectedLanguage,
-                'languages' => $this->Search->getLangs()
+                'initialSelection' => $selectedLanguage,
+                /* @translators: placeholder used in language dropdown
+                                 in navigation block on sentence pages */
+                'languages' => $this->Languages->getSearchableLanguagesArray(__x('navigation', 'Any language')),
+                'onSelectedLanguageChange' => 'vm.onSelectedLanguageChange(language)',
+                'forceItemSelection' => true,
             )
         );
         ?>
@@ -57,6 +66,7 @@ $sentenceUrl = $this->Url->build([
         'id' => 'go-to-form',
         'url' => ['action' => 'go_to_sentence'],
         'type' => 'get',
+        'hide-xs' => '',
         'layout' => 'row',
         'layout-align' => 'center center'
     ]);

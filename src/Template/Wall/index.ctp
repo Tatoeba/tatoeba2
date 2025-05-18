@@ -35,6 +35,7 @@
  * @link     https://tatoeba.org
  */
 
+/* @translators: title of the Wall page */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Wall')));
 
 echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
@@ -51,6 +52,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
 
 <div id="annexe_content" >
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: title of the sidebar text on the Wall page */ ?>
         <h2><?php echo __('Tips'); ?></h2>
         <p>
         <?php
@@ -71,7 +73,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
                 'Please read our '.
                 '<a href="{}">rules against bad behavior</a>.', true
             ),
-            'https://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+            $this->Pages->getWikiLink('rules-against-bad-behavior')
         );
         ?>
         </p>
@@ -95,7 +97,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
 
     <div class="md-whiteframe-1dp">
         <md-subheader><?php echo __('Latest messages'); ?></md-subheader>
-        <md-list class="annexe-menu">
+        <md-list class="annexe-menu" ng-cloak>
         <?php
         $mesg = count($tenLastMessages);
 

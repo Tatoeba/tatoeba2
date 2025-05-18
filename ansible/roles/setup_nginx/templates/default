@@ -1,0 +1,171 @@
+server {
+	listen	80 default_server;
+	server_name	{{main_server_name}};
+
+	root	{{main_server_root}};
+	index	index.php index.html;
+	charset	utf-8;
+
+	access_log	/var/log/nginx/access.log;
+	error_log 	/var/log/nginx/error.log;
+	rewrite_log	on;
+
+	gzip_static	on;
+
+  location / {
+    try_files $uri $uri/ /index.php?$args;
+  }
+
+	location /exported_files {
+		internal;
+		alias {{code_dir}}/exported_files;
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
+		fastcgi_index   index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
+
+	# Comment this out when the subdomain for static files is activated
+	location ~ /(img|js|css|files)/ {
+		try_files /$uri =404;
+	}
+
+	location ~ /(\.ht|\.svn) {
+		deny all;
+	}
+
+	{% if enable_status_pages|default(false) != false %}
+
+	location ~ ^/(status|ping)$ {
+		access_log off;
+		allow 127.0.0.1;
+		deny all;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+	}
+
+	location ~ /nginx_status {
+		stub_status on;
+		access_log off;
+		allow 127.0.0.1;
+		deny all;
+	}
+
+	{% endif %}
+}
+
+server {
+	listen 		80;
+	server_name	{{audio_server_name}};
+
+	root		{{main_server_root}};
+	index		index.php index.html;
+	charset		utf-8;
+
+	access_log	/var/log/nginx/access.audio.log;
+	error_log	/var/log/nginx/error.audio.log;
+	rewrite_log	on;
+
+	location / {
+		rewrite .* /index.php?$args last;
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
+		fastcgi_index   index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
+}
+
+server {
+	listen 		80;
+	server_name	{{api_server_name}};
+
+	root		{{main_server_root}};
+	index		index.php index.html;
+	charset		utf-8;
+
+	access_log	/var/log/nginx/access.api.log;
+	error_log	/var/log/nginx/error.api.log;
+	rewrite_log	on;
+
+	location / {
+		try_files /api$uri /index.php?$args;
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
+		fastcgi_index   index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		more_set_headers 'Access-Control-Allow-Origin: *';
+	}
+}
+
+server {
+	listen 		80;
+	server_name	{{downloads_server_name}};
+
+	root		{{downloads_server_root}};
+	index		index.php index.html;
+	charset		utf-8;
+
+	access_log	/var/log/nginx/access.static.log;
+	error_log	/var/log/nginx/error.static.log;
+	rewrite_log	on;
+
+	location / {
+		autoindex on;
+	}
+}
+
+server {
+	listen 		80;
+	server_name	{{static_server_name}};
+
+	root		{{static_server_root}};
+	index		index.php index.html;
+	charset		utf-8;
+
+	access_log	/var/log/nginx/access.static.log;
+	error_log	/var/log/nginx/error.static.log;
+	rewrite_log	on;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ /(\.ht|\.svn) {
+		deny all;
+	}
+}
+
+server {
+	listen 		80;
+	server_name	{{xcache_server_name}};
+
+	root		{{xcache_server_root}};
+	index		index.php index.html;
+	charset		utf-8;
+
+	access_log	/var/log/nginx/access.static.log;
+	error_log	/var/log/nginx/error.static.log;
+	rewrite_log	on;
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_intercept_errors on;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
+}

@@ -19,43 +19,37 @@
 
     angular
         .module('app')
-        .controller('SearchBarController', ['$scope', function($scope) {
+        .controller('SearchBarController', ['$scope', 'searchService', function($scope, search) {
             var vm = this;
 
-            vm.searchQuery = angular.element('#SentenceQuery').data('query');
             vm.langFrom = '';
             vm.langTo = '';
             
             vm.clearSearch = clearSearch;
             vm.swapLanguages = swapLanguages;
-
-            ///////////////////////////////////////////////////////////////////////////
-
-            $scope.$on('languageChange', function(event, data){
-                if (data.dropdownName === 'from') {
-                    vm.langFrom = data.lang;
-                }
-                if (data.dropdownName === 'to') {
-                    vm.langTo = data.lang;
-                }
-            });
-
-            $scope.$on('langToChange', function(event, data){
-                vm.langTo = data;
-            });
+            vm.submit = submit;
 
             ///////////////////////////////////////////////////////////////////////////
 
             function clearSearch() {
                 vm.searchQuery = '';
-                angular.element('#SentenceQuery').focus();
+                angular.element(document.querySelector('#SentenceQuery')).focus();
             }
 
             function swapLanguages() {
                 var newLangFrom = vm.langTo;
                 var newLangTo = vm.langFrom;
-                $scope.$broadcast('setLang', { dropdownName: 'from', lang: newLangFrom});
-                $scope.$broadcast('setLang', { dropdownName: 'to', lang: newLangTo});
+                vm.langFrom = newLangFrom;
+                vm.langTo = newLangTo;
+            }
+
+            function submit(form) {
+                var filters = {
+                    'query': vm.searchQuery,
+                    'from' : vm.langFrom,
+                    'to'   : vm.langTo
+                };
+                search.submit(form, filters);
             }
         }]);
 })();

@@ -1,5 +1,4 @@
 <?php
-/* ReindexFlag Fixture generated on: 2015-11-27 23:54:27 : 1448668467 */
 namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
@@ -11,6 +10,8 @@ class ReindexFlagsFixture extends TestFixture {
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4],
+		'indexed' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
+		'type' => ['type' => 'string', 'null' => false],
 		'_indexes' => [
 			'idx_sentence_id' => ['type' => 'index', 'columns' => ['sentence_id'], 'length' => []],
 		],

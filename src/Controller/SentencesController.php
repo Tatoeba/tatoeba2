@@ -27,12 +27,16 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Form\SentencesSearchForm;
 use App\Model\CurrentUser;
+use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
+use App\Lib\Licenses;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
+use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
 use Exception;
@@ -63,13 +67,8 @@ class SentencesController extends AppController
         'Logs',
         'Pagination',
         'Comments',
-        'Navigation',
         'Languages',
         'CommonModules'
-    );
-    public $paginate = array(
-        'limit' => 100,
-        "order" => "Sentence.modified DESC"
     );
 
     public $uses = array(
@@ -82,28 +81,6 @@ class SentencesController extends AppController
         'Tag',
         'UsersSentences',
         'Vocabulary'
-    );
-
-    private $defaultSearchCriteria = array(
-        'query' => '',
-        'from' => 'und',
-        'to' => 'und',
-        'tags' => '',
-        'list' => '',
-        'user' => '',
-        'orphans' => 'no',
-        'unapproved' => 'no',
-        'native' => '',
-        'has_audio' => '',
-        'trans_to' => 'und',
-        'trans_link' => '',
-        'trans_user' => '',
-        'trans_orphan' => '',
-        'trans_unapproved' => '',
-        'trans_has_audio' => '',
-        'trans_filter' => 'limit',
-        'sort' => 'relevance',
-        'sort_reverse' => '',
     );
 
     public function initialize() {
@@ -133,19 +110,13 @@ class SentencesController extends AppController
         return parent::beforeFilter($event);
     }
 
-    /**
-     * Redirects to a random sentence.
-     *
-     * @return void
-     */
     public function index()
     {
-        $this->redirect(
-            array(
-                "action" => "show",
-                "random"
-            )
-        );
+        $this->loadModel('Languages');
+        $milestones = [ 100000, 10000, 1000, 100, 10, 1, 0 ];
+        $stats = $this->Languages->getMilestonedStatistics($milestones);
+        $nbrLanguages = count(LanguagesLib::languagesInTatoeba());
+        $this->set(compact('stats', 'nbrLanguages'));
     }
 
     /**
@@ -162,6 +133,7 @@ class SentencesController extends AppController
         $this->helpers[] = 'Lists';
         $this->helpers[] = 'Members';
         $this->helpers[] = 'Audio';
+        $this->helpers[] = 'ClickableLinks';
 
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->request->getSession()->read('random_lang_selected');
@@ -185,7 +157,10 @@ class SentencesController extends AppController
             $this->set('contributions', $contributions);
 
             // And now we retrieve the sentence
-            $sentence = $this->Sentences->getSentenceWithId($id);
+            $sentence = $this->Sentences->getSentenceWith($id, [
+                'translations' => true,
+                'sentenceDetails' => true
+            ]);
 
             $canComment = CurrentUser::isMember()
                 && (!empty($contributions) || !empty($sentence));
@@ -214,7 +189,6 @@ class SentencesController extends AppController
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
 
             $this->set('sentence', $sentence);
-
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
 
@@ -307,6 +281,11 @@ class SentencesController extends AppController
      */
     public function add_an_other_sentence()
     {
+        // Users without a profile language should not be able to add sentences
+        if (empty(CurrentUser::getProfileLanguages())) {
+            return;
+        }
+
         $userId = $this->Auth->user('id');
         $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
         if ($userLevel < 0) {
@@ -316,8 +295,7 @@ class SentencesController extends AppController
         $sentenceLang = $this->request->getData('selectedLang');
         $sentenceText = $this->request->getData('value');
 
-        if (is_null($sentenceText) || is_null($sentenceLang)) {
-            //TODO add error handling
+        if (empty($sentenceText) || empty($sentenceLang)) {
             return;
         }
 
@@ -335,11 +313,20 @@ class SentencesController extends AppController
 
         // saving
         if ($savedSentence) {
-            $sentence = $this->Sentences->getSentenceWithId($savedSentence->id);
+            $sentence = $this->Sentences->getSentenceWith(
+                $savedSentence->id,
+                ['translations' => true] // in case it's a duplicate
+            );
             $this->set('duplicate', $savedSentence->isDuplicate);
             $this->set('sentence', $sentence);
         }
 
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['sentence', 'duplicate']);
+            $this->RequestHandler->renderAs($this, 'sentences_json');
+        }
     }
 
     /**
@@ -352,10 +339,11 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->editSentence($this->request->data);
         if ($acceptsJson) {
-            $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
+            $sentence = $this->Sentences->getSentenceWith($sentence->id);
+            $this->loadComponent('RequestHandler');
             $this->set('result', $sentence);
-            $this->viewBuilder()->setLayout('json');
-            $this->render('/Generic/json');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         } else {
             if (empty($sentence)) {
                 // TODO Better error handling.
@@ -405,16 +393,17 @@ class SentencesController extends AppController
     private function renderAdopt($id)
     {
         $acceptsJson = $this->request->accepts('application/json');
-        $sentence = $this->Sentences->get($id, [
-            'contain' => ['Users' => ['fields' => ['username']]]
-        ]);
 
         if ($acceptsJson) {
+            $sentence = $this->Sentences->getSentenceWith($id);
             $this->loadComponent('RequestHandler');
-            $this->set('user', $sentence->user);
-            $this->set('_serialize', ['user']);
+            $this->set('sentence', $sentence);
+            $this->set('_serialize', ['sentence']);
             $this->RequestHandler->renderAs($this, 'json');
         } else {
+            $sentence = $this->Sentences->get($id, [
+                'contain' => ['Users' => ['fields' => ['username']]]
+            ]);
             $this->set('sentenceId', $id);
             $this->set('owner', $sentence->user);
             $this->viewBuilder()->setLayout('ajax');
@@ -467,6 +456,7 @@ class SentencesController extends AppController
             );
 
             if ($translation) {
+                $translation->isDirect = true;
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
             }
@@ -474,9 +464,16 @@ class SentencesController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $this->set('result', $translation);
-            $this->viewBuilder()->setLayout('json');
-            $this->render('/Generic/json');
+            $translationLangFilter = $this->request->getQuery('translationLang');
+            $numberOfTranslations = $this->request->getQuery('numberOfTranslations');
+            $includeTranslations = $translationLangFilter == 'und';
+            $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
+            $sentence->extraTranslationsCount = $numberOfTranslations + 1 - $sentence->max_visible_translations;
+
+            $this->loadComponent('RequestHandler');
+            $this->set('sentence', $sentence);
+            $this->set('_serialize', ['translation', 'sentence']);
+            $this->RequestHandler->renderAs($this, 'sentences_json');
         }
     }
 
@@ -492,311 +489,68 @@ class SentencesController extends AppController
             return;
         }
 
-        $criteriaVars = array();
-        foreach ($this->defaultSearchCriteria as $name => $default) {
-            $criteriaVars[$name] = $this->request->getQuery($name, $default);
-        }
-        extract($criteriaVars);
-        $ignored = array();
+        /* Apply search criteria and sort */
+        $search = new SentencesSearchForm();
+        $search->setData($this->request->getQueryParams());
 
-        /* Convert simple search to advanced search parameters */
-        if (!is_null($this->request->getQuery('to'))
-            && is_null($this->request->getQuery('trans_to'))) {
-            $trans_to = $to;
+        /* Control input */
+        if ($search->generateRandomSeedIfNeeded()) {
+            return $this->redirect(Router::url($search->getData()));
         }
+        $search->checkUnwantedCombinations();
 
-        // Disallow this currently impossible combination
-        if (!empty($native) && $from == 'und') {
-            $ignored[] = __(
-                /* @translators: This string will be preceded by “Warning: the
-                   following criteria have been ignored:” */
-                "“owned by a self-identified native”, because “sentence ".
-                "language” is set to “any”",
-                true
-            );
-            $native = '';
-        }
-
-        // Session variables for search bar
-        $this->request->getSession()->write('search_from', $from);
-        $this->request->getSession()->write('search_to', $to);
-        $this->addLastUsedLang($from);
-        $this->addLastUsedLang($to);
-
-        // replace strange space
-        $query = str_replace(
-            array('　', ' '),
-            ' ',
-            $query
-        );
-
-        $sphinx = $this->Sentences->sphinxOptions($query, $from, $sort, $sort_reverse);
-
-        $transFilter = array();
-        // if we want to search only on sentences having translations
-        // in a specified language
-        if ($trans_to !== 'und') {
-            if ($trans_to && LanguagesLib::languageExists($trans_to)) {
-                $transFilter[] = "t.l='$trans_to'";
-            }
-        }
-        if (!empty($trans_link)) {
-            $link = $trans_link == 'direct' ? 1 : 2;
-            $transFilter[] = "t.d=$link";
-        }
-        if (!empty($trans_user)) {
-            $this->loadModel('Users');
-            $result = $this->Users->findByUsername($trans_user, ['fields' => ['id']])->first();
-            if ($result) {
-                $transFilter[] = 't.u='.$result['id'];
-                if ($trans_orphan == 'yes') {
-                    $ignored[] = format(
-                        /* @translators: This string will be preceded by
-                           “Warning: the following criteria have been
-                           ignored:” */
-                        __("“translation is orphan”, because “translation ".
-                           "owner” is set to a username", true)
-                    );
-                    $trans_orphan = '';
-                }
-            } else {
-                $ignored[] = format(
-                    /* @translators: This string will be preceded by
-                       “Warning: the following criteria have been ignored:” */
-                    __("“translation owner”, because “{username}” is not ".
-                       "a valid username", true),
-                    array('username' => $trans_user)
-                );
-                $trans_user = '';
-            }
-        }
-        if (!empty($trans_orphan) && empty($trans_user)) {
-            $op = $trans_orphan == 'yes' ? '=' : '<>';
-            $transFilter[] = "t.u${op}0";
-        }
-        if (!empty($trans_unapproved)) {
-            $correctness = $trans_unapproved == 'yes' ? 0 : 1;
-            $transFilter[] = "t.c=$correctness";
-        }
-        if (!empty($trans_has_audio)) {
-            $audio = $trans_has_audio == 'yes' ? 1 : 0;
-            $transFilter[] = "t.a=$audio";
-        }
-        if ($transFilter || $trans_filter == 'exclude') {
-            if (!$transFilter) {
-                $transFilter = array(1);
-            }
-            $filter = implode(' & ', $transFilter);
-            $sphinx['select'] = "*, ANY($filter FOR t IN trans) as filter";
-            $filtering = $trans_filter == 'limit' ? 1 : 0;
-            $sphinx['filter'][] = array('filter', $filtering);
-        }
-
-        // filter by user
-        $user_id = null;
-        if (!empty($user)) {
-            $this->loadModel('Users');
-            $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
-            if ($result) {
-                $user_id = $result['id'];
-                $sphinx['filter'][] = array('user_id', $user_id);
-                if ($orphans == 'yes') {
-                    $ignored[] = format(
-                        /* @translators: This string will be preceded by
-                           “Warning: the following criteria have been
-                           ignored:” */
-                        __("“sentence is orphan”, because “sentence ".
-                           "owner” is set to a username", true)
-                    );
-                    $orphans = '';
-                }
-            } else {
-                $ignored[] = format(
-                    /* @translators: This string will be preceded by “Warning:
-                       the following criteria have been ignored:” */
-                    __("“sentence owner”, because “{username}” is not a ".
-                       "valid username", true),
-                    array('username' => $user)
-                );
-                $user = '';
-            }
-        }
-
-        // filter by tags
-        if (!empty($tags)) {
-            $this->loadModel('Tags');
-            $tagsArray = explode(',', $tags);
-            $tagsArray = array_map('trim', $tagsArray);
-            $result = $this->Tags->find()
-                ->where(['name IN' => $tagsArray])
-                ->select(['id', 'name'])
-                ->toList();
-            $tagsById = Hash::combine($result, '{n}.id', '{n}.name');
-            if ($tagsById) {
-                foreach (array_keys($tagsById) as $id)
-                    $sphinx['filter'][] = array('tags_id', $id);
-            }
-
-            // clean provided list
-            $unsetTags = array();
-            foreach ($tagsArray as $i => $name) {
-                if (!in_array($name, $tagsById)) {
-                    $unsetTags[] = $tagsArray[$i];
-                    unset($tagsArray[$i]);
-                }
-            }
-            if ($unsetTags) {
-                foreach ($unsetTags as $tagName) {
-                    $ignored[] = format(
-                        /* @translators: This string will be preceded by
-                           “Warning: the following criteria have been
-                           ignored:” */
-                        __("“tagged as {tagName}”, because it's an invalid ".
-                           "tag name", true),
-                        compact('tagName')
-                    );
-                }
-            }
-            $tags = implode(',', $tagsArray);
-        }
-
-        // filter by list
-        $this->loadModel('SentencesLists');
-        $searchableLists = $this->SentencesLists->getSearchableLists();
-        if (!empty($list)) {
-            $isSearchable = $this->SentencesLists->isSearchableList($list);
-            if ($isSearchable) {
-                $sphinx['filter'][] = array('lists_id', $list);
-                $found = false;
-                foreach ($searchableLists as $rec) {
-                    if ($list == $rec['id']) {
-                        $found = true;
-                        break;
-                    }
-                }
-                if (!$found) {
-                    $searchableLists[] = $isSearchable;
-                }
-            } else {
-                $ignored[] = format(
-                    /* @translators: This string will be preceded by
-                       “Warning: the following criteria have been
-                       ignored:” */
-                    __("“belongs to list number {listId}”, because list ".
-                       "{listId} is private or does not exist", true),
-                    array('listId' => $list)
-                );
-                $list = '';
-            }
-        }
-
-        // filter orphans
-        if (!empty($orphans) && empty($user)) {
-            $exclude_orphans = $orphans == 'no';
-            $sphinx['filter'][] = array('user_id', 0, $exclude_orphans);
-        }
-
-        // filter unapproved
-        if (!empty($unapproved)) {
-            $exclude_unappr = $unapproved == 'no';
-            // See the indexation SQL request for the value 127
-            $sphinx['filter'][] = array('ucorrectness', 127, $exclude_unappr);
-        }
-
-        // filter self-identified natives
-        if (!empty($native)) {
-            $this->loadModel('UsersLanguages');
-            $natives = $this->UsersLanguages->find()
-                ->where([
-                    'language_code' => $from,
-                    'level' => 5,
-                ])
-                ->select(['of_user_id'])
-                ->toList();
-            $natives = Hash::extract($natives, '{n}.of_user_id');
-            if ($natives) {
-                if ($user_id && !in_array($user_id, $natives)) {
-                    $ignored[] = format(
-                        /* @translators: This string will be preceded by
-                           “Warning: the following criteria have been
-                           ignored:” */
-                        __("“owned by a self-identified native”, because the ".
-                           "criterion “owned by: {username}” is set whereas ".
-                           "he or she is not a self-identified native in the ".
-                           "language you're searching into",
-                           true),
-                        array('username' => $user)
-                    );
-                    $native = '';
-                } else {
-                    $maxAttrValues = 4096; // Manticore limitation
-                    if (count($natives) <= $maxAttrValues) {
-                        $sphinx['filter'][] = array('user_id', $natives);
-                    } else {
-                        $nonNatives = $this->UsersLanguages->find()
-                            ->where(function (QueryExpression $exp) use ($from) {
-                                $isNonNative = $exp->or(['level is' => null])->notEq('level', 5);
-                                return $exp->add($isNonNative)
-                                           ->eq('language_code', $from);
-                            })
-                            ->select(['of_user_id'])
-                            ->toList();
-                        $nonNatives = Hash::extract($nonNatives, '{n}.of_user_id');
-                        while (count($nonNatives)) {
-                            $excludedIds = array_splice($nonNatives, 0, $maxAttrValues);
-                            $sphinx['filter'][] = array('user_id', $excludedIds, true);
-                        }
-                    }
-                }
-            }
-        }
-
-        // filter audio
-        if (!empty($has_audio)) {
-            $audio = $has_audio == 'yes' ? 1 : 0;
-            $sphinx['filter'][] = array('has_audio', $audio);
-        }
+        /* Session variables for search bar */
+        $this->request->getSession()->write('search_from', $search->getData('from'));
+        $this->request->getSession()->write('search_to', $search->getData('to'));
+        $this->addLastUsedLang($search->getData('from'));
+        $this->addLastUsedLang($search->getData('to'));
 
         $limit = CurrentUser::getSetting('sentences_per_page');
+        $sphinx = $search->asSphinx();
         $sphinx['page'] = $this->request->query('page');
         $sphinx['limit'] = $limit;
 
         $model = 'Sentences';
-        if (CurrentUser::isMember()) {
-            $contain = $this->Sentences->contain();
-        } else {
-            $contain = $this->Sentences->minimalContain();
-        }
-        $pagination = [
-            'finder' => ['withSphinx' => [
-                'translationLang' => $to,
-                'nativeMarker' => CurrentUser::getSetting('native_indicator')
-            ]],
-            'fields' => $this->Sentences->fields(),
-            'contain' => $contain,
-            'limit' => CurrentUser::getSetting('sentences_per_page'),
+        $query = $this->Sentences
+            ->find('hideFields')
+            ->find('withSphinx')
+            ->find('nativeMarker')
+            ->find('filteredTranslations', [
+                'translationLang' => $search->getData('to'),
+            ])
+            ->select($this->Sentences->fields())
+            ->contain($this->Sentences->contain(['translations' => true]));
+
+        $this->paginate = [
+            'limit' => $limit,
             'sphinx' => $sphinx,
-            'search' => $query
         ];
 
-        $this->paginate = $pagination;
-        $syntax_error = false;
         try {
-            $results = $this->paginate($model);
+            $results = $this->paginate($query);
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
+            $this->set(compact('results', 'real_total'));
         } catch (Exception $e) {
             $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
+            if ($syntax_error) {
+                $this->set('syntax_error', true);
+            } else {
+                $this->loadComponent('Error');
+                $error_code = $this->Error->traceError('Search error: ' . $e->getMessage());
+                $this->set('error_code', $error_code);
+            }
         }
 
-        $strippedQuery = preg_replace('/"|=/', '', $query);
+        $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));
         $this->loadModel('Vocabulary');
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
-        $this->set('vocabulary', $vocabulary);
-        $this->set('searchableLists', $searchableLists);
-        $this->set(compact(array_keys($this->defaultSearchCriteria)));
-        $this->set(compact('real_total', 'search_disabled', 'ignored', 'results', 'syntax_error'));
+        $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
+        $ignored = $search->getIgnoredFields();
+
+        $this->set($search->getData());
+        $this->set(compact('ignored', 'searchableLists', 'vocabulary'));
         $this->set(
             'is_advanced_search',
             !is_null($this->request->getQuery('trans_to'))
@@ -804,9 +558,15 @@ class SentencesController extends AppController
     }
 
     public function advanced_search() {
-        $this->loadModel('SentencesLists');
-        $this->set('searchableLists', $this->SentencesLists->getSearchableLists());
-        $this->set($this->defaultSearchCriteria);
+        $search = new SentencesSearchForm();
+
+        $search->setData($this->request->getQueryParams());
+        $usesTemplate = !$search->isUsingDefaultCriteria();
+
+        $this->set($search->getData() + compact('usesTemplate'));
+
+        $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
+        $this->set(compact('searchableLists'));
     }
 
     /**
@@ -823,33 +583,32 @@ class SentencesController extends AppController
     public function show_all_in($lang, $translationLang) {
         $this->helpers[] = 'ShowAll';
 
+        $query = $this->Sentences->find();
         if ($lang == 'unknown') {
-            $conditions = ['Sentences.lang IS' => null];
+            $query->where(['Sentences.lang IS' => null]);
         } else {
-            $conditions = ['Sentences.lang' => $lang];
+            $query->where(['Sentences.lang' => $lang]);
         }
+        $total = $query->count();
+
+        $query->find('filteredTranslations', [
+                  'translationLang' => $translationLang,
+              ])
+              ->find('nativeMarker')
+              ->find('hideFields')
+              ->select($this->Sentences->fields())
+              ->contain($this->Sentences->contain(['translations' => true]))
+              ->order(['Sentences.id' => 'DESC']);
 
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
 
-        $pagination = [
-            'finder' => ['filteredTranslations' => [
-                'translationLang' => $translationLang,
-                'nativeMarker' => CurrentUser::getSetting('native_indicator')
-            ]],
-            'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->paginateContain($translationLang),
-            'conditions' => $conditions,
+        $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['Sentences.id' => 'DESC']
         ];
-
-        $this->paginate = $pagination;
-
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $allSentences = $this->paginateLatest($this->Sentences, $totalLimit);
-
-        $total = $this->Sentences->find()->where($conditions)->count();
+        $query->find('latest', ['maxResults' => $totalLimit]);
+        $allSentences = $this->paginateOrRedirect($query);
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);
@@ -858,7 +617,6 @@ class SentencesController extends AppController
         $this->set('totalLimit', $totalLimit);
 
         $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
-        $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
         $this->render(null);
     }
 
@@ -871,21 +629,28 @@ class SentencesController extends AppController
      */
     public function random($lang = null)
     {
-        if ($lang == null) {
-            $lang = $this->request->getSession()->read('random_lang_selected');
-        }
-
         $randomId = $this->Sentences->getRandomId($lang);
 
         if (is_null($randomId)) {
             $this->set('searchProblem', true);
             $randomSentence = null;
         } else {
-            $randomSentence = $this->Sentences->getSentenceWithId($randomId);
+            $randomSentence = $this->Sentences->getSentenceWith(
+                $randomId,
+                ['translations' => true]
+            );
         }
 
         $this->request->getSession()->write('random_lang_selected', $lang);
         $this->set('random', $randomSentence);
+
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('sentence', $randomSentence);
+            $this->set('_serialize', ['sentence']);
+            $this->RequestHandler->renderAs($this, 'sentences_json');
+        }
     }
 
 
@@ -908,6 +673,9 @@ class SentencesController extends AppController
             $this->set("userExists", false);
             return;
         }
+
+        $user = $this->Users->getUserById($userId);
+        $this->set("unreliableButton", CurrentUser::canMarkSentencesOfUser($user));
 
         $this->set("userExists", true);
 
@@ -932,7 +700,7 @@ class SentencesController extends AppController
                     )
                 ),
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['Sentences.modified' => 'DESC']
+                'order' => ['modified' => 'DESC']
             )
         );
 
@@ -1061,37 +829,31 @@ class SentencesController extends AppController
     }
 
 
-    public function edit_audio()
+    /**
+     * Mark all sentences of a user as incorrect.
+     *
+     * @param string $username User name of the user.
+     *
+     * @return void
+     */
+    public function mark_unreliable($username)
     {
-        $sentenceId = $this->request->getData('id');
-        $ownerName = $this->request->getData('ownerName');
-        $hasaudio = $this->request->getData('hasaudio');
+        $marked = $this->Sentences->markUnreliable($username);
 
-        if (CurrentUser::isAdmin()) {
-            $this->loadModel('Audios');
-            if ($hasaudio) {
-                $this->Audios->assignAudioTo($sentenceId, $ownerName);
-            } else {
-                $audioToDelete = $this->Audios->find()
-                    ->where(['sentence_id' => $sentenceId])
-                    ->first();
-                $this->Audios->delete($audioToDelete);
-            }
-            $this->redirect(
-                array(
-                    "controller" => "sentences",
-                    "action" => "show",
-                    $sentenceId
-                )
+        if($marked === false) {
+            $message = __d(
+                'admin',
+                'Error: Sentences added by {username} could not be marked as unreliable.'
             );
         } else {
-            $this->redirect(
-                array(
-                    "controller" => "pages",
-                    "action" => "home",
-                )
+            $message = __d(
+                'admin',
+                'Marked all sentences added by {username} as unreliable.'
             );
         }
+
+        $this->Flash->set(format($message, ['username' => $username]));
+        $this->redirect(["controller" => "sentences", "action" => "of_user", $username]);
     }
 
     public function edit_license()
@@ -1103,22 +865,22 @@ class SentencesController extends AppController
         }
 
         $sentence = $this->Sentences->get($sentenceId);
-        $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
 
         if (!CurrentUser::canEditLicenseOfSentence($sentence)) {
             $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
         } else {
+            $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
             $errors = $sentence->getError('license');
-            $savedSentence = $this->Sentences->save($sentence);
-            if ($savedSentence) {
+            $licenseName = Licenses::getSentenceLicenses()[$newLicense]['name'] ?? $newLicense;
+            if (empty($errors) && $this->Sentences->save($sentence)) {
                 $this->Flash->set(format(
                     __('The license of the sentence has been changed to “{newLicense}”.'),
-                    compact('newLicense')
+                    ['newLicense' => $licenseName]
                 ));
             } elseif (!empty($errors)) {
                 $message = format(
                     __('Unable to change the license to “{newLicense}” because:'),
-                    compact('newLicense')
+                    ['newLicense' => $licenseName]
                 );
                 $params = compact('errors');
                 $this->Flash->set($message, compact('params'));

@@ -12,40 +12,41 @@ class WallControllerTest extends IntegrationTestCase {
         'app.walls',
         'app.wall_threads',
         'app.users',
-        'app.users_languages'
+        'app.users_languages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/wall/index', null, true ],
-            [ '/eng/wall/index', 'contributor', true ],
-            [ '/eng/wall/edit/1', null, '/eng/users/login?redirect=%2Feng%2Fwall%2Fedit%2F1' ],
-            [ '/eng/wall/edit/1', 'contributor', '/eng/wall/index' ],
-            [ '/eng/wall/edit/1', 'kazuki', true ], // author of message #1
-            [ '/eng/wall/edit/1', 'advanced_contributor', '/eng/wall/index' ],
-            [ '/eng/wall/edit/1', 'corpus_maintainer', '/eng/wall/index' ],
-            [ '/eng/wall/edit/1', 'admin', true ],
-            [ '/eng/wall/edit/9999999999', 'contributor', 'https://example.net/referer' ],
-            [ '/eng/wall/delete_message/1', null, '/eng/users/login?redirect=%2Feng%2Fwall%2Fdelete_message%2F1' ],
-            [ '/eng/wall/delete_message/1', 'contributor', 'https://example.net/referer' ],
-            [ '/eng/wall/delete_message/1', 'admin', 'https://example.net/referer' ],
-            [ '/eng/wall/delete_message/999999999', 'contributor', 'https://example.net/referer' ],
-            [ '/eng/wall/show_message/1', null, true ],
-            [ '/eng/wall/show_message/1', 'contributor', true ],
-            [ '/eng/wall/show_message/999999999', null, '/eng/wall/index' ],
-            [ '/eng/wall/messages_of_user/admin', null, true ],
-            [ '/eng/wall/messages_of_user/admin', 'contributor', true ],
-            [ '/eng/wall/hide_message/1', null, '/eng/users/login?redirect=%2Feng%2Fwall%2Fhide_message%2F1' ],
-            [ '/eng/wall/hide_message/1', 'contributor', '/' ],
-            [ '/eng/wall/hide_message/1', 'advanced_contributor', '/' ],
-            [ '/eng/wall/hide_message/1', 'corpus_maintainer', '/' ],
-            [ '/eng/wall/hide_message/1', 'admin', 'https://example.net/referer' ],
-            [ '/eng/wall/unhide_message/1', null, '/eng/users/login?redirect=%2Feng%2Fwall%2Funhide_message%2F1' ],
-            [ '/eng/wall/unhide_message/1', 'contributor', '/' ],
-            [ '/eng/wall/unhide_message/1', 'advanced_contributor', '/' ],
-            [ '/eng/wall/unhide_message/1', 'corpus_maintainer', '/' ],
-            [ '/eng/wall/unhide_message/1', 'admin', 'https://example.net/referer' ],
+            [ '/en/wall/index', null, true ],
+            [ '/en/wall/index', 'contributor', true ],
+            [ '/en/wall/edit/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Fedit%2F1' ],
+            [ '/en/wall/edit/1', 'contributor', '/en/wall/index' ],
+            [ '/en/wall/edit/1', 'kazuki', true ], // author of message #1
+            [ '/en/wall/edit/1', 'advanced_contributor', '/en/wall/index' ],
+            [ '/en/wall/edit/1', 'corpus_maintainer', '/en/wall/index' ],
+            [ '/en/wall/edit/1', 'admin', true ],
+            [ '/en/wall/edit/9999999999', 'contributor', 'https://example.net/referer' ],
+            [ '/en/wall/delete_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Fdelete_message%2F1' ],
+            [ '/en/wall/delete_message/1', 'contributor', 'https://example.net/referer' ],
+            [ '/en/wall/delete_message/1', 'admin', 'https://example.net/referer' ],
+            [ '/en/wall/delete_message/999999999', 'contributor', 'https://example.net/referer' ],
+            [ '/en/wall/show_message/1', null, true ],
+            [ '/en/wall/show_message/1', 'contributor', true ],
+            [ '/en/wall/show_message/999999999', null, '/en/wall/index' ],
+            [ '/en/wall/messages_of_user/admin', null, true ],
+            [ '/en/wall/messages_of_user/admin', 'contributor', true ],
+            [ '/en/wall/hide_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Fhide_message%2F1' ],
+            [ '/en/wall/hide_message/1', 'contributor', '/' ],
+            [ '/en/wall/hide_message/1', 'advanced_contributor', '/' ],
+            [ '/en/wall/hide_message/1', 'corpus_maintainer', '/' ],
+            [ '/en/wall/hide_message/1', 'admin', 'https://example.net/referer' ],
+            [ '/en/wall/unhide_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Funhide_message%2F1' ],
+            [ '/en/wall/unhide_message/1', 'contributor', '/' ],
+            [ '/en/wall/unhide_message/1', 'advanced_contributor', '/' ],
+            [ '/en/wall/unhide_message/1', 'corpus_maintainer', '/' ],
+            [ '/en/wall/unhide_message/1', 'admin', 'https://example.net/referer' ],
         ];
     }
 
@@ -59,25 +60,25 @@ class WallControllerTest extends IntegrationTestCase {
 
     public function testSave_asGuest() {
         $this->enableCsrfToken();
-        $this->post('/eng/wall/save', [
+        $this->post('/en/wall/save', [
             'replyTo' => '',
             'content' => 'How about more butterflies on the home page?',
         ]);
-        $this->assertRedirect('/eng/users/login');
+        $this->assertRedirect('/en/users/login');
     }
 
     public function testSave_asMember() {
         $this->logInAs('contributor');
-        $this->post('/eng/wall/save', [
+        $this->post('/en/wall/save', [
             'replyTo' => '',
             'content' => 'How about more butterflies on the home page?',
         ]);
-        $this->assertRedirect('/eng/wall/index');
+        $this->assertRedirect('/en/wall/index');
     }
 
     public function testSaveInside_asGuest() {
         $this->enableCsrfToken();
-        $this->ajaxPost('/eng/wall/save_inside', [
+        $this->ajaxPost('/en/wall/save_inside', [
             'content' => 'Just have a little faith!',
             'replyTo' => '1',
         ]);
@@ -86,7 +87,7 @@ class WallControllerTest extends IntegrationTestCase {
 
     public function testSaveInside_asMember() {
         $this->logInAs('contributor');
-        $this->ajaxPost('/eng/wall/save_inside', [
+        $this->ajaxPost('/en/wall/save_inside', [
             'content' => 'Just have a little faith!',
             'replyTo' => '1',
         ]);
@@ -115,8 +116,8 @@ class WallControllerTest extends IntegrationTestCase {
 
         $this->postNewPosts(15);
 
-        $this->get("/eng/wall/index?page=9999999");
-        $this->assertRedirect("/eng/wall/index?page=$lastPage");
+        $this->get("/en/wall/index?page=9999999");
+        $this->assertRedirect("/en/wall/index?page=$lastPage");
     }
 }
 ?>

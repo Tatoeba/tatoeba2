@@ -27,117 +27,26 @@
 
 use Cake\Controller\Component\AuthComponent;
 
+$this->Html->script('/js/elements/login-dialog.ctrl.js', ['block' => 'scriptBottom']);
+
+$registerUrl = $this->Url->build([
+    'controller' => 'users',
+    'action' => 'register'
+]);
 ?>
 
-<script type="text/javascript">
-<!--
-    function openLoginForm(){
-            document.getElementById('UserLoginForm_FromBar').style.display = 'block';
-    }
-    function closeLoginForm(){
-            document.getElementById('UserLoginForm_FromBar').style.display = 'none';
-    }
--->
-</script>
-
-<ul>
-    <li>
+<div ng-controller="LoginDialogController as vm" layout="row" layout-align="center center" flex hide-xs hide-sm>
+    <md-button href="<?= $registerUrl ?>">
     <?php
-    echo $this->Html->link(
-        __('Register'),
-        array(
-            'controller' => 'users',
-            'action' => 'register'
-        ),
-        array(
-            'class' => 'menuSection'
-        )
-    );
+    /* @translators: link to the Register page in the top bar (verb) */
+    echo __('Register');
     ?>
-    </li>
+    </md-button>
 
-    <li>
-    <?php
-    echo $this->Html->link(
-        __('Log in'),
-        array(
-            'controller' => 'users',
-            'action' => 'login',
-            '?' => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
-        ),
-        array(
-            'onclick' => 'javascript:openLoginForm(); return false;',
-            'class' => 'menuSection'
-        )
-    );
-    ?>
-    </li>
-</ul>
-
-<?php
-$this->Security->enableCSRFProtection();
-echo $this->Form->create(
-    'User',
-    array(
-        'url' => array(
-            'controller' => 'users',
-            'action' => 'check_login',
-            '?' => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
-        ),
-        'id' => 'UserLoginForm_FromBar',
-        'style' => 'display:none;'
-    )
-);
-
-echo '<fieldset>';
-// Username
-echo $this->Form->input(
-    'username',
-    array(
-        'label' => __('Username: '),
-        'value' => false,
-    )
-);
-// Password
-echo $this->Form->input(
-    'password',
-    array(
-        'label' => __('Password: '),
-        'value' => false,
-    )
-);
-// Checkbox
-echo $this->Form->checkbox('rememberMe', ['id' => 'rememberMe']);
-echo '<label for="rememberMe" class="notInBlackBand">';
-echo __('Remember me');
-echo '</label>';
-// Login button
-echo $this->Form->submit(__('Log in'));
-echo '</fieldset>';
-?>
-
-<p>
-<?php
-echo $this->Html->link(
-    __('Forgot your password?'),
-    array(
-        "controller" => "users",
-        "action" => "new_password"
-    )
-);
-echo $this->Html->link(
-    __('Close'),
-    '#',
-    array(
-        'class' => 'menuItem',
-        'style' => 'float:right;',
-        'onclick' => 'javascript:closeLoginForm();'
-    )
-);
-?>
-</p>
-
-<?php
-echo $this->Form->end();
-$this->Security->disableCSRFProtection();
-?>
+    <md-button ng-click="vm.showDialog('<?= $this->Pages->currentPageUrl() ?>')">
+        <?php 
+        /* @translators: link to open the Login box in the top bar (verb) */
+        echo __('Log in');
+        ?>
+    </md-button>
+</div>

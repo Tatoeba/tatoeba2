@@ -40,14 +40,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__("Comments on {user}'s sentences"), array('user' => $userName))
 ));
 ?>
+
+<?php if ($userExists): ?>
 <div id="annexe_content">
-    <?php
-        echo $this->element(
-        'users_menu', 
-        array('username' => $userName)
-    );
-    ?>
+    <?= $this->element('users_menu', array('username' => $userName)) ?>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
 

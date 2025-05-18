@@ -41,6 +41,7 @@ $months = $this->Date->months();
 ?>
 
 <div class="section md-whiteframe-1dp month">
+    <?php /* @translators: used in the calendar on the Activity timeline page */ ?>
     <h2><?php echo __('Month'); ?></h2>
     <ul>
     <?php
@@ -67,6 +68,7 @@ $months = $this->Date->months();
 </div>
 
 <div class="section md-whiteframe-1dp years">
+    <?php /* @translators: used in the calendar on the Activity timeline page */ ?>
     <h2><?php echo __('Year'); ?></h2>
     <ul>
     <?php

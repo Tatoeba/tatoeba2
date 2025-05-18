@@ -2,13 +2,13 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = isset($message->user) ? $message->user->username : CurrentUser::get('username');
-$avatar = isset($message->user) ? $message->user->image : CurrentUser::get('image');
+$user = $message->user;
+$username = $user->username ?? null;
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 $messageId = $message->id;
 $authorId = $message->owner;
-$messageText = $message->content;
+$messageText = $this->safeForAngular($message->content);
 $messageHidden = $message->hidden;
 $sentence = null;
 $sentenceOwnerLink = null;
@@ -23,11 +23,13 @@ $labelText = __x('wall message', '{createdDate}, edited {modifiedDate}');
 $dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
 $dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true);
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
-$userProfileUrl = $this->Url->build(array(
-    'controller' => 'user',
-    'action' => 'profile',
-    $username
-));
+if ($username) {
+    $userProfileUrl = $this->Url->build(array(
+        'controller' => 'user',
+        'action' => 'profile',
+        $username
+    ));
+}
 
 if (isset($message['Permissions'])) {
     $menu = $this->Wall->getMenuFromPermissions(
@@ -38,7 +40,8 @@ if (isset($message['Permissions'])) {
     $menu = [];
 }
 $menu[] = [
-    'text' => 'permalink',
+    /* tooltip of permalink button on a wall post (noun) */
+    'text' => __('Permalink'),
     'icon' => 'link',
     'url' => [
         'controller' => 'wall',
@@ -53,15 +56,23 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
 $canReply = false;
 ?>
 
-<md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
+<md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?>">
     <md-card-header>
+        <?php if (!$messageHidden || $canViewContent): ?>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
+        <?php endif; ?>
         <md-card-header-text>
-            <span class="md-title">
-                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
-            </span>
+        <?php if (!$messageHidden || $canViewContent): ?>
+            <?php if ($username): ?>
+                <span class="md-title">
+                    <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                </span>
+            <?php else: ?>
+                <i><?= h(__('Former member')) ?></i>
+            <?php endif; ?>
+        <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
                 <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
@@ -93,7 +104,7 @@ $canReply = false;
         <?php } ?>
     </md-card-header>
 
-    <md-card-content>
+    <md-card-content class="<?= $messageHidden ? 'inappropriate' : '' ?>">
         <?php if ($messageHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>
@@ -106,7 +117,7 @@ $canReply = false;
                             'and to the author of the message.',
                             true
                         ),
-                        'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+                        $this->Pages->getWikiLink('rules-against-bad-behavior')
                     ); ?>
                 </p>
             </div>
@@ -119,7 +130,7 @@ $canReply = false;
         <?php } ?>
     </md-card-content>
 
-    <?php if (count($children) > 0) { ?>
+    <?php if (!is_null($children) && count($children) > 0) { ?>
         <md-button ng-click="vm.expandOrCollapse(<?= $message->id ?>)" ng-cloak>
             <md-icon>{{vm.hiddenReplies[<?= $message->id ?>] ? 'expand_more' : 'expand_less'}}</md-icon>
             <span ng-if="!vm.hiddenReplies[<?= $message->id ?>]">

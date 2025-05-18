@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Dominika S, 2022
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-12 02:47+0000\n"
+"PO-Revision-Date: 2018-05-16 13:53+0000\n"
+"Last-Translator: Dominika S, 2022\n"
+"Language-Team: Slovak (https://app.transifex.com/tatoeba/teams/28284/sk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+msgid ""
+"Error: Sentences added by {username} could not be marked as unreliable."
+msgstr ""
+"Chyba: Vety pridané užívateľom {username} nemožno označiť ako nespoľahlivé."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+msgid "Marked all sentences added by {username} as unreliable."
+msgstr "Označiť všetky vety pridané užívateľom {username} ako nespoľahlivé."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+msgid "Unable to import audio: user “{author}” not found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
+msgid "Invalid file “{file}” ignored."
+msgstr "Neplatný súbor „{file}“ preskočený."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+msgid ""
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
+msgid "Failed to create directory “{dir}” to import file “{file}”."
+msgstr "Zlyhalo vytvorenie zoznamu „{dir}“ na prevedenie súboru „{file}“."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr "Zlyhalo kopírovanie súboru „{file}“ do zoznamu „{dir}“."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
+msgid ""
+"File “{file}” was successfully imported but could not be removed from the "
+"import directory."
+msgstr ""
+"Súbor „{file}“ bol úspešne prevedený, ale nemohol  byť odstránený zo "
+"zoznamu."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
+msgid "Import recordings"
+msgstr "Previesť nahrávky"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
+msgid "The following errors occurred during the last import."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+msgid "Audio import status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
+msgid "Files detected"
+msgstr "Zistené súbory"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
+msgid "Audio author"
+msgstr ""
+
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
+msgid "Save"
+msgstr "Uložiť"
+
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
+msgid "Correctness"
+msgstr "Správnosť"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "Predložiť"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
+msgid "Import sentences"
+msgstr "Previesť vety"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
+msgid "Single sentences"
+msgstr "Osamotené vety"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
+msgid "Language of the sentences:"
+msgstr "Jazyk viet:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
+msgid "File:"
+msgstr "Súbor:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
+msgid "Numeric user id: "
+msgstr "Číslo užívateľa:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
+msgid "import"
+msgstr "previesť"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
+msgid "Sentences and translations"
+msgstr "Vety a preklady"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
+msgid "Language of the translations:"
+msgstr "Jazyky prekladov:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+msgid "Mark as unreliable"
+msgstr "Označiť ako nespoľahlivé"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
+"Ste si istý, že chcete označiť všetky vety tohto užívateľa ako nespoľahlivé?"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
+msgid "Are you sure you want to delete user #{number}?"
+msgstr "Ste si istý, že chcete odstrániť používateľa #{number}?"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
+msgid "List Users"
+msgstr "Zoznam užívateľov"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
+msgid "Profile"
+msgstr "Profil"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
+msgid "Edit User"
+msgstr "Upraviť užívateľa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
+msgid "Id"
+msgstr "Číslo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+msgid "Username"
+msgstr "Užívateľské meno"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
+msgid "Lang"
+msgstr "Jazyk"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
+msgid "Group"
+msgstr "Skupina"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+msgid "Level"
+msgstr "Úroveň"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
+msgid "Send notifications"
+msgstr "Zaslať oznámenia"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
+msgid "unhide"
+msgstr "zobraziť"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
+msgid "hide"
+msgstr "skryť"

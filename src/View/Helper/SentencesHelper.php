@@ -30,6 +30,7 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 use Cake\Utility\Hash;
+use App\Model\Table\SentencesTable;
 
 
 /**
@@ -66,12 +67,9 @@ class SentencesHelper extends AppHelper
         'Images',
         'Transcriptions',
         'Search',
-        'License' => array(
-            'availableLicences' => array(
-                'CC0 1.0',
-                'CC BY 2.0 FR',
-            ),
-        ),
+        'Number',
+        'SentenceLicense',
+        'ClickableLinks',
     );
 
 
@@ -156,8 +154,6 @@ class SentencesHelper extends AppHelper
         <div id="_<?php echo $id; ?>_translations" class="translations">
 
             <?php
-            $this->Html->script('sentences.collapse.js', array('block' => 'scriptBottom'));
-
             $totalDirectTranslations = count(array_keys($translations));
             $totalIndirectTranslations = count(array_keys($indirectTranslations));
 
@@ -299,7 +295,7 @@ class SentencesHelper extends AppHelper
      */
     private function _displayNewTranslationForm($id)
     {
-        $langArray = $this->Languages->profileLanguagesArray(true, false);
+        $langArray = $this->Languages->profileLanguagesArray(true);
 
         ?>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
@@ -321,7 +317,7 @@ class SentencesHelper extends AppHelper
 
     private function _translationForm($id, $langArray)
     {
-        $preSelectedLang = $this->request->getSession()->read('contribute_lang');
+        $preSelectedLang = $this->getView()->get('contribute_lang');
 
         echo $this->Images->svgIcon(
             'translation',
@@ -409,6 +405,7 @@ class SentencesHelper extends AppHelper
 
         // Cancel
         echo $this->Form->button(
+            /* @translators: cancel button of "add translation" form on a sentence (verb) */
             __('Cancel'),
             array(
                 'id' => '_'.$id.'_cancel',
@@ -440,11 +437,13 @@ class SentencesHelper extends AppHelper
     ) {
         $user = $sentence->user;
         $sentenceId = $sentence->id;
-        $canTranslate = $sentence->correctness >= 0;
+        $canTranslate = $sentence->correctness >= 0 && $sentence->license != '';
         $hasAudio = isset($sentence->audios) && count($sentence->audios);
         $script = $sentence->script;
+        $isFavorited = isset($sentence->favorites_users)
+                       && count($sentence->favorites_users);
         $this->Menu->displayMenu(
-            $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio
+            $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio, $isFavorited
         );
 
         $ownerName = $user ? $user->username : null;
@@ -488,6 +487,8 @@ class SentencesHelper extends AppHelper
         $isEditable = false,
         $langFilter = 'und'
     ) {
+        $this->AssetCompress->script('single-sentence.js', ['block' => 'scriptBottom']);
+
         $sentenceId = $sentence->id;
         $sentenceLang = $sentence->lang;
         $isFavoritePage = ($this->request->params['controller'] == 'Favorites' && $this->request->params['action'] == 'of_user');
@@ -689,19 +690,14 @@ class SentencesHelper extends AppHelper
 
         if ($isEditable) {
             $classes[] = 'editableSentence';
-
-            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
-
-            // TODO: HACK SPOTTED id is used in edit_in_place
-            // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
-            // using jQuery.data...
+            
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
                 array(
                     'class' => join(' ', $classes),
-                    'id' => $sentenceLang.'_'.$sentenceId,
+                    /* @translators: submit button of sentence edition form */
                     'data-submit' => __('OK'),
+                    /* @translators: cancel button of sentence edition form (verb) */
                     'data-cancel' => __('Cancel'),
                     'escape' => !$sentenceEscaped,
                 ),
@@ -732,12 +728,7 @@ class SentencesHelper extends AppHelper
 
         // defined in config/asset_compress.ini
         $this->AssetCompress->script('sentences-block-for-members.js', $options);
-        $this->Html->script('jquery.jeditable.js', $options);
-        $this->Html->script('transcriptions.js', $options);
-        $this->Html->script('sentences.collapse.js', $options);
-        $this->Html->script('clipboard.min.js', $options);
-        $this->Html->script('sentences.copy.js', $options);
-        $this->Html->script('sentences.play_audio.js', $options);
+        $this->AssetCompress->script('single-sentence.js', $options);
     }
 
 
@@ -811,7 +802,8 @@ class SentencesHelper extends AppHelper
                     'controller' => 'sentences',
                     'action' => 'show',
                     $sentence->id
-                )
+                ),
+                ['target' => '_blank']
             );
         } else {
             echo $this->Html->div(null, $sentence->text);
@@ -826,18 +818,11 @@ class SentencesHelper extends AppHelper
             $msg = __('This sentence is original and '
                      .'was not derived from translation.');
         } elseif ($baseId > 0) {
-            $baseLink = $this->Html->link(
-                $baseId,
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $baseId
-                )
-            );
+            $baseText = $sentence->base ? $sentence->base->text : null;
             $msg = format(
                 __('This sentence was initially added as a '
-                  .'translation of sentence #{n}.'),
-                array('n' => $baseLink)
+                  .'translation of sentence {sentenceIdWithIdSign}.'),
+                array('sentenceIdWithIdSign' => $this->ClickableLinks->buildSentenceLink($baseId, $baseText))
             );
         } else {
             $msg = __('We cannot determine yet whether this sentence was '
@@ -847,41 +832,41 @@ class SentencesHelper extends AppHelper
     }
 
     public function sentenceForAngular($sentence) {
-        $data = $this->getSentenceData($sentence);
-        
         if (isset($sentence->highlight)) {
             $sentenceText = h($sentence->text);
             $highlight = $sentence->highlight;
-            $data['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
+            $sentence['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
+        }
+        if (isset($sentence->translations)) {
+            $sentence->expandLabel = $this->getExpandLabel($sentence);
         }
 
-        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
+        return h(json_encode($sentence));
     }
 
     public function translationsForAngular($translations) {
-        $data = [];
-        foreach($translations as $translation) {
-            $data[] = $this->getSentenceData($translation);
-        }
-
-        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
+        return h(json_encode($translations));
     }
 
-    public function getSentenceData($sentence) {
-        return [
-            'id' => $sentence->id,
-            'text' => $sentence->text,
-            'lang' => $sentence->lang,
-            'langName' => $this->Languages->codeToNameAlone($sentence->lang),
-            'script' => $sentence->script,
-            'dir' => LanguagesLib::getLanguageDirection($sentence->lang),
-            'audios' => $sentence->audios,
-            'correctness' => $sentence->correctness,
-            'isFavorite' => CurrentUser::hasFavorited($sentence->id),
-            'isOwnedByCurrentUser' => $sentence->user && $sentence->user->username === CurrentUser::get('username'),
-            'user' => $sentence->user,
-            'sentences_lists' => $sentence->sentences_lists
-        ];
+    public function getExpandLabel($sentence)
+    {
+        $extraTranslationsCount = $this->getNumberOfExtraTranslations($sentence);
+        if ($extraTranslationsCount > 0) {
+            return format(__n(
+                'Show 1 more translation',
+                'Show {number} more translations',
+                $extraTranslationsCount
+            ), ['number' => $this->Number->format($extraTranslationsCount)]);
+        } else {
+            return null;
+        }
+    }
+
+    private function getNumberOfExtraTranslations($sentence)
+    {
+        $translations = $sentence->translations;
+        $total = count($translations[0]) + count($translations[1]);
+        return $total - $sentence->max_visible_translations;
     }
 }
 ?>

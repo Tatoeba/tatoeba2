@@ -1,0 +1,42 @@
+---
+
+- name: Install dependencies for building dictionary
+  apt:
+    name: ['make', 'mecab-utils', 'libmecab-dev']
+    state: present
+
+- name: Modify dictionary with warifuri (this takes a long time)
+  become: false
+  command: ./build.sh chdir=/tmp/tatomecab/warifuri
+
+- name: Build dictionary - configure
+  become: false
+  command: ./configure --with-charset=UTF-8 chdir=/tmp/tatomecab/warifuri/mecab-naist-jdic-0.6.3b-20111013
+
+- name: Build dictionary - make
+  become: false
+  command: make chdir=/tmp/tatomecab/warifuri/mecab-naist-jdic-0.6.3b-20111013
+
+- name: Install dictionary - create install directory
+  file:
+    path: "{{tatomecab_dict_dir}}"
+    state: directory
+
+- name: Install dictionary - copy files
+  copy:
+    mode: 0644
+    remote_src: yes
+    src: "/tmp/tatomecab/warifuri/mecab-naist-jdic-0.6.3b-20111013/{{item}}"
+    dest: "{{tatomecab_dict_dir}}"
+  with_items:
+  - char.bin
+  - dicrc
+  - matrix.bin
+  - sys.dic
+  - unk.dic
+
+- name: Install dictionary - set tatomecab dictionnary as default
+  lineinfile:
+    path: /etc/mecabrc
+    regexp: "^dicdir ="
+    line: "dicdir = {{tatomecab_dict_dir}}"

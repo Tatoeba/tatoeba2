@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Datasource\QueryInterface;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
@@ -28,7 +29,10 @@ class LinksTable extends Table
     {
         $this->setTable('sentences_translations');
         
-        $this->belongsTo('Sentences');
+        $this->belongsTo('Sentences')
+             ->setJoinType(QueryInterface::JOIN_TYPE_INNER);
+        $this->belongsTo('Translations')
+             ->setJoinType(QueryInterface::JOIN_TYPE_INNER);
     }
 
     public function beforeSave($event, $entity, $options)
@@ -234,13 +238,13 @@ class LinksTable extends Table
     public function updateLanguage($sentenceId, $lang)
     {
         $this->updateAll(
-            array('sentence_lang' => "'$lang'"),
-            array('sentence_id' => $sentenceId)
+            ['sentence_lang' => $lang],
+            ['sentence_id' => $sentenceId]
         );
 
         $this->updateAll(
-            array('translation_lang' => "'$lang'"),
-            array('translation_id' => $sentenceId)
+            ['translation_lang' => $lang],
+            ['translation_id' => $sentenceId]
         );
     }
 }

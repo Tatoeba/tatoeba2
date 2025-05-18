@@ -25,6 +25,11 @@
     border: 1px solid #f1f1f1;
     margin-top: -20px;
 }
+@media only screen and (max-width: 960px) {
+    .responsive .navigation {
+        margin-top: 0;
+    }
+}
 .navigation .md-errors-spacer {
     display: none;
 }
@@ -43,6 +48,23 @@
     margin: 20px 5px 0 5px;
 }
 
+/*
+ * Sentence content
+ */
+.sentence-and-translations,
+.sentences_set {
+    background: #fff;
+    margin: 20px 10px;
+}
+
+.sentences_set {
+    width: 610px;
+    margin: 20px auto;
+}
+
+.sentence .content.column {
+    width: 500px;
+}
 
 /* 
  * Tags
@@ -128,12 +150,12 @@
 }
 
 
-#annexe_content .sentence-lists .public-list {
+md-sidenav .sentence-lists .public-list {
     list-style-type: disc;
     margin: 5px 5px 5px 10px;
 }
 
-#annexe_content .sentence-lists .personal-list {
+md-sidenav .sentence-lists .personal-list {
     list-style-type: circle;
     margin: 5px 5px 5px 10px;
 }
@@ -155,4 +177,62 @@
  */
 .derivation {
     font-size: small;
+}
+
+/*
+ * Audio
+ */
+.audio h3 {
+    display: flex;
+    align-items: center;
+    margin-left: -15px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+.audio .disabled h3 {
+    text-decoration: line-through;
+}
+.audio .audio-button {
+    background: white;
+    align-self: end;
+}
+.audio .audio-author {
+    background: white;
+    padding-right: 8px;
+    margin-right: 2px;
+    word-wrap: anywhere;
+}
+.audio h2 {
+    margin-bottom: 0;
+}
+.audio .audio-details {
+    padding: 10px 16px;
+    margin-left: 10px;
+    margin-top: -20px;
+    border: 2px solid rgba(0,0,0,0.12);
+    z-index: 0;
+    position: relative;
+}
+.audio .audio-details .license {
+    padding-top: 16px;
+    margin-bottom: 16px;
+}
+.audio .audio-details .timestamp {
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    word-break: break-word;
+}
+.audio .audio-details .timestamp:last-of-type {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 0.5rem;
+}
+.audio .audio-details .timestamp .since {
+    color: rgba(0, 0, 0, 0.54);
+}
+.audio .audio-details .md-errors-spacer {
+    display: none;
 }

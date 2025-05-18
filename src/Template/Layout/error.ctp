@@ -32,6 +32,7 @@
 <body>
     <div id="container">
         <div id="header">
+            <?php /* @translators: title of error page (noun) */ ?>
             <h1><?= __('Error') ?></h1>
         </div>
         <div id="content">
@@ -40,6 +41,7 @@
             <?= $this->fetch('content') ?>
         </div>
         <div id="footer">
+            <?php /* @translators: link to go back the previous page from an error page (noun) */ ?>
             <?= $this->Html->link(__('Back'), 'javascript:history.back()') ?>
         </div>
     </div>

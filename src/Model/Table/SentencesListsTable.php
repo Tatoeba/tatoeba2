@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Database\Schema\TableSchema;
@@ -81,7 +82,7 @@ class SentencesListsTable extends Table
         $permissions = array(
             'canView' => $visibility != 'private' || $belongsToUser,
             'canEdit' => $belongsToUser,
-            'canAddSentences' => $belongsToUser && $editableBy !== 'no_one',
+            'canAddSentences' => $editableBy == 'anyone' || $belongsToUser && $editableBy !== 'no_one',
             'canRemoveSentences' => $editableBy == 'anyone' || $belongsToUser && $editableBy == 'creator',
         );
 
@@ -102,7 +103,7 @@ class SentencesListsTable extends Table
             ->where([
                 'OR' => [
                     'user_id' => CurrentUser::get('id'),
-                    'visibility' => 'public',
+                    'visibility IN' => ['public', 'listed']
                 ]
             ])
             ->select(['id', 'name', 'user_id'])
@@ -116,18 +117,33 @@ class SentencesListsTable extends Table
      *
      * @return bool False if the list cannot be searched, the list otherwise.
      */
-    public function isSearchableList($listId)
+    public function isSearchableList($listId, $byUserId)
     {
-        return $this->find()
-            ->where([
-                'id' => $listId,
-                'OR' => [
-                    'user_id' => CurrentUser::get('id'),
-                    'NOT' => ['visibility' => 'private']
-                ]
-            ])
+        return $this->find('searchableBy', ['user_id' => $byUserId])
+            ->where(['id' => $listId])
             ->select(['id', 'user_id', 'name'])
             ->first();
+    }
+
+    /**
+     * Custom finder to only include lists that can be used
+     * as search criterion, optionally by a specific user id
+     * provided as option user_id:
+     *
+     * $this->find('searchableBy', ['user_id' => 1234])
+     *
+     */
+    public function findSearchableBy(Query $query, array $options)
+    {
+        $userId = $options['user_id'] ?? null;
+
+        return $query->where(function ($exp, $query) use ($userId) {
+            $exp = $query->newExpr()->add(['NOT' => ['visibility' => 'private']]);
+            if ($userId) {
+                $exp = $exp->add(['user_id' => $userId])->tieWith('OR');
+            }
+            return $exp;
+        });
     }
 
     /**
@@ -214,7 +230,7 @@ class SentencesListsTable extends Table
             $conditions['SentencesLists.user_id'] = $userId;
         }
         if (!empty($visibility)) {
-            $conditions['SentencesLists.visibility'] = $visibility;
+            $conditions['SentencesLists.visibility IN'] = $visibility;
         }
         if (!empty($editableBy)) {
             $conditions['SentencesLists.editable_by'] = $editableBy;
@@ -284,56 +300,6 @@ class SentencesListsTable extends Table
                 ->toList();
         }
     }
-
-
-    /**
-     * Returns value of $this->paginate, for paginating sentences of a list.
-     *
-     * @param int    $id               Id of the list.
-     * @param string $translationsLang Language of the translations.
-     * @param bool   $isEditable       'true' if the sentences are editable.
-     * @param int    $limit            Number of sentences per page.
-     *
-     * @return array
-     */
-    public function paramsForPaginate($id, $translationsLang, $isEditable, $limit)
-    {
-        $sentenceParams = array(
-            'Transcription',
-        );
-
-        if ($isEditable) {
-            $sentenceParams['User'] = array(
-                "fields" => array("id", "username")
-            );
-        }
-
-        if ($translationsLang != null) {
-            // All
-            $sentenceParams['Translation'] = array(
-                'Transcription',
-            );
-            // Specific language
-            if ($translationsLang != 'und') {
-                $sentenceParams['Translation']['conditions'] = array(
-                    "lang" => $translationsLang
-                );
-            }
-        }
-
-        $params = array(
-            'SentencesSentencesLists' => array(
-                'limit' => $limit,
-                'conditions' => array('sentences_list_id' => $id),
-                'contain' => array(
-                    'Sentence' => $sentenceParams
-                )
-            )
-        );
-
-        return $params;
-    }
-
 
     /**
      * Returns true if list belongs to current user OR is collaborative.
@@ -515,14 +481,12 @@ class SentencesListsTable extends Table
             return false;
         }
 
-        $id = $sentence->id;
-        $isDeleted = $this->Sentences->unlink($list, [$sentence]);
+        // numberOfSentences is decremented by SentencesSentencesList.afterDelete
+        return $this->Sentences->unlink($list, [$sentence]);
+    }
 
-        if ($isDeleted) {
-            $this->_decrementNumberOfSentencesToList($listId);
-        }
-
-        return $isDeleted;
+    public function decrementNumberOfSentencesOnAssociationDeletion($event) {
+        $this->_decrementNumberOfSentencesToList($event->getData('list_id'));
     }
 
 
@@ -601,7 +565,7 @@ class SentencesListsTable extends Table
         // Adding to list
         $sentenceId = $sentenceSaved->id;
         if ($this->addSentenceToList($sentenceId, $listId, $currentUserId)) {
-            $sentence = $this->Sentences->get($sentenceId, ['contain' => 'Users']);
+            $sentence = $this->Sentences->getSentenceWith($sentenceId);
             return $sentence;
         } else {
             return false;
@@ -685,7 +649,7 @@ class SentencesListsTable extends Table
         $list = $this->get($listId);
         if ($list->isEditableBy($currentUserId)) {
             $list->name = $newName;
-            return $this->save($list)->old_format;
+            return $this->save($list);
         } else {
             return false;
         }
@@ -702,9 +666,9 @@ class SentencesListsTable extends Table
 
         if ($belongsToUser && in_array($option, $allowedOptions)) {
             $list->{$option} = $value;
-            return $this->save($list)->old_format;
+            return $this->save($list);
         } else {
-            return array();
+            return false;
         }
     }
 }

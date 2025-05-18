@@ -25,59 +25,64 @@
  * @link     https://tatoeba.org
  */
 $username = h($username);
-$this->set('title_for_layout', $this->Pages->formatTitle(
-    format(__("{user}'s Wall messages"), array('user' => $username))
-));
+if ($userExists) {
+    $title = format(__("{user}'s Wall messages"), array('user' => $username));
+} else {
+    $title = format(__("There's no user called {username}"), array('username' => $username));
+}
+$this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
+<?php if ($userExists): ?>
 <div id="annexe_content">
-    <?php
-        echo $this->element(
-        'users_menu', 
-        array('username' => $username)
-    );
-    ?>
+    <?= $this->element('users_menu', array('username' => $username)) ?>
 </div>
-
+<?php endif; ?>
 
 <div id="main_content">
 <section class="md-whiteframe-1dp">
-    <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools">
-        <h2>
-        <?php 
-        echo $this->Paginator->counter(
-            array(
-                'format' => format(
-                    __('{user}\'s messages on the Wall (total&nbsp;{n})'),
-                    array('user' => $username, 'n' => '{{count}}')
+    <?php
+    if (!$userExists) {
+        $this->CommonModules->displayNoSuchUser($username);
+    } else { ?>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+            <h2>
+            <?php
+            echo $this->Paginator->counter(
+                array(
+                    'format' => format(
+                        __('{user}\'s messages on the Wall (total&nbsp;{n})'),
+                        array('user' => $username, 'n' => '{{count}}')
+                    )
                 )
-            )
-        );
+            );
+            ?>
+            </h2>
+            </div>
+        </md-toolbar>
+
+        <md-content>
+        <?php
+        $this->Pagination->display();
         ?>
-        </h2>
+
+        <div class="wall">
+        <?php
+        foreach ($messages as $message) {
+            echo $this->element('wall/message', [
+                'message' => $message,
+                'isRoot' => true
+            ]);
+        }
+        ?>
         </div>
-    </md-toolbar>
-    
-    <md-content>
-    <?php
-    $this->Pagination->display();
-    ?>
-    
-    <div class="wall">
-    <?php
-    foreach ($messages as $message) {
-        echo $this->element('wall/message', [
-            'message' => $message,
-            'isRoot' => true
-        ]);
-    }
-    ?>
-    </div>
-    
-    <?php
-    $this->Pagination->display();
-    ?>
-    </md-content>
+
+        <?php
+        $this->Pagination->display();
+        ?>
+        </md-content>
+        <?php
+    } ?>
 </section>
 </div>

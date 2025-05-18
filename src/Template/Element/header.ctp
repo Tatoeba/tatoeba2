@@ -26,11 +26,19 @@
  */
 use Cake\Core\Configure;
 ?>
-<li id="logo">
+
+<div layout="row" layout-align="start center" flex-xs flex-sm layout-padding>
+    <md-button hide-gt-sm class="hamburger-menu md-icon-button" ng-click="toggleMenu()">
+        <md-icon>menu</md-icon>
+    </md-button>
+
     <?php
     if (Configure::read('Tatoeba.devStylesheet')) {
         $name = 'TatoDev';
     } else {
+        /* @translators: top-left site name written in big.
+           You shouldn't translate it unless speakers of your
+           language cannot read the Latin script. */
         $name = __('Tatoeba');
     }
 
@@ -41,16 +49,26 @@ use Cake\Core\Configure;
     $logo = $this->Html->image(
         IMG_PATH . 'tatoeba.svg',
         array(
-            'width' => 48,
-            'height' => 48,
+            'width' => 32,
+            'height' => 32,
             'title' => $name
-
         )
     );
     echo $this->Html->link(
         $logo . $this->Html->div('tatoeba-name', $name),
         $path,
-        array('escape' => false)
+        [
+            'escape' => false,
+            'layout' => 'row',
+            'flex-xs' => '',
+            'layout-align' => 'center center'
+        ]
     );
     ?>
-</li>
+
+    <?= $this->element('ui_language_button', [
+        'class' => 'md-icon-button',
+        'displayOption' => 'hide-gt-xs',
+        'label' => ''
+    ]); ?>
+</div>

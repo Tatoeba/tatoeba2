@@ -26,12 +26,16 @@
  */
 use App\Model\CurrentUser;
 
+if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+    $this->set('isResponsive', true);
+}
+
 if ($is_advanced_search) {
     $title = __x('title', 'Advanced search');
 } else if (!empty($query)) {
     $title = format(__('Sentences with: {keywords}'), array('keywords' => h($query)));
 } else {
-    if ($from != 'und' && $to != 'und') {
+    if (!empty($from) && !empty($to)) {
         if ($trans_filter == 'exclude') {
             $title = format(__('Sentences in {language} not translated into {translationLanguage}'),
                             array('language' => $this->Languages->codeToNameToFormat($from),
@@ -41,10 +45,10 @@ if ($is_advanced_search) {
                             array('language' => $this->Languages->codeToNameToFormat($from),
                                   'translationLanguage' => $this->Languages->codeToNameToFormat($to)));
         }
-    } elseif ($from != 'und') {
+    } elseif (!empty($from)) {
         $title = format(__('Sentences in {language}'),
                         array('language' => $this->Languages->codeToNameToFormat($from)));
-    } elseif ($to != 'und') {
+    } elseif (!empty($to)) {
         if ($trans_filter == 'exclude') {
             $title = format(__('Sentences not translated into {language}'),
                             array('language' => $language->codeToNameToFormat($to)));
@@ -67,54 +71,76 @@ if ($ignored) {
     echo $this->Html->tag('div', $warn, array(
         'id' => 'flashMessage',
         'class' => 'message',
+        'ng-non-bindable' => '',
     ));
 }
 ?>
 
-<div id="annexe_content">
-    <div class="md-whiteframe-1dp" ng-cloak>
-    <md-subheader><?php echo __('More search criteria'); ?></md-subheader>
-    <?php echo $this->element('advanced_search_form', array(
-                   'searchableLists' => $searchableLists,
-                   'isSidebar' => true
-          )); ?>
+<md-toolbar class="md-hue-2" hide-xs hide-sm ng-cloak>
+    <div class="md-toolbar-tools">
+        <?php if (isset($syntax_error) || isset($error_code)): ?>
+            <h2 flex><?= __('Search error') ?></h2>
+        <?php else: ?>
+            <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
+        <?php endif; ?>
+
+        <?= $this->element('sentences/expand_all_menus_button'); ?>
     </div>
-</div>
+</md-toolbar>
 
-<div id="main_content">
+<section layout="row" ng-cloak>
 
-<section class="md-whiteframe-1dp">   
+<md-content class="md-whiteframe-1dp" flex>
+
+<md-toolbar class="md-hue-2" hide-gt-sm ng-cloak ng-controller="SidenavController">
+    <div class="md-toolbar-tools">
+        <?php if (isset($syntax_error) || isset($error_code)): ?>
+            <h2 flex><?= __('Search error') ?></h2>
+        <?php else: ?>
+            <h2 flex><?= $this->Pages->formatResultCount($this->Paginator, $real_total); ?></h2>
+        <?php endif; ?>
+
+        <md-button ng-click="toggle('advanced-search')">
+            <md-icon>filter_list</md-icon>
+            <?php /* @translators: button to open the advanced search option sidebar on mobile */ ?>
+            <?= __('Refine search') ?>
+        </md-button>
+    </div>
+</md-toolbar>
+
 <?php
-if (!isset($results)) {
-    ?><div class="section"><?php
-    if ($syntax_error) {
-    ?>
-        <h2><?php echo __('Search error'); ?></h2>
+    if (isset($syntax_error)) {
+?>
+    <div class="section">
         <p><?php
             echo format(
                 __(
                     'Invalid query. '.
                     'Please refer to the '.
                     '<a href="{}">search documentation</a> for more details.', true),
-                'http://en.wiki.tatoeba.org/articles/show/text-search'
+                $this->Pages->getWikiLink('text-search')
             );
         ?></p>
-    <?php
-    } else {
-    ?>
-    <h2><?php echo __('Search error'); ?></h2>
-    <p><?php
-        echo format(
-            __(
-                'An error occurred while performing the search. '.
-                'If the problem persists, please '.
-                '<a href="{}">let us know</a>.', true),
-            $this->Url->build(array('controller' => 'pages', 'action' => 'contact'))
-        );
-    ?></p>
-    <?php
-    }
-    ?></div><?php
+    </div>
+<?php
+    } elseif (isset($error_code)) {
+?>
+    <div class="section">
+        <p><?php
+            echo format(
+                __(
+                    'An error occurred while performing the search. '.
+                    'If the problem persists, please '.
+                    '<a href="{us}">let us know</a> and include the '.
+                    'error code "{errorCode}" in your message.'),
+                    [
+                        'us' => $this->Url->build(['controller' => 'pages', 'action' => 'contact']),
+                        'errorCode' => $error_code,
+                    ]
+            );
+        ?></p>
+    </div>
+<?php
 } elseif (count($results) > 0) {
     if (!$is_advanced_search && !empty($query)) {
         $keywords = $this->Languages->tagWithLang(
@@ -127,15 +153,6 @@ if (!isset($results)) {
         );
     }
 
-    ?>
-    <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools">
-            <h2><?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?></h2>
-        </div>
-    </md-toolbar>
-
-    <md-content>
-    <?php
     //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
     
     $this->Pagination->display();
@@ -147,7 +164,8 @@ if (!isset($results)) {
                 array(
                     'sentence' => $sentence,
                     'translations' => $sentence->translations,
-                    'user' => $sentence->user
+                    'user' => $sentence->user,
+                    'translationLang' => $to
                 )
             );
         }
@@ -161,7 +179,6 @@ if (!isset($results)) {
     }
 
     $this->Pagination->display();
-    ?></md-content><?php
 
 } else {
     echo $this->element('search_with_no_result');
@@ -169,5 +186,26 @@ if (!isset($results)) {
     //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
 }
 ?>
+</md-content>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-1dp"
+            md-component-id="advanced-search"
+            md-disable-scroll-target="body"
+            md-is-locked-open="$mdMedia('gt-sm')">
+    <md-toolbar>
+        <div class="md-toolbar-tools" ng-controller="SidenavController">
+            <?php /* @translators: title for the sidebar on the search page */ ?>
+            <h2 flex><?= __('Refine search'); ?></h2>
+            <md-button class="close md-icon-button" ng-click="toggle('advanced-search')">
+                <md-icon>close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    
+    <?php echo $this->element('advanced_search_form', [
+        'searchableLists' => $searchableLists,
+        'isSidebar' => true
+    ]); ?>
+</md-sidenav>
+
 </section>
-</div>

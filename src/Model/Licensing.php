@@ -41,6 +41,7 @@ class Licensing {
                 compact('listId', 'userId'),
                 ['group' => $userId]
             );
+            $this->QueuedJobs->wakeUpWorkers();
         }
     }
 
@@ -49,19 +50,23 @@ class Licensing {
         $this->startListRefresh($listId, $currentUserId);
     }
 
-    public function startLicenseSwitch($userId, $lang) {
+    public function startLicenseSwitch($userId, $locale) {
         $listId = $this->getLicenseSwitchListId($userId);
         $options = array(
             'userId' => $userId,
-            'UIlang' => $lang,
+            'locale' => $locale,
             'listId' => $listId,
             'sendReport' => true,
         );
-        return (bool)$this->QueuedJobs->createJob(
+        $ok = (bool)$this->QueuedJobs->createJob(
             'SwitchSentencesLicense',
             $options,
             ['group' => $userId]
         );
+        if ($ok) {
+            $this->QueuedJobs->wakeUpWorkers();
+        }
+        return $ok;
     }
 
     public function is_refreshing($userId) {

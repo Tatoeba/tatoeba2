@@ -22,6 +22,8 @@ use App\Model\CurrentUser;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Utility\Hash;
+use Cake\Event\Event;
+use App\Event\SentencesListListener;
 
 class SentencesSentencesListsTable extends Table
 {
@@ -34,42 +36,24 @@ class SentencesSentencesListsTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
-    }
 
-    /**
-     * Returns value of $this->paginate, for paginating sentences of a list.
-     *
-     * @param int    $listId Id of the list.
-     * @param int    $limit  Number of sentences per page.
-     * @param string $translationsLang  Limit translations in that language
-     *
-     * @return array
-     */
-    public function getPaginatedSentencesInList($listId, $limit, $translationsLang)
-    {
-        $contain = ['Sentences' => $this->Sentences->paginateContain()];
-        
-        return [
-            'limit' => $limit,
-            'conditions' => ['sentences_list_id' => $listId],
-            'contain' => $contain,
-            'fields' => ['created', 'sentence_id'],
-            'order' => ['created' => 'DESC']
-        ];
+        $this->getEventManager()->on(new SentencesListListener());
     }
-
 
     public function getListsForSentence($sentenceId)
     {
         return $this->find()
             ->where([
                 'sentence_id' => $sentenceId,
-                'user_id' => CurrentUser::get('id')
+                'OR' => [
+                    'user_id' => CurrentUser::get('id'),
+                    'visibility' => 'public',
+                ]
             ])
             ->select(['created'])
             ->contain([
                 'SentencesLists' => [
-                    'fields' => ['id', 'name', 'visibility']
+                    'fields' => ['id', 'name', 'visibility', 'user_id', 'editable_by']
                 ]
             ])
             ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
@@ -86,5 +70,19 @@ class SentencesSentencesListsTable extends Table
             ->toList();
         $listsId = Hash::extract($records, '{n}.sentences_list_id');
         $values = array($sentenceId => array($listsId));
+    }
+
+    /**
+     * Call after a deletion.
+     *
+     * @return void
+     */
+    public function afterDelete($event, $entity, $options)
+    {
+        $event = new Event('Model.SentencesSentencesList.deleted', $this, array(
+            'list_id' => $entity->sentences_list_id,
+            'data' => $entity
+        ));
+        $this->getEventManager()->dispatch($event);
     }
 }

@@ -24,14 +24,9 @@ use App\View\Helper\AppHelper;
 class AudioHelper extends AppHelper
 {
     public $helpers = array(
+        'AudioLicense',
+        'Form',
         'Html',
-        'License' => ['availableLicences' => [
-            '',
-            'CC BY 4.0',
-            'CC BY-NC 4.0',
-            'CC BY-SA 4.0',
-            'CC BY-NC-ND 3.0',
-        ]]
     );
 
     private function defaultAttribUrl($username) {
@@ -40,31 +35,6 @@ class AudioHelper extends AppHelper
             'action' => 'profile',
             $username
         );
-    }
-
-    public function displayAudioInfo($audio) {
-        if ($audio->user) {
-            $username  = $audio->user->username;
-            $license   = $audio->user->audio_license;
-            $attribUrl = $audio->user->audio_attribution_url;
-            if (empty($attribUrl)) {
-                $attribUrl = $this->defaultAttribUrl($username);
-            }
-        } else {
-            $username  = $audio->external['username'];
-            $license   = $audio->external['license'];
-            $attribUrl = $audio->external['attribution_url'];
-        }
-        if (!empty($attribUrl)) {
-            $username = $this->Html->link($username, $attribUrl);
-        }
-        $license = $this->License->getLicenseName($license);
-?>
-<ul>
-  <li><?php echo format(__('Recorded by: {username}'), compact('username')); ?></li>
-  <li><?php echo format(__('License: {license}'), compact('license')); ?></li>
-</ul>
-<?php
     }
 
     public function formatLicenceMessage($audioSettings, $username) {
@@ -80,15 +50,15 @@ class AudioHelper extends AppHelper
                       'not chosen any license for them.');
         } elseif ($license == 'Public domain') {
             $msg = __('The following audio recordings by '.
-                      '{userName}, are licensed under the public domain.');
-        } elseif ($this->License->isKnownLicense($license)) {
-            $license = $this->License->licenseLink($license);
+                      '{userName} are licensed under the public domain.');
+        } elseif ($this->AudioLicense->isKnownLicense($license)) {
+            $license = $this->AudioLicense->getLicenseName($license);
             $msg = __('The following audio recordings by '.
-                      '{userName}, are licensed under the {licenseName} '.
+                      '{userName} are licensed under the {licenseName} '.
                       'license.');
         } else {
             $msg = __('The following audio recordings by '.
-                      '{userName}, are licensed under an unknown license.');
+                      '{userName} are licensed under an unknown license.');
         }
         return format($msg, array(
             'userName' => $userLink,

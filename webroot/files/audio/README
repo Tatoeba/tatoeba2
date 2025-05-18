@@ -1,6 +1,3 @@
-This folder was created to test the audio on dev environments. 
-It should contain subfolders named after the language of the corresponding audio.
-For instance if you have audio in English and French, then there should
-be a folder named "eng" and a folder named "fre".
-The audio must be named after the sentence id of which they are the audio of.
-The audio must be encoded in MP3.
+This folder was created to test the audio on dev environments.
+Audio files imported using the import page http://localhost:8080/audio/import
+will be moved to this directory.

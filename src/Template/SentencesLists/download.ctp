@@ -42,6 +42,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <?php $this->Lists->displayListsLinks(); ?>
 
     <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text in the side bar of the download list page */ ?>
     <h2><?php echo __('Actions'); ?></h2>
     <ul class="sentencesListActions">
     <?php
@@ -53,44 +54,60 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
 
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
-    <h2><?php echo $listName; ?></h2>
+    <h2><?= $this->safeForAngular($listName) ?></h2>
 
-    <h3><?php echo __('Download'); ?></h3>
+    <?php /* @translators: subheader text in the download list page (noun) */ ?>
+    <h3><?php echo __x('header', 'Download'); ?></h3>
 
     <div id="SentencesListExportToCsvForm" ng-controller="SentencesListsDownloadCtrl">
     <table>
         <tr>
-            <td><?php echo __('Id (optional)'); ?></td>
-            <td>
-            <md-checkbox
-                ng-true-value='1'
-                ng-false-value='0'
-                ng-model='showid'
-                ng-init="showid = 0;"
-                class="md-primary">
-            </md-checkbox>
-            </td>
-            <td>
-            <?php echo __('If you check this box, the id of each sentence will be written to the output.');
+            <td><?php echo __('File format'); ?></td>
+            <td colspan="2">
+            <?php
+            echo $this->Form->select(
+                'FileFormat',
+                array(
+                    'txt' => __('Raw text file'),
+                    'tsv' => __('Tab-separated file'),
+                    'shtooka' => __('List for the Shtooka recorder'),
+                ),
+                array(
+                    'empty' => false,
+                    'ng-model' => 'format',
+                    'ng-init' => 'format = "txt"',
+                )
+            );
             ?>
+            </td>
+            <td></td>
+        </tr>
+
+        <tr ng-show="format === 'tsv'">
+            <td><?php echo __('Fields and structure'); ?></td>
+            <td colspan="2">
+                <?= $this->Downloads->fileFormat([
+                    __('Sentence id'),
+                    __('Text'),
+                    __('Translation'),
+                ]) ?>
             </td>
         </tr>
 
-        <tr>
+        <tr ng-show="format === 'txt' || format === 'tsv'">
             <td><?php echo __('Translation (optional)'); ?></td>
             <td>
             <?php
-            $langArray = $this->Languages->languagesArrayWithNone();
-            echo $this->Form->select(
-                'TranslationsLang',
-                $langArray,
+            $langArray = $this->Languages->onlyLanguagesArray();
+            echo $this->element(
+                'language_dropdown',
                 array(
-                    'class' => 'language-selector',
-                    "empty" => false,
-                    'ng-model' => 'trans_lang',
-                    'ng-init' => 'trans_lang = "none"',
-                ),
-                false
+                    'name' => 'TranslationsLang',
+                    'languages' => $langArray,
+                    /* @translators: placeholder in language dropdown of list download page */
+                    'placeholder' => __('None'),
+                    'selectedLanguage' => 'trans_lang',
+                )
             );
             ?>
             </td>
@@ -129,7 +146,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
                 <md-button ng-click="addListExport(<?= $listId ?>)"
                            ng-disabled="preparingDownload"
                            class="md-raised md-primary">
-                    <span><?php echo __('Download'); ?></span>
+                   <?php /* @translators: button to download on the download list page (verb) */ ?>
+                    <span><?php echo __x('button', 'Download'); ?></span>
                 </md-button>
                 <md-progress-circular md-diameter="16" ng-if="preparingDownload"/>
                 </md-progress-circular>
@@ -142,26 +160,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
         </tr>
     </table>
     </div>
-
-    <h3><?php echo __('Fields and structure'); ?></h3>
-    <p>
-    <?php
-        __(
-            'Fields will be written out in the following sequence:'
-        );
-    ?>
-    </p>
-    <p>
-    <span class="param"><em><?php echo __('Sentence id'); ?></em></span>
-    <span class="symbol"><em>[<?php echo __('tab'); ?>]</em></span>
-    <span class="param"><?php echo __('Text'); ?></span>
-    <span class="symbol"><em>[<?php echo __('tab'); ?>]</em></span>
-    <span class="param"><em><?php echo __('Translation'); ?></em></span>
-    </p>
-
-    <p>
-    <?php echo __("Optional fields that are not selected above will not be written to the output."); ?>
-    </p>
 
     </div>
 

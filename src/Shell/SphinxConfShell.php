@@ -35,7 +35,7 @@ class SphinxConfShell extends Shell {
      * currently installed Snowball library supports.
      * Here is a quick and dirty command to figure it out:
      *
-     *   strings /usr/bin/searchd | grep UTF_8_stem$
+     *   strings /usr/bin/searchd | grep UTF_8_stem$ | sort
      *
      * About the language codes, note that we use ISO 639-3
      * while Snowball uses ISO 639-2, so the array goes like
@@ -45,30 +45,31 @@ class SphinxConfShell extends Shell {
      * See also https://github.com/snowballstem/snowball/blob/master/libstemmer/modules.txt
      */
     public $morphology = array(
-        'deu' => 'libstemmer_deu',
-        'spa' => 'libstemmer_spa',
-        'fra' => 'libstemmer_fra',
-        'nld' => 'libstemmer_nld',
-        'por' => 'libstemmer_por',
-        'rus' => 'libstemmer_rus',
-        'fin' => 'libstemmer_fin',
-        'ita' => 'libstemmer_ita',
-        'tur' => 'libstemmer_tur',
-        'swe' => 'libstemmer_swe',
-        'eng' => 'libstemmer_eng',
-        'dan' => 'libstemmer_dan', # Danish
-        'hun' => 'libstemmer_hun', # Hungarian
-        'ron' => 'libstemmer_ron', # Romanian
-        'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
-        'ell' => 'libstemmer_ell', # Greek
-        'tam' => 'libstemmer_tam', # Tamil
-        'eus' => 'libstemmer_eus', # Basque
-        'hin' => 'libstemmer_hin', # Hindi
         'ara' => 'libstemmer_ara', # Arabic
+        'eus' => 'libstemmer_eus', # Basque
         'cat' => 'libstemmer_cat', # Catalan
-        'npi' => 'libstemmer_nep', # Nepali
+        'dan' => 'libstemmer_dan', # Danish
+        'nld' => 'libstemmer_nld', # Dutch
+        'eng' => 'libstemmer_eng', # English
+        'fin' => 'libstemmer_fin', # Finnish
+        'fra' => 'libstemmer_fra', # French
+        'deu' => 'libstemmer_deu', # German
+        'ell' => 'libstemmer_ell', # Greek
+        'hin' => 'libstemmer_hin', # Hindi
+        'hun' => 'libstemmer_hun', # Hungarian
+        'ind' => 'libstemmer_ind', # Indonesian
         'gle' => 'libstemmer_gle', # Irish
+        'ita' => 'libstemmer_ita', # Italian
         'lit' => 'libstemmer_lit', # Lithuanian
+        'npi' => 'libstemmer_nep', # Nepali
+        'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
+        'por' => 'libstemmer_por', # Portuguese
+        'ron' => 'libstemmer_ron', # Romanian
+        'rus' => 'libstemmer_rus', # Russian
+        'spa' => 'libstemmer_spa', # Spanish
+        'swe' => 'libstemmer_swe', # Swedish
+        'tam' => 'libstemmer_tam', # Tamil
+        'tur' => 'libstemmer_tur', # Turkish
     );
 
     public $charsetTable = array(
@@ -96,6 +97,8 @@ class SphinxConfShell extends Shell {
         'U+220->U+19E', 'U+221', 'U+222..U+233/2', 'U+234..U+238',
         'U+239', 'U+23A->U+2C65', 'U+23B->U+23C', 'U+23C', 'U+23D->U+19A', 'U+23E->U+2C66', 'U+23F',
         'U+240', 'U+241->U+242', 'U+242', 'U+243->U+180', 'U+244->U+289', 'U+245->U+28C', 'U+246..U+24F/2',
+        # Latin extended-C, with case folding (2C60-2C7F)
+        'U+2c60..U+2c61/2', 'U+2c62->U+26b', 'U+2c63->U+1d7d', 'U+2c64->U+27d', 'U+2c65..U+2c66', 'U+2c67..U+2c6c/2', 'U+2c6d->U+251', 'U+2c6e->U+271', 'U+2c6f->U+250', 'U+2c70->U+252', 'U+2c71', 'U+2c72..U+2c73/2', 'U+2c74', 'U+2c75..U+2c76/2', 'U+2c77..U+2c7b', 'U+2c7c->U+6a', 'U+2c7d->U+56', 'U+2c7e->U+23f', 'U+2c7f->U+240',
         # IPA Extensions
         'U+250..U+2AF',
         # Phonetic Extensions
@@ -114,33 +117,49 @@ class SphinxConfShell extends Shell {
         # Combining Diacritical Marks
         'U+300..U+36F',
         # Arabic
-        'U+621..U+63a', 'U+640..U+64a',
-        'U+66e..U+66f', 'U+671..U+6d3', 'U+6d5', 'U+6e5..U+6e6', 'U+6ee..U+6ef', 'U+6fa..U+6fc', 'U+6ff',
-        # Greek and Coptic
-        'U+370..U+373/2', 'U+374->U+2B9', 'U+376..U+377/2', 'U+37A->U+3B9', 'U+37B..U+37D', 'U+37F->U+3F3', 'U+384->U+301',
-        'U+386->U+3AC', 'U+388..U+38A->U+3AD..U+3af', 'U+38C->U+3CC', 'U+38E..U+38F->U+3CD..U+3ce', 'U+390', 'U+391..U+3a1->U+3b1..U+3c1',
-        'U+3a3..U+3ab->U+3c3..U+3cb', 'U+3ac..U+3c1', 'U+3C2->U+3C3', 'U+3C4..U+3ce', 'U+3CF->U+3D7', 'U+3d0->U+3B2', 'U+3D1->U+3B8',
-        'U+3D2->U+3C5', 'U+3D3->U+3CD', 'U+3D4->U+3CB', 'U+3D5->U+3C6', 'U+3D6->U+3C0', 'U+3d7', 'U+3d8..U+3ef/2', 'U+3f0->U+3BA',
-        'U+3F1->U+3C1', 'U+3F2->U+3C3', 'U+3f3', 'U+3f4->U+3b8',
-        'U+3f5->U+3B5', 'U+3f7..U+3f8/2', 'U+3f9->U+3C3', 'U+3fa..U+3fb/2', 'U+3fc', 'U+3FD..U+3ff->U+37B..U+37D',
-        # Greek Extended
-        'U+1F00..U+1F07', 'U+1F08..U+1F0F->U+1F00..U+1F07', 'U+1F10..U+1F15', 'U+1F18..U+1F1D->U+1F10..U+1F15',
-        'U+1F20..U+1F27', 'U+1F28..U+1F2F->U+1F20..U+1F27', 'U+1F30..U+1F37', 'U+1F38..U+1F3F->U+1F30..U+1F37',
-        'U+1F40..U+1F45', 'U+1F48..U+1F4D->U+1F40..U+1F45', 'U+1F50..U+1F57', 'U+1F58..U+1F5F->U+1F50..U+1F57',
-        'U+1F60..U+1F67', 'U+1F68..U+1F6F->U+1F60..U+1F67',
-        'U+1F70', 'U+1F71->U+3AC', 'U+1F72', 'U+1F73->U+3AD', 'U+1F74', 'U+1F75->U+3AE',
-        'U+1F76', 'U+1F77->U+3AF', 'U+1F78', 'U+1F79->U+3CC', 'U+1F7A', 'U+1F7B->U+3CD',
-        'U+1F7C', 'U+1F7D->U+3CE',
-        'U+1F80..U+1F87', 'U+1F88..U+1F8F->U+1F80..U+1F87', 'U+1F90..U+1F97', 'U+1F98..U+1F9F->U+1F90..U+1F97',
-        'U+1FA0..U+1FA7', 'U+1FA8..U+1FAF->U+1FA0..U+1FA7', 'U+1FB0..U+1FB7', 'U+1FB8..U+1FB9->U+1FB0..U+1FB1',
-        'U+1FBA->U+1F70', 'U+1FBB->U+3AC', 'U+1FBC->U+1FB3', 'U+1FBD->U+313', 'U+1FBE->U+3B9',
-        'U+1FBF->U+313', 'U+1FC0->U+342', 'U+1FC1', 'U+1FC2..U+1FC4', 'U+1FC6..U+1FC7',
-        'U+1FC8->U+1F72', 'U+1FC9->U+3AD', 'U+1FCA->U+1F74', 'U+1FCB->U+3AE', 'U+1FCC->U+1FC3',
-        'U+1FCD..U+1FD2', 'U+1FD3->U+390', 'U+1FD6..U+1FD7', 'U+1FD8..U+1FD9->U+1FD0..U+1FD1',
-        'U+1FDA->U+1F76', 'U+1FDB->U+3AF', 'U+1FDD..U+1FE2', 'U+1FE3->U+3B0', 'U+1FE4..U+1FE7',
-        'U+1FE8..U+1FE9->U+1FE0..U+1FE1', 'U+1FEA->U+1F7A', 'U+1FEB->U+3CD', 'U+1FEC->U+1FE5',
-        'U+1FED..U+1FEE', 'U+1FF2..U+1FF4', 'U+1FF6..U+1FF8', 'U+1FF9->U+3CC', 'U+1FFA->U+1F7C',
-        'U+1FFB->U+3CE', 'U+1FFC->U+1FF3', 'U+1FFD->U+301', 'U+1FFE->U+314',
+        'U+620->U+64a', 'U+621', 'U+622->U+627', 'U+623->U+627', 'U+624', 'U+625->U+627', 'U+626..U+628', 'U+629->U+647', 'U+62a..U+63a',
+        'U+641..U+648', 'U+649->U+64a', 'U+64a',
+        'U+660..U+669', 'U+66e', 'U+66f', 'U+671..U+6a8', 'U+6a9->U+643', 'U+6aa..U+6bf',
+        'U+6c0->U+647', 'U+6c1->U+647', 'U+6c2..U+6d3', 'U+6d5', 'U+6e5', 'U+6e6', 'U+6ee', 'U+6ef',
+        'U+6f0..U+6f9->U+660..U+669', 'U+6fa..U+6fc', 'U+6ff',
+        # Greek and Coptic (accents folded)
+        'U+370..U+373/2', 'U+376..U+377/2', 'U+37b..U+37d', 'U+37f->U+3f3',
+        'U+386->U+3b1', 'U+388->U+3b5', 'U+389->U+3b7', 'U+38a->U+3b9', 'U+38c->U+3bf', 'U+38e->U+3c5', 'U+38f->U+3c9', 'U+390->U+3b9', 'U+391..U+3a1->U+3b1..U+3c1',
+        'U+3a3..U+3a9->U+3c3..U+3c9', 'U+3aa->U+3b9', 'U+3ab->U+3c5', 'U+3ac->U+3b1', 'U+3ad->U+3b5', 'U+3ae->U+3b7', 'U+3af->U+3b9', 'U+3b0->U+3c5', 'U+3b1..U+3c9', 'U+3ca->U+3b9', 'U+3cb->U+3c5', 'U+3cc->U+3bf', 'U+3cd->U+3c5', 'U+3ce->U+3c9', 'U+3cf->U+3d7', 'U+3d0->U+3b2', 'U+3d1->U+3b8',
+        'U+3d2->U+3c5', 'U+3d3->U+3c5', 'U+3d4..U+3d5->U+3c5..U+3c6', 'U+3d6->U+3c0', 'U+3d7', 'U+3d8..U+3ef/2', 'U+3f0->U+3ba',
+        'U+3f1..U+3f2->U+3c1..U+3c2', 'U+3f3', 'U+3f4->U+3b8',
+        'U+3f5->U+3b5', 'U+3f7..U+3f8/2', 'U+3f9->U+3c3', 'U+3fa..U+3fb/2', 'U+3fc', 'U+3fd..U+3ff->U+37b..U+37d',
+        # Greek Extended (accents folded)
+        'U+1f00->U+3b1', 'U+1f01->U+3b1', 'U+1f02->U+3b1', 'U+1f03->U+3b1', 'U+1f04->U+3b1', 'U+1f05->U+3b1', 'U+1f06->U+3b1', 'U+1f07->U+3b1', 'U+1f08->U+3b1', 'U+1f09->U+3b1', 'U+1f0a->U+3b1', 'U+1f0b->U+3b1', 'U+1f0c->U+3b1', 'U+1f0d->U+3b1', 'U+1f0e->U+3b1', 'U+1f0f->U+3b1',
+        'U+1f10->U+3b5', 'U+1f11->U+3b5', 'U+1f12->U+3b5', 'U+1f13->U+3b5', 'U+1f14->U+3b5', 'U+1f15->U+3b5', 'U+1f18->U+3b5', 'U+1f19->U+3b5', 'U+1f1a->U+3b5', 'U+1f1b->U+3b5', 'U+1f1c->U+3b5', 'U+1f1d->U+3b5',
+        'U+1f20->U+3b7', 'U+1f21->U+3b7', 'U+1f22->U+3b7', 'U+1f23->U+3b7', 'U+1f24->U+3b7', 'U+1f25->U+3b7', 'U+1f26->U+3b7', 'U+1f27->U+3b7', 'U+1f28->U+3b7', 'U+1f29->U+3b7', 'U+1f2a->U+3b7', 'U+1f2b->U+3b7', 'U+1f2c->U+3b7', 'U+1f2d->U+3b7', 'U+1f2e->U+3b7', 'U+1f2f->U+3b7',
+        'U+1f30->U+3b9', 'U+1f31->U+3b9', 'U+1f32->U+3b9', 'U+1f33->U+3b9', 'U+1f34->U+3b9', 'U+1f35->U+3b9', 'U+1f36->U+3b9', 'U+1f37->U+3b9', 'U+1f38->U+3b9', 'U+1f39->U+3b9', 'U+1f3a->U+3b9', 'U+1f3b->U+3b9', 'U+1f3c->U+3b9', 'U+1f3d->U+3b9', 'U+1f3e->U+3b9', 'U+1f3f->U+3b9',
+        'U+1f40->U+3bf', 'U+1f41->U+3bf', 'U+1f42->U+3bf', 'U+1f43->U+3bf', 'U+1f44->U+3bf', 'U+1f45->U+3bf', 'U+1f48->U+3bf', 'U+1f49->U+3bf', 'U+1f4a->U+3bf', 'U+1f4b->U+3bf', 'U+1f4c->U+3bf', 'U+1f4d->U+3bf',
+        'U+1f50->U+3c5', 'U+1f51->U+3c5', 'U+1f52->U+3c5', 'U+1f53->U+3c5', 'U+1f54->U+3c5', 'U+1f55->U+3c5', 'U+1f56->U+3c5', 'U+1f57->U+3c5', 'U+1f59->U+3c5', 'U+1f5b->U+3c5', 'U+1f5d->U+3c5', 'U+1f5f->U+3c5',
+        'U+1f60->U+3c9', 'U+1f61->U+3c9', 'U+1f62->U+3c9', 'U+1f63->U+3c9', 'U+1f64->U+3c9', 'U+1f65->U+3c9', 'U+1f66->U+3c9', 'U+1f67->U+3c9', 'U+1f68->U+3c9', 'U+1f69->U+3c9', 'U+1f6a->U+3c9', 'U+1f6b->U+3c9', 'U+1f6c->U+3c9', 'U+1f6d->U+3c9', 'U+1f6e->U+3c9', 'U+1f6f->U+3c9',
+        'U+1f70->U+3b1', 'U+1f71->U+3b1',
+        'U+1f72->U+3b5', 'U+1f73->U+3b5',
+        'U+1f74->U+3b7', 'U+1f75->U+3b7',
+        'U+1f76->U+3b9', 'U+1f77->U+3b9',
+        'U+1f78->U+3bf', 'U+1f79->U+3bf',
+        'U+1f7a->U+3c5', 'U+1f7b->U+3c5',
+        'U+1f7c->U+3c9', 'U+1f7d->U+3c9',
+        'U+1f80->U+3b1', 'U+1f81->U+3b1', 'U+1f82->U+3b1', 'U+1f83->U+3b1', 'U+1f84->U+3b1', 'U+1f85->U+3b1', 'U+1f86->U+3b1', 'U+1f87->U+3b1', 'U+1f88->U+3b1', 'U+1f89->U+3b1', 'U+1f8a->U+3b1', 'U+1f8b->U+3b1', 'U+1f8c->U+3b1', 'U+1f8d->U+3b1', 'U+1f8e->U+3b1', 'U+1f8f->U+3b1',
+        'U+1f90->U+3b7', 'U+1f91->U+3b7', 'U+1f92->U+3b7', 'U+1f93->U+3b7', 'U+1f94->U+3b7', 'U+1f95->U+3b7', 'U+1f96->U+3b7', 'U+1f97->U+3b7', 'U+1f98->U+3b7', 'U+1f99->U+3b7', 'U+1f9a->U+3b7', 'U+1f9b->U+3b7', 'U+1f9c->U+3b7', 'U+1f9d->U+3b7', 'U+1f9e->U+3b7', 'U+1f9f->U+3b7',
+        'U+1fa0->U+3c9', 'U+1fa1->U+3c9', 'U+1fa2->U+3c9', 'U+1fa3->U+3c9', 'U+1fa4->U+3c9', 'U+1fa5->U+3c9', 'U+1fa6->U+3c9', 'U+1fa7->U+3c9', 'U+1fa8->U+3c9', 'U+1fa9->U+3c9', 'U+1faa->U+3c9', 'U+1fab->U+3c9', 'U+1fac->U+3c9', 'U+1fad->U+3c9', 'U+1fae->U+3c9', 'U+1faf->U+3c9',
+        'U+1fb0->U+3b1', 'U+1fb1->U+3b1', 'U+1fb2->U+3b1', 'U+1fb3->U+3b1', 'U+1fb4->U+3b1', 'U+1fb6->U+3b1', 'U+1fb7->U+3b1', 'U+1fb8->U+3b1', 'U+1fb9->U+3b1', 'U+1fba->U+3b1', 'U+1fbb->U+3b1', 'U+1fbc->U+3b1',
+        'U+1fbe->U+3b9',
+        'U+1fc2->U+3b7', 'U+1fc3->U+3b7', 'U+1fc4->U+3b7', 'U+1fc6->U+3b7', 'U+1fc7->U+3b7',
+        'U+1fc8->U+3b5', 'U+1fc9->U+3b5',
+        'U+1fca->U+3b7', 'U+1fcb->U+3b7', 'U+1fcc->U+3b7',
+        'U+1fd0->U+3b9', 'U+1fd1->U+3b9', 'U+1fd2->U+3b9', 'U+1fd3->U+3b9', 'U+1fd6->U+3b9', 'U+1fd7->U+3b9', 'U+1fd8->U+3b9', 'U+1fd9->U+3b9', 'U+1fda->U+3b9', 'U+1fdb->U+3b9',
+        'U+1fe0->U+3c5', 'U+1fe1->U+3c5', 'U+1fe2->U+3c5', 'U+1fe3->U+3c5',
+        'U+1fe4->U+3c1', 'U+1fe5->U+3c1',
+        'U+1fe6->U+3c5', 'U+1fe7->U+3c5', 'U+1fe8->U+3c5', 'U+1fe9->U+3c5', 'U+1fea->U+3c5', 'U+1feb->U+3c5',
+        'U+1fec->U+3c1',
+        'U+1ff2->U+3c9', 'U+1ff3->U+3c9', 'U+1ff4->U+3c9', 'U+1ff6->U+3c9', 'U+1ff7->U+3c9',
+        'U+1ff8->U+3bf', 'U+1ff9->U+3bf',
+        'U+1ffa->U+3c9', 'U+1ffb->U+3c9', 'U+1ffc->U+3c9',
         # Hebrew, Yiddish: alef through yod
         'U+5D0..U+5D9',
         # Hebrew, Yiddish: Fold final kaf into (non-final) kaf.
@@ -256,6 +275,22 @@ class SphinxConfShell extends Shell {
         'U+118C0..U+118DF', 'U+118E0..U+118F2', 'U+118FF',
         # Mongolian (mon) and Manchu (mnc)
         'U+1810..U+1819', 'U+1820..U+1878', 'U+1880..U+18AA',
+        # Phoenician alphabet
+        'U+10900..U+1091B',
+        # Tagalog (tgl)
+        'U+1700..U+1714',
+        # Cree syllabics
+        'U+1401..U+166D', 'U+166F..U+167F', 'U+18B0..U+18F5',
+        # Glagolitic
+        'U+2c00..U+2c2e->U+2c30..U+2c5e', 'U+2c30..U+2c5e',
+        # Coptic
+        'U+2c80..U+2ce3/2', 'U+2ce4', 'U+2ceb..U+2cee/2', 'U+2cef..U+2cf1', 'U+2cf2..U+2cf3/2', 'U+2cfd',
+        # Syloti Nagri
+        'U+a800..U+a827',
+        # Ol Chiki, for Santali (sat)
+        'U+1c50..U+1c7d',
+        # Hanifi Rohingya
+        'U+10D00..U+10D27', 'U+10D30..U+10D39'
     );
 
     public $scriptsWithoutWordBoundaries = array(
@@ -292,6 +327,8 @@ class SphinxConfShell extends Shell {
         'U+A980..U+A9C0', 'U+A9CF..U+A9D9',
         # Cuneiform, used by Sumerian (sux):
         'U+12000..U+12399', 'U+12400..U+1246E', 'U+12480..U+12543',
+        # Egyptian Hieroglyphs (egy)
+        'U+13000..U+1342E',
     );
 
     public $regexpFilter = array(
@@ -360,7 +397,8 @@ class SphinxConfShell extends Shell {
                     $v != 'U+D8..U+DE->U+F8..U+FE' &&
                     $v != 'U+E0..U+F6' &&
                     $v != 'U+F8..U+FF' &&
-                    $v != 'U+100..U+177/2' &&
+                    $v != 'U+100..U+137/2' &&
+                    $v != 'U+14A..U+177/2' &&
                     $v != 'U+1DE..U+1EF/2' &&
                     $v != 'U+300..U+36F'
                 ; }
@@ -421,7 +459,7 @@ class SphinxConfShell extends Shell {
                 'C->c', 'c',
                 'U+C7->U+E7', 'U+E7', # case-folding: c-cedilla
                 'D..H->d..h', 'd..h',
-                'I->U+131', 'U+CE->U+131', 'U+EE->U+131', 'U+131', # case-folding: dotless i
+                'I->U+131', 'U+131', # case-folding: dotless i
                 'U+CE->U+131', 'U+EE->U+131', # strip circumflex from I,i and map to dotless i
                 'U+130->i', 'i', # case-folding: dotted i
                 'J..N->j..n', 'j..n',
@@ -431,8 +469,7 @@ class SphinxConfShell extends Shell {
                 'U->u', 'U+DB->u', 'U+FB->u', 'u', # case-folding: u with/without circumflex
                 'U+DC->U+FC', 'U+FC',   # case-folding: u-umlaut
                 'V..Z->v..z', 'v..z',
-                'U+11E->U+11F', 'U+11F', # case-folding: g-breve
-                'U+15E->U+15F', 'U+15F' # case-folding: s-cedilla
+                'U+100..U+129/2', 'U+132..U+137/2',
             ),
             array_filter(
                 $this->charsetTable,
@@ -440,7 +477,7 @@ class SphinxConfShell extends Shell {
                     return $v != 'A..Z->a..z' && $v != 'a..z'
                     && $v != 'U+C0..U+D6->U+E0..U+F6' && $v != 'U+E0..U+F6' # Latin-1 supplement
                     && $v != 'U+D8..U+DE->U+F8..U+FE' && $v != 'U+F8..U+FF' # Latin-1 supplement
-                    && $v != 'U+100..U+177/2' # A-macron to y-circumflex
+                    && $v != 'U+100..U+137/2' # A-macron to k-cedilla
                     && $v != 'U+300..U+36F'   # combining characters
                 ; }
             )
@@ -452,6 +489,37 @@ class SphinxConfShell extends Shell {
         $this->indexExtraOptions['jpn'] =
             "
         regexp_filter = \[[^|]*\| =>";
+
+        /* Arabic vowel marks are optional, so it's easier to search if they are
+         * ignored. The common ignore_chars setting accomplishes that, but it's
+         * redundant with the Arabic stemmer. By adding them as regular
+         * characters, it becomes possible to use them with the "exact match"
+         * operator. We only ignore soft hyphen. */
+        $this->indexExtraOptions['ara'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array('U+640', 'U+64b..U+65f', 'U+670', 'U+6dc'),
+            $this->charsetTable
+        ))."
+        ignore_chars = U+AD\n";
+
+        /* In Ottoman Turkish, a few characters have rarely used variants:
+         * U+6ad as a variant of U+643 and U+647 as a variant of U+6d5.
+         */
+        $this->indexExtraOptions['ota'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array(
+                'U+641..U+646', 'U+647->U+6d5', 'U+648',
+                'U+6aa..U+6ac', 'U+6ad->U+643', 'U+6ae..U+6bf',
+            ),
+            array_filter(
+                $this->charsetTable,
+                function($v) {
+                    return $v != 'U+641..U+648' and $v != 'U+6aa..U+6bf'
+                ; }
+            )
+        ))."\n";
 
         foreach ($this->morphology as $lang => $morphology) {
             if (!isset($this->indexExtraOptions[$lang])) {
@@ -468,6 +536,9 @@ class SphinxConfShell extends Shell {
     // ignore_chars are Hebrew/Yiddish vowels, which should be ignored in
     // searches. No other language uses them, so ignoring them for all
     // languages should be safe.
+    // The characters U+640, U+64b..U+65f, U+670, U+6dc are Arabic diacritics,
+    // which should be ignored. For a language with a stemmer that removes them
+    // (e.g. Arabic) they can be re-enabled to allow searching for exact matches.
     private function conf_beginning() {
         $charset_table_opt = implode(", ", $this->charsetTable);
         $ngram_chars_opt = implode(', ', $this->scriptsWithoutWordBoundaries);
@@ -494,7 +565,8 @@ source default
 index common_index
 {
     index_field_lengths     = 1
-    ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7
+    blend_chars             = ?
+    ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7, U+640, U+64b..U+65f, U+670, U+6dc
 $regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
@@ -511,6 +583,7 @@ EOT;
     private function conf_language_indexes($languages) {
         $conf = '';
         $sourcePath = $this->sphinxConfig['indexdir'];
+        $transcriptableLangs = $this->loadModel('Transcriptions')->transcriptableLanguages();
         foreach ($languages as $lang => $name) {
             foreach (array('main', 'delta') as $type) {
                 $parent = array(
@@ -539,13 +612,21 @@ EOT;
 
                 $delta_join = ($type == 'main') ?
                     '' :
-                    'join reindex_flags on reindex_flags.sentence_id = sent_start.id and reindex_flags.indexed = 1';
+                    "join reindex_flags rf on rf.sentence_id = sent_start.id and rf.indexed = 1 and rf.type = 'change'";
+                $kill_list_query = ($type == 'main') ?
+                    '' :
+                    "sql_query_killlist = select sentence_id from reindex_flags \
+                        where lang = '$lang' and indexed = 1 and type = 'removal'";
+                $transcriptions_query = in_array($lang, $transcriptableLangs) ?
+                    'select sentence_id, text from transcriptions order by sentence_id asc' :
+                    'select 1, 1 from dual where 1 = 0'; # a no-op query with 2-column empty result
                 $conf .= "
         sql_query_range = select min(id), max(id) from sentences
         sql_range_step = 100000
         sql_query = \
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
+                r.origin_known, r.is_original, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                 GROUP_CONCAT(distinct lists.sentences_list_id) as lists_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct r.trans),''), ']') as trans \
@@ -558,6 +639,8 @@ EOT;
                     sent_start.user_id as user_id, \
                     (sent_start.correctness + 128) as ucorrectness, \
                     (COUNT(audios_sent_start.id) > 0) as has_audio, \
+                    (sent_start.based_on_id IS NOT NULL) as origin_known, \
+                    (sent_start.based_on_id = 0) as is_original, \
                     \
                     CONCAT('{', \
                         'l:\"',sent_end.lang,'\",', \
@@ -594,6 +677,7 @@ EOT;
             left join \
                 sentences_sentences_lists lists on lists.sentence_id = r.id \
             group by id
+        $kill_list_query
 
         sql_attr_timestamp = created
         sql_attr_timestamp = modified
@@ -608,11 +692,13 @@ EOT;
         sql_attr_bool = has_audio
         sql_attr_multi = uint tags_id from field; SELECT id FROM tags ;
         sql_attr_multi = uint lists_id from field; SELECT id FROM sentences_lists ;
+        sql_attr_bool = origin_known
+        sql_attr_bool = is_original
         sql_attr_json = trans
 
         sql_joined_field = \
             transcription from query; \
-            select sentence_id, text from transcriptions order by sentence_id asc
+            $transcriptions_query
     }
 ";
                 // generate index for this pair
@@ -631,7 +717,7 @@ EOT;
                     }
                 } else {
                     $conf .= "
-        killlist_target = ${lang}_main_index:id";
+        killlist_target = ${lang}_main_index";
                 }
                 $conf .= "
     }
@@ -688,9 +774,15 @@ EOT;
         return $conf;
     }
 
-    public function conf($only = array()) {
+    public function conf($only = null) {
         $languages = LanguagesLib::languagesInTatoeba();
-        if ($only) {
+        if (is_null($only)) {
+            if (!$this->params['all']) {
+                $Sentences = $this->loadModel('Sentences');
+                $only = array_filter($Sentences->languagesHavingSentences());
+            }
+        }
+        if (!is_null($only)) {
             $languages = array_intersect_key($languages, array_flip($only));
         }
         $conf = '';
@@ -700,10 +792,51 @@ EOT;
         return $conf;
     }
 
+    /**
+     * Manticore has an internal buffer limit of 8192 bytes:
+     * https://github.com/manticoresoftware/manticoresearch/blob/69c389347d44f136cd93b899640d7f4f4a6ce750/src/sphinxutils.cpp#L1201
+     * To ensure that the configuration stays below the limit, we need to add
+     * a backslash-escaped newline into overly long lines.
+     */
+    public function escape_long_lines($conf, $limit = 8192) {
+        $limit -= 3; // we need enough room for the escape characters + \0
+        $lines = explode("\n", $conf);
+        $conf = "";
+        foreach ($lines as $line) {
+            for ($i = 0; $i < strlen($line); $i += $limit) {
+                $conf .= substr($line, $i, $limit);
+                if ($i + $limit < strlen($line)) {
+                    $conf .= "\\\n";
+                }
+            }
+            $conf .= "\n";
+        }
+        return $conf;
+    }
+
+    public function getOptionParser() {
+        $parser = parent::getOptionParser();
+        $parser
+            ->addOption('all', [
+                'short' => 'a',
+                'boolean' => true,
+                'default' => false,
+                'help' => 'Include all languages (default is to only include languages having sentences).',
+            ])
+            ->setDescription('Generates configuration file for Manticore Search.');
+        return $parser;
+    }
+
     public function main() {
         $this->dbConfig = ConnectionManager::get('default')->config();
         $this->sphinxConfig = Configure::read('Sphinx');
         
-        echo $this->conf($this->args);
+        if (count($this->args)) {
+            $langs = $this->args;
+        } else {
+            $langs = null;
+        }
+
+        echo $this->escape_long_lines($this->conf($langs));
     }
 }

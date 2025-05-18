@@ -13,7 +13,8 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         'app.transcriptions',
         'app.users',
         'app.users_languages',
-        'app.sentences'
+        'app.sentences',
+        'app.wiki_articles',
     );
 
     public function setUp() {
@@ -56,12 +57,12 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
     }
 
     private function assertRedirectedToLoginPage() {
-        $this->assertRedirect('/jpn/users/login');
+        $this->assertRedirect('/ja/users/login');
     }
 
     private function _resetAsUser($username, $sentenceId, $script) {
         $this->logInAs($username);
-        $this->post("/jpn/transcriptions/reset/$sentenceId/$script");
+        $this->post("/ja/transcriptions/reset/$sentenceId/$script");
     }
 
     private function _saveAsUser($username, $sentenceId, $script, $transcrText) {
@@ -70,7 +71,7 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         }
 
         $this->post(
-            "/jpn/transcriptions/save/$sentenceId/$script",
+            "/ja/transcriptions/save/$sentenceId/$script",
             [ 'value' => $transcrText ]
         );
     }
@@ -167,9 +168,9 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
     }
 
     public function testControllerAccess() {
-        $this->assertAccessUrlAs('/jpn/transcriptions/of/kazuki', null, true);
-        $this->assertAccessUrlAs('/jpn/transcriptions/of/kazuki', 'contributor', true);
-        $this->assertAjaxAccessUrlAs('/jpn/transcriptions/view/6', null, true);
-        $this->assertAjaxAccessUrlAs('/jpn/transcriptions/view/6', 'contributor', true);
+        $this->assertAccessUrlAs('/en/transcriptions/of/kazuki', null, true);
+        $this->assertAccessUrlAs('/en/transcriptions/of/kazuki', 'contributor', true);
+        $this->assertAjaxAccessUrlAs('/en/transcriptions/view/6', null, true);
+        $this->assertAjaxAccessUrlAs('/en/transcriptions/view/6', 'contributor', true);
     }
 }

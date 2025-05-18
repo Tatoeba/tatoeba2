@@ -45,69 +45,17 @@ class MembersHelper extends AppHelper
     public $helpers = array('Html');
 
     /**
-     * To display the names of the people listed in Team & Credits.
-     *
-     * @param string $username    Username of the member.
-     * @param string $realName    Real name of the member.
-     * @param string $description Description of the member's participation.
-     *
-     * @return void
-     */
-    public function creditsToUser($realName, $username = null, $description = null)
-    {
-        $realName = h($realName);
-        ?>
-        <div class="person">
-            <div class="realName">
-            <?php
-            echo $realName;
-            ?>
-            </div>
-
-            <div class="description">
-            <?php echo $description; ?>
-            </div>
-
-            <?php
-            if (!empty($username)) {
-                ?>
-                <div class="username">
-                <?php
-                $profileIcon = $this->Html->image(
-                    IMG_PATH . 'profile.png',
-                    array(
-                        "alt" => __('Profile'),
-                        "width" => 14,
-                        "height" => 14
-                    )
-                );
-                echo $this->Html->link(
-                    $profileIcon.' '.$username,
-                    array(
-                        'controller' => 'user',
-                        'action' => 'profile',
-                        $username
-                    ),
-                    array(
-                        'escape' => false
-                    )
-                );
-                ?>
-                </div>
-                <?php
-            }
-            ?>
-
-        </div>
-        <?php
-    }
-
-
-    /**
      *
      */
-    public function image($username = null, $imageName = null, $options = array())
+    public function image($user = null, $options = array())
     {
+        $username = null;
+        $imageName = null;
+        if ($user) {
+            $user = (object)$user;
+            $username = $user->username;
+            $imageName = $user->image;
+        }
         if (empty($imageName)) {
             $imageName = 'unknown-avatar.png';
         }
@@ -132,32 +80,6 @@ class MembersHelper extends AppHelper
     }
 
     /**
-     * Display "Edit" button in the profile.
-     *
-     * @param array  $linkPath Path to the edit page.
-     * @param String $label    Label of the button. If null, it displays "Edit".
-     *
-     * @return void
-     */
-    public function displayEditButton($linkPath, $label = null)
-    {
-        if (empty($label)) {
-            $label = __('Edit');
-        }
-        ?>
-        <div class="editOption">
-        <?php
-        echo $this->Html->link(
-            $label,
-            $linkPath
-        );
-        ?>
-        </div>
-        <?php
-    }
-
-
-    /**
      * Gives i18n for a role name.
      *
      * @param string $role Name of the role in the database.
@@ -167,11 +89,17 @@ class MembersHelper extends AppHelper
     public function groupName($role)
     {
         switch ($role) {
+            /* @translators: one of the user status displayed on profile pages (noun) */
             case User::ROLE_ADMIN             : return __('admin');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_CORPUS_MAINTAINER : return __('corpus maintainer');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_ADV_CONTRIBUTOR   : return __('advanced contributor');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_CONTRIBUTOR       : return __('contributor');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_INACTIVE          : return __('inactive');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_SPAMMER           : return __('suspended');
             default                           : return null;
         }

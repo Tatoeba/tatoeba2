@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+  module_defaults:
+    apt:
+      force_apt_get: yes
+
+  roles:
+  - common_vagrant
+  - common_debian
+  - common
+
+  tasks:
+  - import_tasks: tatoeba.tasks.yml

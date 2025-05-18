@@ -54,6 +54,9 @@ class ContributionsTable extends Table
     {
         $this->belongsTo('Users');
         $this->belongsTo('Sentences');
+        $this->belongsTo('Translations');
+
+        $this->addBehavior('LimitResults');
     }
 
     public function logSentence($event) {
@@ -84,7 +87,6 @@ class ContributionsTable extends Table
                 'sentence_id' => $sentenceId,
                 'user_id' => CurrentUser::get('id'),
                 'datetime' => date("Y-m-d H:i:s"),
-                'ip' => CurrentUser::getIp(),
                 'action' => $created ? 'insert' : 'update',
                 'type' => 'license',
                 'text' => $data['license'],
@@ -166,11 +168,15 @@ class ContributionsTable extends Table
                 'Contributions.type',
                 'Users.username',
                 'Users.id',
+                'Translations.text',
             ])
             ->where(['Contributions.sentence_id' => $sentenceId])
-            ->contain(['Users' => function ($q) {
-                return $q->select(['username', 'id']);
-            }])
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->select(['username', 'id']);
+                },
+                'Translations',
+            ])
             ->order('datetime');
 
         return $query->all();
@@ -208,7 +214,7 @@ class ContributionsTable extends Table
 
         $query = $this->excludeBots($query);
 
-        if ($lang == 'und'|| empty($lang)) {
+        if ($lang == 'und' || empty($lang)) {
             $this->setTable('last_contributions');
         } else {
             $query = $query->where(['sentence_lang' => $lang]);
@@ -274,7 +280,6 @@ class ContributionsTable extends Table
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),
-            'ip' => CurrentUser::getIp(),
             'type' => 'sentence',
             'action' => $action
         ]);
@@ -300,7 +305,6 @@ class ContributionsTable extends Table
             'translation_id' => $translationId,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),
-            'ip' => CurrentUser::getIp(),
             'type' => 'link',
             'action' => $action
         ]);
@@ -317,18 +321,6 @@ class ContributionsTable extends Table
 
         return $query;
     }
-
-    public function getLastContributionOf($userId)
-    {
-        return $this->find()
-            ->select(['ip', 'count' => 'count(*)'])
-            ->where(['user_id' => $userId])
-            ->group(['group' => 'ip'])
-            ->orderDesc('count')
-            ->limit(10)
-            ->all();
-    }
-
 
     public function getOriginalCreatorOf($sentenceId)
     {

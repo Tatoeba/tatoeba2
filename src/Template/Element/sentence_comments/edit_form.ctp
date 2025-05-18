@@ -4,7 +4,6 @@ use App\Model\CurrentUser;
 $sentenceId = $comment->sentence_id;
 $user = $comment->user;
 $username = $user['username'];
-$avatar = $user['image'];
 $text = $comment->text;
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
@@ -25,7 +24,7 @@ $cancelUrl = $this->Url->build([
 
     <md-card-header>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">
@@ -46,7 +45,7 @@ $cancelUrl = $this->Url->build([
         
         <?php
         echo $this->Form->textarea('text', [
-            'value' => $text,
+            'value' => $this->safeForAngular($text),
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
@@ -55,10 +54,12 @@ $cancelUrl = $this->Url->build([
 
         <div layout="row" layout-align="end center" layout-padding>
             <md-button class="md-raised" href="<?= $cancelUrl; ?>">
+                <?php /* @translators: cancel button of sentence comment edition form (verb) */ ?>
                 <?php echo __('Cancel'); ?>
             </md-button>
 
             <md-button type="submit" class="md-raised md-primary">
+                <?php /* @translators: save button of sentence comment edition form (verb) */ ?>
                 <?php echo __('Save changes'); ?>
             </md-button>
         </div>

@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Number of sentences per language')));
 
@@ -35,7 +35,7 @@ $max = $stats[0]['sentences'];
         [ 'stats' => $audioStats ],
         [ 'cache' => [
             'config' => 'stats',
-            'key' => 'audio_stats_'.Configure::read('Config.language'),
+            'key' => 'audio_stats_'.I18n::getLocale(),
         ]]
     ); ?>
 </div>
@@ -54,6 +54,7 @@ $max = $stats[0]['sentences'];
         <th></th>
         <th></th>
         <th></th>
+        <?php /* @translators: table header text in "Number of sentences per language" page */ ?>
         <th><?php echo __('Language'); ?></th>
         <th><?php echo __('Sentences'); ?></th>
     </tr>

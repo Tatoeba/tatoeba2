@@ -27,38 +27,46 @@
 
     function languageDropdown() {
         return {
-            scope: true,
+            scope: {
+                inputId: '@?',
+                name: '@',
+                languagesJson: '<',
+                selectedLanguage: '=?',
+                onSelectedLanguageChange: '&?',
+                initialSelection: '@?',
+                placeholder: '@',
+                forceItemSelection: '<',
+                alwaysShowAll: '<',
+            },
+            templateUrl: 'language-dropdown-template',
             controllerAs: 'vm',
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', '$window', function($scope, $window) {
                 var vm = this;
                 var languages = [];
-                var dropdownName = '';
+                var havingFocus = false;
+                const SUGGESTIONS_MARKER_HACK = '\x0d';
 
-                vm.previousSelectedItem = languages[0];
-                vm.selectedItem = null;
+                vm.previousSelectedItem = null;
                 vm.searchText = '';
+                vm.hasSuggestions = !!$scope.alwaysShowAll;
+                vm.autoselect = true;
+                vm.showAll = !!$scope.alwaysShowAll;
 
-                vm.init = init;
+                vm.$onInit = $onInit;
                 vm.querySearch = querySearch;
-                vm.onSelectedItemChange = onSelectedItemChange;
+                vm.onSelectedLanguageChange = onSelectedLanguageChange;
                 vm.onSearchTextChange = onSearchTextChange;
                 vm.onBlur = onBlur;
                 vm.onFocus = onFocus;
+                vm.getLanguageIconSpriteUrl = getLanguageIconSpriteUrl;
+                vm.hasLanguageIcon = hasLanguageIcon;
 
                 /////////////////////////////////////////////////////////////////////////
 
-                $scope.$on('setLang', function(event, data){
-                    if (data.dropdownName && data.dropdownName === dropdownName) {
-                        setLang(data.lang);
-                    }
-                });
-
-                /////////////////////////////////////////////////////////////////////////
-
-                function init(data, selectedLang, ourDropDownName) {
+                function $onInit() {
+                    var data = $scope.languagesJson;
                     var isPriority;
-                    dropdownName = ourDropDownName;
-                    
+
                     Object.keys(data).forEach(function (key1) {
                         if (typeof data[key1] === 'object'){
                             var items = data[key1];
@@ -66,18 +74,26 @@
                             Object.keys(items).forEach(function (key2) {
                                 languages.push({code: key2, name: items[key2], isPriority: isPriority});
                             });
+                            vm.hasSuggestions = true;
                         } else {
-                            languages.push({code: key1, name: data[key1]});
+                            var code = key1;
+                            var lang = {code: code, name: data[code]};
+                            if (code == 'und' || code == 'none') {
+                                lang.isPriority = true;
+                            }
+                            languages.push(lang);
                         }
                     });
 
-                    if (selectedLang) {
-                        setLang(selectedLang);
+                    if ($scope.initialSelection) {
+                        setLang($scope.initialSelection);
                     }
                 }
 
                 function querySearch(value) {
-                    if (value) {
+                    vm.autoselect = true;
+
+                    if (!value.endsWith(SUGGESTIONS_MARKER_HACK) && value) {
                         var search = value.toLowerCase();
                         return languages.filter(function (item) {
                             var language = item.name.toLowerCase();
@@ -88,18 +104,15 @@
                             return nameA.indexOf(search) > nameB.indexOf(search);
                         });
                     } else {
-                        return languages;
+                        if (vm.showAll)  {
+                            return languages;
+                        } else {
+                            var results = languages.filter(function (item) {
+                                return item.isPriority;
+                            });
+                            return results.length ? results : languages;
+                        }
                     }
-                }
-
-                function onSelectedItemChange(item) {
-                    if (vm.selectedItem) {
-                        $scope.$emit('languageChange', {
-                            langName: vm.selectedItem.name,
-                            dropdownName: dropdownName,
-                            lang: vm.selectedItem.code
-                        });
-                    }            
                 }
 
                 function setLang(lang) {
@@ -107,30 +120,69 @@
                         return item.code === lang;
                     });
                     if (newLang) {
-                        vm.selectedItem = newLang;
-                        $scope.$emit('languageChange', {
-                            langName: newLang.name ,
-                            dropdownName: dropdownName,
-                            lang: lang
+                        $scope.selectedLanguage = newLang;
+                    }
+                }
+
+                function onSelectedLanguageChange() {
+                    if ((!$scope.forceItemSelection
+                         || $scope.selectedLanguage
+                         && $scope.selectedLanguage != vm.previousSelectedItem)
+                        && $scope.onSelectedLanguageChange
+                    ) {
+                        $scope.onSelectedLanguageChange({
+                            'window': $window,
+                            'language': $scope.selectedLanguage,
                         });
                     }
                 }
 
                 function onSearchTextChange() {
-                    vm.searchText = vm.searchText.replace(/\t/, ' ');
+                    if (typeof vm.searchText === 'string') {
+                        vm.searchText = vm.searchText.replace(/\t/, ' ');
+                    }
                 }
 
                 function onBlur() {
-                    if (!vm.selectedItem) {
-                        vm.selectedItem = vm.previousSelectedItem;
+                    if ($scope.forceItemSelection) {
+                        if (!$scope.selectedLanguage) {
+                            $scope.selectedLanguage = vm.previousSelectedItem;
+                        }
                     }
+                    if (vm.searchText.endsWith(SUGGESTIONS_MARKER_HACK)) {
+                        vm.searchText = vm.searchText.replace(SUGGESTIONS_MARKER_HACK, '');
+                        $scope.selectedLanguage = vm.previousSelectedItem;
+                    }
+                    havingFocus = false;
+                    vm.showAll = !!$scope.alwaysShowAll;
                 }
 
-                function onFocus() {
-                    if (vm.selectedItem) {
-                        vm.previousSelectedItem = vm.selectedItem;
-                        vm.searchText = '';
+                function onFocus($event) {
+                    if (havingFocus || $event.target.tagName != 'INPUT') {
+                        // we are sometimes getting called for no reason...
+                        return;
                     }
+                    if ($scope.selectedLanguage) {
+                        vm.previousSelectedItem = $scope.selectedLanguage;
+                    }
+                    const clearButtonPressed =
+                        $event.relatedTarget &&
+                        $event.relatedTarget.tagName == 'BUTTON' &&
+                        $event.relatedTarget.parentNode == $event.target.parentNode;
+                    if (vm.hasSuggestions && vm.searchText !== '' && !clearButtonPressed) {
+                        vm.autoselect = false;
+                        vm.searchText += SUGGESTIONS_MARKER_HACK;
+                    }
+                    havingFocus = true;
+                }
+
+                function hasLanguageIcon(code) {
+                    // naive yet working implementation
+                    return code != 'und' && code != 'none';
+                }
+
+                function getLanguageIconSpriteUrl(code) {
+                    return '/cache_svg/allflags.svg#' + code;
                 }
             }]
         };

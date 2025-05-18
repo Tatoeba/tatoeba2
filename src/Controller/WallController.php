@@ -60,7 +60,7 @@ class WallController extends AppController
         'Date',
         'Pagination'
     );
-    public $components = array ('Flash', 'Mailer');
+    public $components = array('Flash');
     /**
      * to know who can do what
      *
@@ -294,25 +294,28 @@ class WallController extends AppController
     {
         $userId = $this->Wall->Users->getIdFromUsername($username);
 
-        $this->paginate = [
-            'order' => ['date' => 'DESC'],
-            'limit' => 20,
-            'fields' => [
-                'id', 'date', 'content', 'hidden', 'owner', 'modified'
-            ],
-            'conditions' => [
-                'owner' => $userId,
-            ],
-            'contain' => [
-                'Users' => [
-                    'fields' => ['username', 'image']
+        if (isset($userId)) {
+            $this->paginate = [
+                'order' => ['date' => 'DESC'],
+                'limit' => 20,
+                'fields' => [
+                    'id', 'date', 'content', 'hidden', 'owner', 'modified'
+                ],
+                'conditions' => [
+                    'owner' => $userId,
+                ],
+                'contain' => [
+                    'Users' => [
+                        'fields' => ['username', 'image']
+                    ]
                 ]
-            ]
-        ];
+            ];
 
-        $messages = $this->paginate();
+            $messages = $this->paginate();
+        }
 
-        $this->set('messages', $messages);
+        $this->set('userExists', (bool) $userId);
+        $this->set('messages', $messages ?? null);
         $this->set('username', $username);
     }
 

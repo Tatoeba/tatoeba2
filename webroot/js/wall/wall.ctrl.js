@@ -19,6 +19,7 @@
         vm.isSaving = {};
         vm.savedReplies = {};
         vm.hiddenReplies = {};
+        vm.visibleForms = {};
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -27,12 +28,12 @@
             $anchorScroll.yOffset = 50;
             $anchorScroll();
 
-            $('#form-' + id).removeClass('ng-hide');
-            $('#form-' + id + ' input').focus();
+            vm.visibleForms[id] = true;
+            angular.element(document.querySelector('#reply-input-' + id)).focus();
         }
 
         function hideForm(id) {
-            $('#form-' + id).addClass('ng-hide');
+            vm.visibleForms[id] = false;
         }
 
         function saveReply(id) {
@@ -54,8 +55,6 @@
                 function(response) {
                     vm.isSaving[id] = false;
                     vm.savedReplies[id] = response.data;
-                    $('#form-' + id + ' .reply-saved').removeClass('ng-hide');
-                    $('#form-' + id + ' .content').addClass('ng-hide');
                 }
             );
         }

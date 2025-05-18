@@ -104,12 +104,26 @@ class WallTable extends Table
             $this->WallThreads->save($newThreadData);
         }
 
-        if ($entity->isNew()) {
-            $event = new Event('Model.Wall.postPosted', $this, array(
-                'post' => $entity,
-            ));
-            $this->getEventManager()->dispatch($event);
+        if ($entity->hidden) {
+            $root = $this->getRootMessageOfReply($entity->id);
+            $this->recalculateThreadDateIgnoringHiddenPosts($root);
         }
+    }
+
+    private function recalculateThreadDateIgnoringHiddenPosts($root)
+    {
+        $result = $this->find()
+            ->select(['latest_date' => 'MAX(date)'])
+            ->where([
+                'lft >=' => $root->lft,
+                'rght <=' => $root->rght,
+                'hidden IS' => false,
+            ])
+            ->first();
+
+        $thread = $this->WallThreads->get($root->id);
+        $thread->last_message_date = $result->latest_date;
+        $this->WallThreads->save($thread);
     }
 
 
@@ -282,6 +296,11 @@ class WallTable extends Table
         $savedMessage = $this->save($data);
 
         if ($savedMessage) {
+            $event = new Event('Model.Wall.replyPosted', $this, [
+                'post' => $savedMessage
+            ]);
+            $this->getEventManager()->dispatch($event);
+
             return $this->get($savedMessage->id, [
                 'contain' => [
                     'Users' => [

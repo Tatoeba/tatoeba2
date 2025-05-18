@@ -26,9 +26,9 @@
  */
 
 use App\Lib\LanguagesLib;
-use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
-$lang = LanguagesLib::languageTag(Configure::read('Config.language'));
+$lang = I18n::getLocale();
 $this->set('title_for_layout', $this->Pages->formatTitle(__('What is Tatoeba?')));
 ?>
 

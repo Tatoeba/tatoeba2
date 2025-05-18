@@ -29,16 +29,12 @@ use App\Model\CurrentUser;
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Translate sentences')));
 
 $session = $this->request->getSession();
-$currentLanguage = $session->read('browse_sentences_in_lang');
-$notTranslatedInto = $session->read('not_translated_into_lang');
+$currentLanguage = $browse_sentences_in_lang; // view var set by AppController
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
-if (empty($notTranslatedInto)) {
-    $notTranslatedInto = 'none';
-}
-$langsFrom = $this->Languages->profileLanguagesArray(false, false);
-$langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
+$langsFrom = $this->Languages->profileLanguagesArray();
+$langsTo = $this->Languages->profileLanguagesArray();
 ?>
 
 <div id="annexe_content">
@@ -120,35 +116,45 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                     <?php echo __('Sentences in:'); ?>
                 </label>
                 <?php
-                echo $this->Form->select(
-                    'langFrom',
-                    $langsFrom,
+                echo $this->element(
+                    'language_dropdown',
                     array(
+                        'name' => 'langFrom',
                         'id' => 'ActivityLangFrom',
-                        'value' => $currentLanguage,
-                        'class' => 'language-selector',
-                        "empty" => false
-                    ),
-                    false
+                        'languages' => $langsFrom,
+                        'initialSelection' => $currentLanguage,
+                        'alwaysShowAll' => true,
+                    )
                 );
                 ?>
             </fieldset>
 
             <fieldset class="select">
-                <label for="ActivityLangTo">
-                    <?php echo __('Not directly translated into:'); ?>
-                </label>
+                <md-checkbox ng-model="exclude_lang_to">
+                    <label for="ActivityLangTo">
+                        <?php echo __('Not directly translated into:'); ?>
+                    </label>
+                </md-checkbox>
+                <?=
+                    $this->Form->hidden('excludeLangTo', [
+                        'value' => '{{exclude_lang_to ? "yes" : ""}}',
+                    ]);
+                ?>
+
                 <?php
-                echo $this->Form->select(
-                    'langTo',
-                    $langsTo,
+                echo $this->element(
+                    'language_dropdown',
                     array(
+                        'name' => 'langTo',
                         'id' => 'ActivityLangTo',
-                        'value' => $notTranslatedInto,
-                        'class' => 'language-selector',
-                        "empty" => false
-                    ),
-                    false
+                        'languages' => $langsTo,
+                        'initialSelection' => $not_translated_into_lang, // view var set by AppController
+                        'alwaysShowAll' => true,
+                        /* @translators: option used in language selection dropdown
+                           for "Not directly translated into", on Translate sentences page */
+                        'placeholder' => __x('not-directly-translated-into', 'Any language'),
+                        'onSelectedLanguageChange' => 'exclude_lang_to = true',
+                    )
                 );
                 ?>
                 <p class="hint">
@@ -164,6 +170,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                 </label>
                 <md-radio-group ng-model='sort'>
                     <md-radio-button value='random' class='md-primary'>
+                        <?php /* @translators: sort order radio option in Translate sentences page (noun) */ ?>
                         <?= __('Random') ?>
                     </md-radio-button>
                     <md-radio-button value='words' class='md-primary'>
@@ -185,6 +192,19 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                 </md-button>
             </fieldset>
             <?php echo $this->Form->end(); ?>
+        </div>
+
+        <md-subheader><?php echo __('Check Tatominer'); ?></md-subheader>
+        <div layout="column" layout-margin layout-align="center center">
+            <p><?= __('Tatominer provides a list of the most searched words for which there are very few or no translations yet.'); ?></p>
+            <md-button class="md-primary" href="https://tatominer.netlify.app/" target="_blank">
+                <?= __('Go to Tatominer') ?>
+                <md-icon>keyboard_arrow_right</md-icon>
+            </md-button>
+            <div class="hint" layout="row" layout-align="center center">
+                <md-icon>info</md-icon> 
+                <div><?= __('Not all languages are supported yet.'); ?></div>
+            </div>
         </div>
     </section>
 

@@ -8,3 +8,7 @@ How to import audio recordings :
    (e.g. recording for sentence #7276361 should be named 7276361.mp3).
 3. Log in as admin and go to /audio/import to import them
    (e.g. http://localhost:8080/eng/audio/import ).
+4. Execute the following cake command from the webserver to process the queued audio import job.
+```bash
+sudo -u www-data bin/cake queue runworker # execute queued jobs (background jobs)
+```

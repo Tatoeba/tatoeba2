@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 /*
  * Search results
  */
@@ -26,19 +25,33 @@
     margin: 20px 10px;
 }
 
+.sentences_set {
+    width: 610px;
+    margin: 20px auto;
+}
+
 .match {
     background-color: #FFFF90;
+}
+
+.empty-info-text {
+    text-align: center;
+    font-size: 2em;
+    color: #666666;
+}
+
+.sentence .content.column {
+    width: 500px;
 }
 
 /*
  * Advanced search form
  */
-#advanced-search {
-    margin: 0 20px;    
-}
-
 #advanced-search .param {
     margin: 10px 0;
+}
+#advanced-search .param md-checkbox {
+    margin-bottom: 0;
 }
 
 #advanced-search .md-errors-spacer {
@@ -51,4 +64,19 @@
 
 #advanced-search .buttons {
     margin: 20px 0;
+}
+
+#advanced-search .column-1 > .layout-column,
+#advanced-search .column-2 > .layout-column,
+#advanced-search .buttons {
+    padding: 0 20px;
+}
+
+#advanced-search .md-subheader {
+    color: #111;
+    font-weight: bold;
+}
+
+#advanced-search .word-count input[type="number"] {
+    width: 3em;
 }

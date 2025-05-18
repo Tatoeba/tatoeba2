@@ -2,13 +2,20 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $comment->user->username;
-$avatar = $comment->user->image;
+$user = $comment->user;
+$username = $user->username ?? null;
+if ($username) {
+    $userProfileUrl = $this->Url->build(array(
+        'controller' => 'user',
+        'action' => 'profile',
+        $username
+    ));
+}
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 $commentId = $comment->id;
 $authorId = $comment->user_id;
-$commentText = $comment->text;
+$commentText = $this->safeForAngular($comment->text);
 $commentHidden = $comment->hidden;
 $sentence = null;
 $sentenceOwnerLink = null;
@@ -28,7 +35,7 @@ if ($sentence && isset($sentence->user->username)) {
 }
 $sentenceId = $comment->sentence_id;
 $sentenceLink = $this->Html->link(
-    '#'.$sentenceId,
+    $this->Pages->formatSentenceIdWithSharp($sentenceId),
     array(
         'controller' => 'sentences',
         'action' => 'show',
@@ -37,7 +44,7 @@ $sentenceLink = $this->Html->link(
 );
 $sentenceText = '<em>'.__('sentence deleted').'</em>';
 if (isset($sentence['text'])) {
-    $sentenceText = h($sentence->text);
+    $sentenceText = $this->safeForAngular(h($sentence->text));
 }
 $sentenceLang = $sentence ? $sentence->lang : null;
 $sentenceOwner = null;
@@ -60,11 +67,6 @@ $labelText = __x('sentence comment', '{createdDate}, edited {modifiedDate}');
 $dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
 $dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true);
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
-$userProfileUrl = $this->Url->build(array(
-    'controller' => 'user',
-    'action' => 'profile',
-    $username
-));
 if ($sentenceOwnerLink) {
     $sentenceInfoLabel = __('Sentence {number} — belongs to {username}');
 } else {
@@ -104,15 +106,23 @@ if ($sentenceOwnerLink) {
 </div>
 <?php } ?>
 
-<md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
+<md-card class="comment">
     <md-card-header>
+        <?php if (!$commentHidden || $canViewContent): ?>
         <md-card-avatar>
-            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
+            <?= $this->Members->image($user, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
+        <?php endif; ?>
         <md-card-header-text>
-            <span class="md-title">
-                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
-            </span>
+        <?php if (!$commentHidden || $canViewContent): ?>
+            <?php if ($username): ?>
+                <span class="md-title">
+                    <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                </span>
+            <?php else: ?>
+                <i><?= h(__('Former member')) ?></i>
+            <?php endif; ?>
+        <?php endif; ?>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
                 <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
@@ -121,7 +131,11 @@ if ($sentenceOwnerLink) {
 
         <?php foreach ($menu as $menuItem) {
             if ($menuItem['text'] == '#') {
-                $itemLabel = $replyIcon ? __('Reply') : __('Permalink');
+                $itemLabel = $replyIcon ?
+                             /* @translators: tooltip of reply button on a comment (verb) */
+                             __x('button', 'Reply') :
+                             /* @translators: tooltip of permalink button on a comment (noun) */
+                             __('Permalink');
             } else {
                 $itemLabel = $menuItem['text'];
             }
@@ -143,7 +157,7 @@ if ($sentenceOwnerLink) {
 
     <md-divider></md-divider>
 
-    <md-card-content>
+    <md-card-content class="<?= $commentHidden ? 'inappropriate' : '' ?>">
         <?php if ($commentHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>
@@ -156,7 +170,7 @@ if ($sentenceOwnerLink) {
                             'and to the author of the message.',
                             true
                         ),
-                        'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+                        $this->Pages->getWikiLink('rules-against-bad-behavior')
                     ); ?>
                 </p>
             </div>

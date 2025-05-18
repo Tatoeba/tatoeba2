@@ -42,14 +42,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 
 // create an helper a lot of the code is the same of "on_sentences_of_user"
 ?>
+
+<?php if($userExists): ?>
 <div id="annexe_content">
-    <?php
-        echo $this->element(
-        'users_menu', 
-        array('username' => $userName)
-    );
-    ?>
+    <?= $this->element('users_menu', array('username' => $userName)) ?>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
 

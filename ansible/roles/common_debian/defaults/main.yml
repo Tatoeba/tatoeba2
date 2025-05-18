@@ -1,0 +1,5 @@
+---
+
+release: "{{ansible_distribution_release}}"
+mirror: deb.debian.org
+security_mirror: security.debian.org

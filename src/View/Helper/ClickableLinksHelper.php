@@ -42,7 +42,7 @@ use Cake\ORM\TableRegistry;
 
 class ClickableLinksHelper extends AppHelper
 {
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'Pages');
 
     const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n"\'<]+)/siu';
     const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
@@ -107,7 +107,7 @@ class ClickableLinksHelper extends AppHelper
                 $pattern2 = '/'.$escapedUrl.'(['.$stopChars.'< \n])|'.$escapedUrl.'$/u';
                 $text = preg_replace(
                     $pattern2,
-                    "<a href=\"$url\" target=\"_blank\">$urlText</a>$1",
+                    "<a href=\"$url\" target=\"_blank\" rel=\"nofollow\">$urlText</a>$1",
                     $text
                 );
             }
@@ -132,7 +132,7 @@ class ClickableLinksHelper extends AppHelper
             $this::SENTENCE_ID_PATTERN, 
             function ($m) use ($self, $model) {
                 return $m[1] . $self->Html->link($m[2],
-                    'https://'.$self->request->host().'/sentences/show/'.$m[3],
+                    $self->request->scheme().'://'.$self->request->host().'/sentences/show/'.$m[3],
                     array('title' => $model->getSentenceTextForId($m[3]))
                 );
             }, $text);
@@ -166,5 +166,32 @@ class ClickableLinksHelper extends AppHelper
         return false;
     }
 
+
+    /**
+     * Build #n links where n is a sentence ID.
+     *
+     * @param int $sentenceId the ID of the sentence linked
+     * @param string $sentenceText the text of the sentence linked
+     *
+     * @return string an HTML link whose title attribute is the text of the sentence
+     */
+    public function buildSentenceLink($sentenceId, $sentenceText = null)
+    {
+        $tooltipTag = $this->Html->tag(
+            'md-tooltip',
+            $this->_View->safeForAngular(h($sentenceText)),
+            ['ng-cloak']
+        );
+        $linkText = $this->Pages->formatSentenceIdWithSharp($sentenceId);
+        return $this->Html->link(
+            h($linkText).$tooltipTag,
+            array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ),
+            ['escape' => false]
+        );
+    }
 }
 ?>

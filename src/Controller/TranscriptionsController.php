@@ -35,9 +35,9 @@ class TranscriptionsController extends AppController
     );
 
     public $paginate = array(
-        'contain' => array('User', 'Sentence'),
+        'contain' => array('Users', 'Sentences'),
         'limit' => 100,
-        'order' => 'Transcription.modified DESC'
+        'order' => array('Transcriptions.modified' => 'desc'),
     );
 
     public function beforeFilter(Event $event)
@@ -84,12 +84,16 @@ class TranscriptionsController extends AppController
             );
         }
 
-        if (!$saved) {
-            return $this->response->withStatus(400, 'Bad transcription');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            return $this->returnTranscriptionData($saved, $sentenceId, $script);
+        } else {
+            if (!$saved) {
+                return $this->response->withStatus(400, 'Bad transcription');
+            }
+            $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
+            $this->render('view');
         }
-
-        $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
-        $this->render('view');
     }
 
     public function save($sentenceId, $script) {
@@ -122,15 +126,33 @@ class TranscriptionsController extends AppController
         }
 
         if ($saved) {
-            $saved['User'] = array(
+            $saved['user'] = array(
                 'username' => CurrentUser::get('username')
             );
         }
 
-        $this->setViewVars(array_filter(array($saved)), $sentenceId);
-        $this->render('view');
-        if (!$saved) {
-            return $this->response->withStatus(400, 'Bad transcription');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            return $this->returnTranscriptionData($saved, $sentenceId, $script);
+        } else {
+            $this->setViewVars(array_filter(array($saved)), $sentenceId);
+            $this->render('view');
+            if (!$saved) {
+                return $this->response->withStatus(400, 'Bad transcription');
+            }
+        }
+    }
+
+    private function returnTranscriptionData($saved, $sentenceId, $script) {
+        if ($saved) {
+            $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
+            $this->set('result', $transcription);
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');    
+        } else {
+            $errors = json_encode($this->Transcriptions->validationErrors);
+            return $this->response->withStatus(400)->withStringBody($errors);
         }
     }
 
@@ -138,12 +160,20 @@ class TranscriptionsController extends AppController
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);
         if ($userId) {
-            $this->paginate = [
-                'conditions' => [
-                    'Transcriptions.user_id' => $userId
-                ]
-            ];
-            $results = $this->paginate('Transcriptions');
+            $query = $this->Transcriptions
+                ->find()
+                ->where(['Transcriptions.user_id' => $userId])
+                ->mapReduce(
+                    function ($transcr, $key, $mapReduce) {
+                        $mapReduce->emitIntermediate($transcr, $transcr->sentence_id);
+                    },
+                    function ($transcrs, $sentenceId, $mapReduce) {
+                        $sentence = $transcrs[0]->sentence;
+                        $sentence->transcriptions = $transcrs;
+                        $mapReduce->emit($sentence, $sentenceId);
+                    }
+                );
+            $results = $this->paginate($query);
             $this->set('results', $results);
         }
         $this->set('userId', $userId);

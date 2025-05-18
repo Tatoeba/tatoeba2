@@ -60,7 +60,7 @@ class SController extends AppController
     {
         $this->loadModel('Sentences');
 
-        $sentence = $this->Sentences->getSentenceWithId($id);
+        $sentence = $this->Sentences->getSentenceWith($id, ['translations' => true]);
 
         if (!$sentence) {
             throw new \Cake\Http\Exception\NotFoundException(format(

@@ -41,25 +41,19 @@ if ($userExists) {
 }
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
+
+<?php if ($userExists): ?>
 <div id="annexe_content">
-    <?php
-    if ($userExists) {
-        echo $this->element(
-            'users_menu', 
-            array('username' => $username)
-        );
-    }
-    ?>
+    <?= $this->element('users_menu', array('username' => $username)) ?>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
-
 <section class="md-whiteframe-1dp">
     <?php
     if (!$userExists) {
         $this->CommonModules->displayNoSuchUser($username);
-    } else {
-        ?>
+    } else { ?>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $title ?></h2>
@@ -72,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             ?>
             <div layout-padding>
                 <?= format(
-                    __('Only the last {n} log entries are displayed here.'),
+                    __('Only the last {n} contributions are displayed here.'),
                     ['n' => $this->Number->format($totalLimit)]
                 ); ?>
             </div>

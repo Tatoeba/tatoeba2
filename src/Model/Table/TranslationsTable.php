@@ -43,6 +43,7 @@ class TranslationsTable extends Table
             'foreignKey' => 'sentence_id',
             'targetForeignKey' => 'translation_id'
         ]);
+        $this->belongsTo('Users');
 
         if (Configure::read('AutoTranscriptions.enabled')) {
             $this->addBehavior('Transcriptable');

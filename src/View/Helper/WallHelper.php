@@ -44,8 +44,76 @@ class WallHelper extends AppHelper
 {
 
     public $helpers = array(
-        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages', 'Languages', 'Url'
+        'Html', 'Date', 'ClickableLinks', 'Languages', 'Messages'
     );
+
+    /**
+     * Displays the preview (first X characters) of a message.
+     * If possible, it will not cut the message in the middle of a word or a link.
+     *
+     * @param  String  $content     The whole content.
+     * @param  integer $length      Number of characters of the preview.
+     * @param  integer $extraLength Tells how far we should search for a "space"
+     *                              character, when trying to not cut the text
+     *                              in the middle of a word/link.
+     *
+     * @return String               Preview text
+     */
+    private function preview($content, $length = 200, $extraLength = 100)
+    {
+        $contentBefore = mb_substr($content, 0, $length);
+        $contentAfter = mb_substr($content, $length);
+
+        $spaceAfter = mb_strpos($contentAfter, " ");
+        $newLineAfter = mb_strpos($contentAfter, PHP_EOL);
+        if (!$spaceAfter || $newLineAfter < $spaceAfter) {
+            $spaceAfter = $newLineAfter;
+        }
+
+        $hasLink = $this->ClickableLinks->hasClickableLink($content);
+
+        $formatContent = true;
+
+        if ($spaceAfter && $spaceAfter < $extraLength) {
+
+            // We want to display 200 + a few more charafters. The few more
+            // characters are the ones that are before the 1st "space" that we find
+            // after the 200 characters.
+            $lengthToCut = $length + $spaceAfter;
+            $previewContent = mb_substr($content, 0, $lengthToCut);
+            $displayElipsis = mb_strlen($content) > $lengthToCut;
+
+        } else if ($hasLink && mb_strlen($content) <= $length + $extraLength) {
+
+            // Normally, if fall in this case, then we're either trying to cut
+            // a text in a language that has no space, or we're cutting the text
+            // in a middle of an URL. In this case, if the message is not too long
+            // we display it entirely.
+            $previewContent = $content;
+            $displayElipsis = false;
+
+        } else {
+
+            // If we can't do a "soft" truncation, then we just hard truncate.
+            // In case of hard truncation, we don't format the text.
+            $previewContent = mb_substr($content, 0, $length);
+            $displayElipsis = mb_strlen($content) > $length;
+            $formatContent = false;
+
+        }
+
+        if ($formatContent) {
+            $previewContent = $this->Messages->formatContent($previewContent);
+        } else {
+            $previewContent = nl2br(h($previewContent));
+        }
+
+        if ($displayElipsis) {
+            $previewContent .= ' [...]';
+        }
+
+        return $previewContent;
+    }
 
     /**
      * Display wall message preview (on homepage).
@@ -82,7 +150,7 @@ class WallHelper extends AppHelper
         </div>
 
         <?php
-        $preview = $this->Messages->preview($content, 200, 100);
+        $preview = $this->preview($content, 200, 100);
         echo $this->Languages->tagWithLang(
             'div', '', $preview,
             array('class' => 'body', 'escape' => false)
@@ -111,6 +179,18 @@ class WallHelper extends AppHelper
         $messageId = $message['id'];
         $hidden = $message['hidden'];
 
+        if ($permissions['canPM']) {
+            $menu[] = array(
+                'text' => __('Send message'),
+                'icon' => 'mail',
+                'url' => array(
+                    'controller' => 'private_messages',
+                    'action' => 'write',
+                    $message->user->username
+                )
+            );
+        }
+
         if (CurrentUser::isAdmin()) {
             if ($hidden) {
                 $hiddenLinkText = __d('admin', 'unhide');
@@ -134,7 +214,8 @@ class WallHelper extends AppHelper
 
         if ($permissions['canEdit']) {
             $menu[] = array(
-                'text' => __("edit"),
+                /* @translators: edit button on a wall post (verb) */
+                'text' => __('Edit'),
                 'icon' => 'edit',
                 'url' => array(
                     'controller' => 'wall',
@@ -148,7 +229,8 @@ class WallHelper extends AppHelper
         if ($permissions['canDelete']) {
             // delete link
             $menu[] = array(
-                'text' => __('delete'),
+                /* @translators: delete button on a wall post (verb) */
+                'text' => __('Delete'),
                 'icon' => 'delete',
                 'url' => array(
                     "controller"=>"wall",
@@ -163,7 +245,8 @@ class WallHelper extends AppHelper
             $replyLinkId = 'reply_' . $messageId;
             $replyClasses = 'replyLink ' . $messageId;
             $menu[] = array(
-                'text' => __("reply"),
+                /* @translators: reply button on a wall post (verb) */
+                'text' => __x('button', 'Reply'),
                 'icon' => 'reply',
                 'url' => null,
                 'class' => $replyClasses,
@@ -173,7 +256,4 @@ class WallHelper extends AppHelper
 
         return $menu;
     }
-
 }
-
-?>

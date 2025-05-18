@@ -19,24 +19,6 @@ class ExportsController extends AppController
         return parent::beforeFilter($event);
     }
 
-    public function index()
-    {
-        $exports = $this->Exports->getExportsOf(CurrentUser::get('id'));
-
-        $this->set(compact('exports'));
-
-        $this->loadModel('SentencesLists');
-        $this->set('searchableLists', $this->SentencesLists->getSearchableLists());
-    }
-
-    public function list()
-    {
-        $exports = $this->Exports->getExportsOf(CurrentUser::get('id'));
-        $this->set(compact('exports'));
-        $this->set('_serialize', ['exports']);
-        $this->RequestHandler->renderAs($this, 'json');
-    }
-
     public function add()
     {
         $export = false;
@@ -84,6 +66,7 @@ class ExportsController extends AppController
                         /* withFile() sets Content-Disposition, but we don't
                            need it since the URL has the filename at the end */
                         ->withoutHeader('Content-Disposition')
+                        ->withHeader('Content-Type', 'application/octet-stream')
                         ->withStringBody('')
                         ->withHeader('X-Accel-Redirect', $export->url);
         }

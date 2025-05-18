@@ -48,13 +48,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
     
     <md-input-container layout="column">
         <?php
-        echo $this->Form->input('username',[
+        echo $this->Form->input('search_username',[
             'id' => 'usernameInput',
             'label' => '',
         ]);
         ?>
         <md-button type="submit" class="md-raised">
-            <?= __('Search') ?>
+            <?php /* @translators: search button in All members page (verb) */ ?>
+            <?= __x('button', 'Search') ?>
         </md-button>
     </md-input-container>
 
@@ -88,20 +89,29 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             );
             ?>
             </h2>
+
+            <?php 
+                $options = array(
+                    /* @translators: sort option in the All members page */
+                    array('param' => 'username', 'direction' => 'asc', 'label' => __('Username (alphabetical)')),
+                    /* @translators: sort option in the All members page */
+                    array('param' => 'username', 'direction' => 'desc', 'label' => __('Username (reverse alphabetical)')),
+                    /* @translators: sort option in the All members page */
+                    array('param' => 'since', 'direction' => 'desc', 'label' => __x('members', 'Newest first')),
+                    /* @translators: sort option in the All members page */
+                    array('param' => 'since', 'direction' => 'asc', 'label' => __x('members', 'Oldest first')),
+                    /* @translators: sort option in the All members page */
+                    array('param' => 'role', 'direction' => 'asc', 'label' => __('Status (admin to contributor)')),
+                    /* @translators: sort option in the All members page */
+                    array('param' => 'role', 'direction' => 'desc', 'label' => __('Status (contributor to admin)') )
+                );
+                echo $this->element('sort_menu', array('options' => $options));
+            ?>
+
             </div>
         </md-toolbar>
         
         <md-content>
-        <div class="sortBy">
-            <strong><?php echo __('Sort by:'); ?></strong>
-            <?php
-            echo $this->Paginator->sort('username', __('Username'));
-            echo ' | ';
-            echo $this->Paginator->sort('since', __('Member since'));
-            echo ' | ';
-            echo $this->Pagination->sortForRole();
-            ?>
-        </div>
 
 
         <?php $this->Pagination->display(); ?>
@@ -111,15 +121,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         foreach ($users as $i=>$user):
         $role = $user->role;
         $status = "status_$role";
-        $username = $user->username;
-        $userImage = null;
-        if (isset($user->image)) {
-            $userImage = $user->image;
-        };
         ?>
         <div class="user <?php echo $status ?> md-whiteframe-1dp">
             <div class="image">
-                <?php echo $this->Members->image($username, $userImage); ?>
+                <?php echo $this->Members->image($user); ?>
             </div>
 
 

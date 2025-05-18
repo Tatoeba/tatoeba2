@@ -44,7 +44,7 @@ class FavoritesController extends AppController
 
     public $name = 'Favorites' ;
     public $paginate = array('limit' => 50);
-    public $helpers = array('Navigation', 'Html', 'Menu', 'CommonModules', 'Pagination');
+    public $helpers = array('Html', 'Menu', 'CommonModules', 'Pagination');
     public $uses = array('Favorite', 'User');
 
     /**
@@ -63,8 +63,10 @@ class FavoritesController extends AppController
             $this->set("userExists", false);
             return;
         }
-        $this->paginate = $this->Favorites->getPaginatedFavoritesOfUser($userId);
-        $favorites = $this->paginate();
+
+        $filter = $this->request->getQuery('filter');
+        $favorites = $this->paginate($this->Favorites->getPaginatedFavoritesOfUser($userId, $filter));
+        $this->set('filter', $filter);
         $this->set('favorites', $favorites);
         $this->set("userExists", true);
     }

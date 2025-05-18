@@ -1,0 +1,43 @@
+---
+# Playbook to setup manticore server, index sentences and start the search daemon
+
+- name: Check whether code directory is present or not
+  shell: ' [ -d  {{code_dir}} ] '
+  register: code_status
+  ignore_errors: yes
+
+- name: Database import/update fail message
+  fail: msg="The code directory is not present in {{code_dir}}. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
+  when: code_status is failed
+
+- name: Install Manticore package
+  apt:
+    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/3.3.0/manticore_3.3.0-200204-01fc8ad1-release.buster_amd64-bin.deb
+
+- name: Work around bug that prevents enabling Manticore
+  file:
+    path: /lib/systemd/system-generators/manticore-generator
+    state: absent
+
+- name: Enable Manticore
+  command: systemctl enable manticore
+
+- name: Make sure Manticore is stopped
+  service:
+    name: manticore
+    state: stopped
+
+- name: Create directories for manticore
+  file: path={{item}} state=directory mode=0755 owner=manticore group=manticore
+  with_items:
+  - "{{manticore_index_dir}}"
+  - "{{manticore_log_dir}}"
+  - "{{manticore_binlog_path}}"
+
+- name: Install manticore.conf
+  template:
+    src: manticore.conf
+    dest: /etc/manticoresearch/manticore.conf
+
+- name: Start the search daemon
+  service: name=manticore state=started

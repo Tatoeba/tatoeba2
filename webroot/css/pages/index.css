@@ -18,21 +18,6 @@
  */
 
 /*
- * Random sentence
- */
-#randomLangChoice {
-    width: 200px;
-}
-
-#random_sentence_display {
-    padding: 10px;
-}
-
-#random_sentence_display .sentence .content.column {
-    width: 500px;
-}
-
-/*
  * Latest messages on Wall
  */
 .lastWallMessages {
@@ -59,6 +44,7 @@
  */
 .topContent .description {
     padding: 50px 10px;
+    text-align: center;
 }
 
 .topContent strong {
@@ -75,99 +61,37 @@
  * Search
  */
 #new-search-bar {
-    padding: 25px 10px;
+    padding: 10px 20px;
     margin-top: 20px;
     color: #777;
 }
-
-#new-search-bar fieldset {
-    padding: 2px 0;
+#new-search-bar .input.text {
+    width: 100%;
 }
-
-#new-search-bar .search-input {
-    position: relative;
-    width: 800px;
-}
-
-#new-search-bar #SentenceQuery {
-    padding: 5px 40px 5px 10px;
-    width: 800px;
-    margin-left: -4px;
-}
-
-#new-search-bar #clearSearch {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #CCCCCC;
-    position: absolute;
-    right: 5px;
-    font-size: 24px;
-    line-height: 46px;
-}
-
-#new-search-bar .search-input,
-#new-search-bar .submit {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-#new-search-bar .search-submit-button {
-    cursor: pointer;
-    width: 60px;
-    min-width: 0;
-    height: 42px;
-    border-radius: 2px;
-}
-
-#new-search-bar .search-submit-button svg {
-    display: block;
-    margin: auto;
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    padding-top: 2px;
-}
-
-#new-search-bar .extra-links {
-    width: 850px;
-}
-
-#new-search-bar .extra-links em {
+#new-search-bar .hint em {
     color: #000000;
 }
 
-#new-search-bar .advanced-search {
-    float: right;
-}
+@media only screen and (max-width: 960px) {
+    .layout-margin {
+        margin: 0;
+    }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: #cccccc;
+    #new-search-bar {
+        margin-top: 10px;
+    }
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #cccccc;
-    opacity:  1;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #cccccc;
-    opacity:  1;
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #cccccc;
-}
-
 
 /*
  *
  */
-.stats .content {
-    margin: 10px 0;
+.stats .content .category {
+    padding: 10px 16px 0px 16px;
 }
 
-.stats .content div {
-    padding: 2px 16px;
+.join-us > div {
+    padding: 10px;
 }
-
 .join-us p {
     padding: 0px 16px;
 }

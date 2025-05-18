@@ -1,0 +1,205 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Baloch <ajmanisb@gmail.com>, 2020
+# Abdul Sattar <ghaffar1993a@gmail.com>, 2020
+# Naguman Baloch, 2022
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-12 02:47+0000\n"
+"PO-Revision-Date: 2018-05-16 13:53+0000\n"
+"Last-Translator: Naguman Baloch, 2022\n"
+"Language-Team: Balochi (https://app.transifex.com/tatoeba/teams/28284/bal/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bal\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+msgid ""
+"Error: Sentences added by {username} could not be marked as unreliable."
+msgstr ""
+"رَدی: {username}ءِ گیش کرتگیں گالرد بے بَروسہ ءِ ھساب ءَ نشان جنگ نہ بنت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+msgid "Marked all sentences added by {username} as unreliable."
+msgstr ""
+"{username}\n"
+"ءِ گیش کرتگیں درستیں گالرد بے بروسہ ءِ ھساب ءَ نشان جنگ بیت انت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+msgid "Unable to import audio: user “{author}” not found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
+msgid "Invalid file “{file}” ignored."
+msgstr "نابَرجمیں فائل ’’{file}‘‘ ڈالچار کنگ بوت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+msgid ""
+"Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
+" this user has more than one audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+msgid "Unable to save audio for sentence {sentenceId} inside the database."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
+msgid "Failed to create directory “{dir}” to import file “{file}”."
+msgstr "فائل {file}ءَ را مانگیل کنگ ءِ ھاترا {dir}ءِ جوڑ کنگ بے سوب بوت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
+msgid "Failed to copy file “{file}” to directory “{dir}”."
+msgstr "فائل {file}ءَ ماں {dir} نامدان ءَ نکل بے سوب بوت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
+msgid ""
+"File “{file}” was successfully imported but could not be removed from the "
+"import directory."
+msgstr ""
+"فائل {file}پہ سوبمندی مانگیل بوت بلے چہ مانگیل ءِ نامدان ءَ دُور کنگ نہ بوت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
+msgid "Import recordings"
+msgstr "زَپتَگاں مانگیل کن"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
+msgid "The following errors occurred during the last import."
+msgstr "گُڈّی درگیل ءِ وھد ءَ جہل ءِ ردی بیت انت۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+msgid "Audio import status"
+msgstr "تواربندئے درگێلئے بستار"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
+msgid "Files detected"
+msgstr "فائل جاہ آرگ بوت"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
+msgid "Audio author"
+msgstr "تواربندئے نبیسوک"
+
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
+msgid "Save"
+msgstr "دَرپ کن"
+
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
+msgid "Delete"
+msgstr "لِیکّور"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
+msgid "Correctness"
+msgstr "درستی"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+msgid "Submit"
+msgstr "پیش کن"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
+msgid "Import sentences"
+msgstr "گالاں مانگیل کن"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
+msgid "Single sentences"
+msgstr "ایوانٹیں گالرد"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
+msgid "Language of the sentences:"
+msgstr "گالردانی زبان:۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
+msgid "File:"
+msgstr "فائل:۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
+msgid "Numeric user id: "
+msgstr "شماری کارمرزی پجار:۔"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
+msgid "import"
+msgstr "مانگیل"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
+msgid "Sentences and translations"
+msgstr "گالرد ءُ رجانک"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
+msgid "Language of the translations:"
+msgstr "رجانک ءِ زبان"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+msgid "Mark as unreliable"
+msgstr "بے بَروسہ ءِ ھساب ءَ نشان بجن"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
+"تو پکایا اے باسک ءِ گیش کرتگیں گالرداں بے بروسہ ءِ ھساب ءَ نشان جنگ لوٹئے؟"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
+msgid "Are you sure you want to delete user #{number}?"
+msgstr "تو پکایا کارمرزوک {number}ءَ لِیکّورگ لوٹئے؟"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
+msgid "List Users"
+msgstr "کارمرزوکان لَڑ کن"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
+msgid "Profile"
+msgstr "پروفائل"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
+msgid "Edit User"
+msgstr "کارمرزوک ءَ رِدگ کن"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
+msgid "Id"
+msgstr "پجار"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+msgid "Username"
+msgstr "کارمرزی نام"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
+msgid "Lang"
+msgstr "زُباں"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
+msgid "Group"
+msgstr "گروہ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+msgid "Level"
+msgstr "لَسُون"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
+msgid "Send notifications"
+msgstr "ھالنامَگ دیم دئے"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
+msgid "unhide"
+msgstr "دَرا کن"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
+msgid "hide"
+msgstr "چیر دۓ"

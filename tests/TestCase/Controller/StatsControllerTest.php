@@ -13,17 +13,18 @@ class StatsControllerTest extends IntegrationTestCase
         'app.users',
         'app.languages',
         'app.users_languages',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/stats/sentences_by_language', null, true ],
-            [ '/eng/stats/sentences_by_language', 'contributor', true ],
-            [ '/eng/stats/users_languages', null, true ],
-            [ '/eng/stats/users_languages', 'contributor', true ],
-            [ '/eng/stats/native_speakers', null, true ],
-            [ '/eng/stats/native_speakers', 'contributor', true ],
+            [ '/en/stats/sentences_by_language', null, true ],
+            [ '/en/stats/sentences_by_language', 'contributor', true ],
+            [ '/en/stats/users_languages', null, true ],
+            [ '/en/stats/users_languages', 'contributor', true ],
+            [ '/en/stats/native_speakers', null, true ],
+            [ '/en/stats/native_speakers', 'contributor', true ],
         ];
     }
 

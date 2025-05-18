@@ -144,6 +144,15 @@ return [
             'duration' => '+1 years',
             'url' => env('CACHE_CAKEROUTES_URL', null),
         ],
+
+        'memcached' => [
+            'className' => 'Cake\Cache\Engine\MemcachedEngine',
+            'host' => '127.0.0.1',
+            'port' => 11211,
+            'duration' => 120 * 60, // same as Session.timeout, converted to seconds
+            'prefix' => 'memc.sess.key.',
+            'serialize' => 'igbinary',
+        ],
     ],
 
     /**
@@ -282,7 +291,7 @@ return [
              * decreases performance because each query needs to be traversed and
              * manipulated before being executed.
              */
-            'quoteIdentifiers' => true,
+            'quoteIdentifiers' => false,
 
             /**
              * During development, if using MySQL < 5.6, uncommenting the
@@ -311,7 +320,7 @@ return [
             //'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
-            'quoteIdentifiers' => true,
+            'quoteIdentifiers' => false,
             'log' => false,
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
             'url' => env('DATABASE_TEST_URL', null),
@@ -345,6 +354,22 @@ return [
             'file' => 'queries',
             'url' => env('LOG_QUERIES_URL', null),
             'scopes' => ['queriesLog'],
+        ],
+        'queue' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
+            'file' => 'queue',
+            'url' => env('LOG_QUEUE_URL', null),
+            'scopes' => ['queue'],
+            'levels' => ['info'],
+        ],
+        // Configuration for unsent emails logging when
+        // the LocalTransport is used
+        'unsent' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
+            'file' => 'unsent-mails',
+            'scopes' => ['unsent'],
         ],
     ],
 
@@ -388,7 +413,12 @@ return [
      * To use database sessions, load the SQL file located at config/schema/sessions.sql
      */
     'Session' => [
-        'defaults' => 'php',
+        'defaults' => 'database',
+        'handler' => [
+            'engine' => 'ComboSession',
+            'model' => 'Session',
+            'cache' => 'memcached',
+        ],
         'timeout' => 120,
     ],
 ];

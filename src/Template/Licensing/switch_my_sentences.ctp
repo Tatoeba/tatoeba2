@@ -26,11 +26,11 @@ echo $this->Html->script('licensing/switch-license.ctrl.js', ['block' => 'script
 echo $this->Html->tag('h2', __('Switch my sentences to CC0'));
 
 if ($isSwitching) {
-    echo $this->Html->tag('p', __('The license switch of your sentences is in progress. You will receive a private message when it will be completed.'));
+    echo $this->Html->tag('p', __('The license for your sentences is being switched. You will receive a private message when the operation is complete.'));
 } else {
     echo $this->Html->tag('p', format(
         __('This page allows you to massively switch the license of your sentences to {CC0-link}. Among all your sentences, only the ones that meet the following conditions will be affected.'),
-       array('CC0-link' => $this->Sentences->License->licenseLink('CC0 1.0'))
+       array('CC0-link' => $this->SentenceLicense->getLicenseName('CC0 1.0'))
     ));
     echo $this->Html->nestedList(array(
         __('The current license of the sentence must be CC BY 2.0 FR.'),

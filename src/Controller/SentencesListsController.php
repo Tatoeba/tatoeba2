@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
@@ -46,7 +47,6 @@ class SentencesListsController extends AppController
     public $name = 'SentencesLists';
     public $helpers = array(
         'Sentences',
-        'Navigation',
         'Csv',
         'CommonModules',
         'Html',
@@ -108,7 +108,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, 'public'
+            $filter, null, ['public', 'listed']
         );
         $allLists = $this->paginate();
 
@@ -125,7 +125,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, 'public', 'anyone'
+            $filter, null, ['public', 'listed'], 'anyone'
         );
         $allLists = $this->paginate();
 
@@ -145,8 +145,15 @@ class SentencesListsController extends AppController
      *
      * @return mixed
      */
-    public function show($id = null, $translationsLang = null)
+    public function show($id = null, $lang = null, $translationsLang = null)
     {
+        // if params are not in form /:id/:filterlang/:translationLang redirect to properly formed URI
+        // for backward compatability of existing links url in form /:id/langX redirected to /:id/und/langX
+        if(!$translationsLang && $lang){
+            return $this->redirect(['controller'=>'SentencesLists','action'=>'show',$id,'und',$lang],301);
+        }
+
+        $lang = $lang ??'und';
         if (empty($translationsLang)) {
             $translationsLang = 'none';
         }
@@ -167,25 +174,37 @@ class SentencesListsController extends AppController
         }
 
         $this->loadModel('Sentences');
+        $this->loadModel('SentencesSentencesLists');
 
-        $contain = $this->Sentences->paginateContain();
-        $contain['finder'] = ['filteredTranslations' => [
-            'translationLang' => $translationsLang
-        ]];
-        $pagination = [
-            'contain' => ['Sentences' => $contain],
-            'conditions' => ['sentences_list_id' => $id],
+        $query = $this->SentencesSentencesLists->find();
+        if ($lang!="und") {
+            $query->where(['lang' => $lang == 'unknown' ? null : $lang]);
+        }
+        $query->where(['sentences_list_id' => $id])
+            ->contain(['Sentences' => function (Query $q) use ($translationsLang) {
+                $q->find('filteredTranslations', ['translationLang' => $translationsLang])
+                  ->find('hideFields')
+                  ->contain($this->Sentences->contain(['translations' => true]))
+                  ->select($this->Sentences->fields());
+                return $q;
+            }]);
+
+        $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['SentencesSentencesLists.created' => 'DESC']
+            'order' => ['created' => 'DESC'],
         ];
-        $this->paginate = $pagination;
-        $sentencesInList = $this->paginate('SentencesSentencesLists');
-
+        $sentencesInList = $this->paginate($query);
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('user', $list->user);
         $this->set('permissions', $list['Permissions']);
         $this->set('sentencesInList', $sentencesInList);
+        $this->set('listId', $id);
+        $this->set('filterLanguage', $lang);
+
+        if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+            $this->render('show_angular');
+        }
     }
 
 
@@ -218,13 +237,27 @@ class SentencesListsController extends AppController
     public function save_name()
     {
         $userId = $this->Auth->user('id');
-        $listId = substr($this->request->getData('id'), 1);
-        $listName = $this->request->getData('value');
+
+        $acceptsJson = $this->request->accepts('application/json');
+
+        if ($acceptsJson) {
+            $listId = $this->request->getData('id');
+            $listName = $this->request->getData('name');
+        } else {
+            $listId = substr($this->request->getData('id'), 1);
+            $listName = $this->request->getData('value');
+        }
 
         if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
         } else {
             $this->set('result', 'error');
+        }
+
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 
@@ -243,10 +276,10 @@ class SentencesListsController extends AppController
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
             // not been set, or has been set to false.
-            $mostRecentList = $this->request->getSession()->read('most_recent_list');
+            $mostRecentList = $this->Cookie->read('most_recent_list');
             if ($mostRecentList == $listId)
             {
-                $this->request->getSession()->delete('most_recent_list');
+                $this->Cookie->delete('most_recent_list');
             }
         }
 
@@ -263,12 +296,21 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
+        $acceptsJson = $this->request->accepts('application/json');
+
         $userId = $this->Auth->user('id');
         if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         } else {
             $this->set('result', 'error');
+            $this->set('error', __('The sentence could not be added to the list.'));
+        }
+
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result', 'error']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 
@@ -281,13 +323,24 @@ class SentencesListsController extends AppController
      *
      * @return void
      */
-    public function remove_sentence_from_list($sentenceId, $listId)
+    public function remove_sentence_from_list($sentenceId, $listId )
     {
         $userId = $this->Auth->user('id');
         $isRemoved = $this->SentencesLists->removeSentenceFromList(
             $sentenceId, $listId, $userId
         );
         $this->set('removed', $isRemoved);
+
+        if (strpos($this->referer(), 'sentences/show')) {
+           return $this->redirect($this->referer());
+        }
+
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['removed']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
 
@@ -318,7 +371,7 @@ class SentencesListsController extends AppController
 
         $visibility = null;
         if ($username != CurrentUser::get('username')) {
-            $visibility = 'public';
+            $visibility = ['public', 'listed'];
         }
         $this->paginate = $this->SentencesLists->getPaginatedLists(
             $filter, $username, $visibility
@@ -346,13 +399,32 @@ class SentencesListsController extends AppController
         $result = null;
         $listId = $this->request->getData('listId');
         $sentenceText = $this->request->getData('sentenceText');
+        $sentenceLang = $this->request->getData('sentenceLang');
+
+        // This is meant to be temporary of course
+        if (strstr($this->referer(), '/add_new_sentence_to_list')) {
+            $this->loadModel('Users');
+            $user = $this->Users->get($this->Auth->user('id'));
+            if ($user) {
+                $user->level = -1;
+                $this->Users->save($user);
+            }
+            $this->loadModel('SentencesLists');
+            $list = $this->SentencesLists->get($listId);
+            if ($list) {
+                $list->visibility = 'private';
+                $this->SentencesLists->save($list);
+            }
+        }
 
         if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
-            $sentenceLang = $this->LanguageDetection->detectLang(
-                $sentenceText,
-                $userName
-            );
+            if ($sentenceLang == 'auto') {
+                $sentenceLang = $this->LanguageDetection->detectLang(
+                    $sentenceText,
+                    $userName
+                );
+            }
 
             $result = $this->SentencesLists->addNewSentenceToList(
                 $listId,
@@ -365,6 +437,13 @@ class SentencesListsController extends AppController
         }
 
         $this->set('sentence', $result);
+        
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['sentence']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
     public function add_sentence_to_new_list() {
@@ -403,7 +482,13 @@ class SentencesListsController extends AppController
         );
         
         $this->response->header('Content-Type: application/json');
-        $this->set('result', json_encode($result['SentencesList']));
+        if ($result) {
+            $this->set('result', json_encode(
+                $result->extract(['id', 'name', 'user_id', 'editable_by'])
+            ));
+        } else {
+            $this->set('result', json_encode([], JSON_FORCE_OBJECT));
+        }
     }
 
     /**

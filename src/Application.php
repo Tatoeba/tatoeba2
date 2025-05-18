@@ -14,12 +14,10 @@
  */
 namespace App;
 
-use AssetCompress\Middleware\AssetCompressMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
-use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
 /**
@@ -43,8 +41,8 @@ class Application extends BaseApplication
             $this->addPlugin('Migrations');
         }
 
-        $this->addPlugin('Queue', ['bootstrap' => true]);
-        $this->addPlugin('AssetCompress');
+        $this->addPlugin('Queue', ['bootstrap' => true, 'routes' => false]);
+        $this->addPlugin('AssetCompress', ['middleware' => false]);
         $this->addPlugin('AuthActions', ['bootstrap' => false, 'routes' => false]);
     }
 
@@ -61,31 +59,13 @@ class Application extends BaseApplication
             // and make an error page/response
             ->add(ErrorHandlerMiddleware::class)
 
-            // Handle plugin/theme assets like CakePHP normally does.
-            ->add(new AssetMiddleware([
-                'cacheTime' => Configure::read('Asset.cacheTime')
-            ]))
-
-            // Allow on-the-fly build of css/js files for developers
-            // as defined in config/asset_compress.ini
-            ->add(new AssetCompressMiddleware())
-
             // Add routing middleware.
             // Routes collection cache enabled by default, to disable route caching
             // pass null as cacheConfig, example: `new RoutingMiddleware($this)`
             // you might want to disable this cache in case your routing is extremely simple
             ->add(new RoutingMiddleware($this, '_cake_routes_'));
 
-            // Can be re-enabled when we get rid of jquery.jeditable,
-            // which is used for editing sentences. 
-            // We're using the Csrf component meanwhile, to disable
-            // CSRF only on specific actions.
-            /*
-            // Add csrf middleware.
-            ->add(new CsrfProtectionMiddleware([
-                'httpOnly' => true
-            ]));
-            */
+            // Other middlewares are added from config/routes.php
 
         return $middlewareQueue;
     }

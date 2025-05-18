@@ -26,238 +26,171 @@
  */
 use App\Model\CurrentUser;
 use Cake\ORM\TableRegistry;
+
+$user = CurrentUser::get('User');
+$username = $user['username'];
+
+$newMessages = TableRegistry::get('PrivateMessages')->numberOfUnreadMessages(
+    CurrentUser::get('id')
+);
+$emailIcon = $newMessages > 0 ? 'email' : 'mail_outline';
+$uiLanguage = $this->Languages->getInterfaceLanguage();
+if (!isset($htmlDir)) {
+    $htmlDir = null;
+}
+$menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
 ?>
 
+<div layout="row" layout-align="center center">
+    <div class="private-messages">
+        <md-button class="md-icon-button" href="<?= $this->Url->build(['controller' => 'private_messages', 'action' => 'folder', 'Inbox']) ?>">
+            <md-icon><?= $emailIcon ?></md-icon>
+            <md-tooltip><?php echo __('Inbox'); ?></md-tooltip>
+        </md-button>
+        <?php if ($newMessages > 0) { ?>
+        <span class="unread">
+            <?= $this->Number->format($newMessages) ?>
+        </span>
+        <?php } ?>
+    </div>
 
-<ul>
-    <li id="profile">
-    <?php
-    $username = $this->request->getSession()->read('Auth.User.username');
-    $profileIcon = $this->Html->image(
-        IMG_PATH . 'profile.svg',
-        array(
-            "alt" => __('Profile'),
-            "width" => 14,
-            "height" => 14
-        )
-    );
-    echo $this->Html->tag(
-        'a',
-        $profileIcon . $username,
-        array(
-            'escape' => false,
-            'class' => 'menuSection'
-        )
-    );
-    ?>
-    <ul class='sub-menu'>
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My profile'),
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $username
-                )
-            );
-            ?>
-        </li>
+    <div id="user-menu" class="dropdown">
+        <div class="label">
+            <?= $this->Members->image($user, ['width' => 24, 'height' => 24]); ?>
+            <span><?= $username ?></span>
+        </div>
+        <div class="dropdown-content">
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'user', 'action' => 'profile', $username]) ?>">
+                    <md-icon md-colors="::{color: 'grey'}">person</md-icon>
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to open your profile page */
+                    echo __('My profile');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a ng-click="showInterfaceLanguageSelection()">
+                    <md-icon md-colors="::{color: 'grey'}">language</md-icon>
+                    <span>
+                    <?= format(__('Language: {lang}'), ['lang' => $uiLanguage]) ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'user', 'action' => 'settings']) ?>">
+                    <md-icon md-colors="::{color: 'grey'}">settings</md-icon>
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to open your settings */
+                    echo __('Settings');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'users', 'action' => 'logout']) ?>">
+                    <md-icon md-colors="::{color: 'grey'}">power_settings_new</md-icon>
+                    <span>
+                    <?= __('Log out') ?>
+                    </span>
+                </a>
+            </div>
 
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My sentences'),
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'of_user',
-                    $username
-                )
-            );
-            ?>
-        </li>
+            <md-divider></md-divider>
 
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My vocabulary'),
-                array(
-                    'controller' => 'vocabulary',
-                    'action' => 'of',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My reviews'),
-                array(
-                    'controller' => 'reviews',
-                    'action' => 'of',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My lists'),
-                array(
-                    'controller' => 'sentences_lists',
-                    'action' => 'of_user',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My favorites'),
-                array(
-                    'controller' => 'favorites',
-                    'action' => 'of_user',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My comments'),
-                array(
-                    'controller' => 'sentence_comments',
-                    'action' => 'of_user',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __("Comments on my sentences"),
-                array(
-                    'controller' => 'sentence_comments',
-                    'action' => 'on_sentences_of_user',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My Wall messages'),
-                array(
-                    'controller' => 'wall',
-                    'action' => 'messages_of_user',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('My sentence logs'),
-                array(
-                    'controller' => 'contributions',
-                    'action' => 'of_user',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="settings">
-            <?php
-            echo $this->Html->link(
-                __('Settings'),
-                array(
-                    'controller' => 'user',
-                    'action' => 'settings',
-                )
-            );
-            ?>
-        </li>
-    </ul>
-    </li>
-
-
-
-    <?php
-    $newMessages = TableRegistry::get('PrivateMessages')->numberOfUnreadMessages(
-        CurrentUser::get('id')
-    );
-    $class = '';
-    $imageName = 'no_mail.svg';
-    if ($newMessages > 0) {
-        $class = 'class="newMessage"';
-        $imageName = 'mail.svg';
-    }
-    ?>
-    <li id="inbox" <?php echo $class; ?> title="<?php echo __('Inbox'); ?>">
-    <?php
-
-    $mailIcon = $this->Html->image(
-        IMG_PATH . $imageName,
-        array(
-            "alt" => __('Inbox'),
-            "width" => 16,
-            "height" => 16
-        )
-    );
-
-
-    echo $this->Html->link(
-        $mailIcon .' '. $this->Number->format($newMessages),
-        array(
-            'controller' => 'private_messages',
-            'action' => 'folder',
-            'Inbox'
-        ),
-        array(
-            'escape' => false,
-            'class' => 'menuSection'
-        )
-    );
-    ?>
-    </li>
-
-    <li id="log_out">
-    <?php
-    $logOutIcon = $this->Html->image(
-        IMG_PATH . 'log_out.svg',
-        array(
-            "alt" => __('Log out'),
-            "title" => __('Log out'),
-            "width" => 14,
-            "height" => 14
-        )
-    );
-    echo $this->Html->link(
-        $logOutIcon,
-        array(
-            'controller' => 'users',
-            'action' => 'logout'
-        ),
-        array(
-            'escape' => false,
-            'class' => 'menuSection'
-        )
-    );
-    ?>
-    </li>
-</ul>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your sentences */
+                    echo __('My sentences');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'vocabulary', 'action' => 'of', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your vocabulary */
+                    echo __('My vocabulary');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'reviews', 'action' => 'of', $username, 'all']) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your reviews */
+                    echo __('My reviews');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentences_lists', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your lists */
+                    echo __('My lists');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'favorites', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your favorites */
+                    echo __('My favorites');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your comments */
+                    echo __('My comments');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'sentence_comments', 'action' => 'on_sentences_of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list comments made on your sentences */
+                    echo __("Comments on my sentences");
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'wall', 'action' => 'messages_of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your wall posts */
+                    echo __('My Wall messages');
+                    ?>
+                    </span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="<?= $this->Url->build(['controller' => 'contributions', 'action' => 'of_user', $username]) ?>">
+                    <span>
+                    <?php
+                    /* @ŧranslators: top-right user menu item to list your contributions */
+                    echo __('My latest contributions');
+                    ?>
+                    </span>
+                </a>
+            </div>
+        </div>
+        </div>
+ </div>

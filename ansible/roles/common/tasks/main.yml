@@ -1,0 +1,13 @@
+---
+# Tasks specyfing commom tasks for all servers
+
+- name: Ensure git is installed
+  apt:
+    name: git
+    state: latest
+    force: yes
+
+- name: Install packages needed for development
+  apt:
+    name: ['gettext', 'transifex-client', 'python3-jinja2', 'python3-yaml']
+  when: deploy_for == 'dev'

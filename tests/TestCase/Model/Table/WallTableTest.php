@@ -1,13 +1,14 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-use App\Model\Wall;
-use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Model\Wall;
+use Cake\Event\Event;
+use Cake\Event\EventList;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
 
 class WallTest extends TestCase {
 
@@ -44,8 +45,10 @@ class WallTest extends TestCase {
         ];
 
         $before = $this->Wall->find()->count();
-        $saved = $this->Wall->save($newPost)->old_format;
-        $result = array_intersect_key($saved['Wall'], $expected);
+        $saved = $this->Wall->save($newPost);
+        $result = $saved->extract(
+            ['owner', 'content', 'parent_id', 'lft', 'rght', 'id']
+        );
         $after = $this->Wall->find()->count();
 
         $this->assertEquals(1, $after - $before);
@@ -59,8 +62,8 @@ class WallTest extends TestCase {
         ]);
         $saved = $this->Wall->save($newPost);
         
-        $this->assertEquals($saved->date, $saved->modified);
         $this->assertNotNull($saved->date);
+        $this->assertEquals($saved->date->format('Y-m-d H:i:s'), $saved->modified->format('Y-m-d H:i:s'));
     }
 
     public function testSave_doesNotSaveNewPostIfContentIsEmpty() {
@@ -159,12 +162,19 @@ class WallTest extends TestCase {
         $this->assertEquals($before, $after);
     }
 
-    public function testSave_replyFiresEvent() {
-        $reply = $this->Wall->newEntity([
+    public function testSave_doesNotFireEvent() {
+        $eventManager = $this->Wall->getEventManager();
+        $eventManager->setEventList(new EventList());
+        $post = $this->Wall->newEntity([
             'owner' => 7,
-            'parent_id' => 2,
-            'content' => 'I see.',
+            'content' => 'new post',
         ]);
+        $this->Wall->save($post);
+        $eventList = $eventManager->getEventList();
+        $this->assertFalse($eventList->hasEvent('Model.Wall.replyPosted'));
+    }
+
+    public function testSaveReply_firesEvent() {
         $expectedPost = array(
             'owner' => 7,
             'parent_id' => 2,
@@ -175,19 +185,18 @@ class WallTest extends TestCase {
         $dispatched = false;
         $model = $this->Wall;
         $model->getEventManager()->on(
-            'Model.Wall.postPosted',
+            'Model.Wall.replyPosted',
             function (Event $event) use ($model, &$dispatched, $expectedPost) {
                 $this->assertSame($model, $event->getSubject());
-                $post = $event->getData('post')->old_format['Wall']; // $post
-                unset($post['id']);
-                unset($post['date']);
-                unset($post['modified']);
+                $post = $event->getData('post')->extract(
+                    ['owner', 'parent_id', 'content', 'lft', 'rght']
+                ); // $post
                 $this->assertEquals($expectedPost, $post);
                 $dispatched = true;
             }
         );
 
-        $saved = $this->Wall->save($reply);
+        $this->Wall->saveReply(2, 'I see.', 7);
 
         $this->assertTrue($dispatched);
     }
@@ -266,11 +275,24 @@ class WallTest extends TestCase {
     }
 
     public function testSave_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $post = $this->Wall->newEntity(['content' => 'test', 'owner' => 1]);
         $added = $this->Wall->save($post);
         $returned = $this->Wall->get($added->id);
-        $this->assertEquals($added->date, $returned->date);
-        $this->assertEquals($added->modified, $returned->modified);
+        $this->assertEquals($added->date->format('Y-m-d H:i:s'), $returned->date->format('Y-m-d H:i:s'));
+        $this->assertEquals($added->modified->format('Y-m-d H:i:s'), $returned->modified->format('Y-m-d H:i:s'));
+
+        I18n::setLocale($prevLocale);
+    }
+
+    public function testHidingAMessageRecalculatesThreadDateIgnoringHiddenPosts() {
+        $reply = $this->Wall->get(2);
+        $reply->hidden = true;
+        $this->Wall->save($reply);
+
+        $threadDate = $this->Wall->WallThreads->get(1)->last_message_date;
+        $this->assertEquals('2014-04-15 16:37:11', $threadDate);
     }
 }

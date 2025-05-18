@@ -18,6 +18,10 @@
 
 
 $(document).ready(function() {
+	new AutocompleteBox("tags/autocomplete", function(suggestion) {
+        return suggestion.name + " (" + suggestion.nbrOfSentences + ")";
+    }, "TagTagName", "autocompletionDiv");
+	
     $("#TagTagName").keydown(function(e){
         if (e.keyCode == 13) {
             addTag();

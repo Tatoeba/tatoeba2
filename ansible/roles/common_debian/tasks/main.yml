@@ -1,0 +1,31 @@
+---
+
+- name: Copy sources.list for apt
+  template:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  register: result
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  when: result is changed
+
+- name: Add extra PATH directories
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:{{code_dir}}/bin:{{code_dir}}/vendor/bin'
+
+- name: Prevent sudo from complaining about the new hostname
+  replace:
+    dest: /etc/hosts
+    regexp: "{{ansible_hostname}}"
+    replace: 'tatovm'
+
+- name: Change hostname to tatovm
+  hostname:
+    name: tatovm

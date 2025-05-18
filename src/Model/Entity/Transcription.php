@@ -19,9 +19,30 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Entity\PinyinTrait;
+use App\Model\Entity\FuriganaTrait;
+use Cake\I18n\Time;
+use App\Model\CurrentUser;
+
 
 class Transcription extends Entity
 {
+    use PinyinTrait;
+    use FuriganaTrait;
+
+    protected $_virtual = [
+        'readonly',
+        'type',
+        'html',
+        'markup',
+        'info_message'
+    ];
+
+    protected $_hidden = [
+        'created',
+        'sentence',
+    ];
+
     private $scriptsByLang = array( /* ISO 15924 */
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
@@ -75,23 +96,7 @@ class Transcription extends Entity
         'readonly' => false,
         'type' => 'transcription',
     );
-
-    protected function _getOldFormat() 
-    {
-        return [
-            'Transcription' => [
-                'id' => $this->id,
-                'sentence_id' => $this->sentence_id,
-                'script' => $this->script,
-                'text' => $this->text,
-                'user_id' => $this->user_id,
-                'needsReview' => $this->needsReview,
-                'readonly' => $this->readonly,
-                'type' => $this->type,
-                'modified' => $this->modified,
-            ]
-        ];
-    }
+    private $settings;
 
     protected function _getReadonly()
     {
@@ -117,22 +122,26 @@ class Transcription extends Entity
 
     private function getSettings()
     {
-        $settings = [];
-        if ($this->sentence) {
-            $sourceScript = $this->sentence->script;
-            $sourceLang = $this->sentence->lang;
-            if (!$sourceScript) {
-                $sourceScript = $this->getSourceScript($sourceLang);
-            }
-            $langScript = $sourceLang . '-' . $sourceScript;
-            if (isset($this->availableTranscriptions[$langScript])) {
-                $transcription = $this->availableTranscriptions[$langScript];
-                if (isset($transcription[$this->script])) {
-                    $settings = $transcription[$this->script];
+        if (!isset($this->settings)) {
+            $this->settings = [];
+            if ($this->sentence) {
+                $sourceScript = $this->sentence->script;
+                $sourceLang = $this->sentence->lang;
+                if (!$sourceScript) {
+                    $sourceScript = $this->getSourceScript($sourceLang);
+                }
+                $langScript = $sourceLang . '-' . $sourceScript;
+                if (isset($this->availableTranscriptions[$langScript])) {
+                    $transcription = $this->availableTranscriptions[$langScript];
+                    if (isset($transcription[$this->script])) {
+                        $this->settings = $transcription[$this->script];
+                    }
                 }
             }
+            $this->settings = array_intersect_key($this->settings, $this->defaultFlags);
+            $this->settings = array_merge($this->defaultFlags, $this->settings);
         }
-        return $settings;
+        return $this->settings;
     }
 
     private function getSourceScript($sourceLang) {
@@ -142,5 +151,82 @@ class Transcription extends Entity
             }
         }
         return false;
+    }
+
+    protected function _getHtml() {
+        if (!$this->sentence || !$this->sentence->lang || !$this->script || !$this->text) {
+            return;
+        }
+
+        $lang = $this->sentence->lang;
+
+        if ($this->script == 'Hrkt') {
+            $text = $this->rubify($this->text);
+        } elseif ($lang == 'cmn' && $this->script == 'Latn') {
+            $text = htmlentities($this->numeric2diacritic($this->text));
+        } else {
+            $text = htmlentities($this->text);
+        }
+
+        return $text;
+    }
+
+    protected function _getMarkup() {
+        if (!$this->sentence || !$this->sentence->lang || !$this->script || !$this->text) {
+            return;
+        }
+
+        $text = null;
+        $editable = !$this->readonly && CurrentUser::canEditTranscription($this->user_id, $this->sentence->user_id);
+        if ($editable) {
+            if ($this->script == 'Hrkt') {
+                $text = $this->bracketify($this->text);
+            } else {
+                $text = $this->text;
+            }
+        }
+
+        return $text;
+    }
+
+    protected function _getInfoMessage() {
+        if (!isset($this->type) || !isset($this->needsReview)) {
+            return;
+        }
+
+        if ($this->needsReview) {
+            if ($this->type == 'altscript') {
+            $message = __(
+                'This alternative script was generated automatically '.
+                'and has not been reviewed.'
+            );
+            } else {
+                $message = __(
+                    'This transcription was generated automatically '.
+                    'and has not been reviewed.'
+                );
+            }
+        } else {
+            if (isset($this->user->username)) {
+                if ($this->type == 'altscript' && isset($this->sentence->lang) && $this->sentence->lang == 'jpn') {
+                    $message = __('The furigana was last edited by {author} on {date}.');
+                } else {
+                    /* @translators: refers to a transcription */
+                    $message = __('Last edited by {author} on {date}');
+                }
+                $message = format($message, [
+                    'author' => $this->user->username,
+                    'date' => $this->modified->nice(),
+                ]);
+            } else {
+                if ($this->type == 'altscript') {
+                    $message = __('This alternative script was generated automatically.');
+                } else {
+                    $message = __('This transcription was generated automatically.');
+                }
+            }
+        }
+
+        return $message;
     }
 }

@@ -101,7 +101,7 @@ echo $this->Form->create(
         ng-false-value='0'
         ng-true-value='1' ng-init='rememberLogin = 0'
         class='md-primary'>
-        <label><?= __('Remember me') ?></label>
+        <?= __('Remember me') ?>
     </md-checkbox>
     <?php
     echo $this->Form->checkbox(
@@ -116,6 +116,7 @@ echo $this->Form->create(
 
     <div layout="column">
         <md-button type="submit" class="md-raised md-primary">
+            <?php /* @translators: button to submit login form (verb) */ ?>
             <?php echo __('Log in'); ?>
         </md-button>
 
@@ -124,6 +125,7 @@ echo $this->Form->create(
         </md-button>
 
         <md-button href="<?= $registerUrl; ?>">
+            <?php /* @translators: link to the Register page in the login page (verb) */ ?>
             <?php echo __('Register'); ?>
         </md-button>
     </div>

@@ -39,85 +39,114 @@
 $this->set('title_for_layout', $this->Pages->formatTitle(__("Activity timeline")));
 
 $monthName = $this->Date->monthName($month);
-$selectedMonth = format(
-    __('{month} {year}'),
-    array('month' => $monthName, 'year' => $year)
-);
- 
-$maxWidth = 400;
-$maxTotal = 0;
 
-foreach ($stats as $stat) {
-    if ($stat->sentences > $maxTotal) {
-        $maxTotal = $stat->sentences;
-    }
+$maxWidth = 400;
+if (!empty($stats)) {
+    $maxTotal = max(array_column($stats, 'total'));
 }
 ?>
 
 <div id="annexe_content">
-    <?php 
+    <?php
     echo $this->element(
-        'calendar', 
+        'calendar',
         array(
             'currentYear' => $year,
             'currentMonth' => $month
         )
-    ); 
+    );
     ?>
 </div>
 
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
-    <h2><?php echo $selectedMonth; ?></h2>
+    <h2><?php
+        echo format(__('Activity timeline — {month} {year}'), array('month' => $monthName, 'year' => $year));
+    ?></h2>
+    <p>
+    <?php
+        if ($month == date('m') && $year == date('Y')) {
+            echo __('Statistics about the number of contributions over this month.');
+        } else {
+            echo format(__('Statistics about the number of contributions over {month} {year}.'),
+                        array('month' => $monthName, 'year' => $year));
+        }
+    ?>
+    </p>
 
     <?php
     echo '<table id="timeline">';
 
     $currentDate = null;
     $totalSentences = 0;
+    $totalLinks = 0;
     $numberOfDays = 0;
+    ?>
 
-    foreach ($stats as $stat) {
-        
-        $numSentences = $stat->sentences;
-        $date = $stat->date;
+    <thead>
+        <tr>
+            <?php /* @translators: first column header on the Activity timeline page */ ?>
+            <td class="date"><?= __('Day'); ?></td>
+            <td>
+                <div layout="row">
+                    <div flex="25" class="added"><?= __('Sentences added'); ?></div>
+                    <div flex="25" class="linked"><?= __('Links added'); ?></div>
+                    <div flex="25" class="unlinked"><?= __('Links removed'); ?></div>
+                    <div flex="25" class="deleted"><?= __('Sentences removed'); ?></div>
+                </div>
+            </td>
+        </tr>
+    </thead>
 
-        $width = ($numSentences / $maxTotal) * 100;
-        $bar = $this->Html->div('logs_stats', null,
-            array('style' => 'width:'.$width.'%')
-        );
+    <?php
+    foreach ($stats as $date => $stat) {
+        $bar = '';
+        $bar .= $this->ContributionsStats->statBar($stat, 'added', $maxTotal);
+        $bar .= $this->ContributionsStats->statBar($stat, 'linked', $maxTotal);
+        $bar .= $this->ContributionsStats->statBar($stat, 'unlinked', $maxTotal);
+        $bar .= $this->ContributionsStats->statBar($stat, 'deleted', $maxTotal);
+        $totalSentences += $stat['added'] ?? 0;
+        $totalLinks += $stat['linked'] ?? 0;
 
         $formattedDate = $this->Time->i18nFormat($date, [IntlDateFormatter::SHORT, IntlDateFormatter::NONE]);
         echo '<tr>';
         echo $this->Html->tag('td', $formattedDate, array('class' => 'date'));
-        echo $this->Html->tag('td', $this->Number->format($numSentences), array('class' => 'number'));
-        echo $this->Html->tag('td', $bar, array('class' => 'bar'));
+        $contents = '<div layout="row">' . $bar . '</div>';
+        echo $this->Html->tag('td', $contents, array('class' => 'bar'));
         echo '</tr>';
-
-        $totalSentences += $numSentences;
     }
     echo '</table>';
-    
+
     if( $month == date('m') && $year == date('Y')) {
         $numberOfDays = date('d');
     } else if (($year < date('Y')) || ($year == date('Y') && $month < date('m'))){
         $numberOfDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     }
-    
+
     if($numberOfDays > 0){
-        $dailyAverage = round($totalSentences / $numberOfDays,1);
-        $averageString = format(
+        $dailyAverageSentences = round($totalSentences / $numberOfDays,1);
+        $averageSentencesString = format(
             __n(
-                'Daily Average: {n} sentence',
-                'Daily Average: {n} sentences',
-                $dailyAverage,
+                'Daily Average: {n} sentence added',
+                'Daily Average: {n} sentences added',
+                $dailyAverageSentences,
                 true
             ),
-            array('n' => $this->Number->format($dailyAverage))
+            array('n' => $this->Number->format($dailyAverageSentences))
         );
-        echo $this->Html->div("daily-average", $averageString);
+        $dailyAverageLinks = round($totalLinks / $numberOfDays,1);
+        $averageLinksString = format(
+            __n(
+                ', {n} link added',
+                ', {n} links added',
+                $dailyAverageLinks,
+                true
+            ),
+            array('n' => $this->Number->format($dailyAverageLinks))
+        );
+        echo $this->Html->div("daily-average", $averageSentencesString . $averageLinksString);
     }
-    
+
     ?>
     </div>
 </div>

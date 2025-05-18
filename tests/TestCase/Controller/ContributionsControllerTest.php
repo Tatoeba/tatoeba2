@@ -16,25 +16,27 @@ class ContributionsControllerTest extends IntegrationTestCase
         'app.users',
         'app.users_languages',
         'app.private_messages',
+        'app.sentences',
+        'app.wiki_articles',
     ];
 
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/contributions/index', null, '/eng/contributions/latest' ],
-            [ '/eng/contributions/index', 'contributor', '/eng/contributions/latest' ],
-            [ '/eng/contributions/index/eng', null, '/eng/contributions/latest/eng' ],
-            [ '/eng/contributions/index/eng', 'contributor', '/eng/contributions/latest/eng' ],
-            [ '/eng/contributions/latest', null, true ],
-            [ '/eng/contributions/latest', 'contributor', true ],
-            [ '/eng/contributions/latest/eng', null, true ],
-            [ '/eng/contributions/latest/eng', 'contributor', true ],
-            [ '/eng/contributions/activity_timeline', null, '/eng/contributions/activity_timeline/2017/04' ],
-            [ '/eng/contributions/activity_timeline', 'contributor', '/eng/contributions/activity_timeline/2017/04' ],
-            [ '/eng/contributions/activity_timeline/2017/04', null, true ],
-            [ '/eng/contributions/activity_timeline/2017/04', 'contributor', true ],
-            [ '/eng/contributions/of_user/admin', null, true ],
-            [ '/eng/contributions/of_user/admin', 'contributor', true ],
+            [ '/en/contributions/index', null, '/en/contributions/latest' ],
+            [ '/en/contributions/index', 'contributor', '/en/contributions/latest' ],
+            [ '/en/contributions/index/eng', null, '/en/contributions/latest/eng' ],
+            [ '/en/contributions/index/eng', 'contributor', '/en/contributions/latest/eng' ],
+            [ '/en/contributions/latest', null, true ],
+            [ '/en/contributions/latest', 'contributor', true ],
+            [ '/en/contributions/latest/eng', null, true ],
+            [ '/en/contributions/latest/eng', 'contributor', true ],
+            [ '/en/contributions/activity_timeline', null, '/en/contributions/activity_timeline/2017/04' ],
+            [ '/en/contributions/activity_timeline', 'contributor', '/en/contributions/activity_timeline/2017/04' ],
+            [ '/en/contributions/activity_timeline/2017/04', null, true ],
+            [ '/en/contributions/activity_timeline/2017/04', 'contributor', true ],
+            [ '/en/contributions/of_user/admin', null, true ],
+            [ '/en/contributions/of_user/admin', 'contributor', true ],
         ];
     }
 

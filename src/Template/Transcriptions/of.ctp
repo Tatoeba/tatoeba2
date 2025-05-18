@@ -24,25 +24,28 @@ $title = format(
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<?php
-echo $this->Html->div(
-    null,
-    $this->element(
-        'users_menu',
-        array('username' => $username)
-    ),
-    array('id' => 'annexe_content')
-);
-?>
+<?php if (!empty($userId)) {
+    echo $this->Html->div(
+        null,
+        $this->element(
+            'users_menu',
+            array('username' => $username)
+        ),
+        array('id' => 'annexe_content')
+    );
+} ?>
 
 <div id="main_content">
 <div class="section md-whiteframe-1dp">
 <?php
 if (empty($userId)) {
-    echo $this->Html->tag('h2', format(
-        __("There's no user called {username}"),
-        array('username' => $username)
-    ));
+    echo $this->Html->tag(
+        'h2',
+        format(
+            __("There's no user called {username}"),
+            array('username' => $this->safeForAngular($username))
+        )
+    );
 } else if (isset($results)) {
     if (count($results) == 0) {
         echo $this->Html->tag('h2', format(
@@ -62,8 +65,7 @@ if (empty($userId)) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = false;
-        foreach ($results as $result) {
-            $sentence = $result->sentence;
+        foreach ($results as $sentence) {
             $this->Sentences->displayGenericSentence(
                 $sentence,
                 $type,

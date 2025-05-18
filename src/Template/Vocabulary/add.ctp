@@ -37,6 +37,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <div class="section md-whiteframe-1dp" layout="column">
+        <?php /* @translators: title of the help text on the Add vocabulary page */ ?>
         <h2><?= __('Tips'); ?></h2>
         <p><?= __(
             'Add vocabulary that you are learning. If your vocabulary does not '.
@@ -65,11 +66,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         ]) ?>
             <div layout="row">
                 <div class="language" layout="column">
+                    <?php /* @translators: language field label in new vocabulary request form */ ?>
                     <label for="lang-select"><?= __('Language'); ?></label>
                     <?php
-                    $langArray = $this->Languages->profileLanguagesArray(
-                        false, false
-                    );
+                    $langArray = $this->Languages->profileLanguagesArray();
                     $selectedLang = key($langArray);
                     echo $this->Form->select(
                         'lang',
@@ -90,7 +90,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         'label' => __('Vocabulary item'),
                         'ng-model' => 'ctrl.data.text',
                         'ng-disabled' => 'ctrl.isAdding',
-                        'autocomplete' => 'off'
+                        'autocomplete' => 'off',
+                        'focus-input' => 'focusInput'
                     ]);
                     ?>
                 </md-input-container>
@@ -99,6 +100,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary"
                            ng-disabled="ctrl.isAdding || !ctrl.data.text || !ctrl.data.lang">
+                    <?php /* @translators: button to add a vocabulary request */ ?>
                     <?= __('Add'); ?>
                 </md-button>
             </div>
@@ -120,7 +122,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-list flex ng-show="ctrl.vocabularyAdded.length > 0">
             <md-list-item id="vocabulary_{{item.id}}"
                           ng-repeat="item in ctrl.vocabularyAdded">
-                <img class="vocabulary-lang" ng-src="/img/flags/{{item.lang}}.svg"/>
+                <img class="vocabulary-lang language-icon" width="30" height="20"
+                     ng-src="/img/flags/{{item.lang}}.svg"/>
                 <div class="vocabulary-text" flex>{{item.text}}</div>
                 <md-icon ng-show="item.duplicate">warning</md-icon>
                 <md-tooltip md-direction="top" ng-show="item.duplicate">

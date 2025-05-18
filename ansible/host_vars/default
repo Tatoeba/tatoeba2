@@ -1,0 +1,104 @@
+---
+
+# Configure the machine to be a:
+# 'prod': production server
+# 'dev': development server
+deploy_for: 'dev'
+
+# Variables for ssh
+# -----------------
+ansible_ssh_user: vagrant
+ansible_ssh_port: 2222
+ansible_ssh_pipelining: yes
+
+
+# Variables for common role
+# -------------------------
+# List of python modules to be installed (Add the modules as list items; check backup_items defined below to see how lists are declared)
+# python_modules:
+
+
+# Variables for nginx configuration
+# ---------------------------------
+nginx_config_file: default
+main_server_name: tato.test
+main_server_root: "{{code_dir}}/webroot"
+audio_server_name: audio.{{main_server_name}}
+api_server_name: api.{{main_server_name}}
+downloads_server_name: downloads.{{main_server_name}}
+downloads_server_root: /var/www-downloads/
+static_server_name: static.{{main_server_name}}
+static_server_root: /var/media/www-static/
+xcache_server_name: xcache.{{main_server_name}}
+xcache_server_root: /var/www-xcache/
+
+
+# Variables for mysql database
+# ----------------------------
+mysql_root_password: tatoeba
+mysql_user: tatouser
+mysql_password: tatoeba
+mysql_db_name: tatoeba
+
+# Set this to 'download' if you want to fetch the csv's from http://tatoeba.org/files/downloads/. This will import sentences and tags from the latest export of Tatoeba.
+# Set this to 'local' if the csv's are already present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
+# Set this to 'no' if you don't want to import data
+import_csv: 'download'
+download_url: http://downloads.tatoeba.org/exports/
+
+# Variables for Tatoeba's code and Cakephp
+# ----------------------------------------
+# Where you want Tatoeba's code to be installed
+code_dir: /home/{{ansible_ssh_user}}/Tatoeba
+repo_version: HEAD
+git_remote: origin
+# change the repository to your own fork to contribute
+git_rep: https://github.com/Tatoeba/tatoeba2.git
+
+security_salt: c0e82d920f0dbfb5e3c8d314278eed6c07b35e2bfcecdef4afc2136d391f01c2
+# Variables for test server (leave unchanged if you don't need them or don't know what they mean)
+mysql_test_user: tatouser
+mysql_test_password: tatoeba
+mysql_test_db_name: tatoeba_test
+
+
+# Variables for manticore search
+# ---------------------------
+manticore_index_dir: /var/manticore/indices
+manticore_log_dir: /var/manticore/log
+manticore_sql_socket: /run/mysqld/mysqld.sock
+manticore_pid_file: /var/run/manticore/searchd.pid
+manticore_binlog_path: /var/lib/manticore/data
+
+# Variables for tatodetect
+# ------------------------
+# How do you want ngrams.db file be created? Options: [generate, download, skip]
+ngrams_create_mode: download
+ngrams_db_download_url: https://downloads.tatoeba.org/tatodetect/ngrams.db
+ngrams_db_file: /etc/ngrams.db
+
+# Variables for tatomecab
+# ------------------------
+build_tatomecab_dict: true
+tatomecab_dict_dir: /var/lib/mecab/dic/tatomecab
+
+# Variables for tatowiki
+# ------------------------
+tatowiki_basedir: /srv/wiki.tatoeba.org
+tatowiki_sqlite_file: "{{tatowiki_basedir}}/www/data/wiki.db"
+tatowiki_resources_dir: "{{tatowiki_basedir}}/www/resources"
+tatowiki_upload_dir: "{{tatowiki_basedir}}/www/upload"
+tatowiki_domain: "wiki.{{main_server_name}}"
+
+# Variables for New Relic
+# -----------------------
+newrelic_loglevel: info
+newrelic_logfile: /var/log/newrelic/nrsysmond.log
+newrelic_ssl: "false"
+newrelic_pidfile: /var/run/newrelic/nrsysmond.pid
+newrelic_collector_host: collector.newrelic.com
+newrelic_timeout: 30
+
+newrelic_php_app_name: TatoebaCakePHP
+newrelic_nginx_monitor_name: Tatoeba-nginx
+newrelic_php-fpm_monitor_name: Tatoeba-php-fpm

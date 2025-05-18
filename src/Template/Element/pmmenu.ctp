@@ -42,6 +42,7 @@ $isTrashFolder = $this->request->params['action'] == 'folder'
     <div layout="column" layout-margin>
         <md-button class="md-raised md-primary" href="<?= $newMessageUrl ?>">
             <md-icon>email</md-icon>
+            <?php /* @translators: button to compose a new private message (verb) */ ?>
             <?= __('Compose') ?>
         </md-button>
     </div>

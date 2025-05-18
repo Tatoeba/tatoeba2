@@ -20,8 +20,7 @@ namespace App\Shell;
 
 use App\Lib\LanguagesLib;
 use Cake\Console\Shell;
-use Cake\Core\Configure;
-use Locale;
+use Cake\I18n\I18n;
 
 class LanguageNamesShell extends Shell {
 
@@ -77,7 +76,7 @@ class LanguageNamesShell extends Shell {
     }
 
     private function get_tatoeba_languages() {
-        Configure::write('Config.language', 'eng');
+        I18n::setLocale('en');
         $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
     }
 

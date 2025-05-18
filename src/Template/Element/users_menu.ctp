@@ -29,6 +29,7 @@ use App\Model\CurrentUser;
 $this->Html->script('elements/user-menu.ctrl.js', ['block' => 'scriptBottom']);
 $menu = [
     [
+        /* @translators: link to the user's profile in the sidebar */
         'label' => __('Profile'),
         'url' => [
             'controller' => 'user',
@@ -37,6 +38,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the user's sentences on profile page sidebar */
         'label' => __('Sentences'),
         'url' => [
             'controller' => 'sentences',
@@ -45,6 +47,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the user's vocabulary on profile page sidebar */
         'label' => __('Vocabulary'),
         'url' => [
             'controller' => 'vocabulary',
@@ -53,14 +56,17 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the user's reviews on profile page sidebar */
         'label' => __('Reviews'),
         'url' => [
             'controller' => 'reviews',
             'action' => 'of',
-            $username
+            $username,
+            'all',
         ]
     ],
     [
+        /* @translators: link to the user's lists on profile page sidebar */
         'label' => __('Lists'),
         'url' => [
             'controller' => 'sentences_lists',
@@ -69,6 +75,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the user's favorite sentences on profile page sidebar */
         'label' => __('Favorites'),
         'url' => [
             'controller' => 'favorites',
@@ -77,6 +84,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the user's sentence comments on profile page sidebar */
         'label' => __('Comments'),
         'url' => [
             'controller' => 'sentence_comments',
@@ -85,6 +93,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link on profile page sidebar */
         'label' => format(__("Comments on {user}'s sentences"), ['user' => $username]),
         'url' => [
             'controller' => 'sentence_comments',
@@ -93,6 +102,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the user's wall posts on profile page sidebar */
         'label' => __('Wall messages'),
         'url' => [
             'controller' => 'wall',
@@ -101,6 +111,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the user's contributions on profile page sidebar */
         'label' => __('Logs'),
         'url' => [
             'controller' => 'contributions',
@@ -112,6 +123,7 @@ $menu = [
         'separator'
     ],
     [
+        /* @translators: link to the list of audio on profile page sidebar */
         'label' => __('Audio'),
         'url' => [
             'controller' => 'audio',
@@ -120,6 +132,7 @@ $menu = [
         ]
     ],
     [
+        /* @translators: link to the list of transcriptions on profile page sidebar */
         'label' => __('Transcriptions'),
         'url' => [
             'controller' => 'transcriptions',
@@ -132,19 +145,11 @@ $menu = [
     ],
     [
         'icon' => 'translate',
+        /* @translators: link text on profile page sidebar */
         'label' => format(__("Translate {user}'s sentences"), ['user' => $username]),
         'url' => [
             'controller' => 'activities',
             'action' => 'translate_sentences_of',
-            $username
-        ]
-    ],
-    [
-        'icon' => 'email',
-        'label' => format(__('Contact {user}'), ['user' => $username]),
-        'url' => [
-            'controller' => 'private_messages',
-            'action' => 'write',
             $username
         ]
     ],
@@ -168,9 +173,7 @@ $menu = [
                 <p><?= $item['label'] ?></p>
             </md-list-item>
         <?php } else { ?>
-            <md-divider></md-divider>
+            <md-divider ng-show="expanded"></md-divider>
         <?php } ?>
     <?php } ?>
 </md-list>
-
-<br>

@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Text;
 
 trait TatoebaControllerTestTrait {
     private function logInAs($username) {
@@ -20,6 +21,8 @@ trait TatoebaControllerTestTrait {
             $who = "guest";
         }
 
+        $this->_securityToken = false;
+        $this->_csrfToken = false;
         $this->get($url);
 
         if (is_string($response)) {
@@ -43,6 +46,11 @@ trait TatoebaControllerTestTrait {
 
     public function ajaxPost($url, $data = []) {
         $this->addHeader('X-Requested-With', 'XMLHttpRequest');
+        if (is_string($data)) {
+            $token = Text::uuid();
+            $this->cookie('csrfToken', $token);
+            $this->configRequest(['headers' => ['X-CSRF-Token' => $token]]);
+        }
         $this->post($url, $data);
     }
 

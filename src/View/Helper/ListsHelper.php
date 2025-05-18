@@ -72,11 +72,13 @@ class ListsHelper extends AppHelper
                  <td></td>
                 <td class="date createdDate">
                      <?php
+                     /* @translators: sort option in list of lists */
                      echo __('created');
                      ?>
                 </td>
                 <td class="date lastUpdatedDate">
                     <?php
+                     /* @translators: sort option in list of lists */
                      echo __('last updated');
                      ?>
                 </td>
@@ -154,7 +156,7 @@ class ListsHelper extends AppHelper
             }
 
             echo $this->Html->link(
-                $name,
+                $this->_View->safeForAngular($name),
                 array(
                     "controller" => "sentences_lists",
                     "action" => "show",
@@ -295,30 +297,56 @@ class ListsHelper extends AppHelper
      *
      * @return void
      */
-    public function displayTranslationsDropdown($listId, $translationsLang = null) {
-        echo __('Show translations :') . ' ';
+    public function displayTranslationsDropdown($listId,$filterLanguage, $translationsLang = null) {
+        ?>
+        <div class="section md-whiteframe-1dp">
+            <h2><?php echo __('Show translations in:'); ?></h2>
+            <?php
+            $path = $this->Url->build(['action' => 'show', $listId]) . '/';
+            // TODO onSelectedLanguageChange should be defined in a separate js file
+            echo $this->_View->element(
+                'language_dropdown',
+                array(
+                    'name' => 'translationLangChoice',
+                    'languages' => $this->Languages->languagesArrayShowTranslationsIn(),
+                    'initialSelection' => $translationsLang,
+                    'onSelectedLanguageChange' => "window.location.pathname = '$path' + '$filterLanguage' + '/'+language.code",
+                    'forceItemSelection' => true,
+                )
+            );
+            ?>
+            </div>
+        <?php
+    }
 
-        // TODO User $this->Url->build()
-        $path = '/';
-        if (!empty($this->request->params['lang'])) {
-            $path .= $this->request->params['lang'] . '/';
-        }
-        $path .= 'sentences_lists/show/'. $listId.'/';
-
-        // TODO onChange should be defined in a separate js file
-        echo $this->Form->select(
-            "translationLangChoice",
-            $this->Languages->languagesArrayForPositiveLists(),
-            array(
-                "value" => $translationsLang,
-                "onchange" => "$(location).attr('href', '".$path."' + this.value);",
-                "class" => "language-selector",
-                "empty" => false
-            ),
-            false
-        );
-
-
+    /**
+     * Display dropdown for selecting the language/s used to filter list
+     *
+     * @param [int] $listId 
+     * @param [string] $translationsLang Translation languages for each sentence
+     * @param [string] $filterLanguage Language whose sentences will only be displayed
+     * @return void
+     */
+    public function displayFilterByLangDropdown($listId, $filterLanguage, $translationsLang)
+    {
+        ?>
+        <div class="section md-whiteframe-1dp">
+            <h2><?php echo __('Sentences in:'); ?></h2>
+            <?php
+            $path = $this->Url->build(['action' => 'show', $listId]) . '/';
+            echo $this->_View->element(
+                'language_dropdown',
+                array(
+                    'name' => 'filterLanguageSelect',
+                    'languages' => $this->Languages->languagesArrayAlone(),
+                    'initialSelection' => $filterLanguage,
+                    'onSelectedLanguageChange' => "window.location.pathname = '$path' +language.code +'/'+ '$translationsLang'",
+                    'forceItemSelection' => true,
+                )
+            );
+            ?>
+        </div>
+    <?php
     }
 
     public function displayVisibilityOption($listId, $value)
@@ -330,18 +358,43 @@ class ListsHelper extends AppHelper
         <dl>
             <?php
             $title = __('List visibility');
-            $loader = "<md-progress-circular class='is-public loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
+            $loader = $this->Html->tag(
+                'md-progress-circular',
+                '',
+                [
+                    'class' => 'loader-container',
+                    'md-diameter' => '16',
+                    'ng-show' => 'visibilityProgress',
+                ]
+            );
             echo $this->Html->tag('dt', $title . $loader);
             ?>
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
-            <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
-                <md-radio-button value='public' class='md-primary'>
-                    <?=  __('Public') ?>
+            <md-radio-group ng-model='visibility' ng-change='visibilityChanged()'>
+                <md-radio-button value='public'
+                                 class='md-primary'
+                                 title='<?= h(__(
+                                     "The list is accessible to anyone and is listed on the "
+                                    ."'Browse by list' page, as well as on the sentence page "
+                                    ."for every sentence it contains.")) ?>'>
+                    <?php /* @translators: visibility option of a list */ ?>
+                    <?= __('Public') ?>
                 </md-radio-button>
-                <md-radio-button value='unlisted' class='md-primary'>
+                <md-radio-button value='listed' class='md-primary' title=
+                                 '<?= h(__("The list is accessible to anyone and is "
+                                          ."listed on the 'Browse by list' page.")) ?>'>
+                    <?php /* @translators: visibility option of a list */ ?>
+                    <?=  __('Listed');?>
+                </md-radio-button>
+                <md-radio-button value='unlisted' class='md-primary' title=
+                                 '<?= h(__("The list is accessible to anyone but is not "
+                                          ."listed on the 'Browse by list' page."))?>'>
+                    <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Unlisted') ?>
                 </md-radio-button>
-                <md-radio-button value='private' class='md-primary'>
+                <md-radio-button value='private' class='md-primary' title=
+                                 '<?= h(__("The list is accessible only to you."))?>'>
+                    <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Private') ?>
                 </md-radio-button>
             </md-radio-group>
@@ -367,18 +420,29 @@ class ListsHelper extends AppHelper
                     $value = "no_one";
                 }
                 $title = __('Who can add/remove sentences');
-                $loader = "<md-progress-circular class='is-editable loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
+                $loader = $this->Html->tag(
+                    'md-progress-circular',
+                    '',
+                    [
+                        'class' => 'loader-container',
+                        'md-diameter' => '16',
+                        'ng-if' => 'editableProgress',
+                    ]
+                );
                 echo $this->Html->tag('dt', $title.$loader);
             ?>
             <input type="radio"  name="editable_by" data-list-id='<?= $listId ?>'  value="{{editable}}" checked hidden ng-init="editable = '<?= $value ?>';"/>
-            <md-radio-group ng-controller='optionsCtrl' ng-model='editable' ng-change='editableChanged("{{editable}}")'>
+            <md-radio-group ng-model='editable' ng-change='editableChanged("{{editable}}")'>
                 <md-radio-button value='anyone' class='md-primary'>
+                    <?php /* @translators: option when choosing who can edit a list */ ?>
                     <?=  __('Anyone') ?>
                 </md-radio-button>
                 <md-radio-button value='creator' class='md-primary'>
+                    <?php /* @translators: option when choosing who can edit a list */ ?>
                     <?= __('Only me') ?>
                 </md-radio-button>
                 <md-radio-button value='no_one' class='md-primary'>
+                    <?php /* @translators: option when choosing who can edit a list */ ?>
                     <?= __('No one (list inactive)') ?>
                 </md-radio-button>
             </md-radio-group>
@@ -472,6 +536,41 @@ class ListsHelper extends AppHelper
         <?php
     }
 
+     /**
+      * Function shows X behind the List to remove it
+      */
+    private function _displayRemoveLink($listId, $sentenceId, $listName)
+    {
+        $removeSentenceFromListAlt = format(
+            __("Remove this sentence from '{listName}'."),
+                compact('listName')
+        );
+
+        $removeSentenceFromListImg =  $this->Html->image(
+            IMG_PATH . 'close.png',
+            array(
+                "class" => "removeFromListButton",
+                "id" => 'deleteFromListButton'.$listId,
+                "alt" => $removeSentenceFromListAlt
+            )
+        );
+        // X link to remove sentence from List
+        echo $this->Html->link(
+            $removeSentenceFromListImg,
+            array(
+                "controller" => "sentences_lists",
+                "action" => "remove_sentence_from_list",
+                $sentenceId,
+                $listId
+            ),
+            array(
+                "class" => "removeSentenceFromListButton",
+                "id" => 'deleteButton'.$listId.$sentenceId,
+                "title" => h($removeSentenceFromListAlt),
+                "escape" => false
+            )
+        );
+    }
     /**
      * Form to add a new sentence to a list.
      *
@@ -494,6 +593,7 @@ class ListsHelper extends AppHelper
             )
         );
         echo $this->Form->button(
+            /* @translators: submit button of sentence addition form on list page */
             __('OK'),
             array(
                 'id' => 'submitNewSentenceToList',
@@ -526,14 +626,20 @@ class ListsHelper extends AppHelper
     }
 
 
-    public function displayListsModule($listsArray)
+    public function displayListsModule($listsArray, $sentences)
     {
+        $sentenceId = $sentences->id;
+        $currentUserId = CurrentUser::get('id');
+
+        echo '<div class="section md-whiteframe-1dp">';
+        /* @translators: header text on the sidebar of a sentence page */
+        echo $this->Html->tag('h2', __('Lists'));
+
         if (count($listsArray) > 0) {
-            echo '<div class="section md-whiteframe-1dp">';
-            echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
                 $list = $list->sentences_list;
+                $listName = $this->_View->safeForAngular($list['name']);
                 if ($list['visibility'] == 'public') {
                     $class = 'public-list';
                 } else {
@@ -541,18 +647,26 @@ class ListsHelper extends AppHelper
                 }
                 echo '<li class="'.$class.'">';
                 echo $this->Html->link(
-                    $list['name'],
+                    $listName,
                     array(
                         'controller' => 'sentences_lists',
                         'action' => 'show',
                         $list['id']
                     )
                 );
+                if (CurrentUser::isMember()) {
+                    if (($list['user_id'] == $currentUserId &&
+                         $list['editable_by'] != 'no_one')
+                        || $list['editable_by'] == 'anyone')
+                    {
+                       echo $this->_displayRemoveLink($list['id'], $sentenceId, $listName);
+                    }
+                }
                 echo '</li>';
             }
             echo '</ul>';
-            echo '</div>';
         }
+        echo '</div>';
     }
 
 
@@ -571,11 +685,13 @@ class ListsHelper extends AppHelper
             <md-input-container layout="column">
                 <?php
                 echo $this->Form->control('name', [
+                    /* @translators: field for the name of a list to create (noun) */
                     'label' => __x('list', 'Name')
                 ]);
                 ?>
                 <md-button type="submit" class="md-raised md-primary">
-                    <?= __('create') ?>
+                    <?php /* @translators: button to create a new list from the lists of list page (verb) */ ?>
+                    <?= __('Create') ?>
                 </md-button>
             </md-input-container>
 
@@ -592,7 +708,8 @@ class ListsHelper extends AppHelper
         ?>
         <div class="section md-whiteframe-1dp">
             <?php
-            echo $this->Html->tag('h2', __('Search'));
+            /* @translators: header text in List of lists page (noun) */
+            echo $this->Html->tag('h2', __x('header', 'Search'));
 
             echo $this->Form->create('SentencesList', ['type' => 'get']);
 
@@ -606,13 +723,14 @@ class ListsHelper extends AppHelper
             <md-input-container layout="column">
                 <?php
                 echo $this->Form->input('search', [
-                    'value' => $search,
+                    'value' => $this->_View->safeForAngular($search),
                     'label' => false
                 ]);
                 ?>
 
                 <md-button type="submit" class="md-raised">
-                    <?= __('Search') ?>
+                    <?php /* @translators: search form button in List of lists pages (verb) */ ?>
+                    <?= __x('button', 'Search') ?>
                 </md-button>
             </md-input-container>
 
@@ -627,6 +745,7 @@ class ListsHelper extends AppHelper
     {
         ?>
         <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+            <?php /* @translators: header text in sidebar on pages related to sentences lists */ ?>
             <md-subheader><?= __('Lists') ?></md-subheader>
 
             <?php
@@ -675,6 +794,7 @@ class ListsHelper extends AppHelper
      */
     public function listsAsSelectable($lists)
     {
+        /* @translators: dropdown option when no list is selected (used to filter by list in advanced search) */
         $unspecified = __x('list', 'Unspecified');
         if (CurrentUser::isMember()) {
             $sortedLists = array(0 => array(), 1 => array());

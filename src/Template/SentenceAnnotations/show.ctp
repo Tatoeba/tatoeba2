@@ -31,7 +31,7 @@
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="module" ng-non-bindable>
     <?php
     if(isset($sentence)){
         ?>

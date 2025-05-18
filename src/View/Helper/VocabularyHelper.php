@@ -20,7 +20,7 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use Cake\Core\Configure;
-use App\Utility\Search;
+use App\Model\Search;
 
 
 class VocabularyHelper extends AppHelper
@@ -29,23 +29,28 @@ class VocabularyHelper extends AppHelper
         'Html', 'Url'
     );
 
-    public function vocabulary($vocab) {
-        $lang = $vocab['lang'];
-        $text = $vocab['text'];
-        $numSentences = $vocab['numSentences'];
+    /**
+     * Create the label for the link to the search page
+     *
+     * @param integer $numSentences Number of sentences containing the vocabulary item
+     *
+     * @return string
+     */
+    public function sentenceCountLabel($numSentences) {
         if (is_null($numSentences)) {
-            $numSentencesLabel = __('Unknown number of sentences');
+            return __('Unknown number of sentences');
         } else {
-            $numSentences = $numSentences == 1000 ? '1000+' : $numSentences;
-            $numSentencesLabel = format(
-                __n(
-                    '{number} sentence', '{number} sentences',
-                    $numSentences,
-                    true
-                ),
-                array('number' => $numSentences)
+            return format(
+                __n('{number} sentence', '{number} sentences', $numSentences),
+                ['number' => $numSentences == 1000 ? "1000+" : $numSentences]
             );
         }
+    }
+
+    public function vocabulary($vocab) {
+        $lang = $vocab['lang'];
+        $text = $this->_View->safeForAngular($vocab['text']);
+        $numSentencesLabel = $this->sentenceCountLabel($vocab['numSentences']);
         if (Configure::read('Search.enabled')) {
             $url = $this->Url->build(array(
                 'controller' => 'sentences',
@@ -59,7 +64,8 @@ class VocabularyHelper extends AppHelper
             ));
         }
         ?>
-        <img class="vocabulary-lang" src="/img/flags/<?= $lang ?>.svg"/>
+        <img class="vocabulary-lang language-icon" width="30" height="20"
+             src="/img/flags/<?= $lang ?>.svg"/>
         <div class="vocabulary-text" flex><?= $text ?></div>
         <md-button ng-cloak class="md-primary" <?= isset($url) ? "href=\"$url\"" : 'ng-disabled="1"' ?>>
             <?= $numSentencesLabel ?>

@@ -11,6 +11,7 @@ use Cake\I18n\I18n;
 class AudiosTableTest extends TestCase {
     public $fixtures = array(
         'app.audios',
+        'app.disabled_audios',
         'app.contributions',
         'app.favorites_users',
         'app.languages',
@@ -202,20 +203,51 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(1, $result);
     }
 
-    function testAssignAudioTo() {
-        $result = $this->Audio->assignAudioTo(1, 'admin');
+    function testAssignAuthor_user() {
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $this->Audio->assignAuthor($audio, 'admin');
+        $result = $this->Audio->save($audio);
+
         $expected = [
-            'sentence_id' => 1,
+            'external' => null,
             'user_id' => 1
         ];
         $result = array_intersect_key($result->toArray(), $expected);
         $this->assertEquals($expected, $result);
     }
 
-    function testAssignAudioTo_incrementsCount() {
+    function testAssignAuthor_external() {
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $this->Audio->assignAuthor($audio, 'Barack Obama');
+        $result = $this->Audio->save($audio);
+
+        $expected = [
+            'external' => [
+                'username' => 'Barack Obama',
+                'license' => null,
+                'attribution_url' => null,
+            ],
+            'user_id' => null,
+        ];
+        $result = array_intersect_key($result->toArray(), $expected);
+        $this->assertEquals($expected, $result);
+    }
+
+    function testAssignAuthor_external_fails() {
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $this->Audio->assignAuthor($audio, 'Barack Obama', false);
+        $result = $this->Audio->save($audio);
+        $this->assertFalse($result);
+    }
+
+    function testNewAudio_incrementsCount() {
         $Languages = TableRegistry::getTableLocator()->get('Languages');
         $before = $Languages->find()->where(['code' => 'eng'])->first()->audio;
-        $result = $this->Audio->assignAudioTo(1, 'admin');
+
+        $audio = $this->Audio->newEntity(['sentence_id' => 1]);
+        $this->Audio->assignAuthor($audio, 'admin');
+        $this->Audio->save($audio);
+
         $after= $Languages->find()->where(['code' => 'eng'])->first()->audio;
         $this->assertEquals(1, $after - $before);
     }
@@ -230,10 +262,193 @@ class AudiosTableTest extends TestCase {
     }
 
     function testAssignAudioTo_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $added = $this->Audio->assignAudioTo(2, 'contributor');
+
+        $audio = $this->Audio->newEntity(['sentence_id' => 2]);
+        $this->Audio->assignAuthor($audio, 'contributor');
+        $added = $this->Audio->save($audio);
+
         $returned = $this->Audio->get($added->id);
-        $this->assertEquals($added->created, $returned->created);
-        $this->assertEquals($added->modified, $returned->modified);
+        $this->assertEquals($added->created->format('Y-m-d H:i:s'), $returned->created->format('Y-m-d H:i:s'));
+        $this->assertEquals($added->modified->format('Y-m-d H:i:s'), $returned->modified->format('Y-m-d H:i:s'));
+
+        I18n::setLocale($prevLocale);
+    }
+
+    function testEdit_enable_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertTrue($audio->enabled);
+
+        $this->Audio->edit($audio, ['enabled' => false]);
+        $this->Audio->save($audio);
+
+        try {
+            $this->Audio->get(1);
+            $result = true;
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            $result = false;
+        }
+
+        $this->assertFalse($result);
+        $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
+        $this->assertFalse($DisabledAudios->get(1)->enabled);
+    }
+
+    function testEdit_enable_fails() {
+        $audio = $this->Audio->get(1);
+        $this->assertTrue($audio->enabled);
+
+        $this->Audio->edit($audio, ['enabled' => 'invalid data here']);
+        $this->Audio->save($audio);
+
+        $this->assertTrue($audio->hasErrors());
+        $this->assertTrue($this->Audio->get(1)->enabled);
+    }
+
+    function testEdit_change_author_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertEquals(4, $audio->user_id);
+
+        $this->Audio->edit($audio, ['author' => 'admin']);
+        $this->Audio->save($audio);
+
+        $this->assertEquals(1, $this->Audio->get(1)->user_id);
+    }
+
+    function testEdit_change_author_empty_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertEquals(4, $audio->user_id);
+
+        $this->Audio->edit($audio, ['author' => '']);
+        $this->Audio->save($audio);
+
+        $this->assertEquals(4, $this->Audio->get(1)->user_id);
+    }
+
+    function testEdit_change_external_author_ok() {
+        $audio = $this->Audio->get(1);
+        $this->assertEquals(4, $audio->user_id);
+        $this->assertNull($audio->external);
+
+        $this->Audio->edit($audio, ['author' => 'Barack Obama']);
+        $this->Audio->save($audio);
+
+        $audio = $this->Audio->get(1);
+        $this->assertNull($audio->user_id);
+        $this->assertEquals('Barack Obama', $audio->external['username']);
+    }
+
+    function testSentencesFinder() {
+        $result = $this->Audio->find('sentences')->all()->toList();
+
+        $this->assertEquals(5, count($result));
+
+        $this->assertEquals(57, $result[0]->id);
+        $this->assertEquals(1, count($result[0]->audios));
+
+        $this->assertEquals(15, $result[1]->id);
+        $this->assertEquals(1, count($result[1]->audios));
+
+        $this->assertEquals(12, $result[2]->id);
+        $this->assertEquals(1, count($result[2]->audios));
+
+        $this->assertEquals(4, $result[3]->id);
+        $this->assertEquals(2, count($result[3]->audios));
+
+        $this->assertEquals(3, $result[4]->id);
+        $this->assertEquals(1, count($result[4]->audios));
+    }
+
+    function testSentencesFinder_lang() {
+        $result = $this->Audio->find('sentences', ['lang' => 'fra'])->all()->toList();
+
+        $this->assertEquals(2, count($result));
+
+        $this->assertEquals(12, $result[0]->id);
+        $this->assertEquals(1, count($result[0]->audios));
+
+        $this->assertEquals(4, $result[1]->id);
+        $this->assertEquals(2, count($result[1]->audios));
+    }
+
+    function testSentencesFinder_user_id() {
+        $result = $this->Audio->find('sentences', ['user_id' => 3])->all()->toList();
+
+        $this->assertEquals(2, count($result));
+
+        $this->assertEquals(15, $result[0]->id);
+        $this->assertEquals(1, count($result[0]->audios));
+        $this->assertEquals(3, $result[0]->audios[0]->user_id);
+
+        $this->assertEquals(4, $result[1]->id);
+        $this->assertEquals(1, count($result[1]->audios));
+        $this->assertEquals(3, $result[1]->audios[0]->user_id);
+    }
+
+    function testChangeSentenceLangChangesAudioSentenceLang() {
+        $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
+        $sentenceId = 3;
+
+        $before = $this->Audio->findBySentenceId($sentenceId)->all()->toList();
+        $disabledBefore = $DisabledAudios->findBySentenceId($sentenceId)->all()->toList();
+
+        $sentence = $this->Audio->Sentences->get($sentenceId);
+        $sentence->lang = 'hun';
+        $this->Audio->Sentences->save($sentence);
+
+        $after = $this->Audio->findBySentenceId($sentenceId)->all()->toList();
+        $disabledAfter = $DisabledAudios->findBySentenceId($sentenceId)->all()->toList();
+
+        $this->assertEquals(1, count($before));
+        $this->assertEquals(1, count($disabledBefore));
+        $this->assertEquals(1, count($after));
+        $this->assertEquals(1, count($disabledAfter));
+
+        $this->assertEquals('spa', $before[0]->sentence_lang);
+        $this->assertEquals('spa', $disabledBefore[0]->sentence_lang);
+        $this->assertEquals('hun', $after[0]->sentence_lang);
+        $this->assertEquals('hun', $disabledAfter[0]->sentence_lang);
+    }
+
+    function testCreatingAudioSetsSentenceLang() {
+        $sentence_id = 2;
+        $audio = $this->Audio->newEntity(compact('sentence_id'));
+        $this->Audio->assignAuthor($audio, 'contributor');
+        $result = $this->Audio->save($audio);
+
+        $this->assertEquals('cmn', $this->Audio->get($result->id)->sentence_lang);
+    }
+
+    function testGetAudio_virtualFields_hasUserWithAudioAttribution() {
+        $audio = $this->Audio->findById(1)->contain(['Users'])->first();
+
+        $this->assertEquals('https://example.com/my-audios', $audio->attribution_url);
+        $this->assertEquals('CC BY 4.0', $audio->license);
+        $this->assertEquals('contributor', $audio->author);
+    }
+
+    function testGetAudio_virtualFields_hasUserWithoutAudioAttribution() {
+        $audio = $this->Audio->findById(5)->contain(['Users'])->first();
+
+        $this->assertEquals('/user/profile/advanced_contributor', $audio->attribution_url);
+        $this->assertEquals('', $audio->license);
+        $this->assertEquals('advanced_contributor', $audio->author);
+    }
+
+    function testGetAudio_virtualFields_hasExternalUserWithAudioAttribution() {
+        $audio = $this->Audio->findById(3)->contain(['Users'])->first();
+
+        $this->assertEquals('https://example.fr/petit', $audio->attribution_url);
+        $this->assertEquals('CC BY-NC 4.0', $audio->license);
+        $this->assertEquals('Philippe Petit', $audio->author);
+    }
+
+    function testGetAudio_virtualFields_hasExternalUserWithoutAudioAttribution() {
+        $audio = $this->Audio->findById(2)->contain(['Users'])->first();
+
+        $this->assertEquals('', $audio->attribution_url);
+        $this->assertEquals('', $audio->license);
+        $this->assertEquals('Philippe Petit', $audio->author);
     }
 }
