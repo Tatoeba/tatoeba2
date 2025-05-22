@@ -6,16 +6,16 @@
     repo: https://github.com/Tatoeba/tatomecab.git
     dest: /tmp/tatomecab
 
-- include: build_dict.yml
+- include_tasks: build_dict.yml
   when: build_tatomecab_dict == true
 
 - name: Install dependencies for tatomecab
   apt:
-    name: ['python-mecab', 'python-setuptools']
+    name: ['python3-mecab', 'python3-setuptools']
     state: present
 
 - name: Install tatomecab
-  command: python setup.py install chdir=/tmp/tatomecab/
+  command: python3 setup.py install chdir=/tmp/tatomecab/
 
 - name: Copy service file to system-wide location
   copy: src=tatomecab.service dest=/etc/systemd/system/tatomecab.service mode=0644
