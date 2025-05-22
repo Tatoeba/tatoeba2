@@ -136,11 +136,11 @@ class ImportsController extends AppController
     private function _common_upload_check ($file)
     {
 
-        if ($file['error'] != UPLOAD_ERR_OK) {
+        if (isset($file['error']) && $file['error'] != UPLOAD_ERR_OK) {
             return false;
         }
 
-        if (!is_uploaded_file($file['tmp_name'])) {
+        if (!isset($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
             return false;
         }
         return true;
