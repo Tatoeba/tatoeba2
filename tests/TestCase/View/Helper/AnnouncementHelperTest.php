@@ -16,54 +16,142 @@ class AnnouncementHelperTest extends TestCase
         return new AnnouncementHelper($view);
     }
 
-    public function contextProvider() {
+    public function announcementProvider() {
         return [
             'announcement disabled' => [
                 '2020-05-30 02:00 UTC', // "now" time
                 [ 'enabled' => false ], // value for Announcement in app_config.php
                 false,                  // should be displayed or not
-                null,                   // maintenance message
             ],
             'announcement enabled' => [
                 '2020-05-30 02:00 UTC',
                 [ 'enabled' => true ],
                 true,
-                null,                   // no maintenance message since no maintenance is scheduled
             ],
-            'announcement enabled, 10 minutes 59 seconds to go, with warning' => [
-                '2020-05-30 01:49:01 UTC',
-                [ 'enabled' => true, 'maintenance' => ['start' => '2020-05-30 02:00 UTC'] ],
-                true,
-                'Tatoeba will temporarily shut down for maintenance in 10 minutes.',
-            ],
-            'announcement enabled, 1 minute to go, with warning' => [
+            'announcement disabled, hide in 1 minute' => [
                 '2020-05-30 01:59 UTC',
-                [ 'enabled' => true, 'maintenance' => ['start' => '2020-05-30 02:00 UTC'] ],
+                [ 'enabled' => false, 'hideAfter' => '2020-05-30 02:00 UTC' ],
+                false,
+            ],
+            'announcement enabled, hide in 11 minutes' => [
+                '2020-05-30 01:49:00 UTC',
+                [ 'enabled' => true, 'hideAfter' => '2020-05-30 02:00 UTC' ],
                 true,
-                'Tatoeba will temporarily shut down for maintenance in 1 minute.',
+            ],
+            'announcement enabled, hide exactly now' => [
+                '2020-05-30 02:00 UTC',
+                [ 'enabled' => true, 'hideAfter' => '2020-05-30 02:00 UTC' ],
+                false,
+            ],
+            'announcement enabled, hide 1 second ago' => [
+                '2020-05-30 02:00:01 UTC',
+                [ 'enabled' => true, 'hideAfter' => '2020-05-30 02:00 UTC' ],
+                false,
+            ],
+            'announcement enabled, hide 1 minute ago' => [
+                '2020-05-30 02:01 UTC',
+                [ 'enabled' => true, 'hideAfter' => '2020-05-30 02:00 UTC' ],
+                false,
+            ],
+            'announcement enabled, hide 10 years ago' => [
+                '2030-05-30 02:00 UTC',
+                [ 'enabled' => true, 'hideAfter' => '2020-05-30 02:00 UTC' ],
+                false,
+            ],
+            'announcement enabled, hideAfter empty' => [
+                '2020-05-30 02:00 UTC',
+                [ 'enabled' => true, 'hideAfter' => '' ],
+                true,
+            ],
+            'announcement enabled, hideAfter invalid' => [
+                '2020-05-30 02:00 UTC',
+                [ 'enabled' => true, 'hideAfter' => 'foobar' ],
+                true,
             ],
         ];
     }
 
     /**
-     * @dataProvider contextProvider()
+     * @dataProvider announcementProvider()
      */
-    public function testEverything($now, $config, $shouldShow, $warning)
+    public function testAnnouncement($now, $config, $shouldShow)
     {
         Time::setTestNow(new Time($now));
         $helper = $this->createHelperWithConfig($config);
-    
+
         $this->assertEquals($shouldShow, $helper->isDisplayed());
-        $maintenanceMessage = $helper->getMaintenanceMessage();
-    
-        if (is_null($warning)) {
-            $this->assertEmpty($maintenanceMessage);
-        } elseif (is_string($maintenanceMessage)) {
-            $this->assertContains($warning, $maintenanceMessage);
+
+        Time::setTestNow();
+    }
+
+    public function maintenanceProvider() {
+        return [
+            'maintenance in 11 minutes' => [
+                '2020-05-30 01:49:00 UTC',  // "now" time
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ], // value for Announcement in app_config.php
+                'in 11 minutes', // confirm this text is present in the maintenance message
+                false,           // confirm whether of not maintenance is considered "imminent"
+            ],
+            'maintenance in 10 minutes 59 seconds' => [
+                '2020-05-30 01:49:01 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 10 minutes',
+                true,
+            ],
+            'maintenance in 10 minutes' => [
+                '2020-05-30 01:50 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 10 minutes',
+                true,
+            ],
+            'maintenance in 1 minute' => [
+                '2020-05-30 01:59 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 1 minute',
+                true,
+            ],
+            'maintenance in 59 seconds' => [
+                '2020-05-30 01:59:01 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 59 seconds',
+                true,
+            ],
+            'maintenance in 1 second' => [
+                '2020-05-30 01:59:59 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 1 second',
+                true,
+            ],
+            'maintenance starts exactly now' => [
+                '2020-05-30 02:00 UTC',
+                [ 'enabled' => true, 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                '',
+                true,
+            ],
+            'maintenance started 1 second ago' => [
+                '2020-05-30 02:00:01 UTC',
+                [ 'enabled' => true, 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                '',
+                true,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider maintenanceProvider()
+     */
+    public function testMaintenance($now, $config, $expectedMessage, $expectedIsImminent)
+    {
+        Time::setTestNow(new Time($now));
+        $helper = $this->createHelperWithConfig($config);
+
+        if ($expectedMessage === '') {
+            $this->assertEquals($expectedMessage, $helper->getMaintenanceMessage());
         } else {
-            $this->fail('getMaintenanceMessage returned an unexpected value: ' . var_export($maintenanceMessage, true));
+            $this->assertContains($expectedMessage, $helper->getMaintenanceMessage());
         }
-    
+        $this->assertEquals($expectedIsImminent, $helper->isMaintenanceImminent());
+
         Time::setTestNow();
     }
 }
