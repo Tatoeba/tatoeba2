@@ -20,6 +20,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         'app.private_messages',
         'app.reindex_flags',
         'app.audios',
+        'app.disabled_audios',
         'app.transcriptions',
         'app.contributions',
         'app.tags',

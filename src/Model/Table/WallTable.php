@@ -104,6 +104,26 @@ class WallTable extends Table
             $this->WallThreads->save($newThreadData);
         }
 
+        if ($entity->hidden) {
+            $root = $this->getRootMessageOfReply($entity->id);
+            $this->recalculateThreadDateIgnoringHiddenPosts($root);
+        }
+    }
+
+    private function recalculateThreadDateIgnoringHiddenPosts($root)
+    {
+        $result = $this->find()
+            ->select(['latest_date' => 'MAX(date)'])
+            ->where([
+                'lft >=' => $root->lft,
+                'rght <=' => $root->rght,
+                'hidden IS' => false,
+            ])
+            ->first();
+
+        $thread = $this->WallThreads->get($root->id);
+        $thread->last_message_date = $result->latest_date;
+        $this->WallThreads->save($thread);
     }
 
 

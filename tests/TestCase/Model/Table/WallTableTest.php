@@ -286,4 +286,13 @@ class WallTest extends TestCase {
 
         I18n::setLocale($prevLocale);
     }
+
+    public function testHidingAMessageRecalculatesThreadDateIgnoringHiddenPosts() {
+        $reply = $this->Wall->get(2);
+        $reply->hidden = true;
+        $this->Wall->save($reply);
+
+        $threadDate = $this->Wall->WallThreads->get(1)->last_message_date;
+        $this->assertEquals('2014-04-15 16:37:11', $threadDate);
+    }
 }

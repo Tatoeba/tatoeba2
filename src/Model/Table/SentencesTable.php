@@ -526,7 +526,7 @@ class SentencesTable extends Table
      *
      * @param string $lang Restrict random id from the specified code lang.
      *
-     * @return int A random id.
+     * @return int A random id, or null if unable to get a random sentence.
      */
     public function getRandomId($lang = null)
     {
@@ -534,7 +534,7 @@ class SentencesTable extends Table
             return $this->getRandomIdAmongAllLanguages();
         } else {
             $arrayIds = $this->getSeveralRandomIds($lang, 1);
-            if (is_bool($arrayIds)) {
+            if (is_null($arrayIds)) {
                 return $arrayIds;
             }
 
@@ -548,7 +548,7 @@ class SentencesTable extends Table
      * @param string $lang             Language of the sentences we want.
      * @param int    $numberOfIdWanted Number of ids needed.
      *
-     * @return array An array of ids.
+     * @return array An array of ids, or null if unable to get any sentence id.
      */
     public function getSeveralRandomIds($lang = null, $numberOfIdWanted = 10)
     {
@@ -1080,12 +1080,12 @@ class SentencesTable extends Table
     {
         $sentence = $this->get($sentenceId);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
-        $ownerId = $currentOwner['id'];
-        $ownerRole = $currentOwner['role'];
+        $ownerId = $currentOwner['id'] ?? null;
+        $ownerRole = $currentOwner['role'] ?? null;
 
         $isOwnerInactive = in_array($ownerRole, [User::ROLE_SPAMMER, User::ROLE_INACTIVE]);
         $isCurrentUserTrusted = in_array($currentUserRole, User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER);
-        $isAdoptable = $ownerId == 0 || ($isOwnerInactive && $isCurrentUserTrusted);
+        $isAdoptable = is_null($ownerId) || ($isOwnerInactive && $isCurrentUserTrusted);
 
         if ($isAdoptable) {
             $sentence->user_id = $userId;
