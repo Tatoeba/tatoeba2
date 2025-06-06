@@ -543,7 +543,6 @@ class LanguagesLib
                 'urh' => __d('languages', 'Urhobo'),
                 'mvv' => __d('languages', 'Tagal Murut'),
                 'mdf' => __d('languages', 'Moksha'),
-                'mdr' => __d('languages', 'Mandar'),
                 'pag' => __d('languages', 'Pangasinan'),
                 'cos' => __d('languages', 'Corsican'),
                 'hnj' => __d('languages', 'Hmong Njua (Green)'),
@@ -700,7 +699,7 @@ class LanguagesLib
                 'guw' => __d('languages', 'Gun'),
                 'gaz' => __d('languages', 'West-Central Oromo'),
                 'isv' => __d('languages', 'Interslavic'),
-
+                'mdr' => __d('languages', 'Mandar'),
             );
         }
         return $languages;
