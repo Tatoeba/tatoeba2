@@ -14,7 +14,7 @@ class DownloadsHelperTest extends TestCase {
 
     private static function createTempTree() {
         $languages = ['eng', 'fra', 'jpn', 'unknown'];
-        $files = ['sentences.tsv.bz2', 'sentences_detailed.tsv.bz2', 'sentences_CC0.tsv.bz2'];
+        $files = ['sentences.tsv.zst', 'sentences_detailed.tsv.zst', 'sentences_CC0.tsv.zst'];
         foreach ($languages as $lang) {
             $path = Folder::addPathElement(TMP, ['exports', 'per_language', $lang]);
             $subdir = new Folder($path, true);
@@ -54,7 +54,7 @@ class DownloadsHelperTest extends TestCase {
 
         $this->assertEquals(1, count($options));
         $this->assertEquals(
-            Folder::addPathElement(Configure::read('Downloads.url'), "foobar.tar.bz2"),
+            Folder::addPathElement(Configure::read('Downloads.url'), "foobar.csv.zst"),
             $options[0]['url']
         );
     }
@@ -77,14 +77,14 @@ class DownloadsHelperTest extends TestCase {
         $this->assertEquals(
             Folder::addPathElement(
                 Configure::read('Downloads.url'),
-                "$basename.tar.bz2"
+                "$basename.csv.zst"
             ),
             $options[0]['url']
         );
         $this->assertEquals(
             Folder::addPathElement(
                 Configure::read('Downloads.url'),
-                ['per_language', 'eng', "eng_$basename.tsv.bz2"]
+                ['per_language', 'eng', "eng_$basename.tsv.zst"]
             ),
             $options[1]['url']
         );
@@ -103,7 +103,7 @@ class DownloadsHelperTest extends TestCase {
         $this->assertEquals(
             Folder::addPathElement(
                 Configure::read('Downloads.url'),
-                "$basename.tar.bz2"
+                "$basename.csv.zst"
             ),
             $options[0]['url']
         );
