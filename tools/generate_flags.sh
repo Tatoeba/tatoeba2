@@ -20,6 +20,7 @@ confirm_has_dep() {
 
 confirm_has_font() {
   local fontfamilystyle="$1"
+  confirm_has_dep fc-list
   if ! fc-list : family style|grep -q '^'$fontfamilystyle'$'; then
     echo "This tool requires the font $fontfamilystyle, please install it"
     exit 1
