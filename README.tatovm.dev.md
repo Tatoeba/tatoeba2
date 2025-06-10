@@ -63,14 +63,19 @@ vagrant package --output tatoeba.box
 
 - Upload the VM
 
-  - Log into https://app.vagrantup.com/
+  - Log into https://portal.cloud.hashicorp.com/
+
+  - Click "Vagrant Registry"
+
+  - Open "tatoeba/tatovm"
+
+  - Click "Versions"
 
   - Add a new version
 
-  - Add a new provider
-
-    - Type `virtualbox` for the Provider field
-
-    - Upload the exported VM
+    - Provider should be `virtualbox`
+    - Architecture should be `amd64`
+    - Use SHA256 as hash and run `sha256sum tatoeba.box` to get it
+    - Upload the exported tatoeba.box file
 
   - Release the new version
