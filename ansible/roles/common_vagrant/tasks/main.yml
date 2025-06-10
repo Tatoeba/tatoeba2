@@ -1,17 +1,4 @@
 ---
 
-- name: Clean up home directory
-  command: rm -rf {{item}} removes=/home/{{ansible_ssh_user}}/{{item}} chdir=/home/{{ansible_ssh_user}}/
-  with_items:
-  - base.sh
-  - chef.sh
-  - cleanup.sh
-  - puppetlabs-release-wheezy.deb
-  - puppet.sh
-  - ruby.sh
-  - vagrant.sh
-  - virtualbox.sh
-  - zerodisk.sh
-
 - name: Install .bash_aliases
   template: src=bash_aliases dest=/home/{{ansible_ssh_user}}/.bash_aliases owner={{ansible_ssh_user}}
