@@ -43,6 +43,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                         :path => "tools/codeinit.py",
                         :args => ["/home/vagrant/Tatoeba"]
 
+    config.vm.provision "shell", inline: <<-SHELL
+      apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
+    SHELL
+
     config.vm.provision "db_backup",
                         :type => "shell",
                         :run => "never", # because this is executed from triggers
