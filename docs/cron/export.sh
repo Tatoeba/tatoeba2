@@ -51,7 +51,7 @@ trap "rm -rf $TEMP_DIR" EXIT
 
 echo 'SELECT code FROM languages WHERE code IS NOT NULL;' |
 ( mysql --skip-column-names tatoeba; echo 'unknown' ) |
-xargs -L 1 -I @ mkdir -p $TEMP_DIR/@
+xargs -I @ mkdir -p $TEMP_DIR/@
 
 split_file () {
     local BASENAME=_${1%csv}tsv
