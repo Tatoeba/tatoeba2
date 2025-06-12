@@ -313,7 +313,7 @@ class SentenceDerivationShellTest extends TestCase
     public function _testRun_returnsNumberOfSentencesProceeded($actual)
     {
         /* 
-        Among existing sentences, 27 are being skipped:
+        Among existing sentences, 28 are being skipped:
             #10: doesn't have logs
             #15: no log of type 'sentence'
             #16: no log of type 'sentence'
@@ -341,10 +341,11 @@ class SentenceDerivationShellTest extends TestCase
             #63: Already has based_on_id
             #64: Already has based_on_id
             #65: Already has based_on_id
+            #66: Already has based_on_id
         */
         
         $totalSentences = $this->Sentences->find()->count();
-        $totalSkipped = 27;
+        $totalSkipped = 28;
         $expected = $totalSentences - $totalSkipped;
         $this->assertEquals($expected, $actual);
     }

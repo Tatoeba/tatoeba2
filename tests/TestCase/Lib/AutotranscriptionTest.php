@@ -109,6 +109,28 @@ class AutotranscriptionTest extends TestCase {
         $this->assertInvalidTranscriptions('cmn', 'Hant', 'Latn', $testBad);
     }
 
+    function testHansHantValidation() {
+        $testGood = array(
+            '門開著嗎？' => array(
+                '门开着吗？',
+                '門開著嗎？',
+            ),
+        );
+        $testBad = array(
+            '門開著嗎？' => array(
+                '门开着',
+                '门开着吗',
+                '门开着吗吗',
+                '门开着吗?',
+                '门开着吗？啊',
+            ),
+        );
+        foreach (array('Hans' => 'Hant', 'Hant' => 'Hans') as $script => $oppositeScript) {
+            $this->assertValidTranscriptions('cmn', $script, $oppositeScript, $testGood);
+            $this->assertInvalidTranscriptions('cmn', $script, $oppositeScript, $testBad);
+        }
+    }
+
     function _mockHttpClient($body) {
         $response = $this->getMockBuilder(Cake\Http\Response::class)
                        ->setMethods(['isOk', 'getStringBody'])
