@@ -21,7 +21,7 @@ confirm_has_dep() {
 confirm_has_font() {
   local fontfamilystyle="$1"
   confirm_has_dep fc-list
-  if ! fc-list : family style|grep -q '^'$fontfamilystyle'$'; then
+  if ! fc-list : family style|grep -q "^$fontfamilystyle$"; then
     echo "This tool requires the font $fontfamilystyle, please install it"
     exit 1
   fi
@@ -45,10 +45,10 @@ iso_code_svg_template() {
      x="19"
      y="0" />
   <text
-     transform="rotate(-90)"
-     style="font-weight:bold;font-size:$font_size;font-family:'Roboto';-inkscape-font-specification:'Roboto, Bold';letter-spacing:$letter_spacing;fill:black;dominant-baseline:middle;text-anchor:middle"
-     x="-10"
-     y="25.38"
+     transform="rotate(-90) scale(0.1 0.1)"
+     style="font-style:normal;font-size:$font_size;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:$letter_spacing;fill:black;dominant-baseline:middle;text-anchor:middle"
+     x="-100"
+     y="253.8"
      >$iso_code</text>
 </svg>
 EOF
@@ -89,11 +89,11 @@ remove_svg_footer() {
 
 confirm_has_dep inkscape
 confirm_has_dep scour
-confirm_has_font "Roboto:style=Bold"
+confirm_has_font "Roboto Mono:style=Bold"
 
 gen_flag() {
   local src="$1" iso_code="$2" \
-        letter_spacing="${3:-0px}" font_size="${4:-7.18718pt}"
+        letter_spacing="${3:-5px}" font_size="${4:-95.8636px}"
   local outfile="webroot/img/flags/${iso_code,,}.svg"
   (
     cat "$src" | remove_svg_footer
@@ -105,4 +105,4 @@ gen_flag() {
 
 gen_flag webroot/img/flags/ind.svg AOZ
 gen_flag webroot/img/flags/ind.svg JAV
-gen_flag webroot/img/flags/ind.svg MDR 0.5px 8.8px
+gen_flag webroot/img/flags/ind.svg MDR
