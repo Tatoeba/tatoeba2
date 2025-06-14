@@ -1,8 +1,8 @@
 deb http://{{mirror}}/debian {{release}} main contrib non-free
 deb-src http://{{mirror}}/debian {{release}} main contrib non-free
 
-deb http://{{security_mirror}}/debian-security {{release}}/updates main contrib non-free
-deb-src http://{{security_mirror}}/debian-security {{release}}/updates main contrib non-free
+deb https://{{security_mirror}}/debian-security {{release}}-security/updates main contrib non-free
+deb-src https://{{security_mirror}}/debian-security {{release}}-security/updates main contrib non-free
 
 # {{release}}-updates, previously known as 'volatile'
 deb http://{{mirror}}/debian {{release}}-updates main contrib non-free

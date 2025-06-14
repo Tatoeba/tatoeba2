@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   if ENV['BUILD'] == '1'
-    config.vm.box = "debian/contrib-buster64"
+    config.vm.box = "debian/bullseye64"
     config.vm.provision "install", :type => "ansible" do |ansible|
       # ansible.verbose = "vvvv"
       ansible.playbook = "ansible/vagrant.yml"
@@ -36,12 +36,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "strip", :type => "shell", :path => "reduce_box_size.sh"
   else
     config.vm.box = "tatoeba/tatovm"
-    config.vm.box_version = "0.1.0"
+    config.vm.box_version = "0.2.0"
     config.vm.provision "install",
                         :type => "shell",
                         :privileged => false,
                         :path => "tools/codeinit.py",
                         :args => ["/home/vagrant/Tatoeba"]
+
+    config.vm.provision "shell", inline: <<-SHELL
+      apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
+    SHELL
 
     config.vm.provision "db_backup",
                         :type => "shell",
