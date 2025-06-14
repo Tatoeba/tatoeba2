@@ -63,6 +63,7 @@ minify_svg() {
   scour --enable-id-stripping \
         --set-precision=5 \
         --no-line-breaks \
+        --strip-xml-space \
         2>/dev/null \
     | strip_attr dominant-baseline \
     | strip_attr aria-label \
