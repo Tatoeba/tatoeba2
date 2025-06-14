@@ -21,28 +21,46 @@ mv /var/tmp/*csv "$DL_DIR"
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < "$ROOT"/docs/database/scripts/wwwjdic.sql
 mv /var/tmp/*csv "$DL_DIR"
 
-echo "Starting tarring at $(date -Iseconds)"
+compress_csv () {
+    # TODO: Remove the bzipped tar archive once most users have migrated to the
+    # zstd file.  During the transition period we should monitor which files
+    # get downloaded to get an insight about how the migration is going on.
+    #
+    # It wastes some CPU time each week, disk space, and on users machine their
+    # CPU time, hence the migration to Zstd.
+    tar -cjf "${1%csv}tar.bz2" "$1"
+    zstd -19 "$1"
+}
+
+compress_tsv () {
+    # TODO: Same as above, remove the bzip file once we see fewer requests to
+    # it.
+    bzip2 -qf "$1"
+    zstd -19 -qf "$1"
+}
+
+echo "Starting compressing at $(date -Iseconds)"
 cd "$DL_DIR"
-tar -cjf sentences_base.tar.bz2 sentences_base.csv
-tar -cjf sentences_detailed.tar.bz2 sentences_detailed.csv
-tar -cjf links.tar.bz2 links.csv
-tar -cjf sentences.tar.bz2 sentences.csv
-tar -cjf contributions.tar.bz2 contributions.csv
+compress_csv sentences_base.csv
+compress_csv sentences_detailed.csv
+compress_csv links.csv
+compress_csv sentences.csv
+compress_csv contributions.csv
 rm contributions.csv
-tar -cjf comments.tar.bz2 sentence_comments.csv
+compress_csv sentence_comments.csv
 rm sentence_comments.csv
-tar -cjf wall.tar.bz2 wall_posts.csv
+compress_csv wall_posts.csv
 rm wall_posts.csv
-tar -cjf tags.tar.bz2 tags.csv
-tar -cjf user_lists.tar.bz2 user_lists.csv
-tar -cjf sentences_in_lists.tar.bz2 sentences_in_lists.csv
-tar -cjf jpn_indices.tar.bz2 jpn_indices.csv
-tar -cjf sentences_with_audio.tar.bz2 sentences_with_audio.csv
-tar -cjf user_languages.tar.bz2 user_languages.csv
-tar -cjf tags_detailed.tar.bz2 tags_detailed.csv
-tar -cjf sentences_CC0.tar.bz2 sentences_CC0.csv
-tar -cjf transcriptions.tar.bz2 transcriptions.csv
-tar -cjf sentences_base.tar.bz2 sentences_base.csv
+compress_csv tags.csv
+compress_csv user_lists.csv
+compress_csv sentences_in_lists.csv
+compress_csv jpn_indices.csv
+compress_csv sentences_with_audio.csv
+compress_csv user_languages.csv
+compress_csv tags_detailed.csv
+compress_csv sentences_CC0.csv
+compress_csv transcriptions.csv
+compress_csv sentences_base.csv
 
 echo "Starting language splitting for sentences at $(date -Iseconds)"
 # Create per-language files for the different sentences files
@@ -177,7 +195,7 @@ mysql --skip-column-names --batch tatoeba -e \
   }'    
 
 echo "Starting cleanup at $(date -Iseconds)"
-find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
+find $TEMP_DIR -path '*tsv' -exec compress_tsv '{}' +
 rm -rf $DL_DIR/per_language
 rm transcriptions.csv
 mv -f $TEMP_DIR $DL_DIR
