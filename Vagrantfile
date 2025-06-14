@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "strip", :type => "shell", :path => "reduce_box_size.sh"
   else
     config.vm.box = "tatoeba/tatovm"
-    config.vm.box_version = "0.1.0"
+    config.vm.box_version = "0.2.0"
     config.vm.provision "install",
                         :type => "shell",
                         :privileged => false,
