@@ -107,3 +107,4 @@ gen_flag() {
 gen_flag webroot/img/flags/ind.svg AOZ
 gen_flag webroot/img/flags/ind.svg JAV
 gen_flag webroot/img/flags/ind.svg MDR
+gen_flag webroot/img/src/Flag_of_Eritrea.30x20.svg TIG
