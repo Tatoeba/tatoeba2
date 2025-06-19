@@ -38,12 +38,9 @@ iso_code_svg_template() {
    version="1.1"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <rect
-     style="fill:white"
-     width="11"
-     height="20"
-     x="19"
-     y="0" />
+  <path
+     fill="#fff"
+     d="M19 0h11v20H19z" />
   <text
      transform="rotate(-90) scale(0.1 0.1)"
      style="font-style:normal;font-size:$font_size;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:$letter_spacing;fill:black;dominant-baseline:middle;text-anchor:middle"
@@ -55,8 +52,22 @@ EOF
 }
 
 strip_attr() {
-  local attr="$1"
-  sed "s/ $1=\"[^\"]\+\"//g"
+  local attr="$1" tag="$2"
+  if [ -z "$tag" ]; then
+    sed "s/ $attr=\"[^\"]\+\"//g"
+  else
+    sed "s/\(<$tag[^<]*\) $attr=\"[^\"]\+\"/\1/g"
+  fi
+}
+
+strip_leading_zeros() {
+  sed 's/\([^0-9]\)0\+\./\1\./g'
+}
+
+compact_decimals() {
+  sed ':loop;
+       s/\(\.[0-9]\+\) \+\(\.\)/\1\2/g;
+       t loop'
 }
 
 minify_svg() {
@@ -65,9 +76,12 @@ minify_svg() {
         --no-line-breaks \
         --strip-xml-space \
         2>/dev/null \
+    | strip_leading_zeros \
+    | compact_decimals \
     | strip_attr dominant-baseline \
     | strip_attr aria-label \
-    | strip_attr encoding
+    | strip_attr encoding \
+    | strip_attr version svg
 }
 
 generate_iso_svg() {
