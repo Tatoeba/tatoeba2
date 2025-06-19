@@ -121,9 +121,11 @@ class WallTable extends Table
             ])
             ->first();
 
-        $thread = $this->WallThreads->get($root->id);
-        $thread->last_message_date = $result->latest_date;
-        $this->WallThreads->save($thread);
+        if ($result->latest_date) {
+            $thread = $this->WallThreads->get($root->id);
+            $thread->last_message_date = $result->latest_date;
+            $this->WallThreads->save($thread);
+        }
     }
 
 

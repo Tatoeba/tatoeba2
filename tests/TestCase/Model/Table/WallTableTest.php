@@ -297,4 +297,16 @@ class WallTest extends TestCase {
         $threadDate = $this->Wall->WallThreads->get(1)->last_message_date;
         $this->assertEquals('2014-04-15 16:37:11', $threadDate);
     }
+
+    public function testHidingAStandaloneMessageDoesNotRecalculatesThreadDate() {
+        $messageId = 3;
+        $oldThreadDate = $this->Wall->WallThreads->get($messageId)->last_message_date;
+
+        $message = $this->Wall->get($messageId);
+        $message->hidden = true;
+        $this->Wall->save($message);
+
+        $newThreadDate = $this->Wall->WallThreads->get($messageId)->last_message_date;
+        $this->assertEquals($oldThreadDate, $newThreadDate);
+    }
 }
