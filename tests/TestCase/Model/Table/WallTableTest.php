@@ -39,9 +39,9 @@ class WallTest extends TestCase {
             'owner' => 2,
             'content' => 'Hi everyone!',
             'parent_id' => null,
-            'lft' => 5,
-            'rght' => 6,
-            'id' => 3,
+            'lft' => 7,
+            'rght' => 8,
+            'id' => 4,
         ];
 
         $before = $this->Wall->find()->count();
@@ -206,7 +206,9 @@ class WallTest extends TestCase {
             ->where(['parent_id IS NULL'])
             ->all();
         $threads = $this->Wall->getMessagesThreaded($rootMessages);
-        $this->assertEquals(1, count($threads[0]->children));
+        $this->assertEquals(2, count($threads));
+        $this->assertEquals(0, count($threads[0]->children));
+        $this->assertEquals(1, count($threads[1]->children));
     }
 
     public function testGetMessagesThreaded_empty() {
@@ -243,7 +245,7 @@ class WallTest extends TestCase {
     public function testSaveReply_succeeds() {
         $content = 'I hope soon.';
         $result = $this->Wall->saveReply(2, $content, 7);
-        $this->assertEquals(3, $result->id);
+        $this->assertEquals(2, $result->parent_id);
     }
 
     public function testSaveReply_failsBecauseNoParentId() {
