@@ -34,4 +34,12 @@ class UserMailer extends Mailer {
                 'newPassword' => $newPassword,
             ]);
     }
+
+    public function content_report($report) {
+        $this
+            ->setTo(Configure::read('Tatoeba.communityModeratorEmail'))
+            ->setSubject($report->getTitle())
+            ->setEmailFormat('html')
+            ->setViewVars(compact('report'));
+    }
 }

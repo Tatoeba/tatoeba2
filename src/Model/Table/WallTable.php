@@ -303,15 +303,19 @@ class WallTable extends Table
             ]);
             $this->getEventManager()->dispatch($event);
 
-            return $this->get($savedMessage->id, [
-                'contain' => [
-                    'Users' => [
-                        'fields' => ['id', 'username', 'image']
-                    ]
-                ]
-            ]);
+            return $this->getMessage($savedMessage->id);
         } else {
             return null;
         }
+    }
+
+    public function getMessage($id) {
+        return $this->get($id, [
+            'contain' => [
+                'Users' => [
+                    'fields' => ['id', 'username', 'image']
+                ]
+            ]
+        ]);
     }
 }

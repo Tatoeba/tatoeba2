@@ -2,7 +2,9 @@
 namespace App\Test\Mailer;
 
 use App\Mailer\UserMailer;
+use App\Model\ContentReport;
 use App\Model\Entity\User;
+use App\Model\Entity\Wall;
 use Cake\Core\Configure;
 use Cake\Mailer\Email;
 use Cake\TestSuite\EmailTrait;
@@ -18,6 +20,7 @@ class UserMailerTest extends TestCase {
     protected $mailer = null;
 
     public function setUp() {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
 
         $this->email = new Email([
@@ -66,5 +69,36 @@ class UserMailerTest extends TestCase {
         $this->assertMailSentFrom('sender@example.com');
         $this->assertMailSentWith('Tatoeba, new password', 'subject');
         $this->assertMailContainsHtml('Your new password: secret');
+    }
+
+    public function test_content_report_wall_post() {
+        $wallPost = new Wall(['id' => 3, 'content' => 'spam spam spam...']);
+        $report = new ContentReport('kazuki', $wallPost, 'this is spam');
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('[Content Report] Wall message #3', 'subject');
+        $this->assertMailContainsHtml('Member <a href="https://example.net/user/profile/kazuki">kazuki</a> reported a wall post');
+        $this->assertMailContainsHtml('https://example.net/wall/show_message/3#message_3');
+        $this->assertMailContainsHtml('this is spam');
+    }
+
+    public function test_content_report_wall_post_no_details() {
+        $wallPost = new Wall(['id' => 3, 'content' => 'spam spam spam...']);
+        $report = new ContentReport('kazuki', $wallPost, '');
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailContainsHtml('kazuki did not provide any detail.');
+    }
+
+    public function test_content_report_wall_post_html_injection() {
+        $wallPost = new Wall(['id' => 3, 'content' => 'spam spam spam...']);
+        $report = new ContentReport('kazuki', $wallPost, '<img src="http://example.com/oops" />');
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailContainsHtml('&lt;img src=&quot;http://example.com/oops&quot; /&gt;');
     }
 }
