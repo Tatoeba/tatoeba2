@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Entity\SentenceComment;
 use App\Model\Entity\Wall;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Report content')));
@@ -19,6 +20,29 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Report content')));
         <?= $this->Html->tag('h3', __('Report the following Wall message')) ?>
         <div class="wall-message">
             <?= $this->element('wall/message', ['message' => $entity]) ?>
+        </div>
+    <?php elseif ($entity instanceof SentenceComment): ?>
+        <?= $this->Html->tag('h3', __('Report the following sentence comment')) ?>
+        <div class="">
+            <?= $this->element(
+                'sentence_comments/comment',
+                [
+                    'comment' => $entity,
+                    'menu' => $this->Comments->getMenuForComment(
+                        $entity,
+                        [
+                            'canDelete' => false,
+                            'canEdit' => false,
+                            'canHide' => false,
+                            'canPM' => false,
+                        ],
+                        false
+                    ),
+                    'replyIcon' => false,
+                    'hideSentence' => true,
+                ]
+            ) ?>
+
         </div>
     <?php endif; ?>
     

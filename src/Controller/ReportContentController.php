@@ -12,15 +12,8 @@ class ReportContentController extends AppController
 {
     public $components = ['Flash'];
 
-    public function wall_post($msgId)
+    private function process_report($entity)
     {
-        try {
-            $this->loadModel('Wall');
-            $entity = $this->Wall->getMessage($msgId);
-        } catch (RecordNotFoundException $e) {
-            throw new NotFoundException();
-        }
-
         $details = $this->request->getData('details', '');
         $origin = $this->request->getData('origin', $this->referer());
 
@@ -50,5 +43,34 @@ class ReportContentController extends AppController
 
         $this->set(compact('entity', 'details', 'origin'));
         return $this->render('report');
+    }
+
+    public function wall_post($msgId)
+    {
+        try {
+            $this->loadModel('Wall');
+            $wallPost = $this->Wall->getMessage($msgId);
+        } catch (RecordNotFoundException $e) {
+            throw new NotFoundException();
+        }
+
+        return $this->process_report($wallPost);
+    }
+
+    public function sentence_comment($id)
+    {
+        try {
+            $this->loadModel('SentenceComments');
+            $comment = $this->SentenceComments
+                ->findById($id)
+                ->contain(['Users' => function ($q) {
+                    return $q->select(['id', 'username', 'image']);
+                }])
+                ->firstOrFail();
+        } catch (RecordNotFoundException $e) {
+            throw new NotFoundException();
+        }
+
+        return $this->process_report($comment);
     }
 }

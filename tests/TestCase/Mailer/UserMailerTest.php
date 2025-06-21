@@ -3,6 +3,7 @@ namespace App\Test\Mailer;
 
 use App\Mailer\UserMailer;
 use App\Model\ContentReport;
+use App\Model\Entity\SentenceComment;
 use App\Model\Entity\User;
 use App\Model\Entity\Wall;
 use Cake\Core\Configure;
@@ -100,5 +101,22 @@ class UserMailerTest extends TestCase {
         $this->mailer->send('content_report', [$report]);
 
         $this->assertMailContainsHtml('&lt;img src=&quot;http://example.com/oops&quot; /&gt;');
+    }
+
+    public function test_content_report_sentence_comment() {
+        $comment = new SentenceComment([
+            'id' => 5,
+            'content' => 'spam spam spam...',
+            'sentence_id' => 19,
+        ]);
+        $report = new ContentReport('kazuki', $comment, 'please remove spam');
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('[Content Report] Comment #5 (on sentence #19)', 'subject');
+        $this->assertMailContainsHtml('Member <a href="https://example.net/user/profile/kazuki">kazuki</a> reported a sentence comment');
+        $this->assertMailContainsHtml('https://example.net/sentences/show/19#comment-5');
+        $this->assertMailContainsHtml('please remove spam');
     }
 }

@@ -17,6 +17,7 @@ class ReportContentControllerTest extends TestCase
 
     public $fixtures = [
         'app.private_messages',
+        'app.sentence_comments',
         'app.users',
         'app.users_languages',
         'app.walls',
@@ -34,6 +35,9 @@ class ReportContentControllerTest extends TestCase
             [ '/en/report_content/wall_post/1', null, '/en/users/login?redirect=%2Fen%2Freport_content%2Fwall_post%2F1' ],
             [ '/en/report_content/wall_post/1', 'contributor', true ],
             [ '/en/report_content/wall_post/9999', 'contributor', 404 ],
+            [ '/en/report_content/sentence_comment/1', null, '/en/users/login?redirect=%2Fen%2Freport_content%2Fsentence_comment%2F1' ],
+            [ '/en/report_content/sentence_comment/1', 'contributor', true ],
+            [ '/en/report_content/sentence_comment/9999', 'contributor', 404 ],
         ];
     }
 
@@ -76,5 +80,19 @@ class ReportContentControllerTest extends TestCase
         $this->assertNoRedirect();
         $this->assertFlashMessageContains('Sorry');
         $this->assertMailCount(0);
+    }
+
+    public function testSentenceComment() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('contributor');
+
+        $this->post('http://example.net/en/report_content/sentence_comment/1', [
+            'origin' => '/en/sentences/show/4',
+            'details' => 'this is spam',
+        ]);
+
+        $this->assertRedirect('/en/sentences/show/4');
+        $this->assertFlashMessageContains('Thank you');
+        $this->assertMailCount(1);
     }
 }
