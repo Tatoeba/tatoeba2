@@ -151,6 +151,12 @@ return [
          * Stylesheet for development website
          */
         'devStylesheet' => false,
+
+        /**
+         * Email recipient of inappropriate content reports,
+         * blocked users notifications etc.
+         */
+        'communityModeratorEmail' => 'community-admin@example.com',
     ],
 
     /**

@@ -86,6 +86,7 @@ $config = [
             'save'          => [ User::ROLE_ADMIN ],
             'delete'        => [ User::ROLE_ADMIN ],
         ],
+        'report_content'       => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'reviews'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'favorites'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'links'                => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],

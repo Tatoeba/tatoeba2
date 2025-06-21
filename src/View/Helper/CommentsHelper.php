@@ -75,6 +75,16 @@ class CommentsHelper extends AppHelper
         //send message
         if ($permissions['canPM']) {
             $menu[] = array(
+                /* @translators: flag button to report a sentence comment (verb) */
+                'text' => __('Report'),
+                'icon' => 'flag',
+                'url' => array(
+                    'controller' => 'report_content',
+                    'action' => 'sentence_comment',
+                    $comment->id,
+                )
+            );
+            $menu[] = array(
                 'text' => __('Send message'),
                 'icon' => 'mail',
                 'url' => array(

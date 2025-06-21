@@ -181,6 +181,16 @@ class WallHelper extends AppHelper
 
         if ($permissions['canPM']) {
             $menu[] = array(
+                /* @translators: flag button to report a wall post (verb) */
+                'text' => __('Report'),
+                'icon' => 'flag',
+                'url' => array(
+                    'controller' => 'report_content',
+                    'action' => 'wall_post',
+                    $messageId,
+                )
+            );
+            $menu[] = array(
                 'text' => __('Send message'),
                 'icon' => 'mail',
                 'url' => array(
