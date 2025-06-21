@@ -16,7 +16,7 @@ $reporterUrl = [
 <p>
     <?php if (strlen($details) > 0): ?>
         Below is what <?= $reporter ?> wrote about it:<br>
-        <?= h($details) ?>
+        <?= nl2br(h($details)) ?>
     <?php else: ?>
         <?= $reporter ?> did not provide any detail.
     <?php endif; ?>

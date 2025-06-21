@@ -74,7 +74,7 @@ class UserMailerTest extends TestCase {
 
     public function test_content_report_wall_post() {
         $wallPost = new Wall(['id' => 3, 'content' => 'spam spam spam...']);
-        $report = new ContentReport('kazuki', $wallPost, 'this is spam');
+        $report = new ContentReport('kazuki', $wallPost, "line1\nline2");
 
         $this->mailer->send('content_report', [$report]);
 
@@ -82,7 +82,7 @@ class UserMailerTest extends TestCase {
         $this->assertMailSentWith('[Content Report] Wall message #3', 'subject');
         $this->assertMailContainsHtml('Member <a href="https://example.net/user/profile/kazuki">kazuki</a> reported a wall post');
         $this->assertMailContainsHtml('https://example.net/wall/show_message/3#message_3');
-        $this->assertMailContainsHtml('this is spam');
+        $this->assertMailContainsHtml("line1<br />\nline2");
     }
 
     public function test_content_report_wall_post_no_details() {
