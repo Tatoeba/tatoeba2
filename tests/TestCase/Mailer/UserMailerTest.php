@@ -3,6 +3,7 @@ namespace App\Test\Mailer;
 
 use App\Mailer\UserMailer;
 use App\Model\Entity\User;
+use Cake\Core\Configure;
 use Cake\Mailer\Email;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
@@ -17,6 +18,8 @@ class UserMailerTest extends TestCase {
     protected $mailer = null;
 
     public function setUp() {
+        Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
+
         $this->email = new Email([
             'from' => 'sender@example.com',
             'emailFormat' => 'html',
@@ -46,7 +49,7 @@ class UserMailerTest extends TestCase {
             [$user, $isSuspended]
         );
 
-        $this->assertMailSentTo('tatoeba-community-admins@googlegroups.com');
+        $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('( ! ) kazuki', 'subject');
         $this->assertMailContainsHtml($snippet);
     }

@@ -4,6 +4,7 @@ namespace App\Mailer;
 use App\Model\CurrentUser;
 use Cake\Mailer\Email;
 use Cake\Mailer\Mailer;
+use Cake\Core\Configure;
 
 /**
  * Mailer for User-related emails
@@ -11,7 +12,7 @@ use Cake\Mailer\Mailer;
 class UserMailer extends Mailer {
 
     public function blocked_or_suspended_user($user, $isSuspended) {
-        $this->setTo('tatoeba-community-admins@googlegroups.com')
+        $this->setTo(Configure::read('Tatoeba.communityModeratorEmail'))
             ->setSubject("( ! ) {$user->username}")
             ->setEmailFormat('html')
             ->setViewVars([
