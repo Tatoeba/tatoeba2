@@ -5,6 +5,7 @@ use App\Model\Entity\SentenceComment;
 use App\Model\Entity\Wall;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Report content')));
+$this->set('isResponsive', true);
 
 $introText = format(
     __('Use this form to let website admins know about content that goes against '.
@@ -18,11 +19,15 @@ if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
     );
 }
 ?>
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <?php /* @translators: title of the content reporting page */ ?>
+        <?= $this->Html->tag('h2', __('Report inappropriate content')) ?>
+    </div>
+</md-toolbar>
 
-<?php /* @translators: title of the content reporting page */ ?>
-<?= $this->Html->tag('h2', __('Report inappropriate content')) ?>
-
-<div class="report">
+<md-content class="report md-whiteframe-1dp">
+    <?= $this->Html->tag('div', null, ['layout' => 'column', 'layout-margin' => '']) ?>
     <?= $this->Html->tag('p', $introText) ?>
 
     <?php if ($entity instanceof Wall): ?>
@@ -32,7 +37,7 @@ if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
         </div>
     <?php elseif ($entity instanceof SentenceComment): ?>
         <?= $this->Html->tag('h3', __('Report the following sentence comment')) ?>
-        <div class="">
+        <div>
             <?= $this->element(
                 'sentence_comments/comment',
                 [
@@ -51,18 +56,22 @@ if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
                     'hideSentence' => true,
                 ]
             ) ?>
-
         </div>
     <?php endif; ?>
     
     <?= $this->Html->tag('h3', __('What is the problem?')) ?>
-    <?= $this->Form->create() ?>
+
+    <?= $this->Form->create(null, ['layout-margin' => '']) ?>
+
     <?= $this->Form->textarea('details', [
         'value' => $this->safeForAngular($details),
         'lang' => '',
         'dir' => 'auto',
+        'rows' => '10',
     ]) ?>
+
     <?= $this->Form->hidden('origin', ['value' => $this->safeForAngular($origin)]) ?>
+
     <div layout="row" layout-align="start center">
         <md-button class="md-raised" onclick="history.back();">
             <?php /* @translators: cancel button of content reporting form (verb) */ ?>
@@ -75,4 +84,5 @@ if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
         </md-button>
     </div>
     <?= $this->Form->end(); ?>
-</div>
+    <?= $this->Html->tag('/div') ?>
+</md-content>
