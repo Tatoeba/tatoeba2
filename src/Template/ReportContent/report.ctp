@@ -1,20 +1,29 @@
 <?php
 
+use App\Model\Entity\Sentence;
 use App\Model\Entity\SentenceComment;
 use App\Model\Entity\Wall;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Report content')));
+
+$introText = format(
+    __('Use this form to let website admins know about content that goes against '.
+       '<a href="{}">our rules of community participation</a>.'),
+    $this->Pages->getWikiLink('rules-against-bad-behavior')
+);
+if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
+    $introText .= " ".__(
+        'If you simply want to report a problem with the sentence, '.
+        'leave a comment on it instead.'
+    );
+}
 ?>
 
 <?php /* @translators: title of the content reporting page */ ?>
-<?= $this->Html->tag('h2', __('Report problematic content')) ?>
+<?= $this->Html->tag('h2', __('Report inappropriate content')) ?>
 
 <div class="report">
-    <?= $this->Html->tag('p', format(
-        __('Use this form to let website admins know about content that goes against '.
-           '<a href="{}">our rules</a> or is otherwise problematic.'),
-        $this->Pages->getWikiLink('rules-against-bad-behavior')
-    )); ?>
+    <?= $this->Html->tag('p', $introText) ?>
 
     <?php if ($entity instanceof Wall): ?>
         <?= $this->Html->tag('h3', __('Report the following Wall message')) ?>

@@ -26,7 +26,7 @@ class ReportContentController extends AppController
             );
             if ($report->send()) {
                 $this->Flash->set(__(
-                    'Thank you for your help, your report was sent to admins. '.
+                    'Thank you for your help. Your report was sent to the admins. '.
                     'If needed, they will reply to you by private message.'
                 ));
                 return $this->redirect($origin ?? '/');
