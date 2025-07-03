@@ -22,4 +22,13 @@ then
   check_failed "PHP syntax error in template file"
 fi
 
+for attr in width height; do
+  if find webroot/img/flags/ -name "*.svg" -print0 \
+    | xargs -0 -- grep --files-without-match "<svg[^<]* $attr=" \
+    | grep .
+  then
+    check_failed "the above SVG file does not contain $attr attribute"
+  fi
+done
+
 exit 0
