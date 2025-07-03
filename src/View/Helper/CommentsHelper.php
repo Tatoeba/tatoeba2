@@ -73,6 +73,19 @@ class CommentsHelper extends AppHelper
         $commentId = $comment['id'];
 
         //send message
+        if ($permissions['canReport']) {
+            $menu[] = array(
+                /* @translators: flag button to report a sentence comment (verb) */
+                'text' => __('Report'),
+                'icon' => 'flag',
+                'url' => array(
+                    'controller' => 'report_content',
+                    'action' => 'sentence_comment',
+                    $comment->id,
+                    '?' => ['origin' => $this->getView()->getRequest()->getRequestTarget()],
+                )
+            );
+        }
         if ($permissions['canPM']) {
             $menu[] = array(
                 'text' => __('Send message'),

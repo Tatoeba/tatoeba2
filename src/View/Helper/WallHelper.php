@@ -179,6 +179,19 @@ class WallHelper extends AppHelper
         $messageId = $message['id'];
         $hidden = $message['hidden'];
 
+        if ($permissions['canReport']) {
+            $menu[] = array(
+                /* @translators: flag button to report a wall post (verb) */
+                'text' => __('Report'),
+                'icon' => 'flag',
+                'url' => array(
+                    'controller' => 'report_content',
+                    'action' => 'wall_post',
+                    $messageId,
+                    '?' => ['origin' => $this->getView()->getRequest()->getRequestTarget()],
+                )
+            );
+        }
         if ($permissions['canPM']) {
             $menu[] = array(
                 'text' => __('Send message'),

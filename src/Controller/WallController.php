@@ -182,8 +182,8 @@ class WallController extends AppController
         }
 
         $messagePermissions = $this->Permissions->getWallMessageOptions(
-            null,
-            $message->owner,
+            false,
+            $message,
             CurrentUser::get('id')
         );
         if ($messagePermissions['canEdit'] == false) {
