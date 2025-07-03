@@ -179,7 +179,7 @@ class WallHelper extends AppHelper
         $messageId = $message['id'];
         $hidden = $message['hidden'];
 
-        if ($permissions['canPM']) {
+        if ($permissions['canReport']) {
             $menu[] = array(
                 /* @translators: flag button to report a wall post (verb) */
                 'text' => __('Report'),
@@ -190,6 +190,8 @@ class WallHelper extends AppHelper
                     $messageId,
                 )
             );
+        }
+        if ($permissions['canPM']) {
             $menu[] = array(
                 'text' => __('Send message'),
                 'icon' => 'mail',

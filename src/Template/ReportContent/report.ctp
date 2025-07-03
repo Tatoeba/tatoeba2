@@ -49,6 +49,7 @@ if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
                             'canEdit' => false,
                             'canHide' => false,
                             'canPM' => false,
+                            'canReport' => false,
                         ],
                         false
                     ),

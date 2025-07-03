@@ -73,7 +73,7 @@ class CommentsHelper extends AppHelper
         $commentId = $comment['id'];
 
         //send message
-        if ($permissions['canPM']) {
+        if ($permissions['canReport']) {
             $menu[] = array(
                 /* @translators: flag button to report a sentence comment (verb) */
                 'text' => __('Report'),
@@ -84,6 +84,8 @@ class CommentsHelper extends AppHelper
                     $comment->id,
                 )
             );
+        }
+        if ($permissions['canPM']) {
             $menu[] = array(
                 'text' => __('Send message'),
                 'icon' => 'mail',
