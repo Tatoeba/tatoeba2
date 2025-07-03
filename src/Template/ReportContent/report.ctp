@@ -71,8 +71,6 @@ if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
         'rows' => '10',
     ]) ?>
 
-    <?= $this->Form->hidden('origin', ['value' => $this->safeForAngular($origin)]) ?>
-
     <div layout="row" layout-align="start center">
         <md-button class="md-raised" onclick="history.back();">
             <?php /* @translators: cancel button of content reporting form (verb) */ ?>

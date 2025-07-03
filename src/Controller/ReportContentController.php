@@ -15,7 +15,7 @@ class ReportContentController extends AppController
     private function process_report($entity)
     {
         $details = $this->request->getData('details', '');
-        $origin = $this->request->getData('origin', $this->referer());
+        $origin = $this->request->getQuery('origin', $this->referer());
 
         if ($this->request->is('post')) {
             $report = new ContentReport(

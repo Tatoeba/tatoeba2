@@ -82,6 +82,7 @@ class CommentsHelper extends AppHelper
                     'controller' => 'report_content',
                     'action' => 'sentence_comment',
                     $comment->id,
+                    '?' => ['origin' => $this->getView()->getRequest()->getRequestTarget()],
                 )
             );
         }

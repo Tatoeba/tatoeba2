@@ -188,6 +188,7 @@ class WallHelper extends AppHelper
                     'controller' => 'report_content',
                     'action' => 'wall_post',
                     $messageId,
+                    '?' => ['origin' => $this->getView()->getRequest()->getRequestTarget()],
                 )
             );
         }
