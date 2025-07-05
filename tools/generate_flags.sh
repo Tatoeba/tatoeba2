@@ -28,7 +28,7 @@ confirm_has_font() {
 }
 
 iso_code_svg_template() {
-  local iso_code="$1" letter_spacing="$2" font_size="$3"
+  local iso_code="$1"
   cat <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
@@ -43,7 +43,7 @@ iso_code_svg_template() {
      d="M19 0h11v20H19z" />
   <text
      transform="rotate(-90) scale(0.1 0.1)"
-     style="font-style:normal;font-size:$font_size;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:$letter_spacing;fill:black;dominant-baseline:middle;text-anchor:middle"
+     style="font-style:normal;font-size:95.8636px;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:5px;fill:black;dominant-baseline:middle;text-anchor:middle"
      x="-100"
      y="253.8"
      >$iso_code</text>
@@ -85,8 +85,8 @@ minify_svg() {
 }
 
 generate_iso_svg() {
-  local iso_code="$1" letter_spacing="$2" font_size="$3"
-  iso_code_svg_template "$iso_code" "$letter_spacing" "$font_size" \
+  local iso_code="$1"
+  iso_code_svg_template "$iso_code" \
     | inkscape --export-text-to-path \
                --pipe \
                --export-filename=- \
@@ -107,12 +107,11 @@ confirm_has_dep scour
 confirm_has_font "Roboto Mono:style=Bold"
 
 gen_flag() {
-  local src="$1" iso_code="$2" \
-        letter_spacing="${3:-5px}" font_size="${4:-95.8636px}"
+  local src="$1" iso_code="$2"
   local outfile="webroot/img/flags/${iso_code,,}.svg"
   (
     cat "$src" | remove_svg_footer
-    generate_iso_svg "$iso_code" "$letter_spacing" "$font_size" \
+    generate_iso_svg "$iso_code" \
       | remove_svg_header
   ) | minify_svg > "$outfile"
   echo "Generated $outfile"
