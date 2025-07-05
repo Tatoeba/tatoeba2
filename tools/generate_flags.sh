@@ -27,7 +27,7 @@ confirm_has_font() {
   fi
 }
 
-iso_code_svg_template() {
+svg_template_sidesmall() {
   local iso_code="$1"
   cat <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -46,6 +46,29 @@ iso_code_svg_template() {
      style="font-style:normal;font-size:95.8636px;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:5px;fill:black;dominant-baseline:middle;text-anchor:middle"
      x="-100"
      y="253.8"
+     >$iso_code</text>
+</svg>
+EOF
+}
+
+svg_template_bigfront() {
+  local iso_code="$1"
+  cat <<EOF
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="30"
+   height="20"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <path
+     fill="#fff"
+     d="M0 0h30v20H0z" />
+  <text
+     transform="scale(0.1 0.1)"
+     style="font-style:normal;font-size:151.058px;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';fill:black;dominant-baseline:middle;text-anchor:middle"
+     x="150"
+     y="113.8"
      >$iso_code</text>
 </svg>
 EOF
@@ -85,8 +108,9 @@ minify_svg() {
 }
 
 generate_iso_svg() {
-  local iso_code="$1"
-  iso_code_svg_template "$iso_code" \
+  local iso_code="$1" template="$2"
+
+  svg_template_${template} "$iso_code" \
     | inkscape --export-text-to-path \
                --pipe \
                --export-filename=- \
@@ -107,17 +131,32 @@ confirm_has_dep scour
 confirm_has_font "Roboto Mono:style=Bold"
 
 gen_flag() {
-  local src="$1" iso_code="$2"
+  local iso_code="$1" src="$2"
   local outfile="webroot/img/flags/${iso_code,,}.svg"
-  (
-    cat "$src" | remove_svg_footer
-    generate_iso_svg "$iso_code" \
-      | remove_svg_header
-  ) | minify_svg > "$outfile"
+
+  if [ -n "$src" ]; then
+    (
+      cat "$src" | remove_svg_footer
+      generate_iso_svg "$iso_code" sidesmall | remove_svg_header
+    )
+  else
+      generate_iso_svg "$iso_code" bigfront
+  fi | minify_svg > "$outfile"
+
   echo "Generated $outfile"
 }
 
-gen_flag webroot/img/flags/ind.svg AOZ
-gen_flag webroot/img/flags/ind.svg JAV
-gen_flag webroot/img/flags/ind.svg MDR
-gen_flag webroot/img/src/Flag_of_Eritrea.30x20.svg TIG
+# Flags consisting of image + small ISO code on the side
+gen_flag AOZ webroot/img/flags/ind.svg
+gen_flag JAV webroot/img/flags/ind.svg
+gen_flag MDR webroot/img/flags/ind.svg
+gen_flag TIG webroot/img/src/Flag_of_Eritrea.30x20.svg
+
+# Flags consisting of ISO code only
+gen_flag IGS
+gen_flag KAS
+gen_flag KNC
+gen_flag NNB
+gen_flag NST
+gen_flag SHY
+gen_flag SWC
