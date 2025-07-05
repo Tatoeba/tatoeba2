@@ -1752,14 +1752,6 @@ html[dir="rtl"] svg.language-icon {
   margin-left: 0.5em;
 }
 
-/* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
-@-moz-document url-prefix() {
-  svg.language-icon {
-    filter: none;
-    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
-  }
-}
-
 .language-dropdown .language-icon {
     display: inline-block;
     vertical-align: middle;
