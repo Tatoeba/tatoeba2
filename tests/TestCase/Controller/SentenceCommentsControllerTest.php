@@ -2,10 +2,13 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Core\Configure;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 
 class SentenceCommentsControllerTest extends IntegrationTestCase
 {
+    use EmailTrait;
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
@@ -93,6 +96,13 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->logInAs('contributor');
         $this->saveSomething(999999999);
         $this->assertRedirect('/en/sentences/show/999999999');
+    }
+
+    public function testSave_notificationEmailLink() {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
+        $this->logInAs('contributor');
+        $this->saveSomething(9);
+        $this->assertMailContainsHtml('https://example.net/sentence_comments/show/9#comments');
     }
 
     private function editSomething() {

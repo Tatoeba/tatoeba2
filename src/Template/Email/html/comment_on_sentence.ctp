@@ -1,6 +1,7 @@
 <?php
 $sentenceId = $comment->sentence_id;
 $urlParams = [
+    'lang' => '',
     'controller' => 'sentence_comments',
     'action' => 'show',
     $sentenceId,
