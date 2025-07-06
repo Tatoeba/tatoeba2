@@ -2,10 +2,13 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Core\Configure;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 
 class PrivateMessagesControllerTest extends IntegrationTestCase
 {
+    use EmailTrait;
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
@@ -65,13 +68,17 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
     }
 
     public function testSendMessage() {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->logInAs('contributor');
+
         $this->post('/en/private_messages/send', [
             'submitType' => 'send',
             'recipients' => 'admin',
             'title' => 'Hello',
             'content' => 'Hello world!',
         ]);
+
         $this->assertRedirect('/en/private_messages/folder/Sent');
+        $this->assertMailContainsHtml('https://example.net/private_messages/show/9');
     }
 }

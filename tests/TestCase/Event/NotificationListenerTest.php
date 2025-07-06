@@ -59,7 +59,6 @@ class NotificationListenerTest extends TestCase {
         $this->assertMailSentWith('Tatoeba PM - Status', 'subject');
         $this->assertMailContainsHtml("You have received a private message from <strong>kazuki</strong>.");
         $this->assertMailContainsHtml("Why are you so<br />\nadvanced? &lt;&gt;");
-        $this->assertMailContainsHtml("https://tatoeba.org/private_messages/show/42");
     }
 
     public function testSendPmNotification_doNotSendIfUserSettingsDisabled() {

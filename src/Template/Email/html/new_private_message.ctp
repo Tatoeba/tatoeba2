@@ -13,7 +13,13 @@ echo $this->Html->div(null,
 
 $replyLink = $this->Html->link(
     "Reply",
-    "https://tatoeba.org/private_messages/show/{$message->id}"
+    [
+        '_full' => true,
+        'lang' => '',
+        'controller' => 'private_messages',
+        'action' => 'show',
+        $message->id,
+    ]
 );
 echo $this->Html->tag("p", $replyLink);
 ?>
