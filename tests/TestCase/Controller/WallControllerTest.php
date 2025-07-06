@@ -1,10 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use Cake\Core\Configure;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
 
 class WallControllerTest extends IntegrationTestCase {
+    use EmailTrait;
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
@@ -92,6 +95,16 @@ class WallControllerTest extends IntegrationTestCase {
             'replyTo' => '1',
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testSaveInside_notificationEmailLink() {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
+        $this->logInAs('contributor');
+        $this->ajaxPost('/en/wall/save_inside', [
+            'content' => 'Hello admin!',
+            'replyTo' => '2',
+        ]);
+        $this->assertMailContainsHtml('https://example.net/wall/show_message/4#message_4');
     }
 
     private function postNewPosts($n) {

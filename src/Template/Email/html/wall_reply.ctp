@@ -1,5 +1,6 @@
 <?php
 $urlParams = [
+    'lang' => '',
     'controller' => 'wall',
     'action' => 'show_message',
     $post->id,
