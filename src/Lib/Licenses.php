@@ -30,6 +30,9 @@ class Licenses {
         if (empty($licenses)) {
             $licenses = [
                 '' => ['name' => __('No license for offsite use')],
+                'CC0 1.0' => [
+                    'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
+                ],
                 'CC BY 4.0' => [
                     'url' => 'https://creativecommons.org/licenses/by/4.0/',
                 ],

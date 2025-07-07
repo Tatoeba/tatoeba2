@@ -41,6 +41,7 @@ class LicenseHelperTest extends TestCase
             ['SentenceLicense', 'CC0 1.0', false, 'CC0'],
             ['SentenceLicense', 'CC0 1.0', true, '<a'],
             ['AudioLicense', '', true, 'No license'],
+            ['AudioLicense', 'CC0 1.0', false, 'CC0 1.0'],
             ['AudioLicense', 'CC BY 4.0', false, 'CC BY 4.0'],
             ['AudioLicense', 'CC BY 4.0', true, '<a'],
         ];
@@ -60,8 +61,8 @@ class LicenseHelperTest extends TestCase
             // helper, admin, expected
             ['SentenceLicense', false, 2],
             ['SentenceLicense', true, 3],
-            ['AudioLicense', false, 5],
-            ['AudioLicense', true, 5],
+            ['AudioLicense', false, 6],
+            ['AudioLicense', true, 6],
         ];
     }
 
