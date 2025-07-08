@@ -157,6 +157,7 @@ gen_flag GUW
 gen_flag IGS
 gen_flag KAS
 gen_flag KNC
+gen_flag NJO
 gen_flag NNB
 gen_flag NST
 gen_flag SHY
