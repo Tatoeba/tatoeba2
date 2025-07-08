@@ -162,3 +162,4 @@ gen_flag NNB
 gen_flag NST
 gen_flag SHY
 gen_flag SWC
+gen_flag TUM
