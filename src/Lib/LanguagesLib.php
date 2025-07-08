@@ -700,6 +700,7 @@ class LanguagesLib
                 'gaz' => __d('languages', 'West-Central Oromo'),
                 'isv' => __d('languages', 'Interslavic'),
                 'mdr' => __d('languages', 'Mandar'),
+                'sva' => __d('languages', 'Svan'),
             );
         }
         return $languages;
