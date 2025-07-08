@@ -153,6 +153,7 @@ gen_flag MDR webroot/img/flags/ind.svg
 gen_flag TIG webroot/img/src/Flag_of_Eritrea.30x20.svg
 
 # Flags consisting of ISO code only
+gen_flag GUW
 gen_flag IGS
 gen_flag KAS
 gen_flag KNC
