@@ -5,23 +5,38 @@ use MiniAsset\Filter\AssetFilter;
 
 class TatoebaFlagsFilter extends AssetFilter
 {
-    private $passThrough = [ "sprite_header", "sprite_footer" ];
 
-    public function input($filename, $content)
+    public function input($path, $content)
     {
-        $filename = explode('/', $filename);
-        $filename = end($filename);
-        if (in_array($filename, $this->passThrough)) {
-            return trim($content);
+        if ($this->isTmpTarget()) {
+            $filename = basename($path);
+            $identifier = explode('.', $filename)[0];
+            return $this->svg2symbol($content, $identifier);
+        } else {
+            return $this->svgWrap($content);
         }
-        $identifier = explode('.', $filename)[0];
+    }
 
+    private function isTmpTarget() {
+        $settings = $this->settings();
+        return in_array($settings['target'], $settings['tmptargets'] ?? []);
+    }
+
+    private function svg2symbol($content, $identifier) {
         $content = $this->forceViewBox($content);
         $content = $this->removeXmlDeclaration($content);
         $content = $this->removeXmlNs($content);
         $content = $this->changeSvgIntoSymbol($identifier, $content);
-
         return trim($content);
+    }
+
+    private function svgWrap($content) {
+        return <<<SVG
+               <?xml version="1.0"?>
+               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+               $content
+               </svg>
+               SVG;
     }
 
     private function removeXmlNs($content) {
