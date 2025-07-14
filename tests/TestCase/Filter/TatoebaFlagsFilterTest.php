@@ -26,7 +26,7 @@ class TatoebaFlagsFilterTest extends TestCase
     private function newSVGSpriteTarget($files) {
         $tmptarget = new AssetTarget(
             'tmptarget',
-            array_map(fn($file) => new Local($file), $files),
+            $files,
             ['TatoebaFlagsFilter'],
             [$this->flagsDir]
         );
@@ -39,7 +39,7 @@ class TatoebaFlagsFilterTest extends TestCase
 
     public function testFlag() {
         $file = $this->flagsDir . 'epo.svg';
-        $target = $this->newSVGSpriteTarget([$file]);
+        $target = $this->newSVGSpriteTarget([new Local($file)]);
 
         $result = $this->compiler->generate($target);
 
@@ -56,7 +56,7 @@ class TatoebaFlagsFilterTest extends TestCase
 
     public function testFlagForcesViewbox() {
         $file = $this->flagsDir . 'ryu.svg';
-        $target = $this->newSVGSpriteTarget([$file]);
+        $target = $this->newSVGSpriteTarget([new Local($file)]);
 
         $result = $this->compiler->generate($target);
 
@@ -66,10 +66,47 @@ class TatoebaFlagsFilterTest extends TestCase
 
     public function testFlagDoesNotOverwriteExistingViewbox() {
         $file = $this->flagsDir . 'ajp.svg';
-        $target = $this->newSVGSpriteTarget([$file]);
+        $target = $this->newSVGSpriteTarget([new Local($file)]);
 
         $result = $this->compiler->generate($target);
 
         $this->assertContains('<symbol id="ajp" viewBox="0 0 4.5 3">', $result);
+    }
+
+    private function mockSVGFile($path, $contents) {
+        $mock = $this
+            ->getMockBuilder('MiniAsset\File\FileInterface')
+            ->setMethods(['name', 'contents', 'modifiedTime', 'path'])
+            ->getMock();
+        $mock
+            ->method('path')
+            ->will($this->returnValue($path));
+        $mock
+            ->method('contents')
+            ->will($this->returnValue($contents));
+        return $mock;
+    }
+
+    public function testFilterRaisesExceptionIfResultContainsDuplicateIds() {
+        $expected = new \RuntimeException("id(s) dup,dup2 used more than once in tmptarget");
+        $svg = <<<DUPIDS
+               <svg>
+                 <circle id="dup"/><circle id="dup"/>
+                 <circle id="dup2"/><circle id="dup2"/>
+               </svg>
+               DUPIDS;
+        $target = new AssetTarget(
+            'final.svg',
+            [$this->mockSVGFile('tmptarget', $svg)],
+            ['TatoebaFlagsFilter']
+        );
+
+        try {
+            $result = $this->compiler->generate($target);
+        } catch (\Exception $actual) {
+            $this->assertEquals($expected, $actual);
+            return;
+        }
+        $this->fail("RuntimeException was not thrown");
     }
 }

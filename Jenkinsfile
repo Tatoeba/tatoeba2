@@ -4,6 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'composer install'
+        sh 'bin/cake asset_compress build -f'
       }
     }
     stage('Check') {

@@ -8,12 +8,15 @@ class TatoebaFlagsFilter extends AssetFilter
 
     public function input($path, $content)
     {
+        $filename = basename($path);
+
         if ($this->isTmpTarget()) {
-            $filename = basename($path);
             $identifier = explode('.', $filename)[0];
             return $this->svg2symbol($content, $identifier);
         } else {
-            return $this->svgWrap($content);
+            $content = $this->svgWrap($content);
+            $this->checkIdDuplicates($filename, $content);
+            return $content;
         }
     }
 
@@ -67,5 +70,41 @@ class TatoebaFlagsFilter extends AssetFilter
             }
         }
         return $xml->saveXML();
+    }
+
+    private function walkSVG(\SimpleXMLIterator $node, callable $func)
+    {
+        $stack = [$node];
+        while (!empty($stack)) {
+            $elem = array_pop($stack);
+            $func($elem);
+            for ($elem->rewind(); $elem->valid(); $elem->next()) {
+                array_unshift($stack, $elem->current());
+            }
+        }
+    }
+
+    private function getAllIds($svg) {
+        $ids = [];
+        $this->walkSVG($svg, function($node) use (&$ids) {
+            $id = $node->attributes()->id;
+            if (!is_null($id)) {
+                $ids[] = (string)$id;
+            }
+        });
+        return $ids;
+    }
+
+    private function checkIdDuplicates($filename, $content) {
+        $svg = new \SimpleXMLIterator($content);
+        $allIds = $this->getAllIds($svg);
+        $dups = array_filter(
+            array_count_values($allIds),
+            fn($count) => $count > 1
+        );
+        if (!empty($dups)) {
+            $dupsStr = implode(',', array_keys($dups));
+            throw new \RuntimeException("id(s) $dupsStr used more than once in $filename");
+        }
     }
 }
