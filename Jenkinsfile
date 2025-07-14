@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Check') {
+      steps {
+        sh './check.sh'
+      }
+    }
     stage('Build') {
       steps {
         sh 'composer install'
@@ -10,11 +15,6 @@ pipeline {
         sh 'sed -i "s/{{mysql_test_db_name}}/jenkins_test/"     config/app_local.php'
         sh 'sed -i "s/{{security_salt}}/nCwygQoRC5EgFHDRNkdWS6hps74V3y9Z/" config/app_local.php'
         sh 'bin/cake asset_compress build -f'
-      }
-    }
-    stage('Check') {
-      steps {
-        sh './check.sh'
       }
     }
     stage('Test') {
