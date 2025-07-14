@@ -5,12 +5,15 @@ use MiniAsset\Filter\AssetFilter;
 
 class TatoebaFlagsFilter extends AssetFilter
 {
+    private $knownIds = [];
+    private $lastIdAsInt = 0;
 
     public function input($path, $content)
     {
         $filename = basename($path);
 
         if ($this->isTmpTarget()) {
+            $content = $this->fixDuplicateIds($content);
             $identifier = explode('.', $filename)[0];
             return $this->svg2symbol($content, $identifier);
         } else {
@@ -106,5 +109,82 @@ class TatoebaFlagsFilter extends AssetFilter
             $dupsStr = implode(',', array_keys($dups));
             throw new \RuntimeException("id(s) $dupsStr used more than once in $filename");
         }
+    }
+
+    private function intToStr($i) {
+        $str = "";
+        do {
+            $str .= base_convert($i % 36, 10, 36);
+            $i = intdiv($i, 36);
+        } while ($i > 0);
+        return strrev($str);
+    }
+
+    private function getNewId() {
+        do {
+            $id = $this->intToStr($this->lastIdAsInt++);
+        } while (in_array($id, $this->knownIds));
+        return $id;
+    }
+
+    private function renameIdRefAttr($oldId, $newId, $ns, $tagName, $attrName, $attrValue) {
+        $hrefElem = ['linearGradient', 'radialGradient', 'pattern', 'textPath', 'use'];
+        if ($attrName == 'href' && in_array($tagName, $hrefElem)) {
+            // href and xlink:href attributes only uses "#id" format
+            if ($attrValue == "#$oldId") {
+                return "#$newId";
+            }
+        } elseif (is_null($ns)) {
+            // some other XML attributes use url(#id) format
+            $_oldId = preg_quote($oldId, '/');
+            $newAttrValue = preg_replace(
+                "/url\((\")?#$_oldId(\")?\)/",
+                "url(\1#$newId\2)",
+                $attrValue,
+                -1,
+                $count
+            );
+            if ($count) {
+                return $newAttrValue;
+            }
+        }
+        return null;
+    }
+
+    private function renameId($svg, $oldId, $newId) {
+        $this->walkSVG($svg, function($node) use ($oldId, $newId) {
+            // Rename ID itself
+            $id = (string)$node->attributes()->id;
+            if ($id == $oldId) {
+                $node->attributes()->id = $newId;
+            }
+
+            // Rename ID references
+            $tagName = $node->getName();
+            foreach ([null, "http://www.w3.org/1999/xlink"] as $ns) {
+                foreach ($node->attributes($ns) as $attrName => $attrValue) {
+                    $newAttrValue = $this->renameIdRefAttr($oldId, $newId, $ns, $tagName, $attrName, $attrValue);
+                    if ($newAttrValue) {
+                        $node->attributes($ns)->$attrName = $newAttrValue;
+                    }
+                }
+            }
+        });
+    }
+
+    private function fixDuplicateIds($content) {
+        $svg = new \SimpleXMLIterator($content);
+
+        foreach ($this->getAllIds($svg) as $id) {
+            if (in_array($id, $this->knownIds)) {
+                $newId = $this->getNewId();
+                $this->renameId($svg, $id, $newId);
+                $this->knownIds[] = $newId;
+            } else {
+                $this->knownIds[] = $id;
+            }
+        }
+
+        return $svg->asXML();
     }
 }
