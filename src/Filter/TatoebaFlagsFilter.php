@@ -13,6 +13,7 @@ class TatoebaFlagsFilter extends AssetFilter
         $filename = basename($path);
 
         if ($this->isTmpTarget()) {
+            $content = $this->removeSymbols($content);
             $content = $this->fixDuplicateIds($content);
             $identifier = explode('.', $filename)[0];
             return $this->svg2symbol($content, $identifier);
@@ -170,6 +171,14 @@ class TatoebaFlagsFilter extends AssetFilter
                 }
             }
         });
+    }
+
+    private function removeSymbols($content) {
+        $svg = new \SimpleXMLIterator($content);
+        $this->walkSVG($svg, function($node) {
+            unset($node->symbol);
+        });
+        return $svg->asXML();
     }
 
     private function fixDuplicateIds($content) {

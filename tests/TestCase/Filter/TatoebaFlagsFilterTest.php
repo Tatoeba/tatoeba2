@@ -256,4 +256,19 @@ class TatoebaFlagsFilterTest extends TestCase
 
         $this->assertContainsInThisOrder($expectations, $result);
     }
+
+    public function testInternalSymbolsAreRemoved() {
+        $files = [
+            $this->mockSVGFile('foo.svg', '<svg><symbol id="baz"><circle/></symbol><use href="#baz"/></svg>'),
+            $this->mockSVGFile('bar.svg', '<svg><symbol id="baz"><circle/></symbol><use href="#baz"/></svg>'),
+            $this->mockSVGFile('baz.svg', '<svg><circle/></svg>'),
+        ];
+        $target = $this->newSVGSpriteTarget($files);
+
+        $result = $this->compiler->generate($target);
+
+        $this->assertContains('<symbol id="foo"><use href="#baz"/></symbol>', $result);
+        $this->assertContains('<symbol id="bar"><use href="#baz"/></symbol>', $result);
+        $this->assertContains('<symbol id="baz"><circle/></symbol>', $result);
+    }
 }

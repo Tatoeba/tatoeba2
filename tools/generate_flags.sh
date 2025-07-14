@@ -28,16 +28,16 @@ confirm_has_font() {
 }
 
 svg_template_sidesmall() {
-  local iso_code="$1"
+  local iso_code="$1" include="$2"
   cat <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    width="30"
    height="20"
-   viewBox="0 0 30 20"
    version="1.1"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  $include
   <path
      fill="#fff"
      d="M19 0h11v20H19z" />
@@ -95,6 +95,7 @@ compact_decimals() {
 
 minify_svg() {
   scour --enable-id-stripping \
+        --protect-ids-noninkscape \
         --set-precision=5 \
         --no-line-breaks \
         --strip-xml-space \
@@ -108,9 +109,10 @@ minify_svg() {
 }
 
 generate_iso_svg() {
-  local iso_code="$1" template="$2"
+  local template
 
-  svg_template_${template} "$iso_code" \
+  template="$1"; shift
+  svg_template_${template} "$@" \
     | inkscape --export-text-to-path \
                --pipe \
                --export-filename=- \
@@ -118,12 +120,13 @@ generate_iso_svg() {
     | minify_svg
 }
 
-remove_svg_header() {
-  tr -d '\n'| sed 's,.*<svg [^>]\+>,,'
-}
-
-remove_svg_footer() {
-  sed 's,</svg>,,'
+svg2symbol() {
+  local id="$1" filename="$2"
+  cat "$filename" \
+    | tr -d '\n' \
+    | sed 's,.*<svg,<symbol,;s,</svg>,</symbol>,' \
+    | sed 's,\(<symbol [^>]*\)id="[^"]*",\1,' \
+    | sed "s,<symbol,\0 id=\"$id\","
 }
 
 confirm_has_dep inkscape
@@ -135,12 +138,12 @@ gen_flag() {
   local outfile="webroot/img/flags/${iso_code,,}.svg"
 
   if [ -n "$src" ]; then
-    (
-      cat "$src" | remove_svg_footer
-      generate_iso_svg "$iso_code" sidesmall | remove_svg_header
-    )
+    local id=$(basename "$src" | cut -d. -f 1)
+    local symbol=$(svg2symbol "$id" "$src")
+    local baseflag="$symbol<use href=\"#$id\"/>"
+    generate_iso_svg sidesmall "$iso_code" "$baseflag"
   else
-      generate_iso_svg "$iso_code" bigfront
+    generate_iso_svg bigfront "$iso_code"
   fi | minify_svg > "$outfile"
 
   echo "Generated $outfile"
