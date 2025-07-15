@@ -180,6 +180,16 @@ gen_flag HSN webroot/img/flags/cmn.svg
 gen_flag MWW webroot/img/flags/cmn.svg
 gen_flag NAN webroot/img/flags/cmn.svg
 gen_flag WUU webroot/img/flags/cmn.svg
+gen_flag AKL webroot/img/flags/tgl.svg
+gen_flag BCL webroot/img/flags/tgl.svg
+gen_flag BVY webroot/img/flags/tgl.svg
+gen_flag CBK webroot/img/flags/tgl.svg
+gen_flag CEB webroot/img/flags/tgl.svg
+gen_flag CYO webroot/img/flags/tgl.svg
+gen_flag HIL webroot/img/flags/tgl.svg
+gen_flag ILO webroot/img/flags/tgl.svg
+gen_flag LAA webroot/img/flags/tgl.svg
+gen_flag WAR webroot/img/flags/tgl.svg
 
 # Flags consisting of ISO code only
 gen_flag GUW
