@@ -271,4 +271,17 @@ class TatoebaFlagsFilterTest extends TestCase
         $this->assertContains('<symbol id="bar"><use href="#baz"/></symbol>', $result);
         $this->assertContains('<symbol id="baz"><circle/></symbol>', $result);
     }
+
+    public function testIdConflictsAreAvoided_takingAccountCurrentFileIds() {
+        $files = [
+            $this->mockSVGFile('file1.svg', '<svg><path id="0"/></svg>'),
+            $this->mockSVGFile('file2.svg', '<svg><path id="0"/><path id="1"/></svg>'),
+        ];
+        $target = $this->newSVGSpriteTarget($files);
+
+        $result = $this->compiler->generate($target);
+
+        $this->assertContains('<symbol id="file1"><path id="0"/></symbol>', $result);
+        $this->assertContains('<symbol id="file2"><path id="2"/><path id="1"/></symbol>', $result);
+    }
 }

@@ -121,10 +121,11 @@ class TatoebaFlagsFilter extends AssetFilter
         return strrev($str);
     }
 
-    private function getNewId() {
+    private function getNewId($toAvoid) {
+        $toAvoid = array_merge($this->knownIds, $toAvoid);
         do {
             $id = $this->intToStr($this->lastIdAsInt++);
-        } while (in_array($id, $this->knownIds));
+        } while (in_array($id, $toAvoid));
         return $id;
     }
 
@@ -184,9 +185,10 @@ class TatoebaFlagsFilter extends AssetFilter
     private function fixDuplicateIds($content) {
         $svg = new \SimpleXMLIterator($content);
 
-        foreach ($this->getAllIds($svg) as $id) {
+        $currentFileIds = $this->getAllIds($svg);
+        foreach ($currentFileIds as $id) {
             if (in_array($id, $this->knownIds)) {
-                $newId = $this->getNewId();
+                $newId = $this->getNewId($currentFileIds);
                 $this->renameId($svg, $id, $newId);
                 $this->knownIds[] = $newId;
             } else {
