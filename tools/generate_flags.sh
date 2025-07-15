@@ -140,6 +140,8 @@ gen_flag() {
   if [ -n "$src" ]; then
     if [ "$position" = "centered" ]; then
       extra=' x="-5.5"'
+    elif [ "$position" = "centeredL" ]; then
+      extra=' x="-6"'
     fi
     local id=$(basename "$src" | cut -d. -f 1)
     local symbol=$(svg2symbol "$id" "$src")
@@ -163,6 +165,10 @@ gen_flag ORI webroot/img/flags/hin.svg centered
 gen_flag PAN webroot/img/flags/hin.svg centered
 gen_flag SAT webroot/img/flags/hin.svg centered
 gen_flag TEL webroot/img/flags/hin.svg centered
+gen_flag BER webroot/img/flags/Berber_flag.svg centeredL
+gen_flag KAB webroot/img/flags/Berber_flag.svg centeredL
+gen_flag RIF webroot/img/flags/Berber_flag.svg centeredL
+gen_flag ZGH webroot/img/flags/Berber_flag.svg centeredL
 gen_flag AOZ webroot/img/flags/ind.svg
 gen_flag JAV webroot/img/flags/ind.svg
 gen_flag MDR webroot/img/flags/ind.svg
