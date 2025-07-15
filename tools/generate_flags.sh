@@ -134,13 +134,16 @@ confirm_has_dep scour
 confirm_has_font "Roboto Mono:style=Bold"
 
 gen_flag() {
-  local iso_code="$1" src="$2"
+  local iso_code="$1" src="$2" position="$3"
   local outfile="webroot/img/flags/${iso_code,,}.svg"
 
   if [ -n "$src" ]; then
+    if [ "$position" = "centered" ]; then
+      extra=' x="-5.5"'
+    fi
     local id=$(basename "$src" | cut -d. -f 1)
     local symbol=$(svg2symbol "$id" "$src")
-    local baseflag="$symbol<use href=\"#$id\"/>"
+    local baseflag="$symbol<use$extra href=\"#$id\"/>"
     generate_iso_svg sidesmall "$iso_code" "$baseflag"
   else
     generate_iso_svg bigfront "$iso_code"
@@ -150,6 +153,16 @@ gen_flag() {
 }
 
 # Flags consisting of image + small ISO code on the side
+gen_flag ASM webroot/img/flags/hin.svg centered
+gen_flag BHO webroot/img/flags/hin.svg centered
+gen_flag GOM webroot/img/flags/hin.svg centered
+gen_flag GUJ webroot/img/flags/hin.svg centered
+gen_flag HOC webroot/img/flags/hin.svg centered
+gen_flag MAI webroot/img/flags/hin.svg centered
+gen_flag ORI webroot/img/flags/hin.svg centered
+gen_flag PAN webroot/img/flags/hin.svg centered
+gen_flag SAT webroot/img/flags/hin.svg centered
+gen_flag TEL webroot/img/flags/hin.svg centered
 gen_flag AOZ webroot/img/flags/ind.svg
 gen_flag JAV webroot/img/flags/ind.svg
 gen_flag MDR webroot/img/flags/ind.svg
