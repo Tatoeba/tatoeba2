@@ -190,6 +190,9 @@ gen_flag HIL webroot/img/flags/tgl.svg
 gen_flag ILO webroot/img/flags/tgl.svg
 gen_flag LAA webroot/img/flags/tgl.svg
 gen_flag WAR webroot/img/flags/tgl.svg
+gen_flag AFR webroot/img/flags/Flag_of_South_Africa.svg
+gen_flag XHO webroot/img/flags/Flag_of_South_Africa.svg
+gen_flag ZUL webroot/img/flags/Flag_of_South_Africa.svg
 
 # Flags consisting of ISO code only
 gen_flag GUW
