@@ -42,10 +42,10 @@ svg_template_sidesmall() {
      fill="#fff"
      d="M19 0h11v20H19z" />
   <text
-     transform="rotate(-90) scale(0.1 0.1)"
-     style="font-style:normal;font-size:95.8636px;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:5px;fill:black;dominant-baseline:middle;text-anchor:middle"
-     x="-100"
-     y="253.8"
+     transform="rotate(-90) scale(0.2 0.2)"
+     style="font-style:normal;font-size:47.9318px;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:2.5px;fill:black;dominant-baseline:middle;text-anchor:middle"
+     x="-50"
+     y="126.9"
      >$iso_code</text>
 </svg>
 EOF
