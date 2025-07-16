@@ -173,6 +173,13 @@ gen_flag AOZ webroot/img/flags/ind.svg
 gen_flag JAV webroot/img/flags/ind.svg
 gen_flag MDR webroot/img/flags/ind.svg
 gen_flag TIG webroot/img/flags/Flag_of_Eritrea.svg
+gen_flag CJY webroot/img/flags/cmn.svg
+gen_flag GAN webroot/img/flags/cmn.svg
+gen_flag HAK webroot/img/flags/cmn.svg
+gen_flag HSN webroot/img/flags/cmn.svg
+gen_flag MWW webroot/img/flags/cmn.svg
+gen_flag NAN webroot/img/flags/cmn.svg
+gen_flag WUU webroot/img/flags/cmn.svg
 
 # Flags consisting of ISO code only
 gen_flag GUW
