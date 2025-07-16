@@ -99,6 +99,7 @@ minify_svg() {
         --set-precision=5 \
         --no-line-breaks \
         --strip-xml-space \
+        --strip-xml-prolog \
         2>/dev/null \
     | strip_leading_zeros \
     | compact_decimals \
