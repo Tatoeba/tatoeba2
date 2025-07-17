@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-09 03:23+0000\n"
+"POT-Creation-Date: 2025-07-08 16:35+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2014\n"
 "Language-Team: Basque (http://app.transifex.com/tatoeba/tatoeba_website/language/eu/)\n"
@@ -75,6 +75,18 @@ msgstr "Esteka mozterakoa akats bat sortu da. Mesedez, saia zaitez berriro edo j
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
 msgstr "Karpeta \"{name}\" hustuta."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ReportContentController.php#L29
+msgid ""
+"Thank you for your help. Your report was sent to the admins. If needed, they"
+" will reply to you by private message."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ReportContentController.php#L37
+msgid ""
+"Sorry, we were unable to send your report. Please try again later, or "
+"instead contact {email}."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L109
@@ -404,7 +416,7 @@ msgstr[1] "Honako karaktere hauek ez dira transkribatu: {charsEnumeration}."
 msgid "No license for offsite use"
 msgstr "Lizentziarik ez Tatoebatik kanpo erabiltzeko"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L64
 msgid "Licensing issue"
 msgstr "Lizentzia kontuak"
 
@@ -1778,6 +1790,7 @@ msgstr "Esaldia {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L74
 msgid "Former member"
 msgstr "Garai bateko erabiltzailea"
@@ -1787,7 +1800,7 @@ msgstr "Garai bateko erabiltzailea"
 #. / reply button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L262
 msgctxt "button"
 msgid "Reply"
 msgstr "Erantzun"
@@ -2146,9 +2159,9 @@ msgstr "Hizkuntza aldatu, itzuli"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L234
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L378
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L381
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L231
 msgid "Edit"
 msgstr "Editatu"
 
@@ -2171,11 +2184,11 @@ msgstr "Laster-marketatik ezabatu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L362
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
 msgid "Are you sure?"
 msgstr "Ziur zaude?"
 
@@ -2189,11 +2202,11 @@ msgstr "Ziur zaude?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L144
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L444
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L246
 msgid "Delete"
 msgstr "Ezabatu"
 
@@ -3496,6 +3509,46 @@ msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "Gaur mezu bat besterik ez duzu bidali."
 msgstr[1] "Gaur {n}&nbsp;mezu bidali dituzu."
+
+#. submit button of content reporting form (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L7
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L82
+msgid "Report content"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L11
+msgid ""
+"Use this form to let website admins know about content that goes against <a "
+"href=\"{}\">our rules of community participation</a>."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L17
+msgid ""
+"If you simply want to report a problem with the sentence, leave a comment on"
+" it instead."
+msgstr ""
+
+#. title of the content reporting page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L25
+msgid "Report inappropriate content"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L34
+msgid "Report the following Wall message"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L39
+msgid "Report the following sentence comment"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L63
+msgid "What is the problem?"
+msgstr ""
+
+#. cancel button of content reporting form (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L77
+msgid "Go back"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L39
 msgid "Sentences marked as \"OK\""
@@ -4948,18 +5001,25 @@ msgid ""
 "license."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
+#. flag button to report a sentence comment (verb)
+#. / flag button to report a wall post (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L185
+msgid "Report"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L197
 msgid "Send message"
 msgstr "Bidali mezua"
 
 #. button to unhide a sentence comment (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L107
 msgid "Unhide"
 msgstr "Erakutsi"
 
 #. button to hide a sentence comment (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L111
 msgid "Hide"
 msgstr "Ezkutatu"
 

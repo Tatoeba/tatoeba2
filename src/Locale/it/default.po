@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-09 03:23+0000\n"
+"POT-Creation-Date: 2025-07-08 16:35+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>, 2014-2025\n"
 "Language-Team: Italian (http://app.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
@@ -76,6 +76,18 @@ msgstr "Si è verificato un errore mentre venivano separate le due frasi. Riprov
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
 msgstr "Cartella \"{name}\" svuotata."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ReportContentController.php#L29
+msgid ""
+"Thank you for your help. Your report was sent to the admins. If needed, they"
+" will reply to you by private message."
+msgstr "Grazie per il tuo aiuto. La tua segnalazione è stata inviata agli amministratori. Se necessario, ti risponderanno con un messaggio privato."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ReportContentController.php#L37
+msgid ""
+"Sorry, we were unable to send your report. Please try again later, or "
+"instead contact {email}."
+msgstr "Spaicente, non siamo stati in gradi di inviare la tua segnalazione. Per favore, riprova più tardi, oppure, in alternativa, contatta {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L109
@@ -408,7 +420,7 @@ msgstr[2] "I seguenti caratteri non sono trascritti: {charsEnumeration}."
 msgid "No license for offsite use"
 msgstr "Nessuna licenza per un utilizzo esterno"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L64
 msgid "Licensing issue"
 msgstr "Problema di licenza"
 
@@ -1787,6 +1799,7 @@ msgstr "Frase {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L74
 msgid "Former member"
 msgstr "Ex membro"
@@ -1796,7 +1809,7 @@ msgstr "Ex membro"
 #. / reply button on a wall post (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L262
 msgctxt "button"
 msgid "Reply"
 msgstr "Rispondi"
@@ -2157,9 +2170,9 @@ msgstr "Traduci"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L234
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L378
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L381
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L231
 msgid "Edit"
 msgstr "Modifica"
 
@@ -2182,11 +2195,11 @@ msgstr "Rimuovi dalle frasi preferite"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L362
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
 msgid "Are you sure?"
 msgstr "Ne sei sicuro?"
 
@@ -2200,11 +2213,11 @@ msgstr "Ne sei sicuro?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L390
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L144
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L444
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L246
 msgid "Delete"
 msgstr "Elimina"
 
@@ -3512,6 +3525,46 @@ msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "Hai inviato un messaggio oggi."
 msgstr[1] "Hai inviato {n}&nbsp;messaggi oggi."
 msgstr[2] "Hai inviato {n}&nbsp;messaggi oggi."
+
+#. submit button of content reporting form (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L7
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L82
+msgid "Report content"
+msgstr "Segnala il contenuto"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L11
+msgid ""
+"Use this form to let website admins know about content that goes against <a "
+"href=\"{}\">our rules of community participation</a>."
+msgstr "Utilizza questo modulo per far sapere agli amministratori del sito web del contenuto che va contro <a href=\"{}\">le nostre regole per la partecipazione dei membri</a>."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L17
+msgid ""
+"If you simply want to report a problem with the sentence, leave a comment on"
+" it instead."
+msgstr "Se vuoi semplicemente segnalare un problema con la frase, lascia un commento, invece."
+
+#. title of the content reporting page
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L25
+msgid "Report inappropriate content"
+msgstr "Segnala un contenuto non appropriato"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L34
+msgid "Report the following Wall message"
+msgstr "Segnala il seguente messaggio in bacheca"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L39
+msgid "Report the following sentence comment"
+msgstr "Segnala il seguente commento alla frase"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L63
+msgid "What is the problem?"
+msgstr "Qual è il problema?"
+
+#. cancel button of content reporting form (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L77
+msgid "Go back"
+msgstr "Torna indietro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L39
 msgid "Sentences marked as \"OK\""
@@ -4923,9 +4976,9 @@ msgid ""
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance at {time} UTC, which is "
 "in {n} hours."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Tatoeba sarà temporaneamente disattivato per manutenzione alle {time} UTC, che è fra {n}ora."
+msgstr[1] "Tatoeba sarà temporaneamente disattivato per manutenzione alle {time} UTC, che è fra {n} ore."
+msgstr[2] "Tatoeba sarà temporaneamente disattivato per manutenzione alle {time} UTC, che è fra {n} ore."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L86
 msgid ""
@@ -4934,24 +4987,24 @@ msgid ""
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance on {datetime} UTC, which "
 "is in {n} days."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Tatoeba sarà temporaneamente disattivato per manutenzione il {datetime} UTC, che è fra {n} giorno."
+msgstr[1] "Tatoeba sarà temporaneamente disattivato per manutenzione il {datetime} UTC, che è fra {n} giorni."
+msgstr[2] "Tatoeba sarà temporaneamente disattivato per manutenzione il {datetime} UTC, che è fra {n}giorni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L102
 msgid "The maintenance is estimated to take no longer than {n} hour."
 msgid_plural "The maintenance is estimated to take no longer than {n} hours."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Si stima che la manutenzione duri non più di {n} ora."
+msgstr[1] "Si stima che la manutenzione duri non più di {n} ore."
+msgstr[2] "Si stima che la manutenzione duri non più di {n} ore."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L111
 msgid "The maintenance is estimated to take no longer than {n} minute."
 msgid_plural ""
 "The maintenance is estimated to take no longer than {n} minutes."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Si stima che la manutenzione duri non più di {n} minuto."
+msgstr[1] "Si stima che la manutenzione duri non più di {n} minuti."
+msgstr[2] "Si stima che la manutenzione duri non più di {n} minuti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L48
 msgid ""
@@ -4977,18 +5030,25 @@ msgid ""
 "license."
 msgstr "Le seguenti registrazioni audio fatte da {userName} sono state rilasciate con una licenza sconosciuta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L184
+#. flag button to report a sentence comment (verb)
+#. / flag button to report a wall post (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L185
+msgid "Report"
+msgstr "Segnala"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L197
 msgid "Send message"
 msgstr "Invia messaggio"
 
 #. button to unhide a sentence comment (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L107
 msgid "Unhide"
 msgstr "Mostra"
 
 #. button to hide a sentence comment (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L111
 msgid "Hide"
 msgstr "Nascondi"
 
