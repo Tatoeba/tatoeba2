@@ -100,6 +100,7 @@ minify_svg() {
         --no-line-breaks \
         --strip-xml-space \
         --strip-xml-prolog \
+        --keep-unreferenced-defs \
         2>/dev/null \
     | strip_leading_zeros \
     | compact_decimals \
