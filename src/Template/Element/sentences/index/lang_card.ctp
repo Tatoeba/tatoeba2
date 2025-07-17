@@ -4,9 +4,7 @@
 ?>
 <md-button class="md-primary lang-button" href="<?= h($url) ?>">
   <div class="lang-name">
-    <svg class="language-icon">
-        <use xlink:href="/cache_svg/allflags.svg#<?= $code ?>" />
-    </svg>
+    <?= $this->Languages->spriteIcon($code) ?>
     <strong><?= h($name) ?></strong>
   </div>
   <small><?= h($sentences) ?></small>

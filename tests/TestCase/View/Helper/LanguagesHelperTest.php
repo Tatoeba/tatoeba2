@@ -111,4 +111,58 @@ class LanguagesHelperTest extends TestCase {
         $this->assertEquals('Français', $this->Languages->getInterfaceLanguage());
         I18n::setLocale($oldLang);
     }
+
+    function testIcon() {
+        $src = $this->Languages->Url->assetUrl('/img/flags/tgl.svg');
+        $expected = '<img src="'.$src.'" class="language-icon"'
+                   .' width="30" height="20" alt="tgl" title="Tagalog"/>';
+
+        $result = $this->Languages->icon('tgl');
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testIcon_unknown() {
+        $src = $this->Languages->Url->assetUrl('/img/flags/unknown.svg');
+        $expected = '<img src="'.$src.'" class="language-icon"'
+                   .' width="30" height="20" alt="unknown" title="unknown"/>';
+
+        $result = $this->Languages->icon('');
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testIcon_options() {
+        $src = $this->Languages->Url->assetUrl('/img/flags/tgl.svg');
+        $expected = '<img src="'.$src.'" class="foo language-icon"'
+                   .' width="30" height="20" alt="tgl" title="Tagalog"/>';
+
+        $result = $this->Languages->icon('tgl', ['class' => 'foo']);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testSpriteIcon() {
+        $src = $this->Languages->Url->assetUrl('/cache_svg/allflags.svg');
+        $expected = '<svg class="language-icon" width="30" height="20" role="img">'
+                   .'<title>Tagalog</title>'
+                   .'<use href="'.$src.'#tgl">'
+                   .'</svg>';
+
+        $result = $this->Languages->spriteIcon('tgl');
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testSpriteIcon_unknown() {
+        $src = $this->Languages->Url->assetUrl('/cache_svg/allflags.svg');
+        $expected = '<svg class="language-icon" width="30" height="20" role="img">'
+                   .'<title>unknown</title>'
+                   .'<use href="'.$src.'#unknown">'
+                   .'</svg>';
+
+        $result = $this->Languages->spriteIcon('');
+
+        $this->assertEquals($expected, $result);
+    }
 }

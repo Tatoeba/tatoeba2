@@ -47,7 +47,7 @@ class LanguagesHelper extends AppHelper
 {
     use LanguageNameTrait;
 
-    public $helpers = array('Html', 'Url', 'Number');
+    public $helpers = ['AssetCompress.AssetCompress', 'Html', 'Url', 'Number'];
 
     /* Memoization of languages code and their localized names */
     private $__languages_alone;
@@ -259,16 +259,7 @@ class LanguagesHelper extends AppHelper
         <?php
     }
 
-    /**
-     * Display language icon.
-     *
-     * @param string $lang    Language code.
-     * @param array  $options Options for Html::image().
-     *
-     * @return string
-     */
-    public function icon($lang, $options = array())
-    {
+    private function _iconOptions(&$lang, &$options) {
         if (empty($lang)) {
             $lang = 'unknown';
         }
@@ -279,15 +270,51 @@ class LanguagesHelper extends AppHelper
             $options['class'] = 'language-icon';
         }
 
-        $options["title"] = $this->codeToNameAlone($lang);
-        $options["alt"] = $lang;
         $options["width"] = 30;
         $options["height"] = 20;
+    }
 
+    /**
+     * Display language icon.
+     *
+     * @param string $lang    Language code.
+     * @param array  $options Options for Html::image().
+     *
+     * @return string
+     */
+    public function icon($lang, $options = array())
+    {
+        $this->_iconOptions($lang, $options);
+
+        $options["alt"] = $lang;
+        $options["title"] = $this->codeToNameAlone($lang);
         return $this->Html->image(
             IMG_PATH . 'flags/'.$lang.'.svg',
             $options
         );
+    }
+
+    /**
+     * Display language icon from SVG sprite.
+     *
+     * @param string $lang    Language code.
+     *
+     * @return string
+     */
+    public function spriteIcon($lang)
+    {
+        $options = [];
+        $this->_iconOptions($lang, $options);
+
+        $svgInner = $this->Html->tag('title', $this->codeToNameAlone($lang));
+        $spriteUrl = $this->Url->assetUrl($this->AssetCompress->url('allflags.svg'));
+        $svgInner .= $this->Html->tag('use', null, [
+            'href' => "$spriteUrl#$lang",
+        ]);
+
+        $options['role'] = 'img';
+        $options['escape'] = false;
+        return $this->Html->tag('svg', $svgInner, $options);
     }
 
     public function tagWithLang($tag, $lang, $text, $options = array(), $script = '')

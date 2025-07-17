@@ -30,9 +30,7 @@ foreach ($stats as $milestone => $languages):
           ?>
             <li>
               <a href="<?= h($url) ?>">
-                <svg class="language-icon">
-                  <use xlink:href="/cache_svg/allflags.svg#<?= $code ?>" />
-                </svg>
+                <?= $this->Languages->spriteIcon($code) ?>
                 <span class="lang-name"><?= h($lang->name) ?></span>
               </a>
             </li>
