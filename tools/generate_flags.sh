@@ -195,6 +195,8 @@ gen_flag WAR webroot/img/flags/tgl.svg
 gen_flag AFR webroot/img/flags/Flag_of_South_Africa.svg
 gen_flag XHO webroot/img/flags/Flag_of_South_Africa.svg
 gen_flag ZUL webroot/img/flags/Flag_of_South_Africa.svg
+gen_flag HYE webroot/img/flags/Flag_of_Armenia.svg
+gen_flag HYW webroot/img/flags/Flag_of_Armenia.svg
 
 # Flags consisting of ISO code only
 gen_flag GUW
