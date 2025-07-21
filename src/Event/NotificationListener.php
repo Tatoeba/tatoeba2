@@ -81,17 +81,20 @@ class NotificationListener implements EventListenerInterface {
         $post = $event->getData('post'); // $post
 
         $parentMessage = $this->_getMessageForMail($post->parent_id);
-        if (!$parentMessage->user->send_notifications
-            || $parentMessage->user->id == $post->owner) {
-            return;
+        $author = $this->Users->getUsernameFromId($post->owner);
+        $toMention = $this->Users->find();
+
+        if ($parentMessage->user->send_notifications
+            && $parentMessage->user->id != $post->owner) {
+            $recipient = $parentMessage->user->email;
+            $this->Mailer->send(
+                'wall_reply',
+                [$recipient, $author, $post]
+            );
+            $toMention->where(['NOT' => ['id' => $parentMessage->user->id]]);
         }
 
-        $recipient = $parentMessage->user->email;
-        $author = $this->Users->getUsernameFromId($post->owner);
-        $this->Mailer->send(
-            'wall_reply',
-            [$recipient, $author, $post]
-        );
+        $this->_sendWallMentionNotification($post, $author, $toMention);
     }
 
     public function sendPmNotification($event) {
@@ -163,17 +166,20 @@ class NotificationListener implements EventListenerInterface {
 
     public function sendNewThreadNotification($event) {
         $post = $event->getData('post');
+        $author = $this->Users->getUsernameFromId($post->owner);
+        $this->_sendWallMentionNotification($post, $author, $this->Users->find());
+    }
 
+    private function _sendWallMentionNotification($post, $author, $baseQuery) {
         $usernames = $this->_getMentionedUsernames($post->content);
         if (empty($usernames)) {
             return;
         }
 
-        $baseQuery = $this->Users->find()->where([
+        $baseQuery->where([
             'username IN' => $usernames,
             'NOT' => ['id' => $post->owner],
         ]);
-        $author = $this->Users->getUsernameFromId($post->owner);
         foreach ($this->_getUsersEmailsToNotify($baseQuery) as $recipient) {
             $this->Mailer->send(
                 'wall_mention',
