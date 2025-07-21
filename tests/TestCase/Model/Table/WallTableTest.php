@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\CurrentUser;
-use App\Model\Wall;
 use Cake\Event\Event;
 use Cake\Event\EventList;
 use Cake\I18n\I18n;
