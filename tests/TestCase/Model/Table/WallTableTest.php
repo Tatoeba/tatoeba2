@@ -22,6 +22,8 @@ class WallTest extends TestCase {
     public function setUp() {
         parent::setUp();
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
+        // enable event tracking
+        $this->Wall->getEventManager()->setEventList(new EventList());
     }
 
     public function tearDown() {
@@ -164,7 +166,6 @@ class WallTest extends TestCase {
 
     public function testSave_doesNotFireEvent() {
         $eventManager = $this->Wall->getEventManager();
-        $eventManager->setEventList(new EventList());
         $post = $this->Wall->newEntity([
             'owner' => 7,
             'content' => 'new post',
