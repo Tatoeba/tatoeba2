@@ -164,7 +164,7 @@ class WallTest extends TestCase {
         $this->assertEquals($before, $after);
     }
 
-    public function testSave_doesNotFireEvent() {
+    public function testSave_firesCorrectEvent() {
         $eventManager = $this->Wall->getEventManager();
         $post = $this->Wall->newEntity([
             'owner' => 7,
@@ -173,9 +173,10 @@ class WallTest extends TestCase {
         $this->Wall->save($post);
         $eventList = $eventManager->getEventList();
         $this->assertFalse($eventList->hasEvent('Model.Wall.replyPosted'));
+        $this->assertEventFiredWith('Model.Wall.newThread', 'post', $post, $eventManager);
     }
 
-    public function testSaveReply_firesEvent() {
+    public function testSaveReply_firesCorrectEvent() {
         $expectedPost = array(
             'owner' => 7,
             'parent_id' => 2,
@@ -200,6 +201,7 @@ class WallTest extends TestCase {
         $this->Wall->saveReply(2, 'I see.', 7);
 
         $this->assertTrue($dispatched);
+        $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
     }
 
     public function testGetMessagesThreaded() {
