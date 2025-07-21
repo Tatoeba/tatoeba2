@@ -15,6 +15,7 @@ class MessagingMailer extends Mailer
             ->setTo($recipient)
             ->setSubject("Tatoeba - $author has replied to you on the Wall")
             ->setEmailFormat('html')
+            ->setTemplate('wall_message')
             ->setViewVars(compact('post'));
     }
 
@@ -24,7 +25,7 @@ class MessagingMailer extends Mailer
             ->setTo($recipient)
             ->setSubject("Tatoeba - $author mentioned you on the Wall")
             ->setEmailFormat('html')
-            ->setTemplate('wall_reply')
+            ->setTemplate('wall_message')
             ->setViewVars(compact('post'));
     }
 
