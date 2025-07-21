@@ -36,6 +36,7 @@ class NotificationListener implements EventListenerInterface {
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
             'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',
             'Model.Wall.replyPosted' => 'sendWallReplyNotification',
+            'Model.Wall.newThread' => 'sendNewThreadNotification',
         ];
     }
 
@@ -63,6 +64,17 @@ class NotificationListener implements EventListenerInterface {
                 ]
             ])
             ->first();
+    }
+
+    private function _getUsersEmailsToNotify($query) {
+        $toNotify =
+            $query
+            ->where(['send_notifications' => true])
+            ->select(['email'])
+            ->toList();
+        $toNotify = Hash::extract($toNotify, '{n}.email');
+        $toNotify = array_filter($toNotify);
+        return $toNotify;
     }
 
     public function sendWallReplyNotification($event) {
@@ -135,24 +147,38 @@ class NotificationListener implements EventListenerInterface {
             $orCondition['username IN'] = $usernames;
         }
 
-        $toNotify = $this->Users->find()
-            ->where([
-                'OR' => $orCondition,
-                'NOT' => ['id' => $comment->user_id],
-                'send_notifications' => true,
-            ])
-            ->select(['email'])
-            ->toList();
-        $toNotify = Hash::extract($toNotify, '{n}.email');
+        $baseQuery = $this->Users->find()->where([
+            'OR' => $orCondition,
+            'NOT' => ['id' => $comment->user_id],
+        ]);
 
         $author = $this->Users->getUsernameFromId($comment->user_id);
-        foreach ($toNotify as $recipient) {
-            if (!empty($recipient)) {
-                $this->Mailer->send(
-                    'comment_on_sentence',
-                    [$recipient, $author, $comment, $sentence]
-                );
-            }
+        foreach ($this->_getUsersEmailsToNotify($baseQuery) as $recipient) {
+            $this->Mailer->send(
+                'comment_on_sentence',
+                [$recipient, $author, $comment, $sentence]
+            );
+        }
+    }
+
+    public function sendNewThreadNotification($event) {
+        $post = $event->getData('post');
+
+        $usernames = $this->_getMentionedUsernames($post->content);
+        if (empty($usernames)) {
+            return;
+        }
+
+        $baseQuery = $this->Users->find()->where([
+            'username IN' => $usernames,
+            'NOT' => ['id' => $post->owner],
+        ]);
+        $author = $this->Users->getUsernameFromId($post->owner);
+        foreach ($this->_getUsersEmailsToNotify($baseQuery) as $recipient) {
+            $this->Mailer->send(
+                'wall_mention',
+                [$recipient, $author, $post]
+            );
         }
     }
 }
