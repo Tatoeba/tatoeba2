@@ -181,6 +181,7 @@ gen_flag ZGH webroot/img/flags/Berber_flag.svg centeredL
 gen_flag AOZ webroot/img/flags/ind.svg
 gen_flag JAV webroot/img/flags/ind.svg
 gen_flag MDR webroot/img/flags/ind.svg
+gen_flag MAD webroot/img/flags/ind.svg
 gen_flag TIG webroot/img/flags/Flag_of_Eritrea.svg
 gen_flag CJY webroot/img/flags/cmn.svg
 gen_flag GAN webroot/img/flags/cmn.svg
