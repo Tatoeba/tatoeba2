@@ -139,11 +139,18 @@ gen_flag() {
   local iso_code="$1" src="$2" position="$3"
   local outfile="webroot/img/flags/${iso_code,,}.svg"
 
+  if [ "$position" = "shrunken" ] && ! grep -q '<svg [^>]*preserveAspectRatio="none"' "$src"; then
+    echo "Error generating $outfile: \"shrunken\" requires having <svg preserveAspectRatio=\"none\"> in $src"
+    exit 1
+  fi
+
   if [ -n "$src" ]; then
     if [ "$position" = "centered" ]; then
       extra=' x="-5.5"'
     elif [ "$position" = "centeredL" ]; then
       extra=' x="-6"'
+    elif [ "$position" = "shrunken" ]; then
+      extra=' width="19" height="20"'
     fi
     local id=$(basename "$src" | cut -d. -f 1)
     local symbol=$(svg2symbol "$id" "$src")
@@ -197,6 +204,17 @@ gen_flag XHO webroot/img/flags/Flag_of_South_Africa.svg
 gen_flag ZUL webroot/img/flags/Flag_of_South_Africa.svg
 gen_flag HYE webroot/img/flags/Flag_of_Armenia.svg
 gen_flag HYW webroot/img/flags/Flag_of_Armenia.svg
+gen_flag GLA webroot/img/flags/Flag_of_Scotland.svg shrunken
+gen_flag SCO webroot/img/flags/Flag_of_Scotland.svg shrunken
+gen_flag BOM webroot/img/flags/Flag_of_Nigeria.svg shrunken
+gen_flag FUV webroot/img/flags/Flag_of_Nigeria.svg shrunken
+gen_flag HAU webroot/img/flags/Flag_of_Nigeria.svg shrunken
+gen_flag IBO webroot/img/flags/Flag_of_Nigeria.svg shrunken
+gen_flag URH webroot/img/flags/Flag_of_Nigeria.svg shrunken
+gen_flag YOR webroot/img/flags/Flag_of_Nigeria.svg shrunken
+gen_flag KMR webroot/img/flags/Flag_of_Kurdistan.svg centered
+gen_flag SDH webroot/img/flags/Flag_of_Kurdistan.svg centered
+gen_flag CKB webroot/img/flags/Flag_of_Kurdistan.svg centered
 
 # Flags consisting of ISO code only
 gen_flag GUW
