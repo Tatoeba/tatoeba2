@@ -166,6 +166,7 @@ gen_flag() {
 # Flags consisting of image + small ISO code on the side
 gen_flag ASM webroot/img/flags/hin.svg centered
 gen_flag BHO webroot/img/flags/hin.svg centered
+gen_flag BRX webroot/img/flags/hin.svg centered
 gen_flag GOM webroot/img/flags/hin.svg centered
 gen_flag GUJ webroot/img/flags/hin.svg centered
 gen_flag HOC webroot/img/flags/hin.svg centered
