@@ -217,6 +217,12 @@ gen_flag YOR webroot/img/flags/Flag_of_Nigeria.svg shrunken
 gen_flag KMR webroot/img/flags/Flag_of_Kurdistan.svg centered
 gen_flag SDH webroot/img/flags/Flag_of_Kurdistan.svg centered
 gen_flag CKB webroot/img/flags/Flag_of_Kurdistan.svg centered
+gen_flag DTP webroot/img/flags/Flag_of_Malaysia.svg
+gen_flag KXI webroot/img/flags/Flag_of_Malaysia.svg
+gen_flag KZJ webroot/img/flags/Flag_of_Malaysia.svg
+gen_flag MVV webroot/img/flags/Flag_of_Malaysia.svg
+gen_flag TMW webroot/img/flags/Flag_of_Malaysia.svg
+gen_flag ZLM webroot/img/flags/Flag_of_Malaysia.svg
 
 # Flags consisting of ISO code only
 gen_flag GUW
