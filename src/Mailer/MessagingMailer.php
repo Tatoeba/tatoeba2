@@ -15,6 +15,17 @@ class MessagingMailer extends Mailer
             ->setTo($recipient)
             ->setSubject("Tatoeba - $author has replied to you on the Wall")
             ->setEmailFormat('html')
+            ->setTemplate('wall_message')
+            ->setViewVars(compact('post'));
+    }
+
+    public function wall_mention($recipient, $author, $post)
+    {
+        $this
+            ->setTo($recipient)
+            ->setSubject("Tatoeba - $author mentioned you on the Wall")
+            ->setEmailFormat('html')
+            ->setTemplate('wall_message')
             ->setViewVars(compact('post'));
     }
 
