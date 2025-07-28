@@ -28,7 +28,10 @@ confirm_has_font() {
 }
 
 svg_template_sidesmall() {
-  local iso_code="$1" include="$2"
+  local iso_code="$1" include="$2" start="$3"
+  local scale=0.2
+  local height=$((30 - $start))
+  local texty=$(bc <<<"scale=2; 154.4-($height/2/$scale)")
   cat <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
@@ -40,15 +43,23 @@ svg_template_sidesmall() {
   $include
   <path
      fill="#fff"
-     d="M19 0h11v20H19z" />
+     d="M$start 0h${height}v20H${start}z" />
   <text
-     transform="rotate(-90) scale(0.2 0.2)"
+     transform="rotate(-90) scale($scale $scale)"
      style="font-style:normal;font-size:47.9318px;font-family:'Roboto Mono';font-weight:bold;-inkscape-font-specification:'Roboto Mono, Bold';letter-spacing:2.5px;fill:black;dominant-baseline:middle;text-anchor:middle"
      x="-50"
-     y="126.9"
+     y="$texty"
      >$iso_code</text>
 </svg>
 EOF
+}
+
+svg_template_sidesmall_20_10() {
+  svg_template_sidesmall "$1" "$2" 20
+}
+
+svg_template_sidesmall_19_11() {
+  svg_template_sidesmall "$1" "$2" 19
 }
 
 svg_template_bigfront() {
@@ -145,17 +156,20 @@ gen_flag() {
   fi
 
   if [ -n "$src" ]; then
+    template='sidesmall_19_11'
     if [ "$position" = "centered" ]; then
       extra=' x="-5.5"'
     elif [ "$position" = "centeredL" ]; then
       extra=' x="-6"'
     elif [ "$position" = "shrunken" ]; then
       extra=' width="19" height="20"'
+    elif [ "$position" = "squared" ]; then
+      template='sidesmall_20_10'
     fi
     local id=$(basename "$src" | cut -d. -f 1)
     local symbol=$(svg2symbol "$id" "$src")
     local baseflag="$symbol<use$extra href=\"#$id\"/>"
-    generate_iso_svg sidesmall "$iso_code" "$baseflag"
+    generate_iso_svg "$template" "$iso_code" "$baseflag"
   else
     generate_iso_svg bigfront "$iso_code"
   fi | minify_svg > "$outfile"
@@ -223,6 +237,7 @@ gen_flag KZJ webroot/img/flags/Flag_of_Malaysia.svg
 gen_flag MVV webroot/img/flags/Flag_of_Malaysia.svg
 gen_flag TMW webroot/img/flags/Flag_of_Malaysia.svg
 gen_flag ZLM webroot/img/flags/Flag_of_Malaysia.svg
+gen_flag SYL webroot/img/flags/benbase.svg squared
 
 # Flags consisting of ISO code only
 gen_flag GUW
