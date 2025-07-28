@@ -238,6 +238,8 @@ gen_flag MVV webroot/img/flags/Flag_of_Malaysia.svg
 gen_flag TMW webroot/img/flags/Flag_of_Malaysia.svg
 gen_flag ZLM webroot/img/flags/Flag_of_Malaysia.svg
 gen_flag SYL webroot/img/flags/benbase.svg squared
+gen_flag AYM webroot/img/flags/Wiphala.svg squared
+gen_flag QUE webroot/img/flags/Wiphala.svg squared
 
 # Flags consisting of ISO code only
 gen_flag GUW
