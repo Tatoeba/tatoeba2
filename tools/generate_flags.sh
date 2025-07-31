@@ -353,6 +353,8 @@ gen_flag NNO webroot/img/flags/Flag_of_Norway.svg
 gen_flag NOB webroot/img/flags/Flag_of_Norway.svg
 gen_flag ENM webroot/img/flags/Flag_of_England.svg squared
 gen_flag LIJ webroot/img/flags/Flag_of_England.svg squared
+gen_flag NGT webroot/img/flags/lao.svg centered
+gen_flag HNJ webroot/img/flags/lao.svg centered
 
 # Flags consisting of ISO code only
 gen_flag GUW
