@@ -23,7 +23,7 @@ then
 fi
 
 for attr in width height; do
-  if find webroot/img/flags/ -name "*.svg" -print0 \
+  if find webroot/img/flags/ -regex '.*\/[a-z][a-z][a-z][a-z]?\.svg' -print0 \
     | xargs -0 -- grep --files-without-match "<svg[^<]* $attr=" \
     | grep .
   then
