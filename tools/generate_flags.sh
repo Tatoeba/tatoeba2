@@ -9,10 +9,16 @@
 # on the side, just add another gen_flag line at the end and re-run this
 # script.
 
-set -e
+set -E
+# use "exit 77" from any subshell to exit the whole script
+trap '[ "$?" -ne 77 ] || exit 77' ERR
+
+has_dep() {
+  which "$1" >/dev/null 2>&1
+}
 
 confirm_has_dep() {
-  if ! which "$1" >/dev/null 2>&1; then
+  if ! has_dep "$1"; then
     echo "This tool requires $1, please install it"
     exit 1
   fi
@@ -74,6 +80,10 @@ letter2symbol() {
   # Generate a new SVG for that letter if it does not exists
   outfile="webroot/img/flags/$letter.svg"
   if [ ! -e "$outfile" ]; then
+    if ! has_dep inkscape; then
+      echo "This script requires inkscape to generate $outfile" >&2
+      exit 77
+    fi
     svg_template_letter "$letter" \
       | inkscape --export-text-to-path \
                  --pipe \
@@ -128,13 +138,13 @@ svg_template_sidesmall_19_11() {
 }
 
 svg_template_bigfront() {
-  local iso_code="$1"
+  local letters iso_code="$1"
 
   # Center letters by translation and scale them up to 1.5x
   # translate(15 3.25) scale(1.5)
   # = matrix(1.5 0 0 1.5 15 3.25)
   local transform="matrix(1.5 0 0 1.5 15 3.25)"
-  local letters=$(gen_iso_letters "$iso_code" "$transform")
+  letters=$(gen_iso_letters "$iso_code" "$transform")
 
   cat <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -152,7 +162,7 @@ EOF
 }
 
 svg_template_sidesmall() {
-  local include="$1" start="$2" iso_code="$3"
+  local letters include="$1" start="$2" iso_code="$3"
 
   local width=$((30 - $start)) # whitespace width
 
@@ -166,7 +176,7 @@ svg_template_sidesmall() {
   local y=$(bc <<<"scale=2; $start + ($width-7)/2 - 1")
   local transform=$(rotate_90_translate $x $y)
 
-  local letters=$(gen_iso_letters "$iso_code" "$transform")
+  letters=$(gen_iso_letters "$iso_code" "$transform")
 
   cat <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -227,8 +237,7 @@ generate_iso_svg() {
   local template
 
   template="$1"; shift
-  svg_template_${template} "$@" \
-    | minify_svg
+  svg_template_${template} "$@"
 }
 
 svg2symbol() {
@@ -241,13 +250,13 @@ svg2symbol() {
     | sed "s,<symbol,\0 id=\"$id\","
 }
 
-confirm_has_dep inkscape
 confirm_has_dep scour
 confirm_has_font "Roboto Mono:style=Bold"
 
 gen_flag() {
   local iso_code="$1" src="$2" position="$3"
   local outfile="webroot/img/flags/${iso_code,,}.svg"
+  local markup extra
 
   if [ "$position" = "shrunken" ] && ! grep -q '<svg [^>]*preserveAspectRatio="none"' "$src"; then
     echo "Error generating $outfile: \"shrunken\" requires having <svg preserveAspectRatio=\"none\"> in $src"
@@ -268,10 +277,11 @@ gen_flag() {
     local id=$(basename "$src" | cut -d. -f 1)
     local symbol=$(svg2symbol "$id" "$src")
     local baseflag="$symbol<use$extra href=\"#$id\"/>"
-    generate_iso_svg "$template" "$iso_code" "$baseflag"
+    markup=$(generate_iso_svg "$template" "$iso_code" "$baseflag")
   else
-    generate_iso_svg bigfront "$iso_code"
-  fi | minify_svg > "$outfile"
+    markup=$(generate_iso_svg bigfront "$iso_code")
+  fi
+  <<<"$markup" minify_svg > "$outfile"
 
   echo "Generated $outfile"
 }
