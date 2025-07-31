@@ -349,6 +349,8 @@ gen_flag ZLM webroot/img/flags/Flag_of_Malaysia.svg
 gen_flag SYL webroot/img/flags/benbase.svg squared
 gen_flag AYM webroot/img/flags/Wiphala.svg squared
 gen_flag QUE webroot/img/flags/Wiphala.svg squared
+gen_flag NNO webroot/img/flags/Flag_of_Norway.svg
+gen_flag NOB webroot/img/flags/Flag_of_Norway.svg
 
 # Flags consisting of ISO code only
 gen_flag GUW
