@@ -351,6 +351,8 @@ gen_flag AYM webroot/img/flags/Wiphala.svg squared
 gen_flag QUE webroot/img/flags/Wiphala.svg squared
 gen_flag NNO webroot/img/flags/Flag_of_Norway.svg
 gen_flag NOB webroot/img/flags/Flag_of_Norway.svg
+gen_flag ENM webroot/img/flags/Flag_of_England.svg squared
+gen_flag LIJ webroot/img/flags/Flag_of_England.svg squared
 
 # Flags consisting of ISO code only
 gen_flag GUW
