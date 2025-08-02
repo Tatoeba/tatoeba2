@@ -396,6 +396,8 @@ gen_flag ENM webroot/img/flags/Flag_of_England.svg squared
 gen_flag LIJ webroot/img/flags/Flag_of_England.svg squared
 gen_flag NGT webroot/img/flags/lao.svg centered
 gen_flag HNJ webroot/img/flags/lao.svg centered
+gen_flag NGU webroot/img/flags/nah.svg centered
+gen_flag NLV webroot/img/flags/nah.svg centered
 
 # Flags consisting of ISO code only
 gen_flag GUW
