@@ -127,16 +127,6 @@ gen_iso_letters() {
   echo "$symbols<g transform=\"$transform\">$uses</g>"
 }
 
-svg_template_sidesmall_20_10() {
-  local iso_code="$1" include="$2"
-  svg_template_sidesmall "$include" 20 "$iso_code"
-}
-
-svg_template_sidesmall_19_11() {
-  local iso_code="$1" include="$2"
-  svg_template_sidesmall "$include" 19 "$iso_code"
-}
-
 svg_template_bigfront() {
   local letters iso_code="$1"
 
@@ -162,8 +152,11 @@ EOF
 }
 
 svg_template_sidesmall() {
-  local letters include="$1" start="$2" iso_code="$3"
+  local letters iso_code="$1" src="$2" start="$3" extra="$4"
 
+  local id=$(basename "$src" | cut -d. -f 1)
+  local symbol=$(svg2symbol "$id" "$src")
+  local include="$symbol<use$extra href=\"#$id\"/>"
   local width=$((30 - $start)) # whitespace width
 
   # Rotate and position letters so that it ends up
@@ -256,7 +249,7 @@ confirm_has_font "Roboto Mono:style=Bold"
 gen_flag() {
   local iso_code="$1" src="$2" position="$3"
   local outfile="webroot/img/flags/${iso_code,,}.svg"
-  local markup extra
+  local markup extra start
 
   if [ "$position" = "shrunken" ] && ! grep -q '<svg [^>]*preserveAspectRatio="none"' "$src"; then
     echo "Error generating $outfile: \"shrunken\" requires having <svg preserveAspectRatio=\"none\"> in $src"
@@ -264,7 +257,7 @@ gen_flag() {
   fi
 
   if [ -n "$src" ]; then
-    template='sidesmall_19_11'
+    start=19
     if [ "$position" = "centered" ]; then
       extra=' x="-5.5"'
     elif [ "$position" = "centeredL" ]; then
@@ -272,12 +265,9 @@ gen_flag() {
     elif [ "$position" = "shrunken" ]; then
       extra=' width="19" height="20"'
     elif [ "$position" = "squared" ]; then
-      template='sidesmall_20_10'
+      start=20
     fi
-    local id=$(basename "$src" | cut -d. -f 1)
-    local symbol=$(svg2symbol "$id" "$src")
-    local baseflag="$symbol<use$extra href=\"#$id\"/>"
-    markup=$(generate_iso_svg "$template" "$iso_code" "$baseflag")
+    markup=$(generate_iso_svg sidesmall "$iso_code" "$src" "$start" "$extra")
   else
     markup=$(generate_iso_svg bigfront "$iso_code")
   fi
