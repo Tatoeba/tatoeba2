@@ -200,10 +200,10 @@ svg_template_halfhalf() {
    width="30"
    height="20"
    xmlns="http://www.w3.org/2000/svg">
-  <clipPath id="a"><path d="M15 0h15v20H15z"/></clipPath>
+  <clipPath id="_"><path d="M15 0h15v20H15z"/></clipPath>
   $symbols
   <use href="#$leftid"/>
-  <use clip-path="url(#a)" href="#$rightid"/>"
+  <use clip-path="url(#_)" href="#$rightid"/>"
 </svg>
 EOF
 }
@@ -296,14 +296,33 @@ gen_flag() {
   echo "Generated $outfile"
 }
 
+check_id_conflicts() {
+  local xml dups
+
+  dups=$(grep -o 'id="[^"]*"' "$1" | sort | uniq -d)
+
+  if [ -n "$dups" ]; then
+    echo "$dups"
+    return 1
+  else
+    return 0
+  fi
+}
+
 combine_flags() {
-  local iso_code="$1"
-  shift
+  local iso_code="$1" template="$2"
+  shift 2
   local outfile="webroot/img/flags/${iso_code,,}.svg"
+  local error
 
   local markup
-  markup=$(generate_iso_svg "$@")
+  markup=$(generate_iso_svg "$template" "$@")
   <<<"$markup" minify_svg > "$outfile"
+
+  if ! error=$(check_id_conflicts "$outfile"); then
+    echo "Error while generating $outfile: generated file has duplicate ids: $error"
+    exit 1
+  fi
 
   echo "Generated $outfile"
 }
