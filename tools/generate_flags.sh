@@ -188,6 +188,26 @@ svg_template_sidesmall() {
 EOF
 }
 
+svg_template_halfhalf() {
+  local leftsrc="$1" rightsrc="$2"
+
+  local leftid=$(basename "$leftsrc" | cut -d. -f 1)
+  local rightid=$(basename "$rightsrc" | cut -d. -f 1)
+  local symbols=$(svg2symbol "$leftid" "$leftsrc")$(svg2symbol "$rightid" "$rightsrc")
+
+  cat <<EOF
+<svg
+   width="30"
+   height="20"
+   xmlns="http://www.w3.org/2000/svg">
+  <clipPath id="a"><path d="M15 0h15v20H15z"/></clipPath>
+  $symbols
+  <use href="#$leftid"/>
+  <use clip-path="url(#a)" href="#$rightid"/>"
+</svg>
+EOF
+}
+
 strip_attr() {
   local attr="$1" tag="$2"
   if [ -z "$tag" ]; then
@@ -276,6 +296,18 @@ gen_flag() {
   echo "Generated $outfile"
 }
 
+combine_flags() {
+  local iso_code="$1"
+  shift
+  local outfile="webroot/img/flags/${iso_code,,}.svg"
+
+  local markup
+  markup=$(generate_iso_svg "$@")
+  <<<"$markup" minify_svg > "$outfile"
+
+  echo "Generated $outfile"
+}
+
 # Flags consisting of image + small ISO code on the side
 gen_flag ASM webroot/img/flags/hin.svg centered
 gen_flag BHO webroot/img/flags/hin.svg centered
@@ -357,3 +389,6 @@ gen_flag NST
 gen_flag SHY
 gen_flag SWC
 gen_flag TUM
+
+# Flags that are a combination of other flags, without ISO code
+combine_flags TTS halfhalf webroot/img/flags/tha.svg webroot/img/flags/lao.svg
