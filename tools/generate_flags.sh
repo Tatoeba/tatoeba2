@@ -411,3 +411,4 @@ gen_flag TUM
 
 # Flags that are a combination of other flags, without ISO code
 combine_flags TTS halfhalf webroot/img/flags/tha.svg webroot/img/flags/lao.svg
+combine_flags TIR halfhalf webroot/img/flags/Flag_of_Eritrea.svg webroot/img/flags/amh.svg
