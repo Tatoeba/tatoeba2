@@ -400,6 +400,8 @@ gen_flag NGU webroot/img/flags/nah.svg centered
 gen_flag NLV webroot/img/flags/nah.svg centered
 gen_flag QUC webroot/img/flags/Flag_of_Guatemala.svg centered
 gen_flag KEK webroot/img/flags/Flag_of_Guatemala.svg centered
+gen_flag EWE webroot/img/flags/Flag_of_Ghana.svg centered
+gen_flag GAA webroot/img/flags/Flag_of_Ghana.svg centered
 
 # Flags consisting of ISO code only
 gen_flag GUW
