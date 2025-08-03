@@ -36,8 +36,9 @@ if (Configure::read('debug')) :
     $this->end();
 endif;
 ?>
-<h2><?= __d('cake', 'An Internal Error Has Occurred') ?></h2>
-<p class="error">
-    <strong><?= __d('cake', 'Error') ?>: </strong>
-    <?= h($message) ?>
-</p>
+<?php if ($code >= 500): ?>
+    <h2><?= h(__('Server error')) ?></h2>
+    <p><?= h(__('An internal error has occurred.')) ?></p>
+<?php else: ?>
+    <h2><?= h(__('Unexpected error')) ?></h2>
+<?php endif; ?>
