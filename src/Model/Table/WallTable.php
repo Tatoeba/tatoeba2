@@ -108,6 +108,13 @@ class WallTable extends Table
             $root = $this->getRootMessageOfReply($entity->id);
             $this->recalculateThreadDateIgnoringHiddenPosts($root);
         }
+
+        if ($entity->isNew() && !$entity->parent_id) {
+            $event = new Event('Model.Wall.newThread', $this, [
+                'post' => $entity,
+            ]);
+            $this->getEventManager()->dispatch($event);
+        }
     }
 
     private function recalculateThreadDateIgnoringHiddenPosts($root)
