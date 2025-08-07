@@ -53,6 +53,7 @@ class AudiosTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+        $this->addBehavior('LimitResults');
 
         $this->getEventManager()->on(new StatsListener());
     }
@@ -191,9 +192,9 @@ class AudiosTable extends Table
     public function findSentences(Query $query, array $options) {
         $subquery = $query
             ->applyOptions($options)
-            ->distinct()
             ->select(['sentence_id' => 'sentence_id'])
-            ->order(['id' => 'DESC']);
+            ->group(['sentence_id'])
+            ->order(['MAX(Audios.id)' => 'DESC']);
 
         if (isset($options['lang'])) {
             $subquery->where(['sentence_lang' => $options['lang']]);
@@ -201,6 +202,10 @@ class AudiosTable extends Table
 
         if (isset($options['user_id'])) {
             $subquery->where(['user_id' => $options['user_id']]);
+        }
+
+        if (isset($options['maxResults'])) {
+            $subquery = $subquery->find('latest', $options);
         }
 
         $query = $this->Sentences

@@ -94,7 +94,6 @@ class LimitResultsBehavior extends Behavior
      */
     public function findLatest(Query $query, array $options) {
         $alias = $query->repository()->getAlias();
-        $additionalOrder = [$alias . '.id' => 'DESC'];
 
         $contain = $this->getMinimalContain($query);
 
@@ -103,8 +102,10 @@ class LimitResultsBehavior extends Behavior
         $lastId = $internalQuery->find('list')
             ->select([$alias . '.id'], true)
             ->contain($contain, true)
-            ->order($additionalOrder)
+            ->order([$alias . '.id' => 'DESC'], true)
             ->limit($options['maxResults'])
+            ->offset(null)
+            ->group([], true)
             ->last();
 
         return $query->where([$alias . '.id >=' => $lastId]);

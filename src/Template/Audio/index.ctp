@@ -49,20 +49,26 @@ if (isset($sentencesWithAudio)) {
             __('There are no sentences with audio')
         ));
     } else {
-        $title = $this->Paginator->counter(
-            array(
-                'format' => $title . ' ' . __("(total {{count}})")
-            )
-        );
         ?>        
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $title ?></h2>
+                <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $total, true); ?>
             </div>
         </md-toolbar>
 
         <md-content layout-padding>
         <?php
+        if ($total > $this->Paginator->param('count')) {
+            ?>
+            <div layout-padding>
+            <?= format(
+                __('Only sentences having the last {n} audios are displayed here.'),
+                ['n' => $this->Number->format($totalLimit)]
+            ); ?>
+            </div>
+            <?php
+        }
+
         $this->Pagination->display();
 
         $type = 'mainSentence';
