@@ -108,6 +108,9 @@ class LimitResultsBehavior extends Behavior
             ->group([], true)
             ->last();
 
-        return $query->where([$alias . '.id >=' => $lastId]);
+        if ($lastId) {
+            $query->where([$alias . '.id >=' => $lastId]);
+        }
+        return $query;
     }
 }
