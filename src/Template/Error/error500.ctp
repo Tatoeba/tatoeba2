@@ -41,4 +41,5 @@ endif;
     <p><?= h(__('An internal error has occurred.')) ?></p>
 <?php else: ?>
     <h2><?= h(__('Unexpected error')) ?></h2>
+    <p><?= h($message) ?></p>
 <?php endif; ?>

@@ -39,4 +39,5 @@ endif;
     ) ?></p>
 <?php else: ?>
     <h2><?= h(__("Client error")) ?></h2>
+    <p><?= h($message) ?></p>
 <?php endif; ?>
