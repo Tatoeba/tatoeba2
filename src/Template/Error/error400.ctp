@@ -31,12 +31,12 @@ endif;
 $this->end();
 endif;
 ?>
-<h2><?= h(__($message)) ?></h2>
 <?php if ($code == 404): ?>
-    <h2><?= format(
+    <h2><?= h(__("Page not found")) ?></h2>
+    <p><?= format(
         __('The requested address {0} was not found on this server.'),
         "<strong>'{$url}'</strong>"
-    ) ?></h2>
+    ) ?></p>
 <?php else: ?>
     <h2><?= h(__("Client error")) ?></h2>
 <?php endif; ?>
