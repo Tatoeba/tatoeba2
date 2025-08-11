@@ -32,12 +32,17 @@ $this->end();
 endif;
 ?>
 <?php if ($code == 404): ?>
+    <?php /* @translators Title of the "404 not found" page */ ?>
     <h2><?= h(__("Page not found")) ?></h2>
     <p><?= format(
+        /* @translators Placeholder contains a URL path,
+           such as /en/sentences/show/1234 */
         __("The requested address '{0}' was not found on this server."),
         "<strong>{$url}</strong>"
     ) ?></p>
 <?php else: ?>
+    <?php /* @translators Title of the error page
+             for any 4xx error that is not 404 (very rare) */ ?>
     <h2><?= h(__("Client error")) ?></h2>
     <p><?= h($message) ?></p>
 <?php endif; ?>

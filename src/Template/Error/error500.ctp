@@ -37,9 +37,13 @@ if (Configure::read('debug')) :
 endif;
 ?>
 <?php if ($code >= 500): ?>
+    <?php /* @translators Title of the page when a fatal error occurs. The
+             entire page content is replaced by an error message. */ ?>
     <h2><?= h(__('Server error')) ?></h2>
     <p><?= h(__('An internal error has occurred.')) ?></p>
 <?php else: ?>
+    <?php /* @translators Title of the error page
+             when an unexpected error occurs (very rare) */ ?>
     <h2><?= h(__('Unexpected error')) ?></h2>
     <p><?= h($message) ?></p>
 <?php endif; ?>
