@@ -34,8 +34,8 @@ endif;
 <?php if ($code == 404): ?>
     <h2><?= h(__("Page not found")) ?></h2>
     <p><?= format(
-        __('The requested address {0} was not found on this server.'),
-        "<strong>'{$url}'</strong>"
+        __("The requested address '{0}' was not found on this server."),
+        "<strong>{$url}</strong>"
     ) ?></p>
 <?php else: ?>
     <h2><?= h(__("Client error")) ?></h2>
