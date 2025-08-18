@@ -34,7 +34,6 @@ $this->Html->script(
     JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
 );
 
-$listCount = $this->Paginator->param('count');
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = h($list['name']);
@@ -72,10 +71,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 /* @translators: number of sentences contained in the list */
                 'Contains {n}&nbsp;sentence',
                 'Contains {n}&nbsp;sentences',
-                $listCount,
+                $total,
                 true
             ),
-            array('n' => $this->Number->format($listCount))
+            array('n' => $this->Number->format($total))
         );
         echo $this->Html->tag('p', $numberOfSentencesMsg);
         ?>
@@ -174,6 +173,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
          data-list-id="<?php echo $listId; ?>">
     <?php
     $this->Pagination->display();
+
+    if ($total > $this->Paginator->param('count') && $this->Paginator->param('count') >= $totalLimit) {
+        ?>
+        <div layout-padding>
+        <?= format(
+            __('Only the first {n} sentences of the selected sort are displayed here.'),
+            ['n' => $this->Number->format($totalLimit)]
+        ); ?>
+        </div>
+        <?php
+    }
+
     foreach ($sentencesInList as $item) {
         $sentence = $item->sentence;
         $this->Lists->displaySentence(

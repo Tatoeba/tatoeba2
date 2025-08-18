@@ -4,7 +4,6 @@ use App\Model\Entity\SentencesList;
 
 $this->Html->script('/js/sentences_lists/show.ctrl.js', ['block' => 'scriptBottom']);
 
-$listCount = $this->Paginator->param('count');
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = h($list['name']);
@@ -67,10 +66,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 /* @translators: number of sentences contained in the list */
                 'Contains {n}&nbsp;sentence',
                 'Contains {n}&nbsp;sentences',
-                $listCount,
+                $total,
                 true
             ),
-            array('n' => $this->Number->format($listCount))
+            array('n' => $this->Number->format($total))
         );
         echo $this->Html->tag('p', $numberOfSentencesMsg);
         ?>
@@ -238,6 +237,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php $this->Pagination->display(); ?>
 
     <?php
+    if ($total > $this->Paginator->param('count') && $this->Paginator->param('count') >= $totalLimit) {
+        ?>
+        <div layout-padding>
+        <?= format(
+            __('Only the first {n} sentences of the selected sort are displayed here.'),
+            ['n' => $this->Number->format($totalLimit)]
+        ); ?>
+        </div>
+        <?php
+    }
+
     if ($permissions['canAddSentences']) {
         echo $this->element('sentences_lists/sentence_in_list', [
             'sentenceAndTranslationsParams' => [
