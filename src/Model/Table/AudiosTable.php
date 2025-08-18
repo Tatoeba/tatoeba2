@@ -193,8 +193,7 @@ class AudiosTable extends Table
         $subquery = $query
             ->applyOptions($options)
             ->select(['sentence_id' => 'sentence_id'])
-            ->group(['sentence_id'])
-            ->order(['MAX(Audios.id)' => 'DESC']);
+            ->order(['Audios.id' => 'DESC']);
 
         if (isset($options['lang'])) {
             $subquery->where(['sentence_lang' => $options['lang']]);
@@ -207,6 +206,10 @@ class AudiosTable extends Table
         if (isset($options['maxResults'])) {
             $subquery = $subquery->find('latest', $options);
         }
+
+        $subquery = $subquery
+            ->group(['sentence_id'])
+            ->order(['MAX(Audios.id)' => 'DESC'], true);
 
         $query = $this->Sentences
             ->find()

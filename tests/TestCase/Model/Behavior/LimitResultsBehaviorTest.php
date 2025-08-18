@@ -46,6 +46,38 @@ class LimitResultsBehaviorTest extends TestCase
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
 
+    public function testFindLatest_reverse()
+    {
+        $this->query->order(['Sentences.id' => 'ASC'], true);
+        $this->query
+             ->expects($this->once())
+             ->method('where')
+             ->with(['Sentences.id <=' => 21]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
+    public function testFindLatest_noOrder()
+    {
+        $this->query->order(false, true);
+        $this->query
+             ->expects($this->never())
+             ->method('where');
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
+    public function testFindLatest_noExplicitDirection()
+    {
+        $this->query->order('Sentences.id', true);
+        $this->query
+             ->expects($this->once())
+             ->method('where')
+             ->with(['Sentences.id <=' => 21]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
     public function testFindLatest_whereOnMainTable()
     {
         $this->query
