@@ -144,10 +144,9 @@ class LimitResultsBehavior extends Behavior
             ->find('list', ['valueField' => 'i'])
             ->select(['i' => $orderField], true)
             ->contain($contain, true)
-            ->limit($options['maxResults'])
-            ->offset(null)
+            ->offset($options['maxResults'] - 1)
             ->group([], true)
-            ->last();
+            ->first();
 
         if ($lastValue) {
             $cmp = $direction == 'desc' ? '>=' : '<=';
