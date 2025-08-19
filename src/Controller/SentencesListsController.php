@@ -200,7 +200,11 @@ class SentencesListsController extends AppController
             'direction' => $this->request->getQuery('direction', 'desc'),
         ];
         $finder = ['latest' => $options];
-        $sentencesInList = $this->paginate($this->SentencesSentencesLists, compact('finder'));
+        try {
+            $sentencesInList = $this->paginate($this->SentencesSentencesLists, compact('finder'));
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
 
         $total = $this->SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
 
