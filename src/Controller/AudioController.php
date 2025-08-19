@@ -116,14 +116,18 @@ class AudioController extends AppController
         if ($userId) {
             $this->loadModel('Audios');
 
-            $finder = ['sentences' => ['user_id' => $userId]];
+            $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+            $finder = ['sentences' => [
+                'user_id' => $userId,
+                'maxResults' => $totalLimit,
+            ]];
             $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
             $this->set(compact('sentencesWithAudio'));
 
             $this->set('totalAudio', $this->Audios->numberOfAudiosBy($userId));
 
             $audioSettings = $this->Users->getAudioSettings($userId);
-            $this->set(compact('audioSettings'));
+            $this->set(compact('audioSettings', 'totalLimit'));
         }
         $this->set(compact('username'));
     }

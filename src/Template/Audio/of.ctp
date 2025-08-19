@@ -95,6 +95,17 @@ if (isset($sentencesWithAudio)) {
 
         $this->Pagination->display();
 
+        if ($totalAudio > $totalLimit) {
+            ?>
+            <div layout-padding>
+            <?= format(
+                __('Only sentences having the last {n} audios are displayed here.'),
+                ['n' => $this->Number->format($totalLimit)]
+            ); ?>
+            </div>
+            <?php
+        }
+
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = true;
