@@ -51,7 +51,7 @@ $tagsIndexUrl = $this->Url->build([
         <div class="md-toolbar-tools">
             <h2 flex>
             <?php
-            $n = $this->Paginator->param('count');
+            $n = $total;
             echo format(
                 __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
                 array(
@@ -84,6 +84,15 @@ $tagsIndexUrl = $this->Url->build([
     <md-content>
 
         <?php $this->Pagination->display(); ?>
+
+        <?php if ($total > $totalLimit): ?>
+            <div layout-padding>
+            <?= format(
+                __('Only the first {n} sentences of the selected sort are displayed here.'),
+                ['n' => $this->Number->format($totalLimit)]
+            ); ?>
+            </div>
+        <?php endif; ?>
 
         <div class="sentencesList" id="sentencesList">
             <?php

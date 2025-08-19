@@ -190,26 +190,36 @@ class TagsController extends AppController
         if ($tagExists) {
             $this->loadModel('Sentences');
             $this->loadModel('TagsSentences');
-            $query = $this->TagsSentences
-                ->find()
-                ->contain(['Sentences' => function ($q) {
-                    return $q
-                        ->find('hideFields')
-                        ->find('filteredTranslations')
-                        ->select($this->Sentences->fields())
-                        ->contain($this->Sentences->contain(['translations' => true]));
-                }])
-                ->where(['tag_id' => $tagId]);
-
+            $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+            $options = [
+                'conditions' => ['tag_id' => $tagId],
+                'maxResults' => $totalLimit,
+                'contain' => [
+                    'Sentences' => function (Query $q) {
+                        return $q
+                          ->find('filteredTranslations')
+                          ->find('hideFields')
+                          ->contain($this->Sentences->contain(['translations' => true]))
+                          ->select($this->Sentences->fields());
+                    },
+                ],
+            ];
+            $total = $this->TagsSentences->find()->where(['tag_id' => $tagId]);
             if (!empty($lang) && $lang != 'und') {
-                $query->where(['Sentences.lang' => $lang]);
+                $options['conditions']['Sentences.lang'] = $lang;
+                $total->matching('Sentences', function (Query $q) use ($lang) {
+                    return $q->where(['Sentences.lang' => $lang]);
+                });
             }
 
             $this->paginate = [
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['added_time' => 'DESC']
+                'sort' => $this->request->getQuery('sort', 'added_time'),
+                'direction' => $this->request->getQuery('direction', 'desc'),
             ];
-            $sentences = $this->paginate($query);
+            $finder = ['latest' => $options];
+            $sentences = $this->paginate($this->TagsSentences, compact('finder'));
+            $total = $total->count();
 
             $taggerIds = [];
             foreach ($sentences as $sentence) {
@@ -220,6 +230,7 @@ class TagsController extends AppController
             $this->set('allSentences', $sentences);
             $this->set('tagName', $tagName);
             $this->set('taggerIds', $taggerIds);
+            $this->set(compact('total', 'totalLimit'));
         } else {
             $this->Flash->set(
                 __(
