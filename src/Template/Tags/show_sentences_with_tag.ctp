@@ -71,9 +71,9 @@ $tagsIndexUrl = $this->Url->build([
                     /* @translators: sort option in a "Sentences with tag" page */
                     array('param' => 'sentence_id', 'direction' => 'asc', 'label' => __('Oldest sentences first')),
                     /* @translators: sort option in a "Sentences with tag" page */
-                    array('param' => 'added_time', 'direction' => 'desc', 'label' => __('Most recently tagged')),
+                    array('param' => 'id', 'direction' => 'desc', 'label' => __('Most recently tagged')),
                     /* @translators: sort option in a "Sentences with tag" page */
-                    array('param' => 'added_time', 'direction' => 'asc', 'label' => __('Least recently tagged'))
+                    array('param' => 'id', 'direction' => 'asc', 'label' => __('Least recently tagged'))
                 );
                 echo $this->element('sort_menu', array('options' => $options));
             ?>

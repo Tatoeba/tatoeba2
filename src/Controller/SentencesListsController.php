@@ -196,7 +196,7 @@ class SentencesListsController extends AppController
 
         $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'sort' => $this->request->getQuery('sort', 'created'),
+            'sort' => $this->request->getQuery('sort', 'id'),
             'direction' => $this->request->getQuery('direction', 'desc'),
         ];
         $finder = ['latest' => $options];

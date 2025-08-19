@@ -136,9 +136,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             <?php 
                 $options = array(
                     /* @translators: sort option in a list page */
-                    array('param' => 'created', 'direction' => 'desc', 'label' => __('Most recently added')),
+                    array('param' => 'id', 'direction' => 'desc', 'label' => __('Most recently added')),
                     /* @translators: sort option in a list page */
-                    array('param' => 'created', 'direction' => 'asc', 'label' => __('Least recently added')),
+                    array('param' => 'id', 'direction' => 'asc', 'label' => __('Least recently added')),
                     /* @translators: sort option in a list page */
                     array('param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences')),
                     /* @translators: sort option in a list page */
