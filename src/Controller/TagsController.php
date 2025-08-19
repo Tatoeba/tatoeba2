@@ -216,6 +216,8 @@ class TagsController extends AppController
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'sort' => $this->request->getQuery('sort', 'id'),
                 'direction' => $this->request->getQuery('direction', 'desc'),
+                // keep added_time for backward compatibility
+                'sortWhitelist' => ['id', 'sentence_id', 'added_time'],
             ];
             $finder = ['latest' => $options];
             $sentences = $this->paginate($this->TagsSentences, compact('finder'));

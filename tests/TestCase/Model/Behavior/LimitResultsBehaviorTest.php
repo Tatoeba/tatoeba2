@@ -60,9 +60,7 @@ class LimitResultsBehaviorTest extends TestCase
     public function testFindLatest_noOrder()
     {
         $this->query->order(false, true);
-        $this->query
-             ->expects($this->never())
-             ->method('where');
+        $this->expectException(\Cake\Http\Exception\BadRequestException::class);
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }

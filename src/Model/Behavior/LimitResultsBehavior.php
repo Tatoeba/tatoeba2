@@ -18,6 +18,7 @@
  */
 namespace App\Model\Behavior;
 
+use Cake\Http\Exception\BadRequestException;
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
 
@@ -126,7 +127,11 @@ class LimitResultsBehavior extends Behavior
     public function findLatest(Query $query, array $options) {
         list($orderField, $direction) = $this->getOrderValues($query);
         if (!$orderField) {
-            return $query;
+            // We cannot limit the results without a sort order. If there is
+            // no sort order, it means the programmer forgot to set one, or
+            // the client is playing tricks requesting a non-whitelisted
+            // order. Both are good reasons to bail out.
+            throw new BadRequestException("Invalid sort order");
         }
 
         $alias = $query->repository()->getAlias();
