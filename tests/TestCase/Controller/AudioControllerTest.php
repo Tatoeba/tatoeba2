@@ -99,6 +99,9 @@ class AudioControllerTest extends IntegrationTestCase
 
         $this->get("/en/audio/index/eng?page=9999999");
         $this->assertRedirect("/en/audio/index/eng?page=$expectedLastPage");
+
+        $this->get("/en/audio/of/kazuki?page=9999999");
+        $this->assertRedirect("/en/audio/of/kazuki?page=$expectedLastPage");
     }
 
     public function testAudioDownload_missingFile() {

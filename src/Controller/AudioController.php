@@ -121,7 +121,11 @@ class AudioController extends AppController
                 'user_id' => $userId,
                 'maxResults' => $totalLimit,
             ]];
-            $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
+            try {
+                $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
+            } catch (\Cake\Http\Exception\NotFoundException $e) {
+                return $this->redirectPaginationToLastPage();
+            }
             $this->set(compact('sentencesWithAudio'));
 
             $this->set('totalAudio', $this->Audios->numberOfAudiosBy($userId));
