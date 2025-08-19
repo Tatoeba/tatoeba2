@@ -58,16 +58,7 @@ if (isset($sentencesWithAudio)) {
 
         <md-content layout-padding>
         <?php
-        if ($total > $this->Paginator->param('count')) {
-            ?>
-            <div layout-padding>
-            <?= format(
-                __('Only sentences having the last {n} audios are displayed here.'),
-                ['n' => $this->Number->format($totalLimit)]
-            ); ?>
-            </div>
-            <?php
-        }
+        $this->Pagination->warnLimitedResults($totalLimit, $total > $this->Paginator->param('count'));
 
         $this->Pagination->display();
 

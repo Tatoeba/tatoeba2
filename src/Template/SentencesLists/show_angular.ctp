@@ -231,22 +231,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         </div>
         <?php
     }
-    ?>
-    
-    
-    <?php $this->Pagination->display(); ?>
 
-    <?php
-    if ($total > $this->Paginator->param('count') && $this->Paginator->param('count') >= $totalLimit) {
-        ?>
-        <div layout-padding>
-        <?= format(
-            __('Only the first {n} sentences of the selected sort are displayed here.'),
-            ['n' => $this->Number->format($totalLimit)]
-        ); ?>
-        </div>
-        <?php
-    }
+    $this->Pagination->warnLimitedResults($totalLimit, $total);
+
+    $this->Pagination->display();
 
     if ($permissions['canAddSentences']) {
         echo $this->element('sentences_lists/sentence_in_list', [

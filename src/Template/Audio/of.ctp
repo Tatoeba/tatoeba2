@@ -93,18 +93,9 @@ if (isset($sentencesWithAudio)) {
             $this->safeForAngular($licenceMessage)
         );
 
-        $this->Pagination->display();
+        $this->Pagination->warnLimitedResults($totalLimit, $totalAudio > $totalLimit);
 
-        if ($totalAudio > $totalLimit) {
-            ?>
-            <div layout-padding>
-            <?= format(
-                __('Only sentences having the last {n} audios are displayed here.'),
-                ['n' => $this->Number->format($totalLimit)]
-            ); ?>
-            </div>
-            <?php
-        }
+        $this->Pagination->display();
 
         $type = 'mainSentence';
         $parentId = null;

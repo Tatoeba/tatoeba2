@@ -83,16 +83,10 @@ $tagsIndexUrl = $this->Url->build([
 
     <md-content>
 
-        <?php $this->Pagination->display(); ?>
-
-        <?php if ($total > $totalLimit): ?>
-            <div layout-padding>
-            <?= format(
-                __('Only the first {n} sentences of the selected sort are displayed here.'),
-                ['n' => $this->Number->format($totalLimit)]
-            ); ?>
-            </div>
-        <?php endif; ?>
+        <?php
+            $this->Pagination->warnLimitedResults($totalLimit, $total);
+            $this->Pagination->display();
+        ?>
 
         <div class="sentencesList" id="sentencesList">
             <?php

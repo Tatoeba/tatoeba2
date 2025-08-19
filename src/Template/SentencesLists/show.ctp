@@ -172,18 +172,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
-    $this->Pagination->display();
+    $this->Pagination->warnLimitedResults($totalLimit, $total);
 
-    if ($total > $this->Paginator->param('count') && $this->Paginator->param('count') >= $totalLimit) {
-        ?>
-        <div layout-padding>
-        <?= format(
-            __('Only the first {n} sentences of the selected sort are displayed here.'),
-            ['n' => $this->Number->format($totalLimit)]
-        ); ?>
-        </div>
-        <?php
-    }
+    $this->Pagination->display();
 
     foreach ($sentencesInList as $item) {
         $sentence = $item->sentence;
