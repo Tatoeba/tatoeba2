@@ -60,7 +60,6 @@ class Transcription extends Entity
         'cmn-Hans' => array(
             'Hant' => array(
                 'type' => 'altscript',
-                'readonly' => true,
             ),
             'Latn' => array(
             ),
@@ -68,7 +67,6 @@ class Transcription extends Entity
         'cmn-Hant' => array(
             'Hans' => array(
                 'type' => 'altscript',
-                'readonly' => true,
             ),
             'Latn' => array(
             ),

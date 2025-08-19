@@ -51,5 +51,15 @@ class TranscriptionsFixture extends TestFixture {
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
 		),
+		array(
+			'id' => 4,
+			'sentence_id' => 66,
+			'script' => 'Latn',
+			'text' => 'Ishingni qil!',
+			'user_id' => null,
+			'needsReview' => 0,
+			'created' => '2020-01-22 22:22:22',
+			'modified' => '2020-01-22 22:22:22'
+		),
 	);
 }
