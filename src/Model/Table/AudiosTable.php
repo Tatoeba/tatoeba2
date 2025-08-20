@@ -190,36 +190,32 @@ class AudiosTable extends Table
      * Custom finder for optimized pagination of sentences having audio
      */
     public function findSentences(Query $query, array $options) {
-        $subquery = $query
+        $query = $query
             ->applyOptions($options)
             ->select(['sentence_id' => 'sentence_id'])
             ->order(['Audios.id' => 'DESC']);
 
         if (isset($options['lang'])) {
-            $subquery->where(['sentence_lang' => $options['lang']]);
+            $query->where(['sentence_lang' => $options['lang']]);
         }
 
         if (isset($options['user_id'])) {
-            $subquery->where(['user_id' => $options['user_id']]);
+            $query->where(['Audios.user_id' => $options['user_id']]);
         }
 
         if (isset($options['maxResults'])) {
-            $subquery = $subquery->find('latest', $options);
+            $query = $query->find('latest', $options);
         }
 
-        $subquery = $subquery
+        $query = $query
             ->group(['sentence_id'])
             ->order(['MAX(Audios.id)' => 'DESC'], true);
+        $countQuery = clone $query;
 
-        $query = $this->Sentences
-            ->find()
-            ->join([
-                'Audios' => [
-                    'table' => $subquery,
-                    'type' => 'INNER',
-                    'conditions' => 'Sentences.id = Audios.sentence_id'
-                ],
-            ])
+        $query = $query
+            ->repository($this->Sentences->getTarget())
+            ->select($this->Sentences->fields())
+            ->innerJoinWith('Audios')
             ->contain('Audios', function ($q) use ($options) {
                 if (isset($options['user_id'])) {
                     $q->where(['Audios.user_id' => $options['user_id']]);
@@ -227,8 +223,8 @@ class AudiosTable extends Table
                 return $q->contain(['Users' => ['fields' => ['username']]]);
             })
             ->contain('Transcriptions')
-            ->counter(function ($query) use ($subquery) {
-                return $subquery->count();
+            ->counter(function ($query) use ($countQuery) {
+                return $countQuery->count();
             });
 
         return $query;
