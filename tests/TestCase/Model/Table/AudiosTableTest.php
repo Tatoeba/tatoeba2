@@ -423,6 +423,18 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(3, $result[0]->audios[0]->user_id);
     }
 
+    function testSentencesCountFinder() {
+        $result = $this->Audio->find('sentencesCount');
+
+        $this->assertEquals(5, $result);
+    }
+
+    function testSentencesCountFinder_withLang() {
+        $result = $this->Audio->find('sentencesCount', ['lang' => 'fra']);
+
+        $this->assertEquals(2, $result);
+    }
+
     function testChangeSentenceLangChangesAudioSentenceLang() {
         $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
         $sentenceId = 3;

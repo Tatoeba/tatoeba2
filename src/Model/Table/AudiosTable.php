@@ -231,6 +231,25 @@ class AudiosTable extends Table
     }
 
     /**
+     * Custom finder for optimized count of total sentences having audio
+     */
+    public function findSentencesCount(Query $query, array $options) {
+        $cache_key = 'audio_sentences_count_';
+
+        if (isset($options['lang'])) {
+            $query->where(['sentence_lang' => $options['lang']]);
+            $cache_key .= $options['lang'];
+        }
+
+        return $query
+            ->cache($cache_key)
+            ->disableHydration()
+            ->select(['cnt' => 'COUNT(DISTINCT sentence_id)'])
+            ->first()
+            ['cnt'];
+    }
+
+    /**
      * Assign author to an audio entity.
      *
      * @param Audio   $entity                      Entity of the audio.

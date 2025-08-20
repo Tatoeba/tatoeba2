@@ -89,14 +89,13 @@ class AudioController extends AppController
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $finder = ['sentences' => [
             'maxResults' => $totalLimit,
+            'sentences' => [],
         ]];
-        $total = $this->Audios->find()->select(['sentence_id'])->distinct();
         if (LanguagesLib::languageExists($lang)) {
-            $total = $total->where(['sentence_lang' => $lang]);
             $finder['sentences']['lang'] = $lang;
             $this->set(compact('lang'));
         }
-        $total = $total->count();
+        $total = $this->Audios->find('sentencesCount', $finder['sentences']);
 
         try {
             $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
