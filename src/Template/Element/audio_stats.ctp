@@ -26,7 +26,7 @@
  */
 ?>
 <div class="section md-whiteframe-1dp">
-    <h2><?php echo __('Number of sentences with audio by language'); ?></h2>
+    <h2><?php echo __('Number of audio recordings by language'); ?></h2>
     <div class="sentencesStats">
     <ul>
     <?php
