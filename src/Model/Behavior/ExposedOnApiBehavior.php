@@ -78,4 +78,23 @@ class ExposedOnApiBehavior extends Behavior
         }
         return $entity;
     }
+
+    /**
+     * Custom finder to turn a datetime string such as
+     * "2000-01-01T01:23:45+00:00"
+     * into a truncated date string such as
+     * "2000-01-01"
+     * on the proveded fields.
+     */
+    public function findDatetime2date(Query $query, array $options) {
+        $query->formatResults(function($entities) use ($options) {
+            return $entities->map(function($entity) use ($options) {
+                foreach ($options['datetimefields'] as $field) {
+                    $entity->{$field} = $entity->{$field}->toDateString();
+                }
+                return $entity;
+            });
+        });
+        return $query;
+    }
 }
