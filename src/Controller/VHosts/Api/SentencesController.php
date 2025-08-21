@@ -101,6 +101,7 @@ class SentencesController extends ApiController
     public function get($id) {
         $this->loadModel('Sentences');
         $query = $this->Sentences
+            ->addBehavior('ExposedOnApi')
             ->find('filteredTranslations')
             ->find('exposedFields', $this->exposedFields())
             ->select($this->fields())
@@ -482,6 +483,7 @@ class SentencesController extends ApiController
         $this->loadModel('Sentences');
 
         $query = $this->Sentences
+            ->addBehavior('ExposedOnApi')
             ->find('withSphinx')
             ->find('filteredTranslations', [
                 'translationLang' => $showtrans,

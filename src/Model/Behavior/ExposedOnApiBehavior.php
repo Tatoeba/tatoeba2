@@ -1,7 +1,7 @@
 <?php
 /**
     Tatoeba Project, free collaborative creation of languages corpuses project
-    Copyright (C) 2023  Gilles Bedel
+    Copyright (C) 2025  Gilles Bedel
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,17 +16,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Model\Table;
+namespace App\Model\Behavior;
 
+use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
 use Cake\ORM\Query;
 
-// This should rather go inside the trait,
-// but only PHP 8.2 allows that.
-const EXPOSED_FIELDS_CACHE_KEY = '_';
-
-trait ExposedFieldsTrait
+class ExposedOnApiBehavior extends Behavior
 {
+    const EXPOSED_FIELDS_CACHE_KEY = '_';
+
     /**
      * This allows to set which fields will be exported in json,
      * regardless of the fields being virtual or not,
@@ -49,8 +48,8 @@ trait ExposedFieldsTrait
                 $this->setExposedFields($e, $toExpose);
             }
         } elseif ($entity instanceof Entity) {
-            if (isset($toExpose[EXPOSED_FIELDS_CACHE_KEY])) {
-                list($toHide, $notExposed) = $toExpose[EXPOSED_FIELDS_CACHE_KEY];
+            if (isset($toExpose[self::EXPOSED_FIELDS_CACHE_KEY])) {
+                list($toHide, $notExposed) = $toExpose[self::EXPOSED_FIELDS_CACHE_KEY];
                 $entity->setHidden($toHide);
                 $entity->setVirtual($notExposed, true);
             }
@@ -68,13 +67,13 @@ trait ExposedFieldsTrait
                 $notExposed = array_diff($fieldsToExpose, $exposed);
                 $entity->setVirtual($notExposed, true);
 
-                $toExpose[EXPOSED_FIELDS_CACHE_KEY] = [$toHide, $notExposed];
+                $toExpose[self::EXPOSED_FIELDS_CACHE_KEY] = [$toHide, $notExposed];
             }
             foreach ($toExpose as $assoc => &$fieldsToExpose) {
-               $contained = $entity->get($assoc);
-               if (!is_null($contained)) {
-                   $this->setExposedFields($contained, $fieldsToExpose);
-               }
+                $contained = $entity->get($assoc);
+                if (!is_null($contained)) {
+                    $this->setExposedFields($contained, $fieldsToExpose);
+                }
             }
         }
         return $entity;

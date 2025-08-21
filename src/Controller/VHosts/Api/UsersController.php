@@ -106,6 +106,7 @@ class UsersController extends ApiController
         }
 
         $query = $this->Users
+            ->addBehavior('ExposedOnApi')
             ->find('exposedFields', $this->exposedFields())
             ->select($this->fields())
             ->where([

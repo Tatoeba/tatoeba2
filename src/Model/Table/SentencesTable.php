@@ -44,8 +44,6 @@ use Cake\ORM\RulesChecker;
 
 class SentencesTable extends Table
 {
-    use ExposedFieldsTrait;
-
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
     
