@@ -58,7 +58,13 @@ class TranscriptionsController extends AppController
     }
 
     public function reset($sentenceId, $script) {
-        $transcr = $this->Transcriptions->findTranscription($sentenceId, $script);
+        $transcr = $this->Transcriptions
+            ->findTranscription($sentenceId, $script)
+            ->contain('Sentences', function ($q) {
+                // add all Sentences fields in the result
+                return $q->select($this->Transcriptions->Sentences);
+            })
+            ->first();
         $transcrOwnerId = null;
         if ($transcr) {
             $transcrOwnerId = $transcr->user_id;
@@ -97,7 +103,14 @@ class TranscriptionsController extends AppController
     }
 
     public function save($sentenceId, $script) {
-        $transcr = $this->Transcriptions->findTranscription($sentenceId, $script);
+        $transcr = $this->Transcriptions
+            ->findTranscription($sentenceId, $script)
+            ->contain('Sentences', function ($q) {
+                // add Sentences.user_id in the result
+                return $q->select(['user_id']);
+            })
+            ->first();
+
         $transcrOwnerId = null;
         if ($transcr) {
             $transcrOwnerId = $transcr->user_id;
@@ -146,7 +159,7 @@ class TranscriptionsController extends AppController
     private function returnTranscriptionData($saved, $sentenceId, $script) {
         if ($saved) {
             $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
-            $this->set('result', $transcription);
+            $this->set('result', $transcription->first());
             $this->loadComponent('RequestHandler');
             $this->set('_serialize', ['result']);
             $this->RequestHandler->renderAs($this, 'json');    

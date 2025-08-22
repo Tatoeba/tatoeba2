@@ -240,6 +240,7 @@ class MainControllerTest extends TestCase
             ]
         ];
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
+        $this->assertJsonValueEquals($actual, '$.data[1].transcriptions[0].type', 'altscript');
     }
 
     public function testSearch_limitsTranslationsLanguage()
