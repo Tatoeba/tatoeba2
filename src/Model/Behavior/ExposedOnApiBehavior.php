@@ -26,6 +26,20 @@ class ExposedOnApiBehavior extends Behavior
 {
     const EXPOSED_FIELDS_CACHE_KEY = '_';
 
+    public function initialize(array $config)
+    {
+        // Temporary introduction of new code, we should get rid of this
+        // once the association is directly used on the SentencesTable model
+        if ($this->getTable()->getAlias() == 'Sentences') {
+            $this->getTable()->belongsToManyMany('Translations', [
+                'className' => 'Translations',
+                'joinTable' => 'sentences_translations',
+                'foreignKey' => 'sentence_id',
+                'targetForeignKey' => 'translation_id',
+            ]);
+        }
+    }
+
     /**
      * This allows to set which fields will be exported in json,
      * regardless of the fields being virtual or not,

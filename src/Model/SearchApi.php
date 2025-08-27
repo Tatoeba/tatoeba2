@@ -169,7 +169,7 @@ class SearchApi
     public function consumeShowTrans(&$params) {
         $showtrans = $this->consumeValue('showtrans', $params, []);
         if ($showtrans === '') {
-            $showtrans = ['none'];
+            $showtrans = [];
         } elseif (is_string($showtrans)) {
             $showtrans = explode(',', $showtrans);
             try {

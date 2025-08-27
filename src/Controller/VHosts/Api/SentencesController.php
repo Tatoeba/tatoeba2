@@ -27,6 +27,7 @@ class SentencesController extends ApiController
         ];
         $exposedFields = $sentence;
         $exposedFields['translations'] = $sentence;
+        $exposedFields['translations']['fields'][] = 'is_direct';
         return compact('exposedFields');
     }
 
@@ -42,7 +43,7 @@ class SentencesController extends ApiController
         ];
     }
 
-    private function contain() {
+    private function contain($transLang = []) {
         $audioContainment = function (Query $q) {
             $q->select(['id', 'external', 'sentence_id'])
               ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
@@ -52,28 +53,19 @@ class SentencesController extends ApiController
         $transcriptionsContainment = [
             'fields' => ['sentence_id', 'script', 'text', 'needsReview'],
         ];
-        $indirTranslationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment) {
-            $q->select($this->fields())
-              ->where(['IndirectTranslations.license !=' => ''])
-              ->contain([
-                  'Users' => ['fields' => ['id', 'username']],
-                  'Audios' => $audioContainment,
-                  'Transcriptions' => $transcriptionsContainment,
-              ]);
-            return $q;
-        };
-        $translationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment, $indirTranslationsContainment) {
-            $q->select($this->fields())
+        $translationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment, $transLang) {
+            $q->select($this->fields() + ['is_direct'])
               ->where(['Translations.license !=' => ''])
               ->contain([
                   'Users' => ['fields' => ['id', 'username']],
                   'Audios' => $audioContainment,
                   'Transcriptions' => $transcriptionsContainment,
-                  'IndirectTranslations' => $indirTranslationsContainment,
               ]);
+            if (count($transLang)) {
+                $q->where(['Translations.lang IN' => $transLang]);
+            }
             return $q;
         };
-
         return [
             'Translations' => $translationsContainment,
             'Users' => ['fields' => ['id', 'username']],
@@ -101,7 +93,6 @@ class SentencesController extends ApiController
         $this->loadModel('Sentences');
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi')
-            ->find('filteredTranslations')
             ->find('exposedFields', $this->exposedFields())
             ->select($this->fields())
             ->where([
@@ -484,13 +475,10 @@ class SentencesController extends ApiController
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi')
             ->find('withSphinx')
-            ->find('filteredTranslations', [
-                'translationLang' => $showtrans,
-            ])
             ->find('exposedFields', $this->exposedFields())
             ->select($this->Sentences->fields())
             ->where(['Sentences.license !=' => '']) // FIXME use Manticore filter instead
-            ->contain($this->contain());
+            ->contain($this->contain($showtrans));
 
         $this->paginate = [
             'limit' => self::DEFAULT_RESULTS_NUMBER,

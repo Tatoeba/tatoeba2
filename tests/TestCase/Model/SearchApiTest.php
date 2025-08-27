@@ -678,7 +678,7 @@ class SearchApiTest extends TestCase
     public function showTransProvider() {
         return [
             'absent'          => [ [],                         []             ],
-            'empty'           => [ ['showtrans' => ''],        ['none']       ],
+            'empty'           => [ ['showtrans' => ''],        []             ],
             'multiple values' => [ ['showtrans' => 'sun,vie'], ['sun', 'vie'] ],
             'invalid' => [
                 ['showtrans' => 'invalid'],
