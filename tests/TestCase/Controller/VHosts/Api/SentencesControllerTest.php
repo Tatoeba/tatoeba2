@@ -6,7 +6,7 @@ use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class MainControllerTest extends TestCase
+class SentencesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
     use JsonAssertions;
