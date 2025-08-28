@@ -677,16 +677,19 @@ class SearchApiTest extends TestCase
 
     public function showTransProvider() {
         return [
-            'absent'          => [ [],                         []             ],
-            'empty'           => [ ['showtrans' => ''],        []             ],
-            'multiple values' => [ ['showtrans' => 'sun,vie'], ['sun', 'vie'] ],
-            'invalid' => [
-                ['showtrans' => 'invalid'],
-                new BadRequestException("Invalid value for parameter 'showtrans': Invalid language code 'invalid'")
+            'absent'        => [ [],                              ['lang' => []] ],
+            'multiple lang' => [ ['showtrans:lang' => 'sun,vie'], ['lang' => ['sun', 'vie']] ],
+            'empty lang' => [
+                ['showtrans:lang' => ''],
+                new BadRequestException("Invalid value for parameter 'showtrans:lang': Invalid language code ''")
             ],
-            'multiple params' => [
-                ['showtrans' => ['sun', 'vie']],
-                new BadRequestException("Invalid usage of parameter 'showtrans': cannot be provided multiple times")
+            'invalid lang' => [
+                ['showtrans:lang' => 'invalid'],
+                new BadRequestException("Invalid value for parameter 'showtrans:lang': Invalid language code 'invalid'")
+            ],
+            'multiple lang params' => [
+                ['showtrans:lang' => ['sun', 'vie']],
+                new BadRequestException("Invalid usage of parameter 'showtrans:lang': cannot be provided multiple times")
             ],
         ];
     }

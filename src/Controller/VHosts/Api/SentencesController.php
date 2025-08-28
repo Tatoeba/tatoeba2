@@ -43,7 +43,13 @@ class SentencesController extends ApiController
         ];
     }
 
-    private function contain($transLang = []) {
+    /**
+     * Containment for Sentences
+     *
+     * @param $showtrans If empty, fetch all translations.
+     *                   If contains 'lang' => array, only fetch translations of the provided language codes.
+     */
+    private function contain($showtrans = []) {
         $audioContainment = function (Query $q) {
             $q->select(['id', 'external', 'sentence_id'])
               ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
@@ -53,25 +59,27 @@ class SentencesController extends ApiController
         $transcriptionsContainment = [
             'fields' => ['sentence_id', 'script', 'text', 'needsReview'],
         ];
-        $translationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment, $transLang) {
-            $q->select($this->fields() + ['is_direct'])
-              ->where(['Translations.license !=' => ''])
-              ->contain([
-                  'Users' => ['fields' => ['id', 'username']],
-                  'Audios' => $audioContainment,
-                  'Transcriptions' => $transcriptionsContainment,
-              ]);
-            if (count($transLang)) {
-                $q->where(['Translations.lang IN' => $transLang]);
-            }
-            return $q;
-        };
-        return [
-            'Translations' => $translationsContainment,
+        $contain = [
             'Users' => ['fields' => ['id', 'username']],
             'Audios' => $audioContainment,
             'Transcriptions' => $transcriptionsContainment,
         ];
+        if (empty($showtrans) || !empty($showtrans['lang'])) {
+            $contain['Translations'] = function (Query $q) use ($audioContainment, $transcriptionsContainment, $showtrans) {
+                $q->select($this->fields() + ['is_direct'])
+                  ->where(['Translations.license !=' => ''])
+                  ->contain([
+                      'Users' => ['fields' => ['id', 'username']],
+                      'Audios' => $audioContainment,
+                      'Transcriptions' => $transcriptionsContainment,
+                  ]);
+                if (!empty($showtrans['lang'])) {
+                    $q->where(['lang IN' => $showtrans['lang']]);
+                }
+                return $q;
+            };
+        }
+        return $contain;
     }
 
     /**
@@ -298,10 +306,10 @@ class SentencesController extends ApiController
      *     description="Maximum number of sentences in the response.",
      *     @OA\Schema(type="integer", example="20")
      *   ),
-     *   @OA\Parameter(name="showtrans", in="query", explode=false,
-     *     description="By default, all the translations of matched sentences are returned, regardless of how translations filters were used. Here you can limit the language of the translations that will be displayed in the result, using a comma-separated list of languages codes. You may also use an empty value to not display any translation.",
-     *     @OA\Examples(example="1", value="epo",      summary="only show translations in Esperanto, if any"),
-     *     @OA\Examples(example="2", value="epo,sun",  summary="only show translations in Esperanto and Sundanese, if any"),
+     *   @OA\Parameter(name="showtrans:lang", in="query", explode=false,
+     *     description="By default, associated translations are not included in the response. Here you can include translations in the specified languages, using a comma-separated list of languages codes.",
+     *     @OA\Examples(example="1", value="epo",      summary="show translations in Esperanto, if any"),
+     *     @OA\Examples(example="2", value="epo,sun",  summary="show translations in Esperanto and Sundanese, if any"),
      *     @OA\Schema(ref="#/components/schemas/LanguageCodeList")
      *   ),
      *   @OA\Get(

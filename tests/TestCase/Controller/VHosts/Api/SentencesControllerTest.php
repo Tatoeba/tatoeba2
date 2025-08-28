@@ -14,7 +14,7 @@ class MainControllerTest extends TestCase
 
     const SENTENCE_AND_TRANSLATIONS_JSON_SCHEMA = [
       'type'       => 'object',
-      'required'   => ['id', 'text', 'lang', 'script', 'license', 'translations', 'transcriptions', 'audios', 'owner'],
+      'required'   => ['id', 'text', 'lang', 'script', 'license', 'transcriptions', 'audios', 'owner'],
       'properties' => [
         'id'       => ['type' => 'integer'],
         'text'     => ['type' => 'string'],
@@ -244,7 +244,7 @@ class MainControllerTest extends TestCase
     {
         $this->enableMockedSearch([2]);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=cmn&sort=created&showtrans=jpn&q=hello");
+        $this->get("http://api.example.com/unstable/sentences?lang=cmn&sort=created&showtrans:lang=jpn&q=hello");
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data[0].translations' => new \PHPUnit\Framework\Constraint\Count(1),
