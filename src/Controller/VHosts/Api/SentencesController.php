@@ -93,7 +93,7 @@ class SentencesController extends ApiController
         $sentence = [
             'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner'],
             'audios' => ['fields' => [
-                'author', 'license', 'attribution_url', 'download_url',
+                'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
             ]],
             'transcriptions' => ['fields' => [
                 'script', 'text', 'needsReview', 'type', 'html']
@@ -126,7 +126,7 @@ class SentencesController extends ApiController
      */
     private function contain($showtrans = []) {
         $audioContainment = function (Query $q) {
-            $q->select(['id', 'external', 'sentence_id'])
+            $q->select(['id', 'external', 'created', 'modified', 'sentence_id'])
               ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
               ->contain(['Users' => ['fields' => ['username', 'audio_license', 'audio_attribution_url']]]);
             return $q;
