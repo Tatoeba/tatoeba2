@@ -171,7 +171,7 @@ class ExposedOnApiBehavior extends Behavior
     public function findAudiosOnApi(Query $query, array $options) {
         $exposedFields = [
             'fields' => [
-                'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
+                'id', 'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
             ]
         ];
         $fields = ['id', 'external', 'created', 'modified', 'sentence_id'];
