@@ -176,7 +176,19 @@ class SearchApi
                 throw new BadRequestException("Invalid value for parameter 'showtrans:lang': ".$e->getMessage());
             }
         }
-        return compact('lang');
+
+        $is_direct = $this->consumeValue('showtrans:is_direct', $params);
+        if (is_string($is_direct)) {
+            if ($is_direct == 'yes') {
+                $is_direct = true;
+            } elseif ($is_direct == 'no') {
+                $is_direct = false;
+            } else {
+                throw new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': must be 'yes' or 'no'");
+            }
+        }
+
+        return compact('lang', 'is_direct');
     }
 
     public function consumeInt($key, &$params, $default = null) {

@@ -677,8 +677,8 @@ class SearchApiTest extends TestCase
 
     public function showTransProvider() {
         return [
-            'absent'        => [ [],                              ['lang' => []] ],
-            'multiple lang' => [ ['showtrans:lang' => 'sun,vie'], ['lang' => ['sun', 'vie']] ],
+            'absent'        => [ [],                              ['lang' => [], 'is_direct' => null] ],
+            'multiple lang' => [ ['showtrans:lang' => 'sun,vie'], ['lang' => ['sun', 'vie'], 'is_direct' => null] ],
             'empty lang' => [
                 ['showtrans:lang' => ''],
                 new BadRequestException("Invalid value for parameter 'showtrans:lang': Invalid language code ''")
@@ -690,6 +690,20 @@ class SearchApiTest extends TestCase
             'multiple lang params' => [
                 ['showtrans:lang' => ['sun', 'vie']],
                 new BadRequestException("Invalid usage of parameter 'showtrans:lang': cannot be provided multiple times")
+            ],
+            'is_direct yes' => [ ['showtrans:is_direct' => 'yes'], ['lang' => [], 'is_direct' => true] ],
+            'is_direct no'  => [ ['showtrans:is_direct' => 'no'],  ['lang' => [], 'is_direct' => false] ],
+            'empty is_direct' => [
+                ['showtrans:is_direct' => ''],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': must be 'yes' or 'no'")
+            ],
+            'invalid is_direct' => [
+                ['showtrans:is_direct' => 'invalid'],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': must be 'yes' or 'no'")
+            ],
+            'multiple is_direct params' => [
+                ['showtrans:is_direct' => ['yes', 'no']],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': cannot be provided multiple times")
             ],
         ];
     }

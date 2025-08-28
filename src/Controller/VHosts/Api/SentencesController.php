@@ -48,6 +48,7 @@ class SentencesController extends ApiController
      *
      * @param $showtrans If empty, fetch all translations.
      *                   If contains 'lang' => array, only fetch translations of the provided language codes.
+     *                   If contains 'is_direct' => bool, only fetch translations of the provided level.
      */
     private function contain($showtrans = []) {
         $audioContainment = function (Query $q) {
@@ -64,7 +65,7 @@ class SentencesController extends ApiController
             'Audios' => $audioContainment,
             'Transcriptions' => $transcriptionsContainment,
         ];
-        if (empty($showtrans) || !empty($showtrans['lang'])) {
+        if (empty($showtrans) || !empty($showtrans['lang']) || is_bool($showtrans['is_direct'] ?? null)) {
             $contain['Translations'] = function (Query $q) use ($audioContainment, $transcriptionsContainment, $showtrans) {
                 $q->select($this->fields() + ['is_direct'])
                   ->where(['Translations.license !=' => ''])
@@ -75,6 +76,9 @@ class SentencesController extends ApiController
                   ]);
                 if (!empty($showtrans['lang'])) {
                     $q->where(['lang IN' => $showtrans['lang']]);
+                }
+                if (is_bool($showtrans['is_direct'] ?? null)) {
+                    $q->where(['is_direct' => $showtrans['is_direct']]);
                 }
                 return $q;
             };
@@ -307,10 +311,14 @@ class SentencesController extends ApiController
      *     @OA\Schema(type="integer", example="20")
      *   ),
      *   @OA\Parameter(name="showtrans:lang", in="query", explode=false,
-     *     description="By default, associated translations are not included in the response. Here you can include translations in the specified languages, using a comma-separated list of languages codes.",
+     *     description="By default, associated translations are not included in the response. Here you can include translations in the specified languages, using a comma-separated list of languages codes. Combine with <code>showtrans:is_direct</code> to further limit the translations returned.",
      *     @OA\Examples(example="1", value="epo",      summary="show translations in Esperanto, if any"),
      *     @OA\Examples(example="2", value="epo,sun",  summary="show translations in Esperanto and Sundanese, if any"),
      *     @OA\Schema(ref="#/components/schemas/LanguageCodeList")
+     *   ),
+     *   @OA\Parameter(name="showtrans:is_direct", in="query",
+     *     description="By default, associated translations are not included in the response. Here you can include direct translations (if value is yes) or indirect translations (if value is no). Combine with <code>showtrans:lang</code> to further limit the translations returned.",
+     *     @OA\Schema(ref="#/components/schemas/Boolean")
      *   ),
      *   @OA\Get(
      *     summary="Search sentences",
