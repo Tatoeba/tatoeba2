@@ -47,9 +47,10 @@ class ExposedOnApiBehavior extends Behavior
      */
     public function findExposedFields(Query $query, array $options)
     {
-        $query->formatResults(function($results) use (&$options) {
-            return $results->map(function($result) use (&$options) {
-                return $this->setExposedFields($result, $options['exposedFields']);
+        $query->formatResults(function($results) use ($query) {
+            return $results->map(function($result) use ($query) {
+                $exposedFields = $query->getOptions()['exposedFields'];
+                return $this->setExposedFields($result, $exposedFields);
             });
         });
         return $query;
@@ -109,6 +110,105 @@ class ExposedOnApiBehavior extends Behavior
                 return $entity;
             });
         });
+        return $query;
+    }
+
+    /**
+     * Helper to include related entities on the main entity.
+     * Basically a ->contain() with API-specific stuff around.
+     */
+    public function findContainOnApi(Query $query, array $options)
+    {
+        foreach ($options['containOnApi'] as $assoc => $value) {
+            // make sure we can run any find*OnApi finder on the related table
+            $query->getRepository()->{$assoc}->addBehavior('ExposedOnApi');
+            // actually include the related entities
+            $query->contain([$assoc => $value]);
+            // add the property name of the asssociation to the list of exposed fields
+            $propName = $query->getRepository()->getAssociation($assoc)->getProperty();
+            $options['exposedFields']['fields'][] = $propName;
+        }
+        // keep track of modified $options['exposedFields']
+        $query->applyOptions($options);
+        return $query;
+    }
+
+    /**
+     * Finder for the Sentence objects served on API.
+     */
+    public function findSentencesOnApi(Query $query, array $options) {
+        $exposedFields = [
+            'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner']
+        ];
+        $fields = ['id', 'text', 'lang', 'user_id', 'correctness', 'script', 'license'];
+
+        $query
+            ->find('exposedFields', compact('exposedFields'))
+            ->select($fields)
+            ->where(['license !=' => '']) // FIXME use Manticore filter instead
+            ->contain(['Users' => ['fields' => ['id', 'username']]]);
+
+        return $query;
+    }
+
+    /**
+     * Finder for the Transcription objects served on API.
+     */
+    public function findTranscriptionsOnApi(Query $query, array $options) {
+        $exposedFields = [
+            'fields' => ['script', 'text', 'needsReview', 'type', 'html']
+        ];
+        $fields = ['sentence_id', 'script', 'text', 'needsReview'];
+        $query
+            ->find('exposedFields', compact('exposedFields'))
+            ->select($fields);
+        return $query;
+    }
+
+    /**
+     * Finder for the Audio objects served on API.
+     */
+    public function findAudiosOnApi(Query $query, array $options) {
+        $exposedFields = [
+            'fields' => [
+                'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
+            ]
+        ];
+        $fields = ['id', 'external', 'created', 'modified', 'sentence_id'];
+        $query
+            ->find('exposedFields', compact('exposedFields'))
+            ->select($fields)
+            ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
+            ->contain(['Users' => ['fields' => ['username', 'audio_license', 'audio_attribution_url']]]);
+        return $query;
+    }
+
+    /**
+     * Finder for the Translation objects served on API.
+     */
+    public function findTranslationsOnApi(Query $query, array $options) {
+        $query
+            ->find('sentencesOnApi')
+            ->find('containOnApi', ['containOnApi' => [
+                'Transcriptions' => ['finder' => 'transcriptionsOnApi'],
+                'Audios'         => ['finder' => 'audiosOnApi'],
+            ]])
+            ->select('is_direct');
+
+        // Make is_direct visible
+        $exposedFields = $query->getOptions()['exposedFields'];
+        $exposedFields['fields'][] = 'is_direct';
+        $query->applyOptions(compact('exposedFields'));
+
+        // Apply showtrans filters
+        $showtrans = $options['showtrans'] ?? [];
+        if (!empty($showtrans['lang'])) {
+            $query->where(['lang IN' => $showtrans['lang']]);
+        }
+        if (is_bool($showtrans['is_direct'] ?? null)) {
+            $query->where(['is_direct' => $showtrans['is_direct']]);
+        }
+
         return $query;
     }
 }

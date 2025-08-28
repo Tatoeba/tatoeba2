@@ -89,76 +89,6 @@ class SentencesController extends ApiController
      *   }
      * )
      */
-    private function exposedFields() {
-        $sentence = [
-            'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner'],
-            'audios' => ['fields' => [
-                'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
-            ]],
-            'transcriptions' => ['fields' => [
-                'script', 'text', 'needsReview', 'type', 'html']
-            ],
-        ];
-        $exposedFields = $sentence;
-        $exposedFields['translations'] = $sentence;
-        $exposedFields['translations']['fields'][] = 'is_direct';
-        return compact('exposedFields');
-    }
-
-    private function fields() {
-        return [
-            'id',
-            'text',
-            'lang',
-            'user_id',
-            'correctness',
-            'script',
-            'license',
-        ];
-    }
-
-    /**
-     * Containment for Sentences
-     *
-     * @param $showtrans If empty, fetch all translations.
-     *                   If contains 'lang' => array, only fetch translations of the provided language codes.
-     *                   If contains 'is_direct' => bool, only fetch translations of the provided level.
-     */
-    private function contain($showtrans = []) {
-        $audioContainment = function (Query $q) {
-            $q->select(['id', 'external', 'created', 'modified', 'sentence_id'])
-              ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
-              ->contain(['Users' => ['fields' => ['username', 'audio_license', 'audio_attribution_url']]]);
-            return $q;
-        };
-        $transcriptionsContainment = [
-            'fields' => ['sentence_id', 'script', 'text', 'needsReview'],
-        ];
-        $contain = [
-            'Users' => ['fields' => ['id', 'username']],
-            'Audios' => $audioContainment,
-            'Transcriptions' => $transcriptionsContainment,
-        ];
-        if (empty($showtrans) || !empty($showtrans['lang']) || is_bool($showtrans['is_direct'] ?? null)) {
-            $contain['Translations'] = function (Query $q) use ($audioContainment, $transcriptionsContainment, $showtrans) {
-                $q->select($this->fields() + ['is_direct'])
-                  ->where(['Translations.license !=' => ''])
-                  ->contain([
-                      'Users' => ['fields' => ['id', 'username']],
-                      'Audios' => $audioContainment,
-                      'Transcriptions' => $transcriptionsContainment,
-                  ]);
-                if (!empty($showtrans['lang'])) {
-                    $q->where(['lang IN' => $showtrans['lang']]);
-                }
-                if (is_bool($showtrans['is_direct'] ?? null)) {
-                    $q->where(['is_direct' => $showtrans['is_direct']]);
-                }
-                return $q;
-            };
-        }
-        return $contain;
-    }
 
     /**
      * @OA\PathItem(path="/unstable/sentences/{id}",
@@ -189,13 +119,15 @@ class SentencesController extends ApiController
         $this->loadModel('Sentences');
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi')
-            ->find('exposedFields', $this->exposedFields())
-            ->select($this->fields())
+            ->find('sentencesOnApi')
             ->where([
                 'Sentences.id' => $id,
-                'Sentences.license !=' => '',
             ])
-            ->contain($this->contain());
+            ->find('containOnApi', ['containOnApi' => [
+                'transcriptions' => ['finder' => 'transcriptionsOnApi'],
+                'audios'         => ['finder' => 'audiosOnApi'],
+                'translations'   => ['finder' => 'translationsOnApi'],
+            ]]);
 
         try {
             $results = $query->firstOrFail();
@@ -581,15 +513,23 @@ class SentencesController extends ApiController
         $sphinx = $api->search->asSphinx();
         $sphinx['limit'] = $limit > self::MAX_RESULTS_NUMBER ? self::MAX_RESULTS_NUMBER : $limit;
 
+        $containOnApi = [
+            'transcriptions' => ['finder' => 'transcriptionsOnApi'],
+            'audios'         => ['finder' => 'audiosOnApi'],
+        ];
+        if (!empty($showtrans['lang']) || is_bool($showtrans['is_direct'] ?? null)) {
+            $containOnApi['translations'] = function (Query $q) use ($showtrans) {
+                return $q->find('translationsOnApi', compact('showtrans'));
+            };
+        }
+
         $this->loadModel('Sentences');
 
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi')
             ->find('withSphinx')
-            ->find('exposedFields', $this->exposedFields())
-            ->select($this->Sentences->fields())
-            ->where(['Sentences.license !=' => '']) // FIXME use Manticore filter instead
-            ->contain($this->contain($showtrans));
+            ->find('sentencesOnApi')
+            ->find('containOnApi', compact('containOnApi'));
 
         $this->paginate = [
             'sphinx' => $sphinx,
