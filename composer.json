@@ -33,7 +33,7 @@
     "scripts": {
         "test": "phpunit --colors=always",
         "post-install-cmd": [
-            "./vendor/bin/openapi src/Controller/VHosts/Api/ -o webroot/api/openapi-unstable.json"
+            "./vendor/bin/openapi --version 3.1.0 src/Controller/VHosts/Api/ -o webroot/api/openapi-unstable.json"
         ]
     },
     "config": {
