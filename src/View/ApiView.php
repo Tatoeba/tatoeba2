@@ -41,9 +41,10 @@ class ApiView extends JsonView
         }
 
         $links->has_next = $this->get('has_next');
-        if ($links->has_next) {
-            $links->cursor_end = $this->get('cursor_end');
-            $links->next = $this->buildUrl($query, ['after' => $this->get('cursor_end')]);
+        $cursor_end = $this->get('cursor_end');
+        if ($links->has_next && !is_null($cursor_end)) {
+            $links->cursor_end = $cursor_end;
+            $links->next = $this->buildUrl($query, ['after' => $cursor_end]);
         }
 
         return $links;

@@ -216,6 +216,27 @@ class MainControllerTest extends TestCase
         $this->assertResponseOk();
     }
 
+    public function testSearch_randomSortCannotBePaged()
+    {
+        $this->enableMockedSearch([1,2,3], 42, false);
+
+        // GET-ing with sort=random, but the $selectCursor=false above really is what's being tested
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=random&limit=1");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$.paging' => new \PHPUnit\Framework\Constraint\Callback(function ($obj) {
+                $nbProps = count((array)$obj);
+                return $nbProps == 2;
+            }),
+            '$.paging.total' => 42,
+            '$.paging.has_next' => true,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
     public function testSearch_returnsResults()
     {
         $this->enableMockedSearch([1,2,3]);
