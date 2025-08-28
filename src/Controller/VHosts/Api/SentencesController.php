@@ -169,9 +169,19 @@ class SentencesController extends ApiController
      *     summary="Get a sentence",
      *     description="Get sentence text as well as metadata about this sentence and related sentences.",
      *     tags={"Sentences"},
-     *     @OA\Response(response="200", description="Success."),
-     *     @OA\Response(response="400", description="Invalid ID parameter."),
-     *     @OA\Response(response="404", description="There is no sentence with that ID or it has been deleted.")
+     *     @OA\Response(
+     *       response="200",
+     *       description="Success.",
+     *       @OA\JsonContent(type="object",
+     *         @OA\Property(property="data",
+     *           description="Sentence of the provided id.",
+     *           ref="#/components/schemas/SentenceWithExtraInfo"
+     *         )
+     *       )
+     *     ),
+     *     @OA\Response(response="400", ref="#/components/responses/ClientErrorResponse", description="Invalid ID parameter."),
+     *     @OA\Response(response="404", ref="#/components/responses/NotFoundErrorResponse", description="There is no sentence with that ID or it has been deleted."),
+     *     @OA\Response(response="500", ref="#/components/responses/ServerErrorResponse")
      *   )
      * )
      */

@@ -44,6 +44,17 @@ When this API will be considered mature, we will release a stable version and yo
  *     @OA\Property(property="code", type="integer", example=500, description="HTTP status code of the response.")
  *   )
  * )
+ * @OA\Response(
+ *   response="NotFoundErrorResponse",
+ *   description="The thing could not be found.",
+ *   @OA\JsonContent(
+ *     description="Description of the error response.",
+ *     type="object",
+ *     @OA\Property(property="message", type="string", example="Not Found", description="Details about what is wrong."),
+ *     @OA\Property(property="url", type="string", example="/unstable/sentences/1234", description="URL of the request (HTML-safe)."),
+ *     @OA\Property(property="code", type="integer", example=404, description="HTTP status code of the response.")
+ *   )
+ * )
  *
  * @OA\Schema(
  *   schema="Paging",
