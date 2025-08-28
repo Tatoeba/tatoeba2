@@ -592,7 +592,6 @@ class SentencesController extends ApiController
             ->contain($this->contain($showtrans));
 
         $this->paginate = [
-            'limit' => self::DEFAULT_RESULTS_NUMBER,
             'sphinx' => $sphinx,
         ];
         $results = $this->paginate($query);
