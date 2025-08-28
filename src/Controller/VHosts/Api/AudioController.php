@@ -27,7 +27,19 @@ class AudioController extends ApiController
      * @OA\Schema(
      *   schema="Audio",
      *   description="An audio object that contains metadata about a recording.",
-     *   @OA\Property(property="id", description="The audio identifier", type="integer", example="4321")
+     *   @OA\Property(property="id", description="The audio identifier", type="integer", example="4321"),
+     *   @OA\Property(property="author", description="Name of user who contributed the audio recording",
+     *                type="string", example="kevin62"),
+     *   @OA\Property(property="licence", description="License of the audio recording", type="string",
+     *                example="CC0 1.0"),
+     *   @OA\Property(property="attribution_url", type="string", example="https://example.com/audio/kevin",
+     *                description="URL to give attribution to the author. If you want to re-use the audio in your project, you need to mention the author name along with this URL."),
+     *   @OA\Property(property="download_url", description="URL to download the audio file", type="string",
+     *                example="https://example.com/audio/1234.mp3"),
+     *   @OA\Property(property="created", description="Audio creation datetime in ISO 8601 format",
+     *                type="datetime", example="2020-02-20T02:20:00+00:00"),
+     *   @OA\Property(property="modified", description="Audio last modification datetime in ISO 8601 format",
+     *                type="datetime", example="2020-02-20T02:20:00+00:00")
      * )
      *
      * @OA\PathItem(path="/unstable/audio/{id}/file",
