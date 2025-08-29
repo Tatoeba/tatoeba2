@@ -56,6 +56,11 @@ When this API will be considered mature, we will release a stable version and yo
  *   )
  * )
  *
+ * @OA\Parameter(name="after", in="query",
+ *   description="Cursor start position. This parameter is used to paginate results using keyset pagination method. After fetching the first page, if there are more results, you get a <code>cursor_end</code> value along with the results. To get the second page of results, execute the same query with the added <code>after=&lt;cursor_end&gt;</code> parameter. If there are more results, the second page will containg another <code>cursor_end</code> you can use to get the third page, and so on.",
+ *   @OA\Schema(type={"string", "integer"})
+ * )
+ *
  * @OA\Schema(
  *   schema="Paging",
  *   description="Description of the pagination context of a response.",
