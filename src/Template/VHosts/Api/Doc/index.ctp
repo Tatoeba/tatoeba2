@@ -2,7 +2,7 @@
 $this->assign('title', 'Tatoeba API');
 
 $docurl = [
-    'version' => 'unstable',
+    'version' => 'v1',
     'controller' => 'doc',
     'action' => 'show',
 ];

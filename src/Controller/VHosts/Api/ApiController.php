@@ -9,14 +9,25 @@ use Cake\Event\Event;
 
 /**
  * @OA\Info(
- *   version="unstable",
+ *   version="1.0",
  *   title="Tatoeba API",
  *   description="<h2>Welcome to the Tatoeba API</h1>
 <p>
 This is an ongoing effort to provide an API for tatoeba.org.
-This API is currently read-only and subject to change, but open to the public without authentification.
-You are encouraged to try it, feedback is welcome.
-When this API will be considered mature, we will release a stable version and you will just have to change your endpoints from <em>/unstable</em> to <em>/v1</em>.
+This API is currently read-only, but open to the public without authentification.
+Feedback is welcome.
+</p>
+<p>
+Endpoints can be divided in two categories.
+<ul>
+<li>Stable endpoints use the <code>/v1</code> prefix: it is safe to build upon them.</li>
+<li>Unstable endpoints use the <code>/unstable</code> prefix: these may change at any point
+    in the future, in terms of behavior, required parameters or response format.</li>
+</ul>
+
+As work on this API progresses, some <em>unstable</em> endpoints will become <em>stable</em>
+by switching the prefix from <code>/unstable</code> to <code>/v1</code>. For backward compatibility,
+all <code>/v1</code> endpoints can also be used with <code>/unstable</code> prefix instead.
 </p>",
  *   @OA\Contact(name="API support", email="team@tatoeba.org")
  * )
