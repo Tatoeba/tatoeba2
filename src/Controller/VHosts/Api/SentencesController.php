@@ -10,6 +10,18 @@ class SentencesController extends ApiController
 {
     /**
      * @OA\Schema(
+     *   schema="SentenceWithTranslations",
+     *   description="A sentence object that contains related objects, including translations.",
+     *   allOf={
+     *     @OA\Schema(ref="#/components/schemas/SentenceWithExtraInfo"),
+     *     @OA\Schema(
+     *       @OA\Property(property="translations", type="array", description="Sentences that are direct or indirect translations of the parent sentence objet",
+     *         @OA\Items(ref="#/components/schemas/Translation")
+     *       )
+     *     )
+     *   }
+     * )
+     * @OA\Schema(
      *   schema="SentenceWithExtraInfo",
      *   description="A sentence object that contains both sentence text and metadata about the sentence, and related objects.",
      *   allOf={
@@ -20,9 +32,6 @@ class SentencesController extends ApiController
      *       ),
      *       @OA\Property(property="audios", type="array", description="Audio recordings of the sentence",
      *         @OA\Items(ref="#/components/schemas/Audio")
-     *       ),
-     *       @OA\Property(property="translations", type="array", description="Sentences that are direct or indirect translations of the parent sentence objet",
-     *         @OA\Items(ref="#/components/schemas/Translation")
      *       )
      *     )
      *   }
@@ -42,7 +51,7 @@ class SentencesController extends ApiController
      *       @OA\JsonContent(type="object",
      *         @OA\Property(property="data",
      *           description="Sentence of the provided id.",
-     *           ref="#/components/schemas/SentenceWithExtraInfo"
+     *           ref="#/components/schemas/SentenceWithTranslations"
      *         )
      *       )
      *     ),
@@ -427,7 +436,7 @@ class SentencesController extends ApiController
      *       @OA\JsonContent(type="object",
      *         @OA\Property(property="data", type="array",
      *           description="Array of sentences matching the provided filters.",
-     *           @OA\Items(ref="#/components/schemas/SentenceWithExtraInfo")
+     *           @OA\Items(ref="#/components/schemas/SentenceWithTranslations")
      *         ),
      *         @OA\Property(property="paging", ref="#/components/schemas/Paging")
      *       )

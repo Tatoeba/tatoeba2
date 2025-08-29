@@ -261,7 +261,7 @@ class ExposedOnApiBehavior extends Behavior
      *         description="Whether this translation is direct (if value is true) or indirect (if value is false)"
      *       )
      *     ),
-     *     @OA\Schema(ref="#/components/schemas/Sentence")
+     *     @OA\Schema(ref="#/components/schemas/SentenceWithExtraInfo")
      *   }
      * )
      */
