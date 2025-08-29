@@ -43,8 +43,8 @@ class AudioController extends ApiController
         try {
             $audio = $this->Audios->find()
                 ->select(['id', 'sentence_id'])
-                ->contain(['Users' => ['fields' => ['audio_license']]])
-                ->where(['Audios.id' => $id, 'Users.audio_license !=' => ''])
+                ->find('hasLicense')
+                ->where(['Audios.id' => $id])
                 ->firstOrFail();
         } catch (\InvalidArgumentException $e) {
             throw new BadRequestException('Invalid audio id');

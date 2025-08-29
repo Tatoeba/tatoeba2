@@ -386,6 +386,30 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(3, $result[1]->audios[0]->user_id);
     }
 
+    function testHasLicenseFinder_fromUser_hasIt() {
+        $result = $this->Audio->findById(1)->find('hasLicense')->first();
+
+        $this->assertNotNull($result);
+    }
+
+    function testHasLicenseFinder_fromUser_doesNotHaveIt() {
+        $result = $this->Audio->findById(5)->find('hasLicense')->first();
+
+        $this->assertNull($result);
+    }
+
+    function testHasLicenseFinder_fromExternal_hasIt() {
+        $result = $this->Audio->findById(3)->find('hasLicense')->first();
+
+        $this->assertNotNull($result);
+    }
+
+    function testHasLicenseFinder_fromExternal_doesNotHaveIt() {
+        $result = $this->Audio->findById(2)->find('hasLicense')->first();
+
+        $this->assertNull($result);
+    }
+
     function testChangeSentenceLangChangesAudioSentenceLang() {
         $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
         $sentenceId = 3;

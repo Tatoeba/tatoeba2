@@ -51,13 +51,35 @@ class AudioControllerTest extends TestCase
         $this->assertResponseCode(404);
     }
 
-    public function testDownload_nonReusableAudio()
+    public function testDownload_nonReusableAudio_fromUserAudioLicenseField()
     {
         $this->initAudioStorageDir();
 
         $audioFileContents = $this->createAudioFile(6);
         $this->get("http://api.example.com/unstable/audio/6/file");
         $this->assertResponseCode(404);
+
+        $this->deleteAudioStorageDir();
+    }
+
+    public function testDownload_nonReusableAudio_fromExternalField()
+    {
+        $this->initAudioStorageDir();
+
+        $audioFileContents = $this->createAudioFile(2);
+        $this->get("http://api.example.com/unstable/audio/2/file");
+        $this->assertResponseCode(404);
+
+        $this->deleteAudioStorageDir();
+    }
+
+    public function testDownload_reusableAudio_fromExternalField()
+    {
+        $this->initAudioStorageDir();
+
+        $audioFileContents = $this->createAudioFile(3);
+        $this->get("http://api.example.com/unstable/audio/3/file");
+        $this->assertResponseOk();
 
         $this->deleteAudioStorageDir();
     }

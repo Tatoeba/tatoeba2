@@ -227,6 +227,20 @@ class AudiosTable extends Table
     }
 
     /**
+     * Custom finder to exclude audios without a proper license.
+     */
+    public function findHasLicense(Query $query, array $options) {
+        return $query
+            ->contain('Users', function(Query $q) {
+                return $q->select('audio_license');
+            })
+            ->where(['OR' => [
+                'Users.audio_license <>' => '',
+                'JSON_VALUE(Audios.external, \'$.license\') <>' => '',
+            ]]);
+    }
+
+    /**
      * Assign author to an audio entity.
      *
      * @param Audio   $entity                      Entity of the audio.

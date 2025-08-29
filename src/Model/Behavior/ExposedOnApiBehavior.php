@@ -252,9 +252,11 @@ class ExposedOnApiBehavior extends Behavior
         $fields = ['id', 'external', 'created', 'modified', 'sentence_id'];
         $query
             ->find('exposedFields', compact('exposedFields'))
+            ->find('hasLicense')
             ->select($fields)
-            ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
-            ->contain(['Users' => ['fields' => ['username', 'audio_license', 'audio_attribution_url']]]);
+            ->contain('Users', function(Query $q) {
+                return $q->select(['username', 'audio_license', 'audio_attribution_url']);
+            });
         return $query;
     }
 
