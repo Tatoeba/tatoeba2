@@ -37,7 +37,7 @@ class SentencesController extends ApiController
      *   }
      * )
      *
-     * @OA\PathItem(path="/unstable/sentences/{id}",
+     * @OA\PathItem(path="/v1/sentences/{id}",
      *   @OA\Parameter(name="id", in="path", description="The sentence identifier.",
      *     @OA\Schema(ref="#/components/schemas/Sentence/properties/id")
      *   ),
@@ -142,7 +142,7 @@ class SentencesController extends ApiController
     }
 
     /**
-     * @OA\PathItem(path="/unstable/sentences",
+     * @OA\PathItem(path="/v1/sentences",
      *   @OA\Parameter(name="lang", in="query", required=true, explode=false,
      *     description="A comma-separated list of languages to search in.",
      *     @OA\Examples(example="1", value="epo",      summary="sentences in Esperanto"),

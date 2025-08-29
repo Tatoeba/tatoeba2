@@ -26,7 +26,7 @@ use Cake\Http\Exception\BadRequestException;
 class AudioController extends ApiController
 {
     /**
-     * @OA\PathItem(path="/unstable/audio/{id}/file",
+     * @OA\PathItem(path="/v1/audio/{id}/file",
      *   @OA\Parameter(name="id", in="path", required=true, description="The audio identifier.",
      *     @OA\Schema(ref="#/components/schemas/Audio/properties/id")
      *   ),

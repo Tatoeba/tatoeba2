@@ -4,6 +4,7 @@ namespace App\Controller\VHosts\Api;
 
 use Cake\Controller\Controller;
 use Cake\Http\Exception\BadRequestException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Event\Event;
 
 /**
@@ -153,7 +154,23 @@ class ApiController extends Controller
     public function beforeFilter(Event $event)
     {
         $version = $this->getRequest()->getParam('version');
-        if ($version != 'unstable') {
+        $v1 = [
+            'Sentences' => ['search', 'get'],
+            'Audio' => ['file'],
+        ];
+        if ($version == 'v1') {
+            $controller = $this->getName();
+            $action = $this->getRequest()->getParam('action');
+            if (in_array($action, $v1[$controller] ?? [])) {
+                // This is valid v1 endpoint, process the request
+                return;
+            } else {
+                throw new NotFoundException();
+            }
+        } elseif ($version == 'unstable') {
+            // We are unstable, try to process the request anyway
+            return;
+        } else {
             throw new BadRequestException("Invalid API version code: $version");
         }
     }
