@@ -62,8 +62,8 @@ When this API will be considered mature, we will release a stable version and yo
  *   type="object",
  *   @OA\Property(property="first", type="string", example="https://example.com/sentences", description="URL to fetch the first page of results."),
  *   @OA\Property(property="total", type="integer", example="42", description="The total number of results among all pages."),
- *   @OA\Property(property="has_next", type="boolean", example=true, description="Whether more results can be fetched."),
- *   @OA\Property(property="cursor_end", type="string", example="1234,4567", description="Identifier used to fetch the next page of results."),
+ *   @OA\Property(property="has_next", type="boolean", example=true, description="Whether there are more results than what was returned."),
+ *   @OA\Property(property="cursor_end", type="string", example="1234,4567", description="Identifier used to fetch the next page of results (see the <code>after=</code> parameter)."),
  *   @OA\Property(property="next", type="string", example="https://example.com/sentences?after=1234,4567", description="URL to fetch the next page of results."),
  * )
  * @OA\Schema(
