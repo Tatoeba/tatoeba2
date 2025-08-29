@@ -28,7 +28,7 @@ class SentencesControllerTest extends TestCase
 
     const TRANSCRIPTION_JSON_SCHEMA = [
       'type'     => 'object',
-      'required' => ['script', 'text', 'needsReview', 'type', 'html'],
+      'required' => ['script', 'text', 'needsReview', 'type', 'html', 'editor', 'modified'],
     ];
 
     const SENTENCE_JSON_SCHEMA = [
