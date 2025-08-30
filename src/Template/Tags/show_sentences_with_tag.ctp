@@ -51,7 +51,7 @@ $tagsIndexUrl = $this->Url->build([
         <div class="md-toolbar-tools">
             <h2 flex>
             <?php
-            $n = $this->Paginator->param('count');
+            $n = $total;
             echo format(
                 __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
                 array(
@@ -71,9 +71,9 @@ $tagsIndexUrl = $this->Url->build([
                     /* @translators: sort option in a "Sentences with tag" page */
                     array('param' => 'sentence_id', 'direction' => 'asc', 'label' => __('Oldest sentences first')),
                     /* @translators: sort option in a "Sentences with tag" page */
-                    array('param' => 'added_time', 'direction' => 'desc', 'label' => __('Most recently tagged')),
+                    array('param' => 'id', 'direction' => 'desc', 'label' => __('Most recently tagged')),
                     /* @translators: sort option in a "Sentences with tag" page */
-                    array('param' => 'added_time', 'direction' => 'asc', 'label' => __('Least recently tagged'))
+                    array('param' => 'id', 'direction' => 'asc', 'label' => __('Least recently tagged'))
                 );
                 echo $this->element('sort_menu', array('options' => $options));
             ?>
@@ -83,7 +83,10 @@ $tagsIndexUrl = $this->Url->build([
 
     <md-content>
 
-        <?php $this->Pagination->display(); ?>
+        <?php
+            $this->Pagination->warnLimitedResults($totalLimit, $total);
+            $this->Pagination->display();
+        ?>
 
         <div class="sentencesList" id="sentencesList">
             <?php

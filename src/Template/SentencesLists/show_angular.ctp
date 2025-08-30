@@ -4,7 +4,6 @@ use App\Model\Entity\SentencesList;
 
 $this->Html->script('/js/sentences_lists/show.ctrl.js', ['block' => 'scriptBottom']);
 
-$listCount = $this->Paginator->param('count');
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = h($list['name']);
@@ -67,10 +66,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 /* @translators: number of sentences contained in the list */
                 'Contains {n}&nbsp;sentence',
                 'Contains {n}&nbsp;sentences',
-                $listCount,
+                $total,
                 true
             ),
-            array('n' => $this->Number->format($listCount))
+            array('n' => $this->Number->format($total))
         );
         echo $this->Html->tag('p', $numberOfSentencesMsg);
         ?>
@@ -137,9 +136,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             <?php 
                 $options = array(
                     /* @translators: sort option in a list page */
-                    array('param' => 'created', 'direction' => 'desc', 'label' => __('Most recently added')),
+                    array('param' => 'id', 'direction' => 'desc', 'label' => __('Most recently added')),
                     /* @translators: sort option in a list page */
-                    array('param' => 'created', 'direction' => 'asc', 'label' => __('Least recently added')),
+                    array('param' => 'id', 'direction' => 'asc', 'label' => __('Least recently added')),
                     /* @translators: sort option in a list page */
                     array('param' => 'sentence_id', 'direction' => 'desc', 'label' => __('Newest sentences')),
                     /* @translators: sort option in a list page */
@@ -232,12 +231,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         </div>
         <?php
     }
-    ?>
-    
-    
-    <?php $this->Pagination->display(); ?>
 
-    <?php
+    $this->Pagination->warnLimitedResults($totalLimit, $total);
+
+    $this->Pagination->display();
+
     if ($permissions['canAddSentences']) {
         echo $this->element('sentences_lists/sentence_in_list', [
             'sentenceAndTranslationsParams' => [

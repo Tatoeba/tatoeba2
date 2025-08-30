@@ -176,24 +176,40 @@ class SentencesListsController extends AppController
         $this->loadModel('Sentences');
         $this->loadModel('SentencesSentencesLists');
 
-        $query = $this->SentencesSentencesLists->find();
+        $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+        $options = [
+            'conditions' => ['sentences_list_id' => $id],
+            'maxResults' => $totalLimit,
+            'contain' => [
+                'Sentences' => function (Query $q) use ($translationsLang) {
+                    return $q
+                      ->find('filteredTranslations', ['translationLang' => $translationsLang])
+                      ->find('hideFields')
+                      ->contain($this->Sentences->contain(['translations' => true]))
+                      ->select($this->Sentences->fields());
+                },
+            ],
+        ];
         if ($lang!="und") {
-            $query->where(['lang' => $lang == 'unknown' ? null : $lang]);
+            $options['conditions']['Sentences.lang'] = $lang == 'unknown' ? null : $lang;
         }
-        $query->where(['sentences_list_id' => $id])
-            ->contain(['Sentences' => function (Query $q) use ($translationsLang) {
-                $q->find('filteredTranslations', ['translationLang' => $translationsLang])
-                  ->find('hideFields')
-                  ->contain($this->Sentences->contain(['translations' => true]))
-                  ->select($this->Sentences->fields());
-                return $q;
-            }]);
 
         $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'order' => ['created' => 'DESC'],
+            'sort' => $this->request->getQuery('sort', 'id'),
+            'direction' => $this->request->getQuery('direction', 'desc'),
+            // keep "created" for backward compatibility
+            'sortWhitelist' => ['id', 'sentence_id', 'created'],
         ];
-        $sentencesInList = $this->paginate($query);
+        $finder = ['latest' => $options];
+        try {
+            $sentencesInList = $this->paginate($this->SentencesSentencesLists, compact('finder'));
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
+
+        $total = $this->SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
+
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('user', $list->user);
@@ -201,6 +217,7 @@ class SentencesListsController extends AppController
         $this->set('sentencesInList', $sentencesInList);
         $this->set('listId', $id);
         $this->set('filterLanguage', $lang);
+        $this->set(compact('total', 'totalLimit'));
 
         if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
             $this->render('show_angular');
