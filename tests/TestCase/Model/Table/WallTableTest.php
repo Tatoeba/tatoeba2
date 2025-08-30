@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\CurrentUser;
-use App\Model\Wall;
 use Cake\Event\Event;
 use Cake\Event\EventList;
 use Cake\I18n\I18n;
@@ -22,6 +21,8 @@ class WallTest extends TestCase {
     public function setUp() {
         parent::setUp();
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
+        // enable event tracking
+        $this->Wall->getEventManager()->setEventList(new EventList());
     }
 
     public function tearDown() {
@@ -162,9 +163,8 @@ class WallTest extends TestCase {
         $this->assertEquals($before, $after);
     }
 
-    public function testSave_doesNotFireEvent() {
+    public function testSave_firesCorrectEvent() {
         $eventManager = $this->Wall->getEventManager();
-        $eventManager->setEventList(new EventList());
         $post = $this->Wall->newEntity([
             'owner' => 7,
             'content' => 'new post',
@@ -172,9 +172,10 @@ class WallTest extends TestCase {
         $this->Wall->save($post);
         $eventList = $eventManager->getEventList();
         $this->assertFalse($eventList->hasEvent('Model.Wall.replyPosted'));
+        $this->assertEventFiredWith('Model.Wall.newThread', 'post', $post, $eventManager);
     }
 
-    public function testSaveReply_firesEvent() {
+    public function testSaveReply_firesCorrectEvent() {
         $expectedPost = array(
             'owner' => 7,
             'parent_id' => 2,
@@ -199,6 +200,7 @@ class WallTest extends TestCase {
         $this->Wall->saveReply(2, 'I see.', 7);
 
         $this->assertTrue($dispatched);
+        $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
     }
 
     public function testGetMessagesThreaded() {

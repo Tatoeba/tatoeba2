@@ -36,6 +36,7 @@ class NotificationListener implements EventListenerInterface {
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
             'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',
             'Model.Wall.replyPosted' => 'sendWallReplyNotification',
+            'Model.Wall.newThread' => 'sendNewThreadNotification',
         ];
     }
 
@@ -65,21 +66,35 @@ class NotificationListener implements EventListenerInterface {
             ->first();
     }
 
+    private function _getUsersEmailsToNotify($query) {
+        $toNotify =
+            $query
+            ->where(['send_notifications' => true])
+            ->select(['email'])
+            ->toList();
+        $toNotify = Hash::extract($toNotify, '{n}.email');
+        $toNotify = array_filter($toNotify);
+        return $toNotify;
+    }
+
     public function sendWallReplyNotification($event) {
         $post = $event->getData('post'); // $post
 
         $parentMessage = $this->_getMessageForMail($post->parent_id);
-        if (!$parentMessage->user->send_notifications
-            || $parentMessage->user->id == $post->owner) {
-            return;
+        $author = $this->Users->getUsernameFromId($post->owner);
+        $toMention = $this->Users->find();
+
+        if ($parentMessage->user->send_notifications
+            && $parentMessage->user->id != $post->owner) {
+            $recipient = $parentMessage->user->email;
+            $this->Mailer->send(
+                'wall_reply',
+                [$recipient, $author, $post]
+            );
+            $toMention->where(['NOT' => ['id' => $parentMessage->user->id]]);
         }
 
-        $recipient = $parentMessage->user->email;
-        $author = $this->Users->getUsernameFromId($post->owner);
-        $this->Mailer->send(
-            'wall_reply',
-            [$recipient, $author, $post]
-        );
+        $this->_sendWallMentionNotification($post, $author, $toMention);
     }
 
     public function sendPmNotification($event) {
@@ -135,24 +150,41 @@ class NotificationListener implements EventListenerInterface {
             $orCondition['username IN'] = $usernames;
         }
 
-        $toNotify = $this->Users->find()
-            ->where([
-                'OR' => $orCondition,
-                'NOT' => ['id' => $comment->user_id],
-                'send_notifications' => true,
-            ])
-            ->select(['email'])
-            ->toList();
-        $toNotify = Hash::extract($toNotify, '{n}.email');
+        $baseQuery = $this->Users->find()->where([
+            'OR' => $orCondition,
+            'NOT' => ['id' => $comment->user_id],
+        ]);
 
         $author = $this->Users->getUsernameFromId($comment->user_id);
-        foreach ($toNotify as $recipient) {
-            if (!empty($recipient)) {
-                $this->Mailer->send(
-                    'comment_on_sentence',
-                    [$recipient, $author, $comment, $sentence]
-                );
-            }
+        foreach ($this->_getUsersEmailsToNotify($baseQuery) as $recipient) {
+            $this->Mailer->send(
+                'comment_on_sentence',
+                [$recipient, $author, $comment, $sentence]
+            );
+        }
+    }
+
+    public function sendNewThreadNotification($event) {
+        $post = $event->getData('post');
+        $author = $this->Users->getUsernameFromId($post->owner);
+        $this->_sendWallMentionNotification($post, $author, $this->Users->find());
+    }
+
+    private function _sendWallMentionNotification($post, $author, $baseQuery) {
+        $usernames = $this->_getMentionedUsernames($post->content);
+        if (empty($usernames)) {
+            return;
+        }
+
+        $baseQuery->where([
+            'username IN' => $usernames,
+            'NOT' => ['id' => $post->owner],
+        ]);
+        foreach ($this->_getUsersEmailsToNotify($baseQuery) as $recipient) {
+            $this->Mailer->send(
+                'wall_mention',
+                [$recipient, $author, $post]
+            );
         }
     }
 }
