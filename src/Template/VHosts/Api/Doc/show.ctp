@@ -8,5 +8,6 @@ $this->assign('navlinks', '<li>' . $this->Html->Link('OpenAPI file', $specurl) .
 <openapi-explorer
    spec-url="<?= h($specurl) ?>"
    show-authentication="false"
+   display-nulls="true"
    server-url="<?= h(Router::fullBaseUrl()) ?>">
 </openapi-explorer>

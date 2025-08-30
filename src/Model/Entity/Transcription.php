@@ -37,6 +37,7 @@ class Transcription extends Entity
         'html',
         'lang_tag',
         'markup',
+        'editor',
         'info_message'
     ];
 
@@ -239,5 +240,12 @@ class Transcription extends Entity
         }
 
         return $message;
+    }
+
+    protected function _getEditor()
+    {
+        if ($this->user && $this->user->username) {
+            return $this->user->username;
+        }
     }
 }

@@ -36,8 +36,6 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
-    use ExposedFieldsTrait;
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('birthday', 'string');

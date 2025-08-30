@@ -37,6 +37,7 @@ use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\LangFilter;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
+use App\ORM\Association\BelongsToManyMany;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
@@ -44,11 +45,19 @@ use Cake\ORM\RulesChecker;
 
 class SentencesTable extends Table
 {
-    use ExposedFieldsTrait;
-
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
     
+    public function belongsToManyMany($associated, array $options = [])
+    {
+        $options += ['sourceTable' => $this];
+
+        /** @var \Cake\ORM\Association\BelongsTo $association */
+        $association = $this->_associations->load(BelongsToManyMany::class, $associated, $options);
+
+        return $association;
+    }
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');

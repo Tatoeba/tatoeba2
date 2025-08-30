@@ -231,6 +231,20 @@ class AudiosTable extends Table
     }
 
     /**
+     * Custom finder to exclude audios without a proper license.
+     */
+    public function findHasLicense(Query $query, array $options) {
+        return $query
+            ->contain('Users', function(Query $q) {
+                return $q->select('audio_license');
+            })
+            ->where(['OR' => [
+                'Users.audio_license <>' => '',
+                'JSON_VALUE(Audios.external, \'$.license\') <>' => '',
+            ]]);
+    }
+
+    /**
      * Custom finder for optimized count of total sentences having audio
      */
     public function findSentencesCount(Query $query, array $options) {

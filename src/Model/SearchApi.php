@@ -167,18 +167,28 @@ class SearchApi
     }
 
     public function consumeShowTrans(&$params) {
-        $showtrans = $this->consumeValue('showtrans', $params, []);
-        if ($showtrans === '') {
-            $showtrans = ['none'];
-        } elseif (is_string($showtrans)) {
-            $showtrans = explode(',', $showtrans);
+        $lang = $this->consumeValue('showtrans:lang', $params, []);
+        if (is_string($lang)) {
+            $lang = explode(',', $lang);
             try {
-                $showtrans = array_map('\App\Model\Search::validateLanguage', $showtrans);
+                $lang = array_map('\App\Model\Search::validateLanguage', $lang);
             } catch (InvalidValueException $e) {
-                throw new BadRequestException("Invalid value for parameter 'showtrans': ".$e->getMessage());
+                throw new BadRequestException("Invalid value for parameter 'showtrans:lang': ".$e->getMessage());
             }
         }
-        return $showtrans;
+
+        $is_direct = $this->consumeValue('showtrans:is_direct', $params);
+        if (is_string($is_direct)) {
+            if ($is_direct == 'yes') {
+                $is_direct = true;
+            } elseif ($is_direct == 'no') {
+                $is_direct = false;
+            } else {
+                throw new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': must be 'yes' or 'no'");
+            }
+        }
+
+        return compact('lang', 'is_direct');
     }
 
     public function consumeInt($key, &$params, $default = null) {

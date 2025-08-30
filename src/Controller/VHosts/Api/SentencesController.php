@@ -10,105 +10,70 @@ class SentencesController extends ApiController
 {
     /**
      * @OA\Schema(
-     *   schema="Sentence",
-     *   description="A sentence object that contains both sentence text and metadata about the sentence.",
-     *   @OA\Property(property="id", description="The sentence identifier", type="integer", example="1234")
+     *   schema="SentenceWithTranslations",
+     *   description="A sentence object that contains related objects, including translations.",
+     *   allOf={
+     *     @OA\Schema(ref="#/components/schemas/SentenceWithExtraInfo"),
+     *     @OA\Schema(
+     *       @OA\Property(property="translations", type="array", description="Sentences that are direct or indirect translations of the parent sentence objet",
+     *         @OA\Items(ref="#/components/schemas/Translation")
+     *       )
+     *     )
+     *   }
      * )
-     */
-    private function exposedFields() {
-        $sentence = [
-            'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner'],
-            'audios' => ['fields' => [
-                'author', 'license', 'attribution_url', 'download_url',
-            ]],
-            'transcriptions' => ['fields' => [
-                'script', 'text', 'needsReview', 'type', 'html']
-            ],
-        ];
-        $exposedFields = $sentence;
-        $exposedFields['translations'] = $sentence;
-        return compact('exposedFields');
-    }
-
-    private function fields() {
-        return [
-            'id',
-            'text',
-            'lang',
-            'user_id',
-            'correctness',
-            'script',
-            'license',
-        ];
-    }
-
-    private function contain() {
-        $audioContainment = function (Query $q) {
-            $q->select(['id', 'external', 'sentence_id'])
-              ->where(['audio_license !=' => '']) # exclude audio that cannot be reused outside of Tatoeba
-              ->contain(['Users' => ['fields' => ['username', 'audio_license', 'audio_attribution_url']]]);
-            return $q;
-        };
-        $transcriptionsContainment = [
-            'fields' => ['sentence_id', 'script', 'text', 'needsReview'],
-            'Sentences' => ['fields' => ['lang']],
-        ];
-        $indirTranslationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment) {
-            $q->select($this->fields())
-              ->where(['IndirectTranslations.license !=' => ''])
-              ->contain([
-                  'Users' => ['fields' => ['id', 'username']],
-                  'Audios' => $audioContainment,
-                  'Transcriptions' => $transcriptionsContainment,
-              ]);
-            return $q;
-        };
-        $translationsContainment = function (Query $q) use ($audioContainment, $transcriptionsContainment, $indirTranslationsContainment) {
-            $q->select($this->fields())
-              ->where(['Translations.license !=' => ''])
-              ->contain([
-                  'Users' => ['fields' => ['id', 'username']],
-                  'Audios' => $audioContainment,
-                  'Transcriptions' => $transcriptionsContainment,
-                  'IndirectTranslations' => $indirTranslationsContainment,
-              ]);
-            return $q;
-        };
-
-        return [
-            'Translations' => $translationsContainment,
-            'Users' => ['fields' => ['id', 'username']],
-            'Audios' => $audioContainment,
-            'Transcriptions' => $transcriptionsContainment,
-        ];
-    }
-
-    /**
+     * @OA\Schema(
+     *   schema="SentenceWithExtraInfo",
+     *   description="A sentence object that contains both sentence text and metadata about the sentence, and related objects.",
+     *   allOf={
+     *     @OA\Schema(ref="#/components/schemas/Sentence"),
+     *     @OA\Schema(
+     *       @OA\Property(property="transcriptions", type="array", description="Transcriptions of the sentence",
+     *         @OA\Items(ref="#/components/schemas/Transcription")
+     *       ),
+     *       @OA\Property(property="audios", type="array", description="Audio recordings of the sentence",
+     *         @OA\Items(ref="#/components/schemas/Audio")
+     *       )
+     *     )
+     *   }
+     * )
+     *
      * @OA\PathItem(path="/unstable/sentences/{id}",
-     *   @OA\Parameter(name="id", in="path", required=true, description="The sentence identifier.",
+     *   @OA\Parameter(name="id", in="path", description="The sentence identifier.",
      *     @OA\Schema(ref="#/components/schemas/Sentence/properties/id")
      *   ),
      *   @OA\Get(
      *     summary="Get a sentence",
      *     description="Get sentence text as well as metadata about this sentence and related sentences.",
      *     tags={"Sentences"},
-     *     @OA\Response(response="200", description="Success."),
-     *     @OA\Response(response="400", description="Invalid ID parameter."),
-     *     @OA\Response(response="404", description="There is no sentence with that ID or it has been deleted.")
+     *     @OA\Response(
+     *       response="200",
+     *       description="Success.",
+     *       @OA\JsonContent(type="object",
+     *         @OA\Property(property="data",
+     *           description="Sentence of the provided id.",
+     *           ref="#/components/schemas/SentenceWithTranslations"
+     *         )
+     *       )
+     *     ),
+     *     @OA\Response(response="400", ref="#/components/responses/ClientErrorResponse", description="Invalid ID parameter."),
+     *     @OA\Response(response="404", ref="#/components/responses/NotFoundErrorResponse", description="There is no sentence with that ID or it has been deleted."),
+     *     @OA\Response(response="500", ref="#/components/responses/ServerErrorResponse")
      *   )
      * )
      */
     public function get($id) {
         $this->loadModel('Sentences');
         $query = $this->Sentences
-            ->find('filteredTranslations')
-            ->find('exposedFields', $this->exposedFields())
-            ->select($this->fields())
+            ->addBehavior('ExposedOnApi')
+            ->find('sentencesOnApi')
             ->where([
                 'Sentences.id' => $id,
-                'Sentences.license !=' => '',
             ])
-            ->contain($this->contain());
+            ->find('containOnApi', ['containOnApi' => [
+                'transcriptions' => ['finder' => 'transcriptionsOnApi'],
+                'audios'         => ['finder' => 'audiosOnApi'],
+                'translations'   => ['finder' => 'translationsOnApi'],
+            ]]);
 
         try {
             $results = $query->firstOrFail();
@@ -299,19 +264,20 @@ class SentencesController extends ApiController
      *     @OA\Examples(example="7", value="random",    summary="randomly sort results"),
      *     @OA\Schema(type="string", pattern="-?(relevance|words|created|modified|random)")
      *   ),
-     *   @OA\Parameter(name="after", in="query",
-     *     description="Cursor start position. This parameter is used to paginate results using keyset pagination method. After fetching the first page, if there are more results, you get a <code>cursor_end</code> value along with the results. To get the second page of results, execute the same query with the added <code>after=&lt;cursor_end&gt;</code> parameter. If there are more results, the second page will containg another <code>cursor_end</code> you can use to get the third page, and so on.",
-     *     @OA\Schema(type="string")
-     *   ),
+     *   @OA\Parameter(name="after", ref="#/components/parameters/after"),
      *   @OA\Parameter(name="limit", in="query",
      *     description="Maximum number of sentences in the response.",
      *     @OA\Schema(type="integer", example="20")
      *   ),
-     *   @OA\Parameter(name="showtrans", in="query", explode=false,
-     *     description="By default, all the translations of matched sentences are returned, regardless of how translations filters were used. Here you can limit the language of the translations that will be displayed in the result, using a comma-separated list of languages codes. You may also use an empty value to not display any translation.",
-     *     @OA\Examples(example="1", value="epo",      summary="only show translations in Esperanto, if any"),
-     *     @OA\Examples(example="2", value="epo,sun",  summary="only show translations in Esperanto and Sundanese, if any"),
+     *   @OA\Parameter(name="showtrans:lang", in="query", explode=false,
+     *     description="By default, associated translations are not included in the response. Here you can include translations in the specified languages, using a comma-separated list of languages codes. Combine with <code>showtrans:is_direct</code> to further limit the translations returned.",
+     *     @OA\Examples(example="1", value="epo",      summary="show translations in Esperanto, if any"),
+     *     @OA\Examples(example="2", value="epo,sun",  summary="show translations in Esperanto and Sundanese, if any"),
      *     @OA\Schema(ref="#/components/schemas/LanguageCodeList")
+     *   ),
+     *   @OA\Parameter(name="showtrans:is_direct", in="query",
+     *     description="By default, associated translations are not included in the response. Here you can include direct translations (if value is yes) or indirect translations (if value is no). Combine with <code>showtrans:lang</code> to further limit the translations returned.",
+     *     @OA\Schema(ref="#/components/schemas/Boolean")
      *   ),
      *   @OA\Get(
      *     summary="Search sentences",
@@ -461,8 +427,19 @@ class SentencesController extends ApiController
 </table>
            ",
      *     tags={"Sentences"},
-     *     @OA\Response(response="200", description="Success."),
-     *     @OA\Response(response="400", description="Invalid parameter.")
+     *     @OA\Response(
+     *       response="200",
+     *       description="Success.",
+     *       @OA\JsonContent(type="object",
+     *         @OA\Property(property="data", type="array",
+     *           description="Array of sentences matching the provided filters.",
+     *           @OA\Items(ref="#/components/schemas/SentenceWithTranslations")
+     *         ),
+     *         @OA\Property(property="paging", ref="#/components/schemas/Paging")
+     *       )
+     *     ),
+     *     @OA\Response(response="400", ref="#/components/responses/ClientErrorResponse"),
+     *     @OA\Response(response="500", ref="#/components/responses/ServerErrorResponse")
      *   )
      * )
      */
@@ -479,20 +456,25 @@ class SentencesController extends ApiController
         $sphinx = $api->search->asSphinx();
         $sphinx['limit'] = $limit > self::MAX_RESULTS_NUMBER ? self::MAX_RESULTS_NUMBER : $limit;
 
+        $containOnApi = [
+            'transcriptions' => ['finder' => 'transcriptionsOnApi'],
+            'audios'         => ['finder' => 'audiosOnApi'],
+        ];
+        if (!empty($showtrans['lang']) || is_bool($showtrans['is_direct'] ?? null)) {
+            $containOnApi['translations'] = function (Query $q) use ($showtrans) {
+                return $q->find('translationsOnApi', compact('showtrans'));
+            };
+        }
+
         $this->loadModel('Sentences');
 
         $query = $this->Sentences
+            ->addBehavior('ExposedOnApi')
             ->find('withSphinx')
-            ->find('filteredTranslations', [
-                'translationLang' => $showtrans,
-            ])
-            ->find('exposedFields', $this->exposedFields())
-            ->select($this->Sentences->fields())
-            ->where(['Sentences.license !=' => '']) // FIXME use Manticore filter instead
-            ->contain($this->contain());
+            ->find('sentencesOnApi')
+            ->find('containOnApi', compact('containOnApi'));
 
         $this->paginate = [
-            'limit' => self::DEFAULT_RESULTS_NUMBER,
             'sphinx' => $sphinx,
         ];
         $results = $this->paginate($query);

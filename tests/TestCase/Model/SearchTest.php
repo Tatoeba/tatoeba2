@@ -1072,6 +1072,19 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testComputeCursor_withoutQuery_randomSort() {
+        $this->Search->sort('random');
+        $this->Search->setComputeCursor(true);
+        $expected = $this->makeSphinxParams([
+            'select' => "*",
+            'sortMode' => [SPH_SORT_EXTENDED => 'RAND()*16777216 DESC, id DESC'],
+        ]);
+
+        $result = $this->Search->asSphinx();
+
+        $this->assertEquals($expected, $result);
+    }
+
     public function testComputeCursor_withQuery() {
         $this->Search->sort('modified');
         $this->Search->setComputeCursor(true);
@@ -1081,6 +1094,22 @@ class SearchTest extends TestCase
             'sortMode' => [SPH_SORT_EXTENDED => '@rank DESC, id DESC'],
             'query' => 'hello world',
             'rankingMode' => [SPH_RANK_EXPR => 'modified'],
+        ]);
+
+        $result = $this->Search->asSphinx();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testComputeCursor_withQuery_randomSort() {
+        $this->Search->sort('random');
+        $this->Search->setComputeCursor(true);
+        $this->Search->filterByQuery('hello world');
+        $expected = $this->makeSphinxParams([
+            'select' => "*",
+            'sortMode' => [SPH_SORT_EXTENDED => '@rank DESC, id DESC'],
+            'query' => 'hello world',
+            'rankingMode' => [SPH_RANK_EXPR => 'RAND()*16777216'],
         ]);
 
         $result = $this->Search->asSphinx();

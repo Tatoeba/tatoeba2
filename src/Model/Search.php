@@ -83,7 +83,7 @@ class Search {
             $sphinx['sortMode'] = [
                 SPH_SORT_EXTENDED => implode(', ', array_map([$this, 'orderby_'], $this->sortOrder))
             ];
-            if ($this->computeCursor) {
+            if ($this->computeCursor && $this->sort != 'random') {
                 $sphinx['select'] .= $this->computeCursor();
             }
         }
