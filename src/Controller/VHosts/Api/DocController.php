@@ -3,11 +3,28 @@
 namespace App\Controller\VHosts\Api;
 
 use Cake\Controller\Controller;
+use Cake\Event\Event;
 use Cake\Filesystem\File;
 use Cake\Http\Exception\NotFoundException;
+use Cake\View\Exception\MissingTemplateException;
 
 class DocController extends Controller
 {
+    public function initialize()
+    {
+        parent::initialize();
+
+        // assign 'title' block from view var $title, if set
+        // or default to 'Tatoeba API'
+        $this->getEventManager()->attach(
+            function (Event $event) {
+                $view = $event->subject;
+                $view->assign('title', $view->get('title') ?? 'Tatoeba API');
+            },
+            'View.beforeRender'
+        );
+    }
+
     public function index()
     {
     }
@@ -29,5 +46,16 @@ class DocController extends Controller
         $version = $this->getRequest()->getParam('version');
         $specurl = $this->getOpenapiSpec($version);
         $this->set(compact('specurl', 'version'));
+    }
+
+    public function examples()
+    {
+        $this->set('title', 'Tatoeba API examples');
+        $name = $this->getRequest()->getParam('name');
+        try {
+            $this->render("examples/$name");
+        } catch (MissingTemplateException $e) {
+            throw new NotFoundException();
+        }
     }
 }

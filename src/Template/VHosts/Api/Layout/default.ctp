@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-<title><?= h($this->fetch('title')); ?></title>
+<title><?= h(ucfirst($version ?? $this->fetch('title'))) ?></title>
 <?php
 echo $this->Html->css('/css/api.css');
 echo $this->fetch('css');

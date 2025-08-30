@@ -82,6 +82,13 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setHost('api.*');
 
     $routes->connect(
+        '/examples/:name',
+        ['controller' => 'doc', 'action' => 'examples']
+    )
+    ->setMethods(['GET'])
+    ->setHost('api.*');
+
+    $routes->connect(
         '/:version',
         ['controller' => 'doc', 'action' => 'show']
     )
