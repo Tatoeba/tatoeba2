@@ -53,6 +53,7 @@ class AudiosTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+        $this->addBehavior('LimitResults');
 
         $this->getEventManager()->on(new StatsListener());
     }
@@ -189,29 +190,32 @@ class AudiosTable extends Table
      * Custom finder for optimized pagination of sentences having audio
      */
     public function findSentences(Query $query, array $options) {
-        $subquery = $query
+        $query = $query
             ->applyOptions($options)
-            ->distinct()
             ->select(['sentence_id' => 'sentence_id'])
-            ->order(['id' => 'DESC']);
+            ->order(['Audios.id' => 'DESC']);
 
         if (isset($options['lang'])) {
-            $subquery->where(['sentence_lang' => $options['lang']]);
+            $query->where(['sentence_lang' => $options['lang']]);
         }
 
         if (isset($options['user_id'])) {
-            $subquery->where(['user_id' => $options['user_id']]);
+            $query->where(['Audios.user_id' => $options['user_id']]);
         }
 
-        $query = $this->Sentences
-            ->find()
-            ->join([
-                'Audios' => [
-                    'table' => $subquery,
-                    'type' => 'INNER',
-                    'conditions' => 'Sentences.id = Audios.sentence_id'
-                ],
-            ])
+        if (isset($options['maxResults'])) {
+            $query = $query->find('latest', $options);
+        }
+
+        $query = $query
+            ->group(['sentence_id'])
+            ->order(['MAX(Audios.id)' => 'DESC'], true);
+        $countQuery = clone $query;
+
+        $query = $query
+            ->repository($this->Sentences->getTarget())
+            ->select($this->Sentences->fields())
+            ->innerJoinWith('Audios')
             ->contain('Audios', function ($q) use ($options) {
                 if (isset($options['user_id'])) {
                     $q->where(['Audios.user_id' => $options['user_id']]);
@@ -219,8 +223,8 @@ class AudiosTable extends Table
                 return $q->contain(['Users' => ['fields' => ['username']]]);
             })
             ->contain('Transcriptions')
-            ->counter(function ($query) use ($subquery) {
-                return $subquery->count();
+            ->counter(function ($query) use ($countQuery) {
+                return $countQuery->count();
             });
 
         return $query;
@@ -238,6 +242,25 @@ class AudiosTable extends Table
                 'Users.audio_license <>' => '',
                 'JSON_VALUE(Audios.external, \'$.license\') <>' => '',
             ]]);
+    }
+
+    /**
+     * Custom finder for optimized count of total sentences having audio
+     */
+    public function findSentencesCount(Query $query, array $options) {
+        $cache_key = 'audio_sentences_count_';
+
+        if (isset($options['lang'])) {
+            $query->where(['sentence_lang' => $options['lang']]);
+            $cache_key .= $options['lang'];
+        }
+
+        return $query
+            ->cache($cache_key)
+            ->disableHydration()
+            ->select(['cnt' => 'COUNT(DISTINCT sentence_id)'])
+            ->first()
+            ['cnt'];
     }
 
     /**

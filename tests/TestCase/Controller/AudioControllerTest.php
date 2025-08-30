@@ -16,6 +16,7 @@ class AudioControllerTest extends IntegrationTestCase
 
     public $fixtures = [
         'app.audios',
+        'app.contributions',
         'app.disabled_audios',
         'app.languages',
         'app.private_messages',
@@ -64,6 +65,43 @@ class AudioControllerTest extends IntegrationTestCase
      */
     public function testAudioControllerAccess($url, $user, $response) {
         $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    private function addSentencesWithAudio($nbSentences) {
+        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $kazukiUserId = 7;
+        $newSentences = [];
+        for ($i = 1; $i <= $nbSentences; $i++) {
+            $newSentences[] = [
+                'lang' => 'eng',
+                'text' => "Ay ay ay $i.",
+                'user_id' => $kazukiUserId,
+                'audios' => [
+                    ['user_id' => $kazukiUserId],
+                ],
+            ];
+        }
+        $entities = $sentences->newEntities($newSentences, [
+            // 'validate' => false is to avoid triggering
+            // "sentence_id required on create" validation rule
+            'associated' => ['Audios' => ['validate' => false]]
+        ]);
+        $sentences->saveMany($entities);
+    }
+
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
+        $defaultNbPerPage = (new \App\Controller\AudioController())->paginate['limit'];
+        $nbSentences = $this->addSentencesWithAudio($defaultNbPerPage + 1);
+        $expectedLastPage = 2;
+
+        $this->get("/en/audio/index?page=9999999");
+        $this->assertRedirect("/en/audio/index?page=$expectedLastPage");
+
+        $this->get("/en/audio/index/eng?page=9999999");
+        $this->assertRedirect("/en/audio/index/eng?page=$expectedLastPage");
+
+        $this->get("/en/audio/of/kazuki?page=9999999");
+        $this->assertRedirect("/en/audio/of/kazuki?page=$expectedLastPage");
     }
 
     public function testAudioDownload_missingFile() {

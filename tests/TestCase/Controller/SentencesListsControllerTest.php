@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
@@ -12,6 +13,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.audios',
         'app.contributions',
+        'app.disabled_audios',
         'app.favorites_users',
         'app.languages',
         'app.links',
@@ -237,4 +239,54 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertResponseCode(301);
         $this->assertRedirectContains("/en/sentences_lists/show/$lastId/und/cmn");
     }
+
+    private function addSentencesToList($listId, $nbSentences, $userId = 1) {
+        $newSentences = [];
+        for ($i = 1; $i <= $nbSentences; $i++) {
+            $newSentences[] = [
+                'lang' => 'eng',
+                'text' => "Test sentence number $i.",
+                'user_id' => $userId,
+            ];
+        }
+        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $entities = $sentences->newEntities($newSentences);
+        $sentences->saveMany($entities);
+
+        $sentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $sentencesLists->addSentencesToList($entities, $listId, $userId);
+
+        return $sentencesLists->getNumberOfSentences($listId);
+    }
+
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
+        $listId = 5;
+        $defaultNbPerPage = User::$defaultSettings['sentences_per_page'];
+
+        $nbSentences = $this->addSentencesToList($listId, $defaultNbPerPage * 2 + 1);
+
+        $lastPage = ceil($nbSentences / $defaultNbPerPage);
+        $this->assertEquals(3, $lastPage);
+
+        $this->get("/en/sentences_lists/show/$listId/und/und?page=9999999");
+        $this->assertRedirect("/en/sentences_lists/show/$listId/und/und?page=$lastPage");
+    }
+
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_withUserSetting() {
+        $listId = 5;
+        $user = 'kazuki';
+        $userId = 7;
+        $users = TableRegistry::getTableLocator()->get('Users');
+        $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
+
+        $nbSentences = $this->addSentencesToList($listId, $nbPerPageSetting * 2 + 1);
+
+        $lastPage = ceil($nbSentences / $nbPerPageSetting);
+        $this->assertEquals(3, $lastPage);
+
+        $this->logInAs($user);
+        $this->get("/en/sentences_lists/show/$listId/und/und?page=9999999");
+        $this->assertRedirect("/en/sentences_lists/show/$listId/und/und?page=$lastPage");
+    }
+
 }

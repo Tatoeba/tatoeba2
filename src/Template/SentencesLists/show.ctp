@@ -34,7 +34,6 @@ $this->Html->script(
     JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
 );
 
-$listCount = $this->Paginator->param('count');
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = h($list['name']);
@@ -72,10 +71,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 /* @translators: number of sentences contained in the list */
                 'Contains {n}&nbsp;sentence',
                 'Contains {n}&nbsp;sentences',
-                $listCount,
+                $total,
                 true
             ),
-            array('n' => $this->Number->format($listCount))
+            array('n' => $this->Number->format($total))
         );
         echo $this->Html->tag('p', $numberOfSentencesMsg);
         ?>
@@ -164,7 +163,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div class="sortBy" id="sortBy">
      <strong><?php echo __("Sort by:") ?> </strong>
             <?php
-            echo $this->Paginator->sort('created', __('date added to list'));
+            echo $this->Paginator->sort('id', __('date added to list'));
             echo ' | ';
             echo $this->Paginator->sort('sentence_id', __('date created'));
     ?>
@@ -173,7 +172,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
+    $this->Pagination->warnLimitedResults($totalLimit, $total);
+
     $this->Pagination->display();
+
     foreach ($sentencesInList as $item) {
         $sentence = $item->sentence;
         $this->Lists->displaySentence(
