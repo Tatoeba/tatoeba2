@@ -28,6 +28,6 @@ class DocController extends Controller
     {
         $version = $this->getRequest()->getParam('version');
         $specurl = $this->getOpenapiSpec($version);
-        $this->set('specurl', $specurl);
+        $this->set(compact('specurl', 'version'));
     }
 }
