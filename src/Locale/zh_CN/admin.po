@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 16:35+0000\n"
+"POT-Creation-Date: 2025-08-30 11:08+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Yufan Lou <loganlyf@gmail.com>, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/tatoeba/teams/28284/zh_CN/)\n"
@@ -33,33 +33,33 @@ msgstr "错误：用户{username} 添加的句子不能标记为不可靠。"
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "已标记用户{username}添加的所有句子为不可靠。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "无法导入声音：用户 “{author}” 找不到。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Invalid file “{file}” ignored."
 msgstr "无效文件 “{file}” 已忽略。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr "无法替换声音，投稿用户 “{author}” 句子 {sentenceId}: 该用户有不只一项声音。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr "无法保存句子 {sentenceId}的声音到数据库。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "无法创建文件夹 “{dir}” ，因而无法导入文件 “{file}”。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "无法复制文件 “{file}” 到文件夹 “{dir}”。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 16:35+0000\n"
+"POT-Creation-Date: 2025-08-30 11:08+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Tanay Banerjee <tanaybanerjee2006@gmail.com>, 2021\n"
 "Language-Team: Bengali (https://app.transifex.com/tatoeba/teams/28284/bn/)\n"
@@ -33,35 +33,35 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "{username}-এর যোগ করা সকল বাক্য অনির্ভরযোগ্য হিসাবে চিহ্নিত করা হল।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
 msgid "Unable to import audio: user “{author}” not found."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Invalid file “{file}” ignored."
 msgstr "অকার্যকর ফাইল “{file}” উপেক্ষা করা হলো।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "“{file}” ফাইলটিকে আমদানি করার উদ্দেশ্য প্রয়োজনীয় “{dir}” ডিরেক্টরিটি তৈরি "
 "করতে ব্যর্থ।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "“{file}” ফাইলটিকে “{dir}” ডিরেক্টরিটিতে অনুলিপি করতে ব্যর্থ।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
