@@ -123,7 +123,6 @@ class SentenceCommentsController extends AppController
             $options['conditions']['SentenceComments.user_id NOT IN'] = $botsIds;
         }
         if ($langFilter != 'und') {
-            $options['contain'] = 'Sentences';
             $options['conditions']['Sentences.lang'] = $langFilter;
         }
 
