@@ -163,7 +163,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username'], __('Username already taken.')));
-        $rules->add($rules->isUnique(['email'], __('Email address already used.')));
+        $rules->add($rules->isUnique(['email'], __('That email address already exists. Please try another.')));
 
         return $rules;
     }

@@ -296,10 +296,6 @@ class UserController extends AppController
             return $this->redirect('/');
         }
 
-        if (!$this->_isUniqueEmail($data, $currentUserId)) {
-            return $this->_redirectNonUniqueEmail();
-        }
-
         if (!$this->_isValidBirthday($data)) {
             return $this->_redirectInvalidBirthday();
         }
@@ -341,44 +337,6 @@ class UserController extends AppController
                 )
             );
         }
-    }
-
-    /**
-     * Return true if entered email address is unique in database.
-     *
-     * @param  array   $data
-     * @param  int     $currentUserId
-     *
-     * @return boolean
-     */
-    private function _isUniqueEmail($data, $currentUserId)
-    {
-        if (isset($data['email'])) {
-            return $this->Users->isEmailUnique(
-                $data['email'],
-                $currentUserId
-            );
-        }
-
-        return true;
-    }
-
-    /**
-     * Redirect for non unique email address.
-     *
-     * @return void
-     */
-    private function _redirectNonUniqueEmail()
-    {
-        $this->Flash->set(
-            __("That email address already exists. Please try another.")
-        );
-        return $this->redirect(
-            array(
-                    'controller' => 'user',
-                    'action' => 'settings'
-                )
-        );
     }
 
     /**

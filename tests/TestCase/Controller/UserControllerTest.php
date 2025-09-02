@@ -170,6 +170,16 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertFlashMessage('Failed to change email address. Please enter a proper email address.');
     }
 
+    public function testSaveBasic_email_fail_duplicate() {
+        $this->logInAs('contributor');
+        $this->post('/en/user/save_basic', [
+            'email' => 'admin@example.com',
+        ]);
+
+        $this->assertRedirect('/en/user/settings');
+        $this->assertFlashMessage('That email address already exists. Please try another.');
+    }
+
     public function testSaveBasic_changingEmailUpdatesAuthData() {
         $username = 'contributor';
         $newEmail = 'contributor_newemail@example.org';
