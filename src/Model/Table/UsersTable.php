@@ -161,35 +161,29 @@ class UsersTable extends Table
      *
      * @return string
      */
-    private function _generateBirthdayDate(ArrayObject $data)
+    private function _generateBirthdayDate(array $birthday)
     {
-        foreach ($data['birthday'] as $key => $value) {
-            if ($value == '' && $key == 'year') {
-                $birthday[$key] = '0000';
-            } elseif ($value == '') {
-                $birthday[$key] = '00';
-            } else {
-                $birthday[$key] = $value;
+        $year =  $birthday['year']  ?: '0000';
+        $month = $birthday['month'] ?: '00';
+        $day =   $birthday['day']   ?: '00';
+
+        if ($year == '0000') {
+            if ($month == '00' && $day == '00') {
+                return null;
+            } elseif ($month == '02' && $day == '29') {
+                // Mysql wont save a partial leap year date so change year to 1904
+                // and catch in date view helper.
+                $year = '1904';
             }
         }
 
-        $birthdayString = implode('', $birthday);
-
-        if ($birthdayString == '00000000') {
-            return null;
-        } elseif ($birthdayString == '02290000') {
-            // Mysql wont save a partial leap year date so change year to 1904
-            // and catch in date view helper.
-            $birthday['year'] = '1904';
-        }
-
-        return $birthday['year'].'-'.$birthday['month'].'-'.$birthday['day'];
+        return "$year-$month-$day";
     }
 
     public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
     {
         if (isset($data['birthday']['year']) && isset($data['birthday']['month']) && isset($data['birthday']['day'])) {
-            $data['birthday'] = $this->_generateBirthdayDate($data);
+            $data['birthday'] = $this->_generateBirthdayDate($data['birthday']);
         }
     }
 
