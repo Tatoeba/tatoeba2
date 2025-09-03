@@ -150,6 +150,26 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertRedirect('/en/user/settings');
     }
 
+    public function testSaveBasic_email_ok() {
+        $this->logInAs('contributor');
+        $this->post('/en/user/save_basic', [
+            'email' => 'contributor_newemail@example.org',
+        ]);
+
+        $this->assertRedirect('/en/user/profile/contributor');
+        $this->assertFlashMessage('Profile saved.');
+    }
+
+    public function testSaveBasic_email_fail_invalid() {
+        $this->logInAs('contributor');
+        $this->post('/en/user/save_basic', [
+            'email' => 'invalid',
+        ]);
+
+        $this->assertRedirect('/en/user/settings');
+        $this->assertFlashMessage('Failed to change email address. Please enter a proper email address.');
+    }
+
     public function testSaveBasic_changingEmailUpdatesAuthData() {
         $username = 'contributor';
         $newEmail = 'contributor_newemail@example.org';

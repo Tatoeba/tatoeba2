@@ -329,12 +329,11 @@ class UserController extends AppController
                 )
             );
         } else {
-            $this->Flash->set(
-                __(
-                    'Failed to change email address. Please enter a proper email address.',
-                    true
-                )
-            );
+            foreach ($user->getErrors() as $errors) {
+                foreach ($errors as $id => $message) {
+                    $this->Flash->set($message);
+                }
+            }
             return $this->redirect(
                 array(
                     'controller' => 'user',
