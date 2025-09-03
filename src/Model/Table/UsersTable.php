@@ -122,7 +122,27 @@ class UsersTable extends Table
             ->maxLength('name', 255);
 
         $validator
-            ->allowEmpty('birthday');
+            ->allowEmpty('birthday')
+            ->add('birthday', 'validBirthday', [
+                'rule' => function ($data, $provider) {
+                    $data = explode('-', $data, 3);
+                    $data = array_map(fn ($n) => (int)$n, $data);
+                    list($year, $month, $day) = array_pad($data, 3, null);
+
+                    if ($year && $month && $day) {
+                        return checkdate($month, $day, $year);
+                    } elseif ($month && $day) {
+                        // Use 2016 because its a leap year.
+                        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, 2016);
+
+                        if ($day > $daysInMonth) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                'message' => __('The entered birthday is an invalid date. Please try again.'),
+            ]);
 
         $validator
             ->allowEmpty('description')

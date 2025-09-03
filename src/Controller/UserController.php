@@ -296,10 +296,6 @@ class UserController extends AppController
             return $this->redirect('/');
         }
 
-        if (!$this->_isValidBirthday($data)) {
-            return $this->_redirectInvalidBirthday();
-        }
-
         if (!$this->_isAcceptedBirthday($data)) {
             return $this->_redirectUnacceptedBirthday();
         }
@@ -326,62 +322,12 @@ class UserController extends AppController
                     $this->Flash->set($message);
                 }
             }
-            return $this->redirect(
-                array(
-                    'controller' => 'user',
-                    'action' => 'settings'
-                )
-            );
-        }
-    }
-
-    /**
-     * Return true if entered birthday is a valid date or is not complete/set.
-     *
-     * @param  array  $data
-     *
-     * @return boolean
-     */
-    private function _isValidBirthday($data)
-    {
-        if (isset($data['birthday'])) {
-            $year = $data['birthday']['year'];
-
-            $month = $data['birthday']['month'];
-
-            $day = $data['birthday']['day'];
-
-            if ($year && $month && $day) {
-                return checkdate($month, $day, $year);
-            } elseif ($month && $day) {
-                // Use 2016 because its a leap year.
-                $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, 2016);
-
-                if ($day > $daysInMonth) {
-                    return false;
-                }
+            if ($user->getError('email')) {
+                return $this->redirect(['action' => 'settings']);
+            } else {
+                return $this->redirect(['action' => 'edit_profile']);
             }
         }
-
-        return true;
-    }
-
-    /**
-     * Redirect for invalid birthday.
-     *
-     * @return void
-     */
-    private function _redirectInvalidBirthday()
-    {
-        $this->Flash->set(
-            __("The entered birthday is an invalid date. Please try again.")
-        );
-        return $this->redirect(
-            array(
-                    'controller' => 'user',
-                    'action' => 'edit_profile'
-                )
-        );
     }
 
     /**

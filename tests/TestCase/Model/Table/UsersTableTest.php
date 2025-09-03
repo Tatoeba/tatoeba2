@@ -59,6 +59,30 @@ class UsersTableTest extends TestCase
         $this->assertEquals('1904-02-29', $user->birthday);
     }
 
+    public function testSave_birthday_ok_valid_day() {
+        $user = $this->Users->get(1);
+
+        $user = $this->Users->patchEntity($user, ['birthday' => '2000-02-29']);
+
+        $this->assertEmpty($user->getError('birthday'));
+    }
+
+    public function testSave_birthday_ok_valid_day_leap_year_without_year() {
+        $user = $this->Users->get(1);
+
+        $user = $this->Users->patchEntity($user, ['birthday' => '0000-02-29']);
+
+        $this->assertEmpty($user->getError('birthday'));
+    }
+
+    public function testSave_birthday_fail_invalid_day() {
+        $user = $this->Users->get(1);
+
+        $user = $this->Users->patchEntity($user, ['birthday' => '2000-10-42']);
+
+        $this->assertNotEmpty($user->getError('birthday'));
+    }
+
     public function testSettingsParsedAsJSON()
     {
         $user = $this->Users->get(7, ['fields' => ['settings']]);
