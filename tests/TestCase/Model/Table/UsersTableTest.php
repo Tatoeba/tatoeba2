@@ -59,28 +59,35 @@ class UsersTableTest extends TestCase
         $this->assertEquals('1904-02-29', $user->birthday);
     }
 
-    public function testSave_birthday_ok_valid_day() {
-        $user = $this->Users->get(1);
-
-        $user = $this->Users->patchEntity($user, ['birthday' => '2000-02-29']);
-
-        $this->assertEmpty($user->getError('birthday'));
+    public function birthdayDateProvider() {
+        return [
+            // testname => [is valid, date]
+            'valid day'              => [true,  '2000-02-29'],
+            'leap year without year' => [true,  '0000-02-29'],
+            'invalid day'            => [false, '2000-10-42'],
+            'nothing'                => [true,  '0000-00-00'],
+            'month and day'          => [true,  '0000-01-01'],
+            'year only'              => [true,  '2000-00-00'],
+            'year and month'         => [true,  '2000-01-00'],
+            'day only'               => [false, '0000-00-01'],
+            'month only'             => [false, '0000-01-00'],
+            'year and day'           => [false, '2000-00-01'],
+        ];
     }
 
-    public function testSave_birthday_ok_valid_day_leap_year_without_year() {
+    /**
+     * @dataProvider birthdayDateProvider()
+     */
+    public function testSave_birthday_check_format(bool $exceptValid, string $birthdate) {
         $user = $this->Users->get(1);
 
-        $user = $this->Users->patchEntity($user, ['birthday' => '0000-02-29']);
+        $user = $this->Users->patchEntity($user, ['birthday' => $birthdate]);
 
-        $this->assertEmpty($user->getError('birthday'));
-    }
-
-    public function testSave_birthday_fail_invalid_day() {
-        $user = $this->Users->get(1);
-
-        $user = $this->Users->patchEntity($user, ['birthday' => '2000-10-42']);
-
-        $this->assertNotEmpty($user->getError('birthday'));
+        if ($exceptValid) {
+            $this->assertEmpty($user->getError('birthday'));
+        } else {
+            $this->assertNotEmpty($user->getError('birthday'));
+        }
     }
 
     public function testSettingsParsedAsJSON()

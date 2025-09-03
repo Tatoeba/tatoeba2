@@ -200,6 +200,16 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertFlashMessage('The entered birthday is an invalid date. Please try again.');
     }
 
+    public function testSaveBasic_birthday_invalid_format() {
+        $this->logInAs('contributor');
+        $this->post('/en/user/save_basic', [
+            'birthday' => ['year' => '2000', 'month' => '', 'day' => '01'],
+        ]);
+
+        $this->assertRedirect('/en/user/edit_profile');
+        $this->assertFlashMessage('The entered birthday is incomplete. Accepted birthdays: full date, month and day, year and month, only year.');
+    }
+
     public function testSaveBasic_changingEmailUpdatesAuthData() {
         $username = 'contributor';
         $newEmail = 'contributor_newemail@example.org';

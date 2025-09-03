@@ -296,10 +296,6 @@ class UserController extends AppController
             return $this->redirect('/');
         }
 
-        if (!$this->_isAcceptedBirthday($data)) {
-            return $this->_redirectUnacceptedBirthday();
-        }
-
         $allowedFields = [
             'name', 'country_id', 'birthday', 'homepage', 'email', 'description'
         ];
@@ -328,56 +324,6 @@ class UserController extends AppController
                 return $this->redirect(['action' => 'edit_profile']);
             }
         }
-    }
-
-    /**
-     * Return true if birthday is an accepted birthday type.
-     *
-     * @param  array  $data
-     *
-     * @return boolean
-     */
-    private function _isAcceptedBirthday($data)
-    {
-         // Accepted birthday types. Each entry must be in reverse alphabetical
-         // order (year, month, day).
-        $acceptedBirthdays = [
-            ['year', 'month', 'day'],
-            ['year'],
-            ['month', 'day'],
-            ['year', 'month']
-        ];
-
-        if (isset($data['birthday'])) {
-            $setValues = array_keys(array_filter($data['birthday']));
-
-            rsort($setValues);
-
-            if (!empty($setValues) && !in_array($setValues, $acceptedBirthdays)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Redirect for unaccepted birthday type.
-     *
-     * @return void
-     */
-    private function _redirectUnacceptedBirthday()
-    {
-        $this->Flash->set(
-            __("The entered birthday is incomplete. ".
-                "Accepted birthdays: full date, month and day, year and month, only year.", true)
-        );
-        return $this->redirect(
-            array(
-                    'controller' => 'user',
-                    'action' => 'edit_profile'
-                )
-        );
     }
 
     /**

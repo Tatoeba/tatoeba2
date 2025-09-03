@@ -142,6 +142,18 @@ class UsersTable extends Table
                     return true;
                 },
                 'message' => __('The entered birthday is an invalid date. Please try again.'),
+            ])
+            ->add('birthday', 'isComplete', [
+                'rule' => function ($data, $provider) {
+                    $data = explode('-', $data, 3);
+                    $data = array_map(fn ($n) => (int)$n, $data);
+                    list($year, $month, $day) = array_pad($data, 3, null);
+                    return !$day && $year || $month && $day || !$year && !$month && !$day;
+                },
+                'message' => __(
+                    'The entered birthday is incomplete. '.
+                    'Accepted birthdays: full date, month and day, year and month, only year.'
+                ),
             ]);
 
         $validator
