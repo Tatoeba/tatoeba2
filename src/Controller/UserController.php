@@ -304,10 +304,6 @@ class UserController extends AppController
             return $this->_redirectUnacceptedBirthday();
         }
 
-        if (isset($data['birthday'])) {
-            $data['birthday'] = $this->_generateBirthdayDate($data);
-        }
-
         $allowedFields = [
             'name', 'country_id', 'birthday', 'homepage', 'email', 'description'
         ];
@@ -436,37 +432,6 @@ class UserController extends AppController
                     'action' => 'edit_profile'
                 )
         );
-    }
-
-    /**
-     * Fill unset birthday fields with zeros if birthday has at least one
-     * user-set field. If all fields empty, return original array.
-     *
-     * @return array
-     */
-    private function _generateBirthdayDate($data)
-    {
-        foreach ($data['birthday'] as $key => $value) {
-            if ($value == '' && $key == 'year') {
-                $birthday[$key] = '0000';
-            } elseif ($value == '') {
-                $birthday[$key] = '00';
-            } else {
-                $birthday[$key] = $value;
-            }
-        }
-
-        $birthdayString = implode('', $birthday);
-
-        if ($birthdayString == '00000000') {
-            return null;
-        } elseif ($birthdayString == '02290000') {
-            // Mysql wont save a partial leap year date so change year to 1904
-            // and catch in date view helper.
-            $birthday['year'] = '1904';
-        }
-
-        return $birthday['year'].'-'.$birthday['month'].'-'.$birthday['day'];
     }
 
     /**

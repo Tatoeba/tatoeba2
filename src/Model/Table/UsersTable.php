@@ -27,7 +27,9 @@
 namespace App\Model\Table;
 
 use App\Auth\VersionedPasswordHasher;
+use ArrayObject;
 use Cake\Database\Schema\TableSchema;
+use Cake\Event\Event;
 use Cake\Filesystem\File;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -151,6 +153,44 @@ class UsersTable extends Table
             ->maxLength('audio_attribution_url', 255);
 
         return $validator;
+    }
+
+    /**
+     * Fill unset birthday fields with zeros if birthday has at least one
+     * user-set field. If all fields empty, returns null.
+     *
+     * @return string
+     */
+    private function _generateBirthdayDate(ArrayObject $data)
+    {
+        foreach ($data['birthday'] as $key => $value) {
+            if ($value == '' && $key == 'year') {
+                $birthday[$key] = '0000';
+            } elseif ($value == '') {
+                $birthday[$key] = '00';
+            } else {
+                $birthday[$key] = $value;
+            }
+        }
+
+        $birthdayString = implode('', $birthday);
+
+        if ($birthdayString == '00000000') {
+            return null;
+        } elseif ($birthdayString == '02290000') {
+            // Mysql wont save a partial leap year date so change year to 1904
+            // and catch in date view helper.
+            $birthday['year'] = '1904';
+        }
+
+        return $birthday['year'].'-'.$birthday['month'].'-'.$birthday['day'];
+    }
+
+    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
+    {
+        if (isset($data['birthday']['year']) && isset($data['birthday']['month']) && isset($data['birthday']['day'])) {
+            $data['birthday'] = $this->_generateBirthdayDate($data);
+        }
     }
 
     /**

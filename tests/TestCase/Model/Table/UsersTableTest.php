@@ -32,6 +32,33 @@ class UsersTableTest extends TestCase
         parent::tearDown();
     }
 
+    public function testSave_birthday_marshal_ok() {
+        $user = $this->Users->get(1);
+        $newData = ['birthday' => ['day' => '01', 'month' => '01', 'year' => '2000']];
+
+        $result = $this->Users->patchEntity($user, $newData);
+
+        $this->assertEquals('2000-01-01', $user->birthday);
+    }
+
+    public function testSave_birthday_marshal_no_year() {
+        $user = $this->Users->get(1);
+        $newData = ['birthday' => ['day' => '02', 'month' => '10', 'year' => '']];
+
+        $result = $this->Users->patchEntity($user, $newData);
+
+        $this->assertEquals('0000-10-02', $user->birthday);
+    }
+
+    public function testSave_birthday_marshal_no_year_but_leap_year() {
+        $user = $this->Users->get(1);
+        $newData = ['birthday' => ['month' => '02', 'day' => '29', 'year' => '']];
+
+        $result = $this->Users->patchEntity($user, $newData);
+
+        $this->assertEquals('1904-02-29', $user->birthday);
+    }
+
     public function testSettingsParsedAsJSON()
     {
         $user = $this->Users->get(7, ['fields' => ['settings']]);

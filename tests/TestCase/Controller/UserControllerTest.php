@@ -180,6 +180,16 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertFlashMessage('That email address already exists. Please try another.');
     }
 
+    public function testSaveBasic_birthday_ok() {
+        $this->logInAs('contributor');
+        $this->post('/en/user/save_basic', [
+            'birthday' => ['year' => '2109', 'month' => '01', 'day' => '23'],
+        ]);
+
+        $this->assertRedirect('/en/user/profile/contributor');
+        $this->assertFlashMessage('Profile saved.');
+    }
+
     public function testSaveBasic_changingEmailUpdatesAuthData() {
         $username = 'contributor';
         $newEmail = 'contributor_newemail@example.org';
