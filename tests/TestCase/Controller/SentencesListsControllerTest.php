@@ -45,6 +45,8 @@ class SentencesListsControllerTest extends IntegrationTestCase
             [ '/en/sentences_lists/show/1', 'kazuki', true ],
             [ '/en/sentences_lists/show/1/und/fra', 'kazuki', true ],
             [ '/en/sentences_lists/show/3', null, '/en/sentences_lists/index' ], // private list
+            [ '/en/sentences_lists/show/1?sort=created&direction=asc', null, '/en/sentences_lists/show/1?sort=id&direction=asc'],
+            [ '/en/sentences_lists/show/1/und/fra?sort=created&direction=asc', null, '/en/sentences_lists/show/1/und/fra?sort=id&direction=asc'],
             [ '/en/sentences_lists/delete/1', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fdelete%2F1' ],
             [ '/en/sentences_lists/delete/1', 'contributor', '/en/sentences_lists/index' ],
             [ '/en/sentences_lists/delete/1', 'kazuki', '/en/sentences_lists/index' ],

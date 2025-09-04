@@ -152,6 +152,11 @@ class SentencesListsController extends AppController
         if(!$translationsLang && $lang){
             return $this->redirect(['controller'=>'SentencesLists','action'=>'show',$id,'und',$lang],301);
         }
+        // redirect old ?sort=created to new ?sort=id
+        if ($this->request->getQuery('sort') === 'created') {
+            $newParams = ['sort' => 'id'] + $this->request->getQueryParams();
+            return $this->redirect(func_get_args() + ['?' => $newParams], 301);
+        }
 
         $lang = $lang ??'und';
         if (empty($translationsLang)) {
@@ -198,8 +203,7 @@ class SentencesListsController extends AppController
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'sort' => $this->request->getQuery('sort', 'id'),
             'direction' => $this->request->getQuery('direction', 'desc'),
-            // keep "created" for backward compatibility
-            'sortWhitelist' => ['id', 'sentence_id', 'created'],
+            'sortWhitelist' => ['id', 'sentence_id'],
         ];
         $finder = ['latest' => $options];
         try {
