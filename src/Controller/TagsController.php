@@ -220,7 +220,11 @@ class TagsController extends AppController
                 'sortWhitelist' => ['id', 'sentence_id', 'added_time'],
             ];
             $finder = ['latest' => $options];
-            $sentences = $this->paginate($this->TagsSentences, compact('finder'));
+            try {
+                $sentences = $this->paginate($this->TagsSentences, compact('finder'));
+            } catch (\Cake\Http\Exception\NotFoundException $e) {
+                return $this->redirectPaginationToLastPage();
+            }
             $total = $total->count();
 
             $taggerIds = [];
