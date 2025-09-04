@@ -152,6 +152,12 @@ class LimitResultsBehavior extends Behavior
             $cmp = $direction == 'desc' ? '>=' : '<=';
             $query->where(["$orderField $cmp" => $lastValue]);
         }
+
+        // Prevent running a request having OFFSET n with n excessively high
+        // just because the user asked for page 9999999
+        $offset = min($options['maxResults'], $query->clause('offset'));
+        $query->offset($offset);
+
         return $query;
     }
 }

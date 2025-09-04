@@ -26,6 +26,8 @@ class LimitResultsBehaviorTest extends TestCase
         // Please someone check if this gets fixed in version 7.0 or newer
         $this->query = @$this->createTestProxy(Query::class, [$s->getConnection(), $s]);
         $this->query->order(['Sentences.id' => 'DESC']);
+
+        $this->Sentences = $s;
     }
 
     public function tearDown()
@@ -176,5 +178,17 @@ class LimitResultsBehaviorTest extends TestCase
              ->with(['Sentences.id >=' => 29]);
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
+    public function testFindLatest_limitsOffset()
+    {
+        $query = $this->Sentences
+            ->find()
+            ->order(['Sentences.id' => 'DESC'])
+            ->offset(9999999);
+
+        $result = $this->behavior->findLatest($query, ['maxResults' => 20]);
+
+        $this->assertEquals(20, $result->clause('offset'));
     }
 }
