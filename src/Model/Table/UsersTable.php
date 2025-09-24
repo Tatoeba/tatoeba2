@@ -26,6 +26,7 @@
  */
 namespace App\Model\Table;
 
+use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
 use Cake\Database\Schema\TableSchema;
@@ -184,6 +185,9 @@ class UsersTable extends Table
             ->scalar('audio_attribution_url')
             ->maxLength('audio_attribution_url', 255);
 
+        $validator
+            ->boolean('is_spamdexing');
+
         return $validator;
     }
 
@@ -232,6 +236,16 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['email'], __('That email address already exists. Please try another.')));
 
         return $rules;
+    }
+
+    public function beforeSave(Event $event, User $user, ArrayObject $options)
+    {
+        if ($user->isNew()) {
+            if (!$user->has('is_spamdexing')) {
+                // New users are considered potential spamdexing accounts until manual verification
+                $user->is_spamdexing = true;
+            }
+        }
     }
 
     private function removeImages($file)

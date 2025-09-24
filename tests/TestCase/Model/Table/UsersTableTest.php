@@ -90,6 +90,19 @@ class UsersTableTest extends TestCase
         }
     }
 
+    public function testSave_onCreate_defaults() {
+        $user = $this->Users->newEntity([
+            'username' => 'testuser',
+            'email' => 'testuser@example.com',
+            'password' => 'testuser',
+        ]);
+
+        $result = $this->Users->save($user);
+
+        $this->assertNotFalse($result);
+        $this->assertTrue($result->is_spamdexing);
+    }
+
     public function testSettingsParsedAsJSON()
     {
         $user = $this->Users->get(7, ['fields' => ['settings']]);
