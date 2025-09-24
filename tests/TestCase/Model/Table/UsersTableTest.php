@@ -101,6 +101,16 @@ class UsersTableTest extends TestCase
         }
     }
 
+    public function testSave_onUpdate_is_spamdexing_noMassAssign() {
+        $user = $this->Users->get(9);
+        $this->Users->patchEntity($user, ['is_spamdexing' => false]);
+
+        $result = $this->Users->save($user);
+
+        $this->assertNotFalse($result);
+        $this->assertTrue($result->is_spamdexing);
+    }
+
     public function testSave_onCreate_defaults() {
         $user = $this->Users->newEntity([
             'username' => 'testuser',
