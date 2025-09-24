@@ -159,6 +159,7 @@ class UsersTable extends Table
                 ),
             ]);
 
+        $pmAdminsLink = Router::url(['controller' => 'private_messages', 'action' => 'write', 'TatoebaAdmins']);
         $validator
             ->allowEmpty('description')
             ->scalar('description')
@@ -166,6 +167,14 @@ class UsersTable extends Table
                 'rule' => function ($data, $provider) {
                     return CurrentUser::hasOutboundLinkPermission() || !$this->_containsOutboundLink($data);
                 },
+                'message' => format(
+                    __('Sorry, you do not have the permission to include a link in your profile description. '.
+                       'Because of spam concerns, new accounts need to be verified before they can use '.
+                       'outbound links. Please either remove any link from your profile description, or ask '.
+                       'for permission by {linkStart}sending a message to administrators{linkEnd}.'
+                    ),
+                    ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
+                ),
             ]);
 
         $validator
@@ -176,6 +185,14 @@ class UsersTable extends Table
                 'rule' => function ($data, $provider) {
                     return CurrentUser::hasOutboundLinkPermission() || !$this->_containsOutboundLink($data);
                 },
+                'message' => format(
+                    __('Sorry, you do not have the permission to set a homepage on your profile. '.
+                       'Because of spam concerns, new accounts need to be verified before they can use '.
+                       'outbound links. Please either remove the homepage from your profile description, '.
+                       'or ask for permission by {linkStart}sending a message to administrators{linkEnd}.'
+                    ),
+                    ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
+                ),
             ]);
 
         $validator
