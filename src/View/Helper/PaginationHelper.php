@@ -150,8 +150,8 @@ class PaginationHelper extends AppHelper
             switch ($this->_View->getName()) {
                 case 'Audio':
                     $msg = __n(
-                        'Only the sentence having the last audio is displayed here.',
-                        'Only sentences having the last {n} audios are displayed here.',
+                        'Only the sentence with the most-recently added audio file is displayed here.',
+                        'Only sentences with the {n} most-recently added audio files are displayed here.',
                         $totalLimit
                     );
                     break;
