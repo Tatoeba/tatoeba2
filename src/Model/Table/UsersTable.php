@@ -26,6 +26,7 @@
  */
 namespace App\Model\Table;
 
+use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
@@ -35,6 +36,7 @@ use Cake\Filesystem\File;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Routing\Router;
 use Cake\Validation\Validator;
 
 class UsersTable extends Table
@@ -164,7 +166,12 @@ class UsersTable extends Table
         $validator
             ->allowEmpty('homepage')
             ->scalar('homepage')
-            ->maxLength('homepage', 255);
+            ->maxLength('homepage', 255)
+            ->add('homepage', 'outboundLinkCheck', [
+                'rule' => function ($data, $provider) {
+                    return CurrentUser::hasOutboundLinkPermission() || !$this->_containsOutboundLink($data);
+                },
+            ]);
 
         $validator
             ->scalar('image')
@@ -189,6 +196,26 @@ class UsersTable extends Table
             ->boolean('is_spamdexing');
 
         return $validator;
+    }
+
+    private function _containsOutboundLink(string $text)
+    {
+        if (preg_match_all('/(?:ht|f)tps?:\/\/(?:[\w\.]+\.)?[\w-]+/iu', $text, $matches)) {
+            $request = Router::getRequest();
+            if ($request) {
+                $serverHost = $request->host();
+                foreach ($matches as $match) {
+                    $url = $match[0];
+                    $linkHost = parse_url($url, PHP_URL_HOST);
+                    if ($linkHost != $serverHost) {
+                        return true;
+                    }
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
