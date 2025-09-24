@@ -195,12 +195,19 @@ class UsersTableTest extends TestCase
     public function addProfileLinksProvider() {
         return [
             // user id, field, value for field, should be able to save
-            'legacy user, inbound link'    => [1, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
-            'legacy user, outbound link'   => [1, 'homepage', 'https://example.com', true],
-            'verified user, inbound link'  => [7, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
-            'verified user, outbound link' => [7, 'homepage', 'https://example.com', true],
-            'new user, inbound link'       => [9, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
-            'new user, outbound link'      => [9, 'homepage', 'https://example.com', false],
+            'legacy user, inbound homepage link'    => [1, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'legacy user, outbound homepage link'   => [1, 'homepage', 'https://example.com', true],
+            'verified user, inbound homepage link'  => [7, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'verified user, outbound homepage link' => [7, 'homepage', 'https://example.com', true],
+            'new user, inbound homepage link'       => [9, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'new user, outbound homepage link'      => [9, 'homepage', 'https://example.com', false],
+
+            'legacy user, inbound desc link'        => [1, 'description', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'legacy user, outbound desc link'       => [1, 'description', 'Hi! https://example.com', true],
+            'verified user, inbound desc link'      => [7, 'description', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'verified user, outbound desc link'     => [7, 'description', 'Hi! https://example.com', true],
+            'new user, inbound desc link'           => [9, 'description', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'new user, outbound desc link'          => [9, 'description', 'Hi! https://example.com', false],
         ];
     }
 

@@ -161,7 +161,12 @@ class UsersTable extends Table
 
         $validator
             ->allowEmpty('description')
-            ->scalar('description');
+            ->scalar('description')
+            ->add('description', 'outboundLinkCheck', [
+                'rule' => function ($data, $provider) {
+                    return CurrentUser::hasOutboundLinkPermission() || !$this->_containsOutboundLink($data);
+                },
+            ]);
 
         $validator
             ->allowEmpty('homepage')
