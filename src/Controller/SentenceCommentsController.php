@@ -176,21 +176,25 @@ class SentenceCommentsController extends AppController
             return $this->redirect('/');
         }
 
-        $this->Cookie->write(
-            'hash_last_com',
-            $thisCom,
-            false,
-            '+1 month'
+        $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                    'skipOutboundLinksCheck' : 'default';
+        $comment = $this->SentenceComments->newEntity(
+            [
+                'sentence_id' => $sentenceId,
+                'text' => $commentText,
+                'user_id' => $this->Auth->user('id')
+            ],
+            compact('validate')
         );
-
-        $comment = $this->SentenceComments->newEntity([
-            'sentence_id' => $sentenceId,
-            'text' => $commentText,
-            'user_id' => $this->Auth->user('id')
-        ]);
         $savedComment = $this->SentenceComments->save($comment);
         if ($savedComment) {
             $this->Flash->set(__('Your comment has been saved.'));
+            $this->Cookie->write(
+                'hash_last_com',
+                $thisCom,
+                false,
+                '+1 month'
+            );
         } else if ($comment->getErrors()) {
             foreach($comment->getErrors() as $error) {
                 $firstValidationErrorMessage = reset($error);

@@ -224,7 +224,7 @@ class UsersTable extends Table
     public function containsOutboundLink(string $text)
     {
         if (preg_match_all('/(?:ht|f)tps?:\/\/(?:[\w\.]+\.)?[\w-]+/iu', $text, $matches)) {
-            $request = Router::getRequest();
+            $request = Router::getRequest(true);
             if ($request) {
                 $serverHost = $request->host();
                 foreach ($matches as $match) {

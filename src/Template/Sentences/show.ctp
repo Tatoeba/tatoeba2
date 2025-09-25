@@ -158,6 +158,7 @@ echo $this->element('/sentences/navigation', [
             echo $this->element('sentence_comments/add_form', [
                 'sentenceId' => $sentenceId,
                 'text' => $unsentComment,
+                'confirmOutboundLinks' => $confirmOutboundLinks,
             ]);
         }
         ?>

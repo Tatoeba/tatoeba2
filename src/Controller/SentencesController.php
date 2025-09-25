@@ -163,9 +163,10 @@ class SentencesController extends AppController
             ]);
 
             $unsentComment = $this->request->getSession()->consume('unsent_comment');
+            $confirmOutboundLinks = !CurrentUser::hasOutboundLinkPermission() && $this->Sentences->Users->containsOutboundLink($unsentComment ?? '');
             $canComment = CurrentUser::isMember()
                 && (!empty($contributions) || !empty($sentence));
-            $this->set(compact('canComment', 'unsentComment'));
+            $this->set(compact('canComment', 'unsentComment', 'confirmOutboundLinks'));
 
             // this way "next" and "previous"
             $lang = $this->request->getSession()->read('random_lang_selected');

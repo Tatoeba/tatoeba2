@@ -72,6 +72,11 @@ class SentenceCommentsTable extends Table
                 'rule' => function ($data, $provider) {
                     return CurrentUser::hasOutboundLinkPermission() || !$this->Users->containsOutboundLink($data);
                 },
+                'message' => __(
+                    'Your comment was not saved because it contains outbound links. '.
+                    'Please confirm the links are legitimate by ticking the checkbox below, '.
+                    'and re-submit your comment.'
+                ),
             ]);
 
         $validator->dateTime('created');

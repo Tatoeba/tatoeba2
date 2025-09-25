@@ -105,6 +105,60 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->assertMailContainsHtml('https://example.net/sentence_comments/show/9#comments');
     }
 
+    private function assertFlashMessageContains($expected, $message = '') {
+        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+    }
+
+    public function testSave_inboundLinks_noConfirmation() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->post('https://example.net/en/sentence_comments/save', [
+            'sentence_id' => 15,
+            'text' => 'Check this out https://example.net',
+        ]);
+
+        $this->assertFlashMessageContains('Your comment has been saved');
+    }
+
+    public function testSave_outboundLinks_needsConfirmation() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->post('https://example.net/en/sentence_comments/save', [
+            'sentence_id' => 15,
+            'text' => 'Check this out https://example.com',
+        ]);
+
+        $this->assertFlashMessageContains('Your comment was not saved');
+    }
+
+    public function testSave_outboundLinks_confirmed() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->post('https://example.net/en/sentence_comments/save', [
+            'sentence_id' => 15,
+            'text' => 'Check this out https://example.com',
+            'outboundLinksConfirmed' => '1',
+        ]);
+
+        $this->assertFlashMessageContains('Your comment has been saved');
+    }
+
+    public function testSave_outboundLinks_confirmed_but_no_links() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->post('https://example.net/en/sentence_comments/save', [
+            'sentence_id' => 15,
+            'text' => 'Check this out',
+            'outboundLinksConfirmed' => '1',
+        ]);
+
+        $this->assertFlashMessageContains('Your comment has been saved');
+    }
+
     private function editSomething() {
         $this->put('/en/sentence_comments/edit/1', ['text' => 'EDIT: blah blah blah']);
     }
