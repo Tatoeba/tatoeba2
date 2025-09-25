@@ -4,7 +4,7 @@ use App\Model\CurrentUser;
 $sentenceId = $comment->sentence_id;
 $user = $comment->user;
 $username = $user['username'];
-$text = $comment->text;
+$text = $this->request->getData('text') ?? $comment->text;
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 
