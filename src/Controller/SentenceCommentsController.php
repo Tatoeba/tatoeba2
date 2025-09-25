@@ -270,11 +270,9 @@ class SentenceCommentsController extends AppController
                     $firstValidationErrorMessage = reset($error);
                     $this->Flash->set($firstValidationErrorMessage);
                 }
-                return $this->redirect(['action' => 'edit', $commentId]);
             }
-        } else {
-            $this->set('sentenceComment', $comment);
         }        
+        $this->set('sentenceComment', $comment);
     }
 
     /**
