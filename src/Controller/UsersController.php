@@ -107,7 +107,9 @@ class UsersController extends AppController
             $isBlocked = !$wasBlocked && $this->request->getData('level') == -1;
             $isSuspended = !$wasSuspended && $this->request->getData('role') == User::ROLE_SPAMMER;
 
-            $this->Users->patchEntity($user, $this->request->getData());
+            $this->Users->patchEntity($user, $this->request->getData(), [
+                'accessibleFields' => ['is_spamdexing' => true],
+            ]);
             $savedUser = $this->Users->save($user);
             if ($savedUser) {
                 $user = $savedUser;

@@ -215,6 +215,7 @@ class UsersTable extends Table
             ->maxLength('audio_attribution_url', 255);
 
         $validator
+            ->allowEmpty('is_spamdexing')
             ->boolean('is_spamdexing');
 
         return $validator;
@@ -269,6 +270,9 @@ class UsersTable extends Table
     {
         if (isset($data['birthday']['year']) && isset($data['birthday']['month']) && isset($data['birthday']['day'])) {
             $data['birthday'] = $this->_generateBirthdayDate($data['birthday']);
+        }
+        if (isset($data['is_spamdexing']) && $data['is_spamdexing'] === '') {
+            $data['is_spamdexing'] = null;
         }
     }
 

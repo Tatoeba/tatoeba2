@@ -89,6 +89,15 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
         'options' => array_combine($groups, $groups),
         'label' => __d('admin', 'Group'),
     ));
+    echo $this->Form->input('is_spamdexing', array(
+        'label' => __d('admin', 'Spamdexing status'),
+        'options' => array(
+            '1' => __d('admin', 'Unknown (links restricted)'),
+            '0' => __d('admin', 'Verified (links not restricted)'),
+            ''  => __d('admin', 'Legacy (links not restricted)'),
+        ),
+        'val' => is_null($user->is_spamdexing) ? '' : (int)$user->is_spamdexing,
+    ));
     echo $this->Form->input(
         'level', 
         array(
