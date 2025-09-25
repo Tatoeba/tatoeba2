@@ -156,7 +156,8 @@ echo $this->element('/sentences/navigation', [
 
         if ($canComment) {
             echo $this->element('sentence_comments/add_form', [
-                'sentenceId' => $sentenceId
+                'sentenceId' => $sentenceId,
+                'text' => $unsentComment,
             ]);
         }
         ?>

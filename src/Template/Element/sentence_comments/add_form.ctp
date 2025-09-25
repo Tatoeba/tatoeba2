@@ -31,6 +31,7 @@ $username = $user['username'];
         
         <?php
         echo $this->Form->textarea('text', [
+            'value' => $this->safeForAngular($text ?? ''),
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',

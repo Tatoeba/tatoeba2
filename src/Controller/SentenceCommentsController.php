@@ -196,6 +196,7 @@ class SentenceCommentsController extends AppController
                 $firstValidationErrorMessage = reset($error);
                 $this->Flash->set($firstValidationErrorMessage);
             }
+            $this->request->getSession()->write('unsent_comment', $commentText);
         }
         return $this->redirect([
             'controller' => 'sentences',

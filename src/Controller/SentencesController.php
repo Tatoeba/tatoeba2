@@ -162,9 +162,10 @@ class SentencesController extends AppController
                 'sentenceDetails' => true
             ]);
 
+            $unsentComment = $this->request->getSession()->consume('unsent_comment');
             $canComment = CurrentUser::isMember()
                 && (!empty($contributions) || !empty($sentence));
-            $this->set('canComment', $canComment);
+            $this->set(compact('canComment', 'unsentComment'));
 
             // this way "next" and "previous"
             $lang = $this->request->getSession()->read('random_lang_selected');
