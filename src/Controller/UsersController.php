@@ -108,7 +108,9 @@ class UsersController extends AppController
             $isSuspended = !$wasSuspended && $this->request->getData('role') == User::ROLE_SPAMMER;
 
             $this->Users->patchEntity($user, $this->request->getData());
-            if ($user = $this->Users->save($user)) {
+            $savedUser = $this->Users->save($user);
+            if ($savedUser) {
+                $user = $savedUser;
                 if ($isBlocked || $isSuspended) {
                     $this->getMailer('User')->send(
                         'blocked_or_suspended_user',
