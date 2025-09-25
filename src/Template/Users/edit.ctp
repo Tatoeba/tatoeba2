@@ -96,6 +96,7 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
             '0' => __d('admin', 'Verified (links not restricted)'),
             ''  => __d('admin', 'Legacy (links not restricted)'),
         ),
+        'disabled' => is_null($user->is_spamdexing) ? [] : [''],
         'val' => is_null($user->is_spamdexing) ? '' : (int)$user->is_spamdexing,
     ));
     echo $this->Form->input(
