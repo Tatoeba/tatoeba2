@@ -54,12 +54,24 @@ class SentenceCommentsTable extends Table
         return $rules;
     }
 
+    public function validationSkipOutboundLinksCheck(Validator $validator)
+    {
+        return $this
+            ->validationDefault($validator)
+            ->remove('text', 'outboundLinks');
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
             ->add('text', 'notBlank', [
                 'rule' => 'notBlank',
                 'message' => __('Comments cannot be empty.')
+            ])
+            ->add('text', 'outboundLinks', [
+                'rule' => function ($data, $provider) {
+                    return CurrentUser::hasOutboundLinkPermission() || !$this->Users->containsOutboundLink($data);
+                },
             ]);
 
         $validator->dateTime('created');

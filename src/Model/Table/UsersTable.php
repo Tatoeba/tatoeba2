@@ -165,7 +165,7 @@ class UsersTable extends Table
             ->scalar('description')
             ->add('description', 'outboundLinkCheck', [
                 'rule' => function ($data, $provider) {
-                    return CurrentUser::hasOutboundLinkPermission() || !$this->_containsOutboundLink($data);
+                    return CurrentUser::hasOutboundLinkPermission() || !$this->containsOutboundLink($data);
                 },
                 'message' => format(
                     __('Sorry, you do not have the permission to include a link in your profile description. '.
@@ -183,7 +183,7 @@ class UsersTable extends Table
             ->maxLength('homepage', 255)
             ->add('homepage', 'outboundLinkCheck', [
                 'rule' => function ($data, $provider) {
-                    return CurrentUser::hasOutboundLinkPermission() || !$this->_containsOutboundLink($data);
+                    return CurrentUser::hasOutboundLinkPermission() || !$this->containsOutboundLink($data);
                 },
                 'message' => format(
                     __('Sorry, you do not have the permission to set a homepage on your profile. '.
@@ -221,7 +221,7 @@ class UsersTable extends Table
         return $validator;
     }
 
-    private function _containsOutboundLink(string $text)
+    public function containsOutboundLink(string $text)
     {
         if (preg_match_all('/(?:ht|f)tps?:\/\/(?:[\w\.]+\.)?[\w-]+/iu', $text, $matches)) {
             $request = Router::getRequest();
