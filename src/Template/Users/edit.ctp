@@ -110,6 +110,19 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
             )
         )
     );
+    ?>
+
+    <br>
+    <details>
+        <summary style="cursor:pointer"><?= __d('admin', 'About spamdexing status') ?></summary>
+        <ul>
+            <li><?= __d('admin', '"Unknown" users cannot include any outbound link in their profile. In addition, when trying to post a sentence comment that includes outbound links, they are prompted about the legitimacy of the links. If confirmed, the sentence comment is posted and moderators are notified.') ?></li>
+            <li><?= __d('admin', '"Verified" and "legacy" users can include any link anywhere without restriction.') ?></li>
+            <li><?= __d('admin', '"Legacy" users created their account before this restriction was implemented.') ?></li>
+        </ul>
+    </details>
+
+<?php
     echo '<br>';
     echo $this->Form->input('send_notifications', array(
         'label' => __d('admin', 'Send notifications')
