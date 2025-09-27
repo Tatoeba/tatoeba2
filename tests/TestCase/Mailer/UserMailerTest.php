@@ -106,7 +106,7 @@ class UserMailerTest extends TestCase {
     public function test_content_report_sentence_comment() {
         $comment = new SentenceComment([
             'id' => 5,
-            'content' => 'spam spam spam...',
+            'text' => 'spam spam spam...',
             'sentence_id' => 19,
         ]);
         $report = new ContentReport('kazuki', $comment, 'please remove spam');
