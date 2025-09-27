@@ -119,6 +119,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         ]);
 
         $this->assertFlashMessageContains('Your comment has been saved');
+        $this->assertMailCount(0);
     }
 
     public function testSave_outboundLinks_needsConfirmation() {
@@ -131,6 +132,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         ]);
 
         $this->assertFlashMessageContains('Your comment was not saved');
+        $this->assertMailCount(0);
     }
 
     public function testSave_outboundLinks_confirmed() {
@@ -144,6 +146,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         ]);
 
         $this->assertFlashMessageContains('Your comment has been saved');
+        $this->assertMailCount(1);
     }
 
     public function testSave_outboundLinks_confirmed_but_no_links() {
@@ -157,6 +160,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         ]);
 
         $this->assertFlashMessageContains('Your comment has been saved');
+        $this->assertMailCount(0);
     }
 
     private function editSomething() {

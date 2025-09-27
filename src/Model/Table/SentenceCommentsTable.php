@@ -22,6 +22,7 @@ use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use App\Event\NotificationListener;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
@@ -30,6 +31,8 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class SentenceCommentsTable extends Table
 {
+    use MailerAwareTrait;
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -92,8 +95,20 @@ class SentenceCommentsTable extends Table
         }
     }
 
+    private function _warnAdminsAboutPotentialSEOSpam($comment) {
+        $data = $comment->extract($this->schema()->columns(), true);
+        $validator = $this->getValidator('default');
+        $errors = $validator->errors($data, $comment->isNew());
+        if (isset($errors['text']['outboundLinks'])) {
+            $author = $this->Users->get($comment->user_id);
+            $this->getMailer('User')->send('comment_with_outbound_links', [$comment, $author]);
+        }
+    }
+
     public function afterSave($event, $entity, $options)
     {
+        $this->_warnAdminsAboutPotentialSEOSpam($entity);
+
         if ($entity->isNew()) {
             $event = new Event('Model.SentenceComment.commentPosted', $this, array(
                 'comment' => $entity,

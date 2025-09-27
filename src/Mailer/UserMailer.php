@@ -42,4 +42,12 @@ class UserMailer extends Mailer {
             ->setEmailFormat('html')
             ->setViewVars(compact('report'));
     }
+
+    public function comment_with_outbound_links($comment, $author) {
+        $this
+            ->setTo(Configure::read('Tatoeba.communityModeratorEmail'))
+            ->setSubject("Sentence comment with outbound links")
+            ->setEmailFormat('html')
+            ->setViewVars(compact('comment', 'author'));
+    }
 }
