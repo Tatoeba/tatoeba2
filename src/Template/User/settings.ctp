@@ -48,7 +48,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
         <?php echo $this->Form->create($userSettings, [
             'ng-cloak' => true,
-            'url' => ['controller' => 'user', 'action' => 'save_settings']
         ]); ?>
         <md-list flex role="list" class="flex" >
             <md-subheader><?php echo __('Main options'); ?></md-subheader>
@@ -367,9 +366,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
         <div layout-padding>
         <?php
-        echo $this->Form->create($userSettings, [
-            'url' => ['controller' => 'user', 'action' => 'save_basic']
-        ]);
+        echo $this->Form->create($userSettings);
         ?>
             <md-input-container class="md-block">
                 <?php
