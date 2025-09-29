@@ -46,7 +46,11 @@ class UserMailer extends Mailer {
     public function comment_with_outbound_links($comment, $author) {
         $this
             ->setTo(Configure::read('Tatoeba.communityModeratorEmail'))
-            ->setSubject("Sentence comment with outbound links")
+            ->setSubject(
+                $comment->isNew() ?
+                "Outbound links in new sentence comment #{$comment->id}" :
+                "Outbound links in edited sentence comment #{$comment->id}"
+            )
             ->setEmailFormat('html')
             ->setViewVars(compact('comment', 'author'));
     }

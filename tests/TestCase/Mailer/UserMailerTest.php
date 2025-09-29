@@ -120,7 +120,7 @@ class UserMailerTest extends TestCase {
         $this->assertMailContainsHtml('please remove spam');
     }
 
-    public function test_comment_with_outbound_links() {
+    public function test_comment_with_outbound_links_new() {
         $comment = new SentenceComment([
             'id' => 5,
             'text' => 'Check this out!! https://example.com',
@@ -135,8 +135,27 @@ class UserMailerTest extends TestCase {
         $this->mailer->send('comment_with_outbound_links', [$comment, $user]);
 
         $this->assertMailSentTo('moderator@example.net');
-        $this->assertMailSentWith('Sentence comment with outbound links', 'subject');
+        $this->assertMailSentWith('Outbound links in new sentence comment #5', 'subject');
         $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has posted a <a href="https://example.net/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
         $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+    }
+
+    public function test_comment_with_outbound_links_edited() {
+        $comment = new SentenceComment([
+            'id' => 5,
+            'text' => 'Check this out!! https://example.com',
+            'sentence_id' => 19,
+            'user_id' => 7,
+        ]);
+        $comment->isNew(false);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+
+        $this->mailer->send('comment_with_outbound_links', [$comment, $user]);
+
+        $this->assertMailSentWith('Outbound links in edited sentence comment #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
     }
 }
