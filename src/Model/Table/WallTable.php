@@ -64,12 +64,23 @@ class WallTable extends Table
         return $rules;
     }
 
+    public function validationSkipOutboundLinksCheck(Validator $validator)
+    {
+        return $this
+            ->validationDefault($validator)
+            ->remove('content', 'outboundLinks');
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
             ->add('content', 'notBlank', [
                 'rule' => 'notBlank',
                 'message'    => __('You cannot save an empty message.'),
+            ])
+            ->add('content', 'outboundLinks', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
             ]);
 
         $validator->dateTime('date');

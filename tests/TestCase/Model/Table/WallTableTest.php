@@ -4,9 +4,11 @@ namespace App\Test\TestCase\Model;
 use App\Model\CurrentUser;
 use Cake\Event\Event;
 use Cake\Event\EventList;
+use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
 class WallTest extends TestCase {
@@ -21,8 +23,17 @@ class WallTest extends TestCase {
     public function setUp() {
         parent::setUp();
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
+
         // enable event tracking
         $this->Wall->getEventManager()->setEventList(new EventList());
+
+        // set current hostname
+        Router::pushRequest(new ServerRequest([
+            'environment' => [
+                'HTTP_HOST' => 'tatoeba.org',
+                'HTTPS' => 'on',
+            ],
+        ]));
     }
 
     public function tearDown() {
@@ -201,6 +212,66 @@ class WallTest extends TestCase {
 
         $this->assertTrue($dispatched);
         $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
+    }
+
+    public function wallPostsWithLinksProvider() {
+        return [
+            // user id, validator, content, should be able to save
+            'legacy user, inbound link'        => [1, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'legacy user, outbound link'       => [1, 'default', 'Hi! https://example.com', true],
+            'verified user, inbound link'      => [7, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'verified user, outbound link'     => [7, 'default', 'Hi! https://example.com', true],
+            'new user, inbound link'           => [9, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'new user, outbound link'          => [9, 'default', 'Hi! https://example.com', false],
+            'new user, outbound link, confirm' => [9, 'skipOutboundLinksCheck', 'Hi! https://example.com', true],
+        ];
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testAddWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    {
+        CurrentUser::store($this->Wall->Users->get($userId));
+        $newPost = $this->Wall->newEntity(
+            [
+                'owner' => $userId,
+                'date' => '2025-05-05 05:05:05',
+                'content' => $content,
+            ],
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($newPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+            $this->assertEquals($userId, $savedPost->owner);
+        } else {
+            $this->assertFalse($savedPost);
+        }
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testEditWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    {
+        CurrentUser::store($this->Wall->Users->get($userId));
+        $wallPost = $this->Wall->get(3);
+        $this->Wall->patchEntity(
+            $wallPost,
+            compact('content'),
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($wallPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+        } else {
+            $this->assertFalse($savedPost);
+        }
     }
 
     public function testGetMessagesThreaded() {
