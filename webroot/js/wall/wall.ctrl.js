@@ -14,12 +14,16 @@
         vm.hideForm = hideForm;
         vm.saveReply = saveReply;
         vm.expandOrCollapse = expandOrCollapse;
+        vm.errors = function (parentId) {
+            return Object.values(vm.validationErrors[parentId]).map(Object.values).flat();
+        };
 
         vm.replies = {};
         vm.isSaving = {};
         vm.savedReplies = {};
         vm.hiddenReplies = {};
         vm.visibleForms = {};
+        vm.validationErrors = {}
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -52,9 +56,13 @@
             }
 
             $http(req).then(
-                function(response) {
+                function success(response) {
                     vm.isSaving[id] = false;
                     vm.savedReplies[id] = response.data;
+                    vm.validationErrors[id] = {};
+                }, function error(response) {
+                    vm.isSaving[id] = false;
+                    vm.validationErrors[id] = response.data;
                 }
             );
         }

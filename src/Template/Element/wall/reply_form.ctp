@@ -39,6 +39,10 @@ $editUrl = $this->Url->build([
                         md-mode="indeterminate"></md-progress-linear>
 
     <md-card-content class="content" ng-if="!vm.savedReplies[<?= $parentId ?>]">
+        <ul ng-if="vm.validationErrors['<?= $parentId ?>']">
+            <li ng-repeat="errorMsg in vm.errors(<?= $parentId ?>)">{{errorMsg}}</li>
+        </ul>
+
         <?php
         echo $this->Form->create('', [
             'ng-submit' => 'vm.saveReply('.$parentId.')',
