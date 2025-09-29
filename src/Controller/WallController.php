@@ -166,12 +166,14 @@ class WallController extends AppController
         $userId = $this->Auth->user('id');
         $content = $data['content'];
         $parentId = $data['replyTo'];
+        $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                    'skipOutboundLinksCheck' : 'default';
 
         $this->viewBuilder()->setLayout('json');
 
         // now save to database
         try {
-            $message = $this->Wall->newReply($parentId, $content, $userId);
+            $message = $this->Wall->newReply($parentId, $content, $userId, compact('validate'));
         } catch (RecordNotFoundException $e) {
             return $this->response->withStatus(400);
         }

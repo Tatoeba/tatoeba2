@@ -327,7 +327,7 @@ class WallTable extends Table
         return $this->delete($message);
     }
 
-    public function newReply($parentId, $content, $userId)
+    public function newReply($parentId, $content, $userId, $options = [])
     {
         try {
             $this->get((int)$parentId);
@@ -335,11 +335,14 @@ class WallTable extends Table
             throw $e;
         }
         
-        return $this->newEntity([
-            'content'   => $content,
-            'owner'     => $userId,
-            'parent_id' => $parentId,
-        ]);
+        return $this->newEntity(
+            [
+                'content'   => $content,
+                'owner'     => $userId,
+                'parent_id' => $parentId,
+            ],
+            $options
+        );
     }
 
     public function getMessage($id) {

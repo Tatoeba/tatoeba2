@@ -38,6 +38,7 @@
 
         function hideForm(id) {
             vm.visibleForms[id] = false;
+            vm.outboundLinksConfirmed = false;
         }
 
         function saveReply(id) {
@@ -47,6 +48,9 @@
                 'content': vm.replies[id],
                 'replyTo': id,
             };
+            if (vm.outboundLinksConfirmed) {
+                body.outboundLinksConfirmed = '1';
+            }
 
             var rootUrl = get_tatoeba_root_url();
             var req = {
@@ -60,6 +64,7 @@
                     vm.isSaving[id] = false;
                     vm.savedReplies[id] = response.data;
                     vm.validationErrors[id] = {};
+                    vm.outboundLinksConfirmed = false;
                 }, function error(response) {
                     vm.isSaving[id] = false;
                     vm.validationErrors[id] = response.data;

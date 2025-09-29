@@ -64,6 +64,14 @@ $editUrl = $this->Url->build([
         ]);
         ?>
 
+        <div ng-show="vm.validationErrors['<?= $parentId ?>'].content.outboundLinks">
+            <?= $this->element('validation/confirm_outbound_links', [
+                'label' => __('I confirm the links in my wall post are legitimate '.
+                              'and not included for SEO purposes.'),
+                'confirmOutboundLinks' => true,
+            ]) ?>
+        </div>
+
         <div ng-cloak layout="row" layout-align="end center">
             <md-button class="md-raised" ng-click="vm.hideForm(<?= $parentId ?>)">
                 <?php /* @translators: button to cancel posting a reply on the Wall (verb) */ ?>
