@@ -11,6 +11,14 @@ use Cake\Core\Configure;
  */
 class UserMailer extends Mailer {
 
+    public function setSubject($subject)
+    {
+        if (Configure::read('Tatoeba.devStylesheet')) {
+            $subject = "[TEST]" . $subject;
+        }
+        return parent::setSubject($subject);
+    }
+
     public function blocked_or_suspended_user($user, $isSuspended) {
         $this->setTo(Configure::read('Tatoeba.communityModeratorEmail'))
             ->setSubject("( ! ) {$user->username}")
