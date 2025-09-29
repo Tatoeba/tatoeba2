@@ -254,10 +254,14 @@ class SentenceCommentsController extends AppController
         } 
 
         if ($this->request->is('put')) {
-            $data = $this->request->getData();
-            $this->SentenceComments->patchEntity($comment, [
-                'text' => $data['text']
-            ]);
+            $text = $this->request->getData('text');
+            $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                        'skipOutboundLinksCheck' : 'default';
+            $this->SentenceComments->patchEntity(
+                $comment,
+                compact('text'),
+                compact('validate')
+            );
             $savedComment = $this->SentenceComments->save($comment);
             if ($savedComment) {
                 $this->Flash->set(
@@ -274,6 +278,8 @@ class SentenceCommentsController extends AppController
                     $firstValidationErrorMessage = reset($error);
                     $this->Flash->set($firstValidationErrorMessage);
                 }
+                $confirmOutboundLinks = isset($comment->getError('text')['outboundLinks']);
+                $this->set(compact('confirmOutboundLinks'));
             }
         }        
         $this->set('sentenceComment', $comment);

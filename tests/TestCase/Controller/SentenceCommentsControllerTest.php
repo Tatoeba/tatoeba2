@@ -157,6 +157,23 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->assertMailCount($nbEmails);
     }
 
+    /**
+     * @dataProvider commentWithLinksProvider()
+     */
+    public function testEdit_commentWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->put('https://example.net/en/sentence_comments/edit/6', $postData);
+
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Changes to your comment have been saved');
+        } else {
+            $this->assertFlashMessageContains('Your comment was not saved');
+        }
+        $this->assertMailCount($nbEmails);
+    }
+
     private function editSomething() {
         $this->put('/en/sentence_comments/edit/1', ['text' => 'EDIT: blah blah blah']);
     }
