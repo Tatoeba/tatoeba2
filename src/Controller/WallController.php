@@ -213,11 +213,9 @@ class WallController extends AppController
             } else if ($message->getErrors()) {
                 $firstValidationErrorMessage = reset($message->getErrors())[0];
                 $this->Flash->set($firstValidationErrorMessage);
-                $this->redirect(['action' => 'edit', $messageId]);
             }
-        } else { 
-            $this->set('message', $message);
         }
+        $this->set('message', $message);
     }
 
     private function _cannotEdit() {
