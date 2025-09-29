@@ -128,10 +128,16 @@ class WallTable extends Table
             $this->recalculateThreadDateIgnoringHiddenPosts($root);
         }
 
-        if ($entity->isNew() && !$entity->parent_id) {
-            $event = new Event('Model.Wall.newThread', $this, [
-                'post' => $entity,
-            ]);
+        if ($entity->isNew()) {
+            if ($entity->parent_id) {
+                $event = new Event('Model.Wall.replyPosted', $this, [
+                    'post' => $entity,
+                ]);
+            } else {
+                $event = new Event('Model.Wall.newThread', $this, [
+                    'post' => $entity,
+                ]);
+            }
             $this->getEventManager()->dispatch($event);
         }
 
@@ -336,11 +342,6 @@ class WallTable extends Table
         $savedMessage = $this->save($data);
 
         if ($savedMessage) {
-            $event = new Event('Model.Wall.replyPosted', $this, [
-                'post' => $savedMessage
-            ]);
-            $this->getEventManager()->dispatch($event);
-
             return $this->getMessage($savedMessage->id);
         } else {
             return null;
