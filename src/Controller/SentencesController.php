@@ -33,6 +33,7 @@ use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use App\Lib\Licenses;
+use App\Validation\Validation;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
@@ -163,7 +164,7 @@ class SentencesController extends AppController
             ]);
 
             $unsentComment = $this->request->getSession()->consume('unsent_comment');
-            $confirmOutboundLinks = !CurrentUser::hasOutboundLinkPermission() && $this->Sentences->Users->containsOutboundLink($unsentComment ?? '');
+            $confirmOutboundLinks = !Validation::isLinkPermitted($unsentComment);
             $canComment = CurrentUser::isMember()
                 && (!empty($contributions) || !empty($sentence));
             $this->set(compact('canComment', 'unsentComment', 'confirmOutboundLinks'));

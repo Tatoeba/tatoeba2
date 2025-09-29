@@ -26,7 +26,6 @@
  */
 namespace App\Model\Table;
 
-use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
@@ -164,9 +163,8 @@ class UsersTable extends Table
             ->allowEmpty('description')
             ->scalar('description')
             ->add('description', 'outboundLinkCheck', [
-                'rule' => function ($data, $provider) {
-                    return CurrentUser::hasOutboundLinkPermission() || !$this->containsOutboundLink($data);
-                },
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
                 'message' => format(
                     __('Sorry, you do not have the permission to include a link in your profile description. '.
                        'Because of spam concerns, new accounts need to be verified before they can use '.
@@ -182,9 +180,8 @@ class UsersTable extends Table
             ->scalar('homepage')
             ->maxLength('homepage', 255)
             ->add('homepage', 'outboundLinkCheck', [
-                'rule' => function ($data, $provider) {
-                    return CurrentUser::hasOutboundLinkPermission() || !$this->containsOutboundLink($data);
-                },
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
                 'message' => format(
                     __('Sorry, you do not have the permission to set a homepage on your profile. '.
                        'Because of spam concerns, new accounts need to be verified before they can use '.
@@ -219,26 +216,6 @@ class UsersTable extends Table
             ->boolean('is_spamdexing');
 
         return $validator;
-    }
-
-    public function containsOutboundLink(string $text)
-    {
-        if (preg_match_all('/(?:ht|f)tps?:\/\/(?:[\w\.]+\.)?[\w-]+/iu', $text, $matches)) {
-            $request = Router::getRequest(true);
-            if ($request) {
-                $serverHost = $request->host();
-                foreach ($matches as $match) {
-                    $url = $match[0];
-                    $linkHost = parse_url($url, PHP_URL_HOST);
-                    if ($linkHost != $serverHost) {
-                        return true;
-                    }
-                }
-            } else {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

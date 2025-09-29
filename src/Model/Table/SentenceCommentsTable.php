@@ -72,9 +72,8 @@ class SentenceCommentsTable extends Table
                 'message' => __('Comments cannot be empty.')
             ])
             ->add('text', 'outboundLinks', [
-                'rule' => function ($data, $provider) {
-                    return CurrentUser::hasOutboundLinkPermission() || !$this->Users->containsOutboundLink($data);
-                },
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
                 'message' => __(
                     'Your comment was not saved because it contains outbound links. '.
                     'Please confirm the links are legitimate by ticking the checkbox below, '.
