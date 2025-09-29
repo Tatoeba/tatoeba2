@@ -109,58 +109,52 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
     }
 
-    public function testSave_inboundLinks_noConfirmation() {
-        $this->enableRetainFlashMessages();
-        $this->logInAs('new_member');
-
-        $this->post('https://example.net/en/sentence_comments/save', [
-            'sentence_id' => 15,
-            'text' => 'Check this out https://example.net',
-        ]);
-
-        $this->assertFlashMessageContains('Your comment has been saved');
-        $this->assertMailCount(0);
+    public function commentWithLinksProvider() {
+        return [
+            // post data, comment should be saved, number of emails sent
+            'inbound link, no confirmation' => [
+                ['text' => 'Check this out https://example.net'], true, 0
+            ],
+            'outbound link, needs confirmation' => [
+                ['text' => 'Check this out https://example.com'], false, 0
+            ],
+            'outbound link, confirmed' => [
+                [
+                    'text' => 'Check this out https://example.com',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+                1
+            ],
+            'confirmed but no links' => [
+                [
+                    'text' => 'Check this out',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+                0
+            ],
+        ];
     }
 
-    public function testSave_outboundLinks_needsConfirmation() {
+    /**
+     * @dataProvider commentWithLinksProvider()
+     */
+    public function testSave_commentWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
-        $this->post('https://example.net/en/sentence_comments/save', [
-            'sentence_id' => 15,
-            'text' => 'Check this out https://example.com',
-        ]);
+        $this->post(
+            'https://example.net/en/sentence_comments/save',
+            ['sentence_id' => 15] + $postData
+        );
 
-        $this->assertFlashMessageContains('Your comment was not saved');
-        $this->assertMailCount(0);
-    }
-
-    public function testSave_outboundLinks_confirmed() {
-        $this->enableRetainFlashMessages();
-        $this->logInAs('new_member');
-
-        $this->post('https://example.net/en/sentence_comments/save', [
-            'sentence_id' => 15,
-            'text' => 'Check this out https://example.com',
-            'outboundLinksConfirmed' => '1',
-        ]);
-
-        $this->assertFlashMessageContains('Your comment has been saved');
-        $this->assertMailCount(1);
-    }
-
-    public function testSave_outboundLinks_confirmed_but_no_links() {
-        $this->enableRetainFlashMessages();
-        $this->logInAs('new_member');
-
-        $this->post('https://example.net/en/sentence_comments/save', [
-            'sentence_id' => 15,
-            'text' => 'Check this out',
-            'outboundLinksConfirmed' => '1',
-        ]);
-
-        $this->assertFlashMessageContains('Your comment has been saved');
-        $this->assertMailCount(0);
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Your comment has been saved');
+        } else {
+            $this->assertFlashMessageContains('Your comment was not saved');
+        }
+        $this->assertMailCount($nbEmails);
     }
 
     private function editSomething() {
