@@ -104,7 +104,7 @@ class WallControllerTest extends IntegrationTestCase {
             'content' => 'Hello admin!',
             'replyTo' => '2',
         ]);
-        $this->assertMailContainsHtml('https://example.net/wall/show_message/4#message_4');
+        $this->assertMailContainsHtml('https://example.net/wall/show_message/5#message_5');
     }
 
     private function assertFlashMessageContains($expected, $message = '') {
