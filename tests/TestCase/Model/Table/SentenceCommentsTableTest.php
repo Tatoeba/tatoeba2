@@ -131,8 +131,8 @@ class SentenceCommentTest extends TestCase {
     }
 
     public function testGetLatestComments_hasSentenceOwnerInfo() {
-        $result = $this->SentenceComment->getLatestComments(1);
-        $this->assertEquals('contributor', $result[0]->sentence->user->username);
+        $result = $this->SentenceComment->getLatestComments(2);
+        $this->assertEquals('contributor', $result[1]->sentence->user->username);
     }
 
     public function testSave_correctDateUsingArabicLocale() {
