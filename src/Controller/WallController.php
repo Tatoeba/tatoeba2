@@ -103,9 +103,9 @@ class WallController extends AppController
 
         $isAuthenticated = !empty($userId);
 
-        $this->set('isAuthenticated', $isAuthenticated);
+        $unsentWallPost = $this->request->getSession()->consume('unsent_wall_post');
         $this->set('allMessages', $messages);
-        $this->set('tenLastMessages', $tenLastMessages);
+        $this->set(compact('isAuthenticated', 'tenLastMessages', 'unsentWallPost'));
     }
 
 
@@ -121,11 +121,7 @@ class WallController extends AppController
             $session = $this->request->getSession();
             $lastMess = $session->read('hash_last_wall');
             $thisMess = md5($content);
-            
-            $session->write(
-                'hash_last_wall',
-                $thisMess
-            );
+
             if ($lastMess != $thisMess) {
                 $newPost = $this->Wall->newEntity([
                     'owner'   => $this->Auth->user('id'),
@@ -138,6 +134,9 @@ class WallController extends AppController
                         $firstValidationErrorMessage = reset($error);
                         $this->Flash->set($firstValidationErrorMessage);
                     }
+                    $session->write('unsent_wall_post', $content);
+                } else {
+                    $session->write('hash_last_wall', $thisMess);
                 }
             }
         }

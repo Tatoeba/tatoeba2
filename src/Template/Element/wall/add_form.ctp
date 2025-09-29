@@ -34,6 +34,7 @@ $username = $user['username'];
 
         <?php
         echo $this->Form->textarea('content', [
+            'val' => $this->safeForAngular($unsentWallPost),
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',

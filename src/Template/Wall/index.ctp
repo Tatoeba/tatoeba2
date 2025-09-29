@@ -129,7 +129,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
     <?php
     // leave a comment part
     if ($isAuthenticated) {
-        echo $this->element('wall/add_form');
+        echo $this->element('wall/add_form', compact('unsentWallPost'));
 
         echo '<div style="display:none">'."\n";
         echo $this->element('wall/add_form', ['isReply' => true]);
