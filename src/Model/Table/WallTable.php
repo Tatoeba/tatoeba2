@@ -81,6 +81,11 @@ class WallTable extends Table
             ->add('content', 'outboundLinks', [
                 'rule' => 'isLinkPermitted',
                 'provider' => 'appvalidation',
+                'message' => __(
+                    'Your message was not posted because it contains outbound links. '.
+                    'Please confirm the links are legitimate by ticking the checkbox below, '.
+                    'and re-submit your message.'
+                ),
             ]);
 
         $validator->dateTime('date');

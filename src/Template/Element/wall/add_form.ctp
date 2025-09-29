@@ -41,6 +41,20 @@ $username = $user['username'];
         ]);
         ?>
 
+        <?php if ($confirmOutboundLinks ?? false): ?>
+            <md-input-container class="md-block">
+                <md-checkbox ng-model="outboundLinksConfirmed" class="md-primary">
+                    <?= __('I confirm the links in my wall post are legitimate '.
+                           'and not included for SEO purposes.') ?>
+                </md-checkbox>
+            </md-input-container>
+            <?= $this->Form->checkbox('outboundLinksConfirmed', [
+                    'class' => 'ng-hide',
+                    'ng-model' => 'outboundLinksConfirmed',
+                    'hiddenField' => false,
+            ]) ?>
+        <?php endif; ?>
+
         <div ng-cloak layout="row" layout-align="end center">
             <md-button type="submit" class="md-raised md-primary submit">
                 <?php /* @translators: button to post a new message on the Wall (verb) */ ?>

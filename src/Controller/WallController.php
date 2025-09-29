@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Event\NotificationListener;
+use App\Validation\Validation;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -104,8 +105,9 @@ class WallController extends AppController
         $isAuthenticated = !empty($userId);
 
         $unsentWallPost = $this->request->getSession()->consume('unsent_wall_post');
+        $confirmOutboundLinks = !Validation::isLinkPermitted($unsentWallPost);
         $this->set('allMessages', $messages);
-        $this->set(compact('isAuthenticated', 'tenLastMessages', 'unsentWallPost'));
+        $this->set(compact('isAuthenticated', 'tenLastMessages', 'unsentWallPost', 'confirmOutboundLinks'));
     }
 
 
@@ -123,10 +125,15 @@ class WallController extends AppController
             $thisMess = md5($content);
 
             if ($lastMess != $thisMess) {
-                $newPost = $this->Wall->newEntity([
-                    'owner'   => $this->Auth->user('id'),
-                    'content' => $content,
-                ]);
+                $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                            'skipOutboundLinksCheck' : 'default';
+                $newPost = $this->Wall->newEntity(
+                    [
+                        'owner'   => $this->Auth->user('id'),
+                        'content' => $content,
+                    ],
+                    compact('validate')
+                );
                 // now save to database
                 $this->Wall->save($newPost);
                 if ($newPost->getErrors()) {
@@ -136,6 +143,7 @@ class WallController extends AppController
                     }
                     $session->write('unsent_wall_post', $content);
                 } else {
+                    $this->Flash->set(__('Your message has been posted on the wall.'));
                     $session->write('hash_last_wall', $thisMess);
                 }
             }

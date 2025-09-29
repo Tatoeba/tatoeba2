@@ -107,6 +107,55 @@ class WallControllerTest extends IntegrationTestCase {
         $this->assertMailContainsHtml('https://example.net/wall/show_message/4#message_4');
     }
 
+    private function assertFlashMessageContains($expected, $message = '') {
+        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+    }
+
+    public function postsWithLinksProvider() {
+        return [
+            // post data, comment should be saved
+            'inbound link, no confirmation' => [
+                ['content' => 'Check this out https://example.net'], true
+            ],
+            'outbound link, needs confirmation' => [
+                ['content' => 'Check this out https://example.com'], false
+            ],
+            'outbound link, confirmed' => [
+                [
+                    'content' => 'Check this out https://example.com',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+            ],
+            'confirmed but no links' => [
+                [
+                    'content' => 'Check this out',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider postsWithLinksProvider()
+     */
+    public function testSave_postWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->post(
+            'https://example.net/en/wall/save',
+            ['replyTo' => ''] + $postData
+        );
+
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Your message has been posted on the wall');
+        } else {
+            $this->assertFlashMessageContains('Your message was not posted');
+        }
+    }
+
     private function postNewPosts($n) {
         $userId = 1;
         $initialDate = new \DateTime('2018-01-01');
