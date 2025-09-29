@@ -36,20 +36,12 @@ $username = $user['username'];
             'lang' => '',
             'dir' => 'auto',
         ]);
-        ?>
 
-        <?php if ($confirmOutboundLinks ?? false): ?>
-            <md-input-container class="md-block">
-                <md-checkbox ng-model="outboundLinksConfirmed" class="md-primary">
-                    <?= __('I confirm the links in my comment are legitimate '.
-                           'and not included for SEO purposes.') ?>
-                </md-checkbox>
-                <?= $this->Form->checkbox('outboundLinksConfirmed', [
-                        'class' => 'ng-hide',
-                        'ng-model' => 'outboundLinksConfirmed',
-                ]) ?>
-            </md-input-container>
-        <?php endif; ?>
+        echo $this->element('validation/confirm_outbound_links', [
+            'label' => __('I confirm the links in my comment are legitimate '.
+                          'and not included for SEO purposes.')
+        ]);
+        ?>
 
         <div ng-cloak layout="row" layout-align="end center">
             <md-button type="submit" class="md-raised md-primary">
