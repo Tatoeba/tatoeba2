@@ -126,12 +126,6 @@ class WallController extends AppController
                 'hash_last_wall',
                 $thisMess
             );
-            $this->Cookie->write(
-                'hash_last_wall',
-                $thisMess,
-                false,
-                "+1 month"
-            );
             if ($lastMess != $thisMess) {
                 $newPost = $this->Wall->newEntity([
                     'owner'   => $this->Auth->user('id'),
