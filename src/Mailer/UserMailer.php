@@ -43,15 +43,20 @@ class UserMailer extends Mailer {
             ->setViewVars(compact('report'));
     }
 
-    public function comment_with_outbound_links($comment, $author) {
+    public function content_with_outbound_links($entity, $author) {
+        if ($entity instanceOf \App\Model\Entity\SentenceComment) {
+            $subject = $entity->isNew() ?
+                "Outbound links in new sentence comment #{$entity->id}" :
+                "Outbound links in edited sentence comment #{$entity->id}";
+        } elseif ($entity instanceOf \App\Model\Entity\Wall) {
+            $subject = $entity->isNew() ?
+                "Outbound links in new wall post #{$entity->id}" :
+                "Outbound links in edited wall post #{$entity->id}";
+        }
         $this
             ->setTo(Configure::read('Tatoeba.communityModeratorEmail'))
-            ->setSubject(
-                $comment->isNew() ?
-                "Outbound links in new sentence comment #{$comment->id}" :
-                "Outbound links in edited sentence comment #{$comment->id}"
-            )
+            ->setSubject($subject)
             ->setEmailFormat('html')
-            ->setViewVars(compact('comment', 'author'));
+            ->setViewVars(compact('entity', 'author'));
     }
 }

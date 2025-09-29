@@ -21,6 +21,7 @@ namespace App\Model\Table;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
 use App\Model\CurrentUser;
@@ -28,6 +29,8 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallTable extends Table
 {
+    use MailerAwareTrait;
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('content', 'text');
@@ -130,6 +133,18 @@ class WallTable extends Table
                 'post' => $entity,
             ]);
             $this->getEventManager()->dispatch($event);
+        }
+
+        $this->_warnAdminsAboutPotentialSEOSpam($entity);
+    }
+
+    private function _warnAdminsAboutPotentialSEOSpam($post) {
+        $data = $post->extract($this->schema()->columns(), true);
+        $validator = $this->getValidator('default');
+        $errors = $validator->errors($data, $post->isNew());
+        if (isset($errors['content']['outboundLinks'])) {
+            $author = $this->Users->get($post->owner);
+            $this->getMailer('User')->send('content_with_outbound_links', [$post, $author]);
         }
     }
 

@@ -120,7 +120,7 @@ class UserMailerTest extends TestCase {
         $this->assertMailContainsHtml('please remove spam');
     }
 
-    public function test_comment_with_outbound_links_new() {
+    public function test_content_with_outbound_links_new_comment() {
         $comment = new SentenceComment([
             'id' => 5,
             'text' => 'Check this out!! https://example.com',
@@ -132,7 +132,7 @@ class UserMailerTest extends TestCase {
             'id' => 7,
         ]);
 
-        $this->mailer->send('comment_with_outbound_links', [$comment, $user]);
+        $this->mailer->send('content_with_outbound_links', [$comment, $user]);
 
         $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('Outbound links in new sentence comment #5', 'subject');
@@ -140,7 +140,7 @@ class UserMailerTest extends TestCase {
         $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
     }
 
-    public function test_comment_with_outbound_links_edited() {
+    public function test_content_with_outbound_links_edited_comment() {
         $comment = new SentenceComment([
             'id' => 5,
             'text' => 'Check this out!! https://example.com',
@@ -153,9 +153,46 @@ class UserMailerTest extends TestCase {
             'id' => 7,
         ]);
 
-        $this->mailer->send('comment_with_outbound_links', [$comment, $user]);
+        $this->mailer->send('content_with_outbound_links', [$comment, $user]);
 
         $this->assertMailSentWith('Outbound links in edited sentence comment #5', 'subject');
         $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
+    }
+
+    public function test_content_with_outbound_links_new_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'content' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+
+        $this->mailer->send('content_with_outbound_links', [$wallPost, $user]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('Outbound links in new wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has posted a <a href="https://example.net/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+    }
+
+    public function test_content_with_outbound_links_edited_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'text' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $wallPost->isNew(false);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+
+        $this->mailer->send('content_with_outbound_links', [$wallPost, $user]);
+
+        $this->assertMailSentWith('Outbound links in edited wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
     }
 }

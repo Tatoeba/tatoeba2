@@ -113,12 +113,12 @@ class WallControllerTest extends IntegrationTestCase {
 
     public function postsWithLinksProvider() {
         return [
-            // post data, comment should be saved
+            // post data, comment should be saved, number of emails sent
             'inbound link, no confirmation' => [
-                ['content' => 'Check this out https://example.net'], true
+                ['content' => 'Check this out https://example.net'], true, 0
             ],
             'outbound link, needs confirmation' => [
-                ['content' => 'Check this out https://example.com'], false
+                ['content' => 'Check this out https://example.com'], false, 0
             ],
             'outbound link, confirmed' => [
                 [
@@ -126,6 +126,7 @@ class WallControllerTest extends IntegrationTestCase {
                     'outboundLinksConfirmed' => '1',
                 ],
                 true,
+                1,
             ],
             'confirmed but no links' => [
                 [
@@ -133,6 +134,7 @@ class WallControllerTest extends IntegrationTestCase {
                     'outboundLinksConfirmed' => '1',
                 ],
                 true,
+                0,
             ],
         ];
     }
@@ -154,6 +156,7 @@ class WallControllerTest extends IntegrationTestCase {
         } else {
             $this->assertFlashMessageContains('Your message was not posted');
         }
+        $this->assertMailCount($nbEmails);
     }
 
     private function postNewPosts($n) {

@@ -100,7 +100,7 @@ class SentenceCommentsTable extends Table
         $errors = $validator->errors($data, $comment->isNew());
         if (isset($errors['text']['outboundLinks'])) {
             $author = $this->Users->get($comment->user_id);
-            $this->getMailer('User')->send('comment_with_outbound_links', [$comment, $author]);
+            $this->getMailer('User')->send('content_with_outbound_links', [$comment, $author]);
         }
     }
 
