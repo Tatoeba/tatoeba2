@@ -198,10 +198,14 @@ class WallController extends AppController
         }
         
         if ($this->request->is('put')) {
-            $data = $this->request->getData();
-            $this->Wall->patchEntity($message, [
-                'content' => $data['content']
-            ]);
+            $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                        'skipOutboundLinksCheck' : 'default';
+            $this->Wall->patchEntity($message,
+                [
+                    'content' => $this->request->getData('content'),
+                ],
+                compact('validate')
+            );
             $savedMessage = $this->Wall->save($message);
             if ($savedMessage) {
                 $this->Flash->set(__('Message saved.'));
@@ -215,6 +219,8 @@ class WallController extends AppController
                     $firstValidationErrorMessage = reset($error);
                     $this->Flash->set($firstValidationErrorMessage);
                 }
+                $confirmOutboundLinks = isset($message->getError('content')['outboundLinks']);
+                $this->set(compact('confirmOutboundLinks'));
             }
         }
         $this->set('message', $message);

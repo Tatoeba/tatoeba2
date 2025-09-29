@@ -159,6 +159,23 @@ class WallControllerTest extends IntegrationTestCase {
         $this->assertMailCount($nbEmails);
     }
 
+    /**
+     * @dataProvider postsWithLinksProvider()
+     */
+    public function testEdit_postWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->put('https://example.net/en/wall/edit/4', $postData);
+
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Message saved');
+        } else {
+            $this->assertFlashMessageContains('Your message was not posted');
+        }
+        $this->assertMailCount($nbEmails);
+    }
+
     private function postNewPosts($n) {
         $userId = 1;
         $initialDate = new \DateTime('2018-01-01');
