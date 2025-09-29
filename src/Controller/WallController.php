@@ -133,6 +133,12 @@ class WallController extends AppController
                 ]);
                 // now save to database
                 $this->Wall->save($newPost);
+                if ($newPost->getErrors()) {
+                    foreach ($newPost->getErrors() as $error) {
+                        $firstValidationErrorMessage = reset($error);
+                        $this->Flash->set($firstValidationErrorMessage);
+                    }
+                }
             }
         }
 
