@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\CurrentUser;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Event\EventList;
 use Cake\Http\ServerRequest;
@@ -208,7 +209,7 @@ class WallTest extends TestCase {
             }
         );
 
-        $this->Wall->saveReply(2, 'I see.', 7);
+        $this->Wall->save($this->Wall->newReply(2, 'I see.', 7));
 
         $this->assertTrue($dispatched);
         $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
@@ -317,20 +318,30 @@ class WallTest extends TestCase {
 
     public function testSaveReply_succeeds() {
         $content = 'I hope soon.';
-        $result = $this->Wall->saveReply(2, $content, 7);
+        $reply = $this->Wall->newReply(2, $content, 7);
+
+        $result = $this->Wall->save($reply);
+
         $this->assertEquals(2, $result->parent_id);
     }
 
     public function testSaveReply_failsBecauseNoParentId() {
         $content = 'I hope soon.';
-        $result = $this->Wall->saveReply(null, $content, 7);
-        $this->assertNull($result);
+        try {
+            $result = $this->Wall->newReply(null, $content, 7);
+            $this->fail('"newReply" did not throw RecordNotFoundException');
+        } catch (RecordNotFoundException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testSaveReply_failsBecauseEmptyContent() {
         $content = '   ';
-        $result = $this->Wall->saveReply(2, $content, 7);
-        $this->assertNull($result);
+        $reply = $this->Wall->newReply(2, $content, 7);
+
+        $result = $this->Wall->save($reply);
+
+        $this->assertFalse($result);
     }
 
     public function testGetRootMessageOfReply() {

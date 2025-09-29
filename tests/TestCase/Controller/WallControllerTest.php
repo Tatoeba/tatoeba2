@@ -176,6 +176,30 @@ class WallControllerTest extends IntegrationTestCase {
         $this->assertMailCount($nbEmails);
     }
 
+    /**
+     * @dataProvider postsWithLinksProvider()
+     */
+    public function testSaveInside_postWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->logInAs('new_member');
+
+        $this->ajaxPost(
+             'https://example.net/en/wall/save_inside',
+            ['replyTo' => '4'] + $postData
+        );
+
+        $response = json_decode($this->_response->getBody());
+        if ($shouldSave) {
+            $this->assertResponseOk();
+            $this->assertObjectHasAttribute('content', $response);
+            $this->assertEquals($postData['content'], $response->content);
+        } else {
+            $this->assertResponseError();
+            $this->assertObjectHasAttribute('content', $response);
+            $this->assertObjectHasAttribute('outboundLinks', $response->content);
+        }
+        $this->assertMailCount($nbEmails);
+    }
+
     private function postNewPosts($n) {
         $userId = 1;
         $initialDate = new \DateTime('2018-01-01');

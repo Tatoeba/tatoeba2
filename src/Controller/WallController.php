@@ -167,10 +167,23 @@ class WallController extends AppController
         $content = $data['content'];
         $parentId = $data['replyTo'];
 
-        // now save to database
-        $message = $this->Wall->saveReply($parentId, $content, $userId);
-        $this->set('message', $message);
         $this->viewBuilder()->setLayout('json');
+
+        // now save to database
+        try {
+            $message = $this->Wall->newReply($parentId, $content, $userId);
+        } catch (RecordNotFoundException $e) {
+            return $this->response->withStatus(400);
+        }
+
+        if ($this->Wall->save($message)) {
+            $this->set('message', $this->Wall->getMessage($message->id));
+        } else {
+            $errors = json_encode($message->getErrors());
+            return $this->response
+                ->withStatus(400)
+                ->withStringBody($errors);
+        }
     }
 
     /**

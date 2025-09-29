@@ -327,25 +327,19 @@ class WallTable extends Table
         return $this->delete($message);
     }
 
-    public function saveReply($parentId, $content, $userId)
+    public function newReply($parentId, $content, $userId)
     {
-        if (!$parentId) {
-            return null;
+        try {
+            $this->get((int)$parentId);
+        } catch (RecordNotFoundException $e) {
+            throw $e;
         }
         
-        $data = $this->newEntity([
+        return $this->newEntity([
             'content'   => $content,
             'owner'     => $userId,
             'parent_id' => $parentId,
         ]);
-
-        $savedMessage = $this->save($data);
-
-        if ($savedMessage) {
-            return $this->getMessage($savedMessage->id);
-        } else {
-            return null;
-        }
     }
 
     public function getMessage($id) {
