@@ -211,8 +211,10 @@ class WallController extends AppController
                     '#' => "message_$messageId"
                 ]);
             } else if ($message->getErrors()) {
-                $firstValidationErrorMessage = reset($message->getErrors())[0];
-                $this->Flash->set($firstValidationErrorMessage);
+                foreach ($message->getErrors() as $error) {
+                    $firstValidationErrorMessage = reset($error);
+                    $this->Flash->set($firstValidationErrorMessage);
+                }
             }
         }
         $this->set('message', $message);
