@@ -228,6 +228,18 @@ class VocabularyTable extends Table
         });
     }
 
+    public function addCanEditPermission($results)
+    {
+        return $results->map(function ($item) {
+            $vocabulary = $item->vocabulary;
+            if ($vocabulary->has('numAdded')) {
+                $canEdit = $item->user_id == CurrentUser::get('id') && $vocabulary->numAdded <= 1;
+                $item->vocabulary->canEdit = $canEdit;
+            }
+            return $item;
+        });
+    }
+
     /**
      * Updates the number of sentences for a vocabulary item.
      *

@@ -19,21 +19,57 @@
 
     angular
         .module('app')
-        .controller('VocabularyOfController', ['$http', VocabularyOfController]);
+        .controller('VocabularyOfController', ['$http', '$mdDialog', VocabularyOfController]);
 
-    function VocabularyOfController($http) {
+    function VocabularyOfController($http, $mdDialog) {
         var vm = this;
 
-        vm.remove = remove;
+        vm.edit = edit;
 
         ///////////////////////////////////////////////////////////////////////////
 
-        function remove(id) {
-            $http.get(get_tatoeba_root_url() + '/vocabulary/remove/' + id).then(
-                function(response) {
-                    angular.element(document.querySelector('#vocabulary_' + id)).remove();
+        function edit(vocab, canEdit) {
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'ctrl',
+                clickOutsideToClose: true,
+                templateUrl: get_tatoeba_root_url() + '/angular_templates/edit_vocabulary'
+            });
+
+            function DialogController() {
+                var ctrl = this;
+
+                ctrl.vocab = vocab;
+                ctrl.canEdit = canEdit;
+
+                ctrl.save = function (vocab) {
+                    vocab.lang = ctrl.selected_lang.code;
+                    $http.post(get_tatoeba_root_url() + '/vocabulary/edit/' + vocab.id, vocab).then(
+                        function success(response) {
+                            location.reload();
+                        },
+                        function error(response) {
+                            location.reload();
+                        }
+                    );
                 }
-            );
+
+                ctrl.remove = function (vocab) {
+                    $http.get(get_tatoeba_root_url() + '/vocabulary/remove/' + vocab.id).then(
+                        function success(response) {
+                            angular.element(document.querySelector('#vocabulary_' + vocab.id)).remove();
+                            $mdDialog.cancel();
+                        },
+                        function error(response) {
+                            $mdDialog.cancel();
+                        }
+                    );
+                }
+
+                ctrl.close = function() {
+                    $mdDialog.cancel();
+                };
+            }
         }
     }
 })();

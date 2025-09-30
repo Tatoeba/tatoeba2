@@ -94,10 +94,11 @@ class VocabularyController extends AppController
         $results = $this->paginate('UsersVocabulary');
 
         $vocabulary = $this->Vocabulary->syncNumSentences($results);
+        $vocabulary = $this->Vocabulary->addCanEditPermission($vocabulary);
 
         $this->set('vocabulary', $vocabulary);
         $this->set('username', $username);
-        $this->set('canEdit', $username == CurrentUser::get('username'));
+        $this->set('canDelete', $username == CurrentUser::get('username'));
     }
 
 

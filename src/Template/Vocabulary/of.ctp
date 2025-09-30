@@ -64,10 +64,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 ?>
                 <md-list-item id="vocabulary_<?= $divId ?>">
                     <?= $this->Vocabulary->vocabulary($item); ?>
-                    <?php if ($canEdit) { ?>
-                        <md-button ng-cloak ng-click="ctrl.remove('<?= $divId ?>')"
+                    <?php if ($canDelete || $item->canEdit) { ?>
+                        <md-button ng-cloak ng-click="ctrl.edit(<?= h(json_encode($item)) ?>, <?= json_encode($item->canEdit) ?>)"
                                    class="md-icon-button">
-                            <md-icon aria-label="Remove">delete</md-icon>
+                            <md-icon aria-label="Edit">edit</md-icon>
                         </md-button>
                     <?php } ?>
                 </md-list-item>
