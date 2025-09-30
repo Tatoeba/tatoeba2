@@ -27,6 +27,7 @@
 ?>
 <?php
 $this->Html->script('/js/vocabulary/of.ctrl.js', ['block' => 'scriptBottom']);
+$this->Html->script('/js/services/vocabulary.srv.js', ['block' => 'scriptBottom']);
 
 $count = $this->Paginator->param('count');
 $title = format(
