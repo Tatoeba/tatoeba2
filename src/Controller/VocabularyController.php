@@ -158,6 +158,8 @@ class VocabularyController extends AppController
         $this->paginate = $this->Vocabulary->getPaginatedVocabulary($lang);
         $vocabulary = $this->paginate('Vocabulary');
 
+        $vocabulary = $this->Vocabulary->addCanEditPermission($vocabulary);
+
         $this->set('vocabulary', $vocabulary);
         $this->set('langFilter', $lang);
     }

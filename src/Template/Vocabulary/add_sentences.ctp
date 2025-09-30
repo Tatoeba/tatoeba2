@@ -27,6 +27,8 @@
 ?>
 <?php
 $this->Html->script('/js/vocabulary/add-sentences.ctrl.js', ['block' => 'scriptBottom']);
+$this->Html->script('/js/services/vocabulary.srv.js', ['block' => 'scriptBottom']);
+
 if (empty($langFilter)) {
     $title = __('Vocabulary that needs sentences');
 } else {
@@ -85,6 +87,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                                class="md-icon-button">
                         <md-icon aria-label="Add">add</md-icon>
                     </md-button>
+                    <?php if ($item->canEdit) { ?>
+                        <md-button ng-cloak ng-click="ctrl.edit(<?= h(json_encode($item)) ?>, <?= json_encode($item->canEdit) ?>, false)"
+                                   class="md-icon-button">
+                            <md-icon aria-label="Edit">edit</md-icon>
+                        </md-button>
+                    <?php } ?>
                 </md-list-item>
                 <div ng-cloak id="sentences_<?= $id ?>" class="new-sentences"
                      ng-show="ctrl.sentencesAdded['<?= $id ?>']">

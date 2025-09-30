@@ -171,7 +171,7 @@ class VocabularyTable extends Table
 
         $result = [
             'conditions' => $conditions,
-            'fields' => ['id', 'lang', 'text', 'numSentences'],
+            'fields' => ['id', 'lang', 'text', 'numSentences', 'numAdded'],
             'limit' => 50,
             'order' => ['numSentences' => 'ASC']
         ];
@@ -231,12 +231,16 @@ class VocabularyTable extends Table
     public function addCanEditPermission($results)
     {
         return $results->map(function ($item) {
-            $vocabulary = $item->vocabulary;
-            if ($vocabulary->has('numAdded')) {
+            if ($item instanceof \App\Model\Entity\Vocable) {
+                $canEdit = CurrentUser::isModerator();
+                $vocabulary = $item;
+            } else {
+                $vocabulary = $item->vocabulary;
                 $canEdit = CurrentUser::isModerator() ||
-                           ($item->user_id == CurrentUser::get('id') && $vocabulary->numAdded <= 1);
-                $item->vocabulary->canEdit = $canEdit;
+                           ($vocabulary->has('numAdded') && $vocabulary->numAdded <= 1 &&
+                            $item->has('user_id') && $item->user_id == CurrentUser::get('id'));
             }
+            $vocabulary->canEdit = $canEdit;
             return $item;
         });
     }
