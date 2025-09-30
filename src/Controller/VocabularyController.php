@@ -56,7 +56,7 @@ class VocabularyController extends AppController
     public function beforeFilter(Event $event)
     {
         $this->Security->config('unlockedActions', [
-            'save', 'save_sentence'
+            'save', 'save_sentence', 'edit'
         ]);
         return parent::beforeFilter($event);
     }
@@ -108,6 +108,37 @@ class VocabularyController extends AppController
     {
     }
 
+    public function edit($id)
+    {
+        $this->autoRender = false;
+
+        $this->loadModel('UsersVocabulary');
+        $usersVocab = $this->UsersVocabulary
+            ->find()
+            ->where(['vocabulary_id' => (int)$id])
+            ->contain('Vocabulary')
+            ->all();
+
+        if ($usersVocab->count() == 0) {
+            return $this->response->withStatus(404);
+        }
+
+        $canEdit = $usersVocab->count() == 1 && $usersVocab->first()->user_id == CurrentUser::get('id');
+        if (!$canEdit) {
+            return $this->response->withStatus(403);
+        }
+
+        $vocab = $usersVocab->first()->vocabulary;
+        $this->Vocabulary->patchEntity(
+            $vocab,
+            $this->request->getData(),
+            ['fields' => ['lang', 'text']]
+        );
+
+        if (!$this->Vocabulary->save($vocab)) {
+            return $this->response->withStatus(400);
+        }
+    }
 
     /**
      * Page that lists all the vocabulary items for which sentences are wanted.
