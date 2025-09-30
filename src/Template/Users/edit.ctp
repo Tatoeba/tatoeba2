@@ -116,7 +116,7 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
     <details>
         <summary style="cursor:pointer"><?= __d('admin', 'About spamdexing status') ?></summary>
         <ul>
-            <li><?= __d('admin', '"Unknown" users cannot include any outbound link in their profile. In addition, when trying to post a sentence comment that includes outbound links, they are prompted about the legitimacy of the links. If confirmed, the sentence comment is posted and moderators are notified.') ?></li>
+            <li><?= __d('admin', '"Unknown" users cannot include any outbound link in their profile. In addition, when trying to post a sentence comment or wall post that includes outbound links, they are warned that their links must be legitimate. If they choose to continue, the message is posted and an e-mail is sent to moderators.') ?></li>
             <li><?= __d('admin', '"Verified" and "legacy" users can include any link anywhere without restriction.') ?></li>
             <li><?= __d('admin', '"Legacy" users created their account before this restriction was implemented.') ?></li>
         </ul>
