@@ -53,7 +53,7 @@ class SphinxConfShell extends Shell {
         'eng' => 'libstemmer_eng', # English
         'fin' => 'libstemmer_fin', # Finnish
         'fra' => 'libstemmer_fra', # French
-        'deu' => 'libstemmer_deu', # German
+        'deu' => 'lemmatize_de_all', # German
         'ell' => 'libstemmer_ell', # Greek
         'hin' => 'libstemmer_hin', # Hindi
         'hun' => 'libstemmer_hun', # Hungarian
