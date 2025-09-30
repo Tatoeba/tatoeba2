@@ -29,7 +29,7 @@ class UsersVocabularyTableTest extends TestCase
 
     public function testFindFirst_returnsSomething()
     {
-        $result = $this->UsersVocabulary->findFirst(1, 1);
+        $result = $this->UsersVocabulary->findFirst(1, 4);
         $this->assertEquals(1, $result->id);
     }
 

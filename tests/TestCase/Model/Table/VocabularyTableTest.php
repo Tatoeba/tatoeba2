@@ -33,7 +33,7 @@ class VocabularyTableTest extends TestCase
 
     public function testAddItem_withExistingVocabulary()
     {
-        CurrentUser::store(['id' => 1]);
+        CurrentUser::store(['id' => 4]);
         $result = $this->Vocabulary->addItem('eng', 'out of the blue');
         $this->assertEquals(1, $result->id);
         $this->assertTrue($result->duplicate);
@@ -42,8 +42,11 @@ class VocabularyTableTest extends TestCase
     public function testAddItem_withNewVocabulary()
     {
         CurrentUser::store(['id' => 7]);
+
         $result = $this->Vocabulary->addItem('eng', 'hashtag');
-        $this->assertEquals(2, $result->id);
+
+        $this->assertEquals('eng', $result->lang);
+        $this->assertEquals('hashtag', $result->text);
     }
 
     public function testAddItem_updatesCurrentNumberOfSentences()
