@@ -124,7 +124,8 @@ class VocabularyController extends AppController
             return $this->response->withStatus(404);
         }
 
-        $canEdit = $usersVocab->count() == 1 && $usersVocab->first()->user_id == CurrentUser::get('id');
+        $canEdit = CurrentUser::isModerator() ||
+                   ($usersVocab->count() == 1 && $usersVocab->first()->user_id == CurrentUser::get('id'));
         if (!$canEdit) {
             return $this->response->withStatus(403);
         }

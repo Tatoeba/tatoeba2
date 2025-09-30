@@ -233,7 +233,8 @@ class VocabularyTable extends Table
         return $results->map(function ($item) {
             $vocabulary = $item->vocabulary;
             if ($vocabulary->has('numAdded')) {
-                $canEdit = $item->user_id == CurrentUser::get('id') && $vocabulary->numAdded <= 1;
+                $canEdit = CurrentUser::isModerator() ||
+                           ($item->user_id == CurrentUser::get('id') && $vocabulary->numAdded <= 1);
                 $item->vocabulary->canEdit = $canEdit;
             }
             return $item;

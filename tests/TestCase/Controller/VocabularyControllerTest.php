@@ -125,4 +125,13 @@ class VocabularyControllerTest extends IntegrationTestCase
         ]);
         $this->assertResponseCode(403);
     }
+
+    public function testEdit_asCorpusMaintainer_addedByOthersToo() {
+        $this->logInAs('corpus_maintainer');
+        $this->ajaxPost('/en/vocabulary/edit/2', [
+            'lang' => 'fra',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseOk();
+    }
 }
