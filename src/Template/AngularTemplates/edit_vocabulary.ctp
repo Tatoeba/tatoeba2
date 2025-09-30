@@ -48,6 +48,7 @@ $langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
 
     <md-dialog-actions layout-margin>
         <md-button flex="33" type="submit" class="md-raised md-warn"
+                   ng-disabled="!ctrl.canDelete"
                    ng-click="ctrl.remove(ctrl.vocab)">
             <?php /* @translators: button to delete a vocabulary request */ ?>
             <?= __('Remove'); ?>

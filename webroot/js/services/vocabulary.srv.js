@@ -24,7 +24,7 @@
                edit: edit
             };
 
-            function edit(vocab, canEdit) {
+            function edit(vocab, canEdit, canDelete) {
                 $mdDialog.show({
                     controller: DialogController,
                     controllerAs: 'ctrl',
@@ -37,6 +37,7 @@
 
                     ctrl.vocab = vocab;
                     ctrl.canEdit = canEdit;
+                    ctrl.canDelete = canDelete;
 
                     ctrl.save = function (vocab) {
                         vocab.lang = ctrl.selected_lang.code;

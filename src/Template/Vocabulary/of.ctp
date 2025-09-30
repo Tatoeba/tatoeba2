@@ -66,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <md-list-item id="vocabulary_<?= $divId ?>">
                     <?= $this->Vocabulary->vocabulary($item); ?>
                     <?php if ($canDelete || $item->canEdit) { ?>
-                        <md-button ng-cloak ng-click="ctrl.edit(<?= h(json_encode($item)) ?>, <?= json_encode($item->canEdit) ?>)"
+                        <md-button ng-cloak ng-click="ctrl.edit(<?= h(json_encode($item)) ?>, <?= json_encode($item->canEdit) ?>, <?= json_encode($canDelete) ?>)"
                                    class="md-icon-button">
                             <md-icon aria-label="Edit">edit</md-icon>
                         </md-button>
