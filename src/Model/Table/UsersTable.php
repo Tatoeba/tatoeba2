@@ -166,10 +166,11 @@ class UsersTable extends Table
                 'rule' => 'isLinkPermitted',
                 'provider' => 'appvalidation',
                 'message' => format(
-                    __('Sorry, you do not have the permission to include a link in your profile description. '.
+                    __('Sorry, you do not have the permission to include links in your profile description. '.
                        'Because of spam concerns, new accounts need to be verified before they can use '.
-                       'outbound links. Please either remove any link from your profile description, or ask '.
-                       'for permission by {linkStart}sending a message to administrators{linkEnd}.'
+                       'outbound links. Please remove any outbound link from your profile description '.
+                       'in order to continue. You can ask for permission to add links later by '.
+                       '{linkStart}sending a message to administrators{linkEnd}.'
                     ),
                     ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
                 ),
@@ -185,8 +186,9 @@ class UsersTable extends Table
                 'message' => format(
                     __('Sorry, you do not have the permission to set a homepage on your profile. '.
                        'Because of spam concerns, new accounts need to be verified before they can use '.
-                       'outbound links. Please either remove the homepage from your profile description, '.
-                       'or ask for permission by {linkStart}sending a message to administrators{linkEnd}.'
+                       'outbound links. Please remove the homepage from your profile '.
+                       'in order to continue. You can ask for permission to add it later by '.
+                       '{linkStart}sending a message to administrators{linkEnd}.'
                     ),
                     ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
                 ),
