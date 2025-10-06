@@ -11,12 +11,17 @@ class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
         'app.users',
         'app.users_languages',
-        'app.languages'
+        'app.languages',
+        'app.sentences',
+        'app.reindex_flags',
+        'app.links',
     );
+    public $autoFixtures = false;
 
     function setUp() {
         parent::setUp();
         $this->UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
+        $this->loadFixtures('Users', 'UsersLanguages', 'Languages');
     }
 
     function tearDown() {
@@ -234,5 +239,48 @@ class UsersLanguagesTableTest extends TestCase {
 
         Time::setTestNow();
         I18n::setLocale($prevLocale);
+    }
+
+    function assertSentencesFlaggedForReindex($expected) {
+        $result = TableRegistry::getTableLocator()->get('ReindexFlags')
+            ->find('list', ['valueField' => 'sentence_id'])
+            ->select(['sentence_id'])
+            ->order('sentence_id')
+            ->toList();
+        $this->assertEquals($expected, $result);
+    }
+
+    function testSaveUserLanguage_reindexSentencesOnLevelDrop() {
+        $this->loadFixtures();
+        $nativeJpn = $this->UsersLanguages->get(3);
+        $nativeJpn->level = 4;
+
+        $this->UsersLanguages->save($nativeJpn);
+
+        // should reindex sentences 6, 10, 56 and 57
+        // along with all direct and indirect translations
+        $this->assertSentencesFlaggedForReindex([1, 2, 4, 6, 10, 55, 56, 57, 65]);
+    }
+
+    function testSaveUserLanguage_reindexSentencesOnLevelUp() {
+        $this->loadFixtures();
+        $learnerFra = $this->UsersLanguages->get(5);
+        $learnerFra->level = 5;
+
+        $this->UsersLanguages->save($learnerFra);
+
+        // should reindex sentences 4, 8, 12 and 35
+        // along with all direct and indirect translations
+        $this->assertSentencesFlaggedForReindex([1, 2, 3, 4, 5, 6, 8, 10, 12, 35]);
+    }
+
+    function testSaveUserLanguage_noReindexSentencesOnLearnerLevelChange() {
+        $this->loadFixtures();
+        $learnerFra = $this->UsersLanguages->get(5);
+        $learnerFra->level = 3;
+
+        $this->UsersLanguages->save($learnerFra);
+
+        $this->assertSentencesFlaggedForReindex([]);
     }
 }
