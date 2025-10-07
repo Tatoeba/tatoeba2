@@ -50,16 +50,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $title ?></h2>
+                <h2><?= h($title) ?></h2>
             </div>
         </md-toolbar>
 
         <md-content>
         <div layout-padding>
-            <?= __(
+            <?= h(__(
                 'Only vocabulary items that match fewer than 10 sentences are '.
                 'displayed here.'
-            )
+            ))
             ?>
         </div>
         <?php
@@ -105,7 +105,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             <md-icon ng-show="sentence.duplicate">warning</md-icon>
                             <md-tooltip md-direction="top"
                                         ng-show="sentence.duplicate">
-                                <?= __('This sentence already exists.') ?>
+                                <?= h(__('This sentence already exists.')) ?>
                             </md-tooltip>
                         </md-button>
                         <div class="text" flex>{{sentence.text}}</div>
@@ -141,12 +141,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                                    ng-disabled="ctrl.isAdding"
                                    ng-click="ctrl.hideForm('<?= $id ?>')">
                             <?php /* @translators: cancel button of sentence addition form on wanted vocabulary requests page (verb) */ ?>
-                            <?= __('Cancel') ?>
+                            <?= h(__('Cancel')) ?>
                         </md-button>
                         <md-button type="submit" class="md-raised md-primary"
                                    ng-disabled="ctrl.isAdding">
                             <?php /* @translators: button to submit new sentence from wanted vocabulary requests page (verb) */ ?>
-                            <?= __('Submit') ?>
+                            <?= h(__('Submit')) ?>
                         </md-button>
                     </div>
                 <?= $this->Form->end() ?>

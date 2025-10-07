@@ -48,7 +48,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $title ?></h2>
+                <h2><?= h($title) ?></h2>
             </div>
         </md-toolbar>
     

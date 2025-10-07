@@ -2,12 +2,12 @@
 $langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
 ?>
 
-<md-dialog aria-label="<?= __('Edit vocabulary item') ?>"
+<md-dialog aria-label="<?= h(__('Edit vocabulary item')) ?>"
            style="max-width: 500px"
            ng-cloak>
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2 flex><?= __('Edit vocabulary item'); ?></h2>
+            <h2 flex><?= h(__('Edit vocabulary item')) ?></h2>
             <md-button class="md-icon-button" ng-click="ctrl.close()">
               <md-icon>close</md-icon>
             </md-button>
@@ -26,7 +26,7 @@ $langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
 
         <div layout="row" layout-margin layout-align="center end" ng-if="ctrl.canEdit">
             <div layout="column">
-                <label for="lang"><?= __('Language:') ?></label>
+                <label for="lang"><?= h(__('Language:')) ?></label>
                 <?= $this->element(
                     'language_dropdown',
                     array(
@@ -38,7 +38,7 @@ $langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
                 ) ?>
             </div>
             <md-input-container>
-                <label for="text"><?= __('Vocabulary item') ?></label>
+                <label for="text"><?= h(__('Vocabulary item')) ?></label>
                 <input name="text" ng-attr-lang="{{ctrl.selected_lang.code}}" dir="auto"
                        ng-model="ctrl.vocab.text" />
             </md-input-container>
@@ -50,14 +50,14 @@ $langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
                    ng-disabled="!ctrl.canDelete"
                    ng-click="ctrl.remove(ctrl.vocab)">
             <?php /* @translators: button to delete a vocabulary request */ ?>
-            <?= __('Remove'); ?>
+            <?= h(__('Remove')) ?>
         </md-button>
         <div flex />
         <md-button flex="33" type="submit" class="md-raised md-primary"
                    ng-disabled="!ctrl.canEdit || !ctrl.selected_lang || !ctrl.vocab.text"
                    ng-click="ctrl.save(ctrl.vocab)">
             <?php /* @translators: button to save a vocabulary request after edit */ ?>
-            <?= __('Save'); ?>
+            <?= h(__('Save')) ?>
         </md-button>
     </md-dialog-actions>
 </md-dialog>
