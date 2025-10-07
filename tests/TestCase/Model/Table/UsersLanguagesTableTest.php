@@ -283,4 +283,24 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->assertSentencesFlaggedForReindex([]);
     }
+
+    function testSaveUserLanguage_reindexSentencesOnLanguageDeletion() {
+        $this->loadFixtures();
+        $nativeJpn = $this->UsersLanguages->get(3);
+
+        $this->UsersLanguages->delete($nativeJpn);
+
+        // should reindex sentences 6, 10, 56 and 57
+        // along with all direct and indirect translations
+        $this->assertSentencesFlaggedForReindex([1, 2, 4, 6, 10, 55, 56, 57, 65]);
+    }
+
+    function testSaveUserLanguage_noReindexSentencesOnLearningLanguageDeletion() {
+        $this->loadFixtures();
+        $learnerFra = $this->UsersLanguages->get(5);
+
+        $this->UsersLanguages->delete($learnerFra);
+
+        $this->assertSentencesFlaggedForReindex([]);
+    }
 }
