@@ -36,7 +36,11 @@ class SentencesReindexListener implements EventListenerInterface {
     public function onSave(Event $event, EntityInterface $entity, ArrayObject $options) {
         if ($entity instanceOf UsersLanguage
             && $entity->has('language_code') && $entity->has('of_user_id') && $entity->isDirty('level')
-            && ($entity->getOriginal('level') == 5 xor $entity->level == 5)) {
+            && (
+                 $entity->isNew() && $entity->level == 5
+              || !$entity->isNew() && ($entity->getOriginal('level') == 5 xor $entity->level == 5)
+            ))
+        {
             $this->reindexNativeSpeakerSentences($entity);
         }
     }

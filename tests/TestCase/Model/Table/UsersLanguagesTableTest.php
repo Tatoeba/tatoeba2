@@ -303,4 +303,36 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->assertSentencesFlaggedForReindex([]);
     }
+
+    function testSaveUserLanguage_reindexSentencesOnNewNativeLanguage() {
+        $this->loadFixtures();
+        $nativeFra = $this->UsersLanguages->newEntity([
+            'language_code' => 'fra',
+            'level' => 5,
+            'details' => '',
+            'of_user_id' => 2,
+            'by_user_id' => 2,
+        ]);
+
+        $this->UsersLanguages->save($nativeFra);
+
+        // should reindex sentence 55
+        // along with all direct and indirect translations
+        $this->assertSentencesFlaggedForReindex([55, 56, 57, 65]);
+    }
+
+    function testSaveUserLanguage_noReindexSentencesOnNewLearningLanguage() {
+        $this->loadFixtures();
+        $learningFra = $this->UsersLanguages->newEntity([
+            'language_code' => 'fra',
+            'level' => 4,
+            'details' => '',
+            'of_user_id' => 2,
+            'by_user_id' => 2,
+        ]);
+
+        $this->UsersLanguages->save($learningFra);
+
+        $this->assertSentencesFlaggedForReindex([]);
+    }
 }
