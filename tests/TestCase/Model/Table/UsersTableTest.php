@@ -1,8 +1,11 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
+use App\Model\CurrentUser;
 use App\Model\Table\UsersTable;
+use Cake\Http\ServerRequest;
 use Cake\ORM\TableRegistry;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
 class UsersTableTest extends TestCase
@@ -11,6 +14,7 @@ class UsersTableTest extends TestCase
 
     public $fixtures = [
         'app.users',
+        'app.users_languages',
         'app.sentences',
         'app.contributions',
         'app.sentence_comments',
@@ -20,6 +24,13 @@ class UsersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+
+        Router::pushRequest(new ServerRequest([
+            'environment' => [
+                'HTTP_HOST' => 'tatoeba.org',
+                'HTTPS' => 'on',
+            ],
+        ]));
 
         $config = TableRegistry::getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
         $this->Users = TableRegistry::getTableLocator()->get('Users', $config);
@@ -90,6 +101,29 @@ class UsersTableTest extends TestCase
         }
     }
 
+    public function testSave_onUpdate_is_spamdexing_noMassAssign() {
+        $user = $this->Users->get(9);
+        $this->Users->patchEntity($user, ['is_spamdexing' => false]);
+
+        $result = $this->Users->save($user);
+
+        $this->assertNotFalse($result);
+        $this->assertTrue($result->is_spamdexing);
+    }
+
+    public function testSave_onCreate_defaults() {
+        $user = $this->Users->newEntity([
+            'username' => 'testuser',
+            'email' => 'testuser@example.com',
+            'password' => 'testuser',
+        ]);
+
+        $result = $this->Users->save($user);
+
+        $this->assertNotFalse($result);
+        $this->assertTrue($result->is_spamdexing);
+    }
+
     public function testSettingsParsedAsJSON()
     {
         $user = $this->Users->get(7, ['fields' => ['settings']]);
@@ -156,5 +190,43 @@ class UsersTableTest extends TestCase
         $data = $this->Users->getUserByIdWithExtraInfo(7);
         $comment = $data->sentence_comments[0];
         $this->assertNotEmpty($comment->sentence);
+    }
+
+    public function addProfileLinksProvider() {
+        return [
+            // user id, field, value for field, should be able to save
+            'legacy user, inbound homepage link'    => [1, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'legacy user, outbound homepage link'   => [1, 'homepage', 'https://example.com', true],
+            'verified user, inbound homepage link'  => [7, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'verified user, outbound homepage link' => [7, 'homepage', 'https://example.com', true],
+            'new user, inbound homepage link'       => [9, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'new user, outbound homepage link'      => [9, 'homepage', 'https://example.com', false],
+
+            'legacy user, inbound desc link'        => [1, 'description', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'legacy user, outbound desc link'       => [1, 'description', 'Hi! https://example.com', true],
+            'verified user, inbound desc link'      => [7, 'description', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'verified user, outbound desc link'     => [7, 'description', 'Hi! https://example.com', true],
+            'new user, inbound desc link'           => [9, 'description', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'new user, outbound desc link'          => [9, 'description', 'Hi! https://example.com', false],
+        ];
+    }
+
+    /**
+     * @dataProvider addProfileLinksProvider()
+     */
+    public function testAddProfileLinks($userId, $field, $value, $expectedToSave)
+    {
+        $user = $this->Users->get($userId);
+        CurrentUser::store($user);
+        $this->Users->patchEntity($user, [$field => $value]);
+
+        $savedUser = $this->Users->save($user);
+
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedUser);
+            $this->assertEquals($value, $savedUser->{$field});
+        } else {
+            $this->assertFalse($savedUser);
+        }
     }
 }

@@ -76,5 +76,15 @@ class SentenceCommentsFixture extends TestFixture {
 			'modified' => '2015-08-18 15:00:30',
 			'hidden' => 0
 		),
+		array(
+			'id' => '6',
+			'sentence_id' => '15',
+			'lang' => NULL,
+			'text' => 'A comment by a new member on an orphan sentence.',
+			'user_id' => '9',
+			'created' => '2020-02-20 02:20:02',
+			'modified' => '2020-02-20 02:20:02',
+			'hidden' => 0
+		),
 	);
 }

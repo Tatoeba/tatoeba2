@@ -104,7 +104,100 @@ class WallControllerTest extends IntegrationTestCase {
             'content' => 'Hello admin!',
             'replyTo' => '2',
         ]);
-        $this->assertMailContainsHtml('https://example.net/wall/show_message/4#message_4');
+        $this->assertMailContainsHtml('https://example.net/wall/show_message/5#message_5');
+    }
+
+    private function assertFlashMessageContains($expected, $message = '') {
+        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+    }
+
+    public function postsWithLinksProvider() {
+        return [
+            // post data, comment should be saved, number of emails sent
+            'inbound link, no confirmation' => [
+                ['content' => 'Check this out https://example.net'], true, 0
+            ],
+            'outbound link, needs confirmation' => [
+                ['content' => 'Check this out https://example.com'], false, 0
+            ],
+            'outbound link, confirmed' => [
+                [
+                    'content' => 'Check this out https://example.com',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+                1,
+            ],
+            'confirmed but no links' => [
+                [
+                    'content' => 'Check this out',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+                0,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider postsWithLinksProvider()
+     */
+    public function testSave_postWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->post(
+            'https://example.net/en/wall/save',
+            ['replyTo' => ''] + $postData
+        );
+
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Your message has been posted on the wall');
+        } else {
+            $this->assertFlashMessageContains('Your message was not posted');
+        }
+        $this->assertMailCount($nbEmails);
+    }
+
+    /**
+     * @dataProvider postsWithLinksProvider()
+     */
+    public function testEdit_postWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->put('https://example.net/en/wall/edit/4', $postData);
+
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Message saved');
+        } else {
+            $this->assertFlashMessageContains('Your message was not posted');
+        }
+        $this->assertMailCount($nbEmails);
+    }
+
+    /**
+     * @dataProvider postsWithLinksProvider()
+     */
+    public function testSaveInside_postWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->logInAs('new_member');
+
+        $this->ajaxPost(
+             'https://example.net/en/wall/save_inside',
+            ['replyTo' => '4'] + $postData
+        );
+
+        $response = json_decode($this->_response->getBody());
+        if ($shouldSave) {
+            $this->assertResponseOk();
+            $this->assertObjectHasAttribute('content', $response);
+            $this->assertEquals($postData['content'], $response->content);
+        } else {
+            $this->assertResponseError();
+            $this->assertObjectHasAttribute('content', $response);
+            $this->assertObjectHasAttribute('outboundLinks', $response->content);
+        }
+        $this->assertMailCount($nbEmails);
     }
 
     private function postNewPosts($n) {

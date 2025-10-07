@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Event\NotificationListener;
+use App\Validation\Validation;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -103,9 +104,10 @@ class WallController extends AppController
 
         $isAuthenticated = !empty($userId);
 
-        $this->set('isAuthenticated', $isAuthenticated);
+        $unsentWallPost = $this->request->getSession()->consume('unsent_wall_post');
+        $confirmOutboundLinks = !Validation::isLinkPermitted($unsentWallPost);
         $this->set('allMessages', $messages);
-        $this->set('tenLastMessages', $tenLastMessages);
+        $this->set(compact('isAuthenticated', 'tenLastMessages', 'unsentWallPost', 'confirmOutboundLinks'));
     }
 
 
@@ -121,24 +123,29 @@ class WallController extends AppController
             $session = $this->request->getSession();
             $lastMess = $session->read('hash_last_wall');
             $thisMess = md5($content);
-            
-            $session->write(
-                'hash_last_wall',
-                $thisMess
-            );
-            $this->Cookie->write(
-                'hash_last_wall',
-                $thisMess,
-                false,
-                "+1 month"
-            );
+
             if ($lastMess != $thisMess) {
-                $newPost = $this->Wall->newEntity([
-                    'owner'   => $this->Auth->user('id'),
-                    'content' => $content,
-                ]);
+                $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                            'skipOutboundLinksCheck' : 'default';
+                $newPost = $this->Wall->newEntity(
+                    [
+                        'owner'   => $this->Auth->user('id'),
+                        'content' => $content,
+                    ],
+                    compact('validate')
+                );
                 // now save to database
                 $this->Wall->save($newPost);
+                if ($newPost->getErrors()) {
+                    foreach ($newPost->getErrors() as $error) {
+                        $firstValidationErrorMessage = reset($error);
+                        $this->Flash->set($firstValidationErrorMessage);
+                    }
+                    $session->write('unsent_wall_post', $content);
+                } else {
+                    $this->Flash->set(__('Your message has been posted on the wall.'));
+                    $session->write('hash_last_wall', $thisMess);
+                }
             }
         }
 
@@ -159,11 +166,26 @@ class WallController extends AppController
         $userId = $this->Auth->user('id');
         $content = $data['content'];
         $parentId = $data['replyTo'];
+        $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                    'skipOutboundLinksCheck' : 'default';
+
+        $this->viewBuilder()->setLayout('json');
 
         // now save to database
-        $message = $this->Wall->saveReply($parentId, $content, $userId);
-        $this->set('message', $message);
-        $this->viewBuilder()->setLayout('json');
+        try {
+            $message = $this->Wall->newReply($parentId, $content, $userId, compact('validate'));
+        } catch (RecordNotFoundException $e) {
+            return $this->response->withStatus(400);
+        }
+
+        if ($this->Wall->save($message)) {
+            $this->set('message', $this->Wall->getMessage($message->id));
+        } else {
+            $errors = json_encode($message->getErrors());
+            return $this->response
+                ->withStatus(400)
+                ->withStringBody($errors);
+        }
     }
 
     /**
@@ -191,10 +213,14 @@ class WallController extends AppController
         }
         
         if ($this->request->is('put')) {
-            $data = $this->request->getData();
-            $this->Wall->patchEntity($message, [
-                'content' => $data['content']
-            ]);
+            $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                        'skipOutboundLinksCheck' : 'default';
+            $this->Wall->patchEntity($message,
+                [
+                    'content' => $this->request->getData('content'),
+                ],
+                compact('validate')
+            );
             $savedMessage = $this->Wall->save($message);
             if ($savedMessage) {
                 $this->Flash->set(__('Message saved.'));
@@ -204,13 +230,15 @@ class WallController extends AppController
                     '#' => "message_$messageId"
                 ]);
             } else if ($message->getErrors()) {
-                $firstValidationErrorMessage = reset($message->getErrors())[0];
-                $this->Flash->set($firstValidationErrorMessage);
-                $this->redirect(['action' => 'edit', $messageId]);
+                foreach ($message->getErrors() as $error) {
+                    $firstValidationErrorMessage = reset($error);
+                    $this->Flash->set($firstValidationErrorMessage);
+                }
+                $confirmOutboundLinks = isset($message->getError('content')['outboundLinks']);
+                $this->set(compact('confirmOutboundLinks'));
             }
-        } else { 
-            $this->set('message', $message);
         }
+        $this->set('message', $message);
     }
 
     private function _cannotEdit() {

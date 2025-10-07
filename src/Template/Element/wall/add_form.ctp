@@ -34,9 +34,15 @@ $username = $user['username'];
 
         <?php
         echo $this->Form->textarea('content', [
+            'val' => $this->safeForAngular($unsentWallPost),
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
+        ]);
+
+        echo $this->element('validation/confirm_outbound_links', [
+            'label' => __('I confirm the links in my wall post are legitimate '.
+                          'and not included for SEO purposes.'),
         ]);
         ?>
 

@@ -176,26 +176,31 @@ class SentenceCommentsController extends AppController
             return $this->redirect('/');
         }
 
-        $this->Cookie->write(
-            'hash_last_com',
-            $thisCom,
-            false,
-            '+1 month'
+        $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                    'skipOutboundLinksCheck' : 'default';
+        $comment = $this->SentenceComments->newEntity(
+            [
+                'sentence_id' => $sentenceId,
+                'text' => $commentText,
+                'user_id' => $this->Auth->user('id')
+            ],
+            compact('validate')
         );
-
-        $comment = $this->SentenceComments->newEntity([
-            'sentence_id' => $sentenceId,
-            'text' => $commentText,
-            'user_id' => $this->Auth->user('id')
-        ]);
         $savedComment = $this->SentenceComments->save($comment);
         if ($savedComment) {
             $this->Flash->set(__('Your comment has been saved.'));
+            $this->Cookie->write(
+                'hash_last_com',
+                $thisCom,
+                false,
+                '+1 month'
+            );
         } else if ($comment->getErrors()) {
             foreach($comment->getErrors() as $error) {
                 $firstValidationErrorMessage = reset($error);
                 $this->Flash->set($firstValidationErrorMessage);
             }
+            $this->request->getSession()->write('unsent_comment', $commentText);
         }
         return $this->redirect([
             'controller' => 'sentences',
@@ -249,10 +254,14 @@ class SentenceCommentsController extends AppController
         } 
 
         if ($this->request->is('put')) {
-            $data = $this->request->getData();
-            $this->SentenceComments->patchEntity($comment, [
-                'text' => $data['text']
-            ]);
+            $text = $this->request->getData('text');
+            $validate = $this->request->getData('outboundLinksConfirmed', false) ?
+                        'skipOutboundLinksCheck' : 'default';
+            $this->SentenceComments->patchEntity(
+                $comment,
+                compact('text'),
+                compact('validate')
+            );
             $savedComment = $this->SentenceComments->save($comment);
             if ($savedComment) {
                 $this->Flash->set(
@@ -269,11 +278,11 @@ class SentenceCommentsController extends AppController
                     $firstValidationErrorMessage = reset($error);
                     $this->Flash->set($firstValidationErrorMessage);
                 }
-                return $this->redirect(['action' => 'edit', $commentId]);
+                $confirmOutboundLinks = isset($comment->getError('text')['outboundLinks']);
+                $this->set(compact('confirmOutboundLinks'));
             }
-        } else {
-            $this->set('sentenceComment', $comment);
         }        
+        $this->set('sentenceComment', $comment);
     }
 
     /**

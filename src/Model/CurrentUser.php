@@ -372,4 +372,8 @@ class CurrentUser
         $userSuspended = $user->role == User::ROLE_SPAMMER;
         return (CurrentUser::isAdmin() && ($userBlocked || $userSuspended));
     }
+
+    public static function hasOutboundLinkPermission() {
+        return self::isMember() && !self::get('is_spamdexing');
+    }
 }

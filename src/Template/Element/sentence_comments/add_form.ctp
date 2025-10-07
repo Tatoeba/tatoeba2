@@ -31,9 +31,15 @@ $username = $user['username'];
         
         <?php
         echo $this->Form->textarea('text', [
+            'value' => $this->safeForAngular($text ?? ''),
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
+        ]);
+
+        echo $this->element('validation/confirm_outbound_links', [
+            'label' => __('I confirm the links in my comment are legitimate '.
+                          'and not included for SEO purposes.')
         ]);
         ?>
 

@@ -26,6 +26,7 @@
  */
 namespace App\Model\Table;
 
+use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
 use Cake\Database\Schema\TableSchema;
@@ -34,6 +35,7 @@ use Cake\Filesystem\File;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Routing\Router;
 use Cake\Validation\Validator;
 
 class UsersTable extends Table
@@ -156,14 +158,41 @@ class UsersTable extends Table
                 ),
             ]);
 
+        $pmAdminsLink = Router::url(['controller' => 'private_messages', 'action' => 'write', 'TatoebaAdmins']);
         $validator
             ->allowEmpty('description')
-            ->scalar('description');
+            ->scalar('description')
+            ->add('description', 'outboundLinkCheck', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
+                'message' => format(
+                    __('Sorry, you do not have the permission to include links in your profile description. '.
+                       'Because of spam concerns, new accounts need to be verified before they can use '.
+                       'outbound links. Please remove any outbound link from your profile description '.
+                       'in order to continue. You can ask for permission to add links later by '.
+                       '{linkStart}sending a message to administrators{linkEnd}.'
+                    ),
+                    ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
+                ),
+            ]);
 
         $validator
             ->allowEmpty('homepage')
             ->scalar('homepage')
-            ->maxLength('homepage', 255);
+            ->maxLength('homepage', 255)
+            ->add('homepage', 'outboundLinkCheck', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
+                'message' => format(
+                    __('Sorry, you do not have the permission to set a homepage on your profile. '.
+                       'Because of spam concerns, new accounts need to be verified before they can use '.
+                       'outbound links. Please remove the homepage from your profile '.
+                       'in order to continue. You can ask for permission to add it later by '.
+                       '{linkStart}sending a message to administrators{linkEnd}.'
+                    ),
+                    ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
+                ),
+            ]);
 
         $validator
             ->scalar('image')
@@ -183,6 +212,10 @@ class UsersTable extends Table
             ->allowEmpty('audio_attribution_url')
             ->scalar('audio_attribution_url')
             ->maxLength('audio_attribution_url', 255);
+
+        $validator
+            ->allowEmpty('is_spamdexing')
+            ->boolean('is_spamdexing');
 
         return $validator;
     }
@@ -217,6 +250,9 @@ class UsersTable extends Table
         if (isset($data['birthday']['year']) && isset($data['birthday']['month']) && isset($data['birthday']['day'])) {
             $data['birthday'] = $this->_generateBirthdayDate($data['birthday']);
         }
+        if (isset($data['is_spamdexing']) && $data['is_spamdexing'] === '') {
+            $data['is_spamdexing'] = null;
+        }
     }
 
     /**
@@ -232,6 +268,16 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['email'], __('That email address already exists. Please try another.')));
 
         return $rules;
+    }
+
+    public function beforeSave(Event $event, User $user, ArrayObject $options)
+    {
+        if ($user->isNew()) {
+            if (!$user->has('is_spamdexing')) {
+                // New users are considered potential spamdexing accounts until manual verification
+                $user->is_spamdexing = true;
+            }
+        }
     }
 
     private function removeImages($file)
