@@ -26,7 +26,8 @@ $langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
 
         <div layout="row" layout-margin layout-align="center end" ng-if="ctrl.canEdit">
             <div layout="column">
-                <label for="lang"><?= h(__('Language:')) ?></label>
+                <?php /* @translators: language field label in vocabulary request edit form */ ?>
+                <label for="lang"><?= h(__('Language')) ?></label>
                 <?= $this->element(
                     'language_dropdown',
                     array(
