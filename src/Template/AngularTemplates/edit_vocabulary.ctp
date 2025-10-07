@@ -2,8 +2,7 @@
 $langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
 ?>
 
-<md-dialog id="vocab-edit"
-           aria-label="<?= __('Edit vocabulary item') ?>"
+<md-dialog aria-label="<?= __('Edit vocabulary item') ?>"
            style="max-width: 500px"
            ng-cloak>
     <md-toolbar>
