@@ -12,9 +12,8 @@ class UsersLanguagesTableTest extends TestCase {
         'app.users',
         'app.users_languages',
         'app.languages',
-        'app.sentences',
-        'app.reindex_flags',
-        'app.links',
+        'app.queued_jobs',
+        'plugin.Queue.QueueProcesses',
     );
     public $autoFixtures = false;
 
@@ -241,13 +240,17 @@ class UsersLanguagesTableTest extends TestCase {
         I18n::setLocale($prevLocale);
     }
 
-    function assertSentencesFlaggedForReindex($expected) {
-        $result = TableRegistry::getTableLocator()->get('ReindexFlags')
-            ->find('list', ['valueField' => 'sentence_id'])
-            ->select(['sentence_id'])
-            ->order('sentence_id')
-            ->toList();
-        $this->assertEquals($expected, $result);
+    function assertSentencesReindexJobQueued($expectedConfig) {
+        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
+        $this->assertNotNull($job);
+        $this->assertEquals($expectedConfig, unserialize($job->data));
+    }
+
+    function assertSentencesReindexJobNotQueued() {
+        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
+        $this->assertNull($job);
     }
 
     function testSaveUserLanguage_reindexSentencesOnLevelDrop() {
@@ -257,9 +260,7 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->UsersLanguages->save($nativeJpn);
 
-        // should reindex sentences 6, 10, 56 and 57
-        // along with all direct and indirect translations
-        $this->assertSentencesFlaggedForReindex([1, 2, 4, 6, 10, 55, 56, 57, 65]);
+        $this->assertSentencesReindexJobQueued(['user_id' => 7, 'lang' => 'jpn']);
     }
 
     function testSaveUserLanguage_reindexSentencesOnLevelUp() {
@@ -269,9 +270,7 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->UsersLanguages->save($learnerFra);
 
-        // should reindex sentences 4, 8, 12 and 35
-        // along with all direct and indirect translations
-        $this->assertSentencesFlaggedForReindex([1, 2, 3, 4, 5, 6, 8, 10, 12, 35]);
+        $this->assertSentencesReindexJobQueued(['user_id' => 7, 'lang' => 'fra']);
     }
 
     function testSaveUserLanguage_noReindexSentencesOnLearnerLevelChange() {
@@ -281,7 +280,7 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->UsersLanguages->save($learnerFra);
 
-        $this->assertSentencesFlaggedForReindex([]);
+        $this->assertSentencesReindexJobNotQueued();
     }
 
     function testSaveUserLanguage_reindexSentencesOnLanguageDeletion() {
@@ -290,9 +289,7 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->UsersLanguages->delete($nativeJpn);
 
-        // should reindex sentences 6, 10, 56 and 57
-        // along with all direct and indirect translations
-        $this->assertSentencesFlaggedForReindex([1, 2, 4, 6, 10, 55, 56, 57, 65]);
+        $this->assertSentencesReindexJobQueued(['user_id' => 7, 'lang' => 'jpn']);
     }
 
     function testSaveUserLanguage_noReindexSentencesOnLearningLanguageDeletion() {
@@ -301,7 +298,7 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->UsersLanguages->delete($learnerFra);
 
-        $this->assertSentencesFlaggedForReindex([]);
+        $this->assertSentencesReindexJobNotQueued();
     }
 
     function testSaveUserLanguage_reindexSentencesOnNewNativeLanguage() {
@@ -316,9 +313,7 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->UsersLanguages->save($nativeFra);
 
-        // should reindex sentence 55
-        // along with all direct and indirect translations
-        $this->assertSentencesFlaggedForReindex([55, 56, 57, 65]);
+        $this->assertSentencesReindexJobQueued(['user_id' => 2, 'lang' => 'fra']);
     }
 
     function testSaveUserLanguage_noReindexSentencesOnNewLearningLanguage() {
@@ -333,6 +328,6 @@ class UsersLanguagesTableTest extends TestCase {
 
         $this->UsersLanguages->save($learningFra);
 
-        $this->assertSentencesFlaggedForReindex([]);
+        $this->assertSentencesReindexJobNotQueued();
     }
 }
