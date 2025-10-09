@@ -19,22 +19,41 @@
 
 namespace App\Shell\Task;
 
+use App\Shell\BatchOperationTrait;
 use Cake\Datasource\ModelAwareTrait;
 use Queue\Shell\Task\QueueTask;
 
 class QueueSentencesReindexTask extends QueueTask {
 
+    use BatchOperationTrait;
     use ModelAwareTrait;
 
     public $retries = 0;
 
+    public function __construct() {
+        parent::__construct(...func_get_args());
+
+        /* 500 is just my guess of a reasonable balance between processing
+         * efficency and RAM usage. The number of sentences queued for
+         * reindexation will be about 500 multiplied by the average number
+         * of direct and indirect translations, which, in practice, should
+         * not be greater than tens of thousands. */
+        $this->batchOperationSize = 500;
+    }
+
     private function reindexNativeSpeakerSentences(int $user_id, string $lang) {
         $this->loadModel('Sentences');
-        $sentenceIds = $this->Sentences
-            ->find('list', ['valueField' => 'id'])
-            ->where(compact('user_id', 'lang'))
-            ->toList();
-        $this->Sentences->flagSentenceAndTranslationsToReindex($sentenceIds);
+        $query = $this->Sentences
+            ->find()
+            ->select(['id' => 'Sentences.id'])
+            ->where(compact('user_id', 'lang'));
+
+        $this->batchOperationNewORM($query, function ($entities) {
+            $sentenceIds = $entities->extract('id')->toList();
+            if (!empty($sentenceIds)) {
+                $this->Sentences->flagSentenceAndTranslationsToReindex($sentenceIds);
+            }
+        });
     }
 
     public function run(array $config, $jobId) {

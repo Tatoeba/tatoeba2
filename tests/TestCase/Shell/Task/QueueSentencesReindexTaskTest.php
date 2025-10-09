@@ -55,4 +55,10 @@ class QueueSentencesReindexTaskTest extends TestCase
         // along with all direct and indirect translations
         $this->assertSentencesFlaggedForReindex([1, 2, 4, 6, 10, 55, 56, 57, 65]);
     }
+
+    public function testRun_userLanguageLevelUp_batched()
+    {
+        $this->task->batchOperationSize = 2;
+        $this->testRun_userLanguageLevelUp();
+    }
 }
