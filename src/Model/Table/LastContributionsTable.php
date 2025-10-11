@@ -73,7 +73,7 @@ class LastContributionsTable extends Table
             ->contain([
                 'Users' => [
                     'fields' => [
-                        'username', 'role', 'image'
+                        'id', 'username', 'role', 'image'
                     ]
                 ]
             ])

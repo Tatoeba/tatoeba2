@@ -57,7 +57,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         <?php
         echo $this->element(
-            'currently_active_members',
+            'currently_active_lang_members',
             array(
                 'currentContributors' => $currentContributors
             )

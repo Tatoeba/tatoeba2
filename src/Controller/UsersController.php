@@ -557,6 +557,9 @@ class UsersController extends AppController
         $this->loadModel('LastContributions');
         $currentContributors = $this->LastContributions->getCurrentContributorsInLang($lang);
         $totalContributors = $this->LastContributions->getTotal($currentContributors);
+        foreach($currentContributors as $contributor) {
+            $contributor->user->rating = $this->UsersLanguages->getLanguageInfoOfUser($lang, $contributor->user->id)->level;
+        }
 
         if (empty($lang)) {
             $lang = $usersLanguages[0]->language_code;
