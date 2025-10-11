@@ -43,9 +43,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
-        <?php /* @translators: header text on the side bar of "Members speaking x" page */ ?>
-        <h2><?php echo __('Languages'); ?></h2>
-
         <p>
         <?php
         echo $this->Html->link(
@@ -57,33 +54,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         );
         ?>
         </p>
-
-        <table class="usersLanguagesStats">
-        <?php
-        foreach($usersLanguages as $language) {
-            $langCode = $language->language_code;
-            $langName = $this->Html->link(
-                $this->Languages->codeToNameAlone($langCode),
-                array(
-                    'controller' => 'users',
-                    'action' => 'for_language',
-                    $langCode
-                )
-            );
-            $total = $language->total;
-            $selected = '';
-            if ($lang == $langCode) {
-                $selected = 'selected';
-            }
-
-            echo '<tr class="'.$selected.'">';
-            echo $this->Html->tag('td', $this->Languages->icon($langCode, array()));
-            echo $this->Html->tag('td', $langName);
-            echo $this->Html->tag('td', $this->Number->format($total));
-            echo '</tr>';
-        }
-        ?>
-        </table>
 
         <?php
         echo $this->element(
