@@ -59,6 +59,38 @@ class LastContributionsTable extends Table
         return $result;
     }
 
+    /**
+     * Get the top contributors from the latest contributions in a specified language.
+     *
+     * @param string $lang 3-letter language code of selected language.
+     * @param int $limit Number of top contributors.
+     *
+     * @return array
+     */
+    public function getCurrentContributorsInLang($lang)
+    {
+        $result = $this->find()
+            ->contain([
+                'Users' => [
+                    'fields' => [
+                        'username', 'role', 'image'
+                    ]
+                ]
+            ])
+            ->select([
+                'total' => 'COUNT(LastContributions.id)',
+                'Users.username',
+                'Users.role',
+                'Users.image'
+            ])
+            ->where(['LastContributions.sentence_lang' => $lang])
+            ->order(['total' => 'DESC'])
+            ->group(['LastContributions.user_id'])
+            ->toList();
+
+        return $result;
+    }
+
 
     /**
      * [getTotalLastContributions description]

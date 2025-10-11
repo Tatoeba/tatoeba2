@@ -84,9 +84,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         }
         ?>
         </table>
+
+        <?php
+        echo $this->element(
+            'currently_active_members',
+            array(
+                'currentContributors' => $currentContributors
+            )
+        );
+        ?>
     </div>
 </div>
-
 
 <div id="main_content">
     <section class="md-whiteframe-1dp">
@@ -109,7 +117,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         $this->Pagination->display();
 
         foreach($users as $user) {
-            
             $username = $user->user->username;
             $languageLevel = $user->level;
 

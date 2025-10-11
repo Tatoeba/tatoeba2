@@ -554,6 +554,10 @@ class UsersController extends AppController
         $this->loadModel('UsersLanguages');
         $usersLanguages = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
 
+        $this->loadModel('LastContributions');
+        $currentContributors = $this->LastContributions->getCurrentContributorsInLang($lang);
+        $totalContributors = $this->LastContributions->getTotal($currentContributors);
+
         if (empty($lang)) {
             $lang = $usersLanguages[0]->language_code;
         }
@@ -563,6 +567,8 @@ class UsersController extends AppController
 
         $this->set('users', $users);
         $this->set('usersLanguages', $usersLanguages);
+        $this->set('currentContributors', $currentContributors);
+        $this->set('total', $totalContributors);
         $this->set('lang', $lang);
     }
 
