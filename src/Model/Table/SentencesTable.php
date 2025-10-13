@@ -308,9 +308,10 @@ class SentencesTable extends Table
         }
     }
 
-    public function flagSentenceAndTranslationsToReindex($id) {
-        $this->needsReindex($id);
-        $this->flagTranslationsToReindex($id);
+    public function flagSentenceAndTranslationsToReindex($ids) {
+        $ids = (array)$ids;
+        $transIds = $this->Links->findDirectAndIndirectTranslationsIds($ids);
+        $this->needsReindex(array_unique(array_merge($ids, $transIds)));
     }
 
     private function flagTranslationsToReindex($id)

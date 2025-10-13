@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use App\Event\SentencesReindexListener;
 use App\Lib\LanguagesLib;
 use App\Model\Entity\Language;
 use App\Model\Entity\User;
@@ -44,6 +45,8 @@ class UsersLanguagesTable extends Table
         $this->belongsTo('Languages', ['foreignKey' => 'language_code']);
 
         $this->addBehavior('Timestamp');
+
+        $this->getEventManager()->on(new SentencesReindexListener());
     }
 
     public function validationDefault(Validator $validator)

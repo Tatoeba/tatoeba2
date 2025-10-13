@@ -124,6 +124,16 @@ class LinksTableTest extends TestCase {
 		$this->assertEquals($result, $filteredResult);
 	}
 
+	function testFindDirectAndIndirectTranslationsIds_worksWithMultipleSentences() {
+		$sentenceIds = array(1, 6, 65);
+		$expectedLinkedSentences = array(1, 2, 3, 4, 5, 6, 10, 55, 56, 57);
+
+		$result = $this->Link->findDirectAndIndirectTranslationsIds($sentenceIds);
+		sort($result, SORT_NUMERIC);
+
+		$this->assertEquals($result, $expectedLinkedSentences);
+	}
+
 	function testFindDirectAndIndirectTranslationsIds_walksWholeGraph() {
 		$sentenceId = 2;
 		$expectedLinkedSentences = array(1, 3, 4, 5, 6);
