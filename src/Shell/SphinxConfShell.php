@@ -53,7 +53,7 @@ class SphinxConfShell extends Shell {
         'eng' => 'libstemmer_eng', # English
         'fin' => 'libstemmer_fin', # Finnish
         'fra' => 'libstemmer_fra', # French
-        'deu' => 'libstemmer_deu', # German
+        'deu' => 'lemmatize_de_all', # German
         'ell' => 'libstemmer_ell', # Greek
         'hin' => 'libstemmer_hin', # Hindi
         'hun' => 'libstemmer_hun', # Hungarian
@@ -519,6 +519,30 @@ class SphinxConfShell extends Shell {
                     return $v != 'U+641..U+648' and $v != 'U+6aa..U+6bf'
                 ; }
             )
+        ))."\n";
+
+        /**
+         * Allow case-insensitive search in German
+         * by not casefolding Latin characters.
+         */
+        $noLatinCaseFoldingMap = [
+            'A..Z->a..z' => 'A..Z',
+            # Latin-1 Supplement (0080-00FF)
+            'U+C0..U+D6->U+E0..U+F6' => 'U+C0..U+D6',
+            'U+D8..U+DE->U+F8..U+FE' => 'U+D8..U+DE',
+            # Latin extended-A (0100-017F)
+            'U+100..U+137/2' => 'U+100..U+137',
+            'U+139..U+148/2' => 'U+139..U+148',
+            'U+14A..U+177/2' => 'U+14A..U+177',
+            'U+179..U+17E/2' => 'U+179..U+17E',
+        ];
+        $this->indexExtraOptions['deu'] =
+            "
+        charset_table = ".implode(', ', array_map(
+            function($value) use ($noLatinCaseFoldingMap) {
+                return $noLatinCaseFoldingMap[$value] ?? $value;
+            },
+            $this->charsetTable
         ))."\n";
 
         foreach ($this->morphology as $lang => $morphology) {
