@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-30 11:08+0000\n"
+"POT-Creation-Date: 2025-10-07 06:40+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Language-Team: Chinese (Hakka) (https://app.transifex.com/tatoeba/teams/28284/hak/)\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Language: hak\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 
@@ -95,7 +95,7 @@ msgid "Correctness"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
 msgid "Submit"
 msgstr ""
 
@@ -177,11 +177,52 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L93
+msgid "Spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L95
+msgid "Unknown (links restricted)"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+msgid "Verified (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L97
+msgid "Legacy (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L106
 msgid "Level"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
+msgid "About spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
+msgid ""
+"\"Unknown\" users cannot include any outbound link in their profile. In "
+"addition, when trying to post a sentence comment or wall post that includes "
+"outbound links, they are warned that their links must be legitimate. If they"
+" choose to continue, the message is posted and an e-mail is sent to "
+"moderators."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
+msgid ""
+"\"Verified\" and \"legacy\" users can include any link anywhere without "
+"restriction."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
+msgid ""
+"\"Legacy\" users created their account before this restriction was "
+"implemented."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L128
 msgid "Send notifications"
 msgstr ""
 

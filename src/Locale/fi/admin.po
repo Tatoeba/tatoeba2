@@ -5,17 +5,17 @@
 # 
 # Translators:
 # صفا الفليج <safaalfulaij@hotmail.com>, 2022
-# Silja Ijas, 2022
 # thanuir, 2023
+# Silja Ijas, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-30 11:08+0000\n"
+"POT-Creation-Date: 2025-10-07 06:40+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: thanuir, 2023\n"
+"Last-Translator: Silja Ijas, 2025\n"
 "Language-Team: Finnish (https://app.transifex.com/tatoeba/teams/28284/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,14 +23,14 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "Virhe: Käyttäjän {username} lisäämiä lauseita ei voitu merkitä "
 "epäluotettaviksi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Merkitty kaikki käyttäjän {username} lisäämät lauseet epäluotettaviksi."
@@ -110,7 +110,7 @@ msgid "Correctness"
 msgstr "Virheettömyys"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
 msgid "Submit"
 msgstr "Lähetä"
 
@@ -194,11 +194,62 @@ msgstr "Kieli"
 msgid "Group"
 msgstr "Ryhmä"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L93
+msgid "Spamdexing status"
+msgstr "Spamdexing-tila"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L95
+msgid "Unknown (links restricted)"
+msgstr "Tuntematon (rajoitetut linkit)"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+msgid "Verified (links not restricted)"
+msgstr "Varmistettu (linkkejä ei rajoitettu)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L97
+msgid "Legacy (links not restricted)"
+msgstr "Vanha (linkkejä ei rajoitettu)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L106
 msgid "Level"
 msgstr "Taso"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
+msgid "About spamdexing status"
+msgstr "Tietoja spamdexing-tilasta"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
+msgid ""
+"\"Unknown\" users cannot include any outbound link in their profile. In "
+"addition, when trying to post a sentence comment or wall post that includes "
+"outbound links, they are warned that their links must be legitimate. If they"
+" choose to continue, the message is posted and an e-mail is sent to "
+"moderators."
+msgstr ""
+"\"Tuntemattomat\" käyttäjät eivät voi sisällyttää profiilitekstiinsä ulos "
+"johtavia linkkejä. Tämän lisäksi jos he yrittävät kommentoida lausetta tai "
+"kirjoittaa seinälle viestin, jossa on ulos johtavia linkkejä, heitä "
+"varoitetaan siitä, että linkkien tulee olla sääntöjen mukaisia. Jos he "
+"päättävät jatkaa, viesti/kommentti julkaistaan ja siitä lähetetään viesti "
+"moderaattoreille."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
+msgid ""
+"\"Verified\" and \"legacy\" users can include any link anywhere without "
+"restriction."
+msgstr ""
+"\"Varmistetut\" ja \"vanhat\" käyttäjät voivat sisällyttää minkä tahansa "
+"linkin mihin tahansa ilman rajoituksia."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
+msgid ""
+"\"Legacy\" users created their account before this restriction was "
+"implemented."
+msgstr ""
+"\"Vanhat\" käyttäjät ovat luoneet tilinsä ennen kuin tämä rajoitus otettiin "
+"käyttöön."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L128
 msgid "Send notifications"
 msgstr "Lähetä ilmoitukset"
 
