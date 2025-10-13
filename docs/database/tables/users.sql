@@ -12,6 +12,7 @@
 -- email             Email of the user.
 -- since             Date of registration.
 -- last_time_active  Timestamp of the last time the user logged in.
+-- last_contribution  Timestamp of the last time the user added a sentence.
 -- level             Currently not in use. I wanted to integrate some game mechanics
 --                     in Tatoeba, but it's obviously not easy...
 -- group_id          Id of the group in which the user is.
@@ -36,6 +37,7 @@ CREATE TABLE `users` (
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `since` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_time_active` int(11) NOT NULL DEFAULT '0',
+  `last_contribution` int(11) NOT NULL DEFAULT '0',
   `level` tinyint(2) NOT NULL DEFAULT '0',
   `group_id` tinyint(4) NOT NULL,
   `send_notifications` tinyint(1) NOT NULL DEFAULT '1',

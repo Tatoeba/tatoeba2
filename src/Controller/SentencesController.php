@@ -277,6 +277,17 @@ class SentencesController extends AppController
     }
 
     /**
+     * update a user's "last contribution" timestamp
+     *
+     * @return void
+     */
+    public function update_user_last_contribution($userId) {
+        $user = $this->Users->get($userId);
+        $user->last_contribution = time();
+        $this->Users->save($user);
+    }
+
+    /**
      * used by sentences.contribute.js
      * save an other new sentence
      *
@@ -294,6 +305,7 @@ class SentencesController extends AppController
         if ($userLevel < 0) {
             return;
         }
+        $this->update_user_last_contribution($userId);
 
         $sentenceLang = $this->request->getData('selectedLang');
         $sentenceText = $this->request->getData('value');
@@ -430,6 +442,7 @@ class SentencesController extends AppController
         if ($userLevel < 0) {
             return ;
         }
+        $this->update_user_last_contribution($userId);
 
         $translationText = $this->request->getData('value');
 
