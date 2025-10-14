@@ -431,14 +431,6 @@ class SentencesSearchFormTest extends TestCase
         $this->assertEquals('', $this->Form->getData()['trans_orphan']);
     }
 
-    public function testCheckUnwantedCombinations_nativeWithoutLanguage() {
-        $this->Form->setData(['from' => '', 'native' => 'yes']);
-        $this->Form->checkUnwantedCombinations();
-
-        $this->assertCount(1, $this->Form->getIgnoredFields());
-        $this->assertEquals('', $this->Form->getData()['native']);
-    }
-
     public function testCheckUnwantedCombinations_userNotNative() {
         $this->Form->setData([
             'user' => 'contributor',

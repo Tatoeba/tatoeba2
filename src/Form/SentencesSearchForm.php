@@ -491,17 +491,6 @@ class SentencesSearchForm extends Form
             $this->_data['trans_orphan'] = $this->setDataTransOrphan('');
         }
 
-        if ($this->_data['native'] === 'yes' && $this->_data['from'] === '') {
-            $this->ignored[] = __(
-                /* @translators: This string will be preceded by “Warning: the
-                   following criteria have been ignored:” */
-                "“owned by a self-identified native”, because “sentence ".
-                "language” is set to “any”",
-                true
-            );
-            $this->_data['native'] = $this->setDataNative('');
-        }
-
         if ($this->_data['native'] === 'yes' && $this->ownerId) {
             $this->loadModel('UsersLanguages');
             $natives = $this->UsersLanguages->find()

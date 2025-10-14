@@ -205,7 +205,7 @@ class SentencesController extends ApiController
      *     @OA\Schema(ref="#/components/schemas/NegatableListIdList")
      *   ),
      *   @OA\Parameter(name="is_native", in="query",
-     *     description="Limit to sentences owned by a self-identified native speaker (if value is yes) or a self-identified non-native speaker (if the value is no). This parameter can only be used when searching in a single language (not several).",
+     *     description="Limit to sentences owned by a self-identified native speaker (if value is yes) or a self-identified non-native speaker (if the value is no).",
      *     @OA\Schema(ref="#/components/schemas/Boolean")
      *   ),
      *   @OA\Parameter(name="origin", in="query",
