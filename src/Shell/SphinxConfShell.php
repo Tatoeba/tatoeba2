@@ -673,7 +673,7 @@ EOT;
                         'u:',COALESCE(sent_end.user_id, 0),',', \
                         'c:',sent_end.correctness + 1,',', \
                         'a:',COUNT(audios_sent_end.id) > 0,',', \
-                        'n:',ul_sent_end.level = 5, \
+                        'n:',COALESCE(ul_sent_end.level = 5, 0), \
                     '}') as trans \
                 from \
                     sentences sent_start \
