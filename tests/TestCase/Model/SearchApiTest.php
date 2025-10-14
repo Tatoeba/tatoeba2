@@ -283,10 +283,6 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'is_native' => ['yes', 'yes'] ],
                 new BadRequestException("Invalid usage of parameter 'is_native': cannot be provided multiple times")
             ],
-            'is_native with multiple langs' => [
-                [ 'lang' => 'epo,sun', 'is_native' => 'yes' ],
-                new BadRequestException("Invalid usage of parameter 'is_native': must be used with a single language (multiple languages were provided to the language filter: epo sun)")
-            ],
 
             'valid origin' => [
                 [ 'lang' => 'epo', 'origin' => 'original' ],

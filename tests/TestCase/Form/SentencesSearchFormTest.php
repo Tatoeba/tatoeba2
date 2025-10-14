@@ -137,8 +137,7 @@ class SentencesSearchFormTest extends TestCase
             [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
             [ ['list' => 'invalid'], ['ListFilter' => null],                           '',   ],
 
-            [ ['native' => 'yes', 'from' => 'eng'],     ['IsNativeFilter' => new IsNativeFilter()], 'yes'],
-            [ ['native' => 'yes', 'from' => 'invalid'], ['IsNativeFilter' => null],                 'yes'],
+            [ ['native' => 'yes'],     ['IsNativeFilter' => new IsNativeFilter()], 'yes'],
             [ ['native' => 'no'],      ['IsNativeFilter' => null], '' ],
             [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
             [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
@@ -442,7 +441,6 @@ class SentencesSearchFormTest extends TestCase
 
     public function testCheckUnwantedCombinations_userNotNative() {
         $this->Form->setData([
-            'from' => 'eng',
             'user' => 'contributor',
             'native' => 'yes',
         ]);

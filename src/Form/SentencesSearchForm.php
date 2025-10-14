@@ -310,7 +310,6 @@ class SentencesSearchForm extends Form
         if ($native) {
             $filter = new IsNativeFilter();
             $this->search->setFilter($filter);
-            $filter->setSearch($this->search);
         } else {
             $this->search->unsetFilter(IsNativeFilter::class);
         }
