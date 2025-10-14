@@ -417,6 +417,28 @@ echo $this->Form->create('AdvancedSearch', [
                     </div>
                 </div>
 
+                <div class="param">
+                    <div layout="row" layout-align="center">
+                        <label for="trans-native" flex><?= __('Is owned by a native:') ?></label>
+                        <?php
+                        echo $this->Form->input('native', array(
+                            'label' => '',
+                            'options' => array(
+                                /* @translators: dropdown option of "Is owned by a native:" field in search form */
+                                '' => __x('native', 'Any'),
+                                'no' => __('No'),
+                                'yes' => __('Yes'),
+                            ),
+                            'ng-model' => 'filters.trans_native',
+                            'ng-model-init' => $trans_native,
+                        ));
+                        ?>
+                    </div>
+                    <div class="hint">
+                        <?= __('Native speakers are self-identified.') ?>
+                    </div>
+                </div>
+
                 <div class="param" layout="row" layout-align="center">
                     <label for="trans-has-audio" flex><?= __('Has audio:') ?></label>
                     <?php

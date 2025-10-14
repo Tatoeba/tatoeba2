@@ -18,6 +18,7 @@ use App\Model\Search\TagFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
@@ -59,6 +60,7 @@ class SentencesSearchForm extends Form
         'trans_user' => '',
         'trans_orphan' => '',
         'trans_unapproved' => '',
+        'trans_native' => '',
         'trans_has_audio' => '',
         'trans_filter' => 'limit',
         'sort' => 'relevance',
@@ -223,6 +225,14 @@ class SentencesSearchForm extends Form
         return $this->setBoolFilter(
             TranslationIsUnapprovedFilter::class,
             $trans_unapproved,
+            $this->search->getTranslationFilters()
+        );
+    }
+
+    protected function setDataTransNative(string $trans_native) {
+        return $this->setBoolFilter(
+            TranslationIsNativeFilter::class,
+            $trans_native,
             $this->search->getTranslationFilters()
         );
     }
