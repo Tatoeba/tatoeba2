@@ -23,6 +23,7 @@ use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationOwnerFilter;
@@ -707,6 +708,28 @@ class SearchTest extends TestCase
         } catch (InvalidValueException $e) {
             $this->assertTrue(true);
         }
+    }
+
+    public function testfilterTranslationIsNative_true() {
+        $this->Search->setTranslationFilter(new TranslationIsNativeFilter(true));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ANY(t.n=1 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterTranslationIsNative_false() {
+        $this->Search->setTranslationFilter(new TranslationIsNativeFilter(false));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ANY(not (t.n=1) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTranslationAudio_true() {
