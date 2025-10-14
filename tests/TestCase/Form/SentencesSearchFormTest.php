@@ -137,8 +137,8 @@ class SentencesSearchFormTest extends TestCase
             [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
             [ ['list' => 'invalid'], ['ListFilter' => null],                           '',   ],
 
-            [ ['native' => 'yes'],     ['IsNativeFilter' => new IsNativeFilter()], 'yes'],
-            [ ['native' => 'no'],      ['IsNativeFilter' => null], '' ],
+            [ ['native' => 'yes'],     ['IsNativeFilter' => new IsNativeFilter(true)],  'yes' ],
+            [ ['native' => 'no'],      ['IsNativeFilter' => new IsNativeFilter(false)], 'no'  ],
             [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
             [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
 

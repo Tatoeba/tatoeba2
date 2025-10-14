@@ -306,14 +306,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataNative(string $native) {
-        $native = $native === 'yes' ? true : null;
-        if ($native) {
-            $filter = new IsNativeFilter();
-            $this->search->setFilter($filter);
-        } else {
-            $this->search->unsetFilter(IsNativeFilter::class);
-        }
-        return $native ? 'yes' : '';
+        return $this->setBoolFilter(IsNativeFilter::class, $native, $this->search);
     }
 
     private function _setDataWordCountFilter(string $value, $before, $after) {
