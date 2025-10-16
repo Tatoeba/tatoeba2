@@ -144,11 +144,12 @@ class UsersLanguagesTable extends Table
                     'fields' => array(
                         'id',
                         'username',
-                        'image'
+                        'image',
+                        'last_contribution'
                     )
                 )
             ),
-            'order' => ['UsersLanguages.level' => 'DESC'],
+            'order' => array('UsersLanguages.level DESC', 'Users.last_contribution DESC'),
             'limit' => 30
         );
 
