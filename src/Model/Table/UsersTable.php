@@ -592,4 +592,13 @@ class UsersTable extends Table
             $this->save($user);
         }
     }
+
+    public function updateLastContribution($userId)
+    {
+        if ($this->exists(["Users.id" => $userId])) {
+            $user = $this->get($userId);
+            $user->last_contribution = time();
+            $this->save($user);
+        }
+    }
 }
