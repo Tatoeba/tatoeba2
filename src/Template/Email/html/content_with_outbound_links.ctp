@@ -39,6 +39,6 @@ $userEditUrl = [
 ];
 ?>
 
-<p>User <strong><?= $this->Html->link($author->username, $profileUrl, $opts) ?></strong> has <?= $entity->isNew() ? "posted" : "edited" ?> a <?= $what ?>. Note that before posting it, <?= h($author->username) ?> confirmed the links are legitimate and not for SEO purposes.</p>
+<p>User <strong><?= $this->Html->link($author->username, $profileUrl, $opts) ?></strong> has <?= $entity->isNew() ? "posted" : "edited" ?> a <?= $what ?>. Note that before posting it, <?= h($author->username) ?> affirmed the links are legitimate and not for SEO purposes.</p>
 
 <p>You may <?= $this->Html->link("edit {$author->username}'s status", $userEditUrl, $opts) ?>.</p>
