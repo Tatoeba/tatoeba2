@@ -69,9 +69,11 @@ class AudiosTable extends Table
             ->allowEmptyString('user_id');
 
         $validator
+            ->allowEmpty('created')
             ->dateTime('created');
 
         $validator
+            ->allowEmpty('modified')
             ->dateTime('modified');
 
         $validator

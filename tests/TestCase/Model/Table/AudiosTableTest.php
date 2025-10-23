@@ -97,15 +97,15 @@ class AudiosTableTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    function testCreatedCantBeEmpty() {
-        $this->_assertInvalidRecordWith(0, array('created' => ''));
+    function testCreatedCanBeNull() {
+        $this->_assertValidRecordWith(0, array('created' => null));
     }
     function testCreatedIsAutomaticallySet() {
         $this->_assertValidRecordWithout(0, array('created'));
     }
 
-    function testModifiedCantBeEmpty() {
-        $this->_assertInvalidRecordWith(0, array('modified' => ''));
+    function testModifiedCanBeNull() {
+        $this->_assertValidRecordWith(0, array('modified' => null));
     }
     function testModifiedIsAutomaticallySet() {
         $this->_assertValidRecordWithout(0, array('modified'));
