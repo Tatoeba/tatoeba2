@@ -13,9 +13,8 @@ class AddUsersLastContributionColumn extends AbstractMigration
     public function change()
     {
         $table = $this->table('users');
-        $table->addColumn('last_contribution', 'integer', [
+        $table->addColumn('last_contribution', 'datetime', [
             'default' => null,
-            'limit' => 11,
             'null' => true,
         ]);
         $table->update();

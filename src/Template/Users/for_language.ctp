@@ -112,7 +112,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             
             $username = $user->user->username;
             $languageLevel = $user->level;
-            $timeSinceLastActivity = time() - $user->user->last_contribution;
+            $timeStringOfLastActivity = $user->user->last_contribution;
+            $timeSinceLastActivity = (new DateTime('now'))->getTimestamp() - (new DateTime($timeStringOfLastActivity))->getTimestamp();
 
             echo '<div class="user">';
             echo '<div class="profilePicture">';
@@ -127,7 +128,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         $username
                     )
                 );
-                if ($timeSinceLastActivity < 604800) { /* Add a calendar icon for users who have been active within the past week */
+                if (!is_null($timeStringOfLastActivity) && $timeSinceLastActivity < 604800) { /* Add a calendar icon for users who have been active within the past week */
                     echo '<md-icon class="material-icons user-recently-active-icon" aria-label="comment" title="Active this week">comment</md-icon>';
                 }
                 echo $this->Members->displayLanguageLevel($languageLevel);
