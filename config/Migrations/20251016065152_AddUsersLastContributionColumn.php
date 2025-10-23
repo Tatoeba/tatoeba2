@@ -16,6 +16,7 @@ class AddUsersLastContributionColumn extends AbstractMigration
         $table->addColumn('last_contribution', 'datetime', [
             'default' => null,
             'null' => true,
+            'after' => 'last_time_active'
         ]);
         $table->update();
     }
