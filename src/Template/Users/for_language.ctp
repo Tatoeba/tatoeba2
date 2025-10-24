@@ -109,11 +109,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         $this->Pagination->display();
 
         foreach($users as $user) {
-            
             $username = $user->user->username;
             $languageLevel = $user->level;
             $timeStringOfLastActivity = $user->user->last_contribution;
-            $timeSinceLastActivity = (new DateTime('now'))->getTimestamp() - (new DateTime($timeStringOfLastActivity))->getTimestamp();
+            $timeSinceLastActivity = null;
+            try { /* Catch case in which $timeStringOfLastActivity is not a valid datetime string */
+                $timeSinceLastActivity = (new DateTime('now'))->getTimestamp() - (new DateTime($timeStringOfLastActivity))->getTimestamp();
+            } catch (Exception $e) {
+            }
 
             echo '<div class="user">';
             echo '<div class="profilePicture">';
@@ -128,7 +131,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         $username
                     )
                 );
-                if (!is_null($timeStringOfLastActivity) && $timeSinceLastActivity < 604800) { /* Add a calendar icon for users who have been active within the past week */
+                if (!is_null($timeSinceLastActivity) && $timeSinceLastActivity < 604800) { /* Add a calendar icon for users who have been active within the past week */
                     echo '<md-icon class="material-icons user-recently-active-icon" aria-label="comment">comment<md-tooltip>';
                     echo h(__("Active within the past week"));
                     echo '</md-tooltip></md-icon>';

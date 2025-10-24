@@ -19,5 +19,9 @@ class AddUsersLastContributionColumn extends AbstractMigration
             'after' => 'last_time_active'
         ]);
         $table->update();
+
+        if ($this->isMigratingUp()) {
+            $this->execute("update users u join (select user_id, max(datetime) as dt from contributions group by user_id) c on c.user_id = u.id set u.last_contribution = c.dt");
+        }
     }
 }
