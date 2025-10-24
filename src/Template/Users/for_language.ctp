@@ -113,9 +113,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $languageLevel = $user->level;
             $timeStringOfLastActivity = $user->user->last_contribution;
             $timeSinceLastActivity = null;
-            try { /* Catch case in which $timeStringOfLastActivity is not a valid datetime string */
+            if (!is_null($timeStringOfLastActivity)) {
                 $timeSinceLastActivity = (new DateTime('now'))->getTimestamp() - (new DateTime($timeStringOfLastActivity))->getTimestamp();
-            } catch (Exception $e) {
             }
 
             echo '<div class="user">';
