@@ -129,7 +129,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     )
                 );
                 if (!is_null($timeStringOfLastActivity) && $timeSinceLastActivity < 604800) { /* Add a calendar icon for users who have been active within the past week */
-                    echo '<md-icon class="material-icons user-recently-active-icon" aria-label="comment" title="Active this week">comment</md-icon>';
+                    echo '<md-icon class="material-icons user-recently-active-icon" aria-label="comment">comment<md-tooltip>';
+                    echo h(__("Active within the past week"));
+                    echo '</md-tooltip></md-icon>';
                 }
                 echo $this->Members->displayLanguageLevel($languageLevel);
             echo '</div>';
