@@ -111,11 +111,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         foreach($users as $user) {
             $username = $user->user->username;
             $languageLevel = $user->level;
-            $timeStringOfLastActivity = $user->user->last_contribution;
-            $timeSinceLastActivity = null;
-            if ($timeStringOfLastActivity) {
-                $timeSinceLastActivity = (new DateTime('now'))->getTimestamp() - (new DateTime($timeStringOfLastActivity))->getTimestamp();
-            }
+            $timeOfLastActivity = $user->user->last_contribution;
 
             echo '<div class="user">';
             echo '<div class="profilePicture">';
@@ -130,7 +126,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         $username
                     )
                 );
-                if ($timeSinceLastActivity && $timeSinceLastActivity->wasWithinLast('7 days')) { /* Add a calendar icon for users who have been active within the past week */
+                if ($timeOfLastActivity && $timeOfLastActivity->wasWithinLast('7 days')) { /* Add a calendar icon for users who have been active within the past week */
                     echo '<md-icon class="material-icons user-recently-active-icon" aria-label="comment">comment<md-tooltip>';
                     echo h(__("Active within the past week"));
                     echo '</md-tooltip></md-icon>';
