@@ -1512,4 +1512,20 @@ class SentencesTableTest extends TestCase {
 
         $this->assertEquals($expected, $result);
     }
+
+    public function testNewSentence_UpdatesLastContributionField() {
+        $user = $this->Sentence->Users->get(1);
+        CurrentUser::store($user);
+
+        $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
+        $user = $this->Sentence->Users->get(1);
+        $previousLastContribution = $user->last_contribution;
+
+        sleep(1);
+        $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
+        $user = $this->Sentence->Users->get(1);
+        $newLastContribution = $user->last_contribution;
+
+        $this->assertGreaterThan($previousLastContribution, $newLastContribution);
+    }
 }
