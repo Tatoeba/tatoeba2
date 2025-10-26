@@ -113,7 +113,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $languageLevel = $user->level;
             $timeStringOfLastActivity = $user->user->last_contribution;
             $timeSinceLastActivity = null;
-            if (!is_null($timeStringOfLastActivity)) {
+            if ($timeStringOfLastActivity) {
                 $timeSinceLastActivity = (new DateTime('now'))->getTimestamp() - (new DateTime($timeStringOfLastActivity))->getTimestamp();
             }
 
@@ -130,7 +130,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         $username
                     )
                 );
-                if (!is_null($timeSinceLastActivity) && $timeSinceLastActivity < 604800) { /* Add a calendar icon for users who have been active within the past week */
+                if ($timeSinceLastActivity && $timeSinceLastActivity->wasWithinLast('7 days')) { /* Add a calendar icon for users who have been active within the past week */
                     echo '<md-icon class="material-icons user-recently-active-icon" aria-label="comment">comment<md-tooltip>';
                     echo h(__("Active within the past week"));
                     echo '</md-tooltip></md-icon>';
