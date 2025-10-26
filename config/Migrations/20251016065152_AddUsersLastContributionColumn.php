@@ -21,7 +21,16 @@ class AddUsersLastContributionColumn extends AbstractMigration
         $table->update();
 
         if ($this->isMigratingUp()) {
-            $this->execute("update users u join (select user_id, max(datetime) as dt from contributions group by user_id) c on c.user_id = u.id set u.last_contribution = c.dt");
+            $this->execute(
+                "update users u 
+                    join (
+                        select user_id, max(datetime) as dt from contributions where 
+                            (action = 'insert' or action = 'update') 
+                            and type = 'sentence'
+                            group by user_id
+                    ) c 
+                    on c.user_id = u.id set u.last_contribution = c.dt"
+            );
         }
     }
 }
