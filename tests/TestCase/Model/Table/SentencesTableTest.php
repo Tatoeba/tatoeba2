@@ -5,6 +5,7 @@ use App\Test\TestCase\SearchMockTrait;
 use App\Model\Table\SentencesTable;
 use App\Behavior\Sphinx;
 use Cake\Core\Configure;
+use Cake\I18n\Time;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
@@ -1516,12 +1517,13 @@ class SentencesTableTest extends TestCase {
     public function testNewSentence_UpdatesLastContributionField() {
         $user = $this->Sentence->Users->get(1);
         CurrentUser::store($user);
-
+        
+        Time::setTestNow(new Time('2019-02-01 00:00:00')); 
         $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
         $user = $this->Sentence->Users->get(1);
         $previousLastContribution = $user->last_contribution;
 
-        sleep(1);
+        Time::setTestNow(new Time('2019-02-02 00:00:00')); 
         $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
         $user = $this->Sentence->Users->get(1);
         $newLastContribution = $user->last_contribution;
