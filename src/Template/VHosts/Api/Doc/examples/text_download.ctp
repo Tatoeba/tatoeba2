@@ -26,7 +26,7 @@ $this->append('script');
   }
 
   function initDownload(url) {
-    chunks = ["\xEF\xBB\xBF"]; // Byte order mark
+    chunks = ["\uFEFF"]; // Byte order mark
     nbTotalSentences = 0;
     nbDownloadedSentences = 0;
     setStatus('Contacting ' + url + ' ...');
