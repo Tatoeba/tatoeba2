@@ -1518,35 +1518,31 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(1);
         CurrentUser::store($user);
         
-        Time::setTestNow(new Time('2019-02-01 00:00:00')); 
-        $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
-        $user = $this->Sentence->Users->get(1);
-        $previousLastContribution = $user->last_contribution;
-
-        Time::setTestNow(new Time('2019-02-02 00:00:00')); 
+        $testTime = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime); 
         $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
         $user = $this->Sentence->Users->get(1);
         $newLastContribution = $user->last_contribution;
 
-        $this->assertGreaterThan($previousLastContribution, $newLastContribution);
+        $this->assertEquals($testTime, $newLastContribution);
+
+        Time::setTestNow();
     }
 
     public function testEditSentence_UpdatesLastContributionField() {
         $user = $this->Sentence->Users->get(7);
         CurrentUser::store($user);
         
-        Time::setTestNow(new Time('2019-02-01 00:00:00')); 
-        $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
-        $user = $this->Sentence->Users->get(7);
-        $previousLastContribution = $user->last_contribution;
-
-        Time::setTestNow(new Time('2019-02-02 00:00:00')); 
+        $testTime = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime); 
         $before = $this->Sentence->get(7);
         $data = ['id' => '7', 'text' => 'This is the new text of sentence #7.'];
         $after = $this->Sentence->editSentence($data);
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
 
-        $this->assertGreaterThan($previousLastContribution, $newLastContribution);
+        $this->assertEquals($testTime, $newLastContribution);
+
+        Time::setTestNow();
     }
 }
