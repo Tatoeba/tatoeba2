@@ -113,6 +113,7 @@ class SearchApi
                 'count'         => Search\TranslationCountFilter::class,
                 'has_audio'     => Search\TranslationHasAudioFilter::class,
                 'is_direct'     => Search\TranslationIsDirectFilter::class,
+                'is_native'     => Search\TranslationIsNativeFilter::class,
                 'is_orphan'     => Search\TranslationIsOrphanFilter::class,
                 'is_unapproved' => Search\TranslationIsUnapprovedFilter::class,
                 'lang'          => Search\TranslationLangFilter::class,

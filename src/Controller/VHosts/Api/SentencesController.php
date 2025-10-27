@@ -183,6 +183,10 @@ class SentencesController extends ApiController
      *     description="Limit to <a href=""https://en.wiki.tatoeba.org/articles/show/faq#why-are-some-sentences-in-red?"">unapproved sentences</a> (if value is yes) or exclude unapproved sentences (if value is no).",
      *     @OA\Schema(ref="#/components/schemas/Boolean")
      *   ),
+     *   @OA\Parameter(name="is_native", in="query",
+     *     description="Limit to sentences owned by a self-identified native speaker (if value is yes) or not owned by a self-identified native speaker (if the value is no). Tip: combine <code>is_native=no</code> with <code>is_orphan=no</code> to limit to sentences owned by a self-identified non-native speaker.",
+     *     @OA\Schema(ref="#/components/schemas/Boolean")
+     *   ),
      *   @OA\Parameter(name="has_audio", in="query",
      *     description="Limit to sentences having one or more audio recordings (if value is yes) or no audio recording (if value is no).",
      *     @OA\Schema(ref="#/components/schemas/Boolean")
@@ -203,10 +207,6 @@ class SentencesController extends ApiController
      *     @OA\Examples(example="3", value="!123",     summary="exclude sentences on list 123"),
      *     @OA\Examples(example="4", value="!123,456", summary="exclude sentences on list 123 or list 456 (or both)"),
      *     @OA\Schema(ref="#/components/schemas/NegatableListIdList")
-     *   ),
-     *   @OA\Parameter(name="is_native", in="query",
-     *     description="Limit to sentences owned by a self-identified native speaker (if value is yes) or a self-identified non-native speaker (if the value is no). This parameter can only be used when searching in a single language (not several).",
-     *     @OA\Schema(ref="#/components/schemas/Boolean")
      *   ),
      *   @OA\Parameter(name="origin", in="query",
      *     description="Limit according to sentence origin. All sentences fall in two sets: <em>unknown</em> and <em>known</em>. The set <em>known</em> is composed of two subsets: <em>original</em> + <em>translation</em>.",
@@ -241,6 +241,10 @@ class SentencesController extends ApiController
      *   ),
      *   @OA\Parameter(name="trans:is_orphan", in="query",
      *     description="Limit to sentences having orphan translations (if value is yes) or translations owned by someone (if value is no). Make sure to combine with <code>trans:owner</code> filter in a way that makes sense.",
+     *     @OA\Schema(ref="#/components/schemas/Boolean")
+     *   ),
+     *   @OA\Parameter(name="trans:is_native", in="query",
+     *     description="Limit to sentences having translations owned by a self-identified native speaker (if value is yes) or not owned by a self-identified native speaker (if the value is no). Tip: combine <code>trans:is_native=no</code> with <code>trans:is_orphan=no</code> to limit to sentences having translations owned by a self-identified non-native speaker.",
      *     @OA\Schema(ref="#/components/schemas/Boolean")
      *   ),
      *   @OA\Parameter(name="trans:has_audio", in="query",
