@@ -601,7 +601,6 @@ class UsersTable extends Table
             $user = $this->get($userId);
         } catch (RecordNotFoundException $e) {    
         }
-        $user = $this->get($userId);
         $user->last_contribution = Time::now();
         $this->save($user);
     }
