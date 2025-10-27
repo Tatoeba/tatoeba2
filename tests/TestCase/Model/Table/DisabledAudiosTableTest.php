@@ -46,7 +46,8 @@ class DisabledAudiosTableTest extends TestCase
         }
 
         $this->assertFalse($result);
-        $Audios = TableRegistry::getTableLocator()->get('Audios');
-        $this->assertTrue($Audios->get(4)->enabled);
+        $reenabledAudio = TableRegistry::getTableLocator()->get('Audios')->get(4);
+        $this->assertTrue($reenabledAudio->enabled);
+        $this->assertEquals($reenabledAudio->modified, $audio->modified);
     }
 }

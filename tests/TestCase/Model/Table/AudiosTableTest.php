@@ -97,15 +97,15 @@ class AudiosTableTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    function testCreatedCantBeEmpty() {
-        $this->_assertInvalidRecordWith(0, array('created' => ''));
+    function testCreatedCanBeNull() {
+        $this->_assertValidRecordWith(0, array('created' => null));
     }
     function testCreatedIsAutomaticallySet() {
         $this->_assertValidRecordWithout(0, array('created'));
     }
 
-    function testModifiedCantBeEmpty() {
-        $this->_assertInvalidRecordWith(0, array('modified' => ''));
+    function testModifiedCanBeNull() {
+        $this->_assertValidRecordWith(0, array('modified' => null));
     }
     function testModifiedIsAutomaticallySet() {
         $this->_assertValidRecordWithout(0, array('modified'));
@@ -291,8 +291,9 @@ class AudiosTableTest extends TestCase {
         }
 
         $this->assertFalse($result);
-        $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
-        $this->assertFalse($DisabledAudios->get(1)->enabled);
+        $disabledAudio = TableRegistry::getTableLocator()->get('DisabledAudios')->get(1);
+        $this->assertFalse($disabledAudio->enabled);
+        $this->assertEquals($disabledAudio->modified, $audio->modified);
     }
 
     function testEdit_enable_fails() {
