@@ -40,7 +40,7 @@ use App\View\Helper\AppHelper;
  */
 class PaginationHelper extends AppHelper
 {
-    public $helpers = array('Paginator', 'Html');
+    public $helpers = array('Paginator', 'Html', 'Number');
 
     /**
      * Wraps Paginator->sort with default order
@@ -131,6 +131,59 @@ class PaginationHelper extends AppHelper
             ?>
         </ul>
         <?php
+    }
+
+    /**
+     * Display warning about limited number of results, if applicable.
+     *
+     * @param int $totalLimit Hard limit on the number of results displayed
+     * @param mixed $total If boolean: display message or not. If int: number
+     *                     of results that could be displayed if no limit
+     *
+     * @return void
+     */
+    public function warnLimitedResults($totalLimit, $total = true)
+    {
+        if ((is_bool($total) && $total)
+            ||
+            (is_int($total) && $total > $this->Paginator->param('count'))) {
+            switch ($this->_View->getName()) {
+                case 'Audio':
+                    $msg = __n(
+                        'Only the sentence with the most-recently added audio file is displayed here.',
+                        'Only sentences with the {n} most-recently added audio files are displayed here.',
+                        $totalLimit
+                    );
+                    break;
+                case 'Contributions':
+                    $msg = __n(
+                        'Only the last contribution is displayed here.',
+                        'Only the last {n} contributions are displayed here.',
+                        $totalLimit
+                    );
+                    break;
+                case 'SentencesLists':
+                case 'Tags':
+                    $msg = __n(
+                        'Only the first sentence of the selected sort is displayed here.',
+                        'Only the first {n} sentences of the selected sort are displayed here.',
+                        $totalLimit
+                    );
+                    break;
+                default:
+                    $msg = __n(
+                        'Only the last sentence is displayed here.',
+                        'Only the last {n} sentences are displayed here.',
+                        $totalLimit
+                    );
+            }
+            ?>
+            <div layout-margin layout="row" layout-align="start center">
+                <md-icon>info</md-icon>
+                <span layout-fill><?= h(format($msg, ['n' => $this->Number->format($totalLimit)])) ?></span>
+            </div>
+            <?php
+        }
     }
 }
 ?>

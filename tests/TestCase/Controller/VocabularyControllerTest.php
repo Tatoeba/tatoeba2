@@ -71,4 +71,67 @@ class VocabularyControllerTest extends IntegrationTestCase
         $this->saveSomething();
         $this->assertResponseOk();
     }
+
+    public function testEdit_asGuest() {
+        $this->enableCsrfToken();
+        $this->ajaxPost('/en/vocabulary/edit/1', [
+            'lang' => 'fra',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseError();
+    }
+
+    public function testEdit_asMember_onlyAddedBySelf() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/en/vocabulary/edit/1', [
+            'lang' => 'fra',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseOk();
+    }
+
+    public function testEdit_asMember_onlyAddedByOtherMember() {
+        $this->logInAs('kazuki');
+        $this->ajaxPost('/en/vocabulary/edit/1', [
+            'lang' => 'fra',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseError();
+    }
+
+    public function testEdit_asMember_nonExisting() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/en/vocabulary/edit/999999', [
+            'lang' => 'fra',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseCode(404);
+    }
+
+    public function testEdit_asMember_invalidLang() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/en/vocabulary/edit/1', [
+            'lang' => 'invalid',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseCode(400);
+    }
+
+    public function testEdit_asMember_addedByOthersToo() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/en/vocabulary/edit/2', [
+            'lang' => 'fra',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseCode(403);
+    }
+
+    public function testEdit_asCorpusMaintainer_addedByOthersToo() {
+        $this->logInAs('corpus_maintainer');
+        $this->ajaxPost('/en/vocabulary/edit/2', [
+            'lang' => 'fra',
+            'text' => 'hélicoptère',
+        ]);
+        $this->assertResponseOk();
+    }
 }

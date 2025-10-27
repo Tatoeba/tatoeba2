@@ -51,6 +51,14 @@ class VocabularyFixture extends TestFixture
                 'numAdded' => 1,
                 'created' => '2019-01-07 19:48:18',
             ],
+            [
+                'id' => 2,
+                'lang' => 'eng',
+                'text' => 'added by 2 members',
+                'numSentences' => 1,
+                'numAdded' => 2,
+                'created' => '2020-02-20 02:20:02',
+            ],
         ];
         parent::init();
     }

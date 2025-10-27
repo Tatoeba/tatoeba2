@@ -93,6 +93,8 @@ if (isset($sentencesWithAudio)) {
             $this->safeForAngular($licenceMessage)
         );
 
+        $this->Pagination->warnLimitedResults($totalLimit, $totalAudio > $totalLimit);
+
         $this->Pagination->display();
 
         $type = 'mainSentence';

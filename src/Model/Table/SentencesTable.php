@@ -308,9 +308,10 @@ class SentencesTable extends Table
         }
     }
 
-    public function flagSentenceAndTranslationsToReindex($id) {
-        $this->needsReindex($id);
-        $this->flagTranslationsToReindex($id);
+    public function flagSentenceAndTranslationsToReindex($ids) {
+        $ids = (array)$ids;
+        $transIds = $this->Links->findDirectAndIndirectTranslationsIds($ids);
+        $this->needsReindex(array_unique(array_merge($ids, $transIds)));
     }
 
     private function flagTranslationsToReindex($id)
@@ -329,22 +330,23 @@ class SentencesTable extends Table
 
     public function needsReindex($ids)
     {
+        $ids = (array)$ids;
         if (empty($ids)) {
             return;
         }
-        $sentences = $this->find('all')
-            ->where(['id' => $ids, 'lang IS NOT' => null], ['id' => 'integer[]'])
-            ->select(['sentence_id' => 'id', 'lang'])
-            ->formatResults(function ($results) {
-                return $results->map(function ($row) {
-                    $row['type'] = 'change';
-                    return $row;
-                });
-            })
-            ->disableHydration()
-            ->toList();
-        $data = $this->ReindexFlags->newEntities($sentences);
-        $this->ReindexFlags->saveMany($data);
+
+        while (count($ids)) {
+            // process by batches of 1000 sentences
+            // to avoid having too much values in IN() SQL expression
+            $someIds = array_splice($ids, 0, 1000);
+            $sentences = $this->find()
+                ->where(['id IN' => $someIds, 'lang IS NOT' => null])
+                ->select(['id', 'lang', 'type' => "'change'"]);
+            $query = $this->ReindexFlags->query()
+                ->insert(['sentence_id', 'lang', 'type'])
+                ->values($sentences)
+                ->execute();
+        }
     }
 
     public function beforeDelete($event, $entity, $options)

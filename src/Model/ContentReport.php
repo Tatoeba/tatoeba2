@@ -16,9 +16,8 @@ class ContentReport
     private $reporter;
     private $entity;
     private $details;
-    private $testPrefix;
 
-    public function __construct($reporter, $entity, $details, $testPrefix = false) {
+    public function __construct($reporter, $entity, $details) {
         if (!(
                  $entity instanceof Wall
               || $entity instanceof SentenceComment
@@ -28,7 +27,6 @@ class ContentReport
         $this->reporter = $reporter;
         $this->entity = $entity;
         $this->details = $details;
-        $this->testPrefix = $testPrefix;
     }
 
     public function getTitle() : string {
@@ -37,9 +35,6 @@ class ContentReport
             $title = "Wall message #{$this->entity->id}";
         } elseif ($this->entity instanceof SentenceComment) {
             $title = "Comment #{$this->entity->id} (on sentence #{$this->entity->sentence_id})";
-        }
-        if ($this->testPrefix) {
-            $prefix = "[TEST]".$prefix;
         }
         return $prefix.$title;
     }

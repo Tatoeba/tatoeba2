@@ -86,14 +86,24 @@ class AudioController extends AppController
     public function index($lang = null) {
         $this->loadModel('Audios');
 
-        $finder = ['sentences' => []];
+        $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+        $finder = ['sentences' => [
+            'maxResults' => $totalLimit,
+            'sentences' => [],
+        ]];
         if (LanguagesLib::languageExists($lang)) {
-            $finder['sentences'] = compact('lang');
+            $finder['sentences']['lang'] = $lang;
             $this->set(compact('lang'));
         }
-        $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
+        $total = $this->Audios->find('sentencesCount', $finder['sentences']);
 
-        $this->set(compact('sentencesWithAudio'));
+        try {
+            $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
+
+        $this->set(compact('sentencesWithAudio', 'totalLimit', 'total'));
         
         $this->loadModel('Languages');
         $this->set(array('stats' => $this->Languages->getAudioStats()));
@@ -105,14 +115,22 @@ class AudioController extends AppController
         if ($userId) {
             $this->loadModel('Audios');
 
-            $finder = ['sentences' => ['user_id' => $userId]];
-            $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
+            $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+            $finder = ['sentences' => [
+                'user_id' => $userId,
+                'maxResults' => $totalLimit,
+            ]];
+            try {
+                $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
+            } catch (\Cake\Http\Exception\NotFoundException $e) {
+                return $this->redirectPaginationToLastPage();
+            }
             $this->set(compact('sentencesWithAudio'));
 
             $this->set('totalAudio', $this->Audios->numberOfAudiosBy($userId));
 
             $audioSettings = $this->Users->getAudioSettings($userId);
-            $this->set(compact('audioSettings'));
+            $this->set(compact('audioSettings', 'totalLimit'));
         }
         $this->set(compact('username'));
     }

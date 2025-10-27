@@ -21,8 +21,7 @@ class ReportContentController extends AppController
             $report = new ContentReport(
                 CurrentUser::get('username'),
                 $entity,
-                $details,
-                Configure::read('Tatoeba.devStylesheet')
+                $details
             );
             if ($report->send()) {
                 $this->Flash->set(__(

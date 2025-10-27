@@ -280,283 +280,6 @@ class UserController extends AppController
     }
 
     /**
-     * Save profile info.
-     *
-     * @return void
-     */
-    public function save_basic()
-    {
-        $currentUserId = CurrentUser::get('id');
-        $data = $this->request->getData();
-
-        $this->loadModel('Users');
-        try {
-            $user = $this->Users->get($currentUserId);
-        } catch (RecordNotFoundException $e) {
-            return $this->redirect('/');
-        }
-
-        if (!$this->_isUniqueEmail($data, $currentUserId)) {
-            return $this->_redirectNonUniqueEmail();
-        }
-
-        if (!$this->_isValidBirthday($data)) {
-            return $this->_redirectInvalidBirthday();
-        }
-
-        if (!$this->_isAcceptedBirthday($data)) {
-            return $this->_redirectUnacceptedBirthday();
-        }
-
-        if (isset($data['birthday'])) {
-            $data['birthday'] = $this->_generateBirthdayDate($data);
-        }
-
-        $allowedFields = [
-            'name', 'country_id', 'birthday', 'homepage', 'email', 'description'
-        ];
-        $this->Users->patchEntity($user, $data, ['fields' => $allowedFields]);
-        $savedUser = $this->Users->save($user);        
-
-        if ($savedUser) {
-            $this->Flash->set(
-                __('Profile saved.')
-            );
-            return $this->redirect(
-                array(
-                    'action' => 'profile',
-                    CurrentUser::get('username')
-                )
-            );
-        } else {
-            $this->Flash->set(
-                __(
-                    'Failed to change email address. Please enter a proper email address.',
-                    true
-                )
-            );
-            return $this->redirect(
-                array(
-                    'controller' => 'user',
-                    'action' => 'settings'
-                )
-            );
-        }
-    }
-
-    /**
-     * Return true if entered email address is unique in database.
-     *
-     * @param  array   $data
-     * @param  int     $currentUserId
-     *
-     * @return boolean
-     */
-    private function _isUniqueEmail($data, $currentUserId)
-    {
-        if (isset($data['email'])) {
-            return $this->Users->isEmailUnique(
-                $data['email'],
-                $currentUserId
-            );
-        }
-
-        return true;
-    }
-
-    /**
-     * Redirect for non unique email address.
-     *
-     * @return void
-     */
-    private function _redirectNonUniqueEmail()
-    {
-        $this->Flash->set(
-            __("That email address already exists. Please try another.")
-        );
-        return $this->redirect(
-            array(
-                    'controller' => 'user',
-                    'action' => 'settings'
-                )
-        );
-    }
-
-    /**
-     * Return true if entered birthday is a valid date or is not complete/set.
-     *
-     * @param  array  $data
-     *
-     * @return boolean
-     */
-    private function _isValidBirthday($data)
-    {
-        if (isset($data['birthday'])) {
-            $year = $data['birthday']['year'];
-
-            $month = $data['birthday']['month'];
-
-            $day = $data['birthday']['day'];
-
-            if ($year && $month && $day) {
-                return checkdate($month, $day, $year);
-            } elseif ($month && $day) {
-                // Use 2016 because its a leap year.
-                $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, 2016);
-
-                if ($day > $daysInMonth) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Redirect for invalid birthday.
-     *
-     * @return void
-     */
-    private function _redirectInvalidBirthday()
-    {
-        $this->Flash->set(
-            __("The entered birthday is an invalid date. Please try again.")
-        );
-        return $this->redirect(
-            array(
-                    'controller' => 'user',
-                    'action' => 'edit_profile'
-                )
-        );
-    }
-
-    /**
-     * Return true if birthday is an accepted birthday type.
-     *
-     * @param  array  $data
-     *
-     * @return boolean
-     */
-    private function _isAcceptedBirthday($data)
-    {
-         // Accepted birthday types. Each entry must be in reverse alphabetical
-         // order (year, month, day).
-        $acceptedBirthdays = [
-            ['year', 'month', 'day'],
-            ['year'],
-            ['month', 'day'],
-            ['year', 'month']
-        ];
-
-        if (isset($data['birthday'])) {
-            $setValues = array_keys(array_filter($data['birthday']));
-
-            rsort($setValues);
-
-            if (!empty($setValues) && !in_array($setValues, $acceptedBirthdays)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Redirect for unaccepted birthday type.
-     *
-     * @return void
-     */
-    private function _redirectUnacceptedBirthday()
-    {
-        $this->Flash->set(
-            __("The entered birthday is incomplete. ".
-                "Accepted birthdays: full date, month and day, year and month, only year.", true)
-        );
-        return $this->redirect(
-            array(
-                    'controller' => 'user',
-                    'action' => 'edit_profile'
-                )
-        );
-    }
-
-    /**
-     * Fill unset birthday fields with zeros if birthday has at least one
-     * user-set field. If all fields empty, return original array.
-     *
-     * @return array
-     */
-    private function _generateBirthdayDate($data)
-    {
-        foreach ($data['birthday'] as $key => $value) {
-            if ($value == '' && $key == 'year') {
-                $birthday[$key] = '0000';
-            } elseif ($value == '') {
-                $birthday[$key] = '00';
-            } else {
-                $birthday[$key] = $value;
-            }
-        }
-
-        $birthdayString = implode('', $birthday);
-
-        if ($birthdayString == '00000000') {
-            return null;
-        } elseif ($birthdayString == '02290000') {
-            // Mysql wont save a partial leap year date so change year to 1904
-            // and catch in date view helper.
-            $birthday['year'] = '1904';
-        }
-
-        return $birthday['year'].'-'.$birthday['month'].'-'.$birthday['day'];
-    }
-
-    /**
-     * Save option settings. Options are :
-     *  - use advanced selectors for language selection
-     *  - send notification emails
-     *  - set profile as public
-     *
-     * @todo Application language
-     *
-     * @return void
-     */
-    public function save_settings()
-    {
-        $currentUserId = CurrentUser::get('id');
-        if (empty($currentUserId)) {
-            return $this->redirect('/');
-        }
-
-        $data = $this->request->getData();
-        if (!empty($data)) {
-            $this->loadModel('Users');
-            $data['settings']['lang'] = $this->_language_settings(
-                $data['settings']['lang']
-            );
-            $user = $this->Users->get($currentUserId);
-            $allowedFields = ['send_notifications', 'settings'];
-            $this->Users->patchEntity($user, $data, ['fields' => $allowedFields]);
-            $savedUser = $this->Users->save($user);
-            if ($savedUser) {
-                $flashMsg = __('Your settings have been saved.');
-            } else {
-                $flashMsg = __(
-                    'An error occurred while saving. Please try again or contact '.
-                    'us to report this.',
-                    true
-                );
-            }
-
-            $this->Flash->set($flashMsg);
-        }
-
-        return $this->redirect(array('action' => 'settings'));
-    }
-
-
-    /**
      * Check language settings entered by the user and return corrected string
      * (if correction is needed).
      *
@@ -676,11 +399,38 @@ class UserController extends AppController
      */
     public function edit_profile()
     {
-        $this->loadModel('Users');
-
         $currentUserId = CurrentUser::get('id');
-        if (empty($currentUserId)) {
+
+        $this->loadModel('Users');
+        try {
+            $user = $this->Users->get($currentUserId);
+        } catch (RecordNotFoundException $e) {
             return $this->redirect('/');
+        }
+
+        if ($this->request->is('put')) {
+            $data = $this->request->getData();
+            $allowedFields = [
+                'name', 'country_id', 'birthday', 'homepage', 'description'
+            ];
+            $this->Users->patchEntity($user, $data, ['fields' => $allowedFields]);
+            $savedUser = $this->Users->save($user);
+
+            if ($savedUser) {
+                $this->Flash->set(
+                    __('Profile saved.')
+                );
+                return $this->redirect([
+                    'action' => 'profile',
+                    CurrentUser::get('username')
+                ]);
+            } else {
+                foreach ($user->getErrors() as $errors) {
+                    foreach ($errors as $id => $message) {
+                        $this->Flash->set($message);
+                    }
+                }
+            }
         }
 
         $userInfo = $this->Users->getInformationOfCurrentUser($currentUserId);
@@ -701,6 +451,28 @@ class UserController extends AppController
         }
 
         $this->loadModel('Users');
+        if ($this->request->is('put')) {
+            $data = $this->request->getData();
+            if (isset($data['settings']['lang'])) {
+                $data['settings']['lang'] = $this->_language_settings(
+                    $data['settings']['lang']
+                );
+            }
+            $user = $this->Users->get($currentUserId);
+            $allowedFields = ['send_notifications', 'settings', 'email'];
+            $this->Users->patchEntity($user, $data, ['fields' => $allowedFields]);
+            $savedUser = $this->Users->save($user);
+            if ($savedUser) {
+                $this->Flash->set(__('Your settings have been saved.'));
+            } else {
+                foreach ($user->getErrors() as $errors) {
+                    foreach ($errors as $id => $message) {
+                        $this->Flash->set($message);
+                    }
+                }
+            }
+        }
+
         $userSettings = $this->Users->getSettings($currentUserId);
         $this->set('userSettings', $userSettings);
     }

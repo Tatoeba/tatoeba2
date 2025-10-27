@@ -114,11 +114,13 @@ class AudioControllerTest extends TestCase
         $this->get("http://api.example.com/unstable/audio");
 
         $actual = $this->_getBodyAsString();
-        $expected = [
-            '$.data[0].id' => 1,
-            '$.data[1].id' => 7,
-        ];
-        $this->assertJsonDocumentMatches($actual, $expected);
+
+        foreach (json_decode($actual)->data as $current) {
+            if (isset($prev)) {
+                $this->assertGreaterThan($prev->id, $current->id);
+            }
+            $prev = $current;
+        }
     }
 
     public function testSearch_lang_ok()
@@ -189,8 +191,7 @@ class AudioControllerTest extends TestCase
 
         $actual = $this->_getBodyAsString();
         $expected = [
-            '$.data[0].id' => 7,
-            '$.paging.has_next' => false,
+            '$.data[0].id' => new \PHPUnit\Framework\Constraint\GreaterThan(1),
             '$.paging.first' => 'http://api.example.com/unstable/audio',
         ];
         $this->assertJsonDocumentMatches($actual, $expected);

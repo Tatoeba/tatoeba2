@@ -33,6 +33,7 @@ class UsersFixture extends TestFixture
         'country_id' => ['type' => 'string', 'length' => 2, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'audio_license' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => '', 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'audio_attribution_url' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => '', 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'is_spamdexing' => ['type' => 'boolean', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'login' => ['type' => 'unique', 'columns' => ['username'], 'length' => []],
@@ -74,6 +75,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => null,
             ],
             [
                 'id' => '2',
@@ -97,6 +99,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => null,
             ],
             [
                 'id' => '3',
@@ -121,6 +124,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => null,
             ],
             [
                 'id' => '4',
@@ -146,6 +150,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => 'CC BY 4.0',
                 'audio_attribution_url' => 'https://example.com/my-audios',
+                'is_spamdexing' => null,
             ],
             [
                 'id' => '5',
@@ -169,6 +174,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => null,
             ],
             [
                 'id' => '6',
@@ -192,6 +198,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => null,
             ],
             [
                 'id' => '7',
@@ -217,6 +224,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => 'CC BY 4.0',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => false,
             ],
             [
                 'id' => '8',
@@ -240,6 +248,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => false,
             ],
             [
                 'id' => '9',
@@ -263,6 +272,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => true,
             ],
             [
                 'id' => '10',
@@ -286,6 +296,7 @@ class UsersFixture extends TestFixture
                 'country_id' => NULL,
                 'audio_license' => '',
                 'audio_attribution_url' => '',
+                'is_spamdexing' => false,
             ],
         ];
         parent::init();

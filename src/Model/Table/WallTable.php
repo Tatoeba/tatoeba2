@@ -21,6 +21,7 @@ namespace App\Model\Table;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
 use App\Model\CurrentUser;
@@ -28,6 +29,8 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallTable extends Table
 {
+    use MailerAwareTrait;
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('content', 'text');
@@ -64,12 +67,28 @@ class WallTable extends Table
         return $rules;
     }
 
+    public function validationSkipOutboundLinksCheck(Validator $validator)
+    {
+        return $this
+            ->validationDefault($validator)
+            ->remove('content', 'outboundLinks');
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
             ->add('content', 'notBlank', [
                 'rule' => 'notBlank',
                 'message'    => __('You cannot save an empty message.'),
+            ])
+            ->add('content', 'outboundLinks', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
+                'message' => __(
+                    'Your message was not posted because it contains outbound links. '.
+                    'Please confirm the links are legitimate by ticking the checkbox below, '.
+                    'and re-submit your message.'
+                ),
             ]);
 
         $validator->dateTime('date');
@@ -107,6 +126,31 @@ class WallTable extends Table
         if ($entity->hidden) {
             $root = $this->getRootMessageOfReply($entity->id);
             $this->recalculateThreadDateIgnoringHiddenPosts($root);
+        }
+
+        if ($entity->isNew()) {
+            if ($entity->parent_id) {
+                $event = new Event('Model.Wall.replyPosted', $this, [
+                    'post' => $entity,
+                ]);
+            } else {
+                $event = new Event('Model.Wall.newThread', $this, [
+                    'post' => $entity,
+                ]);
+            }
+            $this->getEventManager()->dispatch($event);
+        }
+
+        $this->_warnAdminsAboutPotentialSEOSpam($entity);
+    }
+
+    private function _warnAdminsAboutPotentialSEOSpam($post) {
+        $data = $post->extract($this->schema()->columns(), true);
+        $validator = $this->getValidator('default');
+        $errors = $validator->errors($data, $post->isNew());
+        if (isset($errors['content']['outboundLinks'])) {
+            $author = $this->Users->get($post->owner);
+            $this->getMailer('User')->send('content_with_outbound_links', [$post, $author]);
         }
     }
 
@@ -283,30 +327,22 @@ class WallTable extends Table
         return $this->delete($message);
     }
 
-    public function saveReply($parentId, $content, $userId)
+    public function newReply($parentId, $content, $userId, $options = [])
     {
-        if (!$parentId) {
-            return null;
+        try {
+            $this->get((int)$parentId);
+        } catch (RecordNotFoundException $e) {
+            throw $e;
         }
         
-        $data = $this->newEntity([
-            'content'   => $content,
-            'owner'     => $userId,
-            'parent_id' => $parentId,
-        ]);
-
-        $savedMessage = $this->save($data);
-
-        if ($savedMessage) {
-            $event = new Event('Model.Wall.replyPosted', $this, [
-                'post' => $savedMessage
-            ]);
-            $this->getEventManager()->dispatch($event);
-
-            return $this->getMessage($savedMessage->id);
-        } else {
-            return null;
-        }
+        return $this->newEntity(
+            [
+                'content'   => $content,
+                'owner'     => $userId,
+                'parent_id' => $parentId,
+            ],
+            $options
+        );
     }
 
     public function getMessage($id) {

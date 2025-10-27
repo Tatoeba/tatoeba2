@@ -150,15 +150,79 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertRedirect('/en/user/settings');
     }
 
+    public function testSaveBasic_email_ok() {
+        $this->logInAs('contributor');
+        $this->put('/en/user/edit_profile', [
+            'email' => 'contributor_newemail@example.org',
+        ]);
+
+        $this->assertRedirect('/en/user/profile/contributor');
+        $this->assertFlashMessage('Profile saved.');
+    }
+
+    public function testSaveBasic_email_fail_invalid() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('contributor');
+        $this->put('/en/user/settings', [
+            'email' => 'invalid',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertFlashMessage('Failed to change email address. Please enter a proper email address.');
+    }
+
+    public function testSaveBasic_email_fail_duplicate() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('contributor');
+        $this->put('/en/user/settings', [
+            'email' => 'admin@example.com',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertFlashMessage('That email address already exists. Please try another.');
+    }
+
+    public function testEditProfile_birthday_ok() {
+        $this->logInAs('contributor');
+        $this->put('/en/user/edit_profile', [
+            'birthday' => ['year' => '2109', 'month' => '01', 'day' => '23'],
+        ]);
+
+        $this->assertRedirect('/en/user/profile/contributor');
+        $this->assertFlashMessage('Profile saved.');
+    }
+
+    public function testEditProfile_birthday_invalid_date() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('contributor');
+        $this->put('/en/user/edit_profile', [
+            'birthday' => ['year' => '2000', 'month' => '23', 'day' => '23'],
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertFlashMessage('The entered birthday is an invalid date. Please try again.');
+    }
+
+    public function testEditProfile_birthday_invalid_format() {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('contributor');
+        $this->put('/en/user/edit_profile', [
+            'birthday' => ['year' => '2000', 'month' => '', 'day' => '01'],
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertFlashMessage('The entered birthday is incomplete. Accepted birthdays: full date, month and day, year and month, only year.');
+    }
+
     public function testSaveBasic_changingEmailUpdatesAuthData() {
         $username = 'contributor';
         $newEmail = 'contributor_newemail@example.org';
         $this->logInAs($username);
-        $this->post('/en/user/save_basic', [
+        $this->put('/en/user/settings', [
             'email' => $newEmail,
         ]);
 
-        $this->assertRedirect('/en/user/profile/contributor');
+        $this->assertResponseOk();
         $redirectTarget = $this->_response->getHeaderLine('Location');
         $this->get($redirectTarget);
 
@@ -166,12 +230,12 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertEquals($this->_controller->Auth->user('email'), $newEmail);
     }
 
-    public function testSaveBasic_ignoresUnallowedFields() {
+    public function testEditProfile_ignoresUnallowedFields() {
         $username = 'contributor';
         $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
-        $this->post('/en/user/save_basic', [
+        $this->put('/en/user/edit_profile', [
             'name' => 'Contributor',
             'country_id' => 'CL',
             'birthday' => [
@@ -190,16 +254,19 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     public function testSaveSettings() {
+        $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
-        $this->post('/en/user/save_settings', [
+        $this->put('/en/user/settings', [
             'send_notifications' => '1',
             'settings' => [
                 'is_public' => '1',
                 'lang' => 'fra',
             ],
         ]);
-        $this->assertRedirect('/en/user/settings');
+
+        $this->assertResponseOk();
+        $this->assertFlashMessage('Your settings have been saved.');
     }
 
     public function testSaveSettings_ignoresUnallowedFields() {
@@ -207,7 +274,7 @@ class UserControllerTest extends IntegrationTestCase
         $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
-        $this->post('/en/user/save_settings', [
+        $this->put('/en/user/settings', [
             'send_notifications' => '1',
             'settings' => [
                 'is_public' => '1',

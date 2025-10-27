@@ -57,16 +57,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <md-content>
     <?php
     if (!empty($results)) {
-        if ($total > $totalLimit) {
-            ?>
-            <div layout-padding>
-            <?= format(
-                __('Only the last {n} sentences are displayed here.'),
-                ['n' => $this->Number->format($totalLimit)]
-            ); ?>
-            </div>
-            <?php
-        }
+        $this->Pagination->warnLimitedResults($totalLimit, $total);
 
         $this->Pagination->display();
 

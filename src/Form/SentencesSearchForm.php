@@ -18,6 +18,7 @@ use App\Model\Search\TagFilter;
 use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
@@ -59,6 +60,7 @@ class SentencesSearchForm extends Form
         'trans_user' => '',
         'trans_orphan' => '',
         'trans_unapproved' => '',
+        'trans_native' => '',
         'trans_has_audio' => '',
         'trans_filter' => 'limit',
         'sort' => 'relevance',
@@ -227,6 +229,14 @@ class SentencesSearchForm extends Form
         );
     }
 
+    protected function setDataTransNative(string $trans_native) {
+        return $this->setBoolFilter(
+            TranslationIsNativeFilter::class,
+            $trans_native,
+            $this->search->getTranslationFilters()
+        );
+    }
+
     protected function setDataTransOrphan(string $trans_orphan) {
         return $this->setBoolFilter(
             TranslationIsOrphanFilter::class,
@@ -306,15 +316,7 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataNative(string $native) {
-        $native = $native === 'yes' ? true : null;
-        if ($native) {
-            $filter = new IsNativeFilter();
-            $this->search->setFilter($filter);
-            $filter->setSearch($this->search);
-        } else {
-            $this->search->unsetFilter(IsNativeFilter::class);
-        }
-        return $native ? 'yes' : '';
+        return $this->setBoolFilter(IsNativeFilter::class, $native, $this->search);
     }
 
     private function _setDataWordCountFilter(string $value, $before, $after) {
@@ -490,17 +492,6 @@ class SentencesSearchForm extends Form
                    "owner” is set to a username", true)
             );
             $this->_data['trans_orphan'] = $this->setDataTransOrphan('');
-        }
-
-        if ($this->_data['native'] === 'yes' && $this->_data['from'] === '') {
-            $this->ignored[] = __(
-                /* @translators: This string will be preceded by “Warning: the
-                   following criteria have been ignored:” */
-                "“owned by a self-identified native”, because “sentence ".
-                "language” is set to “any”",
-                true
-            );
-            $this->_data['native'] = $this->setDataNative('');
         }
 
         if ($this->_data['native'] === 'yes' && $this->ownerId) {

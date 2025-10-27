@@ -2,12 +2,14 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\CurrentUser;
-use App\Model\Wall;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Event\EventList;
+use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
 class WallTest extends TestCase {
@@ -22,6 +24,17 @@ class WallTest extends TestCase {
     public function setUp() {
         parent::setUp();
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
+
+        // enable event tracking
+        $this->Wall->getEventManager()->setEventList(new EventList());
+
+        // set current hostname
+        Router::pushRequest(new ServerRequest([
+            'environment' => [
+                'HTTP_HOST' => 'tatoeba.org',
+                'HTTPS' => 'on',
+            ],
+        ]));
     }
 
     public function tearDown() {
@@ -39,9 +52,9 @@ class WallTest extends TestCase {
             'owner' => 2,
             'content' => 'Hi everyone!',
             'parent_id' => null,
-            'lft' => 7,
-            'rght' => 8,
-            'id' => 4,
+            'lft' => 9,
+            'rght' => 10,
+            'id' => 5,
         ];
 
         $before = $this->Wall->find()->count();
@@ -162,9 +175,8 @@ class WallTest extends TestCase {
         $this->assertEquals($before, $after);
     }
 
-    public function testSave_doesNotFireEvent() {
+    public function testSave_firesCorrectEvent() {
         $eventManager = $this->Wall->getEventManager();
-        $eventManager->setEventList(new EventList());
         $post = $this->Wall->newEntity([
             'owner' => 7,
             'content' => 'new post',
@@ -172,9 +184,10 @@ class WallTest extends TestCase {
         $this->Wall->save($post);
         $eventList = $eventManager->getEventList();
         $this->assertFalse($eventList->hasEvent('Model.Wall.replyPosted'));
+        $this->assertEventFiredWith('Model.Wall.newThread', 'post', $post, $eventManager);
     }
 
-    public function testSaveReply_firesEvent() {
+    public function testSaveReply_firesCorrectEvent() {
         $expectedPost = array(
             'owner' => 7,
             'parent_id' => 2,
@@ -196,9 +209,70 @@ class WallTest extends TestCase {
             }
         );
 
-        $this->Wall->saveReply(2, 'I see.', 7);
+        $this->Wall->save($this->Wall->newReply(2, 'I see.', 7));
 
         $this->assertTrue($dispatched);
+        $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
+    }
+
+    public function wallPostsWithLinksProvider() {
+        return [
+            // user id, validator, content, should be able to save
+            'legacy user, inbound link'        => [1, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'legacy user, outbound link'       => [1, 'default', 'Hi! https://example.com', true],
+            'verified user, inbound link'      => [7, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'verified user, outbound link'     => [7, 'default', 'Hi! https://example.com', true],
+            'new user, inbound link'           => [9, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'new user, outbound link'          => [9, 'default', 'Hi! https://example.com', false],
+            'new user, outbound link, confirm' => [9, 'skipOutboundLinksCheck', 'Hi! https://example.com', true],
+        ];
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testAddWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    {
+        CurrentUser::store($this->Wall->Users->get($userId));
+        $newPost = $this->Wall->newEntity(
+            [
+                'owner' => $userId,
+                'date' => '2025-05-05 05:05:05',
+                'content' => $content,
+            ],
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($newPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+            $this->assertEquals($userId, $savedPost->owner);
+        } else {
+            $this->assertFalse($savedPost);
+        }
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testEditWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    {
+        CurrentUser::store($this->Wall->Users->get($userId));
+        $wallPost = $this->Wall->get(3);
+        $this->Wall->patchEntity(
+            $wallPost,
+            compact('content'),
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($wallPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+        } else {
+            $this->assertFalse($savedPost);
+        }
     }
 
     public function testGetMessagesThreaded() {
@@ -206,7 +280,7 @@ class WallTest extends TestCase {
             ->where(['parent_id IS NULL'])
             ->all();
         $threads = $this->Wall->getMessagesThreaded($rootMessages);
-        $this->assertEquals(2, count($threads));
+        $this->assertEquals(3, count($threads));
         $this->assertEquals(0, count($threads[0]->children));
         $this->assertEquals(1, count($threads[1]->children));
     }
@@ -244,20 +318,30 @@ class WallTest extends TestCase {
 
     public function testSaveReply_succeeds() {
         $content = 'I hope soon.';
-        $result = $this->Wall->saveReply(2, $content, 7);
+        $reply = $this->Wall->newReply(2, $content, 7);
+
+        $result = $this->Wall->save($reply);
+
         $this->assertEquals(2, $result->parent_id);
     }
 
     public function testSaveReply_failsBecauseNoParentId() {
         $content = 'I hope soon.';
-        $result = $this->Wall->saveReply(null, $content, 7);
-        $this->assertNull($result);
+        try {
+            $result = $this->Wall->newReply(null, $content, 7);
+            $this->fail('"newReply" did not throw RecordNotFoundException');
+        } catch (RecordNotFoundException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testSaveReply_failsBecauseEmptyContent() {
         $content = '   ';
-        $result = $this->Wall->saveReply(2, $content, 7);
-        $this->assertNull($result);
+        $reply = $this->Wall->newReply(2, $content, 7);
+
+        $result = $this->Wall->save($reply);
+
+        $this->assertFalse($result);
     }
 
     public function testGetRootMessageOfReply() {

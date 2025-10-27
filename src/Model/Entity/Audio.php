@@ -42,6 +42,10 @@ class Audio extends Entity
     }
 
     protected function _setEnabled($enabled) {
+        // set the modified field to dirty as a way to prevent
+        // the TimestampBehavior from updating the modified field
+        // when an audio is enabled or disabled
+        $this->setDirty('modified');
         return $this->__wantedEnabled = $enabled;
     }
 

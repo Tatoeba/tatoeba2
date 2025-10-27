@@ -14,6 +14,7 @@ use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
@@ -63,6 +64,7 @@ class SentencesSearchFormTest extends TestCase
             'trans_has_audio' => '',
             'trans_unapproved' => '',
             'trans_orphan' => '',
+            'trans_native' => '',
             'trans_user' => '',
             'sort' => 'relevance',
             'sort_reverse' => '',
@@ -137,9 +139,8 @@ class SentencesSearchFormTest extends TestCase
             [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
             [ ['list' => 'invalid'], ['ListFilter' => null],                           '',   ],
 
-            [ ['native' => 'yes', 'from' => 'eng'],     ['IsNativeFilter' => new IsNativeFilter()], 'yes'],
-            [ ['native' => 'yes', 'from' => 'invalid'], ['IsNativeFilter' => null],                 'yes'],
-            [ ['native' => 'no'],      ['IsNativeFilter' => null], '' ],
+            [ ['native' => 'yes'],     ['IsNativeFilter' => new IsNativeFilter(true)],  'yes' ],
+            [ ['native' => 'no'],      ['IsNativeFilter' => new IsNativeFilter(false)], 'no'  ],
             [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
             [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
 
@@ -189,6 +190,11 @@ class SentencesSearchFormTest extends TestCase
             [ ['trans_orphan' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(false))], 'no'  ],
             [ ['trans_orphan' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
             [ ['trans_orphan' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
+
+            [ ['trans_native' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter(true))],  'yes' ],
+            [ ['trans_native' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter(false))], 'no'  ],
+            [ ['trans_native' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
+            [ ['trans_native' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
             [ ['trans_user' => 'contributor'], ['tf' => (new TranslationFilterGroup())->setFilter(
                                                                (new TranslationOwnerFilter())->anyOf(['contributor'])
@@ -432,17 +438,8 @@ class SentencesSearchFormTest extends TestCase
         $this->assertEquals('', $this->Form->getData()['trans_orphan']);
     }
 
-    public function testCheckUnwantedCombinations_nativeWithoutLanguage() {
-        $this->Form->setData(['from' => '', 'native' => 'yes']);
-        $this->Form->checkUnwantedCombinations();
-
-        $this->assertCount(1, $this->Form->getIgnoredFields());
-        $this->assertEquals('', $this->Form->getData()['native']);
-    }
-
     public function testCheckUnwantedCombinations_userNotNative() {
         $this->Form->setData([
-            'from' => 'eng',
             'user' => 'contributor',
             'native' => 'yes',
         ]);

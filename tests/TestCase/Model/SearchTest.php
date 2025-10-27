@@ -23,6 +23,7 @@ use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationOwnerFilter;
@@ -417,107 +418,23 @@ class SearchTest extends TestCase
         $this->testfilterByListId_empty();
     }
 
-    public function testfilterIsNativeSpeaker_true_fra() {
-        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
-        $this->Search->setFilter((new IsNativeFilter(true))->setSearch($this->Search));
+    public function testfilterIsNativeSpeaker_true() {
+        $this->Search->setFilter(new IsNativeFilter(true));
 
         $expected = $this->makeSphinxParams([
-            'index' => ['fra_main_index', 'fra_delta_index'],
-            'filter' => [['user_id', [4, 3], false]],
+            'filter' => [['owner_is_native', [1], false]],
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterIsNativeSpeaker_false_fra() {
-        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
-        $this->Search->setFilter((new IsNativeFilter(false))->setSearch($this->Search));
+    public function testfilterIsNativeSpeaker_false() {
+        $this->Search->setFilter(new IsNativeFilter(false));
 
         $expected = $this->makeSphinxParams([
-            'index' => ['fra_main_index', 'fra_delta_index'],
-            'filter' => [['user_id', [4, 3], true]],
+            'filter' => [['owner_is_native', [1], true]],
         ]);
         $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterIsNativeSpeaker_true_butNoNativeSpeakers() {
-        $this->Search->setFilter((new LangFilter())->anyOf(['fro']));
-        $this->Search->setFilter((new IsNativeFilter(true))->setSearch($this->Search));
-
-        $expected = $this->makeSphinxParams([
-            'index' => ['fro_main_index', 'fro_delta_index'],
-            'filter' => [['user_id', [-1], false]],
-        ]);
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterIsNativeSpeaker_false_butNoNativeSpeakers() {
-        $this->Search->setFilter((new LangFilter())->anyOf(['fro']));
-        $this->Search->setFilter((new IsNativeFilter(false))->setSearch($this->Search));
-
-        $expected = $this->makeSphinxParams([
-            'index' => ['fro_main_index', 'fro_delta_index'],
-            'filter' => [['user_id', [-1], true]],
-        ]);
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterIsNativeSpeaker_no_setSearch() {
-        $this->Search->setFilter(new IsNativeFilter());
-        try {
-            $this->Search->compile();
-            $this->fail("IsNativeFilter did not generate excepted RuntimeException");
-        } catch (\RuntimeException $e) {
-            $this->assertEquals('Precondition failed: setSearch() was not called first', $e->getMessage());
-        }
-    }
-
-    public function testfilterIsNativeSpeaker_unset() {
-        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
-        $this->Search->unsetFilter(IsNativeFilter::class);
-
-        $expected = $this->makeSphinxParams([
-            'index' => ['fra_main_index', 'fra_delta_index'],
-        ]);
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterIsNativeSpeaker_resets() {
-        $this->testfilterIsNativeSpeaker_true_fra();
-        $this->testfilterIsNativeSpeaker_unset();
-    }
-
-    public function testfilterIsNativeSpeaker_withLimit_true() {
-        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
-        $filter = (new IsNativeFilter(true))->setSearch($this->Search);
-        $filter->setSphinxFilterArrayLimit(1);
-        $this->Search->setFilter($filter);
-        $expected = $this->makeSphinxParams([
-            'index' => ['fra_main_index', 'fra_delta_index'],
-            'filter' => [['user_id', [7], true]],
-        ]);
-
-        $result = $this->Search->asSphinx();
-
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterIsNativeSpeaker_withLimit_false() {
-        $this->Search->setFilter((new LangFilter())->anyOf(['fra']));
-        $filter = (new IsNativeFilter(false))->setSearch($this->Search);
-        $filter->setSphinxFilterArrayLimit(1);
-        $this->Search->setFilter($filter);
-        $expected = $this->makeSphinxParams([
-            'index' => ['fra_main_index', 'fra_delta_index'],
-            'filter' => [['user_id', [4], true], ['user_id', [3], true]],
-        ]);
-
-        $result = $this->Search->asSphinx();
-
         $this->assertEquals($expected, $result);
     }
 
@@ -791,6 +708,28 @@ class SearchTest extends TestCase
         } catch (InvalidValueException $e) {
             $this->assertTrue(true);
         }
+    }
+
+    public function testfilterTranslationIsNative_true() {
+        $this->Search->setTranslationFilter(new TranslationIsNativeFilter(true));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ANY(t.n=1 FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterTranslationIsNative_false() {
+        $this->Search->setTranslationFilter(new TranslationIsNativeFilter(false));
+
+        $expected = $this->makeSphinxParams([
+            'select' => '*, ANY(not (t.n=1) FOR t IN trans) as tf',
+            'filter' => [['tf', 1]],
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
     }
 
     public function testfilterByTranslationAudio_true() {

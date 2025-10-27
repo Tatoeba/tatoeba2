@@ -53,7 +53,7 @@ class SphinxConfShell extends Shell {
         'eng' => 'libstemmer_eng', # English
         'fin' => 'libstemmer_fin', # Finnish
         'fra' => 'libstemmer_fra', # French
-        'deu' => 'libstemmer_deu', # German
+        'deu' => 'lemmatize_de_all', # German
         'ell' => 'libstemmer_ell', # Greek
         'hin' => 'libstemmer_hin', # Hindi
         'hun' => 'libstemmer_hun', # Hungarian
@@ -521,6 +521,30 @@ class SphinxConfShell extends Shell {
             )
         ))."\n";
 
+        /**
+         * Allow case-insensitive search in German
+         * by not casefolding Latin characters.
+         */
+        $noLatinCaseFoldingMap = [
+            'A..Z->a..z' => 'A..Z',
+            # Latin-1 Supplement (0080-00FF)
+            'U+C0..U+D6->U+E0..U+F6' => 'U+C0..U+D6',
+            'U+D8..U+DE->U+F8..U+FE' => 'U+D8..U+DE',
+            # Latin extended-A (0100-017F)
+            'U+100..U+137/2' => 'U+100..U+137',
+            'U+139..U+148/2' => 'U+139..U+148',
+            'U+14A..U+177/2' => 'U+14A..U+177',
+            'U+179..U+17E/2' => 'U+179..U+17E',
+        ];
+        $this->indexExtraOptions['deu'] =
+            "
+        charset_table = ".implode(', ', array_map(
+            function($value) use ($noLatinCaseFoldingMap) {
+                return $noLatinCaseFoldingMap[$value] ?? $value;
+            },
+            $this->charsetTable
+        ))."\n";
+
         foreach ($this->morphology as $lang => $morphology) {
             if (!isset($this->indexExtraOptions[$lang])) {
                 $this->indexExtraOptions[$lang] = "";
@@ -626,7 +650,7 @@ EOT;
         sql_query = \
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
-                r.origin_known, r.is_original, \
+                r.origin_known, r.is_original, r.owner_is_native, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                 GROUP_CONCAT(distinct lists.sentences_list_id) as lists_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct r.trans),''), ']') as trans \
@@ -641,13 +665,15 @@ EOT;
                     (COUNT(audios_sent_start.id) > 0) as has_audio, \
                     (sent_start.based_on_id IS NOT NULL) as origin_known, \
                     (sent_start.based_on_id = 0) as is_original, \
+                    COALESCE(ul_sent_start.level = 5, 0) as owner_is_native, \
                     \
                     CONCAT('{', \
                         'l:\"',sent_end.lang,'\",', \
                         'd:',MIN( IF(trans.sentence_id = transtrans.translation_id,1,2) ),',', \
                         'u:',COALESCE(sent_end.user_id, 0),',', \
                         'c:',sent_end.correctness + 1,',', \
-                        'a:',COUNT(audios_sent_end.id) > 0, \
+                        'a:',COUNT(audios_sent_end.id) > 0,',', \
+                        'n:',COALESCE(ul_sent_end.level = 5, 0), \
                     '}') as trans \
                 from \
                     sentences sent_start \
@@ -667,6 +693,12 @@ EOT;
                     audios audios_sent_end ON sent_end.id = audios_sent_end.sentence_id \
                 left join \
                     audios audios_sent_start ON sent_start.id = audios_sent_start.sentence_id \
+                left join \
+                    users_languages ul_sent_start ON sent_start.user_id = ul_sent_start.of_user_id \
+                                                 AND sent_start.lang = ul_sent_start.language_code \
+                left join \
+                    users_languages ul_sent_end ON sent_end.user_id = ul_sent_end.of_user_id \
+                                               AND sent_end.lang = ul_sent_end.language_code \
                 where \
                     sent_start.lang = '$lang' \
                     and sent_start.id >= \$start and sent_start.id <= \$end \
@@ -694,6 +726,7 @@ EOT;
         sql_attr_multi = uint lists_id from field; SELECT id FROM sentences_lists ;
         sql_attr_bool = origin_known
         sql_attr_bool = is_original
+        sql_attr_bool = owner_is_native
         sql_attr_json = trans
 
         sql_joined_field = \

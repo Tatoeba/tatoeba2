@@ -22,6 +22,7 @@ use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use App\Event\NotificationListener;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
@@ -30,6 +31,8 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class SentenceCommentsTable extends Table
 {
+    use MailerAwareTrait;
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -54,12 +57,28 @@ class SentenceCommentsTable extends Table
         return $rules;
     }
 
+    public function validationSkipOutboundLinksCheck(Validator $validator)
+    {
+        return $this
+            ->validationDefault($validator)
+            ->remove('text', 'outboundLinks');
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
             ->add('text', 'notBlank', [
                 'rule' => 'notBlank',
                 'message' => __('Comments cannot be empty.')
+            ])
+            ->add('text', 'outboundLinks', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
+                'message' => __(
+                    'Your comment was not saved because it contains outbound links. '.
+                    'Please confirm the links are legitimate by ticking the checkbox below, '.
+                    'and re-submit your comment.'
+                ),
             ]);
 
         $validator->dateTime('created');
@@ -75,8 +94,20 @@ class SentenceCommentsTable extends Table
         }
     }
 
+    private function _warnAdminsAboutPotentialSEOSpam($comment) {
+        $data = $comment->extract($this->schema()->columns(), true);
+        $validator = $this->getValidator('default');
+        $errors = $validator->errors($data, $comment->isNew());
+        if (isset($errors['text']['outboundLinks'])) {
+            $author = $this->Users->get($comment->user_id);
+            $this->getMailer('User')->send('content_with_outbound_links', [$comment, $author]);
+        }
+    }
+
     public function afterSave($event, $entity, $options)
     {
+        $this->_warnAdminsAboutPotentialSEOSpam($entity);
+
         if ($entity->isNew()) {
             $event = new Event('Model.SentenceComment.commentPosted', $this, array(
                 'comment' => $entity,

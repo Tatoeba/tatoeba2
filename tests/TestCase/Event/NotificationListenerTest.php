@@ -223,7 +223,7 @@ class NotificationListenerTest extends TestCase {
         $this->assertMailContainsHtml("<strong>contributor</strong> has posted a comment on the deleted sentence #13.");
     }
 
-    public function testSendWallReplyNotification() {
+    public function testSendWallReplyNotification_replyToOP() {
         $post = new Wall([
             'id' => 3,
             'owner' => 7,
@@ -246,7 +246,49 @@ class NotificationListenerTest extends TestCase {
         $this->assertMailContainsHtml("I see.<br />\nGood luck! &lt;&gt;");
     }
 
-    public function testSendWallReplyNotification_doesntSelfNotify() {
+    public function testSendWallReplyNotification_toMentionedUser() {
+        $event = new Event('Model.Wall.replyPosted', $this, [
+            'post' => new Wall([
+                'id' => 3,
+                'owner' => 1,
+                'date' => '2018-01-02 03:04:05',
+                'modified' => '2018-01-02 03:04:05',
+                'parent_id' => 1,
+                'content' => 'Mentioning @contributor here',
+                'lft' => 4,
+                'rght' => 5,
+            ]),
+        ]);
+
+        $this->NL->sendWallReplyNotification($event);
+
+        $this->assertMailCount(1);
+        $this->assertMailSentTo('contributor@example.com');
+        $this->assertMailSentWith('Tatoeba - admin mentioned you on the Wall', 'subject');
+        $this->assertMailContainsHtml("Mentioning @contributor here");
+    }
+
+    public function testSendWallReplyNotification_bothReplyToOPAndMentionOP() {
+        $post = new Wall([
+            'id' => 3,
+            'owner' => 7,
+            'date' => '2018-01-02 03:04:05',
+            'modified' => '2018-01-02 03:04:05',
+            'parent_id' => 2,
+            'content' => "Both notifying @admin and replying to them",
+            'lft' => 3,
+            'rght' => 4,
+        ]);
+        $event = new Event('Model.Wall.replyPosted', $this, [
+            'post' => $post,
+        ]);
+
+        $this->NL->sendWallReplyNotification($event);
+
+        $this->assertMailCount(1);
+    }
+
+    public function testSendWallReplyNotification_replyToSelfDoesntSelfNotify() {
         $event = new Event('Model.Wall.replyPosted', $this, [
             'post' => new Wall([
                 'id' => 3,
@@ -265,7 +307,26 @@ class NotificationListenerTest extends TestCase {
         $this->assertMailCount(0);
     }
 
-    public function testSendWallReplyNotification_doesNotSendIfUserSettingsDisabled() {
+    public function testSendWallReplyNotification_mentionSelfDoesntSelfNotify() {
+        $event = new Event('Model.Wall.replyPosted', $this, [
+            'post' => new Wall([
+                'id' => 3,
+                'owner' => 1,
+                'date' => '2018-01-02 03:04:05',
+                'modified' => '2018-01-02 03:04:05',
+                'parent_id' => 1,
+                'content' => 'Mentioning @admin myself',
+                'lft' => 4,
+                'rght' => 5,
+            ]),
+        ]);
+
+        $this->NL->sendWallReplyNotification($event);
+
+        $this->assertMailCount(0);
+    }
+
+    public function testSendWallReplyNotification_doesntNotifyOPIfUserSettingDisabled() {
         $event = new Event('Model.Wall.replyPosted', $this, [
             'post' => new Wall([
                 'id' => 3,
@@ -280,6 +341,108 @@ class NotificationListenerTest extends TestCase {
         ]);
 
         $this->NL->sendWallReplyNotification($event);
+
+        $this->assertMailCount(0);
+    }
+
+    public function testSendWallReplyNotification_doesntNotifyOPIfUserSettingDisabled_evenIfMentioned() {
+        $event = new Event('Model.Wall.replyPosted', $this, [
+            'post' => new Wall([
+                'id' => 3,
+                'owner' => 1,
+                'date' => '2018-01-02 03:04:05',
+                'modified' => '2018-01-02 03:04:05',
+                'parent_id' => 1,
+                'content' => 'Replying to @kazuki who has notifications turned off',
+                'lft' => 4,
+                'rght' => 5,
+            ]),
+        ]);
+
+        $this->NL->sendWallReplyNotification($event);
+
+        $this->assertMailCount(0);
+    }
+
+    public function testSendWallReplyNotification_doesntNotifyMentionedUserIfUserSettingDisabled() {
+        $event = new Event('Model.Wall.replyPosted', $this, [
+            'post' => new Wall([
+                'id' => 3,
+                'owner' => 1,
+                'date' => '2018-01-02 03:04:05',
+                'modified' => '2018-01-02 03:04:05',
+                'parent_id' => 1,
+                'content' => 'Mentioning @kazuki who has turned off notifications',
+                'lft' => 4,
+                'rght' => 5,
+            ]),
+        ]);
+
+        $this->NL->sendWallReplyNotification($event);
+
+        $this->assertMailCount(0);
+    }
+
+    private function _new_thread($authorId, $content) {
+        return new Wall([
+            'owner' => $authorId,
+            'date' => '2018-01-02 03:04:05',
+            'modified' => '2018-01-02 03:04:05',
+            'content' => $content,
+            'lft' => 7,
+            'rght' => 8,
+        ]);
+    }
+
+    public function testSendWallNewThreadNotification_noNotification() {
+        $event = new Event('Model.Wall.newThread', $this, [
+            'post' => $this->_new_thread(7, "New post"),
+        ]);
+
+        $this->NL->sendNewThreadNotification($event);
+
+        $this->assertMailCount(0);
+    }
+
+    public function testSendWallNewThreadNotification_withMention() {
+        $event = new Event('Model.Wall.newThread', $this, [
+            'post' => $this->_new_thread(7, "New post\nwith mention to @admin <>"),
+        ]);
+
+        $this->NL->sendNewThreadNotification($event);
+
+        $this->assertMailCount(1);
+        $this->assertMailSentTo('admin@example.com');
+        $this->assertMailSentWith('Tatoeba - kazuki mentioned you on the Wall', 'subject');
+        $this->assertMailContainsHtml("New post<br />\nwith mention to @admin &lt;&gt;");
+    }
+
+    public function testSendWallNewThreadNotification_doesNotDoubleSend() {
+        $event = new Event('Model.Wall.newThread', $this, [
+            'post' => $this->_new_thread(7, "New post\nwith two mentions to @admin @admin <>"),
+        ]);
+
+        $this->NL->sendNewThreadNotification($event);
+
+        $this->assertMailCount(1);
+    }
+
+    public function testSendWallNewThreadNotification_doesNotNotifyIfUserSettingDisabled() {
+        $event = new Event('Model.Wall.newThread', $this, [
+            'post' => $this->_new_thread(1, 'Mentioning @kazuki who has turned off notifications'),
+        ]);
+
+        $this->NL->sendNewThreadNotification($event);
+
+        $this->assertMailCount(0);
+    }
+
+    public function testSendWallNewThreadNotification_doesntSelfNotify() {
+        $event = new Event('Model.Wall.newThread', $this, [
+            'post' => $this->_new_thread(1, 'I am mentioning @admin myself!'),
+        ]);
+
+        $this->NL->sendNewThreadNotification($event);
 
         $this->assertMailCount(0);
     }

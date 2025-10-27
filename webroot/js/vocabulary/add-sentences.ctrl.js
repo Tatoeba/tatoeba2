@@ -21,15 +21,16 @@
     angular
         .module('app')
         .controller('VocabularyAddSentencesController', [
-            '$http', VocabularyAddSentencesController
+            '$http', 'vocabularyService', VocabularyAddSentencesController
         ]);
 
-    function VocabularyAddSentencesController($http) {
+    function VocabularyAddSentencesController($http, vocabularyService) {
         var vm = this;
 
         vm.showForm = showForm;
         vm.hideForm = hideForm;
         vm.saveSentence = saveSentence;
+        vm.edit = vocabularyService.edit;
 
         vm.sentencesAdded = {};
 

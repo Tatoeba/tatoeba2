@@ -26,6 +26,8 @@ class LimitResultsBehaviorTest extends TestCase
         // Please someone check if this gets fixed in version 7.0 or newer
         $this->query = @$this->createTestProxy(Query::class, [$s->getConnection(), $s]);
         $this->query->order(['Sentences.id' => 'DESC']);
+
+        $this->Sentences = $s;
     }
 
     public function tearDown()
@@ -46,6 +48,36 @@ class LimitResultsBehaviorTest extends TestCase
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
 
+    public function testFindLatest_reverse()
+    {
+        $this->query->order(['Sentences.id' => 'ASC'], true);
+        $this->query
+             ->expects($this->once())
+             ->method('where')
+             ->with(['Sentences.id <=' => 21]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
+    public function testFindLatest_noOrder()
+    {
+        $this->query->order(false, true);
+        $this->expectException(\Cake\Http\Exception\BadRequestException::class);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
+    public function testFindLatest_noExplicitDirection()
+    {
+        $this->query->order('Sentences.id', true);
+        $this->query
+             ->expects($this->once())
+             ->method('where')
+             ->with(['Sentences.id <=' => 21]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
     public function testFindLatest_whereOnMainTable()
     {
         $this->query
@@ -54,7 +86,19 @@ class LimitResultsBehaviorTest extends TestCase
         $this->query
              ->expects($this->once())
              ->method('where')
-             ->with(['Sentences.id >=' => 2]);
+             ->with(['Sentences.id >=' => 24]);
+
+        $this->behavior->findLatest($this->query, ['maxResults' => 2]);
+    }
+
+    public function testFindLatest_whereOnMainTable_noLimitNeeded()
+    {
+        $this->query
+             ->where(['Sentences.lang' => 'cmn']);
+
+        $this->query
+             ->expects($this->never())
+             ->method('where');
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
@@ -79,9 +123,8 @@ class LimitResultsBehaviorTest extends TestCase
              ->where(['Sentences.id' => 0]);
 
         $this->query
-             ->expects($this->once())
-             ->method('where')
-             ->with(['Sentences.id >=' => null]);
+             ->expects($this->never())
+             ->method('where');
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
@@ -92,9 +135,8 @@ class LimitResultsBehaviorTest extends TestCase
              ->where(['Sentences.lang IS' => null]);
 
         $this->query
-             ->expects($this->once())
-             ->method('where')
-             ->with(['Sentences.id >=' => 9]);
+             ->expects($this->never())
+             ->method('where');
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
     }
@@ -136,5 +178,17 @@ class LimitResultsBehaviorTest extends TestCase
              ->with(['Sentences.id >=' => 29]);
 
         $this->behavior->findLatest($this->query, ['maxResults' => 20]);
+    }
+
+    public function testFindLatest_limitsOffset()
+    {
+        $query = $this->Sentences
+            ->find()
+            ->order(['Sentences.id' => 'DESC'])
+            ->offset(9999999);
+
+        $result = $this->behavior->findLatest($query, ['maxResults' => 20]);
+
+        $this->assertEquals(20, $result->clause('offset'));
     }
 }

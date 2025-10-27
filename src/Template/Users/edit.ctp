@@ -89,6 +89,16 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
         'options' => array_combine($groups, $groups),
         'label' => __d('admin', 'Group'),
     ));
+    echo $this->Form->input('is_spamdexing', array(
+        'label' => __d('admin', 'Spamdexing status'),
+        'options' => array(
+            '1' => __d('admin', 'Unknown (links restricted)'),
+            '0' => __d('admin', 'Verified (links not restricted)'),
+            ''  => __d('admin', 'Legacy (links not restricted)'),
+        ),
+        'disabled' => is_null($user->is_spamdexing) ? [] : [''],
+        'val' => is_null($user->is_spamdexing) ? '' : (int)$user->is_spamdexing,
+    ));
     echo $this->Form->input(
         'level', 
         array(
@@ -100,6 +110,19 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
             )
         )
     );
+    ?>
+
+    <br>
+    <details>
+        <summary style="cursor:pointer"><?= __d('admin', 'About spamdexing status') ?></summary>
+        <ul>
+            <li><?= __d('admin', '"Unknown" users cannot include any outbound link in their profile. In addition, when trying to post a sentence comment or wall post that includes outbound links, they are warned that their links must be legitimate. If they choose to continue, the message is posted and an e-mail is sent to moderators.') ?></li>
+            <li><?= __d('admin', '"Verified" and "legacy" users can include any link anywhere without restriction.') ?></li>
+            <li><?= __d('admin', '"Legacy" users created their account before this restriction was implemented.') ?></li>
+        </ul>
+    </details>
+
+<?php
     echo '<br>';
     echo $this->Form->input('send_notifications', array(
         'label' => __d('admin', 'Send notifications')

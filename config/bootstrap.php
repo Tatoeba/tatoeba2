@@ -287,3 +287,5 @@ Cake\I18n\Time::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 Cake\I18n\Time::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT];
 Cake\I18n\FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 Cake\I18n\FrozenTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::LONG];
+
+Cake\Validation\Validator::addDefaultProvider('appvalidation', 'App\Validation\Validation');

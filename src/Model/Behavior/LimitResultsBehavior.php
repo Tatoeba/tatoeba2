@@ -18,6 +18,7 @@
  */
 namespace App\Model\Behavior;
 
+use Cake\Http\Exception\BadRequestException;
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
 
@@ -86,27 +87,77 @@ class LimitResultsBehavior extends Behavior
     }
 
     /**
+     * Retrieve field and direction used in ORDER BY clause of a query.
+     *
+     * Helper function for findLatest.
+     * Only supports ORDER BY on a single field.
+     *
+     * @param array $query The query to retrieve from.
+     *
+     * @return array Field name and direction.
+     **/
+    private function getOrderValues(Query $query) {
+        $direction = null;
+        $orderField = null;
+
+        $order = $query->clause('order');
+        if ($order) {
+            $order->iterateParts(function($v, $k) use (&$direction, &$orderField) {
+                if (is_numeric($k)) {
+                    $orderField = $v;
+                } else {
+                    $orderField = $k;
+                    $direction = strtolower($v);
+                }
+                return $v;
+            });
+        }
+
+        return [$orderField, $direction];
+    }
+
+    /**
      * This custom finder is used to add a strong and efficient
-     * limit to a query by adding a WHERE id > n clause.
+     * limit to a query by adding a WHERE _field_ > n clause,
+     * _field_ being the field used in ORDER BY, typically it is id.
      * It is used as a safeguard for paginated results because
      * browsing pages of high numbers results in very poor
      * performance.
      */
     public function findLatest(Query $query, array $options) {
+        list($orderField, $direction) = $this->getOrderValues($query);
+        if (!$orderField) {
+            // We cannot limit the results without a sort order. If there is
+            // no sort order, it means the programmer forgot to set one, or
+            // the client is playing tricks requesting a non-whitelisted
+            // order. Both are good reasons to bail out.
+            throw new BadRequestException("Invalid sort order");
+        }
+
         $alias = $query->repository()->getAlias();
-        $additionalOrder = [$alias . '.id' => 'DESC'];
 
         $contain = $this->getMinimalContain($query);
 
         $internalQuery = clone $query;
         $this->removeLeftJoins($internalQuery);
-        $lastId = $internalQuery->find('list')
-            ->select([$alias . '.id'], true)
+        $lastValue = $internalQuery
+            ->find('list', ['valueField' => 'i'])
+            ->select(['i' => $orderField], true)
             ->contain($contain, true)
-            ->order($additionalOrder)
-            ->limit($options['maxResults'])
-            ->last();
+            ->offset($options['maxResults'] - 1)
+            ->group([], true)
+            ->first();
 
-        return $query->where([$alias . '.id >=' => $lastId]);
+        if ($lastValue) {
+            $cmp = $direction == 'desc' ? '>=' : '<=';
+            $query->where(["$orderField $cmp" => $lastValue]);
+        }
+
+        // Prevent running a request having OFFSET n with n excessively high
+        // just because the user asked for page 9999999
+        $offset = min($options['maxResults'], $query->clause('offset'));
+        $query->offset($offset);
+
+        return $query;
     }
 }
