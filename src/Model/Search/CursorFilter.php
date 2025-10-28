@@ -10,8 +10,8 @@ class CursorFilter extends BaseSearchFilter {
 
     public function anyOf(array $values) {
         foreach ($values as $value) {
-            if (!is_int($value)) {
-                throw new InvalidValueException("'$value' is not an integer");
+            if (!is_numeric($value)) {
+                throw new InvalidValueException("'$value' is not numeric");
             }
         }
         return parent::anyOf($values);
