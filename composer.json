@@ -34,7 +34,7 @@
     "scripts": {
         "test": "phpunit --colors=always",
         "post-install-cmd": [
-            "./vendor/bin/openapi --version 3.1.0 src/Controller/VHosts/Api/ src/Model/Behavior/ExposedOnApiBehavior.php -o webroot/api/openapi-v1.json"
+            "./vendor/bin/openapi --version 3.1.0 src/Controller/VHosts/Api/ src/Model/Behavior/ExposedOnApiBehavior.php -o webroot/api/openapi.json"
         ]
     },
     "config": {

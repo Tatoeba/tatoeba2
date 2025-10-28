@@ -1,7 +1,7 @@
 <?php
-$this->set('version', 'sentences download');
+$this->set('pagetitle', 'sentences download');
 
-$searchurl = '/v1#?route=get-/v1/sentences';
+$searchurl = $docurl + ['#' => '?route=get-/v1/sentences'];
 $this->assign('navlinks', '<li>' . $this->Html->Link('Sentences search endpoint', $searchurl) . '</li>');
 
 $this->append('script');

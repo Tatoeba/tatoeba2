@@ -25,20 +25,23 @@ class DocController extends Controller
         );
     }
 
-    public function index()
+    public function beforeFilter(Event $event)
     {
         $docurl = [
-            'version' => 'v1',
             'controller' => 'doc',
             'action' => 'show',
         ];
-        $specurl = $this->getOpenapiSpec('v1');
+        $specurl = $this->getOpenapiSpec();
         $this->set(compact('docurl', 'specurl'));
     }
 
-    private function getOpenapiSpec($version)
+    public function index()
     {
-        $specFilename = "openapi-$version.json";
+    }
+
+    private function getOpenapiSpec()
+    {
+        $specFilename = "openapi.json";
         $specFile = new File(WWW_ROOT . 'api' . DS . $specFilename);
         if ($specFile->exists()) {
             return "/$specFilename";
@@ -49,9 +52,6 @@ class DocController extends Controller
 
     public function show()
     {
-        $version = $this->getRequest()->getParam('version');
-        $specurl = $this->getOpenapiSpec($version);
-        $this->set(compact('specurl', 'version'));
     }
 
     public function examples()
