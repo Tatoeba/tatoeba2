@@ -17,13 +17,17 @@ echo $this->fetch('script');
     <?= h('> ') . $this->Html->Link($version, []) ?>
   <?php endif; ?>
   </h1>
-  <ul class="navmenu">
-    <?= $this->fetch('navlinks') ?>
-    <li><?= $this->Html->Link('Go to Tatoeba', $this->Api->getTatoebaUrl()) ?></li>
-  </ul>
 </nav>
 
 <?= $this->fetch('content') ?>
 
+<footer>
+  <div class="container">
+    <ul>
+      <?= $this->fetch('navlinks') ?>
+      <li><?= $this->Html->Link('Go to Tatoeba', $this->Api->getTatoebaUrl()) ?></li>
+    </ul>
+  </div>
+</footer>
 </body>
 </html>

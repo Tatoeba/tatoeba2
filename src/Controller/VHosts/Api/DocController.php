@@ -27,6 +27,13 @@ class DocController extends Controller
 
     public function index()
     {
+        $docurl = [
+            'version' => 'v1',
+            'controller' => 'doc',
+            'action' => 'show',
+        ];
+        $specurl = $this->getOpenapiSpec('v1');
+        $this->set(compact('docurl', 'specurl'));
     }
 
     private function getOpenapiSpec($version)

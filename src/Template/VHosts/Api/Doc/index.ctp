@@ -1,9 +1,5 @@
 <?php
-$docurl = [
-    'version' => 'v1',
-    'controller' => 'doc',
-    'action' => 'show',
-];
+$this->assign('navlinks', '<li>' . $this->Html->Link('OpenAPI file', $specurl) . '</li>');
 ?>
 
 <div style="padding: 20px">
