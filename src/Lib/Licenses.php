@@ -60,15 +60,17 @@ class Licenses {
 
         if (empty($licenses)) {
             $licenses = [
+                // Keep the following in the same order as sentences.license field enum
+                // so that `SELECT license+0 FROM sentences` yields the same array index
                 '' => [
                     'name' => __('Licensing issue'),
                     'admin_only' => true,
                 ],
-                'CC0 1.0' => [
-                    'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
-                ],
                 'CC BY 2.0 FR' => [
                     'url' => 'https://creativecommons.org/licenses/by/2.0/fr/',
+                ],
+                'CC0 1.0' => [
+                    'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
                 ],
             ];
         }
