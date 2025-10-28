@@ -10,6 +10,7 @@ use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\LangFilter;
+use App\Model\Search\LicenseFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
@@ -306,6 +307,25 @@ class SearchApiTest extends TestCase
             'multiple origin parameters' => [
                 [ 'lang' => 'epo', 'origin' => ['original', 'translation'] ],
                 new BadRequestException("Invalid usage of parameter 'origin': cannot be provided multiple times")
+            ],
+
+            'valid license' => [
+                [ 'lang' => 'epo', 'license' => 'CC0 1.0' ],
+                [
+                    (new LangFilter())->anyOf(['epo']),
+                    (new LicenseFilter())->anyOf(['CC0 1.0']),
+                ],
+            ],
+            'licensing issue' => [
+                [ 'lang' => 'epo', 'license' => 'PROBLEM' ],
+                [
+                    (new LangFilter())->anyOf(['epo']),
+                    (new LicenseFilter())->anyOf(['PROBLEM']),
+                ],
+            ],
+            'invalid license' => [
+                [ 'lang' => 'epo', 'license' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'license': Value must be one of: PROBLEM, CC BY 2.0 FR, CC0 1.0")
             ],
 
             'valid trans:lang' => [

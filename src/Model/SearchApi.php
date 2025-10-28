@@ -74,6 +74,7 @@ class SearchApi
                 'is_orphan'     => Search\IsOrphanFilter::class,
                 'is_unapproved' => Search\IsUnapprovedFilter::class,
                 'lang'          => Search\LangFilter::class,
+                'license'       => Search\LicenseFilter::class,
                 'list'          => Search\ListFilter::class,
                 'origin'        => Search\OriginFilter::class,
                 'owner'         => Search\OwnerFilter::class,
