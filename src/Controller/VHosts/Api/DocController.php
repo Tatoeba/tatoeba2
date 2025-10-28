@@ -31,7 +31,6 @@ class DocController extends Controller
 
     private function getOpenapiSpec($version)
     {
-        $version = $this->getRequest()->getParam('version');
         $specFilename = "openapi-$version.json";
         $specFile = new File(WWW_ROOT . 'api' . DS . $specFilename);
         if ($specFile->exists()) {
