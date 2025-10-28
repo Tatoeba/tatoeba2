@@ -650,7 +650,7 @@ EOT;
         sql_query = \
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
-                r.origin_known, r.is_original, r.owner_is_native, \
+                r.origin_known, r.is_original, r.owner_is_native, r.license_id, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                 GROUP_CONCAT(distinct lists.sentences_list_id) as lists_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct r.trans),''), ']') as trans \
@@ -666,6 +666,7 @@ EOT;
                     (sent_start.based_on_id IS NOT NULL) as origin_known, \
                     (sent_start.based_on_id = 0) as is_original, \
                     COALESCE(ul_sent_start.level = 5, 0) as owner_is_native, \
+                    COALESCE(sent_start.license+0, 0) as license_id, \
                     \
                     CONCAT('{', \
                         'l:\"',sent_end.lang,'\",', \
@@ -727,6 +728,7 @@ EOT;
         sql_attr_bool = origin_known
         sql_attr_bool = is_original
         sql_attr_bool = owner_is_native
+        sql_attr_uint = license_id
         sql_attr_json = trans
 
         sql_joined_field = \
