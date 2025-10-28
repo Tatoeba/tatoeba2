@@ -136,6 +136,11 @@ When this API will be considered mature, we will release a stable version and yo
  *   maxLength=4,
  *   pattern="[A-Z][a-z]{3}"
  * )
+ * @OA\Schema(
+ *   schema="SentenceLicense",
+ *   type="enum",
+ *   enum={"CC BY 2.0 FR", "CC0 1.0", "PROBLEM"}
+ * )
  */
 class ApiController extends Controller
 {
