@@ -537,7 +537,7 @@ class SearchApiTest extends TestCase
 
             'invalid after parameter, non-integer' => [
                 [ 'lang' => 'epo', 'sort' => 'words', 'after' => 'invalid' ],
-                new BadRequestException("Invalid value for parameter 'after': 'invalid' is not an integer"),
+                new BadRequestException("Invalid value for parameter 'after': 'invalid' is not numeric"),
             ],
             'invalid after parameter, only one value' => [
                 [ 'lang' => 'epo', 'sort' => 'words', 'after' => '123' ],

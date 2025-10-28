@@ -988,11 +988,11 @@ class SearchTest extends TestCase
         $this->fail('InvalidValueException was not thrown');
     }
 
-    public function testCursorFilter_nonIntegerProvided() {
+    public function testCursorFilter_nonNumericProvided() {
         try {
             (new CursorFilter())->anyOf(['invalid']);
         } catch (InvalidValueException $e) {
-            $this->assertEquals("'invalid' is not an integer", $e->getMessage());
+            $this->assertEquals("'invalid' is not numeric", $e->getMessage());
             return;
         }
         $this->fail('InvalidValueException was not thrown');
