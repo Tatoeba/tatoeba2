@@ -358,6 +358,17 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByLicense_not_PROBLEM() {
+        $this->Search->setFilter((new LicenseFilter())->not()->anyOf(['PROBLEM']));
+        $this->Search->asSphinx();
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['license_id', [0], true]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByLicense_CC_BY_2_0_FR() {
         $this->Search->setFilter((new LicenseFilter())->anyOf(['CC BY 2.0 FR']));
         $this->Search->asSphinx();
@@ -367,6 +378,17 @@ class SearchTest extends TestCase
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByLicense_not_CC_BY_2_0_FR() {
+        $license = 'CC BY 2.0 FR';
+        try {
+            $this->Search->setFilter((new LicenseFilter())->not()->anyOf([$license]));
+            $this->Search->asSphinx();
+            $this->fail("not license '$license' did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertEquals("Only PROBLEM can be negated", $e->getMessage());
+        }
     }
 
     public function testfilterByLicense_CC0_1_0() {

@@ -28,6 +28,19 @@ class LicenseFilter extends SearchFilter {
         throw new \App\Model\Exception\InvalidAndOperatorException();
     }
 
+    private function controlNegation() {
+        $values = $this->filters[0];
+        $exclude = array_shift($values);
+        if ($exclude && $values != [self::LICENSING_ISSUE]) {
+            throw new InvalidValueException("Only ".self::LICENSING_ISSUE." can be negated");
+        }
+    }
+
+    protected function _compile() {
+        $this->controlNegation();
+        return parent::_compile();
+    }
+
     public function getValuesMap() {
         return array_flip($this->getValues());
     }
