@@ -612,6 +612,16 @@ class SearchApiTest extends TestCase
         }
     }
 
+    public function testDefaultFilters() {
+        $expectedDefaults = $this->_buildSearchFromFilters([
+            (new LicenseFilter())->not()->anyOf([LicenseFilter::LICENSING_ISSUE])
+        ]);
+
+        $this->SearchApi->setDefaultFilters();
+
+        $this->assertEquals($expectedDefaults->asSphinx(), $this->SearchApi->search->asSphinx());
+    }
+
     public function testQ() {
         $expectedSearch = new Search();
         $expectedSearch->filterByQuery('hello world');

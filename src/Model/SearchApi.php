@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\BaseSearchFilter;
+use App\Model\Search\LicenseFilter;
 use App\Model\Search\OwnerFilter;
 use App\Model\Search\TagsFilter;
 use App\Model\Search\IsUnapprovedFilter;
@@ -203,6 +204,14 @@ class SearchApi
             }
         }
         return $value;
+    }
+
+    public function setDefaultFilters() {
+        $this->search->setFilter(
+            (new LicenseFilter())
+            ->not()
+            ->anyOf([LicenseFilter::LICENSING_ISSUE])
+        );
     }
 
     public function setFilters(array $filters) {
