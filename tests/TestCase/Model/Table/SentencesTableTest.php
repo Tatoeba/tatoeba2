@@ -1521,9 +1521,9 @@ class SentencesTableTest extends TestCase {
         $testTime = new Time('2019-02-01 00:00:00');
         Time::setTestNow($testTime); 
         $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
+        
         $user = $this->Sentence->Users->get(1);
         $newLastContribution = $user->last_contribution;
-
         $this->assertEquals($testTime, $newLastContribution);
 
         Time::setTestNow();
@@ -1538,10 +1538,31 @@ class SentencesTableTest extends TestCase {
         $before = $this->Sentence->get(7);
         $data = ['id' => '7', 'text' => 'This is the new text of sentence #7.'];
         $after = $this->Sentence->editSentence($data);
+        
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
-
         $this->assertEquals($testTime, $newLastContribution);
+
+        Time::setTestNow();
+    }
+
+    public function testEditLicense_DoesNotUpdateLastContributionField() {
+        $user = $this->Sentence->Users->get(7);
+        CurrentUser::store($user);
+
+        $testTime1 = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime1); 
+        $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
+
+        $testTime2 = new Time('2019-02-02 00:00:00');
+        Time::setTestNow($testTime2); 
+        $data = $this->Sentence->get(7);
+        $data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
+        $result = $this->Sentence->save($data);
+
+        $user = $this->Sentence->Users->get(7);
+        $newLastContribution = $user->last_contribution;
+        $this->assertEquals($testTime1, $newLastContribution);
 
         Time::setTestNow();
     }
