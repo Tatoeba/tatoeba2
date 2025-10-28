@@ -1566,4 +1566,23 @@ class SentencesTableTest extends TestCase {
 
         Time::setTestNow();
     }
+
+    public function testAdopt_DoesNotUpdateLastContributionField() {
+        $user = $this->Sentence->Users->get(7);
+        CurrentUser::store($user);
+
+        $testTime1 = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime1); 
+        $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
+
+        $testTime2 = new Time('2019-02-02 00:00:00');
+        Time::setTestNow($testTime2); 
+        $sentence = $this->Sentence->saveNewSentence('An orphan sentence.', 'eng', 4);
+
+        $user = $this->Sentence->Users->get(7);
+        $newLastContribution = $user->last_contribution;
+        $this->assertEquals($testTime1, $newLastContribution);
+
+        Time::setTestNow();
+    }
 }

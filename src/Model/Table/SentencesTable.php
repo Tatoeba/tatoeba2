@@ -279,7 +279,7 @@ class SentencesTable extends Table
         $this->getEventManager()->dispatch($event);
 
         $currentUser = CurrentUser::get('id');
-        if ($currentUser) {
+        if ($currentUser && $event->getData('data')->isDirty('text')) {
             $this->Users->updateLastContribution($currentUser);
         }
 
