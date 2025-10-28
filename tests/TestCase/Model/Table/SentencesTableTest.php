@@ -1550,19 +1550,17 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(7);
         CurrentUser::store($user);
 
-        $testTime1 = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime1); 
-        $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
+        $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime2 = new Time('2019-02-02 00:00:00');
-        Time::setTestNow($testTime2); 
+        $testTime = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime); 
         $data = $this->Sentence->get(7);
         $data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
         $result = $this->Sentence->save($data);
 
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
-        $this->assertEquals($testTime1, $newLastContribution);
+        $this->assertEquals($oldLastContribution, $newLastContribution);
 
         Time::setTestNow();
     }
@@ -1571,17 +1569,15 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(7);
         CurrentUser::store($user);
 
-        $testTime1 = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime1); 
-        $this->Sentence->saveNewSentence('This is my new English sentence.', 'eng', 1);
+        $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime2 = new Time('2019-02-02 00:00:00');
-        Time::setTestNow($testTime2); 
+        $testTime = new Time('2019-02-02 00:00:00');
+        Time::setTestNow($testTime); 
         $sentence = $this->Sentence->saveNewSentence('An orphan sentence.', 'eng', 4);
 
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
-        $this->assertEquals($testTime1, $newLastContribution);
+        $this->assertEquals($oldLastContribution, $newLastContribution);
 
         Time::setTestNow();
     }
