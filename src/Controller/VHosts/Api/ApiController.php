@@ -141,6 +141,11 @@ When this API will be considered mature, we will release a stable version and yo
  *   type="enum",
  *   enum={"CC BY 2.0 FR", "CC0 1.0", "PROBLEM"}
  * )
+ * @OA\Schema(
+ *   schema="SentenceLicenseList",
+ *   type="array",
+ *   items=@OA\Items(ref="#/components/schemas/SentenceLicense")
+ * )
  */
 class ApiController extends Controller
 {
