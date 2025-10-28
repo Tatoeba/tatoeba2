@@ -917,6 +917,38 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expectedValues, $values);
     }
 
+    function testSphinxAttributesChanged_license_issue() {
+        $sentenceId = 1;
+        $newLicense = '';
+        $expectedAttributes = array('license_id');
+        $expectedValues = array(
+            $sentenceId => array(0),
+        );
+        $entity = $this->Sentence->get($sentenceId);
+        $entity->license = $newLicense;
+
+        $this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
+
+        $this->assertEquals($expectedAttributes, $attributes);
+        $this->assertEquals($expectedValues, $values);
+    }
+
+    function testSphinxAttributesChanged_license_CC0() {
+        $sentenceId = 1;
+        $newLicense = 'CC0 1.0';
+        $expectedAttributes = array('license_id');
+        $expectedValues = array(
+            $sentenceId => array(2),
+        );
+        $entity = $this->Sentence->get($sentenceId);
+        $entity->license = $newLicense;
+
+        $this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
+
+        $this->assertEquals($expectedAttributes, $attributes);
+        $this->assertEquals($expectedValues, $values);
+    }
+
     function testEditSentence_succeedsForSentenceOwner() {
         $user = $this->Sentence->Users->get(4);
         CurrentUser::store($user);

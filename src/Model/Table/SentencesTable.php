@@ -1280,6 +1280,14 @@ class SentencesTable extends Table
             $sentenceUCorrectness = $entity->correctness + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
         }
+        if ($entity->isDirty('license')) {
+            $attributes[] = 'license_id';
+            $licenses = array_keys(Licenses::getSentenceLicenses());
+            $licenseId = array_search($entity->license, $licenses);
+            if ($licenseId !== false) {
+                $values[$sentenceId][] = $licenseId;
+            }
+        }
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);
     }
