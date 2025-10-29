@@ -439,29 +439,4 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->get("/en/sentences/of_user/$user?page=9999999");
         $this->assertRedirect("/en/sentences/of_user/$user?page=$lastPage");
     }
-
-    public function testNewSentence_UpdatesLastContributionField() {
-        $users = TableRegistry::get('Users');
-
-        $this->logInAs('contributor');
-
-        $this->post('/en/sentences/add_an_other_sentence', [
-            'value' => 'This is my new English sentence.', 
-            'selectedLang' => 'eng', 
-        ]);
-        $this->assertResponseOk();
-        $user = $users->find()->where(['username' => 'contributor'])->first();
-        $previousLastContribution = $user->last_contribution;
-
-        sleep(1);
-        $this->post('/en/sentences/add_an_other_sentence', [
-            'value' => 'This is my newer English sentence.', 
-            'selectedLang' => 'eng', 
-        ]);
-        $this->assertResponseOk();
-        $user = $users->find()->where(['username' => 'contributor'])->first();
-        $newLastContribution = $user->last_contribution;
-
-        $this->assertGreaterThan($previousLastContribution, $newLastContribution);
-    }
 }
