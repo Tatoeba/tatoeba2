@@ -180,6 +180,8 @@ class SentenceButtonsHelper extends AppHelper
         $total = count($sentenceAudios);
         if ($total) {
             $startIn = rand(0, $total-1);
+            $audioCount = 1;
+            $audioLinks = "";
             foreach ($sentenceAudios as $audio) {
                 $author = $this->_View->safeForAngular($audio->author);
                 if (empty($author)) {
@@ -193,8 +195,12 @@ class SentenceButtonsHelper extends AppHelper
                 $class = 'audioButton audioAvailable';
                 if ($startIn == 0) {
                     $class .= ' nextAudioToPlay';
+
+                    // Only display audio counts for sentences with more than 1 audio
+                    $countContent = $total > 1 ? $total : "";
+                    $audioCount = $this->Html->div("audioButtonCount", $countContent);
                 }
-                echo $this->Html->Link(
+                $audioLink = $this->Html->Link(
                     null,
                     $this->Url->build([
                         'controller' => 'audio',
@@ -207,8 +213,12 @@ class SentenceButtonsHelper extends AppHelper
                         'onclick' => 'return false',
                     )
                 );
+
+                $audioLinks .= $audioLink;
                 $startIn--;
             }
+
+            echo $this->Html->div("audioButtonWrapper", $audioLinks . $audioCount);
         } else {
             echo $this->Html->Link(
                 null,

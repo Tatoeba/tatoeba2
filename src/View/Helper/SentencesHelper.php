@@ -531,18 +531,18 @@ class SentencesHelper extends AppHelper
             );
         }
 
-        // Copy
-	echo '<div class="copy column">';
-	$this->SentenceButtons->displayCopyButton($sentence->text);
-	echo '</div>';
-
         // Sentence
         $hasAudio = isset($sentence->audios) && count($sentence->audios);
         $canEdit = $isEditable && !$hasAudio;
         $this->displaySentenceContent($sentence, $canEdit);
         echo '</div>';
 
-        // audio
+        // Copy
+        echo '<div class="copy column">';
+        $this->SentenceButtons->displayCopyButton($sentence->text);
+        echo '</div>';
+
+        // Audio
         if ($withAudio && isset($sentence->audios)) {
             echo '<div class="audio column">';
             $this->SentenceButtons->audioButton(
