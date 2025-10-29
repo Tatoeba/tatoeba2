@@ -48,7 +48,7 @@ class DownloadsHelper extends AppHelper
         );
 
         $dir = new Folder($perLanguageDir);
-        $paths = $dir->findRecursive(".*$basename\.tsv\.bz2$");
+        $paths = $dir->findRecursive(".*$basename\.tsv\.zst$");
         $map = [];
         foreach ($paths as $path) {
             $path = substr($path, strlen($perLanguageDir) + 1);
@@ -74,7 +74,7 @@ class DownloadsHelper extends AppHelper
     public function createOptions($basename) {
         $urlForAll = Folder::addPathElement(
             Configure::read('Downloads.url'),
-            "$basename.tar.bz2"
+            "$basename.csv.zst"
         );
         $options[0] = [
             'language' => __('All languages'),
