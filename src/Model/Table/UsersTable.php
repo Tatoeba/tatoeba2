@@ -30,8 +30,10 @@ use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
 use Cake\Database\Schema\TableSchema;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
+use Cake\I18n\Time;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -591,5 +593,16 @@ class UsersTable extends Table
             $user->password = $plainTextPassword;
             $this->save($user);
         }
+    }
+
+    public function updateLastContribution($userId)
+    {
+        try {
+            $user = $this->get($userId);
+        } catch (RecordNotFoundException $e) {    
+            return;
+        }
+        $user->last_contribution = Time::now();
+        $this->save($user);
     }
 }

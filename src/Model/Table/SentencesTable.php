@@ -278,6 +278,11 @@ class SentencesTable extends Table
         ));
         $this->getEventManager()->dispatch($event);
 
+        $currentUserId = CurrentUser::get('id');
+        if ($currentUserId && $entity->isDirty('text')) {
+            $this->Users->updateLastContribution($currentUserId);
+        }
+
         if (!$created && $entity->isDirty('lang')) {
             $oldLang = $entity->getOriginal('lang');
             $this->Contributions->updateLanguage($entity->id, $entity->lang);
