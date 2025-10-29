@@ -96,7 +96,7 @@ When this API will be considered mature, we will release a stable version and yo
  * )
  * @OA\Schema(
  *   schema="NegatableMemberList",
- *   description="A comma-separated list of usernames. The list of usernames can be negated by prefixing it with <em>!</em>. Empty username means orphan sentence.",
+ *   description="A comma-separated list of usernames. The list of usernames can be negated by prefixing it with <em>!</em>.",
  *   type="string",
  *   example="gillux",
  *   pattern="!?[0-9a-zA-Z_]*(,[0-9a-zA-Z_]*)*"
