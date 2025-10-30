@@ -415,4 +415,9 @@ class LanguagesHelper extends AppHelper
         $UiLangs = LanguagesLib::activeUiLanguages();
         return $UiLangs[$langCode][0];
     }
+
+    public function languageExists($lang)
+    {
+        return LanguagesLib::languageExists($lang);
+    }
 }
