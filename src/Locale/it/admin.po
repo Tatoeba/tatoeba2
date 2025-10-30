@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-07 06:40+0000\n"
+"POT-Creation-Date: 2025-10-29 04:31+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>, 2024\n"
 "Language-Team: Italian (https://app.transifex.com/tatoeba/teams/28284/it/)\n"
@@ -34,15 +34,15 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "Tutte le frasi di {username} sono state marcate come inaffidabili."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "Non si è in gradi di importare l'audio: utente \"{author}\" non trovato."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
 msgid "Invalid file “{file}” ignored."
 msgstr "File non valido “{file}” ignorato."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
@@ -50,22 +50,22 @@ msgstr ""
 "Non si è in grado di sostituire l'audio contribuito da \"{author}\" per la "
 "frase {sentenceId}: questo utente ha più di un audio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 "Non si è in grado di salvare l'audio per la frase {sentenceId} all'interno "
 "del database."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Fallita la creazione della directory “{dir}” per importare il file “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Fallita la copia del file “{file}” nella directory “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

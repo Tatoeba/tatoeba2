@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-07 06:40+0000\n"
+"POT-Creation-Date: 2025-10-29 04:31+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Silja Ijas, 2025\n"
 "Language-Team: Finnish (https://app.transifex.com/tatoeba/teams/28284/fi/)\n"
@@ -35,15 +35,15 @@ msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Merkitty kaikki käyttäjän {username} lisäämät lauseet epäluotettaviksi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "Äänitettä ei voida tuoda: käyttäjää “{author}” ei löydy."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
 msgid "Invalid file “{file}” ignored."
 msgstr "Epäkelpo tiedosto “{file}” jätetty huomioimatta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
@@ -51,21 +51,21 @@ msgstr ""
 "Käyttäjän “{author}” lauseelle {sentenceId} lisäämää äänitettä ei voida "
 "korvata: tällä käyttäjällä on enemmän kuin yksi äänite."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr "Lauseen {sentenceId} äänitettä ei voida tallentaa tietokantaan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Tiedoston “{file}” tuomista varten tarvittavan hakemiston “{dir}” luominen "
 "epäonnistui."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Tiedoston “{file}” kopioiminen hakemistoon “{dir}” epäonnistui."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

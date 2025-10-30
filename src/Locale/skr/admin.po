@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-07 06:40+0000\n"
+"POT-Creation-Date: 2025-10-29 04:31+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: mpQadir, 2023\n"
 "Language-Team: Saraiki (https://app.transifex.com/tatoeba/teams/28284/skr/)\n"
@@ -32,15 +32,15 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "{username}ولوں جمع تھئے سارے جملیاں تے بے اعتباریاں دا نشان لڳا"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "آڈیو امپورٹ کرݨ دے قابل کائنی: ورتݨ آلا  \"{author}\" کائنی لبھا۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
 msgid "Invalid file “{file}” ignored."
 msgstr "خراب فائل  “{file}” نظرانداز تھئی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
@@ -48,21 +48,21 @@ msgstr ""
 "جملہ {sentenceId} کیتے \"{author}\" ولوں ونگار آڈیو کوں وٹاوݨ دے قابل کائنی:"
 " ایں ورتݨ آلے دیاں ہک کنوں ودھ آڈیو ہن۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr "ڈیٹابیس وچ جملہ {sentenceId} کیتے آڈیو محفوظ کرݨ دے قابل کائنی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "فائل '\"{file}\" کوں امپورٹ کرݨ کیتے ڈائریکٹری \"{dir}\"  تخلیق کرݨ وچ "
 "ناکامی تھئی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "ڈائریکٹری \"{dir}\" وچ \"{file}\" فائل نقل کرݨ وچ نا کامی تھئی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
