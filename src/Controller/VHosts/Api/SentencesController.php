@@ -216,6 +216,14 @@ class SentencesController extends ApiController
      *     @OA\Examples(example="3", value="known",       summary="sentences we know have been added or not as translations of other sentences"),
      *     @OA\Examples(example="4", value="unknown",     summary="sentences we do not know whether or not they have been added as translations of other sentences"),
      *   ),
+     *   @OA\Parameter(name="license", in="query",
+     *     description="Limit according to sentence license. Unless this parameter is provided, sentences having a licensing issue are excluded by default.",
+     *     @OA\Schema(ref="#/components/schemas/SentenceLicenseList"),
+     *     @OA\Examples(example="1", value="CC BY 2.0 FR", summary="sentences published under CC BY 2.0 FR"),
+     *     @OA\Examples(example="2", value="CC0 1.0",      summary="sentences published under CC0 1.0"),
+     *     @OA\Examples(example="3", value="PROBLEM",      summary="sentences having a licensing issue"),
+     *     @OA\Examples(example="4", value="!PROBLEM",     summary="sentences not having a licensing issue (the default)"),
+     *   ),
      *   @OA\Parameter(name="trans:lang", in="query",
      *     description="Limit to sentences having translations in this language.",
      *     @OA\Examples(example="1", value="epo",      summary="sentences having translation(s) in Esperanto"),
@@ -455,6 +463,7 @@ class SentencesController extends ApiController
         $showtrans = $api->consumeShowTrans($params);
         $limit = $api->consumeInt('limit', $params, self::DEFAULT_RESULTS_NUMBER);
         $api->consumeSort($params);
+        $api->setDefaultFilters();
         $api->setFilters($params);
 
         $sphinx = $api->search->asSphinx();

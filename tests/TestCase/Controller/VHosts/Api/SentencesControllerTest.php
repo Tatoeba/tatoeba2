@@ -197,12 +197,6 @@ class SentencesControllerTest extends TestCase
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
-    public function testGetSentence_cannotGetSentencesWithLicenseIssue()
-    {
-        $this->get("http://api.example.com/unstable/sentences/52");
-        $this->assertResponseCode(404);
-    }
-
     public function testGetSentence_cannotGetTranslationsWithLicenseIssue()
     {
         $this->markTestSkipped('Cannot handle the special case of hiding indirect translations going through a translation having a license issues');

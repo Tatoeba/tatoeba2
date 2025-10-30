@@ -13,6 +13,7 @@ use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\LangFilter;
+use App\Model\Search\LicenseFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\TagFilter;
 use App\Model\Search\OriginFilter;
@@ -330,6 +331,72 @@ class SearchTest extends TestCase
 
         $expected = $this->makeSphinxParams([
             'filter' => [['has_audio', [1], true]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByLicence_invalid() {
+        $license = 'invalid';
+        try {
+            $this->Search->setFilter((new LicenseFilter())->anyOf([$license]));
+            $this->Search->asSphinx();
+            $this->fail("license '$license' did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertEquals("Value must be one of: PROBLEM, CC BY 2.0 FR, CC0 1.0", $e->getMessage());
+        }
+    }
+
+    public function testfilterByLicense_PROBLEM() {
+        $this->Search->setFilter((new LicenseFilter())->anyOf(['PROBLEM']));
+        $this->Search->asSphinx();
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['license_id', [0], false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByLicense_not_PROBLEM() {
+        $this->Search->setFilter((new LicenseFilter())->not()->anyOf(['PROBLEM']));
+        $this->Search->asSphinx();
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['license_id', [0], true]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByLicense_CC_BY_2_0_FR() {
+        $this->Search->setFilter((new LicenseFilter())->anyOf(['CC BY 2.0 FR']));
+        $this->Search->asSphinx();
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['license_id', [1], false]]
+        ]);
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByLicense_not_CC_BY_2_0_FR() {
+        $license = 'CC BY 2.0 FR';
+        try {
+            $this->Search->setFilter((new LicenseFilter())->not()->anyOf([$license]));
+            $this->Search->asSphinx();
+            $this->fail("not license '$license' did not generate InvalidValueException");
+        } catch (InvalidValueException $e) {
+            $this->assertEquals("Only PROBLEM can be negated", $e->getMessage());
+        }
+    }
+
+    public function testfilterByLicense_CC0_1_0() {
+        $this->Search->setFilter((new LicenseFilter())->anyOf(['CC0 1.0']));
+        $this->Search->asSphinx();
+
+        $expected = $this->makeSphinxParams([
+            'filter' => [['license_id', [2], false]]
         ]);
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);

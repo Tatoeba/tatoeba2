@@ -18,6 +18,7 @@
  */
 namespace App\Model\Behavior;
 
+use App\Model\Search\LicenseFilter;
 use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
 use Cake\ORM\Query;
@@ -153,7 +154,7 @@ class ExposedOnApiBehavior extends Behavior
      *       description="If the sentence language is only written in a single obvious script (such as Latin script for English), this contains null. Also contains null when different scripts are in use on Tatoeba, but Tatoeba does not perform script autodetection (example: Algerian Arabic (<code>arq</code>) or Baluchi (<code>bal</code>).",
      *     )
      *   }),
-     *   @OA\Property(property="license", type="string", example="CC BY 2.0 FR", description="The license of the sentence"),
+     *   @OA\Property(property="license", ref="#/components/schemas/SentenceLicense", description="The license of the sentence"),
      *   @OA\Property(property="owner", description="The owner of the sentence", anyOf={
      *     @OA\Schema(type="string", description="User name of the sentence owner.", example="kevin"),
      *     @OA\Schema(type="null", description="Contains null when the sentence is orphan."),
@@ -169,8 +170,15 @@ class ExposedOnApiBehavior extends Behavior
         $query
             ->find('exposedFields', compact('exposedFields'))
             ->select($fields)
-            ->where(['license !=' => '']) // FIXME use Manticore filter instead
-            ->contain(['Users' => ['fields' => ['id', 'username']]]);
+            ->contain(['Users' => ['fields' => ['id', 'username']]])
+            ->formatResults(function($results) use ($query) {
+                return $results->map(function($result) {
+                    if ($result['license'] == '') {
+                        $result['license'] = LicenseFilter::LICENSING_ISSUE;
+                    }
+                    return $result;
+                });
+            });
 
         return $query;
     }
