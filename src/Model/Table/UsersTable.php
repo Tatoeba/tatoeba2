@@ -280,6 +280,13 @@ class UsersTable extends Table
                 $user->is_spamdexing = true;
             }
         }
+
+        if ($user->has('remove-picture')) {
+            if ($user->get('remove-picture')) {
+                $user->image = null;
+            }
+            $user->unsetProperty('remove-picture');
+        }
     }
 
     private function removeImages($file)

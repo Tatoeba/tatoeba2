@@ -61,6 +61,13 @@
     width: 25px;
 }
 
+#UserEditForm img.profile {
+    float: left;
+}
+#UserEditForm input:checked ~ img.profile {
+    display: none;
+}
+
 #UserEditForm details > summary {
     cursor: pointer;
 }

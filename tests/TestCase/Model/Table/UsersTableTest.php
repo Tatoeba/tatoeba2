@@ -229,4 +229,26 @@ class UsersTableTest extends TestCase
             $this->assertFalse($savedUser);
         }
     }
+
+    public function testSaveRemovePicture_1()
+    {
+        $user = $this->Users->get(4);
+        $this->Users->patchEntity($user, ['remove-picture' => '1']);
+
+        $savedUser = $this->Users->save($user);
+
+        $this->assertEquals('', $user->image);
+        $this->assertFalse($user->has('remove-picture'));
+    }
+
+    public function testSaveRemovePicture_0()
+    {
+        $user = $this->Users->get(4);
+        $this->Users->patchEntity($user, ['remove-picture' => '0']);
+
+        $savedUser = $this->Users->save($user);
+
+        $this->assertEquals('93986962b3472786d9aea008f6160bfd.png', $user->image);
+        $this->assertFalse($user->has('remove-picture'));
+    }
 }

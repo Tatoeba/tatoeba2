@@ -81,6 +81,30 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
 ?>
     <fieldset>
     <legend><?php echo __d('admin', 'Edit User'); ?></legend>
+
+    <div class="input checkbox">
+        <label><?= h(__d('admin', 'Profile picture')) ?></label>
+        <?php if ($user->image) {
+            echo $this->Form->checkbox('remove-picture', array('id' => 'remove-picture'));
+            echo $this->Form->label('remove-picture', __d('admin', 'Remove picture'));
+            echo $this->Html->image(
+                IMG_PATH . 'profiles_128/'.$user->image,
+                array(
+                    'width' => 128,
+                    'height' => 128,
+                    'alt' => $user->username,
+                    'class' => 'profile',
+                )
+            );
+        } else {
+            echo $this->Html->tag(
+                'div',
+                __d('admin', 'No picture set'),
+                array('style' => 'padding: 5px')
+            );
+        } ?>
+    </div>
+
     <?php
     echo $this->Form->input('id',       array('label' => __d('admin', 'Id')));
     echo $this->Form->input('username', array('label' => __d('admin', 'Username')));
