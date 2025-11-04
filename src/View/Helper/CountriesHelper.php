@@ -29,6 +29,7 @@ class CountriesHelper extends AppHelper
         if (!$this->countries) {
             $CountriesList = new CountriesList();
             $this->countries = $CountriesList->list;
+            $this->localizedAsort($this->countries);
         }
         return $this->countries;
     }

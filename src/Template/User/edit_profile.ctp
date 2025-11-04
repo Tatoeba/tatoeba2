@@ -29,7 +29,6 @@ use App\Model\CurrentUser;
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Edit profile')));
 $this->Html->script('user/edit_profile.js', ['block' => 'scriptBottom']);
 $countries = $this->Countries->getAllCountries();
-$this->Languages->localizedAsort($countries);
 ?>
 <div id="annexe_content">
     <?php
