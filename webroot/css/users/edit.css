@@ -64,6 +64,12 @@
 #UserEditForm details > summary {
     cursor: pointer;
 }
+#UserEditForm details > summary[data-show]::after {
+    content: attr(data-show);
+}
+#UserEditForm details:open > summary[data-hide]::after {
+    content: attr(data-hide);
+}
 
 #UserEditForm textarea {
     width: 99%;

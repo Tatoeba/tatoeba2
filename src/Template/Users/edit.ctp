@@ -123,7 +123,14 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
     ));
     ?>
     <details>
-        <summary><?= $this->Form->label('description', __d('admin', 'Description')) ?></summary>
+        <summary
+            <?php /* @translators toggle button to show form field (verb) */ ?>
+            data-show="<?= h(__d('admin', 'Show')) ?>"
+            <?php /* @translators toggle button to hide form field (verb) */ ?>
+            data-hide="<?= h(__d('admin', 'Hide')) ?>"
+            ><?=
+                $this->Form->label('description', __d('admin', 'Description'))
+        ?></summary>
         <?= $this->Form->textarea('description', array('lang' => '', 'dir' => 'auto')) ?>
     </details>
 <?php
