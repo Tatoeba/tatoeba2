@@ -61,6 +61,11 @@
     width: 25px;
 }
 
+#UserEditForm textarea {
+    width: 99%;
+    height: 350px;
+}
+
 #UserEditForm div.submit {
     text-align: center;
     margin-top: 10px;

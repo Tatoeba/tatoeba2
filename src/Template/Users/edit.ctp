@@ -110,10 +110,31 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
             )
         )
     );
-
+    echo $this->Form->input('name', array(
+        'label' => __d('admin', 'Name'),
+    ));
+    echo $this->Form->control('country_id', array(
+        'label' => __d('admin', 'Country'),
+        'options' => $this->Countries->getAllCountries(),
+        'empty' => true
+    ));
+    echo $this->Form->input('homepage', array(
+        'label' => __d('admin', 'Homepage'),
+    ));
+    ?>
+    <details>
+        <summary style="cursor:pointer"><?= $this->Form->label('description', __d('admin', 'Description')) ?></summary>
+        <?= $this->Form->textarea('description', array('lang' => '', 'dir' => 'auto')) ?>
+    </details>
+<?php
     echo '<br>';
     echo $this->Form->input('send_notifications', array(
         'label' => __d('admin', 'Send notifications')
+    ));
+
+    echo $this->Form->input('settings.is_public', array(
+        'type' => 'checkbox',
+        'label' => __d('admin', 'Profile is public'),
     ));
 
     echo $this->Form->input('settings.can_switch_license', [
