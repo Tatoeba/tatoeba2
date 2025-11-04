@@ -61,6 +61,10 @@
     width: 25px;
 }
 
+#UserEditForm details > summary {
+    cursor: pointer;
+}
+
 #UserEditForm textarea {
     width: 99%;
     height: 350px;

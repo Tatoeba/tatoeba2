@@ -123,7 +123,7 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
     ));
     ?>
     <details>
-        <summary style="cursor:pointer"><?= $this->Form->label('description', __d('admin', 'Description')) ?></summary>
+        <summary><?= $this->Form->label('description', __d('admin', 'Description')) ?></summary>
         <?= $this->Form->textarea('description', array('lang' => '', 'dir' => 'auto')) ?>
     </details>
 <?php
@@ -145,7 +145,7 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
 
     <br>
     <details>
-        <summary style="cursor:pointer"><?= __d('admin', 'About spamdexing status') ?></summary>
+        <summary><?= __d('admin', 'About spamdexing status') ?></summary>
         <ul>
             <li><?= __d('admin', '"Unknown" users cannot include any outbound link in their profile. In addition, when trying to post a sentence comment or wall post that includes outbound links, they are warned that their links must be legitimate. If they choose to continue, the message is posted and an e-mail is sent to moderators.') ?></li>
             <li><?= __d('admin', '"Verified" and "legacy" users can include any link anywhere without restriction.') ?></li>
