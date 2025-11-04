@@ -103,7 +103,6 @@
     font-size: 20px;
     border: 1px solid #555;
     margin: 10px;
-    padding: 5px 20px;
     background: #6CBC70;
     text-align: center;
 }
@@ -113,5 +112,7 @@
 }
 
 .actions a {
+    display: block;
+    padding: 5px 20px;
     color: white;
 }
