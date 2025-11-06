@@ -137,9 +137,20 @@ class VocabularyController extends AppController
             ['fields' => ['lang', 'text']]
         );
 
-        if (!$this->Vocabulary->save($vocab)) {
-            return $this->response->withStatus(400);
+        try {
+            if (!$this->Vocabulary->save($vocab)) {
+                $this->Flash->set(__('The vocabulary item could not be updated.'));
+                return $this->redirect(['action' => 'edit', $id]);
+            }
+        } catch (\PDOException $e) {
+            if ($e->getCode() === '23000') {
+                $this->Flash->set(sprintf(__('The vocabulary item \'%s\' already exists for this language.'), h($vocab->text)));
+                return $this->redirect(['action' => 'edit', $id]);
+            }
+            $this->Flash->set(__('An unexpected error occurred while saving.'));
+            return $this->redirect(['action' => 'edit', $id]);
         }
+
     }
 
     /**
