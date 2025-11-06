@@ -137,18 +137,32 @@ class VocabularyController extends AppController
             ['fields' => ['lang', 'text']]
         );
 
-        try {
-            if (!$this->Vocabulary->save($vocab)) {
-                $this->Flash->set(__('The vocabulary item could not be updated.'));
-                return $this->redirect(['action' => 'edit', $id]);
+        if ($this->request->is(['put', 'post'])) {
+            $this->Vocabulary->patchEntity(
+                $vocab,
+                $this->request->getData(),
+                ['fields' => ['lang', 'text']]
+            );
+            $savedVocab = $this->Vocabulary->save($vocab);
+
+            if (!$savedVocab) {
+                $errors = $vocab->getErrors();
+
+                if (isset($errors['text']['_isUnique'])) {
+                    $this->Flash->set(format(
+                        __('The vocabulary item \'{vocabText}\' already exists for this language.'),
+                        ['vocabText' => h($vocab->text)]
+                    ));
+                } else {
+                    foreach ($vocab->getErrors() as $errors) {
+                        foreach ($errors as $id => $message) {
+                            $this->Flash->set($message);
+                        }
+                    }
+                }
+
+                return $this->response->withStatus(400);
             }
-        } catch (\PDOException $e) {
-            if ($e->getCode() === '23000') {
-                $this->Flash->set(sprintf(__('The vocabulary item \'%s\' already exists for this language.'), h($vocab->text)));
-                return $this->redirect(['action' => 'edit', $id]);
-            }
-            $this->Flash->set(__('An unexpected error occurred while saving.'));
-            return $this->redirect(['action' => 'edit', $id]);
         }
 
     }
