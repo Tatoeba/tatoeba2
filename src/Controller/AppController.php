@@ -56,12 +56,13 @@ class AppController extends Controller
 
     public $components = array(
         'Auth' => array(
-		'authenticate' => array(
-			'Form' => array(
-                            'passwordHasher' => array('className' => 'Versioned'),
-                        ),
-		)
-	),
+        'authenticate' => array(
+            'Form' => array(
+                    'passwordHasher' => array('className' => 'Versioned'),
+                    'finder' => 'userToLogin',
+                ),
+            )
+        ),
         'Flash',
         'Permissions',
         'RememberMe',

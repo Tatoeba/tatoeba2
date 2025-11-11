@@ -612,4 +612,10 @@ class UsersTable extends Table
         $user->last_contribution = Time::now();
         $this->save($user);
     }
+
+    public function findUserToLogin(Query $query, $options)
+    {
+        // The result of this query will end up in AuthComponent->user()
+        return $query->select(['id', 'username', 'password', 'role']);
+    }
 }

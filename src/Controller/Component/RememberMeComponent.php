@@ -83,7 +83,7 @@ class RememberMeComponent extends Component
         }
 
         $model = TableRegistry::get('Users');
-        $user = $model->find()
+        $user = $model->find('userToLogin')
             ->where([
                 'username' => $cookie['username'],
                 'password' => $cookie['password'],
