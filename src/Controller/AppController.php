@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -56,12 +57,13 @@ class AppController extends Controller
 
     public $components = array(
         'Auth' => array(
-		'authenticate' => array(
-			'Form' => array(
-                            'passwordHasher' => array('className' => 'Versioned'),
-                        ),
-		)
-	),
+        'authenticate' => array(
+            'Form' => array(
+                    'passwordHasher' => array('className' => 'Versioned'),
+                    'finder' => 'userToLogin',
+                ),
+            )
+        ),
         'Flash',
         'Permissions',
         'RememberMe',
@@ -122,13 +124,37 @@ class AppController extends Controller
         $this->initAuthActions();
         $this->RememberMe->check();
 
-        // So that we can access the current users info from models.
+        // Get logged-in user so that we can access it info from models.
         // Important: needs to be done after RememberMe->check().
-        $user = $this->Auth->user();
-        if ($user) {
-            // Keep the info up to date
+        $logged_in_user = $this->Auth->user();
+        if ($logged_in_user) {
             $this->loadModel('Users');
-            $user = $this->Users->getInformationOfCurrentUser($user['id'])->toArray();
+            $user = $this->Users->getInformationOfCurrentUser($logged_in_user['id'])->toArray();
+
+            // Immediately logout if status was downgraded to one that cannot login
+            if (in_array($user['role'], [User::ROLE_INACTIVE, User::ROLE_SPAMMER])) {
+                $this->RememberMe->delete();
+                $this->Auth->logout();
+                if ($user['role'] == User::ROLE_SPAMMER) {
+                    $this->Flash->set(__('Your account has been suspended.'));
+                } elseif ($user['role'] == User::ROLE_INACTIVE) {
+                    $this->Flash->set(__('Your account has been deactivated.'));
+                }
+                $user = false;
+            } else {
+                // Check if auth info needs to be updated
+                // May happen if an admin just changed the user's role or username
+                $updated_user_auth = array_intersect_key($user, $logged_in_user);
+                if ($updated_user_auth != $logged_in_user) {
+                    $this->Auth->setUser($updated_user_auth);
+                    // AuthComponent::setUser() renews the session id, which makes
+                    // the Security component blackhole the request if it's a post
+                    // so disable it just this time
+                    $this->Security->setConfig(['validatePost' => false]);
+                }
+            }
+        } else {
+            $user = false;
         }
         CurrentUser::store($user);
 
@@ -150,13 +176,6 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
-        $current_user = CurrentUser::get('User');
-        $auth_user = $this->Auth->user();
-        if ($auth_user && $current_user && $auth_user != $current_user) {
-            // User data changed, tell the Auth component about it.
-            $this->Auth->setUser($current_user);
-        }
-
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->request->is('ajax')) {
             $this->viewBuilder()->setLayout('ajax');
