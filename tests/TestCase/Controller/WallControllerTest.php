@@ -79,6 +79,25 @@ class WallControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/en/wall/index');
     }
 
+    public function testSave_asMember_justDowngradedToSpammer() {
+        $this->logInAs('contributor');
+        $users = TableRegistry::get('Users');
+        $contributor = $users->get(4);
+        $contributor->role = 'spammer';
+        $users->save($contributor);
+
+        Configure::write('App.fullBaseUrl', 'https://example.net');
+        $this->configRequest([
+            'headers' => ['Referer' => 'https://example.net/previous_page']
+        ]);
+        $this->post('/en/wall/save', [
+            'replyTo' => '',
+            'content' => 'Am I considered as spammer yet?',
+        ]);
+
+        $this->assertRedirect('/previous_page');
+    }
+
     public function testSaveInside_asGuest() {
         $this->enableCsrfToken();
         $this->ajaxPost('/en/wall/save_inside', [
