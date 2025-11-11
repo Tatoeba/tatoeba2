@@ -138,11 +138,6 @@ class VocabularyController extends AppController
         );
 
         if ($this->request->is(['put', 'post'])) {
-            $this->Vocabulary->patchEntity(
-                $vocab,
-                $this->request->getData(),
-                ['fields' => ['lang', 'text']]
-            );
             $savedVocab = $this->Vocabulary->save($vocab);
 
             if (!$savedVocab) {
