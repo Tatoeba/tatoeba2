@@ -163,6 +163,37 @@ class Autotranscription
         return $formatted;
     }
 
+    private function _errorIfNonEqual(&$errors, $sentence, $transcr) {
+        if ($sentence !== $transcr) {
+            /* Find the first character that differs */
+            $character = mb_substr(
+                mb_strcut(
+                    $transcr,
+                    strspn($transcr ^ $sentence, "\0")
+                ),
+                0,
+                1
+            );
+            if ($character) {
+                $errors[] = format(
+                    __(
+                        'The provided sentence differs from the original one '.
+                        'near “{character}”.',
+                        true),
+                    compact('character')
+                );
+            } else {
+                $errors[] = format(
+                    __(
+                        'The provided sentence is shorter than the '.
+                        'original one.',
+                        true),
+                    compact('character')
+                );
+            }
+        }
+    }
+
     /**
      * Convert Japanese text into furigana.
      */
@@ -221,34 +252,7 @@ class Autotranscription
         $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー|]*)\]/u';
 
         $withoutFuri = preg_replace($tokenizeFuriRegex, '$1', $transcr);
-        if ($sentenceText !== $withoutFuri) {
-            /* Find the first character that differs */
-            $character = mb_substr(
-                mb_strcut(
-                    $withoutFuri,
-                    strspn($withoutFuri ^ $sentenceText, "\0")
-                ),
-                0,
-                1
-            );
-            if ($character) {
-                $errors[] = format(
-                    __(
-                        'The provided sentence differs from the original one '.
-                        'near “{character}”.',
-                        true),
-                    compact('character')
-                );
-            } else {
-                $errors[] = format(
-                    __(
-                        'The provided sentence is shorter than the '.
-                        'original one.',
-                        true),
-                    compact('character')
-                );
-            }
-        }
+        $this->_errorIfNonEqual($errors, $sentenceText, $withoutFuri);
 
         $withFuri = preg_replace('/\[([^|]+)\|+\]/u', '$1', $transcr);
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $withFuri);
@@ -331,6 +335,37 @@ class Autotranscription
         $text = preg_replace('/"\s*([^"]+)\s*"/', '"$1"', $text);
         $text = ucfirst($text);
         return $text;
+    }
+
+    public function cmn_Hans_to_Hant_validate($sentence, $transcr, &$errors) {
+        if (mb_strlen($sentence) < mb_strlen($transcr)) {
+            $errors[] = __('The provided sentence is longer than '
+                          .'the original one.');
+            return false;
+        }
+
+        // Compare $sentence with $transcr while ignoring Han chars
+        $sentenceA = preg_split("//u", $sentence, -1, PREG_SPLIT_NO_EMPTY);
+        $transcrA  = preg_split("//u", $transcr,  -1, PREG_SPLIT_NO_EMPTY);
+        $transcrComp = '';
+        for ($i = 0; $i < count($transcrA) && $i < count($sentenceA); $i++) {
+            $charS = $sentenceA[$i];
+            $charT = $transcrA[$i];
+            $charS_isHan = preg_match('/\p{Han}/u', $charS) === 1;
+            $charT_isHan = preg_match('/\p{Han}/u', $charT) === 1;
+            if ($charS_isHan && $charT_isHan) {
+                $transcrComp .= $charS;
+            } else {
+                $transcrComp .= $charT;
+            }
+        }
+        $this->_errorIfNonEqual($errors, $sentence, $transcrComp);
+
+        return count($errors) == 0;
+    }
+
+    public function cmn_Hant_to_Hans_validate($sentence, $transcr, &$errors) {
+        return $this->cmn_Hans_to_Hant_validate($sentence, $transcr, $errors);
     }
 
     public function cmn_Hant_to_Latn_generate($text, &$needsReview) {
