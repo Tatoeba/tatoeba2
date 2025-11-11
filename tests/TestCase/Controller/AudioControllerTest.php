@@ -34,8 +34,8 @@ class AudioControllerTest extends IntegrationTestCase
         return [
             // url; user; is accessible or redirection url
             [ '/en/audio/import', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fimport' ],
-            [ '/en/audio/import', 'spammer', '/' ],
-            [ '/en/audio/import', 'inactive', '/' ],
+            [ '/en/audio/import', 'spammer', '/en/users/login?redirect=%2Fen%2Faudio%2Fimport' ],
+            [ '/en/audio/import', 'inactive', '/en/users/login?redirect=%2Fen%2Faudio%2Fimport' ],
             [ '/en/audio/import', 'contributor', '/' ],
             [ '/en/audio/import', 'advanced_contributor', '/' ],
             [ '/en/audio/import', 'corpus_maintainer', '/' ],

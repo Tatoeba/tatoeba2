@@ -79,12 +79,26 @@ class WallControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/en/wall/index');
     }
 
-    public function testSave_asMember_justDowngradedToSpammer() {
-        $this->logInAs('contributor');
+    public function roleChangeProvider() {
+        return [
+            // new role, redirect link, flash message match
+            ['spammer',  'https://example.net/en/users/login?redirect=%2Fprevious_page', 'suspended'],
+            ['inactive', 'https://example.net/en/users/login?redirect=%2Fprevious_page', 'deactivated'],
+            ['contributor',       '/en/wall/index'],
+            ['corpus_maintainer', '/en/wall/index'],
+            ['admin',             '/en/wall/index'],
+        ];
+    }
+
+    /**
+     * @dataProvider roleChangeProvider()
+     */
+    public function testSave_asMember_roleJustChanged($newRole, $exceptedRedirect, $flashMsg = null) {
+        $this->logInAs('advanced_contributor');
         $users = TableRegistry::get('Users');
-        $contributor = $users->get(4);
-        $contributor->role = 'spammer';
-        $users->save($contributor);
+        $advcontributor = $users->get(3);
+        $advcontributor->role = $newRole;
+        $users->save($advcontributor);
 
         Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->configRequest([
@@ -92,10 +106,13 @@ class WallControllerTest extends IntegrationTestCase {
         ]);
         $this->post('/en/wall/save', [
             'replyTo' => '',
-            'content' => 'Am I considered as spammer yet?',
+            'content' => 'Am I having my new role yet?',
         ]);
 
-        $this->assertRedirect('/previous_page');
+        $this->assertRedirect($exceptedRedirect);
+        if ($flashMsg) {
+            $this->assertFlashMessageContains($flashMsg);
+        }
     }
 
     public function testSaveInside_asGuest() {
