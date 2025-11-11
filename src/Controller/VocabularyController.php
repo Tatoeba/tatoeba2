@@ -137,9 +137,29 @@ class VocabularyController extends AppController
             ['fields' => ['lang', 'text']]
         );
 
-        if (!$this->Vocabulary->save($vocab)) {
-            return $this->response->withStatus(400);
+        if ($this->request->is(['put', 'post'])) {
+            $savedVocab = $this->Vocabulary->save($vocab);
+
+            if (!$savedVocab) {
+                $errors = $vocab->getErrors();
+
+                if (isset($errors['text']['_isUnique'])) {
+                    $this->Flash->set(format(
+                        __('The vocabulary item \'{vocabText}\' already exists for this language.'),
+                        ['vocabText' => h($vocab->text)]
+                    ));
+                } else {
+                    foreach ($vocab->getErrors() as $errors) {
+                        foreach ($errors as $id => $message) {
+                            $this->Flash->set($message);
+                        }
+                    }
+                }
+
+                return $this->response->withStatus(400);
+            }
         }
+
     }
 
     /**
