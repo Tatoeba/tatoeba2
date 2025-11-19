@@ -138,7 +138,9 @@ $countries = $this->Countries->getAllCountries();
         'minYear' => date('Y') - 100,
         'maxYear' => date('Y') - 3
     ]);
-    $monthSelector = $this->Form->select('birthday[month]', $this->Date->months(), ['empty' => true, 'value' => $month]);
+    $monthOptions = ['empty' => true, 'value' => $month];
+    $monthSelector = $this->Form->select('birthday[month]', $this->Date->months(), $monthOptions);
+    $monthNumberSelector = $this->Form->select('birthday[month]', $this->Date->monthsAsNumbers(), $monthOptions);
     $daySelector = $this->Form->day('birthday', [
         'empty' => true,
         'value' => $day
@@ -146,9 +148,11 @@ $countries = $this->Countries->getAllCountries();
     echo format(
        /* @translators: This can be used in the profile edition page
           to change how birth date selectors are displayed.
-          You can reorder them or add text inbetween. */
+          You can reorder them or add text inbetween.
+          You can also replace {monthSelector} with {monthNumberSelector}
+          to force using numbers in the months dropdown. */
         __("{yearSelector}{monthSelector}{daySelector}"),
-        compact('yearSelector', 'monthSelector', 'daySelector')
+        compact('yearSelector', 'monthSelector', 'monthNumberSelector', 'daySelector')
     );
 
     echo $this->Form->control('homepage', [
