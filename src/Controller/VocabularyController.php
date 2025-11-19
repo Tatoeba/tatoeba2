@@ -141,15 +141,15 @@ class VocabularyController extends AppController
             $errors = $vocab->getErrors();
 
             if (isset($errors['text']['_isUnique'])) {
-                $this->Flash->set(format(
+                $errors['text']['_isUnique'] = format(
                     __('The vocabulary item \'{vocabText}\' already exists for this language.'),
                     ['vocabText' => h($vocab->text)]
-                ));
-            } else {
-                foreach ($vocab->getErrors() as $errors) {
-                    foreach ($errors as $id => $message) {
-                        $this->Flash->set($message);
-                    }
+                );
+            }
+
+            foreach ($errors as $error) {
+                foreach ($error as $id => $message) {
+                    $this->Flash->set($message);
                 }
             }
 

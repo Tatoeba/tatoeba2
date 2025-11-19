@@ -60,7 +60,7 @@ class VocabularyTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['text', 'lang'], __('This vocabulary item already exists for this language.')));
+        $rules->add($rules->isUnique(['text', 'lang']));
 
         return $rules;
     }
