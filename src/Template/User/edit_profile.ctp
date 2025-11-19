@@ -132,17 +132,24 @@ $countries = $this->Countries->getAllCountries();
     $day = !isset($birthday[2]) || $birthday[2] == '00' ? '' : $birthday[2];
     /* @translators: label for user's birthday in profile page */
     echo $this->Form->label('birthday', __('Birthday'));
-    echo $this->Form->year('birthday', [
+    $yearSelector = $this->Form->year('birthday', [
         'empty' => true,
         'value' => $year,
         'minYear' => date('Y') - 100,
         'maxYear' => date('Y') - 3
     ]);
-    echo $this->Form->select('birthday[month]', $this->Date->months(), ['empty' => true, 'value' => $month]);
-    echo $this->Form->day('birthday', [
+    $monthSelector = $this->Form->select('birthday[month]', $this->Date->months(), ['empty' => true, 'value' => $month]);
+    $daySelector = $this->Form->day('birthday', [
         'empty' => true,
         'value' => $day
     ]);
+    echo format(
+       /* @translators: This can be used in the profile edition page
+          to change how birth date selectors are displayed.
+          You can reorder them or add text inbetween. */
+        __("{yearSelector}{monthSelector}{daySelector}"),
+        compact('yearSelector', 'monthSelector', 'daySelector')
+    );
 
     echo $this->Form->control('homepage', [
         /* @translators: label for user's homepage in profile page */
