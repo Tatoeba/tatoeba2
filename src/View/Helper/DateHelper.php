@@ -170,15 +170,6 @@ class DateHelper extends AppHelper
         return $this->_months;
     }
 
-    public function monthsAsNumbers()
-    {
-        $monthNumbers = range(1, 12);
-        return array_combine(
-            array_map(function($n) { return sprintf("%02d", $n); }, $monthNumbers),
-            $monthNumbers
-        );
-    }
-
     /**
      * Get the name for a given month number
      *
