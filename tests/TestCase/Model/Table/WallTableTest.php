@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\CurrentUser;
+use Cake\Core\Configure;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Event\EventList;
@@ -35,6 +36,9 @@ class WallTest extends TestCase {
                 'HTTPS' => 'on',
             ],
         ]));
+
+        // set autoban threshold
+        Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 10);
     }
 
     public function tearDown() {
@@ -216,8 +220,11 @@ class WallTest extends TestCase {
     }
 
     public function wallPostsWithLinksProvider() {
+        $manyOLinks = str_repeat(' https://example.com', 10);
+        $manyILinks = str_repeat(' https://tatoeba.org/en/sentences_lists/show/1234', 10);
+        $maxOLinks = str_repeat(' https://example.com', 9);
         return [
-            // user id, validator, content, should be able to save
+            // user id, validator, content, should be able to save, should get autobanned and autohidden
             'legacy user, inbound link'        => [1, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
             'legacy user, outbound link'       => [1, 'default', 'Hi! https://example.com', true],
             'verified user, inbound link'      => [7, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
@@ -225,15 +232,25 @@ class WallTest extends TestCase {
             'new user, inbound link'           => [9, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
             'new user, outbound link'          => [9, 'default', 'Hi! https://example.com', false],
             'new user, outbound link, confirm' => [9, 'skipOutboundLinksCheck', 'Hi! https://example.com', true],
+
+            'legacy user, many inbound links'  => [1, 'default', "Hi! $manyILinks", true],
+            'legacy user, many outbound links' => [1, 'default', "Hi! $manyOLinks", true],
+            'verified user, inbound link'      => [7, 'default', "Hi! $manyILinks", true],
+            'verified user, outbound link'     => [7, 'default', "Hi! $manyOLinks", true],
+            'new user, many inbound links'     => [9, 'default', "Hi! $manyILinks", true],
+            'new user, many outbound links'    => [9, 'default', "Hi! $manyOLinks", false],
+            'new user, many outbound links, confirm' => [9, 'skipOutboundLinksCheck', "Hi! $manyOLinks", true, true],
+            'new user, max outbound links, confirm' => [9, 'skipOutboundLinksCheck', "Hi! $maxOLinks", true, false],
         ];
     }
 
     /**
      * @dataProvider wallPostsWithLinksProvider()
      */
-    public function testAddWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    public function testAddWallPostWithLinks($userId, $validate, $content, $expectedToSave, $expectAutoban = false)
     {
-        CurrentUser::store($this->Wall->Users->get($userId));
+        $originalUser = $this->Wall->Users->get($userId);
+        CurrentUser::store($originalUser);
         $newPost = $this->Wall->newEntity(
             [
                 'owner' => $userId,
@@ -251,14 +268,24 @@ class WallTest extends TestCase {
         } else {
             $this->assertFalse($savedPost);
         }
+        if ($expectAutoban) {
+            $this->assertEquals('spammer', $this->Wall->Users->get($userId)->role);
+            $this->assertTrue($savedPost->hidden);
+        } else {
+            $this->assertEquals($originalUser->role, $this->Wall->Users->get($userId)->role);
+            if ($expectedToSave) {
+                $this->assertFalse($this->Wall->get($savedPost->id)->hidden);
+            }
+        }
     }
 
     /**
      * @dataProvider wallPostsWithLinksProvider()
      */
-    public function testEditWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    public function testEditWallPostWithLinks($userId, $validate, $content, $expectedToSave, $expectAutoban = false)
     {
-        CurrentUser::store($this->Wall->Users->get($userId));
+        $originalUser = $this->Wall->Users->get($userId);
+        CurrentUser::store($originalUser);
         $wallPost = $this->Wall->get(3);
         $this->Wall->patchEntity(
             $wallPost,
@@ -273,6 +300,38 @@ class WallTest extends TestCase {
         } else {
             $this->assertFalse($savedPost);
         }
+        if ($expectAutoban) {
+            $this->assertEquals('spammer', $this->Wall->Users->get($userId)->role);
+            $this->assertTrue($savedPost->hidden);
+        } else {
+            $this->assertEquals($originalUser->role, $this->Wall->Users->get($userId)->role);
+            $this->assertFalse($this->Wall->get($wallPost->id)->hidden);
+        }
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testEditHiddenWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    {
+        $originalUser = $this->Wall->Users->get($userId);
+        CurrentUser::store($originalUser);
+        $wallPost = $this->Wall->get(5);
+        $this->Wall->patchEntity(
+            $wallPost,
+            compact('content'),
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($wallPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+        } else {
+            $this->assertFalse($savedPost);
+        }
+        $this->assertEquals($originalUser->role, $this->Wall->Users->get($userId)->role);
+        $this->assertTrue($this->Wall->get($wallPost->id)->hidden);
     }
 
     public function testGetMessagesThreaded() {

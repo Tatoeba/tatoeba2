@@ -157,6 +157,12 @@ return [
          * blocked users notifications etc.
          */
         'communityModeratorEmail' => 'community-admin@example.com',
+
+        /**
+         * Minimum number of outbound links to trigger user autoban
+         * and autohide of the content
+         */
+        'minOutboundLinksTriggeringAutoban' => 100,
     ],
 
     /**
