@@ -80,6 +80,10 @@ class NotificationListener implements EventListenerInterface {
     public function sendWallReplyNotification($event) {
         $post = $event->getData('post'); // $post
 
+        if ($post->hidden) {
+            return;
+        }
+
         $parentMessage = $this->_getMessageForMail($post->parent_id);
         $author = $this->Users->getUsernameFromId($post->owner);
         $toMention = $this->Users->find();
@@ -166,6 +170,9 @@ class NotificationListener implements EventListenerInterface {
 
     public function sendNewThreadNotification($event) {
         $post = $event->getData('post');
+        if ($post->hidden) {
+            return;
+        }
         $author = $this->Users->getUsernameFromId($post->owner);
         $this->_sendWallMentionNotification($post, $author, $this->Users->find());
     }
