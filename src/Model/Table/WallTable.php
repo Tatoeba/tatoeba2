@@ -169,9 +169,13 @@ class WallTable extends Table
     }
 
     private function _autoban($post, int $threshold) {
+        // Ban user
         $author = $this->Users->get(CurrentUser::get('id'));
         $author->role = User::ROLE_SPAMMER;
         $this->Users->save($author);
+
+        // Notify moderators
+        $this->getMailer('User')->send('outbound_links_autoban', [$post, $author, $threshold]);
     }
 
     private function _warnAdminsAboutPotentialSEOSpam($post) {

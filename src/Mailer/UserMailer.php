@@ -67,4 +67,15 @@ class UserMailer extends Mailer {
             ->setEmailFormat('html')
             ->setViewVars(compact('entity', 'author'));
     }
+
+    public function outbound_links_autoban($entity, $author, $threshold) {
+        $subject = $entity->isNew() ?
+            "Autoban triggered by outbound links in new wall post #{$entity->id}" :
+            "Autoban triggered by outbound links in edited wall post #{$entity->id}";
+        $this
+            ->setTo(Configure::read('Tatoeba.communityModeratorEmail'))
+            ->setSubject($subject)
+            ->setEmailFormat('html')
+            ->setViewVars(compact('entity', 'author', 'threshold'));
+    }
 }

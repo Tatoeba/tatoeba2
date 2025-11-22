@@ -195,4 +195,45 @@ class UserMailerTest extends TestCase {
         $this->assertMailSentWith('Outbound links in edited wall post #5', 'subject');
         $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
     }
+
+    public function test_outbound_links_autoban_new_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'content' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+        $threshold = 100;
+
+        $this->mailer->send('outbound_links_autoban', [$wallPost, $user, $threshold]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('Autoban triggered by outbound links in new wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> was automatically banned after posting a <a href="https://example.net/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+    }
+
+    public function test_outbound_links_autoban_edited_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'content' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $wallPost->isNew(false);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+        $threshold = 100;
+
+        $this->mailer->send('outbound_links_autoban', [$wallPost, $user, $threshold]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('Autoban triggered by outbound links in edited wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> was automatically banned after editing a <a href="https://example.net/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+    }
 }
