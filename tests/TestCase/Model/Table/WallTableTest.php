@@ -52,9 +52,9 @@ class WallTest extends TestCase {
             'owner' => 2,
             'content' => 'Hi everyone!',
             'parent_id' => null,
-            'lft' => 9,
-            'rght' => 10,
-            'id' => 5,
+            'lft' => 11,
+            'rght' => 12,
+            'id' => 6,
         ];
 
         $before = $this->Wall->find()->count();
@@ -280,7 +280,7 @@ class WallTest extends TestCase {
             ->where(['parent_id IS NULL'])
             ->all();
         $threads = $this->Wall->getMessagesThreaded($rootMessages);
-        $this->assertEquals(3, count($threads));
+        $this->assertEquals(4, count($threads));
         $this->assertEquals(0, count($threads[0]->children));
         $this->assertEquals(1, count($threads[1]->children));
     }
