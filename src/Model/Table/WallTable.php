@@ -182,7 +182,7 @@ class WallTable extends Table
         $data = $post->extract($this->schema()->columns(), true);
         $validator = $this->getValidator('default');
         $errors = $validator->errors($data, $post->isNew());
-        if (isset($errors['content']['outboundLinks'])) {
+        if (!$post->hidden && isset($errors['content']['outboundLinks'])) {
             $author = $this->Users->get($post->owner);
             $this->getMailer('User')->send('content_with_outbound_links', [$post, $author]);
         }
