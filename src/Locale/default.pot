@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-20 13:54+0000\n"
+"POT-Creation-Date: 2025-11-22 17:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L124
 msgid "There's no user called {username}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L139
+msgid "Your account has been suspended."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L141
+msgid "Your account has been deactivated."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L150
@@ -499,68 +507,60 @@ msgstr ""
 msgid "You can only switch to a more permissive license."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L186
 msgid "Field required"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L95
 msgid "Username must be at least two characters long"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
 msgid "Username must be at most 20 characters long"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L98
 msgid "Username can only contain letters, numbers, or underscore"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L141
 msgid "Password must be at least 6 characters long"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L104
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L147
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L157
 msgid "The entered birthday is incomplete. Accepted birthdays: full date, month and day, year and month, only year."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L171
-msgid "Sorry, you do not have the permission to include links in your profile description. Because of spam concerns, new accounts need to be verified before they can use outbound links. Please remove any outbound link from your profile description in order to continue. You can ask for permission to add links later by {linkStart}sending a message to administrators{linkEnd}."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L189
-msgid "Sorry, you do not have the permission to set a homepage on your profile. Because of spam concerns, new accounts need to be verified before they can use outbound links. Please remove the homepage from your profile in order to continue. You can ask for permission to add it later by {linkStart}sending a message to administrators{linkEnd}."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L249
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L101
 msgid "Username already taken."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L270
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L250
 msgid "That email address already exists. Please try another."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L84
 msgid "You cannot save an empty message."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L90
 msgid "Your message was not posted because it contains outbound links. Please confirm the links are legitimate by ticking the checkbox below, and re-submit your message."
 msgstr ""
 
@@ -4713,6 +4713,20 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L51
 msgid "Back to Wall"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L46
+msgid "Sorry, you do not have the permission to include links in your profile description. Because of spam concerns, new accounts need to be verified before they can use outbound links. Please remove any outbound link from your profile description in order to continue."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L53
+msgid "Sorry, you do not have the permission to set a homepage on your profile. Because of spam concerns, new accounts need to be verified before they can use outbound links. Please remove the homepage from your profile in order to continue."
+msgstr ""
+
+#. this string is appended to each
+#. of the previous "Sorry" messages about links
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L71
+msgid "You can ask for permission to add links later by {linkStart}sending a message to administrators{linkEnd}."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L57
