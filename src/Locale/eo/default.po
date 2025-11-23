@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-29 04:31+0000\n"
+"POT-Creation-Date: 2025-11-22 17:33+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Paul Peeraerts <paul2711@gmail.com>, 2014-2021,2023\n"
 "Language-Team: Esperanto (http://app.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
@@ -42,6 +42,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L124
 msgid "There's no user called {username}"
 msgstr "Estas neniu uzanto kun la nomo {username}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L139
+msgid "Your account has been suspended."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L141
+msgid "Your account has been deactivated."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L150
 msgid "Your audio settings have been saved."
@@ -290,6 +298,10 @@ msgstr "Lingvo forigita"
 msgid "You cannot delete this language."
 msgstr "Vi ne povas forigi tiun ĉi lingvon."
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L145
+msgid "The vocabulary item '{vocabText}' already exists for this language."
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L146
 msgid "Your message has been posted on the wall."
 msgstr ""
@@ -402,7 +414,7 @@ msgstr[1] "Transskribaĵo mankas al jenaj signoj: {charsEnumeration}."
 msgid "No license for offsite use"
 msgstr "Sen permesilo por uzado eksterreteja"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L66
 msgid "Licensing issue"
 msgstr "Permesil-rilata"
 
@@ -425,7 +437,7 @@ msgstr "{language}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L143
 msgid "All languages"
 msgstr "Ĉiuj lingvoj"
 
@@ -551,80 +563,62 @@ msgstr "La posendanto de la frazo devas esti la origina kreinto."
 msgid "You can only switch to a more permissive license."
 msgstr "Vi povas ŝanĝi nur al pli permesanta permesilo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L186
 msgid "Field required"
 msgstr "Kampo bezonata"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L95
 msgid "Username must be at least two characters long"
 msgstr "Uzantonomo enhavu almenaŭ du literojn."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
 msgid "Username must be at most 20 characters long"
 msgstr "Uzantonomo estu minimume 20 literojn longa."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L98
 msgid "Username can only contain letters, numbers, or underscore"
 msgstr "Uzantonomo povas enhavi nur literojn, ciferojn aŭ substrekojn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L141
 msgid "Password must be at least 6 characters long"
 msgstr "La pasvorto enhavu minimume 6 signojn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L104
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Ŝanĝo de retpoŝtadreso malsukcesis. Enigu taŭgan retpoŝtadreson."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L147
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "La dato, kiun vi indikis, estas nevalida. Bonvolu provi denove. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L157
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "La tajpita naskiĝodato estas nekompleta. Akceptitaj datoj: kompleta dato, monato kaj tago, jaro kaj monato, nur jaro. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L171
-msgid ""
-"Sorry, you do not have the permission to include links in your profile "
-"description. Because of spam concerns, new accounts need to be verified "
-"before they can use outbound links. Please remove any outbound link from "
-"your profile description in order to continue. You can ask for permission to"
-" add links later by {linkStart}sending a message to administrators{linkEnd}."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L189
-msgid ""
-"Sorry, you do not have the permission to set a homepage on your profile. "
-"Because of spam concerns, new accounts need to be verified before they can "
-"use outbound links. Please remove the homepage from your profile in order to"
-" continue. You can ask for permission to add it later by {linkStart}sending "
-"a message to administrators{linkEnd}."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L249
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L101
 msgid "Username already taken."
 msgstr "Uzantonomo jam uzita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L270
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L250
 msgid "That email address already exists. Please try another."
 msgstr "Tiu retpoŝtadreso jam ekzistas. Provu alian."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L84
 msgid "You cannot save an empty message."
 msgstr "Vi ne povas konservi malplenan mesaĝon."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L90
 msgid ""
 "Your message was not posted because it contains outbound links. Please "
 "confirm the links are legitimate by ticking the checkbox below, and re-"
@@ -949,7 +943,7 @@ msgstr "Vorto"
 #. button to delete a vocabulary request
 #. / button to remove profile picture
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/edit_vocabulary.ctp#L54
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L71
 msgid "Remove"
 msgstr "Forigi"
 
@@ -966,7 +960,7 @@ msgstr "Forigi"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L167
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L182
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L352
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L381
@@ -1053,8 +1047,7 @@ msgid "Day"
 msgstr "Tago"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L9
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L90
+msgctxt "Activity timeline page"
 msgid "Sentences added"
 msgstr "Aldonitaj frazoj"
 
@@ -1140,7 +1133,7 @@ msgstr "Montri tradukojn en:"
 #. / option used in language selection dropdown for "Show translations in" in
 #. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L195
 msgctxt "show-translations-in"
 msgid "All languages"
 msgstr "Ĉiuj lingvoj"
@@ -1417,8 +1410,16 @@ msgstr "Foliumi aŭdaĵojn de ĉiuj lingvoj"
 msgid "Month"
 msgstr "Monato"
 
+#. this special string lets you to tweak how months are
+#. displayed when used inside a calendar (on the activity timeline page).
+#. You may translate this string using a sublist value,
+#. for example {monthInCalendar.calendar}
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L60
+msgid "{monthInCalendar}"
+msgstr ""
+
 #. used in the calendar on the Activity timeline page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L76
 msgid "Year"
 msgstr "Jaro"
 
@@ -1943,7 +1944,7 @@ msgstr "Konservi ŝanĝojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L17
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L123
 msgid "Auto detect"
 msgstr "aŭtomata rekono"
 
@@ -1969,6 +1970,12 @@ msgstr "Frazo"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L70
 msgid "Add sentence"
 msgstr "Aldoni frazon"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L90
+msgctxt "Add sentences page"
+msgid "Sentences added"
+msgstr "Aldonitaj frazoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L18
 msgid "No sentences added yet."
@@ -4099,7 +4106,7 @@ msgstr "Traduko (nedeviga)"
 #. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L242
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L191
 msgid "None"
 msgstr "Nenio"
 
@@ -4505,54 +4512,69 @@ msgstr[0] "Bonvolu ripari la jenan eraron aŭ alklaki la Nuligu-butonon. "
 msgstr[1] "Bonvolu ripari la jenajn erarojn aŭ alklaki la Nuligu-butonon. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L44
 msgid "Edit profile"
 msgstr "Redakti profilon"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L57
 msgid "Current picture"
 msgstr "Nuna bildo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L81
 msgid "New picture"
 msgstr "Nova bildo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L92
 msgid "The provided image is too large. It must be less than 1MB in size."
 msgstr ""
 
 #. button to upload a new profile picture
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L99
 msgid "Upload"
 msgstr "Alŝuti"
 
 #. label for user name in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L280
 msgctxt "user"
 msgid "Name"
 msgstr "Nomo"
 
 #. label for user's country in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L281
 msgid "Country"
 msgstr "Lando"
 
 #. label for user's birthday in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L282
 msgid "Birthday"
 msgstr "Naskiĝdato"
 
+#. this special string lets you to tweak how months are
+#. displayed when used inside a drop down (on the profile edition page).
+#. You may translate this string using a sublist value,
+#. for example {monthInDropdown.number}
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L147
+msgid "{monthInDropdown}"
+msgstr ""
+
+#. This can be used in the profile edition page
+#. to change how birth date selectors are displayed.
+#. You can reorder them or add text inbetween.
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L161
+msgid "{yearSelector}{monthSelector}{daySelector}"
+msgstr ""
+
 #. label for user's homepage in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L283
 msgid "Homepage"
 msgstr "Ĉefpaĝo"
 
 #. label for user's description in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L173
 msgid "Description"
 msgstr "Priskribo"
 
@@ -4560,7 +4582,7 @@ msgstr "Priskribo"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L400
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L404
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L348
 msgid "Add a language"
 msgstr "Aldoni lingvon"
 
@@ -4829,7 +4851,7 @@ msgstr "Stato (administranto al uzanto)"
 msgid "Status (contributor to admin)"
 msgstr "Stato (uzanto al administranto)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L173
 msgid "Can switch license"
 msgstr "Permesilo ŝanĝeblas"
 
@@ -5042,6 +5064,30 @@ msgstr "Menuo"
 msgid "Back to Wall"
 msgstr "Reiri al la Muro"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L46
+msgid ""
+"Sorry, you do not have the permission to include links in your profile "
+"description. Because of spam concerns, new accounts need to be verified "
+"before they can use outbound links. Please remove any outbound link from "
+"your profile description in order to continue."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L53
+msgid ""
+"Sorry, you do not have the permission to set a homepage on your profile. "
+"Because of spam concerns, new accounts need to be verified before they can "
+"use outbound links. Please remove the homepage from your profile in order to"
+" continue."
+msgstr ""
+
+#. this string is appended to each
+#. of the previous "Sorry" messages about links
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L71
+msgid ""
+"You can ask for permission to add links later by {linkStart}sending a "
+"message to administrators{linkEnd}."
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L57
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
 msgid_plural ""
@@ -5233,68 +5279,68 @@ msgstr "{month} {year}"
 msgid "tab"
 msgstr "tabo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L127
 msgid "Profile languages"
 msgstr "Profilaj lingvoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L81
 msgid "Last used languages"
 msgstr "Laste uzitaj lingvoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L85
 msgid "Other languages"
 msgstr "Aliaj lingvoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L158
 msgctxt "dropdown-list"
 msgid "Unknown language"
 msgstr "Lingvo nekonata"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L174
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L246
 msgid "other language"
 msgstr "Alia lingvo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L329
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
 msgstr "Vi ne povas aldoni frazojn, ĉar vi ne aldonis iun lingvon al via parofilpaĝo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L334
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
 msgstr "Vi ne povas traduki frazojn, ĉar vi ne aldonis iun lingvon al via parofilpaĝo."
 
 #. language level
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L360
 msgctxt "level"
 msgid "Unspecified"
 msgstr "Nedifinita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L361
 msgid "0: Almost no knowledge"
 msgstr "0: Apenaŭ kono"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L372
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L362
 msgid "1: Beginner"
 msgstr "1: Komencanto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L363
 msgid "2: Intermediate"
 msgstr "2: Meznivela"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L364
 msgid "3: Advanced"
 msgstr "3: Progresinto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L365
 msgid "4: Fluent"
 msgstr "4: Flua"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L376
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L366
 msgid "5: Native level"
 msgstr "5: Denaska nivelo"
 

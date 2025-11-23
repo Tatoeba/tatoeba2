@@ -6,7 +6,8 @@
 # Translators:
 # Trang, 2018
 # Sacred Celtic <sacredceltic@gmail.com>, 2018
-# صفا الفليج <safaalfulaij@hotmail.com>, 2022
+# Michel S <michel.smts2@gmail.com>, 2025
+# صفا الفليج <safaalfulaij@hotmail.com>, 2025
 # gillux, 2025
 # 
 #, fuzzy
@@ -14,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-29 04:31+0000\n"
+"POT-Creation-Date: 2025-11-19 08:28+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: gillux, 2025\n"
 "Language-Team: French (https://app.transifex.com/tatoeba/teams/28284/fr/)\n"
@@ -116,7 +117,7 @@ msgid "Correctness"
 msgstr "Justesse"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L188
 msgid "Submit"
 msgstr "Valider"
 
@@ -184,47 +185,93 @@ msgstr "Profil"
 msgid "Edit User"
 msgstr "Modifier l'utilisateur"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+msgid "Profile picture"
+msgstr "Photo du profil"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
+msgid "Remove picture"
+msgstr "Retirer la photo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
+msgid "No picture set"
+msgstr "Aucune photo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
 msgid "Id"
 msgstr "Id"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L111
 msgid "Lang"
 msgstr "Langue"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L114
 msgid "Group"
 msgstr "Groupe"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
 msgid "Spamdexing status"
 msgstr "Indicateur « référencement abusif »"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
 msgid "Unknown (links restricted)"
 msgstr "Inconnu (liens limités)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
 msgid "Verified (links not restricted)"
 msgstr "Vérifié (liens non limités)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
 msgid "Legacy (links not restricted)"
 msgstr "Ancien (liens non limités)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
 msgid "Level"
 msgstr "Niveau"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+msgid "Name"
+msgstr "Nom"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L141
+msgid "Country"
+msgstr "Pays"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L146
+msgid "Homepage"
+msgstr "Site web"
+
+#. @translators toggle button to show form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L152
+msgid "Show"
+msgstr "Montrer"
+
+#. @translators toggle button to hide form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L154
+msgid "Hide"
+msgstr "Masquer"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L156
+msgid "Description"
+msgstr "Description"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L163
+msgid "Send notifications"
+msgstr "Envoyer des notifications"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
+msgid "Profile is public"
+msgstr "Profil public"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
 msgid "About spamdexing status"
 msgstr "À propos de l’indicateur « référencement abusif »"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
 msgid ""
 "\"Unknown\" users cannot include any outbound link in their profile. In "
 "addition, when trying to post a sentence comment or wall post that includes "
@@ -239,7 +286,7 @@ msgstr ""
 "S'ils choisissent de poursuivre, leur message est alors publié et un "
 "courriel est envoyé aux modérateurs."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
 msgid ""
 "\"Verified\" and \"legacy\" users can include any link anywhere without "
 "restriction."
@@ -247,17 +294,13 @@ msgstr ""
 "Les utilisateurs indiqués comme « vérifié » ou « ancien » peut inclure des "
 "liens hypertexte où bon leur semble, sans restriction."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
 msgid ""
 "\"Legacy\" users created their account before this restriction was "
 "implemented."
 msgstr ""
 "Les utilisateurs indiqués comme « ancien » ont créé leur compte avant que "
 "cette restriction soit mise en place."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L128
-msgid "Send notifications"
-msgstr "Envoyer des notifications"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
 msgid "unhide"
