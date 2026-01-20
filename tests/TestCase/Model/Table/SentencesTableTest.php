@@ -808,17 +808,29 @@ class SentencesTableTest extends TestCase {
         $this->assertNull($result);
     }
 
-    function testModifiedSentenceNeedsTranslationsReindex() {
-        $expected = array(1, 2, 4, 5);
+    function sentencePropThatShouldTriggerTranslationsReindex() {
+        return [
+            // sentence property, new value, ids of type "change", ids of type "removal"
+            ['lang',        'tpn', [1, 2, 4, 5], [5]],
+            ['user_id',     0,     [1, 2, 4, 5]],
+        ];
+    }
+
+    /**
+     * @dataProvider sentencePropThatShouldTriggerTranslationsReindex
+     */
+    function testModifiedSentenceNeedsTranslationsReindex($prop, $newValue, $exceptedChangedIds, $exceptedRemovedIds = []) {
         $sentence = $this->Sentence->get(5);
-        $sentence->user_id = 0;
+        $sentence->{$prop} = $newValue;
         $this->Sentence->save($sentence);
         $result = $this->Sentence->ReindexFlags->find('all')
             ->order(['sentence_id']);
-        $ids = $result->extract('sentence_id')->toList();
-        $this->assertEquals($expected, $ids);
-        $counts = $result->countBy('type')->toArray();
-        $this->assertEquals(4, $counts['change']);
+
+        $ids = $result->filter(fn($s) => $s->type == 'change')->extract('sentence_id')->toList();
+        $this->assertEquals($exceptedChangedIds, $ids);
+
+        $ids = $result->filter(fn($s) => $s->type == 'removal')->extract('sentence_id')->toList();
+        $this->assertEquals($exceptedRemovedIds, $ids);
     }
 
     function testRemovedSentenceNeedsItselfAndTranslationsReindex() {
