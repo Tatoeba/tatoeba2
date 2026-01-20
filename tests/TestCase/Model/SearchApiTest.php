@@ -533,18 +533,9 @@ class SearchApiTest extends TestCase
                         ->setExclude(true),
                 ],
             ],
-
-            'invalid parameter' => [
-                [ 'lang' => 'epo', 'invalid' => 'blah' ],
-                new BadRequestException("Unknown parameter 'invalid'"),
-            ],
             'invalid trans: parameter' => [
                 [ 'lang' => 'epo', 'trans:invalid' => 'blah' ],
                 new BadRequestException("Unknown parameter 'trans:invalid': unknown suffix 'invalid'"),
-            ],
-            'invalid namespace in parameter' => [
-                [ 'lang' => 'epo', 'invalid:lang' => 'sun' ],
-                new BadRequestException("Unknown parameter 'invalid:lang'"),
             ],
             'empty trans: group name' => [
                 [ 'lang' => 'epo', 'trans::lang' => 'sun' ],
@@ -574,13 +565,10 @@ class SearchApiTest extends TestCase
         ];
     }
 
-    private function assertFiltersThrowException($filters, $exception) {
+    private function assertThrowsException($codeToTest, $exception) {
         $expectedName = get_class($exception);
         try {
-            if (isset($filters['sort'])) {
-                $this->SearchApi->consumeSort($filters);
-            }
-            $this->SearchApi->setFilters($filters);
+            $codeToTest();
         } catch(\Exception $actual) {
             $this->assertEquals($exception, $actual);
             return;
@@ -604,12 +592,37 @@ class SearchApiTest extends TestCase
      */
     public function testFilters($filters, $expected) {
         if ($expected instanceof \Exception) {
-            $this->assertFiltersThrowException($filters, $expected);
+            $codeToTest = function () use ($filters) {
+                if (isset($filters['sort'])) {
+                    $this->SearchApi->consumeSort($filters);
+                }
+                $this->SearchApi->consumeFilters($filters);
+            };
+            $this->assertThrowsException($codeToTest, $expected);
         } else {
             $expectedSearch = $this->_buildSearchFromFilters($expected);
-            $this->SearchApi->setFilters($filters);
+            $this->SearchApi->consumeFilters($filters);
             $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
         }
+    }
+
+    public function paramsProvider() {
+        return [
+            'invalid parameter' => [
+                [ 'lang' => 'epo', 'sort' => 'modified', 'invalid' => 'blah' ],
+                new BadRequestException("Unknown parameter 'invalid'"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider paramsProvider()
+     */
+    public function testReadParams($params, $expected) {
+        $codeToTest = function () use ($params) {
+            $this->SearchApi->readParams($params);
+        };
+        $this->assertThrowsException($codeToTest, $expected);
     }
 
     public function testDefaultFilters() {
@@ -628,7 +641,7 @@ class SearchApiTest extends TestCase
         $expectedSearch->setFilter((new LangFilter())->anyOf(['epo']));
 
         $filters = ['lang' => 'epo', 'q' => 'hello world'];
-        $this->SearchApi->setFilters($filters);
+        $this->SearchApi->consumeFilters($filters);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
@@ -641,7 +654,7 @@ class SearchApiTest extends TestCase
 
         $params = ['sort' => 'modified', 'lang' => 'epo'];
         $this->SearchApi->consumeSort($params);
-        $this->SearchApi->setFilters($params);
+        $this->SearchApi->consumeFilters($params);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
@@ -655,7 +668,7 @@ class SearchApiTest extends TestCase
 
         $params = ['sort' => '-modified', 'lang' => 'epo'];
         $this->SearchApi->consumeSort($params);
-        $this->SearchApi->setFilters($params);
+        $this->SearchApi->consumeFilters($params);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
@@ -670,7 +683,7 @@ class SearchApiTest extends TestCase
 
         $params = ['sort' => '-modified', 'lang' => 'epo', 'after' => '123,456'];
         $this->SearchApi->consumeSort($params);
-        $this->SearchApi->setFilters($params);
+        $this->SearchApi->consumeFilters($params);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
@@ -737,9 +750,9 @@ class SearchApiTest extends TestCase
     /**
      * @dataProvider showTransProvider()
      */
-    public function testConsumeShowTrans($params, $expected) {
+    public function testConsumeShowtrans($params, $expected) {
         try {
-            $result = $this->SearchApi->consumeShowTrans($params);
+            $result = $this->SearchApi->consumeShowtrans($params);
         } catch (\Exception $actual) {
             $this->assertEquals($expected, $actual);
             return;

@@ -15,9 +15,23 @@ class SearchApi
 {
     public $search;
 
+    private $limit;
+    private $defaultLimit = 10;
+    private $hardLimit;
+    private $showtrans;
+
     public function __construct($search = null) {
         $this->search = $search ?? new Search();
         $this->search->setComputeCursor(true);
+    }
+
+    public function setLimits(int $defaultLimit, int $hardLimit) {
+        $this->defaultLimit = $defaultLimit;
+        $this->hardLimit = $hardLimit;
+    }
+
+    public function getShowtrans() {
+        return $this->showtrans;
     }
 
     private function parseParamValueBool($value, BaseSearchFilter $filter) {
@@ -123,13 +137,12 @@ class SearchApi
             ];
         }
         if (isset($filterMap[$key])) {
-            return [new $filterMap[$key], $collection];
-        } else {
-            $error = "Unknown parameter '$param'";
-            if (!is_null($key) && $param != $key) {
-                $error .= ": unknown suffix '$key'";
-            }
-            throw new BadRequestException($error);
+            $filter = new $filterMap[$key];
+            $collection->setFilter($filter);
+            return $filter;
+        } elseif (!is_null($key) && $param != $key) {
+            // Provide a special error message for trans:unknown_suffix=foo case
+            throw new BadRequestException("Unknown parameter '$param': unknown suffix '$key'");
         }
     }
 
@@ -169,7 +182,7 @@ class SearchApi
         return $value;
     }
 
-    public function consumeShowTrans(&$params) {
+    public function consumeShowtrans(&$params) {
         $lang = $this->consumeValue('showtrans:lang', $params, []);
         if (is_string($lang)) {
             $lang = explode(',', $lang);
@@ -214,27 +227,31 @@ class SearchApi
         );
     }
 
-    public function setFilters(array $filters) {
-        if (!isset($filters['lang'])) {
+    public function consumeFilters(array &$params) {
+        if (!isset($params['lang'])) {
             throw new BadRequestException('Required parameter "lang" missing');
         }
 
-        if (isset($filters['q'])) {
-            $q = $filters['q'];
+        if (isset($params['q'])) {
+            $q = $params['q'];
             if (is_array($q)) {
                 throw new BadRequestException("Invalid usage of parameter 'q': cannot be provided multiple times");
             }
             $this->search->filterByQuery($q);
         }
-        unset($filters['q']);
+        unset($params['q']);
 
+        $unusedParams = [];
         try {
-            foreach ($filters as $key => $value) {
-                list($filter, $collection) = $this->parseParamName($key);
-                $this->parseParamValue($value, $filter, $key);
-                $collection->setFilter($filter);
-                if (method_exists($filter, 'setSearch')) {
-                    $filter->setSearch($this->search);
+            foreach ($params as $key => $value) {
+                $filter = $this->parseParamName($key);
+                if ($filter) {
+                    $this->parseParamValue($value, $filter);
+                    if (method_exists($filter, 'setSearch')) {
+                        $filter->setSearch($this->search);
+                    }
+                } else {
+                    $unusedParams[$key] = $value;
                 }
             }
             $this->search->compile(); // trigger validation
@@ -247,5 +264,27 @@ class SearchApi
         } catch (\App\Model\Exception\InvalidFilterUsageException $e) {
             throw new BadRequestException("Invalid usage of parameter '$key': ".$e->getMessage());
         }
+        $params = $unusedParams;
+    }
+
+    public function failIfParams(array $params) {
+        foreach ($params as $param => $value) {
+            throw new BadRequestException("Unknown parameter '$param'");
+        }
+    }
+
+    public function readParams(array $params) {
+        $this->showtrans = $this->consumeShowtrans($params);
+        $this->limit = $this->consumeInt('limit', $params, $this->defaultLimit);
+        $this->consumeSort($params);
+        $this->setDefaultFilters();
+        $this->consumeFilters($params);
+        $this->failIfParams($params);
+    }
+
+    public function asSphinx() {
+        $sphinx = $this->search->asSphinx();
+        $sphinx['limit'] = $this->limit > $this->hardLimit ? $this->hardLimit : $this->limit;
+        return $sphinx;
     }
 }

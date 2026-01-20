@@ -460,19 +460,15 @@ class SentencesController extends ApiController
         $this->setRequest($this->getRequest()->withQueryParams($params));
 
         $api = new SearchApi();
-        $showtrans = $api->consumeShowTrans($params);
-        $limit = $api->consumeInt('limit', $params, self::DEFAULT_RESULTS_NUMBER);
-        $api->consumeSort($params);
-        $api->setDefaultFilters();
-        $api->setFilters($params);
-
-        $sphinx = $api->search->asSphinx();
-        $sphinx['limit'] = $limit > self::MAX_RESULTS_NUMBER ? self::MAX_RESULTS_NUMBER : $limit;
+        $api->setLimits(self::DEFAULT_RESULTS_NUMBER, self::MAX_RESULTS_NUMBER);
+        $api->readParams($params);
+        $sphinx = $api->asSphinx();
 
         $containOnApi = [
             'transcriptions' => ['finder' => 'transcriptionsOnApi'],
             'audios'         => ['finder' => 'audiosOnApi'],
         ];
+        $showtrans = $api->getShowtrans();
         if (!empty($showtrans['lang']) || is_bool($showtrans['is_direct'] ?? null)) {
             $containOnApi['translations'] = function (Query $q) use ($showtrans) {
                 return $q->find('translationsOnApi', compact('showtrans'));
