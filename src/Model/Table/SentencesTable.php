@@ -307,7 +307,8 @@ class SentencesTable extends Table
         if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
         }
-        $transNeedsReindex = $entity->isDirty('lang') || $entity->isDirty('user_id');
+        $transNeedsReindex = $entity->isDirty('lang') || $entity->isDirty('user_id')
+                             || $entity->isDirty('correctness');
         if ($transNeedsReindex) {
             $this->flagTranslationsToReindex($entity->id);
         }

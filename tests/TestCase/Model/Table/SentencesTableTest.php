@@ -813,6 +813,7 @@ class SentencesTableTest extends TestCase {
             // sentence property, new value, ids of type "change", ids of type "removal"
             ['lang',        'tpn', [1, 2, 4, 5], [5]],
             ['user_id',     0,     [1, 2, 4, 5]],
+            ['correctness', -1,    [1, 2, 4, 5]],
         ];
     }
 
