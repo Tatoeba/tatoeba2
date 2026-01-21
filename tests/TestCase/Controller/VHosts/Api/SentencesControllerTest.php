@@ -133,9 +133,9 @@ class SentencesControllerTest extends TestCase
         $constraint = [
             '$.data.owner' => 'kazuki',
             '$.data.translations[0].owner' => 'kazuki',
-            '$.data.translations[1].owner' => 'kazuki',
+            '$.data.translations[1].owner' => 'advanced_contributor',
             '$.data.translations[2].owner' => 'kazuki',
-            '$.data.translations[3].owner' => 'kazuki',
+            '$.data.translations[3].owner' => null,
             '$.data.translations[4].owner' => 'kazuki',
         ];
         $this->assertJsonDocumentMatches($actual, $constraint);
