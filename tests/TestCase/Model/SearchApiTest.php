@@ -19,6 +19,7 @@ use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
@@ -460,6 +461,22 @@ class SearchApiTest extends TestCase
             'multiple trans:has_audio parameters' => [
                 [ 'lang' => 'epo', 'trans:has_audio' => ['yes', 'yes'] ],
                 new BadRequestException("Invalid usage of parameter 'trans:has_audio': cannot be provided multiple times")
+            ],
+
+            'valid trans:is_native' => [
+                [ 'lang' => 'epo', 'trans:is_native' => 'yes' ],
+                [
+                    (new LangFilter())->anyOf(['epo']),
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter(true)),
+                ],
+            ],
+            'invalid trans:is_native' => [
+                [ 'lang' => 'epo', 'trans:is_native' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'trans:is_native': must be 'yes' or 'no'")
+            ],
+            'multiple trans:is_native parameters' => [
+                [ 'lang' => 'epo', 'trans:is_native' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'trans:is_native': cannot be provided multiple times")
             ],
 
             'valid trans:count' => [
