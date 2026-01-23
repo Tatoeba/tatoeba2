@@ -24,7 +24,7 @@ abstract class SearchFilter extends BaseSearchFilter {
     protected function getValuesMap() {
     }
 
-    protected function _compile() {
+    protected function getMappedFilters() {
         $output = [];
         $valuesMap = $this->getValuesMap();
         foreach ($this->filters as $values) {
@@ -44,9 +44,19 @@ abstract class SearchFilter extends BaseSearchFilter {
                 $values = $mapped;
             }
             if (count($values) > 0) {
-                $output[] = [$this->getAttributeName(), $values, $exclude];
+                $output[] = [$exclude, $values];
             }
         }
         return $output;
+    }
+
+    protected function _compile() {
+        return array_map(
+            function ($args) {
+                list ($exclude, $mappedValues) = $args;
+                return [$this->getAttributeName(), $mappedValues, $exclude];
+            },
+            $this->getMappedFilters()
+        );
     }
 }

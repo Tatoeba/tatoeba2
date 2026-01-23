@@ -53,4 +53,23 @@ class TranslationFilterGroup extends BaseSearchFilter {
             return [];
         }
     }
+
+    public function compileToQueryExp($exp, $query) {
+        if ($this->exclude) {
+            return $exp;
+        }
+        $exps = [];
+        foreach ($this->filters as $filter) {
+            $exps[] = $filter->compileToQueryExp($query->newExpr(), $query);
+        }
+        $exps = array_filter($exps, fn($e) => $e->count());
+        if ($exps) {
+            if (count($exps) > 1) {
+                $exp = $query->newExpr()->and($exps);
+            } else {
+                $exp = $exps[0];
+            }
+        }
+        return $exp;
+    }
 }

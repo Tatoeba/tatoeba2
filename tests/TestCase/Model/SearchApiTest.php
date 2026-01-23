@@ -731,55 +731,186 @@ class SearchApiTest extends TestCase
         $this->fail(get_class($expected) . " was not thrown");
     }
 
-    public function showTransProvider() {
+    public function showtransFiltersProvider() {
         return [
-            'absent'        => [ [],                              ['lang' => [], 'is_direct' => null] ],
-            'multiple lang' => [ ['showtrans:lang' => 'sun,vie'], ['lang' => ['sun', 'vie'], 'is_direct' => null] ],
-            'empty lang' => [
-                ['showtrans:lang' => ''],
-                new BadRequestException("Invalid value for parameter 'showtrans:lang': Invalid language code ''")
+            'valid showtrans:lang' => [
+                [ 'showtrans:lang' => 'sun' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->anyOf(['sun'])
+                    )
+                ],
             ],
-            'invalid lang' => [
-                ['showtrans:lang' => 'invalid'],
+            'invalid showtrans:lang' => [
+                [ 'showtrans:lang' => 'invalid' ],
                 new BadRequestException("Invalid value for parameter 'showtrans:lang': Invalid language code 'invalid'")
             ],
-            'multiple lang params' => [
-                ['showtrans:lang' => ['sun', 'vie']],
+            'multiple showtrans:lang values' => [
+                [ 'showtrans:lang' => 'sun,vie' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->anyOf(['sun', 'vie'])
+                    )
+                ]
+            ],
+            'negated showtrans:lang' => [
+                [ 'showtrans:lang' => '!sun' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->not()->anyOf(['sun'])
+                    )
+                ]
+            ],
+            'multiple showtrans:lang parameters' => [
+                [ 'showtrans:lang' => ['sun', 'vie'] ],
                 new BadRequestException("Invalid usage of parameter 'showtrans:lang': cannot be provided multiple times")
             ],
-            'is_direct yes' => [ ['showtrans:is_direct' => 'yes'], ['lang' => [], 'is_direct' => true] ],
-            'is_direct no'  => [ ['showtrans:is_direct' => 'no'],  ['lang' => [], 'is_direct' => false] ],
-            'empty is_direct' => [
-                ['showtrans:is_direct' => ''],
-                new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': must be 'yes' or 'no'")
+
+            'valid showtrans:is_direct' => [
+                [ 'showtrans:is_direct' => 'no' ],
+                [
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsDirectFilter())->not()),
+                ],
             ],
-            'invalid is_direct' => [
-                ['showtrans:is_direct' => 'invalid'],
-                new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': must be 'yes' or 'no'")
+            'invalid showtrans:is_direct' => [
+                [ 'showtrans:is_direct' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_direct': must be 'yes' or 'no'")
             ],
-            'multiple is_direct params' => [
-                ['showtrans:is_direct' => ['yes', 'no']],
+            'multiple trans:is_direct parameters' => [
+                [ 'showtrans:is_direct' => ['yes', 'yes'] ],
                 new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:owner' => [
+                [ 'showtrans:owner' => 'contributor' ],
+                [
+                    (new TranslationFilterGroup())->setFilter((new TranslationOwnerFilter())->anyOf(['contributor'])),
+                ],
+            ],
+            'invalid showtrans:owner' => [
+                [ 'showtrans:owner' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:owner': No such owner: 'invalid'")
+            ],
+            'multiple showtrans:owner parameters' => [
+                [ 'showtrans:owner' => ['contributor', 'admin'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:owner': cannot be provided multiple times")
+            ],
+            'multiple showtrans:owner values' => [
+                [ 'showtrans:owner' => 'contributor,admin' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationOwnerFilter())->anyOf(['contributor', 'admin'])
+                    )
+                ],
+            ],
+            'negated showtrans:owner' => [
+                [ 'showtrans:owner' => '!contributor' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationOwnerFilter())->not()->anyOf(['contributor'])
+                    ),
+                ],
+            ],
+
+            'valid showtrans:is_unapproved' => [
+                [ 'showtrans:is_unapproved' => 'yes' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter()),
+                ],
+            ],
+            'invalid showtrans:is_unapproved' => [
+                [ 'showtrans:is_unapproved' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_unapproved': must be 'yes' or 'no'")
+            ],
+            'multiple showtrans:is_unapproved parameters' => [
+                [ 'showtrans:is_unapproved' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_unapproved': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:is_orphan' => [
+                [ 'showtrans:is_orphan' => 'no' ],
+                [
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsOrphanFilter())->not()),
+                ],
+            ],
+            'invalid showtrans:is_orphan' => [
+                [ 'showtrans:is_orphan' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_orphan': must be 'yes' or 'no'")
+            ],
+            'multiple trans:is_orphan parameters' => [
+                [ 'showtrans:is_orphan' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_orphan': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:has_audio' => [
+                [ 'showtrans:has_audio' => 'yes' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter()),
+                ],
+            ],
+            'invalid showtrans:has_audio' => [
+                [ 'showtrans:has_audio' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:has_audio': must be 'yes' or 'no'")
+            ],
+            'multiple showtrans:has_audio parameters' => [
+                [ 'showtrans:has_audio' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:has_audio': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:is_native' => [
+                [ 'showtrans:is_native' => 'yes' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter()),
+                ],
+            ],
+            'invalid showtrans:is_native' => [
+                [ 'showtrans:is_native' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_native': must be 'yes' or 'no'")
+            ],
+            'multiple showtrans:is_native parameters' => [
+                [ 'showtrans:is_native' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_native': cannot be provided multiple times")
+            ],
+
+            'showtrans: with invalid group' => [
+                [ 'showtrans:!1:lang' => 'sun' ],
+                new BadRequestException("Invalid parameter 'showtrans:!1:lang': '!1' is not a valid group name: it must consist of non-empty digits"),
+            ],
+            'multiple showtrans: groups' => [
+                [ 'showtrans:1:lang' => 'sun', 'showtrans:2:is_native' => 'yes', 'showtrans:2:lang' => 'por' ],
+                [
+                    (new TranslationFilterGroup('1'))->setFilter((new TranslationLangFilter())->anyOf(['sun'])),
+                    (new TranslationFilterGroup('2'))
+                        ->setFilter(new TranslationIsNativeFilter())
+                        ->setFilter((new TranslationLangFilter())->anyOf(['por'])),
+                ],
             ],
         ];
     }
 
     /**
-     * @dataProvider showTransProvider()
+     * @dataProvider showtransFiltersProvider()
      */
-    public function testConsumeShowtrans($params, $expected) {
-        try {
-            $result = $this->SearchApi->consumeShowtrans($params);
-        } catch (\Exception $actual) {
-            $this->assertEquals($expected, $actual);
-            return;
-        }
-
+    public function testShowtransFilters($params, $expected) {
+        $codeToTest = function() use (&$params) {
+            $params['lang'] = 'epo';
+            $params['sort'] = 'modified';
+            $this->SearchApi->readParams($params);
+            return $this->SearchApi->getShowtrans();
+        };
         if ($expected instanceOf \Exception) {
-            $this->fail(get_class($expected) . " was not thrown");
+            $this->assertThrowsException($codeToTest, $expected);
         } else {
-            $this->assertEquals($expected, $result);
-            $this->assertFalse(isset($params['showtrans']));
+
+            $result = $codeToTest();
+
+            if (is_null($expected)) {
+                $this->assertNull($result);
+            } else {
+                $results = array_map(fn($f) => $f->compile(), $result->getFilters());
+                $expected = array_map(fn($f) => $f->compile(), $expected);
+                $this->assertEquals($expected, $results);
+            }
         }
     }
 

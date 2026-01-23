@@ -299,12 +299,9 @@ class ExposedOnApiBehavior extends Behavior
         $query->applyOptions(compact('exposedFields'));
 
         // Apply showtrans filters
-        $showtrans = $options['showtrans'] ?? [];
-        if (!empty($showtrans['lang'])) {
-            $query->where(['lang IN' => $showtrans['lang']]);
-        }
-        if (is_bool($showtrans['is_direct'] ?? null)) {
-            $query->where(['is_direct' => $showtrans['is_direct']]);
+        $showtrans = $options['showtrans'] ?? null;
+        if ($showtrans) {
+            $showtrans->limitTranslations($query);
         }
 
         return $query;

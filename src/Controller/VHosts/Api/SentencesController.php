@@ -469,7 +469,7 @@ class SentencesController extends ApiController
             'audios'         => ['finder' => 'audiosOnApi'],
         ];
         $showtrans = $api->getShowtrans();
-        if (!empty($showtrans['lang']) || is_bool($showtrans['is_direct'] ?? null)) {
+        if ($showtrans) {
             $containOnApi['translations'] = function (Query $q) use ($showtrans) {
                 return $q->find('translationsOnApi', compact('showtrans'));
             };

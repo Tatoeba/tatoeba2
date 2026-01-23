@@ -80,4 +80,8 @@ abstract class BaseSearchFilter {
         }
         return $this->cache;
     }
+
+    public function compileToQueryExp($exp, $query) {
+        return $exp;
+    }
 }

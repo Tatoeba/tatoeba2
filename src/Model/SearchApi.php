@@ -14,11 +14,11 @@ use Cake\Http\Exception\BadRequestException;
 class SearchApi
 {
     public $search;
+    public $showtransFilters;
 
     private $limit;
     private $defaultLimit = 10;
     private $hardLimit;
-    private $showtrans;
 
     public function __construct($search = null) {
         $this->search = $search ?? new Search();
@@ -31,7 +31,9 @@ class SearchApi
     }
 
     public function getShowtrans() {
-        return $this->showtrans;
+        if ($this->showtransFilters) {
+            return new Search\ShowtransLimiter($this->showtransFilters->getFilters());
+        }
     }
 
     private function parseParamValueBool($value, BaseSearchFilter $filter) {
@@ -96,7 +98,7 @@ class SearchApi
                 'tag'           => Search\TagFilter::class,
                 'word_count'    => Search\WordCountFilter::class,
             ];
-        } elseif ($ns[0] == 'trans' || $ns[0] == '!trans') {
+        } elseif ($ns[0] == 'trans' || $ns[0] == '!trans' || $ns[0] == 'showtrans') {
             if (count($ns) == 2) {
                 $key = $ns[1];
                 $group = '';
@@ -104,7 +106,7 @@ class SearchApi
                 $group = $ns[1];
                 $key = $ns[2];
                 $check = $group;
-                if (isset($group[0]) && $group[0] == '!') {
+                if ($ns[0] != 'showtrans' && isset($group[0]) && $group[0] == '!') {
                     $group[0] = '_';
                     $check = substr($check, 1);
                 }
@@ -112,15 +114,22 @@ class SearchApi
                     throw new BadRequestException("Invalid parameter '$param': group name cannot be empty");
                 }
                 if (!ctype_digit($check)) {
-                    throw new BadRequestException("Invalid parameter '$param': '${ns[1]}' is not a valid group name: it must consist of non-empty digits with optional exclamation mark prefix");
+                    $error = "Invalid parameter '$param': '${ns[1]}' is not a valid group name: it must consist of non-empty digits";
+                    if ($ns[0] != 'showtrans') {
+                        $error .= " with optional exclamation mark prefix";
+                    }
+                    throw new BadRequestException($error);
                 }
             }
             if ($ns[0] == 'trans') {
                 $collection = $this->search->getTranslationFilters($group);
-            } else { // $ns[0] == '!trans'
+            } elseif ($ns[0] == '!trans') {
                 // 'e' is just some id that can't be overlapped by API consumers
                 $egroup = $this->search->getTranslationFilters('e')->setExclude(true);
                 $collection = $egroup->getTranslationFilters($group);
+            } else { // $ns[0] == 'showtrans'
+                $this->showtransFilters = $this->showtransFilters ?: new Search\TranslationFilterGroup();
+                $collection = $this->showtransFilters->getTranslationFilters($group);
             }
             if (isset($group[0]) && $group[0] == '_') {
                 $collection->setExclude(true);
@@ -182,31 +191,6 @@ class SearchApi
         return $value;
     }
 
-    public function consumeShowtrans(&$params) {
-        $lang = $this->consumeValue('showtrans:lang', $params, []);
-        if (is_string($lang)) {
-            $lang = explode(',', $lang);
-            try {
-                $lang = array_map('\App\Model\Search::validateLanguage', $lang);
-            } catch (InvalidValueException $e) {
-                throw new BadRequestException("Invalid value for parameter 'showtrans:lang': ".$e->getMessage());
-            }
-        }
-
-        $is_direct = $this->consumeValue('showtrans:is_direct', $params);
-        if (is_string($is_direct)) {
-            if ($is_direct == 'yes') {
-                $is_direct = true;
-            } elseif ($is_direct == 'no') {
-                $is_direct = false;
-            } else {
-                throw new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': must be 'yes' or 'no'");
-            }
-        }
-
-        return compact('lang', 'is_direct');
-    }
-
     public function consumeInt($key, &$params, $default = null) {
         $value = $this->consumeValue($key, $params, $default);
         if ($value !== $default) {
@@ -255,6 +239,9 @@ class SearchApi
                 }
             }
             $this->search->compile(); // trigger validation
+            if ($this->showtransFilters) {
+                $this->showtransFilters->compile(); // trigger validation
+            }
         } catch (InvalidValueException $e) {
             throw new BadRequestException("Invalid value for parameter '{$e->getThrower()->getName()}': ".$e->getMessage());
         } catch (\App\Model\Exception\InvalidAndOperatorException $e) {
@@ -274,7 +261,6 @@ class SearchApi
     }
 
     public function readParams(array $params) {
-        $this->showtrans = $this->consumeShowtrans($params);
         $this->limit = $this->consumeInt('limit', $params, $this->defaultLimit);
         $this->consumeSort($params);
         $this->setDefaultFilters();
