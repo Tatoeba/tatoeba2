@@ -23,7 +23,8 @@ class SentencesControllerTest extends TestCase
         'download_url'    => ['type' => 'string'],
         'created'         => ['type' => 'string'],
         'modified'        => ['type' => 'string'],
-      ]
+      ],
+      'additionalProperties' => false,
     ];
 
     const TRANSCRIPTION_JSON_SCHEMA = [
@@ -42,6 +43,7 @@ class SentencesControllerTest extends TestCase
         'license'  => ['type' => ['string', 'null']],
         'owner'    => ['type' => ['string', 'null']],
       ],
+      'additionalProperties' => false,
     ];
 
     const PAGING_JSON_SCHEMA = [
@@ -54,6 +56,7 @@ class SentencesControllerTest extends TestCase
         'cursor_end' => ['type' => 'string'],
         'next'       => ['type' => 'string'],
       ],
+      'additionalProperties' => false,
     ];
 
     public $fixtures = [
@@ -64,7 +67,7 @@ class SentencesControllerTest extends TestCase
         'app.Links',
     ];
 
-    private function sentenceSchema(bool $translationsRequired) {
+    private function sentenceSchema(bool $withTranslations) {
         $sentenceSchema = self::SENTENCE_JSON_SCHEMA;
 
         // add audio
@@ -82,19 +85,34 @@ class SentencesControllerTest extends TestCase
         ];
 
         // add translations
-        $sentenceSchema['properties']['translations'] = [
-            'type' => 'array',
-            'items' => $sentenceSchema,
-        ];
-        if ($translationsRequired) {
+        if ($withTranslations) {
+            $sentenceSchema['properties']['translations'] = [
+                'type' => 'array',
+                'items' => $sentenceSchema,
+            ];
             $sentenceSchema['required'][] = 'translations';
+            $sentenceSchema['properties']['translations']['items']['required'][] = 'is_direct';
+            $sentenceSchema['properties']['translations']['items']['properties']['is_direct'] = [
+                'type' => 'boolean',
+            ];
         }
-        $sentenceSchema['properties']['translations']['items']['required'][] = 'is_direct';
-        $sentenceSchema['properties']['translations']['items']['properties']['is_direct'] = [
-            'type' => 'boolean',
-        ];
 
         return $sentenceSchema;
+    }
+
+    private function sentencesResultSchema(bool $withTranslations) {
+        return [
+            'type'       => 'object',
+            'required'   => ['data', 'paging'],
+            'properties' => [
+                'data'       => [
+                    'type'       => 'array',
+                    'items'      => $this->sentenceSchema($withTranslations),
+                ],
+                'paging' => self::PAGING_JSON_SCHEMA,
+            ],
+            'additionalProperties' => false,
+        ];
     }
 
     public function testGetSentence_doesNotExist()
@@ -284,17 +302,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = [
-            'type'       => 'object',
-            'required'   => ['data', 'paging'],
-            'properties' => [
-                'data'       => [
-                    'type'       => 'array',
-                    'items'      => $this->sentenceSchema(false),
-                ],
-                'paging' => self::PAGING_JSON_SCHEMA,
-            ]
-        ];
+        $schema = $this->sentencesResultSchema(false);
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
         $this->assertJsonValueEquals($actual, '$.data[1].transcriptions[0].type', 'altscript');
     }
