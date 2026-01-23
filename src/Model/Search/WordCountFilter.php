@@ -12,21 +12,21 @@ class WordCountFilter extends BaseSearchFilter {
     private function _parseRange($range) {
         $parts = explode('-', $range);
         if (count($parts) > 2) {
-            throw new InvalidValueException("Invalid range: '$range'");
+            throw new InvalidValueException($this, "Invalid range: '$range'");
         }
         foreach ($parts as $part) {
             if (strlen($part) > 0 && !is_numeric($part)) {
-                throw new InvalidValueException("Invalid number: '$part'");
+                throw new InvalidValueException($this, "Invalid number: '$part'");
             }
         }
         $ret = [];
         if (count($parts) == 2) {
             list($from, $to) = array_map(function($i) { return strlen($i) > 0 ? (int)$i : null; }, $parts);
             if (is_null($from) && is_null($to)) {
-                throw new InvalidValueException("Invalid infinite range: '$range'");
+                throw new InvalidValueException($this, "Invalid infinite range: '$range'");
             }
             if (!is_null($from) && !is_null($to) && $from > $to) {
-                throw new InvalidValueException("Invalid range: left number must be lower or equal to right number");
+                throw new InvalidValueException($this, "Invalid range: left number must be lower or equal to right number");
             }
             if (!is_null($from)) {
                 $ret[] = $this->_expr('>=', $from);

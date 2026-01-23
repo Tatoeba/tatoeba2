@@ -38,7 +38,7 @@ class SearchApi
         if ($value == 'no') {
             $filter->not();
         } elseif ($value != 'yes') {
-            throw new InvalidValueException("must be 'yes' or 'no'");
+            throw new InvalidValueException($filter, "must be 'yes' or 'no'");
         }
     }
 
@@ -137,7 +137,7 @@ class SearchApi
             ];
         }
         if (isset($filterMap[$key])) {
-            $filter = new $filterMap[$key];
+            $filter = new $filterMap[$key]($param);
             $collection->setFilter($filter);
             return $filter;
         } elseif (!is_null($key) && $param != $key) {
@@ -256,7 +256,7 @@ class SearchApi
             }
             $this->search->compile(); // trigger validation
         } catch (InvalidValueException $e) {
-            throw new BadRequestException("Invalid value for parameter '$key': ".$e->getMessage());
+            throw new BadRequestException("Invalid value for parameter '{$e->getThrower()->getName()}': ".$e->getMessage());
         } catch (\App\Model\Exception\InvalidAndOperatorException $e) {
             throw new BadRequestException("Invalid usage of parameter '$key': cannot be provided multiple times");
         } catch (\App\Model\Exception\InvalidNotOperatorException $e) {

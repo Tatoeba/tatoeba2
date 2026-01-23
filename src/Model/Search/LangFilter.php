@@ -16,7 +16,7 @@ class LangFilter extends SearchFilter {
     }
 
     public function anyOf(array $values) {
-        array_map('\App\Model\Search::validateLanguage', $values);
+        array_map(fn($l) => \App\Model\Search::validateLanguage($l, $this), $values);
         return parent::anyOf($values);
     }
 }

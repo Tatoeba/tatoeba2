@@ -134,7 +134,7 @@ class SearchApiTest extends TestCase
                 ],
             ],
             'invalid owner' => [
-                [ 'lang' => 'epo', 'owner' => 'invalid' ],
+                [ 'owner' => 'invalid', 'lang' => 'epo' ],
                 new BadRequestException("Invalid value for parameter 'owner': No such owner: 'invalid'")
             ],
             'multiple owner parameters' => [

@@ -21,7 +21,7 @@ class LicenseFilter extends SearchFilter {
     public function __construct(string $name = null) {
         parent::__construct($name);
         $this->setInvalidValueHandler(function($invalidValue) {
-            throw new InvalidValueException("Value must be one of: ".implode(', ', $this->getValues()));
+            throw new InvalidValueException($this, "Value must be one of: ".implode(', ', $this->getValues()));
         });
     }
 
@@ -33,7 +33,7 @@ class LicenseFilter extends SearchFilter {
         $values = $this->filters[0];
         $exclude = array_shift($values);
         if ($exclude && $values != [self::LICENSING_ISSUE]) {
-            throw new InvalidValueException("Only ".self::LICENSING_ISSUE." can be negated");
+            throw new InvalidValueException($this, "Only ".self::LICENSING_ISSUE." can be negated");
         }
     }
 

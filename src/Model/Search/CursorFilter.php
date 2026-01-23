@@ -11,7 +11,7 @@ class CursorFilter extends BaseSearchFilter {
     public function anyOf(array $values) {
         foreach ($values as $value) {
             if (!is_numeric($value)) {
-                throw new InvalidValueException("'$value' is not numeric");
+                throw new InvalidValueException($this, "'$value' is not numeric");
             }
         }
         return parent::anyOf($values);
@@ -38,7 +38,7 @@ class CursorFilter extends BaseSearchFilter {
         $values = $this->filters[0];
         array_shift($values);
         if (count($orderbys) != count($values)) {
-            throw new InvalidValueException('Expected '.count($orderbys).' value(s), got '.count($values).' instead');
+            throw new InvalidValueException($this, 'Expected '.count($orderbys).' value(s), got '.count($values).' instead');
         }
 
         if (count($orderbys) == 2) {
