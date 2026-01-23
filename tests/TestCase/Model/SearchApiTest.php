@@ -2,7 +2,6 @@
 
 use App\Model\Search;
 use App\Model\SearchApi;
-use App\Model\Exception\InvalidValueException;
 
 use App\Model\Search\CursorFilter;
 use App\Model\Search\HasAudioFilter;
