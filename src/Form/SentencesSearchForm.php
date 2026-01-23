@@ -440,15 +440,6 @@ class SentencesSearchForm extends Form
                 $this->_data[$key] = 'any';
             }
         }
-
-        /* Validate native filter */
-        if ($nativeFilter = $this->search->getFilter(IsNativeFilter::class)) {
-            try {
-                $nativeFilter->compile();
-            } catch (InvalidFilterUsageException $e) {
-                $this->search->unsetFilter(IsNativeFilter::class);
-            }
-        }
     }
 
     private function paramIndex($param) {
