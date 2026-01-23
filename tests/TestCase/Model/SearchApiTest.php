@@ -733,6 +733,43 @@ class SearchApiTest extends TestCase
 
     public function showtransFiltersProvider() {
         return [
+            'invalid showtrans value' => [
+                [ 'showtrans' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans': must be one of: all, none, matching"),
+            ],
+            'showtrans is "all"' => [
+                [ 'showtrans' => 'all' ],
+                [],
+            ],
+            'showtrans is "none"' => [
+                [ 'showtrans' => 'none' ],
+                null,
+            ],
+            'showtrans is "matching" without any translation filter' => [
+                [ 'showtrans' => 'matching' ],
+                null,
+            ],
+            'showtrans is "matching" with a negative translation filter' => [
+                [ 'showtrans' => 'matching', '!trans:lang' => 'sun' ],
+                null,
+            ],
+            'showtrans is "matching" with a negated translation filter group' => [
+                [ 'showtrans' => 'matching', 'trans:!1:lang' => 'sun' ],
+                null,
+            ],
+            'showtrans is "matching" with a positive translation filter' => [
+                [ 'showtrans' => 'matching', 'trans:lang' => '!sun' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->not()->anyOf(['sun'])
+                    )
+                ],
+            ],
+            'showtrans is combined with showtrans:lang' => [
+                [ 'showtrans' => 'matching', 'showtrans:lang' => 'sun' ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:lang' or 'showtrans': these two cannot be used together"),
+            ],
+
             'valid showtrans:lang' => [
                 [ 'showtrans:lang' => 'sun' ],
                 [

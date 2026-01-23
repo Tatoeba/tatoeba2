@@ -19,6 +19,7 @@ class SearchApi
     private $limit;
     private $defaultLimit = 10;
     private $hardLimit;
+    private $showtrans;
 
     public function __construct($search = null) {
         $this->search = $search ?? new Search();
@@ -33,6 +34,13 @@ class SearchApi
     public function getShowtrans() {
         if ($this->showtransFilters) {
             return new Search\ShowtransLimiter($this->showtransFilters->getFilters());
+        } elseif ($this->showtrans == 'matching' || is_null($this->showtrans)) {
+            $showtrans = new Search\ShowtransLimiter($this->search->getFilters());
+            return $showtrans->getFilters() ? $showtrans : null;
+        } elseif ($this->showtrans == 'all') {
+            return new Search\ShowtransLimiter([]);
+        } elseif ($this->showtrans == 'none') {
+            return null;
         }
     }
 
@@ -128,6 +136,9 @@ class SearchApi
                 $egroup = $this->search->getTranslationFilters('e')->setExclude(true);
                 $collection = $egroup->getTranslationFilters($group);
             } else { // $ns[0] == 'showtrans'
+                if ($this->showtrans) {
+                    throw new BadRequestException("Invalid usage of parameter '{$param}' or 'showtrans': these two cannot be used together");
+                }
                 $this->showtransFilters = $this->showtransFilters ?: new Search\TranslationFilterGroup();
                 $collection = $this->showtransFilters->getTranslationFilters($group);
             }
@@ -189,6 +200,15 @@ class SearchApi
         unset($params[$key]);
 
         return $value;
+    }
+
+    public function consumeShowtrans(&$params) {
+        $showtrans = $this->consumeValue('showtrans', $params);
+        $available = ['all', 'none', 'matching'];
+        if (!is_null($showtrans) && !in_array($showtrans, $available)) {
+            throw new BadRequestException("Invalid value for parameter 'showtrans': must be one of: ".join(', ', $available));
+        }
+        return $showtrans;
     }
 
     public function consumeInt($key, &$params, $default = null) {
@@ -261,6 +281,7 @@ class SearchApi
     }
 
     public function readParams(array $params) {
+        $this->showtrans = $this->consumeShowtrans($params);
         $this->limit = $this->consumeInt('limit', $params, $this->defaultLimit);
         $this->consumeSort($params);
         $this->setDefaultFilters();

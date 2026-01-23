@@ -10,7 +10,9 @@ class ShowtransLimiter {
 
     public function __construct(array $filters) {
         foreach ($filters as $filter) {
-            $this->filters[] = $filter;
+            if ($filter instanceof TranslationFilterGroup && !$filter->getExclude()) {
+                $this->filters[] = $filter;
+            }
         }
     }
 

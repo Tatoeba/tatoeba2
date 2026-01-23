@@ -19,6 +19,10 @@ class TranslationFilterGroup extends BaseSearchFilter {
         return $this;
     }
 
+    public function getExclude() {
+        return $this->exclude;
+    }
+
     protected function _compile() {}
 
     public function compile() {
