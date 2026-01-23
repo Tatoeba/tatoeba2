@@ -18,11 +18,11 @@ class CursorFilter extends BaseSearchFilter {
     }
 
     public function not() {
-        throw new \App\Model\Exception\InvalidNotOperatorException();
+        throw new \App\Model\Exception\InvalidNotOperatorException($this);
     }
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     protected function _compile() {
@@ -32,7 +32,7 @@ class CursorFilter extends BaseSearchFilter {
 
         $orderbys = $this->search->getInternalSortOrder();
         if (count($orderbys) == 0) {
-            throw new \App\Model\Exception\InvalidFilterUsageException('No sort order defined');
+            throw new \App\Model\Exception\InvalidFilterUsageException($this, 'No sort order defined');
         }
 
         $values = $this->filters[0];

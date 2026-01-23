@@ -258,11 +258,11 @@ class SearchApi
         } catch (InvalidValueException $e) {
             throw new BadRequestException("Invalid value for parameter '{$e->getThrower()->getName()}': ".$e->getMessage());
         } catch (\App\Model\Exception\InvalidAndOperatorException $e) {
-            throw new BadRequestException("Invalid usage of parameter '$key': cannot be provided multiple times");
+            throw new BadRequestException("Invalid usage of parameter '{$e->getThrower()->getName()}': cannot be provided multiple times");
         } catch (\App\Model\Exception\InvalidNotOperatorException $e) {
-            throw new BadRequestException("Invalid usage of parameter '$key': value cannot be negated with '!'");
+            throw new BadRequestException("Invalid usage of parameter '{$e->getThrower()->getName()}': value cannot be negated with '!'");
         } catch (\App\Model\Exception\InvalidFilterUsageException $e) {
-            throw new BadRequestException("Invalid usage of parameter '$key': ".$e->getMessage());
+            throw new BadRequestException("Invalid usage of parameter '{$e->getThrower()->getName()}': ".$e->getMessage());
         }
         $params = $unusedParams;
     }

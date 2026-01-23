@@ -8,7 +8,7 @@ abstract class BoolFilter extends SearchFilter {
     protected abstract function getAttributeName();
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     protected function calcFilter() {

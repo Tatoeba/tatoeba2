@@ -26,7 +26,7 @@ class LicenseFilter extends SearchFilter {
     }
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     private function controlNegation() {

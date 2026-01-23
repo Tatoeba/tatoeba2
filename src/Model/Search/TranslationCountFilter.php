@@ -8,7 +8,7 @@ use App\Model\Exception\InvalidAndOperatorException;
 class TranslationCountFilter extends BaseSearchFilter {
 
     public function and() {
-        throw new InvalidAndOperatorException();
+        throw new InvalidAndOperatorException($this);
     }
 
     public function anyOf(array $values) {

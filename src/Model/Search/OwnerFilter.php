@@ -23,7 +23,7 @@ class OwnerFilter extends SearchFilter {
     }
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     protected function handleInvalidValue($invalidValue) {

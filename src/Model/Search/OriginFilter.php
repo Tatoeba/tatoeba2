@@ -22,11 +22,11 @@ class OriginFilter extends BaseSearchFilter {
     }
 
     public function not() {
-        throw new \App\Model\Exception\InvalidNotOperatorException();
+        throw new \App\Model\Exception\InvalidNotOperatorException($this);
     }
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     protected function _compile() {

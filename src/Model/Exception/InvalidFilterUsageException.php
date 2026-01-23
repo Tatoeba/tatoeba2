@@ -4,6 +4,6 @@ namespace App\Model\Exception;
 
 use Exception;
 
-class InvalidFilterUsageException extends Exception
+class InvalidFilterUsageException extends FilterException
 {
 }
