@@ -293,7 +293,7 @@ class SentencesControllerTest extends TestCase
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
-    public function testSearch_returnsResults()
+    public function testSearch_returnsResults_withoutTranslations()
     {
         $this->enableMockedSearch([1,2,3]);
 
@@ -304,7 +304,79 @@ class SentencesControllerTest extends TestCase
         $actual = $this->_getBodyAsString();
         $schema = $this->sentencesResultSchema(false);
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
-        $this->assertJsonValueEquals($actual, '$.data[1].transcriptions[0].type', 'altscript');
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
+            '$.data[1].transcriptions[0].type' => 'altscript',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsResults_withMatchedTranslations()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&trans:lang=cmn");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(true);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
+            '$.data[0].translations' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.data[0].translations[0].lang' => 'cmn',
+            '$.data[1].translations' => new \PHPUnit\Framework\Constraint\Count(0),
+            '$.data[2].translations' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.data[2].translations[0].lang' => 'cmn',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsResults_withoutMatchedTranslations()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&!trans:lang=cmn");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(false);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+    }
+
+    public function testSearch_returnsResults_withAllTranslationsHidden()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&trans:lang=cmn&showtrans=none");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(false);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+    }
+
+    public function testSearch_returnsResults_withAllTranslationsShowed()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&trans:lang=cmn&showtrans=all");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(true);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
+            '$.data[0].translations' => new \PHPUnit\Framework\Constraint\Count(5),
+            '$.data[1].translations' => new \PHPUnit\Framework\Constraint\Count(5),
+            '$.data[2].translations' => new \PHPUnit\Framework\Constraint\Count(3),
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testSearch_limitsTranslationsLanguage()
