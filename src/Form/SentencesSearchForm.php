@@ -299,7 +299,7 @@ class SentencesSearchForm extends Form
     protected function setDataList(string $list) {
         if (!empty($list)) {
             $searcher = CurrentUser::get('id');
-            $filter = new ListFilter($searcher);
+            $filter = new ListFilter(null, $searcher);
             try {
                 $filter->anyOf([$list]);
             } catch (InvalidValueException $e) {

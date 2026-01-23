@@ -465,7 +465,7 @@ class SearchTest extends TestCase
     public function testfilterByListId_private_isOwner() {
         $currentUserId = 7;
         $listId = 3;
-        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
+        $this->Search->setFilter((new ListFilter(null, $currentUserId))->anyOf([$listId]));
 
         $expected = $this->makeSphinxParams([
             'filter' => [['lists_id', [$listId], false]]

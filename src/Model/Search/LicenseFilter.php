@@ -18,7 +18,8 @@ class LicenseFilter extends SearchFilter {
         return $validLicenses;
     }
 
-    public function __construct() {
+    public function __construct(string $name = null) {
+        parent::__construct($name);
         $this->setInvalidValueHandler(function($invalidValue) {
             throw new InvalidValueException("Value must be one of: ".implode(', ', $this->getValues()));
         });

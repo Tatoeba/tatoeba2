@@ -15,7 +15,8 @@ class OwnerFilter extends SearchFilter {
         return 'user_id';
     }
 
-    public function __construct() {
+    public function __construct($name = null) {
+        parent::__construct($name);
         $this->setInvalidValueHandler(function($invalidValue) {
             throw new InvalidValueException("No such owner: '$invalidValue'");
         });

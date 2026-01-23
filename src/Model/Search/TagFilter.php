@@ -15,7 +15,8 @@ class TagFilter extends SearchFilter {
         return 'tags_id';
     }
 
-    public function __construct() {
+    public function __construct(string $name = null) {
+        parent::__construct($name);
         $this->setInvalidValueHandler(function($invalidValue) {
             throw new InvalidValueException("No such tag: '$invalidValue'");
         });

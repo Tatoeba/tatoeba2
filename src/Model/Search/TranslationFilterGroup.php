@@ -5,18 +5,13 @@ namespace App\Model\Search;
 class TranslationFilterGroup extends BaseSearchFilter {
     use FiltersCollectionTrait;
 
-    private $alias;
-
-    public function getAlias() {
-        return $this->alias;
+    public static function getDefaultName() {
+        $index = func_num_args() > 0 ? func_get_arg(0) : '';
+        return "tf$index";
     }
 
-    public static function getName($id = '') {
-        return "tf{$id}";
-    }
-
-    public function __construct(string $id = '') {
-        $this->alias = self::getName($id);
+    public function __construct(string $index = '') {
+        parent::__construct(self::getDefaultName($index));
     }
 
     public function setExclude(bool $exclude = true) {
@@ -52,7 +47,7 @@ class TranslationFilterGroup extends BaseSearchFilter {
         }
         if (count($exprs) > 0) {
             $expr = $this->_join('and', $exprs);
-            $filterName = $this->getAlias();
+            $filterName = $this->getName();
             return [[$filterName, $expr, $this->exclude]];
         } else {
             return [];

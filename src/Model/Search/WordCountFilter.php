@@ -58,7 +58,7 @@ class WordCountFilter extends BaseSearchFilter {
             $this->filters
         ));
         if (count($exprs) > 0) {
-            $filterName = self::getName();
+            $filterName = self::getDefaultName();
             $expr = $this->_join('and', $exprs);
             return [[$filterName, $expr]];
         } else {

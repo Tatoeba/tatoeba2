@@ -5,19 +5,24 @@ namespace App\Model\Search;
 abstract class BaseSearchFilter {
     private $cache;
     private $cacheInvalid = true;
+    private $name;
     protected $filters = [];
     protected $current = 0;
     protected $exclude = false;
 
-    public static function getName() {
+    public function __construct(string $name = null) {
+        $this->name = $name ?? self::getDefaultName();
+    }
+
+    public static function getDefaultName() {
         // assumes this class is in a namespace
         $class = get_called_class();
         $pos = strrpos($class, "\\") + 1;
         return substr($class, $pos);
     }
 
-    public function getAlias() {
-        return self::getName();
+    public function getName() {
+        return $this->name;
     }
 
     public function getAllValues() {
