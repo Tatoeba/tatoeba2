@@ -11,12 +11,6 @@ abstract class BoolFilter extends SearchFilter {
         throw new \App\Model\Exception\InvalidAndOperatorException();
     }
 
-    public function __construct(bool $value = true) {
-        if (!$value) {
-            $this->not();
-        }
-    }
-
     protected function calcFilter() {
         $this->anyOf([$this->valueForTrue]);
     }

@@ -160,7 +160,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'is_orphan' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new IsOrphanFilter(true),
+                    new IsOrphanFilter(),
                 ],
             ],
             'invalid is_orphan' => [
@@ -176,7 +176,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'is_unapproved' => 'no' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new IsUnapprovedFilter(false),
+                    (new IsUnapprovedFilter())->not(),
                 ],
             ],
             'invalid is_unapproved' => [
@@ -192,7 +192,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'has_audio' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new HasAudioFilter(true),
+                    new HasAudioFilter(),
                 ],
             ],
             'invalid has_audio' => [
@@ -274,7 +274,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'is_native' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new IsNativeFilter(true),
+                    new IsNativeFilter(),
                 ],
             ],
             'invalid is_native' => [
@@ -369,7 +369,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:is_direct' => 'no' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationIsDirectFilter(false)),
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsDirectFilter())->not()),
                 ],
             ],
             'invalid trans:is_direct' => [
@@ -419,7 +419,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:is_unapproved' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(true)),
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter()),
                 ],
             ],
             'invalid trans:is_unapproved' => [
@@ -435,7 +435,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:is_orphan' => 'no' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(false)),
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsOrphanFilter())->not()),
                 ],
             ],
             'invalid trans:is_orphan' => [
@@ -451,7 +451,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:has_audio' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(true)),
+                    (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter()),
                 ],
             ],
             'invalid trans:has_audio' => [
@@ -467,7 +467,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:is_native' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter(true)),
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter()),
                 ],
             ],
             'invalid trans:is_native' => [
@@ -528,7 +528,7 @@ class SearchApiTest extends TestCase
                     (new LangFilter())->anyOf(['epo']),
                     (new TranslationFilterGroup('_1'))
                         ->setFilter((new TranslationLangFilter())->anyOf(['sun']))
-                        ->setFilter(new TranslationIsDirectFilter(true))
+                        ->setFilter(new TranslationIsDirectFilter())
                         ->setExclude(true),
                 ],
             ],

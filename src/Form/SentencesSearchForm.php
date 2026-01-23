@@ -100,7 +100,11 @@ class SentencesSearchForm extends Form
         if (is_null($value)) {
             $collection->unsetFilter($class);
         } else {
-            $collection->setFilter(new $class($value));
+            $filter = new $class();
+            if (!$value) {
+                $filter->not();
+            }
+            $collection->setFilter($filter);
         }
         return $this->parseYesNoEmpty($value);
     }
@@ -177,7 +181,10 @@ class SentencesSearchForm extends Form
         if (!in_array($link, ['direct', 'indirect'])) {
             return '';
         }
-        $filter = new TranslationIsDirectFilter($link == 'direct');
+        $filter = new TranslationIsDirectFilter();
+        if ($link == 'indirect') {
+            $filter->not();
+        }
         $this->search->setTranslationFilter($filter);
         return $link;
     }
