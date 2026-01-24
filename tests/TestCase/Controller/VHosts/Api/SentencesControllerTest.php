@@ -457,4 +457,35 @@ class SentencesControllerTest extends TestCase
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
     }
+
+    public function limitsProvider() {
+        return [
+            'default results limit when no translations are returned' => [
+                'lang=ara&sort=created&showtrans=none', 50
+            ],
+            'default results limit when translations are returned' => [
+                'lang=ara&sort=created&showtrans=all', 10
+            ],
+            'hard results limit when no translations are returned' => [
+                'lang=ara&sort=created&showtrans=none&limit=999999', 500
+            ],
+            'hard results limit when translations are returned' => [
+                'lang=ara&sort=created&showtrans=all&limit=999999', 50
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider limitsProvider
+     */
+    public function testSearch_limits(string $params, int $expectedLimit)
+    {
+        $this->enableMockedSearch([1,2,3], 3);
+        $client = \Cake\Core\Configure::read('Sphinx.client');
+        $client->expects($this->once())
+               ->method('SetLimits')
+               ->with(0, $expectedLimit);
+
+        $this->get("http://api.example.com/unstable/sentences?$params");
+    }
 }

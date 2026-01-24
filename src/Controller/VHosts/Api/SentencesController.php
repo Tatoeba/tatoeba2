@@ -579,7 +579,6 @@ class SentencesController extends ApiController
         $api = new SearchApi();
         $api->setLimits(self::DEFAULT_RESULTS_NUMBER, self::MAX_RESULTS_NUMBER);
         $api->readParams($params);
-        $sphinx = $api->asSphinx();
 
         $containOnApi = [
             'transcriptions' => ['finder' => 'transcriptionsOnApi'],
@@ -587,6 +586,7 @@ class SentencesController extends ApiController
         ];
         $showtrans = $api->getShowtrans();
         if ($showtrans) {
+            $api->setLimits(10, 50); // getting translations is resource-intensive
             $containOnApi['translations'] = function (Query $q) use ($showtrans) {
                 return $q->find('translationsOnApi', compact('showtrans'));
             };
@@ -601,7 +601,7 @@ class SentencesController extends ApiController
             ->find('containOnApi', compact('containOnApi'));
 
         $this->paginate = [
-            'sphinx' => $sphinx,
+            'sphinx' => $api->asSphinx(),
         ];
         $results = $this->paginate($query);
         $response = [

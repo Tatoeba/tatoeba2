@@ -282,16 +282,21 @@ class SearchApi
 
     public function readParams(array $params) {
         $this->showtrans = $this->consumeShowtrans($params);
-        $this->limit = $this->consumeInt('limit', $params, $this->defaultLimit);
+        $this->limit = $this->consumeInt('limit', $params);
         $this->consumeSort($params);
         $this->setDefaultFilters();
         $this->consumeFilters($params);
         $this->failIfParams($params);
     }
 
+    private function getLimit() {
+        $limit = $this->limit ?: $this->defaultLimit;
+        return $limit > $this->hardLimit ? $this->hardLimit : $limit;
+    }
+
     public function asSphinx() {
         $sphinx = $this->search->asSphinx();
-        $sphinx['limit'] = $this->limit > $this->hardLimit ? $this->hardLimit : $this->limit;
+        $sphinx['limit'] = $this->getLimit();
         return $sphinx;
     }
 }

@@ -149,8 +149,8 @@ When this API will be considered mature, we will release a stable version and yo
  */
 class ApiController extends Controller
 {
-    const DEFAULT_RESULTS_NUMBER = 10;
-    const MAX_RESULTS_NUMBER = 100;
+    const DEFAULT_RESULTS_NUMBER = 50;
+    const MAX_RESULTS_NUMBER = 500;
 
     public function initialize()
     {
