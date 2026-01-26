@@ -37,11 +37,11 @@ msgstr "Non esistono utenti chiamati {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L139
 msgid "Your account has been suspended."
-msgstr ""
+msgstr "Il tuo account è stato sospeso."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L141
 msgid "Your account has been deactivated."
-msgstr ""
+msgstr "Il tuo account è stato disattivato."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L150
 msgid "Your audio settings have been saved."
@@ -292,7 +292,7 @@ msgstr "Non puoi eliminare questa lingua."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L145
 msgid "The vocabulary item '{vocabText}' already exists for this language."
-msgstr ""
+msgstr "La voce del vocabolario '{vocabText}' esiste già per questa lingua."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L146
 msgid "Your message has been posted on the wall."
@@ -1414,7 +1414,7 @@ msgstr "Mese"
 #. for example {monthInCalendar.calendar}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L60
 msgid "{monthInCalendar}"
-msgstr ""
+msgstr "{monthInCalendar}"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L76
@@ -4570,14 +4570,14 @@ msgstr "Data di nascita"
 #. for example {monthInDropdown.number}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L147
 msgid "{monthInDropdown}"
-msgstr ""
+msgstr "{monthInDropdown}"
 
 #. This can be used in the profile edition page
 #. to change how birth date selectors are displayed.
 #. You can reorder them or add text inbetween.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L161
 msgid "{yearSelector}{monthSelector}{daySelector}"
-msgstr ""
+msgstr "{yearSelector}{monthSelector}{daySelector}"
 
 #. label for user's homepage in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L167
