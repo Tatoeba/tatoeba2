@@ -631,8 +631,8 @@ class SentencesTable extends Table
             // normal outcome when $lang == 'und'
         }
         $search->sort('random');
-        $search->setFilter(new IsOrphanFilter(false)); // exclude orphans
-        $search->setFilter(new IsUnapprovedFilter(false)); // exclude unapproved
+        $search->setFilter((new IsOrphanFilter())->not()); // exclude orphans
+        $search->setFilter((new IsUnapprovedFilter())->not()); // exclude unapproved
         $sphinx = $search->asSphinx();
         $sphinx['limit'] = $numberOfIdWanted;
 
