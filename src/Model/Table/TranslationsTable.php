@@ -44,6 +44,13 @@ class TranslationsTable extends Table
             'targetForeignKey' => 'translation_id'
         ]);
         $this->belongsTo('Users');
+        $this->hasOne('OwnerLanguage', [
+            'className' => 'UsersLanguages',
+            'foreignKey' => 'of_user_id',
+            'bindingKey' => 'user_id',
+        ])->setConditions([
+            'Translations.lang = OwnerLanguage.language_code',
+        ]);
 
         if (Configure::read('AutoTranscriptions.enabled')) {
             $this->addBehavior('Transcriptable');

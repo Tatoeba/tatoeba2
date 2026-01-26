@@ -256,7 +256,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByOrphanship_true() {
-        $this->Search->setFilter(new IsOrphanFilter(true));
+        $this->Search->setFilter(new IsOrphanFilter());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['user_id', [0], false]]
@@ -266,7 +266,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByOrphanship_false() {
-        $this->Search->setFilter(new IsOrphanFilter(false));
+        $this->Search->setFilter((new IsOrphanFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['user_id', [0], true]]
@@ -289,7 +289,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByCorrectness_true() {
-        $this->Search->setFilter(new IsUnapprovedFilter(true));
+        $this->Search->setFilter(new IsUnapprovedFilter());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['ucorrectness', [127], false]]
@@ -299,7 +299,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByCorrectness_false() {
-        $this->Search->setFilter(new IsUnapprovedFilter(false));
+        $this->Search->setFilter((new IsUnapprovedFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['ucorrectness', [127], true]],
@@ -317,7 +317,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByAudio_true() {
-        $this->Search->setFilter(new HasAudioFilter(true));
+        $this->Search->setFilter(new HasAudioFilter());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['has_audio', [1], false]]
@@ -327,7 +327,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByAudio_false() {
-        $this->Search->setFilter(new HasAudioFilter(false));
+        $this->Search->setFilter((new HasAudioFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['has_audio', [1], true]]
@@ -465,7 +465,7 @@ class SearchTest extends TestCase
     public function testfilterByListId_private_isOwner() {
         $currentUserId = 7;
         $listId = 3;
-        $this->Search->setFilter((new ListFilter($currentUserId))->anyOf([$listId]));
+        $this->Search->setFilter((new ListFilter(null, $currentUserId))->anyOf([$listId]));
 
         $expected = $this->makeSphinxParams([
             'filter' => [['lists_id', [$listId], false]]
@@ -486,7 +486,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterIsNativeSpeaker_true() {
-        $this->Search->setFilter(new IsNativeFilter(true));
+        $this->Search->setFilter(new IsNativeFilter());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['owner_is_native', [1], false]],
@@ -496,7 +496,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterIsNativeSpeaker_false() {
-        $this->Search->setFilter(new IsNativeFilter(false));
+        $this->Search->setFilter((new IsNativeFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'filter' => [['owner_is_native', [1], true]],
@@ -778,7 +778,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterTranslationIsNative_true() {
-        $this->Search->setTranslationFilter(new TranslationIsNativeFilter(true));
+        $this->Search->setTranslationFilter(new TranslationIsNativeFilter());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.n=1 FOR t IN trans) as tf',
@@ -789,7 +789,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterTranslationIsNative_false() {
-        $this->Search->setTranslationFilter(new TranslationIsNativeFilter(false));
+        $this->Search->setTranslationFilter((new TranslationIsNativeFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(not (t.n=1) FOR t IN trans) as tf',
@@ -800,7 +800,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationAudio_true() {
-        $this->Search->setTranslationFilter(new TranslationHasAudioFilter(true));
+        $this->Search->setTranslationFilter(new TranslationHasAudioFilter());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.a=1 FOR t IN trans) as tf',
@@ -811,7 +811,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationAudio_false() {
-        $this->Search->setTranslationFilter(new TranslationHasAudioFilter(false));
+        $this->Search->setTranslationFilter((new TranslationHasAudioFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(not (t.a=1) FOR t IN trans) as tf',
@@ -864,7 +864,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationLink_direct() {
-        $this->Search->setTranslationFilter(new TranslationIsDirectFilter(true));
+        $this->Search->setTranslationFilter(new TranslationIsDirectFilter());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.d=1 FOR t IN trans) as tf',
@@ -875,7 +875,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationLink_indirect() {
-        $this->Search->setTranslationFilter(new TranslationIsDirectFilter(false));
+        $this->Search->setTranslationFilter((new TranslationIsDirectFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(not (t.d=1) FOR t IN trans) as tf',
@@ -933,7 +933,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationOrphanship_true() {
-        $this->Search->setTranslationFilter(new TranslationIsOrphanFilter(true));
+        $this->Search->setTranslationFilter(new TranslationIsOrphanFilter());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.u=0 FOR t IN trans) as tf',
@@ -944,7 +944,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationOrphanship_false() {
-        $this->Search->setTranslationFilter(new TranslationIsOrphanFilter(false));
+        $this->Search->setTranslationFilter((new TranslationIsOrphanFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(not (t.u=0) FOR t IN trans) as tf',
@@ -966,7 +966,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationCorrectness_true() {
-        $this->Search->setTranslationFilter(new TranslationIsUnapprovedFilter(true));
+        $this->Search->setTranslationFilter(new TranslationIsUnapprovedFilter());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(t.c=0 FOR t IN trans) as tf',
@@ -977,7 +977,7 @@ class SearchTest extends TestCase
     }
 
     public function testfilterByTranslationCorrectness_false() {
-        $this->Search->setTranslationFilter(new TranslationIsUnapprovedFilter(false));
+        $this->Search->setTranslationFilter((new TranslationIsUnapprovedFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'select' => '*, ANY(not (t.c=0) FOR t IN trans) as tf',
@@ -1127,15 +1127,15 @@ class SearchTest extends TestCase
         $group0 = $this->Search->getTranslationFilters('0');
         $group0->getTranslationFilters('a')
                ->setFilter((new TranslationLangFilter())->anyOf(['eng']))
-               ->setFilter(new TranslationIsDirectFilter(true));
+               ->setFilter(new TranslationIsDirectFilter());
         $group0->getTranslationFilters('b')
                ->setFilter((new TranslationLangFilter())->anyOf(['ita']))
-               ->setFilter(new TranslationIsDirectFilter(false))
+               ->setFilter((new TranslationIsDirectFilter())->not())
                ->setExclude(true);
         $group0->setExclude(true);
 
         $this->Search->getTranslationFilters('1')
-                     ->setFilter(new TranslationIsUnapprovedFilter(false));
+                     ->setFilter((new TranslationIsUnapprovedFilter())->not());
 
         $expected = $this->makeSphinxParams([
             'select' => "*, (ANY((t.l='eng' & t.d=1) FOR t IN trans) and not (ANY((t.l='ita' & not (t.d=1)) FOR t IN trans))) as tf0, ANY(not (t.c=0) FOR t IN trans) as tf1",

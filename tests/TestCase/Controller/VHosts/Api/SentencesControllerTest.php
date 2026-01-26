@@ -23,7 +23,8 @@ class SentencesControllerTest extends TestCase
         'download_url'    => ['type' => 'string'],
         'created'         => ['type' => 'string'],
         'modified'        => ['type' => 'string'],
-      ]
+      ],
+      'additionalProperties' => false,
     ];
 
     const TRANSCRIPTION_JSON_SCHEMA = [
@@ -42,6 +43,7 @@ class SentencesControllerTest extends TestCase
         'license'  => ['type' => ['string', 'null']],
         'owner'    => ['type' => ['string', 'null']],
       ],
+      'additionalProperties' => false,
     ];
 
     const PAGING_JSON_SCHEMA = [
@@ -54,6 +56,7 @@ class SentencesControllerTest extends TestCase
         'cursor_end' => ['type' => 'string'],
         'next'       => ['type' => 'string'],
       ],
+      'additionalProperties' => false,
     ];
 
     public $fixtures = [
@@ -64,7 +67,7 @@ class SentencesControllerTest extends TestCase
         'app.Links',
     ];
 
-    private function sentenceSchema(bool $translationsRequired) {
+    private function sentenceSchema(bool $withTranslations) {
         $sentenceSchema = self::SENTENCE_JSON_SCHEMA;
 
         // add audio
@@ -82,19 +85,34 @@ class SentencesControllerTest extends TestCase
         ];
 
         // add translations
-        $sentenceSchema['properties']['translations'] = [
-            'type' => 'array',
-            'items' => $sentenceSchema,
-        ];
-        if ($translationsRequired) {
+        if ($withTranslations) {
+            $sentenceSchema['properties']['translations'] = [
+                'type' => 'array',
+                'items' => $sentenceSchema,
+            ];
             $sentenceSchema['required'][] = 'translations';
+            $sentenceSchema['properties']['translations']['items']['required'][] = 'is_direct';
+            $sentenceSchema['properties']['translations']['items']['properties']['is_direct'] = [
+                'type' => 'boolean',
+            ];
         }
-        $sentenceSchema['properties']['translations']['items']['required'][] = 'is_direct';
-        $sentenceSchema['properties']['translations']['items']['properties']['is_direct'] = [
-            'type' => 'boolean',
-        ];
 
         return $sentenceSchema;
+    }
+
+    private function sentencesResultSchema(bool $withTranslations) {
+        return [
+            'type'       => 'object',
+            'required'   => ['data', 'paging'],
+            'properties' => [
+                'data'       => [
+                    'type'       => 'array',
+                    'items'      => $this->sentenceSchema($withTranslations),
+                ],
+                'paging' => self::PAGING_JSON_SCHEMA,
+            ],
+            'additionalProperties' => false,
+        ];
     }
 
     public function testGetSentence_doesNotExist()
@@ -133,9 +151,9 @@ class SentencesControllerTest extends TestCase
         $constraint = [
             '$.data.owner' => 'kazuki',
             '$.data.translations[0].owner' => 'kazuki',
-            '$.data.translations[1].owner' => 'kazuki',
+            '$.data.translations[1].owner' => 'advanced_contributor',
             '$.data.translations[2].owner' => 'kazuki',
-            '$.data.translations[3].owner' => 'kazuki',
+            '$.data.translations[3].owner' => null,
             '$.data.translations[4].owner' => 'kazuki',
         ];
         $this->assertJsonDocumentMatches($actual, $constraint);
@@ -275,7 +293,7 @@ class SentencesControllerTest extends TestCase
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
-    public function testSearch_returnsResults()
+    public function testSearch_returnsResults_withoutTranslations()
     {
         $this->enableMockedSearch([1,2,3]);
 
@@ -284,19 +302,81 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = [
-            'type'       => 'object',
-            'required'   => ['data', 'paging'],
-            'properties' => [
-                'data'       => [
-                    'type'       => 'array',
-                    'items'      => $this->sentenceSchema(false),
-                ],
-                'paging' => self::PAGING_JSON_SCHEMA,
-            ]
-        ];
+        $schema = $this->sentencesResultSchema(false);
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
-        $this->assertJsonValueEquals($actual, '$.data[1].transcriptions[0].type', 'altscript');
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
+            '$.data[1].transcriptions[0].type' => 'altscript',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsResults_withMatchedTranslations()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&trans:lang=cmn");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(true);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
+            '$.data[0].translations' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.data[0].translations[0].lang' => 'cmn',
+            '$.data[1].translations' => new \PHPUnit\Framework\Constraint\Count(0),
+            '$.data[2].translations' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.data[2].translations[0].lang' => 'cmn',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsResults_withoutMatchedTranslations()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&!trans:lang=cmn");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(false);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+    }
+
+    public function testSearch_returnsResults_withAllTranslationsHidden()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&trans:lang=cmn&showtrans=none");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(false);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+    }
+
+    public function testSearch_returnsResults_withAllTranslationsShowed()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&trans:lang=cmn&showtrans=all");
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+
+        $actual = $this->_getBodyAsString();
+        $schema = $this->sentencesResultSchema(true);
+        $this->assertJsonDocumentMatchesSchema($actual, $schema);
+        $expected = [
+            '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
+            '$.data[0].translations' => new \PHPUnit\Framework\Constraint\Count(5),
+            '$.data[1].translations' => new \PHPUnit\Framework\Constraint\Count(5),
+            '$.data[2].translations' => new \PHPUnit\Framework\Constraint\Count(3),
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testSearch_limitsTranslationsLanguage()
@@ -376,5 +456,36 @@ class SentencesControllerTest extends TestCase
             ],
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function limitsProvider() {
+        return [
+            'default results limit when no translations are returned' => [
+                'lang=ara&sort=created&showtrans=none', 50
+            ],
+            'default results limit when translations are returned' => [
+                'lang=ara&sort=created&showtrans=all', 10
+            ],
+            'hard results limit when no translations are returned' => [
+                'lang=ara&sort=created&showtrans=none&limit=999999', 500
+            ],
+            'hard results limit when translations are returned' => [
+                'lang=ara&sort=created&showtrans=all&limit=999999', 50
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider limitsProvider
+     */
+    public function testSearch_limits(string $params, int $expectedLimit)
+    {
+        $this->enableMockedSearch([1,2,3], 3);
+        $client = \Cake\Core\Configure::read('Sphinx.client');
+        $client->expects($this->once())
+               ->method('SetLimits')
+               ->with(0, $expectedLimit);
+
+        $this->get("http://api.example.com/unstable/sentences?$params");
     }
 }

@@ -4,7 +4,7 @@ namespace App\Model\Search;
 
 trait TranslationFilterTrait {
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     protected function _compile() {
