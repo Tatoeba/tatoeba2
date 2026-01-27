@@ -1,11 +1,20 @@
 <?php
 namespace App\Test\TestCase\Controller\VHosts\Api;
 
+use App\Test\TestCase\Controller\AudioIntegrationTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 class ApiControllerTest extends TestCase
 {
+    use AudioIntegrationTestTrait;
+
+    public $fixtures = [
+        'app.Audios',
+        'app.Sentences',
+        'app.Users',
+    ];
+
     use IntegrationTestTrait;
 
     public function test_docIndex()
@@ -38,9 +47,9 @@ class ApiControllerTest extends TestCase
     }
     public function routeAccessesProvider() {
         return [
-            # API path, should return non-404 status code
-            ['/unstable/audio/1/file', true],
-            [      '/v1/audio/1/file', true],
+            # API path, should return non-404 status code, create audio fixture
+            ['/unstable/audio/1/file', true, true],
+            [      '/v1/audio/1/file', true, true],
             ['/unstable/audio',        true],
             [      '/v1/audio',        false],
             ['/unstable/sentences',    true],
@@ -55,13 +64,22 @@ class ApiControllerTest extends TestCase
     /**
      * @dataProvider routeAccessesProvider()
      */
-    public function testRouteAccess($apiPath, $expectsNon404)
+    public function testRouteAccess($apiPath, $expectsNon404, $createAudioFixture = false)
     {
+        if ($createAudioFixture) {
+            $this->initAudioStorageDir();
+            $this->createAudioFile(1);
+        }
+
         $this->get("http://api.example.com$apiPath");
         if ($expectsNon404) {
             $this->assertResponseCodeIsNot(404);
         } else {
             $this->assertResponseCode(404);
+        }
+
+        if ($createAudioFixture) {
+            $this->deleteAudioStorageDir();
         }
     }
 }
