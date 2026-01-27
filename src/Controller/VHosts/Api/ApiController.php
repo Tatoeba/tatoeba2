@@ -3,7 +3,6 @@
 namespace App\Controller\VHosts\Api;
 
 use Cake\Controller\Controller;
-use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Event\Event;
 
@@ -192,7 +191,7 @@ class ApiController extends Controller
             // We are unstable, try to process the request anyway
             return;
         } else {
-            throw new BadRequestException("Invalid API version code: $version");
+            throw new NotFoundException("Unknown API version code: $version");
         }
     }
 }

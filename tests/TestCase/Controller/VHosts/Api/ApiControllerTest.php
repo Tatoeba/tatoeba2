@@ -14,13 +14,13 @@ class ApiControllerTest extends TestCase
         $this->assertResponseOk();
     }
 
-    public function test_docUnstable()
+    public function test_docOpenApi()
     {
-        $this->get("http://api.example.com/unstable");
+        $this->get("http://api.example.com/openapi");
         $this->assertResponseOk();
     }
 
-    public function test_docNonInvalidVersion()
+    public function test_unknownAPIVersion()
     {
         $this->get("http://api.example.com/non-existent");
         $this->assertResponseCode(404);

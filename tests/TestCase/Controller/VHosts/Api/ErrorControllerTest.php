@@ -35,7 +35,7 @@ class ErrorControllerTest extends TestCase
         $this->assertJsonResponse();
 
         $this->get("http://api.example.com/invalid_version/sentences");
-        $this->assertResponseCode(400);
+        $this->assertResponseCode(404);
         $this->assertJsonResponse();
 
         $this->get("http://api.example.com/unstable/sentences/invalid_id");
