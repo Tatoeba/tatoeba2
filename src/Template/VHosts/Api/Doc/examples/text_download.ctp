@@ -126,7 +126,7 @@ $this->append('script');
   <h4>Tips</h4>
   <ul>
     <li>Use <code>Ctrl+U</code> or similar to see the source code of this page.</li>
-    <li>Use <code>limit=100</code> parameter for a more efficient download.</li>
+    <li>Use <code>limit=500</code> parameter for a more efficient download.</li>
   </ul>
 
   <h3>Download</h3>
