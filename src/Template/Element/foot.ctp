@@ -101,6 +101,19 @@
                 );
                 ?>
             </li>
+            <li>
+                <?php
+                echo $this->Html->link(
+                    /* @translators: link text to the Tatoeba API page in the footer (noun) */
+                    __('API'),
+                    array(
+                        '_host' => 'api.' . $this->getRequest()->getUri()->getHost(),
+                        'lang' => '',
+                    ),
+                    array('target' => '_blank')
+                );
+                ?>
+            </li>
         </ul>
     </div>
     
