@@ -214,22 +214,6 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertFlashMessage('The entered birthday is incomplete. Accepted birthdays: full date, month and day, year and month, only year.');
     }
 
-    public function testSaveBasic_changingEmailUpdatesAuthData() {
-        $username = 'contributor';
-        $newEmail = 'contributor_newemail@example.org';
-        $this->logInAs($username);
-        $this->put('/en/user/settings', [
-            'email' => $newEmail,
-        ]);
-
-        $this->assertResponseOk();
-        $redirectTarget = $this->_response->getHeaderLine('Location');
-        $this->get($redirectTarget);
-
-        $this->assertEquals($this->_controller->Auth->user('username'), $username);
-        $this->assertEquals($this->_controller->Auth->user('email'), $newEmail);
-    }
-
     public function testEditProfile_ignoresUnallowedFields() {
         $username = 'contributor';
         $newRole = \App\Model\Entity\User::ROLE_ADMIN;

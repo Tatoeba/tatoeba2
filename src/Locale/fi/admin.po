@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# صفا الفليج <safaalfulaij@hotmail.com>, 2022
-# thanuir, 2023
+# صفا الفليج <safaalfulaij@hotmail.com>, 2025
+# thanuir, 2025
 # Silja Ijas, 2025
 # 
 #, fuzzy
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-07 06:40+0000\n"
+"POT-Creation-Date: 2025-11-19 08:28+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Silja Ijas, 2025\n"
 "Language-Team: Finnish (https://app.transifex.com/tatoeba/teams/28284/fi/)\n"
@@ -35,15 +35,15 @@ msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Merkitty kaikki käyttäjän {username} lisäämät lauseet epäluotettaviksi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "Äänitettä ei voida tuoda: käyttäjää “{author}” ei löydy."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
 msgid "Invalid file “{file}” ignored."
 msgstr "Epäkelpo tiedosto “{file}” jätetty huomioimatta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
@@ -51,21 +51,21 @@ msgstr ""
 "Käyttäjän “{author}” lauseelle {sentenceId} lisäämää äänitettä ei voida "
 "korvata: tällä käyttäjällä on enemmän kuin yksi äänite."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr "Lauseen {sentenceId} äänitettä ei voida tallentaa tietokantaan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Tiedoston “{file}” tuomista varten tarvittavan hakemiston “{dir}” luominen "
 "epäonnistui."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Tiedoston “{file}” kopioiminen hakemistoon “{dir}” epäonnistui."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -110,7 +110,7 @@ msgid "Correctness"
 msgstr "Virheettömyys"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L188
 msgid "Submit"
 msgstr "Lähetä"
 
@@ -178,47 +178,93 @@ msgstr "Profiili"
 msgid "Edit User"
 msgstr "Muokkaa käyttäjää"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+msgid "Profile picture"
+msgstr "Profiilikuva"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
+msgid "Remove picture"
+msgstr "Poista kuva"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
+msgid "No picture set"
+msgstr "Kuvaa ei ole asetettu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
 msgid "Id"
 msgstr "Tunnistenumero"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Username"
 msgstr "Käyttäjätunnus"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L111
 msgid "Lang"
 msgstr "Kieli"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L114
 msgid "Group"
 msgstr "Ryhmä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
 msgid "Spamdexing status"
 msgstr "Spamdexing-tila"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
 msgid "Unknown (links restricted)"
 msgstr "Tuntematon (rajoitetut linkit)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
 msgid "Verified (links not restricted)"
 msgstr "Varmistettu (linkkejä ei rajoitettu)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
 msgid "Legacy (links not restricted)"
 msgstr "Vanha (linkkejä ei rajoitettu)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
 msgid "Level"
 msgstr "Taso"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+msgid "Name"
+msgstr "Nimi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L141
+msgid "Country"
+msgstr "Maa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L146
+msgid "Homepage"
+msgstr "Kotisivu"
+
+#. @translators toggle button to show form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L152
+msgid "Show"
+msgstr "Näytä"
+
+#. @translators toggle button to hide form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L154
+msgid "Hide"
+msgstr "Piilota"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L156
+msgid "Description"
+msgstr "Kuvaus"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L163
+msgid "Send notifications"
+msgstr "Lähetä ilmoitukset"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
+msgid "Profile is public"
+msgstr "Profiili on julkinen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
 msgid "About spamdexing status"
 msgstr "Tietoja spamdexing-tilasta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
 msgid ""
 "\"Unknown\" users cannot include any outbound link in their profile. In "
 "addition, when trying to post a sentence comment or wall post that includes "
@@ -233,7 +279,7 @@ msgstr ""
 "päättävät jatkaa, viesti/kommentti julkaistaan ja siitä lähetetään viesti "
 "moderaattoreille."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
 msgid ""
 "\"Verified\" and \"legacy\" users can include any link anywhere without "
 "restriction."
@@ -241,17 +287,13 @@ msgstr ""
 "\"Varmistetut\" ja \"vanhat\" käyttäjät voivat sisällyttää minkä tahansa "
 "linkin mihin tahansa ilman rajoituksia."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
 msgid ""
 "\"Legacy\" users created their account before this restriction was "
 "implemented."
 msgstr ""
 "\"Vanhat\" käyttäjät ovat luoneet tilinsä ennen kuin tämä rajoitus otettiin "
 "käyttöön."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L128
-msgid "Send notifications"
-msgstr "Lähetä ilmoitukset"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
 msgid "unhide"

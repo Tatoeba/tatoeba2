@@ -100,7 +100,11 @@ class SentencesSearchForm extends Form
         if (is_null($value)) {
             $collection->unsetFilter($class);
         } else {
-            $collection->setFilter(new $class($value));
+            $filter = new $class();
+            if (!$value) {
+                $filter->not();
+            }
+            $collection->setFilter($filter);
         }
         return $this->parseYesNoEmpty($value);
     }
@@ -177,7 +181,10 @@ class SentencesSearchForm extends Form
         if (!in_array($link, ['direct', 'indirect'])) {
             return '';
         }
-        $filter = new TranslationIsDirectFilter($link == 'direct');
+        $filter = new TranslationIsDirectFilter();
+        if ($link == 'indirect') {
+            $filter->not();
+        }
         $this->search->setTranslationFilter($filter);
         return $link;
     }
@@ -292,7 +299,7 @@ class SentencesSearchForm extends Form
     protected function setDataList(string $list) {
         if (!empty($list)) {
             $searcher = CurrentUser::get('id');
-            $filter = new ListFilter($searcher);
+            $filter = new ListFilter(null, $searcher);
             try {
                 $filter->anyOf([$list]);
             } catch (InvalidValueException $e) {
@@ -431,15 +438,6 @@ class SentencesSearchForm extends Form
                  * default being applied instead of the empty non-default value.
                  * So represent them by "any" instead. */
                 $this->_data[$key] = 'any';
-            }
-        }
-
-        /* Validate native filter */
-        if ($nativeFilter = $this->search->getFilter(IsNativeFilter::class)) {
-            try {
-                $nativeFilter->compile();
-            } catch (InvalidFilterUsageException $e) {
-                $this->search->unsetFilter(IsNativeFilter::class);
             }
         }
     }

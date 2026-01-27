@@ -85,7 +85,7 @@ class CommonModulesHelper extends AppHelper
             }
 
             $lang = 'und' ;
-            if (isset($params[$maxNumberOfParams-1])) {
+            if (isset($params[$maxNumberOfParams-1]) && $this->Languages->languageExists($lang)) {
                 $lang  = $params[$maxNumberOfParams-1];
             }
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-07 06:40+0000\n"
+"POT-Creation-Date: 2025-11-22 17:33+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: ls404 <lubomir@stefanov.biz>, 2020\n"
 "Language-Team: Bulgarian (http://app.transifex.com/tatoeba/tatoeba_website/language/bg/)\n"
@@ -33,6 +33,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L124
 msgid "There's no user called {username}"
 msgstr "Не съществува потребител {username}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L139
+msgid "Your account has been suspended."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L141
+msgid "Your account has been deactivated."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L150
 msgid "Your audio settings have been saved."
@@ -281,6 +289,10 @@ msgstr "Езикът е изтрит"
 msgid "You cannot delete this language."
 msgstr "Не можете да изтриете този език."
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L145
+msgid "The vocabulary item '{vocabText}' already exists for this language."
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L146
 msgid "Your message has been posted on the wall."
 msgstr ""
@@ -299,27 +311,27 @@ msgstr "Съобщението, което се опитвате да видит
 
 #. This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L133
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr "„Собственик на изречение“, защото „{username}“ не е валидно потребителско име"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L190
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L192
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr "„Собственик на превод“, тъй като „{username}“ не е валидно потребителско име"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L273
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L283
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr "„Маркиран като {tagName}“, защото това е невалидно име на маркер"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L306
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
@@ -328,30 +340,22 @@ msgstr "„Принадлежи към номера на списъка {listId}
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L478
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L480
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "„Изречението е сирак“, защото „собственикът на изречението“ е зададен на потребителско име"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L491
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "„Преводът е осиротял“, тъй като „собственикът на превода“ е зададен на потребителско име"
 
-#. This string will be preceded by “Warning: the
-#. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L499
-msgid ""
-"“owned by a self-identified native”, because “sentence language” is set to "
-"“any”"
-msgstr "„Притежава се от самоопределен местен език“, защото „езикът на изречението“ е зададен на „който и да е“"
-
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L512
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
@@ -401,7 +405,7 @@ msgstr[1] "Следните символи не са транскрибиран�
 msgid "No license for offsite use"
 msgstr "Няма лиценз за използване извън сайта"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L66
 msgid "Licensing issue"
 msgstr "Проблем с лицензирането"
 
@@ -424,7 +428,7 @@ msgstr "{language}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/index.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L143
 msgid "All languages"
 msgstr "Всички езици"
 
@@ -550,80 +554,62 @@ msgstr "Собственикът на изречението трябва да �
 msgid "You can only switch to a more permissive license."
 msgstr "Можете да преминете само към по-свободен лиценз."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L186
 msgid "Field required"
 msgstr "Задължително поле"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L95
 msgid "Username must be at least two characters long"
 msgstr "Потребителското име трябва да съдържа минимум 2 символа."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
 msgid "Username must be at most 20 characters long"
 msgstr "Потребителското име не може да е по-дълго от 20 символа."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L98
 msgid "Username can only contain letters, numbers, or underscore"
 msgstr "Потребителското име може да съдържа само букви, цифри или долна черта."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L141
 msgid "Password must be at least 6 characters long"
 msgstr "Паролата трябва да съдържа поне 6 символа."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L104
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Неуспешна промяна на имейл адреса. Моля въведете коректен имейл адрес."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L147
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "Въведената рожданна дата е невалидна. Моля опитайте отново."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L157
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "Въведената рожденна дата е непълна.Приемани рожденни дати: пълни дата, месец и ден, година и месец, само година."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L169
-msgid ""
-"Sorry, you do not have the permission to include links in your profile "
-"description. Because of spam concerns, new accounts need to be verified "
-"before they can use outbound links. Please remove any outbound link from "
-"your profile description in order to continue. You can ask for permission to"
-" add links later by {linkStart}sending a message to administrators{linkEnd}."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L187
-msgid ""
-"Sorry, you do not have the permission to set a homepage on your profile. "
-"Because of spam concerns, new accounts need to be verified before they can "
-"use outbound links. Please remove the homepage from your profile in order to"
-" continue. You can ask for permission to add it later by {linkStart}sending "
-"a message to administrators{linkEnd}."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L249
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L101
 msgid "Username already taken."
 msgstr "Потребителското име е вече регистрирано."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L250
 msgid "That email address already exists. Please try another."
 msgstr "Имейл адресът вече съществува. Моля опитайте с друг."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L84
 msgid "You cannot save an empty message."
 msgstr "Не можете да изпратите празно съобщение."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L90
 msgid ""
 "Your message was not posted because it contains outbound links. Please "
 "confirm the links are legitimate by ticking the checkbox below, and re-"
@@ -851,29 +837,29 @@ msgstr "Най-добра практика: превеждайте само на
 
 #. field name in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L169
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L434
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L467
 msgid "Order:"
 msgstr "Ред:"
 
 #. sort order radio option in Translate sentences page (noun)
 #. / sort order dropdown option in advanced search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L174
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L445
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L478
 msgid "Random"
 msgstr "Случайно"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L177
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L441
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L474
 msgid "Fewest words first"
 msgstr "Първо с най-малко думи"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L180
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L476
 msgid "Last modified first"
 msgstr "Първо последно променените"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L442
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L475
 msgid "Last created first"
 msgstr "Първо последно създадените"
 
@@ -948,7 +934,7 @@ msgstr "Елемент от речника"
 #. button to delete a vocabulary request
 #. / button to remove profile picture
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/edit_vocabulary.ctp#L54
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L71
 msgid "Remove"
 msgstr "Премахване"
 
@@ -965,7 +951,7 @@ msgstr "Премахване"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L167
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L182
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L352
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L381
@@ -1052,8 +1038,7 @@ msgid "Day"
 msgstr "Ден"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L9
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L90
+msgctxt "Activity timeline page"
 msgid "Sentences added"
 msgstr "Добавени изречения"
 
@@ -1121,7 +1106,7 @@ msgid "Enter a word or a phrase"
 msgstr "Въведете дума или фраза"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L325
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L336
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L430
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L364
@@ -1139,7 +1124,7 @@ msgstr "Показване на преводи на:"
 #. / option used in language selection dropdown for "Show translations in" in
 #. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L195
 msgctxt "show-translations-in"
 msgid "All languages"
 msgstr "Всички езици"
@@ -1168,12 +1153,12 @@ msgid ""
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L355
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L366
 msgid "Owner:"
 msgstr "Собственик:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L161
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L375
 msgid "Enter a username"
 msgstr "Въведете потребителско име"
 
@@ -1188,13 +1173,13 @@ msgid ""
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L380
 msgid "Is orphan:"
 msgstr "Сирак е:"
 
 #. dropdown option of "Is orphan" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L189
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L385
 msgctxt "orphan"
 msgid "Any"
 msgstr "Някой"
@@ -1202,129 +1187,146 @@ msgstr "Някой"
 #. part of Any/No/Yes dropdown options in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L191
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L214
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L235
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L375
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L396
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L257
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L429
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L449
 msgid "No"
 msgstr "Не"
 
 #. part of Any/No/Yes dropdown options in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L193
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L215
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L236
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L376
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L397
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L450
 msgid "Yes"
 msgstr "Да"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L201
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L395
 msgid "Orphan sentences are likely to be incorrect."
 msgstr "Изреченията сираци вероятно са неправилни."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L207
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L401
 msgid "Is unapproved:"
 msgstr "Не е одобрено:"
 
 #. dropdown option of "Is unapproved" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L213
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L406
 msgctxt "unapproved"
 msgid "Any"
 msgstr "Някой"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L223
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L416
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Неодобрените изречения вероятно са неправилни."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L228
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L410
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L229
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L422
+msgid "Is owned by a native:"
+msgstr ""
+
+#. dropdown option of "Is owned by a native:" field in search form
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L428
+msgctxt "native"
+msgid "Any"
+msgstr "Някой"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L438
+msgid "Native speakers are self-identified."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L443
 msgid "Has audio:"
 msgstr "Има аудио:"
 
 #. dropdown option of "Has audio" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L234
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L448
 msgctxt "audio"
 msgid "Any"
 msgstr "Някой"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L269
 msgid "Tags:"
 msgstr "Тагове:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L257
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L279
 msgid "Separate tags with commas."
 msgstr "Отделете маркерите със запетаи."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L284
 msgid "Belongs to list:"
 msgstr "Принадлежи на списък:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L284
-msgid "Owned by a self-identified native"
-msgstr "Притежава се от самоопределен местен жител"
-
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L305
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L185
 msgid "Translations"
 msgstr "Преводи"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L315
 msgid "Limit to"
 msgstr "Ограничение до"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L307
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L318
 msgid "Exclude"
 msgstr "Изключване"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L327
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
 msgstr "{action}изречения с преводи, които отговарят на всички изброени по-долу критерии."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L345
 msgid "Link:"
 msgstr "Връзка:"
 
 #. dropdown option of "Link" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L351
 msgctxt "link"
 msgid "Any"
 msgstr "Някой"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L353
 msgid "Direct"
 msgstr "Директен"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L355
 msgid "Indirect"
 msgstr "Индиректен"
 
 #. section title in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L429
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L462
 msgid "Sort"
 msgstr "Сортиране"
 
 #. sort order dropdown option in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L440
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L473
 msgid "Relevance"
 msgstr "Релевантност"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L493
 msgid "Reverse order"
 msgstr "Обратен ред"
 
@@ -1333,7 +1335,7 @@ msgstr "Обратен ред"
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form button in List of lists pages (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L472
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L505
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L58
@@ -1342,15 +1344,15 @@ msgctxt "button"
 msgid "Search"
 msgstr "Търсене"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L477
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L510
 msgid "More search options"
 msgstr "Повече опции за търсене"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L481
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L514
 msgid "Create a search template"
 msgstr "Създайте шаблон за търсене"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L519
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
@@ -1399,8 +1401,16 @@ msgstr "Преглеждане на аудио за всички езици"
 msgid "Month"
 msgstr "Месец"
 
+#. this special string lets you to tweak how months are
+#. displayed when used inside a calendar (on the activity timeline page).
+#. You may translate this string using a sublist value,
+#. for example {monthInCalendar.calendar}
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L60
+msgid "{monthInCalendar}"
+msgstr ""
+
 #. used in the calendar on the Activity timeline page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L76
 msgid "Year"
 msgstr "Година"
 
@@ -1925,7 +1935,7 @@ msgstr "Запази промените"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L17
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L123
 msgid "Auto detect"
 msgstr "Автоматично откриване"
 
@@ -1951,6 +1961,12 @@ msgstr "Изречение"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L70
 msgid "Add sentence"
 msgstr "Добави изречение"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L90
+msgctxt "Add sentences page"
+msgid "Sentences added"
+msgstr "Добавени изречения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L18
 msgid "No sentences added yet."
@@ -4081,7 +4097,7 @@ msgstr "Превод (по избор)"
 #. advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L242
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L191
 msgid "None"
 msgstr "Нито един"
 
@@ -4487,54 +4503,69 @@ msgstr[0] "Моля, коригирайте следната грешка или
 msgstr[1] "Моля, коригирайте следните грешки или натиснете бутона Отказ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L44
 msgid "Edit profile"
 msgstr "Редактирай профил"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L57
 msgid "Current picture"
 msgstr "Актуална снимка"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L81
 msgid "New picture"
 msgstr "Нова снимка"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L92
 msgid "The provided image is too large. It must be less than 1MB in size."
 msgstr ""
 
 #. button to upload a new profile picture
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L99
 msgid "Upload"
 msgstr "Качване"
 
 #. label for user name in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L280
 msgctxt "user"
 msgid "Name"
 msgstr "Име"
 
 #. label for user's country in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L281
 msgid "Country"
 msgstr "Страна"
 
 #. label for user's birthday in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L282
 msgid "Birthday"
 msgstr "Рожден ден"
 
+#. this special string lets you to tweak how months are
+#. displayed when used inside a drop down (on the profile edition page).
+#. You may translate this string using a sublist value,
+#. for example {monthInDropdown.number}
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L147
+msgid "{monthInDropdown}"
+msgstr ""
+
+#. This can be used in the profile edition page
+#. to change how birth date selectors are displayed.
+#. You can reorder them or add text inbetween.
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L161
+msgid "{yearSelector}{monthSelector}{daySelector}"
+msgstr ""
+
 #. label for user's homepage in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L283
 msgid "Homepage"
 msgstr "Начална страница"
 
 #. label for user's description in profile page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L173
 msgid "Description"
 msgstr "Описание"
 
@@ -4542,7 +4573,7 @@ msgstr "Описание"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L400
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L404
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L348
 msgid "Add a language"
 msgstr "Добавете език"
 
@@ -4811,7 +4842,7 @@ msgstr "Състояние (администратор към сътрудник
 msgid "Status (contributor to admin)"
 msgstr "Status (contributor to admin)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L173
 msgid "Can switch license"
 msgstr "Може да сменя лиценза"
 
@@ -4828,6 +4859,10 @@ msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
 msgstr[0] "{lang}({total} член)"
 msgstr[1] "{lang}({total} членове)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L131
+msgid "Active within the past week"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login_dialog_template.ctp#L40
@@ -5020,6 +5055,30 @@ msgstr "Меню"
 msgid "Back to Wall"
 msgstr "Обратно към стената"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L46
+msgid ""
+"Sorry, you do not have the permission to include links in your profile "
+"description. Because of spam concerns, new accounts need to be verified "
+"before they can use outbound links. Please remove any outbound link from "
+"your profile description in order to continue."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L53
+msgid ""
+"Sorry, you do not have the permission to set a homepage on your profile. "
+"Because of spam concerns, new accounts need to be verified before they can "
+"use outbound links. Please remove the homepage from your profile in order to"
+" continue."
+msgstr ""
+
+#. this string is appended to each
+#. of the previous "Sorry" messages about links
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Validation/Validation.php#L71
+msgid ""
+"You can ask for permission to add links later by {linkStart}sending a "
+"message to administrators{linkEnd}."
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L57
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
 msgid_plural ""
@@ -5211,68 +5270,68 @@ msgstr "{month} {year}"
 msgid "tab"
 msgstr "раздел"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L127
 msgid "Profile languages"
 msgstr "Езици на профила"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L81
 msgid "Last used languages"
 msgstr "Последно използвани езици"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L85
 msgid "Other languages"
 msgstr "Други езици"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L158
 msgctxt "dropdown-list"
 msgid "Unknown language"
 msgstr "Неизвестен език"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L174
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L246
 msgid "other language"
 msgstr "друг език"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L329
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
 msgstr "Не можете да добавяте изречения, защото не сте добавили никакъв език във вашия профил."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L334
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
 msgstr "Не можете да превеждате изречения, защото не сте добавили никакъв език във вашия профил."
 
 #. language level
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L360
 msgctxt "level"
 msgid "Unspecified"
 msgstr "Неуточнен"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L361
 msgid "0: Almost no knowledge"
 msgstr "0: Почти няма знания"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L372
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L362
 msgid "1: Beginner"
 msgstr "1: Начинаещ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L363
 msgid "2: Intermediate"
 msgstr "2: Междинно ниво"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L364
 msgid "3: Advanced"
 msgstr "3: Напреднал"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L365
 msgid "4: Fluent"
 msgstr "4: Перфектно ниво"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L376
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L366
 msgid "5: Native level"
 msgstr "5: Роден език"
 

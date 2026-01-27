@@ -8,15 +8,15 @@ class LangFilter extends SearchFilter {
     }
 
     public function not() {
-        throw new \App\Model\Exception\InvalidNotOperatorException();
+        throw new \App\Model\Exception\InvalidNotOperatorException($this);
     }
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     public function anyOf(array $values) {
-        array_map('\App\Model\Search::validateLanguage', $values);
+        array_map(fn($l) => \App\Model\Search::validateLanguage($l, $this), $values);
         return parent::anyOf($values);
     }
 }

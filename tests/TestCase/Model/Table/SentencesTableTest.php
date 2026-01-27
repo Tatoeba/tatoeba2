@@ -5,6 +5,7 @@ use App\Test\TestCase\SearchMockTrait;
 use App\Model\Table\SentencesTable;
 use App\Behavior\Sphinx;
 use Cake\Core\Configure;
+use Cake\I18n\Time;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
@@ -807,17 +808,30 @@ class SentencesTableTest extends TestCase {
         $this->assertNull($result);
     }
 
-    function testModifiedSentenceNeedsTranslationsReindex() {
-        $expected = array(1, 2, 4, 5);
+    function sentencePropThatShouldTriggerTranslationsReindex() {
+        return [
+            // sentence property, new value, ids of type "change", ids of type "removal"
+            ['lang',        'tpn', [1, 2, 4, 5], [5]],
+            ['user_id',     0,     [1, 2, 4, 5]],
+            ['correctness', -1,    [1, 2, 4, 5]],
+        ];
+    }
+
+    /**
+     * @dataProvider sentencePropThatShouldTriggerTranslationsReindex
+     */
+    function testModifiedSentenceNeedsTranslationsReindex($prop, $newValue, $exceptedChangedIds, $exceptedRemovedIds = []) {
         $sentence = $this->Sentence->get(5);
-        $sentence->user_id = 0;
+        $sentence->{$prop} = $newValue;
         $this->Sentence->save($sentence);
         $result = $this->Sentence->ReindexFlags->find('all')
             ->order(['sentence_id']);
-        $ids = $result->extract('sentence_id')->toList();
-        $this->assertEquals($expected, $ids);
-        $counts = $result->countBy('type')->toArray();
-        $this->assertEquals(4, $counts['change']);
+
+        $ids = $result->filter(fn($s) => $s->type == 'change')->extract('sentence_id')->toList();
+        $this->assertEquals($exceptedChangedIds, $ids);
+
+        $ids = $result->filter(fn($s) => $s->type == 'removal')->extract('sentence_id')->toList();
+        $this->assertEquals($exceptedRemovedIds, $ids);
     }
 
     function testRemovedSentenceNeedsItselfAndTranslationsReindex() {
@@ -910,6 +924,38 @@ class SentencesTableTest extends TestCase {
         );
         $entity = $this->Sentence->get($sentenceId);
         $entity->correctness = $correctness;
+
+        $this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
+
+        $this->assertEquals($expectedAttributes, $attributes);
+        $this->assertEquals($expectedValues, $values);
+    }
+
+    function testSphinxAttributesChanged_license_issue() {
+        $sentenceId = 1;
+        $newLicense = '';
+        $expectedAttributes = array('license_id');
+        $expectedValues = array(
+            $sentenceId => array(0),
+        );
+        $entity = $this->Sentence->get($sentenceId);
+        $entity->license = $newLicense;
+
+        $this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
+
+        $this->assertEquals($expectedAttributes, $attributes);
+        $this->assertEquals($expectedValues, $values);
+    }
+
+    function testSphinxAttributesChanged_license_CC0() {
+        $sentenceId = 1;
+        $newLicense = 'CC0 1.0';
+        $expectedAttributes = array('license_id');
+        $expectedValues = array(
+            $sentenceId => array(2),
+        );
+        $entity = $this->Sentence->get($sentenceId);
+        $entity->license = $newLicense;
 
         $this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
@@ -1511,5 +1557,73 @@ class SentencesTableTest extends TestCase {
         $result = $this->Sentence->getSeveralRandomIds('nch');
 
         $this->assertEquals($expected, $result);
+    }
+
+    public function testNewSentence_UpdatesLastContributionField() {
+        $user = $this->Sentence->Users->get(1);
+        CurrentUser::store($user);
+        
+        $testTime = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime); 
+        $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
+        
+        $user = $this->Sentence->Users->get(1);
+        $newLastContribution = $user->last_contribution;
+        $this->assertEquals($testTime, $newLastContribution);
+
+        Time::setTestNow();
+    }
+
+    public function testEditSentence_UpdatesLastContributionField() {
+        $user = $this->Sentence->Users->get(7);
+        CurrentUser::store($user);
+        
+        $testTime = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime); 
+        $before = $this->Sentence->get(7);
+        $data = ['id' => '7', 'text' => 'This is the new text of sentence #7.'];
+        $after = $this->Sentence->editSentence($data);
+        
+        $user = $this->Sentence->Users->get(7);
+        $newLastContribution = $user->last_contribution;
+        $this->assertEquals($testTime, $newLastContribution);
+
+        Time::setTestNow();
+    }
+
+    public function testEditLicense_DoesNotUpdateLastContributionField() {
+        $user = $this->Sentence->Users->get(7);
+        CurrentUser::store($user);
+
+        $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
+
+        $testTime = new Time('2019-02-01 00:00:00');
+        Time::setTestNow($testTime); 
+        $data = $this->Sentence->get(7);
+        $data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
+        $result = $this->Sentence->save($data);
+
+        $user = $this->Sentence->Users->get(7);
+        $newLastContribution = $user->last_contribution;
+        $this->assertEquals($oldLastContribution, $newLastContribution);
+
+        Time::setTestNow();
+    }
+
+    public function testAdopt_DoesNotUpdateLastContributionField() {
+        $user = $this->Sentence->Users->get(7);
+        CurrentUser::store($user);
+
+        $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
+
+        $testTime = new Time('2019-02-02 00:00:00');
+        Time::setTestNow($testTime); 
+        $sentence = $this->Sentence->saveNewSentence('An orphan sentence.', 'eng', 4);
+
+        $user = $this->Sentence->Users->get(7);
+        $newLastContribution = $user->last_contribution;
+        $this->assertEquals($oldLastContribution, $newLastContribution);
+
+        Time::setTestNow();
     }
 }

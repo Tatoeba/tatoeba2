@@ -8,4 +8,15 @@ class TranslationHasAudioFilter extends BoolFilter {
     protected function getAttributeName() {
         return 'a';
     }
+
+    public function compileToQueryExp($exp, $query) {
+        $query->leftJoinWith('Audios');
+        if ($this->exclude) {
+            $exp->isNull('Audios.id');
+        } else {
+            $exp->isNotNull('Audios.id');
+            $query->distinct();
+        }
+        return $exp;
+    }
 }

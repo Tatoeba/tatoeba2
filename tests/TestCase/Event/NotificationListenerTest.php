@@ -246,6 +246,27 @@ class NotificationListenerTest extends TestCase {
         $this->assertMailContainsHtml("I see.<br />\nGood luck! &lt;&gt;");
     }
 
+    public function testSendWallReplyNotification_replyToOP_autohidden() {
+        $post = new Wall([
+            'id' => 3,
+            'owner' => 7,
+            'date' => '2018-01-02 03:04:05',
+            'modified' => '2018-01-02 03:04:05',
+            'parent_id' => 2,
+            'content' => "spam spam spam @contributor here",
+            'lft' => 3,
+            'rght' => 4,
+            'hidden' => true,
+        ]);
+        $event = new Event('Model.Wall.replyPosted', $this, [
+            'post' => $post,
+        ]);
+
+        $this->NL->sendWallReplyNotification($event);
+
+        $this->assertMailCount(0);
+    }
+
     public function testSendWallReplyNotification_toMentionedUser() {
         $event = new Event('Model.Wall.replyPosted', $this, [
             'post' => new Wall([
@@ -415,6 +436,16 @@ class NotificationListenerTest extends TestCase {
         $this->assertMailSentTo('admin@example.com');
         $this->assertMailSentWith('Tatoeba - kazuki mentioned you on the Wall', 'subject');
         $this->assertMailContainsHtml("New post<br />\nwith mention to @admin &lt;&gt;");
+    }
+
+    public function testSendWallNewThreadNotification_autohidden() {
+        $post = $this->_new_thread(7, "spam with mention to @admin <>");
+        $post->hidden = true;
+        $event = new Event('Model.Wall.newThread', $this, compact('post'));
+
+        $this->NL->sendNewThreadNotification($event);
+
+        $this->assertMailCount(0);
     }
 
     public function testSendWallNewThreadNotification_doesNotDoubleSend() {

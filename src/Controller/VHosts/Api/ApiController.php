@@ -108,7 +108,7 @@ all <code>/v1</code> endpoints can also be used with <code>/unstable</code> pref
  * )
  * @OA\Schema(
  *   schema="NegatableMemberList",
- *   description="A comma-separated list of usernames. The list of usernames can be negated by prefixing it with <em>!</em>. Empty username means orphan sentence.",
+ *   description="A comma-separated list of usernames. The list of usernames can be negated by prefixing it with <em>!</em>.",
  *   type="string",
  *   example="gillux",
  *   pattern="!?[0-9a-zA-Z_]*(,[0-9a-zA-Z_]*)*"
@@ -148,11 +148,21 @@ all <code>/v1</code> endpoints can also be used with <code>/unstable</code> pref
  *   maxLength=4,
  *   pattern="[A-Z][a-z]{3}"
  * )
+ * @OA\Schema(
+ *   schema="SentenceLicense",
+ *   type="enum",
+ *   enum={"CC BY 2.0 FR", "CC0 1.0", "PROBLEM"}
+ * )
+ * @OA\Schema(
+ *   schema="SentenceLicenseList",
+ *   type="array",
+ *   items=@OA\Items(ref="#/components/schemas/SentenceLicense")
+ * )
  */
 class ApiController extends Controller
 {
-    const DEFAULT_RESULTS_NUMBER = 10;
-    const MAX_RESULTS_NUMBER = 100;
+    const DEFAULT_RESULTS_NUMBER = 50;
+    const MAX_RESULTS_NUMBER = 500;
 
     public function initialize()
     {

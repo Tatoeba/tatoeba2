@@ -30,12 +30,13 @@ use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
 use Cake\Database\Schema\TableSchema;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
+use Cake\I18n\Time;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
-use Cake\Routing\Router;
 use Cake\Validation\Validator;
 
 class UsersTable extends Table
@@ -158,22 +159,12 @@ class UsersTable extends Table
                 ),
             ]);
 
-        $pmAdminsLink = Router::url(['controller' => 'private_messages', 'action' => 'write', 'TatoebaAdmins']);
         $validator
             ->allowEmpty('description')
             ->scalar('description')
             ->add('description', 'outboundLinkCheck', [
                 'rule' => 'isLinkPermitted',
                 'provider' => 'appvalidation',
-                'message' => format(
-                    __('Sorry, you do not have the permission to include links in your profile description. '.
-                       'Because of spam concerns, new accounts need to be verified before they can use '.
-                       'outbound links. Please remove any outbound link from your profile description '.
-                       'in order to continue. You can ask for permission to add links later by '.
-                       '{linkStart}sending a message to administrators{linkEnd}.'
-                    ),
-                    ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
-                ),
             ]);
 
         $validator
@@ -183,15 +174,6 @@ class UsersTable extends Table
             ->add('homepage', 'outboundLinkCheck', [
                 'rule' => 'isLinkPermitted',
                 'provider' => 'appvalidation',
-                'message' => format(
-                    __('Sorry, you do not have the permission to set a homepage on your profile. '.
-                       'Because of spam concerns, new accounts need to be verified before they can use '.
-                       'outbound links. Please remove the homepage from your profile '.
-                       'in order to continue. You can ask for permission to add it later by '.
-                       '{linkStart}sending a message to administrators{linkEnd}.'
-                    ),
-                    ['linkStart' => "<a href=\"$pmAdminsLink\" target=\"_blank\">", 'linkEnd' => '</a>']
-                ),
             ]);
 
         $validator
@@ -277,6 +259,13 @@ class UsersTable extends Table
                 // New users are considered potential spamdexing accounts until manual verification
                 $user->is_spamdexing = true;
             }
+        }
+
+        if ($user->has('remove-picture')) {
+            if ($user->get('remove-picture')) {
+                $user->image = null;
+            }
+            $user->unsetProperty('remove-picture');
         }
     }
 
@@ -591,5 +580,22 @@ class UsersTable extends Table
             $user->password = $plainTextPassword;
             $this->save($user);
         }
+    }
+
+    public function updateLastContribution($userId)
+    {
+        try {
+            $user = $this->get($userId);
+        } catch (RecordNotFoundException $e) {    
+            return;
+        }
+        $user->last_contribution = Time::now();
+        $this->save($user);
+    }
+
+    public function findUserToLogin(Query $query, $options)
+    {
+        // The result of this query will end up in AuthComponent->user()
+        return $query->select(['id', 'username', 'password', 'role']);
     }
 }

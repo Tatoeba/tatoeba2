@@ -97,11 +97,11 @@ class Search {
         return $this->query = $query;
     }
 
-    public static function validateLanguage($lang) {
+    public static function validateLanguage($lang, $thrower = null) {
         if (LanguagesLib::languageExists($lang)) {
             return $lang;
         } else {
-            throw new InvalidValueException("Invalid language code '$lang'");
+            throw new InvalidValueException($thrower, "Invalid language code '$lang'");
         }
     }
 

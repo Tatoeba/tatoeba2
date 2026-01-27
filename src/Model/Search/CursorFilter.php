@@ -11,18 +11,18 @@ class CursorFilter extends BaseSearchFilter {
     public function anyOf(array $values) {
         foreach ($values as $value) {
             if (!is_numeric($value)) {
-                throw new InvalidValueException("'$value' is not numeric");
+                throw new InvalidValueException($this, "'$value' is not numeric");
             }
         }
         return parent::anyOf($values);
     }
 
     public function not() {
-        throw new \App\Model\Exception\InvalidNotOperatorException();
+        throw new \App\Model\Exception\InvalidNotOperatorException($this);
     }
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     protected function _compile() {
@@ -32,13 +32,13 @@ class CursorFilter extends BaseSearchFilter {
 
         $orderbys = $this->search->getInternalSortOrder();
         if (count($orderbys) == 0) {
-            throw new \App\Model\Exception\InvalidFilterUsageException('No sort order defined');
+            throw new \App\Model\Exception\InvalidFilterUsageException($this, 'No sort order defined');
         }
 
         $values = $this->filters[0];
         array_shift($values);
         if (count($orderbys) != count($values)) {
-            throw new InvalidValueException('Expected '.count($orderbys).' value(s), got '.count($values).' instead');
+            throw new InvalidValueException($this, 'Expected '.count($orderbys).' value(s), got '.count($values).' instead');
         }
 
         if (count($orderbys) == 2) {

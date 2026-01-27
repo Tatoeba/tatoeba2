@@ -87,7 +87,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
 <section>
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2><?php echo __('Sentences added'); ?></h2>
+            <h2><?php echo __x('Add sentences page', 'Sentences added'); ?></h2>
         </div>
     </md-toolbar>
     

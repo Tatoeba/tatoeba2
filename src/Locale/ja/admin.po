@@ -4,18 +4,18 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Tommy, 2018
-# صفا الفليج <safaalfulaij@hotmail.com>, 2022
-# Koyuki <smallsnow.tatoeba@gmail.com>, 2022
+# Tommy, 2025
+# Koyuki <smallsnow.tatoeba@gmail.com>, 2025
+# صفا الفليج <safaalfulaij@hotmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-07 06:40+0000\n"
+"POT-Creation-Date: 2025-11-19 08:28+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Koyuki <smallsnow.tatoeba@gmail.com>, 2022\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2025\n"
 "Language-Team: Japanese (https://app.transifex.com/tatoeba/teams/28284/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,33 +32,33 @@ msgstr ""
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
 msgid "Unable to import audio: user “{author}” not found."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
 msgid "Invalid file “{file}” ignored."
 msgstr "無効なファイル “{file}” は無視されました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "ファイル “{dir}” をインポートするためのディレクトリ “{file}” 作成に失敗しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "ファイル “{file}” のコピーに失敗しました。コピー先ディレクトリ名： “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -101,7 +101,7 @@ msgid "Correctness"
 msgstr "正しさ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L188
 msgid "Submit"
 msgstr "送信"
 
@@ -167,47 +167,93 @@ msgstr "プロフィール"
 msgid "Edit User"
 msgstr "ユーザー名の変更"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+msgid "Profile picture"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
+msgid "Remove picture"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
+msgid "No picture set"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
 msgid "Id"
 msgstr "ID"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Username"
 msgstr "ユーザー名"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L111
 msgid "Lang"
 msgstr "言語名"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L114
 msgid "Group"
 msgstr "グループ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
 msgid "Spamdexing status"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
 msgid "Unknown (links restricted)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
 msgid "Verified (links not restricted)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
 msgid "Legacy (links not restricted)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
 msgid "Level"
 msgstr "ステータス"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+msgid "Name"
+msgstr "名前"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L141
+msgid "Country"
+msgstr "国"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L146
+msgid "Homepage"
+msgstr "ウェブサイト"
+
+#. @translators toggle button to show form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L152
+msgid "Show"
+msgstr "表示"
+
+#. @translators toggle button to hide form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L154
+msgid "Hide"
+msgstr "非表示"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L156
+msgid "Description"
+msgstr "自己紹介"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L163
+msgid "Send notifications"
+msgstr "メッセージを送信する"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
+msgid "Profile is public"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
 msgid "About spamdexing status"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
 msgid ""
 "\"Unknown\" users cannot include any outbound link in their profile. In "
 "addition, when trying to post a sentence comment or wall post that includes "
@@ -216,21 +262,17 @@ msgid ""
 "moderators."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
 msgid ""
 "\"Verified\" and \"legacy\" users can include any link anywhere without "
 "restriction."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
 msgid ""
 "\"Legacy\" users created their account before this restriction was "
 "implemented."
 msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L128
-msgid "Send notifications"
-msgstr "メッセージを送信する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
 msgid "unhide"

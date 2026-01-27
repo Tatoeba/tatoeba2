@@ -59,6 +59,26 @@ class VocabularyTableTest extends TestCase
         $this->assertEquals(4, $result->numSentences);
     }
 
+    public function testEditItem()
+    {
+        $vocab = $this->Vocabulary->get(1);
+        $this->Vocabulary->patchEntity($vocab, ['text' => 'have got the blues']);
+
+        $result = $this->Vocabulary->save($vocab);
+
+        $this->assertNotFalse($result);
+    }
+
+    public function testEditItem_withExistingVocabulary()
+    {
+        $vocab = $this->Vocabulary->get(2);
+        $this->Vocabulary->patchEntity($vocab, ['text' => 'out of the blue']);
+
+        $result = $this->Vocabulary->save($vocab);
+
+        $this->assertFalse($result);
+    }
+
     public function testIncrementNumSentences_succeeds()
     {
         $result = $this->Vocabulary->incrementNumSentences(1, 'This happened out of the blue.');

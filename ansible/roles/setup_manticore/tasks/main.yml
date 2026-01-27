@@ -10,6 +10,19 @@
   fail: msg="The code directory is not present in {{code_dir}}. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
   when: code_status is failed
 
+- name: Create a manticore.service override directory
+  file:
+    owner: root
+    group: root
+    mode: 0755
+    path: /lib/systemd/system/manticore.service.d/
+    state: directory
+
+- name: Install manticore.service override
+  copy:
+    src: tatoeba.conf
+    dest: /lib/systemd/system/manticore.service.d/tatoeba.conf
+
 - name: Install Manticore package
   apt:
     deb: https://github.com/manticoresoftware/manticoresearch/releases/download/3.3.0/manticore_3.3.0-200204-01fc8ad1-release.buster_amd64-bin.deb

@@ -90,6 +90,16 @@ class VocabularyControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
     }
 
+    public function testEdit_asMember_onlyAddedBySelf_duplicate() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/en/vocabulary/edit/1', [
+            'lang' => 'eng',
+            'text' => 'added by 2 members',
+        ]);
+        $this->assertResponseError();
+        $this->assertFlashMessage("The vocabulary item 'added by 2 members' already exists for this language.");
+    }
+
     public function testEdit_asMember_onlyAddedByOtherMember() {
         $this->logInAs('kazuki');
         $this->ajaxPost('/en/vocabulary/edit/1', [

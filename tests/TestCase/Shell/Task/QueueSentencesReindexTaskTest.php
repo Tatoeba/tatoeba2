@@ -42,9 +42,9 @@ class QueueSentencesReindexTaskTest extends TestCase
     {
         $this->task->run(['user_id' => 7, 'lang' => 'fra'], null);
 
-        // should reindex sentences 4, 8, 12 and 35
+        // should reindex sentences 4, 8, 12, 23 and 35
         // along with all direct and indirect translations
-        $this->assertSentencesFlaggedForReindex([1, 2, 3, 4, 5, 6, 8, 10, 12, 35]);
+        $this->assertSentencesFlaggedForReindex([1, 2, 3, 4, 5, 6, 8, 10, 12, 23, 35]);
     }
 
     public function testRun_userLanguageLevelDrop()

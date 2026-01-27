@@ -12,17 +12,19 @@ trait FiltersCollectionTrait {
         return $this->filters;
     }
 
-    public function getFilter($class, $index = '') {
-        return $this->filters[ $class::getName($index) ] ?? null;
+    public function getFilter($class, ...$args) {
+        $key = $class::getDefaultName(...$args);
+        return $this->filters[$key] ?? null;
     }
 
     public function setFilter($filter) {
-        $this->filters[ $filter->getAlias() ] = $filter;
+        $this->filters[ $filter->getName() ] = $filter;
         return $this;
     }
 
-    public function unsetFilter($class, $index = '') {
-        unset($this->filters[ $class::getName($index) ]);
+    public function unsetFilter($class, ...$args) {
+        $key = $class::getDefaultName(...$args);
+        unset($this->filters[$key]);
     }
 
     public function getTranslationFilters($index = '') {

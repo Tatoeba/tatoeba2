@@ -89,7 +89,7 @@ if (!empty($stats)) {
             <td class="date"><?= __('Day'); ?></td>
             <td>
                 <div layout="row">
-                    <div flex="25" class="added"><?= __('Sentences added'); ?></div>
+                    <div flex="25" class="added"><?= __x('Activity timeline page', 'Sentences added'); ?></div>
                     <div flex="25" class="linked"><?= __('Links added'); ?></div>
                     <div flex="25" class="unlinked"><?= __('Links removed'); ?></div>
                     <div flex="25" class="deleted"><?= __('Sentences removed'); ?></div>

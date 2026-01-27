@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
@@ -25,6 +26,7 @@ use Cake\Mailer\MailerAwareTrait;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
 use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallTable extends Table
@@ -99,6 +101,11 @@ class WallTable extends Table
     }
 
     public function beforeSave($event, $entity, $options = array()) {
+        if ($threshold = $this->_shouldTriggerAutoban($entity)) {
+            $entity->hidden = true;
+            $entity->__autohidden = $threshold;
+        }
+
         if ($entity->isDirty('hidden')) {
             $entity->modified = $entity->getOriginal('modified');
         }
@@ -141,14 +148,41 @@ class WallTable extends Table
             $this->getEventManager()->dispatch($event);
         }
 
-        $this->_warnAdminsAboutPotentialSEOSpam($entity);
+        if ($entity->__autohidden) {
+            $this->_autoban($entity, $entity->__autohidden);
+        } else {
+            $this->_warnAdminsAboutPotentialSEOSpam($entity);
+        }
+    }
+
+    private function _shouldTriggerAutoban($post) {
+        $threshold = Configure::read('Tatoeba.minOutboundLinksTriggeringAutoban');
+        if (is_numeric($threshold) && !$post->hidden) {
+            $threshold = (int)$threshold;
+            $provider = $this->getValidator()->getDefaultProvider('appvalidation');
+            $outboundLinks = iterator_to_array($provider::getOutboundLinks($post->content ?? ''));
+            if (count($outboundLinks) >= $threshold && !CurrentUser::hasOutboundLinkPermission()) {
+                return $threshold;
+            }
+        }
+        return 0;
+    }
+
+    private function _autoban($post, int $threshold) {
+        // Ban user
+        $author = $this->Users->get(CurrentUser::get('id'));
+        $author->role = User::ROLE_SPAMMER;
+        $this->Users->save($author);
+
+        // Notify moderators
+        $this->getMailer('User')->send('outbound_links_autoban', [$post, $author, $threshold]);
     }
 
     private function _warnAdminsAboutPotentialSEOSpam($post) {
         $data = $post->extract($this->schema()->columns(), true);
         $validator = $this->getValidator('default');
         $errors = $validator->errors($data, $post->isNew());
-        if (isset($errors['content']['outboundLinks'])) {
+        if (!$post->hidden && isset($errors['content']['outboundLinks'])) {
             $author = $this->Users->get($post->owner);
             $this->getMailer('User')->send('content_with_outbound_links', [$post, $author]);
         }

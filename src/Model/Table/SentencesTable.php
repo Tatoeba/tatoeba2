@@ -278,6 +278,11 @@ class SentencesTable extends Table
         ));
         $this->getEventManager()->dispatch($event);
 
+        $currentUserId = CurrentUser::get('id');
+        if ($currentUserId && $entity->isDirty('text')) {
+            $this->Users->updateLastContribution($currentUserId);
+        }
+
         if (!$created && $entity->isDirty('lang')) {
             $oldLang = $entity->getOriginal('lang');
             $this->Contributions->updateLanguage($entity->id, $entity->lang);
@@ -302,7 +307,8 @@ class SentencesTable extends Table
         if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
         }
-        $transNeedsReindex = $entity->isDirty('lang') || $entity->isDirty('user_id');
+        $transNeedsReindex = $entity->isDirty('lang') || $entity->isDirty('user_id')
+                             || $entity->isDirty('correctness');
         if ($transNeedsReindex) {
             $this->flagTranslationsToReindex($entity->id);
         }
@@ -625,8 +631,8 @@ class SentencesTable extends Table
             // normal outcome when $lang == 'und'
         }
         $search->sort('random');
-        $search->setFilter(new IsOrphanFilter(false)); // exclude orphans
-        $search->setFilter(new IsUnapprovedFilter(false)); // exclude unapproved
+        $search->setFilter((new IsOrphanFilter())->not()); // exclude orphans
+        $search->setFilter((new IsUnapprovedFilter())->not()); // exclude unapproved
         $sphinx = $search->asSphinx();
         $sphinx['limit'] = $numberOfIdWanted;
 
@@ -1279,6 +1285,14 @@ class SentencesTable extends Table
             $attributes[] = 'ucorrectness';
             $sentenceUCorrectness = $entity->correctness + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
+        }
+        if ($entity->isDirty('license')) {
+            $attributes[] = 'license_id';
+            $licenses = array_keys(Licenses::getSentenceLicenses());
+            $licenseId = array_search($entity->license, $licenses);
+            if ($licenseId !== false) {
+                $values[$sentenceId][] = $licenseId;
+            }
         }
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);

@@ -157,6 +157,12 @@ return [
          * blocked users notifications etc.
          */
         'communityModeratorEmail' => 'community-admin@example.com',
+
+        /**
+         * Minimum number of outbound links to trigger user autoban
+         * and autohide of the content
+         */
+        'minOutboundLinksTriggeringAutoban' => 100,
     ],
 
     /**
@@ -203,12 +209,12 @@ return [
             // Catalan
             'ca' => ['Català'], 'cat' => 'ca',
             // Chinese
-            'zh-cn' => ['中文（大陆简体）',
+            'zh-cn' => ['中文 (中国)',
                         'zh', 'zh-hans-cn', 'zh-mo', 'zh-hans-mo',
                         'zh-my', 'zh-hans-my', 'zh-sg', 'zh-hans-sg'],
             'chi' => 'zh-cn',
             'cmn' => 'zh-cn',
-            'zh-tw' => ['中文（臺灣正體）', 'zh-hant-tw', 'zh-hk', 'zh-hant-hk'],
+            'zh-tw' => ['中文 (台灣)', 'zh-hant-tw', 'zh-hk', 'zh-hant-hk'],
             // Chinese (Wu)
             'wuu' => ['吳語'],
             // Croatian

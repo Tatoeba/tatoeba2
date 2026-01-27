@@ -52,16 +52,6 @@ class LanguagesHelper extends AppHelper
     /* Memoization of languages code and their localized names */
     private $__languages_alone;
 
-    public function localizedAsort(&$array)
-    {
-        if (class_exists('Collator')) {
-            $coll = new \Collator(I18n::getLocale());
-            $coll->asort($array);
-        } else {
-            asort($array);
-        }
-    }
-
     public function preferredLanguageFilter() {
         if (CurrentUser::isMember()) {
             return CurrentUser::getProfileLanguages();
@@ -414,5 +404,10 @@ class LanguagesHelper extends AppHelper
         $langCode = I18n::getLocale();
         $UiLangs = LanguagesLib::activeUiLanguages();
         return $UiLangs[$langCode][0];
+    }
+
+    public function languageExists($lang)
+    {
+        return LanguagesLib::languageExists($lang);
     }
 }
