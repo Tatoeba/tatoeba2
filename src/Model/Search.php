@@ -11,6 +11,7 @@ class Search {
     use Search\FiltersCollectionTrait;
 
     const CURSOR_FIELD = 'cursor'; // name for calculated field
+    const AVAILABLE_SORTS = ['relevance', 'words', 'created', 'modified', 'random'];
 
     private $query;
     private $sort;
@@ -151,7 +152,7 @@ class Search {
 
     public function sort($sort) {
         $this->sort = null;
-        if (in_array($sort, ['relevance', 'words', 'created', 'modified', 'random'])) {
+        if (in_array($sort, self::AVAILABLE_SORTS)) {
             $this->sort = $sort;
         }
         return $this->sort;

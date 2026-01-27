@@ -181,7 +181,11 @@ class SearchApi
             $sort = substr($sort, 1);
         }
         if (!$this->search->sort($sort)) {
-            throw new BadRequestException('Invalid value for parameter "sort"');
+            $allsorts = array_merge(
+                Search::AVAILABLE_SORTS,
+                array_map(fn($s) => "-$s", Search::AVAILABLE_SORTS)
+            );
+            throw new BadRequestException("Invalid value for parameter 'sort': must be one of: ".join(', ', $allsorts));
         }
         unset($params['sort']);
     }

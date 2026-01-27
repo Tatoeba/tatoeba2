@@ -705,10 +705,11 @@ class SearchApiTest extends TestCase
     }
 
     public function sortFailureProvider() {
+        $invalidError = "Invalid value for parameter 'sort': must be one of: relevance, words, created, modified, random, -relevance, -words, -created, -modified, -random";
         return [
             'missing' => [null, new BadRequestException('Required parameter "sort" missing')],
-            'empty'   => ['', new BadRequestException('Invalid value for parameter "sort"')],
-            'invalid' => ['invalid', new BadRequestException('Invalid value for parameter "sort"')],
+            'empty'   => ['', new BadRequestException($invalidError)],
+            'invalid' => ['invalid', new BadRequestException($invalidError)],
             'multiple params' => [
                 ['created', 'modified'],
                 new BadRequestException("Invalid usage of parameter 'sort': cannot be provided multiple times")
