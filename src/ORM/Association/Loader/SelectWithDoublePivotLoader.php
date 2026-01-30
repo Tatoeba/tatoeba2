@@ -61,9 +61,6 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
             'conditions' => ["{$this->alias}.{$this->bindingKey} = $name._modal_key"],
             'type' => QueryInterface::JOIN_TYPE_INNER,
         ]]);
-        if ($fetchQuery->isAutoFieldsEnabled() === null) {
-            $fetchQuery->enableAutoFields($fetchQuery->clause('select') === []);
-        }
         $fetchQuery->select([
             "{$this->alias}__is_direct" => "$name.is_direct",
             "{$this->alias}__{$this->foreignKey}" => "$name.{$this->foreignKey}"
@@ -84,6 +81,10 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
 
         if (!empty($options['queryBuilder'])) {
             $fetchQuery = $options['queryBuilder']($fetchQuery);
+        }
+
+        if ($fetchQuery->isAutoFieldsEnabled() === null) {
+            $fetchQuery->enableAutoFields($fetchQuery->clause('select') === []);
         }
 
         return $fetchQuery;
