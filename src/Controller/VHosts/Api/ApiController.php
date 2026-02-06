@@ -10,7 +10,7 @@ use Cake\Event\Event;
  * @OA\Info(
  *   version="1.0",
  *   title="Tatoeba API",
- *   description="<h2>Welcome to the Tatoeba API</h1>
+ *   description="<h2>Welcome to the Tatoeba API</h2>
 <p>
 This is an ongoing effort to provide an API for tatoeba.org.
 This API is currently read-only, but open to the public without authentification.
