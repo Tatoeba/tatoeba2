@@ -613,7 +613,7 @@ class SentencesController extends ApiController
 
         $last = $results->last();
         if ($last) {
-            $this->set('cursor_end', $last[Search::CURSOR_FIELD]);
+            $this->set('cursor_end', $this->Sentences->getLastRecordCursor());
         }
         $this->set('results', $response);
         $this->set('_serialize', 'results');
