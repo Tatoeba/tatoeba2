@@ -1,7 +1,7 @@
 <?php
 namespace App\View;
 
-use App\Controller\VHosts\Api\SentencesController;
+use App\Controller\Component\ApiComponent;
 use Cake\Core\Configure;
 use Cake\View\JsonView;
 
@@ -22,7 +22,7 @@ class ApiView extends JsonView
                 $params[$newParam] = $newValue;
             }
         }
-        $query = SentencesController::encodeQueryParameters($params);
+        $query = ApiComponent::encodeQueryParameters($params);
         $url = $this->Url->build(['?' => null], ['escape' => false, 'fullBase' => true]);
         $url .= rtrim('?'.$query, '?');
         return $url;
@@ -32,7 +32,7 @@ class ApiView extends JsonView
     {
         $links = new \stdClass();
 
-        $query = SentencesController::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
+        $query = $this->getRequest()->getQueryParams();
 
         if (isset($query['after'])) {
             $links->first = $this->buildUrl($query, ['after' => null]);

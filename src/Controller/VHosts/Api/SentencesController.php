@@ -89,58 +89,6 @@ class SentencesController extends ApiController
         $this->RequestHandler->renderAs($this, 'json');
     }
 
-    /* We use our own query parsing functions here because PHP builtins
-     * are not very flexible. In particular, PHP's parse_str() does not
-     * handle well multiple parameters with the same name. See:
-     *   https://www.php.net/manual/en/function.parse-str.php#76792
-     */
-    public static function decodeQueryParameters(string $query) {
-        $query  = explode('&', $query);
-        $params = [];
-        foreach ($query as $param) {
-            $parts = explode('=', $param, 2);
-            if (count($parts) == 1) {
-                $value = null;
-                $name = $parts[0];
-            } else {
-                list($name, $value) = $parts;
-            }
-            $uname = urldecode($name);
-            if (isset($params[$uname])) {
-                if (is_array($params[$uname])) {
-                    $params[$uname][] = urldecode($value);
-                } else {
-                    $params[$uname] = [$params[$uname], urldecode($value)];
-                }
-            } else {
-                $params[$uname] = urldecode($value);
-            }
-        }
-        return $params;
-    }
-
-    public static function encodeQueryParameters(array $params) {
-        $params = array_map(
-            function($name, $values) {
-                $name = urlencode($name);
-                if (is_null($values)) {
-                    return $name;
-                } else {
-                    $values = array_map(
-                        function ($value) use ($name) {
-                            return $name.'='.urlencode($value);
-                        },
-                        (array)$values
-                    );
-                    return implode('&', $values);
-                }
-            },
-            array_keys($params),
-            array_values($params)
-        );
-        return implode('&', $params);
-    }
-
     /**
      * @OA\PathItem(path="/unstable/sentences",
      *   @OA\Parameter(name="lang", in="query", required=true, explode=false,
@@ -573,12 +521,9 @@ class SentencesController extends ApiController
      * )
      */
     public function search() {
-        $params = self::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
-        $this->setRequest($this->getRequest()->withQueryParams($params));
-
         $api = new SearchApi();
         $api->setLimits(self::DEFAULT_RESULTS_NUMBER, self::MAX_RESULTS_NUMBER);
-        $api->readParams($params);
+        $api->readParams($this->getRequest()->getQueryParams());
 
         $containOnApi = [
             'transcriptions' => ['finder' => 'transcriptionsOnApi'],
