@@ -172,7 +172,11 @@ class SphinxBehavior extends Behavior
 
     public function findWithSphinx($query, $options)
     {
-        $query->counter(function($query) { return $this->getTotal(); });
+        if ($options['countRealTotal'] ?? false) {
+            $query->counter(fn () => $this->getRealTotal());
+        } else {
+            $query->counter(fn () => $this->getTotal());
+        }
 
         return $query;
     }

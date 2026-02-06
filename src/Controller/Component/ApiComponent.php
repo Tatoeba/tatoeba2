@@ -4,6 +4,10 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\Event\Event;
+use Cake\Http\CallbackStream;
+use Cake\Http\Response;
+use Cake\ORM\Query;
+use Cake\Routing\Router;
 
 class ApiComponent extends Component
 {
@@ -71,5 +75,82 @@ class ApiComponent extends Component
     public function beforeFilter(Event $event)
     {
         $this->decodeQuery();
+    }
+
+    /**
+     * Build a full base URL based on the parameters of current request,
+     * optionally modified by $newParams.
+     */
+    private function buildUrl($newParams = []): string
+    {
+        $params = $this->getController()->getRequest()->getQueryParams();
+        foreach ($newParams as $newParam => $newValue) {
+            if (is_null($newValue)) {
+                unset($params[$newParam]);
+            } else {
+                $params[$newParam] = $newValue;
+            }
+        }
+        $query = self::encodeQueryParameters($params);
+        $url = Router::url(['?' => null], true);
+        $url .= rtrim('?'.$query, '?');
+        return $url;
+    }
+
+    private function getPaging(int $numResults, int $totalResults, ?string $cursorEnd)
+    {
+        $paging = [];
+
+        $after = $this->getController()->getRequest()->getQuery('after');
+        if (is_null($after)) {
+            $paging['total'] = $totalResults;
+        } else {
+            $paging['first'] = self::buildUrl(['after' => null]);
+        }
+
+        $hasNext = $totalResults > $numResults;
+        $paging['has_next'] = $hasNext;
+        if ($hasNext && !is_null($cursorEnd)) {
+            $paging['cursor_end'] = $cursorEnd;
+            $paging['next'] = self::buildUrl(['after' => $cursorEnd]);
+        }
+
+        return $paging;
+    }
+
+    /**
+     * Returns paginated results as JSON stream. This allows to return large
+     * responses without having to keep the whole response into memory, but
+     * streaming it bit by bit as results are coming out of $query.
+     */
+    public function paginatedResponse(Query $query, callable $cursorEndCb, callable $numResultsCb = null): Response
+    {
+        $stream = new CallbackStream(function () use ($query, $cursorEndCb, $numResultsCb) {
+            echo '{"data":[';
+            $isFirst = true;
+            $numResults = 0;
+            foreach ($query->enableBufferedResults(false) as $result) {
+                if (!$isFirst) {
+                    echo ',';
+                }
+                echo json_encode($result);
+                $isFirst = false;
+                $numResults++;
+            }
+            echo ']';
+
+            if ($numResultsCb) {
+                $numResults = $numResultsCb();
+            }
+            $paging = $this->getPaging($numResults, $query->count(), $cursorEndCb($result));
+            $paging = json_encode($paging);
+            echo ",\"paging\":$paging}";
+        });
+
+        $this->autoRender = false;
+
+        return $this->response
+            ->withType('application/json')
+            ->withBody($stream);
     }
 }

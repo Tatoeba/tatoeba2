@@ -539,29 +539,18 @@ class SentencesController extends ApiController
 
         $this->loadModel('Sentences');
 
+        $sphinxOpts = [
+            'sphinx' => $api->asSphinx(),
+            'countRealTotal' => true,
+        ];
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi')
-            ->find('withSphinx')
+            ->find('withSphinx', $sphinxOpts)
             ->find('sentencesOnApi')
             ->find('containOnApi', compact('containOnApi'));
 
-        $this->paginate = [
-            'sphinx' => $api->asSphinx(),
-        ];
-        $results = $this->paginate($query);
-        $response = [
-            'data' => $results,
-        ];
-
-        $this->set('has_next', $this->Sentences->getRealTotal() > $this->Sentences->getReturnedResultsCount());
-        $this->set('total', $this->Sentences->getRealTotal());
-
-        $last = $results->last();
-        if ($last) {
-            $this->set('cursor_end', $this->Sentences->getLastRecordCursor());
-        }
-        $this->set('results', $response);
-        $this->set('_serialize', 'results');
-        $this->RequestHandler->renderAs($this, 'json');
+        $cursorEndCb = fn () => $this->Sentences->getLastRecordCursor();
+        $numResultsCb = fn () => $this->Sentences->getReturnedResultsCount();
+        return $this->Api->paginatedResponse($query, $cursorEndCb, $numResultsCb);
     }
 }
