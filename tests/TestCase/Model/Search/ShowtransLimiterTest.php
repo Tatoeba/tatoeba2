@@ -164,6 +164,7 @@ class ShowtransLimiterTest extends TestCase
 
         $result = $this->Sentences
                        ->findById($sentenceId)
+                       ->find('sentencesOnApi')
                        ->find('containOnApi', compact('containOnApi'))
                        ->extract('translations.{*}.id')
                        ->toList();
