@@ -63,12 +63,7 @@ class UsersController extends ApiController
      * )
      */
     private function exposedFields() {
-        $exposedFields = [
-            'fields' => ['username', 'role', 'since'],
-            'languages' => ['fields' => [
-                'code', 'level', 'details'
-            ]],
-        ];
+        $exposedFields = ['username', 'role', 'since'];
         return compact('exposedFields');
     }
 
@@ -112,12 +107,18 @@ class UsersController extends ApiController
             ->where([
                 'username' => $name,
             ])
-            ->contain(['UsersLanguages' => ['fields' => [
-                'of_user_id',
-                'code' => 'language_code',
-                'level',
-                'details'
-            ]]])
+            ->find('containOnApi', ['containOnApi' => ['UsersLanguages' => fn ($q) =>
+                $q
+                    ->select([
+                        'of_user_id',
+                        'code' => 'language_code',
+                        'level',
+                        'details'
+                    ])
+                    ->find('exposedFields', ['exposedFields' => [
+                        'code', 'level', 'details'
+                    ]])
+            ]])
             ->find('datetime2date', ['datetimefields' => ['since']]);
 
         $results = $query->firstOrFail();

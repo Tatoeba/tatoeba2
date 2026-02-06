@@ -150,7 +150,7 @@ class ExposedOnApiBehavior extends Behavior
         $query->formatResults(function($entities) use ($options) {
             return $entities->map(function($entity) use ($options) {
                 foreach ($options['datetimefields'] as $field) {
-                    $entity->{$field} = $entity->{$field}->toDateString();
+                    $entity[$field] = substr($entity[$field], 0, 10);
                 }
                 return $entity;
             });
