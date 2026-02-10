@@ -22,6 +22,7 @@ use App\Controller\VHosts\Api\ApiController;
 use App\Model\Exception\InvalidValueException;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Http\Exception\BadRequestException;
+use Cake\Http\Exception\ForbiddenException;
 
 class AudioController extends ApiController
 {
@@ -36,7 +37,8 @@ class AudioController extends ApiController
      *     tags={"Audio"},
      *     @OA\Response(response="200", description="Success."),
      *     @OA\Response(response="400", description="Invalid parameter."),
-     *     @OA\Response(response="404", description="There is no audio with that ID, it was removed, or the audio author does not allow reuse outside of Tatoeba.")
+     *     @OA\Response(response="403", description="The audio author does not allow reuse outside of Tatoeba.")
+     *     @OA\Response(response="404", description="There is no audio with that ID, or it was removed.")
      *   )
      * )
      */
@@ -45,11 +47,15 @@ class AudioController extends ApiController
         try {
             $audio = $this->Audios->find()
                 ->select(['id', 'sentence_id'])
-                ->find('hasLicense')
+                ->find('withLicense')
                 ->where(['Audios.id' => $id])
                 ->firstOrFail();
         } catch (\InvalidArgumentException $e) {
             throw new BadRequestException('Invalid audio id');
+        }
+
+        if (!$audio->license) {
+            throw new ForbiddenException('The audio author does not allow reuse outside of Tatoeba.');
         }
 
         $options = [

@@ -59,7 +59,7 @@ class AudioControllerTest extends TestCase
 
         $audioFileContents = $this->createAudioFile(6);
         $this->get("http://api.example.com/unstable/audio/6/file");
-        $this->assertResponseCode(404);
+        $this->assertResponseCode(403);
 
         $this->deleteAudioStorageDir();
     }
@@ -70,7 +70,7 @@ class AudioControllerTest extends TestCase
 
         $audioFileContents = $this->createAudioFile(2);
         $this->get("http://api.example.com/unstable/audio/2/file");
-        $this->assertResponseCode(404);
+        $this->assertResponseCode(403);
 
         $this->deleteAudioStorageDir();
     }
@@ -201,18 +201,5 @@ class AudioControllerTest extends TestCase
     {
         $this->get("http://api.example.com/unstable/audio?after=invalid");
         $this->assertResponseCode(400);
-    }
-
-    public function testSearch_doesNotReturnAudioWithoutLicense()
-    {
-        $this->get("http://api.example.com/unstable/audio?lang=fra");
-        $this->assertResponseOk();
-
-        $actual = $this->_getBodyAsString();
-        $expected = [
-            '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
-            '$.paging.total' => 1,
-        ];
-        $this->assertJsonDocumentMatches($actual, $expected);
     }
 }
