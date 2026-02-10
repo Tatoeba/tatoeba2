@@ -43,9 +43,7 @@ class AudiosTable extends Table
 
     public function initialize(array $config)
     {
-        $this->belongsTo('Sentences', [
-            'joinType' => 'inner',
-        ]);
+        $this->belongsTo('Sentences');
         $this->belongsTo('Users');
         $this->hasOne('Queue.QueuedJobs');
 
