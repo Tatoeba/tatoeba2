@@ -15,6 +15,7 @@ class SearchApi
 {
     public $search;
     public $showtransFilters;
+    public $include;
 
     private $limit;
     private $defaultLimit = 10;
@@ -215,6 +216,20 @@ class SearchApi
         return $showtrans;
     }
 
+    public function consumeInclude(&$params) {
+        $includes = $this->consumeValue('include', $params, []);
+        if (!is_array($includes)) {
+            $includes = explode(',', $includes);
+            $available = ['audios', 'transcriptions'];
+            foreach ($includes as $include) {
+                if (!in_array($include, $available)) {
+                    throw new BadRequestException("Invalid value for parameter 'include': must be one of: ".join(', ', $available));
+                }
+            }
+        }
+        return array_fill_keys($includes, true);
+    }
+
     public function consumeInt($key, &$params, $default = null) {
         $value = $this->consumeValue($key, $params, $default);
         if ($value !== $default) {
@@ -285,6 +300,7 @@ class SearchApi
     }
 
     public function readParams(array $params) {
+        $this->include = $this->consumeInclude($params);
         $this->showtrans = $this->consumeShowtrans($params);
         $this->limit = $this->consumeInt('limit', $params);
         $this->consumeSort($params);

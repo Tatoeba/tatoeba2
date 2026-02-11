@@ -991,4 +991,53 @@ class SearchApiTest extends TestCase
             $this->assertFalse(isset($params['limit']));
         }
     }
+
+    public function includeProvider() {
+        return [
+            'absent include' => [ [], [] ],
+            'include audio' =>  [
+                ['include' => 'audios'],
+                ['audios' => true],
+            ],
+            'include transcriptions' =>  [
+                ['include' => 'transcriptions'],
+                ['transcriptions' => true],
+            ],
+            'include audios and transcriptions' =>  [
+                ['include' => 'audios,transcriptions'],
+                ['audios' => true, 'transcriptions' => true],
+            ],
+            'empty include' => [
+                ['include' => ''],
+                new BadRequestException("Invalid value for parameter 'include': must be one of: audios, transcriptions"),
+            ],
+            'invalid include' => [
+                ['include' => 'invalid'],
+                new BadRequestException("Invalid value for parameter 'include': must be one of: audios, transcriptions"),
+            ],
+            'multiple include params' => [
+                ['include' => ['audios', 'translations']],
+                new BadRequestException("Invalid usage of parameter 'include': cannot be provided multiple times"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider includeProvider()
+     */
+    public function testConsumeInclude($params, $expected) {
+        try {
+            $result = $this->SearchApi->consumeInclude($params);
+        } catch (\Exception $actual) {
+            $this->assertEquals($expected, $actual);
+            return;
+        }
+
+        if ($expected instanceOf \Exception) {
+            $this->fail(get_class($expected) . " was not thrown");
+        } else {
+            $this->assertEquals($expected, $result);
+            $this->assertFalse(isset($params['include']));
+        }
+    }
 }

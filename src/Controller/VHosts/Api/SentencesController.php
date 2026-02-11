@@ -64,7 +64,7 @@ class SentencesController extends ApiController
     public function get($id) {
         $this->loadModel('Sentences');
         $query = $this->Sentences
-            ->addBehavior('ExposedOnApi')
+            ->addBehavior('ExposedOnApi', ['audios' => true, 'transcriptions' => true])
             ->find('sentencesOnApi')
             ->where([
                 'Sentences.id' => $id,
@@ -280,6 +280,13 @@ class SentencesController extends ApiController
      *   @OA\Parameter(name="limit", in="query",
      *     description="Maximum number of sentences in the response.",
      *     @OA\Schema(type="integer", example="20")
+     *   ),
+     *   @OA\Parameter(name="include", in="query",
+     *     description="Specify which additional associated data to return along with matched sentences and translations.",
+     *     @OA\Schema(type="array", items=@OA\Items(type="enum", enum={"audios", "transcriptions"})),
+     *     @OA\Examples(example="1", value="transcriptions",        summary="return associated transcriptions"),
+     *     @OA\Examples(example="2", value="audios",                summary="return associated audio recordings"),
+     *     @OA\Examples(example="3", value="transcriptions,audios", summary="return associated transcriptions and audio recordings"),
      *   ),
      *   @OA\Parameter(name="showtrans", in="query",
      *     description="Specify which translations to return along with matched sentences. The default is <em>matching</rm>.",
@@ -580,25 +587,22 @@ class SentencesController extends ApiController
         $api->setLimits(self::DEFAULT_RESULTS_NUMBER, self::MAX_RESULTS_NUMBER);
         $api->readParams($params);
 
-        $containOnApi = [
-            'transcriptions' => ['finder' => 'transcriptionsOnApi'],
-            'audios'         => ['finder' => 'audiosOnApi'],
-        ];
-        $showtrans = $api->getShowtrans();
-        if ($showtrans) {
-            $api->setLimits(10, 50); // getting translations is resource-intensive
-            $containOnApi['translations'] = function (Query $q) use ($showtrans) {
-                return $q->find('translationsOnApi', compact('showtrans'));
-            };
-        }
-
         $this->loadModel('Sentences');
 
         $query = $this->Sentences
-            ->addBehavior('ExposedOnApi')
+            ->addBehavior('ExposedOnApi', $api->include)
             ->find('withSphinx')
-            ->find('sentencesOnApi')
-            ->find('containOnApi', compact('containOnApi'));
+            ->find('sentencesOnApi');
+
+        $showtrans = $api->getShowtrans();
+        if ($showtrans) {
+            $api->setLimits(10, 50); // getting translations is resource-intensive
+            $query->find('containOnApi', ['containOnApi' => ['translations' =>
+                function (Query $q) use ($showtrans) {
+                    return $q->find('translationsOnApi', compact('showtrans'));
+                }
+            ]]);
+        }
 
         $this->paginate = [
             'sphinx' => $api->asSphinx(),

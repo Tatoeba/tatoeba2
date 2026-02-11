@@ -122,7 +122,7 @@ class ExposedOnApiBehavior extends Behavior
     {
         foreach ($options['containOnApi'] as $assoc => $value) {
             // make sure we can run any find*OnApi finder on the related table
-            $query->getRepository()->{$assoc}->addBehavior('ExposedOnApi');
+            $query->getRepository()->{$assoc}->addBehavior('ExposedOnApi', $this->getConfig());
             // actually include the related entities
             $query->contain([$assoc => $value]);
             // add the property name of the asssociation to the list of exposed fields
@@ -179,6 +179,16 @@ class ExposedOnApiBehavior extends Behavior
                     return $result;
                 });
             });
+
+        if ($this->getConfig('transcriptions')) {
+            $containOnApi['transcriptions'] = ['finder' => 'transcriptionsOnApi'];
+        }
+        if ($this->getConfig('audios')) {
+            $containOnApi['audios'] = ['finder' => 'audiosOnApi'];
+        }
+        if (isset($containOnApi)) {
+            $query->find('containOnApi', compact('containOnApi'));
+        }
 
         return $query;
     }
@@ -287,10 +297,6 @@ class ExposedOnApiBehavior extends Behavior
     public function findTranslationsOnApi(Query $query, array $options) {
         $query
             ->find('sentencesOnApi')
-            ->find('containOnApi', ['containOnApi' => [
-                'Transcriptions' => ['finder' => 'transcriptionsOnApi'],
-                'Audios'         => ['finder' => 'audiosOnApi'],
-            ]])
             ->select('is_direct');
 
         // Make is_direct visible
