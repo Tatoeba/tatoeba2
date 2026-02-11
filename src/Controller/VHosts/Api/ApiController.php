@@ -176,7 +176,7 @@ class ApiController extends Controller
         $version = $this->getRequest()->getParam('version');
         $v1 = [
             'Sentences' => ['search', 'get'],
-            'Audio' => ['file'],
+            'Audios' => ['file'],
         ];
         if ($version == 'v1') {
             $controller = $this->getName();

@@ -48,10 +48,10 @@ class ApiControllerTest extends TestCase
     public function routeAccessesProvider() {
         return [
             # API path, should return non-404 status code, create audio fixture
-            ['/unstable/audio/1/file', true, true],
-            [      '/v1/audio/1/file', true, true],
-            ['/unstable/audio',        true],
-            [      '/v1/audio',        false],
+            ['/unstable/audios/1/file', true, true],
+            [      '/v1/audios/1/file', true, true],
+            ['/unstable/audios',        true],
+            [      '/v1/audios',        false],
             ['/unstable/sentences',    true],
             [      '/v1/sentences',    true],
             ['/unstable/sentences/1',  true],
