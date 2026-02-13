@@ -414,28 +414,28 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(3, $result[1]->audios[0]->user_id);
     }
 
-    function testHasLicenseFinder_fromUser_hasIt() {
-        $result = $this->Audio->findById(1)->find('hasLicense')->first();
+    function testWithLicenseFinder_fromUser_hasIt() {
+        $result = $this->Audio->findById(1)->find('withLicense')->first()->license;
 
         $this->assertNotNull($result);
     }
 
-    function testHasLicenseFinder_fromUser_doesNotHaveIt() {
-        $result = $this->Audio->findById(5)->find('hasLicense')->first();
+    function testWithLicenseFinder_fromUser_doesNotHaveIt() {
+        $result = $this->Audio->findById(5)->find('withLicense')->first()->license;
 
-        $this->assertNull($result);
+        $this->assertEmpty($result);
     }
 
-    function testHasLicenseFinder_fromExternal_hasIt() {
-        $result = $this->Audio->findById(3)->find('hasLicense')->first();
+    function testWithLicenseFinder_fromExternal_hasIt() {
+        $result = $this->Audio->findById(3)->find('withLicense')->first()->license;
 
         $this->assertNotNull($result);
     }
 
-    function testHasLicenseFinder_fromExternal_doesNotHaveIt() {
-        $result = $this->Audio->findById(2)->find('hasLicense')->first();
+    function testWithLicenseFinder_fromExternal_doesNotHaveIt() {
+        $result = $this->Audio->findById(2)->find('withLicense')->first()->license;
 
-        $this->assertNull($result);
+        $this->assertEmpty($result);
     }
 
     function testSentencesFinder_user_id_maxResults() {

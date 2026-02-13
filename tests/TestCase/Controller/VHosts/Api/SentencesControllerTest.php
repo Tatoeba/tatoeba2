@@ -185,40 +185,6 @@ class SentencesControllerTest extends TestCase
         $this->assertJsonValueEquals($actual, '$.data.audios[0].attribution_url', $expected);
     }
 
-    public function testGetSentence_doesNotReturnUnreusableAudio_fromUserAudioLicenseField()
-    {
-        $this->get("http://api.example.com/unstable/sentences/15");
-        $actual = $this->_getBodyAsString();
-        $this->assertJsonValueEquals($actual, '$.data.audios', []);
-    }
-
-    public function testGetSentence_doesNotReturnUnreusableAudio_fromExternalField()
-    {
-        $this->get("http://api.example.com/unstable/sentences/4");
-        $actual = $this->_getBodyAsString();
-        $this->assertJsonValueEquals($actual, '$.data.audios', []);
-    }
-
-    public function testGetSentence_doesReturnReusableAudio_fromUserAudioLicenseField()
-    {
-        $this->get("http://api.example.com/unstable/sentences/57");
-        $actual = $this->_getBodyAsString();
-        $expected = [
-            '$.data.audios' => new \PHPUnit\Framework\Constraint\Count(1),
-        ];
-        $this->assertJsonDocumentMatches($actual, $expected);
-    }
-
-    public function testGetSentence_doesReturnReusableAudio_fromExternalField()
-    {
-        $this->get("http://api.example.com/unstable/sentences/12");
-        $actual = $this->_getBodyAsString();
-        $expected = [
-            '$.data.audios' => new \PHPUnit\Framework\Constraint\Count(1),
-        ];
-        $this->assertJsonDocumentMatches($actual, $expected);
-    }
-
     public function testGetSentence_cannotGetTranslationsWithLicenseIssue()
     {
         $this->markTestSkipped('Cannot handle the special case of hiding indirect translations going through a translation having a license issues');

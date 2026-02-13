@@ -273,7 +273,6 @@ class ExposedOnApiBehavior extends Behavior
         $fields = ['id', 'external', 'created', 'modified', 'sentence_id'];
         $query
             ->find('exposedFields', compact('exposedFields'))
-            ->find('hasLicense')
             ->select($fields)
             ->contain('Users', function(Query $q) {
                 return $q->select(['username', 'audio_license', 'audio_attribution_url']);
