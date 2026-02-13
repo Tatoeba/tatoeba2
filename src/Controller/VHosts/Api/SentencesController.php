@@ -37,9 +37,19 @@ class SentencesController extends ApiController
      *   }
      * )
      *
+     * @OA\Parameter(name="include", in="query",
+     *   @OA\Schema(type="array", items=@OA\Items(type="enum", enum={"audios", "transcriptions"})),
+     *   @OA\Examples(example="1", value="transcriptions",        summary="return associated transcriptions"),
+     *   @OA\Examples(example="2", value="audios",                summary="return associated audio recordings"),
+     *   @OA\Examples(example="3", value="transcriptions,audios", summary="return associated transcriptions and audio recordings"),
+     * ),
+     *
      * @OA\PathItem(path="/v1/sentences/{id}",
      *   @OA\Parameter(name="id", in="path", description="The sentence identifier.",
      *     @OA\Schema(ref="#/components/schemas/Sentence/properties/id")
+     *   ),
+     *   @OA\Parameter(name="include", ref="#/components/parameters/include",
+     *     description="Specify which additional associated data to return along with the sentence and its translations."
      *   ),
      *   @OA\Get(
      *     summary="Get a sentence",
@@ -62,18 +72,16 @@ class SentencesController extends ApiController
      * )
      */
     public function get($id) {
+        $params = self::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
+        $api = new SearchApi();
+
         $this->loadModel('Sentences');
         $query = $this->Sentences
-            ->addBehavior('ExposedOnApi', ['audios' => true, 'transcriptions' => true])
+            ->addBehavior('ExposedOnApi', $api->consumeInclude($params))
             ->find('sentencesOnApi')
             ->where([
                 'Sentences.id' => $id,
-            ])
-            ->find('containOnApi', ['containOnApi' => [
-                'transcriptions' => ['finder' => 'transcriptionsOnApi'],
-                'audios'         => ['finder' => 'audiosOnApi'],
-                'translations'   => ['finder' => 'translationsOnApi'],
-            ]]);
+            ]);
 
         try {
             $results = $query->firstOrFail();
@@ -95,7 +103,7 @@ class SentencesController extends ApiController
      *   https://www.php.net/manual/en/function.parse-str.php#76792
      */
     public static function decodeQueryParameters(string $query) {
-        $query  = explode('&', $query);
+        $query  = strlen($query) == 0 ? [] : explode('&', $query);
         $params = [];
         foreach ($query as $param) {
             $parts = explode('=', $param, 2);
@@ -281,12 +289,8 @@ class SentencesController extends ApiController
      *     description="Maximum number of sentences in the response.",
      *     @OA\Schema(type="integer", example="20")
      *   ),
-     *   @OA\Parameter(name="include", in="query",
-     *     description="Specify which additional associated data to return along with matched sentences and translations.",
-     *     @OA\Schema(type="array", items=@OA\Items(type="enum", enum={"audios", "transcriptions"})),
-     *     @OA\Examples(example="1", value="transcriptions",        summary="return associated transcriptions"),
-     *     @OA\Examples(example="2", value="audios",                summary="return associated audio recordings"),
-     *     @OA\Examples(example="3", value="transcriptions,audios", summary="return associated transcriptions and audio recordings"),
+     *   @OA\Parameter(name="include", ref="#/components/parameters/include",
+     *     description="Specify which additional associated data to return along with matched sentences and translations."
      *   ),
      *   @OA\Parameter(name="showtrans", in="query",
      *     description="Specify which translations to return along with matched sentences. The default is <em>matching</rm>.",
