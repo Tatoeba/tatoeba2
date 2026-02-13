@@ -38,4 +38,9 @@ class Translation extends Entity
     {
         return $this->user ? $this->user->username : null;
     }
+
+    protected function _getIsUnapproved()
+    {
+        return $this->correctness == \App\Model\Table\SentencesTable::MIN_CORRECTNESS;
+    }
 }

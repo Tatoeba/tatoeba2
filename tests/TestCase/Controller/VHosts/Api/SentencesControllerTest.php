@@ -34,7 +34,7 @@ class SentencesControllerTest extends TestCase
 
     const SENTENCE_JSON_SCHEMA = [
       'type'       => 'object',
-      'required'   => ['id', 'text', 'lang', 'script', 'license', 'owner'],
+      'required'   => ['id', 'text', 'lang', 'script', 'license', 'owner', 'is_unapproved'],
       'properties' => [
         'id'       => ['type' => 'integer'],
         'text'     => ['type' => 'string'],
@@ -42,6 +42,7 @@ class SentencesControllerTest extends TestCase
         'script'   => ['type' => ['string', 'null']],
         'license'  => ['type' => ['string', 'null']],
         'owner'    => ['type' => ['string', 'null']],
+        'is_unapproved' => ['type' => 'boolean'],
       ],
       'additionalProperties' => false,
     ];

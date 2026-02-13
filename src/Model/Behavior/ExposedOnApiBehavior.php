@@ -158,12 +158,15 @@ class ExposedOnApiBehavior extends Behavior
      *   @OA\Property(property="owner", description="The owner of the sentence", anyOf={
      *     @OA\Schema(type="string", description="User name of the sentence owner.", example="kevin"),
      *     @OA\Schema(type="null", description="Contains null when the sentence is orphan."),
-     *   })
+     *   }),
+     *   @OA\Property(property="is_unapproved", type="boolean",
+     *     description="Whether this sentence is marked as <a href=""https://en.wiki.tatoeba.org/articles/show/faq#why-are-some-sentences-in-red?"">unapproved</a> (if value is true) or not (if value is false)"
+     *   )
      * )
      */
     public function findSentencesOnApi(Query $query, array $options) {
         $exposedFields = [
-            'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner']
+            'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner', 'is_unapproved']
         ];
         $fields = ['id', 'text', 'lang', 'user_id', 'correctness', 'script', 'license'];
 
