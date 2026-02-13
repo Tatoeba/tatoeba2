@@ -534,6 +534,8 @@ class SentencesController extends AppController
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
             $this->set(compact('results', 'real_total'));
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
         } catch (Exception $e) {
             $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
             if ($syntax_error) {
