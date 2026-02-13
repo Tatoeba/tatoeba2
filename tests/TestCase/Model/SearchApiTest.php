@@ -621,7 +621,7 @@ class SearchApiTest extends TestCase
         }
     }
 
-    public function paramsProvider() {
+    public function SearchSentencesParamsProvider() {
         return [
             'invalid parameter' => [
                 [ 'lang' => 'epo', 'sort' => 'modified', 'invalid' => 'blah' ],
@@ -631,11 +631,30 @@ class SearchApiTest extends TestCase
     }
 
     /**
-     * @dataProvider paramsProvider()
+     * @dataProvider SearchSentencesParamsProvider()
      */
-    public function testReadParams($params, $expected) {
+    public function testReadParamsForSearchSentences($params, $expected) {
         $codeToTest = function () use ($params) {
-            $this->SearchApi->readParams($params);
+            $this->SearchApi->readParamsForSearchSentences($params);
+        };
+        $this->assertThrowsException($codeToTest, $expected);
+    }
+
+    public function GetSentenceParamsProvider() {
+        return [
+            'invalid parameter' => [
+                [ 'invalid' => 'blah' ],
+                new BadRequestException("Unknown parameter 'invalid'"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider GetSentenceParamsProvider()
+     */
+    public function testReadParamsForGetSentence($params, $expected) {
+        $codeToTest = function () use ($params) {
+            $this->SearchApi->readParamsForGetSentence($params);
         };
         $this->assertThrowsException($codeToTest, $expected);
     }
@@ -730,19 +749,11 @@ class SearchApiTest extends TestCase
         $this->fail(get_class($expected) . " was not thrown");
     }
 
-    public function showtransFiltersProvider() {
+    public function showtransFiltersProvider_withMatching() {
         return [
-            'invalid showtrans value' => [
+            'invalid showtrans value, with matching' => [
                 [ 'showtrans' => 'invalid' ],
                 new BadRequestException("Invalid value for parameter 'showtrans': must be one of: all, none, matching"),
-            ],
-            'showtrans is "all"' => [
-                [ 'showtrans' => 'all' ],
-                [],
-            ],
-            'showtrans is "none"' => [
-                [ 'showtrans' => 'none' ],
-                null,
             ],
             'showtrans is "matching" without any translation filter' => [
                 [ 'showtrans' => 'matching' ],
@@ -764,8 +775,30 @@ class SearchApiTest extends TestCase
                     )
                 ],
             ],
-            'showtrans is combined with showtrans:lang' => [
-                [ 'showtrans' => 'matching', 'showtrans:lang' => 'sun' ],
+        ];
+    }
+
+    public function showtransFiltersProvider_withoutMatching() {
+        return [
+            'invalid showtrans value, without matching' => [
+                [ 'showtrans' => 'matching' ],
+                new BadRequestException("Invalid value for parameter 'showtrans': must be one of: all, none"),
+            ],
+        ];
+    }
+
+    public function showtransFiltersProvider() {
+        return [
+            'showtrans is "all"' => [
+                [ 'showtrans' => 'all' ],
+                [],
+            ],
+            'showtrans is "none"' => [
+                [ 'showtrans' => 'none' ],
+                null,
+            ],
+            'showtrans is "all" combined with showtrans:lang' => [
+                [ 'showtrans' => 'all', 'showtrans:lang' => 'sun' ],
                 new BadRequestException("Invalid usage of parameter 'showtrans:lang' or 'showtrans': these two cannot be used together"),
             ],
 
@@ -926,14 +959,30 @@ class SearchApiTest extends TestCase
 
     /**
      * @dataProvider showtransFiltersProvider()
+     * @dataProvider showtransFiltersProvider_withMatching()
      */
-    public function testShowtransFilters($params, $expected) {
+    public function testShowtransFilters_consumeFilters($params, $expected) {
         $codeToTest = function() use (&$params) {
             $params['lang'] = 'epo';
-            $params['sort'] = 'modified';
-            $this->SearchApi->readParams($params);
+            $this->SearchApi->consumeFilters($params);
             return $this->SearchApi->getShowtrans();
         };
+        $this->_testShowtransFilters($codeToTest, $expected);
+    }
+
+    /**
+     * @dataProvider showtransFiltersProvider()
+     * @dataProvider showtransFiltersProvider_withoutMatching()
+     */
+    public function testShowtransFilters_consumeShowtransFilters($params, $expected) {
+        $codeToTest = function() use (&$params) {
+            $this->SearchApi->consumeShowtransFilters($params);
+            return $this->SearchApi->getShowtrans();
+        };
+        $this->_testShowtransFilters($codeToTest, $expected);
+    }
+
+    private function _testShowtransFilters($codeToTest, $expected) {
         if ($expected instanceOf \Exception) {
             $this->assertThrowsException($codeToTest, $expected);
         } else {

@@ -241,9 +241,8 @@ class SearchApi
         return $value;
     }
 
-    public function consumeShowtrans(&$params) {
+    public function consumeShowtrans(&$params, array $available) {
         $showtrans = $this->consumeValue('showtrans', $params);
-        $available = ['all', 'none', 'matching'];
         if (!is_null($showtrans) && !in_array($showtrans, $available)) {
             throw new BadRequestException("Invalid value for parameter 'showtrans': must be one of: ".join(', ', $available));
         }
@@ -284,10 +283,9 @@ class SearchApi
         );
     }
 
-    public function consumeFilters(array &$params) {
+    private function catchParamsExceptions(callable $code) {
         try {
-            $this->_consumeShowtransFilters($params);
-            $this->_consumeFilters($params);
+            return $code();
         } catch (InvalidValueException $e) {
             throw new BadRequestException("Invalid value for parameter '{$e->getThrower()->getName()}': ".$e->getMessage());
         } catch (\App\Model\Exception\InvalidAndOperatorException $e) {
@@ -297,6 +295,14 @@ class SearchApi
         } catch (\App\Model\Exception\InvalidFilterUsageException $e) {
             throw new BadRequestException("Invalid usage of parameter '{$e->getThrower()->getName()}': ".$e->getMessage());
         }
+    }
+
+    public function consumeFilters(array &$params) {
+        $this->showtrans = $this->consumeShowtrans($params, ['all', 'none', 'matching']);
+        return $this->catchParamsExceptions(function () use (&$params) {
+            $this->_consumeShowtransFilters($params);
+            $this->_consumeFilters($params);
+        });
     }
 
     private function _consumeFilters(array &$params) {
@@ -329,6 +335,13 @@ class SearchApi
         $params = $unusedParams;
     }
 
+    public function consumeShowtransFilters(array &$params) {
+        $this->showtrans = $this->consumeShowtrans($params, ['all', 'none']);
+        $this->catchParamsExceptions(function () use (&$params) {
+            $this->_consumeShowtransFilters($params);
+        });
+    }
+
     private function _consumeShowtransFilters(array &$params) {
         $unusedParams = [];
         foreach ($params as $key => $value) {
@@ -351,13 +364,18 @@ class SearchApi
         }
     }
 
-    public function readParams(array $params) {
+    public function readParamsForSearchSentences(array $params) {
         $this->include = $this->consumeInclude($params);
-        $this->showtrans = $this->consumeShowtrans($params);
         $this->limit = $this->consumeInt('limit', $params);
         $this->consumeSort($params);
         $this->setDefaultFilters();
         $this->consumeFilters($params);
+        $this->failIfParams($params);
+    }
+
+    public function readParamsForGetSentence(array $params) {
+        $this->include = $this->consumeInclude($params);
+        $this->consumeShowtransFilters($params);
         $this->failIfParams($params);
     }
 

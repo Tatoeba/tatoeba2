@@ -139,6 +139,10 @@ class SentencesControllerTest extends TestCase
                 '',
                 $this->sentenceSchema(false, false, false),
             ],
+            'with translations' => [
+                'showtrans=all',
+                $this->sentenceSchema(true, false, false),
+            ],
             'with audios' => [
                 'include=audios',
                 $this->sentenceSchema(false, true, false),
@@ -150,6 +154,18 @@ class SentencesControllerTest extends TestCase
             'with audios and transcriptions' => [
                 'include=audios,transcriptions',
                 $this->sentenceSchema(false, true, true),
+            ],
+            'with translations and audios' => [
+                'showtrans=all&include=audios',
+                $this->sentenceSchema(true, true, false),
+            ],
+            'with translations and transcriptions' => [
+                'showtrans=all&include=transcriptions',
+                $this->sentenceSchema(true, false, true),
+            ],
+            'with translations, audios and transcriptions' => [
+                'showtrans=all&include=audios,transcriptions',
+                $this->sentenceSchema(true, true, true),
             ],
         ];
     }
@@ -183,8 +199,7 @@ class SentencesControllerTest extends TestCase
 
     public function testGetSentence_returnsTranslationOwner()
     {
-        $this->markTestSkipped('Temporarily disabled');
-        $this->get("http://api.example.com/unstable/sentences/1");
+        $this->get("http://api.example.com/unstable/sentences/1?showtrans=all");
         $actual = $this->_getBodyAsString();
         $constraint = [
             '$.data.translations[0].owner' => 'kazuki',
@@ -221,7 +236,7 @@ class SentencesControllerTest extends TestCase
     public function testGetSentence_cannotGetTranslationsWithLicenseIssue()
     {
         $this->markTestSkipped('Cannot handle the special case of hiding indirect translations going through a translation having a license issues');
-        $this->get("http://api.example.com/unstable/sentences/58");
+        $this->get("http://api.example.com/unstable/sentences/58?showtrans=all");
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data.translations' => new \PHPUnit\Framework\Constraint\Count(2),
