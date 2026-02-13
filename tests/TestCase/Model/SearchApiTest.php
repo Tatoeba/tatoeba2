@@ -592,33 +592,32 @@ class SearchApiTest extends TestCase
         $this->fail("$expectedName was not thrown");
     }
 
-    private function _buildSearchFromFilters($filters) {
-        $search = new Search();
-        foreach ($filters as $filter) {
-            $search->setFilter($filter);
-            if (method_exists($filter, 'setSearch')) {
-                $filter->setSearch($search);
-            }
-        }
-        return $search;
-    }
-
     /**
      * @dataProvider filtersProvider()
      */
     public function testFilters($filters, $expected) {
-        if ($expected instanceof \Exception) {
-            $codeToTest = function () use ($filters) {
-                if (isset($filters['sort'])) {
-                    $this->SearchApi->consumeSort($filters);
-                }
-                $this->SearchApi->consumeFilters($filters);
-            };
+        $codeToTest = function() use (&$filters) {
+            if (isset($filters['sort'])) {
+                $this->SearchApi->consumeSort($filters);
+            }
+            $this->SearchApi->consumeFilters($filters);
+            return $this->SearchApi->search;
+        };
+        if ($expected instanceOf \Exception) {
             $this->assertThrowsException($codeToTest, $expected);
         } else {
-            $expectedSearch = $this->_buildSearchFromFilters($expected);
-            $this->SearchApi->consumeFilters($filters);
-            $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
+
+            $result = $codeToTest();
+
+            if (is_null($expected)) {
+                $this->assertNull($result);
+            } else {
+                $results = array_map(fn($f) => $f->compile(), $result->getFilters());
+                $expected = array_map(fn($f) => $f->compile(), $expected);
+                foreach ($expected as $expectedFilter) {
+                    $this->assertEquals($expectedFilter, array_shift($results));
+                }
+            }
         }
     }
 
@@ -642,13 +641,13 @@ class SearchApiTest extends TestCase
     }
 
     public function testDefaultFilters() {
-        $expectedDefaults = $this->_buildSearchFromFilters([
-            (new LicenseFilter())->not()->anyOf([LicenseFilter::LICENSING_ISSUE])
-        ]);
+        $expectedDefaults = [
+            'LicenseFilter' => (new LicenseFilter())->not()->anyOf([LicenseFilter::LICENSING_ISSUE]),
+        ];
 
         $this->SearchApi->setDefaultFilters();
 
-        $this->assertEquals($expectedDefaults->asSphinx(), $this->SearchApi->search->asSphinx());
+        $this->assertEquals($expectedDefaults, $this->SearchApi->search->getFilters());
     }
 
     public function testQ() {
