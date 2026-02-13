@@ -37,7 +37,7 @@ class AudiosController extends ApiController
      *     tags={"Audio"},
      *     @OA\Response(response="200", description="Success."),
      *     @OA\Response(response="400", description="Invalid parameter."),
-     *     @OA\Response(response="403", description="The audio author does not allow reuse outside of Tatoeba.")
+     *     @OA\Response(response="403", description="The audio author does not allow reuse outside of Tatoeba."),
      *     @OA\Response(response="404", description="There is no audio with that ID, or it was removed.")
      *   )
      * )
