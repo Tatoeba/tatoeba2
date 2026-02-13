@@ -172,7 +172,6 @@ class AudioControllerTest extends TestCase
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
             '$.paging.has_next' => true,
-            '$.paging.cursor_end' => 1,
             '$.paging.next' => 'http://api.example.com/unstable/audios?limit=1&after=1',
         ];
         $this->assertJsonDocumentMatches($actual, $expected);

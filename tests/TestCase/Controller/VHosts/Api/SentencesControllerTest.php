@@ -54,7 +54,6 @@ class SentencesControllerTest extends TestCase
         'total'      => ['type' => 'integer'],
         'first'      => ['type' => 'string'],
         'has_next'   => ['type' => 'boolean'],
-        'cursor_end' => ['type' => 'string'],
         'next'       => ['type' => 'string'],
       ],
       'additionalProperties' => false,
@@ -483,7 +482,6 @@ class SentencesControllerTest extends TestCase
             '$.paging' => (object)[
                 'total' => 2,
                 'has_next' => true,
-                'cursor_end' => '123456,1',
                 'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
             ],
         ];
@@ -501,7 +499,6 @@ class SentencesControllerTest extends TestCase
             '$.paging' => (object)[
                 'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
                 'has_next' => true,
-                'cursor_end' => '123456,1',
                 'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
             ],
         ];
