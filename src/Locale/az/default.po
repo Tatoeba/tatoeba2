@@ -1855,7 +1855,7 @@ msgstr "{createdDate}, {modifiedDate} tarixində redaktə edilib"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L111
 msgid "Sentence {number} — belongs to {username}"
-msgstr "Sentence {number} — {username} adlı istifadəçiyə addir"
+msgstr "Cümlə {number} — {username} adlı istifadəçiyə addir"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L122
@@ -3914,7 +3914,7 @@ msgstr "Ən köhnə redaktə olunanlar"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L141
 msgctxt "sentences"
 msgid "Newest first"
-msgstr "Əvvəlsə yeni"
+msgstr "Əvvəlcə yeni"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L143
@@ -4033,7 +4033,7 @@ msgstr "(vaxtı keçib)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L275
 msgid "There is no log for this sentence"
-msgstr ""
+msgstr "Bu cümlə üçün jurnal qeydi yoxdur"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L287
 msgid "Random Sentence"
@@ -4756,7 +4756,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L281
 msgid "Activate the feature to review sentences"
-msgstr ""
+msgstr "Cümlələri nəzərdən keçirmək özəlliyini aç"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L304
 msgid ""
@@ -5606,7 +5606,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L425
 msgid "You cannot delete this sentence because it has audio."
-msgstr ""
+msgstr "Bu cümləni silə bilməzsiz, çünki onun səsyazması mövcuddur."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L516
 msgid "belongs to {user}"
@@ -5651,7 +5651,7 @@ msgstr "#{sentenceId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L112
 msgid "Recently added sentences may not appear in search results."
-msgstr ""
+msgstr "Son əlavə olunmuş cümlələr axtarış nəticələrində görünməyə bilərlər."
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
