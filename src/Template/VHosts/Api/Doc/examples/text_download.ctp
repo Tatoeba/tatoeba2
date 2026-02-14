@@ -132,7 +132,7 @@ $this->append('script');
   <h3>Download</h3>
     <form id="start" style="display: flex; flex-wrap: wrap">
       API URL to fetch:
-      <input id="url" name="url" value="https://api.tatoeba.org/v1/sentences" style="flex: 1" />
+      <input id="url" name="url" value="https://api.tatoeba.org/v1/sentences?sort=created&lang=eng&q=example" style="flex: 1" />
       <input id="start" type="submit" value="Download sentences as text" />
     </form>
 
