@@ -20,7 +20,7 @@ class AudioControllerTest extends TestCase
 
     public function testDownload_invalidId()
     {
-        $this->get("http://api.example.com/unstable/audio/notAnInt/file");
+        $this->get("http://api.example.com/unstable/audios/notAnInt/file");
         $this->assertResponseCode(400);
     }
 
@@ -29,7 +29,7 @@ class AudioControllerTest extends TestCase
         $this->initAudioStorageDir();
 
         $audioFileContents = $this->createAudioFile(1);
-        $this->get("http://api.example.com/unstable/audio/1/file");
+        $this->get("http://api.example.com/unstable/audios/1/file");
         $this->assertResponseOk();
         $this->assertResponseEquals($audioFileContents);
         $this->assertHeader('Content-Disposition', 'attachment; filename="3-1.mp3"');
@@ -41,7 +41,7 @@ class AudioControllerTest extends TestCase
     {
         $this->initAudioStorageDir();
 
-        $this->get("http://api.example.com/unstable/audio/1/file");
+        $this->get("http://api.example.com/unstable/audios/1/file");
         $this->assertResponseCode(404);
 
         $this->deleteAudioStorageDir();
@@ -49,7 +49,7 @@ class AudioControllerTest extends TestCase
 
     public function testDownload_nonExistingAudio()
     {
-        $this->get("http://api.example.com/unstable/audio/9999999999/file");
+        $this->get("http://api.example.com/unstable/audios/9999999999/file");
         $this->assertResponseCode(404);
     }
 
@@ -58,7 +58,7 @@ class AudioControllerTest extends TestCase
         $this->initAudioStorageDir();
 
         $audioFileContents = $this->createAudioFile(6);
-        $this->get("http://api.example.com/unstable/audio/6/file");
+        $this->get("http://api.example.com/unstable/audios/6/file");
         $this->assertResponseCode(403);
 
         $this->deleteAudioStorageDir();
@@ -69,7 +69,7 @@ class AudioControllerTest extends TestCase
         $this->initAudioStorageDir();
 
         $audioFileContents = $this->createAudioFile(2);
-        $this->get("http://api.example.com/unstable/audio/2/file");
+        $this->get("http://api.example.com/unstable/audios/2/file");
         $this->assertResponseCode(403);
 
         $this->deleteAudioStorageDir();
@@ -80,7 +80,7 @@ class AudioControllerTest extends TestCase
         $this->initAudioStorageDir();
 
         $audioFileContents = $this->createAudioFile(3);
-        $this->get("http://api.example.com/unstable/audio/3/file");
+        $this->get("http://api.example.com/unstable/audios/3/file");
         $this->assertResponseOk();
 
         $this->deleteAudioStorageDir();
@@ -88,7 +88,7 @@ class AudioControllerTest extends TestCase
 
     public function testSearch_matchesSchema()
     {
-        $this->get("http://api.example.com/unstable/audio");
+        $this->get("http://api.example.com/unstable/audios");
         $this->assertResponseOk();
         $this->assertContentType('application/json');
 
@@ -111,7 +111,7 @@ class AudioControllerTest extends TestCase
 
     public function testSearch_ordersResultsByIdAsc()
     {
-        $this->get("http://api.example.com/unstable/audio");
+        $this->get("http://api.example.com/unstable/audios");
 
         $actual = $this->_getBodyAsString();
 
@@ -125,7 +125,7 @@ class AudioControllerTest extends TestCase
 
     public function testSearch_lang_ok()
     {
-        $this->get("http://api.example.com/unstable/audio?lang=spa");
+        $this->get("http://api.example.com/unstable/audios?lang=spa");
         $this->assertResponseOk();
 
         $actual = $this->_getBodyAsString();
@@ -139,13 +139,13 @@ class AudioControllerTest extends TestCase
 
     public function testSearch_lang_invalid()
     {
-        $this->get("http://api.example.com/unstable/audio?lang=invalid");
+        $this->get("http://api.example.com/unstable/audios?lang=invalid");
         $this->assertResponseCode(400);
     }
 
     public function testSearch_author_ok()
     {
-        $this->get("http://api.example.com/unstable/audio?author=contributor");
+        $this->get("http://api.example.com/unstable/audios?author=contributor");
         $this->assertResponseOk();
 
         $actual = $this->_getBodyAsString();
@@ -159,47 +159,46 @@ class AudioControllerTest extends TestCase
 
     public function testSearch_author_invalid()
     {
-        $this->get("http://api.example.com/unstable/audio?author=invalid");
+        $this->get("http://api.example.com/unstable/audios?author=invalid");
         $this->assertResponseCode(400);
     }
 
     public function testSearch_limit_ok()
     {
-        $this->get("http://api.example.com/unstable/audio?limit=1");
+        $this->get("http://api.example.com/unstable/audios?limit=1");
         $this->assertResponseOk();
 
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
             '$.paging.has_next' => true,
-            '$.paging.cursor_end' => 1,
-            '$.paging.next' => 'http://api.example.com/unstable/audio?limit=1&after=1',
+            '$.paging.next' => 'http://api.example.com/unstable/audios?limit=1&after=1',
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testSearch_limit_invalid()
     {
-        $this->get("http://api.example.com/unstable/audio?limit=invalid");
+        $this->get("http://api.example.com/unstable/audios?limit=invalid");
         $this->assertResponseCode(400);
     }
 
     public function testSearch_after_ok()
     {
-        $this->get("http://api.example.com/unstable/audio?after=1");
+        $this->get("http://api.example.com/unstable/audios?after=1");
         $this->assertResponseOk();
 
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data[0].id' => new \PHPUnit\Framework\Constraint\GreaterThan(1),
-            '$.paging.first' => 'http://api.example.com/unstable/audio',
+            '$.paging.first' => 'http://api.example.com/unstable/audios',
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testSearch_after_invalid()
     {
-        $this->get("http://api.example.com/unstable/audio?after=invalid");
+        $this->get("http://api.example.com/unstable/audios?after=invalid");
         $this->assertResponseCode(400);
     }
 }

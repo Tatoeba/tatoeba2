@@ -24,10 +24,10 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Exception\ForbiddenException;
 
-class AudioController extends ApiController
+class AudiosController extends ApiController
 {
     /**
-     * @OA\PathItem(path="/unstable/audio/{id}/file",
+     * @OA\PathItem(path="/v1/audios/{id}/file",
      *   @OA\Parameter(name="id", in="path", required=true, description="The audio identifier.",
      *     @OA\Schema(ref="#/components/schemas/Audio/properties/id")
      *   ),
@@ -76,7 +76,7 @@ class AudioController extends ApiController
      *   }
      * )
      *
-     * @OA\PathItem(path="/unstable/audio",
+     * @OA\PathItem(path="/unstable/audios",
      *   @OA\Parameter(name="lang", in="query",
      *     description="Only return audio recordings in that language.",
      *     @OA\Examples(example="1", value="epo", summary="audio recordings in Esperanto"),

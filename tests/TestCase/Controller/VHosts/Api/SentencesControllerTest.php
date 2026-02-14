@@ -34,7 +34,7 @@ class SentencesControllerTest extends TestCase
 
     const SENTENCE_JSON_SCHEMA = [
       'type'       => 'object',
-      'required'   => ['id', 'text', 'lang', 'script', 'license', 'owner'],
+      'required'   => ['id', 'text', 'lang', 'script', 'license', 'owner', 'is_unapproved'],
       'properties' => [
         'id'       => ['type' => 'integer'],
         'text'     => ['type' => 'string'],
@@ -42,6 +42,7 @@ class SentencesControllerTest extends TestCase
         'script'   => ['type' => ['string', 'null']],
         'license'  => ['type' => ['string', 'null']],
         'owner'    => ['type' => ['string', 'null']],
+        'is_unapproved' => ['type' => 'boolean'],
       ],
       'additionalProperties' => false,
     ];
@@ -53,7 +54,6 @@ class SentencesControllerTest extends TestCase
         'total'      => ['type' => 'integer'],
         'first'      => ['type' => 'string'],
         'has_next'   => ['type' => 'boolean'],
-        'cursor_end' => ['type' => 'string'],
         'next'       => ['type' => 'string'],
       ],
       'additionalProperties' => false,
@@ -67,22 +67,26 @@ class SentencesControllerTest extends TestCase
         'app.Links',
     ];
 
-    private function sentenceSchema(bool $withTranslations) {
+    private function sentenceSchema(bool $withTranslations, bool $withAudio, bool $withTranscriptions) {
         $sentenceSchema = self::SENTENCE_JSON_SCHEMA;
 
-        // add audio
-        $sentenceSchema['required'][] = 'audios';
-        $sentenceSchema['properties']['audios'] = [
-            'type' => 'array',
-            'items' => self::AUDIO_JSON_SCHEMA,
-        ];
+        if ($withAudio) {
+            // add audio
+            $sentenceSchema['required'][] = 'audios';
+            $sentenceSchema['properties']['audios'] = [
+                'type' => 'array',
+                'items' => self::AUDIO_JSON_SCHEMA,
+            ];
+        }
 
-        // add transcriptions
-        $sentenceSchema['required'][] = 'transcriptions';
-        $sentenceSchema['properties']['transcriptions'] = [
-            'type' => 'array',
-            'items' => self::TRANSCRIPTION_JSON_SCHEMA,
-        ];
+            if ($withTranscriptions) {
+            // add transcriptions
+            $sentenceSchema['required'][] = 'transcriptions';
+            $sentenceSchema['properties']['transcriptions'] = [
+                'type' => 'array',
+                'items' => self::TRANSCRIPTION_JSON_SCHEMA,
+            ];
+        }
 
         // add translations
         if ($withTranslations) {
@@ -100,14 +104,14 @@ class SentencesControllerTest extends TestCase
         return $sentenceSchema;
     }
 
-    private function sentencesResultSchema(bool $withTranslations) {
+    private function sentencesResultSchema(array $sentenceSchema) {
         return [
             'type'       => 'object',
             'required'   => ['data', 'paging'],
             'properties' => [
                 'data'       => [
                     'type'       => 'array',
-                    'items'      => $this->sentenceSchema($withTranslations),
+                    'items'      => $sentenceSchema,
                 ],
                 'paging' => self::PAGING_JSON_SCHEMA,
             ],
@@ -127,9 +131,51 @@ class SentencesControllerTest extends TestCase
         $this->assertResponseCode(400);
     }
 
-    public function testGetSentence_ok()
+    public function sentenceSchemaTestProvider()
     {
-        $this->get("http://api.example.com/unstable/sentences/1");
+        return [
+            // query, expected response JSON schema under .data
+            'no associated data' => [
+                '',
+                $this->sentenceSchema(false, false, false),
+            ],
+            'with translations' => [
+                'showtrans=all',
+                $this->sentenceSchema(true, false, false),
+            ],
+            'with audios' => [
+                'include=audios',
+                $this->sentenceSchema(false, true, false),
+            ],
+            'with transcriptions' => [
+                'include=transcriptions',
+                $this->sentenceSchema(false, false, true),
+            ],
+            'with audios and transcriptions' => [
+                'include=audios,transcriptions',
+                $this->sentenceSchema(false, true, true),
+            ],
+            'with translations and audios' => [
+                'showtrans=all&include=audios',
+                $this->sentenceSchema(true, true, false),
+            ],
+            'with translations and transcriptions' => [
+                'showtrans=all&include=transcriptions',
+                $this->sentenceSchema(true, false, true),
+            ],
+            'with translations, audios and transcriptions' => [
+                'showtrans=all&include=audios,transcriptions',
+                $this->sentenceSchema(true, true, true),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider sentenceSchemaTestProvider
+     */
+    public function testGetSentence_schema($query, $expectedDataSchema)
+    {
+        $this->get("http://api.example.com/unstable/sentences/1?$query");
         $this->assertResponseOk();
         $this->assertContentType('application/json');
         $actual = $this->_getBodyAsString();
@@ -138,18 +184,24 @@ class SentencesControllerTest extends TestCase
             'type'       => 'object',
             'required'   => ['data'],
             'properties' => [
-                'data' => $this->sentenceSchema(true),
+                'data' => $expectedDataSchema,
             ]
         ];
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
     }
 
-    public function testGetSentence_returnsOwner()
+    public function testGetSentence_returnsSentenceOwner()
     {
         $this->get("http://api.example.com/unstable/sentences/1");
         $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.data.owner', 'kazuki');
+    }
+
+    public function testGetSentence_returnsTranslationOwner()
+    {
+        $this->get("http://api.example.com/unstable/sentences/1?showtrans=all");
+        $actual = $this->_getBodyAsString();
         $constraint = [
-            '$.data.owner' => 'kazuki',
             '$.data.translations[0].owner' => 'kazuki',
             '$.data.translations[1].owner' => 'advanced_contributor',
             '$.data.translations[2].owner' => 'kazuki',
@@ -161,7 +213,7 @@ class SentencesControllerTest extends TestCase
 
     public function testGetSentence_returnsAudioUserProfileURL()
     {
-        $this->get("http://api.example.com/unstable/sentences/57");
+        $this->get("http://api.example.com/unstable/sentences/57?include=audios");
         $actual = $this->_getBodyAsString();
         $expected = 'http://example.com/user/profile/kazuki';
         $this->assertJsonValueEquals($actual, '$.data.audios[0].attribution_url', $expected);
@@ -175,7 +227,7 @@ class SentencesControllerTest extends TestCase
             // regardless of the URL used to perform the request
             'headers' => ['Host' => 'api.example.com:8080']
         ]);
-        $this->get("http://api.example.com:8080/unstable/sentences/57");
+        $this->get("http://api.example.com:8080/unstable/sentences/57?include=audios");
         $actual = $this->_getBodyAsString();
         $expected = 'http://example.com:8080/user/profile/kazuki';
         $this->assertJsonValueEquals($actual, '$.data.audios[0].attribution_url', $expected);
@@ -184,7 +236,7 @@ class SentencesControllerTest extends TestCase
     public function testGetSentence_cannotGetTranslationsWithLicenseIssue()
     {
         $this->markTestSkipped('Cannot handle the special case of hiding indirect translations going through a translation having a license issues');
-        $this->get("http://api.example.com/unstable/sentences/58");
+        $this->get("http://api.example.com/unstable/sentences/58?showtrans=all");
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data.translations' => new \PHPUnit\Framework\Constraint\Count(2),
@@ -259,22 +311,33 @@ class SentencesControllerTest extends TestCase
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
-    public function testSearch_returnsResults_withoutTranslations()
+    /**
+     * @dataProvider sentenceSchemaTestProvider
+     */
+    public function testSearch_returnsResults_withCorrectSchema($query, $expectedSentenceSchema)
     {
         $this->enableMockedSearch([1,2,3]);
 
-        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&limit=1");
+        if (strlen($query) > 0) {
+            $query = "&$query";
+        }
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&limit=1$query");
         $this->assertResponseOk();
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema(false);
+        $schema = $this->sentencesResultSchema($expectedSentenceSchema);
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
-        $expected = [
-            '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
-            '$.data[1].transcriptions[0].type' => 'altscript',
-        ];
-        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_returnsResults_withCorrectTranscriptionType()
+    {
+        $this->enableMockedSearch([1,2,3]);
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&q=hello&sort=created&limit=1&include=transcriptions");
+
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.data[1].transcriptions[0].type', 'altscript');
     }
 
     public function testSearch_returnsResults_withMatchedTranslations()
@@ -286,7 +349,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema(true);
+        $schema = $this->sentencesResultSchema($this->sentenceSchema(true, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
@@ -308,7 +371,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema(false);
+        $schema = $this->sentencesResultSchema($this->sentenceSchema(false, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
     }
 
@@ -321,7 +384,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema(false);
+        $schema = $this->sentencesResultSchema($this->sentenceSchema(false, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
     }
 
@@ -334,7 +397,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema(true);
+        $schema = $this->sentencesResultSchema($this->sentenceSchema(true, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
@@ -383,7 +446,6 @@ class SentencesControllerTest extends TestCase
             '$.paging' => (object)[
                 'total' => 2,
                 'has_next' => true,
-                'cursor_end' => '123456,1',
                 'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
             ],
         ];
@@ -401,7 +463,6 @@ class SentencesControllerTest extends TestCase
             '$.paging' => (object)[
                 'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
                 'has_next' => true,
-                'cursor_end' => '123456,1',
                 'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
             ],
         ];
