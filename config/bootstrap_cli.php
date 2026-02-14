@@ -40,4 +40,5 @@ I18n::setLocale('en');
 // Disable caching to avoid permission errors produced by FileEngine
 // when CLI tools are executed by unpriviledged users such as
 // manticore
+// See also src/Shell/CacheShell.php
 Cache::disable();
