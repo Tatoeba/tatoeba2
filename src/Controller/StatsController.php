@@ -27,6 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Lib\LanguagesLib;
 use Cake\Event\Event;
 
 /**
@@ -52,6 +53,34 @@ class StatsController extends AppController
         $this->set('stats', $stats);
         $this->set('audioStats', $audioStats);
         $this->set('totalSentences', $totalSentences);
+    }
+
+
+    /**
+     * Show translation statistics for a specified language.
+     *
+     * @param mixed $lang Language for which statistics should be displayed.
+     *
+     * @return void
+     */
+    function translations_by_language($lang = null)
+    {
+        if ($lang !== null && !array_key_exists($lang, LanguagesLib::languagesInTatoeba())) {
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
+
+        $this->set('lang', $lang);
+
+        $this->loadModel('Sentences');
+        $stats = $this->Sentences->getTranslationStatistics($lang);
+        $this->set('stats', $stats);
+
+        $total = $this->Sentences->getTotalTranslations($lang);
+        $this->set('totalTranslations', $total);
+
+        $this->loadModel('Languages');
+        $total = $this->Languages->getTotalSentencesNumber($lang);
+        $this->set('total', $total);
     }
 
 

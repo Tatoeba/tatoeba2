@@ -25,6 +25,8 @@ class StatsControllerTest extends IntegrationTestCase
             [ '/en/stats/users_languages', 'contributor', true ],
             [ '/en/stats/native_speakers', null, true ],
             [ '/en/stats/native_speakers', 'contributor', true ],
+            [ '/en/stats/translations_by_language', null, true ],
+            [ '/en/stats/translations_by_language', 'contributor', true ],
         ];
     }
 

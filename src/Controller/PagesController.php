@@ -107,6 +107,10 @@ class PagesController extends AppController
         $numSentences = $this->Languages->getTotalSentencesNumber();
         $this->set('numSentences', $numSentences);
 
+        $this->loadModel('Sentences');
+        $numTranslations = $this->Sentences->getTotalTranslations();
+        $this->set('numTranslations', $numTranslations);
+        
         $this->loadModel('Contributions');
         $contribToday = $this->Contributions->getTodayContributions();
         $this->set('contribToday', $contribToday);

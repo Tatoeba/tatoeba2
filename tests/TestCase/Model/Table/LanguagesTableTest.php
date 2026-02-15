@@ -74,6 +74,15 @@ class LanguagesTableTest extends TestCase {
         $expected = 56;
         $n = $this->Languages->getTotalSentencesNumber();
         $this->assertEquals($expected, $n);
+        $n = $this->Languages->getTotalSentencesNumber(null);
+        $this->assertEquals($expected, $n);
+
+        $expected = 21;
+        $n = $this->Languages->getTotalSentencesNumber('eng');
+        $this->assertEquals($expected, $n);
+
+        $n = $this->Languages->getTotalSentencesNumber('und');
+        $this->assertNull($n);
     }
 
     function testGetMilestonedStatistics() {
