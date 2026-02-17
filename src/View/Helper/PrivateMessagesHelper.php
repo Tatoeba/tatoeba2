@@ -80,7 +80,7 @@ class PrivateMessagesHelper extends AppHelper
                 'text' => __('Permanently delete'),
                 'icon' => 'delete_forever',
                 'url' => array(
-                    'action' => 'delete_forever',
+                    'action' => 'delete',
                     $messageId
                 ),
                 'confirm' => __('Are you sure?')
