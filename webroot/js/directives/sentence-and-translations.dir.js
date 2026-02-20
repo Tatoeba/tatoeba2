@@ -590,7 +590,7 @@
                 var punct = '　-〄〇-〠・'; // 。、「」etc.
                 punct += '！＂＃＇（），．／：；？［＼］＾｀～｟｠'; // fullwitdh forms
                 punct += ' '; // space
-                var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
+                var regex = '([^｝' + hiragana + katakana + punct + ']{1,}|[ヶ])｛([^｝]*)｝';
                 text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
                 text = text.replace(uniRegExp('｜', 'g'),  '|');
             }
