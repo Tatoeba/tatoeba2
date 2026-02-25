@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use App\Lib\LanguagesLib;
+use App\Model\CurrentUser;
 
 class Translation extends Entity
 {
@@ -42,5 +43,19 @@ class Translation extends Entity
     protected function _getIsUnapproved()
     {
         return $this->correctness == \App\Model\Table\SentencesTable::MIN_CORRECTNESS;
+    }
+    
+    public function addTranslationOwner($translations)
+    {
+        $user_id = CurrentUser::get('id');
+        
+        $this['isLinkOwner'] = false;        
+        foreach ($translations as $translation) {
+            if ($translation['translation_id'] == $this->id 
+                && $translation['user_id'] == $user_id) {
+                $this['isLinkOwner'] = true;
+                return;
+            }
+        }
     }
 }
