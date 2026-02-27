@@ -25,35 +25,6 @@ use Cake\ORM\Entity;
 use Cake\ORM\Table;
 use Cake\ORM\Query;
 
-/**
- * Helper class to keep track of what visible fields and what containments
- * have been set on a query. An instance of it is passed on as a query option
- * down to every containment setup by findContainOnApi().
- */
-class Exposer {
-    private $contain = [];
-    private $fields = [];
-
-    public function in(string $assoc): Exposer {
-        if (!isset($this->contain[$assoc])) {
-            $this->contain[$assoc] = new Exposer();
-        }
-        return $this->contain[$assoc];
-    }
-
-    public function getContain(string $assoc): ?Exposer {
-        return $this->contain[$assoc] ?? null;
-    }
-
-    public function addFields(array $fields) {
-        $this->fields = array_merge($this->fields, $fields);
-    }
-
-    public function getFields(): array {
-        return array_merge($this->fields, array_keys($this->contain));
-    }
-}
-
 class ExposedOnApiBehavior extends Behavior
 {
     public function initialize(array $config)
