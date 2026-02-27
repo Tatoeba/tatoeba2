@@ -781,6 +781,7 @@ html[dir="rtl"] .search-bar-extra a:before {
 
 .language-icon {
     filter: drop-shadow(1px 1px 1.33px rgba(204,204,204,1));
+    fill: initial; /* Don't color flags with currentColor */
 }
 
 

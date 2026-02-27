@@ -47,5 +47,41 @@ class WallsFixture extends TestFixture {
 			'hidden' => 0,
 			'modified' => '2014-04-15 16:38:36'
 		),
+		array(
+			'id' => '3',
+			'owner' => '7',
+			'parent_id' => NULL,
+			'date' => '2025-06-19 12:33:44',
+			'title' => '',
+			'content' => 'Standalone post',
+			'lft' => '5',
+			'rght' => '6',
+			'hidden' => 0,
+			'modified' => '2025-06-19 12:33:44'
+		),
+		array(
+			'id' => '4',
+			'owner' => '9',
+			'parent_id' => NULL,
+			'date' => '2025-07-08 09:10:11',
+			'title' => '',
+			'content' => 'Standalone post by new member',
+			'lft' => '7',
+			'rght' => '8',
+			'hidden' => 0,
+			'modified' => '2025-07-08 09:10:11'
+		),
+		array(
+			'id' => '5',
+			'owner' => '9',
+			'parent_id' => NULL,
+			'date' => '2025-08-09 10:11:12',
+			'title' => '',
+			'content' => 'Standalone hidden post by new member',
+			'lft' => '9',
+			'rght' => '10',
+			'hidden' => 1,
+			'modified' => '2025-08-09 10:11:12'
+		),
 	);
 }

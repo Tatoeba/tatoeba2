@@ -26,6 +26,7 @@
  */
 namespace App\View\Helper;
 
+use Cake\I18n\I18n;
 use Cake\View\Helper;
 
 
@@ -57,6 +58,16 @@ class AppHelper extends Helper
         }
 
         return parent::url($url, $full);
+    }
+
+    public function localizedAsort(&$array)
+    {
+        if (class_exists('Collator')) {
+            $coll = new \Collator(I18n::getLocale());
+            $coll->asort($array);
+        } else {
+            asort($array);
+        }
     }
 }
 ?>

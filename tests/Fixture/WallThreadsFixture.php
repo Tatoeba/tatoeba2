@@ -19,5 +19,9 @@ class WallThreadsFixture extends TestFixture {
 			'id' => '1',
 			'last_message_date' => '2014-04-15 16:38:36'
 		),
+		array(
+			'id' => '3',
+			'last_message_date' => '2025-06-19 12:33:44'
+		),
 	);
 }

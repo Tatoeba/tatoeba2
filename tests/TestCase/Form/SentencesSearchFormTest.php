@@ -14,6 +14,7 @@ use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
@@ -63,6 +64,7 @@ class SentencesSearchFormTest extends TestCase
             'trans_has_audio' => '',
             'trans_unapproved' => '',
             'trans_orphan' => '',
+            'trans_native' => '',
             'trans_user' => '',
             'sort' => 'relevance',
             'sort_reverse' => '',
@@ -102,14 +104,14 @@ class SentencesSearchFormTest extends TestCase
             [ ['to' => ''],        [], '' ],
             [ ['to' => 'invalid'], [], '' ],
 
-            [ ['unapproved' => 'yes'],     ['IsUnapprovedFilter' => new IsUnapprovedFilter(true)],  'yes' ],
-            [ ['unapproved' => 'no'],      ['IsUnapprovedFilter' => new IsUnapprovedFilter(false)], 'no'  ],
+            [ ['unapproved' => 'yes'],     ['IsUnapprovedFilter' => new IsUnapprovedFilter()],          'yes' ],
+            [ ['unapproved' => 'no'],      ['IsUnapprovedFilter' => (new IsUnapprovedFilter())->not()], 'no'  ],
             [ ['unapproved' => 'any'],     ['IsUnapprovedFilter' => null],  'any' ],
             [ ['unapproved' => 'invalid'], ['IsUnapprovedFilter' => null],  'any' ],
             [ ['unapproved' => ''],        ['IsUnapprovedFilter' => null],  'any' ],
 
-            [ ['orphans' => 'yes'],     ['IsOrphanFilter' => new IsOrphanFilter(true)],  'yes' ],
-            [ ['orphans' => 'no'],      ['IsOrphanFilter' => new IsOrphanFilter(false)], 'no'  ],
+            [ ['orphans' => 'yes'],     ['IsOrphanFilter' => new IsOrphanFilter()],          'yes' ],
+            [ ['orphans' => 'no'],      ['IsOrphanFilter' => (new IsOrphanFilter())->not()], 'no'  ],
             [ ['orphans' => 'any'],     ['IsOrphanFilter' => null],                      'any' ],
             [ ['orphans' => 'invalid'], ['IsOrphanFilter' => null],                      'any' ],
             [ ['orphans' => ''],        ['IsOrphanFilter' => null],                      'any' ],
@@ -118,8 +120,8 @@ class SentencesSearchFormTest extends TestCase
             [ ['user' => 'invaliduser'], ['OwnerFilter' => new OwnerFilter()],                           '',            1 ],
             [ ['user' => ''],            ['OwnerFilter' => null],                                        '',            0 ],
 
-            [ ['has_audio' => 'yes'],     ['HasAudioFilter' => new HasAudioFilter(true)],  'yes' ],
-            [ ['has_audio' => 'no'],      ['HasAudioFilter' => new HasAudioFilter(false)], 'no'  ],
+            [ ['has_audio' => 'yes'],     ['HasAudioFilter' => new HasAudioFilter()],          'yes' ],
+            [ ['has_audio' => 'no'],      ['HasAudioFilter' => (new HasAudioFilter())->not()], 'no'  ],
             [ ['has_audio' => 'invalid'], ['HasAudioFilter' => null], '' ],
             [ ['has_audio' => ''],        ['HasAudioFilter' => null], '' ],
 
@@ -137,9 +139,8 @@ class SentencesSearchFormTest extends TestCase
             [ ['list' => '3'],       ['ListFilter' => new ListFilter()],               '', 1 ],
             [ ['list' => 'invalid'], ['ListFilter' => null],                           '',   ],
 
-            [ ['native' => 'yes', 'from' => 'eng'],     ['IsNativeFilter' => new IsNativeFilter()], 'yes'],
-            [ ['native' => 'yes', 'from' => 'invalid'], ['IsNativeFilter' => null],                 'yes'],
-            [ ['native' => 'no'],      ['IsNativeFilter' => null], '' ],
+            [ ['native' => 'yes'],     ['IsNativeFilter' => new IsNativeFilter()],          'yes' ],
+            [ ['native' => 'no'],      ['IsNativeFilter' => (new IsNativeFilter())->not()], 'no'  ],
             [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
             [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
 
@@ -170,25 +171,30 @@ class SentencesSearchFormTest extends TestCase
             [ ['trans_to' => ''],        ['tf' => (new TranslationFilterGroup())], '' ],
             [ ['trans_to' => 'invalid'], ['tf' => (new TranslationFilterGroup())], '' ],
 
-            [ ['trans_link' => 'direct'],   ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsDirectFilter(true))],  'direct'],
-            [ ['trans_link' => 'indirect'], ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsDirectFilter(false))], 'indirect'],
+            [ ['trans_link' => 'direct'],   ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsDirectFilter())],          'direct'  ],
+            [ ['trans_link' => 'indirect'], ['tf' => (new TranslationFilterGroup())->setFilter((new TranslationIsDirectFilter())->not())], 'indirect'],
             [ ['trans_link' => ''],         ['tf' => new TranslationFilterGroup()],                                                    ''],
             [ ['trans_link' => 'invalid'],  ['tf' => new TranslationFilterGroup()],                                                    ''],
 
-            [ ['trans_has_audio' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(true))],  'yes' ],
-            [ ['trans_has_audio' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(false))], 'no'  ],
+            [ ['trans_has_audio' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter())],          'yes' ],
+            [ ['trans_has_audio' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter((new TranslationHasAudioFilter())->not())], 'no'  ],
             [ ['trans_has_audio' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
             [ ['trans_has_audio' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
-            [ ['trans_unapproved' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(true))],  'yes' ],
-            [ ['trans_unapproved' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(false))], 'no'  ],
+            [ ['trans_unapproved' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter())],          'yes' ],
+            [ ['trans_unapproved' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter((new TranslationIsUnapprovedFilter())->not())], 'no'  ],
             [ ['trans_unapproved' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
             [ ['trans_unapproved' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
-            [ ['trans_orphan' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(true))],  'yes' ],
-            [ ['trans_orphan' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(false))], 'no'  ],
+            [ ['trans_orphan' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter())],          'yes' ],
+            [ ['trans_orphan' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter((new TranslationIsOrphanFilter())->not())], 'no'  ],
             [ ['trans_orphan' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
             [ ['trans_orphan' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
+
+            [ ['trans_native' => 'yes'],     ['tf' => (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter())],          'yes' ],
+            [ ['trans_native' => 'no'],      ['tf' => (new TranslationFilterGroup())->setFilter((new TranslationIsNativeFilter())->not())], 'no'  ],
+            [ ['trans_native' => 'invalid'], ['tf' => new TranslationFilterGroup()],  '' ],
+            [ ['trans_native' => ''],        ['tf' => new TranslationFilterGroup()],  '' ],
 
             [ ['trans_user' => 'contributor'], ['tf' => (new TranslationFilterGroup())->setFilter(
                                                                (new TranslationOwnerFilter())->anyOf(['contributor'])
@@ -432,17 +438,8 @@ class SentencesSearchFormTest extends TestCase
         $this->assertEquals('', $this->Form->getData()['trans_orphan']);
     }
 
-    public function testCheckUnwantedCombinations_nativeWithoutLanguage() {
-        $this->Form->setData(['from' => '', 'native' => 'yes']);
-        $this->Form->checkUnwantedCombinations();
-
-        $this->assertCount(1, $this->Form->getIgnoredFields());
-        $this->assertEquals('', $this->Form->getData()['native']);
-    }
-
     public function testCheckUnwantedCombinations_userNotNative() {
         $this->Form->setData([
-            'from' => 'eng',
             'user' => 'contributor',
             'native' => 'yes',
         ]);

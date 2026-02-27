@@ -331,6 +331,24 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->assertMailCount($emailCount);
     }
 
+    public function testEdit_canUpdateSpamdexingLegacyUser() {
+        $postData = [
+	    'username' => 'contributor',
+	    'settings' => ['lang' => '', 'can_switch_license' => '0'],
+	    'role' => 'contributor',
+	    'is_spamdexing' => '',
+	    'level' => '0',
+	    'send_notifications' => '1',
+        ];
+        $this->logInAs('admin');
+        $this->enableRetainFlashMessages();
+
+        $this->post('/en/users/edit/4', $postData);
+
+        $this->assertResponseOk();
+        $this->assertFlashMessage('The user information has been saved.');
+    }
+
     public function testNewPassword_sendsEmailToUser() {
         $address = 'contributor@example.com';
         $this->post('/en/users/new_password', ['email' => $address]);

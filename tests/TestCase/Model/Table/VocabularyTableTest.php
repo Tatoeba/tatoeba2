@@ -33,7 +33,7 @@ class VocabularyTableTest extends TestCase
 
     public function testAddItem_withExistingVocabulary()
     {
-        CurrentUser::store(['id' => 1]);
+        CurrentUser::store(['id' => 4]);
         $result = $this->Vocabulary->addItem('eng', 'out of the blue');
         $this->assertEquals(1, $result->id);
         $this->assertTrue($result->duplicate);
@@ -42,8 +42,11 @@ class VocabularyTableTest extends TestCase
     public function testAddItem_withNewVocabulary()
     {
         CurrentUser::store(['id' => 7]);
+
         $result = $this->Vocabulary->addItem('eng', 'hashtag');
-        $this->assertEquals(2, $result->id);
+
+        $this->assertEquals('eng', $result->lang);
+        $this->assertEquals('hashtag', $result->text);
     }
 
     public function testAddItem_updatesCurrentNumberOfSentences()
@@ -54,6 +57,26 @@ class VocabularyTableTest extends TestCase
         $result = $this->Vocabulary->addItem('eng', 'hashtag');
 
         $this->assertEquals(4, $result->numSentences);
+    }
+
+    public function testEditItem()
+    {
+        $vocab = $this->Vocabulary->get(1);
+        $this->Vocabulary->patchEntity($vocab, ['text' => 'have got the blues']);
+
+        $result = $this->Vocabulary->save($vocab);
+
+        $this->assertNotFalse($result);
+    }
+
+    public function testEditItem_withExistingVocabulary()
+    {
+        $vocab = $this->Vocabulary->get(2);
+        $this->Vocabulary->patchEntity($vocab, ['text' => 'out of the blue']);
+
+        $result = $this->Vocabulary->save($vocab);
+
+        $this->assertFalse($result);
     }
 
     public function testIncrementNumSentences_succeeds()

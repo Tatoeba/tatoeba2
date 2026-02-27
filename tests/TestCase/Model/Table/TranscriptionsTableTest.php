@@ -620,4 +620,22 @@ class TranscriptionsTableTest extends TestCase {
 
         I18n::setLocale($prevLocale);
     }
+
+    function testGetTranscription_virtualFields_editor() {
+        $transcr = $this->Transcription->findById(1)->contain(['Users'])->first();
+
+        $this->assertEquals('kazuki', $transcr->editor);
+    }
+
+    function testGetTranscription_virtualFields_editor_noEditor() {
+        $transcr = $this->Transcription->findById(2)->contain(['Users'])->first();
+
+        $this->assertNull($transcr->editor);
+    }
+
+    function testGetTranscription_virtualFields_editor_noUsersContain() {
+        $transcr = $this->Transcription->findById(1)->first();
+
+        $this->assertNull($transcr->editor);
+    }
 }

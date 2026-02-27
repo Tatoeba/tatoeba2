@@ -1,7 +1,9 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
+use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
 class TagsControllerTest extends IntegrationTestCase {
@@ -123,5 +125,58 @@ class TagsControllerTest extends IntegrationTestCase {
         $this->logInAs('contributor');
         $this->post('/fr/tags/search', ['search' => 'foo']);
         $this->assertRedirect('/fr/tags/view_all/foo');
+    }
+
+    private function addSentencesWithTag($tagId, $nbSentences, $userId = 1) {
+        $newSentences = [];
+        for ($i = 1; $i <= $nbSentences; $i++) {
+            $newSentences[] = [
+                'lang' => 'eng',
+                'text' => "Test sentence number $i.",
+                'user_id' => $userId,
+            ];
+        }
+        $Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $entities = $Sentences->newEntities($newSentences);
+        $Sentences->saveMany($entities);
+
+        $Tags = TableRegistry::getTableLocator()->get('Tags');
+        foreach ($entities as $sentence) {
+            $Tags->TagsSentences->tagSentence($sentence->id, $tagId, $userId);
+        }
+
+        return $Tags->TagsSentences->find()->where(['tag_id' => $tagId])->count();
+    }
+
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
+        $tagId = 2;
+        $defaultNbPerPage = User::$defaultSettings['sentences_per_page'];
+
+        $nbSentences = $this->addSentencesWithTag($tagId, $defaultNbPerPage * 2 + 1);
+
+        $lastPage = ceil($nbSentences / $defaultNbPerPage);
+        $this->assertEquals(3, $lastPage);
+
+        $this->get("/en/tags/show_sentences_with_tag/$tagId?page=9999999");
+        $this->assertRedirect("/en/tags/show_sentences_with_tag/$tagId?page=$lastPage");
+    }
+
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_withUserSetting() {
+        $tagId = 2;
+        $user = 'kazuki';
+        $userId = 7;
+        $nbPerPageSetting = TableRegistry::getTableLocator()
+            ->get('Users')
+            ->getSettings($userId)
+            ['settings']['sentences_per_page'];
+
+        $nbSentences = $this->addSentencesWithTag($tagId, $nbPerPageSetting * 2 + 1);
+
+        $lastPage = ceil($nbSentences / $nbPerPageSetting);
+        $this->assertEquals(3, $lastPage);
+
+        $this->logInAs($user);
+        $this->get("/en/tags/show_sentences_with_tag/$tagId?page=9999999");
+        $this->assertRedirect("/en/tags/show_sentences_with_tag/$tagId?page=$lastPage");
     }
 }

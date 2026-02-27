@@ -38,11 +38,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     <div class="section md-whiteframe-1dp" layout="column">
         <?php /* @translators: title of the help text on the Add vocabulary page */ ?>
-        <h2><?= __('Tips'); ?></h2>
-        <p><?= __(
+        <h2><?= h(__('Tips')) ?></h2>
+        <p><?= h(__(
             'Add vocabulary that you are learning. If your vocabulary does not '.
             'exist yet in Tatoeba, other contributors can add sentences for it.'
-        );
+        ))
         ?></p>
     </div>
 </div>
@@ -52,7 +52,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $title ?></h2>
+                <h2><?= h($title) ?></h2>
             </div>
         </md-toolbar>
     
@@ -67,7 +67,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div layout="row">
                 <div class="language" layout="column">
                     <?php /* @translators: language field label in new vocabulary request form */ ?>
-                    <label for="lang-select"><?= __('Language'); ?></label>
+                    <label for="lang-select"><?= h(__('Language')) ?></label>
                     <?php
                     $langArray = $this->Languages->profileLanguagesArray();
                     $selectedLang = key($langArray);
@@ -101,7 +101,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <md-button type="submit" class="md-raised md-primary"
                            ng-disabled="ctrl.isAdding || !ctrl.data.text || !ctrl.data.lang">
                     <?php /* @translators: button to add a vocabulary request */ ?>
-                    <?= __('Add'); ?>
+                    <?= h(__('Add')) ?>
                 </md-button>
             </div>
         <?= $this->Form->end() ?>
@@ -111,7 +111,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2 flex><?= __('Vocabulary items added'); ?></h2>
+                <h2 flex><?= h(__('Vocabulary items added')) ?></h2>
                 <md-progress-circular md-mode="indeterminate"
                                       md-diameter="32"
                                       ng-show="ctrl.isAdding">
@@ -127,7 +127,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <div class="vocabulary-text" flex>{{item.text}}</div>
                 <md-icon ng-show="item.duplicate">warning</md-icon>
                 <md-tooltip md-direction="top" ng-show="item.duplicate">
-                    <?= __('You have already added this vocabulary item.') ?>
+                    <?= h(__('You have already added this vocabulary item.')) ?>
                 </md-tooltip>
                 <md-button class="md-primary" href="{{item.url}}" ng-disabled="!item.url">
                     {{item.numSentencesLabel}}

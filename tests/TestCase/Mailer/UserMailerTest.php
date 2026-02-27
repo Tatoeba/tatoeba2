@@ -2,7 +2,11 @@
 namespace App\Test\Mailer;
 
 use App\Mailer\UserMailer;
+use App\Model\ContentReport;
+use App\Model\Entity\SentenceComment;
 use App\Model\Entity\User;
+use App\Model\Entity\Wall;
+use Cake\Core\Configure;
 use Cake\Mailer\Email;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\TestCase;
@@ -17,6 +21,9 @@ class UserMailerTest extends TestCase {
     protected $mailer = null;
 
     public function setUp() {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
+        Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
+
         $this->email = new Email([
             'from' => 'sender@example.com',
             'emailFormat' => 'html',
@@ -46,7 +53,7 @@ class UserMailerTest extends TestCase {
             [$user, $isSuspended]
         );
 
-        $this->assertMailSentTo('tatoeba-community-admins@googlegroups.com');
+        $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('( ! ) kazuki', 'subject');
         $this->assertMailContainsHtml($snippet);
     }
@@ -63,5 +70,176 @@ class UserMailerTest extends TestCase {
         $this->assertMailSentFrom('sender@example.com');
         $this->assertMailSentWith('Tatoeba, new password', 'subject');
         $this->assertMailContainsHtml('Your new password: secret');
+    }
+
+    public function test_content_report_wall_post() {
+        $wallPost = new Wall(['id' => 3, 'content' => 'spam spam spam...']);
+        $report = new ContentReport('kazuki', $wallPost, "line1\nline2");
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('[Content Report] Wall message #3', 'subject');
+        $this->assertMailContainsHtml('Member <a href="https://example.net/user/profile/kazuki">kazuki</a> reported a wall post');
+        $this->assertMailContainsHtml('https://example.net/wall/show_message/3#message_3');
+        $this->assertMailContainsHtml("line1<br />\nline2");
+    }
+
+    public function test_content_report_wall_post_no_details() {
+        $wallPost = new Wall(['id' => 3, 'content' => 'spam spam spam...']);
+        $report = new ContentReport('kazuki', $wallPost, '');
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailContainsHtml('kazuki did not provide any detail.');
+    }
+
+    public function test_content_report_wall_post_html_injection() {
+        $wallPost = new Wall(['id' => 3, 'content' => 'spam spam spam...']);
+        $report = new ContentReport('kazuki', $wallPost, '<img src="http://example.com/oops" />');
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailContainsHtml('&lt;img src=&quot;http://example.com/oops&quot; /&gt;');
+    }
+
+    public function test_content_report_sentence_comment() {
+        $comment = new SentenceComment([
+            'id' => 5,
+            'text' => 'spam spam spam...',
+            'sentence_id' => 19,
+        ]);
+        $report = new ContentReport('kazuki', $comment, 'please remove spam');
+
+        $this->mailer->send('content_report', [$report]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('[Content Report] Comment #5 (on sentence #19)', 'subject');
+        $this->assertMailContainsHtml('Member <a href="https://example.net/user/profile/kazuki">kazuki</a> reported a sentence comment');
+        $this->assertMailContainsHtml('https://example.net/sentences/show/19#comment-5');
+        $this->assertMailContainsHtml('please remove spam');
+    }
+
+    public function test_content_with_outbound_links_new_comment() {
+        $comment = new SentenceComment([
+            'id' => 5,
+            'text' => 'Check this out!! https://example.com',
+            'sentence_id' => 19,
+            'user_id' => 7,
+        ]);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+
+        $this->mailer->send('content_with_outbound_links', [$comment, $user]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('Outbound links in new sentence comment #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has posted a <a href="https://example.net/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('Check this out!! https://example.com');
+    }
+
+    public function test_content_with_outbound_links_edited_comment() {
+        $comment = new SentenceComment([
+            'id' => 5,
+            'text' => 'Check this out!! https://example.com',
+            'sentence_id' => 19,
+            'user_id' => 7,
+        ]);
+        $comment->isNew(false);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+
+        $this->mailer->send('content_with_outbound_links', [$comment, $user]);
+
+        $this->assertMailSentWith('Outbound links in edited sentence comment #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('Check this out!! https://example.com');
+    }
+
+    public function test_content_with_outbound_links_new_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'content' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+
+        $this->mailer->send('content_with_outbound_links', [$wallPost, $user]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('Outbound links in new wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has posted a <a href="https://example.net/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('Check this out!! https://example.com');
+    }
+
+    public function test_content_with_outbound_links_edited_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'content' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $wallPost->isNew(false);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+
+        $this->mailer->send('content_with_outbound_links', [$wallPost, $user]);
+
+        $this->assertMailSentWith('Outbound links in edited wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('Check this out!! https://example.com');
+    }
+
+    public function test_outbound_links_autoban_new_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'content' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+        $threshold = 100;
+
+        $this->mailer->send('outbound_links_autoban', [$wallPost, $user, $threshold]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('Autoban triggered by outbound links in new wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> was automatically banned after posting a <a href="https://example.net/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('Check this out!! https://example.com');
+    }
+
+    public function test_outbound_links_autoban_edited_wall_post() {
+        $wallPost = new Wall([
+            'id' => 5,
+            'content' => 'Check this out!! https://example.com',
+            'owner' => 7,
+        ]);
+        $wallPost->isNew(false);
+        $user = new User([
+            'username' => 'kazuki',
+            'id' => 7,
+        ]);
+        $threshold = 100;
+
+        $this->mailer->send('outbound_links_autoban', [$wallPost, $user, $threshold]);
+
+        $this->assertMailSentTo('moderator@example.net');
+        $this->assertMailSentWith('Autoban triggered by outbound links in edited wall post #5', 'subject');
+        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> was automatically banned after editing a <a href="https://example.net/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('Check this out!! https://example.com');
     }
 }

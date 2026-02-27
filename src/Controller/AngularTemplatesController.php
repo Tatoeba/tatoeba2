@@ -29,4 +29,8 @@ class AngularTemplatesController extends AppController
             $this->set(compact('code'));
         }
     }
+
+    public function edit_vocabulary()
+    {
+    }
 }

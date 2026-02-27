@@ -21,6 +21,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 use App\Model\Entity\PinyinTrait;
 use App\Model\Entity\FuriganaTrait;
+use App\Lib\LanguagesLib;
 use Cake\I18n\Time;
 use App\Model\CurrentUser;
 
@@ -34,7 +35,9 @@ class Transcription extends Entity
         'readonly',
         'type',
         'html',
+        'lang_tag',
         'markup',
+        'editor',
         'info_message'
     ];
 
@@ -171,6 +174,13 @@ class Transcription extends Entity
         return $text;
     }
 
+    protected function _getLangTag()
+    {
+        if ($this->sentence && $this->sentence->lang) {
+            return LanguagesLib::languageTag($this->sentence->lang, $this->script);
+        }
+    }
+
     protected function _getMarkup() {
         if (!$this->sentence || !$this->sentence->lang || !$this->script || !$this->text) {
             return;
@@ -228,5 +238,12 @@ class Transcription extends Entity
         }
 
         return $message;
+    }
+
+    protected function _getEditor()
+    {
+        if ($this->user && $this->user->username) {
+            return $this->user->username;
+        }
     }
 }

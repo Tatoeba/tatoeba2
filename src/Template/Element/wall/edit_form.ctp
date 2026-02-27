@@ -37,6 +37,11 @@ $cancelUrl = $this->Url->build([
         $message->content = $this->safeForAngular($message->content);
         echo $this->Form->create($message);
         echo $this->Form->textarea('content');
+
+        echo $this->element('validation/confirm_outbound_links', [
+            'label' => __('I confirm the links in my wall post are legitimate '.
+                          'and not included for SEO purposes.'),
+        ]);
         ?>
 
         <div layout="row" layout-align="end center" layout-padding>

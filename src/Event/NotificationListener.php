@@ -18,31 +18,36 @@
  */
 namespace App\Event;
 
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventListenerInterface;
-use Cake\Mailer\Email;
-use Cake\Core\Configure;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\ORM\TableRegistry;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Utility\Hash;
 
 
 class NotificationListener implements EventListenerInterface {
+
+    use MailerAwareTrait;
+    use ModelAwareTrait;
+
     public function implementedEvents() {
-        return array(
+        return [
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
             'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',
             'Model.Wall.replyPosted' => 'sendWallReplyNotification',
-        );
+            'Model.Wall.newThread' => 'sendNewThreadNotification',
+        ];
     }
 
-    public function __construct($Email = null) {
-        $this->Email = $Email ? $Email : new Email();
+    public function __construct() {
+        $this->Mailer = $this->getMailer('Messaging');
+        $this->Users = $this->loadModel('Users');
     }
 
     private function _getMessageForMail($parentMessageId)
     {
-        $Wall = TableRegistry::getTableLocator()->get('Wall');
-        return $Wall->find()
+        return $this->loadModel('Wall')->find()
             ->where([
                 'Wall.id' => $parentMessageId
             ])
@@ -61,57 +66,56 @@ class NotificationListener implements EventListenerInterface {
             ->first();
     }
 
+    private function _getUsersEmailsToNotify($query) {
+        $toNotify =
+            $query
+            ->where(['send_notifications' => true])
+            ->select(['email'])
+            ->toList();
+        $toNotify = Hash::extract($toNotify, '{n}.email');
+        $toNotify = array_filter($toNotify);
+        return $toNotify;
+    }
+
     public function sendWallReplyNotification($event) {
         $post = $event->getData('post'); // $post
 
-        $parentMessage = $this->_getMessageForMail($post['parent_id']);
-        if (!$parentMessage->user->send_notifications
-            || $parentMessage->user->id == $post['owner']) {
+        if ($post->hidden) {
             return;
         }
 
-        $recipient = $parentMessage->user->email;
-        $User = TableRegistry::getTableLocator()->get('Users');
-        $author = $User->getUsernameFromId($post['owner']);
-        $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
+        $parentMessage = $this->_getMessageForMail($post->parent_id);
+        $author = $this->Users->getUsernameFromId($post->owner);
+        $toMention = $this->Users->find();
 
-        $this->Email
-             ->setTo($recipient)
-             ->setSubject($subject)
-             ->setTemplate('wall_reply')
-             ->setViewVars(array(
-                 'author' => $author,
-                 'postId' => $post['id'],
-                 'messageContent' => $post['content']
-             ))
-             ->send();
+        if ($parentMessage->user->send_notifications
+            && $parentMessage->user->id != $post->owner) {
+            $recipient = $parentMessage->user->email;
+            $this->Mailer->send(
+                'wall_reply',
+                [$recipient, $author, $post]
+            );
+            $toMention->where(['NOT' => ['id' => $parentMessage->user->id]]);
+        }
+
+        $this->_sendWallMentionNotification($post, $author, $toMention);
     }
 
     public function sendPmNotification($event) {
         $message = $event->getData('message'); // $message
-        $User = TableRegistry::getTableLocator()->get('Users');
-        $userSettings = $User->getSettings($message['recpt']);
+        $userSettings = $this->Users->getSettings($message->recpt);
 
         if (!$userSettings['send_notifications']) {
             return;
         }
 
-        $recipientEmail = $User->getEmailFromId($message['recpt']);
-        $sender = $User->getUsernameFromId($message['sender']);
-        $title = $message['title'];
-        $content = $message['content'];
+        $recipientEmail = $this->Users->getEmailFromId($message->recpt);
+        $sender = $this->Users->getUsernameFromId($message->sender);
 
-        $this->Email
-            ->setTo($recipientEmail)
-            ->setSubject('Tatoeba PM - ' . $title)
-            ->setTemplate('new_private_message')
-            ->setViewVars(array(
-              'sender' => $sender,
-              'title' => $title,
-              'message' => $content,
-              'messageId' => $message['id'],
-            ))
-            ->send();
+        $this->Mailer->send(
+            'new_private_message',
+            [$recipientEmail, $sender, $message]
+        );
     }
 
     private function _getMentionedUsernames($comment)
@@ -127,7 +131,7 @@ class NotificationListener implements EventListenerInterface {
 
     public function sendSentenceCommentNotification($event) {
         $comment = $event->getData('comment'); // $comment
-        $sentenceId = $comment['sentence_id'];
+        $sentenceId = $comment->sentence_id;
 
         $Sentence = TableRegistry::getTableLocator()->get('Sentences');
         $SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
@@ -137,62 +141,57 @@ class NotificationListener implements EventListenerInterface {
         } catch (RecordNotFoundException $e) {
             $sentence = null;
         }
-        
+
         $comments = $SentenceComment->findAllBySentenceId($sentenceId, [
             'fields' => ['user_id']
         ])->toList();
-        $userIds = array_merge(array($sentence), $comments);
+        $userIds = array_merge([$sentence], $comments);
         $userIds = Hash::extract($userIds, '{n}.user_id');
 
-        $usernames = $this->_getMentionedUsernames($comment['text']);
+        $usernames = $this->_getMentionedUsernames($comment->text);
         $orCondition = ['id IN' => $userIds];
         if ($usernames) {
             $orCondition['username IN'] = $usernames;
         }
 
-        $User =  TableRegistry::getTableLocator()->get('Users');
-        $toNotify = $User->find()
-            ->where([
-                'OR' => $orCondition,
-                'NOT' => ['id' => $comment['user_id']],
-                'send_notifications' => true,
-            ])
-            ->select(['email'])
-            ->toList();
-        $toNotify = Hash::extract($toNotify, '{n}.email');
+        $baseQuery = $this->Users->find()->where([
+            'OR' => $orCondition,
+            'NOT' => ['id' => $comment->user_id],
+        ]);
 
-        $comment['sentence_text'] = $sentence ? $sentence->text : false;
-        $comment['author'] = $User->getUsernameFromId($comment['user_id']);
-        foreach ($toNotify as $email) {
-            $this->_sendSentenceCommentNotification($email, $comment);
+        $author = $this->Users->getUsernameFromId($comment->user_id);
+        foreach ($this->_getUsersEmailsToNotify($baseQuery) as $recipient) {
+            $this->Mailer->send(
+                'comment_on_sentence',
+                [$recipient, $author, $comment, $sentence]
+            );
         }
     }
 
-    private function _sendSentenceCommentNotification($recipient, $comment) {
-        if (empty($recipient)) {
+    public function sendNewThreadNotification($event) {
+        $post = $event->getData('post');
+        if ($post->hidden) {
             return;
         }
-        $sentenceText = $comment['sentence_text'];
-        $sentenceIsDeleted = $sentenceText === false;
-        $sentenceId = $comment['sentence_id'];
-        if ($sentenceIsDeleted) {
-            $subject = 'Tatoeba - Comment on deleted sentence #' . $sentenceId;
-        } else {
-            $subject = 'Tatoeba - Comment on sentence : ' . $sentenceText;
-        }
-        $commentText = $comment['text'];
+        $author = $this->Users->getUsernameFromId($post->owner);
+        $this->_sendWallMentionNotification($post, $author, $this->Users->find());
+    }
 
-        $this->Email
-            ->setTo($recipient)
-            ->setSubject($subject)
-            ->setTemplate('comment_on_sentence')
-            ->setViewVars(array(
-              'author' => $comment['author'],
-              'commentText' => $commentText,
-              'sentenceIsDeleted' => $sentenceIsDeleted,
-              'sentenceText' => $sentenceText,
-              'sentenceId' => $sentenceId,
-            ))
-            ->send();
+    private function _sendWallMentionNotification($post, $author, $baseQuery) {
+        $usernames = $this->_getMentionedUsernames($post->content);
+        if (empty($usernames)) {
+            return;
+        }
+
+        $baseQuery->where([
+            'username IN' => $usernames,
+            'NOT' => ['id' => $post->owner],
+        ]);
+        foreach ($this->_getUsersEmailsToNotify($baseQuery) as $recipient) {
+            $this->Mailer->send(
+                'wall_mention',
+                [$recipient, $author, $post]
+            );
+        }
     }
 }

@@ -2,7 +2,6 @@
 
 use App\Model\Search;
 use App\Model\SearchApi;
-use App\Model\Exception\InvalidValueException;
 
 use App\Model\Search\CursorFilter;
 use App\Model\Search\HasAudioFilter;
@@ -10,6 +9,7 @@ use App\Model\Search\IsNativeFilter;
 use App\Model\Search\IsOrphanFilter;
 use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\LangFilter;
+use App\Model\Search\LicenseFilter;
 use App\Model\Search\ListFilter;
 use App\Model\Search\OriginFilter;
 use App\Model\Search\OwnerFilter;
@@ -18,6 +18,7 @@ use App\Model\Search\TranslationCountFilter;
 use App\Model\Search\TranslationFilterGroup;
 use App\Model\Search\TranslationHasAudioFilter;
 use App\Model\Search\TranslationIsDirectFilter;
+use App\Model\Search\TranslationIsNativeFilter;
 use App\Model\Search\TranslationIsOrphanFilter;
 use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
@@ -132,7 +133,7 @@ class SearchApiTest extends TestCase
                 ],
             ],
             'invalid owner' => [
-                [ 'lang' => 'epo', 'owner' => 'invalid' ],
+                [ 'owner' => 'invalid', 'lang' => 'epo' ],
                 new BadRequestException("Invalid value for parameter 'owner': No such owner: 'invalid'")
             ],
             'multiple owner parameters' => [
@@ -158,7 +159,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'is_orphan' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new IsOrphanFilter(true),
+                    new IsOrphanFilter(),
                 ],
             ],
             'invalid is_orphan' => [
@@ -174,7 +175,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'is_unapproved' => 'no' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new IsUnapprovedFilter(false),
+                    (new IsUnapprovedFilter())->not(),
                 ],
             ],
             'invalid is_unapproved' => [
@@ -190,7 +191,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'has_audio' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new HasAudioFilter(true),
+                    new HasAudioFilter(),
                 ],
             ],
             'invalid has_audio' => [
@@ -272,7 +273,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'is_native' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    new IsNativeFilter(true),
+                    new IsNativeFilter(),
                 ],
             ],
             'invalid is_native' => [
@@ -282,10 +283,6 @@ class SearchApiTest extends TestCase
             'multiple is_native parameters' => [
                 [ 'lang' => 'epo', 'is_native' => ['yes', 'yes'] ],
                 new BadRequestException("Invalid usage of parameter 'is_native': cannot be provided multiple times")
-            ],
-            'is_native with multiple langs' => [
-                [ 'lang' => 'epo,sun', 'is_native' => 'yes' ],
-                new BadRequestException("Invalid usage of parameter 'is_native': must be used with a single language (multiple languages were provided to the language filter: epo sun)")
             ],
 
             'valid origin' => [
@@ -310,6 +307,25 @@ class SearchApiTest extends TestCase
             'multiple origin parameters' => [
                 [ 'lang' => 'epo', 'origin' => ['original', 'translation'] ],
                 new BadRequestException("Invalid usage of parameter 'origin': cannot be provided multiple times")
+            ],
+
+            'valid license' => [
+                [ 'lang' => 'epo', 'license' => 'CC0 1.0' ],
+                [
+                    (new LangFilter())->anyOf(['epo']),
+                    (new LicenseFilter())->anyOf(['CC0 1.0']),
+                ],
+            ],
+            'licensing issue' => [
+                [ 'lang' => 'epo', 'license' => 'PROBLEM' ],
+                [
+                    (new LangFilter())->anyOf(['epo']),
+                    (new LicenseFilter())->anyOf(['PROBLEM']),
+                ],
+            ],
+            'invalid license' => [
+                [ 'lang' => 'epo', 'license' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'license': Value must be one of: PROBLEM, CC BY 2.0 FR, CC0 1.0")
             ],
 
             'valid trans:lang' => [
@@ -352,7 +368,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:is_direct' => 'no' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationIsDirectFilter(false)),
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsDirectFilter())->not()),
                 ],
             ],
             'invalid trans:is_direct' => [
@@ -402,7 +418,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:is_unapproved' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter(true)),
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter()),
                 ],
             ],
             'invalid trans:is_unapproved' => [
@@ -418,7 +434,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:is_orphan' => 'no' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationIsOrphanFilter(false)),
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsOrphanFilter())->not()),
                 ],
             ],
             'invalid trans:is_orphan' => [
@@ -434,7 +450,7 @@ class SearchApiTest extends TestCase
                 [ 'lang' => 'epo', 'trans:has_audio' => 'yes' ],
                 [
                     (new LangFilter())->anyOf(['epo']),
-                    (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter(true)),
+                    (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter()),
                 ],
             ],
             'invalid trans:has_audio' => [
@@ -444,6 +460,22 @@ class SearchApiTest extends TestCase
             'multiple trans:has_audio parameters' => [
                 [ 'lang' => 'epo', 'trans:has_audio' => ['yes', 'yes'] ],
                 new BadRequestException("Invalid usage of parameter 'trans:has_audio': cannot be provided multiple times")
+            ],
+
+            'valid trans:is_native' => [
+                [ 'lang' => 'epo', 'trans:is_native' => 'yes' ],
+                [
+                    (new LangFilter())->anyOf(['epo']),
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter()),
+                ],
+            ],
+            'invalid trans:is_native' => [
+                [ 'lang' => 'epo', 'trans:is_native' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'trans:is_native': must be 'yes' or 'no'")
+            ],
+            'multiple trans:is_native parameters' => [
+                [ 'lang' => 'epo', 'trans:is_native' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'trans:is_native': cannot be provided multiple times")
             ],
 
             'valid trans:count' => [
@@ -495,7 +527,7 @@ class SearchApiTest extends TestCase
                     (new LangFilter())->anyOf(['epo']),
                     (new TranslationFilterGroup('_1'))
                         ->setFilter((new TranslationLangFilter())->anyOf(['sun']))
-                        ->setFilter(new TranslationIsDirectFilter(true))
+                        ->setFilter(new TranslationIsDirectFilter())
                         ->setExclude(true),
                 ],
             ],
@@ -517,18 +549,9 @@ class SearchApiTest extends TestCase
                         ->setExclude(true),
                 ],
             ],
-
-            'invalid parameter' => [
-                [ 'lang' => 'epo', 'invalid' => 'blah' ],
-                new BadRequestException("Unknown parameter 'invalid'"),
-            ],
             'invalid trans: parameter' => [
                 [ 'lang' => 'epo', 'trans:invalid' => 'blah' ],
                 new BadRequestException("Unknown parameter 'trans:invalid': unknown suffix 'invalid'"),
-            ],
-            'invalid namespace in parameter' => [
-                [ 'lang' => 'epo', 'invalid:lang' => 'sun' ],
-                new BadRequestException("Unknown parameter 'invalid:lang'"),
             ],
             'empty trans: group name' => [
                 [ 'lang' => 'epo', 'trans::lang' => 'sun' ],
@@ -541,7 +564,7 @@ class SearchApiTest extends TestCase
 
             'invalid after parameter, non-integer' => [
                 [ 'lang' => 'epo', 'sort' => 'words', 'after' => 'invalid' ],
-                new BadRequestException("Invalid value for parameter 'after': 'invalid' is not an integer"),
+                new BadRequestException("Invalid value for parameter 'after': 'invalid' is not numeric"),
             ],
             'invalid after parameter, only one value' => [
                 [ 'lang' => 'epo', 'sort' => 'words', 'after' => '123' ],
@@ -558,13 +581,10 @@ class SearchApiTest extends TestCase
         ];
     }
 
-    private function assertFiltersThrowException($filters, $exception) {
+    private function assertThrowsException($codeToTest, $exception) {
         $expectedName = get_class($exception);
         try {
-            if (isset($filters['sort'])) {
-                $this->SearchApi->consumeSort($filters);
-            }
-            $this->SearchApi->setFilters($filters);
+            $codeToTest();
         } catch(\Exception $actual) {
             $this->assertEquals($exception, $actual);
             return;
@@ -572,28 +592,81 @@ class SearchApiTest extends TestCase
         $this->fail("$expectedName was not thrown");
     }
 
-    private function _buildSearchFromFilters($filters) {
-        $search = new Search();
-        foreach ($filters as $filter) {
-            $search->setFilter($filter);
-            if (method_exists($filter, 'setSearch')) {
-                $filter->setSearch($search);
-            }
-        }
-        return $search;
-    }
-
     /**
      * @dataProvider filtersProvider()
      */
     public function testFilters($filters, $expected) {
-        if ($expected instanceof \Exception) {
-            $this->assertFiltersThrowException($filters, $expected);
+        $codeToTest = function() use (&$filters) {
+            if (isset($filters['sort'])) {
+                $this->SearchApi->consumeSort($filters);
+            }
+            $this->SearchApi->consumeFilters($filters);
+            return $this->SearchApi->search;
+        };
+        if ($expected instanceOf \Exception) {
+            $this->assertThrowsException($codeToTest, $expected);
         } else {
-            $expectedSearch = $this->_buildSearchFromFilters($expected);
-            $this->SearchApi->setFilters($filters);
-            $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
+
+            $result = $codeToTest();
+
+            if (is_null($expected)) {
+                $this->assertNull($result);
+            } else {
+                $results = array_map(fn($f) => $f->compile(), $result->getFilters());
+                $expected = array_map(fn($f) => $f->compile(), $expected);
+                foreach ($expected as $expectedFilter) {
+                    $this->assertEquals($expectedFilter, array_shift($results));
+                }
+            }
         }
+    }
+
+    public function SearchSentencesParamsProvider() {
+        return [
+            'invalid parameter' => [
+                [ 'lang' => 'epo', 'sort' => 'modified', 'invalid' => 'blah' ],
+                new BadRequestException("Unknown parameter 'invalid'"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider SearchSentencesParamsProvider()
+     */
+    public function testReadParamsForSearchSentences($params, $expected) {
+        $codeToTest = function () use ($params) {
+            $this->SearchApi->readParamsForSearchSentences($params);
+        };
+        $this->assertThrowsException($codeToTest, $expected);
+    }
+
+    public function GetSentenceParamsProvider() {
+        return [
+            'invalid parameter' => [
+                [ 'invalid' => 'blah' ],
+                new BadRequestException("Unknown parameter 'invalid'"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider GetSentenceParamsProvider()
+     */
+    public function testReadParamsForGetSentence($params, $expected) {
+        $codeToTest = function () use ($params) {
+            $this->SearchApi->readParamsForGetSentence($params);
+        };
+        $this->assertThrowsException($codeToTest, $expected);
+    }
+
+    public function testDefaultFilters() {
+        $expectedDefaults = [
+            'LicenseFilter' => (new LicenseFilter())->not()->anyOf([LicenseFilter::LICENSING_ISSUE]),
+        ];
+
+        $this->SearchApi->setDefaultFilters();
+
+        $this->assertEquals($expectedDefaults, $this->SearchApi->search->getFilters());
     }
 
     public function testQ() {
@@ -602,7 +675,7 @@ class SearchApiTest extends TestCase
         $expectedSearch->setFilter((new LangFilter())->anyOf(['epo']));
 
         $filters = ['lang' => 'epo', 'q' => 'hello world'];
-        $this->SearchApi->setFilters($filters);
+        $this->SearchApi->consumeFilters($filters);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
@@ -615,7 +688,7 @@ class SearchApiTest extends TestCase
 
         $params = ['sort' => 'modified', 'lang' => 'epo'];
         $this->SearchApi->consumeSort($params);
-        $this->SearchApi->setFilters($params);
+        $this->SearchApi->consumeFilters($params);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
@@ -629,7 +702,7 @@ class SearchApiTest extends TestCase
 
         $params = ['sort' => '-modified', 'lang' => 'epo'];
         $this->SearchApi->consumeSort($params);
-        $this->SearchApi->setFilters($params);
+        $this->SearchApi->consumeFilters($params);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
@@ -644,16 +717,17 @@ class SearchApiTest extends TestCase
 
         $params = ['sort' => '-modified', 'lang' => 'epo', 'after' => '123,456'];
         $this->SearchApi->consumeSort($params);
-        $this->SearchApi->setFilters($params);
+        $this->SearchApi->consumeFilters($params);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
 
     public function sortFailureProvider() {
+        $invalidError = "Invalid value for parameter 'sort': must be one of: relevance, words, created, modified, random, -relevance, -words, -created, -modified, -random";
         return [
             'missing' => [null, new BadRequestException('Required parameter "sort" missing')],
-            'empty'   => ['', new BadRequestException('Invalid value for parameter "sort"')],
-            'invalid' => ['invalid', new BadRequestException('Invalid value for parameter "sort"')],
+            'empty'   => ['', new BadRequestException($invalidError)],
+            'invalid' => ['invalid', new BadRequestException($invalidError)],
             'multiple params' => [
                 ['created', 'modified'],
                 new BadRequestException("Invalid usage of parameter 'sort': cannot be provided multiple times")
@@ -675,38 +749,253 @@ class SearchApiTest extends TestCase
         $this->fail(get_class($expected) . " was not thrown");
     }
 
-    public function showTransProvider() {
+    public function showtransFiltersProvider_withMatching() {
         return [
-            'absent'          => [ [],                         []             ],
-            'empty'           => [ ['showtrans' => ''],        ['none']       ],
-            'multiple values' => [ ['showtrans' => 'sun,vie'], ['sun', 'vie'] ],
-            'invalid' => [
-                ['showtrans' => 'invalid'],
-                new BadRequestException("Invalid value for parameter 'showtrans': Invalid language code 'invalid'")
+            'invalid showtrans value, with matching' => [
+                [ 'showtrans' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans': must be one of: all, none, matching"),
             ],
-            'multiple params' => [
-                ['showtrans' => ['sun', 'vie']],
-                new BadRequestException("Invalid usage of parameter 'showtrans': cannot be provided multiple times")
+            'showtrans is "matching" without any translation filter' => [
+                [ 'showtrans' => 'matching' ],
+                null,
+            ],
+            'showtrans is "matching" with a negative translation filter' => [
+                [ 'showtrans' => 'matching', '!trans:lang' => 'sun' ],
+                null,
+            ],
+            'showtrans is "matching" with a negated translation filter group' => [
+                [ 'showtrans' => 'matching', 'trans:!1:lang' => 'sun' ],
+                null,
+            ],
+            'showtrans is "matching" with a positive translation filter' => [
+                [ 'showtrans' => 'matching', 'trans:lang' => '!sun' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->not()->anyOf(['sun'])
+                    )
+                ],
+            ],
+        ];
+    }
+
+    public function showtransFiltersProvider_withoutMatching() {
+        return [
+            'invalid showtrans value, without matching' => [
+                [ 'showtrans' => 'matching' ],
+                new BadRequestException("Invalid value for parameter 'showtrans': must be one of: all, none"),
+            ],
+        ];
+    }
+
+    public function showtransFiltersProvider() {
+        return [
+            'showtrans is "all"' => [
+                [ 'showtrans' => 'all' ],
+                [],
+            ],
+            'showtrans is "none"' => [
+                [ 'showtrans' => 'none' ],
+                null,
+            ],
+            'showtrans is "all" combined with showtrans:lang' => [
+                [ 'showtrans' => 'all', 'showtrans:lang' => 'sun' ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:lang' or 'showtrans': these two cannot be used together"),
+            ],
+
+            'valid showtrans:lang' => [
+                [ 'showtrans:lang' => 'sun' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->anyOf(['sun'])
+                    )
+                ],
+            ],
+            'invalid showtrans:lang' => [
+                [ 'showtrans:lang' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:lang': Invalid language code 'invalid'")
+            ],
+            'multiple showtrans:lang values' => [
+                [ 'showtrans:lang' => 'sun,vie' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->anyOf(['sun', 'vie'])
+                    )
+                ]
+            ],
+            'negated showtrans:lang' => [
+                [ 'showtrans:lang' => '!sun' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationLangFilter())->not()->anyOf(['sun'])
+                    )
+                ]
+            ],
+            'multiple showtrans:lang parameters' => [
+                [ 'showtrans:lang' => ['sun', 'vie'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:lang': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:is_direct' => [
+                [ 'showtrans:is_direct' => 'no' ],
+                [
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsDirectFilter())->not()),
+                ],
+            ],
+            'invalid showtrans:is_direct' => [
+                [ 'showtrans:is_direct' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_direct': must be 'yes' or 'no'")
+            ],
+            'multiple trans:is_direct parameters' => [
+                [ 'showtrans:is_direct' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_direct': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:owner' => [
+                [ 'showtrans:owner' => 'contributor' ],
+                [
+                    (new TranslationFilterGroup())->setFilter((new TranslationOwnerFilter())->anyOf(['contributor'])),
+                ],
+            ],
+            'invalid showtrans:owner' => [
+                [ 'showtrans:owner' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:owner': No such owner: 'invalid'")
+            ],
+            'multiple showtrans:owner parameters' => [
+                [ 'showtrans:owner' => ['contributor', 'admin'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:owner': cannot be provided multiple times")
+            ],
+            'multiple showtrans:owner values' => [
+                [ 'showtrans:owner' => 'contributor,admin' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationOwnerFilter())->anyOf(['contributor', 'admin'])
+                    )
+                ],
+            ],
+            'negated showtrans:owner' => [
+                [ 'showtrans:owner' => '!contributor' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(
+                        (new TranslationOwnerFilter())->not()->anyOf(['contributor'])
+                    ),
+                ],
+            ],
+
+            'valid showtrans:is_unapproved' => [
+                [ 'showtrans:is_unapproved' => 'yes' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsUnapprovedFilter()),
+                ],
+            ],
+            'invalid showtrans:is_unapproved' => [
+                [ 'showtrans:is_unapproved' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_unapproved': must be 'yes' or 'no'")
+            ],
+            'multiple showtrans:is_unapproved parameters' => [
+                [ 'showtrans:is_unapproved' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_unapproved': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:is_orphan' => [
+                [ 'showtrans:is_orphan' => 'no' ],
+                [
+                    (new TranslationFilterGroup())->setFilter((new TranslationIsOrphanFilter())->not()),
+                ],
+            ],
+            'invalid showtrans:is_orphan' => [
+                [ 'showtrans:is_orphan' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_orphan': must be 'yes' or 'no'")
+            ],
+            'multiple trans:is_orphan parameters' => [
+                [ 'showtrans:is_orphan' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_orphan': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:has_audio' => [
+                [ 'showtrans:has_audio' => 'yes' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(new TranslationHasAudioFilter()),
+                ],
+            ],
+            'invalid showtrans:has_audio' => [
+                [ 'showtrans:has_audio' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:has_audio': must be 'yes' or 'no'")
+            ],
+            'multiple showtrans:has_audio parameters' => [
+                [ 'showtrans:has_audio' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:has_audio': cannot be provided multiple times")
+            ],
+
+            'valid showtrans:is_native' => [
+                [ 'showtrans:is_native' => 'yes' ],
+                [
+                    (new TranslationFilterGroup())->setFilter(new TranslationIsNativeFilter()),
+                ],
+            ],
+            'invalid showtrans:is_native' => [
+                [ 'showtrans:is_native' => 'invalid' ],
+                new BadRequestException("Invalid value for parameter 'showtrans:is_native': must be 'yes' or 'no'")
+            ],
+            'multiple showtrans:is_native parameters' => [
+                [ 'showtrans:is_native' => ['yes', 'yes'] ],
+                new BadRequestException("Invalid usage of parameter 'showtrans:is_native': cannot be provided multiple times")
+            ],
+
+            'showtrans: with invalid group' => [
+                [ 'showtrans:!1:lang' => 'sun' ],
+                new BadRequestException("Invalid parameter 'showtrans:!1:lang': '!1' is not a valid group name: it must consist of non-empty digits"),
+            ],
+            'multiple showtrans: groups' => [
+                [ 'showtrans:1:lang' => 'sun', 'showtrans:2:is_native' => 'yes', 'showtrans:2:lang' => 'por' ],
+                [
+                    (new TranslationFilterGroup('1'))->setFilter((new TranslationLangFilter())->anyOf(['sun'])),
+                    (new TranslationFilterGroup('2'))
+                        ->setFilter(new TranslationIsNativeFilter())
+                        ->setFilter((new TranslationLangFilter())->anyOf(['por'])),
+                ],
             ],
         ];
     }
 
     /**
-     * @dataProvider showTransProvider()
+     * @dataProvider showtransFiltersProvider()
+     * @dataProvider showtransFiltersProvider_withMatching()
      */
-    public function testConsumeShowTrans($params, $expected) {
-        try {
-            $result = $this->SearchApi->consumeShowTrans($params);
-        } catch (\Exception $actual) {
-            $this->assertEquals($expected, $actual);
-            return;
-        }
+    public function testShowtransFilters_consumeFilters($params, $expected) {
+        $codeToTest = function() use (&$params) {
+            $params['lang'] = 'epo';
+            $this->SearchApi->consumeFilters($params);
+            return $this->SearchApi->getShowtrans();
+        };
+        $this->_testShowtransFilters($codeToTest, $expected);
+    }
 
+    /**
+     * @dataProvider showtransFiltersProvider()
+     * @dataProvider showtransFiltersProvider_withoutMatching()
+     */
+    public function testShowtransFilters_consumeShowtransFilters($params, $expected) {
+        $codeToTest = function() use (&$params) {
+            $this->SearchApi->consumeShowtransFilters($params);
+            return $this->SearchApi->getShowtrans();
+        };
+        $this->_testShowtransFilters($codeToTest, $expected);
+    }
+
+    private function _testShowtransFilters($codeToTest, $expected) {
         if ($expected instanceOf \Exception) {
-            $this->fail(get_class($expected) . " was not thrown");
+            $this->assertThrowsException($codeToTest, $expected);
         } else {
-            $this->assertEquals($expected, $result);
-            $this->assertFalse(isset($params['showtrans']));
+
+            $result = $codeToTest();
+
+            if (is_null($expected)) {
+                $this->assertNull($result);
+            } else {
+                $results = array_map(fn($f) => $f->compile(), $result->getFilters());
+                $expected = array_map(fn($f) => $f->compile(), $expected);
+                $this->assertEquals($expected, $results);
+            }
         }
     }
 
@@ -748,6 +1037,55 @@ class SearchApiTest extends TestCase
         } else {
             $this->assertEquals($expected, $result);
             $this->assertFalse(isset($params['limit']));
+        }
+    }
+
+    public function includeProvider() {
+        return [
+            'absent include' => [ [], [] ],
+            'include audio' =>  [
+                ['include' => 'audios'],
+                ['audios' => true],
+            ],
+            'include transcriptions' =>  [
+                ['include' => 'transcriptions'],
+                ['transcriptions' => true],
+            ],
+            'include audios and transcriptions' =>  [
+                ['include' => 'audios,transcriptions'],
+                ['audios' => true, 'transcriptions' => true],
+            ],
+            'empty include' => [
+                ['include' => ''],
+                new BadRequestException("Invalid value for parameter 'include': must be one of: audios, transcriptions"),
+            ],
+            'invalid include' => [
+                ['include' => 'invalid'],
+                new BadRequestException("Invalid value for parameter 'include': must be one of: audios, transcriptions"),
+            ],
+            'multiple include params' => [
+                ['include' => ['audios', 'translations']],
+                new BadRequestException("Invalid usage of parameter 'include': cannot be provided multiple times"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider includeProvider()
+     */
+    public function testConsumeInclude($params, $expected) {
+        try {
+            $result = $this->SearchApi->consumeInclude($params);
+        } catch (\Exception $actual) {
+            $this->assertEquals($expected, $actual);
+            return;
+        }
+
+        if ($expected instanceOf \Exception) {
+            $this->fail(get_class($expected) . " was not thrown");
+        } else {
+            $this->assertEquals($expected, $result);
+            $this->assertFalse(isset($params['include']));
         }
     }
 }

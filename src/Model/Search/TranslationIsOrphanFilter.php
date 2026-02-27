@@ -10,4 +10,13 @@ class TranslationIsOrphanFilter extends BoolFilter {
     protected function getAttributeName() {
         return 'u';
     }
+
+    public function compileToQueryExp($exp, $query) {
+        if ($this->exclude) {
+            $exp->isNotNull('user_id');
+        } else {
+            $exp->isNull('user_id');
+        }
+        return $exp;
+    }
 }

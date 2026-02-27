@@ -32,6 +32,7 @@ class SentencesSentencesListsTable extends Table
         $this->belongsTo('Sentences');
         $this->belongsTo('SentencesLists');
         
+        $this->addBehavior('LimitResults');
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);

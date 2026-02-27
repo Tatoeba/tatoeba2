@@ -6,12 +6,16 @@ use Cake\Core\Configure;
 
 trait SearchMockTrait
 {
-    public function enableMockedSearch(array $sentencesIds, $total = null)
+    public function enableMockedSearch(array $sentencesIds, $total = null, $selectCursor = true)
     {
         // SphinxClient->Query() returns matches as an array
         // having document ids (sentence ids) as keys
-        $matches = array_reduce($sentencesIds, function ($matches, $id) {
-            $matches[$id] = ['attrs' => ['cursor' => "123456,$id"]];
+        $matches = array_reduce($sentencesIds, function ($matches, $id) use ($selectCursor) {
+            $doc = [];
+            if ($selectCursor) {
+                $doc['attrs'] = ['cursor' => "123456,$id"];
+            }
+            $matches[$id] = $doc;
             return $matches;
         });
         if (is_null($total)) {
@@ -21,7 +25,7 @@ trait SearchMockTrait
         $results = compact('matches', 'total', 'total_found');
 
         $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
-                       ->setMethods(['Query', 'UpdateAttributes'])
+                       ->setMethods(['Query', 'UpdateAttributes', 'SetLimits'])
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')

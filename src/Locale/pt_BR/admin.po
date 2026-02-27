@@ -4,19 +4,19 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# fcba0459f182b79b2f7a2ccaff2ce639, 2018
-# Alex Augusto Marcelo <alex.amarcelo@outlook.com>, 2020
-# Ricardo14 <rvj1444@gmail.com>, 2020
-# صفا الفليج <safaalfulaij@hotmail.com>, 2022
+# Alex Augusto Marcelo <alex.amarcelo@outlook.com>, 2025
+# fcba0459f182b79b2f7a2ccaff2ce639, 2025
+# Ricardo Vernaut Jr <rvj1444@gmail.com>, 2025
+# صفا الفليج <safaalfulaij@hotmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 02:47+0000\n"
+"POT-Creation-Date: 2025-11-19 08:28+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2022\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/tatoeba/teams/28284/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,44 +24,44 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L846
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "Erro: Frases adicionadas por {username} não puderam ser marcadas como não-"
 "confiáveis."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L851
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "Todas as frases de {username}foram marcadas como não-confiáveis."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L324
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
 msgid "Unable to import audio: user “{author}” not found."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
 msgid "Invalid file “{file}” ignored."
 msgstr "Arquivo inválido “{file}” ignorado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "Falha ao criar o diretório “{dir}” para importar o arquivo “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Falha ao copiar o arquivo “{file}” para o diretório “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -106,7 +106,7 @@ msgid "Correctness"
 msgstr "Exatidão"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L188
 msgid "Submit"
 msgstr "Submeter"
 
@@ -174,34 +174,117 @@ msgstr "Perfil"
 msgid "Edit User"
 msgstr "Editar usuário"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+msgid "Profile picture"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
+msgid "Remove picture"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
+msgid "No picture set"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
 msgid "Id"
 msgstr "Número de identificação"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L111
 msgid "Lang"
 msgstr "Idioma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L114
 msgid "Group"
 msgstr "Grupo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
+msgid "Spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
+msgid "Unknown (links restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
+msgid "Verified (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
+msgid "Legacy (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
 msgid "Level"
 msgstr "Nível"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+msgid "Name"
+msgstr "Nome"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L141
+msgid "Country"
+msgstr "País"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L146
+msgid "Homepage"
+msgstr "Página principal"
+
+#. @translators toggle button to show form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L152
+msgid "Show"
+msgstr "Mostrar"
+
+#. @translators toggle button to hide form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L154
+msgid "Hide"
+msgstr "Esconder"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L156
+msgid "Description"
+msgstr "Descrição"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L163
 msgid "Send notifications"
 msgstr "Enviar notificações"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
+msgid "Profile is public"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
+msgid "About spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
+msgid ""
+"\"Unknown\" users cannot include any outbound link in their profile. In "
+"addition, when trying to post a sentence comment or wall post that includes "
+"outbound links, they are warned that their links must be legitimate. If they"
+" choose to continue, the message is posted and an e-mail is sent to "
+"moderators."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
+msgid ""
+"\"Verified\" and \"legacy\" users can include any link anywhere without "
+"restriction."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
+msgid ""
+"\"Legacy\" users created their account before this restriction was "
+"implemented."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
 msgid "unhide"
 msgstr "voltar a mostrar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L212
 msgid "hide"
 msgstr "ocultar"

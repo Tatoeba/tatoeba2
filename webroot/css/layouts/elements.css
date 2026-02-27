@@ -1582,6 +1582,7 @@ html[dir="rtl"] .sentence-and-translations .translation.trusted-user.expanded .t
     margin: 40px 0;
 }
 
+.report .wall-message md-card-header,
 .wall.form md-card-header,
 .wall-thread md-card-header {
     background: #fafafa;
@@ -1750,14 +1751,6 @@ svg.language-icon {
 html[dir="rtl"] svg.language-icon {
   margin-right: 0;
   margin-left: 0.5em;
-}
-
-/* Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1511997 */
-@-moz-document url-prefix() {
-  svg.language-icon {
-    filter: none;
-    box-shadow: 1px 1px 3px 0px rgba(204,204,204,1);
-  }
 }
 
 .language-dropdown .language-icon {

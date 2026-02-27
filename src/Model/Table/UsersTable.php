@@ -26,9 +26,14 @@
  */
 namespace App\Model\Table;
 
+use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
+use ArrayObject;
 use Cake\Database\Schema\TableSchema;
+use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Event\Event;
 use Cake\Filesystem\File;
+use Cake\I18n\Time;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -36,8 +41,6 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
-    use ExposedFieldsTrait;
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('birthday', 'string');
@@ -95,7 +98,11 @@ class UsersTable extends Table
             ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
-            ->email('email', False /* Don't check MX records */, __('Invalid email address'))
+            ->email(
+                'email',
+                False /* Don't check MX records */,
+                __('Failed to change email address. Please enter a proper email address.')
+            )
             ->requirePresence('email', 'create')
             ->notEmpty('email', __('Field required'));
 
@@ -118,16 +125,56 @@ class UsersTable extends Table
             ->maxLength('name', 255);
 
         $validator
-            ->allowEmpty('birthday');
+            ->allowEmpty('birthday')
+            ->add('birthday', 'validBirthday', [
+                'rule' => function ($data, $provider) {
+                    $data = explode('-', $data, 3);
+                    $data = array_map(fn ($n) => (int)$n, $data);
+                    list($year, $month, $day) = array_pad($data, 3, null);
+
+                    if ($year && $month && $day) {
+                        return checkdate($month, $day, $year);
+                    } elseif ($month && $day) {
+                        // Use 2016 because its a leap year.
+                        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, 2016);
+
+                        if ($day > $daysInMonth) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                'message' => __('The entered birthday is an invalid date. Please try again.'),
+            ])
+            ->add('birthday', 'isComplete', [
+                'rule' => function ($data, $provider) {
+                    $data = explode('-', $data, 3);
+                    $data = array_map(fn ($n) => (int)$n, $data);
+                    list($year, $month, $day) = array_pad($data, 3, null);
+                    return !$day && $year || $month && $day || !$year && !$month && !$day;
+                },
+                'message' => __(
+                    'The entered birthday is incomplete. '.
+                    'Accepted birthdays: full date, month and day, year and month, only year.'
+                ),
+            ]);
 
         $validator
             ->allowEmpty('description')
-            ->scalar('description');
+            ->scalar('description')
+            ->add('description', 'outboundLinkCheck', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
+            ]);
 
         $validator
             ->allowEmpty('homepage')
             ->scalar('homepage')
-            ->maxLength('homepage', 255);
+            ->maxLength('homepage', 255)
+            ->add('homepage', 'outboundLinkCheck', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
+            ]);
 
         $validator
             ->scalar('image')
@@ -148,7 +195,46 @@ class UsersTable extends Table
             ->scalar('audio_attribution_url')
             ->maxLength('audio_attribution_url', 255);
 
+        $validator
+            ->allowEmpty('is_spamdexing')
+            ->boolean('is_spamdexing');
+
         return $validator;
+    }
+
+    /**
+     * Fill unset birthday fields with zeros if birthday has at least one
+     * user-set field. If all fields empty, returns null.
+     *
+     * @return string
+     */
+    private function _generateBirthdayDate(array $birthday)
+    {
+        $year =  $birthday['year']  ?: '0000';
+        $month = $birthday['month'] ?: '00';
+        $day =   $birthday['day']   ?: '00';
+
+        if ($year == '0000') {
+            if ($month == '00' && $day == '00') {
+                return null;
+            } elseif ($month == '02' && $day == '29') {
+                // Mysql wont save a partial leap year date so change year to 1904
+                // and catch in date view helper.
+                $year = '1904';
+            }
+        }
+
+        return "$year-$month-$day";
+    }
+
+    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
+    {
+        if (isset($data['birthday']['year']) && isset($data['birthday']['month']) && isset($data['birthday']['day'])) {
+            $data['birthday'] = $this->_generateBirthdayDate($data['birthday']);
+        }
+        if (isset($data['is_spamdexing']) && $data['is_spamdexing'] === '') {
+            $data['is_spamdexing'] = null;
+        }
     }
 
     /**
@@ -161,9 +247,26 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username'], __('Username already taken.')));
-        $rules->add($rules->isUnique(['email'], __('Email address already used.')));
+        $rules->add($rules->isUnique(['email'], __('That email address already exists. Please try another.')));
 
         return $rules;
+    }
+
+    public function beforeSave(Event $event, User $user, ArrayObject $options)
+    {
+        if ($user->isNew()) {
+            if (!$user->has('is_spamdexing')) {
+                // New users are considered potential spamdexing accounts until manual verification
+                $user->is_spamdexing = true;
+            }
+        }
+
+        if ($user->has('remove-picture')) {
+            if ($user->get('remove-picture')) {
+                $user->image = null;
+            }
+            $user->unsetProperty('remove-picture');
+        }
     }
 
     private function removeImages($file)
@@ -477,5 +580,22 @@ class UsersTable extends Table
             $user->password = $plainTextPassword;
             $this->save($user);
         }
+    }
+
+    public function updateLastContribution($userId)
+    {
+        try {
+            $user = $this->get($userId);
+        } catch (RecordNotFoundException $e) {    
+            return;
+        }
+        $user->last_contribution = Time::now();
+        $this->save($user);
+    }
+
+    public function findUserToLogin(Query $query, $options)
+    {
+        // The result of this query will end up in AuthComponent->user()
+        return $query->select(['id', 'username', 'password', 'role']);
     }
 }

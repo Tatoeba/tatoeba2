@@ -5,23 +5,22 @@ namespace App\Model\Search;
 class TranslationFilterGroup extends BaseSearchFilter {
     use FiltersCollectionTrait;
 
-    private $alias;
-
-    public function getAlias() {
-        return $this->alias;
+    public static function getDefaultName() {
+        $index = func_num_args() > 0 ? func_get_arg(0) : '';
+        return "tf$index";
     }
 
-    public static function getName($id = '') {
-        return "tf{$id}";
-    }
-
-    public function __construct(string $id = '') {
-        $this->alias = self::getName($id);
+    public function __construct(string $index = '') {
+        parent::__construct(self::getDefaultName($index));
     }
 
     public function setExclude(bool $exclude = true) {
         $this->exclude = $exclude;
         return $this;
+    }
+
+    public function getExclude() {
+        return $this->exclude;
     }
 
     protected function _compile() {}
@@ -52,10 +51,29 @@ class TranslationFilterGroup extends BaseSearchFilter {
         }
         if (count($exprs) > 0) {
             $expr = $this->_join('and', $exprs);
-            $filterName = $this->getAlias();
+            $filterName = $this->getName();
             return [[$filterName, $expr, $this->exclude]];
         } else {
             return [];
         }
+    }
+
+    public function compileToQueryExp($exp, $query) {
+        if ($this->exclude) {
+            return $exp;
+        }
+        $exps = [];
+        foreach ($this->filters as $filter) {
+            $exps[] = $filter->compileToQueryExp($query->newExpr(), $query);
+        }
+        $exps = array_filter($exps, fn($e) => $e->count());
+        if ($exps) {
+            if (count($exps) > 1) {
+                $exp = $query->newExpr()->and($exps);
+            } else {
+                $exp = $exps[0];
+            }
+        }
+        return $exp;
     }
 }

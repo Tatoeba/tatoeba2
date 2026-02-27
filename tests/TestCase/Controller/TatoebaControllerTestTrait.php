@@ -7,7 +7,7 @@ use Cake\Utility\Text;
 trait TatoebaControllerTestTrait {
     private function logInAs($username) {
         $users = TableRegistry::get('Users');
-        $user = $users->findByUsername($username)->first();
+        $user = $users->findByUsername($username)->find('userToLogin')->first();
         $this->session(['Auth' => ['User' => $user->toArray()]]);
         $this->enableCsrfToken();
         $this->enableSecurityToken();

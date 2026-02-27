@@ -11,12 +11,16 @@ class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
         'app.users',
         'app.users_languages',
-        'app.languages'
+        'app.languages',
+        'app.queued_jobs',
+        'plugin.Queue.QueueProcesses',
     );
+    public $autoFixtures = false;
 
     function setUp() {
         parent::setUp();
         $this->UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
+        $this->loadFixtures('Users', 'UsersLanguages', 'Languages');
     }
 
     function tearDown() {
@@ -234,5 +238,96 @@ class UsersLanguagesTableTest extends TestCase {
 
         Time::setTestNow();
         I18n::setLocale($prevLocale);
+    }
+
+    function assertSentencesReindexJobQueued($expectedConfig) {
+        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
+        $this->assertNotNull($job);
+        $this->assertEquals($expectedConfig, unserialize($job->data));
+    }
+
+    function assertSentencesReindexJobNotQueued() {
+        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
+        $this->assertNull($job);
+    }
+
+    function testSaveUserLanguage_reindexSentencesOnLevelDrop() {
+        $this->loadFixtures();
+        $nativeJpn = $this->UsersLanguages->get(3);
+        $nativeJpn->level = 4;
+
+        $this->UsersLanguages->save($nativeJpn);
+
+        $this->assertSentencesReindexJobQueued(['user_id' => 7, 'lang' => 'jpn']);
+    }
+
+    function testSaveUserLanguage_reindexSentencesOnLevelUp() {
+        $this->loadFixtures();
+        $learnerFra = $this->UsersLanguages->get(5);
+        $learnerFra->level = 5;
+
+        $this->UsersLanguages->save($learnerFra);
+
+        $this->assertSentencesReindexJobQueued(['user_id' => 7, 'lang' => 'fra']);
+    }
+
+    function testSaveUserLanguage_noReindexSentencesOnLearnerLevelChange() {
+        $this->loadFixtures();
+        $learnerFra = $this->UsersLanguages->get(5);
+        $learnerFra->level = 3;
+
+        $this->UsersLanguages->save($learnerFra);
+
+        $this->assertSentencesReindexJobNotQueued();
+    }
+
+    function testSaveUserLanguage_reindexSentencesOnLanguageDeletion() {
+        $this->loadFixtures();
+        $nativeJpn = $this->UsersLanguages->get(3);
+
+        $this->UsersLanguages->delete($nativeJpn);
+
+        $this->assertSentencesReindexJobQueued(['user_id' => 7, 'lang' => 'jpn']);
+    }
+
+    function testSaveUserLanguage_noReindexSentencesOnLearningLanguageDeletion() {
+        $this->loadFixtures();
+        $learnerFra = $this->UsersLanguages->get(5);
+
+        $this->UsersLanguages->delete($learnerFra);
+
+        $this->assertSentencesReindexJobNotQueued();
+    }
+
+    function testSaveUserLanguage_reindexSentencesOnNewNativeLanguage() {
+        $this->loadFixtures();
+        $nativeFra = $this->UsersLanguages->newEntity([
+            'language_code' => 'fra',
+            'level' => 5,
+            'details' => '',
+            'of_user_id' => 2,
+            'by_user_id' => 2,
+        ]);
+
+        $this->UsersLanguages->save($nativeFra);
+
+        $this->assertSentencesReindexJobQueued(['user_id' => 2, 'lang' => 'fra']);
+    }
+
+    function testSaveUserLanguage_noReindexSentencesOnNewLearningLanguage() {
+        $this->loadFixtures();
+        $learningFra = $this->UsersLanguages->newEntity([
+            'language_code' => 'fra',
+            'level' => 4,
+            'details' => '',
+            'of_user_id' => 2,
+            'by_user_id' => 2,
+        ]);
+
+        $this->UsersLanguages->save($learningFra);
+
+        $this->assertSentencesReindexJobNotQueued();
     }
 }

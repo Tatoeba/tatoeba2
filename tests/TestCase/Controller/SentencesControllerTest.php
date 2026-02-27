@@ -3,12 +3,14 @@ namespace App\Test\TestCase\Controller;
 
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use App\Test\TestCase\SearchMockTrait;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 class SentencesControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
+    use SearchMockTrait;
 
     public $fixtures = [
         'app.sentences',
@@ -20,6 +22,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         'app.private_messages',
         'app.reindex_flags',
         'app.audios',
+        'app.disabled_audios',
         'app.transcriptions',
         'app.contributions',
         'app.tags',
@@ -437,5 +440,16 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->logInAs($user);
         $this->get("/en/sentences/of_user/$user?page=9999999");
         $this->assertRedirect("/en/sentences/of_user/$user?page=$lastPage");
+    }
+
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_search() {
+        $defaultNbPerPage = User::$defaultSettings['sentences_per_page'];
+        $nbSentences = 42;
+        $this->enableMockedSearch([1,2,3], $nbSentences, false);
+
+        $lastPage = ceil($nbSentences / $defaultNbPerPage);
+
+        $this->get("/en/sentences/search?q=hello&page=9999999");
+        $this->assertRedirect("/en/sentences/search?q=hello&page=$lastPage");
     }
 }

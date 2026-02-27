@@ -21,7 +21,7 @@ if (CurrentUser::getSetting('show_transcriptions')) {
             <div ng-if="transcription.needsReview">
                 <md-icon class="md-warn">warning</md-icon>
             </div>
-            <div class="text" ng-bind-html="transcription.html" flex></div>
+            <div class="text" lang="{{transcription.lang_tag}}" ng-bind-html="transcription.html" flex></div>
             <md-tooltip md-direction="top">{{transcription.info_message}}</md-tooltip>
         </div>
     </div>

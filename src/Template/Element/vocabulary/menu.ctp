@@ -25,24 +25,24 @@ $addSentencesUrl = $this->Url->build(
 );
 ?>
 <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
-    <md-subheader><?= __('Vocabulary requests'); ?></md-subheader>
+    <md-subheader><?= h(__('Vocabulary requests')) ?></md-subheader>
     
     <md-list-item href="<?= $indexUrl ?>">
         <p>
             <md-icon>keyboard_arrow_right</md-icon>
-            <?= __('My vocabulary requests'); ?>
+            <?= h(__('My vocabulary requests')) ?>
         </p>
     </md-list-item>
     <md-list-item href="<?= $addUrl ?>">
         <p>
             <md-icon>keyboard_arrow_right</md-icon>
-            <?= __('Add vocabulary requests'); ?>
+            <?= h(__('Add vocabulary requests')) ?>
         </p>
     </md-list-item>
     <md-list-item href="<?= $addSentencesUrl ?>">
         <p>
             <md-icon>keyboard_arrow_right</md-icon>
-            <?= __('Existing vocabulary requests'); ?>
+            <?= h(__('Existing vocabulary requests')) ?>
         </p>
     </md-list-item>
 </md-list>

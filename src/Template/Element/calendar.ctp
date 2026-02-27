@@ -53,7 +53,11 @@ $months = $this->Date->months();
         }
         
         echo $this->Html->link(
-            $monthName,
+            /* @translators: this special string lets you to tweak how months are
+               displayed when used inside a calendar (on the activity timeline page).
+               You may translate this string using a sublist value,
+               for example {monthInCalendar.calendar} */
+            format(__("{monthInCalendar}"), array('monthInCalendar' => $monthName)),
             array(
                 'controller' => 'contributions',
                 'action' => 'activity_timeline',

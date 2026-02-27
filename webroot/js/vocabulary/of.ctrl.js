@@ -19,21 +19,11 @@
 
     angular
         .module('app')
-        .controller('VocabularyOfController', ['$http', VocabularyOfController]);
+        .controller('VocabularyOfController', ['vocabularyService', VocabularyOfController]);
 
-    function VocabularyOfController($http) {
+    function VocabularyOfController(vocabularyService) {
         var vm = this;
 
-        vm.remove = remove;
-
-        ///////////////////////////////////////////////////////////////////////////
-
-        function remove(id) {
-            $http.get(get_tatoeba_root_url() + '/vocabulary/remove/' + id).then(
-                function(response) {
-                    angular.element(document.querySelector('#vocabulary_' + id)).remove();
-                }
-            );
-        }
+        vm.edit = vocabularyService.edit;
     }
 })();

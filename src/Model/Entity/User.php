@@ -11,6 +11,11 @@ class User extends Entity
         'password',
     ];
 
+    protected $_accessible = [
+        'is_spamdexing' => false,
+        '*' => true,
+    ];
+
     const ROLE_ADMIN = 'admin';
     const ROLE_CORPUS_MAINTAINER = 'corpus_maintainer';
     const ROLE_ADV_CONTRIBUTOR = 'advanced_contributor';

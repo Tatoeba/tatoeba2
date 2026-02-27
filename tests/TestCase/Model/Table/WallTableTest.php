@@ -2,12 +2,15 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\CurrentUser;
-use App\Model\Wall;
+use Cake\Core\Configure;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Event\EventList;
+use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
 class WallTest extends TestCase {
@@ -22,6 +25,20 @@ class WallTest extends TestCase {
     public function setUp() {
         parent::setUp();
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
+
+        // enable event tracking
+        $this->Wall->getEventManager()->setEventList(new EventList());
+
+        // set current hostname
+        Router::pushRequest(new ServerRequest([
+            'environment' => [
+                'HTTP_HOST' => 'tatoeba.org',
+                'HTTPS' => 'on',
+            ],
+        ]));
+
+        // set autoban threshold
+        Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 10);
     }
 
     public function tearDown() {
@@ -39,9 +56,9 @@ class WallTest extends TestCase {
             'owner' => 2,
             'content' => 'Hi everyone!',
             'parent_id' => null,
-            'lft' => 5,
-            'rght' => 6,
-            'id' => 3,
+            'lft' => 11,
+            'rght' => 12,
+            'id' => 6,
         ];
 
         $before = $this->Wall->find()->count();
@@ -162,9 +179,8 @@ class WallTest extends TestCase {
         $this->assertEquals($before, $after);
     }
 
-    public function testSave_doesNotFireEvent() {
+    public function testSave_firesCorrectEvent() {
         $eventManager = $this->Wall->getEventManager();
-        $eventManager->setEventList(new EventList());
         $post = $this->Wall->newEntity([
             'owner' => 7,
             'content' => 'new post',
@@ -172,9 +188,10 @@ class WallTest extends TestCase {
         $this->Wall->save($post);
         $eventList = $eventManager->getEventList();
         $this->assertFalse($eventList->hasEvent('Model.Wall.replyPosted'));
+        $this->assertEventFiredWith('Model.Wall.newThread', 'post', $post, $eventManager);
     }
 
-    public function testSaveReply_firesEvent() {
+    public function testSaveReply_firesCorrectEvent() {
         $expectedPost = array(
             'owner' => 7,
             'parent_id' => 2,
@@ -196,9 +213,125 @@ class WallTest extends TestCase {
             }
         );
 
-        $this->Wall->saveReply(2, 'I see.', 7);
+        $this->Wall->save($this->Wall->newReply(2, 'I see.', 7));
 
         $this->assertTrue($dispatched);
+        $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
+    }
+
+    public function wallPostsWithLinksProvider() {
+        $manyOLinks = str_repeat(' https://example.com', 10);
+        $manyILinks = str_repeat(' https://tatoeba.org/en/sentences_lists/show/1234', 10);
+        $maxOLinks = str_repeat(' https://example.com', 9);
+        return [
+            // user id, validator, content, should be able to save, should get autobanned and autohidden
+            'legacy user, inbound link'        => [1, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'legacy user, outbound link'       => [1, 'default', 'Hi! https://example.com', true],
+            'verified user, inbound link'      => [7, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'verified user, outbound link'     => [7, 'default', 'Hi! https://example.com', true],
+            'new user, inbound link'           => [9, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],
+            'new user, outbound link'          => [9, 'default', 'Hi! https://example.com', false],
+            'new user, outbound link, confirm' => [9, 'skipOutboundLinksCheck', 'Hi! https://example.com', true],
+
+            'legacy user, many inbound links'  => [1, 'default', "Hi! $manyILinks", true],
+            'legacy user, many outbound links' => [1, 'default', "Hi! $manyOLinks", true],
+            'verified user, inbound link'      => [7, 'default', "Hi! $manyILinks", true],
+            'verified user, outbound link'     => [7, 'default', "Hi! $manyOLinks", true],
+            'new user, many inbound links'     => [9, 'default', "Hi! $manyILinks", true],
+            'new user, many outbound links'    => [9, 'default', "Hi! $manyOLinks", false],
+            'new user, many outbound links, confirm' => [9, 'skipOutboundLinksCheck', "Hi! $manyOLinks", true, true],
+            'new user, max outbound links, confirm' => [9, 'skipOutboundLinksCheck', "Hi! $maxOLinks", true, false],
+        ];
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testAddWallPostWithLinks($userId, $validate, $content, $expectedToSave, $expectAutoban = false)
+    {
+        $originalUser = $this->Wall->Users->get($userId);
+        CurrentUser::store($originalUser);
+        $newPost = $this->Wall->newEntity(
+            [
+                'owner' => $userId,
+                'date' => '2025-05-05 05:05:05',
+                'content' => $content,
+            ],
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($newPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+            $this->assertEquals($userId, $savedPost->owner);
+        } else {
+            $this->assertFalse($savedPost);
+        }
+        if ($expectAutoban) {
+            $this->assertEquals('spammer', $this->Wall->Users->get($userId)->role);
+            $this->assertTrue($savedPost->hidden);
+        } else {
+            $this->assertEquals($originalUser->role, $this->Wall->Users->get($userId)->role);
+            if ($expectedToSave) {
+                $this->assertFalse($this->Wall->get($savedPost->id)->hidden);
+            }
+        }
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testEditWallPostWithLinks($userId, $validate, $content, $expectedToSave, $expectAutoban = false)
+    {
+        $originalUser = $this->Wall->Users->get($userId);
+        CurrentUser::store($originalUser);
+        $wallPost = $this->Wall->get(3);
+        $this->Wall->patchEntity(
+            $wallPost,
+            compact('content'),
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($wallPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+        } else {
+            $this->assertFalse($savedPost);
+        }
+        if ($expectAutoban) {
+            $this->assertEquals('spammer', $this->Wall->Users->get($userId)->role);
+            $this->assertTrue($savedPost->hidden);
+        } else {
+            $this->assertEquals($originalUser->role, $this->Wall->Users->get($userId)->role);
+            $this->assertFalse($this->Wall->get($wallPost->id)->hidden);
+        }
+    }
+
+    /**
+     * @dataProvider wallPostsWithLinksProvider()
+     */
+    public function testEditHiddenWallPostWithLinks($userId, $validate, $content, $expectedToSave)
+    {
+        $originalUser = $this->Wall->Users->get($userId);
+        CurrentUser::store($originalUser);
+        $wallPost = $this->Wall->get(5);
+        $this->Wall->patchEntity(
+            $wallPost,
+            compact('content'),
+            compact('validate')
+        );
+
+        $savedPost = $this->Wall->save($wallPost);
+        if ($expectedToSave) {
+            $this->assertNotFalse($savedPost);
+            $this->assertEquals($content, $savedPost->content);
+        } else {
+            $this->assertFalse($savedPost);
+        }
+        $this->assertEquals($originalUser->role, $this->Wall->Users->get($userId)->role);
+        $this->assertTrue($this->Wall->get($wallPost->id)->hidden);
     }
 
     public function testGetMessagesThreaded() {
@@ -206,7 +339,9 @@ class WallTest extends TestCase {
             ->where(['parent_id IS NULL'])
             ->all();
         $threads = $this->Wall->getMessagesThreaded($rootMessages);
-        $this->assertEquals(1, count($threads[0]->children));
+        $this->assertEquals(4, count($threads));
+        $this->assertEquals(0, count($threads[0]->children));
+        $this->assertEquals(1, count($threads[1]->children));
     }
 
     public function testGetMessagesThreaded_empty() {
@@ -242,20 +377,30 @@ class WallTest extends TestCase {
 
     public function testSaveReply_succeeds() {
         $content = 'I hope soon.';
-        $result = $this->Wall->saveReply(2, $content, 7);
-        $this->assertEquals(3, $result->id);
+        $reply = $this->Wall->newReply(2, $content, 7);
+
+        $result = $this->Wall->save($reply);
+
+        $this->assertEquals(2, $result->parent_id);
     }
 
     public function testSaveReply_failsBecauseNoParentId() {
         $content = 'I hope soon.';
-        $result = $this->Wall->saveReply(null, $content, 7);
-        $this->assertNull($result);
+        try {
+            $result = $this->Wall->newReply(null, $content, 7);
+            $this->fail('"newReply" did not throw RecordNotFoundException');
+        } catch (RecordNotFoundException $e) {
+            $this->assertTrue(true);
+        }
     }
 
     public function testSaveReply_failsBecauseEmptyContent() {
         $content = '   ';
-        $result = $this->Wall->saveReply(2, $content, 7);
-        $this->assertNull($result);
+        $reply = $this->Wall->newReply(2, $content, 7);
+
+        $result = $this->Wall->save($reply);
+
+        $this->assertFalse($result);
     }
 
     public function testGetRootMessageOfReply() {
@@ -294,5 +439,17 @@ class WallTest extends TestCase {
 
         $threadDate = $this->Wall->WallThreads->get(1)->last_message_date;
         $this->assertEquals('2014-04-15 16:37:11', $threadDate);
+    }
+
+    public function testHidingAStandaloneMessageDoesNotRecalculatesThreadDate() {
+        $messageId = 3;
+        $oldThreadDate = $this->Wall->WallThreads->get($messageId)->last_message_date;
+
+        $message = $this->Wall->get($messageId);
+        $message->hidden = true;
+        $this->Wall->save($message);
+
+        $newThreadDate = $this->Wall->WallThreads->get($messageId)->last_message_date;
+        $this->assertEquals($oldThreadDate, $newThreadDate);
     }
 }

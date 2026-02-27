@@ -81,6 +81,30 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
 ?>
     <fieldset>
     <legend><?php echo __d('admin', 'Edit User'); ?></legend>
+
+    <div class="input checkbox">
+        <label><?= h(__d('admin', 'Profile picture')) ?></label>
+        <?php if ($user->image) {
+            echo $this->Form->checkbox('remove-picture', array('id' => 'remove-picture'));
+            echo $this->Form->label('remove-picture', __d('admin', 'Remove picture'));
+            echo $this->Html->image(
+                IMG_PATH . 'profiles_128/'.$user->image,
+                array(
+                    'width' => 128,
+                    'height' => 128,
+                    'alt' => $user->username,
+                    'class' => 'profile',
+                )
+            );
+        } else {
+            echo $this->Html->tag(
+                'div',
+                __d('admin', 'No picture set'),
+                array('style' => 'padding: 5px')
+            );
+        } ?>
+    </div>
+
     <?php
     echo $this->Form->input('id',       array('label' => __d('admin', 'Id')));
     echo $this->Form->input('username', array('label' => __d('admin', 'Username')));
@@ -88,6 +112,16 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
     echo $this->Form->input('role', array(
         'options' => array_combine($groups, $groups),
         'label' => __d('admin', 'Group'),
+    ));
+    echo $this->Form->input('is_spamdexing', array(
+        'label' => __d('admin', 'Spamdexing status'),
+        'options' => array(
+            '1' => __d('admin', 'Unknown (links restricted)'),
+            '0' => __d('admin', 'Verified (links not restricted)'),
+            ''  => __d('admin', 'Legacy (links not restricted)'),
+        ),
+        'disabled' => is_null($user->is_spamdexing) ? [] : [''],
+        'val' => is_null($user->is_spamdexing) ? '' : (int)$user->is_spamdexing,
     ));
     echo $this->Form->input(
         'level', 
@@ -100,9 +134,38 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
             )
         )
     );
+    echo $this->Form->input('name', array(
+        'label' => __d('admin', 'Name'),
+    ));
+    echo $this->Form->control('country_id', array(
+        'label' => __d('admin', 'Country'),
+        'options' => $this->Countries->getAllCountries(),
+        'empty' => true
+    ));
+    echo $this->Form->input('homepage', array(
+        'label' => __d('admin', 'Homepage'),
+    ));
+    ?>
+    <details>
+        <summary
+            <?php /* @translators toggle button to show form field (verb) */ ?>
+            data-show="<?= h(__d('admin', 'Show')) ?>"
+            <?php /* @translators toggle button to hide form field (verb) */ ?>
+            data-hide="<?= h(__d('admin', 'Hide')) ?>"
+            ><?=
+                $this->Form->label('description', __d('admin', 'Description'))
+        ?></summary>
+        <?= $this->Form->textarea('description', array('lang' => '', 'dir' => 'auto')) ?>
+    </details>
+<?php
     echo '<br>';
     echo $this->Form->input('send_notifications', array(
         'label' => __d('admin', 'Send notifications')
+    ));
+
+    echo $this->Form->input('settings.is_public', array(
+        'type' => 'checkbox',
+        'label' => __d('admin', 'Profile is public'),
     ));
 
     echo $this->Form->input('settings.can_switch_license', [
@@ -110,6 +173,16 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
         'label' => __('Can switch license')
     ]);
     ?>
+
+    <br>
+    <details>
+        <summary><?= __d('admin', 'About spamdexing status') ?></summary>
+        <ul>
+            <li><?= __d('admin', '"Unknown" users cannot include any outbound link in their profile. In addition, when trying to post a sentence comment or wall post that includes outbound links, they are warned that their links must be legitimate. If they choose to continue, the message is posted and an e-mail is sent to moderators.') ?></li>
+            <li><?= __d('admin', '"Verified" and "legacy" users can include any link anywhere without restriction.') ?></li>
+            <li><?= __d('admin', '"Legacy" users created their account before this restriction was implemented.') ?></li>
+        </ul>
+    </details>
     </fieldset>
 <?php
 echo $this->Form->submit(__d('admin', 'Submit'));

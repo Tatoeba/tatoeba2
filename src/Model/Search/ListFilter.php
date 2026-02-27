@@ -16,17 +16,18 @@ class ListFilter extends SearchFilter {
         return 'lists_id';
     }
 
-    public function __construct($currentUserId = null) {
+    public function __construct(string $name = null, $currentUserId = null) {
+        parent::__construct($name);
         $this->currentUserId = $currentUserId;
         $this->setInvalidValueHandler(function($invalidValue) {
-            throw new InvalidValueException("No such list id: '$invalidValue'");
+            throw new InvalidValueException($this, "No such list id: '$invalidValue'");
         });
     }
 
     public function anyOf(array $values) {
         foreach ($values as $value) {
             if (!is_numeric($value)) {
-                throw new InvalidValueException("Invalid list id: '$value'");
+                throw new InvalidValueException($this, "Invalid list id: '$value'");
             }
         }
         return parent::anyOf($values);

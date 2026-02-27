@@ -1,2 +1,9 @@
 [mysqld]
+
+# Keep old-style sql_mode
 sql_mode = NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+# For security, restrict where mariadb can read and write files
+# specified in statments such as LOAD DATA, INTO OUTFILE etc.
+# /var/tmp/ is used during weekly exports
+secure_file_priv = /var/tmp/

@@ -215,7 +215,7 @@ class LinksTable extends Table
         return !empty($ids) ? $ids : array();
     }
 
-    public function findDirectAndIndirectTranslationsIds($sentenceId) {
+    public function findDirectAndIndirectTranslationsIds($sentenceIds) {
         $links = $this->find('all')
             ->join([
                 [
@@ -225,14 +225,14 @@ class LinksTable extends Table
                     'conditions' => ['Links.translation_id = Translation.sentence_id']
                 ]
             ])
-            ->where(['Links.sentence_id' => $sentenceId])
+            ->where(['Links.sentence_id IN' => (array)$sentenceIds])
             ->select([
                 'sentence_id' => 'DISTINCT(Links.sentence_id)',
                 'translation_id' => 'IF(Links.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id)'
             ])
             ->toList();
         $links = Hash::extract($links, '{n}.translation_id');
-        return is_null($links) ? array() : $links;
+        return is_null($links) ? array() : array_unique($links);
     }
 
     public function updateLanguage($sentenceId, $lang)

@@ -51,14 +51,16 @@ class MessagesHelper extends AppHelper
      *
      * @return string The comment body formatted for HTML display.
      */
-    public function formatContent($content) {
+    public function formatContent($content, $linkifyUrls = true) {
         $content = htmlentities($content, ENT_QUOTES, Configure::read('App.encoding'));
 
         // Convert sentence mentions to links
         $content = $this->ClickableLinks->clickableSentence($content);
 
-        // Make URLs clickable
-        $content = $this->ClickableLinks->clickableURL($content);
+        if ($linkifyUrls) {
+            // Make URLs clickable
+            $content = $this->ClickableLinks->clickableURL($content);
+        }
 
         // Convert linebreaks to <br/>
         $content = nl2br($content);

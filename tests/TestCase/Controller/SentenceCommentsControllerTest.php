@@ -2,10 +2,13 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Core\Configure;
+use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 
 class SentenceCommentsControllerTest extends IntegrationTestCase
 {
+    use EmailTrait;
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
@@ -31,8 +34,8 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
             [ '/en/sentence_comments/edit/1', 'contributor', '/en/sentences/show/4' ], // is not comment author
             [ '/en/sentence_comments/edit/1', 'kazuki', true ], // is comment author
             [ '/en/sentence_comments/delete_comment/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fdelete_comment%2F1' ],
-            [ '/en/sentence_comments/delete_comment/1', 'spammer', '/' ],
-            [ '/en/sentence_comments/delete_comment/1', 'inactive', '/' ],
+            [ '/en/sentence_comments/delete_comment/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fdelete_comment%2F1' ],
+            [ '/en/sentence_comments/delete_comment/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fdelete_comment%2F1' ],
             [ '/en/sentence_comments/delete_comment/1', 'kazuki', 'https://example.net/previous_page' ],
             [ '/en/sentence_comments/delete_comment/1', 'advanced_contributor', 'https://example.net/previous_page' ],
             [ '/en/sentence_comments/delete_comment/1', 'corpus_maintainer', 'https://example.net/previous_page' ],
@@ -44,15 +47,15 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
             [ '/en/sentence_comments/on_sentences_of_user/kazuki', 'contributor', true ],
             [ '/en/sentence_comments/on_sentences_of_user/non_existing_user', null, true ],
             [ '/en/sentence_comments/hide_message/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
-            [ '/en/sentence_comments/hide_message/1', 'spammer', '/' ],
-            [ '/en/sentence_comments/hide_message/1', 'inactive', '/' ],
+            [ '/en/sentence_comments/hide_message/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
+            [ '/en/sentence_comments/hide_message/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
             [ '/en/sentence_comments/hide_message/1', 'kazuki', '/' ],
             [ '/en/sentence_comments/hide_message/1', 'advanced_contributor', '/' ],
             [ '/en/sentence_comments/hide_message/1', 'corpus_maintainer', '/' ],
             [ '/en/sentence_comments/hide_message/1', 'admin', 'https://example.net/previous_page' ],
             [ '/en/sentence_comments/unhide_message/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
-            [ '/en/sentence_comments/unhide_message/1', 'spammer', '/' ],
-            [ '/en/sentence_comments/unhide_message/1', 'inactive', '/' ],
+            [ '/en/sentence_comments/unhide_message/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
+            [ '/en/sentence_comments/unhide_message/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
             [ '/en/sentence_comments/unhide_message/1', 'kazuki', '/' ],
             [ '/en/sentence_comments/unhide_message/1', 'advanced_contributor', '/' ],
             [ '/en/sentence_comments/unhide_message/1', 'corpus_maintainer', '/' ],
@@ -93,6 +96,82 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->logInAs('contributor');
         $this->saveSomething(999999999);
         $this->assertRedirect('/en/sentences/show/999999999');
+    }
+
+    public function testSave_notificationEmailLink() {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
+        $this->logInAs('contributor');
+        $this->saveSomething(9);
+        $this->assertMailContainsHtml('https://example.net/sentence_comments/show/9#comments');
+    }
+
+    private function assertFlashMessageContains($expected, $message = '') {
+        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+    }
+
+    public function commentWithLinksProvider() {
+        return [
+            // post data, comment should be saved, number of emails sent
+            'inbound link, no confirmation' => [
+                ['text' => 'Check this out https://example.net'], true, 0
+            ],
+            'outbound link, needs confirmation' => [
+                ['text' => 'Check this out https://example.com'], false, 0
+            ],
+            'outbound link, confirmed' => [
+                [
+                    'text' => 'Check this out https://example.com',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+                1
+            ],
+            'confirmed but no links' => [
+                [
+                    'text' => 'Check this out',
+                    'outboundLinksConfirmed' => '1',
+                ],
+                true,
+                0
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider commentWithLinksProvider()
+     */
+    public function testSave_commentWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->post(
+            'https://example.net/en/sentence_comments/save',
+            ['sentence_id' => 15] + $postData
+        );
+
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Your comment has been saved');
+        } else {
+            $this->assertFlashMessageContains('Your comment was not saved');
+        }
+        $this->assertMailCount($nbEmails);
+    }
+
+    /**
+     * @dataProvider commentWithLinksProvider()
+     */
+    public function testEdit_commentWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        $this->enableRetainFlashMessages();
+        $this->logInAs('new_member');
+
+        $this->put('https://example.net/en/sentence_comments/edit/6', $postData);
+
+        if ($shouldSave) {
+            $this->assertFlashMessageContains('Changes to your comment have been saved');
+        } else {
+            $this->assertFlashMessageContains('Your comment was not saved');
+        }
+        $this->assertMailCount($nbEmails);
     }
 
     private function editSomething() {

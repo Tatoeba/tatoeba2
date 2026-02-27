@@ -3,6 +3,8 @@ namespace App\Test\TestCase\Controller\Component;
 
 use App\Controller\Component\PermissionsComponent;
 use App\Model\CurrentUser;
+use App\Model\Entity\SentenceComment;
+use App\Model\Entity\Wall;
 use Cake\Controller\Controller;
 use Cake\Controller\ComponentRegistry;
 use Cake\Http\ServerRequest;
@@ -44,37 +46,49 @@ class PermissionsComponentTest extends TestCase
     }
 
     public function WallMessageOptionsProvider() {
-        // lastInThread, owner, currentUser, expected
+        // lastInThread, owner, currentUser, isHidden, expected
         return [
-            [false, null, null,
-             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            [false, null, null, false,
+             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => true]
             ],
-            [true, null, null,
-             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            [false, null, null, true,
+             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => false]
             ],
-            [true, 1, null,
-             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            [true, null, null, false,
+             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => true]
             ],
-            [false, 3, 3,
-             ['canReply' => true, 'canDelete' => false, 'canEdit' => true, 'canPM' => false]
+            [true, 1, null, false,
+             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => true]
             ],
-            [true, 3, 3,
-             ['canReply' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => false]
+            [true, 1, null, true,
+             ['canReply' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => false]
             ],
-            [false, 3, 1,
-             ['canReply' => true, 'canDelete' => false, 'canEdit' => true, 'canPM' => true]
+            [false, 3, 3, false,
+             ['canReply' => true, 'canDelete' => false, 'canEdit' => true, 'canPM' => false, 'canReport' => false]
             ],
-            [true, 3, 1,
-             ['canReply' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => true]
+            [true, 3, 3, false,
+             ['canReply' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => false, 'canReport' => false]
             ],
-            [false, 3, 2,
-             ['canReply' => true, 'canDelete' => false, 'canEdit' => false, 'canPM' => true]
+            [false, 3, 1, false,
+             ['canReply' => true, 'canDelete' => false, 'canEdit' => true, 'canPM' => true, 'canReport' => true]
             ],
-            [true, 3, 2,
-             ['canReply' => true, 'canDelete' => false, 'canEdit' => false, 'canPM' => true]
+            [false, 3, 1, true,
+             ['canReply' => true, 'canDelete' => false, 'canEdit' => true, 'canPM' => true, 'canReport' => false]
             ],
-            [true, null, 2,
-             ['canReply' => true, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            [true, 3, 1, false,
+             ['canReply' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => true, 'canReport' => true]
+            ],
+            [false, 3, 2, false,
+             ['canReply' => true, 'canDelete' => false, 'canEdit' => false, 'canPM' => true, 'canReport' => true]
+            ],
+            [false, 3, 2, true,
+             ['canReply' => true, 'canDelete' => false, 'canEdit' => false, 'canPM' => true, 'canReport' => false]
+            ],
+            [true, 3, 2, false,
+             ['canReply' => true, 'canDelete' => false, 'canEdit' => false, 'canPM' => true, 'canReport' => true]
+            ],
+            [true, null, 2, false,
+             ['canReply' => true, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => true]
             ],
         ];
     }
@@ -82,11 +96,16 @@ class PermissionsComponentTest extends TestCase
     /**
      * @dataProvider WallMessageOptionsProvider
      */
-    public function testGetWallMessageOptions($lastInThread, $owner, $currentUser, $expected) {
+    public function testGetWallMessageOptions($lastInThread, $owner, $currentUser, $isHidden, $expected) {
         if ($currentUser) {
             CurrentUser::store($this->Users->get($currentUser)->toArray());
         }
-        $result = $this->component->getWallMessageOptions($lastInThread, $owner, $currentUser);
+        $message = new Wall([
+            'content' => 'Hello',
+            'user' => $owner ? $this->Users->get($owner) : null,
+            'hidden' => $isHidden,
+        ]);
+        $result = $this->component->getWallMessageOptions($lastInThread, $message, $currentUser);
         $this->assertEquals($expected, $result);
     }
 
@@ -103,28 +122,49 @@ class PermissionsComponentTest extends TestCase
     }
 
     public function CommentOptionsProvider() {
-        // owner, currentUser, expected
+        // owner, currentUser, isHidden, expected
         return [
-            [null, null,
-             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            [null, null, false,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => true]
             ],
-            [null, 2,
-             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            [null, null, true,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => false]
             ],
-            [null, 1,
-             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => false]
+            [null, 2, false,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => true]
             ],
-            [3, null,
-             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false]
+            [null, 2, true,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => false]
             ],
-            [3, 3,
-             ['canHide' => false, 'canDelete' => true, 'canEdit' => true, 'canPM' => false]
+            [null, 1, false,
+             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => false, 'canReport' => true]
             ],
-            [3, 1,
-             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => true]
+            [null, 1, true,
+             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => false, 'canReport' => false]
             ],
-            [3, 2,
-             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => true]
+            [3, null, false,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => true]
+            ],
+            [3, null, true,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => false, 'canReport' => false]
+            ],
+            [3, 3, false,
+             ['canHide' => false, 'canDelete' => true, 'canEdit' => true, 'canPM' => false, 'canReport' => false]
+            ],
+            [3, 3, true,
+             ['canHide' => false, 'canDelete' => true, 'canEdit' => true, 'canPM' => false, 'canReport' => false]
+            ],
+            [3, 1, false,
+             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => true, 'canReport' => true]
+            ],
+            [3, 1, true,
+             ['canHide' => true, 'canDelete' => true, 'canEdit' => true, 'canPM' => true, 'canReport' => false]
+            ],
+            [3, 2, false,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => true, 'canReport' => true]
+            ],
+            [3, 2, true,
+             ['canHide' => false, 'canDelete' => false, 'canEdit' => false, 'canPM' => true, 'canReport' => false]
             ],
         ];
     }
@@ -132,11 +172,16 @@ class PermissionsComponentTest extends TestCase
     /**
      * @dataProvider CommentOptionsProvider
      */
-    public function testGetCommentOptions($owner, $currentUser, $expected) {
+    public function testGetCommentOptions($owner, $currentUser, $isHidden, $expected) {
         if ($currentUser) {
             CurrentUser::store($this->Users->get($currentUser)->toArray());
         }
-        $result = $this->component->getCommentOptions($owner);
+        $comment = new SentenceComment([
+            'text' => 'Hello',
+            'user' => $owner ? $this->Users->get($owner) : null,
+            'hidden' => $isHidden,
+        ]);
+        $result = $this->component->getCommentOptions($comment);
         $this->assertEquals($expected, $result);
     }
 

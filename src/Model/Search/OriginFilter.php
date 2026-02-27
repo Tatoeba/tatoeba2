@@ -13,20 +13,20 @@ class OriginFilter extends BaseSearchFilter {
 
     public function anyOf(array $values) {
         if (count($values) != 1) {
-            throw new InvalidValueException("Only a single value is accepted");
+            throw new InvalidValueException($this, "Only a single value is accepted");
         }
         if (!in_array($values[0], self::ORIGIN_ALL)) {
-            throw new InvalidValueException("Value must be one of: ".implode(', ', self::ORIGIN_ALL));
+            throw new InvalidValueException($this, "Value must be one of: ".implode(', ', self::ORIGIN_ALL));
         }
         return parent::anyOf($values);
     }
 
     public function not() {
-        throw new \App\Model\Exception\InvalidNotOperatorException();
+        throw new \App\Model\Exception\InvalidNotOperatorException($this);
     }
 
     public function and() {
-        throw new \App\Model\Exception\InvalidAndOperatorException();
+        throw new \App\Model\Exception\InvalidAndOperatorException($this);
     }
 
     protected function _compile() {

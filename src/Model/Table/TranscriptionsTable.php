@@ -143,7 +143,9 @@ class TranscriptionsTable extends Table
         // For cases where we want to query without joining with
         // sentences, we use a custom option: `withoutSentences`.
         if (!isset($options['withoutSentences']) || !$options['withoutSentences']) {
-            $query->contain(['Sentences']);
+            $query->contain('Sentences', function ($q) {
+                return $q->select(['lang', 'script']);
+            });
         }
     }
 
@@ -424,7 +426,7 @@ class TranscriptionsTable extends Table
             'Transcriptions.script' => $script
         ])->contain([
             'Users' => ['fields' => ['username']]
-        ])->first();
+        ]);
     }
 
     private function insertTranscriptionOrdered(&$transcriptions, $newTranscr) {

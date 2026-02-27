@@ -86,11 +86,39 @@ class AnnouncementHelperTest extends TestCase
 
     public function maintenanceProvider() {
         return [
+            'maintenance in 2 days' => [
+                // "now" time
+                '2020-05-28 02:00:00 UTC',
+                // value for Announcement in app_config.php
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                // confirm this text is in the maintenance message
+                'on May 30, 2020 at 2:00 AM UTC, which is in 2 days',
+                // confirm whether of not maintenance is considered "imminent"
+                false,
+            ],
+            'maintenance in 1 day' => [
+                '2020-05-29 02:00:00 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'on May 30, 2020 at 2:00 AM UTC, which is in 1 day',
+                false,
+            ],
+            'maintenance in 2 hours' => [
+                '2020-05-30 00:00:00 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 2 hours',
+                false,
+            ],
+            'maintenance in 1 hour' => [
+                '2020-05-30 01:00:00 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 1 hour',
+                false,
+            ],
             'maintenance in 11 minutes' => [
-                '2020-05-30 01:49:00 UTC',  // "now" time
-                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ], // value for Announcement in app_config.php
-                'in 11 minutes', // confirm this text is present in the maintenance message
-                false,           // confirm whether of not maintenance is considered "imminent"
+                '2020-05-30 01:49:00 UTC',
+                [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
+                'in 11 minutes',
+                false,
             ],
             'maintenance in 10 minutes 59 seconds' => [
                 '2020-05-30 01:49:01 UTC',

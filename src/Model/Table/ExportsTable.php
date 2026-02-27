@@ -233,9 +233,9 @@ class ExportsTable extends Table
         foreach ($query as $fields) {
             $linefeed = "\r\n";
             if ($config['format'] == 'shtooka') {
-                $file->write(implode($fields, " - ").$linefeed);
+                $file->write(implode(" - ", $fields).$linefeed);
             } else {
-                $file->write(implode($fields, "\t").$linefeed);
+                $file->write(implode("\t", $fields).$linefeed);
             }
             $throttler->oneMoreRecord();
             $throttler->control();

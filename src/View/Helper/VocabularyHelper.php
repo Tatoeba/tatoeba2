@@ -26,7 +26,7 @@ use App\Model\Search;
 class VocabularyHelper extends AppHelper
 {
     public $helpers = array(
-        'Html', 'Url'
+        'Html', 'Url', 'Languages'
     );
 
     /**
@@ -63,9 +63,8 @@ class VocabularyHelper extends AppHelper
                 )
             ));
         }
+        echo $this->Languages->icon($lang, ['class' => 'vocabulary-lang']);
         ?>
-        <img class="vocabulary-lang language-icon" width="30" height="20"
-             src="/img/flags/<?= $lang ?>.svg"/>
         <div class="vocabulary-text" flex><?= $text ?></div>
         <md-button ng-cloak class="md-primary" <?= isset($url) ? "href=\"$url\"" : 'ng-disabled="1"' ?>>
             <?= $numSentencesLabel ?>

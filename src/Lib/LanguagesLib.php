@@ -699,7 +699,9 @@ class LanguagesLib
                 'guw' => __d('languages', 'Gun'),
                 'gaz' => __d('languages', 'West-Central Oromo'),
                 'isv' => __d('languages', 'Interslavic'),
-
+                'mdr' => __d('languages', 'Mandar'),
+                'sva' => __d('languages', 'Svan'),
+                'njo' => __d('languages', 'Ao Naga'),
             );
         }
         return $languages;

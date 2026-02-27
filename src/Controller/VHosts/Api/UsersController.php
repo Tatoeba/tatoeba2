@@ -106,6 +106,7 @@ class UsersController extends ApiController
         }
 
         $query = $this->Users
+            ->addBehavior('ExposedOnApi')
             ->find('exposedFields', $this->exposedFields())
             ->select($this->fields())
             ->where([
@@ -117,12 +118,7 @@ class UsersController extends ApiController
                 'level',
                 'details'
             ]]])
-            ->formatResults(function($entities) {
-                return $entities->map(function($entity) {
-                    $entity->since = $entity->since->toDateString();
-                    return $entity;
-                });
-            });
+            ->find('datetime2date', ['datetimefields' => ['since']]);
 
         $results = $query->firstOrFail();
         $response = [

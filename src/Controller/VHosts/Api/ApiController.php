@@ -3,25 +3,84 @@
 namespace App\Controller\VHosts\Api;
 
 use Cake\Controller\Controller;
-use Cake\Http\Exception\BadRequestException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Event\Event;
 
 /**
  * @OA\Info(
- *   version="unstable",
+ *   version="1.0",
  *   title="Tatoeba API",
- *   description="<h2>Welcome to the Tatoeba API</h1>
+ *   description="<h2>Welcome to the Tatoeba API</h2>
 <p>
 This is an ongoing effort to provide an API for tatoeba.org.
-This API is currently read-only and subject to change, but open to the public without authentification.
-You are encouraged to try it, feedback is welcome.
-When this API will be considered mature, we will release a stable version and you will just have to change your endpoints from <em>/unstable</em> to <em>/v1</em>.
+This API is currently read-only, but open to the public without authentification.
+Feedback is welcome.
+</p>
+<p>
+Endpoints can be divided in two categories.
+<ul>
+<li>Stable endpoints use the <code>/v1</code> prefix: it is safe to build upon them.</li>
+<li>Unstable endpoints use the <code>/unstable</code> prefix: these may change at any point
+    in the future, in terms of behavior, required parameters or response format.</li>
+</ul>
+
+As work on this API progresses, some <em>unstable</em> endpoints will become <em>stable</em>
+by switching the prefix from <code>/unstable</code> to <code>/v1</code>. For backward compatibility,
+all <code>/v1</code> endpoints can also be used with <code>/unstable</code> prefix instead.
 </p>",
  *   @OA\Contact(name="API support", email="team@tatoeba.org")
  * )
  * @OA\Server(url="https://api.tatoeba.org",     description="Tatoeba's production server")
  * @OA\Server(url="https://api.dev.tatoeba.org", description="Tatoeba's development server")
  *
+ * @OA\Response(
+ *   response="ClientErrorResponse",
+ *   description="There was an issue with the provided parameters.",
+ *   @OA\JsonContent(
+ *     description="Description of the error response.",
+ *     type="object",
+ *     @OA\Property(property="message", type="string", example="Invalid value for parameter ""sort""", description="Details about what is wrong."),
+ *     @OA\Property(property="url", type="string", example="/unstable/sentences?lang=eng&amp;sort=invalid", description="URL of the request (HTML-safe)."),
+ *     @OA\Property(property="code", type="integer", example=400, description="HTTP status code of the response.")
+ *   )
+ * )
+ * @OA\Response(
+ *   response="ServerErrorResponse",
+ *   description="There is a problem with the API server.",
+ *   @OA\JsonContent(
+ *     description="Description of the error response.",
+ *     type="object",
+ *     @OA\Property(property="message", type="string", example="An Internal Error Has Occurred.", description="Details about what is wrong."),
+ *     @OA\Property(property="url", type="string", example="/unstable/sentences/1", description="URL of the request (HTML-safe)."),
+ *     @OA\Property(property="code", type="integer", example=500, description="HTTP status code of the response.")
+ *   )
+ * )
+ * @OA\Response(
+ *   response="NotFoundErrorResponse",
+ *   description="The thing could not be found.",
+ *   @OA\JsonContent(
+ *     description="Description of the error response.",
+ *     type="object",
+ *     @OA\Property(property="message", type="string", example="Not Found", description="Details about what is wrong."),
+ *     @OA\Property(property="url", type="string", example="/unstable/sentences/1234", description="URL of the request (HTML-safe)."),
+ *     @OA\Property(property="code", type="integer", example=404, description="HTTP status code of the response.")
+ *   )
+ * )
+ *
+ * @OA\Parameter(name="after", in="query",
+ *   description="Cursor start position. This parameter is used internally to paginate results.",
+ *   @OA\Schema(type={"string", "integer"})
+ * )
+ *
+ * @OA\Schema(
+ *   schema="Paging",
+ *   description="Description of the pagination context of a response.",
+ *   type="object",
+ *   @OA\Property(property="first", type="string", example="https://example.com/sentences", description="URL to fetch the first page of results."),
+ *   @OA\Property(property="total", type="integer", example="42", description="The total number of results among all pages."),
+ *   @OA\Property(property="has_next", type="boolean", example=true, description="Whether there are more results than what was returned."),
+ *   @OA\Property(property="next", type="string", example="https://example.com/sentences?after=1234,4567", description="URL to fetch the next page of results."),
+ * )
  * @OA\Schema(
  *   schema="LanguageCode",
  *   description="The ISO 639-3 code of the language, or some <a href=""https://en.wiki.tatoeba.org/articles/show/tatoeba-supported-languages-exceptions"">exceptional code</a>.",
@@ -47,7 +106,7 @@ When this API will be considered mature, we will release a stable version and yo
  * )
  * @OA\Schema(
  *   schema="NegatableMemberList",
- *   description="A comma-separated list of usernames. The list of usernames can be negated by prefixing it with <em>!</em>. Empty username means orphan sentence.",
+ *   description="A comma-separated list of usernames. The list of usernames can be negated by prefixing it with <em>!</em>.",
  *   type="string",
  *   example="gillux",
  *   pattern="!?[0-9a-zA-Z_]*(,[0-9a-zA-Z_]*)*"
@@ -78,11 +137,30 @@ When this API will be considered mature, we will release a stable version and yo
  *   type="enum",
  *   enum={"yes", "no"}
  * )
+ * @OA\Schema(
+ *   schema="ScriptCode",
+ *   type="string",
+ *   description="ISO 15924 script code",
+ *   example="Latn",
+ *   minLength=4,
+ *   maxLength=4,
+ *   pattern="[A-Z][a-z]{3}"
+ * )
+ * @OA\Schema(
+ *   schema="SentenceLicense",
+ *   type="enum",
+ *   enum={"CC BY 2.0 FR", "CC0 1.0", "PROBLEM"}
+ * )
+ * @OA\Schema(
+ *   schema="SentenceLicenseList",
+ *   type="array",
+ *   items=@OA\Items(ref="#/components/schemas/SentenceLicense")
+ * )
  */
 class ApiController extends Controller
 {
-    const DEFAULT_RESULTS_NUMBER = 10;
-    const MAX_RESULTS_NUMBER = 100;
+    const DEFAULT_RESULTS_NUMBER = 50;
+    const MAX_RESULTS_NUMBER = 500;
 
     public function initialize()
     {
@@ -95,8 +173,24 @@ class ApiController extends Controller
     public function beforeFilter(Event $event)
     {
         $version = $this->getRequest()->getParam('version');
-        if ($version != 'unstable') {
-            throw new BadRequestException("Invalid API version code: $version");
+        $v1 = [
+            'Sentences' => ['search', 'get'],
+            'Audios' => ['file'],
+        ];
+        if ($version == 'v1') {
+            $controller = $this->getName();
+            $action = $this->getRequest()->getParam('action');
+            if (in_array($action, $v1[$controller] ?? [])) {
+                // This is valid v1 endpoint, process the request
+                return;
+            } else {
+                throw new NotFoundException();
+            }
+        } elseif ($version == 'unstable') {
+            // We are unstable, try to process the request anyway
+            return;
+        } else {
+            throw new NotFoundException("Unknown API version code: $version");
         }
     }
 }

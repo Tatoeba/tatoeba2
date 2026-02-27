@@ -67,10 +67,10 @@ class UsersVocabularyTable extends Table
 
         $result = [
             'conditions' => $conditions,
-            'fields' => ['created'],
+            'fields' => ['created', 'user_id'],
             'contain' => [
                 'Vocabulary' => [
-                    'fields' => ['id', 'lang', 'text', 'numSentences']
+                    'fields' => ['id', 'lang', 'text', 'numSentences', 'numAdded']
                 ]
             ],
             'limit' => 50,

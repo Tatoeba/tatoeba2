@@ -38,6 +38,7 @@
     float: left;
     text-align: right;
     padding: 5px 10px;
+    clear: left;
 }
 
 #UserEditForm div.input {
@@ -60,6 +61,28 @@
     width: 25px;
 }
 
+#UserEditForm img.profile {
+    float: left;
+}
+#UserEditForm input:checked ~ img.profile {
+    display: none;
+}
+
+#UserEditForm details > summary {
+    cursor: pointer;
+}
+#UserEditForm details > summary[data-show]::after {
+    content: attr(data-show);
+}
+#UserEditForm details:open > summary[data-hide]::after {
+    content: attr(data-hide);
+}
+
+#UserEditForm textarea {
+    width: 99%;
+    height: 350px;
+}
+
 #UserEditForm div.submit {
     text-align: center;
     margin-top: 10px;
@@ -80,7 +103,6 @@
     font-size: 20px;
     border: 1px solid #555;
     margin: 10px;
-    padding: 5px 20px;
     background: #6CBC70;
     text-align: center;
 }
@@ -90,5 +112,7 @@
 }
 
 .actions a {
+    display: block;
+    padding: 5px 20px;
     color: white;
 }

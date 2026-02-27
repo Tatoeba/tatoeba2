@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
@@ -48,6 +49,20 @@ class VocabularyTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['text', 'lang']));
+
+        return $rules;
     }
 
     public function validationDefault(Validator $validator)
@@ -171,7 +186,7 @@ class VocabularyTable extends Table
 
         $result = [
             'conditions' => $conditions,
-            'fields' => ['id', 'lang', 'text', 'numSentences'],
+            'fields' => ['id', 'lang', 'text', 'numSentences', 'numAdded'],
             'limit' => 50,
             'order' => ['numSentences' => 'ASC']
         ];
@@ -224,6 +239,23 @@ class VocabularyTable extends Table
             $vocabulary = $item->vocabulary;
             $numSentences = $this->_updateNumSentences($vocabulary);
             $item->vocabulary->numSentences = $numSentences;
+            return $item;
+        });
+    }
+
+    public function addCanEditPermission($results)
+    {
+        return $results->map(function ($item) {
+            if ($item instanceof \App\Model\Entity\Vocable) {
+                $canEdit = CurrentUser::isModerator();
+                $vocabulary = $item;
+            } else {
+                $vocabulary = $item->vocabulary;
+                $canEdit = CurrentUser::isModerator() ||
+                           ($vocabulary->has('numAdded') && $vocabulary->numAdded <= 1 &&
+                            $item->has('user_id') && $item->user_id == CurrentUser::get('id'));
+            }
+            $vocabulary->canEdit = $canEdit;
             return $item;
         });
     }

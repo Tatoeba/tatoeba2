@@ -63,15 +63,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-content>
         <?php
         if (isset($contributions)) {
-            ?>
-            <div layout-padding>
-                <?= format(
-                    __('Only the last {n} contributions are displayed here.'),
-                    ['n' => $this->Number->format($totalLimit)]
-                ); ?>
-            </div>
+            // We don't know the total without limit, so instead, assume that
+            // if the number of results equals the limit, results are truncated
+            $this->Pagination->warnLimitedResults($totalLimit, $totalLimit <= $this->Paginator->param('count'));
 
-            <?php $this->Pagination->display(['last' => false]); ?>
+            $this->Pagination->display(['last' => false]);
+            ?>
 
             <md-list id="logs">
             <?php

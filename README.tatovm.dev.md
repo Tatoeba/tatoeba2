@@ -53,24 +53,72 @@ Now you can simply use the following command to run a particular step:
 tatovm-provision --tag external_tools
 ```
 
-## Publish the VM
+## Package the VM
 
-- Export the VM into a file
+Export the VM into a file
 
 ```bash
 vagrant package --output tatoeba.box
 ```
 
-- Upload the VM
+## Test new VM version without publishing it yet
 
-  - Log into https://app.vagrantup.com/
+The commands below assume the new box version is 0.2.0.
 
-  - Add a new version
+Create a json file describing the box:
 
-  - Add a new provider
+```bash
+newversion=0.2.0
+echo '{"name":"tatoeba/tatovm","versions":[{"providers":[{"name":"virtualbox","description":"","url":"./tatoeba.box"}],"version":"'$newversion'"}]}' > /tmp/box.json
+```
 
-    - Type `virtualbox` for the Provider field
+Then run this command to let Vagrant know about the new version:
 
-    - Upload the exported VM
+```bash
+vagrant box add /tmp/box.json
+```
 
-  - Release the new version
+Now the new version should show up in the output of `vagrant box list`.
+
+Then:
+
+```bash
+# Move to a new directory
+mkdir ../test_tatovm/
+cd ../test_tatovm/
+
+# Pull a fresh copy of Tatoeba
+# Tip: add -b <branch> to pull a specific branch
+git clone --depth 1 https://github.com/Tatoeba/tatoeba2
+
+cd tatoeba2
+
+# Edit ./Vagrantfile to bump config.vm.box_version to 0.2.0 in ./Vagrantfile
+
+# You will probably have to empty caches to work around VERR_NO_LOW_MEMORY error
+echo 3 | sudo tee /proc/sys/vm/drop_caches
+
+# Finally start the VM
+vagrant up
+```
+
+## Publish the VM
+
+- Log into https://portal.cloud.hashicorp.com/
+
+- Click "Vagrant Registry"
+
+- Open "tatoeba/tatovm"
+
+- Click "Versions"
+
+- Add a new version
+
+  - Provider should be `virtualbox`
+  - Architecture should be `amd64`
+  - Use SHA256 as hash and run `sha256sum tatoeba.box` to get it
+  - Upload the exported tatoeba.box file
+
+- Release the new version
+
+- Push ./Vagrantfile with `config.vm.box_version` updated to the new version

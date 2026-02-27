@@ -62,9 +62,10 @@ $isHomepage = $controller == 'pages' && $action == 'index';
         echo $this->AssetCompress->css('layout.css');
 
         // Specific
-        $specificCSS = "$controller/$action.css";
-        if (file_exists(Configure::read('App.cssBaseUrl') . $specificCSS)) {
-            echo $this->Html->css($specificCSS);
+        foreach (["$controller.css", "$controller/$action.css"] as $specificCSS) {
+            if (file_exists(Configure::read('App.cssBaseUrl') . $specificCSS)) {
+                echo $this->Html->css($specificCSS);
+            }
         }
 
         echo $this->element('seo_international_targeting');

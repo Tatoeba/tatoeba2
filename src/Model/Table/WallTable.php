@@ -18,16 +18,21 @@
  */
 namespace App\Model\Table;
 
+use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
 use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallTable extends Table
 {
+    use MailerAwareTrait;
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('content', 'text');
@@ -64,12 +69,28 @@ class WallTable extends Table
         return $rules;
     }
 
+    public function validationSkipOutboundLinksCheck(Validator $validator)
+    {
+        return $this
+            ->validationDefault($validator)
+            ->remove('content', 'outboundLinks');
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
             ->add('content', 'notBlank', [
                 'rule' => 'notBlank',
                 'message'    => __('You cannot save an empty message.'),
+            ])
+            ->add('content', 'outboundLinks', [
+                'rule' => 'isLinkPermitted',
+                'provider' => 'appvalidation',
+                'message' => __(
+                    'Your message was not posted because it contains outbound links. '.
+                    'Please confirm the links are legitimate by ticking the checkbox below, '.
+                    'and re-submit your message.'
+                ),
             ]);
 
         $validator->dateTime('date');
@@ -80,6 +101,11 @@ class WallTable extends Table
     }
 
     public function beforeSave($event, $entity, $options = array()) {
+        if ($threshold = $this->_shouldTriggerAutoban($entity)) {
+            $entity->hidden = true;
+            $entity->__autohidden = $threshold;
+        }
+
         if ($entity->isDirty('hidden')) {
             $entity->modified = $entity->getOriginal('modified');
         }
@@ -108,6 +134,58 @@ class WallTable extends Table
             $root = $this->getRootMessageOfReply($entity->id);
             $this->recalculateThreadDateIgnoringHiddenPosts($root);
         }
+
+        if ($entity->isNew()) {
+            if ($entity->parent_id) {
+                $event = new Event('Model.Wall.replyPosted', $this, [
+                    'post' => $entity,
+                ]);
+            } else {
+                $event = new Event('Model.Wall.newThread', $this, [
+                    'post' => $entity,
+                ]);
+            }
+            $this->getEventManager()->dispatch($event);
+        }
+
+        if ($entity->__autohidden) {
+            $this->_autoban($entity, $entity->__autohidden);
+        } else {
+            $this->_warnAdminsAboutPotentialSEOSpam($entity);
+        }
+    }
+
+    private function _shouldTriggerAutoban($post) {
+        $threshold = Configure::read('Tatoeba.minOutboundLinksTriggeringAutoban');
+        if (is_numeric($threshold) && !$post->hidden) {
+            $threshold = (int)$threshold;
+            $provider = $this->getValidator()->getDefaultProvider('appvalidation');
+            $outboundLinks = iterator_to_array($provider::getOutboundLinks($post->content ?? ''));
+            if (count($outboundLinks) >= $threshold && !CurrentUser::hasOutboundLinkPermission()) {
+                return $threshold;
+            }
+        }
+        return 0;
+    }
+
+    private function _autoban($post, int $threshold) {
+        // Ban user
+        $author = $this->Users->get(CurrentUser::get('id'));
+        $author->role = User::ROLE_SPAMMER;
+        $this->Users->save($author);
+
+        // Notify moderators
+        $this->getMailer('User')->send('outbound_links_autoban', [$post, $author, $threshold]);
+    }
+
+    private function _warnAdminsAboutPotentialSEOSpam($post) {
+        $data = $post->extract($this->schema()->columns(), true);
+        $validator = $this->getValidator('default');
+        $errors = $validator->errors($data, $post->isNew());
+        if (!$post->hidden && isset($errors['content']['outboundLinks'])) {
+            $author = $this->Users->get($post->owner);
+            $this->getMailer('User')->send('content_with_outbound_links', [$post, $author]);
+        }
     }
 
     private function recalculateThreadDateIgnoringHiddenPosts($root)
@@ -121,9 +199,11 @@ class WallTable extends Table
             ])
             ->first();
 
-        $thread = $this->WallThreads->get($root->id);
-        $thread->last_message_date = $result->latest_date;
-        $this->WallThreads->save($thread);
+        if ($result->latest_date) {
+            $thread = $this->WallThreads->get($root->id);
+            $thread->last_message_date = $result->latest_date;
+            $this->WallThreads->save($thread);
+        }
     }
 
 
@@ -281,35 +361,31 @@ class WallTable extends Table
         return $this->delete($message);
     }
 
-    public function saveReply($parentId, $content, $userId)
+    public function newReply($parentId, $content, $userId, $options = [])
     {
-        if (!$parentId) {
-            return null;
+        try {
+            $this->get((int)$parentId);
+        } catch (RecordNotFoundException $e) {
+            throw $e;
         }
         
-        $data = $this->newEntity([
-            'content'   => $content,
-            'owner'     => $userId,
-            'parent_id' => $parentId,
-        ]);
+        return $this->newEntity(
+            [
+                'content'   => $content,
+                'owner'     => $userId,
+                'parent_id' => $parentId,
+            ],
+            $options
+        );
+    }
 
-        $savedMessage = $this->save($data);
-
-        if ($savedMessage) {
-            $event = new Event('Model.Wall.replyPosted', $this, [
-                'post' => $savedMessage
-            ]);
-            $this->getEventManager()->dispatch($event);
-
-            return $this->get($savedMessage->id, [
-                'contain' => [
-                    'Users' => [
-                        'fields' => ['id', 'username', 'image']
-                    ]
+    public function getMessage($id) {
+        return $this->get($id, [
+            'contain' => [
+                'Users' => [
+                    'fields' => ['id', 'username', 'image']
                 ]
-            ]);
-        } else {
-            return null;
-        }
+            ]
+        ]);
     }
 }

@@ -11,6 +11,7 @@ class Search {
     use Search\FiltersCollectionTrait;
 
     const CURSOR_FIELD = 'cursor'; // name for calculated field
+    const AVAILABLE_SORTS = ['relevance', 'words', 'created', 'modified', 'random'];
 
     private $query;
     private $sort;
@@ -83,7 +84,7 @@ class Search {
             $sphinx['sortMode'] = [
                 SPH_SORT_EXTENDED => implode(', ', array_map([$this, 'orderby_'], $this->sortOrder))
             ];
-            if ($this->computeCursor) {
+            if ($this->computeCursor && $this->sort != 'random') {
                 $sphinx['select'] .= $this->computeCursor();
             }
         }
@@ -97,11 +98,11 @@ class Search {
         return $this->query = $query;
     }
 
-    public static function validateLanguage($lang) {
+    public static function validateLanguage($lang, $thrower = null) {
         if (LanguagesLib::languageExists($lang)) {
             return $lang;
         } else {
-            throw new InvalidValueException("Invalid language code '$lang'");
+            throw new InvalidValueException($thrower, "Invalid language code '$lang'");
         }
     }
 
@@ -151,7 +152,7 @@ class Search {
 
     public function sort($sort) {
         $this->sort = null;
-        if (in_array($sort, ['relevance', 'words', 'created', 'modified', 'random'])) {
+        if (in_array($sort, self::AVAILABLE_SORTS)) {
             $this->sort = $sort;
         }
         return $this->sort;

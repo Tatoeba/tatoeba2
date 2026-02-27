@@ -114,7 +114,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
             <md-list-item class="md-2-line <?= $css ?>" href="<?= $url ?>">
                 <md-icon><?= $icon ?></md-icon>
                 <div class="md-list-item-text">
-                    <h3><?= $currentMessage->user->username ?></h3>
+                    <h3><?= $currentMessage->user->username ?? $this->Html->tag('i', __('Former member')) ?></h3>
                     <p><?= $this->Date->ago($currentMessage->date) ?></p>
                 </div>
             </md-list-item>
@@ -129,7 +129,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
     <?php
     // leave a comment part
     if ($isAuthenticated) {
-        echo $this->element('wall/add_form');
+        echo $this->element('wall/add_form', compact('unsentWallPost'));
 
         echo '<div style="display:none">'."\n";
         echo $this->element('wall/add_form', ['isReply' => true]);

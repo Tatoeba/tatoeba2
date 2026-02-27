@@ -37,6 +37,7 @@ use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\LangFilter;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
+use App\ORM\Association\BelongsToManyMany;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
@@ -44,11 +45,19 @@ use Cake\ORM\RulesChecker;
 
 class SentencesTable extends Table
 {
-    use ExposedFieldsTrait;
-
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
     
+    public function belongsToManyMany($associated, array $options = [])
+    {
+        $options += ['sourceTable' => $this];
+
+        /** @var \Cake\ORM\Association\BelongsTo $association */
+        $association = $this->_associations->load(BelongsToManyMany::class, $associated, $options);
+
+        return $association;
+    }
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -269,6 +278,11 @@ class SentencesTable extends Table
         ));
         $this->getEventManager()->dispatch($event);
 
+        $currentUserId = CurrentUser::get('id');
+        if ($currentUserId && $entity->isDirty('text')) {
+            $this->Users->updateLastContribution($currentUserId);
+        }
+
         if (!$created && $entity->isDirty('lang')) {
             $oldLang = $entity->getOriginal('lang');
             $this->Contributions->updateLanguage($entity->id, $entity->lang);
@@ -293,15 +307,17 @@ class SentencesTable extends Table
         if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
         }
-        $transNeedsReindex = $entity->isDirty('lang') || $entity->isDirty('user_id');
+        $transNeedsReindex = $entity->isDirty('lang') || $entity->isDirty('user_id')
+                             || $entity->isDirty('correctness');
         if ($transNeedsReindex) {
             $this->flagTranslationsToReindex($entity->id);
         }
     }
 
-    public function flagSentenceAndTranslationsToReindex($id) {
-        $this->needsReindex($id);
-        $this->flagTranslationsToReindex($id);
+    public function flagSentenceAndTranslationsToReindex($ids) {
+        $ids = (array)$ids;
+        $transIds = $this->Links->findDirectAndIndirectTranslationsIds($ids);
+        $this->needsReindex(array_unique(array_merge($ids, $transIds)));
     }
 
     private function flagTranslationsToReindex($id)
@@ -320,22 +336,23 @@ class SentencesTable extends Table
 
     public function needsReindex($ids)
     {
+        $ids = (array)$ids;
         if (empty($ids)) {
             return;
         }
-        $sentences = $this->find('all')
-            ->where(['id' => $ids, 'lang IS NOT' => null], ['id' => 'integer[]'])
-            ->select(['sentence_id' => 'id', 'lang'])
-            ->formatResults(function ($results) {
-                return $results->map(function ($row) {
-                    $row['type'] = 'change';
-                    return $row;
-                });
-            })
-            ->disableHydration()
-            ->toList();
-        $data = $this->ReindexFlags->newEntities($sentences);
-        $this->ReindexFlags->saveMany($data);
+
+        while (count($ids)) {
+            // process by batches of 1000 sentences
+            // to avoid having too much values in IN() SQL expression
+            $someIds = array_splice($ids, 0, 1000);
+            $sentences = $this->find()
+                ->where(['id IN' => $someIds, 'lang IS NOT' => null])
+                ->select(['id', 'lang', 'type' => "'change'"]);
+            $query = $this->ReindexFlags->query()
+                ->insert(['sentence_id', 'lang', 'type'])
+                ->values($sentences)
+                ->execute();
+        }
     }
 
     public function beforeDelete($event, $entity, $options)
@@ -526,7 +543,7 @@ class SentencesTable extends Table
      *
      * @param string $lang Restrict random id from the specified code lang.
      *
-     * @return int A random id.
+     * @return int A random id, or null if unable to get a random sentence.
      */
     public function getRandomId($lang = null)
     {
@@ -534,7 +551,7 @@ class SentencesTable extends Table
             return $this->getRandomIdAmongAllLanguages();
         } else {
             $arrayIds = $this->getSeveralRandomIds($lang, 1);
-            if (is_bool($arrayIds)) {
+            if (is_null($arrayIds)) {
                 return $arrayIds;
             }
 
@@ -548,7 +565,7 @@ class SentencesTable extends Table
      * @param string $lang             Language of the sentences we want.
      * @param int    $numberOfIdWanted Number of ids needed.
      *
-     * @return array An array of ids.
+     * @return array An array of ids, or null if unable to get any sentence id.
      */
     public function getSeveralRandomIds($lang = null, $numberOfIdWanted = 10)
     {
@@ -614,8 +631,8 @@ class SentencesTable extends Table
             // normal outcome when $lang == 'und'
         }
         $search->sort('random');
-        $search->setFilter(new IsOrphanFilter(false)); // exclude orphans
-        $search->setFilter(new IsUnapprovedFilter(false)); // exclude unapproved
+        $search->setFilter((new IsOrphanFilter())->not()); // exclude orphans
+        $search->setFilter((new IsUnapprovedFilter())->not()); // exclude unapproved
         $sphinx = $search->asSphinx();
         $sphinx['limit'] = $numberOfIdWanted;
 
@@ -1080,12 +1097,12 @@ class SentencesTable extends Table
     {
         $sentence = $this->get($sentenceId);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
-        $ownerId = $currentOwner['id'];
-        $ownerRole = $currentOwner['role'];
+        $ownerId = $currentOwner['id'] ?? null;
+        $ownerRole = $currentOwner['role'] ?? null;
 
         $isOwnerInactive = in_array($ownerRole, [User::ROLE_SPAMMER, User::ROLE_INACTIVE]);
         $isCurrentUserTrusted = in_array($currentUserRole, User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER);
-        $isAdoptable = $ownerId == 0 || ($isOwnerInactive && $isCurrentUserTrusted);
+        $isAdoptable = is_null($ownerId) || ($isOwnerInactive && $isCurrentUserTrusted);
 
         if ($isAdoptable) {
             $sentence->user_id = $userId;
@@ -1268,6 +1285,14 @@ class SentencesTable extends Table
             $attributes[] = 'ucorrectness';
             $sentenceUCorrectness = $entity->correctness + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
+        }
+        if ($entity->isDirty('license')) {
+            $attributes[] = 'license_id';
+            $licenses = array_keys(Licenses::getSentenceLicenses());
+            $licenseId = array_search($entity->license, $licenses);
+            if ($licenseId !== false) {
+                $values[$sentenceId][] = $licenseId;
+            }
         }
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);

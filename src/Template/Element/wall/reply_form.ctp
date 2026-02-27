@@ -39,6 +39,10 @@ $editUrl = $this->Url->build([
                         md-mode="indeterminate"></md-progress-linear>
 
     <md-card-content class="content" ng-if="!vm.savedReplies[<?= $parentId ?>]">
+        <ul ng-if="vm.validationErrors['<?= $parentId ?>']">
+            <li ng-repeat="errorMsg in vm.errors(<?= $parentId ?>)">{{errorMsg}}</li>
+        </ul>
+
         <?php
         echo $this->Form->create('', [
             'ng-submit' => 'vm.saveReply('.$parentId.')',
@@ -59,6 +63,14 @@ $editUrl = $this->Url->build([
             'ng-model' => 'vm.replies['.$parentId.']'
         ]);
         ?>
+
+        <div ng-show="vm.validationErrors['<?= $parentId ?>'].content.outboundLinks">
+            <?= $this->element('validation/confirm_outbound_links', [
+                'label' => __('I confirm the links in my wall post are legitimate '.
+                              'and not included for SEO purposes.'),
+                'confirmOutboundLinks' => true,
+            ]) ?>
+        </div>
 
         <div ng-cloak layout="row" layout-align="end center">
             <md-button class="md-raised" ng-click="vm.hideForm(<?= $parentId ?>)">

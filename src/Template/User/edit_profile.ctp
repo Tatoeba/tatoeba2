@@ -29,7 +29,6 @@ use App\Model\CurrentUser;
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Edit profile')));
 $this->Html->script('user/edit_profile.js', ['block' => 'scriptBottom']);
 $countries = $this->Countries->getAllCountries();
-$this->Languages->localizedAsort($countries);
 ?>
 <div id="annexe_content">
     <?php
@@ -110,7 +109,6 @@ $this->Languages->localizedAsort($countries);
     $user->description = $this->safeForAngular($user->description);
     echo $this->Form->create($user, [
         'id' => 'profile-form',
-        'url' => ['controller' => 'user', 'action' => 'save_basic']
     ]);
 
     echo $this->Form->control('name', [
@@ -134,17 +132,35 @@ $this->Languages->localizedAsort($countries);
     $day = !isset($birthday[2]) || $birthday[2] == '00' ? '' : $birthday[2];
     /* @translators: label for user's birthday in profile page */
     echo $this->Form->label('birthday', __('Birthday'));
-    echo $this->Form->year('birthday', [
+    $yearSelector = $this->Form->year('birthday', [
         'empty' => true,
         'value' => $year,
         'minYear' => date('Y') - 100,
         'maxYear' => date('Y') - 3
     ]);
-    echo $this->Form->select('birthday[month]', $this->Date->months(), ['empty' => true, 'value' => $month]);
-    echo $this->Form->day('birthday', [
+    $monthValues = array_map(
+        function ($month) {
+            /* @translators: this special string lets you to tweak how months are
+               displayed when used inside a drop down (on the profile edition page).
+               You may translate this string using a sublist value,
+               for example {monthInDropdown.number} */
+            return format(__("{monthInDropdown}"), array('monthInDropdown' => $month));
+        },
+        $this->Date->months()
+    );
+    $monthOptions = ['empty' => true, 'value' => $month];
+    $monthSelector = $this->Form->select('birthday[month]', $monthValues, $monthOptions);
+    $daySelector = $this->Form->day('birthday', [
         'empty' => true,
         'value' => $day
     ]);
+    echo format(
+       /* @translators: This can be used in the profile edition page
+          to change how birth date selectors are displayed.
+          You can reorder them or add text inbetween. */
+        __("{yearSelector}{monthSelector}{daySelector}"),
+        compact('yearSelector', 'monthSelector', 'daySelector')
+    );
 
     echo $this->Form->control('homepage', [
         /* @translators: label for user's homepage in profile page */
