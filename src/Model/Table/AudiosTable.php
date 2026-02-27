@@ -43,9 +43,7 @@ class AudiosTable extends Table
 
     public function initialize(array $config)
     {
-        $this->belongsTo('Sentences', [
-            'joinType' => 'inner',
-        ]);
+        $this->belongsTo('Sentences');
         $this->belongsTo('Users');
         $this->hasOne('Queue.QueuedJobs');
 
@@ -233,17 +231,14 @@ class AudiosTable extends Table
     }
 
     /**
-     * Custom finder to exclude audios without a proper license.
+     * Custom finder to include audio license information.
      */
-    public function findHasLicense(Query $query, array $options) {
+    public function findWithLicense(Query $query, array $options) {
         return $query
+            ->select(['external'])
             ->contain('Users', function(Query $q) {
                 return $q->select('audio_license');
-            })
-            ->where(['OR' => [
-                'Users.audio_license <>' => '',
-                'JSON_VALUE(Audios.external, \'$.license\') <>' => '',
-            ]]);
+            });
     }
 
     /**

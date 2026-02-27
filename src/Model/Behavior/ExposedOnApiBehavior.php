@@ -167,7 +167,7 @@ class ExposedOnApiBehavior extends Behavior
         $exposer = $options['fieldsExposer'] ?? null;
         foreach ($options['containOnApi'] as $assoc => $value) {
             // make sure we can run any find*OnApi finder on the related table
-            $query->getRepository()->{$assoc}->addBehavior('ExposedOnApi');
+            $query->getRepository()->{$assoc}->addBehavior('ExposedOnApi', $this->getConfig());
             if ($exposer) {
                 // wrap container to pass on fieldsExposer as containment query option
                 $propName = $query->getRepository()->getAssociation($assoc)->getProperty();
@@ -213,12 +213,15 @@ class ExposedOnApiBehavior extends Behavior
      *   @OA\Property(property="owner", description="The owner of the sentence", anyOf={
      *     @OA\Schema(type="string", description="User name of the sentence owner.", example="kevin"),
      *     @OA\Schema(type="null", description="Contains null when the sentence is orphan."),
-     *   })
+     *   }),
+     *   @OA\Property(property="is_unapproved", type="boolean",
+     *     description="Whether this sentence is marked as <a href=""https://en.wiki.tatoeba.org/articles/show/faq#why-are-some-sentences-in-red?"">unapproved</a> (if value is true) or not (if value is false)"
+     *   )
      * )
      */
     public function findSentencesOnApi(Query $query, array $options) {
         $exposedFields = [
-            'id', 'text', 'lang', 'script', 'license', 'owner'
+            'id', 'text', 'lang', 'script', 'license', 'owner', 'is_unapproved'
         ];
         $fields = ['id', 'text', 'lang', 'user_id', 'correctness', 'script', 'license'];
 
@@ -234,6 +237,16 @@ class ExposedOnApiBehavior extends Behavior
                     return $result;
                 });
             });
+
+        if ($this->getConfig('transcriptions')) {
+            $containOnApi['transcriptions'] = ['finder' => 'transcriptionsOnApi'];
+        }
+        if ($this->getConfig('audios')) {
+            $containOnApi['audios'] = ['finder' => 'audiosOnApi'];
+        }
+        if (isset($containOnApi)) {
+            $query->find('containOnApi', compact('containOnApi'));
+        }
 
         return $query;
     }
@@ -313,7 +326,6 @@ class ExposedOnApiBehavior extends Behavior
         $fields = ['id', 'external', 'created', 'modified', 'sentence_id'];
         $query
             ->find('exposedFields', compact('exposedFields'))
-            ->find('hasLicense')
             ->select($fields)
             ->contain('Users', function(Query $q) {
                 return $q->select(['username', 'audio_license', 'audio_attribution_url']);
@@ -340,10 +352,6 @@ class ExposedOnApiBehavior extends Behavior
     public function findTranslationsOnApi(Query $query, array $options) {
         $query
             ->find('sentencesOnApi')
-            ->find('containOnApi', ['containOnApi' => [
-                'Transcriptions' => ['finder' => 'transcriptionsOnApi'],
-                'Audios'         => ['finder' => 'audiosOnApi'],
-            ]])
             ->select('is_direct')
             ->find('exposedFields', ['exposedFields' => ['is_direct']]);
 

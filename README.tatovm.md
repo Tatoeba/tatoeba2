@@ -33,6 +33,18 @@ vagrant up
 
 - You can log in using one of these accounts: `admin`, `corpus_maintainer`, `advanced_contributor`, `contributor`, `inactive` and `spammer`. For all of them the password is `123456`.
 
+## Troubleshooting
+
+When using Debian "trixie", you may be told that you have to install libvirt. This is misleading, because currently Tatoeba uses VirtualBox and not libvirt.
+
+To fix this, you have to install VirtualBox (see above) and make sure, that vagrant is compatible with the version of the VirtualBox, you downloaded. You may find out about this by starting vagrant with the command
+
+```bash
+vagrant up --provider=virtualbox
+```
+
+At the time of writing this, it's necessary to replace the Debian version of vagrant with a more up to date version.
+
 ## Adding new sentences and finding them using the search
 
 The default install contains no sentences at all and the search won’t work. You will have to [add a few sentences](http://localhost:8080/fra/sentences/add) on your own. Then:

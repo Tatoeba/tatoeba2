@@ -13,7 +13,7 @@ class ApiComponent extends Component
 {
     public static function decodeQueryParameters(string $query): array
     {
-        $query  = explode('&', $query);
+        $query  = strlen($query) == 0 ? [] : explode('&', $query);
         $params = [];
         foreach ($query as $param) {
             $parts = explode('=', $param, 2);
@@ -111,7 +111,6 @@ class ApiComponent extends Component
         $hasNext = $totalResults > $numResults;
         $paging['has_next'] = $hasNext;
         if ($hasNext && !is_null($cursorEnd)) {
-            $paging['cursor_end'] = $cursorEnd;
             $paging['next'] = self::buildUrl(['after' => $cursorEnd]);
         }
 

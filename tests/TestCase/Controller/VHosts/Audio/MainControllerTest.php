@@ -19,6 +19,7 @@ class MainControllerTest extends TestCase
         'app.ReindexFlags',
         'app.Links',
         'app.Languages',
+        'app.Users',
     ];
 
     public function setUp()
@@ -82,5 +83,14 @@ class MainControllerTest extends TestCase
 
         $this->get("http://audio.example.com/sentences/spa/3.mp3");
         $this->assertResponseCode(404);
+    }
+
+    public function testLegacyAudioLink_noLicense()
+    {
+        $this->createAudioFile(2);
+        $this->createAudioFile(5);
+
+        $this->get("http://audio.example.com/sentences/fra/4.mp3");
+        $this->assertResponseCode(403);
     }
 }

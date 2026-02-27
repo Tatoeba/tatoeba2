@@ -37,10 +37,68 @@ class SentencesController extends ApiController
      *   }
      * )
      *
-     * @OA\PathItem(path="/unstable/sentences/{id}",
+     * @OA\Parameter(name="include", in="query",
+     *   @OA\Schema(type="array", items=@OA\Items(type="enum", enum={"audios", "transcriptions"})),
+     *   @OA\Examples(example="1", value="transcriptions",        summary="return associated transcriptions"),
+     *   @OA\Examples(example="2", value="audios",                summary="return associated audio recordings"),
+     *   @OA\Examples(example="3", value="transcriptions,audios", summary="return associated transcriptions and audio recordings"),
+     * ),
+     * @OA\Parameter(name="showtrans:lang", in="query", explode=false,
+     *   description="Limit returned translations to the ones in this language.",
+     *   @OA\Examples(example="1", value="epo",      summary="return translations in Esperanto, if any"),
+     *   @OA\Examples(example="2", value="epo,sun",  summary="return translations in Esperanto and Sundanese, if any"),
+     *   @OA\Examples(example="3", value="!epo,sun", summary="return translations in any language that is not Esperanto or Sundanese, if any"),
+     *   @OA\Schema(ref="#/components/schemas/NegatableLanguageCodeList")
+     * )
+     * @OA\Parameter(name="showtrans:is_direct", in="query",
+     *   description="Limit returned translations to the directly-linked ones if value is yes, or the indirectly-linked ones (i.e. translations of translations) if the value is no.",
+     *   @OA\Schema(ref="#/components/schemas/Boolean")
+     * )
+     * @OA\Parameter(name="showtrans:is_unapproved", in="query",
+     *   description="Limit returned translations to the ones that are <a href=""https://en.wiki.tatoeba.org/articles/show/faq#why-are-some-sentences-in-red?"">unapproved</a> (if value is yes) or not unapproved (if value is no).",
+     *   @OA\Schema(ref="#/components/schemas/Boolean")
+     * )
+     * @OA\Parameter(name="showtrans:is_orphan", in="query",
+     *   description="Limit returned translations to the ones that are orphan (if value is yes) or owned by someone (if value is no). Make sure to combine with <code>showtrans:owner</code> filter in a way that makes sense.",
+     *   @OA\Schema(ref="#/components/schemas/Boolean")
+     * )
+     * @OA\Parameter(name="showtrans:owner", in="query",
+     *   description="Limit returned translations to the ones owned by the provided username. Make sure to combine with <code>showtrans:is_orphan</code> filter in a way that makes sense.",
+     *   @OA\Examples(example="1", value="gillux",        summary="return translations owned by gillux"),
+     *   @OA\Examples(example="2", value="gillux,ajip",   summary="return translations owned by gillux or ajip"),
+     *   @OA\Examples(example="3", value="!gillux",       summary="return translations orphan or owned by a different member than gillux"),
+     *   @OA\Examples(example="4", value="!gillux,ajip",  summary="return translations orphan or owned by a member who is neither gillux nor ajip"),
+     *   @OA\Schema(ref="#/components/schemas/NegatableMemberList")
+     * )
+     * @OA\Parameter(name="showtrans:is_native", in="query",
+     *   description="Limit returned translations to the ones that are owned by a self-identified native speaker (if value is yes) or not owned by a self-identified native speaker (if the value is no). Tip: combine <code>showtrans:is_native=no</code> with <code>showtrans:is_orphan=no</code> to return translations owned by a self-identified non-native speaker.",
+     *   @OA\Schema(ref="#/components/schemas/Boolean")
+     * )
+     * @OA\Parameter(name="showtrans:has_audio", in="query",
+     *   description="Limit returned translations to the ones having one or more audio recordings (if value is yes) or no audio recording (if value is no).",
+     *   @OA\Schema(ref="#/components/schemas/Boolean")
+     * )
+     *
+     * @OA\PathItem(path="/v1/sentences/{id}",
      *   @OA\Parameter(name="id", in="path", description="The sentence identifier.",
      *     @OA\Schema(ref="#/components/schemas/Sentence/properties/id")
      *   ),
+     *   @OA\Parameter(name="include", ref="#/components/parameters/include",
+     *     description="Specify which additional associated data to return along with the sentence and its translations."
+     *   ),
+     *   @OA\Parameter(name="showtrans", in="query",
+     *     description="Specify which translations to return along with the sentence. The default is <em>none</rm>.",
+     *     @OA\Schema(type="enum", enum={"all", "none"}),
+     *     @OA\Examples(example="1", value="all",  summary="return all translations"),
+     *     @OA\Examples(example="2", value="none", summary="return no translation"),
+     *   ),
+     *   @OA\Parameter(name="showtrans:lang", ref="#/components/parameters/showtrans:lang"),
+     *   @OA\Parameter(name="showtrans:is_direct", ref="#/components/parameters/showtrans:is_direct"),
+     *   @OA\Parameter(name="showtrans:is_unapproved", ref="#/components/parameters/showtrans:is_unapproved"),
+     *   @OA\Parameter(name="showtrans:is_orphan", ref="#/components/parameters/showtrans:is_orphan"),
+     *   @OA\Parameter(name="showtrans:owner", ref="#/components/parameters/showtrans:owner"),
+     *   @OA\Parameter(name="showtrans:is_native", ref="#/components/parameters/showtrans:is_native"),
+     *   @OA\Parameter(name="showtrans:has_audio", ref="#/components/parameters/showtrans:has_audio"),
      *   @OA\Get(
      *     summary="Get a sentence",
      *     description="Get sentence text as well as metadata about this sentence and related sentences.",
@@ -62,18 +120,25 @@ class SentencesController extends ApiController
      * )
      */
     public function get($id) {
+        $api = new SearchApi();
+        $api->readParamsForGetSentence($this->getRequest()->getQueryParams());
+
         $this->loadModel('Sentences');
         $query = $this->Sentences
-            ->addBehavior('ExposedOnApi')
+            ->addBehavior('ExposedOnApi', $api->include)
             ->find('sentencesOnApi')
             ->where([
                 'Sentences.id' => $id,
-            ])
-            ->find('containOnApi', ['containOnApi' => [
-                'transcriptions' => ['finder' => 'transcriptionsOnApi'],
-                'audios'         => ['finder' => 'audiosOnApi'],
-                'translations'   => ['finder' => 'translationsOnApi'],
+            ]);
+
+        $showtrans = $api->getShowtrans();
+        if ($showtrans) {
+            $query->find('containOnApi', ['containOnApi' => ['translations' =>
+                function (Query $q) use ($showtrans) {
+                    return $q->find('translationsOnApi', compact('showtrans'));
+                }
             ]]);
+        }
 
         try {
             $results = $query->firstOrFail();
@@ -90,7 +155,7 @@ class SentencesController extends ApiController
     }
 
     /**
-     * @OA\PathItem(path="/unstable/sentences",
+     * @OA\PathItem(path="/v1/sentences",
      *   @OA\Parameter(name="lang", in="query", required=true, explode=false,
      *     description="A comma-separated list of languages to search in.",
      *     @OA\Examples(example="1", value="epo",      summary="sentences in Esperanto"),
@@ -229,6 +294,9 @@ class SentencesController extends ApiController
      *     description="Maximum number of sentences in the response.",
      *     @OA\Schema(type="integer", example="20")
      *   ),
+     *   @OA\Parameter(name="include", ref="#/components/parameters/include",
+     *     description="Specify which additional associated data to return along with matched sentences and translations."
+     *   ),
      *   @OA\Parameter(name="showtrans", in="query",
      *     description="Specify which translations to return along with matched sentences. The default is <em>matching</rm>.",
      *     @OA\Schema(type="enum", enum={"matching", "all", "none"}),
@@ -236,41 +304,14 @@ class SentencesController extends ApiController
      *     @OA\Examples(example="2", value="all",      summary="return all translations"),
      *     @OA\Examples(example="3", value="none",     summary="return no translation"),
      *   ),
-     *   @OA\Parameter(name="showtrans:lang", in="query", explode=false,
-     *     description="Limit returned translations to the ones in this language.",
-     *     @OA\Examples(example="1", value="epo",      summary="return translations in Esperanto, if any"),
-     *     @OA\Examples(example="2", value="epo,sun",  summary="return translations in Esperanto and Sundanese, if any"),
-     *     @OA\Examples(example="3", value="!epo,sun", summary="return translations in any language that is not Esperanto or Sundanese, if any"),
-     *     @OA\Schema(ref="#/components/schemas/NegatableLanguageCodeList")
-     *   ),
-     *   @OA\Parameter(name="showtrans:is_direct", in="query",
-     *     description="Limit returned translations to the directly-linked ones if value is yes, or the indirectly-linked ones (i.e. translations of translations) if the value is no.",
-     *     @OA\Schema(ref="#/components/schemas/Boolean")
-     *   ),
-     *   @OA\Parameter(name="showtrans:is_unapproved", in="query",
-     *     description="Limit returned translations to the ones that are <a href=""https://en.wiki.tatoeba.org/articles/show/faq#why-are-some-sentences-in-red?"">unapproved</a> (if value is yes) or not unapproved (if value is no).",
-     *     @OA\Schema(ref="#/components/schemas/Boolean")
-     *   ),
-     *   @OA\Parameter(name="showtrans:is_orphan", in="query",
-     *     description="Limit returned translations to the ones that are orphan (if value is yes) or owned by someone (if value is no). Make sure to combine with <code>showtrans:owner</code> filter in a way that makes sense.",
-     *     @OA\Schema(ref="#/components/schemas/Boolean")
-     *   ),
-     *   @OA\Parameter(name="showtrans:owner", in="query",
-     *     description="Limit returned translations to the ones owned by the provided username. Make sure to combine with <code>showtrans:is_orphan</code> filter in a way that makes sense.",
-     *     @OA\Examples(example="1", value="gillux",        summary="return translations owned by gillux"),
-     *     @OA\Examples(example="2", value="gillux,ajip",   summary="return translations owned by gillux or ajip"),
-     *     @OA\Examples(example="3", value="!gillux",       summary="return translations orphan or owned by a different member than gillux"),
-     *     @OA\Examples(example="4", value="!gillux,ajip",  summary="return translations orphan or owned by a member who is neither gillux nor ajip"),
-     *     @OA\Schema(ref="#/components/schemas/NegatableMemberList")
-     *   ),
-     *   @OA\Parameter(name="showtrans:is_native", in="query",
-     *     description="Limit returned translations to the ones that are owned by a self-identified native speaker (if value is yes) or not owned by a self-identified native speaker (if the value is no). Tip: combine <code>showtrans:is_native=no</code> with <code>showtrans:is_orphan=no</code> to return translations owned by a self-identified non-native speaker.",
-     *     @OA\Schema(ref="#/components/schemas/Boolean")
-     *   ),
-     *   @OA\Parameter(name="showtrans:has_audio", in="query",
-     *     description="Limit returned translations to the ones having one or more audio recordings (if value is yes) or no audio recording (if value is no).",
-     *     @OA\Schema(ref="#/components/schemas/Boolean")
-     *   ),
+     *   @OA\Parameter(name="showtrans:lang", ref="#/components/parameters/showtrans:lang"),
+     *   @OA\Parameter(name="showtrans:is_direct", ref="#/components/parameters/showtrans:is_direct"),
+     *   @OA\Parameter(name="showtrans:is_unapproved", ref="#/components/parameters/showtrans:is_unapproved"),
+     *   @OA\Parameter(name="showtrans:is_orphan", ref="#/components/parameters/showtrans:is_orphan"),
+     *   @OA\Parameter(name="showtrans:owner", ref="#/components/parameters/showtrans:owner"),
+     *   @OA\Parameter(name="showtrans:is_native", ref="#/components/parameters/showtrans:is_native"),
+     *   @OA\Parameter(name="showtrans:has_audio", ref="#/components/parameters/showtrans:has_audio"),
+     *
      *   @OA\Get(
      *     summary="Search sentences",
      *     description="Allows to search for sentences based on some criteria. By default, all sentences are returned, including sentences you might want to filter out, such as <a href=""https://en.wiki.tatoeba.org/articles/show/faq#why-are-some-sentences-in-red?"">unapproved</a> or orphaned (that is, likely not proofread) ones. To filter sentences, use any combination of the parameters described below.
@@ -523,31 +564,27 @@ class SentencesController extends ApiController
     public function search() {
         $api = new SearchApi();
         $api->setLimits(self::DEFAULT_RESULTS_NUMBER, self::MAX_RESULTS_NUMBER);
-        $api->readParams($this->getRequest()->getQueryParams());
+        $api->readParamsForSearchSentences($this->getRequest()->getQueryParams());
 
-        $containOnApi = [
-            'transcriptions' => ['finder' => 'transcriptionsOnApi'],
-            'audios'         => ['finder' => 'audiosOnApi'],
-        ];
+        $this->loadModel('Sentences');
+        $query = $this->Sentences
+            ->addBehavior('ExposedOnApi', $api->include)
+            ->find('sentencesOnApi');
+
         $showtrans = $api->getShowtrans();
         if ($showtrans) {
             $api->setLimits(10, 50); // getting translations is resource-intensive
-            $containOnApi['translations'] = function (Query $q) use ($showtrans) {
-                return $q->find('translationsOnApi', compact('showtrans'));
-            };
+            $query->find('containOnApi', ['containOnApi' => ['translations' =>
+                function (Query $q) use ($showtrans) {
+                    return $q->find('translationsOnApi', compact('showtrans'));
+                }
+            ]]);
         }
 
-        $this->loadModel('Sentences');
-
-        $sphinxOpts = [
+        $query->find('withSphinx', [
             'sphinx' => $api->asSphinx(),
             'countRealTotal' => true,
-        ];
-        $query = $this->Sentences
-            ->addBehavior('ExposedOnApi')
-            ->find('withSphinx', $sphinxOpts)
-            ->find('sentencesOnApi')
-            ->find('containOnApi', compact('containOnApi'));
+        ]);
 
         $cursorEndCb = fn () => $this->Sentences->getLastRecordCursor();
         $numResultsCb = fn () => $this->Sentences->getReturnedResultsCount();

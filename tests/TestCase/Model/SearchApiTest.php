@@ -592,37 +592,36 @@ class SearchApiTest extends TestCase
         $this->fail("$expectedName was not thrown");
     }
 
-    private function _buildSearchFromFilters($filters) {
-        $search = new Search();
-        foreach ($filters as $filter) {
-            $search->setFilter($filter);
-            if (method_exists($filter, 'setSearch')) {
-                $filter->setSearch($search);
-            }
-        }
-        return $search;
-    }
-
     /**
      * @dataProvider filtersProvider()
      */
     public function testFilters($filters, $expected) {
-        if ($expected instanceof \Exception) {
-            $codeToTest = function () use ($filters) {
-                if (isset($filters['sort'])) {
-                    $this->SearchApi->consumeSort($filters);
-                }
-                $this->SearchApi->consumeFilters($filters);
-            };
+        $codeToTest = function() use (&$filters) {
+            if (isset($filters['sort'])) {
+                $this->SearchApi->consumeSort($filters);
+            }
+            $this->SearchApi->consumeFilters($filters);
+            return $this->SearchApi->search;
+        };
+        if ($expected instanceOf \Exception) {
             $this->assertThrowsException($codeToTest, $expected);
         } else {
-            $expectedSearch = $this->_buildSearchFromFilters($expected);
-            $this->SearchApi->consumeFilters($filters);
-            $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
+
+            $result = $codeToTest();
+
+            if (is_null($expected)) {
+                $this->assertNull($result);
+            } else {
+                $results = array_map(fn($f) => $f->compile(), $result->getFilters());
+                $expected = array_map(fn($f) => $f->compile(), $expected);
+                foreach ($expected as $expectedFilter) {
+                    $this->assertEquals($expectedFilter, array_shift($results));
+                }
+            }
         }
     }
 
-    public function paramsProvider() {
+    public function SearchSentencesParamsProvider() {
         return [
             'invalid parameter' => [
                 [ 'lang' => 'epo', 'sort' => 'modified', 'invalid' => 'blah' ],
@@ -632,23 +631,42 @@ class SearchApiTest extends TestCase
     }
 
     /**
-     * @dataProvider paramsProvider()
+     * @dataProvider SearchSentencesParamsProvider()
      */
-    public function testReadParams($params, $expected) {
+    public function testReadParamsForSearchSentences($params, $expected) {
         $codeToTest = function () use ($params) {
-            $this->SearchApi->readParams($params);
+            $this->SearchApi->readParamsForSearchSentences($params);
+        };
+        $this->assertThrowsException($codeToTest, $expected);
+    }
+
+    public function GetSentenceParamsProvider() {
+        return [
+            'invalid parameter' => [
+                [ 'invalid' => 'blah' ],
+                new BadRequestException("Unknown parameter 'invalid'"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider GetSentenceParamsProvider()
+     */
+    public function testReadParamsForGetSentence($params, $expected) {
+        $codeToTest = function () use ($params) {
+            $this->SearchApi->readParamsForGetSentence($params);
         };
         $this->assertThrowsException($codeToTest, $expected);
     }
 
     public function testDefaultFilters() {
-        $expectedDefaults = $this->_buildSearchFromFilters([
-            (new LicenseFilter())->not()->anyOf([LicenseFilter::LICENSING_ISSUE])
-        ]);
+        $expectedDefaults = [
+            'LicenseFilter' => (new LicenseFilter())->not()->anyOf([LicenseFilter::LICENSING_ISSUE]),
+        ];
 
         $this->SearchApi->setDefaultFilters();
 
-        $this->assertEquals($expectedDefaults->asSphinx(), $this->SearchApi->search->asSphinx());
+        $this->assertEquals($expectedDefaults, $this->SearchApi->search->getFilters());
     }
 
     public function testQ() {
@@ -705,10 +723,11 @@ class SearchApiTest extends TestCase
     }
 
     public function sortFailureProvider() {
+        $invalidError = "Invalid value for parameter 'sort': must be one of: relevance, words, created, modified, random, -relevance, -words, -created, -modified, -random";
         return [
             'missing' => [null, new BadRequestException('Required parameter "sort" missing')],
-            'empty'   => ['', new BadRequestException('Invalid value for parameter "sort"')],
-            'invalid' => ['invalid', new BadRequestException('Invalid value for parameter "sort"')],
+            'empty'   => ['', new BadRequestException($invalidError)],
+            'invalid' => ['invalid', new BadRequestException($invalidError)],
             'multiple params' => [
                 ['created', 'modified'],
                 new BadRequestException("Invalid usage of parameter 'sort': cannot be provided multiple times")
@@ -730,19 +749,11 @@ class SearchApiTest extends TestCase
         $this->fail(get_class($expected) . " was not thrown");
     }
 
-    public function showtransFiltersProvider() {
+    public function showtransFiltersProvider_withMatching() {
         return [
-            'invalid showtrans value' => [
+            'invalid showtrans value, with matching' => [
                 [ 'showtrans' => 'invalid' ],
                 new BadRequestException("Invalid value for parameter 'showtrans': must be one of: all, none, matching"),
-            ],
-            'showtrans is "all"' => [
-                [ 'showtrans' => 'all' ],
-                [],
-            ],
-            'showtrans is "none"' => [
-                [ 'showtrans' => 'none' ],
-                null,
             ],
             'showtrans is "matching" without any translation filter' => [
                 [ 'showtrans' => 'matching' ],
@@ -764,8 +775,30 @@ class SearchApiTest extends TestCase
                     )
                 ],
             ],
-            'showtrans is combined with showtrans:lang' => [
-                [ 'showtrans' => 'matching', 'showtrans:lang' => 'sun' ],
+        ];
+    }
+
+    public function showtransFiltersProvider_withoutMatching() {
+        return [
+            'invalid showtrans value, without matching' => [
+                [ 'showtrans' => 'matching' ],
+                new BadRequestException("Invalid value for parameter 'showtrans': must be one of: all, none"),
+            ],
+        ];
+    }
+
+    public function showtransFiltersProvider() {
+        return [
+            'showtrans is "all"' => [
+                [ 'showtrans' => 'all' ],
+                [],
+            ],
+            'showtrans is "none"' => [
+                [ 'showtrans' => 'none' ],
+                null,
+            ],
+            'showtrans is "all" combined with showtrans:lang' => [
+                [ 'showtrans' => 'all', 'showtrans:lang' => 'sun' ],
                 new BadRequestException("Invalid usage of parameter 'showtrans:lang' or 'showtrans': these two cannot be used together"),
             ],
 
@@ -926,14 +959,30 @@ class SearchApiTest extends TestCase
 
     /**
      * @dataProvider showtransFiltersProvider()
+     * @dataProvider showtransFiltersProvider_withMatching()
      */
-    public function testShowtransFilters($params, $expected) {
+    public function testShowtransFilters_consumeFilters($params, $expected) {
         $codeToTest = function() use (&$params) {
             $params['lang'] = 'epo';
-            $params['sort'] = 'modified';
-            $this->SearchApi->readParams($params);
+            $this->SearchApi->consumeFilters($params);
             return $this->SearchApi->getShowtrans();
         };
+        $this->_testShowtransFilters($codeToTest, $expected);
+    }
+
+    /**
+     * @dataProvider showtransFiltersProvider()
+     * @dataProvider showtransFiltersProvider_withoutMatching()
+     */
+    public function testShowtransFilters_consumeShowtransFilters($params, $expected) {
+        $codeToTest = function() use (&$params) {
+            $this->SearchApi->consumeShowtransFilters($params);
+            return $this->SearchApi->getShowtrans();
+        };
+        $this->_testShowtransFilters($codeToTest, $expected);
+    }
+
+    private function _testShowtransFilters($codeToTest, $expected) {
         if ($expected instanceOf \Exception) {
             $this->assertThrowsException($codeToTest, $expected);
         } else {
@@ -988,6 +1037,55 @@ class SearchApiTest extends TestCase
         } else {
             $this->assertEquals($expected, $result);
             $this->assertFalse(isset($params['limit']));
+        }
+    }
+
+    public function includeProvider() {
+        return [
+            'absent include' => [ [], [] ],
+            'include audio' =>  [
+                ['include' => 'audios'],
+                ['audios' => true],
+            ],
+            'include transcriptions' =>  [
+                ['include' => 'transcriptions'],
+                ['transcriptions' => true],
+            ],
+            'include audios and transcriptions' =>  [
+                ['include' => 'audios,transcriptions'],
+                ['audios' => true, 'transcriptions' => true],
+            ],
+            'empty include' => [
+                ['include' => ''],
+                new BadRequestException("Invalid value for parameter 'include': must be one of: audios, transcriptions"),
+            ],
+            'invalid include' => [
+                ['include' => 'invalid'],
+                new BadRequestException("Invalid value for parameter 'include': must be one of: audios, transcriptions"),
+            ],
+            'multiple include params' => [
+                ['include' => ['audios', 'translations']],
+                new BadRequestException("Invalid usage of parameter 'include': cannot be provided multiple times"),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider includeProvider()
+     */
+    public function testConsumeInclude($params, $expected) {
+        try {
+            $result = $this->SearchApi->consumeInclude($params);
+        } catch (\Exception $actual) {
+            $this->assertEquals($expected, $actual);
+            return;
+        }
+
+        if ($expected instanceOf \Exception) {
+            $this->fail(get_class($expected) . " was not thrown");
+        } else {
+            $this->assertEquals($expected, $result);
+            $this->assertFalse(isset($params['include']));
         }
     }
 }
