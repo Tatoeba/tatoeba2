@@ -1231,7 +1231,7 @@ class SentencesTableTest extends TestCase {
 
     function testNumberOfSentencesOwnedBy() {
         $result = $this->Sentence->numberOfSentencesOwnedBy(7);
-        $this->assertEquals(21, $result);
+        $this->assertEquals(22, $result);
     }
 
     function testGetSentenceTextForId_succeeds() {
@@ -1545,7 +1545,7 @@ class SentencesTableTest extends TestCase {
     function testLanguagesHavingSentences() {
         $expected = [
             null, 'ara', 'cmn', 'deu', 'eng', 'fra', 'jpn', 'pol', 'rus',
-            'spa', 'tur', 'ukr', 'wuu', 'yue'
+            'spa', 'tur', 'ukr', 'uzb', 'wuu', 'yue'
         ];
         $result = $this->Sentence->languagesHavingSentences();
         $this->assertEquals($expected, $result);

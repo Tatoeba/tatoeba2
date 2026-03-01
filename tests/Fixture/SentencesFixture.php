@@ -804,5 +804,17 @@ class SentencesFixture extends TestFixture {
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '55',
 		),
+		array(
+			'id' => '66',
+			'lang' => 'uzb',
+			'text' => 'Ишингни қил!',
+			'correctness' => '0',
+			'user_id' => '7',
+			'created' => '2020-01-22 22:22:22',
+			'modified' => '2020-01-22 22:22:22',
+			'script' => 'Cyrl',
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => '0',
+		),
 	);
 }
