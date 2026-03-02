@@ -8,7 +8,9 @@ use Helmich\JsonAssert\JsonAssertions;
 
 class SentencesControllerTest extends TestCase
 {
-    use IntegrationTestTrait;
+    use IntegrationTestTrait {
+        _getBodyAsString as protected __getBodyAsString;
+    }
     use JsonAssertions;
     use SearchMockTrait;
 
@@ -117,6 +119,21 @@ class SentencesControllerTest extends TestCase
             ],
             'additionalProperties' => false,
         ];
+    }
+
+    /**
+     * Overloads IntegrationTestTrait::_getBodyAsString() to support
+     * getting body from responses printed to stdout, too.
+     */
+    protected function _getBodyAsString()
+    {
+        ob_start();
+        $body = $this->__getBodyAsString();
+        if (strlen($body) == 0 && ob_get_length()) {
+            $body = ob_get_contents();
+        }
+        ob_end_clean();
+        return $body;
     }
 
     public function testGetSentence_doesNotExist()
@@ -514,5 +531,6 @@ class SentencesControllerTest extends TestCase
                ->with(0, $expectedLimit);
 
         $this->get("http://api.example.com/unstable/sentences?$params");
+        $this->_getBodyAsString();
     }
 }

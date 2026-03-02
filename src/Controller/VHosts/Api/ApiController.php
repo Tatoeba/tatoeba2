@@ -168,6 +168,7 @@ class ApiController extends Controller
         $this->loadComponent('RequestHandler', [
             'viewClassMap' => ['json' => 'Api']
         ]);
+        $this->loadComponent('Api');
     }
 
     public function beforeFilter(Event $event)

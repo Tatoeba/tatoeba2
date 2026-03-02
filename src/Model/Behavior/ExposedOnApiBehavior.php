@@ -19,14 +19,14 @@
 namespace App\Model\Behavior;
 
 use App\Model\Search\LicenseFilter;
+use Cake\ORM\Association;
 use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
+use Cake\ORM\Table;
 use Cake\ORM\Query;
 
 class ExposedOnApiBehavior extends Behavior
 {
-    const EXPOSED_FIELDS_CACHE_KEY = '_';
-
     public function initialize(array $config)
     {
         // Temporary introduction of new code, we should get rid of this
@@ -42,57 +42,72 @@ class ExposedOnApiBehavior extends Behavior
     }
 
     /**
-     * This allows to set which fields will be exported in json,
-     * regardless of the fields being virtual or not,
-     * in a similar fashion as contain().
+     * Traverses a tree of unhydrated (array) entities.
+     * Each $entity and all associated entities down the tree are hydrated,
+     * and turned back to arrays according to visible fields defined in $exposer.
      */
-    public function findExposedFields(Query $query, array $options)
-    {
-        $query->formatResults(function($results) use ($query) {
-            return $results->map(function($result) use ($query) {
-                $exposedFields = $query->getOptions()['exposedFields'];
-                return $this->setExposedFields($result, $exposedFields);
-            });
-        });
-        return $query;
-    }
-
-    public function setExposedFields($entity, array &$toExpose)
-    {
-        if (is_array($entity)) {
-            foreach ($entity as &$e) {
-                $this->setExposedFields($e, $toExpose);
-            }
-        } elseif ($entity instanceof Entity) {
-            if (isset($toExpose[self::EXPOSED_FIELDS_CACHE_KEY])) {
-                list($toHide, $notExposed) = $toExpose[self::EXPOSED_FIELDS_CACHE_KEY];
-                $entity->setHidden($toHide);
-                $entity->setVirtual($notExposed, true);
-            }
-            else if (isset($toExpose['fields'])) {
-                $fieldsToExpose = $toExpose['fields'];
-
-                $assocs = array_keys($toExpose);
-                $hidden = $entity->getHidden();
-                $toHide = array_diff($hidden, $fieldsToExpose);
-                $exposed = $entity->getVisible();
-                $unwantedExposed = array_diff($exposed, $fieldsToExpose, $assocs);
-                $toHide = array_merge($toHide, $unwantedExposed);
-                $entity->setHidden($toHide);
-
-                $notExposed = array_diff($fieldsToExpose, $exposed);
-                $entity->setVirtual($notExposed, true);
-
-                $toExpose[self::EXPOSED_FIELDS_CACHE_KEY] = [$toHide, $notExposed];
-            }
-            foreach ($toExpose as $assoc => &$fieldsToExpose) {
-                $contained = $entity->get($assoc);
-                if (!is_null($contained)) {
-                    $this->setExposedFields($contained, $fieldsToExpose);
+    private function exposeEntities(Table $table, array $entity, ?Exposer $exposer) {
+        $assocs = $table->associations();
+        foreach ($entity as $prop => $value) {
+            if (is_array($value)) {
+                $assoc = $assocs->getByProperty($prop);
+                if ($assoc) {
+                    $assocTable = $assoc->getTarget();
+                    $containedExposer = $exposer ? $exposer->getContain($prop) : null;
+                    if (in_array($assoc->type(), [Association::ONE_TO_MANY, Association::MANY_TO_MANY])) {
+                        $entity[$prop] = array_map(
+                            fn ($e) => $this->exposeEntities($assocTable, $e, $containedExposer),
+                            $value
+                        );
+                    } else {
+                        $entity[$prop] = $this->exposeEntities($assocTable, $value, $containedExposer);
+                    }
                 }
             }
         }
-        return $entity;
+        $class = $table->getEntityClass();
+        $options = [
+            'useSetters' => false,
+            'markClean' => true,
+            'markNew' => false,
+            'guard' => false,
+        ];
+        $entity = new $class($entity, $options);
+        if (is_null($exposer)) {
+            return $entity;
+        } else {
+            return $entity->extract($exposer->getFields());
+        }
+    }
+
+    /**
+     * Deactivate CakePHP hydration on $query and setup an Exposer to
+     * perform some pseudo-hydration at the end, as a way to compute
+     * visible fields in the final json response.
+     */
+    private function initExposer(Query $query)
+    {
+        $exposer = new Exposer();
+        $query->applyOptions(['fieldsExposer' => $exposer]);
+        $query->enableHydration(false);
+        $query->formatResults(function($dryEntities) use ($query, $exposer) {
+            return $dryEntities->map(function($entity) use ($query, $exposer) {
+                return $this->exposeEntities($query->getRepository(), $entity, $exposer);
+            });
+        });
+        return $exposer;
+    }
+
+    /**
+     * This allows to set which fields will be exported in json,
+     * regardless of the fields being virtual or not.
+     */
+    public function findExposedFields(Query $query, array $options)
+    {
+        $options = $query->getOptions();
+        $exposer = $options['fieldsExposer'] ?? $this->initExposer($query);
+        $exposer->addFields($options['exposedFields']);
+        return $query;
     }
 
     /**
@@ -106,7 +121,7 @@ class ExposedOnApiBehavior extends Behavior
         $query->formatResults(function($entities) use ($options) {
             return $entities->map(function($entity) use ($options) {
                 foreach ($options['datetimefields'] as $field) {
-                    $entity->{$field} = $entity->{$field}->toDateString();
+                    $entity[$field] = substr($entity[$field], 0, 10);
                 }
                 return $entity;
             });
@@ -120,17 +135,28 @@ class ExposedOnApiBehavior extends Behavior
      */
     public function findContainOnApi(Query $query, array $options)
     {
+        $exposer = $options['fieldsExposer'] ?? null;
         foreach ($options['containOnApi'] as $assoc => $value) {
             // make sure we can run any find*OnApi finder on the related table
             $query->getRepository()->{$assoc}->addBehavior('ExposedOnApi', $this->getConfig());
+            if ($exposer) {
+                // wrap container to pass on fieldsExposer as containment query option
+                $propName = $query->getRepository()->getAssociation($assoc)->getProperty();
+                $newOptions = ['fieldsExposer' => $exposer->in($propName)];
+                if (is_array($value) && is_string($value['finder'] ?? null)) {
+                    $value = fn (Query $q) => $q
+                        ->applyOptions($newOptions)
+                        ->find($value['finder']);
+                } elseif (is_callable($value)) {
+                    $value = fn (Query $q) =>
+                        $value($q->applyOptions($newOptions));
+                } else {
+                    throw new \RuntimeException("Unsupported value for containOnApi containment $assoc, must be a callable or ['finder' => '...']");
+                }
+            }
             // actually include the related entities
             $query->contain([$assoc => $value]);
-            // add the property name of the asssociation to the list of exposed fields
-            $propName = $query->getRepository()->getAssociation($assoc)->getProperty();
-            $options['exposedFields']['fields'][] = $propName;
         }
-        // keep track of modified $options['exposedFields']
-        $query->applyOptions($options);
         return $query;
     }
 
@@ -166,7 +192,7 @@ class ExposedOnApiBehavior extends Behavior
      */
     public function findSentencesOnApi(Query $query, array $options) {
         $exposedFields = [
-            'fields' => ['id', 'text', 'lang', 'script', 'license', 'owner', 'is_unapproved']
+            'id', 'text', 'lang', 'script', 'license', 'owner', 'is_unapproved'
         ];
         $fields = ['id', 'text', 'lang', 'user_id', 'correctness', 'script', 'license'];
 
@@ -233,7 +259,7 @@ class ExposedOnApiBehavior extends Behavior
      */
     public function findTranscriptionsOnApi(Query $query, array $options) {
         $exposedFields = [
-            'fields' => ['script', 'text', 'needsReview', 'type', 'html', 'editor', 'modified']
+            'script', 'text', 'needsReview', 'type', 'html', 'editor', 'modified'
         ];
         $fields = ['sentence_id', 'script', 'text', 'needsReview', 'modified'];
         $query
@@ -266,9 +292,7 @@ class ExposedOnApiBehavior extends Behavior
      */
     public function findAudiosOnApi(Query $query, array $options) {
         $exposedFields = [
-            'fields' => [
-                'id', 'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
-            ]
+            'id', 'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
         ];
         $fields = ['id', 'external', 'created', 'modified', 'sentence_id'];
         $query
@@ -299,12 +323,8 @@ class ExposedOnApiBehavior extends Behavior
     public function findTranslationsOnApi(Query $query, array $options) {
         $query
             ->find('sentencesOnApi')
-            ->select('is_direct');
-
-        // Make is_direct visible
-        $exposedFields = $query->getOptions()['exposedFields'];
-        $exposedFields['fields'][] = 'is_direct';
-        $query->applyOptions(compact('exposedFields'));
+            ->select('is_direct')
+            ->find('exposedFields', ['exposedFields' => ['is_direct']]);
 
         // Apply showtrans filters
         $showtrans = $options['showtrans'] ?? null;

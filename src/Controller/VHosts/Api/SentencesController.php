@@ -120,9 +120,8 @@ class SentencesController extends ApiController
      * )
      */
     public function get($id) {
-        $params = self::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
         $api = new SearchApi();
-        $api->readParamsForGetSentence($params);
+        $api->readParamsForGetSentence($this->getRequest()->getQueryParams());
 
         $this->loadModel('Sentences');
         $query = $this->Sentences
@@ -153,58 +152,6 @@ class SentencesController extends ApiController
         $this->set('response', $response);
         $this->set('_serialize', 'response');
         $this->RequestHandler->renderAs($this, 'json');
-    }
-
-    /* We use our own query parsing functions here because PHP builtins
-     * are not very flexible. In particular, PHP's parse_str() does not
-     * handle well multiple parameters with the same name. See:
-     *   https://www.php.net/manual/en/function.parse-str.php#76792
-     */
-    public static function decodeQueryParameters(string $query) {
-        $query  = strlen($query) == 0 ? [] : explode('&', $query);
-        $params = [];
-        foreach ($query as $param) {
-            $parts = explode('=', $param, 2);
-            if (count($parts) == 1) {
-                $value = null;
-                $name = $parts[0];
-            } else {
-                list($name, $value) = $parts;
-            }
-            $uname = urldecode($name);
-            if (isset($params[$uname])) {
-                if (is_array($params[$uname])) {
-                    $params[$uname][] = urldecode($value);
-                } else {
-                    $params[$uname] = [$params[$uname], urldecode($value)];
-                }
-            } else {
-                $params[$uname] = urldecode($value);
-            }
-        }
-        return $params;
-    }
-
-    public static function encodeQueryParameters(array $params) {
-        $params = array_map(
-            function($name, $values) {
-                $name = urlencode($name);
-                if (is_null($values)) {
-                    return $name;
-                } else {
-                    $values = array_map(
-                        function ($value) use ($name) {
-                            return $name.'='.urlencode($value);
-                        },
-                        (array)$values
-                    );
-                    return implode('&', $values);
-                }
-            },
-            array_keys($params),
-            array_values($params)
-        );
-        return implode('&', $params);
     }
 
     /**
@@ -615,18 +562,13 @@ class SentencesController extends ApiController
      * )
      */
     public function search() {
-        $params = self::decodeQueryParameters($this->getRequest()->getUri()->getQuery());
-        $this->setRequest($this->getRequest()->withQueryParams($params));
-
         $api = new SearchApi();
         $api->setLimits(self::DEFAULT_RESULTS_NUMBER, self::MAX_RESULTS_NUMBER);
-        $api->readParamsForSearchSentences($params);
+        $api->readParamsForSearchSentences($this->getRequest()->getQueryParams());
 
         $this->loadModel('Sentences');
-
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi', $api->include)
-            ->find('withSphinx')
             ->find('sentencesOnApi');
 
         $showtrans = $api->getShowtrans();
@@ -639,23 +581,13 @@ class SentencesController extends ApiController
             ]]);
         }
 
-        $this->paginate = [
+        $query->find('withSphinx', [
             'sphinx' => $api->asSphinx(),
-        ];
-        $results = $this->paginate($query);
-        $response = [
-            'data' => $results,
-        ];
+            'countRealTotal' => true,
+        ]);
 
-        $this->set('has_next', $this->Sentences->getRealTotal() > $this->Sentences->getReturnedResultsCount());
-        $this->set('total', $this->Sentences->getRealTotal());
-
-        $last = $results->last();
-        if ($last) {
-            $this->set('cursor_end', $last[Search::CURSOR_FIELD]);
-        }
-        $this->set('results', $response);
-        $this->set('_serialize', 'results');
-        $this->RequestHandler->renderAs($this, 'json');
+        $cursorEndCb = fn () => $this->Sentences->getLastRecordCursor();
+        $numResultsCb = fn () => $this->Sentences->getReturnedResultsCount();
+        return $this->Api->paginatedResponse($query, $cursorEndCb, $numResultsCb);
     }
 }
