@@ -98,7 +98,8 @@ $(document).ready(function() {
                 var punct = '　-〄〇-〠・'; // 。、「」etc.
                 punct += '！＂＃＇（），．／：；？［＼］＾｀～｟｠'; // fullwitdh forms
                 punct += ' '; // space
-                var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
+                var exceptions = 'ヶ'; // allow ヶ in e.g. ヶ月｛か｜げつ｝
+                var regex = '((?:[' + exceptions + ']|[^｝' + hiragana + katakana + punct + '])+)｛([^｝]*)｝';
                 text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
                 text = text.replace(uniRegExp('｜', 'g'),  '|');
             }
