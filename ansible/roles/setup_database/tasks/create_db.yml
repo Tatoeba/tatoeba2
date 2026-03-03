@@ -19,6 +19,14 @@
 # This task requires mysql root for creating triggers
   shell: cat {{code_dir}}/docs/database/triggers/*.sql | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
 
+- name: Install vendors
+  # This is necessary to run ./bin/cake
+  become: true
+  become_user: vagrant
+  shell: ./tools/codeinit.py
+  args:
+    chdir: "{{code_dir}}"
+
 - name: Run migrations
   become: true
   become_user: vagrant
