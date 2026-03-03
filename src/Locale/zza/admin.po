@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 08:28+0000\n"
+"POT-Creation-Date: 2026-03-01 15:38+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Haci Ibrahim Aytekin <haciibrahimaytekin95@gmail.com>, 2025\n"
 "Language-Team: Zaza (https://app.transifex.com/tatoeba/teams/28284/zza/)\n"
@@ -21,48 +21,48 @@ msgstr ""
 "Language: zza\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L847
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "Xeta: Cumleyê ke hetê {username} ra ameyê îlawekerdene sey pênebawer "
 "nêeşkayî bêrê nîşankerdene."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L852
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Cumleyê ke hetê {username} ra ameyê îlawekerdene sey pênebawer ameyî "
 "nîşankerdene."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L358
 msgid "Unable to import audio: user “{author}” not found."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
 msgid "Invalid file “{file}” ignored."
 msgstr "Dosyaya nevîyartbare ya “{file}” amê peygoşkerdene."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L387
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L402
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L413
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Seba ke dosyaya “{file}” bigêrîya zere rayberê “{dir}” nêeşka bêro "
 "viraştene."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L422
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Dosyaya “{file}” nêeşkê rayberê “{dir}” rê bêra kopyakerdene."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L430
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

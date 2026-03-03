@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 08:28+0000\n"
+"POT-Creation-Date: 2026-03-01 15:38+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Eduards Lasmanis, 2025\n"
 "Language-Team: Latvian (Latvia) (https://app.transifex.com/tatoeba/teams/28284/lv_LV/)\n"
@@ -23,25 +23,25 @@ msgstr ""
 "Language: lv_LV\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L847
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "Kļūda: Teikumi, ko pievienoja {username}, nevar tikt atzīmēti kā neuzticami."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L852
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "Visi teikumi, ko pievienoja {username}, tika atzīmēti kā neuzticami."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L358
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "Nevar importēt audio: lietotājs “{author}” netika atrasts."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
 msgid "Invalid file “{file}” ignored."
 msgstr "Nederīgs fails “{file}” tika ignorēts."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L387
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
@@ -49,19 +49,19 @@ msgstr ""
 "Nevar aizstāt “{author}” teikumā {sentenceId} ievietoto audio: šim "
 "lietotājam ir vairāk kā viens audio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L402
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr "Datubāzē nevar saglabāt audio teikumam {sentenceId}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L413
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "Neizdevās izveidot sarakstu “{dir}”, lai importētu failu “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L422
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Neizdevās kopēt failu “{file}” uz sarakstu “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L430
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

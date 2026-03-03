@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 08:28+0000\n"
+"POT-Creation-Date: 2026-03-01 15:38+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: zawtunlatt, 2022\n"
 "Language-Team: Burmese (https://app.transifex.com/tatoeba/teams/28284/my/)\n"
@@ -21,48 +21,48 @@ msgstr ""
 "Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L849
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L847
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "အမှားအယွင်း ။   ။ အသုံးပြုသူအမည် {username} က ထည့်သွင်းထားသော "
 "စာကြောင်းများကို မယုံကြည်ရသော စာကြောင်းများအဖြစ် မသတ်မှတ်နိုင်ပါ။"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L854
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L852
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "အသုံးပြုသူအမည် {username} က ထည့်သွင်းထားသော စာကြောင်းများအားလုံးကို "
 "မယုံကြည်ရသော စာကြောင်းများ အဖြစ် သတ်မှတ်ပါ။"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L358
 msgid "Unable to import audio: user “{author}” not found."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
 msgid "Invalid file “{file}” ignored."
 msgstr "ယုတ္တိမရှိသောဖိုင် \"{file}\" ဖိုင် ကို လစ်လျူရှုခဲ့ပါတယ်။"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L387
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L402
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L413
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "ဖိုင် \"{file}\" ကို သွင်းယူရန်အတွက် လမ်းကြောင်း \"{dir}\" ကို ဖန်တီးခြင်း "
 "မအောင်မြင်ပါ။"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L422
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "ဖိုင် \"{file}\" ကို လမ်းကြောင်း \"{dir}\" သို့ ကူးယူခြင်း မအောင်မြင်ပါ။"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L430
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

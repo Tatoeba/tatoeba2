@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-22 17:33+0000\n"
+"POT-Creation-Date: 2026-03-01 15:38+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2014\n"
 "Language-Team: Hindi (http://app.transifex.com/tatoeba/tatoeba_website/language/hi/)\n"
@@ -132,15 +132,15 @@ msgstr "वाक्य क्र. {id} हटाया गया है।"
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "त्रुटि: वाक्य क्र. {id} हटा नहीं सके।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L873
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L871
 msgid "You are not allowed to change the license of this sentence."
 msgstr "इस वाक्य का लाइसेंस बदलने की अनुमति आपके पास नहीं है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L880
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L878
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "वाक्य का लाइसेंस “{newLicense}” में बदल दिया गया है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L885
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L883
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "लाइसेंस को “{newLicense}” में बदलने में असमर्थ क्योंकि:"
 
@@ -315,27 +315,27 @@ msgstr "आप जो संदेश देखने की कोशिश क
 
 #. This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L137
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr "“सजा का मालिक”, क्योंकि “{username}” एक मान्य उपयोगकर्ता नाम नहीं है।"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L199
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr "“अनुवाद का मालिक”, क्योंकि “{username}” एक मान्य उपयोगकर्ता नाम नहीं है।"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L283
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L290
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr "\"{tagName} के रूप में टैग किया गया\", क्योंकि यह एक अमान्य टैग नाम है"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L313
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
@@ -344,14 +344,14 @@ msgstr "\"सूची संख्या {listId} से संबंधित 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L480
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L478
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "\"वाक्य अनाथ है\", क्योंकि \"वाक्य स्वामी\" उपयोगकर्ता नाम पर सेट है"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L491
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L489
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "\"अनुवाद अनाथ है\", क्योंकि \"अनुवाद स्वामी\" उपयोगकर्ता नाम पर सेट है"
@@ -359,46 +359,50 @@ msgstr "\"अनुवाद अनाथ है\", क्योंकि \"अ�
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L512
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L510
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr "\"एक स्व-पहचान वाले मूल निवासी के स्वामित्व में\", क्योंकि मानदंड \"स्वामित्व: {उपयोगकर्ता नाम}\" निर्धारित किया गया है, जबकि वह उस भाषा में स्व-पहचान वाला मूल निवासी नहीं है जिसे आप खोज रहे हैं"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L180
+msgid ""
+"The provided sentence differs from the original one near “{character}”."
+msgstr "प्रदान किया गया वाक्य \"{character}\" के पास मूल वाक्य से भिन्न है।"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L188
+msgid "The provided sentence is shorter than the original one."
+msgstr "प्रदान किया गया वाक्य मूल वाक्य से छोटा है।"
+
 #. This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
 #. string to “/” and the list is A, B, C, then the translated
 #. enumeration will be A/B/C.
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L209
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L280
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L393
 msgid ", "
 msgstr ", "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L243
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
 msgstr[0] "निम्न वर्ण का फुरिगाना नहीं है: {charsEnumeration}।"
 msgstr[1] "निम्न वर्णों का फुरिगाना नहीं है: {charsEnumeration}।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
-msgid ""
-"The provided sentence differs from the original one near “{character}”."
-msgstr "प्रदान किया गया वाक्य \"{character}\" के पास मूल वाक्य से भिन्न है।"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L245
-msgid "The provided sentence is shorter than the original one."
-msgstr "प्रदान किया गया वाक्य मूल वाक्य से छोटा है।"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L273
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
 msgstr[0] "\"{kanji}\" इस वर्ण के एक से अधिक फुरिगाना हैं: \"{furiganas}\"।"
 msgstr[1] "\"{kanji}\" इन वर्णों के {n} से अधिक फुरिगाना हैं: \"{furiganas}\"।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L342
+msgid "The provided sentence is longer than the original one."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L396
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
@@ -441,32 +445,32 @@ msgstr "सभी भाषाओं में"
 msgid "unknown"
 msgstr "अज्ञात"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L210
 msgid ""
 "This alternative script was generated automatically and has not been "
 "reviewed."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L217
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
 msgid ""
 "This transcription was generated automatically and has not been reviewed."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L222
 msgid "The furigana was last edited by {author} on {date}."
 msgstr "फुरिगाना को अंतिम बार {author} द्वारा {date} को संपादित किया गया था।"
 
 #. refers to a transcription
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L225
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L98
 msgid "Last edited by {author} on {date}"
 msgstr "{author} ने {date} को अंतिम संपादन किया"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L233
 msgid "This alternative script was generated automatically."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L235
 msgid "This transcription was generated automatically."
 msgstr ""
 
@@ -1524,60 +1528,65 @@ msgstr "डाउनलोड"
 msgid "GitHub"
 msgstr "गिटहब"
 
+#. link text to the Tatoeba API page in the footer (noun)
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L108
+msgid "API"
+msgstr ""
+
 #. section name in the footer
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L122
 msgid "About"
 msgstr "हमारे बारे में"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L37
 msgid "What is Tatoeba?"
 msgstr "Tatoeba क्या है?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L69
 msgid "Contact us"
 msgstr "हमसे संपर्क करें"
 
 #. link text to the Status page in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L150
 msgid "Status"
 msgstr "स्थिति"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L159
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L1
 msgid "Terms of use"
 msgstr "इस्तेमाल की शर्तें"
 
 #. link text to the Blog page in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L171
 msgid "Blog"
 msgstr "ब्लॉग"
 
 #. link text to the Tatoeba Twitter account in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L181
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L60
 msgid "Twitter"
 msgstr "ट्विटर"
 
 #. link text to the Tatoeba Facebook page in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L191
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L62
 msgid "Facebook"
 msgstr "फेसबुक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L206
 msgid "Our data is released under various Creative Commons licenses."
 msgstr "हमारा डेटा विभिन्न क्रिएटिव कॉमन्स लाइसेंस के तहत जारी किया गया है।"
 
 #. link text (in the footer) to the section 6 of the Terms of use page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L197
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L210
 msgid "More information"
 msgstr "अधिक जानकारी"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L224
 msgid "If you love this content, please consider a <a href={}>donation</a>."
 msgstr "यदि आप इस सामग्री से प्यार करते हैं, तो कृपया <a href=\"{}\">दान</a> पर विचार करें।"
 
@@ -3926,12 +3935,6 @@ msgstr "सबसे नए वाक्य पहले दिखाए"
 msgctxt "sentences"
 msgid "Oldest first"
 msgstr "सबसे पुराने वाक्य पहले दिखाए"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
-msgid ""
-"An error occurred while fetching the random sentence. If this persists, "
-"please <a href=\"{}\">let us know</a>."
-msgstr "यादृच्छिक वाक्य लाने के दौरान एक त्रुटि उत्पन्न हुई। यदि यह जारी रहता है, तो कृपया <a href=\"{}\">हमें बताएं</a>।"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L36
 msgid "Sentences with: {keywords}"
