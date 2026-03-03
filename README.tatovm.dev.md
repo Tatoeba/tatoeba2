@@ -11,6 +11,7 @@ Here are the basic requirements of the machine you’re using TatoVM from.
 * Ansible 2.4 or later (also available on pip: `pip install ansible`)
 * VirtualBox 4.0 or later, which can be installed with a package manager or with the help of [generic binaries](https://www.virtualbox.org/wiki/Downloads))
 * Vagrant 1.7 or later
+* About 13GB of disk space available
 
 ## Building a local VM
 
