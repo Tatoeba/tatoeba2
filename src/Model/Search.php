@@ -84,7 +84,7 @@ class Search {
             $sphinx['sortMode'] = [
                 SPH_SORT_EXTENDED => implode(', ', array_map([$this, 'orderby_'], $this->sortOrder))
             ];
-            if ($this->computeCursor && $this->sort != 'random') {
+            if ($this->computeCursor) {
                 $sphinx['select'] .= $this->computeCursor();
             }
         }
@@ -119,7 +119,8 @@ class Search {
 
     private function computeSortAndRanking() {
         $this->sortOrder = [];
-        $randomExpr = "RAND({$this->randSeed})*16777216";
+        $seedExpr = is_null($this->randSeed) ? '' : "{$this->randSeed}*id";
+        $randomExpr = "RAND($seedExpr)*16777216";
         if (empty($this->query)) {
             // When the query is empty, Manticore does not perform any
             // ranking, so we need to rely on ordering instead
