@@ -187,6 +187,14 @@ class Search {
         return '="'.$escaped.'"';
     }
 
+    protected function generateRand($max) {
+        return mt_rand(0, $max);
+    }
+
+    public function initRandSeed($max = null) {
+        return $this->randSeed = $this->generateRand($max ?? mt_getrandmax());
+    }
+
     public function setRandSeed($seed) {
         return $this->randSeed = $seed;
     }

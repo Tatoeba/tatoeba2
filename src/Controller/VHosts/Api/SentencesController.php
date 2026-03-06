@@ -564,7 +564,10 @@ class SentencesController extends ApiController
     public function search() {
         $api = new SearchApi();
         $api->setLimits(self::DEFAULT_RESULTS_NUMBER, self::MAX_RESULTS_NUMBER);
-        $api->readParamsForSearchSentences($this->getRequest()->getQueryParams());
+        $params = $this->getRequest()->getQueryParams();
+        $changedParams = $api->readParamsForSearchSentences($params);
+        $params = array_merge($params, $changedParams);
+        $this->setRequest($this->getRequest()->withQueryParams($params));
 
         $this->loadModel('Sentences');
         $query = $this->Sentences

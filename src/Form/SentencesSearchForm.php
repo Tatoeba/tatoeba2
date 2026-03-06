@@ -370,7 +370,8 @@ class SentencesSearchForm extends Form
 
     private function _newSeed() {
         /* Only use 24 bits of randomness */
-        $pseudoRand = mt_rand(0, (2<<23)-1);
+        $max = (2<<23) - 1;
+        $pseudoRand = $this->search->initRandSeed($max);
         return $this->_encodeSeed($pseudoRand);
     }
 

@@ -44,7 +44,15 @@ class SearchApiTest extends TestCase
         parent::setUp();
         $returnedSentenceIds = [1, 2, 3];
         $this->enableMockedSearch($returnedSentenceIds);
-        $this->SearchApi = new SearchApi();
+
+        $search = $this->getMockBuilder(Search::class)
+                       ->setMethods(['generateRand'])
+                       ->getMock();
+        $search->expects($this->any())
+               ->method('generateRand')
+               ->will($this->returnValue(12345));
+
+        $this->SearchApi = new SearchApi($search);
     }
 
     public function tearDown() {
@@ -705,6 +713,36 @@ class SearchApiTest extends TestCase
         $this->SearchApi->consumeFilters($params);
 
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
+    }
+
+    public function testConsumeSort_randomWithoutSeed() {
+        $expectedSearch = new Search();
+        $expectedSearch->setFilter((new LangFilter())->anyOf(['epo']));
+        $expectedSearch->sort('random');
+        $expectedSearch->setComputeCursor(true);
+        $expectedSearch->setRandSeed(12345);
+
+        $params = ['sort' => 'random', 'lang' => 'epo'];
+        $ret = $this->SearchApi->consumeSort($params);
+        $this->SearchApi->consumeFilters($params);
+
+        $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
+        $this->assertEquals(['sort' => 'random:12345'], $ret);
+    }
+
+    public function testConsumeSort_randomWithSeed() {
+        $expectedSearch = new Search();
+        $expectedSearch->setFilter((new LangFilter())->anyOf(['epo']));
+        $expectedSearch->sort('random');
+        $expectedSearch->setComputeCursor(true);
+        $expectedSearch->setRandSeed(54321);
+
+        $params = ['sort' => 'random:54321', 'lang' => 'epo'];
+        $ret = $this->SearchApi->consumeSort($params);
+        $this->SearchApi->consumeFilters($params);
+
+        $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
+        $this->assertEquals([], $ret);
     }
 
     public function testCursorFilter_OK() {

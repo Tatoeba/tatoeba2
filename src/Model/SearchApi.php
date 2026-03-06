@@ -201,20 +201,38 @@ class SearchApi
         }
     }
 
-    public function consumeSort(&$params) {
+    private function parseSortValue(string $sort, array &$newParams) {
+        // Parse '-' prefix
+        if (isset($sort[0]) && $sort[0] == '-') {
+            $this->search->reverseSort(true);
+            $sort = substr($sort, 1);
+        }
+
+        // Parse or add random seed value as sort=random:<seed>
+        $parts = explode(':', $sort);
+        if (count($parts) == 2 && $parts[0] == 'random' && ctype_digit($parts[1])) {
+            $sort = $parts[0];
+            $this->search->setRandSeed((int)$parts[1]);
+        } elseif ($sort == 'random') {
+            $newSeed = $this->search->initRandSeed();
+            $newParams = ['sort' => 'random:'.$newSeed];
+        }
+
+        return $sort;
+    }
+
+    public function consumeSort(&$params): array {
         if (isset($params['sort'])) {
             $sort = $params['sort'];
         } else {
             throw new BadRequestException('Required parameter "sort" missing');
         }
 
+        $newParams = [];
         if (is_array($sort)) {
             throw new BadRequestException("Invalid usage of parameter 'sort': cannot be provided multiple times");
         }
-        if (isset($sort[0]) && $sort[0] == '-') {
-            $this->search->reverseSort(true);
-            $sort = substr($sort, 1);
-        }
+        $sort = $this->parseSortValue($sort, $newParams);
         if (!$this->search->sort($sort)) {
             $allsorts = array_merge(
                 Search::AVAILABLE_SORTS,
@@ -223,6 +241,8 @@ class SearchApi
             throw new BadRequestException("Invalid value for parameter 'sort': must be one of: ".join(', ', $allsorts));
         }
         unset($params['sort']);
+
+        return $newParams;
     }
 
     public function consumeValue($key, &$params, $default = null) {
@@ -364,13 +384,14 @@ class SearchApi
         }
     }
 
-    public function readParamsForSearchSentences(array $params) {
+    public function readParamsForSearchSentences(array $params): array {
         $this->include = $this->consumeInclude($params);
         $this->limit = $this->consumeInt('limit', $params);
-        $this->consumeSort($params);
+        $newParams = $this->consumeSort($params);
         $this->setDefaultFilters();
         $this->consumeFilters($params);
         $this->failIfParams($params);
+        return $newParams;
     }
 
     public function readParamsForGetSentence(array $params) {
