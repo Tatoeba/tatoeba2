@@ -155,4 +155,82 @@ class Sentence extends Entity
     {
         return $this->correctness == \App\Model\Table\SentencesTable::MIN_CORRECTNESS;
     }
+    
+    /**
+     * Checks if the last character of a sentence is a typical character in
+     * that sentence's language. Assumes that the sentence is not empty.
+     * 
+     * @param string $sentence The sentence to be checked.
+     * @param string $lang Three-letter-code of the language of the sentence.
+     * 
+     * @return true|string Returns true, if the last character is judged to be OK,
+     *                     and the offending character in all other cases.
+     */
+    public function isCorrectLastCharacter() 
+    {
+        $sentence = $this->sentence;
+        $lang = $this->lang;
+        
+        $last = mb_substr($sentence, mb_strlen($sentence)-1);
+
+        if (in_array($lang, ['eng', 'rus', 'ita', 'epo', 'kab', 'deu', 'tur', 'fra',
+                             'ber', 'por', 'spa', 'hun', 'heb', 'nld', 'ukr', 'fin',
+                             'lit', 'pol', 'ces', 'mar', 'tat', 'mkd', 'tgl', 'tok',
+                             'dan', 'swe', 'lat', 'srp', 'ina', 'tlh', 'ron', 'lfn',
+                             'vie', 'slk', 'ind', 'bul', 'oci', 'swc', 'shi', 'hau',
+                             'nds', 'nob', 'lvs', 'kor', 'bel', 'ido', 'nnb', 'isl',
+                             'aze', 'ile', 'gos', 'nno', 'cat', 'kmr'])) {
+            if (mb_strpos(".?!\"”':…)»“", $last)!==false) return true;
+            return $last;
+        }
+    
+        if (in_array($lang, ['jpn', 'cmn', 'yue'])) {
+            if (mb_strpos("。？！」…）：", $last)!==false) return true;
+            return $last;
+        }
+    
+        if (in_array($lang, ['ara', 'pes', 'ckb'])) {
+            if (mb_strpos(".؟!\")", $last)!==false) return true;
+            return $last;
+        }
+
+        if (in_array($lang, ['hin', 'ben', 'asm'])) {
+            if (mb_strpos("।?!.\"", $last)!==false) return true;
+            return $last;
+        }
+
+        if ($lang=='tig') {
+            if (mb_strpos("።:?.!፧፥፡", $last)!==false) return true;
+            return $last;
+        }
+    
+        if ($lang=='hye') {
+            if (mb_strpos("։:", $last)!==false) return true;
+            return $last;
+        }
+      
+        if ($lang=='ell') {
+            if (mb_strpos(".;!\"'”“»:…)", $last)!==false) return true;
+            return $last;
+        }
+      
+        if ($lang=='yid') {
+            if (mb_strpos(".?!״”‟\":", $last)!==false) return true;
+            return $last;
+        }
+    
+        if ($lang=='zgh') {
+            if (mb_strpos(".?!\"", $last)!==false) return true;
+            return $last;
+        }
+
+        if ($lang=='jbo') {
+            if (mb_strpos("aeiou.", $last)!==false) return true;
+            return $last;
+        }
+        
+        // accept everything for languages that are not yet checked
+        return true;
+    }
+    
 }
