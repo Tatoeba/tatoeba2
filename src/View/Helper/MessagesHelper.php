@@ -54,13 +54,13 @@ class MessagesHelper extends AppHelper
     public function formatContent($content, $linkifyUrls = true) {
         $content = htmlentities($content, ENT_QUOTES, Configure::read('App.encoding'));
 
-        // Convert sentence mentions to links
-        $content = $this->ClickableLinks->clickableSentence($content);
-
         if ($linkifyUrls) {
             // Make URLs clickable
             $content = $this->ClickableLinks->clickableURL($content);
         }
+
+        // Convert sentence mentions to links
+        $content = $this->ClickableLinks->clickableSentence($content);
 
         // Convert linebreaks to <br/>
         $content = nl2br($content);
