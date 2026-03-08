@@ -57,9 +57,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Contact us')));
     <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Follow us'); ?></h2>
         <p id="socialMedia">
-            <a class="twitterLink" href="http://twitter.com/tatoeba_org"><?php echo __('Twitter'); ?></a>
-            <a class="bloggerLink" href="http://blog.tatoeba.org"><?php echo __('Tatoeba Blog'); ?></a>
-            <a class="facebookLink" href="http://www.facebook.com/group.php?gid=129340017083187"><?php echo __('Facebook'); ?></a>
+            <a class="twitterLink" href="https://twitter.com/tatoeba_org"><?php echo __('Twitter'); ?></a>
+            <a class="bloggerLink" href="https://blog.tatoeba.org"><?php echo __('Tatoeba Blog'); ?></a>
+            <a class="facebookLink" href="https://www.facebook.com/groups/129340017083187/"><?php echo __('Facebook'); ?></a>
         </p>
     </div>
 </div>
