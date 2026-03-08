@@ -44,22 +44,58 @@ class ClickableLinksHelper extends AppHelper
 {
     public $helpers = array('Html', 'Pages');
 
-    const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n"\'<]+)/siu';
     const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
+    const START_OF_URL = '|^https?://[[:alnum:]~_-]+\.[[:alnum:]~_-]+|';
+    const END_OF_URL = '|^[\s\n"\'<>]|';
+    const ENTITY = '|^&[^&;]+;|';
+    const ENTITY_OR_ESCAPE_SEQUENCE = '/(&[^&;]+;|%[0-9a-zA-Z]{2}|.)/u';
 
-    private function splitWithEntities($string) {
+    private function splitWithEntitiesAndEscapeSequences($string) 
+    {
         return preg_split(
-            '/(&[^;]+;|.)/u',
+            $this::ENTITY_OR_ESCAPE_SEQUENCE,
             $string,
             -1,
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
         );
     }
 
+    private function checkTail($url, $par, $tail='')
+    {
+        if (strlen($url) == 0) {
+            return ['', $tail, $par];
+        }
+    
+        $last = $url[strlen($url)-1];
+        
+        if ($last == ')' && $par < 0) {
+            return $this->checkTail(substr($url, 0, -1), $par+1, ')'.$tail);
+        }
+        
+        if (in_array($last, ['!', '.', ',', ';', ':'])) {
+            return $this->checkTail(substr($url, 0, -1), $par, $last.$tail);
+        }
+        
+        return array($url, $tail, $par);
+    }
+
+    private function shortenUrl($url)
+    {
+        $maxUrlLength = 50;
+        $offset1 = ceil(0.65*$maxUrlLength) - 2;
+        $offset2 = ceil(0.30*$maxUrlLength) - 1;
+        
+        $displayedChars = $this->splitWithEntitiesAndEscapeSequences($url);
+        if (count($displayedChars) > $maxUrlLength) {
+            array_splice($displayedChars, $offset1, -$offset2, array('.', '.', '.'));
+            return implode($displayedChars);
+        }
+        
+        return $url;
+    }
+    
     /**
      * Replace URLs by clickable URLs.
-     * Inspired from :
-     * http://prajapatinilesh.wordpress.com/2007/08/08/php-make-urls-clickable-and-short-down/
      *
      * @param array $text Text to process.
      *
@@ -69,54 +105,73 @@ class ClickableLinksHelper extends AppHelper
     {
         // get rid of \r
         $text = preg_replace('#\r#u', '', $text);
-        $match = preg_match_all($this::URL_PATTERN, $text, $urls);
+        
+        // add guard at the end to make sure the parser will replace links 
+        // at the end of $text 
+        $text .= ' ';
+    
+        $ret = '';
+        while (strlen($text) > 0) {
+        
+            if (!preg_match($this::START_OF_URL, $text, $result)) {
+                $ret .= $text[0];
+                $text = substr($text, 1);
+                continue;
+            }
+            $text = substr($text, strlen($result[0]));
+            
+            // the parsed URL is stored in two pieces: $url and $tail
+            // when parsing is complete, the symbols in $tail can be removed
+            // while the symbols in $url are fixed. This prevents the trailing
+            // ; from an entity to be removed, while being able to remove
+            // other trailing ;
+            
+            $url = $result[0];
+            $tail = '';
+            $countOfOpenedParanthesis = 0;
+            
+            // This loop always terminates because in every loop there is either 
+            // a break statement or at least one character from $text is removed
+            while (strlen($text) > 0) {
+                if (preg_match($this::ENTITY, $text, $result)) {
+                    $url .= $tail.$result[0];
+                    $tail = '';
+                    $text = substr($text, strlen($result[0]));
+                    continue;
+                }
 
-        if ($match) {
-            $maxUrlLength = 50;
-            $offset1 = ceil(0.65*$maxUrlLength) - 2;
-            $offset2 = ceil(0.30*$maxUrlLength) - 1;
+                if (!preg_match($this::END_OF_URL, $text)) {
+                    if ($text[0] == '(') {
+                        $countOfOpenedParanthesis++;
+                    }
+                    if ($text[0] == ')') {
+                        $countOfOpenedParanthesis--;
+                    }
+                    $tail .= $text[0];
+                    $text = substr($text, 1);
+                    if ($countOfOpenedParanthesis >= 0) {
+                      continue;
+                    }
+                    
+                    // a closing paranthesis without corresponding opening
+                    // paranthesis ends the url 
+                }
 
-
-            foreach (array_unique($urls[1]) as $url) {
-                $displayedChars = $this->splitWithEntities($url);
-                if (count($displayedChars) > $maxUrlLength) {
-                    array_splice($displayedChars, $offset1, -$offset2, array('.', '.', '.'));
-                    $urlText = implode($displayedChars);
+                list($head, $tail, $countOfOpenedParanthesis) = $this->checkTail($tail, $countOfOpenedParanthesis);
+                $url .= $head;
+                if ($countOfOpenedParanthesis == 0) {
+                    $ret .= '<a href="'.$url.'" target="_blank" rel="nofollow">'.$this->shortenURL($url).'</a>'.$tail;
                 } else {
-                    $urlText = $url;
+                    $ret .= $url.$tail;
                 }
-
-                // Checking last character and taking it out if it's punctuation
-                $unwantedLastCharacters = array('!', '.', ',', ';', ':');
-                $lastCharacter = end($displayedChars);
-                if (in_array($lastCharacter, $unwantedLastCharacters)) {
-                    $url = mb_substr($url, 0, -1);
-                    $urlText = mb_substr($urlText, 0, -1);
-                }
-
-                // There was a problem when one URL is included in another one.
-                // For instance, https://tatoeba.org is included in
-                // https://tatoeba.org/wall.
-                // Because of the presence of https://tatoeba.org, the other URLS
-                // beginning with https://tatoeba.org would be messed up.
-                // That's why we need to replace only if there's a stop character.
-                $escapedUrl = quotemeta($url);  // meta characters
-                $escapedUrl = str_replace('/', '\/', $escapedUrl); // identifier
-                $escapedUrl = str_replace('|', '\|', $escapedUrl); // pipe
-                $stopChars = quotemeta(implode($unwantedLastCharacters));
-                $pattern2 = '/'.$escapedUrl.'(['.$stopChars.'< \n])|'.$escapedUrl.'$/u';
-                $text = preg_replace(
-                    $pattern2,
-                    "<a href=\"$url\" target=\"_blank\" rel=\"nofollow\">$urlText</a>$1",
-                    $text
-                );
+                break;
             }
         }
-
-        return $text;
+    
+        // remove guard
+        return substr($ret, 0, -1);
     }
-
-
+        
     /**
      * Converts sentence ids (ex: #123) into link.
      * 
@@ -153,7 +208,7 @@ class ClickableLinksHelper extends AppHelper
     public function hasClickableLink($text)
     {
         $patterns = array(
-            $this::URL_PATTERN,
+            $this::START_OF_URL,
             $this::SENTENCE_ID_PATTERN
         );
 
