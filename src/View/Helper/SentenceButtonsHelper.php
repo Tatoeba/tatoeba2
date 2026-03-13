@@ -196,11 +196,7 @@ class SentenceButtonsHelper extends AppHelper
                 }
                 echo $this->Html->Link(
                     null,
-                    $this->Url->build([
-                        'controller' => 'audio',
-                        'action' => 'download',
-                        $audio->id
-                    ]),
+                    $audio->download_url,
                     array(
                         'title' => $title,
                         'class' => $class,

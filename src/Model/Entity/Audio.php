@@ -13,6 +13,7 @@ class Audio extends Entity
         'author',
         'attribution_url',
         'license',
+        'download_url',
     ];
 
     public static $defaultExternal = array(
@@ -131,10 +132,22 @@ class Audio extends Entity
        }
     }
 
+    private function __getAudioDownloadAction() {
+        $action = 'download';
+        $request = Router::getRequest();
+        if ($request) {
+            $isApiCall = $request->getParam('prefix') == 'VHosts/Api';
+            if ($isApiCall) {
+                $action = 'file';
+            }
+        }
+        return $action;
+    }
+
     protected function _getDownloadUrl() {
         $url = [
             'controller' => 'audio',
-            'action' => 'file',
+            'action' => $this->__getAudioDownloadAction(),
             $this->id
         ];
         return Router::url($url);
