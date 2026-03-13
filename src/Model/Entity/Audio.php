@@ -7,6 +7,9 @@ use Cake\Routing\Router;
 
 class Audio extends Entity
 {
+    const SOURCE_TATOEBA = 'tatoeba';
+    const SOURCE_COMMONS = 'commons';
+
     private $__wantedEnabled;
 
     protected $_virtual = [
@@ -24,8 +27,12 @@ class Audio extends Entity
 
     protected function _getExternal($external) {
         if (is_array($external)) {
-            $external = array_merge(self::$defaultExternal, $external);
-            $external = array_intersect_key($external, self::$defaultExternal);
+            $defaultExternal = self::$defaultExternal;
+            if ($this->source == self::SOURCE_COMMONS) {
+                $defaultExternal['download_url'] = '';
+            }
+            $external = array_merge($defaultExternal, $external);
+            $external = array_intersect_key($external, $defaultExternal);
         }
         return $external;
     }
@@ -145,11 +152,15 @@ class Audio extends Entity
     }
 
     protected function _getDownloadUrl() {
-        $url = [
-            'controller' => 'audio',
-            'action' => $this->__getAudioDownloadAction(),
-            $this->id
-        ];
-        return Router::url($url);
+        if ($this->source == self::SOURCE_COMMONS) {
+            return $this->external['download_url'] ?? null;
+        } else {
+            $url = [
+                'controller' => 'audio',
+                'action' => $this->__getAudioDownloadAction(),
+                $this->id
+            ];
+            return Router::url($url);
+        }
     }
 }

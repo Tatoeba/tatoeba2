@@ -47,6 +47,12 @@ class AudioControllerTest extends TestCase
         $this->deleteAudioStorageDir();
     }
 
+    public function testDownload_audioUsingCommonsSource()
+    {
+        $this->get("http://api.example.com/unstable/audios/8/file");
+        $this->assertResponseCode(404);
+    }
+
     public function testDownload_nonExistingAudio()
     {
         $this->get("http://api.example.com/unstable/audios/9999999999/file");

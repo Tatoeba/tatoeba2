@@ -527,4 +527,16 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals('', $audio->license);
         $this->assertEquals('Philippe Petit', $audio->author);
     }
+
+    function testGetAudio_virtualFields_downloadUrl_localFile() {
+        $audio = $this->Audio->findById(1)->first();
+
+        $this->assertEquals('/audio/download/1', $audio->download_url);
+    }
+
+    function testGetAudio_virtualFields_downloadUrl_onCommons() {
+        $audio = $this->Audio->findById(8)->first();
+
+        $this->assertEquals('https://upload.wikimedia.example.org/wikipedia/commons/the-file.mp3', $audio->download_url);
+    }
 }
