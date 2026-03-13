@@ -36,4 +36,36 @@ class SentenceTest extends TestCase
             }
         }
     }
+    
+    public function testIsCorrectFirstCharacter()
+    {
+        $langs = ['eng', 'rus', 'jpn', 'heb', 'ukr', 'cmn', 'tat', 
+                  'ara', 'tig', 'ell', 'hax', 'und', 'unknown'];
+        $sentences = ['lower', 'Upper', 'אין צורך שנריב.', '這條小路沿著河走。', 
+                      'トムは人だ。', 'Κρυώνετε;', '""', 'Әйдәгез.', 'زبك كبير.',
+                      'Вы для'];
+        $expected = [
+            ['l',  true, 'א',  '這', 'ト', 'Κ',  true, 'Ә',  'ز',  'В' ], // eng
+            ['l',  'U',  'א',  '這', 'ト', 'Κ',  true, 'Ә',  'ز',  true], // rus
+            ['l',  'U',  'א',  true, true, 'Κ',  '"',  'Ә',  'ز',  'В' ], // jpn
+            ['l',  'U',  true, '這', 'ト', 'Κ',  true, 'Ә',  'ز',  'В' ], // heb
+            ['l',  'U',  'א',  '這', 'ト', 'Κ',  true, 'Ә',  'ز',  true], // ukr
+            ['l',  'U',  'א',  true, 'ト', 'Κ',  '"',  'Ә',  'ز',  'В' ], // cmn
+            ['l',  true, 'א',  '這', 'ト', 'Κ',  '"',  true, 'ز',  true], // tat
+            ['l',  'U',  'א',  '這', 'ト', 'Κ',  true, 'Ә',  true, 'В' ], // ara
+            ['l',  'U',  'א',  '這', 'ト', 'Κ',  '"',  'Ә',  'ز',  'В' ], // tig
+            ['l',  'U',  'א',  '這', 'ト', true, true, 'Ә',  'ز',  'В' ], // ell
+            [true, true, true, true, true, true, true, true, true, true], // hax
+            [true, true, true, true, true, true, true, true, true, true], // und
+            [true, true, true, true, true, true, true, true, true, true], // unknown
+        ];
+        
+        foreach ($langs as $i=>$lang) {
+            foreach ($sentences as $j=>$sentence) {
+                $entity = new Sentence(['lang' => $lang, 'sentence' => $sentence]);
+                $result = $entity->isCorrectFirstCharacter($sentence, $lang);
+                $this->assertEquals($result, $expected[$i][$j]);
+            }
+        }
+    }    
 }
