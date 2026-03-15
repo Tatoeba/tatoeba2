@@ -343,40 +343,42 @@ class AudiosTableTest extends TestCase {
     function testSentencesFinder() {
         $result = $this->Audio->find('sentences')->all()->toList();
 
-        $this->assertEquals(5, count($result));
+        $expected = [
+            [66, 1],  // sentence id, audio count
+            [57, 1],
+            [15, 1],
+            [4,  2],
+            [12, 1],
+            [3,  1],
+        ];
 
-        $this->assertEquals(57, $result[0]->id);
-        $this->assertEquals(1, count($result[0]->audios));
+        $this->assertEquals(count($expected), count($result));
 
-        $this->assertEquals(15, $result[1]->id);
-        $this->assertEquals(1, count($result[1]->audios));
-
-        $this->assertEquals(4, $result[2]->id);
-        $this->assertEquals(2, count($result[2]->audios));
-
-        $this->assertEquals(12, $result[3]->id);
-        $this->assertEquals(1, count($result[3]->audios));
-
-        $this->assertEquals(3, $result[4]->id);
-        $this->assertEquals(1, count($result[4]->audios));
+        foreach ($result as $audio) {
+            list($expectedSentenceId, $expectedAudioCount) = array_shift($expected);
+            $this->assertEquals($expectedSentenceId, $audio->id);
+            $this->assertEquals($expectedAudioCount, count($audio->audios));
+        }
     }
 
     function testSentencesFinder_maxResults() {
         $result = $this->Audio->find('sentences', ['maxResults' => 5])->all()->toList();
 
-        $this->assertEquals(4, count($result));
+        $expected = [
+            [66, 1],  // sentence id, audio count
+            [57, 1],
+            [15, 1],
+            [4,  2],
+            [12, 1],
+        ];
 
-        $this->assertEquals(57, $result[0]->id);
-        $this->assertEquals(1, count($result[0]->audios));
+        $this->assertEquals(count($expected), count($result));
 
-        $this->assertEquals(15, $result[1]->id);
-        $this->assertEquals(1, count($result[1]->audios));
-
-        $this->assertEquals(4, $result[2]->id);
-        $this->assertEquals(2, count($result[2]->audios));
-
-        $this->assertEquals(12, $result[3]->id);
-        $this->assertEquals(1, count($result[3]->audios));
+        foreach ($result as $audio) {
+            list($expectedSentenceId, $expectedAudioCount) = array_shift($expected);
+            $this->assertEquals($expectedSentenceId, $audio->id);
+            $this->assertEquals($expectedAudioCount, count($audio->audios));
+        }
     }
 
     function testSentencesFinder_lang() {
@@ -451,7 +453,7 @@ class AudiosTableTest extends TestCase {
     function testSentencesCountFinder() {
         $result = $this->Audio->find('sentencesCount');
 
-        $this->assertEquals(5, $result);
+        $this->assertEquals(6, $result);
     }
 
     function testSentencesCountFinder_withLang() {

@@ -111,6 +111,21 @@ class AudiosFixture extends TestFixture
                 'created' => '2023-03-03 13:42:42',
                 'modified' => '2023-03-03 13:42:42'
             ],
+            [
+                'id' => 8,
+                'sentence_id' => 66,
+                'sentence_lang' => 'uzb',
+                'user_id' => NULL,
+                'external' => [
+                    'username' => 'External Contributor',
+                    'attribution_url' => 'https://commons.wikimedia.example.org/wiki/File:LL-Q9264_%28uzb%29-Contributor-%D0%98%D1%88%D0%B8%D0%BD%D0%B3%D0%BD%D0%B8%20%D2%9B%D0%B8%D0%BB%21.wav',
+                    'license' => 'CC BY 4.0',
+                    'download_url' => 'https://upload.wikimedia.example.org/wikipedia/commons/the-file.mp3',
+                ],
+                'source' => 'commons',
+                'created' => '2026-02-03 21:00:01',
+                'modified' => '2026-02-03 21:00:01'
+            ],
         ];
         parent::init();
     }
