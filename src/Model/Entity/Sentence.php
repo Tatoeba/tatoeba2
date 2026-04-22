@@ -173,6 +173,7 @@ class Sentence extends Entity
 
         $last = mb_substr($sentence, mb_strlen($sentence)-1);
 
+        $expectedLastChars = null;
         if (in_array($lang, ['eng', 'rus', 'ita', 'epo', 'kab', 'deu', 'tur', 'fra',
                              'ber', 'por', 'spa', 'hun', 'heb', 'nld', 'ukr', 'fin',
                              'lit', 'pol', 'ces', 'mar', 'tat', 'mkd', 'tgl', 'tok',
@@ -180,57 +181,42 @@ class Sentence extends Entity
                              'vie', 'slk', 'ind', 'bul', 'oci', 'swc', 'shi', 'hau',
                              'nds', 'nob', 'lvs', 'kor', 'bel', 'ido', 'nnb', 'isl',
                              'aze', 'ile', 'gos', 'nno', 'cat', 'kmr'])) {
-            if (mb_strpos(".?!\"”':…)»“", $last)!==false) return true;
-            return $last;
+            $expectedLastChars = ".?!\"”':…)»“";
+        }
+        elseif (in_array($lang, ['jpn', 'cmn', 'yue'])) {
+            $expectedLastChars = "。？！」…）：";
+        }
+        elseif (in_array($lang, ['ara', 'pes', 'ckb'])) {
+            $expectedLastChars = ".؟!\")";
+        }
+        elseif (in_array($lang, ['hin', 'ben', 'asm'])) {
+            $expectedLastChars = "।?!.\"";
+        }
+        elseif ($lang == 'tig') {
+            $expectedLastChars = "።:?.!፧፥፡";
+        }
+        elseif ($lang == 'hye') {
+            $expectedLastChars = "։:";
+        }
+        elseif ($lang == 'ell') {
+            $expectedLastChars = ".;!\"'”“»:…)";
+        }
+        elseif ($lang == 'yid') {
+            $expectedLastChars = ".?!״”‟\":";
+        }
+        elseif ($lang == 'zgh') {
+            $expectedLastChars = ".?!\"";
+        }
+        elseif ($lang == 'jbo') {
+            $expectedLastChars = "aeiou.";
         }
 
-        if (in_array($lang, ['jpn', 'cmn', 'yue'])) {
-            if (mb_strpos("。？！」…）：", $last)!==false) return true;
-            return $last;
+        if (is_null($expectedLastChars)) {
+            // accept everything for languages that are not yet checked
+            return true;
+        } else {
+            return (mb_strpos($expectedLastChars, $last) !== false) ?: $last;
         }
-
-        if (in_array($lang, ['ara', 'pes', 'ckb'])) {
-            if (mb_strpos(".؟!\")", $last)!==false) return true;
-            return $last;
-        }
-
-        if (in_array($lang, ['hin', 'ben', 'asm'])) {
-            if (mb_strpos("।?!.\"", $last)!==false) return true;
-            return $last;
-        }
-
-        if ($lang=='tig') {
-            if (mb_strpos("።:?.!፧፥፡", $last)!==false) return true;
-            return $last;
-        }
-
-        if ($lang=='hye') {
-            if (mb_strpos("։:", $last)!==false) return true;
-            return $last;
-        }
-
-        if ($lang=='ell') {
-            if (mb_strpos(".;!\"'”“»:…)", $last)!==false) return true;
-            return $last;
-        }
-
-        if ($lang=='yid') {
-            if (mb_strpos(".?!״”‟\":", $last)!==false) return true;
-            return $last;
-        }
-
-        if ($lang=='zgh') {
-            if (mb_strpos(".?!\"", $last)!==false) return true;
-            return $last;
-        }
-
-        if ($lang=='jbo') {
-            if (mb_strpos("aeiou.", $last)!==false) return true;
-            return $last;
-        }
-
-        // accept everything for languages that are not yet checked
-        return true;
     }
 
     /**
@@ -344,17 +330,18 @@ class Sentence extends Entity
         // accept everything for languages that are not yet checked
         if (!isset($ok[$lang])) return true;
 
-        $first = mb_ord(mb_substr($sentence, 0, 1));
+        $firstChar = mb_substr($sentence, 0, 1);
+        $firstCharCode = mb_ord($firstChar);
 
         foreach ($ok[$lang] as $pattern) {
             if (is_array($pattern)) {
-                if ($first >= $pattern[0] && $first <= $pattern[1]) return true;
+                if ($firstCharCode >= $pattern[0] && $firstCharCode <= $pattern[1]) return true;
             } else {
-                if ($first === $pattern) return true;
+                if ($firstCharCode === $pattern) return true;
             }
         }
 
-        return mb_substr($sentence, 0, 1);
+        return $firstChar;
     }
 
     /**
