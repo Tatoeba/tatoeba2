@@ -158,7 +158,7 @@ msgstr "sina ken ala kama jo e lipu toki ni."
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr ""
+msgstr "linja nimi ala li jo e nimi ilo ni. ken la linja nimi ni li weka anu lon ala."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L81
@@ -361,7 +361,7 @@ msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
-msgstr ""
+msgstr "\"jan jo li jan pi toki mama\" tan ni: \"jan jo: {username}\" la jan ni li jan pi toki mama ala lon toki alasa sina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L180
 msgid ""
@@ -771,7 +771,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L81
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L90
 msgid "Translate sentences"
-msgstr "o ante toki e linja nimi"
+msgstr "o toki ante e linja nimi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L42
 msgid "How to add a translation"
@@ -813,7 +813,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L103
 msgid "Search for untranslated sentences"
-msgstr ""
+msgstr "o lukin e linja nimi pi toki ante ala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L334
@@ -823,7 +823,7 @@ msgstr "toki open:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L135
 msgid "Not directly translated into:"
-msgstr ""
+msgstr "ona li jo ala e toki ante pi toki ni: "
 
 #. option used in language selection dropdown
 #. for "Not directly translated into", on Translate sentences page
@@ -834,7 +834,7 @@ msgstr "toki ale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L161
 msgid "Best practice: translate only into your native language."
-msgstr "nasin pi pona ale: o ante toki e linja nimi tawa toki mama sina."
+msgstr "nasin pi pona ale: o toki ante e linja nimi tawa toki mama sina."
 
 #. field name in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L169
@@ -876,7 +876,7 @@ msgstr "o lukin e ilo Tatominer"
 msgid ""
 "Tatominer provides a list of the most searched words for which there are "
 "very few or no translations yet."
-msgstr "ilo Tatominer li pana e lipu pi nimi ni: ona li wile pi jan mute li jo e ante toki pi mute ala"
+msgstr "ilo Tatominer li pana e lipu pi nimi ni: ona li wile pi jan mute li jo e toki ante pi mute ala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L92
@@ -894,7 +894,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L39
 msgid "Translate sentences that belong to {user}"
-msgstr "o ante toki e linja nimi pi jan&nbsp;\"{user}\""
+msgstr "o toki ante e linja nimi pi jan&nbsp;\"{user}\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/edit_vocabulary.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/edit_vocabulary.ctp#L10
@@ -963,7 +963,7 @@ msgstr "o awen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/AngularTemplates/interface_language.ctp#L29
 msgid "Interface language"
-msgstr ""
+msgstr "toki pi lipu ni"
 
 #. button appearing after a language search
 #. in Browse by languages page.
@@ -1163,13 +1163,13 @@ msgstr "o pana e nimi jan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L171
 msgid "Is original"
-msgstr "linja nimi li ante toki ala"
+msgstr "linja nimi li toki ante ala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L176
 msgid ""
 "Original sentences are ones that were not added as translations of other "
 "sentences."
-msgstr "linja nimi pi ante toki ala li ni: jan li pana e ona tan linja nimi ante ala."
+msgstr "linja nimi pi toki ante ala li ni: jan li pana e ona tan linja nimi ante ala."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L380
@@ -1260,11 +1260,11 @@ msgstr "ken ale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L269
 msgid "Tags:"
-msgstr "nimi lili:"
+msgstr "nimi ilo:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L279
 msgid "Separate tags with commas."
-msgstr "o kipisi e nimi lili kepeken sitelen \",\"."
+msgstr "o kipisi e nimi ilo kepeken sitelen \",\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L284
 msgid "Belongs to list:"
@@ -1275,7 +1275,7 @@ msgstr "linja nimi tan poki ni:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L305
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L185
 msgid "Translations"
-msgstr "linja nimi pi ante toki"
+msgstr "linja nimi pi toki ante"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
@@ -1293,7 +1293,7 @@ msgstr "len"
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
-msgstr "o {action} e linja nimi ale ni: ona li jo e ante toki pi lawa ale ni:"
+msgstr "o {action} e linja nimi ale ni: ona li jo e toki ante pi lawa ale ni:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L345
 msgid "Link:"
@@ -1678,7 +1678,7 @@ msgstr "poki pi lipu weka"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L9
 msgctxt "header"
 msgid "Reply"
-msgstr "toki sin"
+msgstr "o toki sin"
 
 #. title of section containing a form for
 #. a new private message (noun)
@@ -1880,7 +1880,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L262
 msgctxt "button"
 msgid "Reply"
-msgstr "toki sin"
+msgstr "o toki sin"
 
 #. tooltip of permalink button on a comment (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L138
@@ -1926,7 +1926,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L701
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
 msgid "Cancel"
-msgstr "o ala"
+msgstr "o ni ala"
 
 #. save button of sentence comment edition form (verb)
 #. / save button of wall post edition form (verb)
@@ -2099,7 +2099,7 @@ msgstr "(kepeken nanpa pini)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L24
 msgid "Collaborative list"
-msgstr ""
+msgstr "poki pi jan ale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L27
 msgid "No list found."
@@ -2146,11 +2146,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L154
 msgid "This sentence belongs to a native speaker."
-msgstr ""
+msgstr "jan pi toki mama li jo e linja nimi ni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L197
 msgid "Translations of translations"
-msgstr "linja nimi pi ante toki pi ante toki"
+msgstr "linja nimi pi toki ante pi toki ante"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L216
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L237
@@ -2201,7 +2201,7 @@ msgstr "o tawa lon lipu pi linja nimi ni"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L87
 msgid "Translate"
-msgstr "o ante toki"
+msgstr "o toki ante"
 
 #. edit button on sentence menu (verb)
 #. / edit button on a just-posted reply of a wall post (verb)
@@ -2253,7 +2253,7 @@ msgstr "o weka tan linja nimi pona mi"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
 msgid "Are you sure?"
-msgstr ""
+msgstr "sina pilin wawa ala wawa?"
 
 #. delete button on sentence menu (verb)
 #. / delete button on private message (verb)
@@ -2313,13 +2313,13 @@ msgstr "linja nimi nanpa {number} li pana lon tenpo pini li pana tawa linja nimi
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L43
 msgid "Edit this translation"
-msgstr "o ante e linja nimi ni pi ante toki"
+msgstr "o ante e linja nimi ni pi toki ante"
 
 #. translation field label on new translation addition form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L92
 msgid "Translation"
-msgstr "ante toki"
+msgstr "toki ante"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
 msgid "Add translation"
@@ -2331,7 +2331,7 @@ msgstr "o ante"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L22
 msgid "Sentence removed from list."
-msgstr ""
+msgstr "linja nimi li weka tan poki."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L25
 msgid "Undo removal"
@@ -2340,7 +2340,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_lists/sentence_in_list.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
 msgid "Remove from list"
-msgstr ""
+msgstr "o weka tan poki."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/session_expired.ctp#L30
 msgid "Your session has expired."
@@ -2486,7 +2486,7 @@ msgstr "o alasa e poki pi linja nimi"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L69
 msgid "Browse by tag"
-msgstr "o alasa e linja nimi pi nimi lili"
+msgstr "o alasa e linja nimi pi nimi ilo"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L74
@@ -2508,7 +2508,7 @@ msgstr "o pana e linja nimi"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L95
 msgid "Adopt sentences"
-msgstr ""
+msgstr "o kama jo e linja nimi"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L106
@@ -3245,7 +3245,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L349
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L67
 msgid "Tags"
-msgstr ""
+msgstr "nimi ilo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L358
 msgid ""
@@ -3453,7 +3453,7 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "sina lukin e pakala lon linja nimi pi jan jo ala la sina ken ala ante e ona tan ni: sina jo ala e ona. tan ni la nena \"o kama jo\" ({adoptButton}) li lon. sina kama jo e linja nimi la sina kama jan jo ona li ken ante e ona."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L261
 msgid ""
@@ -3771,7 +3771,7 @@ msgstr "o ante e toki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L27
 msgid "Edit Comment on Sentence #{number}"
-msgstr ""
+msgstr "o ante e toki lon anpa pi linja nimi #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
@@ -3883,7 +3883,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
-msgstr "o lukin e linja nimi pi ante toki ala"
+msgstr "o lukin e linja nimi pi toki ante ala"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L107
 msgid "{user} does not own any sentences in {language}"
@@ -4366,7 +4366,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L28
 msgid "All existing tags"
-msgstr ""
+msgstr "nimi ilo lon ale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L38
 msgid "Search tags"
@@ -5694,7 +5694,7 @@ msgstr "o lukin pona e linja nimi ni"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L856
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
-msgstr[0] "o lukin e linja nimi {number} pi ante toki"
+msgstr[0] "o lukin e linja nimi {number} pi toki ante"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L343
 msgid "Translation:"
@@ -5726,7 +5726,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L92
 msgid "View all tags"
-msgstr ""
+msgstr "o lukin e nimi ilo ale"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L144
 msgid "Added by {username}, {date}"
