@@ -294,7 +294,7 @@ class ExposedOnApiBehavior extends Behavior
         $exposedFields = [
             'id', 'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
         ];
-        $fields = ['id', 'external', 'created', 'modified', 'sentence_id'];
+        $fields = ['id', 'external', 'source', 'created', 'modified', 'sentence_id'];
         $query
             ->find('exposedFields', compact('exposedFields'))
             ->select($fields)

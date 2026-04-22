@@ -261,6 +261,22 @@ class SentencesControllerTest extends TestCase
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
+    public function testGetSentence_returnsLocalAudioFileURL()
+    {
+        $this->get("http://api.example.com/v1/sentences/57?include=audios");
+        $actual = $this->_getBodyAsString();
+        $expected = 'http://api.example.com/v1/audio/7/file';
+        $this->assertJsonValueEquals($actual, '$.data.audios[0].download_url', $expected);
+    }
+
+    public function testGetSentence_returnsCommonsAudioFileURL()
+    {
+        $this->get("http://api.example.com/v1/sentences/66?include=audios");
+        $actual = $this->_getBodyAsString();
+        $expected = 'https://upload.wikimedia.example.org/wikipedia/commons/the-file.mp3';
+        $this->assertJsonValueEquals($actual, '$.data.audios[0].download_url', $expected);
+    }
+
     public function testSearch_requiresLangAndSortParam()
     {
         $this->get("http://api.example.com/unstable/sentences?q=hello");

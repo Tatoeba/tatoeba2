@@ -57,7 +57,7 @@
         
                 function getAudioUrl(audios, playIndex = undefined) {
                     playIndex = (typeof playIndex !== 'undefined') ? playIndex : getNextPlayAudioIndex(audios);
-                    return rootUrl + '/audio/download/' + audios[playIndex].id;
+                    return audios[playIndex].download_url;
                 }
 
                 function playAudio(audios) {
