@@ -69,28 +69,32 @@ class SentenceTest extends TestCase
         }
     }
 
-    public function testAreAllCharactersCorrect()
+    public function allCharactersProvider()
     {
-        $tests = ['eng' => ['Who clapped?' => true,
-                            'Whö cläppèd?' => ['ä','è','ö']],
-                  'jpn' => ['構わない。' => true,
-                            '構わない.' => ['.']],
-                  'heb' => ['ספרתי.' => true,
-                            'ספ/ר(תי).' => ['(',')','/']],
-                  'tat' => ['Ышанам.' => true,
-                            'Ыша нам.' => [' ']],
-                  'ara' => ['سأصاحبه.' => true,
-                            'سأص؍احبه.' => ['؍']],
-                  'und' => ['Who clapped?' => true],
-                  'unknown' => ['xxx' => true],
+        return [
+            // language, text, expected result
+            ['eng', 'Who clapped?', true],
+            ['eng', 'Whö cläppèd?', ['ä','è','ö']],
+            ['jpn', '構わない。',   true],
+            ['jpn', '構わない.',    ['.']],
+            ['heb', 'ספרתי.',       true],
+            ['heb', 'ספ/ר(תי).',    ['(',')','/']],
+            ['tat', 'Ышанам.',      true],
+            ['tat', 'Ыша нам.',     [' ']],
+            ['ara', 'سأصاحبه.',     true],
+            ['ara', 'سأص؍احبه.',    ['؍']],
+            ['und', 'Who clapped?', true],
+            ['unknown', 'xxx',      true],
         ];
+    }
 
-        foreach ($tests as $lang => $data) {
-            foreach ($data as $sentence => $expected) {
-                $entity = new Sentence(['lang' => $lang, 'sentence' => $sentence]);
-                $result = $entity->areAllCharactersCorrect($sentence, $lang);
-                $this->assertEquals($result, $expected);
-            }
-        }
+    /**
+     * @dataProvider allCharactersProvider
+     */
+    public function testAreAllCharactersCorrect($lang, $sentence, $expected)
+    {
+        $entity = new Sentence(['lang' => $lang, 'sentence' => $sentence]);
+        $result = $entity->areAllCharactersCorrect($sentence, $lang);
+        $this->assertEquals($result, $expected);
     }
 }
