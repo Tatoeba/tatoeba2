@@ -7,7 +7,27 @@
     state: latest
     force: yes
 
-- name: Install packages needed for development
+- name: Download Transifex client
+  when: deploy_for == 'dev'
+  get_url:
+    url: https://github.com/transifex/cli/releases/download/v1.6.17/tx-linux-amd64.tar.gz
+    dest: /tmp/tx-linux-amd64.tar.gz
+
+- name: Uncompress Transifex client
+  when: deploy_for == 'dev'
+  unarchive:
+    src: /tmp/tx-linux-amd64.tar.gz
+    dest: /usr/local/bin/
+    include: tx
+    remote_src: yes
+
+- name: Remove Transifex archive
+  when: deploy_for == 'dev'
+  file:
+    path: /tmp/tx-linux-amd64.tar.gz
+    state: absent
+
+- name: Install other packages needed for development
   apt:
-    name: ['gettext', 'transifex-client', 'python3-jinja2', 'python3-yaml']
+    name: ['gettext', 'python3-jinja2', 'python3-yaml']
   when: deploy_for == 'dev'
