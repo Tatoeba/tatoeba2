@@ -29,7 +29,7 @@
 
 - name: Install Manticore language packs
   apt:
-    deb: https://repo.manticoresearch.com/repository/manticoresearch_bullseye/dists/bullseye/main/binary-amd64/manticore-language-packs_1.0.13-250708-1e9c2cd_all.deb
+    deb: https://repo.manticoresearch.com/repository/manticoresearch_bookworm/dists/bookworm/main/binary-amd64/manticore-language-packs_1.0.13-250708-1e9c2cd_all.deb
 
 - name: Work around bug that prevents enabling Manticore
   file:
