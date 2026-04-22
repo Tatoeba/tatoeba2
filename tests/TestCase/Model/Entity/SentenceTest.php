@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 
 class SentenceTest extends TestCase
 {
-    public function testIsCorrectLastCharacter() 
+    public function testIsCorrectLastCharacter()
     {
         $langs = ['epo', 'cmn', 'ara', 'asm', 'tig', 'hye', 'ell',
                   'yid', 'zgh', 'jbo', 'hax', 'und', 'unknown'];
@@ -27,7 +27,7 @@ class SentenceTest extends TestCase
             [true, true, true, true, true, true, true, true, true], // und
             [true, true, true, true, true, true, true, true, true], // unknown
         ];
-        
+
         foreach ($langs as $i=>$lang) {
             foreach ($sentences as $j=>$sentence) {
                 $entity = new Sentence(['lang' => $lang, 'sentence' => $sentence]);
@@ -36,12 +36,12 @@ class SentenceTest extends TestCase
             }
         }
     }
-    
+
     public function testIsCorrectFirstCharacter()
     {
-        $langs = ['eng', 'rus', 'jpn', 'heb', 'ukr', 'cmn', 'tat', 
+        $langs = ['eng', 'rus', 'jpn', 'heb', 'ukr', 'cmn', 'tat',
                   'ara', 'tig', 'ell', 'hax', 'und', 'unknown'];
-        $sentences = ['lower', 'Upper', 'אין צורך שנריב.', '這條小路沿著河走。', 
+        $sentences = ['lower', 'Upper', 'אין צורך שנריב.', '這條小路沿著河走。',
                       'トムは人だ。', 'Κρυώνετε;', '""', 'Әйдәгез.', 'زبك كبير.',
                       'Вы для'];
         $expected = [
@@ -59,7 +59,7 @@ class SentenceTest extends TestCase
             [true, true, true, true, true, true, true, true, true, true], // und
             [true, true, true, true, true, true, true, true, true, true], // unknown
         ];
-        
+
         foreach ($langs as $i=>$lang) {
             foreach ($sentences as $j=>$sentence) {
                 $entity = new Sentence(['lang' => $lang, 'sentence' => $sentence]);
@@ -67,7 +67,7 @@ class SentenceTest extends TestCase
                 $this->assertEquals($result, $expected[$i][$j]);
             }
         }
-    }    
+    }
 
     public function testAreAllCharactersCorrect()
     {
@@ -84,7 +84,7 @@ class SentenceTest extends TestCase
                   'und' => ['Who clapped?' => true],
                   'unknown' => ['xxx' => true],
         ];
-                              
+
         foreach ($tests as $lang => $data) {
             foreach ($data as $sentence => $expected) {
                 $entity = new Sentence(['lang' => $lang, 'sentence' => $sentence]);
@@ -92,5 +92,5 @@ class SentenceTest extends TestCase
                 $this->assertEquals($result, $expected);
             }
         }
-    }    
+    }
 }
