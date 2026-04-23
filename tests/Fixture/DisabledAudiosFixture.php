@@ -14,6 +14,7 @@ class DisabledAudiosFixture extends TestFixture
         'sentence_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
         'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'external' => ['type' => 'json', 'length' => 500, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'source' => ['type' => 'string', 'length' => null, 'null' => false, 'default' => 'tatoeba', 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
@@ -37,6 +38,7 @@ class DisabledAudiosFixture extends TestFixture
                 'sentence_lang' => 'spa',
                 'user_id' => 2,
                 'external' => NULL,
+                'source' => 'tatoeba',
                 'created' => '2022-01-20 09:23:49',
                 'modified' => '2022-01-21 21:01:21'
             ],
