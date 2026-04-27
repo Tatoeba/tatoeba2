@@ -7,12 +7,21 @@
 
 - name: Install dependencies for sinoparserd
   apt:
-    name: ['make', 'cmake', 'g++',
-           'libevent-dev', 'libexpat1-dev', 'libgmm++-dev']
+    name: ['libevent-2.1-7', 'libexpat1']
     state: present
 
 - name: Fetch sinoparserd source
   git: repo=https://github.com/Tatoeba/sinoparserd.git dest=/tmp/sinoparserd force=yes
+
+- name: Save packages selection
+  shell: dpkg --get-selections > /tmp/sinoparserd/all_selections
+  args:
+    creates: /tmp/sinoparserd/all_selections
+
+- name: Install build dependencies for sinoparserd
+  apt:
+    name: ['make', 'cmake', 'g++', 'libevent-dev', 'libexpat1-dev', 'libgmm++-dev']
+    state: present
 
 - name: Fix to import the correct file in Index.h
   replace:
@@ -55,6 +64,9 @@
     name: sinoparserd
     state: started
     enabled: yes
+
+- name: Uninstall build dependencies
+  shell: dpkg --clear-selections && dpkg --set-selections < /tmp/sinoparserd/all_selections && apt-get -y dselect-upgrade
 
 - name: Remove temporary files
   file:
