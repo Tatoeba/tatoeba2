@@ -1,5 +1,10 @@
 ---
 
+- name: Temporarily stop unattended upgrades
+  systemd_service:
+    name: unattended-upgrades
+    state: stopped
+
 - name: Copy sources.list for apt
   template:
     src: sources.list
