@@ -140,7 +140,7 @@ class SentencesListsTable extends Table
         return $query->where(function ($exp, $query) use ($userId) {
             $exp = $query->newExpr()->add(['NOT' => ['visibility' => 'private']]);
             if ($userId) {
-                $exp = $exp->add(['user_id' => $userId])->tieWith('OR');
+                $exp = $exp->add(['user_id' => $userId])->setConjunction('OR');
             }
             return $exp;
         });
