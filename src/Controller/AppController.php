@@ -87,7 +87,6 @@ class AppController extends Controller
 
     public function initialize(): void
     {
-        $this->loadComponent('Cookie');
         $this->loadComponent('Csrf');
     }
 
@@ -159,8 +158,6 @@ class AppController extends Controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
 
-        $this->Cookie->domain = TATOEBA_DOMAIN;
-        $this->Cookie->configKey('CakeCookie', 'encryption', false);
         $this->Auth->allow('display');
         $this->Auth->setConfig([
             // This line will call views/elements/session_expired.ctp.
@@ -237,16 +234,16 @@ class AppController extends Controller
 
         // Make some cookie values accessible to views
         // used in translation form and new sentence form
-        $preSelectedLang = $this->Cookie->read('contribute_lang');
+        $preSelectedLang = $this->request->getCookie('contribute_lang');
         $this->set('contribute_lang', $preSelectedLang);
 
         // used in show_all_in
-        $lang = $this->Cookie->read('browse_sentences_in_lang');
+        $lang = $this->request->getCookie('browse_sentences_in_lang');
         $this->set('browse_sentences_in_lang', $lang);
 
         // Use this when displaying the list to which a sentence should be assigned.
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
-        $mostRecentList = $this->Cookie->read('most_recent_list');
+        $mostRecentList = $this->request->getCookie('most_recent_list');
         $this->set('most_recent_list', $mostRecentList);
 
         $this->loadModel('WikiArticles');

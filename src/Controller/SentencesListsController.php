@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Http\Cookie\Cookie;
 use Cake\ORM\Query;
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
@@ -297,10 +298,10 @@ class SentencesListsController extends AppController
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
             // not been set, or has been set to false.
-            $mostRecentList = $this->Cookie->read('most_recent_list');
+            $mostRecentList = $this->request->getCookie('most_recent_list');
             if ($mostRecentList == $listId)
             {
-                $this->Cookie->delete('most_recent_list');
+                $this->response = $this->response->withExpiredCookie('most_recent_list');
             }
         }
 
@@ -322,7 +323,8 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
-            $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
+            $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $listId));
+
         } else {
             $this->set('result', 'error');
             $this->set('error', __('The sentence could not be added to the list.'));
@@ -454,7 +456,7 @@ class SentencesListsController extends AppController
                 $this->Auth->user('id')
             );
 
-            $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
+            $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $listId));
         }
 
         $this->set('sentence', $result);
@@ -478,7 +480,7 @@ class SentencesListsController extends AppController
             if ($this->SentencesLists->addSentenceToList($sentenceId, $list->id, $userId)) {
                 $list->hasSentence = true;
                 $result = $list;
-                $this->Cookie->write('most_recent_list', $list->id, false, '+1 month');
+                $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $list->id));
             }
         }
 

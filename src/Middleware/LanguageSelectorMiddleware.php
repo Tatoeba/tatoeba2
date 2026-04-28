@@ -5,7 +5,6 @@ use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
 use Cake\Http\Cookie\Cookie;
 use Cake\I18n\I18n;
-use Cake\I18n\Time;
 
 /**
  * Middleware for UI language selection
@@ -68,8 +67,7 @@ class LanguageSelectorMiddleware
 
         $response = $response->withCookie(new Cookie(
             'interface_language',
-            $lang,
-            new Time('+1 month')
+            $lang
         ));
         $request = $request->withParam('lang', $lang);
         return $next($request, $response);

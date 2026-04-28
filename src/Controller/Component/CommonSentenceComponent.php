@@ -27,6 +27,7 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
+use Cake\Http\Cookie\Cookie;
 use Cake\ORM\TableRegistry;
 
 
@@ -44,7 +45,6 @@ class CommonSentenceComponent extends Component
 {
     public $components = array(
         'LanguageDetection',
-        'Cookie'
     );
 
     /**
@@ -71,7 +71,12 @@ class CommonSentenceComponent extends Component
         $correctness = 0,
         $license = null
     ) {
-        $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
+        $controller = $this->getController();
+        $controller->setResponse(
+            $controller
+                 ->getResponse()
+                 ->withCookie(Cookie::create('contribute_lang', $lang))
+        );
 
         $lang = $this->_setLanguage($lang, $text, $username);
 

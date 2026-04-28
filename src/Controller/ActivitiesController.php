@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\CurrentUser;
 use Cake\Event\Event;
+use Cake\Http\Cookie\Cookie;
 
 /**
  * Controller for activities (i.e. things that contributors can do in Tatoeba).
@@ -119,12 +120,7 @@ class ActivitiesController extends AppController
             $sort = $this->request->getQuery('sort', 'created');
             $langTo = $this->request->getQuery('langTo');
 
-            $this->Cookie->write(
-                'not_translated_into_lang',
-                $langTo,
-                false,
-                '+1 month'
-            );
+            $this->response = $this->response->withCookie(Cookie::create('not_translated_into_lang', $langTo));
 
             $searchParams = array(
                 'from' => $langFrom,
@@ -140,7 +136,7 @@ class ActivitiesController extends AppController
                 '?' => $searchParams
             ));
         }
-        $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
+        $notTranslatedInto = $this->request->getCookie('not_translated_into_lang');
         $this->set('not_translated_into_lang', $notTranslatedInto);
     }
     
