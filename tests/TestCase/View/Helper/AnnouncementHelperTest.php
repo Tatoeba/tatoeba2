@@ -92,14 +92,14 @@ class AnnouncementHelperTest extends TestCase
                 // value for Announcement in app_config.php
                 [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
                 // confirm this text is in the maintenance message
-                'on May 30, 2020 at 2:00 AM UTC, which is in 2 days',
+                'on May 30, 2020 at 2:00 AM UTC, which is in 2 days',
                 // confirm whether of not maintenance is considered "imminent"
                 false,
             ],
             'maintenance in 1 day' => [
                 '2020-05-29 02:00:00 UTC',
                 [ 'maintenance' => [ 'start' => '2020-05-30 02:00 UTC' ] ],
-                'on May 30, 2020 at 2:00 AM UTC, which is in 1 day',
+                'on May 30, 2020 at 2:00 AM UTC, which is in 1 day',
                 false,
             ],
             'maintenance in 2 hours' => [
