@@ -12,7 +12,7 @@ class AnnouncementHelper extends Helper
         'maintenance' => false,
     ];
 
-    public function initialize(array $config) {
+    public function initialize(array $config): void {
         $this->setConfig(Configure::read('Announcement'));
     }
 

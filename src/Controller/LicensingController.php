@@ -26,7 +26,7 @@ use Cake\I18n\I18n;
 
 class LicensingController extends AppController {
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->setConfig('unlockedActions', [
             'refresh_license_switch_list',

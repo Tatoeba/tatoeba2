@@ -23,7 +23,7 @@ use Cake\ORM\Table;
 
 class LastContributionsTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');

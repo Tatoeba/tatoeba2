@@ -74,7 +74,7 @@ class PagesController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         if ($response = $this->_redirect_for_old_url()) {
             return $response;

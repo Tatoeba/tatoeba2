@@ -29,11 +29,11 @@ use Cake\ORM\TableRegistry;
  */
 class TranscriptableBehavior extends Behavior
 {
-    public function initialize(array $config) {
+    public function initialize(array $config): void {
         $this->Transcriptions = TableRegistry::getTableLocator()->get('Transcriptions');
     }
 
-    public function beforeSave($event, $entity, $options) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options) {
         $lang = $entity->lang;
         if (!$lang && $entity->id) {
             $oldEntity = $event->getSubject()->get($entity->id, ['fields' => ['lang']]);
@@ -70,7 +70,7 @@ class TranscriptableBehavior extends Behavior
         return $isValid;
     }
 
-    public function afterSave($event, $entity, $options) {
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options) {
         if ($entity->isNew()) {
             $this->createTranscriptions($entity);
         } else if ($entity->isDirty('text') || $entity->isDirty('lang')) {

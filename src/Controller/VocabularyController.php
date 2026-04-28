@@ -53,7 +53,7 @@ class VocabularyController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->setConfig('unlockedActions', [
             'save', 'save_sentence', 'edit'

@@ -36,7 +36,7 @@ class SphinxBehavior extends Behavior
      */
     public $sphinx = null;
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $alias = $config['alias'];
         $databases = Configure::read('Sphinx');
@@ -64,7 +64,7 @@ class SphinxBehavior extends Behavior
      * @return array Modified query
      * @access public
      */
-    function beforeFind($event, $query, $options, $primary)
+    function beforeFind(\Cake\Event\EventInterface $event, $query, $options, $primary)
     {
         /* CakePHP's paginator makes two calls to the database: the first for the actual
          * query and the second for the total count. But when we use the search engine
@@ -280,12 +280,12 @@ class SphinxBehavior extends Behavior
         return $results;
     }
 
-    public function afterDelete($event, $entity, $options) {
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options) {
         $alias = $event->getSubject()->getAlias();
         $this->_refreshSphinxAttributes($alias, $entity);
     }
 
-    public function afterSave($event, $entity, $options = array()) {
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         $alias = $event->getSubject()->getAlias();
         $this->_refreshSphinxAttributes($alias, $entity);
     }

@@ -31,7 +31,7 @@ class TranslationsTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('sentences');
 

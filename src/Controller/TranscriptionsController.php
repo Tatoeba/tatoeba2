@@ -40,7 +40,7 @@ class TranscriptionsController extends AppController
         'order' => array('Transcriptions.modified' => 'desc'),
     );
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->setConfig('unlockedActions', [
             'save',

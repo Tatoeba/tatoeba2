@@ -10,7 +10,7 @@ use Cake\View\Exception\MissingTemplateException;
 
 class DocController extends Controller
 {
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
 
@@ -25,7 +25,7 @@ class DocController extends Controller
         );
     }
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $docurl = [
             'controller' => 'doc',

@@ -85,7 +85,7 @@ class AppController extends Controller
       var_dump("Blackholed: $type");
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         $this->loadComponent('Cookie');
         $this->loadComponent('Csrf');
@@ -153,7 +153,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         // only prevent CSRF for logins and registration in the users controller
         $this->Security->csrfCheck = false;
@@ -228,7 +228,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function beforeRender(Event $event)
+    public function beforeRender(\Cake\Event\EventInterface $event)
     {
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->request->is('ajax')) {
@@ -294,7 +294,7 @@ class AppController extends Controller
 
     protected function redirectPaginationToLastPage()
     {
-        $paging = $this->request->getParam('paging');
+        $paging = $this->request->getAttribute('paging');
         $lastPage = reset($paging)['page'];
         $queryParams = $this->request->getParam('?');
         $queryParams['page'] = $lastPage;

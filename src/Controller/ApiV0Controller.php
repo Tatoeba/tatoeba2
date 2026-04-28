@@ -103,7 +103,7 @@ class ApiV0Controller extends AppController
         }
     
         $json = json_encode([
-            'paging' => $this->request->getParam('paging'),
+            'paging' => $this->request->getAttribute('paging'),
             'results' => $results
         ]);
         return $this->response

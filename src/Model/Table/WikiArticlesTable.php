@@ -61,7 +61,7 @@ class WikiArticlesTable extends Table
         return function($slug) { return $this->getWikiLink($slug); };
     }
 
-    public function initialize(array $config) {
+    public function initialize(array $config): void {
         parent::initialize($config);
         $this->setTable('articles');
     }

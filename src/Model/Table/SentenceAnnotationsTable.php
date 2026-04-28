@@ -31,7 +31,7 @@ class SentenceAnnotationsTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsto('Sentences');
         $this->belongsto('Users');

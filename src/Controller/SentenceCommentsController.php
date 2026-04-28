@@ -80,7 +80,7 @@ class SentenceCommentsController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(

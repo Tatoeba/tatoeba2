@@ -32,7 +32,7 @@ class CsvHelper extends Helper {
 
     public $_tmpFile = false;
 
-    function initialize(array $config) {
+    function initialize(array $config): void {
         $this->clear();
     }
 

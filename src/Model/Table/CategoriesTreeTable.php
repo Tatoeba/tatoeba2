@@ -22,7 +22,7 @@ use Cake\ORM\Table;
 
 class CategoriesTreeTable extends Table
 {
-    public function initialize(array $config) 
+    public function initialize(array $config): void
     {
         $this->hasMany('Tags')->setForeignKey('category_id');
         

@@ -47,7 +47,7 @@ class TagsTable extends Table
         return 'OK';
     }
 
-    public function initialize(array $config) 
+    public function initialize(array $config): void
     {
         $this->belongsTo('CategoriesTree')->setForeignKey('category_id');
         $this->hasMany('TagsSentences');
@@ -74,7 +74,7 @@ class TagsTable extends Table
         }
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator->notEmptyString('name');
         return $validator;

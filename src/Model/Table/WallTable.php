@@ -39,7 +39,7 @@ class WallTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->hasOne('WallThreads', ['foreignKey' => 'id'])
             ->setDependent(true);
@@ -58,7 +58,7 @@ class WallTable extends Table
         $this->addBehavior('Tree');
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->addDelete(function($message) {
             $messageHasReplies = $this->hasMessageReplies($message->id);
@@ -76,7 +76,7 @@ class WallTable extends Table
             ->remove('content', 'outboundLinks');
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->add('content', 'notBlank', [
@@ -100,7 +100,7 @@ class WallTable extends Table
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options = array()) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($threshold = $this->_shouldTriggerAutoban($entity)) {
             $entity->hidden = true;
             $entity->__autohidden = $threshold;
@@ -119,7 +119,7 @@ class WallTable extends Table
      * @return void
      */
 
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
         if ($entity->isNew() && $entity->date) {
             $root = $this->getRootMessageOfReply($entity->id);
@@ -181,7 +181,7 @@ class WallTable extends Table
     private function _warnAdminsAboutPotentialSEOSpam($post) {
         $data = $post->extract($this->getSchema()->columns(), true);
         $validator = $this->getValidator('default');
-        $errors = $validator->errors($data, $post->isNew());
+        $errors = $validator->validate($data, $post->isNew());
         if (!$post->hidden && isset($errors['content']['outboundLinks'])) {
             $author = $this->Users->get($post->owner);
             $this->getMailer('User')->send('content_with_outbound_links', [$post, $author]);

@@ -49,7 +49,7 @@ class UsersTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
 
@@ -74,7 +74,7 @@ class UsersTable extends Table
         ]);
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->integer('id')
@@ -244,7 +244,7 @@ class UsersTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->add($rules->isUnique(['username'], __('Username already taken.')));
         $rules->add($rules->isUnique(['email'], __('That email address already exists. Please try another.')));
@@ -252,7 +252,7 @@ class UsersTable extends Table
         return $rules;
     }
 
-    public function beforeSave(Event $event, User $user, ArrayObject $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, User $user, ArrayObject $options)
     {
         if ($user->isNew()) {
             if (!$user->has('is_spamdexing')) {
@@ -283,7 +283,7 @@ class UsersTable extends Table
         }
     }
 
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
         if (!$entity->isNew() && $entity->isDirty('image') && empty($entity->image)) {
             $this->removeImages($entity->getOriginal('image'));

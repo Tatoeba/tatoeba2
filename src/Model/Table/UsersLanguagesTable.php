@@ -39,7 +39,7 @@ class UsersLanguagesTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users', ['foreignKey' => 'of_user_id']);
         $this->belongsTo('Languages', ['foreignKey' => 'language_code']);
@@ -49,7 +49,7 @@ class UsersLanguagesTable extends Table
         $this->getEventManager()->on(new SentencesReindexListener());
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator

@@ -27,7 +27,7 @@ use Cake\ORM\Query;
 
 class ExposedOnApiBehavior extends Behavior
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         // Temporary introduction of new code, we should get rid of this
         // once the association is directly used on the SentencesTable model

@@ -41,7 +41,7 @@ class AudiosTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');
@@ -56,7 +56,7 @@ class AudiosTable extends Table
         $this->getEventManager()->on(new StatsListener());
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->requirePresence('sentence_id', 'create')
@@ -102,7 +102,7 @@ class AudiosTable extends Table
         return $ok;
     }
 
-    public function beforeSave($event, $entity, $options = array()) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($entity->isNew()) {
             if ($entity->sentence_id) {
                 $sentence = $this->Sentences->get($entity->sentence_id);
@@ -112,7 +112,7 @@ class AudiosTable extends Table
         return $this->isAuthorConsistent($entity);
     }
 
-    public function afterSave($event, $entity, $options = array()) {
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($entity->isNew()) {
             $event = new Event('Model.Audio.audioCreated', $this, [
                 'audio' => $entity,
@@ -156,7 +156,7 @@ class AudiosTable extends Table
         }
     }
 
-    public function afterDelete($event, $entity, $options) {
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options) {
         $this->removeAudioFile($entity, $options);
 
         $event = new Event('Model.Audio.audioDeleted', $this, [

@@ -44,7 +44,7 @@ class ReviewsController extends AppController
     public $uses = array('UsersSentences', 'User');
     public $helpers = array('CommonModules');
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->loadModel('UsersSentences');
 

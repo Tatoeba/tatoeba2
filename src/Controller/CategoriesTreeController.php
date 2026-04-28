@@ -35,7 +35,7 @@ class CategoriesTreeController extends AppController
     public $components = ['CommonSentence', 'Flash'];
     public $helpers = ['Pagination'];
 
-    public function beforeFilter(Event $event)  {
+    public function beforeFilter(\Cake\Event\EventInterface $event)  {
         // Not ready for production yet
         if (!Configure::read('debug') && !Configure::read('Tatoeba.devStylesheet')) {
             return $this->response->withStatus(403);

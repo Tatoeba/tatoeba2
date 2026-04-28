@@ -46,7 +46,7 @@ class AutocompletableBehavior extends Behavior
         'limit' => 10
     ];
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         foreach (['index', 'fields', 'order', 'limit'] as $conf) {
             if (isset($config[$conf])) {

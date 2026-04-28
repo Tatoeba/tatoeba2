@@ -25,7 +25,7 @@ use Cake\Validation\Validator;
 
 class UsersSentencesTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('users_sentences');
 
@@ -35,7 +35,7 @@ class UsersSentencesTable extends Table
         $this->addBehavior('Timestamp');
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->add('correctness', [

@@ -41,7 +41,7 @@ use Cake\Event\Event;
  */
 class LinksController extends AppController
 {
-    public function initialize() {
+    public function initialize(): void {
         parent::initialize();
         $request = $this->request;
         $noCsrfActions = [
@@ -58,7 +58,7 @@ class LinksController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         if($this->request->is('ajax')) {
             $this->Security->setConfig('unlockedActions', [

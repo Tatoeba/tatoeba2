@@ -64,7 +64,7 @@ class SentencesTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users');
         $this->belongsTo('Languages');
@@ -119,7 +119,7 @@ class SentencesTable extends Table
         $this->getEventManager()->on(new DenormalizationListener());
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->notEmpty('text');
@@ -169,7 +169,7 @@ class SentencesTable extends Table
         return $validator;
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->addCreate(
             function ($entity, $options) {
@@ -198,7 +198,7 @@ class SentencesTable extends Table
         return $rules;
     }
 
-    public function beforeSave($event, $entity, $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options)
     {
         if ($entity->isNew()) { // creating a new sentence
             if (!$entity->license && $entity->user_id) {
@@ -268,7 +268,7 @@ class SentencesTable extends Table
     /**
      * Called after a sentence is saved.
      */
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
         $created = $entity->isNew();
         $event = new Event('Model.Sentence.saved', $this, array(
@@ -355,7 +355,7 @@ class SentencesTable extends Table
         }
     }
 
-    public function beforeDelete($event, $entity, $options)
+    public function beforeDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         $hasAudio = $this->hasAudio($entity->id);
         if ($hasAudio) {
@@ -370,7 +370,7 @@ class SentencesTable extends Table
      *
      * @return void
      */
-    public function afterDelete($event, $entity, $options)
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         $sentenceId = $entity->id;
         $sentenceLang = $entity->lang;

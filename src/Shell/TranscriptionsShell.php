@@ -28,7 +28,7 @@ class TranscriptionsShell extends Shell {
 
     use BatchOperationTrait;
 
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
         $this->loadModel('Transcriptions');

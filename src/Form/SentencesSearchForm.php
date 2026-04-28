@@ -451,7 +451,7 @@ class SentencesSearchForm extends Form
         return $index;
     }
 
-    public function getData($field = null) {
+    public function getData(?string $field = null) {
         $data = parent::getData($field);
         if (is_null($field)) {
             uksort($data, function($a, $b) {

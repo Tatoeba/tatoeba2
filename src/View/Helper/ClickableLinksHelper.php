@@ -152,7 +152,7 @@ class ClickableLinksHelper extends AppHelper
                     if ($countOfOpenedParanthesis >= 0) {
                       continue;
                     }
-                    
+
                     // a closing paranthesis without corresponding opening
                     // paranthesis ends the url 
                 }

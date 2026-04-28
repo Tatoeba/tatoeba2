@@ -40,7 +40,7 @@ class TagsController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->unlockedActions = [
             'add_tag_post'

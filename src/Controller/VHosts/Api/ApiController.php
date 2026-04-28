@@ -162,7 +162,7 @@ class ApiController extends Controller
     const DEFAULT_RESULTS_NUMBER = 50;
     const MAX_RESULTS_NUMBER = 500;
 
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
         $this->loadComponent('RequestHandler', [
@@ -171,7 +171,7 @@ class ApiController extends Controller
         $this->loadComponent('Api');
     }
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $version = $this->getRequest()->getParam('version');
         $v1 = [

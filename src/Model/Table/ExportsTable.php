@@ -16,7 +16,7 @@ use Exception;
 
 class ExportsTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
 
@@ -28,7 +28,7 @@ class ExportsTable extends Table
         $this->belongsTo('Users');
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->integer('id')
@@ -71,7 +71,7 @@ class ExportsTable extends Table
         return $validator;
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->add($rules->existsIn(['queued_job_id'], 'QueuedJobs'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
@@ -136,7 +136,7 @@ class ExportsTable extends Table
         });
     }
 
-    public function afterDelete($event, $entity, $options)
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         if ($entity->filename) {
             $file = new File($entity->filename);

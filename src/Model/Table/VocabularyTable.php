@@ -37,7 +37,7 @@ class VocabularyTable extends Table
         return $schema;
     }
 
-    public function initialize(Array $config)
+    public function initialize(Array $config): void
     {
         $this->setTable('vocabulary');
         $this->setEntityClass('App\Model\Entity\Vocable');
@@ -58,14 +58,14 @@ class VocabularyTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->add($rules->isUnique(['text', 'lang']));
 
         return $rules;
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->notEmpty('text');
@@ -82,7 +82,7 @@ class VocabularyTable extends Table
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options)
     {
         if ($entity->isNew() || $entity->isDirty('lang') || $entity->isDirty('text')) {
             $lang = $entity->lang;

@@ -28,7 +28,7 @@ use App\Lib\Licenses;
  */
 class AudioLicenseHelper extends LicenseHelper
 {
-    public function initialize(array $config) {
+    public function initialize(array $config): void {
         $this->licenses = Licenses::getAudioLicenses();
     }
 }

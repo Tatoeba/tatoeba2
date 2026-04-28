@@ -46,7 +46,7 @@ class PrivateMessagesController extends AppController
     public $helpers = array('Html', 'Date');
     public $components = array('Flash');
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $eventManager = $this->PrivateMessages->getEventManager();
         $eventManager->on(new NotificationListener());

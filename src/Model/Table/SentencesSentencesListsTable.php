@@ -27,7 +27,7 @@ use App\Event\SentencesListListener;
 
 class SentencesSentencesListsTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('SentencesLists');
@@ -78,7 +78,7 @@ class SentencesSentencesListsTable extends Table
      *
      * @return void
      */
-    public function afterDelete($event, $entity, $options)
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         $event = new Event('Model.SentencesSentencesList.deleted', $this, array(
             'list_id' => $entity->sentences_list_id,

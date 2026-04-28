@@ -26,7 +26,7 @@ class MainController extends Controller
 </html>
 ';
 
-    public function initialize() {
+    public function initialize(): void {
         $this->autoRender = false;
     }
 

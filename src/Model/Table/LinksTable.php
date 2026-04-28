@@ -25,7 +25,7 @@ use Cake\Utility\Hash;
 
 class LinksTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('sentences_translations');
         
@@ -35,7 +35,7 @@ class LinksTable extends Table
              ->setJoinType(QueryInterface::JOIN_TYPE_INNER);
     }
 
-    public function beforeSave($event, $entity, $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options)
     {
         if ($entity->sentence_id && $entity->translation_id) {
             $duplicate = $this->find()
@@ -52,7 +52,7 @@ class LinksTable extends Table
         return true;
     }
 
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
         $Contributions = TableRegistry::getTableLocator()->get('Contributions');
         $Contributions->saveLinkContribution(
@@ -94,7 +94,7 @@ class LinksTable extends Table
         );
     }
 
-    public function afterDelete($event, $entity, $options) {
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options) {
         $this->logLinksAndFlagSentences(
             $entity->sentence_id,
             $entity->translation_id

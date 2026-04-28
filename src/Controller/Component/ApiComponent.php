@@ -72,7 +72,7 @@ class ApiComponent extends Component
         $this->getController()->setRequest($request->withQueryParams($params));
     }
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->decodeQuery();
     }

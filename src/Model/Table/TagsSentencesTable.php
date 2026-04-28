@@ -25,7 +25,7 @@ use Cake\Utility\Hash;
 
 class TagsSentencesTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users');
         $this->belongsTo('Tags');

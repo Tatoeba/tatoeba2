@@ -64,7 +64,7 @@ class UsersController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         // prevent CSRF in this controller
         // since we're handling login and registration

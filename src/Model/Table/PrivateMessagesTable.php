@@ -37,7 +37,7 @@ class PrivateMessagesTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users');
         $this->belongsTo('Recipients', [
@@ -50,7 +50,7 @@ class PrivateMessagesTable extends Table
         ]);
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->addCreate(function($message) {
             return $message->type == 'machine' || $this->canSendMessage($message->sender);
@@ -67,7 +67,7 @@ class PrivateMessagesTable extends Table
         return $rules;
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->requirePresence('content')
@@ -95,7 +95,7 @@ class PrivateMessagesTable extends Table
         }
     }
 
-    public function beforeFind($event, $query, $options, $primary)
+    public function beforeFind(\Cake\Event\EventInterface $event, $query, $options, $primary)
     {
         // Making sure users can read only their own PM's.
         $query->where(['user_id' => CurrentUser::get('id')]);
