@@ -35,7 +35,7 @@ per-country locales.
 > For instance for Chinese, you would add `zh\_CN:zh`.
 
 The part after the colon should match the language directory
-under `src/Locale/`, so rename the directory if necessary.
+under `resources/locales/`, so rename the directory if necessary.
 
 #### Step 2
 

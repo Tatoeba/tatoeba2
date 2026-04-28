@@ -32,6 +32,7 @@ use Cake\Event\Event;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 use Cake\I18n\I18n;
+use Cake\Core\Configure;
 use App\Lib\LanguagesLib;
 
 /**
@@ -311,12 +312,13 @@ class PagesController extends AppController
     {
         $lang = I18n::getLocale();
         $translated = true;
-        $dir = new Folder(LOCALE . $lang);
+        $localesPath = Configure::read('App.paths.locales')[0];
+        $dir = new Folder($localesPath . $lang);
         $file = new File($dir->pwd() . DS . 'terms-of-use.html');
 
         if (!$file->exists()) {
             $translated = false;
-            $dir = new Folder(LOCALE . 'fr');
+            $dir = new Folder($localesPath . 'fr');
             $file = new File($dir->pwd() . DS . 'terms-of-use.html');
         }
 

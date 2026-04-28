@@ -1,6 +1,6 @@
 #!/bin/bash
 
-POT=src/Locale/default.pot
+POT=resources/locales/default.pot
 POT_DIR=$(dirname $POT)
 POT_TMP=$(mktemp --suffix=.po)
 
