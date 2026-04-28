@@ -128,8 +128,7 @@ class LinksController extends AppController
         if ($acceptsJson) {
             $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
-            if (null !== $this->request->getData('returnTranslations')
-                && (bool)$this->request->getData('returnTranslations'))
+            if ($this->request->getData('returnTranslations'))
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
@@ -172,8 +171,7 @@ class LinksController extends AppController
         if ($acceptsJson) {
             $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
-            if (null !== $this->request->getData('returnTranslations')
-                && (bool)$this->request->getData('returnTranslations'))
+            if ($this->request->getData('returnTranslations'))
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);

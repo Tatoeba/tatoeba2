@@ -733,12 +733,9 @@ class SentencesController extends AppController
      */
     public function change_language()
     {
-        if (null !== $this->request->getData('id')
-            && null !== $this->request->getData('newLang')
-        ) {
-            $newLang = $this->request->getData('newLang');
-            $id = $this->request->getData('id');
-
+        $id = $this->request->getData('id');
+        $newLang = $this->request->getData('newLang');
+        if (!is_null($id) && !is_null($newLang)) {
             $lang = $this->Sentences->changeLanguage($id, $newLang);
             $this->loadModel('UsersSentences');
             $this->UsersSentences->makeDirty($id);
