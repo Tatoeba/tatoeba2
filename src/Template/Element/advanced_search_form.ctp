@@ -421,7 +421,7 @@ echo $this->Form->create(null, [
                     <div layout="row" layout-align="center">
                         <label for="trans-native" flex><?= __('Is owned by a native:') ?></label>
                         <?php
-                        echo $this->Form->input('native', array(
+                        echo $this->Form->control('native', array(
                             'label' => '',
                             'options' => array(
                                 /* @translators: dropdown option of "Is owned by a native:" field in search form */
