@@ -95,7 +95,7 @@ class SentenceCommentsTable extends Table
     }
 
     private function _warnAdminsAboutPotentialSEOSpam($comment) {
-        $data = $comment->extract($this->schema()->columns(), true);
+        $data = $comment->extract($this->getSchema()->columns(), true);
         $validator = $this->getValidator('default');
         $errors = $validator->errors($data, $comment->isNew());
         if (isset($errors['text']['outboundLinks'])) {

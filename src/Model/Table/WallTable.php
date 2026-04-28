@@ -179,7 +179,7 @@ class WallTable extends Table
     }
 
     private function _warnAdminsAboutPotentialSEOSpam($post) {
-        $data = $post->extract($this->schema()->columns(), true);
+        $data = $post->extract($this->getSchema()->columns(), true);
         $validator = $this->getValidator('default');
         $errors = $validator->errors($data, $post->isNew());
         if (!$post->hidden && isset($errors['content']['outboundLinks'])) {
