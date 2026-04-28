@@ -76,7 +76,7 @@ if (!isset($lastText)) {
         }
 
         echo $this->Form->create(
-            'Tool',
+            null,
             array(
                 "url" => array("action" => "shanghainese_to_ipa"),
                 "type" => "post"

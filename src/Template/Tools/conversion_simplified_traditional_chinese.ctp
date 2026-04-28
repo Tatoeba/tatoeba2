@@ -67,7 +67,7 @@ if (!isset($lastText)) {
         }
 
         echo $this->Form->create(
-            'Tool',
+            null,
             array(
                 "url" => array(
                     "action" => "conversion_simplified_traditional_chinese"

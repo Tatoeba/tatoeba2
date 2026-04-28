@@ -32,7 +32,7 @@ use App\Model\Table\SentencesTable;
     <h2><?php echo __d('admin', 'Correctness') ?></h2>
     <?php
     echo $this->Form->create(
-        "Sentence",
+        null,
         array(
             "url" => array("action" => "edit_correctness"),
             "type" => "post",

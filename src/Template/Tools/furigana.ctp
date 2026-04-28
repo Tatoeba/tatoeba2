@@ -58,7 +58,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         }
 
         echo $this->Form->create(
-            'Tool',
+            null,
             array(
                 "url" => array("action" => "furigana"),
                 "type" => "get"

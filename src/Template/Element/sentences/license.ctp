@@ -41,7 +41,7 @@ if ($canEdit) {
     echo "<hr>";
 
     echo $this->Form->create(
-        'Sentence',
+        null,
         array(
             'url' => array('action' => 'edit_license'),
             'type' => 'post',
