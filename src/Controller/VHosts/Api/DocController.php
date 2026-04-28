@@ -19,7 +19,7 @@ class DocController extends Controller
         $this->getEventManager()->on(
             'View.beforeRender',
             function (Event $event) {
-                $view = $event->subject;
+                $view = $event->getSubject();
                 $view->assign('title', $view->get('title') ?? 'Tatoeba API');
             }
         );
