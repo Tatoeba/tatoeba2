@@ -39,6 +39,16 @@ class Application extends BaseApplication
                 // Do not halt if the plugin is missing
             }
             $this->addPlugin('Migrations');
+
+            // reload app commands once at the end
+            // this allow app commands to override plugin commands
+            $this->getEventManager()->on(
+                'Console.buildCommands',
+                function (\Cake\Event\Event $event) {
+                    $commands = $event->getData('commands');
+                    $commands->addMany($commands->autoDiscover());
+                }
+            );
         }
 
         $this->addPlugin('Queue', ['bootstrap' => true, 'routes' => false]);
