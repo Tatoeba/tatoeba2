@@ -509,7 +509,7 @@ class SentencesController extends AppController
 
         $limit = CurrentUser::getSetting('sentences_per_page');
         $sphinx = $search->asSphinx();
-        $sphinx['page'] = $this->request->query('page');
+        $sphinx['page'] = $this->request->getQuery('page');
         $sphinx['limit'] = $limit;
 
         $model = 'Sentences';

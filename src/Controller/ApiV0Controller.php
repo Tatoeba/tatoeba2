@@ -79,7 +79,7 @@ class ApiV0Controller extends AppController
 
         $limit = 10;
         $sphinx = $search->asSphinx();
-        $sphinx['page'] = $this->request->query('page');
+        $sphinx['page'] = $this->request->getQuery('page');
         $sphinx['limit'] = $limit;
 
         $query = $this->Sentences
