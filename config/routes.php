@@ -45,9 +45,11 @@ use Cake\Routing\Route\InflectedRoute;
  *
  */
 
+use App\Controller\Component\RememberMeComponent;
 use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 
 
@@ -61,6 +63,12 @@ Router::scope('/', function (RouteBuilder $routes) {
     ]));
 
     $routes->registerMiddleware('assetCompress', new AssetCompressMiddleware());
+
+    $routes->registerMiddleware('encryptedCookie', new EncryptedCookieMiddleware(
+        // Names of cookies to protect
+        [RememberMeComponent::getCookieName()],
+        Configure::read('Security.cookieKey')
+    ));
 
     // Can be re-enabled when we get rid of jquery.jeditable,
     // which is used for editing sentences.
@@ -152,6 +160,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->applyMiddleware('asset');
 
     $routes->applyMiddleware('languageSelector');
+
+    $routes->applyMiddleware('encryptedCookie');
 
     // Can be re-enabled when we get rid of jquery.jeditable,
     // which is used for editing sentences.

@@ -14,6 +14,7 @@ pipeline {
         sh 'sed -i "s/{{mysql_test_password}}/cakephp_jenkins/" config/app_local.php'
         sh 'sed -i "s/{{mysql_test_db_name}}/jenkins_test/"     config/app_local.php'
         sh 'sed -i "s/{{security_salt}}/nCwygQoRC5EgFHDRNkdWS6hps74V3y9Z/" config/app_local.php'
+        sh 'sed -i "s/{{cookie_key}}/74057dfe4c2e43d077eb1735ffc8325a49805c66bc1e906835ae9c12001e0f69/" config/app_local.php'
         sh 'bin/cake asset_compress build -f'
       }
     }

@@ -50,7 +50,7 @@ class RememberMeComponent extends Component
      * @var string
      */
     private $_period = '+2 weeks';
-    private $_cookieName = 'User';
+    private static $_cookieName = 'User';
 
     private function saveCookie($cookie)
     {
@@ -69,7 +69,7 @@ class RememberMeComponent extends Component
     public function remember($username, $password)
     {
         $cookie = Cookie::create(
-            $this->_cookieName,
+            self::$_cookieName,
             compact('username', 'password'),
             [
                 'expires' => new DateTime($this->_period),
@@ -86,7 +86,7 @@ class RememberMeComponent extends Component
      */
     public function check()
     {
-        $cookie = $this->getController()->getRequest()->getCookie($this->_cookieName);
+        $cookie = $this->getController()->getRequest()->getCookie(self::$_cookieName);
         $validCookie = is_array($cookie) &&
                        isset($cookie['username']) &&
                        isset($cookie['password']);
@@ -119,10 +119,15 @@ class RememberMeComponent extends Component
     public function delete()
     {
         $controller = $this->getController();
-        $cookie = $controller->getRequest()->getCookie($this->_cookieName);
+        $cookie = $controller->getRequest()->getCookie(self::$_cookieName);
         if ($cookie) {
             $resp = $controller->getResponse()->withExpiredCookie(new Cookie(self::$_cookieName));
             $controller->setResponse($resp);
         }
+    }
+
+    public static function getCookieName()
+    {
+        return self::$_cookieName;
     }
 }
