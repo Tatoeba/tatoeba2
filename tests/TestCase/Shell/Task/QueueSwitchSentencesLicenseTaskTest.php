@@ -21,7 +21,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         'app.PrivateMessages',
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         parent::loadPlugins(['Queue']);
@@ -37,7 +37,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $this->PrivateMessages = TableRegistry::getTableLocator()->get('PrivateMessages');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->task);

@@ -16,12 +16,12 @@ class PrivateMessageTest extends TestCase {
         'app.UsersLanguages'
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->PrivateMessage = TableRegistry::getTableLocator()->get('PrivateMessages');
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->PrivateMessage);
         parent::tearDown();
     }

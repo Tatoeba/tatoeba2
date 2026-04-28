@@ -12,12 +12,12 @@ class TagsSentencesTableTest extends TestCase {
         'app.TagsSentences'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->TagsSentences = TableRegistry::getTableLocator()->get('TagsSentences');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->TagsSentences);
         parent::tearDown();
     }

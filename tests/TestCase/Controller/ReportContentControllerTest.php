@@ -24,7 +24,7 @@ class ReportContentControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         Configure::write('App.fullBaseUrl', 'https://example.org');
         parent::setUp();
     }

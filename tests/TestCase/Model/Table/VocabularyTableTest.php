@@ -18,13 +18,13 @@ class VocabularyTableTest extends TestCase
         'app.UsersLanguages'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->Vocabulary = TableRegistry::getTableLocator()->get('Vocabulary');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Vocabulary);
 

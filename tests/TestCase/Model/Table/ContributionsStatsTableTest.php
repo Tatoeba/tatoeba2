@@ -15,12 +15,12 @@ class ContributionsStatsTableTest extends TestCase {
         'app.ContributionsStats',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->ContributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->ContributionsStats);
 
         parent::tearDown();

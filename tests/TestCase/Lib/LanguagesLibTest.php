@@ -10,7 +10,7 @@ class LanguagesLibTest extends TestCase {
 
     private $oldConfig;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         Cache::delete('active_ui_languages');
         $this->oldConfig = Configure::read('UI.languages');
@@ -29,7 +29,7 @@ class LanguagesLibTest extends TestCase {
         );
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         Cache::delete('active_ui_languages');
         Configure::write('UI.languages', $this->oldConfig);
         parent::tearDown();

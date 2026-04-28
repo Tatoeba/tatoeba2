@@ -13,7 +13,7 @@ class MessagesHelperTest extends TestCase {
         'app.Sentences'
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $request = new ServerRequest([
             'environment' => [
@@ -25,7 +25,7 @@ class MessagesHelperTest extends TestCase {
         $this->Messages = new MessagesHelper($View);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->Messages);
 
         parent::tearDown();

@@ -9,13 +9,13 @@ class VocabularyHelperTest extends TestCase
 {
     public $Vocabulary;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $view = new View();
         $this->Vocabulary = new VocabularyHelper($view);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->Vocabulary);
         parent::tearDown();
     }

@@ -19,7 +19,7 @@ class SentenceCommentTest extends TestCase {
         'app.Sentences',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $this->SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
@@ -32,7 +32,7 @@ class SentenceCommentTest extends TestCase {
         ]));
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->SentenceComment);
 
         parent::tearDown();

@@ -31,7 +31,7 @@ class PagesControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         Configure::write('Tatowiki.baseHost', 'wiki.example.com');
     }

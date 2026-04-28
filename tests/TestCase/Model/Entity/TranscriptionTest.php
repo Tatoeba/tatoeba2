@@ -12,7 +12,7 @@ class TranscriptionTest extends TestCase
             'app.UsersLanguages'
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         CurrentUser::store([

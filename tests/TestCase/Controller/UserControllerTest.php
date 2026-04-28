@@ -28,7 +28,7 @@ class UserControllerTest extends IntegrationTestCase
 
     private $tmpFile = TMP.'UserControllerTest_tmpFile';
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
@@ -38,7 +38,7 @@ class UserControllerTest extends IntegrationTestCase
         $this->oldPasswords = $users->combine('username', 'password')->toArray();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         $file = new File($this->tmpFile);
         if ($file->exists()) {
             $file->delete();

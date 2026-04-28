@@ -25,7 +25,7 @@ class ExportsTableTest extends TestCase
 
     private $testExportDir = TMP.'export_tests'.DS;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -44,7 +44,7 @@ class ExportsTableTest extends TestCase
         $this->Exports = TableRegistry::get('Exports');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Exports);
 

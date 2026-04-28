@@ -14,14 +14,14 @@ class LogsHelperTest extends TestCase
 
     public $LogsHelper;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $view = new View();
         $this->LogsHelper = new LogsHelper($view);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->LogsHelper);
         parent::tearDown();

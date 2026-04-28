@@ -24,7 +24,7 @@ class PermissionsComponentTest extends TestCase
     private $controller;
     private $Users;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $request = new ServerRequest();
@@ -38,7 +38,7 @@ class PermissionsComponentTest extends TestCase
         $this->Users = TableRegistry::getTableLocator()->get('Users');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->component, $this->controller);
         CurrentUser::store([]);

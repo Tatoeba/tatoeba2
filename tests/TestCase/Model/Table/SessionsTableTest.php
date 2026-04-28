@@ -16,7 +16,7 @@ class SessionsTableTest extends TestCase
         'app.UsersLanguages',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $config = TableRegistry::getTableLocator()->exists('Sessions') ? [] : ['className' => SessionsTable::class];
@@ -25,7 +25,7 @@ class SessionsTableTest extends TestCase
         CurrentUser::store(null);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Sessions);
 

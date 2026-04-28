@@ -19,12 +19,12 @@ class ContributionTest extends TestCase {
         'app.UsersLanguages',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->Contribution = TableRegistry::getTableLocator()->get('Contributions');
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->Contribution);
 
         parent::tearDown();

@@ -24,7 +24,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     private $testExportDir = TMP.'export_tests'.DS;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $folder = new Folder($this->testExportDir);
@@ -32,7 +32,7 @@ class ExportsControllerTest extends IntegrationTestCase
         $folder->create($this->testExportDir);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         $folder = new Folder($this->testExportDir);
         $folder->delete();
         parent::tearDown();

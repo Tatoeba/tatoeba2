@@ -14,7 +14,7 @@ class LicensingTest extends TestCase
         'app.QueuedJobs',
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         parent::loadPlugins(['Queue']);
@@ -22,7 +22,7 @@ class LicensingTest extends TestCase
         $this->Licensing = new Licensing();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Licensing);

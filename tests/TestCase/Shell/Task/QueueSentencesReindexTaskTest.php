@@ -15,14 +15,14 @@ class QueueSentencesReindexTaskTest extends TestCase
     public $io;
     public $task;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->io = $this->getMockBuilder('Cake\Console\ConsoleIo')->getMock();
         $this->task = new QueueSentencesReindexTask($this->io);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->task);
         parent::tearDown();

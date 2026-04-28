@@ -39,7 +39,7 @@ class SentencesTableTest extends TestCase {
         'app.FavoritesUsers',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         Configure::write('AutoTranscriptions.enabled', true);
 
@@ -77,7 +77,7 @@ class SentencesTableTest extends TestCase {
         return $autotranscription;
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Sentence);
         parent::tearDown();
     }

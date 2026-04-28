@@ -11,12 +11,12 @@ class LanguagesTableTest extends TestCase {
         'app.Languages',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->Languages = TableRegistry::getTableLocator()->get('Languages');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Languages);
         parent::tearDown();
     }

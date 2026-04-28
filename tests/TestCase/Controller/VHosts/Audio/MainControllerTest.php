@@ -22,12 +22,12 @@ class MainControllerTest extends TestCase
         'app.Users',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->initAudioStorageDir();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->deleteAudioStorageDir();
     }

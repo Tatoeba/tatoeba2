@@ -24,7 +24,7 @@ class UsersControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $this->previousSalt = Security::getSalt();
@@ -33,7 +33,7 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->enableSecurityToken();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         Security::setSalt($this->previousSalt);
     }
 

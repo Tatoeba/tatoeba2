@@ -15,13 +15,13 @@ class SentenceAnnotationsTableTest extends TestCase {
         'app.Sentences',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->SentenceAnnotation = TableRegistry::getTableLocator()->get('SentenceAnnotations');
         Time::setTestNow(new Time('2020-06-01 01:01:01'));
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->SentenceAnnotation);
         Time::setTestNow();
         parent::tearDown();

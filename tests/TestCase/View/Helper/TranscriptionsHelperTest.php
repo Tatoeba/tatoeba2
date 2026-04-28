@@ -28,7 +28,7 @@ class TranscriptionsHelperTest extends TestCase {
         'app.WallThreads'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $View = new View();
         $this->T = new TranscriptionsHelper($View);

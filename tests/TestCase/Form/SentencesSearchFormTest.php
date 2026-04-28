@@ -31,14 +31,14 @@ class SentencesSearchFormTest extends TestCase
         'app.UsersLanguages',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->Form = new SentencesSearchForm();
         $this->Search = $this->createTestProxy(\App\Model\Search::class);
         $this->Form->setSearch($this->Search);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         parent::tearDown();
         unset($this->Form);
     }

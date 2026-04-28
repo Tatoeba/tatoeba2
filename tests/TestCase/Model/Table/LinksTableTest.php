@@ -26,12 +26,12 @@ class LinksTableTest extends TestCase {
 		'app.ReindexFlags'
 	);
 
-	function setUp() {
+	function setUp(): void {
 		parent::setUp();
 		$this->Link = TableRegistry::getTableLocator()->get('Links');
 	}
 
-	function tearDown() {
+	function tearDown(): void {
 		unset($this->Link);
 		parent::tearDown();
 	}

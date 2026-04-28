@@ -14,12 +14,12 @@ class TranslationsTableTest extends TestCase {
         'app.Users'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->Translation = TableRegistry::getTableLocator()->get('Translations');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Translation);
         parent::tearDown();
     }

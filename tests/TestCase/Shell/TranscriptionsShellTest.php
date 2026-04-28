@@ -41,7 +41,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         return $AT;
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->io = $this->getMockBuilder('Cake\Console\ConsoleIo')->getMock();
@@ -55,7 +55,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         Configure::write('AutoTranscriptions.enabled', true);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->TS);
 

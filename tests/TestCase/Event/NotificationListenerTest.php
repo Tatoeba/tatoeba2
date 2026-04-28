@@ -21,12 +21,12 @@ class NotificationListenerTest extends TestCase {
         'app.Walls'
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->NL = new NotificationListener();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->NL);
         parent::tearDown();
     }

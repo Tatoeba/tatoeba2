@@ -17,7 +17,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
         'app.SentencesSentencesLists',
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         parent::loadPlugins(['Queue']);
@@ -31,7 +31,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
         $this->SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->task);

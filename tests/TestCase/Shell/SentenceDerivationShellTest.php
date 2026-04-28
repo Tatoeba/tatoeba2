@@ -22,7 +22,7 @@ class SentenceDerivationShellTest extends TestCase
         'app.Users'
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
@@ -39,7 +39,7 @@ class SentenceDerivationShellTest extends TestCase
         $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
     }
     
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->SentenceDerivationShell);

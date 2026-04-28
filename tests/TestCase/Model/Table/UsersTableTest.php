@@ -21,7 +21,7 @@ class UsersTableTest extends TestCase
         'app.Walls',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -36,7 +36,7 @@ class UsersTableTest extends TestCase
         $this->Users = TableRegistry::getTableLocator()->get('Users', $config);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Users);
 

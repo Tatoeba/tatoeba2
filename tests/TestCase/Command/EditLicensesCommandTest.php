@@ -25,16 +25,16 @@ class EditLicensesCommandTest extends TestCase
 
     const TESTDIR = TMP . 'edit_licenses_tests' . DS;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         new Folder(self::TESTDIR, true, 0755);
     }
 
-    public static function tearDownAfterClass() {
+    public static function tearDownAfterClass(): void {
         $folder = new Folder(self::TESTDIR);
         $folder->delete();
     }
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
         $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');

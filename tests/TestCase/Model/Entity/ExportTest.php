@@ -8,13 +8,13 @@ class ExportTest extends TestCase
 {
     public $Export;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->Export = new Export();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Export);
         parent::tearDown();

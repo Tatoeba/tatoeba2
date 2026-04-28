@@ -16,7 +16,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     private $middleware;
     private $nextCallback;
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->oldLocale = I18n::getLocale();
         $this->oldConfig = Configure::read();
@@ -34,7 +34,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->nextCallback = function ($req, $res) { return $res; };
     }
 
-    function tearDown() {
+    function tearDown(): void {
         Configure::write($this->oldConfig);
         I18n::setLocale($this->oldLocale);
         parent::tearDown();

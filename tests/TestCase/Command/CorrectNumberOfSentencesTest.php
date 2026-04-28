@@ -16,13 +16,13 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
         'app.SentencesSentencesLists',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
         $this->SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->SentencesLists);
         parent::tearDown();
     }

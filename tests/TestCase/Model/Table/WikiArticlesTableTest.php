@@ -24,7 +24,7 @@ class WikiArticlesTableTest extends TestCase
         return ConnectionManager::get('test_wiki2');
     }
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $this->oldLocale = I18n::getLocale();
@@ -40,7 +40,7 @@ class WikiArticlesTableTest extends TestCase
         $this->WikiArticles = TableRegistry::get('WikiArticles', $options);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->WikiArticles);
         I18n::setLocale($this->oldLocale);
         parent::tearDown();

@@ -14,7 +14,7 @@ class ErrorComponentTest extends TestCase
     private $Error;
     private $controller;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $request = new ServerRequest([
@@ -36,7 +36,7 @@ class ErrorComponentTest extends TestCase
             ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Error);
         parent::tearDown();

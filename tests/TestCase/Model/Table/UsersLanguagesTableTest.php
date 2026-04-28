@@ -17,13 +17,13 @@ class UsersLanguagesTableTest extends TestCase {
     );
     public $autoFixtures = false;
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
         $this->loadFixtures('Users', 'UsersLanguages', 'Languages');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->UsersLanguages); 
         parent::tearDown();
     }

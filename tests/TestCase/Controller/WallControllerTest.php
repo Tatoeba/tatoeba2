@@ -19,7 +19,7 @@ class WallControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 100);
     }

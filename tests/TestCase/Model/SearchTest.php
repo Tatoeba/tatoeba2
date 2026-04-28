@@ -39,13 +39,13 @@ class SearchTest extends TestCase
         'app.Users',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->Search = new Search();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Search);

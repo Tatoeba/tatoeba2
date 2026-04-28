@@ -25,14 +25,14 @@ class ShowtransLimiterTest extends TestCase
         'app.UsersLanguages',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
         $this->Sentences->addBehavior('ExposedOnApi');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Sentences);

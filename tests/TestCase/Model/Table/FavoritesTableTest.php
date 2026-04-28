@@ -10,12 +10,12 @@ class FavoritesTableTest extends TestCase {
         'app.FavoritesUsers',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->Favorites = TableRegistry::getTableLocator()->get('Favorites');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Favorites);
         parent::tearDown();
     }

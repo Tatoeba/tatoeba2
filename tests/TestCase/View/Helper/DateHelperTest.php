@@ -14,14 +14,14 @@ class DateHelperTest extends TestCase {
 
     private $prevLocale;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $View = new View();
         $this->DateHelper = new DateHelper($View);
         $this->prevLocale = I18n::getLocale();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         I18n::setLocale($this->prevLocale);
         unset($this->DateHelper);
         parent::tearDown();

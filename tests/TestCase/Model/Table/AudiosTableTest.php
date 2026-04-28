@@ -30,13 +30,13 @@ class AudiosTableTest extends TestCase {
         'app.WallThreads'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->Audio = TableRegistry::getTableLocator()->get('Audios');
         $this->AudioFixture =  new AudiosFixture();
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Audio);
         parent::tearDown();
     }

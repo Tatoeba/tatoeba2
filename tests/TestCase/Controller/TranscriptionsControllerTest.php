@@ -17,7 +17,7 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->enableCsrfToken();
     }

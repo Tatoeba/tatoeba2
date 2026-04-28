@@ -40,7 +40,7 @@ class SearchApiTest extends TestCase
         'app.Users',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $returnedSentenceIds = [1, 2, 3];
         $this->enableMockedSearch($returnedSentenceIds);
@@ -55,7 +55,7 @@ class SearchApiTest extends TestCase
         $this->SearchApi = new SearchApi($search);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         parent::tearDown();
         unset($this->SearchApi);
     }

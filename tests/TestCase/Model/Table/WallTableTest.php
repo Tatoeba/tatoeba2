@@ -22,7 +22,7 @@ class WallTest extends TestCase {
         'app.UsersLanguages',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
 
@@ -41,7 +41,7 @@ class WallTest extends TestCase {
         Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 10);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->Wall);
 
         parent::tearDown();

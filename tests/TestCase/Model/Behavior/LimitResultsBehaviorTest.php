@@ -16,7 +16,7 @@ class LimitResultsBehaviorTest extends TestCase
         'app.Users',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -30,7 +30,7 @@ class LimitResultsBehaviorTest extends TestCase
         $this->Sentences = $s;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->query);
         unset($this->behavior);

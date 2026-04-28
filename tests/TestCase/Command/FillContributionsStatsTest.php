@@ -15,13 +15,13 @@ class FillContributionsStatsCommand extends TestCase {
         'app.ContributionsStats'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
         $this->ContributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->ContributionsStats);
         parent::tearDown();
     }

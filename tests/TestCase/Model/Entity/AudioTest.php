@@ -10,14 +10,14 @@ class AudioTest extends TestCase
 {
     public $Audio;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->Audio = new Audio();
         Configure::write('Recordings.path', '/foo/bar');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Audio);
 

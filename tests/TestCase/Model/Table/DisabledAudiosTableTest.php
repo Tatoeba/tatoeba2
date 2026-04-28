@@ -18,14 +18,14 @@ class DisabledAudiosTableTest extends TestCase
         'app.Links',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $config = TableRegistry::getTableLocator()->exists('DisabledAudios') ? [] : ['className' => DisabledAudiosTable::class];
         $this->DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios', $config);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->DisabledAudios);
 

@@ -15,7 +15,7 @@ class FixLinksTableLangsCommandTest extends TestCase
         'app.Links',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
         $this->Links = TableRegistry::getTableLocator()->get('Links');

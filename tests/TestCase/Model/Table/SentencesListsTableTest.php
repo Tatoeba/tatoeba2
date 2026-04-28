@@ -24,12 +24,12 @@ class SentencesListsTableTest extends TestCase {
         'app.Transcriptions'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->SentencesList = TableRegistry::getTableLocator()->get('SentencesLists');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->SentencesList);
         parent::tearDown();
     }

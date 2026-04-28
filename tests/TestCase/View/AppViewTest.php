@@ -6,12 +6,12 @@ use App\View\AppView;
 
 class AppViewTest extends TestCase {
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->AppView = new AppView();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->AppView);
         parent::tearDown();
     }

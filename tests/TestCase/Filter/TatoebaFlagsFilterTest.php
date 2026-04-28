@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class TatoebaFlagsFilterTest extends TestCase
 {
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $this->flagsDir = WWW_ROOT . 'img' . DS . 'flags' . DS;

@@ -12,12 +12,12 @@ class LastContributionsTableTest extends TestCase {
         'app.Users',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
 		$this->LastContributions = TableRegistry::getTableLocator()->get('LastContributions');
 	}
 
-	function tearDown() {
+	function tearDown(): void {
 		unset($this->LastContributions);
 		parent::tearDown();
     }

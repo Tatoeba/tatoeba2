@@ -14,12 +14,12 @@ class UsersSentencesTest extends TestCase {
         'app.Sentences'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->UsersSentences = TableRegistry::getTableLocator()->get('UsersSentences');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->UsersSentences);
         parent::tearDown();
     }

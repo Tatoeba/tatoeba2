@@ -14,7 +14,7 @@ class LanguagesHelperTest extends TestCase {
 
 	private $prevLocale;
 
-	function setUp() {
+	function setUp(): void {
 		parent::setUp();
         $View = new View();
 		$this->Languages = new LanguagesHelper($View);
@@ -22,7 +22,7 @@ class LanguagesHelperTest extends TestCase {
 		CurrentUser::store(null);
 	}
 
-	function tearDown() {
+	function tearDown(): void {
 		I18n::setLocale($this->prevLocale);
 	}
 

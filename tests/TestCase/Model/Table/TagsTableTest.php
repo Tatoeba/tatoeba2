@@ -19,13 +19,13 @@ class TagsTableTest extends TestCase {
         'app.UsersLanguages',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->Tag = TableRegistry::getTableLocator()->get('Tags');
         $this->Tag->getEventManager()->setEventList(new EventList());
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->Tag);
         parent::tearDown();
     }
