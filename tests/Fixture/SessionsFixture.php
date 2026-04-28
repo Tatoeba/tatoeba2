@@ -48,7 +48,8 @@ class SessionsFixture extends TestFixture
         $ok = parent::create($db);
         if ($ok) {
             // All this only to modify the "ON UPDATE current_timestamp()" part
-            $db->execute('ALTER TABLE sessions MODIFY COLUMN modified datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()');
+            $ok = $db->prepare('ALTER TABLE sessions MODIFY COLUMN modified datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()')->execute();
         }
+        return $ok;
     }
 }
