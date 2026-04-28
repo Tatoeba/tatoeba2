@@ -55,7 +55,7 @@ return [
         'jsBaseUrl' => 'js/',
         'paths' => [
             'plugins' => [ROOT . DS . 'plugins' . DS],
-            'templates' => [APP . 'Template' . DS],
+            'templates' => [ROOT . DS . 'templates' . DS],
             'locales' => [RESOURCES . 'locales' . DS],
         ],
     ],
