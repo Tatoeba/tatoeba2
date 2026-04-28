@@ -31,7 +31,7 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 use App\Error\TatoebaErrorHandler;
 use Cake\Cache\Cache;
-use Cake\Console\ConsoleErrorHandler;
+use Cake\Error\ConsoleErrorHandler;
 use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
