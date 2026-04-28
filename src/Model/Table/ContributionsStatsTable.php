@@ -19,11 +19,11 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 
 class ContributionsStatsTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('date', 'string');
         return $schema;

@@ -21,13 +21,13 @@ class EditCommand_ extends Command
     protected $log = [];
     protected $total = 0;
 
-    public function initialize() {
+    public function initialize(): void {
         parent::initialize();
         $this->loadModel('Sentences');
         $this->loadModel('Users');
     }
 
-    protected function buildOptionParser(ConsoleOptionParser $parser) {
+    protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {
         $parser
             ->addArgument('username', [
                 'help' => 'Do all the work as given user.',

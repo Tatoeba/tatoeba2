@@ -278,18 +278,17 @@ class AppController extends Controller
      * @param mixed $url    The url to go to, can be a raw url (string)
      *                      or a cakephp array
      * @param int   $status HTTP status code to send
-     * @param bool  $exit   If true, exit() will be called after the redirect
      *
      * @return mixed
      */
-    public function redirect($url = null, $status = null, $exit = true)
+    public function redirect($url, int $status = 302): ?\Cake\Http\Response
     {
         // if the developer has used "redirect" method without
         // specifying the lang param, then we add it
         if ($this->request->getParam('lang') !== false && is_array($url)) {
             $url['lang'] = $this->request->getParam('lang');
         }
-        return parent::redirect($url, $status, $exit);
+        return parent::redirect($url, $status);
     }
 
     protected function redirectPaginationToLastPage()

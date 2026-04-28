@@ -21,7 +21,7 @@ namespace App\Model\Table;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Validation\Validator;
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
@@ -31,7 +31,7 @@ use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;

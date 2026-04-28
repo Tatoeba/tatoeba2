@@ -10,7 +10,7 @@ use Cake\Console\ConsoleOptionParser;
 
 class EditLanguagesCommand extends EditCommand_
 {
-    protected function buildOptionParser(ConsoleOptionParser $parser) {
+    protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {
         $parser = parent::buildOptionParser($parser);
         $parser
             ->setDescription('Change sentence languages.')

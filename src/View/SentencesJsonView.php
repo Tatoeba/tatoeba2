@@ -6,7 +6,7 @@ use App\Model\CurrentUser;
 
 class SentencesJsonView extends JsonView
 {
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
         $this->loadHelper('Sentences');

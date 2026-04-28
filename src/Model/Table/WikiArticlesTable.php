@@ -10,7 +10,7 @@ use Cake\ORM\Table;
 
 class WikiArticlesTable extends Table
 {
-    public static function defaultConnectionName() {
+    public static function defaultConnectionName(): string {
         return 'wiki';
     }
 

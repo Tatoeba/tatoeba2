@@ -31,7 +31,7 @@ class NotificationListener implements EventListenerInterface {
     use MailerAwareTrait;
     use ModelAwareTrait;
 
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return [
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
             'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',

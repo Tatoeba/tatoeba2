@@ -22,7 +22,7 @@ use Cake\Event\EventListenerInterface;
 use Cake\ORM\TableRegistry;
 
 class SentencesListListener implements EventListenerInterface {
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return [
             'Model.SentencesSentencesList.deleted' => 'decrementNumberOfSentencesOfList',
         ];

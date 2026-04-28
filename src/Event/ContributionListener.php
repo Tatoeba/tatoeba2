@@ -22,7 +22,7 @@ use Cake\Event\EventListenerInterface;
 use Cake\ORM\TableRegistry;
 
 class ContributionListener implements EventListenerInterface {
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return array(
             'Model.Sentence.saved' => 'logSentence',
         );

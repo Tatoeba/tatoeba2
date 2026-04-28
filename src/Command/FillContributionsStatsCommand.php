@@ -11,14 +11,14 @@ use \Exception;
 
 class FillContributionsStatsCommand extends Command
 {
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
         $this->loadModel('Contributions');
         $this->loadModel('ContributionsStats');
     }
 
-    protected function buildOptionParser(ConsoleOptionParser $parser) {
+    protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {
         $parser
             ->setDescription('Rewrite records of the contributions_stats table ' .
                              'corresponding to contributions between the two given dates.')

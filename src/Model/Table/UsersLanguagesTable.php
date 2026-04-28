@@ -25,7 +25,7 @@ use App\Model\Entity\User;
 use App\Model\CurrentUser;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Validation\Validator;
 
@@ -33,7 +33,7 @@ class UsersLanguagesTable extends Table
 {
     // TODO Reimplement the update of language stats
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('details', 'text');
         return $schema;

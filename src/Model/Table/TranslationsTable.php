@@ -21,11 +21,11 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 
 class TranslationsTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;

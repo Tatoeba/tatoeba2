@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use Cake\Event\Event;
 use Cake\Mailer\MailerAwareTrait;
@@ -33,7 +33,7 @@ class WallTable extends Table
 {
     use MailerAwareTrait;
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('content', 'text');
         return $schema;

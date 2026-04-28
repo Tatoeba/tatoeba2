@@ -24,7 +24,7 @@ class ExportsFixture extends TestFixture
         ],
     ];
 
-    public function init()
+    public function init(): void
     {
         $this->records = [
             [

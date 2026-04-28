@@ -127,7 +127,7 @@ class SphinxIndexesShell extends Shell {
         }
     }
 
-    public function getOptionParser()
+    public function getOptionParser(): \Cake\Console\ConsoleOptionParser
     {
         $parser = parent::getOptionParser();
         $parser->addOption('wait', [

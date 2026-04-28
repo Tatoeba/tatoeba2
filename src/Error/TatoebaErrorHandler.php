@@ -6,7 +6,7 @@ use Cake\Routing\Router;
 
 class TatoebaErrorHandler extends ErrorHandler
 {
-    protected function _displayError($error, $debug)
+    protected function _displayError(array $error, bool $debug): void
     {
         $request = Router::getRequest();
 

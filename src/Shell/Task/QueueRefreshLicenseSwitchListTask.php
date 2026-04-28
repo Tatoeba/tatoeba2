@@ -77,11 +77,10 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
  * The return parameter will determine, if the task will be marked completed, or be requeued.
  *
  * @param array $data The array passed to QueuedTask->createJob()
- * @param int $id The id of the QueuedTask
- * @return bool Success
+ * @param int $jobId The id of the QueuedTask
+ * @return void
  */
-    public function run(array $options, $id = null) {
+    public function run(array $options, int $jobId): void {
         $this->refreshList($options);
-        return true;
     }
 }

@@ -8,7 +8,7 @@ use Cake\ORM\TableRegistry;
 class StatsListener implements EventListenerInterface {
     public $Languages;
 
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return [
             'Model.Audio.audioCreated' => 'incrementAudioCount',
             'Model.Audio.audioDeleted' => 'decrementAudioCount',

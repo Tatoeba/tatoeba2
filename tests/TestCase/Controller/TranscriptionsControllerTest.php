@@ -22,7 +22,7 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->enableCsrfToken();
     }
 
-    public function controllerSpy($event, $controller = null) {
+    public function controllerSpy($event, $controller = null): void {
         parent::controllerSpy($event, $controller);
 
         /* Replace Autotranscription to allow syntax errors */

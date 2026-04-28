@@ -33,7 +33,7 @@ class ComboSession extends DatabaseSession
         parent::__construct();
     }
 
-    public function read($id)
+    public function read($id): string
     {
         $result = Cache::read($id, $this->cacheKey);
         if ($result) {
@@ -42,19 +42,19 @@ class ComboSession extends DatabaseSession
         return parent::read($id);
     }
 
-    public function write($id, $data)
+    public function write($id, $data): bool
     {
         Cache::write($id, $data, $this->cacheKey);
         return parent::write($id, $data);
     }
 
-    public function destroy($id)
+    public function destroy($id): bool
     {
         Cache::delete($id, $this->cacheKey);
         return parent::destroy($id);
     }
 
-    public function gc($expires = null)
+    public function gc($expires = null): bool
     {
         Cache::gc($this->cacheKey);
         return parent::gc($expires);

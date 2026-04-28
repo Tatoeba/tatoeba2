@@ -24,7 +24,7 @@ use Queue\Shell\Task\QueueTask;
 class QueueAudioImportTask extends QueueTask {
     public $retries = 0;
 
-    public function run(array $config, $jobId) {
+    public function run(array $config, int $jobId): void {
         $this->loadModel('Audios');
         $errors = false;
         $filesImported = $this->Audios->importFiles($errors, $config);
@@ -33,7 +33,5 @@ class QueueAudioImportTask extends QueueTask {
         $me = $this->QueuedJobs->get($jobId);
         $me->failure_message = serialize(compact('filesImported', 'errors'));
         $this->QueuedJobs->save($me);
-
-        return true;
     }
 }

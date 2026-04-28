@@ -49,7 +49,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
     private $sendReport = false;
     private $report = '';
 
-    public function out($message = null, $newlines = 1, $level = Shell::NORMAL) {
+    public function out($message = null, int $newlines = 1, int $level = Shell::NORMAL): ?int {
         if ($this->sendReport) {
             $this->report .= $message;
             if ($newlines) {
@@ -141,10 +141,10 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
  * The return parameter will determine, if the task will be marked completed, or be requeued.
  *
  * @param array $data The array passed to QueuedTask->createJob()
- * @param int $id The id of the QueuedTask
- * @return bool Success
+ * @param int $jobId The id of the QueuedTask
+ * @return void
  */
-    public function run(array $options, $id = null) {
+    public function run(array $options, int $jobId): void {
         if (isset($options['locale'])) {
             $prevLocale = I18n::getLocale();
             I18n::setLocale($options['locale']);
@@ -165,6 +165,5 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         if (isset($prevLocale)) {
             I18n::setLocale($prevLocale);
         }
-        return true;
     }
 }

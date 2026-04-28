@@ -56,8 +56,7 @@ class QueueSentencesReindexTask extends QueueTask {
         });
     }
 
-    public function run(array $config, $jobId) {
+    public function run(array $config, int $jobId): void {
         $this->reindexNativeSpeakerSentences($config['user_id'], $config['lang']);
-        return true;
     }
 }

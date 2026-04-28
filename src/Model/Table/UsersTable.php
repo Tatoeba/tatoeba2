@@ -29,7 +29,7 @@ namespace App\Model\Table;
 use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
@@ -41,7 +41,7 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('birthday', 'string');
         $schema->setColumnType('description', 'text');

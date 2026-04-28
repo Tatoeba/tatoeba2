@@ -12,7 +12,7 @@ class SentencesReindexListener implements EventListenerInterface {
 
     use ModelAwareTrait;
 
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return [
             'Model.afterSave' => 'onSave',
             'Model.afterDelete' => 'onDelete',

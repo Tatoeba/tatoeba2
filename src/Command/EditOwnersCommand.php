@@ -10,7 +10,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class EditOwnersCommand extends EditCommand_
 {
-    protected function buildOptionParser(ConsoleOptionParser $parser) {
+    protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {
         $parser = parent::buildOptionParser($parser);
         $parser
             ->setDescription('Change sentence owners.')

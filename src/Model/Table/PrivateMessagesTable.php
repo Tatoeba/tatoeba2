@@ -19,7 +19,7 @@
  */
 namespace App\Model\Table;
 
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
 use Cake\I18n\Time;
@@ -31,7 +31,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class PrivateMessagesTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('date', 'string');
         return $schema;

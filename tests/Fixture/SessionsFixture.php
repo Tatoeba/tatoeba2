@@ -36,14 +36,14 @@ class SessionsFixture extends TestFixture
      *
      * @return void
      */
-    public function init()
+    public function init(): void
     {
         $this->records = [
         ];
         parent::init();
     }
 
-    public function create(ConnectionInterface $db)
+    public function create(ConnectionInterface $db): bool
     {
         $ok = parent::create($db);
         if ($ok) {

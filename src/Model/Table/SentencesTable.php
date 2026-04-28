@@ -23,7 +23,7 @@ use Cake\ORM\Entity;
 use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
@@ -58,7 +58,7 @@ class SentencesTable extends Table
         return $association;
     }
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;

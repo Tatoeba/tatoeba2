@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use App\Lib\Autotranscription;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
@@ -90,7 +90,7 @@ class TranscriptionsTable extends Table
        of the last transcription save operation */
     public $validationErrors = array();
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;

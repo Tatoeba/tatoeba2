@@ -849,7 +849,7 @@ EOT;
         return $conf;
     }
 
-    public function getOptionParser() {
+    public function getOptionParser(): \Cake\Console\ConsoleOptionParser {
         $parser = parent::getOptionParser();
         $parser
             ->addOption('all', [

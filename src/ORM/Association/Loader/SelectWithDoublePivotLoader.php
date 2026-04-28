@@ -4,13 +4,14 @@ namespace App\ORM\Association\Loader;
 use Cake\Datasource\QueryInterface;
 use Cake\ORM\Association;
 use Cake\ORM\Association\Loader\SelectWithPivotLoader;
+use Cake\ORM\Query;
 
 /**
  * Implements the logic for loading an association using a SELECT query and two pivot tables
  */
 class SelectWithDoublePivotLoader extends SelectWithPivotLoader
 {
-    protected function _buildQuery($options)
+    protected function _buildQuery($options): Query
     {
         $key = $this->_linkField($options);
         $filter = $options['keys'];
@@ -90,7 +91,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
         return $fetchQuery;
     }
 
-    protected function _buildResultMap($fetchQuery, $options)
+    protected function _buildResultMap(Query $fetchQuery, array $options): array
     {
         $resultMap = [];
         $key = (array)$options['foreignKey'];

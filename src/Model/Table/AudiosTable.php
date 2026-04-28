@@ -22,7 +22,7 @@ use App\Event\StatsListener;
 use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
@@ -35,7 +35,7 @@ class AudiosTable extends Table
 {
     const JOB_TYPE = 'AudioImport';
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('external', 'json');
         return $schema;

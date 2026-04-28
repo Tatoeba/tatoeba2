@@ -30,7 +30,7 @@ class QueuedJobsFixture extends TestFixture
         ],
     ];
 
-    public function init()
+    public function init(): void
     {
         $this->records = [
             [
