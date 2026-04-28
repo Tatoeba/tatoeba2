@@ -76,7 +76,7 @@ class TagsTable extends Table
 
     public function validationDefault(Validator $validator)
     {
-        $validator->allowEmptyString('name', false);
+        $validator->notEmptyString('name');
         return $validator;
     }
 

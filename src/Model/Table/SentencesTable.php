@@ -147,10 +147,10 @@ class SentencesTable extends Table
             ])
             ->allowEmptyString(
                 'license',
+                __('This is not a valid license.'),
                 function ($context) {
                     return $context['newRecord'] || CurrentUser::isAdmin();
-                },
-                __('This is not a valid license.')
+                }
             );
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
