@@ -59,56 +59,6 @@ $(document).ready(function() {
                     'html'
                 );
             }
-            // Create a new list and add sentence to this new list
-            else if(listId == -1){
-                var txt = 'Name of the list : <br />'
-                + '<input type="text" id="listName" name="listName" />';
-
-                // callback for the popup
-                function mycallbackform(value, message, form){
-
-                    if(value != undefined){ // need to check this, otherwise it loops indefinitely when canceling...
-
-                        $("#_"+sentenceId+"_in_process").show();
-
-                        $.post(
-                            rootUrl
-                            + "/sentences_lists/add_sentence_to_new_list/"
-                            + sentenceId + "/"+ form.listName
-                            , {}
-                            ,function(data){
-                                if(data != 'error'){
-                                    $('#listSelection'+sentenceId).append(
-                                        '<option value="'+ data +'">'
-                                        + form.listName
-                                        +'</option>'
-                                    );
-                                    $('#listSelection'+sentenceId).val(data);
-                                    feedbackValid(sentenceId);
-
-                                }else{
-                                    $.prompt("Sorry, an error occured.");
-                                }
-                                $("#_"+sentenceId+"_in_process").hide();
-                            },
-                            'html'
-                        );
-                    }
-                }
-                // popup to enter name of new list
-                $.prompt(txt,{
-                    callback: mycallbackform,
-                    buttons: { Ok: 'OK'}
-                });
-            }
-            // redirect to lists
-            else if(listId == -2){
-                $(location).attr(
-                    'href',
-                    rootUrl
-                    + "/sentences_lists/"
-                );
-            }
         });
     });
 });
