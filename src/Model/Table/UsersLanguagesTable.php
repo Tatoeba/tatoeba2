@@ -78,29 +78,25 @@ class UsersLanguagesTable extends Table
 
     public function getLanguagesOfUser($userId)
     {
-        $languages = $this->find(
-            'all',
-            array(
-                'conditions' => array('of_user_id' => $userId),
-                'order' => 'level DESC'
-            )
-        );
-
-        return $languages;
+        if (is_null($userId)) {
+            return [];
+        } else {
+            return $this->find()
+                ->where(['of_user_id' => $userId])
+                ->order(['level DESC']);
+        }
     }
 
 
     public function getLanguagesByUser($userId)
     {
-        $languages = $this->find(
-            'all',
-            array(
-                'conditions' => array('by_user_id' => $userId),
-                'order' => 'level DESC'
-            )
-        );
-
-        return $languages;
+        if (is_null($userId)) {
+            return [];
+        } else {
+            return $this->find()
+            ->where(['by_user_id' => $userId])
+            ->order(['level DESC']);
+        }
     }
 
 

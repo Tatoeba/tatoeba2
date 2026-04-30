@@ -532,20 +532,20 @@ class SentencesSearchForm extends Form
                 'user_id'
             ])
             ->where([
-                'OR' => [
+                'OR' => array_filter([
                     'user_id' => $byUserId,
                     'visibility IN' => ['public', 'listed']
-                ]
+                ])
             ]);
 
         if (strlen($listId)) {
             $additional = $this->SentencesLists->find()
                 ->where([
                     'id' => $listId,
-                    'OR' => [
+                    'OR' => array_filter([
                         'user_id' => $byUserId,
                         'NOT' => ['visibility' => 'private']
-                    ]
+                    ])
                 ])
                 ->select(['additional' => 1, 'id', 'name', 'user_id'])
                 ->limit(1);

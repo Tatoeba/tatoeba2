@@ -101,10 +101,10 @@ class SentencesListsTable extends Table
     {
         return $this->find()
             ->where([
-                'OR' => [
+                'OR' => array_filter([
                     'user_id' => CurrentUser::get('id'),
                     'visibility IN' => ['public', 'listed']
-                ]
+                ])
             ])
             ->select(['id', 'name', 'user_id'])
             ->order(['name'])

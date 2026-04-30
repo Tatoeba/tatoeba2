@@ -159,7 +159,7 @@ class LanguagesTable extends Table
     {
         return $this->updateAll(
             ['sentences' => new QueryExpression('sentences + 1')],
-            ['code' => $langCode]
+            ['code IS' => $langCode]
         );
     }
 
@@ -175,7 +175,7 @@ class LanguagesTable extends Table
     {
         return $this->updateAll(
             ['sentences' => new QueryExpression('sentences - 1')],
-            ['code' => $langCode]
+            ['code IS' => $langCode]
         );
     }
 

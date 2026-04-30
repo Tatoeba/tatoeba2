@@ -330,7 +330,9 @@ class SentencesTable extends Table
     {
         if (!$entity->isNew() && $entity->isDirty('text')) {
             $OKTagId = $this->Tags->getIdFromName($this->Tags->getOKTagName());
-            $this->TagsSentences->removeTagFromSentence($OKTagId, $entity->id);
+            if (!is_null($OKTagId)) {
+                $this->TagsSentences->removeTagFromSentence($OKTagId, $entity->id);
+            }
         }
     }
 
@@ -982,7 +984,7 @@ class SentencesTable extends Table
         }
 
         $sentence = $this->find('all')
-                         ->where(['text' => $newSentence->text, 'lang' => $lang])
+                         ->where(['text' => $newSentence->text, 'lang IS' => $lang])
                          ->first();
 
         // Duplicate sentence found

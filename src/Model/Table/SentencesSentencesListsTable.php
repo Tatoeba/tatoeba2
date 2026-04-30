@@ -46,10 +46,10 @@ class SentencesSentencesListsTable extends Table
         return $this->find()
             ->where([
                 'sentence_id' => $sentenceId,
-                'OR' => [
+                'OR' => array_filter([
                     'user_id' => CurrentUser::get('id'),
                     'visibility' => 'public',
-                ]
+                ])
             ])
             ->select(['created'])
             ->contain([
