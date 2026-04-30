@@ -70,15 +70,7 @@ Router::scope('/', function (RouteBuilder $routes) {
         Configure::read('Security.cookieKey')
     ));
 
-    // Can be re-enabled when we get rid of jquery.jeditable,
-    // which is used for editing sentences.
-    // We're using the Csrf component meanwhile, to disable
-    // CSRF only on specific actions.
-    /*
-    $routes->registerMiddleware('csrfProtection', new CsrfProtectionMiddleware([
-        'httpOnly' => true
-    ]));
-    */
+    $routes->registerMiddleware('csrfProtection', new CsrfProtectionMiddleware());
 });
 
 Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
@@ -163,15 +155,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->applyMiddleware('encryptedCookie');
 
-    // Can be re-enabled when we get rid of jquery.jeditable,
-    // which is used for editing sentences.
-    // We're using the Csrf component meanwhile, to disable
-    // CSRF only on specific actions.
-    /*
     // Add csrf middleware.
     $routes->applyMiddleware('csrfProtection');
-    */
-
 
     // Regex pattern for language parameter
     $langPattern = join(

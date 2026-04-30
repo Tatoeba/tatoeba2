@@ -87,7 +87,6 @@ class AppController extends Controller
 
     public function initialize(): void
     {
-        $this->loadComponent('Csrf');
     }
 
     /**
