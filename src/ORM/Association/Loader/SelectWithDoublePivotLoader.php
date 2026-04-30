@@ -1,7 +1,6 @@
 <?php
 namespace App\ORM\Association\Loader;
 
-use Cake\Datasource\QueryInterface;
 use Cake\ORM\Association;
 use Cake\ORM\Association\Loader\SelectWithPivotLoader;
 use Cake\ORM\Query;
@@ -46,7 +45,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
             ->join([$secondPivotTableAlias => [
                 'table' => $this->junctionAssoc->getTarget()->getTable(),
                 'conditions' => ["$name.$targetForeignKey = $secondPivotTableAlias.{$this->foreignKey}"],
-                'type' => QueryInterface::JOIN_TYPE_INNER,
+                'type' => Query::JOIN_TYPE_INNER,
             ]])
             ->group([$this->foreignKey, '_modal_key']);
 
@@ -60,7 +59,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
         $fetchQuery->join([$name => [
             'table' => $subQuery,
             'conditions' => ["{$this->alias}.{$this->bindingKey} = $name._modal_key"],
-            'type' => QueryInterface::JOIN_TYPE_INNER,
+            'type' => Query::JOIN_TYPE_INNER,
         ]]);
         $fetchQuery->select([
             "{$this->alias}__is_direct" => "$name.is_direct",
