@@ -41,18 +41,6 @@ use Cake\Event\Event;
  */
 class LinksController extends AppController
 {
-    public function initialize(): void {
-        parent::initialize();
-        $request = $this->request;
-        $noCsrfActions = [
-            'add',
-            'delete'
-        ];
-        if (in_array($request->getParam('action'), $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
-
     /**
      * Before filter.
      *

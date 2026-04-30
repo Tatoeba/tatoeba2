@@ -85,15 +85,6 @@ class SentencesController extends AppController
         'Vocabulary'
     );
 
-    public function initialize(): void {
-        parent::initialize();
-
-        $noCsrfActions = ['edit_sentence', 'change_language'];
-        if (in_array($this->request->getParam('action'), $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
-
     /**
      * Before filter.
      *

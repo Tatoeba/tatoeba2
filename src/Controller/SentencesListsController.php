@@ -63,21 +63,6 @@ class SentencesListsController extends AppController
 
     public $uses = array('SentencesList', 'SentencesSentencesLists', 'User');
 
-    public function initialize(): void {
-        parent::initialize();
-        $request = $this->request;
-        $noCsrfActions = [
-            'set_option',
-            'save_name',
-            'add_new_sentence_to_list',
-            'add_sentence_to_new_list'
-        ];
-        if (in_array($request->getParam('action'), $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
-
-
     /**
      * Before filter.
      *

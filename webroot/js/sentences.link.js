@@ -134,13 +134,17 @@ function linkToSentence(sentenceId, langFilter) {
 function postLink(action, sentenceId, translationId, langFilter, success)
 {
     var rootUrl = get_tatoeba_root_url();
-    $.post(
-        rootUrl + "/links/" + action + "/" + sentenceId + "/" + translationId,
-        {
+    $.ajax({
+        type: 'post',
+        url: rootUrl + "/links/" + action + "/" + sentenceId + "/" + translationId,
+        data: {
             'returnTranslations': true,
             'langFilter': langFilter,
         },
-        success,
-        'html'
-    );
+        headers: {
+            'X-CSRF-Token': get_csrf_token()
+        },
+        success: success,
+        dataType: 'html'
+    });
 }

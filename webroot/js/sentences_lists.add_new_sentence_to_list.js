@@ -33,16 +33,25 @@ $(document).ready(function() {
         var sentenceText = $("#text").val();
         var listId = $("#sentencesList").attr('data-list-id');
         var rootUrl = get_tatoeba_root_url();
-        
 
-        $.post(rootUrl + "/sentences_lists/add_new_sentence_to_list/"
-        , { "listId": listId, "sentenceText" : sentenceText, "sentenceLang" : "auto" }
-        , function(data){
-            $("#text").val("");
-            $("#session_expired").remove();
-            $(".sentencesList").watch("prepend", data);
-            $("#list_add_loader").hide();
-        }
-        , "html");        
+        $.ajax({
+            type: 'post',
+            url: rootUrl + "/sentences_lists/add_new_sentence_to_list/",
+            data: {
+                "listId": listId,
+                "sentenceText": sentenceText,
+                "sentenceLang": "auto"
+            },
+            headers: {
+                'X-CSRF-Token': get_csrf_token()
+            },
+            success: function(data) {
+                $("#text").val("");
+                $("#session_expired").remove();
+                $(".sentencesList").watch("prepend", data);
+                $("#list_add_loader").hide();
+            },
+            dataType: 'html'
+        });
     }
 });

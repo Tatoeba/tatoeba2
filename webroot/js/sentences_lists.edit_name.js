@@ -34,6 +34,11 @@ $(document).ready(function() {
             data      : function (value, config) {
                             return $('<div>').html(value).text(); // fix html entities
                         },
+            ajaxoptions : {
+                beforeSend: function(xhr, settings) {
+                    xhr.setRequestHeader('X-CSRF-Token', get_csrf_token());
+                }
+            },
         });
     });
 
