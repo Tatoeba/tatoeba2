@@ -419,6 +419,7 @@ return [
             'model' => 'Session',
             'cache' => 'memcached',
         ],
+        'cookie' => 'CAKEPHP',
         'timeout' => 120,
     ],
 ];
