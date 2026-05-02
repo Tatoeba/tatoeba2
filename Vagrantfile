@@ -44,6 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                         :args => ["/home/vagrant/Tatoeba"]
 
     config.vm.provision "shell", inline: <<-SHELL
+      systemctl start manticore
       apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
     SHELL
 
