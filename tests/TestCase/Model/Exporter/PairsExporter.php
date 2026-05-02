@@ -50,8 +50,8 @@ class PairsExporterTest extends TestCase
     }
 
     private function _disableCallbacks($class) {
-        foreach($class->eventManager()->matchingListeners('') as $event => $values) {
-            $class->eventManager()->off($event);
+        foreach($class->getEventManager()->matchingListeners('') as $event => $values) {
+            $class->getEventManager()->off($event);
         }
     }
 
