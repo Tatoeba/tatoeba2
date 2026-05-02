@@ -30,7 +30,7 @@ class WikiArticlesTable extends Table
                     ->combine('lang', 'slug')
                     ->toArray();
             }
-            catch (\PDOException $e) {
+            catch (\Cake\Database\Exception\MissingConnectionException $e) {
                 if ($this->getConnection()->isQueryLoggingEnabled()) {
                     Log::error('Error while connecting to the wiki: '. $e->getMessage());
                 }
