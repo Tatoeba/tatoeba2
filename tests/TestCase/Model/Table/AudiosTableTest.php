@@ -452,13 +452,13 @@ class AudiosTableTest extends TestCase {
     }
 
     function testSentencesCountFinder() {
-        $result = $this->Audio->find('sentencesCount');
+        $result = $this->Audio->find('sentencesCounter')->count();
 
         $this->assertEquals(6, $result);
     }
 
     function testSentencesCountFinder_withLang() {
-        $result = $this->Audio->find('sentencesCount', ['lang' => 'fra']);
+        $result = $this->Audio->find('sentencesCounter', ['lang' => 'fra'])->count();
 
         $this->assertEquals(2, $result);
     }

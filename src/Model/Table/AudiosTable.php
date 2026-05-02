@@ -244,7 +244,7 @@ class AudiosTable extends Table
     /**
      * Custom finder for optimized count of total sentences having audio
      */
-    public function findSentencesCount(Query $query, array $options) {
+    public function findSentencesCounter(Query $query, array $options) {
         $cache_key = 'audio_sentences_count_';
 
         if (isset($options['lang'])) {
@@ -252,12 +252,13 @@ class AudiosTable extends Table
             $cache_key .= $options['lang'];
         }
 
-        return $query
+        $counter = fn($query) => $query
             ->cache($cache_key)
             ->disableHydration()
             ->select(['cnt' => 'COUNT(DISTINCT sentence_id)'])
             ->first()
             ['cnt'];
+        return $query->counter($counter);
     }
 
     /**

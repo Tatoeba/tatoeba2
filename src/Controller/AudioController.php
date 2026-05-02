@@ -95,7 +95,7 @@ class AudioController extends AppController
             $finder['sentences']['lang'] = $lang;
             $this->set(compact('lang'));
         }
-        $total = $this->Audios->find('sentencesCount', $finder['sentences']);
+        $total = $this->Audios->find('sentencesCounter', $finder['sentences'])->count();
 
         try {
             $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
