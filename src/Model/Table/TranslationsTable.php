@@ -159,7 +159,7 @@ class TranslationsTable extends Table
             ->select([
                 'type' => 'AllTranslations.type',
                 'sentence_id' => 'AllTranslations.sentence_id',
-                'id' => 'Translations.id',
+                'Translations__id' => 'Translations.id',
                 'text' => 'Translations.text',
                 'user_id' => 'Translations.user_id',
                 'lang' => 'Translations.lang',
