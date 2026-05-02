@@ -393,7 +393,7 @@ class AudiosTable extends Table
                     $audio = $existing->first();
                     $this->touch($audio);
                 } else {
-                    $audio = $this->newEntity();
+                    $audio = $this->newEmptyEntity();
                     $audio->sentence_id = $file['sentenceId'];
                     $audio->user_id = $author->id;
                 }

@@ -135,7 +135,7 @@ class SentenceAnnotationsTable extends Table
         if (isset($data['id'])) {
             $annotation = $this->get($data['id']);
         } else {
-            $annotation = $this->newEntity();
+            $annotation = $this->newEmptyEntity();
         }       
         
         $annotation->sentence_id = $data['sentence_id'];

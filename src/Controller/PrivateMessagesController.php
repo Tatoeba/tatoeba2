@@ -258,7 +258,7 @@ class PrivateMessagesController extends AppController
             $this->request->getSession()->delete('unsent_message');
             $this->set('hasRecoveredMessage', true);
         } else {
-            $pm = $this->PrivateMessages->newEntity();            
+            $pm = $this->PrivateMessages->newEmptyEntity();
         }
         $this->set('recipients', $recipients);
         $this->set('pm', $pm);

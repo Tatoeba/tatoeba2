@@ -289,7 +289,7 @@ class UsersController extends AppController
             return $this->redirect('/');
         }
 
-        $newUser = $this->Users->newEntity();
+        $newUser = $this->Users->newEmptyEntity();
 
         $honeypotTrapped = $this->request->getData('confirm') !== '';
 

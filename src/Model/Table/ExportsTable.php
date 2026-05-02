@@ -89,7 +89,7 @@ class ExportsTable extends Table
 
     private function createExportFromConfig(&$config, $userId)
     {
-        $export = $this->newEntity();
+        $export = $this->newEmptyEntity();
         $export->status = 'queued';
         $export->user_id = $userId;
 
