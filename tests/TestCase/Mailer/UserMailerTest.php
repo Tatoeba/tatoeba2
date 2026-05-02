@@ -21,6 +21,7 @@ class UserMailerTest extends TestCase {
     protected $mailer = null;
 
     public function setUp(): void {
+        $this->loadRoutes();
         Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
 

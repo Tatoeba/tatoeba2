@@ -41,6 +41,9 @@ class SentencesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
+
+        $this->loadRoutes();
+
         Configure::write('AutoTranscriptions.enabled', true);
 
         $foundIds = [1, 2, 3, 4, 5, 16, 17, 18, 19, 20];

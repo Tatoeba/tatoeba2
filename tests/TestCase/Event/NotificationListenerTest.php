@@ -23,6 +23,7 @@ class NotificationListenerTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
+        $this->loadRoutes();
         $this->NL = new NotificationListener();
     }
 

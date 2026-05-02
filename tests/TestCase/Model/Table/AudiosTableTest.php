@@ -32,6 +32,7 @@ class AudiosTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
+        $this->loadRoutes();
         $this->Audio = TableRegistry::getTableLocator()->get('Audios');
         $this->AudioFixture =  new AudiosFixture();
     }

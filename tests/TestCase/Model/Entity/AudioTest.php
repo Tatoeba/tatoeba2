@@ -13,6 +13,7 @@ class AudioTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->loadRoutes();
         $this->Audio = new Audio();
         Configure::write('Recordings.path', '/foo/bar');
     }

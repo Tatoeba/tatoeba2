@@ -29,6 +29,9 @@ class WallTest extends TestCase {
         // enable event tracking
         $this->Wall->getEventManager()->setEventList(new EventList());
 
+        // load routes
+        $this->loadRoutes();
+
         // set current hostname
         Router::pushRequest(new ServerRequest([
             'environment' => [
