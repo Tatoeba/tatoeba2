@@ -89,7 +89,7 @@ class Audio extends Entity
 
     protected function _getAttributionUrl() {
         if ($this->user) {
-            if (array_key_exists('audio_attribution_url', $this->user->_properties)) {
+            if ($this->user->has('audio_attribution_url')) {
                 if (!empty($this->user->audio_attribution_url)) {
                     return $this->user->audio_attribution_url;
                 } elseif ($this->user->username) {
