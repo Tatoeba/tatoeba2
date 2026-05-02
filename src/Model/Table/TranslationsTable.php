@@ -200,7 +200,7 @@ class TranslationsTable extends Table
         }
         $query->contain([
             'Transcriptions' => [
-                'Users' => ['fields' => 'username']
+                'Users' => ['fields' => ['username']]
             ]
         ]);
         return $query->toList();
