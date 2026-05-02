@@ -484,7 +484,7 @@ class SentenceDerivationShellTest extends TestCase
                 'text' => "Some random sentence $i.",
                 'action' => 'insert',
                 'user_id' => '1',
-                'datetime' => 'NOW()',
+                'datetime' => new \DateTime('now'),
                 'type' => 'sentence',
             ]);
             $Contributions->save($contribution);
