@@ -58,7 +58,7 @@ class TranscriptionsShell extends Shell {
             $proceeded = $this->allSentencesOperation('_autogen', array(
                 'lang' => $lang
             ));
-            $this->out();
+            $this->out("");
             $this->out("$proceeded transcriptions generated.");
         }
     }
@@ -93,7 +93,7 @@ class TranscriptionsShell extends Shell {
             )
         );
         $langs = implode(', ', $langs);
-        $this->out();
+        $this->out("");
         $this->out("Script set for $proceeded contributions in lang(s) $langs.");
     }
 
@@ -105,7 +105,7 @@ class TranscriptionsShell extends Shell {
             'lang IN' => $langs,
         ));
         $langs = implode(', ', $langs);
-        $this->out();
+        $this->out("");
         $this->out("Script set for $proceeded sentences in lang(s) $langs.");
     }
 
