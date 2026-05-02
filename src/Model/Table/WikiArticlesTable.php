@@ -16,7 +16,7 @@ class WikiArticlesTable extends Table
 
     public function getArticleTranslations($lang, $slug) {
         $cache_key = "wiki_articles_${lang}_${slug}";
-        if (($result = Cache::read($cache_key)) === false) {
+        if (($result = Cache::read($cache_key)) === null) {
             try {
                 $group_id = $this->find()
                     ->select(['group_id'])
