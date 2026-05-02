@@ -40,7 +40,7 @@ class QueueSentencesReindexTaskTest extends TestCase
 
     public function testRun_userLanguageLevelUp()
     {
-        $this->task->run(['user_id' => 7, 'lang' => 'fra'], null);
+        $this->task->run(['user_id' => 7, 'lang' => 'fra'], 1234);
 
         // should reindex sentences 4, 8, 12, 23 and 35
         // along with all direct and indirect translations
@@ -49,7 +49,7 @@ class QueueSentencesReindexTaskTest extends TestCase
 
     public function testRun_userLanguageLevelDrop()
     {
-        $this->task->run(['user_id' => 7, 'lang' => 'jpn'], null);
+        $this->task->run(['user_id' => 7, 'lang' => 'jpn'], 1234);
 
         // should reindex sentences 6, 10, 56 and 57
         // along with all direct and indirect translations

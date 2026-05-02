@@ -48,7 +48,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $before = $this->Sentences->findAllByLicense('CC0 1.0')->toList();
         $beforeIds = Hash::extract($before, '{n}.id');
 
-        $this->task->run($options);
+        $this->task->run($options, 1234);
 
         $after = $this->Sentences->findAllByLicense('CC0 1.0')->toList();
         $afterIds = Hash::extract($after, '{n}.id');
@@ -79,7 +79,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
         CurrentUser::store(['id' => 4]);
         $numPmBefore = $this->PrivateMessages->find('all')->count();
-        $this->task->run($options);
+        $this->task->run($options, 1234);
         CurrentUser::store(['id' => 4]);
         $numPmAfter = $this->PrivateMessages->find('all')->count();
 
@@ -96,7 +96,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
 
         $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
 
-        $this->task->run($options);
+        $this->task->run($options, 1234);
 
         $this->assertContains($fakeError, $this->task->getReport());
     }
@@ -110,7 +110,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
     {
         $options = ['userId' => 4, 'listId' => 4];
 
-        $this->task->run($options);
+        $this->task->run($options, 1234);
 
         $count = $this->Sentences->SentencesLists->getNumberOfSentences(4);
         $this->assertEquals(0, $count);

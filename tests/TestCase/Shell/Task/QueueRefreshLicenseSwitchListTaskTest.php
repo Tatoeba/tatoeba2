@@ -44,7 +44,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
         $listId = $list->id;
         $expected = array(48, 53);
 
-        $this->task->run(compact('userId', 'listId'));
+        $this->task->run(compact('userId', 'listId'), 1234);
 
         $after = $this->SentencesLists->SentencesSentencesLists->find()
             ->where(['sentences_list_id' => $listId])
