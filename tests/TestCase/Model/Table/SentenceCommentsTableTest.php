@@ -25,7 +25,7 @@ class SentenceCommentTest extends TestCase {
         $this->SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
 
         $this->loadRoutes();
-        Router::pushRequest(new ServerRequest([
+        Router::setRequest(new ServerRequest([
             'environment' => [
                 'HTTP_HOST' => 'tatoeba.org',
                 'HTTPS' => 'on',

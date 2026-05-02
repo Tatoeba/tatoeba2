@@ -25,7 +25,7 @@ class UsersTableTest extends TestCase
     {
         parent::setUp();
 
-        Router::pushRequest(new ServerRequest([
+        Router::setRequest(new ServerRequest([
             'environment' => [
                 'HTTP_HOST' => 'tatoeba.org',
                 'HTTPS' => 'on',

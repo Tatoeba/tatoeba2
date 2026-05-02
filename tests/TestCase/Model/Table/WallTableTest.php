@@ -33,7 +33,7 @@ class WallTest extends TestCase {
         $this->loadRoutes();
 
         // set current hostname
-        Router::pushRequest(new ServerRequest([
+        Router::setRequest(new ServerRequest([
             'environment' => [
                 'HTTP_HOST' => 'tatoeba.org',
                 'HTTPS' => 'on',
