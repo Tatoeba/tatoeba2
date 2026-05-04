@@ -367,6 +367,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testEditCorrectness_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->post('/ja/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
         $this->assertRedirect('/ja/users/login');
     }

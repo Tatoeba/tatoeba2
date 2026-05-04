@@ -52,6 +52,7 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
 
     public function testSendAsGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->post('/en/private_messages/send');
         $this->assertRedirect('/en/users/login');
     }

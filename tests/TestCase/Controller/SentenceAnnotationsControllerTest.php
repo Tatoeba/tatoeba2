@@ -59,6 +59,7 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
 
     public function testSaveAsGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->saveSomething();
         $this->assertRedirect('/en/users/login');
     }
@@ -75,6 +76,7 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
 
     public function testSearchAsGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->searchSomething();
         $this->assertRedirect('/en/users/login');
     }
@@ -94,6 +96,7 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
 
     public function testReplaceAsGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->replaceSomething();
         $this->assertRedirect('/en/users/login');
     }

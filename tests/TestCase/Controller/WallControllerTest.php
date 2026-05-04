@@ -69,6 +69,7 @@ class WallControllerTest extends IntegrationTestCase {
 
     public function testSave_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->post('/en/wall/save', [
             'replyTo' => '',
             'content' => 'How about more butterflies on the home page?',

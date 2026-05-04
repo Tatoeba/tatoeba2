@@ -84,8 +84,9 @@ class TagsControllerTest extends IntegrationTestCase {
 
     public function testAddTagPost_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->add_tag_post();
-        $this->assertResponseError();
+        $this->assertResponseCode(403);
     }
 
     public function testAddTagPost_asContributor() {

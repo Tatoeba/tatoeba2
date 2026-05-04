@@ -88,6 +88,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
 
     public function testAdd_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
         $this->assertRedirect('/en/users/login');
     }
