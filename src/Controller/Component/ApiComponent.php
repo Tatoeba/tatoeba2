@@ -148,7 +148,9 @@ class ApiComponent extends Component
 
         $this->autoRender = false;
 
-        return $this->response
+        return $this
+            ->getController()
+            ->getResponse()
             ->withType('application/json')
             ->withBody($stream);
     }
