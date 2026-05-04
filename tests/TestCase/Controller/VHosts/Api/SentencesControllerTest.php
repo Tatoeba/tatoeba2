@@ -461,7 +461,7 @@ class SentencesControllerTest extends TestCase
 
         $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello");
         $actual = $this->_getBodyAsString();
-        $expectedPaging = (object)[
+        $expectedPaging = [
             'total' => 1,
             'has_next' => false,
         ];
@@ -476,7 +476,7 @@ class SentencesControllerTest extends TestCase
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
-            '$.paging' => (object)[
+            '$.paging' => [
                 'total' => 2,
                 'has_next' => true,
                 'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
@@ -493,7 +493,7 @@ class SentencesControllerTest extends TestCase
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
-            '$.paging' => (object)[
+            '$.paging' => [
                 'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
                 'has_next' => true,
                 'next'  => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1&after=123456%2C1',
@@ -510,7 +510,7 @@ class SentencesControllerTest extends TestCase
         $actual = $this->_getBodyAsString();
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(1),
-            '$.paging' => (object)[
+            '$.paging' => [
                 'first' => 'http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello&limit=1',
                 'has_next' => false,
             ],
