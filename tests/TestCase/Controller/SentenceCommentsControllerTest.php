@@ -146,6 +146,10 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
      * @dataProvider commentWithLinksProvider()
      */
     public function testSave_commentWithLinksByNewMember($postData, $shouldSave, $nbEmails) {
+        # https://github.com/cakephp/cakephp/pull/15149
+        # Please re-enable test once we use CakePHP >= 4.2.2
+        $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
+
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
@@ -172,6 +176,10 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->put('https://example.net/en/sentence_comments/edit/6', $postData);
 
         if ($shouldSave) {
+            # https://github.com/cakephp/cakephp/pull/15149
+            # Please re-enable test once we use CakePHP >= 4.2.2
+            $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
+
             $this->assertFlashMessageContains('Changes to your comment have been saved');
         } else {
             $this->assertFlashMessageContains('Your comment was not saved');
