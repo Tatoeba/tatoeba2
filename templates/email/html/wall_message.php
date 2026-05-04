@@ -7,7 +7,7 @@ $urlParams = [
     '#' => 'message_'.$post->id,
 ];
 
-$url = $this->Url->build($urlParams, true);
+$url = $this->Url->build($urlParams, ['fullBase' => true]);
 echo "<p>";
 echo $this->Html->link($url);
 echo "</p>";
