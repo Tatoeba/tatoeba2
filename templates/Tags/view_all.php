@@ -71,7 +71,7 @@ $tagsIndexUrl = $this->Url->build([
         <?php
         if (empty($filter)) {
             $title = $this->Paginator->counter(
-                array('format' => __('All tags (total {{count}})'))
+                __('All tags (total {{count}})')
             );
         } else {
             $title = format(

@@ -54,9 +54,7 @@ if (empty($userId)) {
         ));
     } else {
         $title = $this->Paginator->counter(
-            array(
-                'format' => $title . ' ' . __("(total {{count}})")
-            )
+            $title . ' ' . __("(total {{count}})")
         );
         echo $this->Html->tag('h2', $title);
 

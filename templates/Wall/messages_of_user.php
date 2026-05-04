@@ -50,11 +50,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <h2>
             <?php
             echo $this->Paginator->counter(
-                array(
-                    'format' => format(
-                        __('{user}\'s messages on the Wall (total&nbsp;{n})'),
-                        array('user' => $username, 'n' => '{{count}}')
-                    )
+                format(
+                    __('{user}\'s messages on the Wall (total&nbsp;{n})'),
+                    array('user' => $username, 'n' => '{{count}}')
                 )
             );
             ?>

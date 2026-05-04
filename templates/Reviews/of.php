@@ -118,9 +118,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         if (!$userExists) {
             $this->CommonModules->displayNoSuchUser($username);
         } else {
-            $title = $this->Paginator->counter(array(
-                'format' => $title . ' ' . __("(total {{count}})")
-            ));
+            $title = $this->Paginator->counter(
+                $title . ' ' . __("(total {{count}})")
+            );
             ?>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
