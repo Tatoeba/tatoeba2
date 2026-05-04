@@ -16,7 +16,12 @@ class AppControllerTest extends IntegrationTestCase {
 	);
 
 	function setRememberMeCookie($username, $password) {
-		$this->cookieEncrypted('User', compact('username', 'password'));
+		$this->cookieEncrypted(
+			'User',
+			compact('username', 'password'),
+			'aes',
+			Configure::read('Security.cookieKey')
+		);
 	}
 
 	function testRememberMeAutomaticallyLogsInUser() {
