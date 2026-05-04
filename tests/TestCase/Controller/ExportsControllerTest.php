@@ -133,7 +133,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     public function testDownload_ownExport_asMember()
     {
-        $this->logInAs('kazuki');
+        $this->logInAs('kazuki', false);
         $filesize = $this->createDownloadFile('kazuki_sentences.zip');
         $this->get("/en/exports/download/1/A pretty filename.zip");
         $this->assertFileDownload('kazuki_sentences.zip', $filesize);
@@ -141,7 +141,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     public function testDownload_guestExport_asMember()
     {
-        $this->logInAs('kazuki');
+        $this->logInAs('kazuki', false);
         $filesize = $this->createDownloadFile('kazuki_sentences.zip');
         $this->get("/en/exports/download/4/A pretty filename.zip");
         $this->assertResponseCode(403);
@@ -149,7 +149,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     public function testDownload_cannotDownloadUntilReady()
     {
-        $this->logInAs('kazuki');
+        $this->logInAs('kazuki', false);
 
         $export = TableRegistry::get('Exports')->get(2);
         $file = new File($export->filename, true);

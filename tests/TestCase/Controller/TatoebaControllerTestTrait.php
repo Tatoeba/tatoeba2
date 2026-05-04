@@ -5,12 +5,14 @@ use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\ORM\TableRegistry;
 
 trait TatoebaControllerTestTrait {
-    private function logInAs($username) {
+    private function logInAs($username, $addTokens = true) {
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->find('userToLogin')->first();
         $this->session(['Auth' => ['User' => $user->toArray()]]);
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
+        if ($addTokens) {
+            $this->enableCsrfToken();
+            $this->enableSecurityToken();
+        }
     }
 
     public function assertAccessUrlAs($url, $user, $response) {
