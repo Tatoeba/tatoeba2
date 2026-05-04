@@ -348,6 +348,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     public function testAcceptNewTermsOfUser_asMember() {
+        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->logInAs('contributor');
         $this->addHeader('Referer', 'https://example.net/referer');
         $this->post('/en/user/accept_new_terms_of_use', [

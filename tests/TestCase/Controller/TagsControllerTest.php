@@ -26,6 +26,11 @@ class TagsControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     ];
 
+    public function setUp(): void {
+        parent::setUp();
+        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://example.net');
+    }
+
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url

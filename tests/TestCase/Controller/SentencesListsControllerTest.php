@@ -107,6 +107,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     }
 
     public function testAddSentenceToListAsUnproperBot_bans() {
+        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://tatoeba.org');
         $username = 'kazuki';
         $this->logInAs($username);
         $this->configRequest([

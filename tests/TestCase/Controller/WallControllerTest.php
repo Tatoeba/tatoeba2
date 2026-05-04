@@ -62,6 +62,7 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->addHeader('Referer', 'https://example.net/referer');
         $this->assertAccessUrlAs($url, $user, $response);
     }
