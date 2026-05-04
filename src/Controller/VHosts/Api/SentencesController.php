@@ -385,7 +385,7 @@ class SentencesController extends ApiController
 </table>
 
 <p>Each translation filter belongs to a group. First, filters belonging to the same group are applied together to the translations with a logical AND, and then each group result is combined with a logical AND.</p>
-<p>Filters starting with the same prefix belong to the same group, and <code>trans:</code> is just one of these groups. It is possible to create any number of groups using the prefix <code>trans:<em>n</em>:</code>, <code><em>n</em></code> consisting of one of more digits.</p>
+<p>Filters starting with the same prefix belong to the same group, and <code>trans:</code> is just one of these groups. It is possible to create any number of groups using the prefix <code>trans:<em>n</em>:</code>, <code><em>n</em></code> consisting of one or more digits.</p>
 
 <table>
   <tr><th>Example</th><th>Result</th></tr>
