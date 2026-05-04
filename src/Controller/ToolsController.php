@@ -44,7 +44,6 @@ class ToolsController extends AppController
 {
     public $name = 'Tools';
     public $helpers = array('Transcriptions', 'Pinyin');
-    public $uses = array('Transcription');
 
     /**
      * Index of tools.

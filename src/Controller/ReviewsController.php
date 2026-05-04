@@ -41,7 +41,6 @@ use App\Model\CurrentUser;
  */
 class ReviewsController extends AppController
 {
-    public $uses = array('UsersSentences', 'User');
     public $helpers = array('CommonModules');
 
     public function beforeFilter(\Cake\Event\EventInterface $event)

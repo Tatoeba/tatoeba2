@@ -27,13 +27,6 @@ class AudioController extends AppController
 {
     public $name = 'Audio';
 
-    public $uses = array(
-        'Audio',
-        'Language',
-        'User',
-        'CurrentUser'
-    );
-
     public $components = array(
         'Flash'
     );

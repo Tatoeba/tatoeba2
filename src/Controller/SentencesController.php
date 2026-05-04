@@ -73,18 +73,6 @@ class SentencesController extends AppController
         'CommonModules'
     );
 
-    public $uses = array(
-        'Audio',
-        'Sentence',
-        'SentencesSentencesLists',
-        'SentencesList',
-        'User',
-        'UsersLanguages',
-        'Tag',
-        'UsersSentences',
-        'Vocabulary'
-    );
-
     /**
      * Before filter.
      *

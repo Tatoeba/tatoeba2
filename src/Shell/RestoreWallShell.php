@@ -26,8 +26,6 @@ use Cake\Console\Shell;
 
 class RestoreWallShell extends Shell {
 
-    public $uses = array('Wall', 'User', 'WallThread');
-
     private $users_id_by_username = array();
     private $imported = array();
     private $stderr = null;

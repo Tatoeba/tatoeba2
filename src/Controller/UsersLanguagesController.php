@@ -42,7 +42,6 @@ use Cake\Event\Event;
  */
 class UsersLanguagesController extends AppController
 {
-    public $uses = array('UsersLanguages');
     public $components = array('Flash');
 
     public function beforeFilter(\Cake\Event\EventInterface $event)

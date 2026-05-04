@@ -27,8 +27,6 @@ use Cake\I18n\I18n;
 
 class CheckFlagsShell extends Shell {
 
-    public $uses = array('Sentence');
-
     private $tatoeba_languages = array();
     private $stdout;
 

@@ -53,7 +53,6 @@ class ContributionsController extends AppController
         'Members'
     );
     public $components = array('Permissions');
-    public $uses = array('Contribution', 'ContributionsStats');
 
     /**
      * Display all contributions in specified language (or all languages).

@@ -9,8 +9,6 @@ class UpdatePasswordVersionShell extends Shell {
 
     use BatchOperationTrait;
 
-    public $uses = array('User');
-
     public function main() {
         echo "Updating password hashes";
         $proceeded = $this->batchOperation(

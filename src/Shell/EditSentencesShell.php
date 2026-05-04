@@ -25,8 +25,6 @@ use Cake\Console\Shell;
 
 class EditSentencesShell extends Shell {
 
-    public $uses = array('Sentence', 'User');
-
     private $stderr = null;
 
     private function be($username) {

@@ -108,7 +108,6 @@ class SentenceDerivationShell extends Shell {
 
     use BatchOperationTrait;
 
-    public $uses = array('Sentence', 'Contribution');
     public $batchSize = 1000;
     public $linkEraFirstId = 330930;
     public $linkABrange = array(890774, 909052);

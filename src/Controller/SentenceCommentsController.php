@@ -46,10 +46,6 @@ use Cake\Http\Cookie\Cookie;
 class SentenceCommentsController extends AppController
 {
     public $name = 'SentenceComments';
-    public $uses = array(
-        "SentenceComment",
-        "User",
-    );
     public $helpers = array(
         'Comments',
         'CommonModules',

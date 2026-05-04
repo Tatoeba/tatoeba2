@@ -12,12 +12,6 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
 
     use BatchOperationTrait;
 
-    public $uses = array(
-        'Sentence',
-        'User',
-        'PrivateMessage',
-    );
-
 /**
  * ZendStudio Codecomplete Hint
  *

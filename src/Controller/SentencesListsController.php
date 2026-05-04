@@ -61,8 +61,6 @@ class SentencesListsController extends AppController
         'CommonSentence'
     );
 
-    public $uses = array('SentencesList', 'SentencesSentencesLists', 'User');
-
     /**
      * Before filter.
      *

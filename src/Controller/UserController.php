@@ -53,21 +53,6 @@ class UserController extends AppController
      */
     public $name = 'User';
 
-    /**
-     * TODO load model only where needed
-     *
-     * @var array
-     */
-    public $uses = array(
-        'User',
-        'UsersLanguages',
-        'Contribution',
-        'Sentence',
-        'SentenceComment',
-        'Favorite',
-        'SentencesList'
-    );
-
     public $helpers = array('Html', 'Date', 'Languages', 'Countries');
 
     public $components = array('Auth', 'Flash');

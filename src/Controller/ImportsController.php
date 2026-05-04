@@ -41,7 +41,6 @@ use Cake\Event\Event;
 class ImportsController extends AppController
 {
     public $name = "Imports";
-    public $uses = "Sentence";
 
     /**
      * Used to treat data send from import form
