@@ -98,7 +98,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
 
         $this->task->run($options, 1234);
 
-        $this->assertContains($fakeError, $this->task->getReport());
+        $this->assertStringContainsString($fakeError, $this->task->getReport());
     }
 
     public function testSwitchLicense_batchedOperation() {

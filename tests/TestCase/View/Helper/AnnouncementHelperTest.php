@@ -176,7 +176,7 @@ class AnnouncementHelperTest extends TestCase
         if ($expectedMessage === '') {
             $this->assertEquals($expectedMessage, $helper->getMaintenanceMessage());
         } else {
-            $this->assertContains($expectedMessage, $helper->getMaintenanceMessage());
+            $this->assertStringContainsString($expectedMessage, $helper->getMaintenanceMessage());
         }
         $this->assertEquals($expectedIsImminent, $helper->isMaintenanceImminent());
 

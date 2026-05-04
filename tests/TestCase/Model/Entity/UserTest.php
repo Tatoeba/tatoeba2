@@ -23,7 +23,7 @@ class UserTest extends TestCase
     public function testSet_passwordhashesPassword()
     {
         $this->User->set('password', 'my super password');
-        $this->assertContains('$', $this->User->password);
+        $this->assertStringContainsString('$', $this->User->password);
     }
 
     public function testSet_settingsMergesExistingSettings()

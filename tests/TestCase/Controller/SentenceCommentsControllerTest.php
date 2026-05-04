@@ -111,7 +111,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
     }
 
     private function assertFlashMessageContains($expected, $message = '') {
-        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+        $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
     }
 
     public function commentWithLinksProvider() {
