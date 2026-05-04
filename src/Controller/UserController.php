@@ -55,8 +55,6 @@ class UserController extends AppController
 
     public $helpers = array('Html', 'Date', 'Languages', 'Countries');
 
-    public $components = array('Auth', 'Flash');
-
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->setConfig('unlockedActions', [

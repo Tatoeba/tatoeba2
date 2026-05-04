@@ -55,11 +55,6 @@ use Exception;
 class SentencesController extends AppController
 {
     public $name = 'Sentences';
-    public $components = array (
-        'LanguageDetection',
-        'CommonSentence',
-        'Permissions',
-    );
     public $helpers = array(
         'Sentences',
         'Menu',
@@ -284,6 +279,7 @@ class SentencesController extends AppController
         $userName = $this->Auth->user('username');
         $sentenceLicense = $this->request->getData('sentenceLicense');
 
+        $this->loadComponent('CommonSentence');
         $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,
@@ -422,6 +418,7 @@ class SentencesController extends AppController
         ) {
             // Language detection
             if ($translationLang == 'auto') {
+                $this->loadComponent('LanguageDetection');
                 $translationLang = $this->LanguageDetection->detectLang(
                     $translationText,
                     $this->Auth->user('username')

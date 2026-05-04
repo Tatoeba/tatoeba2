@@ -26,9 +26,6 @@ class TranscriptionsController extends AppController
 {
     public $name = 'Transcriptions';
 
-    public $components = array(
-    );
-
     public $helpers = array(
         'Pagination',
         'Transcriptions',

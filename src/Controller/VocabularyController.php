@@ -42,7 +42,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  */
 class VocabularyController extends AppController
 {
-    public $components = array ('CommonSentence', 'Flash');
     public $helpers = array(
         'Vocabulary',
     );
@@ -230,6 +229,7 @@ class VocabularyController extends AppController
         $userId = CurrentUser::get('id');
         $username = CurrentUser::get('username');
 
+        $this->loadComponent('CommonSentence');
         $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,

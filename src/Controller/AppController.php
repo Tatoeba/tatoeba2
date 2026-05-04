@@ -52,21 +52,6 @@ class AppController extends Controller
 
     const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
 
-    public $components = array(
-        'Auth' => array(
-        'authenticate' => array(
-            'Form' => array(
-                    'passwordHasher' => array('className' => 'Versioned'),
-                    'finder' => 'userToLogin',
-                ),
-            )
-        ),
-        'Flash',
-        'Permissions',
-        'RememberMe',
-        'Security',
-    );
-
     public $helpers = array(
         'AssetCompress.AssetCompress',
         'Sentences',
@@ -87,6 +72,18 @@ class AppController extends Controller
 
     public function initialize(): void
     {
+        $this->loadComponent('Flash');
+        $this->loadComponent('Permissions');
+        $this->loadComponent('Security');
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'passwordHasher' => ['className' => 'Versioned'],
+                    'finder' => 'userToLogin',
+                ],
+            ]
+        ]);
+        $this->loadComponent('RememberMe');
     }
 
     /**

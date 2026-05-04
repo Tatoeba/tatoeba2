@@ -42,8 +42,6 @@ use Cake\Http\Cookie\Cookie;
  */
 class ActivitiesController extends AppController
 {
-    public $components = array ('CommonSentence', 'Flash');
-
     /**
      * Adopt sentences.
      *

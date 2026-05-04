@@ -10,8 +10,6 @@ use Cake\Http\Exception\NotFoundException;
 
 class ReportContentController extends AppController
 {
-    public $components = ['Flash'];
-
     private function process_report($entity)
     {
         $details = $this->request->getData('details', '');

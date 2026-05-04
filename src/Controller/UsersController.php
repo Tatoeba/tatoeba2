@@ -57,7 +57,13 @@ class UsersController extends AppController
         'Sentences',
         'Pagination'
     );
-    public $components = array('Flash', 'RememberMe');
+
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->loadComponent('Flash');
+    }
 
     /**
      * Before filter.

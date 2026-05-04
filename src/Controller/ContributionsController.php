@@ -52,7 +52,6 @@ class ContributionsController extends AppController
         'CommonModules',
         'Members'
     );
-    public $components = array('Permissions');
 
     /**
      * Display all contributions in specified language (or all languages).

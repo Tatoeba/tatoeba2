@@ -55,11 +55,6 @@ class SentencesListsController extends AppController
         'Menu',
         'Pagination'
     );
-    public $components = array(
-        'Flash',
-        'LanguageDetection',
-        'CommonSentence'
-    );
 
     /**
      * Before filter.
@@ -426,6 +421,7 @@ class SentencesListsController extends AppController
         if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
             if ($sentenceLang == 'auto') {
+                $this->loadComponent('LanguageDetection');
                 $sentenceLang = $this->LanguageDetection->detectLang(
                     $sentenceText,
                     $userName

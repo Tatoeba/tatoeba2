@@ -33,7 +33,6 @@ class TagsController extends AppController
      * @access public
      */
     public $name = 'Tags';
-    public $components = ['CommonSentence', 'Flash'];
     public $helpers = ['Pagination'];
     /**
      * Before filter.

@@ -42,8 +42,6 @@ use Cake\Event\Event;
  */
 class UsersLanguagesController extends AppController
 {
-    public $components = array('Flash');
-
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->setConfig('unlockedActions', [

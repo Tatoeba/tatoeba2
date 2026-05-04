@@ -51,7 +51,6 @@ class SentenceCommentsController extends AppController
         'CommonModules',
         'Pagination',
     );
-    public $components = array ('Flash', 'Permissions');
 
     public $paginate = [
         'contain' => [

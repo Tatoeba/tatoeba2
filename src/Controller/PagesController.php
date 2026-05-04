@@ -66,9 +66,6 @@ class PagesController extends AppController
         'Languages'
     );
 
-    public $components = array('Permissions');
-
-
     /**
      * Before filter.
      *
