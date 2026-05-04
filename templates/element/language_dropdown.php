@@ -8,7 +8,11 @@ $this->AngularTemplate->addTemplate(
         'language-dropdown-template'
 );
 
-$this->Form->unlockField($name);
+try {
+    $this->Form->unlockField($name);
+} catch (\Cake\Core\Exception\Exception $e) {
+    // simply do nothing if no form was created
+}
 ?>
 <language-dropdown
 <?php if (isset($id)): ?>
