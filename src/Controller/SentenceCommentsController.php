@@ -46,11 +46,6 @@ use Cake\Http\Cookie\Cookie;
 class SentenceCommentsController extends AppController
 {
     public $name = 'SentenceComments';
-    public $helpers = array(
-        'Comments',
-        'CommonModules',
-        'Pagination',
-    );
 
     public $paginate = [
         'contain' => [
@@ -108,9 +103,6 @@ class SentenceCommentsController extends AppController
      */
     public function index($langFilter = 'und')
     {
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'Members';
-
         $options = [
             'maxResults' => $this::PAGINATION_DEFAULT_TOTAL_LIMIT,
         ];

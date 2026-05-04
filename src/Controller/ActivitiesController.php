@@ -49,9 +49,6 @@ class ActivitiesController extends AppController
      */
     public function adopt_sentences($lang = null)
     {
-        $this->helpers[] = 'CommonModules';
-        $this->helpers[] = 'Pagination';
-        
         $this->loadModel('Sentences');
         $query = $this->Sentences
             ->find('filteredTranslations', ['translationLang' => 'none'])
@@ -110,8 +107,6 @@ class ActivitiesController extends AppController
      */
     public function translate_sentences()
     {
-        $this->helpers[] = 'Languages';
-        
         $langFrom = $this->request->getQuery('langFrom');
         if ($langFrom)
         {
@@ -146,10 +141,6 @@ class ActivitiesController extends AppController
      * @param string $lang              Language of the sentences.
      */
     public function translate_sentences_of($username, $lang = null) {
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'Languages';
-        $this->helpers[] = 'CommonModules';
-
         $this->set('username', $username);
 
         $this->loadModel('Users');

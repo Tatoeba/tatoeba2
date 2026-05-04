@@ -55,18 +55,6 @@ use Exception;
 class SentencesController extends AppController
 {
     public $name = 'Sentences';
-    public $helpers = array(
-        'Sentences',
-        'Menu',
-        'Lists',
-        'SentenceButtons',
-        'Html',
-        'Logs',
-        'Pagination',
-        'Comments',
-        'Languages',
-        'CommonModules'
-    );
 
     /**
      * Before filter.
@@ -103,13 +91,6 @@ class SentencesController extends AppController
      */
     public function show($id = null)
     {
-        $this->helpers[] = 'Tags';
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'Lists';
-        $this->helpers[] = 'Members';
-        $this->helpers[] = 'Audio';
-        $this->helpers[] = 'ClickableLinks';
-
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->request->getSession()->read('random_lang_selected');
         }
@@ -562,8 +543,6 @@ class SentencesController extends AppController
      * @return void
      */
     public function show_all_in($lang, $translationLang) {
-        $this->helpers[] = 'ShowAll';
-
         $query = $this->Sentences->find();
         if ($lang == 'unknown') {
             $query->where(['Sentences.lang IS' => null]);

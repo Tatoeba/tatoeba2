@@ -32,7 +32,6 @@ class CategoriesTreeController extends AppController
      * @access public
      */
     public $name = 'CategoriesTree';
-    public $helpers = ['Pagination'];
 
     public function beforeFilter(\Cake\Event\EventInterface $event)  {
         // Not ready for production yet

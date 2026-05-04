@@ -27,12 +27,6 @@ class AudioController extends AppController
 {
     public $name = 'Audio';
 
-    public $helpers = array(
-        'Pagination',
-        'Languages',
-        'Audio',
-    );
-
     public $paginate = [
         'limit' => 100,
     ];

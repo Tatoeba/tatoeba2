@@ -56,11 +56,6 @@ class WallController extends AppController
             'WallThreads' => ['fields' => ['last_message_date']]
         ]
     ];
-    public $helpers = array(
-        'Wall',
-        'Date',
-        'Pagination'
-    );
 
     /**
      * to know who can do what

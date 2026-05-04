@@ -33,7 +33,7 @@ class TagsController extends AppController
      * @access public
      */
     public $name = 'Tags';
-    public $helpers = ['Pagination'];
+
     /**
      * Before filter.
      *
@@ -57,8 +57,6 @@ class TagsController extends AppController
     public function add_tag_post()
     {
         if ($this->request->is('ajax')) {
-            $this->helpers[] = 'Tags';
-
             $tagName = $this->request->getData('tag_name');
             $sentenceId = $this->request->getData('sentence_id');
             $userId = CurrentUser::get("id");
@@ -89,8 +87,6 @@ class TagsController extends AppController
      */
     public function view_all($filter = null)
     {
-        $this->helpers[] = 'Tags';
-
         $conditions = [];
         if (!empty($filter)) {
             $conditions = [
@@ -176,10 +172,6 @@ class TagsController extends AppController
                 301
             );
         }
-
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'CommonModules';
-        $this->helpers[] = 'Tags';
 
         $tagName = $this->Tags->getNameFromId($tagId);
         $tagExists = !empty($tagName);

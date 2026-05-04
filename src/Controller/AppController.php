@@ -52,20 +52,6 @@ class AppController extends Controller
 
     const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
 
-    public $helpers = array(
-        'AssetCompress.AssetCompress',
-        'Sentences',
-        'Comments',
-        'Date',
-        'Html',
-        'Form',
-        'Logs',
-        'Pages',
-        'Search',
-        'Security',
-        'Images'
-    );
-
     private function blackhole($type) {
       var_dump("Blackholed: $type");
     }

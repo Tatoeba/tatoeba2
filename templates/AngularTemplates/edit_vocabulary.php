@@ -1,5 +1,5 @@
 <?php
-$langs = $this->loadHelper('Languages')->onlyLanguagesArray(false);
+$langs = $this->Languages->onlyLanguagesArray(false);
 ?>
 
 <md-dialog aria-label="<?= h(__('Edit vocabulary item')) ?>"

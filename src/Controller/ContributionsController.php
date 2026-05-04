@@ -42,16 +42,6 @@ use Cake\I18n\Time;
 class ContributionsController extends AppController
 {
     public $name = 'Contributions';
-    public $helpers = array(
-        'Html',
-        'Form',
-        'Sentences',
-        'Logs',
-        'Date',
-        'Languages',
-        'CommonModules',
-        'Members'
-    );
 
     /**
      * Display all contributions in specified language (or all languages).
@@ -96,8 +86,6 @@ class ContributionsController extends AppController
      */
     public function activity_timeline($year = null, $month = null)
     {
-        $this->helpers[] = 'Date';
-
         $now = Time::now();
         $redirect = false;
         if ($year == null || $year > $now->format('Y') || $year < 2007) {
@@ -142,8 +130,6 @@ class ContributionsController extends AppController
      */
     public function of_user($username)
     {
-        $this->helpers[] = 'Pagination';
-
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);
         $this->set('username', $username);

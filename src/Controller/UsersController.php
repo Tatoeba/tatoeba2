@@ -49,14 +49,6 @@ class UsersController extends AppController
     use MailerAwareTrait;
 
     public $name = 'Users';
-    public $helpers = array(
-        'Html',
-        'Form',
-        'Date',
-        'Logs',
-        'Sentences',
-        'Pagination'
-    );
 
     public function initialize(): void
     {
@@ -457,10 +449,6 @@ class UsersController extends AppController
         $user = $this->Users->getUserByIdWithExtraInfo($id);
 
         if ($user != null) {
-            $this->helpers[] = 'Wall';
-            $this->helpers[] = 'Messages';
-            $this->helpers[] = 'Members';
-
             $commentsPermissions = $this->Permissions->getCommentsOptions(
                 $user->sentence_comments
             );
@@ -486,8 +474,6 @@ class UsersController extends AppController
      */
     public function all()
     {
-        $this->helpers[] = 'Members';
-
         $this->loadModel('LastContributions');
         $currentContributors = $this->LastContributions->getCurrentContributors();
         $total = $this->LastContributions->getTotal($currentContributors);
@@ -555,8 +541,6 @@ class UsersController extends AppController
 
     public function for_language($lang = null)
     {
-        $this->helpers[] = 'Members';
-
         $this->loadModel('UsersLanguages');
         $usersLanguages = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
 

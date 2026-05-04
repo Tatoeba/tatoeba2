@@ -55,8 +55,6 @@ $isHomepage = $controller == 'pages' && $action == 'index';
         // named with name of the view it is linked to, and put it in a folder with
         // the name of the controller.
 
-        $this->loadHelper('AssetCompress.AssetCompress');
-
         // Generic
         // layout.css is defined in config/asset_compress.ini
         echo $this->AssetCompress->css('layout.css');

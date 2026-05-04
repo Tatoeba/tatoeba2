@@ -46,15 +46,6 @@ use App\Model\Entity\SentencesList;
 class SentencesListsController extends AppController
 {
     public $name = 'SentencesLists';
-    public $helpers = array(
-        'Sentences',
-        'Csv',
-        'CommonModules',
-        'Html',
-        'Lists',
-        'Menu',
-        'Pagination'
-    );
 
     /**
      * Before filter.

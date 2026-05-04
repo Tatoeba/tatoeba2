@@ -42,10 +42,6 @@ use App\Model\CurrentUser;
 class SentenceAnnotationsController extends AppController
 {
     public $name = 'SentenceAnnotations';
-    public $helpers = array(
-        'SentenceAnnotations',
-        'Pagination'
-    );
 
     /**
      * Index page. Doesn't do anything, just displays text to explain how it works.

@@ -43,12 +43,6 @@ class SController extends AppController
 {
     public $name = 'S';
 
-    public $helpers = array(
-        'Sentences',
-        'Html',
-        'Languages',
-    );
-
     /**
      * Show sentence of specified id
      *

@@ -43,7 +43,6 @@ use Cake\Event\Event;
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Transcriptions', 'Pinyin');
 
     /**
      * Index of tools.

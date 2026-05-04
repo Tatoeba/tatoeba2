@@ -53,8 +53,6 @@ class UserController extends AppController
      */
     public $name = 'User';
 
-    public $helpers = array('Html', 'Date', 'Languages', 'Countries');
-
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->setConfig('unlockedActions', [
@@ -79,9 +77,6 @@ class UserController extends AppController
      */
     public function profile($userName = null)
     {
-        $this->helpers[] = 'ClickableLinks';
-        $this->helpers[] = 'Members';
-
         $this->loadModel('Users');
         $this->loadModel('UsersLanguages');
 

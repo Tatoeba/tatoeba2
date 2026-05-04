@@ -44,7 +44,6 @@ class FavoritesController extends AppController
 
     public $name = 'Favorites' ;
     public $paginate = array('limit' => 50);
-    public $helpers = array('Html', 'Menu', 'CommonModules', 'Pagination');
 
     /**
      * view all favorites sentences of a given user

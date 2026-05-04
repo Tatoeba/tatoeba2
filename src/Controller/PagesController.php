@@ -55,16 +55,6 @@ class PagesController extends AppController
      * @access public
      */
     public $name = 'Pages';
-    /**
-     * Default helper
-     *
-     * @var array
-     * @access public
-     */
-    public $helpers = array(
-        'Html',
-        'Languages'
-    );
 
     /**
      * Before filter.
@@ -84,10 +74,6 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $this->helpers[] = 'Sentences';
-        $this->helpers[] = 'Members';
-        $this->helpers[] = 'Logs';
-
         $userId = $this->Auth->user('id');
         $isLogged = !empty($userId);
 
@@ -125,9 +111,6 @@ class PagesController extends AppController
     }
 
     private function _homepageForMembers() {
-        $this->helpers[] = 'Wall';
-        $this->helpers[] = 'Messages';
-
         // latest comments
         $this->loadModel('SentenceComments');
         $latestComments = $this->SentenceComments->getLatestComments(5);

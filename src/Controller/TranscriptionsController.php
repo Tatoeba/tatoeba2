@@ -26,11 +26,6 @@ class TranscriptionsController extends AppController
 {
     public $name = 'Transcriptions';
 
-    public $helpers = array(
-        'Pagination',
-        'Transcriptions',
-    );
-
     public $paginate = array(
         'contain' => array('Users', 'Sentences'),
         'limit' => 100,

@@ -41,8 +41,6 @@ use App\Model\CurrentUser;
  */
 class ReviewsController extends AppController
 {
-    public $helpers = array('CommonModules');
-
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->loadModel('UsersSentences');
@@ -113,8 +111,6 @@ class ReviewsController extends AppController
         if (!in_array($correctnessLabel, ['ok', 'unsure', 'not-ok', 'all', 'outdated'])) {
             return $this->redirect([$username, 'all', $lang], 301);
         }
-
-        $this->helpers[] = 'Pagination';
 
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);

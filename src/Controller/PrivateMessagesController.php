@@ -43,7 +43,6 @@ use App\Event\NotificationListener;
 class PrivateMessagesController extends AppController
 {
     public $name = 'PrivateMessages';
-    public $helpers = array('Html', 'Date');
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
@@ -73,9 +72,6 @@ class PrivateMessagesController extends AppController
      */
     public function folder($folder = 'Inbox', $status = 'all')
     {
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'Messages';
-
         $this->paginate = $this->PrivateMessages->getPaginatedMessages(
             $this->Auth->user('id'),
             $folder,
@@ -137,9 +133,6 @@ class PrivateMessagesController extends AppController
      */
     public function show($messageId)
     {
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'PrivateMessages';
-
         $message = $this->PrivateMessages->readMessage($messageId);
 
         if (!$message) {
@@ -231,8 +224,6 @@ class PrivateMessagesController extends AppController
      */
     public function write($recipients = '', $messageId = null)
     {
-        $this->helpers[] = 'PrivateMessages';
-
         $recoveredMessage = $this->request->getSession()->read('unsent_message');
 
         $userId = CurrentUser::get('id');
