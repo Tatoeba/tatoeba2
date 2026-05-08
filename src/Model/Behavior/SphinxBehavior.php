@@ -29,6 +29,8 @@ class SphinxBehavior extends Behavior
     public $_cached_query = null;
     private $_cached_options = null;
 
+    private $max_matches = 1000; // assuming default Manticore value is used
+
     /**
      * Spinx client object
      *
@@ -183,7 +185,7 @@ class SphinxBehavior extends Behavior
 
     public function getTotal()
     {
-        return (int)$this->_cached_result['total'];
+        return min($this->getRealTotal(), $this->max_matches);
     }
 
     public function getRealTotal()
