@@ -25,12 +25,10 @@ class UserMailerTest extends TestCase {
         Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
 
-        $this->email = new Email([
-            'from' => 'sender@example.com',
-            'emailFormat' => 'html',
-            'transport' => 'debug',
-        ]);
-        $this->mailer = new UserMailer($this->email);
+        $this->mailer = new UserMailer();
+        $this->mailer
+            ->setFrom('sender@example.com')
+            ->setTransport('debug');
     }
 
     public function blockedOrSuspendedProvider () {
