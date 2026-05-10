@@ -26,7 +26,7 @@
  */
 namespace App\Lib;
 
-use Cake\Network\Http\Client;
+use Cake\Http\Client;
 
 /**
  * Transcription/transliteration tools.
