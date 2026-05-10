@@ -987,8 +987,8 @@ class SentencesTableTest extends TestCase {
         );
         $sentence = $this->Sentence->editSentence($data);
 
-        $this->assertEquals('eng', $sentence->lang);
-        $this->assertEquals('Edited sentence.', $sentence->text);
+        $this->assertSame('eng', $sentence->lang);
+        $this->assertSame('Edited sentence.', $sentence->text);
 
         $after = $this->Sentence->get(53);
         $this->assertNotEquals($before->text, $after->text);
@@ -1006,8 +1006,8 @@ class SentencesTableTest extends TestCase {
         );
         $sentence = $this->Sentence->editSentence($data);
 
-        $this->assertEquals(null, $sentence->lang);
-        $this->assertEquals('Sentence with unknown lang.', $sentence->text);
+        $this->assertSame(null, $sentence->lang);
+        $this->assertSame('Sentence with unknown lang.', $sentence->text);
     }
 
     function testEditSentence_failsBecauseHasAudio() {
@@ -1224,7 +1224,7 @@ class SentencesTableTest extends TestCase {
             'type' => 'removal'
         ];
         $expected = array_replace_recursive($result, $expectedArraySubset);
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     function testDeleteSentene_NoEntryInReindexFlagsForUnknownLanguage() {

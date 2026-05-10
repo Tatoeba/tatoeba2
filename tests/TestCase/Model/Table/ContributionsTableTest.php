@@ -33,14 +33,14 @@ class ContributionTest extends TestCase {
     public function testLogSentenceUpdate_logsSentenceInsert() {
         CurrentUser::store(['id' => 7]);
         $expectedLogArraySubset = [
-            'sentence_id' => '48',
+            'sentence_id' => 48,
             'sentence_lang' => 'eng',
             'translation_id' => null,
             'translation_lang' => null,
             'script' => null,
             'text' => 'New sentence.',
             'action' => 'insert',
-            'user_id' => '7',
+            'user_id' => 7,
             'type' => 'sentence',
         ];
         $data = $this->Contribution->Sentences->newEntity([
@@ -61,20 +61,20 @@ class ContributionTest extends TestCase {
             ->disableHydration()
             ->first();
         $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
-        $this->assertEquals($expectedLog, $log);
+        $this->assertSame($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsSentenceUpdate() {
         CurrentUser::store(['id' => 7]);
         $expectedLogArraySubset = [
-            'sentence_id' => '48',
+            'sentence_id' => 48,
             'sentence_lang' => 'eng',
             'translation_id' => null,
             'translation_lang' => null,
             'script' => null,
             'text' => 'Edited sentence.',
             'action' => 'update',
-            'user_id' => '7',
+            'user_id' => 7,
             'type' => 'sentence',
         ];
 
@@ -97,20 +97,20 @@ class ContributionTest extends TestCase {
                     ->disableHydration()
                     ->first();
         $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
-        $this->assertEquals($expectedLog, $log);
+        $this->assertSame($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsLicenseInsert() {
         CurrentUser::store(array('id' => 7));
         $expectedLogArraySubset = array(
-            'sentence_id' => '48',
+            'sentence_id' => 48,
             'sentence_lang' => null,
             'translation_id' => null,
             'translation_lang' => null,
             'script' => null,
             'text' => 'CC0 1.0',
             'action' => 'insert',
-            'user_id' => '7',
+            'user_id' => 7,
             'type' => 'license',
         );
         $data = $this->Contribution->Sentences->newEntity([
@@ -130,20 +130,20 @@ class ContributionTest extends TestCase {
                     ->disableHydration()
                     ->first();
         $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
-        $this->assertEquals($expectedLog, $log);
+        $this->assertSame($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsLicenseUpdate() {
         CurrentUser::store(array('id' => 7));
         $expectedLogArraySubset = array(
-            'sentence_id' => '48',
+            'sentence_id' => 48,
             'sentence_lang' => null,
             'translation_id' => null,
             'translation_lang' => null,
             'script' => null,
             'text' => 'CC0 1.0',
             'action' => 'update',
-            'user_id' => '7',
+            'user_id' => 7,
             'type' => 'license',
         );
         $data = $this->Contribution->Sentences->get(48);
@@ -162,7 +162,7 @@ class ContributionTest extends TestCase {
                     ->disableHydration()
                     ->first();
         $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
-        $this->assertEquals($expectedLog, $log);
+        $this->assertSame($expectedLog, $log);
     }
 
     public function testGetTodayContributions() {

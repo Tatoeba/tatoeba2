@@ -66,7 +66,7 @@ class EditLicensesCommandTest extends TestCase
             'text' => '',
         ];
         $expected = array_replace_recursive($contribution, $expectedArraySubset);
-        $this->assertEquals($expected, $contribution);
+        $this->assertSame($expected, $contribution);
     }
 
     public function scenariosProvider() {

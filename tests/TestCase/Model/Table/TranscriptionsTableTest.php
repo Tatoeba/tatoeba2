@@ -347,7 +347,7 @@ class TranscriptionsTableTest extends TestCase {
             'type' => 'altscript',
         );
         $expected = array_replace_recursive($updated, $expectedArraySubset);
-        $this->assertEquals($expected, $updated);
+        $this->assertSame($expected, $updated);
     }
 
     function testGenerateTranscriptionUpdates() {
