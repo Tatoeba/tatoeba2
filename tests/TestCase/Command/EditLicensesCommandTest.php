@@ -59,13 +59,14 @@ class EditLicensesCommandTest extends TestCase
         $this->assertEquals('', $sentence->license);
 
         $contribution = $this->Contributions->find()->where(['sentence_id' => 2])->last()->toArray();
-        $expected = [
+        $expectedArraySubset = [
             'sentence_id' => 2,
             'type' => 'license',
             'action' => 'update',
             'text' => '',
         ];
-        $this->assertArraySubset($expected, $contribution);
+        $expected = array_replace_recursive($contribution, $expectedArraySubset);
+        $this->assertEquals($expected, $contribution);
     }
 
     public function scenariosProvider() {

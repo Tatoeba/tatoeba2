@@ -32,7 +32,7 @@ class ContributionTest extends TestCase {
 
     public function testLogSentenceUpdate_logsSentenceInsert() {
         CurrentUser::store(['id' => 7]);
-        $expectedLog = [
+        $expectedLogArraySubset = [
             'sentence_id' => '48',
             'sentence_lang' => 'eng',
             'translation_id' => null,
@@ -60,12 +60,13 @@ class ContributionTest extends TestCase {
             ->order(['id' => 'DESC'])
             ->disableHydration()
             ->first();
-        $this->assertArraySubset($expectedLog, $log);
+        $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
+        $this->assertEquals($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsSentenceUpdate() {
         CurrentUser::store(['id' => 7]);
-        $expectedLog = [
+        $expectedLogArraySubset = [
             'sentence_id' => '48',
             'sentence_lang' => 'eng',
             'translation_id' => null,
@@ -95,12 +96,13 @@ class ContributionTest extends TestCase {
                     ->order(['id' => 'DESC'])
                     ->disableHydration()
                     ->first();
-        $this->assertArraySubset($expectedLog, $log);
+        $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
+        $this->assertEquals($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsLicenseInsert() {
         CurrentUser::store(array('id' => 7));
-        $expectedLog = array(
+        $expectedLogArraySubset = array(
             'sentence_id' => '48',
             'sentence_lang' => null,
             'translation_id' => null,
@@ -127,12 +129,13 @@ class ContributionTest extends TestCase {
                     ->order(['id' => 'DESC'])
                     ->disableHydration()
                     ->first();
-        $this->assertArraySubset($expectedLog, $log);
+        $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
+        $this->assertEquals($expectedLog, $log);
     }
 
     public function testLogSentenceUpdate_logsLicenseUpdate() {
         CurrentUser::store(array('id' => 7));
-        $expectedLog = array(
+        $expectedLogArraySubset = array(
             'sentence_id' => '48',
             'sentence_lang' => null,
             'translation_id' => null,
@@ -158,7 +161,8 @@ class ContributionTest extends TestCase {
                     ->order(['id' => 'DESC'])
                     ->disableHydration()
                     ->first();
-        $this->assertArraySubset($expectedLog, $log);
+        $expectedLog = array_replace_recursive($log, $expectedLogArraySubset);
+        $this->assertEquals($expectedLog, $log);
     }
 
     public function testGetTodayContributions() {

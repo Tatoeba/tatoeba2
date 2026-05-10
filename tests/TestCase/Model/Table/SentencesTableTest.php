@@ -987,7 +987,8 @@ class SentencesTableTest extends TestCase {
         );
         $sentence = $this->Sentence->editSentence($data);
 
-        $this->assertArraySubset($data, $sentence->toArray());
+        $this->assertEquals('eng', $sentence->lang);
+        $this->assertEquals('Edited sentence.', $sentence->text);
 
         $after = $this->Sentence->get(53);
         $this->assertNotEquals($before->text, $after->text);
@@ -1005,7 +1006,8 @@ class SentencesTableTest extends TestCase {
         );
         $sentence = $this->Sentence->editSentence($data);
 
-        $this->assertArraySubset($data, $sentence->toArray());
+        $this->assertEquals(null, $sentence->lang);
+        $this->assertEquals('Sentence with unknown lang.', $sentence->text);
     }
 
     function testEditSentence_failsBecauseHasAudio() {
@@ -1214,14 +1216,15 @@ class SentencesTableTest extends TestCase {
         CurrentUser::store($this->Sentence->Users->get(1));
         $id = 1;
         $this->Sentence->deleteSentence($id);
-        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first();
-        $expected = [
+        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first()->toArray();
+        $expectedArraySubset = [
             'sentence_id' => 1,
             'lang' => 'eng',
             'indexed' => false,
             'type' => 'removal'
         ];
-        $this->assertArraySubset($expected, $result->toArray());
+        $expected = array_replace_recursive($result, $expectedArraySubset);
+        $this->assertEquals($expected, $result);
     }
 
     function testDeleteSentene_NoEntryInReindexFlagsForUnknownLanguage() {

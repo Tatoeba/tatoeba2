@@ -310,7 +310,7 @@ class TranscriptionsTableTest extends TestCase {
 
         $created = $this->Transcription->generateTranscription($jpnSentence, 'Hrkt', true, $data);
 
-        $expected = array(
+        $expectedArraySubset = array(
             'id' => 5,
             'sentence_id' => 10,
             'script' => 'Hrkt',
@@ -320,7 +320,8 @@ class TranscriptionsTableTest extends TestCase {
             'needsReview' => false,
             'type' => 'altscript',
         );
-        $this->assertArraySubset($expected, $created);
+        $expected = array_replace_recursive($created, $expectedArraySubset);
+        $this->assertEquals($expected, $created);
     }
 
     function testGenerateTranscriptionUpdatesProvidedTranscription() {
@@ -335,7 +336,7 @@ class TranscriptionsTableTest extends TestCase {
 
         $updated = $this->Transcription->generateTranscription($jpnSentence, 'Hrkt', true, $data);
 
-        $expected = array(
+        $expectedArraySubset = array(
             'id' => 3,
             'sentence_id' => 10,
             'script' => 'Hrkt',
@@ -345,7 +346,8 @@ class TranscriptionsTableTest extends TestCase {
             'needsReview' => false,
             'type' => 'altscript',
         );
-        $this->assertArraySubset($expected, $updated);
+        $expected = array_replace_recursive($updated, $expectedArraySubset);
+        $this->assertEquals($expected, $updated);
     }
 
     function testGenerateTranscriptionUpdates() {
