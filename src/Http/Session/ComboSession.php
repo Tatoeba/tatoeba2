@@ -53,10 +53,4 @@ class ComboSession extends DatabaseSession
         Cache::delete($id, $this->cacheKey);
         return parent::destroy($id);
     }
-
-    public function gc($expires = null): bool
-    {
-        Cache::gc($this->cacheKey);
-        return parent::gc($expires);
-    }
 }
