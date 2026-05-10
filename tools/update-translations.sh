@@ -46,7 +46,7 @@ pull_translations() {
 
 remove_cakephp_cached_translation() {
   echo "Cleaning CakePHP cache..."
-  find ./tmp/cache/persistent/ -type f \! -name empty \! -name 'myapp_cake_core_translations_cake_*' -exec rm -f {} \;
+  find ./tmp/cache/persistent/ -type f \! -name empty \! -name 'myapp_cake_core_translations.cake.*' -exec rm -f {} \;
 }
 
 pull_all=0
