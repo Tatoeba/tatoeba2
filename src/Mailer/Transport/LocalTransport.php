@@ -2,7 +2,6 @@
 namespace App\Mailer\Transport;
 
 use Cake\Log\Log;
-use Cake\Mailer\Email;
 use Cake\Mailer\Transport\MailTransport;
 use Exception;
 
