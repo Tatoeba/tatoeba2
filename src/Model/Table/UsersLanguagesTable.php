@@ -60,7 +60,7 @@ class UsersLanguagesTable extends Table
             ]);
 
         $validator
-            ->allowEmpty('level')
+            ->allowEmptyString('level')
             ->add('level', [
                 'inList' => [
                     'rule' => ['range', 0, Language::MAX_LEVEL]

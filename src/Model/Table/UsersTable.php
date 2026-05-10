@@ -78,7 +78,7 @@ class UsersTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->allowEmptyString('id', 'create');
 
         $validator
             ->scalar('username')
@@ -116,16 +116,16 @@ class UsersTable extends Table
             ->scalar('role');
 
         $validator
-            ->allowEmpty('send_notifications')
+            ->allowEmptyString('send_notifications')
             ->boolean('send_notifications');
 
         $validator
-            ->allowEmpty('name')
+            ->allowEmptyString('name')
             ->scalar('name')
             ->maxLength('name', 255);
 
         $validator
-            ->allowEmpty('birthday')
+            ->allowEmptyDateTime('birthday')
             ->add('birthday', 'validBirthday', [
                 'rule' => function ($data, $provider) {
                     $data = explode('-', $data, 3);
@@ -160,7 +160,7 @@ class UsersTable extends Table
             ]);
 
         $validator
-            ->allowEmpty('description')
+            ->allowEmptyString('description')
             ->scalar('description')
             ->add('description', 'outboundLinkCheck', [
                 'rule' => 'isLinkPermitted',
@@ -168,7 +168,7 @@ class UsersTable extends Table
             ]);
 
         $validator
-            ->allowEmpty('homepage')
+            ->allowEmptyString('homepage')
             ->scalar('homepage')
             ->maxLength('homepage', 255)
             ->add('homepage', 'outboundLinkCheck', [
@@ -181,7 +181,7 @@ class UsersTable extends Table
             ->maxLength('image', 255);
 
         $validator
-            ->allowEmpty('country_id')
+            ->allowEmptyString('country_id')
             ->scalar('country_id')
             ->maxLength('country_id', 2);
 
@@ -191,12 +191,12 @@ class UsersTable extends Table
             ->maxLength('audio_license', 50);
 
         $validator
-            ->allowEmpty('audio_attribution_url')
+            ->allowEmptyString('audio_attribution_url')
             ->scalar('audio_attribution_url')
             ->maxLength('audio_attribution_url', 255);
 
         $validator
-            ->allowEmpty('is_spamdexing')
+            ->allowEmptyString('is_spamdexing')
             ->boolean('is_spamdexing');
 
         return $validator;

@@ -72,7 +72,7 @@ class VocabularyTable extends Table
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
-            ->allowEmpty('lang')
+            ->allowEmptyString('lang')
             ->add('lang', [
                 'inList' => [
                     'rule' => ['inList', $languages]

@@ -32,7 +32,7 @@ class ExportsTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->allowEmptyString('id', 'create');
 
         $validator
             ->scalar('name')
@@ -48,20 +48,20 @@ class ExportsTable extends Table
         $validator
             ->scalar('url')
             ->maxLength('url', 2048)
-            ->allowEmpty('url');
+            ->allowEmptyString('url');
 
         $validator
             ->scalar('filename')
             ->maxLength('filename', 255)
-            ->allowEmpty('filename');
+            ->allowEmptyString('filename');
 
         $validator
             ->dateTime('generated')
-            ->allowEmpty('generated');
+            ->allowEmptyDateTime('generated');
 
         $validator
             ->integer('queued_job_id')
-            ->allowEmpty('queued_job_id', 'create');
+            ->allowEmptyString('queued_job_id', 'create');
 
         $validator
             ->scalar('status')
