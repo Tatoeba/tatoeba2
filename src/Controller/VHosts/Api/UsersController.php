@@ -95,7 +95,7 @@ class UsersController extends ApiController
         $this->loadModel('Users');
 
         $validator = $this->Users->getValidator();
-        $invalid = $validator->errors(['username' => $name], false);
+        $invalid = $validator->validate(['username' => $name], false);
         if ($invalid) {
             return $this->response->withStatus(400, 'Invalid parameter "username"');
         }
