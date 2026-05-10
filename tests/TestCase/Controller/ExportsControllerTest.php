@@ -44,6 +44,9 @@ class ExportsControllerTest extends IntegrationTestCase
             [ '/en/exports/download/1', null, false ],
             [ '/en/exports/download/1', 'contributor', false ],
             [ '/en/exports/download/9999999', 'kazuki', 404 ],
+            [ '/en/exports/get/1', null, true ],
+            [ '/en/exports/get/1', 'contributor', true ],
+            [ '/en/exports/get/9999999', 'kazuki', 404 ],
         ];
     }
 

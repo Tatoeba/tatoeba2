@@ -5,10 +5,12 @@ use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
+use Helmich\JsonAssert\JsonAssertions;
 
 class SentencesListsControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
+    use JsonAssertions;
 
     public $fixtures = [
         'app.Audios',
@@ -60,6 +62,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
             [ '/en/sentences_lists/download/3', 'kazuki', true ], // kazuki's private list
             [ '/en/sentences_lists/download/3', null, '/en/sentences_lists/index' ],
             [ '/en/sentences_lists/download/3', 'contributor', '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/choices', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fchoices' ],
         ];
     }
 
@@ -82,7 +85,15 @@ class SentencesListsControllerTest extends IntegrationTestCase
     /**
      * @dataProvider ajaxAccessesProvider
      */
-    public function testControllerAjaxAccess($url, $user, $response) {
+    public function testControllerNonAngularAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAngularAjaxAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
@@ -155,23 +166,55 @@ class SentencesListsControllerTest extends IntegrationTestCase
         ]);
     }
 
+    public function save_name_angular() {
+        $this->addHeader('Accept', 'application/json');
+        $this->ajaxPost('/en/sentences_lists/save_name', [
+            'name' => 'New name',
+            'id' => '1',
+        ]);
+    }
+
     public function testSaveName_asGuest() {
         $this->save_name();
         $this->assertResponseError();
     }
 
-    public function testSaveName_asOwner() {
+    public function testSaveName_asOwner_nonAngular() {
         $this->logInAs('kazuki');
+
         $this->save_name();
+
         $this->assertResponseOk();
         $this->assertResponseEquals('New name');
     }
 
-    public function testSaveName_asNonOwner() {
+    public function testSaveName_asOwner_angular() {
+        $this->logInAs('kazuki');
+
+        $this->save_name_angular();
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.result', 'New name');
+    }
+
+    public function testSaveName_asNonOwner_nonAngular() {
         $this->logInAs('admin');
+
         $this->save_name();
+
         $this->assertResponseOk();
         $this->assertResponseEquals('error');
+    }
+
+    public function testSaveName_asNonOwner_angular() {
+        $this->logInAs('admin');
+
+        $this->save_name_angular();
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.result', 'error');
     }
 
     public function testAddNewSentenceToList_asGuest() {
@@ -182,13 +225,62 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertResponseError();
     }
 
-    public function testAddNewSentenceToList_asOwner() {
+    public function testAddNewSentenceToList_asOwner_nonAngular() {
         $this->logInAs('kazuki');
         $this->ajaxPost('/en/sentences_lists/add_new_sentence_to_list/', [
             'listId' => 2,
             'sentenceText' => 'A new sentence for that list.',
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testAddNewSentenceToList_asOwner_angular() {
+        $this->addHeader('Accept', 'application/json');
+
+        $this->testAddNewSentenceToList_asOwner_nonAngular();
+
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.sentence.text' => 'A new sentence for that list.',
+            '$.sentence.lang' => null,
+            '$.sentence.user.username' => 'kazuki',
+            '$.sentence.sentences_lists' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.sentence.sentences_lists[0].id' => 2,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testAddSentenceToNewList_OK() {
+        $this->logInAs('kazuki');
+
+        $this->ajaxPost('/en/sentences_lists/add_sentence_to_new_list', [
+            'name' => 'A new list for sentence 1',
+            'sentenceId' => 1,
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.name' => 'A new list for sentence 1',
+            '$.result.user_id' => 7,
+            '$.result.hasSentence' => true,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testAddSentenceToNewList_error() {
+        $this->logInAs('kazuki');
+
+        $this->ajaxPost('/en/sentences_lists/add_sentence_to_new_list', [
+            'name' => 'A new list for a sentence that does not exist',
+            'sentenceId' => 99999999999999,
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.result', 'error');
     }
 
     public function testSetOption_asGuest() {
@@ -208,6 +300,28 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'value' => 'unlisted',
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testChoices_asMember() {
+        $this->logInAs('kazuki');
+
+        $this->get('/en/sentences_lists/choices');
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.lists' => new \PHPUnit\Framework\Constraint\Count(4),
+            '$.lists[0].id' => 2,
+            '$.lists[0].name' => 'Public list',
+            '$.lists[0].user_id' => 7,
+            '$.lists[0].is_mine' => '1',
+            '$.lists[0].is_collaborative' => '0',
+            '$.lists[1].id' => 3,
+            '$.lists[2].id' => 1,
+            '$.lists[3].id' => 5,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testExportToCsv_asGuest_unlistedList() {

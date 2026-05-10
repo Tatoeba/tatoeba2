@@ -4,8 +4,10 @@ namespace App\Test\TestCase\Controller;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
+use Helmich\JsonAssert\JsonAssertions;
 
 class TranscriptionsControllerTest extends IntegrationTestCase {
+    use JsonAssertions;
     use TatoebaControllerTestTrait;
 
     public $fixtures = array(
@@ -156,6 +158,54 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
             ->where(['Transcriptions.sentence_id' => 6, 'Transcriptions.script' => 'Hrkt'])
             ->first();
         $this->assertEquals('furi', $result->text);
+    }
+
+    public function testSaveReturnsTranscriptionForAngular() {
+        $this->addHeader('Accept', 'application/json');
+
+        $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.sentence_id' => 6,
+            '$.result.script' => 'Hrkt',
+            '$.result.text' => 'something new',
+            '$.result.user_id' => 7,
+            '$.result.needsReview' => false,
+            '$.result.readonly' => false,
+            '$.result.type' => 'altscript',
+            '$.result.html' => 'something new',
+            '$.result.lang_tag' => 'ja-Hrkt',
+            '$.result.markup' => 'something new',
+            '$.result.editor' => 'kazuki',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testResetReturnsTranscriptionForAngular() {
+        $this->addHeader('Accept', 'application/json');
+
+        $this->_resetAsUser('kazuki', 6, 'Hrkt');
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.sentence_id' => 6,
+            '$.result.script' => 'Hrkt',
+            '$.result.text' => 'furi',
+            '$.result.user_id' => null,
+            '$.result.needsReview' => true,
+            '$.result.readonly' => false,
+            '$.result.type' => 'altscript',
+            '$.result.html' => 'furi',
+            '$.result.lang_tag' => 'ja-Hrkt',
+            '$.result.markup' => null,
+            '$.result.editor' => null,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testRegularUserCanResetNonExistingTranscription() {

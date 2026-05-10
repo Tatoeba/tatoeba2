@@ -52,7 +52,15 @@ class ReviewsControllerTest extends IntegrationTestCase
     /**
      * @dataProvider ajaxAccessesProvider
      */
-    public function testRatingsControllerAjaxAccess($url, $user, $response) {
+    public function testRatingsControllerNonAngularAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testRatingsControllerAngularAjaxAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 }

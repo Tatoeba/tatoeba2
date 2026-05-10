@@ -7,8 +7,10 @@ use App\Test\TestCase\SearchMockTrait;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
+use Helmich\JsonAssert\JsonAssertions;
 
 class SentencesControllerTest extends IntegrationTestCase {
+    use JsonAssertions;
     use TatoebaControllerTestTrait;
     use SearchMockTrait;
 
@@ -130,7 +132,15 @@ class SentencesControllerTest extends IntegrationTestCase {
     /**
      * @dataProvider ajaxAccessesProvider
      */
-    public function testControllerAjaxAccess($url, $user, $response) {
+    public function testControllerAjaxNonAngularAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAjaxAngularAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
@@ -267,6 +277,34 @@ class SentencesControllerTest extends IntegrationTestCase {
         }
     }
 
+    public function testEditSentence_OK_angular() {
+        $this->logInAs('contributor');
+        $this->addHeader('Accept', 'application/json');
+
+        $this->ajaxPost('/ja/sentences/edit_sentence', [
+            'id' => '19', 'lang' => 'eng', 'text' => 'Where did I come from?',
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.id' => 19,
+            '$.result.text' => 'Where did I come from?',
+            '$.result.lang' => 'eng',
+            '$.result.user.username' => 'contributor',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testEditSentence_OK_nonAngular() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/ja/sentences/edit_sentence', [
+            'id' => '19', 'lang' => 'eng', 'text' => 'Where did I come from?',
+        ]);
+        $this->assertResponseOk();
+    }
+
     public function testEditSentence_doesntWorkForUnknownSentence() {
         $this->logInAs('contributor');
         $this->ajaxPost('/ja/sentences/edit_sentence', [
@@ -328,7 +366,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseError();
     }
 
-    public function testSaveTranslation_asMember() {
+    public function testSaveTranslation_asMember_nonAngular() {
         $this->logInAs('contributor');
         $this->ajaxPost('/ja/sentences/save_translation', [
             'id' => '26',
@@ -336,6 +374,33 @@ class SentencesControllerTest extends IntegrationTestCase {
             'value' => 'Elle essaie toujours de faire ce qu\'elle pense.'
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testSaveTranslation_asMember_angular() {
+        $this->addHeader('Accept', 'application/json');
+        $this->logInAs('contributor');
+
+        $this->ajaxPost('/ja/sentences/save_translation', [
+            'id' => '26',
+            'selectLang' => 'fra',
+            'value' => 'Elle essaie toujours de faire ce qu\'elle pense.'
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(2),
+            '$.translation.text' => 'Elle essaie toujours de faire ce qu\'elle pense.',
+            '$.translation.lang' => 'fra',
+            '$.translation.user_id' => 4,
+            '$.translation.based_on_id' => 26,
+            '$.sentence.id' => 26,
+            '$.sentence.text' => 'Ella siempre intenta hacer lo que piensa.',
+            '$.sentence.lang' => 'spa',
+            '$.sentence.extraTranslationsCount' => -4,
+            '$.sentence.expandLabel' => null,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testSaveTranslation_sentenceWithLicensingIssue() {

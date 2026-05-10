@@ -36,7 +36,38 @@ class LinksControllerTest extends IntegrationTestCase
     /**
      * @dataProvider accessesProvider
      */
-    public function testControllerAccess($url, $user, $response) {
+    public function testControllerNonAjaxAccess($url, $user, $response) {
         $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    public function ajaxAccessesProvider() {
+        return [
+            // url; user; is accessible or redirection url
+            [ '/en/links/add/2/3', null, 403 ],
+            [ '/en/links/add/2/3', 'contributor', '/' ],
+            [ '/en/links/add/2/3', 'advanced_contributor', true ],
+            [ '/en/links/add/2/3', 'corpus_maintainer', true ],
+            [ '/en/links/add/2/3', 'admin', true ],
+            [ '/en/links/delete/1/2', null, 403 ],
+            [ '/en/links/delete/1/2', 'contributor', '/' ],
+            [ '/en/links/delete/1/2', 'advanced_contributor', true ],
+            [ '/en/links/delete/1/2', 'corpus_maintainer', true ],
+            [ '/en/links/delete/1/2', 'admin', true ],
+        ];
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerNonAngularAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAngularAjaxAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 }
