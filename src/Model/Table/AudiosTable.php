@@ -138,7 +138,7 @@ class AudiosTable extends Table
     }
 
     protected function moveRecordToOtherTable($entity, $tableModel) {
-        $entity->isNew(true);
+        $entity->setNew(true);
         $this->getConnection()->transactional(function () use ($entity, $tableModel) {
             if ($tableModel->save($entity)) {
                 if ($this->delete($entity)) {

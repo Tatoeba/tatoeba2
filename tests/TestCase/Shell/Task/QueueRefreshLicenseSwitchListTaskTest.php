@@ -70,7 +70,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
             ])
             ->first();
         $row->id = null;
-        $row->isNew(true);
+        $row->setNew(true);
         $Contributions->save($row);
 
         $this->testRefreshList();

@@ -147,7 +147,7 @@ class UserMailerTest extends TestCase {
             'sentence_id' => 19,
             'user_id' => 7,
         ]);
-        $comment->isNew(false);
+        $comment->setNew(false);
         $user = new User([
             'username' => 'kazuki',
             'id' => 7,
@@ -186,7 +186,7 @@ class UserMailerTest extends TestCase {
             'content' => 'Check this out!! https://example.com',
             'owner' => 7,
         ]);
-        $wallPost->isNew(false);
+        $wallPost->setNew(false);
         $user = new User([
             'username' => 'kazuki',
             'id' => 7,
@@ -226,7 +226,7 @@ class UserMailerTest extends TestCase {
             'content' => 'Check this out!! https://example.com',
             'owner' => 7,
         ]);
-        $wallPost->isNew(false);
+        $wallPost->setNew(false);
         $user = new User([
             'username' => 'kazuki',
             'id' => 7,
