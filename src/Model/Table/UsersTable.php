@@ -83,7 +83,7 @@ class UsersTable extends Table
         $validator
             ->scalar('username')
             ->requirePresence('username', 'create')
-            ->notEmpty('username', __('Field required'))
+            ->notEmptyString('username', __('Field required'))
             ->minLength('username', 2, __('Username must be at least two characters long'))
             ->maxLength('username', 20, __('Username must be at most 20 characters long'))
             ->add('username', 'alphanumeric', [
@@ -94,7 +94,7 @@ class UsersTable extends Table
         $validator
             ->scalar('password')
             ->requirePresence('password', 'create')
-            ->notEmpty('password', __('Field required'))
+            ->notEmptyString('password', __('Field required'))
             ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
@@ -104,7 +104,7 @@ class UsersTable extends Table
                 __('Failed to change email address. Please enter a proper email address.')
             )
             ->requirePresence('email', 'create')
-            ->notEmpty('email', __('Field required'));
+            ->notEmptyString('email', __('Field required'));
 
         $validator
             ->date('since');

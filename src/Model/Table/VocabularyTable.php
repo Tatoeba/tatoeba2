@@ -68,7 +68,7 @@ class VocabularyTable extends Table
     public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
-            ->notEmpty('text');
+            ->notEmptyString('text');
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator

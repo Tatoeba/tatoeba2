@@ -38,12 +38,12 @@ class ExportsTable extends Table
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmptyString('name');
 
         $validator
             ->scalar('description')
             ->requirePresence('description', 'create')
-            ->notEmpty('description');
+            ->notEmptyString('description');
 
         $validator
             ->scalar('url')
@@ -66,7 +66,7 @@ class ExportsTable extends Table
         $validator
             ->scalar('status')
             ->requirePresence('status', 'create')
-            ->notEmpty('status');
+            ->notEmptyString('status');
 
         return $validator;
     }
