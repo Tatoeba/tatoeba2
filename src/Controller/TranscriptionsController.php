@@ -153,7 +153,7 @@ class TranscriptionsController extends AppController
             $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
             $this->set('result', $transcription->first());
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['result']);
+            $this->viewBuilder()->setOption('serialize', ['result']);
             $this->RequestHandler->renderAs($this, 'json');    
         } else {
             $errors = json_encode($this->Transcriptions->validationErrors);

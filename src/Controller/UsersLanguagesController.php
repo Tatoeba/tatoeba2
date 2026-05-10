@@ -55,7 +55,7 @@ class UsersLanguagesController extends AppController
     {
         $this->setResponse($this->response->withStatus(400, 'Validation error'));
         $this->set(compact('message'));
-        $this->set('_serialize', ['message']);
+        $this->viewBuilder()->setOption('serialize', ['message']);
     }
 
     public function save()
@@ -103,7 +103,7 @@ class UsersLanguagesController extends AppController
             if ($isAngular) {
                 $languages = $this->UsersLanguages->getLanguagesByUser(CurrentUser::get('id'));
                 $this->set(compact('languages'));
-                $this->set('_serialize', ['languages']);
+                $this->viewBuilder()->setOption('serialize', ['languages']);
                 $this->RequestHandler->renderAs($this, 'json');
             } else {
                 $this->redirect(

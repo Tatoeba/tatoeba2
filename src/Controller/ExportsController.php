@@ -31,7 +31,7 @@ class ExportsController extends AppController
 
         if ($export) {
             $this->set(compact('export'));
-            $this->set('_serialize', ['export']);
+            $this->viewBuilder()->setOption('serialize', ['export']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }
@@ -42,7 +42,7 @@ class ExportsController extends AppController
 
         if ($export) {
             $this->set(compact('export'));
-            $this->set('_serialize', ['export']);
+            $this->viewBuilder()->setOption('serialize', ['export']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }

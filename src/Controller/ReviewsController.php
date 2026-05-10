@@ -67,7 +67,7 @@ class ReviewsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('result', $result);
-            $this->set('_serialize', ['result']);
+            $this->viewBuilder()->setOption('serialize', ['result']);
             $this->RequestHandler->renderAs($this, 'json');
         } else {
             $this->render('add_delete');
@@ -90,7 +90,7 @@ class ReviewsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('result', $result);
-            $this->set('_serialize', ['result']);
+            $this->viewBuilder()->setOption('serialize', ['result']);
             $this->RequestHandler->renderAs($this, 'json');
         } else {
             $this->render('add_delete');

@@ -122,7 +122,7 @@ class CategoriesTreeController extends AppController
 
         $this->loadComponent('RequestHandler');
         $this->set('results', $results);
-        $this->set('_serialize', ['results']);
+        $this->viewBuilder()->setOption('serialize', ['results']);
         $this->RequestHandler->renderAs($this, 'json');
     }
 }

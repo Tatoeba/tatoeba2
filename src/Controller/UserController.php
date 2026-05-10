@@ -488,7 +488,7 @@ class UserController extends AppController
         if ($acceptsJson) {
             $this->set('saved', (bool)$savedUser);
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['saved']);
+            $this->viewBuilder()->setOption('serialize', ['saved']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }

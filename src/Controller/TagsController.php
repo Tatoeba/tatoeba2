@@ -258,7 +258,7 @@ class TagsController extends AppController
 
         $this->loadComponent('RequestHandler');
         $this->set('results', $allTags);
-        $this->set('_serialize', ['results']);
+        $this->viewBuilder()->setOption('serialize', ['results']);
         $this->RequestHandler->renderAs($this, 'json');
     }
 }

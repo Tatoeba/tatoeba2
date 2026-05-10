@@ -283,7 +283,7 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['sentence', 'duplicate']);
+            $this->viewBuilder()->setOption('serialize', ['sentence', 'duplicate']);
             $this->RequestHandler->renderAs($this, 'sentences_json');
         }
     }
@@ -301,7 +301,7 @@ class SentencesController extends AppController
             $sentence = $this->Sentences->getSentenceWith($sentence->id);
             $this->loadComponent('RequestHandler');
             $this->set('result', $sentence);
-            $this->set('_serialize', ['result']);
+            $this->viewBuilder()->setOption('serialize', ['result']);
             $this->RequestHandler->renderAs($this, 'json');
         } else {
             if (empty($sentence)) {
@@ -357,7 +357,7 @@ class SentencesController extends AppController
             $sentence = $this->Sentences->getSentenceWith($id);
             $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);
-            $this->set('_serialize', ['sentence']);
+            $this->viewBuilder()->setOption('serialize', ['sentence']);
             $this->RequestHandler->renderAs($this, 'json');
         } else {
             $sentence = $this->Sentences->get($id, [
@@ -432,7 +432,7 @@ class SentencesController extends AppController
 
             $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);
-            $this->set('_serialize', ['translation', 'sentence']);
+            $this->viewBuilder()->setOption('serialize', ['translation', 'sentence']);
             $this->RequestHandler->renderAs($this, 'sentences_json');
         }
     }
@@ -606,7 +606,7 @@ class SentencesController extends AppController
 
         $this->loadComponent('RequestHandler');
         $this->set('sentence', $randomSentence);
-        $this->set('_serialize', ['sentence']);
+        $this->viewBuilder()->setOption('serialize', ['sentence']);
         $this->RequestHandler->renderAs($this, 'sentences_json');
     }
 

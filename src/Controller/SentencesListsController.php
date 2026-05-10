@@ -247,7 +247,7 @@ class SentencesListsController extends AppController
 
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['result']);
+            $this->viewBuilder()->setOption('serialize', ['result']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }
@@ -301,7 +301,7 @@ class SentencesListsController extends AppController
 
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['result', 'error']);
+            $this->viewBuilder()->setOption('serialize', ['result', 'error']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }
@@ -330,7 +330,7 @@ class SentencesListsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['removed']);
+            $this->viewBuilder()->setOption('serialize', ['removed']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }
@@ -434,7 +434,7 @@ class SentencesListsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['sentence']);
+            $this->viewBuilder()->setOption('serialize', ['sentence']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }
@@ -456,7 +456,7 @@ class SentencesListsController extends AppController
 
         $this->set('result', $result);
         $this->loadComponent('RequestHandler');
-        $this->set('_serialize', ['result']);
+        $this->viewBuilder()->setOption('serialize', ['result']);
         $this->RequestHandler->renderAs($this, 'json');
     }
 
@@ -574,7 +574,7 @@ class SentencesListsController extends AppController
 
         $this->set('lists', $lists);
         $this->loadComponent('RequestHandler');
-        $this->set('_serialize', ['lists']);
+        $this->viewBuilder()->setOption('serialize', ['lists']);
         $this->RequestHandler->renderAs($this, 'json');
     }
 }
