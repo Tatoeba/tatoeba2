@@ -28,7 +28,7 @@ class UsersFixture extends TestFixture
         'name' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => '', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'birthday' => ['type' => 'string', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'description' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'settings' => ['type' => 'json', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'settings' => ['type' => 'binary', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'homepage' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => '', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'image' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => '', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'country_id' => ['type' => 'string', 'length' => 2, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
@@ -68,10 +68,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -93,10 +93,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -118,11 +118,11 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
                     'can_switch_license' => true,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -144,12 +144,12 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => 'fra,deu',
                     'can_switch_license' => true,
                     'license_switch_list_id' => 4,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '93986962b3472786d9aea008f6160bfd.png',
                 'country_id' => NULL,
@@ -171,10 +171,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -196,10 +196,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -221,12 +221,12 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'sentences_per_page' => 20,
                     'is_public' => false,
                     'lang' => null,
                     'default_license' => 'CC0 1.0',
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -248,10 +248,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -273,10 +273,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -298,10 +298,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => [
+                'settings' => json_encode([
                     'is_public' => false,
                     'lang' => null,
-                ],
+                ]),
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
