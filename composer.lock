@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ce54808516468e645532bdf5d779e88",
+    "content-hash": "444843cb6b3a1fd401a46b9729967cc5",
     "packages": [
         {
             "name": "aura/intl",
@@ -61,16 +61,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "4.0.10",
+            "version": "4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "5c6d72bc9bb1be6eec1b00b3930f9e5054ee6d76"
+                "reference": "bba723770e6f8861ce5117650251f5848033193e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/5c6d72bc9bb1be6eec1b00b3930f9e5054ee6d76",
-                "reference": "5c6d72bc9bb1be6eec1b00b3930f9e5054ee6d76",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bba723770e6f8861ce5117650251f5848033193e",
+                "reference": "bba723770e6f8861ce5117650251f5848033193e",
                 "shasum": ""
             },
             "require": {
@@ -124,6 +124,7 @@
                     "src/Core/functions.php",
                     "src/Collection/functions.php",
                     "src/I18n/functions.php",
+                    "src/Routing/functions.php",
                     "src/Utility/bootstrap.php"
                 ],
                 "psr-4": {
@@ -159,7 +160,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2020-12-08T03:04:12+00:00"
+            "time": "2020-12-13T00:27:30+00:00"
         },
         {
             "name": "cakephp/chronos",
