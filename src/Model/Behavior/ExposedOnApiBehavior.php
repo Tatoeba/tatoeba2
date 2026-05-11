@@ -210,10 +210,10 @@ class ExposedOnApiBehavior extends Behavior
             });
 
         if ($this->getConfig('transcriptions')) {
-            $containOnApi['transcriptions'] = ['finder' => 'transcriptionsOnApi'];
+            $containOnApi['Transcriptions'] = ['finder' => 'transcriptionsOnApi'];
         }
         if ($this->getConfig('audios')) {
-            $containOnApi['audios'] = ['finder' => 'audiosOnApi'];
+            $containOnApi['Audios'] = ['finder' => 'audiosOnApi'];
         }
         if (isset($containOnApi)) {
             $query->find('containOnApi', compact('containOnApi'));

@@ -133,7 +133,7 @@ class SentencesController extends ApiController
 
         $showtrans = $api->getShowtrans();
         if ($showtrans) {
-            $query->find('containOnApi', ['containOnApi' => ['translations' =>
+            $query->find('containOnApi', ['containOnApi' => ['Translations' =>
                 function (Query $q) use ($showtrans) {
                     return $q->find('translationsOnApi', compact('showtrans'));
                 }
@@ -577,7 +577,7 @@ class SentencesController extends ApiController
         $showtrans = $api->getShowtrans();
         if ($showtrans) {
             $api->setLimits(10, 50); // getting translations is resource-intensive
-            $query->find('containOnApi', ['containOnApi' => ['translations' =>
+            $query->find('containOnApi', ['containOnApi' => ['Translations' =>
                 function (Query $q) use ($showtrans) {
                     return $q->find('translationsOnApi', compact('showtrans'));
                 }

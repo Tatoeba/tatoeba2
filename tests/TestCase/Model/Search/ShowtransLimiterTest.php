@@ -158,7 +158,7 @@ class ShowtransLimiterTest extends TestCase
             $groups[] = (new TranslationFilterGroup())->setFilter($filter);
         }
         $showtrans = new ShowtransLimiter($groups);
-        $containOnApi = ['translations' => function (Query $q) use ($showtrans) {
+        $containOnApi = ['Translations' => function (Query $q) use ($showtrans) {
             return $q->find('translationsOnApi', compact('showtrans'));
         }];
 
