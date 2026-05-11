@@ -230,7 +230,7 @@ class WallTable extends Table
                 'Wall.date' => 'ASC'
             ])
             ->where(function($exp) use ($rootMessages) {
-                $or = $exp->or_([]);
+                $or = $exp->or([]);
                 foreach ($rootMessages as $rootMessage) {
                     $or->between(
                         'Wall.lft', 
