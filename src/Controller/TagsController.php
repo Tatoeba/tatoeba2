@@ -208,7 +208,7 @@ class TagsController extends AppController
                 'sort' => $this->request->getQuery('sort', 'id'),
                 'direction' => $this->request->getQuery('direction', 'desc'),
                 // keep added_time for backward compatibility
-                'sortWhitelist' => ['id', 'sentence_id', 'added_time'],
+                'sortableFields' => ['id', 'sentence_id', 'added_time'],
             ];
             $finder = ['latest' => $options];
             try {

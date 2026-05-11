@@ -47,7 +47,7 @@ class WallController extends AppController
 {
     public $name = 'Wall' ;
     public $paginate = [
-        'sortWhitelist' => ['WallThreads.last_message_date'],
+        'sortableFields' => ['WallThreads.last_message_date'],
         'order' => ['WallThreads.last_message_date' => 'DESC'],
         'limit' => 10,
         'fields' => ['lft', 'rght'],

@@ -173,7 +173,7 @@ class SentencesListsController extends AppController
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'sort' => $this->request->getQuery('sort', 'id'),
             'direction' => $this->request->getQuery('direction', 'desc'),
-            'sortWhitelist' => ['id', 'sentence_id'],
+            'sortableFields' => ['id', 'sentence_id'],
         ];
         $finder = ['latest' => $options];
         try {
