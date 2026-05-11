@@ -191,7 +191,8 @@ class AudioController extends AppController
             }
 
             if ($audio) {
-                $fields = $this->request->input('json_decode', true);
+                $body = (string)$this->request->getBody();
+                $fields = json_decode($body, true);
                 $source = $audio->getSource();
                 $this->{$source}->edit($audio, $fields);
                 if ($this->{$source}->save($audio)) {
