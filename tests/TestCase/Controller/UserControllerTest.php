@@ -272,18 +272,19 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertNotEquals($newRole, $user->role);
     }
 
-    private function prepareImageUpload() {
+    private function getUploadedImageForm() {
         $someImage = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA'.
                                    'AAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=');
         $ok = file_put_contents($this->tmpFile, $someImage);
         $this->assertNotFalse($ok);
-        return [
-            'tmp_name' => $this->tmpFile,
-            'error' => UPLOAD_ERR_OK,
-            'name' => '1x1_black.png',
-            'type' => 'image/png',
-            'size' => strlen($someImage),
-        ];
+        $image = new \Laminas\Diactoros\UploadedFile(
+            $this->tmpFile,
+            strlen($someImage),
+            \UPLOAD_ERR_OK,
+            '1x1_black.png',
+            'image/png',
+        );
+        return compact('image');
     }
 
     private function assertProfilePictureUploaded($username) {
@@ -306,9 +307,11 @@ class UserControllerTest extends IntegrationTestCase
         require __DIR__ . '/UserControllerTestFakeFunctions.php';
         $username = 'contributor';
         $this->logInAs($username);
-        $this->post('/en/user/save_image', [
-            'image' => $this->prepareImageUpload()
-        ]);
+        $files = $this->getUploadedImageForm();
+        $this->configRequest(compact('files'));
+
+        $this->post('/en/user/save_image', $files);
+
         $this->assertNoFlashMessage();
         $this->assertRedirect("/en/user/profile/$username");
         $this->assertProfilePictureUploaded($username);

@@ -135,9 +135,10 @@ class UserController extends AppController
         }
 
         // We first check if a file has been correctly uploaded
+        $tmpName = $image->getStream()->getMetadata('uri');
         $redirect = (empty($data) || empty($image)) ||
-                    ($image['error'] != UPLOAD_ERR_OK) ||
-                    !is_uploaded_file($image['tmp_name']);
+                    ($image->getError() != UPLOAD_ERR_OK) ||
+                    !is_uploaded_file($tmpName);
         if ($redirect) {
             $this->Flash->set(
                 __('Failed to upload image')
@@ -146,7 +147,7 @@ class UserController extends AppController
         }
 
         // The file size must be < 1mb
-        $fileSize = (int) $image['size'] / 1024;
+        $fileSize = (int) $image->getSize() / 1024;
         if ($fileSize > 1024) {
             $this->Flash->set(
                 __('Please choose an image that does not exceed 1 MB.')
@@ -155,7 +156,7 @@ class UserController extends AppController
         }
 
         // Check file extension
-        $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $fileExtension = pathinfo($image->getClientFilename(), PATHINFO_EXTENSION);
         $validExtensions = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
 
         if (!in_array($fileExtension, $validExtensions)) {
@@ -172,12 +173,12 @@ class UserController extends AppController
 
         // Use _resize_image method here
         $save128Succed = $this->_resize_image(
-            $image['tmp_name'],
+            $tmpName,
             $newFileFullPath128,
             128
         );
         $save36Succed = $this->_resize_image(
-            $image['tmp_name'],
+            $tmpName,
             $newFileFullPath36,
             36
         );
