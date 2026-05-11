@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
@@ -279,7 +278,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->find()->where(['username' => 'contributor'])->first();
         list($version, $hash) = explode(' ', $user->password, 2);
         $this->assertEquals(1, $version);
@@ -296,7 +295,7 @@ class UsersControllerTest extends IntegrationTestCase {
                 'role' => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
             ];
         }
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $entities = $users->newEntities($newUsers);
         $result = $users->saveMany($entities);
 
@@ -307,7 +306,7 @@ class UsersControllerTest extends IntegrationTestCase {
 
     public function testDelete() {
         $this->assertAccessUrlAs('/en/users/delete/6', 'admin', '/en/users/index');
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->find()->where(['id' => 6])->first();
         $this->assertNull($user);
     }

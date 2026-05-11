@@ -21,7 +21,7 @@ namespace App\Model\Behavior;
 use Cake\ORM\Behavior;
 use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 
 /**
  * Model behavior for transcriptions/transliterations.
@@ -30,7 +30,7 @@ use Cake\ORM\TableRegistry;
 class TranscriptableBehavior extends Behavior
 {
     public function initialize(array $config): void {
-        $this->Transcriptions = TableRegistry::getTableLocator()->get('Transcriptions');
+        $this->Transcriptions = FactoryLocator::get('Table')->get('Transcriptions');
     }
 
     public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options) {

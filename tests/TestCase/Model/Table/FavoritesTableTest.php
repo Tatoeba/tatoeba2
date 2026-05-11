@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\FavoritesTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 
 class FavoritesTableTest extends TestCase {
     public $fixtures = array(
@@ -12,7 +11,7 @@ class FavoritesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->Favorites = TableRegistry::getTableLocator()->get('Favorites');
+        $this->Favorites = $this->getTableLocator()->get('Favorites');
     }
 
     function tearDown(): void {

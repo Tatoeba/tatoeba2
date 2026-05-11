@@ -9,7 +9,6 @@ use Cake\Event\EventList;
 use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
@@ -24,7 +23,7 @@ class WallTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->Wall = TableRegistry::getTableLocator()->get('Wall');
+        $this->Wall = $this->getTableLocator()->get('Wall');
 
         // enable event tracking
         $this->Wall->getEventManager()->setEventList(new EventList());

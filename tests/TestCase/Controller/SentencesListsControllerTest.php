@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
@@ -107,7 +106,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     public function testAdd_asMember() {
         $this->logInAs('contributor');
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->getTableLocator()->get('SentencesLists');
         $lastId = $lists->find()->orderDesc('id')->first()->id;
         $this->assertRedirect("/en/sentences_lists/show/$lastId");
     }
@@ -131,10 +130,10 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'sentenceText' => 'spam',
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertEquals(-1, $user->level);
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->getTableLocator()->get('SentencesLists');
         $list = $lists->get(1);
         $this->assertEquals('private', $list->visibility);
     }
@@ -151,10 +150,10 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'sentenceText' => 'not a spam',
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals(-1, $user->level);
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->getTableLocator()->get('SentencesLists');
         $list = $lists->get(1);
         $this->assertNotEquals('private', $list->visibility);
     }
@@ -351,7 +350,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     //test redirect /:id/langX maps to /:id/und/langX
     public function testShowSentenceListRedirect()
     {
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->getTableLocator()->get('SentencesLists');
         $lastId = $lists->find()->orderDesc('id')->first()->id;
         $this->get("/en/sentences_lists/show/$lastId/cmn");
         $this->assertResponseCode(301);
@@ -367,11 +366,11 @@ class SentencesListsControllerTest extends IntegrationTestCase
                 'user_id' => $userId,
             ];
         }
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $sentences = $this->getTableLocator()->get('Sentences');
         $entities = $sentences->newEntities($newSentences);
         $sentences->saveMany($entities);
 
-        $sentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $sentencesLists = $this->getTableLocator()->get('SentencesLists');
         $sentencesLists->addSentencesToList($entities, $listId, $userId);
 
         return $sentencesLists->getNumberOfSentences($listId);
@@ -394,7 +393,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $listId = 5;
         $user = 'kazuki';
         $userId = 7;
-        $users = TableRegistry::getTableLocator()->get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
 
         $nbSentences = $this->addSentencesToList($listId, $nbPerPageSetting * 2 + 1);

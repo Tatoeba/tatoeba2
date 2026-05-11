@@ -5,7 +5,6 @@ use App\Model\CurrentUser;
 use App\Model\Table\PrivateMessagesTable;
 use Cake\Event\Event;
 use Cake\Event\EventList;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class PrivateMessageTest extends TestCase {
@@ -18,7 +17,7 @@ class PrivateMessageTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->PrivateMessage = TableRegistry::getTableLocator()->get('PrivateMessages');
+        $this->PrivateMessage = $this->getTableLocator()->get('PrivateMessages');
     }
 
     public function tearDown(): void {

@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Command;
 
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Console\Command;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
@@ -37,8 +36,8 @@ class EditLicensesCommandTest extends TestCase
     public function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
-        $this->Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $this->Sentences = $this->getTableLocator()->get('Sentences');
+        $this->Contributions = $this->getTableLocator()->get('Contributions');
     }
 
     private function create_test_file($ids) {

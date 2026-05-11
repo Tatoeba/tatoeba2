@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\SentenceAnnotationsTable;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
@@ -17,7 +16,7 @@ class SentenceAnnotationsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->SentenceAnnotation = TableRegistry::getTableLocator()->get('SentenceAnnotations');
+        $this->SentenceAnnotation = $this->getTableLocator()->get('SentenceAnnotations');
         Time::setTestNow(new Time('2020-06-01 01:01:01'));
     }
 

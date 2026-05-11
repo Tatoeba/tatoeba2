@@ -5,7 +5,6 @@ use App\Shell\Task\QueueSwitchSentencesLicenseTask;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOutput;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use App\Model\CurrentUser;
 
@@ -33,8 +32,8 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
             ->getMock();
         $this->task->batchOperationSize = 10;
 
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
-        $this->PrivateMessages = TableRegistry::getTableLocator()->get('PrivateMessages');
+        $this->Sentences = $this->getTableLocator()->get('Sentences');
+        $this->PrivateMessages = $this->getTableLocator()->get('PrivateMessages');
     }
 
     public function tearDown(): void

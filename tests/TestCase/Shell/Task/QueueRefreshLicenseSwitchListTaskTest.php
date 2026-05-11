@@ -5,7 +5,6 @@ use App\Shell\Task\QueueRefreshLicenseSwitchListTask;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOutput;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class QueueRefreshLicenseSwitchListTaskTest extends TestCase
@@ -28,7 +27,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
             ->setConstructorArgs([$io])
             ->getMock();
 
-        $this->SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $this->SentencesLists = $this->getTableLocator()->get('SentencesLists');
     }
 
     public function tearDown(): void
@@ -61,7 +60,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
 
     public function testRefreshList_doesNotFailOnDuplicateLogRows()
     {
-        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $Contributions = $this->getTableLocator()->get('Contributions');
         $row = $Contributions->find()
             ->where([
                 'sentence_id' => 48,

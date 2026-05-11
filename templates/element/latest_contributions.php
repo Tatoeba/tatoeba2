@@ -24,9 +24,9 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 
-$contributions = TableRegistry::get('Contributions')->getLastContributions(10);
+$contributions = FactoryLocator::get('Table')->get('Contributions')->getLastContributions(10);
 ?>
 <md-list id="logs" class="md-whiteframe-1dp">
 <?php

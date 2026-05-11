@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\LanguagesTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class LanguagesTableTest extends TestCase {
@@ -13,7 +12,7 @@ class LanguagesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->Languages = TableRegistry::getTableLocator()->get('Languages');
+        $this->Languages = $this->getTableLocator()->get('Languages');
     }
 
     function tearDown(): void {

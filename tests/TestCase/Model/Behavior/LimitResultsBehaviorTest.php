@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Behavior;
 use App\Model\Behavior\LimitResultsBehavior;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\Query;
-use Cake\ORM\TableRegistry;
 
 class LimitResultsBehaviorTest extends TestCase
 {
@@ -39,7 +38,7 @@ class LimitResultsBehaviorTest extends TestCase
     {
         parent::setUp();
 
-        $s = TableRegistry::getTableLocator()->get('Sentences');
+        $s = $this->getTableLocator()->get('Sentences');
         $this->behavior = new LimitResultsBehavior($s);
         $query = new Query($s->getConnection(), $s);
         $this->query = $this->buildProxy($query);

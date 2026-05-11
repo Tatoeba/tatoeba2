@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\TranscriptionsTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use App\Test\Fixture\TranscriptionsFixture;
 use Cake\Utility\Hash;
 use Cake\I18n\I18n;
@@ -17,7 +16,7 @@ class TranscriptionsTableTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->Transcription = TableRegistry::getTableLocator()->get('Transcriptions');
+        $this->Transcription = $this->getTableLocator()->get('Transcriptions');
         $this->Fixtures = new TranscriptionsFixture();
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr

@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\I18n\I18n;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class WikiArticlesTableTest extends TestCase
@@ -37,7 +36,7 @@ class WikiArticlesTableTest extends TestCase
         } else {
             $this->loadFixtures(); // load all $this->fixtures
         }
-        $this->WikiArticles = TableRegistry::get('WikiArticles', $options);
+        $this->WikiArticles = $this->getTableLocator()->get('WikiArticles', $options);
     }
 
     public function tearDown(): void {

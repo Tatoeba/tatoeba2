@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersVocabularyTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
 
@@ -17,7 +16,7 @@ class UsersVocabularyTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->UsersVocabulary = TableRegistry::getTableLocator()->get('UsersVocabulary');
+        $this->UsersVocabulary = $this->getTableLocator()->get('UsersVocabulary');
     }
 
     public function tearDown(): void

@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\Constraint\Response\HeaderNotSet;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Filesystem\Folder;
@@ -154,7 +153,7 @@ class ExportsControllerTest extends IntegrationTestCase
     {
         $this->logInAs('kazuki', false);
 
-        $export = TableRegistry::get('Exports')->get(2);
+        $export = $this->getTableLocator()->get('Exports')->get(2);
         $file = new File($export->filename, true);
         $file->close();
 

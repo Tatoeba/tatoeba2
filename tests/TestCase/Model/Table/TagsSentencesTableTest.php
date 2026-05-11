@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\TagsSentencesTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\I18n\I18n;
 
 class TagsSentencesTableTest extends TestCase {
@@ -14,7 +13,7 @@ class TagsSentencesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->TagsSentences = TableRegistry::getTableLocator()->get('TagsSentences');
+        $this->TagsSentences = $this->getTableLocator()->get('TagsSentences');
     }
 
     function tearDown(): void {

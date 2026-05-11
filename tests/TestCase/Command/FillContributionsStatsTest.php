@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Command;
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\Console\Command;
-use Cake\ORM\TableRegistry;
 use App\Model\Table\ContributionsStats;
 
 class FillContributionsStatsCommand extends TestCase {
@@ -18,7 +17,7 @@ class FillContributionsStatsCommand extends TestCase {
     function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->ContributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
+        $this->ContributionsStats = $this->getTableLocator()->get('ContributionsStats');
     }
 
     function tearDown(): void {

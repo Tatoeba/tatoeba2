@@ -20,8 +20,8 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
-use Cake\ORM\TableRegistry;
 use Cake\Database\Schema\TableSchemaInterface;
+use Cake\Datasource\FactoryLocator;
 
 class TranslationsTable extends Table
 {
@@ -131,7 +131,7 @@ class TranslationsTable extends Table
          *   WHERE Translation.id = AllTranslations.translation_id
          *   ORDER BY Translation.lang;
          */
-        $Links = TableRegistry::getTableLocator()->get('Links');
+        $Links = FactoryLocator::get('Table')->get('Links');
         $subQuery = $Links->find('all')
             ->where(['Links.sentence_id IN' => $ids])
             ->join([

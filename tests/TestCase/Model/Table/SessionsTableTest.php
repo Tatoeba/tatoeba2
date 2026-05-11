@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\CurrentUser;
 use App\Model\Table\SessionsTable;
 use Cake\ORM\Entity;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class SessionsTableTest extends TestCase
@@ -19,8 +18,8 @@ class SessionsTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Sessions') ? [] : ['className' => SessionsTable::class];
-        $this->Sessions = TableRegistry::getTableLocator()->get('Sessions', $config);
+        $config = $this->getTableLocator()->exists('Sessions') ? [] : ['className' => SessionsTable::class];
+        $this->Sessions = $this->getTableLocator()->get('Sessions', $config);
 
         CurrentUser::store(null);
     }

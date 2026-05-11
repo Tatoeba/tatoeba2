@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model;
 
 use App\Model\CurrentUser;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 
 /**
@@ -17,7 +16,7 @@ class ContributionsStatsTableTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->ContributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
+        $this->ContributionsStats = $this->getTableLocator()->get('ContributionsStats');
     }
 
     public function tearDown(): void {

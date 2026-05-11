@@ -1,7 +1,6 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
@@ -142,11 +141,11 @@ class TagsControllerTest extends IntegrationTestCase {
                 'user_id' => $userId,
             ];
         }
-        $Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $Sentences = $this->getTableLocator()->get('Sentences');
         $entities = $Sentences->newEntities($newSentences);
         $Sentences->saveMany($entities);
 
-        $Tags = TableRegistry::getTableLocator()->get('Tags');
+        $Tags = $this->getTableLocator()->get('Tags');
         foreach ($entities as $sentence) {
             $Tags->TagsSentences->tagSentence($sentence->id, $tagId, $userId);
         }
@@ -171,7 +170,7 @@ class TagsControllerTest extends IntegrationTestCase {
         $tagId = 2;
         $user = 'kazuki';
         $userId = 7;
-        $nbPerPageSetting = TableRegistry::getTableLocator()
+        $nbPerPageSetting = $this->getTableLocator()
             ->get('Users')
             ->getSettings($userId)
             ['settings']['sentences_per_page'];

@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Controller;
 use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
-use Cake\ORM\TableRegistry;
 
 class WallControllerTest extends IntegrationTestCase {
     use EmailTrait;
@@ -102,7 +101,7 @@ class WallControllerTest extends IntegrationTestCase {
      */
     public function testSave_asMember_roleJustChanged($newRole, $exceptedRedirect, $flashMsg = null) {
         $this->logInAs('advanced_contributor');
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $advcontributor = $users->get(3);
         $advcontributor->role = $newRole;
         $users->save($advcontributor);
@@ -312,7 +311,7 @@ class WallControllerTest extends IntegrationTestCase {
             ];
             $initialDate->modify("+1 day");
         }
-        $wall = TableRegistry::get('Wall');
+        $wall = $this->getTableLocator()->get('Wall');
         $wall->saveMany($wall->newEntities($posts));
     }
 

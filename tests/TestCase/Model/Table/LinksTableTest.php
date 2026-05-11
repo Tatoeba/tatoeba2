@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\LinksTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class LinksTableTest extends TestCase {
@@ -28,7 +27,7 @@ class LinksTableTest extends TestCase {
 
 	function setUp(): void {
 		parent::setUp();
-		$this->Link = TableRegistry::getTableLocator()->get('Links');
+		$this->Link = $this->getTableLocator()->get('Links');
 	}
 
 	function tearDown(): void {
@@ -88,7 +87,7 @@ class LinksTableTest extends TestCase {
 		$translationId = 6;
 		$this->Link->deletePair($sentenceId, $translationId);
 
-		$nbLogs = TableRegistry::getTableLocator()->get('Contributions')
+		$nbLogs = $this->getTableLocator()->get('Contributions')
 			->find('all')
 			->where(['OR' => [
 				[

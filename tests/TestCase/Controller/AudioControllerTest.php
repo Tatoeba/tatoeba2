@@ -6,7 +6,6 @@ use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 class AudioControllerTest extends IntegrationTestCase
@@ -68,7 +67,7 @@ class AudioControllerTest extends IntegrationTestCase
     }
 
     private function addSentencesWithAudio($nbSentences) {
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $sentences = $this->getTableLocator()->get('Sentences');
         $kazukiUserId = 7;
         $newSentences = [];
         for ($i = 1; $i <= $nbSentences; $i++) {

@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller\VHosts\Audio;
 
 use App\Controller\VHosts\Audio\MainController;
 use App\Test\TestCase\Controller\AudioIntegrationTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -76,7 +75,7 @@ class MainControllerTest extends TestCase
     {
         $audioId = 1;
         $audioFileContents = $this->createAudioFile($audioId);
-        $audios = TableRegistry::get('Audios');
+        $audios = $this->getTableLocator()->get('Audios');
         $audio = $audios->get($audioId);
         $audio->enabled = false;
         $audios->save($audio);

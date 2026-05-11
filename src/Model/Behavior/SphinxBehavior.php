@@ -13,7 +13,7 @@ use App\Lib\SphinxClient;
 use App\Model\Search;
 use Cake\Core\Configure;
 use Cake\ORM\Behavior;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Exception;
 
 
@@ -291,7 +291,7 @@ class SphinxBehavior extends Behavior
     }
 
     private function _refreshSphinxAttributes($alias, $entity) {
-        $model = TableRegistry::getTableLocator()->get($alias);
+        $model = FactoryLocator::get('Table')->get($alias);
         if (!method_exists($model, 'sphinxAttributesChanged'))
             return;
 
@@ -309,7 +309,7 @@ class SphinxBehavior extends Behavior
             }
         }
 
-        $Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $Sentences = FactoryLocator::get('Table')->get('Sentences');
         $langs = $Sentences->getSentencesLang(array_keys($values));
         $batchedByLang = array();
         foreach ($values as $sentenceId => $value) {

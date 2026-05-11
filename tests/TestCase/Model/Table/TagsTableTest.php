@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\TagsTable;
 use App\Test\TestCase\Model\Table\TatoebaTableTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Event\EventList;
 use Cake\I18n\I18n;
 
@@ -21,7 +20,7 @@ class TagsTableTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->Tag = TableRegistry::getTableLocator()->get('Tags');
+        $this->Tag = $this->getTableLocator()->get('Tags');
         $this->Tag->getEventManager()->setEventList(new EventList());
     }
 

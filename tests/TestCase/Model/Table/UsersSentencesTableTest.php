@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersSentencesTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
 
@@ -16,7 +15,7 @@ class UsersSentencesTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->UsersSentences = TableRegistry::getTableLocator()->get('UsersSentences');
+        $this->UsersSentences = $this->getTableLocator()->get('UsersSentences');
     }
 
     function tearDown(): void {

@@ -5,7 +5,6 @@ use Cake\Console\Arguments;
 use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\ORM\TableRegistry;
 use \Datetime;
 use \Exception;
 
@@ -88,7 +87,7 @@ class FillContributionsStatsCommand extends Command
         }
 
         // Truncate table and Fill
-        $contributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
+        $contributionsStats = $this->getTableLocator()->get('ContributionsStats');
         $contributionsStats->deleteAll(['date >=' => $from, 'date <' => $lastDay->format('Y-m-d')]);
         foreach ($stats as $date => $dailyStat) {
             foreach ($dailyStat as $unitRecord) {

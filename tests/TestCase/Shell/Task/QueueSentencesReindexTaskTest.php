@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Shell\Task;
 
 use App\Shell\Task\QueueSentencesReindexTask;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class QueueSentencesReindexTaskTest extends TestCase
@@ -30,7 +29,7 @@ class QueueSentencesReindexTaskTest extends TestCase
 
     private function assertSentencesFlaggedForReindex($expected)
     {
-        $result = TableRegistry::getTableLocator()->get('ReindexFlags')
+        $result = $this->getTableLocator()->get('ReindexFlags')
             ->find('list', ['valueField' => 'sentence_id'])
             ->select(['sentence_id'])
             ->order('sentence_id')

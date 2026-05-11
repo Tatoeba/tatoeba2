@@ -5,7 +5,6 @@ use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use App\Test\TestCase\SearchMockTrait;
 use Cake\Core\Configure;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
@@ -122,7 +121,7 @@ class SentencesControllerTest extends IntegrationTestCase {
                 'user_id' => 1,
             ];
         }
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $sentences = $this->getTableLocator()->get('Sentences');
         $entities = $sentences->newEntities($newSentences);
         $sentences->saveMany($entities);
 
@@ -269,7 +268,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
         $response = json_decode($this->_response->getBody());
         if ($expectedLicense) {
-            $sentences = TableRegistry::getTableLocator()->get('Sentences');
+            $sentences = $this->getTableLocator()->get('Sentences');
             $license = $sentences->get($response->sentence->id)->license;
             $this->assertEquals($expectedLicense, $license);
         } else {
@@ -346,7 +345,7 @@ class SentencesControllerTest extends IntegrationTestCase {
      * @dataProvider editLicenseProvider
      */
     public function testEditLicense_severalScenarios($sentenceId, $license, $username, $assertMethod) {
-        $sentences = TableRegistry::get('Sentences');
+        $sentences = $this->getTableLocator()->get('Sentences');
         $oldSentence = $sentences->get($sentenceId);
         $this->logInAs($username);
         $this->post('/ja/sentences/edit_license', [
@@ -497,7 +496,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_withUserSetting() {
         $user = 'kazuki';
         $userId = 7;
-        $users = TableRegistry::getTableLocator()->get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
 
         $nbSentences = $this->addSentencesOfUser($userId, $nbPerPageSetting + 1);

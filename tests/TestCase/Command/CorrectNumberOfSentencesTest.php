@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Command;
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\Console\Command;
 use App\Model\Table\SentencesListsTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
@@ -19,7 +18,7 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
     function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $this->SentencesLists = $this->getTableLocator()->get('SentencesLists');
     }
 
     function tearDown(): void {

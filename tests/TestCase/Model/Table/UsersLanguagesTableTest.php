@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersLanguagesTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
@@ -19,7 +18,7 @@ class UsersLanguagesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
+        $this->UsersLanguages = $this->getTableLocator()->get('UsersLanguages');
         $this->loadFixtures('Users', 'UsersLanguages', 'Languages');
     }
 
@@ -241,14 +240,14 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function assertSentencesReindexJobQueued($expectedConfig) {
-        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
         $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
         $this->assertNotNull($job);
         $this->assertEquals($expectedConfig, unserialize($job->data));
     }
 
     function assertSentencesReindexJobNotQueued() {
-        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
         $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
         $this->assertNull($job);
     }

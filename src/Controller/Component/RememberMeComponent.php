@@ -26,7 +26,7 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Cake\Http\Cookie\Cookie;
 use DateTime;
 
@@ -95,7 +95,7 @@ class RememberMeComponent extends Component
             return;
         }
 
-        $model = TableRegistry::get('Users');
+        $model = FactoryLocator::get('Table')->get('Users');
         $user = $model->find('userToLogin')
             ->where([
                 'username' => $cookie['username'],

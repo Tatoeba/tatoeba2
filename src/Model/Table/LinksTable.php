@@ -20,7 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\Table;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Cake\Utility\Hash;
 
 class LinksTable extends Table
@@ -54,7 +54,7 @@ class LinksTable extends Table
 
     public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
-        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $Contributions = FactoryLocator::get('Table')->get('Contributions');
         $Contributions->saveLinkContribution(
             $entity->sentence_id,
             $entity->translation_id,
@@ -82,7 +82,7 @@ class LinksTable extends Table
 
     private function logLinksAndFlagSentences($sentenceId, $translationId)
     {
-        $Contribution = TableRegistry::getTableLocator()->get('Contributions');
+        $Contribution = FactoryLocator::get('Table')->get('Contributions');
         $Contribution->saveLinkContribution(
             $sentenceId,
             $translationId,

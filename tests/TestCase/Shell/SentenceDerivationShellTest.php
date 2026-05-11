@@ -5,7 +5,6 @@ use App\Shell\SentenceDerivationShell;
 use Cake\Console\ConsoleIo;
 use Cake\Console\Shell;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use App\Shell\Walker;
 use Cake\Utility\Hash;
 
@@ -35,8 +34,8 @@ class SentenceDerivationShellTest extends TestCase
         $this->SentenceDerivationShell->linkEraFirstId = 1;
         $this->SentenceDerivationShell->linkABrange = array(29, 31);
 
-        $this->Contributions = TableRegistry::getTableLocator()->get('Contributions');
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Contributions = $this->getTableLocator()->get('Contributions');
+        $this->Sentences = $this->getTableLocator()->get('Sentences');
     }
     
     public function tearDown(): void

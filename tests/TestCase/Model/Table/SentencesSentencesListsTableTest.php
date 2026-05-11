@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\SentencesSentencesListsTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 
 class SentencesSentencesListsTableTest extends TestCase {
     public $fixtures = array(
@@ -14,7 +13,7 @@ class SentencesSentencesListsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->SentencesSentencesLists = TableRegistry::getTableLocator()->get('SentencesSentencesLists');
+        $this->SentencesSentencesLists = $this->getTableLocator()->get('SentencesSentencesLists');
     }
 
     function tearDown(): void {

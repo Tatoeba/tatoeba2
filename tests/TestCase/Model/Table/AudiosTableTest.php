@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AudiosTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use App\Test\Fixture\AudiosFixture;
 use Cake\Utility\Hash;
 use Cake\I18n\I18n;
@@ -33,7 +32,7 @@ class AudiosTableTest extends TestCase {
     function setUp(): void {
         parent::setUp();
         $this->loadRoutes();
-        $this->Audio = TableRegistry::getTableLocator()->get('Audios');
+        $this->Audio = $this->getTableLocator()->get('Audios');
         $this->AudioFixture =  new AudiosFixture();
     }
 
@@ -242,7 +241,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testNewAudio_incrementsCount() {
-        $Languages = TableRegistry::getTableLocator()->get('Languages');
+        $Languages = $this->getTableLocator()->get('Languages');
         $before = $Languages->find()->where(['code' => 'eng'])->first()->audio;
 
         $audio = $this->Audio->newEntity(['sentence_id' => 1]);
@@ -254,7 +253,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testDelete_decrementsCount() {
-        $Languages = TableRegistry::getTableLocator()->get('Languages');
+        $Languages = $this->getTableLocator()->get('Languages');
         $before = $Languages->find()->where(['code' => 'fra'])->first()->audio;
         $audioToDelete = $this->Audio->get(2);
         $result = $this->Audio->delete($audioToDelete);
@@ -292,7 +291,7 @@ class AudiosTableTest extends TestCase {
         }
 
         $this->assertFalse($result);
-        $disabledAudio = TableRegistry::getTableLocator()->get('DisabledAudios')->get(1);
+        $disabledAudio = $this->getTableLocator()->get('DisabledAudios')->get(1);
         $this->assertFalse($disabledAudio->enabled);
         $this->assertEquals($disabledAudio->modified, $audio->modified);
     }
@@ -464,7 +463,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testChangeSentenceLangChangesAudioSentenceLang() {
-        $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
+        $DisabledAudios = $this->getTableLocator()->get('DisabledAudios');
         $sentenceId = 3;
 
         $before = $this->Audio->findBySentenceId($sentenceId)->all()->toList();

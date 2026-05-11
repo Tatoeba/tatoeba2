@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\LastContributionsTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class LastContributionsTableTest extends TestCase {
@@ -14,7 +13,7 @@ class LastContributionsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-		$this->LastContributions = TableRegistry::getTableLocator()->get('LastContributions');
+		$this->LastContributions = $this->getTableLocator()->get('LastContributions');
 	}
 
 	function tearDown(): void {

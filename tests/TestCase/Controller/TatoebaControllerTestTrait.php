@@ -2,11 +2,10 @@
 namespace App\Test\TestCase\Controller;
 
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
-use Cake\ORM\TableRegistry;
 
 trait TatoebaControllerTestTrait {
     private function logInAs($username, $addTokens = true) {
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->findByUsername($username)->find('userToLogin')->first();
         $this->session(['Auth' => ['User' => $user->toArray()]]);
         if ($addTokens) {

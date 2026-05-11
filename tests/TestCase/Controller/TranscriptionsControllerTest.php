@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\TestSuite\IntegrationTestCase;
-use Cake\ORM\TableRegistry;
 use Helmich\JsonAssert\JsonAssertions;
 
 class TranscriptionsControllerTest extends IntegrationTestCase {
@@ -100,9 +99,9 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->assertResponseCode(400);
     }
     public function testSentenceOwnerCanEditTranscriptionMadeBySomeoneElse() {
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->findByUsername('contributor')->first();
-        $transcr = TableRegistry::get('Transcriptions');
+        $transcr = $this->getTableLocator()->get('Transcriptions');
         $tr = $transcr->get(1);
         $tr->user_id = $user->id;
         $saved = $transcr->save($tr);
@@ -112,13 +111,13 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->assertResponseSuccess();
     }
     public function testRegularUserCannotInsertTranscription() {
-        $transcr = TableRegistry::get('Transcriptions');
+        $transcr = $this->getTableLocator()->get('Transcriptions');
         $transcr->deleteAll('1=1');
         $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
         $this->assertResponseCode(400);
     }
     public function testOwnerCanInsertTranscription() {
-        $transcr = TableRegistry::get('Transcriptions');
+        $transcr = $this->getTableLocator()->get('Transcriptions');
         $transcr->deleteAll('1=1');
         $this->_saveAsUser('kazuki', 10, 'Hrkt', 'something new');
         $this->assertResponseSuccess();

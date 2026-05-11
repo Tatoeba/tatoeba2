@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Exporter;
 
 use App\Model\Exporter\PairsExporter;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class PairsExporterTest extends TestCase
@@ -56,7 +55,7 @@ class PairsExporterTest extends TestCase
     }
 
     public function testQuery_withGhostLinks() {
-        $Links = TableRegistry::get('Links');
+        $Links = $this->getTableLocator()->get('Links');
         $this->_disableCallbacks($Links);
         $Links->save($Links->newEntity([
             'sentence_id' => 4,

@@ -5,7 +5,6 @@ use App\Model\Table\ExportsTable;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use Cake\I18n\Time;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class ExportsTableTest extends TestCase
@@ -41,7 +40,7 @@ class ExportsTableTest extends TestCase
         $folder->delete();
         $folder->create($this->testExportDir);
 
-        $this->Exports = TableRegistry::get('Exports');
+        $this->Exports = $this->getTableLocator()->get('Exports');
     }
 
     public function tearDown(): void

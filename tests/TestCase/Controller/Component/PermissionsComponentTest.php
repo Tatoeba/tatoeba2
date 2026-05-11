@@ -9,7 +9,6 @@ use Cake\Controller\Controller;
 use Cake\Controller\ComponentRegistry;
 use Cake\Http\ServerRequest;
 use Cake\Http\Response;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class PermissionsComponentTest extends TestCase
@@ -35,7 +34,7 @@ class PermissionsComponentTest extends TestCase
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->component = new PermissionsComponent($registry);
-        $this->Users = TableRegistry::getTableLocator()->get('Users');
+        $this->Users = $this->getTableLocator()->get('Users');
     }
 
     public function tearDown(): void
@@ -111,7 +110,7 @@ class PermissionsComponentTest extends TestCase
 
     public function testGetWallMessagesOptions() {
         CurrentUser::store($this->Users->get(7)->toArray());
-        $wallThread = TableRegistry::getTableLocator()
+        $wallThread = $this->getTableLocator()
             ->get('Wall')
             ->getWholeThreadContaining(1);
         $wallThread = $this->component->getWallMessagesOptions($wallThread, 7);
@@ -186,7 +185,7 @@ class PermissionsComponentTest extends TestCase
     }
 
     public function testGetCommentsOptions() {
-        $Comments = TableRegistry::getTableLocator()->get('SentenceComments');
+        $Comments = $this->getTableLocator()->get('SentenceComments');
         CurrentUser::store($this->Users->get(2)->toArray());
 
         $comments = $Comments->getCommentsForSentence(14);

@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\SentencesListsTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\CurrentUser;
 use Cake\Utility\Hash;
@@ -26,7 +25,7 @@ class SentencesListsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->SentencesList = TableRegistry::getTableLocator()->get('SentencesLists');
+        $this->SentencesList = $this->getTableLocator()->get('SentencesLists');
     }
 
     function tearDown(): void {

@@ -25,12 +25,12 @@
  * @link     https://tatoeba.org
  */
 use App\Model\CurrentUser;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 
 $user = CurrentUser::get('User');
 $username = $user['username'];
 
-$newMessages = TableRegistry::get('PrivateMessages')->numberOfUnreadMessages(
+$newMessages = FactoryLocator::get('Table')->get('PrivateMessages')->numberOfUnreadMessages(
     CurrentUser::get('id')
 );
 $emailIcon = $newMessages > 0 ? 'email' : 'mail_outline';

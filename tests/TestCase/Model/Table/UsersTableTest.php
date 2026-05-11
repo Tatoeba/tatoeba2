@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\CurrentUser;
 use App\Model\Table\UsersTable;
 use Cake\Http\ServerRequest;
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
@@ -32,8 +31,8 @@ class UsersTableTest extends TestCase
             ],
         ]));
 
-        $config = TableRegistry::getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
-        $this->Users = TableRegistry::getTableLocator()->get('Users', $config);
+        $config = $this->getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
+        $this->Users = $this->getTableLocator()->get('Users', $config);
     }
 
     public function tearDown(): void

@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
 use Cake\Filesystem\File;
@@ -33,7 +32,7 @@ class UserControllerTest extends IntegrationTestCase
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
 
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $users = $users->find()->select(['username', 'password'])->all();
         $this->oldPasswords = $users->combine('username', 'password')->toArray();
     }
@@ -73,7 +72,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     private function assertPassword($what, $username) {
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->findByUsername($username)->first();
         $currentPassword = $user->password;
         $oldPassword = $this->oldPasswords[$username];
@@ -232,7 +231,7 @@ class UserControllerTest extends IntegrationTestCase
             'role' => $newRole,
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newRole, $user->role);
     }
@@ -267,7 +266,7 @@ class UserControllerTest extends IntegrationTestCase
             'role' => $newRole,
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newRole, $user->role);
     }
@@ -288,7 +287,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     private function assertProfilePictureUploaded($username) {
-        $image = TableRegistry::get('Users')
+        $image = $this->getTableLocator()->get('Users')
             ->findByUsername($username)
             ->first()
             ->image;
@@ -318,7 +317,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     public function testRemoveImage() {
-        $users = TableRegistry::get('Users');
+        $users = $this->getTableLocator()->get('Users');
         $contributor = $users->get(4);
         $images = [
             WWW_ROOT.'img/profiles_128/'.$contributor->image,

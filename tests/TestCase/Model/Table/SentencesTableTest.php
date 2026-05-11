@@ -7,7 +7,6 @@ use App\Behavior\Sphinx;
 use Cake\Core\Configure;
 use Cake\I18n\Time;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 use App\Lib\Autotranscription;
@@ -50,7 +49,7 @@ class SentencesTableTest extends TestCase {
         $totalResults = 10;
         $this->enableMockedSearch($foundIds, $totalResults);
 
-        $this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Sentence = $this->getTableLocator()->get('Sentences');
         $autotranscription = $this->_installAutotranscriptionMock();
         $autotranscription
             ->expects($this->any())
@@ -1439,7 +1438,7 @@ class SentencesTableTest extends TestCase {
      */
     function testFindFilteredTranslations($userId, $findOptions, $expected) {
         if ($userId) {
-            $Users = TableRegistry::getTableLocator()->get('Users');
+            $Users = $this->getTableLocator()->get('Users');
             CurrentUser::store($Users->get($userId));
         } else {
             CurrentUser::store(null);

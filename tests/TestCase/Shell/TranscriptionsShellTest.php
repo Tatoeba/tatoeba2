@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Shell;
 use App\Lib\Autotranscription;
 use App\Shell\TranscriptionsShell;
 use Cake\Core\Configure;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\ConsoleIntegrationTestCase;
 
 class TranscriptionsShellTest extends ConsoleIntegrationTestCase
@@ -69,7 +68,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $this->TS->autogen('jpn');
 
         $transcrAfter = $this->TS->Transcriptions->find()->where(['lang' => 'jpn'])->count();
-        $jpnSentences = TableRegistry::get('Sentences')->find()->where(['lang' => 'jpn'])->count();
+        $jpnSentences = $this->getTableLocator()->get('Sentences')->find()->where(['lang' => 'jpn'])->count();
 
         $this->assertGreaterThan($transcrBefore, $transcrAfter);
         $this->assertEquals($transcrAfter, $jpnSentences);
@@ -96,7 +95,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
         $this->TS->setSentencesScript('cmn');
 
-        $scripts = TableRegistry::get('Sentences')
+        $scripts = $this->getTableLocator()->get('Sentences')
             ->find('list', ['valueField' => 'script'])
             ->where(['lang' => 'cmn'])
             ->toArray();
@@ -111,7 +110,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
         $this->TS->setContributionsScript('cmn');
 
-        $scripts = TableRegistry::get('Contributions')
+        $scripts = $this->getTableLocator()->get('Contributions')
             ->find('list', ['valueField' => 'script'])
             ->where(['sentence_lang' => 'cmn'])
             ->toArray();
@@ -122,14 +121,14 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
     public function testSetSentencesScriptDoesNotUpdateModifiedField()
     {
-        $before = TableRegistry::get('Sentences')
+        $before = $this->getTableLocator()->get('Sentences')
             ->find('list', ['valueField' => 'modified'])
             ->where(['lang' => 'cmn'])
             ->toArray();
 
         $this->TS->setSentencesScript('cmn');
 
-        $after = TableRegistry::get('Sentences')
+        $after = $this->getTableLocator()->get('Sentences')
             ->find('list', ['valueField' => 'modified'])
             ->where(['lang' => 'cmn'])
             ->toArray();

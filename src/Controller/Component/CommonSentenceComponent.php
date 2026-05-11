@@ -27,8 +27,8 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
+use Cake\Datasource\FactoryLocator;
 use Cake\Http\Cookie\Cookie;
-use Cake\ORM\TableRegistry;
 
 
 /**
@@ -80,7 +80,7 @@ class CommonSentenceComponent extends Component
 
         $lang = $this->_setLanguage($lang, $text, $username);
 
-        $Sentence = TableRegistry::getTableLocator()->get('Sentences');
+        $Sentence = FactoryLocator::get('Table')->get('Sentences');
 
         return $Sentence->saveNewSentence($text, $lang, $userId, $correctness, 0, $license);
     }

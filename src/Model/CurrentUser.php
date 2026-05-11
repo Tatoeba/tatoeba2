@@ -27,7 +27,7 @@
 namespace App\Model;
 
 use App\Model\Entity\User;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Cake\Utility\Hash;
 use Cake\I18n\Time;
 
@@ -236,7 +236,7 @@ class CurrentUser
             return false;
         }
 
-        $Link = TableRegistry::get('Links');
+        $Link = FactoryLocator::get('Table')->get('Links');
         $hasTranslations = $Link->find()
             ->where(['sentence_id' => $sentenceId])
             ->first();
@@ -295,7 +295,7 @@ class CurrentUser
         }
 
         $userId = self::get('id');
-        $UsersSentences = TableRegistry::get('UsersSentences');
+        $UsersSentences = FactoryLocator::get('Table')->get('UsersSentences');
         return $UsersSentences->correctnessForSentence($sentenceId, $userId);
     }
 
@@ -331,7 +331,7 @@ class CurrentUser
 
     private static function _setProfileLanguages()
     {
-        $UsersLanguages = TableRegistry::get('UsersLanguages');
+        $UsersLanguages = FactoryLocator::get('Table')->get('UsersLanguages');
         $userId = self::get('id');
         $languages = $UsersLanguages->getLanguagesOfUser($userId);
         $languageCodes = array();

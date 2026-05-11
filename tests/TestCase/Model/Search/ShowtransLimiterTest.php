@@ -11,7 +11,6 @@ use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationOwnerFilter;
 use App\Model\Search\TranslationFilterGroup;
 use Cake\ORM\Query;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class ShowtransLimiterTest extends TestCase
@@ -28,7 +27,7 @@ class ShowtransLimiterTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Sentences = $this->getTableLocator()->get('Sentences');
         $this->Sentences->addBehavior('ExposedOnApi');
     }
 

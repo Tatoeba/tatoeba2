@@ -6,7 +6,6 @@ use App\Model\Table\SentenceCommentsTable;
 use Cake\Event\EventList;
 use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
@@ -22,7 +21,7 @@ class SentenceCommentTest extends TestCase {
     public function setUp(): void {
         parent::setUp();
 
-        $this->SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
+        $this->SentenceComment = $this->getTableLocator()->get('SentenceComments');
 
         $this->loadRoutes();
         Router::setRequest(new ServerRequest([
