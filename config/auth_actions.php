@@ -49,7 +49,6 @@ return [
         'transcriptions' => [ 'view', 'of' ],
         'user' => [
             'profile',
-            'accept_new_terms_of_use',
         ],
         'users' => [
             'all',

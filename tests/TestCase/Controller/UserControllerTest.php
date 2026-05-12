@@ -346,7 +346,7 @@ class UserControllerTest extends IntegrationTestCase
         $this->post('/en/user/accept_new_terms_of_use', [
             'settings' => [ 'new_terms_of_use' => true ],
         ]);
-        $this->assertResponseCode(404);
+        $this->assertRedirect('/en/users/login');
     }
 
     public function testAcceptNewTermsOfUser_asMember() {
