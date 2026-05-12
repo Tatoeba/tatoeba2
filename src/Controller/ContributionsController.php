@@ -28,7 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 /**
  * Controller for contributions.
@@ -86,7 +86,7 @@ class ContributionsController extends AppController
      */
     public function activity_timeline($year = null, $month = null)
     {
-        $now = Time::now();
+        $now = FrozenTime::now();
         $redirect = false;
         if ($year == null || $year > $now->format('Y') || $year < 2007) {
             $year = $now->format('Y');

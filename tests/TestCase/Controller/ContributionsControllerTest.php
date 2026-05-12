@@ -2,7 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\TestSuite\IntegrationTestCase;
 
 class ContributionsControllerTest extends IntegrationTestCase
@@ -44,9 +44,9 @@ class ContributionsControllerTest extends IntegrationTestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $now = new Time('2017-04-22 07:22:01');
-        Time::setTestNow($now);
+        $now = new FrozenTime('2017-04-22 07:22:01');
+        FrozenTime::setTestNow($now);
         $this->assertAccessUrlAs($url, $user, $response);
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 }

@@ -33,7 +33,7 @@ use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -589,7 +589,7 @@ class UsersTable extends Table
         } catch (RecordNotFoundException $e) {    
             return;
         }
-        $user->last_contribution = Time::now();
+        $user->last_contribution = FrozenTime::now();
         $this->save($user);
     }
 

@@ -2,7 +2,7 @@
 namespace App\View\Helper;
 
 use Cake\Core\Configure;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\View\Helper;
 
 class AnnouncementHelper extends Helper
@@ -20,7 +20,7 @@ class AnnouncementHelper extends Helper
         $time = $this->getConfig($configKey);
         if (strlen($time)) {
             try {
-                return new Time($time);
+                return new FrozenTime($time);
             } catch (\Exception $e) {
             }
         }
@@ -44,7 +44,7 @@ class AnnouncementHelper extends Helper
         $messages = [];
         $start = $this->getConfigAsTime('maintenance.start');
         if ($start && $start->isFuture()) {
-            $now = new Time();
+            $now = new FrozenTime();
             $time = $start->i18nFormat([\IntlDateFormatter::NONE, \IntlDateFormatter::SHORT]);
             $datetime = $start->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT]);
             $secsToGo = $now->diffInSeconds($start, false);
@@ -123,14 +123,14 @@ class AnnouncementHelper extends Helper
     public function getMaintenanceStartsIn() {
         $start = $this->getConfigAsTime('maintenance.start');
         if ($start && $start->isFuture()) {
-            $now = new Time();
+            $now = new FrozenTime();
             return $now->diffInSeconds($start, false);
         }
     }
 
     public function isMaintenanceImminent() {
         if ($start = $this->getConfigAsTime('maintenance.start')) {
-            $now = new Time();
+            $now = new FrozenTime();
             return $now->diffInMinutes($start, false) <= 10;
         } else {
             return false;

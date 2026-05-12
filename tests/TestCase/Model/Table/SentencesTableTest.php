@@ -5,7 +5,7 @@ use App\Test\TestCase\SearchMockTrait;
 use App\Model\Table\SentencesTable;
 use App\Behavior\Sphinx;
 use Cake\Core\Configure;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\TestSuite\TestCase;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
@@ -1568,23 +1568,23 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(1);
         CurrentUser::store($user);
         
-        $testTime = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-01 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
         
         $user = $this->Sentence->Users->get(1);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 
     public function testEditSentence_UpdatesLastContributionField() {
         $user = $this->Sentence->Users->get(7);
         CurrentUser::store($user);
         
-        $testTime = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-01 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $before = $this->Sentence->get(7);
         $data = ['id' => '7', 'text' => 'This is the new text of sentence #7.'];
         $after = $this->Sentence->editSentence($data);
@@ -1593,7 +1593,7 @@ class SentencesTableTest extends TestCase {
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 
     public function testEditLicense_DoesNotUpdateLastContributionField() {
@@ -1602,8 +1602,8 @@ class SentencesTableTest extends TestCase {
 
         $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-01 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $data = $this->Sentence->get(7);
         $data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
         $result = $this->Sentence->save($data);
@@ -1612,7 +1612,7 @@ class SentencesTableTest extends TestCase {
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 
     public function testAdopt_DoesNotUpdateLastContributionField() {
@@ -1621,14 +1621,14 @@ class SentencesTableTest extends TestCase {
 
         $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime = new Time('2019-02-02 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-02 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $sentence = $this->Sentence->saveNewSentence('An orphan sentence.', 'eng', 4);
 
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 }

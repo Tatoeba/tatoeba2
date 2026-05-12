@@ -22,7 +22,7 @@ namespace App\Model\Table;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
@@ -178,7 +178,7 @@ class PrivateMessagesTable extends Table
      */
     public function todaysMessageCount($userId)
     {
-        $yesterday = new Time('-24 hours');
+        $yesterday = new FrozenTime('-24 hours');
 
         return $this->find()
             ->where([
@@ -353,7 +353,7 @@ class PrivateMessagesTable extends Table
     {
         $user = $this->Users->get($userId, ['fields' => 'since']);
         $sentToday = $this->todaysMessageCount($userId);
-        $since = new Time($user->since);
+        $since = new FrozenTime($user->since);
         $isNewUser = $since->wasWithinLast('2 weeks');
 
         return !$isNewUser || $sentToday < 5;

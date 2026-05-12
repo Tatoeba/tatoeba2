@@ -4,7 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersLanguagesTable;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
@@ -224,8 +224,8 @@ class UsersLanguagesTableTest extends TestCase {
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new Time('2020-01-02 03:04:05');
-        Time::setTestNow($now);
+        $now = new FrozenTime('2020-01-02 03:04:05');
+        FrozenTime::setTestNow($now);
 
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
@@ -235,7 +235,7 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 

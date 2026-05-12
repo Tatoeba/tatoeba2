@@ -7,7 +7,7 @@ use App\Model\Exporter\PairsExporter;
 use Cake\Core\Configure;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -214,7 +214,7 @@ class ExportsTable extends Table
         }
 
         $filename = $this->newUniqueFilename($config);
-        $export->generated = Time::now();
+        $export->generated = FrozenTime::now();
         $export->filename = $filename;
         if (!$this->save($export)) {
             return false;
