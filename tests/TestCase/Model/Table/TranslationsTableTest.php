@@ -15,7 +15,7 @@ class TranslationsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->Translation = $this->getTableLocator()->get('Translations');
+        $this->Translation = $this->fetchTable('Translations');
     }
 
     function tearDown(): void {

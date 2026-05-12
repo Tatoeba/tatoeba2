@@ -13,7 +13,7 @@ class LastContributionsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-		$this->LastContributions = $this->getTableLocator()->get('LastContributions');
+		$this->LastContributions = $this->fetchTable('LastContributions');
 	}
 
 	function tearDown(): void {

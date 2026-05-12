@@ -32,8 +32,8 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
             ->getMock();
         $this->task->batchOperationSize = 10;
 
-        $this->Sentences = $this->getTableLocator()->get('Sentences');
-        $this->PrivateMessages = $this->getTableLocator()->get('PrivateMessages');
+        $this->Sentences = $this->fetchTable('Sentences');
+        $this->PrivateMessages = $this->fetchTable('PrivateMessages');
     }
 
     public function tearDown(): void

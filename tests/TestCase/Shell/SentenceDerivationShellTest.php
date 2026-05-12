@@ -34,8 +34,8 @@ class SentenceDerivationShellTest extends TestCase
         $this->SentenceDerivationShell->linkEraFirstId = 1;
         $this->SentenceDerivationShell->linkABrange = array(29, 31);
 
-        $this->Contributions = $this->getTableLocator()->get('Contributions');
-        $this->Sentences = $this->getTableLocator()->get('Sentences');
+        $this->Contributions = $this->fetchTable('Contributions');
+        $this->Sentences = $this->fetchTable('Sentences');
     }
     
     public function tearDown(): void

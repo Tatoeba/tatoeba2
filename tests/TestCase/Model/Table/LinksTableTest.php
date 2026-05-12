@@ -27,7 +27,7 @@ class LinksTableTest extends TestCase {
 
 	function setUp(): void {
 		parent::setUp();
-		$this->Link = $this->getTableLocator()->get('Links');
+		$this->Link = $this->fetchTable('Links');
 	}
 
 	function tearDown(): void {
@@ -87,7 +87,7 @@ class LinksTableTest extends TestCase {
 		$translationId = 6;
 		$this->Link->deletePair($sentenceId, $translationId);
 
-		$nbLogs = $this->getTableLocator()->get('Contributions')
+		$nbLogs = $this->fetchTable('Contributions')
 			->find('all')
 			->where(['OR' => [
 				[

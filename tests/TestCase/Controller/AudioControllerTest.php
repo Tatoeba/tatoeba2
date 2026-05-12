@@ -67,7 +67,7 @@ class AudioControllerTest extends IntegrationTestCase
     }
 
     private function addSentencesWithAudio($nbSentences) {
-        $sentences = $this->getTableLocator()->get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $kazukiUserId = 7;
         $newSentences = [];
         for ($i = 1; $i <= $nbSentences; $i++) {

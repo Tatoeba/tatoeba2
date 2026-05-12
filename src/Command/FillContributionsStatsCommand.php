@@ -87,7 +87,7 @@ class FillContributionsStatsCommand extends Command
         }
 
         // Truncate table and Fill
-        $contributionsStats = $this->getTableLocator()->get('ContributionsStats');
+        $contributionsStats = $this->fetchTable('ContributionsStats');
         $contributionsStats->deleteAll(['date >=' => $from, 'date <' => $lastDay->format('Y-m-d')]);
         foreach ($stats as $date => $dailyStat) {
             foreach ($dailyStat as $unitRecord) {

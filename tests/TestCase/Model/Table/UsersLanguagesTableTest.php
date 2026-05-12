@@ -18,7 +18,7 @@ class UsersLanguagesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->UsersLanguages = $this->getTableLocator()->get('UsersLanguages');
+        $this->UsersLanguages = $this->fetchTable('UsersLanguages');
         $this->loadFixtures('Users', 'UsersLanguages', 'Languages');
     }
 
@@ -240,14 +240,14 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function assertSentencesReindexJobQueued($expectedConfig) {
-        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
         $this->assertNotNull($job);
         $this->assertEquals($expectedConfig, unserialize($job->data));
     }
 
     function assertSentencesReindexJobNotQueued() {
-        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
         $this->assertNull($job);
     }

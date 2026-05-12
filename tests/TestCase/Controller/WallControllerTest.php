@@ -102,7 +102,7 @@ class WallControllerTest extends IntegrationTestCase {
     public function testSave_asMember_roleJustChanged($newRole, $exceptedRedirect, $flashMsg = null) {
         $this->enableRetainFlashMessages();
         $this->logInAs('advanced_contributor');
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $advcontributor = $users->get(3);
         $advcontributor->role = $newRole;
         $users->save($advcontributor);
@@ -296,7 +296,7 @@ class WallControllerTest extends IntegrationTestCase {
             ];
             $initialDate->modify("+1 day");
         }
-        $wall = $this->getTableLocator()->get('Wall');
+        $wall = $this->fetchTable('Wall');
         $wall->saveMany($wall->newEntities($posts));
     }
 

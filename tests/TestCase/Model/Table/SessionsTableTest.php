@@ -19,7 +19,7 @@ class SessionsTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('Sessions') ? [] : ['className' => SessionsTable::class];
-        $this->Sessions = $this->getTableLocator()->get('Sessions', $config);
+        $this->Sessions = $this->fetchTable('Sessions', $config);
 
         CurrentUser::store(null);
     }

@@ -32,7 +32,7 @@ class AudiosTableTest extends TestCase {
     function setUp(): void {
         parent::setUp();
         $this->loadRoutes();
-        $this->Audio = $this->getTableLocator()->get('Audios');
+        $this->Audio = $this->fetchTable('Audios');
         $this->AudioFixture =  new AudiosFixture();
     }
 
@@ -241,7 +241,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testNewAudio_incrementsCount() {
-        $Languages = $this->getTableLocator()->get('Languages');
+        $Languages = $this->fetchTable('Languages');
         $before = $Languages->find()->where(['code' => 'eng'])->first()->audio;
 
         $audio = $this->Audio->newEntity(['sentence_id' => 1]);
@@ -253,7 +253,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testDelete_decrementsCount() {
-        $Languages = $this->getTableLocator()->get('Languages');
+        $Languages = $this->fetchTable('Languages');
         $before = $Languages->find()->where(['code' => 'fra'])->first()->audio;
         $audioToDelete = $this->Audio->get(2);
         $result = $this->Audio->delete($audioToDelete);
@@ -291,7 +291,7 @@ class AudiosTableTest extends TestCase {
         }
 
         $this->assertFalse($result);
-        $disabledAudio = $this->getTableLocator()->get('DisabledAudios')->get(1);
+        $disabledAudio = $this->fetchTable('DisabledAudios')->get(1);
         $this->assertFalse($disabledAudio->enabled);
         $this->assertEquals($disabledAudio->modified, $audio->modified);
     }
@@ -463,7 +463,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testChangeSentenceLangChangesAudioSentenceLang() {
-        $DisabledAudios = $this->getTableLocator()->get('DisabledAudios');
+        $DisabledAudios = $this->fetchTable('DisabledAudios');
         $sentenceId = 3;
 
         $before = $this->Audio->findBySentenceId($sentenceId)->all()->toList();

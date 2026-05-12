@@ -35,7 +35,7 @@ class LicensingTest extends TestCase
     }
 
     public function testRefresh_createsNewList() {
-        $SentencesLists = $this->getTableLocator()->get('SentencesLists');
+        $SentencesLists = $this->fetchTable('SentencesLists');
         $before = $SentencesLists->find()->all();
 
         $this->Licensing->refreshLicenseSwitchList(7);
@@ -48,7 +48,7 @@ class LicensingTest extends TestCase
     }
 
     public function testRefresh_reCreatesNewList() {
-        $SentencesLists = $this->getTableLocator()->get('SentencesLists');
+        $SentencesLists = $this->fetchTable('SentencesLists');
         $oldList = $SentencesLists->get(4);
         $SentencesLists->delete($oldList);
 
@@ -69,14 +69,14 @@ class LicensingTest extends TestCase
     public function testRefresh_createsJob() {
         $this->Licensing->refreshLicenseSwitchList(4);
 
-        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->find()->last();
         $this->assertEquals('RefreshLicenseSwitchList', $job->job_type);
         $this->assertEquals(4, $job->job_group);
     }
 
     public function testRefresh_usesExistingList() {
-        $SentencesLists = $this->getTableLocator()->get('SentencesLists');
+        $SentencesLists = $this->fetchTable('SentencesLists');
         $before = $SentencesLists->find()->all();
 
         $this->Licensing->refreshLicenseSwitchList(4);
@@ -84,13 +84,13 @@ class LicensingTest extends TestCase
         $after = $SentencesLists->find()->all();
         $this->assertEquals($before, $after);
 
-        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->find()->last();
         $this->assertEquals(4, unserialize($job->data)['listId']);
     }
 
     public function testRefresh_doesNotCreatesDuplicateJob() {
-        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $before = $QueuedJobs->find()->count();
 
         $this->Licensing->refreshLicenseSwitchList(4);
@@ -101,7 +101,7 @@ class LicensingTest extends TestCase
     }
 
     public function testRefresh_createsDuplicateJobIfCompleted() {
-        $QueuedJobs = $this->getTableLocator()->get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $before = $QueuedJobs->find()->count();
 
         $this->Licensing->refreshLicenseSwitchList(4);

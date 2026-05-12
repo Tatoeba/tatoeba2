@@ -27,7 +27,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
             ->setConstructorArgs([$io])
             ->getMock();
 
-        $this->SentencesLists = $this->getTableLocator()->get('SentencesLists');
+        $this->SentencesLists = $this->fetchTable('SentencesLists');
     }
 
     public function tearDown(): void
@@ -60,7 +60,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
 
     public function testRefreshList_doesNotFailOnDuplicateLogRows()
     {
-        $Contributions = $this->getTableLocator()->get('Contributions');
+        $Contributions = $this->fetchTable('Contributions');
         $row = $Contributions->find()
             ->where([
                 'sentence_id' => 48,

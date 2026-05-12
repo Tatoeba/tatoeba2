@@ -75,7 +75,7 @@ class MainControllerTest extends TestCase
     {
         $audioId = 1;
         $audioFileContents = $this->createAudioFile($audioId);
-        $audios = $this->getTableLocator()->get('Audios');
+        $audios = $this->fetchTable('Audios');
         $audio = $audios->get($audioId);
         $audio->enabled = false;
         $audios->save($audio);

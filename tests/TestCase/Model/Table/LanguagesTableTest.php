@@ -12,7 +12,7 @@ class LanguagesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->Languages = $this->getTableLocator()->get('Languages');
+        $this->Languages = $this->fetchTable('Languages');
     }
 
     function tearDown(): void {

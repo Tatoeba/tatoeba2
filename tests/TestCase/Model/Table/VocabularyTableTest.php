@@ -20,7 +20,7 @@ class VocabularyTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->Vocabulary = $this->getTableLocator()->get('Vocabulary');
+        $this->Vocabulary = $this->fetchTable('Vocabulary');
     }
 
     public function tearDown(): void

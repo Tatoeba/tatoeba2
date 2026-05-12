@@ -16,7 +16,7 @@ class SentenceAnnotationsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->SentenceAnnotation = $this->getTableLocator()->get('SentenceAnnotations');
+        $this->SentenceAnnotation = $this->fetchTable('SentenceAnnotations');
         Time::setTestNow(new Time('2020-06-01 01:01:01'));
     }
 

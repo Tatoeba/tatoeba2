@@ -141,11 +141,11 @@ class TagsControllerTest extends IntegrationTestCase {
                 'user_id' => $userId,
             ];
         }
-        $Sentences = $this->getTableLocator()->get('Sentences');
+        $Sentences = $this->fetchTable('Sentences');
         $entities = $Sentences->newEntities($newSentences);
         $Sentences->saveMany($entities);
 
-        $Tags = $this->getTableLocator()->get('Tags');
+        $Tags = $this->fetchTable('Tags');
         foreach ($entities as $sentence) {
             $Tags->TagsSentences->tagSentence($sentence->id, $tagId, $userId);
         }
@@ -170,8 +170,7 @@ class TagsControllerTest extends IntegrationTestCase {
         $tagId = 2;
         $user = 'kazuki';
         $userId = 7;
-        $nbPerPageSetting = $this->getTableLocator()
-            ->get('Users')
+        $nbPerPageSetting = $this->fetchTable('Users')
             ->getSettings($userId)
             ['settings']['sentences_per_page'];
 

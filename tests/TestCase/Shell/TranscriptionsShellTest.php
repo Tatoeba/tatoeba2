@@ -68,7 +68,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $this->TS->autogen('jpn');
 
         $transcrAfter = $this->TS->Transcriptions->find()->where(['lang' => 'jpn'])->count();
-        $jpnSentences = $this->getTableLocator()->get('Sentences')->find()->where(['lang' => 'jpn'])->count();
+        $jpnSentences = $this->fetchTable('Sentences')->find()->where(['lang' => 'jpn'])->count();
 
         $this->assertGreaterThan($transcrBefore, $transcrAfter);
         $this->assertEquals($transcrAfter, $jpnSentences);
@@ -95,7 +95,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
         $this->TS->setSentencesScript('cmn');
 
-        $scripts = $this->getTableLocator()->get('Sentences')
+        $scripts = $this->fetchTable('Sentences')
             ->find('list', ['valueField' => 'script'])
             ->where(['lang' => 'cmn'])
             ->toArray();
@@ -110,7 +110,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
         $this->TS->setContributionsScript('cmn');
 
-        $scripts = $this->getTableLocator()->get('Contributions')
+        $scripts = $this->fetchTable('Contributions')
             ->find('list', ['valueField' => 'script'])
             ->where(['sentence_lang' => 'cmn'])
             ->toArray();
@@ -121,14 +121,14 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
     public function testSetSentencesScriptDoesNotUpdateModifiedField()
     {
-        $before = $this->getTableLocator()->get('Sentences')
+        $before = $this->fetchTable('Sentences')
             ->find('list', ['valueField' => 'modified'])
             ->where(['lang' => 'cmn'])
             ->toArray();
 
         $this->TS->setSentencesScript('cmn');
 
-        $after = $this->getTableLocator()->get('Sentences')
+        $after = $this->fetchTable('Sentences')
             ->find('list', ['valueField' => 'modified'])
             ->where(['lang' => 'cmn'])
             ->toArray();

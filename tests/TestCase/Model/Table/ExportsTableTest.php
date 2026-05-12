@@ -40,7 +40,7 @@ class ExportsTableTest extends TestCase
         $folder->delete();
         $folder->create($this->testExportDir);
 
-        $this->Exports = $this->getTableLocator()->get('Exports');
+        $this->Exports = $this->fetchTable('Exports');
     }
 
     public function tearDown(): void

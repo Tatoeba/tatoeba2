@@ -20,7 +20,7 @@ class ContributionTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->Contribution = $this->getTableLocator()->get('Contributions');
+        $this->Contribution = $this->fetchTable('Contributions');
     }
 
     public function tearDown(): void {

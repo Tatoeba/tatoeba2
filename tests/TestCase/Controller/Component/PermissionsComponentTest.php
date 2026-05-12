@@ -34,7 +34,7 @@ class PermissionsComponentTest extends TestCase
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->component = new PermissionsComponent($registry);
-        $this->Users = $this->getTableLocator()->get('Users');
+        $this->Users = $this->fetchTable('Users');
     }
 
     public function tearDown(): void
@@ -110,8 +110,7 @@ class PermissionsComponentTest extends TestCase
 
     public function testGetWallMessagesOptions() {
         CurrentUser::store($this->Users->get(7)->toArray());
-        $wallThread = $this->getTableLocator()
-            ->get('Wall')
+        $wallThread = $this->fetchTable('Wall')
             ->getWholeThreadContaining(1);
         $wallThread = $this->component->getWallMessagesOptions($wallThread, 7);
         $this->assertTrue($wallThread[0]['Permissions']['canEdit']);
@@ -185,7 +184,7 @@ class PermissionsComponentTest extends TestCase
     }
 
     public function testGetCommentsOptions() {
-        $Comments = $this->getTableLocator()->get('SentenceComments');
+        $Comments = $this->fetchTable('SentenceComments');
         CurrentUser::store($this->Users->get(2)->toArray());
 
         $comments = $Comments->getCommentsForSentence(14);

@@ -17,7 +17,7 @@ class FillContributionsStatsCommand extends TestCase {
     function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->ContributionsStats = $this->getTableLocator()->get('ContributionsStats');
+        $this->ContributionsStats = $this->fetchTable('ContributionsStats');
     }
 
     function tearDown(): void {

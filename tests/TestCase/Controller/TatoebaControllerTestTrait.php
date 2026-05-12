@@ -5,7 +5,7 @@ use Cake\Http\Middleware\CsrfProtectionMiddleware;
 
 trait TatoebaControllerTestTrait {
     private function logInAs($username, $addTokens = true) {
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->find('userToLogin')->first();
         $this->session(['Auth' => ['User' => $user->toArray()]]);
         if ($addTokens) {

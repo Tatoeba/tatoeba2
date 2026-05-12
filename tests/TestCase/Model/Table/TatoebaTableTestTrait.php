@@ -5,7 +5,7 @@ use App\Model\CurrentUser;
 
 trait TatoebaTableTestTrait {
     private function logInAs($username) {
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         CurrentUser::store($user->toArray());
     }

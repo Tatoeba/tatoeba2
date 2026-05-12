@@ -41,7 +41,7 @@ class EditLanguagesCommandTest extends TestCase
     public function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->Sentences = $this->getTableLocator()->get('Sentences');
+        $this->Sentences = $this->fetchTable('Sentences');
     }
 
     private function create_test_file($ids) {

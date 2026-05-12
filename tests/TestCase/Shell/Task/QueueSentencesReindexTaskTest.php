@@ -29,7 +29,7 @@ class QueueSentencesReindexTaskTest extends TestCase
 
     private function assertSentencesFlaggedForReindex($expected)
     {
-        $result = $this->getTableLocator()->get('ReindexFlags')
+        $result = $this->fetchTable('ReindexFlags')
             ->find('list', ['valueField' => 'sentence_id'])
             ->select(['sentence_id'])
             ->order('sentence_id')

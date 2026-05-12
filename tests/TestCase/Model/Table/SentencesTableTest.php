@@ -49,7 +49,7 @@ class SentencesTableTest extends TestCase {
         $totalResults = 10;
         $this->enableMockedSearch($foundIds, $totalResults);
 
-        $this->Sentence = $this->getTableLocator()->get('Sentences');
+        $this->Sentence = $this->fetchTable('Sentences');
         $autotranscription = $this->_installAutotranscriptionMock();
         $autotranscription
             ->expects($this->any())
@@ -1438,7 +1438,7 @@ class SentencesTableTest extends TestCase {
      */
     function testFindFilteredTranslations($userId, $findOptions, $expected) {
         if ($userId) {
-            $Users = $this->getTableLocator()->get('Users');
+            $Users = $this->fetchTable('Users');
             CurrentUser::store($Users->get($userId));
         } else {
             CurrentUser::store(null);

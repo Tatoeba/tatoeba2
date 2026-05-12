@@ -55,7 +55,7 @@ class PairsExporterTest extends TestCase
     }
 
     public function testQuery_withGhostLinks() {
-        $Links = $this->getTableLocator()->get('Links');
+        $Links = $this->fetchTable('Links');
         $this->_disableCallbacks($Links);
         $Links->save($Links->newEntity([
             'sentence_id' => 4,

@@ -278,7 +278,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
 
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->find()->where(['username' => 'contributor'])->first();
         list($version, $hash) = explode(' ', $user->password, 2);
         $this->assertEquals(1, $version);
@@ -295,7 +295,7 @@ class UsersControllerTest extends IntegrationTestCase {
                 'role' => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
             ];
         }
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $entities = $users->newEntities($newUsers);
         $result = $users->saveMany($entities);
 
@@ -306,7 +306,7 @@ class UsersControllerTest extends IntegrationTestCase {
 
     public function testDelete() {
         $this->assertAccessUrlAs('/en/users/delete/6', 'admin', '/en/users/index');
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->find()->where(['id' => 6])->first();
         $this->assertNull($user);
     }

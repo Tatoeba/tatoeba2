@@ -16,7 +16,7 @@ class ContributionsStatsTableTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->ContributionsStats = $this->getTableLocator()->get('ContributionsStats');
+        $this->ContributionsStats = $this->fetchTable('ContributionsStats');
     }
 
     public function tearDown(): void {

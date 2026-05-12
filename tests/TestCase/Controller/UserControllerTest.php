@@ -32,7 +32,7 @@ class UserControllerTest extends IntegrationTestCase
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
 
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $users = $users->find()->select(['username', 'password'])->all();
         $this->oldPasswords = $users->combine('username', 'password')->toArray();
     }
@@ -72,7 +72,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     private function assertPassword($what, $username) {
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $currentPassword = $user->password;
         $oldPassword = $this->oldPasswords[$username];
@@ -231,7 +231,7 @@ class UserControllerTest extends IntegrationTestCase
             'role' => $newRole,
         ]);
 
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newRole, $user->role);
     }
@@ -266,7 +266,7 @@ class UserControllerTest extends IntegrationTestCase
             'role' => $newRole,
         ]);
 
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newRole, $user->role);
     }
@@ -287,7 +287,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     private function assertProfilePictureUploaded($username) {
-        $image = $this->getTableLocator()->get('Users')
+        $image = $this->fetchTable('Users')
             ->findByUsername($username)
             ->first()
             ->image;
@@ -317,7 +317,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     public function testRemoveImage() {
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $contributor = $users->get(4);
         $images = [
             WWW_ROOT.'img/profiles_128/'.$contributor->image,

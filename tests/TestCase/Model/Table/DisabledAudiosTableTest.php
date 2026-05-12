@@ -21,7 +21,7 @@ class DisabledAudiosTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('DisabledAudios') ? [] : ['className' => DisabledAudiosTable::class];
-        $this->DisabledAudios = $this->getTableLocator()->get('DisabledAudios', $config);
+        $this->DisabledAudios = $this->fetchTable('DisabledAudios', $config);
     }
 
     public function tearDown(): void
@@ -45,7 +45,7 @@ class DisabledAudiosTableTest extends TestCase
         }
 
         $this->assertFalse($result);
-        $reenabledAudio = $this->getTableLocator()->get('Audios')->get(4);
+        $reenabledAudio = $this->fetchTable('Audios')->get(4);
         $this->assertTrue($reenabledAudio->enabled);
         $this->assertEquals($reenabledAudio->modified, $audio->modified);
     }

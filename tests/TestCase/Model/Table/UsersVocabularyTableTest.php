@@ -16,7 +16,7 @@ class UsersVocabularyTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->UsersVocabulary = $this->getTableLocator()->get('UsersVocabulary');
+        $this->UsersVocabulary = $this->fetchTable('UsersVocabulary');
     }
 
     public function tearDown(): void

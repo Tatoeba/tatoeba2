@@ -16,7 +16,7 @@ class TranscriptionsTableTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->Transcription = $this->getTableLocator()->get('Transcriptions');
+        $this->Transcription = $this->fetchTable('Transcriptions');
         $this->Fixtures = new TranscriptionsFixture();
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr

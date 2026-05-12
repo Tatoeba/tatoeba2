@@ -121,7 +121,7 @@ class SentencesControllerTest extends IntegrationTestCase {
                 'user_id' => 1,
             ];
         }
-        $sentences = $this->getTableLocator()->get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $entities = $sentences->newEntities($newSentences);
         $sentences->saveMany($entities);
 
@@ -268,7 +268,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
         $response = json_decode($this->_response->getBody());
         if ($expectedLicense) {
-            $sentences = $this->getTableLocator()->get('Sentences');
+            $sentences = $this->fetchTable('Sentences');
             $license = $sentences->get($response->sentence->id)->license;
             $this->assertEquals($expectedLicense, $license);
         } else {
@@ -345,7 +345,7 @@ class SentencesControllerTest extends IntegrationTestCase {
      * @dataProvider editLicenseProvider
      */
     public function testEditLicense_severalScenarios($sentenceId, $license, $username, $assertMethod) {
-        $sentences = $this->getTableLocator()->get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $oldSentence = $sentences->get($sentenceId);
         $this->logInAs($username);
         $this->post('/ja/sentences/edit_license', [
@@ -496,7 +496,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_withUserSetting() {
         $user = 'kazuki';
         $userId = 7;
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
 
         $nbSentences = $this->addSentencesOfUser($userId, $nbPerPageSetting + 1);

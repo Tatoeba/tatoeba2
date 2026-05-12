@@ -153,7 +153,7 @@ class ExportsControllerTest extends IntegrationTestCase
     {
         $this->logInAs('kazuki', false);
 
-        $export = $this->getTableLocator()->get('Exports')->get(2);
+        $export = $this->fetchTable('Exports')->get(2);
         $file = new File($export->filename, true);
         $file->close();
 

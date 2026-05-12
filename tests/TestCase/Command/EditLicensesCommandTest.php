@@ -36,8 +36,8 @@ class EditLicensesCommandTest extends TestCase
     public function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->Sentences = $this->getTableLocator()->get('Sentences');
-        $this->Contributions = $this->getTableLocator()->get('Contributions');
+        $this->Sentences = $this->fetchTable('Sentences');
+        $this->Contributions = $this->fetchTable('Contributions');
     }
 
     private function create_test_file($ids) {

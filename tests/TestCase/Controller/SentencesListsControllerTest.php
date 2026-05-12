@@ -106,7 +106,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     public function testAdd_asMember() {
         $this->logInAs('contributor');
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
-        $lists = $this->getTableLocator()->get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $lastId = $lists->find()->orderDesc('id')->first()->id;
         $this->assertRedirect("/en/sentences_lists/show/$lastId");
     }
@@ -130,10 +130,10 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'sentenceText' => 'spam',
         ]);
 
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertEquals(-1, $user->level);
-        $lists = $this->getTableLocator()->get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $list = $lists->get(1);
         $this->assertEquals('private', $list->visibility);
     }
@@ -150,10 +150,10 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'sentenceText' => 'not a spam',
         ]);
 
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals(-1, $user->level);
-        $lists = $this->getTableLocator()->get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $list = $lists->get(1);
         $this->assertNotEquals('private', $list->visibility);
     }
@@ -350,7 +350,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     //test redirect /:id/langX maps to /:id/und/langX
     public function testShowSentenceListRedirect()
     {
-        $lists = $this->getTableLocator()->get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $lastId = $lists->find()->orderDesc('id')->first()->id;
         $this->get("/en/sentences_lists/show/$lastId/cmn");
         $this->assertResponseCode(301);
@@ -366,11 +366,11 @@ class SentencesListsControllerTest extends IntegrationTestCase
                 'user_id' => $userId,
             ];
         }
-        $sentences = $this->getTableLocator()->get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $entities = $sentences->newEntities($newSentences);
         $sentences->saveMany($entities);
 
-        $sentencesLists = $this->getTableLocator()->get('SentencesLists');
+        $sentencesLists = $this->fetchTable('SentencesLists');
         $sentencesLists->addSentencesToList($entities, $listId, $userId);
 
         return $sentencesLists->getNumberOfSentences($listId);
@@ -393,7 +393,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $listId = 5;
         $user = 'kazuki';
         $userId = 7;
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
 
         $nbSentences = $this->addSentencesToList($listId, $nbPerPageSetting * 2 + 1);

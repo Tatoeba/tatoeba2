@@ -27,7 +27,7 @@ class ShowtransLimiterTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->Sentences = $this->getTableLocator()->get('Sentences');
+        $this->Sentences = $this->fetchTable('Sentences');
         $this->Sentences->addBehavior('ExposedOnApi');
     }
 

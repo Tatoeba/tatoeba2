@@ -36,7 +36,7 @@ class WikiArticlesTableTest extends TestCase
         } else {
             $this->loadFixtures(); // load all $this->fixtures
         }
-        $this->WikiArticles = $this->getTableLocator()->get('WikiArticles', $options);
+        $this->WikiArticles = $this->fetchTable('WikiArticles', $options);
     }
 
     public function tearDown(): void {

@@ -32,7 +32,7 @@ class UsersTableTest extends TestCase
         ]));
 
         $config = $this->getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
-        $this->Users = $this->getTableLocator()->get('Users', $config);
+        $this->Users = $this->fetchTable('Users', $config);
     }
 
     public function tearDown(): void

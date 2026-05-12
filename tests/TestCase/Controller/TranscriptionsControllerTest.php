@@ -99,9 +99,9 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->assertResponseCode(400);
     }
     public function testSentenceOwnerCanEditTranscriptionMadeBySomeoneElse() {
-        $users = $this->getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername('contributor')->first();
-        $transcr = $this->getTableLocator()->get('Transcriptions');
+        $transcr = $this->fetchTable('Transcriptions');
         $tr = $transcr->get(1);
         $tr->user_id = $user->id;
         $saved = $transcr->save($tr);
@@ -111,13 +111,13 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->assertResponseSuccess();
     }
     public function testRegularUserCannotInsertTranscription() {
-        $transcr = $this->getTableLocator()->get('Transcriptions');
+        $transcr = $this->fetchTable('Transcriptions');
         $transcr->deleteAll('1=1');
         $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
         $this->assertResponseCode(400);
     }
     public function testOwnerCanInsertTranscription() {
-        $transcr = $this->getTableLocator()->get('Transcriptions');
+        $transcr = $this->fetchTable('Transcriptions');
         $transcr->deleteAll('1=1');
         $this->_saveAsUser('kazuki', 10, 'Hrkt', 'something new');
         $this->assertResponseSuccess();

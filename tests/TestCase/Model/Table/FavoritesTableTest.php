@@ -11,7 +11,7 @@ class FavoritesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->Favorites = $this->getTableLocator()->get('Favorites');
+        $this->Favorites = $this->fetchTable('Favorites');
     }
 
     function tearDown(): void {

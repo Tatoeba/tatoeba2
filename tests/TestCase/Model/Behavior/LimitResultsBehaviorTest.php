@@ -38,7 +38,7 @@ class LimitResultsBehaviorTest extends TestCase
     {
         parent::setUp();
 
-        $s = $this->getTableLocator()->get('Sentences');
+        $s = $this->fetchTable('Sentences');
         $this->behavior = new LimitResultsBehavior($s);
         $query = new Query($s->getConnection(), $s);
         $this->query = $this->buildProxy($query);

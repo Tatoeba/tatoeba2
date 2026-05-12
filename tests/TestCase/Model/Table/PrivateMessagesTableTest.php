@@ -17,7 +17,7 @@ class PrivateMessageTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->PrivateMessage = $this->getTableLocator()->get('PrivateMessages');
+        $this->PrivateMessage = $this->fetchTable('PrivateMessages');
     }
 
     public function tearDown(): void {

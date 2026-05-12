@@ -18,7 +18,7 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
     function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->SentencesLists = $this->getTableLocator()->get('SentencesLists');
+        $this->SentencesLists = $this->fetchTable('SentencesLists');
     }
 
     function tearDown(): void {

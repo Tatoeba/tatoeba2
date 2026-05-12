@@ -25,7 +25,7 @@ class SentencesListsTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->SentencesList = $this->getTableLocator()->get('SentencesLists');
+        $this->SentencesList = $this->fetchTable('SentencesLists');
     }
 
     function tearDown(): void {

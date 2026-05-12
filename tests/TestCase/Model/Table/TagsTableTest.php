@@ -20,7 +20,7 @@ class TagsTableTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->Tag = $this->getTableLocator()->get('Tags');
+        $this->Tag = $this->fetchTable('Tags');
         $this->Tag->getEventManager()->setEventList(new EventList());
     }
 

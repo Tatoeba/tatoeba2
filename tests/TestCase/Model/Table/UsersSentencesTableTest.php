@@ -15,7 +15,7 @@ class UsersSentencesTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->UsersSentences = $this->getTableLocator()->get('UsersSentences');
+        $this->UsersSentences = $this->fetchTable('UsersSentences');
     }
 
     function tearDown(): void {

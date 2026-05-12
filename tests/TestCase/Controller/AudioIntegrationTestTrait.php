@@ -14,9 +14,9 @@ trait AudioIntegrationTestTrait
 
     private function getAudioFilePath($audioId) {
         try {
-            return $this->getTableLocator()->get('Audios')->get($audioId)->file_path;
+            return $this->fetchTable('Audios')->get($audioId)->file_path;
         } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
-            return $this->getTableLocator()->get('DisabledAudios')->get($audioId)->file_path;
+            return $this->fetchTable('DisabledAudios')->get($audioId)->file_path;
         }
     }
 

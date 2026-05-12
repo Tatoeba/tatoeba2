@@ -16,8 +16,8 @@ class FixLinksTableLangsCommandTest extends TestCase
 
     public function setUp(): void {
         parent::setUp();
-        $this->Sentences = $this->getTableLocator()->get('Sentences');
-        $this->Links = $this->getTableLocator()->get('Links');
+        $this->Sentences = $this->fetchTable('Sentences');
+        $this->Links = $this->fetchTable('Links');
         $this->useCommandRunner();
     }
 

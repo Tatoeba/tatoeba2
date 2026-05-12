@@ -21,7 +21,7 @@ class SentenceCommentTest extends TestCase {
     public function setUp(): void {
         parent::setUp();
 
-        $this->SentenceComment = $this->getTableLocator()->get('SentenceComments');
+        $this->SentenceComment = $this->fetchTable('SentenceComments');
 
         $this->loadRoutes();
         Router::setRequest(new ServerRequest([

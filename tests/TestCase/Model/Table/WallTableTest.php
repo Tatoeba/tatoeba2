@@ -23,7 +23,7 @@ class WallTest extends TestCase {
 
     public function setUp(): void {
         parent::setUp();
-        $this->Wall = $this->getTableLocator()->get('Wall');
+        $this->Wall = $this->fetchTable('Wall');
 
         // enable event tracking
         $this->Wall->getEventManager()->setEventList(new EventList());

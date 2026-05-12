@@ -13,7 +13,7 @@ class TagsSentencesTableTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->TagsSentences = $this->getTableLocator()->get('TagsSentences');
+        $this->TagsSentences = $this->fetchTable('TagsSentences');
     }
 
     function tearDown(): void {
