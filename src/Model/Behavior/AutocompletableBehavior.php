@@ -57,7 +57,7 @@ class AutocompletableBehavior extends Behavior
 
     public function Autocomplete($search)
     {
-        $query = $this->getTable()->find();
+        $query = $this->table()->find();
         $query->select($this->getConfig('fields'));
 
         if (!empty($search)) {

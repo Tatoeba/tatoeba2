@@ -10,7 +10,7 @@ $this->AngularTemplate->addTemplate(
 
 try {
     $this->Form->unlockField($name);
-} catch (\Cake\Core\Exception\Exception $e) {
+} catch (\Cake\Core\Exception\CakeException $e) {
     // simply do nothing if no form was created
 }
 ?>
