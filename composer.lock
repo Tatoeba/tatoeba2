@@ -4,37 +4,38 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "961a0a3ae52c86eed571c743aeafcd5c",
+    "content-hash": "742c848dee69c2034fbeaa1e9bb345b0",
     "packages": [
         {
             "name": "cakephp/cakephp",
-            "version": "4.2.12",
+            "version": "4.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "aa72cbb047431ab6bfb92e66a5a6d3382ab2385f"
+                "reference": "47177366fc9131a58a518e99f732e98a8a4854ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/aa72cbb047431ab6bfb92e66a5a6d3382ab2385f",
-                "reference": "aa72cbb047431ab6bfb92e66a5a6d3382ab2385f",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/47177366fc9131a58a518e99f732e98a8a4854ac",
+                "reference": "47177366fc9131a58a518e99f732e98a8a4854ac",
                 "shasum": ""
             },
             "require": {
-                "cakephp/chronos": "^2.0",
+                "cakephp/chronos": "^2.2",
                 "composer/ca-bundle": "^1.2",
                 "ext-intl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "laminas/laminas-diactoros": "^2.2.2",
                 "laminas/laminas-httphandlerrunner": "^1.1",
-                "league/container": "^3.2",
+                "league/container": "^4.2.0",
                 "php": ">=7.2.0",
+                "psr/container": "^1.1 || ^2.0",
                 "psr/http-client": "^1.0",
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0",
-                "psr/log": "^1.0.0",
-                "psr/simple-cache": "^1.0.0"
+                "psr/log": "^1.0 || ^2.0",
+                "psr/simple-cache": "^1.0 || ^2.0"
             },
             "replace": {
                 "cakephp/cache": "self.version",
@@ -54,8 +55,8 @@
                 "cakephp/validation": "self.version"
             },
             "require-dev": {
-                "cakephp/cakephp-codesniffer": "^4.0",
-                "mikey179/vfsstream": "^1.6",
+                "cakephp/cakephp-codesniffer": "^4.5",
+                "mikey179/vfsstream": "^1.6.10",
                 "paragonie/csp-builder": "^2.3",
                 "phpunit/phpunit": "^8.5 || ^9.3"
             },
@@ -107,7 +108,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2023-01-07T00:52:30+00:00"
+            "time": "2023-01-06T03:05:28+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -956,21 +957,21 @@
         },
         {
             "name": "league/container",
-            "version": "3.4.1",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/container.git",
-                "reference": "84ecbc2dbecc31bd23faf759a0e329ee49abddbd"
+                "reference": "d3cebb0ff4685ff61c749e54b27db49319e2ec00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/container/zipball/84ecbc2dbecc31bd23faf759a0e329ee49abddbd",
-                "reference": "84ecbc2dbecc31bd23faf759a0e329ee49abddbd",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/d3cebb0ff4685ff61c749e54b27db49319e2ec00",
+                "reference": "d3cebb0ff4685ff61c749e54b27db49319e2ec00",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0 || ^8.0",
-                "psr/container": "^1.0.0"
+                "php": "^7.2 || ^8.0",
+                "psr/container": "^1.1 || ^2.0"
             },
             "provide": {
                 "psr/container-implementation": "^1.0"
@@ -979,10 +980,13 @@
                 "orno/di": "~2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0 || ^7.0",
+                "nette/php-generator": "^3.4",
+                "nikic/php-parser": "^4.10",
+                "phpstan/phpstan": "^0.12.47",
+                "phpunit/phpunit": "^8.5.17",
                 "roave/security-advisories": "dev-latest",
                 "scrutinizer/ocular": "^1.8",
-                "squizlabs/php_codesniffer": "^3.5"
+                "squizlabs/php_codesniffer": "^3.6"
             },
             "type": "library",
             "extra": {
@@ -990,7 +994,8 @@
                     "dev-1.x": "1.x-dev",
                     "dev-2.x": "2.x-dev",
                     "dev-3.x": "3.x-dev",
-                    "dev-master": "3.x-dev"
+                    "dev-4.x": "4.x-dev",
+                    "dev-master": "4.x-dev"
                 }
             },
             "autoload": {
@@ -1005,8 +1010,7 @@
             "authors": [
                 {
                     "name": "Phil Bennett",
-                    "email": "philipobenito@gmail.com",
-                    "homepage": "http://www.philipobenito.com",
+                    "email": "mail@philbennett.co.uk",
                     "role": "Developer"
                 }
             ],
@@ -1023,7 +1027,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/container/issues",
-                "source": "https://github.com/thephpleague/container/tree/3.4.1"
+                "source": "https://github.com/thephpleague/container/tree/4.2.5"
             },
             "funding": [
                 {
@@ -1031,7 +1035,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-09T08:23:52+00:00"
+            "time": "2025-05-20T12:55:37+00:00"
         },
         {
             "name": "markstory/asset_compress",
@@ -1426,22 +1430,27 @@
         },
         {
             "name": "psr/container",
-            "version": "1.1.2",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
-                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -1468,9 +1477,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.2"
+                "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-11-05T16:50:12+00:00"
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "psr/http-client",
