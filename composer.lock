@@ -4,77 +4,23 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "444843cb6b3a1fd401a46b9729967cc5",
+    "content-hash": "961a0a3ae52c86eed571c743aeafcd5c",
     "packages": [
         {
-            "name": "aura/intl",
-            "version": "3.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/auraphp/Aura.Intl.git",
-                "reference": "642cab45c9c88a217f89b65c2d7219a8cd7f803b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/Aura.Intl/zipball/642cab45c9c88a217f89b65c2d7219a8cd7f803b",
-                "reference": "642cab45c9c88a217f89b65c2d7219a8cd7f803b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0 || ^8.0"
-            },
-            "require-dev": {
-                "yoast/phpunit-polyfills": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Aura\\Intl\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aura.Intl Contributors",
-                    "homepage": "https://github.com/auraphp/Aura.Intl/contributors"
-                }
-            ],
-            "description": "The Aura Intl package provides internationalization tools, specifically message translation.",
-            "homepage": "https://github.com/auraphp/Aura.Intl",
-            "keywords": [
-                "g11n",
-                "globalization",
-                "i18n",
-                "internationalization",
-                "intl",
-                "l10n",
-                "localization"
-            ],
-            "support": {
-                "issues": "https://github.com/auraphp/Aura.Intl/issues",
-                "source": "https://github.com/auraphp/Aura.Intl/tree/3.0.1"
-            },
-            "time": "2022-01-28T10:55:50+00:00"
-        },
-        {
             "name": "cakephp/cakephp",
-            "version": "4.1.7",
+            "version": "4.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "bba723770e6f8861ce5117650251f5848033193e"
+                "reference": "aa72cbb047431ab6bfb92e66a5a6d3382ab2385f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bba723770e6f8861ce5117650251f5848033193e",
-                "reference": "bba723770e6f8861ce5117650251f5848033193e",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/aa72cbb047431ab6bfb92e66a5a6d3382ab2385f",
+                "reference": "aa72cbb047431ab6bfb92e66a5a6d3382ab2385f",
                 "shasum": ""
             },
             "require": {
-                "aura/intl": "^3.0.0",
                 "cakephp/chronos": "^2.0",
                 "composer/ca-bundle": "^1.2",
                 "ext-intl": "*",
@@ -82,6 +28,7 @@
                 "ext-mbstring": "*",
                 "laminas/laminas-diactoros": "^2.2.2",
                 "laminas/laminas-httphandlerrunner": "^1.1",
+                "league/container": "^3.2",
                 "php": ">=7.2.0",
                 "psr/http-client": "^1.0",
                 "psr/http-server-handler": "^1.0",
@@ -110,7 +57,7 @@
                 "cakephp/cakephp-codesniffer": "^4.0",
                 "mikey179/vfsstream": "^1.6",
                 "paragonie/csp-builder": "^2.3",
-                "phpunit/phpunit": "~8.5.0"
+                "phpunit/phpunit": "^8.5 || ^9.3"
             },
             "suggest": {
                 "ext-curl": "To enable more efficient network calls in Http\\Client.",
@@ -160,7 +107,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2020-12-13T00:27:30+00:00"
+            "time": "2023-01-07T00:52:30+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1008,6 +955,85 @@
             "time": "2026-03-19T19:32:55+00:00"
         },
         {
+            "name": "league/container",
+            "version": "3.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/container.git",
+                "reference": "84ecbc2dbecc31bd23faf759a0e329ee49abddbd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/84ecbc2dbecc31bd23faf759a0e329ee49abddbd",
+                "reference": "84ecbc2dbecc31bd23faf759a0e329ee49abddbd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0",
+                "psr/container": "^1.0.0"
+            },
+            "provide": {
+                "psr/container-implementation": "^1.0"
+            },
+            "replace": {
+                "orno/di": "~2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0 || ^7.0",
+                "roave/security-advisories": "dev-latest",
+                "scrutinizer/ocular": "^1.8",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev",
+                    "dev-2.x": "2.x-dev",
+                    "dev-3.x": "3.x-dev",
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Container\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Phil Bennett",
+                    "email": "philipobenito@gmail.com",
+                    "homepage": "http://www.philipobenito.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fast and intuitive dependency injection container.",
+            "homepage": "https://github.com/thephpleague/container",
+            "keywords": [
+                "container",
+                "dependency",
+                "di",
+                "injection",
+                "league",
+                "provider",
+                "service"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/container/issues",
+                "source": "https://github.com/thephpleague/container/tree/3.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/philipobenito",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-09T08:23:52+00:00"
+        },
+        {
             "name": "markstory/asset_compress",
             "version": "4.1.0",
             "source": {
@@ -1400,27 +1426,22 @@
         },
         {
             "name": "psr/container",
-            "version": "2.0.2",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -1447,9 +1468,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/2.0.2"
+                "source": "https://github.com/php-fig/container/tree/1.1.2"
             },
-            "time": "2021-11-05T16:47:00+00:00"
+            "time": "2021-11-05T16:50:12+00:00"
         },
         {
             "name": "psr/http-client",
