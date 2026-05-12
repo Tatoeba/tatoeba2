@@ -265,7 +265,7 @@ class UsersTable extends Table
             if ($user->get('remove-picture')) {
                 $user->image = null;
             }
-            $user->unsetProperty('remove-picture');
+            $user->unset('remove-picture');
         }
     }
 
