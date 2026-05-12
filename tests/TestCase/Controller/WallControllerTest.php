@@ -100,6 +100,7 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider roleChangeProvider()
      */
     public function testSave_asMember_roleJustChanged($newRole, $exceptedRedirect, $flashMsg = null) {
+        $this->enableRetainFlashMessages();
         $this->logInAs('advanced_contributor');
         $users = $this->getTableLocator()->get('Users');
         $advcontributor = $users->get(3);
@@ -117,10 +118,6 @@ class WallControllerTest extends IntegrationTestCase {
 
         $this->assertRedirect($exceptedRedirect);
         if ($flashMsg) {
-            # https://github.com/cakephp/cakephp/pull/15149
-            # Please re-enable test once we use CakePHP >= 4.2.2
-            $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
-
             $this->assertFlashMessageContains($flashMsg);
         }
     }
@@ -197,10 +194,6 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider postsWithLinksProvider()
      */
     public function testSave_postWithLinksByNewMember($postData, $shouldSave, $email) {
-        # https://github.com/cakephp/cakephp/pull/15149
-        # Please re-enable test once we use CakePHP >= 4.2.2
-        $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
-
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
@@ -226,10 +219,6 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider postsWithLinksProvider()
      */
     public function testEdit_postWithLinksByNewMember($postData, $shouldSave, $email) {
-        # https://github.com/cakephp/cakephp/pull/15149
-        # Please re-enable test once we use CakePHP >= 4.2.2
-        $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
-
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
@@ -252,10 +241,6 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider postsWithLinksProvider()
      */
     public function testEdit_hiddenPostWithLinksByNewMember($postData, $shouldSave, $email) {
-        # https://github.com/cakephp/cakephp/pull/15149
-        # Please re-enable test once we use CakePHP >= 4.2.2
-        $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
-
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 

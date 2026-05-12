@@ -58,10 +58,6 @@ class ReportContentControllerTest extends TestCase
     }
 
     public function testWallPost() {
-        # https://github.com/cakephp/cakephp/pull/15149
-        # Please re-enable test once we use CakePHP >= 4.2.2
-        $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
-
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
@@ -89,10 +85,6 @@ class ReportContentControllerTest extends TestCase
     }
 
     public function testSentenceComment() {
-        # https://github.com/cakephp/cakephp/pull/15149
-        # Please re-enable test once we use CakePHP >= 4.2.2
-        $this->markTestSkipped('Regression in CakePHP 4.0 test suite');
-
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
