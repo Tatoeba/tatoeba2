@@ -10,8 +10,6 @@ class WikiArticlesTableTest extends TestCase
 {
     public $WikiArticles;
 
-    public $autoFixtures = false;
-
     public $fixtures = [
         'app.WikiArticles',
     ];
@@ -21,6 +19,14 @@ class WikiArticlesTableTest extends TestCase
         $config['database'] = '/proc/you-should-never-be-able-to-write-here';
         ConnectionManager::setConfig('test_wiki2', $config);
         return ConnectionManager::get('test_wiki2');
+    }
+
+    public function getFixtures(): array {
+        if ($this->getName() == 'testGetArticleTranslations_dbAccessFail') {
+            return [];
+        } else {
+            return $this->fixtures;
+        }
     }
 
     public function setUp(): void {
@@ -33,8 +39,6 @@ class WikiArticlesTableTest extends TestCase
         $options = [];
         if ($this->getName() == 'testGetArticleTranslations_dbAccessFail') {
             $options['connection'] = $this->setupFailingConnection();
-        } else {
-            $this->loadFixtures(); // load all $this->fixtures
         }
         $this->WikiArticles = $this->fetchTable('WikiArticles', $options);
     }

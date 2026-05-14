@@ -14,12 +14,19 @@ class UsersLanguagesTableTest extends TestCase {
         'app.QueuedJobs',
         'plugin.Queue.QueueProcesses',
     );
-    public $autoFixtures = false;
+
+    function getFixtures(): array {
+        if (stristr($this->getName(), 'reindex') === false) {
+            return ['app.Users', 'app.UsersLanguages', 'app.Languages'];
+        } else {
+            return $this->fixtures;
+        }
+    }
+
 
     function setUp(): void {
         parent::setUp();
         $this->UsersLanguages = $this->fetchTable('UsersLanguages');
-        $this->loadFixtures('Users', 'UsersLanguages', 'Languages');
     }
 
     function tearDown(): void {
@@ -253,7 +260,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_reindexSentencesOnLevelDrop() {
-        $this->loadFixtures();
         $nativeJpn = $this->UsersLanguages->get(3);
         $nativeJpn->level = 4;
 
@@ -263,7 +269,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_reindexSentencesOnLevelUp() {
-        $this->loadFixtures();
         $learnerFra = $this->UsersLanguages->get(5);
         $learnerFra->level = 5;
 
@@ -273,7 +278,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_noReindexSentencesOnLearnerLevelChange() {
-        $this->loadFixtures();
         $learnerFra = $this->UsersLanguages->get(5);
         $learnerFra->level = 3;
 
@@ -283,7 +287,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_reindexSentencesOnLanguageDeletion() {
-        $this->loadFixtures();
         $nativeJpn = $this->UsersLanguages->get(3);
 
         $this->UsersLanguages->delete($nativeJpn);
@@ -292,7 +295,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_noReindexSentencesOnLearningLanguageDeletion() {
-        $this->loadFixtures();
         $learnerFra = $this->UsersLanguages->get(5);
 
         $this->UsersLanguages->delete($learnerFra);
@@ -301,7 +303,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_reindexSentencesOnNewNativeLanguage() {
-        $this->loadFixtures();
         $nativeFra = $this->UsersLanguages->newEntity([
             'language_code' => 'fra',
             'level' => 5,
@@ -316,7 +317,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_noReindexSentencesOnNewLearningLanguage() {
-        $this->loadFixtures();
         $learningFra = $this->UsersLanguages->newEntity([
             'language_code' => 'fra',
             'level' => 4,

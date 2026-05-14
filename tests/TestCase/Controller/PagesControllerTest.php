@@ -9,8 +9,6 @@ class PagesControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $autoFixtures = false;
-
     public $fixtures = [
         'app.Audios',
         'app.Contributions',
@@ -30,6 +28,14 @@ class PagesControllerTest extends IntegrationTestCase
         'app.Walls',
         'app.WikiArticles',
     ];
+
+    public function getFixtures(): array {
+        if ($this->getName(false) == 'testControllerAccess') {
+            return ['app.PrivateMessages', 'app.Users', 'app.UsersLanguages', 'app.WikiArticles'];
+        } else {
+            return $this->fixtures;
+        }
+    }
 
     public function setUp(): void {
         parent::setUp();
@@ -70,12 +76,10 @@ class PagesControllerTest extends IntegrationTestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $this->loadFixtures('PrivateMessages', 'Users', 'UsersLanguages', 'WikiArticles');
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
     public function testHomeAccess() {
-        $this->loadFixtures(); // load all $this->fixtures
         $this->assertAccessUrlAs('/en', null, true);
         $this->assertAccessUrlAs('/en', 'contributor', true);
     }
