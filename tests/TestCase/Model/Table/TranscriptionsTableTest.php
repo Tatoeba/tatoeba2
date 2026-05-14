@@ -2,8 +2,8 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\TranscriptionsTable;
+use Cake\TestSuite\Fixture\FixtureHelper;
 use Cake\TestSuite\TestCase;
-use App\Test\Fixture\TranscriptionsFixture;
 use Cake\Utility\Hash;
 use Cake\I18n\I18n;
 
@@ -17,7 +17,8 @@ class TranscriptionsTableTest extends TestCase {
     public function setUp(): void {
         parent::setUp();
         $this->Transcription = $this->fetchTable('Transcriptions');
-        $this->Fixtures = new TranscriptionsFixture();
+        $helper = new FixtureHelper();
+        $this->Fixtures = current($helper->loadFixtures(['app.Transcriptions']));
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr
             ->expects($this->any())

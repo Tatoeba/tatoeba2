@@ -3,7 +3,7 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AudiosTable;
 use Cake\TestSuite\TestCase;
-use App\Test\Fixture\AudiosFixture;
+use Cake\TestSuite\Fixture\FixtureHelper;
 use Cake\Utility\Hash;
 use Cake\I18n\I18n;
 
@@ -33,11 +33,13 @@ class AudiosTableTest extends TestCase {
         parent::setUp();
         $this->loadRoutes();
         $this->Audio = $this->fetchTable('Audios');
-        $this->AudioFixture =  new AudiosFixture();
+        $helper = new FixtureHelper();
+        $this->AudioFixture = current($helper->loadFixtures(['app.Audios']));
     }
 
     function tearDown(): void {
         unset($this->Audio);
+        unset($this->AudioFixture);
         parent::tearDown();
     }
 
