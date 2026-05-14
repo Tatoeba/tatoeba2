@@ -30,10 +30,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -55,10 +55,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -80,11 +80,11 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
                     'can_switch_license' => true,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -106,12 +106,12 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => 'fra,deu',
                     'can_switch_license' => true,
                     'license_switch_list_id' => 4,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '93986962b3472786d9aea008f6160bfd.png',
                 'country_id' => NULL,
@@ -133,10 +133,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -158,10 +158,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -183,12 +183,12 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'sentences_per_page' => 20,
                     'is_public' => false,
                     'lang' => null,
                     'default_license' => 'CC0 1.0',
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -210,10 +210,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -235,10 +235,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
@@ -260,10 +260,10 @@ class UsersFixture extends TestFixture
                 'name' => '',
                 'birthday' => NULL,
                 'description' => '',
-                'settings' => json_encode([
+                'settings' => [
                     'is_public' => false,
                     'lang' => null,
-                ]),
+                ],
                 'homepage' => '',
                 'image' => '',
                 'country_id' => NULL,
