@@ -82,7 +82,7 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setHost('api.*');
 
     $routes->connect(
-        '/examples/:name',
+        '/examples/{name}',
         ['controller' => 'doc', 'action' => 'examples']
     )
     ->setMethods(['GET'])
@@ -96,7 +96,7 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setHost('api.*');
 
     $routes->connect(
-        '/:version',
+        '/{version}',
         ['controller' => 'api']
     )
     ->setPersist(['version'])
@@ -104,7 +104,7 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setHost('api.*');
 
     $routes->connect(
-        '/:version/:controller',
+        '/{version}/{controller}',
         ['action' => 'search']
     )
     ->setPersist(['version'])
@@ -112,7 +112,7 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setHost('api.*');
 
     $routes->connect(
-        '/:version/:controller/:id',
+        '/{version}/{controller}/{id}',
         ['action' => 'get']
     )
     ->setPass(['id'])
@@ -121,7 +121,7 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setHost('api.*');
 
     $routes->connect(
-        '/:version/:controller/:id/:action'
+        '/{version}/{controller}/{id}/{action}'
     )
     ->setPass(['id'])
     ->setPersist(['version'])
@@ -131,7 +131,7 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
 
 Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes) {
     $routes->connect(
-        '/sentences/:lang/:sentence_id.mp3',
+        '/sentences/{lang}/{sentence_id}.mp3',
         ['controller' => 'main', 'action' => 'legacy_audio_url']
     )
     ->setHost('audio.*')
@@ -165,7 +165,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->connect(
-        '/:lang',
+        '/{lang}',
         ['controller' => 'Pages', 'action' => 'index']
     )
     ->setPatterns(['lang' => $langPattern])
@@ -177,20 +177,20 @@ Router::scope('/', function (RouteBuilder $routes) {
     );
 
     $routes->connect(
-        '/:lang/:action',
+        '/{lang}/{action}',
         ['controller' => 'Pages']
     )
     ->setPatterns(['lang' => $langPattern])
     ->setPersist(['lang']);
 
     $routes->connect(
-        '/:action',
+        '/{action}',
         ['controller' => 'Pages']
     );
 
-    $routes->connect('/:lang/:controller/:action/*')
+    $routes->connect('/{lang}/{controller}/{action}/*')
     ->setPatterns(['lang' => $langPattern])
     ->setPersist(['lang']);
 
-    $routes->connect('/:controller/:action/*');
+    $routes->connect('/{controller}/{action}/*');
 });
