@@ -23,7 +23,6 @@
 
 use Cake\Core\Configure;
 use Cake\Routing\RouteBuilder;
-use Cake\Routing\Router;
 use Cake\Routing\Route\InflectedRoute;
 
 /*
@@ -52,9 +51,10 @@ use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 
 
-Router::defaultRouteClass(InflectedRoute::class);
+/** @var \Cake\Routing\RouteBuilder $routes */
+$routes->setRouteClass(InflectedRoute::class);
 
-Router::scope('/', function (RouteBuilder $routes) {
+$routes->scope('/', function (RouteBuilder $routes) {
     $routes->registerMiddleware('languageSelector', new LanguageSelectorMiddleware());
 
     $routes->registerMiddleware('asset', new AssetMiddleware([
@@ -72,7 +72,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->registerMiddleware('csrfProtection', new CsrfProtectionMiddleware());
 });
 
-Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
+$routes->scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     $routes->connect(
         '/',
         ['controller' => 'doc', 'action' => 'index']
@@ -128,7 +128,7 @@ Router::scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
     ->setHost('api.*');
 });
 
-Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes) {
+$routes->scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes) {
     $routes->connect(
         '/sentences/{lang}/{sentence_id}.mp3',
         ['controller' => 'main', 'action' => 'legacy_audio_url']
@@ -144,7 +144,7 @@ Router::scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes)
     ->setHost('audio.*');
 });
 
-Router::scope('/', function (RouteBuilder $routes) {
+$routes->scope('/', function (RouteBuilder $routes) {
     $routes->applyMiddleware('assetCompress');
 
     // Handle plugin/theme assets like CakePHP normally does.
