@@ -7,19 +7,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class TranscriptionsFixture extends TestFixture {
 	public $name = 'Transcription';
 
-	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'script' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'text' => ['type' => 'text', 'null' => false, 'default' => null, 'length' => 10000],
-		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
-		'needsReview' => ['type' => 'boolean', 'null' => false, 'default' => '1'],
-		'created' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'modified' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'unique_transcriptions' => ['type' => 'unique', 'columns' => ['sentence_id', 'script']]],
-		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
-	);
-
 	public $records = array(
 		array(
 			'id' => 1,

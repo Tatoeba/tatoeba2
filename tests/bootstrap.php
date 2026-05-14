@@ -9,6 +9,9 @@ declare(strict_types=1);
  */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
+use Cake\Filesystem\Folder;
+use Cake\TestSuite\Fixture\SchemaLoader;
+use Migrations\Migrations;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -33,3 +36,15 @@ Configure::write('AutoTranscriptions.enabled', false);
 
 // Avoid caching any data produced by tests
 Cache::disable();
+
+// Create database schema for fixtures
+$sqlFolder = new Folder(dirname(__DIR__) . '/docs/database/tables/');
+$sqlFiles = $sqlFolder->read(Folder::SORT_NAME, false, true)[1];
+
+$loader = new SchemaLoader();
+$loader->loadSqlFiles($sqlFiles, 'test', true, true);
+$loader->loadSqlFiles(dirname(__DIR__) . '/docs/database/tatowiki/articles.sql', 'test_wiki');
+
+$migrations = new Migrations();
+$migrations->migrate(['connection' => 'test']);
+$migrations->migrate(['connection' => 'test', 'plugin' => 'Queue']);

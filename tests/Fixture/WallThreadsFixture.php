@@ -8,12 +8,6 @@ class WallThreadsFixture extends TestFixture {
 	public $name = 'WallThread';
 	public $table = 'wall_threads_last_message';
 
-	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'last_message_date' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]]
-	);
-
 	public $records = array(
 		array(
 			'id' => '1',

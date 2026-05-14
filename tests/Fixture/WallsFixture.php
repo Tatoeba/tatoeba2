@@ -8,20 +8,6 @@ class WallsFixture extends TestFixture {
 	public $name = 'Wall';
 	public $table = 'wall';
 
-	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'owner' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'parent_id' => ['type' => 'integer', 'null' => true, 'default' => null],
-		'date' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'title' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'content' => ['type' => 'binary', 'null' => false, 'default' => null],
-		'lft' => ['type' => 'integer', 'null' => true, 'default' => null],
-		'rght' => ['type' => 'integer', 'null' => true, 'default' => null],
-		'hidden' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
-		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
-		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]]
-	);
-
 	public $records = array(
 		array(
 			'id' => '1',
