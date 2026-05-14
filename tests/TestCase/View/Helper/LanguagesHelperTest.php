@@ -24,6 +24,7 @@ class LanguagesHelperTest extends TestCase {
 
 	function tearDown(): void {
 		I18n::setLocale($this->prevLocale);
+		parent::tearDown();
 	}
 
 	function _beRegularUser() {

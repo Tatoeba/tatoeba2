@@ -23,12 +23,14 @@ class MainControllerTest extends TestCase
 
     public function setUp(): void
     {
+        parent::setUp();
         $this->initAudioStorageDir();
     }
 
     public function tearDown(): void
     {
         $this->deleteAudioStorageDir();
+        parent::tearDown();
     }
 
     public function testUnknownController()

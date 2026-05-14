@@ -34,6 +34,7 @@ class UsersControllerTest extends IntegrationTestCase {
 
     public function tearDown(): void {
         Security::setSalt($this->previousSalt);
+        parent::tearDown();
     }
 
     public function accessesProvider() {
