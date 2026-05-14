@@ -122,7 +122,7 @@ trait BatchOperationTrait {
 
         $data = array();
         do {
-            $data = $this->{$model}->find('all', $options)->toList();
+            $data = $this->{$model}->find('all', $options)->all()->toList();
             $args = func_get_args();
             array_splice($args, 0, 3, array($data, $model));
             $proceeded += call_user_func_array(array($this, $operation), $args);

@@ -47,6 +47,7 @@ class OwnerFilter extends SearchFilter {
                 ->select(['id', 'username'])
                 ->order($order)
                 ->enableHydration(false)
+                ->all()
                 ->toList();
             $mapper = function ($key) {
                 return is_string($key) ? strtolower($key) : $key;

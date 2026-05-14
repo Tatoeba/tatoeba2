@@ -132,8 +132,9 @@ class AudiosTableTest extends TestCase {
         $this->Audio->save($data);
 
         $expected = array(1, 2, 3, 4, 7);
-        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+        $result = $this->Audio->Sentences->ReindexFlags->find()
             ->order('sentence_id')
+            ->all()
             ->toList();
         $result = Hash::extract($result, '{n}.sentence_id');
         $this->assertEquals($expected, $result);
@@ -144,8 +145,9 @@ class AudiosTableTest extends TestCase {
 
         $this->_saveRecordWith(0, array('sentence_id' => 10));
 
-        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+        $result = $this->Audio->Sentences->ReindexFlags->find()
             ->order('sentence_id')
+            ->all()
             ->toList();
         $result = Hash::extract($result, '{n}.sentence_id');
         $this->assertEquals($expected, $result);
@@ -157,8 +159,9 @@ class AudiosTableTest extends TestCase {
         $audio = $this->Audio->get(1);
         $this->Audio->delete($audio);
 
-        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+        $result = $this->Audio->Sentences->ReindexFlags->find()
             ->order('sentence_id')
+            ->all()
             ->toList();
         $result = Hash::extract($result, '{n}.sentence_id');
         $this->assertEquals($expected, $result);

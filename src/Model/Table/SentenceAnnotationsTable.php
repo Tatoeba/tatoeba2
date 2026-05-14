@@ -72,6 +72,7 @@ class SentenceAnnotationsTable extends Table
             ->contain([
                 'Users' => ['fields' => ['username']]
             ])
+            ->all()
             ->toList();
     }
 
@@ -89,6 +90,7 @@ class SentenceAnnotationsTable extends Table
         return $this->find()
             ->where(['SentenceAnnotations.text LIKE' => '%'.$query.'%'])
             ->contain(['Sentences'])
+            ->all()
             ->toList();
     }
 

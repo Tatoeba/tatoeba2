@@ -189,7 +189,7 @@ class LinksTableTest extends TestCase {
                  */
 		$expected = array(8, 2, 5);
 		$this->Link->add(8, 5);
-		$result = $this->Link->Sentences->ReindexFlags->find('all')->toList();
+		$result = $this->Link->Sentences->ReindexFlags->find()->all()->toList();
 		$result = Hash::extract($result, '{n}.sentence_id');
 		$this->assertEquals($expected, $result);
 	}
@@ -202,7 +202,7 @@ class LinksTableTest extends TestCase {
                  */
 		$expected = array(1, 3, 4, 2, 4, 5);
 		$this->Link->deletePair(1, 2);
-		$result = $this->Link->Sentences->ReindexFlags->find('all')->toList();
+		$result = $this->Link->Sentences->ReindexFlags->find()->all()->toList();
 		$result = Hash::extract($result, '{n}.sentence_id');
 		$this->assertEquals($expected, $result);
 	}

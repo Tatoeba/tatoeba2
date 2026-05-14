@@ -199,6 +199,7 @@ class UsersSentencesTable extends Table
             ->contain([
                 'Users' => ['fields' => ['id', 'username']]
             ])
+            ->all()
             ->toList();
     }
 

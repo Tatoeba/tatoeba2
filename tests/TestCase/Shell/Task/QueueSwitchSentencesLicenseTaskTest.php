@@ -44,12 +44,12 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
 
     public function _testSwitchLicense($expected, $options)
     {
-        $before = $this->Sentences->findAllByLicense('CC0 1.0')->toList();
+        $before = $this->Sentences->findAllByLicense('CC0 1.0')->all()->toList();
         $beforeIds = Hash::extract($before, '{n}.id');
 
         $this->task->run($options, 1234);
 
-        $after = $this->Sentences->findAllByLicense('CC0 1.0')->toList();
+        $after = $this->Sentences->findAllByLicense('CC0 1.0')->all()->toList();
         $afterIds = Hash::extract($after, '{n}.id');
         $switched = array_diff($afterIds, $beforeIds);
         sort($switched);

@@ -481,12 +481,14 @@ class SentencesTableTest extends TestCase {
         $transcrBefore = $this->Sentence->Transcriptions->find('all')
             ->where($conditions)
             ->select(['id', 'script', 'text', 'user_id', 'needsReview'])
+            ->all()
             ->toList();
         $this->Sentence->unsetOwner($jpnSentenceId, $jpnSentenceOwner);
 
         $transcrAfter = $this->Sentence->Transcriptions->find('all')
             ->where($conditions)
             ->select(['id', 'script', 'text', 'user_id', 'needsReview'])
+            ->all()
             ->toList();
         $this->assertEquals($transcrBefore, $transcrAfter);
     }
@@ -497,6 +499,7 @@ class SentencesTableTest extends TestCase {
 
         $transcr = $this->Sentence->Transcriptions->find('all')
             ->where(['sentence_id' => $jpnSentence->id])
+            ->all()
             ->toList();
         $this->assertEquals(array(), $transcr);
     }
@@ -646,6 +649,7 @@ class SentencesTableTest extends TestCase {
         $logs = $this->Sentence->Contributions->find('all')
             ->where($conditions)
             ->select($fields)
+            ->all()
             ->toList();
 
         $result = [];
@@ -772,7 +776,8 @@ class SentencesTableTest extends TestCase {
         $reindex = array(2, 3);
         $this->Sentence->needsReindex($reindex);
         $result = $this->Sentence->ReindexFlags->find('all')
-            ->where(['sentence_id' => $reindex], ['sentence_id' => 'integer[]']);
+            ->where(['sentence_id' => $reindex], ['sentence_id' => 'integer[]'])
+            ->all();
         $this->assertEquals(2, $result->count());
         $this->assertTrue($result->every(function ($entity) {
             return $entity->type == 'change' && $entity->indexed === false;
@@ -786,6 +791,7 @@ class SentencesTableTest extends TestCase {
             ->where(['sentence_id' => $ids], ['sentence_id' => 'integer[]'])
             ->select('sentence_id')
             ->disableHydration()
+            ->all()
             ->toList();
         $this->assertNotContains(9, $result);
         $this->assertCount(3, $result);
@@ -826,8 +832,9 @@ class SentencesTableTest extends TestCase {
         $sentence = $this->Sentence->get(5);
         $sentence->{$prop} = $newValue;
         $this->Sentence->save($sentence);
-        $result = $this->Sentence->ReindexFlags->find('all')
-            ->order(['sentence_id']);
+        $result = $this->Sentence->ReindexFlags->find()
+            ->order(['sentence_id'])
+            ->all();
 
         $ids = $result->filter(fn($s) => $s->type == 'change')->extract('sentence_id')->toList();
         $this->assertEquals($exceptedChangedIds, $ids);
@@ -841,7 +848,8 @@ class SentencesTableTest extends TestCase {
         $sentence = $this->Sentence->get(5);
         $this->Sentence->delete($sentence);
         $result = $this->Sentence->ReindexFlags->find('all')
-            ->order(['sentence_id']);
+            ->order(['sentence_id'])
+            ->all();
         $ids = $result->extract('sentence_id')->toList();
         $this->assertEquals($expected, $ids);
         $types = $result->groupBy('type')->toArray();

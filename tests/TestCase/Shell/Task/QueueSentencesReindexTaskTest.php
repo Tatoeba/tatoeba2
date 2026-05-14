@@ -33,6 +33,7 @@ class QueueSentencesReindexTaskTest extends TestCase
             ->find('list', ['valueField' => 'sentence_id'])
             ->select(['sentence_id'])
             ->order('sentence_id')
+            ->all()
             ->toList();
         $this->assertEquals($expected, $result);
     }

@@ -31,7 +31,7 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
 
         $this->exec("correct_number_of_sentences");
 
-        $sentencesLists = $this->SentencesLists->find('all')->toList();
+        $sentencesLists = $this->SentencesLists->find()->all()->toList();
         $newListsAndCounts = Hash::combine($sentencesLists, '{n}.id', '{n}.numberOfSentences');
         $expected = [
             1 => 3,

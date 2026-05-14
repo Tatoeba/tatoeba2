@@ -29,7 +29,7 @@ class LogsHelperTest extends TestCase
     public function testObsoletize()
     {
         $contributions = $this->fetchTable('Contributions');
-        $latests = $contributions->find()->where(['sentence_id' => 35])->toList();
+        $latests = $contributions->find()->where(['sentence_id' => 35])->all()->toList();
 
         $this->LogsHelper->obsoletize($latests);
 
@@ -39,7 +39,7 @@ class LogsHelperTest extends TestCase
     public function testObsoletize_withZeroDate()
     {
         $contributions = $this->fetchTable('Contributions');
-        $latests = $contributions->find()->where(['sentence_id' => 18])->toList();
+        $latests = $contributions->find()->where(['sentence_id' => 18])->all()->toList();
 
         $this->LogsHelper->obsoletize($latests);
 

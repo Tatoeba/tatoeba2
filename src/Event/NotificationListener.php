@@ -71,6 +71,7 @@ class NotificationListener implements EventListenerInterface {
             $query
             ->where(['send_notifications' => true])
             ->select(['email'])
+            ->all()
             ->toList();
         $toNotify = Hash::extract($toNotify, '{n}.email');
         $toNotify = array_filter($toNotify);
@@ -144,7 +145,7 @@ class NotificationListener implements EventListenerInterface {
 
         $comments = $SentenceComment->findAllBySentenceId($sentenceId, [
             'fields' => ['user_id']
-        ])->toList();
+        ])->all()->toList();
         $userIds = array_merge([$sentence], $comments);
         $userIds = Hash::extract($userIds, '{n}.user_id');
 

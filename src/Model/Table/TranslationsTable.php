@@ -203,6 +203,6 @@ class TranslationsTable extends Table
                 'Users' => ['fields' => ['username']]
             ]
         ]);
-        return $query->toList();
+        return $query->all()->toList();
     }
 }

@@ -45,6 +45,7 @@ class TranscriptionsController extends AppController
     public function view($sentenceId) {
         $transcr = $this->Transcriptions->find()
             ->where(['sentence_id' => $sentenceId])
+            ->all()
             ->toList();
         $this->setViewVars($transcr, $sentenceId);
     }

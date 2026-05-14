@@ -75,6 +75,7 @@ class ContributionsStatsTable extends Table
                 'date' => 'ASC',
                 'type' => 'ASC'
             ])
+            ->all()
             ->toList();
 
         // The number of "link" sentences is two times what we want

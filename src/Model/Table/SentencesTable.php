@@ -404,7 +404,7 @@ class SentencesTable extends Table
             'sentence_id' => $sentenceId,
             'translation_id'=> $sentenceId
         ]];
-        $links = $this->Links->find('all')->where($conditions)->toList();
+        $links = $this->Links->find('all')->where($conditions)->all()->toList();
         $deleted = $this->Links->deleteAll($conditions);
 
         // --- Logs for links ---
@@ -1251,6 +1251,7 @@ class SentencesTable extends Table
         $sentences = $this->find('all')
             ->where(['user_id' => $user['id'], 'correctness' => 0])
             ->select(['id', 'correctness'])
+            ->all()
             ->toList();
 
         $editValues = array();
@@ -1270,6 +1271,7 @@ class SentencesTable extends Table
         $result = $this->find('all')
         ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
         ->select(['lang', 'id'])
+        ->all()
         ->toList();
 
         return Hash::combine($result, '{n}.id', '{n}.lang');

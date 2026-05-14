@@ -68,6 +68,7 @@ class SentencesSentencesListsTable extends Table
         $records = $this->find('all')
             ->where(['sentence_id' => $sentenceId])
             ->select('sentences_list_id')
+            ->all()
             ->toList();
         $listsId = Hash::extract($records, '{n}.sentences_list_id');
         $values = array($sentenceId => array($listsId));

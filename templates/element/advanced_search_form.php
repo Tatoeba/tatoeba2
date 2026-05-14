@@ -284,7 +284,7 @@ echo $this->Form->create(null, [
                 <label for="list" flex><?= __('Belongs to list:') ?></label>
                 <div flex>
                 <?php
-                $listOptions = $this->Lists->listsAsSelectable($searchableLists->toList());
+                $listOptions = $this->Lists->listsAsSelectable($searchableLists->all()->toList());
                 echo $this->Form->control('list', [
                     'class' => 'list-select',
                     'label' => '',

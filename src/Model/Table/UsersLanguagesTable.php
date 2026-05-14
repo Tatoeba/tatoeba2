@@ -167,6 +167,7 @@ class UsersLanguagesTable extends Table
             ->order(['total' => 'DESC'])
             ->contain(['Users'])
             ->group(['language_code'])
+            ->all()
             ->toList();
 
         return $result;

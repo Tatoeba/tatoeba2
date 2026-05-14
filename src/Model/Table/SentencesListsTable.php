@@ -108,6 +108,7 @@ class SentencesListsTable extends Table
             ])
             ->select(['id', 'name', 'user_id'])
             ->order(['name'])
+            ->all()
             ->toList();
     }
 
@@ -178,7 +179,7 @@ class SentencesListsTable extends Table
 
         if ($forNewDesign) {
             $query->order(['is_mine DESC', 'modified DESC']);
-            return $query->toList();
+            return $query->all()->toList();
         } else {
             $results = $query->order(['name'])
                 ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
@@ -271,6 +272,7 @@ class SentencesListsTable extends Table
                         ];
                     });
                 })
+                ->all()
                 ->toList();
         } else {
             return $this->SentencesSentencesLists->find()
@@ -297,6 +299,7 @@ class SentencesListsTable extends Table
                     }
                     return $data;
                 })
+                ->all()
                 ->toList();
         }
     }

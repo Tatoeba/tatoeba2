@@ -54,6 +54,7 @@ class LastContributionsTable extends Table
             ])
             ->order(['total' => 'DESC'])
             ->group(['LastContributions.user_id'])
+            ->all()
             ->toList();
 
         return $result;

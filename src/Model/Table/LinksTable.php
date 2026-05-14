@@ -143,6 +143,7 @@ class LinksTable extends Table
             $result = $this->Sentences->find('all')
                 ->where(['id' => $ids], ['id' => 'integer[]'])
                 ->select(['id', 'lang'])
+                ->all()
                 ->toList();
 
             if (count($result) != 2) {
@@ -210,6 +211,7 @@ class LinksTable extends Table
         $links = $this->find('all')
             ->where(['sentence_id' => $sentenceId])
             ->select(['translation_id'])
+            ->all()
             ->toList();
         $ids = Hash::extract($links, '{n}.translation_id');
         return !empty($ids) ? $ids : array();
@@ -230,6 +232,7 @@ class LinksTable extends Table
                 'sentence_id' => 'DISTINCT(Links.sentence_id)',
                 'translation_id' => 'IF(Links.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id)'
             ])
+            ->all()
             ->toList();
         $links = Hash::extract($links, '{n}.translation_id');
         return is_null($links) ? array() : array_unique($links);

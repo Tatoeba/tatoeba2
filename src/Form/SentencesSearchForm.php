@@ -501,6 +501,7 @@ class SentencesSearchForm extends Form
                     'level' => 5,
                 ])
                 ->select(['of_user_id'])
+                ->all()
                 ->toList();
             $natives = Hash::extract($natives, '{n}.of_user_id');
             if (!in_array($this->ownerId, $natives)) {

@@ -40,6 +40,7 @@ class Walker {
             $rows = $this->model->find('all')
                 ->where(['id > ' => $lastId])
                 ->limit($fetchSize)
+                ->all()
                 ->toList();
 
             if (empty($rows)) {
@@ -161,6 +162,7 @@ class SentenceDerivationShell extends Shell {
         if (!empty($ids)) {
             $oldData = $this->Sentences->find()
             ->where(['id IN' => $ids])
+            ->all()
             ->toList();
             $entities = $this->Sentences->patchEntities($oldData, $derivations);
             if ($this->Sentences->saveMany($entities)) {
@@ -179,6 +181,7 @@ class SentenceDerivationShell extends Shell {
             ->where(['action' => 'insert', 'type' => 'sentence']) 
             ->group(['sentence_id'])
             ->having('count(sentence_id) > 1')
+            ->all()
             ->toList();
         $result = Hash::combine($result, '{n}.sentence_id', '{n}.min');
         $this->out('done ('.count($result).' sentences affected)');

@@ -43,8 +43,8 @@ class LicensingTest extends TestCase
         $after = $SentencesLists->find()->all();
         $this->assertNotEquals($before, $after);
 
-        $list = $SentencesLists->find()->last();
-        $this->assertIsSwitchListOf($list, 7);
+        $lastList = $after->last();
+        $this->assertIsSwitchListOf($lastList, 7);
     }
 
     public function testRefresh_reCreatesNewList() {
@@ -54,14 +54,14 @@ class LicensingTest extends TestCase
 
         $this->Licensing->refreshLicenseSwitchList(4);
 
-        $list = $SentencesLists->find()->last();
-        $this->assertIsSwitchListOf($list, 4);
+        $lastList = $SentencesLists->find()->all()->last();
+        $this->assertIsSwitchListOf($lastList, 4);
     }
 
     public function testRefresh_savesNewListId() {
         $this->Licensing->refreshLicenseSwitchList(7);
 
-        $listId = $this->Licensing->SentencesLists->find()->last()->id;
+        $listId = $this->Licensing->SentencesLists->find()->all()->last()->id;
         $settings = $this->Licensing->Users->get(7)->settings;
         $this->assertEquals($listId, $settings['license_switch_list_id']);
     }
@@ -70,7 +70,7 @@ class LicensingTest extends TestCase
         $this->Licensing->refreshLicenseSwitchList(4);
 
         $QueuedJobs = $this->fetchTable('QueuedJobs');
-        $job = $QueuedJobs->find()->last();
+        $job = $QueuedJobs->find()->all()->last();
         $this->assertEquals('RefreshLicenseSwitchList', $job->job_type);
         $this->assertEquals(4, $job->job_group);
     }
@@ -85,7 +85,7 @@ class LicensingTest extends TestCase
         $this->assertEquals($before, $after);
 
         $QueuedJobs = $this->fetchTable('QueuedJobs');
-        $job = $QueuedJobs->find()->last();
+        $job = $QueuedJobs->find()->all()->last();
         $this->assertEquals(4, unserialize($job->data)['listId']);
     }
 
@@ -105,7 +105,7 @@ class LicensingTest extends TestCase
         $before = $QueuedJobs->find()->count();
 
         $this->Licensing->refreshLicenseSwitchList(4);
-        $job = $QueuedJobs->find()->last();
+        $job = $QueuedJobs->find()->all()->last();
         $job->completed = '2019-01-01 01:02:03';
         $QueuedJobs->save($job);
         $this->Licensing->refreshLicenseSwitchList(4);

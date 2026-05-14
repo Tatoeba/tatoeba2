@@ -27,6 +27,7 @@ class WikiArticlesTable extends Table
                     ->select(['lang', 'slug'])
                     ->where(compact('group_id'))
                     ->enableHydration(false)
+                    ->all()
                     ->combine('lang', 'slug')
                     ->toArray();
             }

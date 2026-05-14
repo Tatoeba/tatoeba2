@@ -41,6 +41,7 @@ class LanguagesTable extends Table
             ])
             ->order(['sentences' => 'DESC'])
             ->limit($limit)
+            ->all()
             ->toList();
 
         return $results ;
@@ -92,6 +93,7 @@ class LanguagesTable extends Table
                 'total' => 'audio']
             )
             ->order(['audio' => 'DESC'])
+            ->all()
             ->toList();
 
         return $results;
@@ -120,6 +122,7 @@ class LanguagesTable extends Table
                 'total' => '(level_5 + level_4 + level_3 + level_2 + level_1 + level_0 + level_unknown)'
             ])
             ->order(['total' => 'DESC'])
+            ->all()
             ->toList();
 
         return $results;
@@ -142,6 +145,7 @@ class LanguagesTable extends Table
                 'total' => '(group_1 + group_2 + group_3 + group_4)'
             ])
             ->order(['total' => 'DESC'])
+            ->all()
             ->toList();
             
         return $results;

@@ -312,6 +312,7 @@ class AudiosTable extends Table
             ->where(['Sentences.id IN' => $allSentenceIds])
             ->select(['id', 'lang'])
             ->contain(['Audios' => ['Users' => ['fields' => ['username']]]])
+            ->all()
             ->toList();
             
         $sentences = Hash::combine($sentences, '{n}.id', '{n}');
@@ -457,7 +458,8 @@ class AudiosTable extends Table
     public function lastImportJob() {
         return $this->QueuedJobs->find()
             ->where(['job_type' => self::JOB_TYPE])
-            ->last();
+            ->orderDesc($this->QueuedJobs->getPrimaryKey())
+            ->first();
     }
 
     public function enqueueImportTask($author, $replace = []) {

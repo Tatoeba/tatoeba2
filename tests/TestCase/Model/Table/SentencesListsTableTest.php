@@ -250,7 +250,9 @@ class SentencesListsTableTest extends TestCase {
     function testAddSentencesToList_succeeds() {
         $listId = 1;
         $sentences = $this->SentencesList->Sentences->find()
-                          ->where(['user_id' => 1])->toList();
+                          ->where(['user_id' => 1])
+                          ->all()
+                          ->toList();
         $before = $this->SentencesList->SentencesSentencesLists->find()
             ->where(['sentences_list_id' => $listId])
             ->count();
@@ -267,7 +269,9 @@ class SentencesListsTableTest extends TestCase {
     function testAddSentencesToList_incrementsCount() {
         $listId = 1;
         $sentences = $this->SentencesList->Sentences->find()
-                          ->where(['user_id' => 1])->toList();
+                          ->where(['user_id' => 1])
+                          ->all()
+                          ->toList();
         $before = $this->SentencesList->get($listId)->numberOfSentences;
 
         $this->SentencesList->addSentencesToList($sentences, $listId, 7);
@@ -278,7 +282,9 @@ class SentencesListsTableTest extends TestCase {
 
     function testAddSentencesToList_failsBecauseSentenceAlreadyInList() {
         $sentences = $this->SentencesList->Sentences->find()
-                          ->where(['user_id' => 7])->toList();
+                          ->where(['user_id' => 7])
+                          ->all()
+                          ->toList();
         $result = $this->SentencesList->addSentencesToList($sentences, 1, 7);
 
         $this->assertFalse($result);

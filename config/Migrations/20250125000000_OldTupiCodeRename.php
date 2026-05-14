@@ -43,6 +43,7 @@ class OldTupiCodeRename extends AbstractMigration
         $ids = $this->Sentences->find()
             ->select('id')
             ->where(['lang' => $lang])
+            ->all()
             ->extract('id')
             ->toList();
         foreach ($ids as $id) {

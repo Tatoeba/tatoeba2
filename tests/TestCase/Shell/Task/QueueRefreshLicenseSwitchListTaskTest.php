@@ -47,6 +47,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
 
         $after = $this->SentencesLists->SentencesSentencesLists->find()
             ->where(['sentences_list_id' => $listId])
+            ->all()
             ->toList();
         $afterIds = Hash::extract($after, '{n}.sentence_id');
 

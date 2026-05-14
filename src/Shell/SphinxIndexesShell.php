@@ -165,6 +165,7 @@ class SphinxIndexesShell extends Shell {
                          ->select('lang')
                          ->where(['indexed' => 1])
                          ->distinct('lang')
+                         ->all()
                          ->extract('lang');
                 }
                 foreach ($langs as $lang) {

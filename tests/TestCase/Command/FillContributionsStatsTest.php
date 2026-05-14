@@ -38,7 +38,7 @@ class FillContributionsStatsCommand extends TestCase {
     function testExecute_defaultParams_oldestDateIsCorrect() {
         $this->exec("fill_contributions_stats");
 
-        $contributionStats = $this->ContributionsStats->find('all')->toList();
+        $contributionStats = $this->ContributionsStats->find()->all()->toList();
         $this->assertEquals('2014-04-09', $contributionStats[0]->date);
     }
 

@@ -35,6 +35,7 @@ class TagFilter extends SearchFilter {
                 ->select(['id', 'name'])
                 ->order($order)
                 ->enableHydration(false)
+                ->all()
                 ->toList();
             $mapper = function ($key) {
                 return is_string($key) ? mb_strtolower($key) : $key;

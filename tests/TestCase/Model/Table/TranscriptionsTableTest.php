@@ -365,6 +365,7 @@ class TranscriptionsTableTest extends TestCase {
 
         $updated = $this->Transcription->find('all')
             ->where(['sentence_id' => $transcr->sentence_id])
+            ->all()
             ->toList();
         $this->assertEquals('あああ', $updated[0]->text);
     }
@@ -562,6 +563,7 @@ class TranscriptionsTableTest extends TestCase {
         $jpnSentence = $this->Transcription->Sentences->get(6);
         $existingTranscriptions = $this->Transcription->find()
             ->where(['sentence_id' => 6])
+            ->all()
             ->toList();
 
         $result = $this->Transcription->addGeneratedTranscriptions(

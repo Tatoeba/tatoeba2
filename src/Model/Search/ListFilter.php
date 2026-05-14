@@ -47,6 +47,7 @@ class ListFilter extends SearchFilter {
                 ->select(['id'])
                 ->order($order)
                 ->enableHydration(false)
+                ->all()
                 ->toList();
             return Hash::combine($result, '{n}.id', '{n}.id');
         } else {

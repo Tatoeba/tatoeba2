@@ -57,7 +57,7 @@ class EditLicensesCommandTest extends TestCase
         $sentence = $this->Sentences->get(1);
         $this->assertEquals('', $sentence->license);
 
-        $contribution = $this->Contributions->find()->where(['sentence_id' => 2])->last()->toArray();
+        $contribution = $this->Contributions->find()->where(['sentence_id' => 2])->all()->last()->toArray();
         $expectedArraySubset = [
             'sentence_id' => 2,
             'type' => 'license',

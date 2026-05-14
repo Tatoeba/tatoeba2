@@ -189,7 +189,7 @@ class SentenceCommentsTable extends Table
                 ]
             ]);
         $query = $this->excludeBots($query);
-        return $query->toList();
+        return $query->all()->toList();
     }
 
     /**

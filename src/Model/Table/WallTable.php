@@ -248,6 +248,7 @@ class WallTable extends Table
                     'fields' => ['last_message_date']
                 ]
             ])
+            ->all()
             ->toList();
 
         return $result;
@@ -329,6 +330,7 @@ class WallTable extends Table
             ->contain(['Users' => function ($q) {
                 return $q->select(['id', 'image', 'username']);
             }])
+            ->all()
             ->toList();
         
         return $result;
