@@ -12,7 +12,7 @@ class UpdatePasswordVersionShell extends Shell {
     public function main() {
         echo "Updating password hashes";
         $proceeded = $this->batchOperation(
-            'User',
+            'Users',
             '_updateHash',
             array(
                 'fields' => array('id', 'password')
@@ -24,11 +24,11 @@ class UpdatePasswordVersionShell extends Shell {
     private function updateHashesFor($data, $model) {
         $result = array();
         foreach ($data as $row) {
-            if (strlen($row[$model]['password']) == 32) {
-                $newHash = '0 '.Security::hash($row[$model]['password'], 'blowfish');
+            if (strlen($row['password']) == 32) {
+                $newHash = '0 '.Security::hash($row['password'], 'blowfish');
 
                 $result[] = array(
-                    'id' => $row[$model]['id'],
+                    'id' => $row['id'],
                     'password' => $newHash,
                 );
             }
