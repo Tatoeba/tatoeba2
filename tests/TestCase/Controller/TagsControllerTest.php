@@ -10,6 +10,7 @@ class TagsControllerTest extends IntegrationTestCase {
 
     public $fixtures = [
         'app.Audios',
+        'app.Contributions',
         'app.FavoritesUsers',
         'app.PrivateMessages',
         'app.Sentences',

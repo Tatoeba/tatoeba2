@@ -17,6 +17,7 @@ class EditLanguagesCommandTest extends TestCase
         'app.Contributions',
         'app.Languages',
         'app.Links',
+        'app.LastContributions',
         'app.ReindexFlags',
         'app.Sentences',
         'app.Tags',
