@@ -1,5 +1,10 @@
 ---
 
+- name: Temporarily stop unattended upgrades
+  systemd_service:
+    name: unattended-upgrades
+    state: stopped
+
 - name: Copy sources.list for apt
   template:
     src: sources.list
@@ -14,6 +19,29 @@
   apt:
     update_cache: yes
   when: result is changed
+
+- name: Update all packages
+  apt:
+    upgrade: yes
+
+- name: List installed kernels
+  shell: ls -1 /lib/modules | sort -rV
+  register: installed_kernels
+
+- name: Reboot unless running latest kernel
+  reboot:
+  when: installed_kernels.stdout_lines | length > 1 and installed_kernels.stdout_lines[0] != ansible_facts['kernel']
+
+- name: List unused kernels
+  shell: ls -1 /lib/modules | grep -v "^$(uname -r)$" | sed 's,^,linux-image-,'
+  register: unused_kernels
+
+- name: Remove unused kernels
+  apt:
+    name: "{{unused_kernels.stdout_lines}}"
+    state: absent
+    purge: true
+  when: unused_kernels.stdout_lines | length > 0
 
 - name: Add extra PATH directories
   copy:

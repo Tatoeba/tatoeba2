@@ -25,11 +25,7 @@
 
 - name: Install Manticore package
   apt:
-    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/3.3.0/manticore_3.3.0-200204-01fc8ad1-release.buster_amd64-bin.deb
-
-- name: Install Manticore language packs
-  apt:
-    deb: https://repo.manticoresearch.com/repository/manticoresearch_bullseye/dists/bullseye/main/binary-amd64/manticore-language-packs_1.0.13-250708-1e9c2cd_all.deb
+    deb: https://repo.manticoresearch.com/repository/manticoresearch_bookworm/dists/bookworm/main/binary-amd64/manticore_25.0.0-26032712-ce3c27828_amd64.deb
 
 - name: Work around bug that prevents enabling Manticore
   file:

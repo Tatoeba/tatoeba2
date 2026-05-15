@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   if ENV['BUILD'] == '1'
-    config.vm.box = "debian/bullseye64"
+    config.vm.box = "debian/bookworm64"
     config.vm.provision "install", :type => "ansible" do |ansible|
       # ansible.verbose = "vvvv"
       ansible.playbook = "ansible/vagrant.yml"
@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "strip", :type => "shell", :path => "reduce_box_size.sh"
   else
     config.vm.box = "tatoeba/tatovm"
-    config.vm.box_version = "0.2.1"
+    config.vm.box_version = "0.3.0"
     config.vm.provision "install",
                         :type => "shell",
                         :privileged => false,
@@ -44,6 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                         :args => ["/home/vagrant/Tatoeba"]
 
     config.vm.provision "shell", inline: <<-SHELL
+      systemctl start manticore
       apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
     SHELL
 

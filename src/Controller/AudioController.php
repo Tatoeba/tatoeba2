@@ -56,13 +56,14 @@ class AudioController extends AppController
             return $this->redirect([]);
         }
 
+        $filesImported = $errors = [];
         $filesToImport = $this->Audios->getFilesToImport();
         if ($lastImportJob) {
             $result = unserialize($lastImportJob->failure_message);
-            $filesImported = $result['filesImported'];
-            $errors = $result['errors'];
-        } else {
-            $filesImported = $errors = [];
+            if ($result) {
+                $filesImported = $result['filesImported'];
+                $errors = $result['errors'];
+            }
         }
         $this->set(compact('lastImportJob', 'filesToImport', 'filesImported', 'errors'));
     }

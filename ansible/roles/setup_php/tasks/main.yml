@@ -1,14 +1,35 @@
 ---
 
+- name: Add Surý's GPG key
+  get_url:
+    url: https://packages.sury.org/php/apt.gpg
+    dest: /etc/apt/keyrings/deb.sury.org-php.gpg
+    mode: 0644
+
+- name: Add Surý's PHP repository
+  template:
+    src: php.list
+    dest: /etc/apt/sources.list.d/php.list
+    owner: root
+    group: root
+    mode: 0644
+  vars:
+    signfile: /etc/apt/keyrings/deb.sury.org-php.gpg
+
 - name: Install php
   apt:
-    name: ['php-fpm', 'php-cli',
-           'php-mysql', 'php-intl', 'php-curl', 'php-memcached', 'php-imagick',
-           'php-xml', 'php-mbstring', 'php-zip', 'php-sqlite3',
-           'memcached', 'composer']
+    name: ['php7.4-fpm', 'php7.4-cli',
+           'php7.4-mysql', 'php7.4-intl', 'php7.4-curl', 'php7.4-memcached', 'php7.4-imagick',
+           'php7.4-xml', 'php7.4-mbstring', 'php7.4-zip', 'php7.4-sqlite3',
+           'memcached']
     update_cache: yes
-    cache_valid_time: 36000
     state: latest
+
+- name: Install composer
+  get_url:
+    url: https://getcomposer.org/download/2.9.7/composer.phar
+    dest: /usr/local/bin/composer
+    mode: 0755
 
 - name: Remove default fpm pool
   file:

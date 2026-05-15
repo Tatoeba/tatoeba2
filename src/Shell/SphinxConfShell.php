@@ -797,11 +797,11 @@ searchd
     log                     = $log_opt
     query_log               = $query_log_opt
     binlog_path             = {$this->sphinxConfig['binlog_path']}
-    read_timeout            = 5
+    network_timeout         = 5
 
     pid_file                = {$this->sphinxConfig['pidfile']}
     seamless_rotate         = 1
-    preopen_indexes         = 1
+    preopen_tables          = 1
     unlink_old              = 1
 }
 
