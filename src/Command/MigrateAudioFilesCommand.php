@@ -15,8 +15,7 @@ class MigrateAudioFilesCommand extends Command
 
     private function migrateFiles($mode)
     {
-        $this->loadModel('Audios');
-        $audios = $this->Audios->find()
+        $audios = $this->fetchTable('Audios')->find()
             ->contain(['Sentences' => ['fields' => ['lang']]])
             ->disableBufferedResults()
             ->all();

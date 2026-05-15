@@ -10,13 +10,6 @@ use \Exception;
 
 class FillContributionsStatsCommand extends Command
 {
-    public function initialize(): void
-    {
-        parent::initialize();
-        $this->loadModel('Contributions');
-        $this->loadModel('ContributionsStats');
-    }
-
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {
         $parser
             ->setDescription('Rewrite records of the contributions_stats table ' .
@@ -61,7 +54,7 @@ class FillContributionsStatsCommand extends Command
         }
 
         // Fetch
-        $contributions = $this->Contributions->find()
+        $contributions = $this->fetchTable('Contributions')->find()
                               ->where(["type !=" => "license", "action !=" => "update",
                                        "datetime >=" => $firstDay, "datetime <=" => $lastDay])
                               ->order(["datetime" => "ASC"]);

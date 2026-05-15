@@ -3,14 +3,14 @@ namespace App\Event;
 
 use App\Model\Entity\UsersLanguage;
 use ArrayObject;
-use Cake\Datasource\ModelAwareTrait;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\Event\Event;
 use Cake\Event\EventListenerInterface;
 use Cake\Datasource\EntityInterface;
 
 class SentencesReindexListener implements EventListenerInterface {
 
-    use ModelAwareTrait;
+    use LocatorAwareTrait;
 
     public function implementedEvents(): array {
         return [
@@ -20,15 +20,15 @@ class SentencesReindexListener implements EventListenerInterface {
     }
 
     private function enqueueSentencesReindexTask(UsersLanguage $entity) {
-        $this->loadModel('Queue.QueuedJobs');
-        $this->QueuedJobs->createJob(
+        $QueuedJobs = $this->fetchTable('Queue.QueuedJobs');
+        $QueuedJobs->createJob(
             'SentencesReindex',
             [
                 'user_id' => $entity->of_user_id,
                 'lang' => $entity->language_code,
             ]
         );
-        $this->QueuedJobs->wakeUpWorkers();
+        $QueuedJobs->wakeUpWorkers();
     }
 
     public function onSave(Event $event, EntityInterface $entity, ArrayObject $options) {

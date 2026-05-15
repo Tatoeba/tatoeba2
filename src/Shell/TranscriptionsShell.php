@@ -31,7 +31,7 @@ class TranscriptionsShell extends Shell {
     public function initialize(): void
     {
         parent::initialize();
-        $this->loadModel('Transcriptions');
+        $this->Transcriptions = $this->fetchTable('Transcriptions');
     }
 
     private function detectTranscriptionsFor($entities) {
@@ -109,7 +109,7 @@ class TranscriptionsShell extends Shell {
         $this->out("Script set for $proceeded sentences in lang(s) $langs.");
     }
 
-    protected function _setScript($entities, $model) {
+    protected function _setScript($entities, $modelName) {
         $proceeded = 0;
         $entities = $this->detectTranscriptionsFor($entities);
         if ($entities) {
@@ -118,7 +118,7 @@ class TranscriptionsShell extends Shell {
                 'atomic' => false,
                 'callbacks' => false,
             );
-            if ($this->{$model}->saveMany($entities, $options))
+            if ($this->fetchTable($modelName)->saveMany($entities, $options))
                 $proceeded += count($entities);
         }
         $this->out('.', 0);

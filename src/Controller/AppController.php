@@ -161,8 +161,9 @@ class AppController extends Controller
         // Important: needs to be done after RememberMe->check().
         $logged_in_user = $this->Auth->user();
         if ($logged_in_user) {
-            $this->loadModel('Users');
-            $user = $this->Users->getInformationOfCurrentUser($logged_in_user['id'])->toArray();
+            $user = $this->fetchTable('Users')
+                ->getInformationOfCurrentUser($logged_in_user['id'])
+                ->toArray();
 
             // Immediately logout if status was downgraded to one that cannot login
             if (in_array($user['role'], [User::ROLE_INACTIVE, User::ROLE_SPAMMER])) {
@@ -228,8 +229,7 @@ class AppController extends Controller
         $mostRecentList = $this->request->getCookie('most_recent_list');
         $this->set('most_recent_list', $mostRecentList);
 
-        $this->loadModel('WikiArticles');
-        $wikiLinkLocalizer = $this->WikiArticles->wikiLinkLocalizer();
+        $wikiLinkLocalizer = $this->fetchTable('WikiArticles')->wikiLinkLocalizer();
         $this->set(compact('wikiLinkLocalizer'));
     }
 

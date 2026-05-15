@@ -58,14 +58,13 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
     }
 
     private function sendReport($recipientId) {
-        $this->loadModel('PrivateMessages');
         $now = date("Y/m/d H:i:s", time());
         $data = [
             'title' => __('Result of license switch to CC0 1.0'),
             'content' => $this->getReport(),
             'messageId' => '',
         ];
-        $this->PrivateMessages->notify($recipientId, $now, $data);
+        $this->fetchTable('PrivateMessages')->notify($recipientId, $now, $data);
     }
 
     private function _switchLicense($entities, $options) {
@@ -104,7 +103,6 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
     }
 
     private function switchLicense($options) {
-        $this->loadModel('Sentences');
         $query = $this->Sentences->find()
              ->select(['id' => 'Sentences.id'])
              ->matching('SentencesLists', function ($q) use ($options) {
@@ -139,6 +137,8 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
  * @return void
  */
     public function run(array $options, int $jobId): void {
+        $this->Sentences = $this->fetchTable('Sentences');
+
         if (isset($options['locale'])) {
             $prevLocale = I18n::getLocale();
             I18n::setLocale($options['locale']);

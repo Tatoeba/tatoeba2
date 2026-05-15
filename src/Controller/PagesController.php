@@ -87,12 +87,10 @@ class PagesController extends AppController
         }
 
         // Stats
-        $this->loadModel('Languages');
-        $numSentences = $this->Languages->getTotalSentencesNumber();
+        $numSentences = $this->fetchTable('Languages')->getTotalSentencesNumber();
         $this->set('numSentences', $numSentences);
 
-        $this->loadModel('Contributions');
-        $contribToday = $this->Contributions->getTodayContributions();
+        $contribToday = $this->fetchTable('Contributions')->getTodayContributions();
         $this->set('contribToday', $contribToday);
 
         $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
@@ -112,8 +110,7 @@ class PagesController extends AppController
 
     private function _homepageForMembers() {
         // latest comments
-        $this->loadModel('SentenceComments');
-        $latestComments = $this->SentenceComments->getLatestComments(5);
+        $latestComments = $this->fetchTable('SentenceComments')->getLatestComments(5);
         $commentsPermissions = $this->Permissions->getCommentsOptions(
             $latestComments
         );
@@ -123,8 +120,7 @@ class PagesController extends AppController
 
 
         // latest messages
-        $this->loadModel('Wall');
-        $latestMessages = $this->Wall->getLastMessages(5);
+        $latestMessages = $this->fetchTable('Wall')->getLastMessages(5);
 
         $this->set('latestMessages', $latestMessages);
     }
@@ -197,13 +193,13 @@ class PagesController extends AppController
      * @return void
      */
     private function _random_sentence() {
-        $this->loadModel('Sentences');
+        $Sentences = $this->fetchTable('Sentences');
         $lang = $this->request->getSession()->read('random_lang_selected');
-        $randomId = $this->Sentences->getRandomId($lang);
+        $randomId = $Sentences->getRandomId($lang);
         if (is_null($randomId)) {
             $this->set('searchProblem', true);
         } else {
-            $randomSentence = $this->Sentences->getSentenceWith(
+            $randomSentence = $Sentences->getSentenceWith(
                 $randomId,
                 ['translations' => true]
             );
@@ -316,9 +312,8 @@ class PagesController extends AppController
     public function faq()
     {
         $proto = $this->getRequest()->getUri()->getScheme();
-        $this->loadModel('WikiArticles');
         $this->redirect(
-            $proto.':'.$this->WikiArticles->getWikiLink('faq'),
+            $proto.':'.$this->fetchTable('WikiArticles')->getWikiLink('faq'),
             301
         );
     }

@@ -607,7 +607,7 @@ EOT;
     private function conf_language_indexes($languages) {
         $conf = '';
         $sourcePath = $this->sphinxConfig['indexdir'];
-        $transcriptableLangs = $this->loadModel('Transcriptions')->transcriptableLanguages();
+        $transcriptableLangs = $this->fetchTable('Transcriptions')->transcriptableLanguages();
         foreach ($languages as $lang => $name) {
             foreach (array('main', 'delta') as $type) {
                 $parent = array(
@@ -813,7 +813,7 @@ EOT;
         $languages = LanguagesLib::languagesInTatoeba();
         if (is_null($only)) {
             if (!$this->params['all']) {
-                $Sentences = $this->loadModel('Sentences');
+                $Sentences = $this->fetchTable('Sentences');
                 $only = array_filter($Sentences->languagesHavingSentences());
             }
         }

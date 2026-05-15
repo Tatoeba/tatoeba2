@@ -45,8 +45,7 @@ class ReportContentController extends AppController
     public function wall_post($msgId)
     {
         try {
-            $this->loadModel('Wall');
-            $wallPost = $this->Wall->getMessage($msgId);
+            $wallPost = $this->fetchTable('Wall')->getMessage($msgId);
         } catch (RecordNotFoundException $e) {
             throw new NotFoundException();
         }
@@ -57,8 +56,7 @@ class ReportContentController extends AppController
     public function sentence_comment($id)
     {
         try {
-            $this->loadModel('SentenceComments');
-            $comment = $this->SentenceComments
+            $comment = $this->fetchTable('SentenceComments')
                 ->findById($id)
                 ->contain(['Users' => function ($q) {
                     return $q->select(['id', 'username', 'image']);

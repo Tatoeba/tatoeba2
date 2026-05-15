@@ -33,7 +33,7 @@ use Cake\Utility\Inflector;
 
 class SentencesSearchForm extends Form
 {
-    use \Cake\Datasource\ModelAwareTrait;
+    use \Cake\ORM\Locator\LocatorAwareTrait;
 
     private $search;
 
@@ -494,8 +494,7 @@ class SentencesSearchForm extends Form
         }
 
         if ($this->_data['native'] === 'yes' && $this->ownerId) {
-            $this->loadModel('UsersLanguages');
-            $natives = $this->UsersLanguages->find()
+            $natives = $this->fetchTable('UsersLanguages')->find()
                 ->where([
                     'language_code' => $this->_data['from'],
                     'level' => 5,
@@ -523,8 +522,8 @@ class SentencesSearchForm extends Form
 
     public function getSearchableLists($byUserId) {
         $listId = $this->_data['list'] ?? null;
-        $this->loadModel('SentencesLists');
-        $searchableLists = $this->SentencesLists->find();
+        $SentencesLists = $this->fetchTable('SentencesLists');
+        $searchableLists = $SentencesLists->find();
         $searchableLists
             ->select([
                 'additional' => $searchableLists->newExpr()->eq('id', $listId),
@@ -540,7 +539,7 @@ class SentencesSearchForm extends Form
             ]);
 
         if (strlen($listId)) {
-            $additional = $this->SentencesLists->find()
+            $additional = $SentencesLists->find()
                 ->where([
                     'id' => $listId,
                     'OR' => array_filter([
@@ -553,7 +552,7 @@ class SentencesSearchForm extends Form
             $searchableLists->union($additional);
         }
 
-        $searchableLists = $this->SentencesLists->find()
+        $searchableLists = $SentencesLists->find()
             ->select([
                 'id' => 'SentencesLists__id',
                 'name' => 'SentencesLists__name',

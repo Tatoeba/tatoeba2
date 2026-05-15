@@ -42,9 +42,8 @@ class CategoriesTreeController extends AppController
     }
 
     public function manage(){
-        $this->loadModel('Tags');
         $tags = [];
-        $tagList = $this->Tags->find('all')
+        $tagList = $this->fetchTable('Tags')->find()
             ->select(['id', 'name', 'nbrOfSentences', 'category_id'])
             ->order(['name']);
         foreach ($tagList as $tag) {
@@ -96,8 +95,7 @@ class CategoriesTreeController extends AppController
         $tagName = $this->request->getData('tagName');
         $categoryName = $this->request->getData('categoryName');
 
-        $this->loadModel('Tags');
-        $res = $this->Tags->attachToCategory($tagName, $categoryName);
+        $res = $this->fetchTable('Tags')->attachToCategory($tagName, $categoryName);
 
         return $this->redirect([
             'controller' => 'categories_tree',
@@ -107,8 +105,7 @@ class CategoriesTreeController extends AppController
     }
 
     public function detachTagFromCategory($tagId) {
-        $this->loadModel('Tags');
-        $res = $this->Tags->detachFromCategory($tagId);
+        $res = $this->fetchTable('Tags')->detachFromCategory($tagId);
 
         return $this->redirect([
             'controller' => 'categories_tree',

@@ -65,9 +65,9 @@ class ContributionsController extends AppController
      */
     public function latest($filter = 'und')
     {
-        $this->loadModel('LastContributions');
-        $currentContributors = $this->LastContributions->getCurrentContributors();
-        $total = $this->LastContributions->getTotal($currentContributors);
+        $LastContributions = $this->fetchTable('LastContributions');
+        $currentContributors = $LastContributions->getCurrentContributors();
+        $total = $LastContributions->getTotal($currentContributors);
 
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
@@ -109,8 +109,7 @@ class ContributionsController extends AppController
 
         } else {
 
-            $this->loadModel('ContributionsStats');
-            $stats = $this->ContributionsStats->getActivityTimelineStatistics(
+            $stats = $this->fetchTable('ContributionsStats')->getActivityTimelineStatistics(
                 $year, $month
             );
             $this->set('year', $year);
@@ -130,8 +129,7 @@ class ContributionsController extends AppController
      */
     public function of_user($username)
     {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
         $this->set('username', $username);
 
         if (empty($userId)) {

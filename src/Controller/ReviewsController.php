@@ -41,10 +41,10 @@ use App\Model\CurrentUser;
  */
 class ReviewsController extends AppController
 {
+    protected $defaultTable = 'UsersSentences';
+
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->loadModel('UsersSentences');
-
         $this->loadComponent('RequestHandler');
 
         return parent::beforeFilter($event);
@@ -112,8 +112,7 @@ class ReviewsController extends AppController
             return $this->redirect([$username, 'all', $lang], 301);
         }
 
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
 
         if(empty($userId)) {
             $this->set('userExists', false);

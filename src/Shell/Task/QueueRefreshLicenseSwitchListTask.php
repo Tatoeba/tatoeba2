@@ -45,8 +45,7 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
     private function refreshList($options) {
         extract($options); // $listId and $userId
 
-        $this->loadModel('Sentences');
-        $query = $this->Sentences->find()
+        $query = $this->fetchTable('Sentences')->find()
             ->select(['id' => 'Sentences.id'])->where([
                 'license' => 'CC BY 2.0 FR',
                 'Sentences.user_id' => $userId,
@@ -60,7 +59,6 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
                 ]);
             });
 
-        $this->loadModel('SentencesLists');
         $this->SentencesLists->emptyList($listId, $userId);
 
         $proceeded = $this->batchOperationNewORM(
@@ -81,6 +79,7 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
  * @return void
  */
     public function run(array $options, int $jobId): void {
+        $this->SentencesLists = $this->fetchTable('SentencesLists');
         $this->refreshList($options);
     }
 }

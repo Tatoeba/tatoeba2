@@ -64,8 +64,7 @@ class VocabularyController extends AppController
      */
     public function of($username, $lang = null)
     {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
 
         if (!$userId) {
             $this->Flash->set(format(
@@ -77,11 +76,8 @@ class VocabularyController extends AppController
                   'action' => 'all')
             );
         }
-        $this->loadModel('UsersVocabulary');
-        $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
-            $userId,
-            $lang
-        );
+        $this->paginate = $this->fetchTable('UsersVocabulary')
+            ->getPaginatedVocabularyOf($userId, $lang);
         $results = $this->paginate('UsersVocabulary');
 
         $vocabulary = $this->Vocabulary->syncNumSentences($results);
@@ -104,8 +100,7 @@ class VocabularyController extends AppController
     {
         $this->autoRender = false;
 
-        $this->loadModel('UsersVocabulary');
-        $usersVocab = $this->UsersVocabulary
+        $usersVocab = $this->fetchTable('UsersVocabulary')
             ->find()
             ->where(['vocabulary_id' => (int)$id])
             ->contain('Vocabulary')
@@ -189,14 +184,14 @@ class VocabularyController extends AppController
      */
     public function remove($vocabularyId)
     {
-        $this->loadModel('UsersVocabulary');
-        $data = $this->UsersVocabulary->findFirst(
+        $UsersVocabulary = $this->fetchTable('UsersVocabulary');
+        $data = $UsersVocabulary->findFirst(
             $vocabularyId,
             CurrentUser::get('id')
         );
 
         if ($data) {
-            $this->UsersVocabulary->delete($data);
+            $UsersVocabulary->delete($data);
         }
 
         $this->set('vocabularyId', array('id' => $vocabularyId, 'data' => $data));

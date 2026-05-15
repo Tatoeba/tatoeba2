@@ -32,8 +32,7 @@ class MainController extends Controller
 
     public function legacy_audio_url($lang = null, $sentence_id = null)
     {
-        $this->loadModel('Audios');
-        $audios = $this->Audios
+        $audios = $this->fetchTable('Audios')
             ->find('withLicense')
             ->select(['id', 'sentence_id'])
             ->where(compact('sentence_id'))

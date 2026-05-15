@@ -305,17 +305,17 @@ class UsersController extends AppController
                 && $this->request->getData('acceptation_terms_of_use')
                 && $this->Users->save($newUser)
                ) {
-                $this->loadModel('UsersLanguages');
+                $UsersLanguages = $this->fetchTable('UsersLanguages');
                 // Save native language
                 $language = $this->request->getData('language');
                 if (!empty($language)) {
-                    $userLanguage = $this->UsersLanguages->newEntity([
+                    $userLanguage = $UsersLanguages->newEntity([
                         'of_user_id' => $newUser->id,
                         'by_user_id' => $newUser->id,
                         'level' => 5,
                         'language_code' => $language
                     ]);
-                    $this->UsersLanguages->save($userLanguage);
+                    $UsersLanguages->save($userLanguage);
                 }
 
                 $user = $this->Auth->identify();
@@ -328,7 +328,6 @@ class UsersController extends AppController
                         $this->Auth->user('username')
                     )
                 );
-                $this->loadModel('WikiArticles');
                 $this->Flash->set(
                     '<p><strong>'
                     .__("Welcome to Tatoeba!")
@@ -340,7 +339,7 @@ class UsersController extends AppController
                             "you will find the link at the bottom of any page on the website.",
                             true
                         ),
-                        array('url' => $this->WikiArticles->getWikiLink('quick-start'))
+                        ['url' => $this->fetchTable('WikiArticles')->getWikiLink('quick-start')]
                     )
                     .'</p><p>'
                     .__("We hope you'll enjoy your time here with us!")
@@ -474,9 +473,9 @@ class UsersController extends AppController
      */
     public function all()
     {
-        $this->loadModel('LastContributions');
-        $currentContributors = $this->LastContributions->getCurrentContributors();
-        $total = $this->LastContributions->getTotal($currentContributors);
+        $LastContributions = $this->fetchTable('LastContributions');
+        $currentContributors = $LastContributions->getCurrentContributors();
+        $total = $LastContributions->getTotal($currentContributors);
 
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
@@ -541,14 +540,14 @@ class UsersController extends AppController
 
     public function for_language($lang = null)
     {
-        $this->loadModel('UsersLanguages');
-        $usersLanguages = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
+        $UsersLanguages = $this->fetchTable('UsersLanguages');
+        $usersLanguages = $UsersLanguages->getNumberOfUsersForEachLanguage();
 
         if (empty($lang)) {
             $lang = $usersLanguages[0]->language_code;
         }
 
-        $this->paginate = $this->UsersLanguages->getUsersForLanguage($lang);
+        $this->paginate = $UsersLanguages->getUsersForLanguage($lang);
         $users = $this->paginate('UsersLanguages');
 
         $this->set('users', $users);

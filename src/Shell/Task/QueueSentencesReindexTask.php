@@ -20,13 +20,13 @@
 namespace App\Shell\Task;
 
 use App\Shell\BatchOperationTrait;
-use Cake\Datasource\ModelAwareTrait;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use Queue\Shell\Task\QueueTask;
 
 class QueueSentencesReindexTask extends QueueTask {
 
     use BatchOperationTrait;
-    use ModelAwareTrait;
+    use LocatorAwareTrait;
 
     public $retries = 0;
 
@@ -42,16 +42,16 @@ class QueueSentencesReindexTask extends QueueTask {
     }
 
     private function reindexNativeSpeakerSentences(int $user_id, string $lang) {
-        $this->loadModel('Sentences');
-        $query = $this->Sentences
+        $Sentences = $this->fetchTable('Sentences');
+        $query = $Sentences
             ->find()
             ->select(['id' => 'Sentences.id'])
             ->where(compact('user_id', 'lang'));
 
-        $this->batchOperationNewORM($query, function ($entities) {
+        $this->batchOperationNewORM($query, function ($entities) use ($Sentences) {
             $sentenceIds = $entities->extract('id')->toList();
             if (!empty($sentenceIds)) {
-                $this->Sentences->flagSentenceAndTranslationsToReindex($sentenceIds);
+                $Sentences->flagSentenceAndTranslationsToReindex($sentenceIds);
             }
         });
     }

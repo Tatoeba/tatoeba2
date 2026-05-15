@@ -72,8 +72,8 @@ class TagsController extends AppController
                 $this->set('username', $username);
                 $this->set('sentenceId', $sentenceId);
                 $this->set('date', $tag->link->added_time);
-                $this->loadModel('Sentences');
-                $sentence = $this->Sentences->get($sentenceId, ['fields' => ['lang']]);
+                $sentence = $this->fetchTable('Sentences')
+                    ->get($sentenceId, ['fields' => ['lang']]);
                 $this->set('sentenceLang', $sentence->lang);
             }
         }
@@ -179,23 +179,23 @@ class TagsController extends AppController
         $this->set('tagId', $tagId);
 
         if ($tagExists) {
-            $this->loadModel('Sentences');
-            $this->loadModel('TagsSentences');
+            $TagsSentences = $this->fetchTable('TagsSentences');
             $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
             $options = [
                 'conditions' => ['tag_id' => $tagId],
                 'maxResults' => $totalLimit,
                 'contain' => [
                     'Sentences' => function (Query $q) {
+                        $Sentences = $q->getRepository();
                         return $q
                           ->find('filteredTranslations')
                           ->find('hideFields')
-                          ->contain($this->Sentences->contain(['translations' => true]))
-                          ->select($this->Sentences->fields());
+                          ->contain($Sentences->contain(['translations' => true]))
+                          ->select($Sentences->fields());
                     },
                 ],
             ];
-            $total = $this->TagsSentences->find()->where(['tag_id' => $tagId]);
+            $total = $TagsSentences->find()->where(['tag_id' => $tagId]);
             if (!empty($lang) && $lang != 'und') {
                 $options['conditions']['Sentences.lang'] = $lang;
                 $total->matching('Sentences', function (Query $q) use ($lang) {
@@ -212,7 +212,7 @@ class TagsController extends AppController
             ];
             $finder = ['latest' => $options];
             try {
-                $sentences = $this->paginate($this->TagsSentences, compact('finder'));
+                $sentences = $this->paginate($TagsSentences, compact('finder'));
             } catch (\Cake\Http\Exception\NotFoundException $e) {
                 return $this->redirectPaginationToLastPage();
             }

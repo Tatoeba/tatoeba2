@@ -293,8 +293,7 @@ class SentenceCommentsController extends AppController
     public function of_user($userName)
     {
         $this->set('userName', $userName);
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($userName);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($userName);
         $this->set('userExists', !empty($userId));
         // if there's no such user no need to do more computation
         if (empty($userId)) {
@@ -325,8 +324,7 @@ class SentenceCommentsController extends AppController
     public function on_sentences_of_user($userName)
     {
         $this->set('userName', $userName);
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($userName);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($userName);
         $this->set('userExists', !empty($userId));
 
         if (empty($userId)) {

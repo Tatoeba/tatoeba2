@@ -43,7 +43,6 @@ class AudiosController extends ApiController
      * )
      */
     public function file($id) {
-        $this->loadModel('Audios');
         try {
             $audio = $this->Audios->find()
                 ->select(['id', 'sentence_id'])
@@ -113,7 +112,6 @@ class AudiosController extends ApiController
      * )
      */
     public function search() {
-        $this->loadModel('Audios');
         $query = $this->Audios->addBehavior('ExposedOnApi')->find();
 
         /* Read parameters */
@@ -136,9 +134,11 @@ class AudiosController extends ApiController
 
         $author = $this->getRequest()->getQuery('author');
         if (!is_null($author)) {
-            $this->loadModel('Users');
             try {
-                $userId = $this->Users->findByUsername($author)->firstOrFail()->id;
+                $userId = $this->fetchTable('Users')
+                    ->findByUsername($author)
+                    ->firstOrFail()
+                    ->id;
                 $query->where(['Audios.user_id' => $userId]);
             } catch (RecordNotFoundException $e) {
                 throw new BadRequestException("Invalid value for parameter 'author': No such user");

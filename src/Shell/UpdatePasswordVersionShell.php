@@ -36,14 +36,14 @@ class UpdatePasswordVersionShell extends Shell {
         return $result;
     }
 
-    protected function _updateHash($rows, $model) {
+    protected function _updateHash($rows, $modelName) {
         $proceeded = 0;
-        $data = $this->updateHashesFor($rows, $model);
+        $data = $this->updateHashesFor($rows, $modelName);
         $options = array(
             'validate' => false,
             'callbacks' => false,
         );
-        if ($data && $this->{$model}->saveAll($data, $options))
+        if ($data && $this->fetchTable($modelName)->saveAll($data, $options))
             $proceeded += count($data);
         $this->out('.', 0);
         return $proceeded;

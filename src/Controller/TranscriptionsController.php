@@ -63,8 +63,7 @@ class TranscriptionsController extends AppController
             $transcrOwnerId = $transcr->user_id;
             $sentence = $transcr->sentence;
         } else {
-            $this->loadModel('Sentences');
-            $sentence = $this->Sentences->get($sentenceId);
+            $sentence = $this->fetchTable('Sentences')->get($sentenceId);
         }
         $sentenceOwnerId = $sentence ? $sentence->user_id : null;
         $canEdit = CurrentUser::canEditTranscription(
@@ -109,8 +108,7 @@ class TranscriptionsController extends AppController
             $transcrOwnerId = $transcr->user_id;
             $sentence = $transcr->sentence;
         } else {
-            $this->loadModel('Sentences');
-            $sentence = $this->Sentences->get($sentenceId);
+            $sentence = $this->fetchTable('Sentences')->get($sentenceId);
         }
         $sentenceOwnerId = $sentence ? $sentence->user_id : null;
         $canEdit = CurrentUser::canEditTranscription(
@@ -163,8 +161,7 @@ class TranscriptionsController extends AppController
     }
 
     public function of($username) {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
         if ($userId) {
             $query = $this->Transcriptions
                 ->find()
@@ -189,8 +186,7 @@ class TranscriptionsController extends AppController
     private function setViewVars($transcriptions, $sentenceId, $sentence = null) {
         if ($transcriptions) {
             if (!$sentence) {
-                $this->loadModel('Sentences');
-                $sentence = $this->Sentences->get(
+                $sentence = $this->fetchTable('Sentences')->get(
                     $sentenceId,
                     ['fields' => ['lang', 'user_id']]
                 );

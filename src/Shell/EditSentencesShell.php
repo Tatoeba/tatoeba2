@@ -27,8 +27,7 @@ class EditSentencesShell extends Shell {
     private $stderr = null;
 
     private function be($username) {
-        $this->loadModel('Users');
-        $editor = $this->Users->findByUsername($username)->first()->toArray();
+        $editor = $this->fetchTable('Users')->findByUsername($username)->first()->toArray();
         if ($editor === false) {
             die("'$username' is not a valid username.\n");
         }
@@ -45,7 +44,7 @@ class EditSentencesShell extends Shell {
         }
 
         $this->be($this->args[0]);
-        $this->loadModel('Sentences');
+        $Sentences = $this->fetchTable('Sentences');
         while (($data = fgetcsv($stdin, 0, "\t")) !== FALSE) {
             if (count($data) != 2) {
                 echo "Invalid line skipped.\n";
@@ -53,7 +52,7 @@ class EditSentencesShell extends Shell {
             }
 
             list($id, $text) = $data;
-            $sentence = $this->Sentences->findById($id)->first();
+            $sentence = $Sentences->findById($id)->first();
             if ($sentence === false) {
                 echo "Sentence $id does not exists, skipping!\n";
                 $nb_ignored++;
@@ -66,7 +65,7 @@ class EditSentencesShell extends Shell {
                 continue;
             }
 
-            $this->Sentences->editSentence([
+            $Sentences->editSentence([
                 'id' => $id,
                 'text' => $text,
             ]);

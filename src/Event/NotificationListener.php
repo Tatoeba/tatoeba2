@@ -19,7 +19,7 @@
 namespace App\Event;
 
 use Cake\Datasource\FactoryLocator;
-use Cake\Datasource\ModelAwareTrait;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\Event\EventListenerInterface;
 use Cake\Mailer\MailerAwareTrait;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -29,7 +29,7 @@ use Cake\Utility\Hash;
 class NotificationListener implements EventListenerInterface {
 
     use MailerAwareTrait;
-    use ModelAwareTrait;
+    use LocatorAwareTrait;
 
     public function implementedEvents(): array {
         return [
@@ -42,12 +42,12 @@ class NotificationListener implements EventListenerInterface {
 
     public function __construct() {
         $this->Mailer = $this->getMailer('Messaging');
-        $this->Users = $this->loadModel('Users');
+        $this->Users = $this->fetchTable('Users');
     }
 
     private function _getMessageForMail($parentMessageId)
     {
-        return $this->loadModel('Wall')->find()
+        return $this->fetchTable('Wall')->find()
             ->where([
                 'Wall.id' => $parentMessageId
             ])

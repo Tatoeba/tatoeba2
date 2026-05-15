@@ -5,7 +5,13 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Datasource\Exception\InvalidPrimaryKeyException;
 
 class Licensing {
-    use \Cake\Datasource\ModelAwareTrait;
+    use \Cake\ORM\Locator\LocatorAwareTrait;
+
+    public function __construct() {
+        $this->Users          = $this->fetchTable('Users');
+        $this->SentencesLists = $this->fetchTable('SentencesLists');
+        $this->QueuedJobs     = $this->fetchTable('Queue.QueuedJobs');
+    }
 
     private function createLicenseSwitchList($user) {
         $list = $this->SentencesLists->createList(__('Sentences to switch to CC0'), $user->id);
@@ -17,10 +23,8 @@ class Licensing {
     }
 
     public function getLicenseSwitchListId($userId) {
-        $this->loadModel('Users');
         $user = $this->Users->get($userId);
 
-        $this->loadModel('SentencesLists');
         try {
             $listId = $user->settings['license_switch_list_id'];
             $list = $this->SentencesLists->get($listId);
@@ -34,7 +38,6 @@ class Licensing {
     }
 
     private function startListRefresh($listId, $userId) {
-        $this->loadModel('Queue.QueuedJobs');
         if (!$this->is_refreshing($userId)) {
             $this->QueuedJobs->createJob(
                 'RefreshLicenseSwitchList',
@@ -70,7 +73,6 @@ class Licensing {
     }
 
     public function is_refreshing($userId) {
-        $this->loadModel('Queue.QueuedJobs');
         $job = $this->QueuedJobs->find()
             ->where([
                 'job_type' => 'RefreshLicenseSwitchList',
@@ -83,7 +85,6 @@ class Licensing {
     }
 
     public function is_switching($userId) {
-        $this->loadModel('Queue.QueuedJobs');
         $job = $this->QueuedJobs->find()
             ->where([
                 'job_type' => 'SwitchSentencesLicense',

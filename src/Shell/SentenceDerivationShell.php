@@ -230,8 +230,8 @@ class SentenceDerivationShell extends Shell {
     }
 
     public function run() {
-        $this->loadModel('Contributions');
-        $this->loadModel('Sentences');
+        $this->Contributions = $this->fetchTable('Contributions');
+        $this->Sentences = $this->fetchTable('Sentences');
         $creationDups = $this->findDuplicateCreationRecords();
         $total = $this->setSentenceBasedOnId($creationDups);
         return $total;

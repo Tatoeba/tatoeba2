@@ -148,20 +148,18 @@ class SentencesListsController extends AppController
             return $this->redirect(array('action' => 'index'));
         }
 
-        $this->loadModel('Sentences');
-        $this->loadModel('SentencesSentencesLists');
-
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $options = [
             'conditions' => ['sentences_list_id' => $id],
             'maxResults' => $totalLimit,
             'contain' => [
                 'Sentences' => function (Query $q) use ($translationsLang) {
+                    $Sentences = $q->getRepository();
                     return $q
                       ->find('filteredTranslations', ['translationLang' => $translationsLang])
                       ->find('hideFields')
-                      ->contain($this->Sentences->contain(['translations' => true]))
-                      ->select($this->Sentences->fields());
+                      ->contain($Sentences->contain(['translations' => true]))
+                      ->select($Sentences->fields());
                 },
             ],
         ];
@@ -169,6 +167,7 @@ class SentencesListsController extends AppController
             $options['conditions']['Sentences.lang'] = $lang == 'unknown' ? null : $lang;
         }
 
+        $SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
         $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'sort' => $this->request->getQuery('sort', 'id'),
@@ -177,12 +176,12 @@ class SentencesListsController extends AppController
         ];
         $finder = ['latest' => $options];
         try {
-            $sentencesInList = $this->paginate($this->SentencesSentencesLists, compact('finder'));
+            $sentencesInList = $this->paginate($SentencesSentencesLists, compact('finder'));
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }
 
-        $total = $this->SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
+        $total = $SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
 
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
@@ -354,8 +353,7 @@ class SentencesListsController extends AppController
         }
 
         $this->set('username', $username);
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
         if (empty($userId)) {
             $this->set('userExists', false);
             return;
@@ -395,17 +393,17 @@ class SentencesListsController extends AppController
 
         // This is meant to be temporary of course
         if (strstr($this->referer(), '/add_new_sentence_to_list')) {
-            $this->loadModel('Users');
-            $user = $this->Users->get($this->Auth->user('id'));
+            $Users = $this->fetchTable('Users');
+            $user = $Users->get($this->Auth->user('id'));
             if ($user) {
                 $user->level = -1;
-                $this->Users->save($user);
+                $Users->save($user);
             }
-            $this->loadModel('SentencesLists');
-            $list = $this->SentencesLists->get($listId);
+            $SentencesLists = $this->fetchTable('SentencesLists');
+            $list = $SentencesLists->get($listId);
             if ($list) {
                 $list->visibility = 'private';
-                $this->SentencesLists->save($list);
+                $SentencesLists->save($list);
             }
         }
 

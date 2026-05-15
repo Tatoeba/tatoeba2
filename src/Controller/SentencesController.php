@@ -75,9 +75,8 @@ class SentencesController extends AppController
 
     public function index()
     {
-        $this->loadModel('Languages');
         $milestones = [ 100000, 10000, 1000, 100, 10, 1, 0 ];
-        $stats = $this->Languages->getMilestonedStatistics($milestones);
+        $stats = $this->fetchTable('Languages')->getMilestonedStatistics($milestones);
         $nbrLanguages = count(LanguagesLib::languagesInTatoeba());
         $this->set(compact('stats', 'nbrLanguages'));
     }
@@ -130,8 +129,8 @@ class SentencesController extends AppController
             $this->set('nextSentence', $neighbors['next']);
             $this->set('prevSentence', $neighbors['prev']);
 
-            $this->loadModel('UsersSentences');
-            $correctnessArray = $this->UsersSentences->getCorrectnessForSentence($id);
+            $correctnessArray = $this->fetchTable('UsersSentences')
+                ->getCorrectnessForSentence($id);
             $this->set('correctnessArray', $correctnessArray);
 
             // If no sentence, we don't need to go further.
@@ -143,8 +142,8 @@ class SentencesController extends AppController
             }
 
             $tagsArray = $this->Sentences->getAllTagsOnSentence($id);
-            $this->loadModel('SentencesSentencesLists');
-            $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
+            $listsArray = $this->fetchTable('SentencesSentencesLists')
+                ->getListsForSentence($id);
 
             $this->set('sentence', $sentence);
             $this->set('tagsArray', $tagsArray);
@@ -505,8 +504,7 @@ class SentencesController extends AppController
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));
-        $this->loadModel('Vocabulary');
-        $vocabulary = $this->Vocabulary->findByText($strippedQuery);
+        $vocabulary = $this->fetchTable('Vocabulary')->findByText($strippedQuery);
 
         $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
         $ignored = $search->getIgnoredFields();
@@ -621,8 +619,7 @@ class SentencesController extends AppController
      */
     public function of_user($userName, $lang = null)
     {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUserName($userName);
+        $userId = $this->fetchTable('Users')->getIdFromUserName($userName);
 
         // if there's no such user no need to do more computation
         $this->set("userName", $userName);
@@ -631,7 +628,7 @@ class SentencesController extends AppController
             return;
         }
 
-        $user = $this->Users->getUserById($userId);
+        $user = $this->fetchTable('Users')->getUserById($userId);
         $this->set("unreliableButton", CurrentUser::canMarkSentencesOfUser($user));
 
         $this->set("userExists", true);
@@ -694,8 +691,7 @@ class SentencesController extends AppController
         $newLang = $this->request->getData('newLang');
         if (!is_null($id) && !is_null($newLang)) {
             $lang = $this->Sentences->changeLanguage($id, $newLang);
-            $this->loadModel('UsersSentences');
-            $this->UsersSentences->makeDirty($id);
+            $this->fetchTable('UsersSentences')->makeDirty($id);
             $this->set('lang', $lang);
         }
     }

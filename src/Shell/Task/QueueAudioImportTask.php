@@ -25,13 +25,12 @@ class QueueAudioImportTask extends QueueTask {
     public $retries = 0;
 
     public function run(array $config, int $jobId): void {
-        $this->loadModel('Audios');
         $errors = false;
-        $filesImported = $this->Audios->importFiles($errors, $config);
+        $filesImported = $this->fetchTable('Audios')->importFiles($errors, $config);
 
-        $this->loadModel('Queue.QueuedJobs');
-        $me = $this->QueuedJobs->get($jobId);
+        $QueuedJobs = $this->fetchTable('Queue.QueuedJobs');
+        $me = $QueuedJobs->get($jobId);
         $me->failure_message = serialize(compact('filesImported', 'errors'));
-        $this->QueuedJobs->save($me);
+        $QueuedJobs->save($me);
     }
 }

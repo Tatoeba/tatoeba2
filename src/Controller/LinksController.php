@@ -60,9 +60,10 @@ class LinksController extends AppController
 
     private function _renderTranslationsOf($sentenceId, $message)
     {
-        $this->loadModel('Sentences');
         $langFilter = $this->request->getData('langFilter') ?? 'und';
-        $translations = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $langFilter)->translations;
+        $translations = $this->fetchTable('Sentences')
+            ->getSentenceWith($sentenceId, ['translations' => true], $langFilter)
+            ->translations;
 
         $this->set('sentenceId', $sentenceId);
         $this->set('translations', $translations);
@@ -73,9 +74,10 @@ class LinksController extends AppController
 
     private function _returnSentenceAndTranslations($sentenceId) {
         $this->loadComponent('RequestHandler');
-        $this->loadModel('Sentences');
         $translationLang = $this->request->getQuery('translationLang');
-        $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
+        $sentence = $this->fetchTable('Sentences')
+            ->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
+
         $this->set('sentence', $sentence);
         $this->viewBuilder()->setOption('serialize', ['sentence']);
         $this->RequestHandler->renderAs($this, 'sentences_json');

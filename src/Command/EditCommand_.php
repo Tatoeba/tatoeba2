@@ -23,8 +23,8 @@ class EditCommand_ extends Command
 
     public function initialize(): void {
         parent::initialize();
-        $this->loadModel('Sentences');
-        $this->loadModel('Users');
+        $this->Sentences = $this->fetchTable('Sentences');
+        $this->Users = $this->fetchTable('Users');
     }
 
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {

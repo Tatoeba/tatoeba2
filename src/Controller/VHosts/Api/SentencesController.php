@@ -123,7 +123,6 @@ class SentencesController extends ApiController
         $api = new SearchApi();
         $api->readParamsForGetSentence($this->getRequest()->getQueryParams());
 
-        $this->loadModel('Sentences');
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi', $api->include)
             ->find('sentencesOnApi')
@@ -569,7 +568,6 @@ class SentencesController extends ApiController
         $params = array_merge($params, $changedParams);
         $this->setRequest($this->getRequest()->withQueryParams($params));
 
-        $this->loadModel('Sentences');
         $query = $this->Sentences
             ->addBehavior('ExposedOnApi', $api->include)
             ->find('sentencesOnApi');

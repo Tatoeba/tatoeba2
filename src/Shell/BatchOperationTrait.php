@@ -81,10 +81,10 @@ trait BatchOperationTrait {
         return $proceeded;
     }
 
-    protected function batchOperation($model, $operation, $options) {
-        $this->loadModel($model);
+    protected function batchOperation($modelName, $operation, $options) {
+        $model = $this->fetchTable($modelName);
         if (!isset($options['order'])) {
-            $options['order'] = $this->{$model}->getAlias().'.'.$this->{$model}->getPrimaryKey();
+            $options['order'] = $model->getAlias().'.'.$model->getPrimaryKey();
         }
         if (is_string($options['order'])) {
             $options['order'] = array($options['order']);
@@ -122,9 +122,9 @@ trait BatchOperationTrait {
 
         $data = array();
         do {
-            $data = $this->{$model}->find('all', $options)->all()->toList();
+            $data = $model->find('all', $options)->all()->toList();
             $args = func_get_args();
-            array_splice($args, 0, 3, array($data, $model));
+            array_splice($args, 0, 3, array($data, $modelName));
             $proceeded += call_user_func_array(array($this, $operation), $args);
             $lastRow = end($data);
             if ($lastRow) {
