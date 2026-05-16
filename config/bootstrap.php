@@ -31,14 +31,14 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'paths.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
-use App\Error\TatoebaErrorHandler;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Database\TypeFactory;
 use Cake\Database\Type\StringType;
 use Cake\Datasource\ConnectionManager;
-use Cake\Error\ConsoleErrorHandler;
+use Cake\Error\ErrorTrap;
+use Cake\Error\ExceptionTrap;
 use Cake\Error\Debugger;
 use Cake\Http\ServerRequest;
 use Cake\Log\Log;
@@ -150,17 +150,26 @@ ini_set('intl.default_locale', Configure::read('App.defaultLocale'));
 /*
  * Register application error and exception handlers.
  */
-$isCli = PHP_SAPI === 'cli';
-if ($isCli) {
-    (new ConsoleErrorHandler(Configure::read('Error')))->register();
-} else {
-    (new TatoebaErrorHandler(Configure::read('Error')))->register();
-}
+$errorTrap = new ErrorTrap(Configure::read('Error'));
+$errorTrap->getEventManager()->on(
+    'Error.beforeRender',
+    function (\Cake\Event\EventInterface $event, \Cake\Error\PhpError $error) {
+        $request = \Cake\Routing\Router::getRequest();
+
+        // Prevent messing up with json output;
+        // only log error to debug.log
+        if ($request && $request->accepts('application/json')) {
+            $event->stopPropagation();
+        }
+    }
+);
+$errorTrap->register();
+(new ExceptionTrap(Configure::read('Error')))->register();
 
 /*
  * Include the CLI bootstrap overrides.
  */
-if ($isCli) {
+if (PHP_SAPI === 'cli') {
     require CONFIG . 'bootstrap_cli.php';
 }
 
