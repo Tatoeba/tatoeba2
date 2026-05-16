@@ -125,7 +125,8 @@ class UsersController extends ApiController
         ];
 
         $this->set('response', $response);
-        $this->viewBuilder()->setOption('serialize', 'response');
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', 'response')
+            ->setClassName('Api');
     }
 }

@@ -480,9 +480,9 @@ class UserController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('saved', (bool)$savedUser);
-            $this->loadComponent('RequestHandler');
-            $this->viewBuilder()->setOption('serialize', ['saved']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['saved'])
+                ->setClassName('Json');
         }
     }
 

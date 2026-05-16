@@ -58,4 +58,21 @@ class CategoriesTreeControllerTest extends TestCase
         Configure::write('debug', true);
         $this->assertAccessUrlAs($url, $user, $response);
     }
+
+    public function ajaxAccessesProvider() {
+        return [
+            [ '/en/categories_tree/autocomplete/Lorem', null, false ],
+            [ '/en/categories_tree/autocomplete/Lorem', 'contributor', '/' ],
+            [ '/en/categories_tree/autocomplete/Lorem', 'advanced_contributor', true ],
+            [ '/en/categories_tree/autocomplete/Lorem', 'admin', true ],
+        ];
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAngularAjaxAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
 }

@@ -256,9 +256,9 @@ class TagsController extends AppController
     {
         $allTags = $this->Tags->Autocomplete($search);
 
-        $this->loadComponent('RequestHandler');
         $this->set('results', $allTags);
-        $this->viewBuilder()->setOption('serialize', ['results']);
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['results'])
+            ->setClassName('Json');
     }
 }

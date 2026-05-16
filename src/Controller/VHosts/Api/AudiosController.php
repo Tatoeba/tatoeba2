@@ -174,7 +174,8 @@ class AudiosController extends ApiController
             $this->set('cursor_end', $last['id']);
         }
         $this->set('results', $response);
-        $this->viewBuilder()->setOption('serialize', 'results');
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', 'results')
+            ->setClassName('Api');
     }
 }

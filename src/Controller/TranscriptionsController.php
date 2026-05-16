@@ -151,9 +151,9 @@ class TranscriptionsController extends AppController
         if ($saved) {
             $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
             $this->set('result', $transcription->first());
-            $this->loadComponent('RequestHandler');
-            $this->viewBuilder()->setOption('serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');    
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             $errors = json_encode($this->Transcriptions->validationErrors);
             return $this->response->withStatus(400)->withStringBody($errors);

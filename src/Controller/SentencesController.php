@@ -281,9 +281,9 @@ class SentencesController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $this->loadComponent('RequestHandler');
-            $this->viewBuilder()->setOption('serialize', ['sentence', 'duplicate']);
-            $this->RequestHandler->renderAs($this, 'sentences_json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['sentence', 'duplicate'])
+                ->setClassName('SentencesJson');
         }
     }
 
@@ -298,10 +298,10 @@ class SentencesController extends AppController
         $sentence = $this->Sentences->editSentence($this->request->getData());
         if ($acceptsJson) {
             $sentence = $this->Sentences->getSentenceWith($sentence->id);
-            $this->loadComponent('RequestHandler');
             $this->set('result', $sentence);
-            $this->viewBuilder()->setOption('serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             if (empty($sentence)) {
                 // TODO Better error handling.
@@ -354,10 +354,10 @@ class SentencesController extends AppController
 
         if ($acceptsJson) {
             $sentence = $this->Sentences->getSentenceWith($id);
-            $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);
-            $this->viewBuilder()->setOption('serialize', ['sentence']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['sentence'])
+                ->setClassName('Json');
         } else {
             $sentence = $this->Sentences->get($id, [
                 'contain' => ['Users' => ['fields' => ['username']]]
@@ -429,10 +429,10 @@ class SentencesController extends AppController
             $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
             $sentence->extraTranslationsCount = $numberOfTranslations + 1 - $sentence->max_visible_translations;
 
-            $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);
-            $this->viewBuilder()->setOption('serialize', ['translation', 'sentence']);
-            $this->RequestHandler->renderAs($this, 'sentences_json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['translation', 'sentence'])
+                ->setClassName('SentencesJson');
         }
     }
 
@@ -602,10 +602,10 @@ class SentencesController extends AppController
         $this->request->getSession()->write('random_lang_selected', $lang);
         $this->set('random', $randomSentence);
 
-        $this->loadComponent('RequestHandler');
         $this->set('sentence', $randomSentence);
-        $this->viewBuilder()->setOption('serialize', ['sentence']);
-        $this->RequestHandler->renderAs($this, 'sentences_json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['sentence'])
+            ->setClassName('SentencesJson');
     }
 
 

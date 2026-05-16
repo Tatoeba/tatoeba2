@@ -14,8 +14,6 @@ class ExportsController extends AppController
         ]);
         $this->Auth->allowedActions = ['add', 'get', 'download'];
 
-        $this->loadComponent('RequestHandler');
-
         return parent::beforeFilter($event);
     }
 
@@ -31,8 +29,9 @@ class ExportsController extends AppController
 
         if ($export) {
             $this->set(compact('export'));
-            $this->viewBuilder()->setOption('serialize', ['export']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['export'])
+                ->setClassName('Json');
         }
     }
 
@@ -42,8 +41,9 @@ class ExportsController extends AppController
 
         if ($export) {
             $this->set(compact('export'));
-            $this->viewBuilder()->setOption('serialize', ['export']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['export'])
+                ->setClassName('Json');
         }
     }
 

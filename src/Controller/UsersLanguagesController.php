@@ -62,8 +62,7 @@ class UsersLanguagesController extends AppController
     {
         $isAngular = $this->request->accepts('application/json');
         if ($isAngular) {
-            $this->loadComponent('RequestHandler');
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()->setClassName('Json');
         }
 
         try {
@@ -104,7 +103,6 @@ class UsersLanguagesController extends AppController
                 $languages = $this->UsersLanguages->getLanguagesByUser(CurrentUser::get('id'));
                 $this->set(compact('languages'));
                 $this->viewBuilder()->setOption('serialize', ['languages']);
-                $this->RequestHandler->renderAs($this, 'json');
             } else {
                 $this->redirect(
                     array(

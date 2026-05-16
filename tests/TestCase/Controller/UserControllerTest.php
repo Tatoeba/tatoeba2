@@ -358,4 +358,23 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertRedirect('https://example.net/referer');
     }
+
+    public function testSaveBannerSetting_asGuest() {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->addHeader('Accept', 'application/json');
+        $this->ajaxPost('/en/user/save_banner_setting', [
+            'hide_new_design_announcement' => '1'
+        ]);
+        $this->assertResponseCode(403);
+    }
+
+    public function testSaveBannerSetting_asMember() {
+        $this->logInAs('contributor');
+        $this->addHeader('Accept', 'application/json');
+        $this->ajaxPost('/en/user/save_banner_setting', [
+            'hide_new_design_announcement' => '1'
+        ]);
+        $this->assertResponseOk();
+    }
 }

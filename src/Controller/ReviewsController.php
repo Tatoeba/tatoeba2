@@ -43,13 +43,6 @@ class ReviewsController extends AppController
 {
     protected $defaultTable = 'UsersSentences';
 
-    public function beforeFilter(\Cake\Event\EventInterface $event)
-    {
-        $this->loadComponent('RequestHandler');
-
-        return parent::beforeFilter($event);
-    }
-
     /**
      * Add a sentence to the user's sentence reviews.
      *
@@ -67,8 +60,9 @@ class ReviewsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('result', $result);
-            $this->viewBuilder()->setOption('serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             $this->render('add_delete');
         }
@@ -90,8 +84,9 @@ class ReviewsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('result', $result);
-            $this->viewBuilder()->setOption('serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             $this->render('add_delete');
         }

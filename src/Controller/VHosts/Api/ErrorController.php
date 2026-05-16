@@ -13,16 +13,6 @@ use Cake\Event\Event;
 class ErrorController extends Controller
 {
     /**
-     * Initialization hook method.
-     *
-     * @return void
-     */
-    public function initialize(): void
-    {
-        $this->loadComponent('RequestHandler');
-    }
-
-    /**
      * beforeRender callback.
      *
      * @param \Cake\Event\Event $event Event.
@@ -30,6 +20,6 @@ class ErrorController extends Controller
      */
     public function beforeRender(\Cake\Event\EventInterface $event)
     {
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()->setClassName('Json');
     }
 }

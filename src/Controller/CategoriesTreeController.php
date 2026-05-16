@@ -117,9 +117,9 @@ class CategoriesTreeController extends AppController
     public function autocomplete($search) {
         $results = $this->CategoriesTree->Autocomplete($search);
 
-        $this->loadComponent('RequestHandler');
         $this->set('results', $results);
-        $this->viewBuilder()->setOption('serialize', ['results']);
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['results'])
+            ->setClassName('Json');
     }
 }
