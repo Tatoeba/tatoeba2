@@ -85,7 +85,9 @@ class AudioControllerTest extends IntegrationTestCase
             // "sentence_id required on create" validation rule
             'associated' => ['Audios' => ['validate' => false]]
         ]);
-        $sentences->saveMany($entities);
+        foreach ($entities as $entity) {
+            $sentences->save($entity);
+        }
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
