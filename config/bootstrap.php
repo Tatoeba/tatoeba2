@@ -39,7 +39,6 @@ use Cake\Database\Type\StringType;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorTrap;
 use Cake\Error\ExceptionTrap;
-use Cake\Error\Debugger;
 use Cake\Http\ServerRequest;
 use Cake\Log\Log;
 use Cake\Mailer\Mailer;
@@ -101,21 +100,6 @@ if (Configure::read('debug')) {
     Configure::write('Cache._cake_core_.duration', '+2 minutes');
     // disable router cache during development
     Configure::write('Cache._cake_routes_.duration', '+2 seconds');
-
-    /**
-     * In debug mode errors and warnings will be displayed in the browser.
-     * But whenever the output contains {{ the app will crash because they
-     * will be interpreted by the AngularJS compiler.
-     * We can prevent the crash if we modify the template string by adding
-     * the ng-non-bindable directive. Unfortunately the template string
-     * isn't easily accessible so we need to use PHP's Reflection feature.
-     */
-    $debugger = new ReflectionClass('Cake\Error\Debugger');
-    $templates = $debugger->getProperty('_templates');
-    $templates->setAccessible(true);
-    $error = $templates->getValue(Debugger::getInstance())['js']['error'];
-    $error = preg_replace('/>/', ' ng-non-bindable>', $error, 1);
-    Debugger::addFormat('js', ['error' => $error]);
 
     /*
      * Make cache files world-writable on dev environments

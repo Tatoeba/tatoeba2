@@ -190,6 +190,7 @@ return [
         'skipLog' => [],
         'log' => true,
         'trace' => true,
+        'errorRenderer' => PHP_SAPI === 'cli' ? 'Cake\Error\Renderer\ConsoleErrorRenderer' : 'App\Error\Renderer\AngularJsSafeHtmlErrorRenderer',
     ],
 
     /**
