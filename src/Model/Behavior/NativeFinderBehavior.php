@@ -40,7 +40,7 @@ class NativeFinderBehavior extends Behavior
                 'UsersLanguages.level' => 5
             ]
         ]);
-        $isNative = $query->newExpr()
+        $isNative = $query->expr()
                           ->isNotNull('UsersLanguages.id')
                           ->notEq('Users.role', 'spammer')
                           ->gt('Users.level', '-1');

@@ -4,7 +4,7 @@ namespace App\Test\TestCase\Command;
 use Cake\Console\Command;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 class EditOwnersCommandTest extends TestCase

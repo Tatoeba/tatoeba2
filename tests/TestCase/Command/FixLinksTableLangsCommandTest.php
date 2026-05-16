@@ -2,7 +2,7 @@
 namespace App\Test\TestCase\Command;
 
 use App\Command\FixLinksTableLangsCommand;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 class FixLinksTableLangsCommandTest extends TestCase

@@ -526,7 +526,7 @@ class SentencesSearchForm extends Form
         $searchableLists = $SentencesLists->find();
         $searchableLists
             ->select([
-                'additional' => $searchableLists->newExpr()->eq('id', $listId),
+                'additional' => $searchableLists->expr()->eq('id', $listId),
                 'id',
                 'name',
                 'user_id'

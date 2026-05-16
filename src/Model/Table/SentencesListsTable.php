@@ -173,8 +173,8 @@ class SentencesListsTable extends Table
                 'id',
                 'name',
                 'user_id',
-                'is_mine' => $query->newExpr()->eq('SentencesLists.user_id', $userId),
-                'is_collaborative' => $query->newExpr()->eq('SentencesLists.editable_by', 'anyone'),
+                'is_mine' => $query->expr()->eq('SentencesLists.user_id', $userId),
+                'is_collaborative' => $query->expr()->eq('SentencesLists.editable_by', 'anyone'),
             ]);
 
         if ($forNewDesign) {

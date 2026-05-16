@@ -21,10 +21,10 @@ class ShowtransLimiter {
     }
 
     private function compileToOredQueryExp(Query $query) {
-        $exp = $query->newExpr();
+        $exp = $query->expr();
         $exps = [];
         foreach ($this->filters as $filter) {
-            $exps[] = $filter->compileToQueryExp($query->newExpr(), $query);
+            $exps[] = $filter->compileToQueryExp($query->expr(), $query);
         }
         $exps = array_filter($exps, fn($e) => $e->count());
         if ($exps) {
