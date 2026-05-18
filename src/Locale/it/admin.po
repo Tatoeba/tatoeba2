@@ -7,6 +7,7 @@
 # Trang, 2018
 # Guybrush88 <erpizzo@alice.it>, 2025
 # صفا الفليج <safaalfulaij@hotmail.com>, 2025
+# Marco Ciampa <ciampix@posteo.net>, 2026
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-01 15:38+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2025\n"
+"Last-Translator: Marco Ciampa <ciampix@posteo.net>, 2026\n"
 "Language-Team: Italian (https://app.transifex.com/tatoeba/teams/28284/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,15 +181,15 @@ msgstr "Modifica l'utente"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Profile picture"
-msgstr ""
+msgstr "Immagine del profilo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
 msgid "Remove picture"
-msgstr ""
+msgstr "Rimuovi immagine"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
 msgid "No picture set"
-msgstr ""
+msgstr "Nessuna immagine impostata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
 msgid "Id"
@@ -208,7 +209,7 @@ msgstr "Gruppo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
 msgid "Spamdexing status"
-msgstr ""
+msgstr "Stato indicizzazione spam"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
 msgid "Unknown (links restricted)"
@@ -220,7 +221,7 @@ msgstr "Verificato (link non limitati)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
 msgid "Legacy (links not restricted)"
-msgstr ""
+msgstr "Tradizionale (collegamenti non limitati)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
 msgid "Level"
@@ -258,11 +259,11 @@ msgstr "Invia delle notifiche"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
 msgid "Profile is public"
-msgstr ""
+msgstr "Il profilo è pubblico"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
 msgid "About spamdexing status"
-msgstr ""
+msgstr "Sullo stato indicizzazione spam"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
 msgid ""
@@ -272,18 +273,27 @@ msgid ""
 " choose to continue, the message is posted and an e-mail is sent to "
 "moderators."
 msgstr ""
+"Gli utenti \"sconosciuti\" non possono inserire alcun collegamento esterno "
+"nel loro profilo. Inoltre, quando tentano di pubblicare un commento o un "
+"post sulla bacheca contenente collegamenti esterni, vengono avvisati che "
+"questi devono essere legittimi. Se decidono di procedere, il messaggio viene"
+" pubblicato e viene inviata un'e-mail ai moderatori."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
 msgid ""
 "\"Verified\" and \"legacy\" users can include any link anywhere without "
 "restriction."
 msgstr ""
+"Gli utenti \"verificati\" e \"tradizionali\" possono includere qualunque "
+"collegamento a ovunque senza restrizioni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
 msgid ""
 "\"Legacy\" users created their account before this restriction was "
 "implemented."
 msgstr ""
+"Gli utenti \"tradizionali\" sono quelli che hanno creato il loro account "
+"prima che questa restrizione fosse implementata."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
 msgid "unhide"
