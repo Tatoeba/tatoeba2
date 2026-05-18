@@ -705,6 +705,9 @@ class SentencesTable extends Table
 
         $transcriptionsContainment = [
             'Users' => ['fields' => ['username']],
+            'Sentences' => function (Query $q) {
+                return $q->select(['user_id']); // to allow calculating `Transcription.markup` property
+            },
         ];
         $contain = [
             'Users' => [
