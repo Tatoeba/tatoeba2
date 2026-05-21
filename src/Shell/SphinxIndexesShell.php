@@ -55,7 +55,7 @@ class SphinxIndexesShell extends Shell {
     private function merge_index($lang) {
         echo "Merging indexes of $lang... ";
         system(
-            "sudo -u {$this->sphinx_user} indexer --quiet --rotate " .
+            "sudo -u {$this->sphinx_user} indexer --quiet --rotate --drop-src " .
             "--merge ${lang}_main_index ${lang}_delta_index",
             $return_value
         );
