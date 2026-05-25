@@ -273,7 +273,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>sentences_base.tar.bz2">sentences_base.tar.bz2</a>
+                        <a href="<?= $download_url ?>sentences_base.csv.zst">sentences_base.csv.zst</a>
                     </dd>
                     <dt><?= $description ?></dt>
                     <dd>
@@ -323,7 +323,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>links.tar.bz2">links.tar.bz2</a>
+                        <a href="<?= $download_url ?>links.csv.zst">links.csv.zst</a>
                     </dd>
                     <dt><?= $description ?></dt>
                     <dd>
@@ -350,7 +350,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>tags.tar.bz2">tags.tar.bz2</a>
+                        <a href="<?= $download_url ?>tags.csv.zst">tags.csv.zst</a>
                     </dd>
                     <dt><?= $description ?></dt>
                     <dd>
@@ -376,7 +376,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>user_lists.tar.bz2">user_lists.tar.bz2</a>
+                        <a href="<?= $download_url ?>user_lists.csv.zst">user_lists.csv.zst</a>
                     </dd>
                     <dt><?= $description ?></dt>
                     <dd>
@@ -400,8 +400,8 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>sentences_in_lists.tar.bz2">
-                                sentences_in_lists.tar.bz2
+                        <a href="<?= $download_url ?>sentences_in_lists.csv.zst">
+                                sentences_in_lists.csv.zst
                         </a>
                     </dd>
                     <dt><?= $description ?></dt>
@@ -429,7 +429,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>jpn_indices.tar.bz2">jpn_indices.tar.bz2</a>
+                        <a href="<?= $download_url ?>jpn_indices.csv.zst">jpn_indices.csv.zst</a>
                     </dd>
                     <dt><?= $description ?></dt>
                     <dd>
@@ -460,8 +460,8 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>sentences_with_audio.tar.bz2">
-                            sentences_with_audio.tar.bz2
+                        <a href="<?= $download_url ?>sentences_with_audio.csv.zst">
+                            sentences_with_audio.csv.zst
                         </a>
                     </dd>
                     <dt><?= $description ?></dt>
@@ -501,7 +501,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                 <dl>
                     <dt><?= $filename ?></dt>
                     <dd>
-                        <a href="<?= $download_url ?>user_languages.tar.bz2">user_languages.tar.bz2</a>
+                        <a href="<?= $download_url ?>user_languages.csv.zst">user_languages.csv.zst</a>
                     </dd>
                     <dt><?= $description ?></dt>
                     <dd>
