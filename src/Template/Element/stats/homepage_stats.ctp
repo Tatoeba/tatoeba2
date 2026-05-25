@@ -3,6 +3,10 @@ $statsUrl = $this->Url->build([
     'controller' => 'stats',
     'action' => 'sentences_by_language'
 ]);
+$statsTransUrl = $this->Url->build([
+    'controller' => 'stats',
+    'action' => 'translations_by_language'
+]);
 $activityUrl = $this->Url->build([
     'controller' => 'contributions',
     'action' => 'activity_timeline'
@@ -32,6 +36,24 @@ $activityUrl = $this->Url->build([
         <div layout="row" layout-align="center center">
             <md-button class="md-primary" href="<?= $statsUrl ?>">
                 <?= __('Stats per languages') ?>
+                <md-icon ng-cloak>keyboard_arrow_right</md-icon>
+            </md-button>
+        </div>
+    </div>
+
+    <div class="category">
+        <div>
+        <?= format(
+            __n('{number} sentence with translations',
+                '{number} sentences with translations',
+                $numTranslations,
+                true),
+            ['number' => $this->Html->tag('strong', $this->Number->format($numTranslations))]
+        ) ?>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-primary" href="<?= $statsTransUrl ?>">
+                <?= __('Translation statistics') ?>
                 <md-icon ng-cloak>keyboard_arrow_right</md-icon>
             </md-button>
         </div>

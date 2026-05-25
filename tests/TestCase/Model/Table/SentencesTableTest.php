@@ -1626,4 +1626,45 @@ class SentencesTableTest extends TestCase {
 
         Time::setTestNow();
     }
+
+    function testGetTranslationStatistics()
+    {
+        $expected = 7;
+        $table = $this->Sentence->getTranslationStatistics();
+        $this->assertEquals(count($table),$expected);
+        $this->assertLessThanOrEqual($table[0]['translations'],
+                                     $table[count($table)-1]['translations']);
+        
+        $table = $this->Sentence->getTranslationStatistics(null);
+        $this->assertEquals(count($table),$expected);
+        $this->assertLessThanOrEqual($table[0]['translations'],
+                                     $table[count($table)-1]['translations']);
+        
+        $expected = 4;
+        $table = $this->Sentence->getTranslationStatistics('eng');
+        $this->assertEquals(count($table),$expected);
+        $this->assertLessThanOrEqual($table[0]['translations'],
+                                     $table[count($table)-1]['translations']);
+
+        $table = $this->Sentence->getTranslationStatistics('und');
+        $this->assertEmpty($table);
+    }
+
+    function testGetTotalTranslations()
+    {
+        $expected = 18;
+        $n = $this->Sentence->getTotalTranslations();
+        $this->assertEquals($n, $expected);
+
+        $n = $this->Sentence->getTotalTranslations(null);
+        $this->assertEquals($n, $expected);
+        
+        $expected = 8;
+        $n = $this->Sentence->getTotalTranslations('eng');
+        $this->assertEquals($n, $expected);
+
+        $expected = 0;
+        $n = $this->Sentence->getTotalTranslations('und');
+        $this->assertEquals($n, $expected);
+    }
 }

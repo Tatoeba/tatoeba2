@@ -846,7 +846,7 @@ class SentencesTable extends Table
      *
      * @return array Array of translations (direct and indirect).
      */
-    public function getTranslationsOf($id,$lang = null)
+    public function getTranslationsOf($id, $lang = null)
     {
         if ( ! is_numeric($id) ) {
             return array();
@@ -1395,5 +1395,58 @@ class SentencesTable extends Table
             ->all()
             ->extract('lang')
             ->toArray();
+    }
+
+    /**
+     * Computes a table of translation counts for a given language.
+     *
+     * @param string $lang Language for which to calculate the statistics.
+     *                     If null calculate the table for all languages.
+     *
+     * @return query object
+     */
+    public function getTranslationStatistics($lang = null)
+    {
+        $results = $this->Links->query()
+            ->select([
+                'code' => 'translation_lang',
+                'translations' => 'COUNT(*)',
+            ])
+            ->group(['code'])
+            ->order(['translations' => 'DESC',
+                     'translation_lang' => 'ASC']);
+        
+        if ($lang !== null)
+          $results = $results->where(['sentence_lang' => $lang]);
+        
+        return $results->toList();
+    }
+
+    /**
+     * Counts the number of sentences with translations for a language.
+     *
+     * @param string $lang Language for which to calculate the statistics.
+     *                     If null calculate the number of all sentences
+     *                     with a translation.
+     *
+     * @return int
+     */
+    public function getTotalTranslations($lang = null)
+    {
+        $results = $this->find()
+            ->join([
+                'table' => 'sentences_translations',
+                'alias' => 'T',
+                'type' => 'RIGHT',
+                'conditions' => 'Sentences.id = T.sentence_id',
+            ])
+            ->select([
+                'count' => 'COUNT(DISTINCT(T.sentence_id))',
+            ]);
+        
+        if ($lang !== null)
+          $results = $results->where(['Sentences.lang' => $lang]);
+            
+        return $results->firstOrFail()->count;
     }
 }

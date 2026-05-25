@@ -78,6 +78,18 @@ $registerUrl = $this->Url->build(
                 <?php echo __('Join the community'); ?>
             </md-button>
         </div>
+        <p>
+        <?= __(
+            'To operate this website we need some money. '.
+            'So you can also help us with a donation.', true
+        ); ?>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-primary" href="<?= $this->Url->build(
+                array('controller' => 'pages', 'action' => 'donate')
+            ) ?>">
+                <?php echo __('Donate'); ?>
+            </md-button>
+        </div>
     </div>
     
     <div class="stats annexe-menu md-whiteframe-1dp" layout="column" flex>

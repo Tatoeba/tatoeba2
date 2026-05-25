@@ -240,10 +240,21 @@ class LanguagesTable extends Table
 
     }
 
-    public function getTotalSentencesNumber()
+    /**
+     * Return the total number of sentences for a certain language,
+     * or of all sentences if no language is given.
+     *
+     * @param $langCode Code of the language
+     *
+     * @return int
+     */
+    public function getTotalSentencesNumber($langCode = null)
     {
         $query = $this->find();
+        if ($langCode !== null) {
+            $query->where(['code' => $langCode]);
+        }
         $query->select(['count' => $query->func()->sum('sentences')]);
-        return $query->first()->count;
+        return $query->firstOrFail()->count;
     }
 }
