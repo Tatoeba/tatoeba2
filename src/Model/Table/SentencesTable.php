@@ -813,7 +813,7 @@ class SentencesTable extends Table
      */
     public function getSentenceWith($id, $what = [], $translationLang = null)
     {
-        return $this->find('filteredTranslations', [
+        $sentence = $this->find('filteredTranslations', [
                 'translationLang' => $translationLang
             ])
             ->find('nativeMarker')
@@ -822,6 +822,38 @@ class SentencesTable extends Table
             ->contain($this->contain($what))
             ->select($this->fields($what))
             ->first();
+
+        $subQuery = $this->Contributions->find()
+            ->from(['C2'=>'contributions'])
+            ->select(1)
+            ->where(['type' => 'link',
+                     'action' => 'insert',
+                     'sentence_id' => $id,
+                     'translation_id = Contributions.translation_id',
+                     'datetime > Contributions.datetime']);
+        
+        $query = $this->Contributions->find()
+            ->select(['translation_id' => 'translation_id',
+                      'user_id' => 'user_id'])
+            ->where(function (\Cake\Database\Expression\QueryExpression $exp, 
+                              \Cake\ORM\Query $q) use ($subQuery) {
+                return $exp->notExists($subQuery);
+            })
+            ->andWhere(['type' =>'link',
+                        'action' => 'insert',
+                        'sentence_id' => $id
+                        ])
+            ->toArray();
+
+        if (isset($sentence['translations'])) {
+            foreach ($sentence['translations'] as $translations) {
+                foreach ($translations as $translation) {
+                    $translation->addTranslationOwner($query);
+                }
+            }
+        }
+        
+        return $sentence;
     }
 
     /**

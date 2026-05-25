@@ -89,7 +89,7 @@ $config = [
         'report_content'       => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'reviews'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'favorites'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
-        'links'                => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
+        'links'                => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'imports'              => [ '*' => [ User::ROLE_ADMIN ] ],
         'licensing'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'private_messages'     => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
