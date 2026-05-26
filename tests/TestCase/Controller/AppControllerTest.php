@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Controller;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\Utility\Security;
 
 class AppControllerTest extends IntegrationTestCase {
 	use TatoebaControllerTestTrait;
@@ -15,12 +16,12 @@ class AppControllerTest extends IntegrationTestCase {
 		'app.WikiArticles',
 	);
 
-	function setRememberMeCookie($username, $password) {
+	function setRememberMeCookie($username, $password, $legacy = false) {
 		$this->cookieEncrypted(
 			'User',
 			compact('username', 'password'),
 			'aes',
-			Configure::read('Security.cookieKey')
+			$legacy ? Security::getSalt() : Configure::read('Security.cookieKey')
 		);
 	}
 
@@ -28,6 +29,17 @@ class AppControllerTest extends IntegrationTestCase {
 		$this->setRememberMeCookie(
 			'contributor',
 			'0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l6'
+		);
+		$this->get('/en/about');
+
+		$this->assertSession(4, 'Auth.User.id');
+	}
+
+	function testRememberMeAutomaticallyLogsInUserWithLegacyCookie() {
+		$this->setRememberMeCookie(
+			'contributor',
+			'0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l6',
+			true
 		);
 		$this->get('/en/about');
 

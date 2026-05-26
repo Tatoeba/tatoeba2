@@ -47,8 +47,9 @@ use App\Controller\Component\RememberMeComponent;
 use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
-use Cake\Http\Middleware\EncryptedCookieMiddleware;
+use App\Middleware\LegacyEncryptedCookieMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
+use Cake\Utility\Security;
 
 
 /** @var \Cake\Routing\RouteBuilder $routes */
@@ -63,10 +64,11 @@ $routes->scope('/', function (RouteBuilder $routes) {
 
     $routes->registerMiddleware('assetCompress', new AssetCompressMiddleware());
 
-    $routes->registerMiddleware('encryptedCookie', new EncryptedCookieMiddleware(
+    $routes->registerMiddleware('encryptedCookie', new LegacyEncryptedCookieMiddleware(
         // Names of cookies to protect
         [RememberMeComponent::getCookieName()],
-        Configure::read('Security.cookieKey')
+        Configure::read('Security.cookieKey'),
+        Security::getSalt()
     ));
 
     $routes->registerMiddleware('csrfProtection', new CsrfProtectionMiddleware());
