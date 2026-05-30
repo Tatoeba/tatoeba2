@@ -14,6 +14,8 @@ class ContributionsStatsTableTest extends TestCase {
         'app.ContributionsStats',
     );
 
+    private $ContributionsStats;
+
     public function setUp(): void {
         parent::setUp();
         $this->ContributionsStats = $this->fetchTable('ContributionsStats');

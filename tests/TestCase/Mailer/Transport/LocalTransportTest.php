@@ -10,6 +10,9 @@ use Cake\TestSuite\TestCase;
 
 class LocalTransportTest extends TestCase {
 
+    private $LocalTransport;
+    private $msg;
+
     public function setUp(): void {
         parent::setUp();
         $this->LocalTransport = $this->getMockBuilder(LocalTransport::class)

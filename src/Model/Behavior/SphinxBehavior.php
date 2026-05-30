@@ -30,6 +30,7 @@ class SphinxBehavior extends Behavior
     private $_cached_options = null;
 
     private $max_matches = 1000; // assuming default Manticore value is used
+    private $settings;
 
     /**
      * Spinx client object

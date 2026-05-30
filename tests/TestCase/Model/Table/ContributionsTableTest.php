@@ -18,6 +18,8 @@ class ContributionTest extends TestCase {
         'app.UsersLanguages',
     );
 
+    private $Contribution;
+
     public function setUp(): void {
         parent::setUp();
         $this->Contribution = $this->fetchTable('Contributions');

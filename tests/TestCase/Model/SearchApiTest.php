@@ -40,6 +40,8 @@ class SearchApiTest extends TestCase
         'app.Users',
     ];
 
+    private $SearchApi;
+
     public function setUp(): void {
         parent::setUp();
         $returnedSentenceIds = [1, 2, 3];

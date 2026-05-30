@@ -29,6 +29,9 @@ class AudiosTableTest extends TestCase {
         'app.WallThreads'
     );
 
+    private $Audio;
+    private $AudioFixture;
+
     function setUp(): void {
         parent::setUp();
         $this->loadRoutes();

@@ -31,6 +31,9 @@ class SentencesSearchFormTest extends TestCase
         'app.UsersLanguages',
     ];
 
+    private $Form;
+    private $Search;
+
     public function setUp(): void {
         parent::setUp();
         $this->Form = new SentencesSearchForm();

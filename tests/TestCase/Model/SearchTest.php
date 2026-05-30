@@ -39,6 +39,8 @@ class SearchTest extends TestCase
         'app.Users',
     ];
 
+    private $Search;
+
     public function setUp(): void
     {
         parent::setUp();

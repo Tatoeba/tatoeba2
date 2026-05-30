@@ -28,6 +28,8 @@ class EditLanguagesCommandTest extends TestCase
         'app.UsersSentences',
     ];
 
+    private $Sentences;
+
     const TESTDIR = TMP . 'edit_languages_tests' . DS;
 
     public static function setUpBeforeClass(): void {

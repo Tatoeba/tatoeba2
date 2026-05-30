@@ -24,6 +24,8 @@ class ShowtransLimiterTest extends TestCase
         'app.UsersLanguages',
     ];
 
+    private $Sentences;
+
     public function setUp(): void
     {
         parent::setUp();

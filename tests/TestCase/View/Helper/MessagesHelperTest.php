@@ -13,6 +13,8 @@ class MessagesHelperTest extends TestCase {
         'app.Sentences'
     );
 
+    private $Messages;
+
     public function setUp(): void {
         parent::setUp();
         $request = new ServerRequest([

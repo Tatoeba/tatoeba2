@@ -10,6 +10,8 @@ class LanguagesTableTest extends TestCase {
         'app.Languages',
     );
 
+    private $Languages;
+
     function setUp(): void {
         parent::setUp();
         $this->Languages = $this->fetchTable('Languages');

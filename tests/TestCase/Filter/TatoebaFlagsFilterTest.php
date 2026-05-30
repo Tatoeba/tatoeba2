@@ -12,6 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 class TatoebaFlagsFilterTest extends TestCase
 {
+    private $compiler;
+    private $flagsDir;
+
     public function setUp(): void {
         parent::setUp();
 

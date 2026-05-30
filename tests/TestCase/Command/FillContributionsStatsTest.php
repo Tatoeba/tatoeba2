@@ -14,6 +14,8 @@ class FillContributionsStatsCommand extends TestCase {
         'app.ContributionsStats'
     );
 
+    private $ContributionsStats;
+
     function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();

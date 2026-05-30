@@ -11,6 +11,8 @@ class LastContributionsTableTest extends TestCase {
         'app.Users',
     );
 
+    private $LastContributions;
+
     function setUp(): void {
         parent::setUp();
 		$this->LastContributions = $this->fetchTable('LastContributions');

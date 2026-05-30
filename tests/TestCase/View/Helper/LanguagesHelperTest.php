@@ -12,6 +12,7 @@ class LanguagesHelperTest extends TestCase {
 		'app.UsersLanguages'
 	);
 
+	private $Languages;
 	private $prevLocale;
 
 	function setUp(): void {

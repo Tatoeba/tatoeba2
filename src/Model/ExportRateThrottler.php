@@ -66,7 +66,7 @@ class ExportRateThrottler {
     private $samplingPeriod;
     private $multiplicativeDecrease;
     private $additiveIncrease;
-    private $additiveIncreaseStartsFromPerf;
+    private $additiveIncreaseMinPerf;
 
     private function now() : float {
         return hrtime(true) / 1000000000;

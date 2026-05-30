@@ -21,6 +21,10 @@ class SentenceDerivationShellTest extends TestCase
         'app.Users'
     );
 
+    private $Contributions;
+    private $SentenceDerivationShell;
+    private $Sentences;
+
     public function setUp(): void
     {
         parent::setUp();

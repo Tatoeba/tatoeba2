@@ -13,6 +13,8 @@ class UsersSentencesTest extends TestCase {
         'app.Sentences'
     );
 
+    private $UsersSentences;
+
     function setUp(): void {
         parent::setUp();
         $this->UsersSentences = $this->fetchTable('UsersSentences');

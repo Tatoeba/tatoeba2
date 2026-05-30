@@ -18,6 +18,8 @@ class TagsTableTest extends TestCase {
         'app.UsersLanguages',
     );
 
+    private $Tag;
+
     public function setUp(): void {
         parent::setUp();
         $this->Tag = $this->fetchTable('Tags');

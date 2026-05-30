@@ -5,6 +5,8 @@ use App\Lib\Autotranscription;
 use Cake\TestSuite\TestCase;
 
 class AutotranscriptionTest extends TestCase {
+    private $AT;
+
     public function setUp(): void{
         parent::setUp();
         $this->AT = new Autotranscription();

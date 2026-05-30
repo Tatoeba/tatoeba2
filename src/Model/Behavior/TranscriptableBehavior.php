@@ -29,6 +29,8 @@ use Cake\Datasource\FactoryLocator;
  */
 class TranscriptableBehavior extends Behavior
 {
+    private $Transcriptions;
+
     public function initialize(array $config): void {
         $this->Transcriptions = FactoryLocator::get('Table')->get('Transcriptions');
     }

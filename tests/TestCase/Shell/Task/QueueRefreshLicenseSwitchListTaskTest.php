@@ -16,6 +16,9 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
         'app.SentencesSentencesLists',
     );
 
+    private $SentencesLists;
+    private $task;
+
     public function setUp(): void
     {
         parent::setUp();

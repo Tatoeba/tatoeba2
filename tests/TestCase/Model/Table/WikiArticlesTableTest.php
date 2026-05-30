@@ -14,6 +14,8 @@ class WikiArticlesTableTest extends TestCase
         'app.WikiArticles',
     ];
 
+    private $oldLocale;
+
     public function setupFailingConnection() {
         $config = \Cake\Datasource\ConnectionManager::getConfig('test_wiki');
         $config['database'] = '/proc/you-should-never-be-able-to-write-here';

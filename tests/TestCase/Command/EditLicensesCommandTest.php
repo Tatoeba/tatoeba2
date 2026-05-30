@@ -22,6 +22,9 @@ class EditLicensesCommandTest extends TestCase
         'app.UsersLanguages',
     ];
 
+    private $Sentences;
+    private $Contributions;
+
     const TESTDIR = TMP . 'edit_licenses_tests' . DS;
 
     public static function setUpBeforeClass(): void {

@@ -13,6 +13,8 @@ class LicensingTest extends TestCase
         'app.QueuedJobs',
     );
 
+    private $Licensing;
+
     public function setUp(): void
     {
         parent::setUp();

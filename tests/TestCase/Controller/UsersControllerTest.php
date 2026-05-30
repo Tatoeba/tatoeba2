@@ -23,6 +23,8 @@ class UsersControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     ];
 
+    private $previousSalt;
+
     public function setUp(): void {
         parent::setUp();
 

@@ -21,6 +21,8 @@ class NotificationListenerTest extends TestCase {
         'app.Walls'
     );
 
+    private $NL;
+
     public function setUp(): void {
         parent::setUp();
         $this->loadRoutes();

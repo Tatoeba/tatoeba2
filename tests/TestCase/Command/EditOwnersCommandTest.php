@@ -19,6 +19,8 @@ class EditOwnersCommandTest extends TestCase
         'app.UsersLanguages',
     ];
 
+    private $Sentences;
+
     const TESTDIR = TMP . 'edit_owners_tests' . DS;
 
     public static function setUpBeforeClass(): void {

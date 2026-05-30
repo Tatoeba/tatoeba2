@@ -15,6 +15,8 @@ class UsersLanguagesTableTest extends TestCase {
         'plugin.Queue.QueueProcesses',
     );
 
+    private $UsersLanguages;
+
     function getFixtures(): array {
         if (stristr($this->getName(), 'reindex') === false) {
             return ['app.Users', 'app.UsersLanguages', 'app.Languages'];
