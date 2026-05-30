@@ -167,7 +167,7 @@ class SearchApi
                     throw new BadRequestException("Invalid parameter '$param': group name cannot be empty");
                 }
                 if (!ctype_digit($check)) {
-                    throw new BadRequestException("Invalid parameter '$param': '${ns[1]}' is not a valid group name: it must consist of non-empty digits with optional exclamation mark prefix");
+                    throw new BadRequestException("Invalid parameter '$param': '{$ns[1]}' is not a valid group name: it must consist of non-empty digits with optional exclamation mark prefix");
                 }
             }
             if ($ns[0] == 'trans') {

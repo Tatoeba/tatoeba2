@@ -35,12 +35,12 @@ class FixLinksTableLangsCommand extends Command
     }
 
     private function fixLinksLanguage(string $column, $sentenceIds) {
-        $field = "${column}_id";
+        $field = "{$column}_id";
         $count = 0;
         foreach ($sentenceIds as $id) {
             $correctLang = $this->Sentences->get($id)->lang;
             $count += $this->Links->updateAll(
-                [ "${column}_lang" => $correctLang ],
+                [ "{$column}_lang" => $correctLang ],
                 [ $field => $id ]
             );
         }
@@ -51,15 +51,15 @@ class FixLinksTableLangsCommand extends Command
         return $this->Links->find()
             ->enableHydration(false)
             ->select([
-                'id' => "${column}_id",
+                'id' => "{$column}_id",
             ])
             ->distinct()
             ->join([
                 'table' => 'sentences',
                 'alias' => 's',
-                'conditions' => "s.id = Links.${column}_id",
+                'conditions' => "s.id = Links.{$column}_id",
             ])
-            ->where(['not' => ["s.lang <=> Links.${column}_lang"]])
+            ->where(['not' => ["s.lang <=> Links.{$column}_lang"]])
             ->all()
             ->extract('id');
     }

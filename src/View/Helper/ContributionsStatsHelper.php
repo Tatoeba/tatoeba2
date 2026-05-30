@@ -55,8 +55,8 @@ class ContributionsStatsHelper extends AppHelper
             $sign = '+';
             if ($category == "unlinked" || $category == "deleted")
                 $sign = '-';
-            return $this->Html->div("logs_stats ${category}", $sign . $stat[$category],
-                array('style' => "width: ${width}%; min-width: calc(1em * ${stringWidth});")
+            return $this->Html->div("logs_stats {$category}", $sign . $stat[$category],
+                array('style' => "width: {$width}%; min-width: calc(1em * {$stringWidth});")
             );
         }
     }

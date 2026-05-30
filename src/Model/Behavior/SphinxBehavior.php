@@ -326,7 +326,7 @@ class SphinxBehavior extends Behavior
 
         foreach ($batchedByLang as $lang => $values) {
             $res = $this->runtime[$alias]['sphinx']->UpdateAttributes(
-                "${lang}_delta_index,${lang}_main_index",
+                "{$lang}_delta_index,{$lang}_main_index",
                 $attributes,
                 $values,
                 $isMVA

@@ -55,7 +55,7 @@ class SphinxIndexesShell extends Shell {
         echo "Merging indexes of $lang... ";
         system(
             "sudo -u {$this->sphinx_user} indexer --quiet --rotate --drop-src " .
-            "--merge ${lang}_main_index ${lang}_delta_index",
+            "--merge {$lang}_main_index {$lang}_delta_index",
             $return_value
         );
         if ($return_value != 0) {
@@ -110,7 +110,7 @@ class SphinxIndexesShell extends Shell {
         } else {
             echo "Updating $type indexes...\n";
             $indexes = implode(' ', array_map(
-                function($lang) use ($type) { return "${lang}_${type}_index"; },
+                function($lang) use ($type) { return "{$lang}_{$type}_index"; },
                 $langs
             ));
             system(

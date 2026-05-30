@@ -407,11 +407,11 @@ class SentencesTableTest extends TestCase {
     }
 
     function assertLinksLanguage($sentenceId, $prefix, $expectedLang) {
-        $expectedLink = ["${prefix}_lang" => $expectedLang];
+        $expectedLink = ["{$prefix}_lang" => $expectedLang];
         $links = $this->Sentence->Links
             ->find()
-            ->select(["${prefix}_lang"])
-            ->where(["${prefix}_id" => $sentenceId])
+            ->select(["{$prefix}_lang"])
+            ->where(["{$prefix}_id" => $sentenceId])
             ->enableHydration(false)
             ->all();
         foreach ($links as $link) {

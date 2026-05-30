@@ -19,7 +19,7 @@ class DownloadsHelperTest extends TestCase {
             $path = Folder::addPathElement(TMP, ['exports', 'per_language', $lang]);
             $subdir = new Folder($path, true);
             foreach ($files as $file) {
-                $newFile = Folder::addPathElement($subdir->path, "${lang}_$file");
+                $newFile = Folder::addPathElement($subdir->path, "{$lang}_$file");
                 new File($newFile, true);
             }
         }
