@@ -108,7 +108,9 @@
                     __('API'),
                     array(
                         '_host' => 'api.' . $this->getRequest()->getUri()->getHost(),
-                        'lang' => '',
+                        'prefix' => 'VHosts/Api',
+                        'controller' => 'doc',
+                        'action' => 'index',
                     ),
                     array('target' => '_blank')
                 );
