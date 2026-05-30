@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Behavior;
 use App\Model\Behavior\LimitResultsBehavior;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\Query;
-use Cake\ORM\TableRegistry;
 
 class LimitResultsBehaviorTest extends TestCase
 {
@@ -16,21 +15,39 @@ class LimitResultsBehaviorTest extends TestCase
         'app.Users',
     ];
 
-    public function setUp()
+    protected function buildProxy(object $instance)
+    {
+        $reflection = new \ReflectionClass(get_class($instance));
+
+        $proxy = $this->createMock($reflection->getName());
+        foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+            $methodName = $method->getName();
+            $callback = [$instance, $methodName];
+            if (!$method->isConstructor() && !$method->isDestructor() && !$method->isFinal() && $methodName != '__clone' && is_callable($callback)) {
+                $proxy->method($method->getName())
+                    ->willReturnCallback(
+                        fn() => call_user_func_array($callback, func_get_args())
+                    );
+            }
+        }
+
+        return $proxy;
+    }
+
+    public function setUp(): void
     {
         parent::setUp();
 
-        $s = TableRegistry::getTableLocator()->get('Sentences');
+        $s = $this->fetchTable('Sentences');
         $this->behavior = new LimitResultsBehavior($s);
-        // PHPUnit annoying warnings silenced
-        // Please someone check if this gets fixed in version 7.0 or newer
-        $this->query = @$this->createTestProxy(Query::class, [$s->getConnection(), $s]);
+        $query = new Query($s->getConnection(), $s);
+        $this->query = $this->buildProxy($query);
         $this->query->order(['Sentences.id' => 'DESC']);
 
         $this->Sentences = $s;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->query);
         unset($this->behavior);

@@ -3,21 +3,20 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\TagsSentencesTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\I18n\I18n;
 
 class TagsSentencesTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences',
-        'app.tags_sentences'
+        'app.Sentences',
+        'app.TagsSentences'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-        $this->TagsSentences = TableRegistry::getTableLocator()->get('TagsSentences');
+        $this->TagsSentences = $this->fetchTable('TagsSentences');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->TagsSentences);
         parent::tearDown();
     }

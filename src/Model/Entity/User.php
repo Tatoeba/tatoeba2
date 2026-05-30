@@ -3,7 +3,6 @@ namespace App\Model\Entity;
 
 use App\Auth\VersionedPasswordHasher;
 use Cake\ORM\Entity;
-use Cake\ORM\TableRegistry;
 
 class User extends Entity
 {

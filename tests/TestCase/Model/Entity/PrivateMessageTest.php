@@ -7,13 +7,13 @@ use Cake\TestSuite\TestCase;
 
 class PrivateMessageTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->PrivateMessage = new PrivateMessage();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->PrivateMessage);
         parent::tearDown();

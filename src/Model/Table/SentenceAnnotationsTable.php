@@ -18,20 +18,20 @@
  */
 namespace App\Model\Table;
 
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
 use App\Model\CurrentUser;
 
 class SentenceAnnotationsTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsto('Sentences');
         $this->belongsto('Users');
@@ -72,6 +72,7 @@ class SentenceAnnotationsTable extends Table
             ->contain([
                 'Users' => ['fields' => ['username']]
             ])
+            ->all()
             ->toList();
     }
 
@@ -89,6 +90,7 @@ class SentenceAnnotationsTable extends Table
         return $this->find()
             ->where(['SentenceAnnotations.text LIKE' => '%'.$query.'%'])
             ->contain(['Sentences'])
+            ->all()
             ->toList();
     }
 
@@ -135,7 +137,7 @@ class SentenceAnnotationsTable extends Table
         if (isset($data['id'])) {
             $annotation = $this->get($data['id']);
         } else {
-            $annotation = $this->newEntity();
+            $annotation = $this->newEmptyEntity();
         }       
         
         $annotation->sentence_id = $data['sentence_id'];

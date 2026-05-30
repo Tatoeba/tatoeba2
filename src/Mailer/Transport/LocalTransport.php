@@ -2,7 +2,6 @@
 namespace App\Mailer\Transport;
 
 use Cake\Log\Log;
-use Cake\Mailer\Email;
 use Cake\Mailer\Transport\MailTransport;
 use Exception;
 
@@ -18,7 +17,7 @@ use Exception;
  */
 class LocalTransport extends MailTransport {
 
-    public function _mail($to, $subject, $message, $headers, $params = null) {
+    public function _mail(string $to, string $subject, string $message, string $headers = '', string $params = ''): void {
         try {
             $this->_parent($to, $subject, $message, $headers, $params);
         } catch (Exception $e) {

@@ -18,20 +18,16 @@
  */
 namespace App\Shell;
 
-use App\Model\Sentence;
-use App\Model\User;
+use App\Model\CurrentUser;
 use Cake\Console\Shell;
 
 
 class EditSentencesShell extends Shell {
 
-    public $uses = array('Sentence', 'User');
-
     private $stderr = null;
 
     private function be($username) {
-        putenv('HTTP_CLIENT_IP=127.0.0.1');
-        $editor = $this->User->findByUsername($username);
+        $editor = $this->fetchTable('Users')->findByUsername($username)->first()->toArray();
         if ($editor === false) {
             die("'$username' is not a valid username.\n");
         }
@@ -48,6 +44,7 @@ class EditSentencesShell extends Shell {
         }
 
         $this->be($this->args[0]);
+        $Sentences = $this->fetchTable('Sentences');
         while (($data = fgetcsv($stdin, 0, "\t")) !== FALSE) {
             if (count($data) != 2) {
                 echo "Invalid line skipped.\n";
@@ -55,24 +52,23 @@ class EditSentencesShell extends Shell {
             }
 
             list($id, $text) = $data;
-            $sentence = $this->Sentence->findById($id);
+            $sentence = $Sentences->findById($id)->first();
             if ($sentence === false) {
                 echo "Sentence $id does not exists, skipping!\n";
                 $nb_ignored++;
                 continue;
             }
 
-            if ($text === $sentence['Sentence']['text']) {
+            if ($text === $sentence->text) {
                 echo "Contents of sentence $id already set, skipping!\n";
                 $nb_ignored++;
                 continue;
             }
 
-            $this->Sentence->save(array(
+            $Sentences->editSentence([
                 'id' => $id,
                 'text' => $text,
-                'lang' => $sentence['Sentence']['lang'],
-            ));
+            ]);
             echo ".";
             $nb_sentences++;
         }

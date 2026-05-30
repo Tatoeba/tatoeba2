@@ -5,20 +5,12 @@ use Cake\Console\Arguments;
 use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
-use Cake\ORM\TableRegistry;
 use \Datetime;
 use \Exception;
 
 class FillContributionsStatsCommand extends Command
 {
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadModel('Contributions');
-        $this->loadModel('ContributionsStats');
-    }
-
-    protected function buildOptionParser(ConsoleOptionParser $parser) {
+    protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {
         $parser
             ->setDescription('Rewrite records of the contributions_stats table ' .
                              'corresponding to contributions between the two given dates.')
@@ -62,7 +54,7 @@ class FillContributionsStatsCommand extends Command
         }
 
         // Fetch
-        $contributions = $this->Contributions->find()
+        $contributions = $this->fetchTable('Contributions')->find()
                               ->where(["type !=" => "license", "action !=" => "update",
                                        "datetime >=" => $firstDay, "datetime <=" => $lastDay])
                               ->order(["datetime" => "ASC"]);
@@ -88,7 +80,7 @@ class FillContributionsStatsCommand extends Command
         }
 
         // Truncate table and Fill
-        $contributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
+        $contributionsStats = $this->fetchTable('ContributionsStats');
         $contributionsStats->deleteAll(['date >=' => $from, 'date <' => $lastDay->format('Y-m-d')]);
         foreach ($stats as $date => $dailyStat) {
             foreach ($dailyStat as $unitRecord) {

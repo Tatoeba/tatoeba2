@@ -7,24 +7,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class SentenceCommentsFixture extends TestFixture {
 	public $name = 'SentenceComment';
 
-	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'text' => ['type' => 'binary', 'null' => false, 'default' => null],
-		'user_id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'created' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
-		'hidden' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
-		'_indexes' => [
-			'sentence_id_idx' => ['type' => 'index', 'columns' => ['sentence_id'], 'length' => []],
-			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
-			'created' => ['type' => 'index', 'columns' => ['created'], 'length' => []],
-		],
-		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
-		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
-	);
-
 	public $records = array(
 		array(
 			'id' => '1',

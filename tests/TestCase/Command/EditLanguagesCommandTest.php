@@ -4,8 +4,7 @@ namespace App\Test\TestCase\Command;
 use Cake\Console\Command;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
-use Cake\ORM\TableRegistry;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 class EditLanguagesCommandTest extends TestCase
@@ -13,36 +12,37 @@ class EditLanguagesCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.disabled_audios',
-        'app.contributions',
-        'app.languages',
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.tags',
-        'app.tags_sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Contributions',
+        'app.Languages',
+        'app.Links',
+        'app.LastContributions',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
     ];
 
     const TESTDIR = TMP . 'edit_languages_tests' . DS;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         new Folder(self::TESTDIR, true, 0755);
     }
 
-    public static function tearDownAfterClass() {
+    public static function tearDownAfterClass(): void {
         $folder = new Folder(self::TESTDIR);
         $folder->delete();
     }
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Sentences = $this->fetchTable('Sentences');
     }
 
     private function create_test_file($ids) {

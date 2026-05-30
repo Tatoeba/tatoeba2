@@ -27,7 +27,8 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
+use Cake\Http\Cookie\Cookie;
 
 
 /**
@@ -44,7 +45,6 @@ class CommonSentenceComponent extends Component
 {
     public $components = array(
         'LanguageDetection',
-        'Cookie'
     );
 
     /**
@@ -71,11 +71,16 @@ class CommonSentenceComponent extends Component
         $correctness = 0,
         $license = null
     ) {
-        $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
+        $controller = $this->getController();
+        $controller->setResponse(
+            $controller
+                 ->getResponse()
+                 ->withCookie(Cookie::create('contribute_lang', $lang))
+        );
 
         $lang = $this->_setLanguage($lang, $text, $username);
 
-        $Sentence = TableRegistry::getTableLocator()->get('Sentences');
+        $Sentence = FactoryLocator::get('Table')->get('Sentences');
 
         return $Sentence->saveNewSentence($text, $lang, $userId, $correctness, 0, $license);
     }

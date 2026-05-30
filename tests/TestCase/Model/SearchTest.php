@@ -33,19 +33,19 @@ use Cake\TestSuite\TestCase;
 class SearchTest extends TestCase
 {
     public $fixtures = [
-        'app.sentences_lists',
-        'app.users_languages',
-        'app.tags',
-        'app.users',
+        'app.SentencesLists',
+        'app.UsersLanguages',
+        'app.Tags',
+        'app.Users',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->Search = new Search();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Search);

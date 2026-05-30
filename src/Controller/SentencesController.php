@@ -37,6 +37,7 @@ use App\Validation\Validation;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
+use Cake\Http\Cookie\Cookie;
 use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
@@ -54,54 +55,15 @@ use Exception;
 class SentencesController extends AppController
 {
     public $name = 'Sentences';
-    public $components = array (
-        'LanguageDetection',
-        'CommonSentence',
-        'Permissions',
-    );
-    public $helpers = array(
-        'Sentences',
-        'Menu',
-        'Lists',
-        'SentenceButtons',
-        'Html',
-        'Logs',
-        'Pagination',
-        'Comments',
-        'Languages',
-        'CommonModules'
-    );
-
-    public $uses = array(
-        'Audio',
-        'Sentence',
-        'SentencesSentencesLists',
-        'SentencesList',
-        'User',
-        'UsersLanguages',
-        'Tag',
-        'UsersSentences',
-        'Vocabulary'
-    );
-
-    public function initialize() {
-        parent::initialize();
-
-        $params = $this->request->params;
-        $noCsrfActions = ['edit_sentence', 'change_language'];
-        if (in_array($params['action'], $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
 
     /**
      * Before filter.
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
           'add_an_other_sentence',
           'save_translation',
           'change_language',
@@ -113,9 +75,8 @@ class SentencesController extends AppController
 
     public function index()
     {
-        $this->loadModel('Languages');
         $milestones = [ 100000, 10000, 1000, 100, 10, 1, 0 ];
-        $stats = $this->Languages->getMilestonedStatistics($milestones);
+        $stats = $this->fetchTable('Languages')->getMilestonedStatistics($milestones);
         $nbrLanguages = count(LanguagesLib::languagesInTatoeba());
         $this->set(compact('stats', 'nbrLanguages'));
     }
@@ -129,13 +90,6 @@ class SentencesController extends AppController
      */
     public function show($id = null)
     {
-        $this->helpers[] = 'Tags';
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'Lists';
-        $this->helpers[] = 'Members';
-        $this->helpers[] = 'Audio';
-        $this->helpers[] = 'ClickableLinks';
-
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->request->getSession()->read('random_lang_selected');
         }
@@ -175,8 +129,8 @@ class SentencesController extends AppController
             $this->set('nextSentence', $neighbors['next']);
             $this->set('prevSentence', $neighbors['prev']);
 
-            $this->loadModel('UsersSentences');
-            $correctnessArray = $this->UsersSentences->getCorrectnessForSentence($id);
+            $correctnessArray = $this->fetchTable('UsersSentences')
+                ->getCorrectnessForSentence($id);
             $this->set('correctnessArray', $correctnessArray);
 
             // If no sentence, we don't need to go further.
@@ -188,8 +142,8 @@ class SentencesController extends AppController
             }
 
             $tagsArray = $this->Sentences->getAllTagsOnSentence($id);
-            $this->loadModel('SentencesSentencesLists');
-            $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
+            $listsArray = $this->fetchTable('SentencesSentencesLists')
+                ->getListsForSentence($id);
 
             $this->set('sentence', $sentence);
             $this->set('tagsArray', $tagsArray);
@@ -305,6 +259,7 @@ class SentencesController extends AppController
         $userName = $this->Auth->user('username');
         $sentenceLicense = $this->request->getData('sentenceLicense');
 
+        $this->loadComponent('CommonSentence');
         $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,
@@ -326,9 +281,9 @@ class SentencesController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['sentence', 'duplicate']);
-            $this->RequestHandler->renderAs($this, 'sentences_json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['sentence', 'duplicate'])
+                ->setClassName('SentencesJson');
         }
     }
 
@@ -340,13 +295,13 @@ class SentencesController extends AppController
     public function edit_sentence()
     {
         $acceptsJson = $this->request->accepts('application/json');
-        $sentence = $this->Sentences->editSentence($this->request->data);
+        $sentence = $this->Sentences->editSentence($this->request->getData());
         if ($acceptsJson) {
             $sentence = $this->Sentences->getSentenceWith($sentence->id);
-            $this->loadComponent('RequestHandler');
             $this->set('result', $sentence);
-            $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             if (empty($sentence)) {
                 // TODO Better error handling.
@@ -399,10 +354,10 @@ class SentencesController extends AppController
 
         if ($acceptsJson) {
             $sentence = $this->Sentences->getSentenceWith($id);
-            $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);
-            $this->set('_serialize', ['sentence']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['sentence'])
+                ->setClassName('Json');
         } else {
             $sentence = $this->Sentences->get($id, [
                 'contain' => ['Users' => ['fields' => ['username']]]
@@ -434,7 +389,7 @@ class SentencesController extends AppController
         $translationText = $this->request->getData('value');
 
         // Store selected lang in cookie as default language for drop-downs
-        $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
+        $this->response = $this->response->withCookie(Cookie::create('contribute_lang', $translationLang));
 
         if (isset($translationText)
             && trim($translationText) != ''
@@ -443,6 +398,7 @@ class SentencesController extends AppController
         ) {
             // Language detection
             if ($translationLang == 'auto') {
+                $this->loadComponent('LanguageDetection');
                 $translationLang = $this->LanguageDetection->detectLang(
                     $translationText,
                     $this->Auth->user('username')
@@ -473,10 +429,10 @@ class SentencesController extends AppController
             $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
             $sentence->extraTranslationsCount = $numberOfTranslations + 1 - $sentence->max_visible_translations;
 
-            $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);
-            $this->set('_serialize', ['translation', 'sentence']);
-            $this->RequestHandler->renderAs($this, 'sentences_json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['translation', 'sentence'])
+                ->setClassName('SentencesJson');
         }
     }
 
@@ -510,7 +466,7 @@ class SentencesController extends AppController
 
         $limit = CurrentUser::getSetting('sentences_per_page');
         $sphinx = $search->asSphinx();
-        $sphinx['page'] = $this->request->query('page');
+        $sphinx['page'] = $this->request->getQuery('page');
         $sphinx['limit'] = $limit;
 
         $model = 'Sentences';
@@ -548,8 +504,7 @@ class SentencesController extends AppController
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));
-        $this->loadModel('Vocabulary');
-        $vocabulary = $this->Vocabulary->findByText($strippedQuery);
+        $vocabulary = $this->fetchTable('Vocabulary')->findByText($strippedQuery);
 
         $searchableLists = $search->getSearchableLists(CurrentUser::get('id'));
         $ignored = $search->getIgnoredFields();
@@ -586,8 +541,6 @@ class SentencesController extends AppController
      * @return void
      */
     public function show_all_in($lang, $translationLang) {
-        $this->helpers[] = 'ShowAll';
-
         $query = $this->Sentences->find();
         if ($lang == 'unknown') {
             $query->where(['Sentences.lang IS' => null]);
@@ -621,7 +574,8 @@ class SentencesController extends AppController
         $this->set('total', $total);
         $this->set('totalLimit', $totalLimit);
 
-        $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
+        $this->response = $this->response->withCookie(Cookie::create('browse_sentences_in_lang', $lang));
+
         $this->render(null);
     }
 
@@ -648,10 +602,10 @@ class SentencesController extends AppController
         $this->request->getSession()->write('random_lang_selected', $lang);
         $this->set('random', $randomSentence);
 
-        $this->loadComponent('RequestHandler');
         $this->set('sentence', $randomSentence);
-        $this->set('_serialize', ['sentence']);
-        $this->RequestHandler->renderAs($this, 'sentences_json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['sentence'])
+            ->setClassName('SentencesJson');
     }
 
 
@@ -665,8 +619,7 @@ class SentencesController extends AppController
      */
     public function of_user($userName, $lang = null)
     {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUserName($userName);
+        $userId = $this->fetchTable('Users')->getIdFromUserName($userName);
 
         // if there's no such user no need to do more computation
         $this->set("userName", $userName);
@@ -675,7 +628,7 @@ class SentencesController extends AppController
             return;
         }
 
-        $user = $this->Users->getUserById($userId);
+        $user = $this->fetchTable('Users')->getUserById($userId);
         $this->set("unreliableButton", CurrentUser::canMarkSentencesOfUser($user));
 
         $this->set("userExists", true);
@@ -734,15 +687,11 @@ class SentencesController extends AppController
      */
     public function change_language()
     {
-        if (isset($this->request->data['id'])
-            && isset($this->request->data['newLang'])
-        ) {
-            $newLang = $this->request->data['newLang'];
-            $id = $this->request->data['id'];
-
+        $id = $this->request->getData('id');
+        $newLang = $this->request->getData('newLang');
+        if (!is_null($id) && !is_null($newLang)) {
             $lang = $this->Sentences->changeLanguage($id, $newLang);
-            $this->loadModel('UsersSentences');
-            $this->UsersSentences->makeDirty($id);
+            $this->fetchTable('UsersSentences')->makeDirty($id);
             $this->set('lang', $lang);
         }
     }

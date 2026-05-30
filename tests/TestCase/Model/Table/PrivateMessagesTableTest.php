@@ -5,23 +5,22 @@ use App\Model\CurrentUser;
 use App\Model\Table\PrivateMessagesTable;
 use Cake\Event\Event;
 use Cake\Event\EventList;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class PrivateMessageTest extends TestCase {
 
     public $fixtures = array(
-        'app.private_messages',
-        'app.users',
-        'app.users_languages'
+        'app.PrivateMessages',
+        'app.Users',
+        'app.UsersLanguages'
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
-        $this->PrivateMessage = TableRegistry::getTableLocator()->get('PrivateMessages');
+        $this->PrivateMessage = $this->fetchTable('PrivateMessages');
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->PrivateMessage);
         parent::tearDown();
     }

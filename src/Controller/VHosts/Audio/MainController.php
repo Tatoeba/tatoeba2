@@ -26,14 +26,13 @@ class MainController extends Controller
 </html>
 ';
 
-    public function initialize() {
+    public function initialize(): void {
         $this->autoRender = false;
     }
 
     public function legacy_audio_url($lang = null, $sentence_id = null)
     {
-        $this->loadModel('Audios');
-        $audios = $this->Audios
+        $audios = $this->fetchTable('Audios')
             ->find('withLicense')
             ->select(['id', 'sentence_id'])
             ->where(compact('sentence_id'))

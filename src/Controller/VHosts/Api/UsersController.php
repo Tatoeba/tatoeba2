@@ -92,10 +92,8 @@ class UsersController extends ApiController
      * )
      */
     public function get($name) {
-        $this->loadModel('Users');
-
         $validator = $this->Users->getValidator();
-        $invalid = $validator->errors(['username' => $name], false);
+        $invalid = $validator->validate(['username' => $name], false);
         if ($invalid) {
             return $this->response->withStatus(400, 'Invalid parameter "username"');
         }
@@ -127,7 +125,8 @@ class UsersController extends ApiController
         ];
 
         $this->set('response', $response);
-        $this->set('_serialize', 'response');
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', 'response')
+            ->setClassName('Api');
     }
 }

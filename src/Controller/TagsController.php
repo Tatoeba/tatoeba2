@@ -33,14 +33,13 @@ class TagsController extends AppController
      * @access public
      */
     public $name = 'Tags';
-    public $components = ['CommonSentence', 'Flash'];
-    public $helpers = ['Pagination'];
+
     /**
      * Before filter.
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->unlockedActions = [
             'add_tag_post'
@@ -58,8 +57,6 @@ class TagsController extends AppController
     public function add_tag_post()
     {
         if ($this->request->is('ajax')) {
-            $this->helpers[] = 'Tags';
-
             $tagName = $this->request->getData('tag_name');
             $sentenceId = $this->request->getData('sentence_id');
             $userId = CurrentUser::get("id");
@@ -75,8 +72,8 @@ class TagsController extends AppController
                 $this->set('username', $username);
                 $this->set('sentenceId', $sentenceId);
                 $this->set('date', $tag->link->added_time);
-                $this->loadModel('Sentences');
-                $sentence = $this->Sentences->get($sentenceId, ['fields' => ['lang']]);
+                $sentence = $this->fetchTable('Sentences')
+                    ->get($sentenceId, ['fields' => ['lang']]);
                 $this->set('sentenceLang', $sentence->lang);
             }
         }
@@ -90,8 +87,6 @@ class TagsController extends AppController
      */
     public function view_all($filter = null)
     {
-        $this->helpers[] = 'Tags';
-
         $conditions = [];
         if (!empty($filter)) {
             $conditions = [
@@ -178,33 +173,29 @@ class TagsController extends AppController
             );
         }
 
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'CommonModules';
-        $this->helpers[] = 'Tags';
-
         $tagName = $this->Tags->getNameFromId($tagId);
         $tagExists = !empty($tagName);
         $this->set('tagExists', $tagExists);
         $this->set('tagId', $tagId);
 
         if ($tagExists) {
-            $this->loadModel('Sentences');
-            $this->loadModel('TagsSentences');
+            $TagsSentences = $this->fetchTable('TagsSentences');
             $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
             $options = [
                 'conditions' => ['tag_id' => $tagId],
                 'maxResults' => $totalLimit,
                 'contain' => [
                     'Sentences' => function (Query $q) {
+                        $Sentences = $q->getRepository();
                         return $q
                           ->find('filteredTranslations')
                           ->find('hideFields')
-                          ->contain($this->Sentences->contain(['translations' => true]))
-                          ->select($this->Sentences->fields());
+                          ->contain($Sentences->contain(['translations' => true]))
+                          ->select($Sentences->fields());
                     },
                 ],
             ];
-            $total = $this->TagsSentences->find()->where(['tag_id' => $tagId]);
+            $total = $TagsSentences->find()->where(['tag_id' => $tagId]);
             if (!empty($lang) && $lang != 'und') {
                 $options['conditions']['Sentences.lang'] = $lang;
                 $total->matching('Sentences', function (Query $q) use ($lang) {
@@ -217,11 +208,11 @@ class TagsController extends AppController
                 'sort' => $this->request->getQuery('sort', 'id'),
                 'direction' => $this->request->getQuery('direction', 'desc'),
                 // keep added_time for backward compatibility
-                'sortWhitelist' => ['id', 'sentence_id', 'added_time'],
+                'sortableFields' => ['id', 'sentence_id', 'added_time'],
             ];
             $finder = ['latest' => $options];
             try {
-                $sentences = $this->paginate($this->TagsSentences, compact('finder'));
+                $sentences = $this->paginate($TagsSentences, compact('finder'));
             } catch (\Cake\Http\Exception\NotFoundException $e) {
                 return $this->redirectPaginationToLastPage();
             }
@@ -265,9 +256,9 @@ class TagsController extends AppController
     {
         $allTags = $this->Tags->Autocomplete($search);
 
-        $this->loadComponent('RequestHandler');
         $this->set('results', $allTags);
-        $this->set('_serialize', ['results']);
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['results'])
+            ->setClassName('Json');
     }
 }

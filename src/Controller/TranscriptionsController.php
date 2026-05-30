@@ -26,23 +26,15 @@ class TranscriptionsController extends AppController
 {
     public $name = 'Transcriptions';
 
-    public $components = array(
-    );
-
-    public $helpers = array(
-        'Pagination',
-        'Transcriptions',
-    );
-
     public $paginate = array(
         'contain' => array('Users', 'Sentences'),
         'limit' => 100,
         'order' => array('Transcriptions.modified' => 'desc'),
     );
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save',
             'reset'
         ]);
@@ -53,6 +45,7 @@ class TranscriptionsController extends AppController
     public function view($sentenceId) {
         $transcr = $this->Transcriptions->find()
             ->where(['sentence_id' => $sentenceId])
+            ->all()
             ->toList();
         $this->setViewVars($transcr, $sentenceId);
     }
@@ -70,8 +63,7 @@ class TranscriptionsController extends AppController
             $transcrOwnerId = $transcr->user_id;
             $sentence = $transcr->sentence;
         } else {
-            $this->loadModel('Sentences');
-            $sentence = $this->Sentences->get($sentenceId);
+            $sentence = $this->fetchTable('Sentences')->get($sentenceId);
         }
         $sentenceOwnerId = $sentence ? $sentence->user_id : null;
         $canEdit = CurrentUser::canEditTranscription(
@@ -116,8 +108,7 @@ class TranscriptionsController extends AppController
             $transcrOwnerId = $transcr->user_id;
             $sentence = $transcr->sentence;
         } else {
-            $this->loadModel('Sentences');
-            $sentence = $this->Sentences->get($sentenceId);
+            $sentence = $this->fetchTable('Sentences')->get($sentenceId);
         }
         $sentenceOwnerId = $sentence ? $sentence->user_id : null;
         $canEdit = CurrentUser::canEditTranscription(
@@ -129,7 +120,7 @@ class TranscriptionsController extends AppController
             $data = array(
                 'sentence_id' => $sentenceId,
                 'script' => $script,
-                'text' => $this->request->data['value'],
+                'text' => $this->request->getData('value'),
                 'user_id' => CurrentUser::get('id'),
             );
             if ($transcr) { // Modifying existing transcription
@@ -160,9 +151,9 @@ class TranscriptionsController extends AppController
         if ($saved) {
             $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
             $this->set('result', $transcription->first());
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');    
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             $errors = json_encode($this->Transcriptions->validationErrors);
             return $this->response->withStatus(400)->withStringBody($errors);
@@ -170,8 +161,7 @@ class TranscriptionsController extends AppController
     }
 
     public function of($username) {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
         if ($userId) {
             $query = $this->Transcriptions
                 ->find()
@@ -196,8 +186,7 @@ class TranscriptionsController extends AppController
     private function setViewVars($transcriptions, $sentenceId, $sentence = null) {
         if ($transcriptions) {
             if (!$sentence) {
-                $this->loadModel('Sentences');
-                $sentence = $this->Sentences->get(
+                $sentence = $this->fetchTable('Sentences')->get(
                     $sentenceId,
                     ['fields' => ['lang', 'user_id']]
                 );
@@ -210,6 +199,6 @@ class TranscriptionsController extends AppController
 
         $this->set('transcr', $transcriptions);
         $this->set('validationErrors', $this->Transcriptions->validationErrors);
-        $this->viewBuilder()->autoLayout(false);
+        $this->viewBuilder()->enableAutoLayout(false);
     }
 }

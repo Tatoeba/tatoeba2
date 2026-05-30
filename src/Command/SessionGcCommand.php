@@ -16,7 +16,7 @@ use Cake\Http\Session;
  */
 class SessionGcCommand extends Command
 {
-    public function buildOptionParser(ConsoleOptionParser $parser)
+    public function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser = parent::buildOptionParser($parser);
         $parser->setDescription(

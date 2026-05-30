@@ -25,7 +25,7 @@ use App\Model\Entity\User;
 use App\Model\CurrentUser;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Validation\Validator;
 
@@ -33,13 +33,13 @@ class UsersLanguagesTable extends Table
 {
     // TODO Reimplement the update of language stats
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('details', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users', ['foreignKey' => 'of_user_id']);
         $this->belongsTo('Languages', ['foreignKey' => 'language_code']);
@@ -49,7 +49,7 @@ class UsersLanguagesTable extends Table
         $this->getEventManager()->on(new SentencesReindexListener());
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
@@ -60,7 +60,7 @@ class UsersLanguagesTable extends Table
             ]);
 
         $validator
-            ->allowEmpty('level')
+            ->allowEmptyString('level')
             ->add('level', [
                 'inList' => [
                     'rule' => ['range', 0, Language::MAX_LEVEL]
@@ -78,29 +78,25 @@ class UsersLanguagesTable extends Table
 
     public function getLanguagesOfUser($userId)
     {
-        $languages = $this->find(
-            'all',
-            array(
-                'conditions' => array('of_user_id' => $userId),
-                'order' => 'level DESC'
-            )
-        );
-
-        return $languages;
+        if (is_null($userId)) {
+            return [];
+        } else {
+            return $this->find()
+                ->where(['of_user_id' => $userId])
+                ->order(['level DESC']);
+        }
     }
 
 
     public function getLanguagesByUser($userId)
     {
-        $languages = $this->find(
-            'all',
-            array(
-                'conditions' => array('by_user_id' => $userId),
-                'order' => 'level DESC'
-            )
-        );
-
-        return $languages;
+        if (is_null($userId)) {
+            return [];
+        } else {
+            return $this->find()
+            ->where(['by_user_id' => $userId])
+            ->order(['level DESC']);
+        }
     }
 
 
@@ -171,6 +167,7 @@ class UsersLanguagesTable extends Table
             ->order(['total' => 'DESC'])
             ->contain(['Users'])
             ->group(['language_code'])
+            ->all()
             ->toList();
 
         return $result;

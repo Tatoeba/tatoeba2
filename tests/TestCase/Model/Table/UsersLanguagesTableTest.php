@@ -2,28 +2,34 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersLanguagesTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
-        'app.users',
-        'app.users_languages',
-        'app.languages',
-        'app.queued_jobs',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Languages',
+        'app.QueuedJobs',
         'plugin.Queue.QueueProcesses',
     );
-    public $autoFixtures = false;
 
-    function setUp() {
-        parent::setUp();
-        $this->UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
-        $this->loadFixtures('Users', 'UsersLanguages', 'Languages');
+    function getFixtures(): array {
+        if (stristr($this->getName(), 'reindex') === false) {
+            return ['app.Users', 'app.UsersLanguages', 'app.Languages'];
+        } else {
+            return $this->fixtures;
+        }
     }
 
-    function tearDown() {
+
+    function setUp(): void {
+        parent::setUp();
+        $this->UsersLanguages = $this->fetchTable('UsersLanguages');
+    }
+
+    function tearDown(): void {
         unset($this->UsersLanguages); 
         parent::tearDown();
     }
@@ -225,8 +231,8 @@ class UsersLanguagesTableTest extends TestCase {
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new Time('2020-01-02 03:04:05');
-        Time::setTestNow($now);
+        $now = new FrozenTime('2020-01-02 03:04:05');
+        FrozenTime::setTestNow($now);
 
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
@@ -236,25 +242,24 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 
     function assertSentencesReindexJobQueued($expectedConfig) {
-        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
         $this->assertNotNull($job);
         $this->assertEquals($expectedConfig, unserialize($job->data));
     }
 
     function assertSentencesReindexJobNotQueued() {
-        $QueuedJobs = TableRegistry::get('QueuedJobs');
+        $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
         $this->assertNull($job);
     }
 
     function testSaveUserLanguage_reindexSentencesOnLevelDrop() {
-        $this->loadFixtures();
         $nativeJpn = $this->UsersLanguages->get(3);
         $nativeJpn->level = 4;
 
@@ -264,7 +269,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_reindexSentencesOnLevelUp() {
-        $this->loadFixtures();
         $learnerFra = $this->UsersLanguages->get(5);
         $learnerFra->level = 5;
 
@@ -274,7 +278,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_noReindexSentencesOnLearnerLevelChange() {
-        $this->loadFixtures();
         $learnerFra = $this->UsersLanguages->get(5);
         $learnerFra->level = 3;
 
@@ -284,7 +287,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_reindexSentencesOnLanguageDeletion() {
-        $this->loadFixtures();
         $nativeJpn = $this->UsersLanguages->get(3);
 
         $this->UsersLanguages->delete($nativeJpn);
@@ -293,7 +295,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_noReindexSentencesOnLearningLanguageDeletion() {
-        $this->loadFixtures();
         $learnerFra = $this->UsersLanguages->get(5);
 
         $this->UsersLanguages->delete($learnerFra);
@@ -302,7 +303,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_reindexSentencesOnNewNativeLanguage() {
-        $this->loadFixtures();
         $nativeFra = $this->UsersLanguages->newEntity([
             'language_code' => 'fra',
             'level' => 5,
@@ -317,7 +317,6 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testSaveUserLanguage_noReindexSentencesOnNewLearningLanguage() {
-        $this->loadFixtures();
         $learningFra = $this->UsersLanguages->newEntity([
             'language_code' => 'fra',
             'level' => 4,

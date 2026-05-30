@@ -43,10 +43,8 @@ use App\Event\NotificationListener;
 class PrivateMessagesController extends AppController
 {
     public $name = 'PrivateMessages';
-    public $helpers = array('Html', 'Date');
-    public $components = array('Flash');
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $eventManager = $this->PrivateMessages->getEventManager();
         $eventManager->on(new NotificationListener());
@@ -74,9 +72,6 @@ class PrivateMessagesController extends AppController
      */
     public function folder($folder = 'Inbox', $status = 'all')
     {
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'Messages';
-
         $this->paginate = $this->PrivateMessages->getPaginatedMessages(
             $this->Auth->user('id'),
             $folder,
@@ -138,9 +133,6 @@ class PrivateMessagesController extends AppController
      */
     public function show($messageId)
     {
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'PrivateMessages';
-
         $message = $this->PrivateMessages->readMessage($messageId);
 
         if (!$message) {
@@ -232,8 +224,6 @@ class PrivateMessagesController extends AppController
      */
     public function write($recipients = '', $messageId = null)
     {
-        $this->helpers[] = 'PrivateMessages';
-
         $recoveredMessage = $this->request->getSession()->read('unsent_message');
 
         $userId = CurrentUser::get('id');
@@ -258,7 +248,7 @@ class PrivateMessagesController extends AppController
             $this->request->getSession()->delete('unsent_message');
             $this->set('hasRecoveredMessage', true);
         } else {
-            $pm = $this->PrivateMessages->newEntity();            
+            $pm = $this->PrivateMessages->newEmptyEntity();
         }
         $this->set('recipients', $recipients);
         $this->set('pm', $pm);

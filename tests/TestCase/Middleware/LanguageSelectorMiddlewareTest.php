@@ -9,14 +9,16 @@ use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
 use Cake\TestSuite\TestCase;
 
+use Psr\Http\Server\RequestHandlerInterface;
+
 class LanguageSelectorMiddlewareTest extends TestCase {
 
     private $oldConfig;
     private $oldLocale;
     private $middleware;
-    private $nextCallback;
+    private $handler;
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->oldLocale = I18n::getLocale();
         $this->oldConfig = Configure::read();
@@ -31,17 +33,25 @@ class LanguageSelectorMiddlewareTest extends TestCase {
             'ja' => ['日本語'],
         ]);
         $this->middleware = new LanguageSelectorMiddleware();
-        $this->nextCallback = function ($req, $res) { return $res; };
+
+        $this->handler = $this->getMockBuilder(RequestHandlerInterface::class)
+            ->setMethods(['handle'])
+            ->getMock();
+
+        $this->handler
+            ->expects($this->any())
+            ->method('handle')
+            ->will($this->returnValue(new Response()));
     }
 
-    function tearDown() {
+    function tearDown(): void {
         Configure::write($this->oldConfig);
         I18n::setLocale($this->oldLocale);
         parent::tearDown();
     }
 
     private function assertResponse($request, $redirectUrl, $status) {
-        $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+        $response = $this->middleware->process($request, $this->handler);
         $this->assertEquals($redirectUrl, $response->getHeaderLine('location'));
         $this->assertEquals($status, $response->getStatusCode());
     }
@@ -54,7 +64,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
 
     public function testMiddleware_setsLocaleAndConfig() {
         $request = $this->createRequest('/ja/some/path', 'ja', 'GET');
-        $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+        $response = $this->middleware->process($request, $this->handler);
         $this->assertEquals('ja', I18n::getLocale());
     }
 
@@ -146,7 +156,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     public function testMiddleware_setsCookie() {
         foreach(['', 'ja'] as $langPrefix) {
             $request = $this->createRequest("$langPrefix/index", 'ja', 'GET');
-            $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+            $response = $this->middleware->process($request, $this->handler);
             $this->assertEquals('ja', $response->getCookie('interface_language')['value']);
         }
     }
@@ -173,7 +183,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
             } else {
                 $request = $this->createRequest("$lang/some/path", $lang, $method);
             }
-            $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+            $response = $this->middleware->process($request, $this->handler);
             $this->assertEquals(200, $response->getStatusCode());
             $this->assertEquals($expectedLang, I18n::getLocale());
         }
@@ -182,7 +192,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
     public function testMiddleware_ignorePluginPaths() {
         $request = $this->createRequest('/some/plugin', '', 'GET')
                         ->withParam('plugin', 'Plugin');
-        $response = ($this->middleware)($request, new Response(), $this->nextCallback);
+        $response = $this->middleware->process($request, $this->handler);
         $this->assertEquals($this->oldLocale, I18n::getLocale());
         $this->assertEquals(200, $response->getStatusCode());
     }

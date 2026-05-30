@@ -18,34 +18,11 @@ class UsersVocabularyFixture extends TestFixture
     public $table = 'users_vocabulary';
 
     /**
-     * Fields
-     *
-     * @var array
-     */
-    // @codingStandardsIgnoreStart
-    public $fields = [
-        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'hash' => ['type' => 'binaryuuid', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
-        'vocabulary_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'user_vocabulary' => ['type' => 'unique', 'columns' => ['user_id', 'vocabulary_id'], 'length' => []],
-        ],
-        '_options' => [
-            'engine' => 'InnoDB',
-            'collation' => 'utf8_general_ci'
-        ],
-    ];
-    // @codingStandardsIgnoreEnd
-
-    /**
      * Init method
      *
      * @return void
      */
-    public function init()
+    public function init(): void
     {
         $this->records = [
             [

@@ -30,12 +30,9 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
-use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Http\ServerRequest;
 use Cake\Routing\Router;
-use Cake\Utility\Security;
-use Cake\I18n\I18n;
-use Locale;
 
 /**
  * Controller for contributions.
@@ -55,43 +52,81 @@ class AppController extends Controller
 
     const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
 
-    public $components = array(
-        'Auth' => array(
-        'authenticate' => array(
-            'Form' => array(
-                    'passwordHasher' => array('className' => 'Versioned'),
-                    'finder' => 'userToLogin',
-                ),
-            )
-        ),
-        'Flash',
-        'Permissions',
-        'RememberMe',
-        'Security',
-    );
-
-    public $helpers = array(
-        'AssetCompress.AssetCompress',
-        'Sentences',
-        'Comments',
-        'Date',
-        'Html',
-        'Form',
-        'Logs',
-        'Pages',
-        'Search',
-        'Security',
-        'Images'
-    );
-
     private function blackhole($type) {
       var_dump("Blackholed: $type");
     }
 
-    public function initialize()
+    public function initialize(): void
     {
-        $this->loadComponent('Cookie');
-        $this->loadComponent('Csrf');
+        $this->loadComponent('Flash');
+        $this->loadComponent('Permissions');
+        $this->loadComponent('Security');
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'passwordHasher' => ['className' => 'Versioned'],
+                    'finder' => 'userToLogin',
+                ],
+            ]
+        ]);
+        $this->loadComponent('RememberMe');
+    }
+
+    /**
+     * This function is imported from CakePHP's 3.x Router.php
+     * It provides legacy support for named parameters on incoming URLs.
+     *
+     * Checks the passed parameters for elements containing `$options['separator']`
+     * Those parameters are split and parsed as if they were old style named parameters.
+     *
+     * The parsed parameters will be moved from params['pass'] to params['named'].
+     *
+     * ### Options
+     *
+     * - `separator` The string to use as a separator. Defaults to `:`.
+     *
+     * @param \Cake\Http\ServerRequest $request The request object to modify.
+     * @param array $options The array of options.
+     * @return \Cake\Http\ServerRequest The modified request
+     * @deprecated 3.3.0 Named parameter backwards compatibility will be removed in 4.0.
+     */
+    private function parseNamedParams(ServerRequest $request, array $options = [])
+    {
+        $options += ['separator' => ':'];
+        if (!$request->getParam('pass')) {
+            return $request->withParam('named', []);
+        }
+        $named = [];
+        $pass = $request->getParam('pass');
+        foreach ((array)$pass as $key => $value) {
+            if (strpos($value, $options['separator']) === false) {
+                continue;
+            }
+            unset($pass[$key]);
+            list($key, $value) = explode($options['separator'], $value, 2);
+
+            if (preg_match_all('/\[([A-Za-z0-9_-]+)?\]/', $key, $matches, PREG_SET_ORDER)) {
+                $matches = array_reverse($matches);
+                $parts = explode('[', $key);
+                $key = array_shift($parts);
+                $arr = $value;
+                foreach ($matches as $match) {
+                    if (empty($match[1])) {
+                        $arr = [$arr];
+                    } else {
+                        $arr = [
+                            $match[1] => $arr,
+                        ];
+                    }
+                }
+                $value = $arr;
+            }
+            $named = array_merge_recursive($named, [$key => $value]);
+        }
+
+        return $request
+            ->withParam('pass', $pass)
+            ->withParam('named', $named);
     }
 
     /**
@@ -99,14 +134,12 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         // only prevent CSRF for logins and registration in the users controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
 
-        $this->Cookie->domain = TATOEBA_DOMAIN;
-        $this->Cookie->configKey('CakeCookie', 'encryption', false);
         $this->Auth->allow('display');
         $this->Auth->setConfig([
             // This line will call views/elements/session_expired.ctp.
@@ -128,8 +161,9 @@ class AppController extends Controller
         // Important: needs to be done after RememberMe->check().
         $logged_in_user = $this->Auth->user();
         if ($logged_in_user) {
-            $this->loadModel('Users');
-            $user = $this->Users->getInformationOfCurrentUser($logged_in_user['id'])->toArray();
+            $user = $this->fetchTable('Users')
+                ->getInformationOfCurrentUser($logged_in_user['id'])
+                ->toArray();
 
             // Immediately logout if status was downgraded to one that cannot login
             if (in_array($user['role'], [User::ROLE_INACTIVE, User::ROLE_SPAMMER])) {
@@ -159,7 +193,7 @@ class AppController extends Controller
         CurrentUser::store($user);
 
         // Restore named parameters removed in CakePHP 3
-        $this->request = Router::parseNamedParams($this->request);
+        $this->request = $this->parseNamedParams($this->request);
 
         // Parse named parameters (e.g. /page:123)
         // as if they were query params (e.g. ?page=123)
@@ -174,7 +208,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function beforeRender(Event $event)
+    public function beforeRender(\Cake\Event\EventInterface $event)
     {
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->request->is('ajax')) {
@@ -183,20 +217,19 @@ class AppController extends Controller
 
         // Make some cookie values accessible to views
         // used in translation form and new sentence form
-        $preSelectedLang = $this->Cookie->read('contribute_lang');
+        $preSelectedLang = $this->request->getCookie('contribute_lang');
         $this->set('contribute_lang', $preSelectedLang);
 
         // used in show_all_in
-        $lang = $this->Cookie->read('browse_sentences_in_lang');
+        $lang = $this->request->getCookie('browse_sentences_in_lang');
         $this->set('browse_sentences_in_lang', $lang);
 
         // Use this when displaying the list to which a sentence should be assigned.
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
-        $mostRecentList = $this->Cookie->read('most_recent_list');
+        $mostRecentList = $this->request->getCookie('most_recent_list');
         $this->set('most_recent_list', $mostRecentList);
 
-        $this->loadModel('WikiArticles');
-        $wikiLinkLocalizer = $this->WikiArticles->wikiLinkLocalizer();
+        $wikiLinkLocalizer = $this->fetchTable('WikiArticles')->wikiLinkLocalizer();
         $this->set(compact('wikiLinkLocalizer'));
     }
 
@@ -224,33 +257,32 @@ class AppController extends Controller
      * @param mixed $url    The url to go to, can be a raw url (string)
      *                      or a cakephp array
      * @param int   $status HTTP status code to send
-     * @param bool  $exit   If true, exit() will be called after the redirect
      *
      * @return mixed
      */
-    public function redirect($url = null, $status = null, $exit = true)
+    public function redirect($url, int $status = 302): ?\Cake\Http\Response
     {
         // if the developer has used "redirect" method without
         // specifying the lang param, then we add it
         if ($this->request->getParam('lang') !== false && is_array($url)) {
             $url['lang'] = $this->request->getParam('lang');
         }
-        return parent::redirect($url, $status, $exit);
+        return parent::redirect($url, $status);
     }
 
     protected function redirectPaginationToLastPage()
     {
-        $paging = $this->request->getParam('paging');
+        $paging = $this->request->getAttribute('paging');
         $lastPage = reset($paging)['page'];
-        $queryParams = $this->request->params['?'];
+        $queryParams = $this->request->getParam('?');
         $queryParams['page'] = $lastPage;
         $url = Router::url(array_merge(
             [
-                'controller' => $this->request->params['controller'],
-                'action' => $this->request->params['action'],
+                'controller' => $this->request->getParam('controller'),
+                'action' => $this->request->getParam('action'),
                 '?' => $queryParams
             ],
-            $this->request->params['pass']
+            $this->request->getParam('pass')
         ));
         return $this->redirect($url);
     }

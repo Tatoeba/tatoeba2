@@ -3,30 +3,31 @@ namespace App\Test\TestCase\Controller;
 
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
+use Helmich\JsonAssert\JsonAssertions;
 
 class SentencesListsControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
+    use JsonAssertions;
 
     public $fixtures = [
-        'app.audios',
-        'app.contributions',
-        'app.disabled_audios',
-        'app.favorites_users',
-        'app.languages',
-        'app.links',
-        'app.private_messages',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
-        'app.wiki_articles',
+        'app.Audios',
+        'app.Contributions',
+        'app.DisabledAudios',
+        'app.FavoritesUsers',
+        'app.Languages',
+        'app.Links',
+        'app.PrivateMessages',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {
@@ -60,6 +61,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
             [ '/en/sentences_lists/download/3', 'kazuki', true ], // kazuki's private list
             [ '/en/sentences_lists/download/3', null, '/en/sentences_lists/index' ],
             [ '/en/sentences_lists/download/3', 'contributor', '/en/sentences_lists/index' ],
+            [ '/en/sentences_lists/choices', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fchoices' ],
         ];
     }
 
@@ -82,12 +84,21 @@ class SentencesListsControllerTest extends IntegrationTestCase
     /**
      * @dataProvider ajaxAccessesProvider
      */
-    public function testControllerAjaxAccess($url, $user, $response) {
+    public function testControllerNonAngularAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAngularAjaxAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
     public function testAdd_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
         $this->assertRedirect('/en/users/login');
     }
@@ -95,7 +106,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     public function testAdd_asMember() {
         $this->logInAs('contributor');
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $lastId = $lists->find()->orderDesc('id')->first()->id;
         $this->assertRedirect("/en/sentences_lists/show/$lastId");
     }
@@ -107,6 +118,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     }
 
     public function testAddSentenceToListAsUnproperBot_bans() {
+        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://tatoeba.org');
         $username = 'kazuki';
         $this->logInAs($username);
         $this->configRequest([
@@ -118,10 +130,10 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'sentenceText' => 'spam',
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertEquals(-1, $user->level);
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $list = $lists->get(1);
         $this->assertEquals('private', $list->visibility);
     }
@@ -138,10 +150,10 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'sentenceText' => 'not a spam',
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals(-1, $user->level);
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $list = $lists->get(1);
         $this->assertNotEquals('private', $list->visibility);
     }
@@ -153,23 +165,55 @@ class SentencesListsControllerTest extends IntegrationTestCase
         ]);
     }
 
+    public function save_name_angular() {
+        $this->addHeader('Accept', 'application/json');
+        $this->ajaxPost('/en/sentences_lists/save_name', [
+            'name' => 'New name',
+            'id' => '1',
+        ]);
+    }
+
     public function testSaveName_asGuest() {
         $this->save_name();
         $this->assertResponseError();
     }
 
-    public function testSaveName_asOwner() {
+    public function testSaveName_asOwner_nonAngular() {
         $this->logInAs('kazuki');
+
         $this->save_name();
+
         $this->assertResponseOk();
         $this->assertResponseEquals('New name');
     }
 
-    public function testSaveName_asNonOwner() {
+    public function testSaveName_asOwner_angular() {
+        $this->logInAs('kazuki');
+
+        $this->save_name_angular();
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.result', 'New name');
+    }
+
+    public function testSaveName_asNonOwner_nonAngular() {
         $this->logInAs('admin');
+
         $this->save_name();
+
         $this->assertResponseOk();
         $this->assertResponseEquals('error');
+    }
+
+    public function testSaveName_asNonOwner_angular() {
+        $this->logInAs('admin');
+
+        $this->save_name_angular();
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.result', 'error');
     }
 
     public function testAddNewSentenceToList_asGuest() {
@@ -180,13 +224,62 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertResponseError();
     }
 
-    public function testAddNewSentenceToList_asOwner() {
+    public function testAddNewSentenceToList_asOwner_nonAngular() {
         $this->logInAs('kazuki');
         $this->ajaxPost('/en/sentences_lists/add_new_sentence_to_list/', [
             'listId' => 2,
             'sentenceText' => 'A new sentence for that list.',
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testAddNewSentenceToList_asOwner_angular() {
+        $this->addHeader('Accept', 'application/json');
+
+        $this->testAddNewSentenceToList_asOwner_nonAngular();
+
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.sentence.text' => 'A new sentence for that list.',
+            '$.sentence.lang' => null,
+            '$.sentence.user.username' => 'kazuki',
+            '$.sentence.sentences_lists' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.sentence.sentences_lists[0].id' => 2,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testAddSentenceToNewList_OK() {
+        $this->logInAs('kazuki');
+
+        $this->ajaxPost('/en/sentences_lists/add_sentence_to_new_list', [
+            'name' => 'A new list for sentence 1',
+            'sentenceId' => 1,
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.name' => 'A new list for sentence 1',
+            '$.result.user_id' => 7,
+            '$.result.hasSentence' => true,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testAddSentenceToNewList_error() {
+        $this->logInAs('kazuki');
+
+        $this->ajaxPost('/en/sentences_lists/add_sentence_to_new_list', [
+            'name' => 'A new list for a sentence that does not exist',
+            'sentenceId' => 99999999999999,
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $this->assertJsonValueEquals($actual, '$.result', 'error');
     }
 
     public function testSetOption_asGuest() {
@@ -206,6 +299,28 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'value' => 'unlisted',
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testChoices_asMember() {
+        $this->logInAs('kazuki');
+
+        $this->get('/en/sentences_lists/choices');
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.lists' => new \PHPUnit\Framework\Constraint\Count(4),
+            '$.lists[0].id' => 2,
+            '$.lists[0].name' => 'Public list',
+            '$.lists[0].user_id' => 7,
+            '$.lists[0].is_mine' => '1',
+            '$.lists[0].is_collaborative' => '0',
+            '$.lists[1].id' => 3,
+            '$.lists[2].id' => 1,
+            '$.lists[3].id' => 5,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testExportToCsv_asGuest_unlistedList() {
@@ -235,7 +350,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     //test redirect /:id/langX maps to /:id/und/langX
     public function testShowSentenceListRedirect()
     {
-        $lists = TableRegistry::get('SentencesLists');
+        $lists = $this->fetchTable('SentencesLists');
         $lastId = $lists->find()->orderDesc('id')->first()->id;
         $this->get("/en/sentences_lists/show/$lastId/cmn");
         $this->assertResponseCode(301);
@@ -251,11 +366,11 @@ class SentencesListsControllerTest extends IntegrationTestCase
                 'user_id' => $userId,
             ];
         }
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $entities = $sentences->newEntities($newSentences);
         $sentences->saveMany($entities);
 
-        $sentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $sentencesLists = $this->fetchTable('SentencesLists');
         $sentencesLists->addSentencesToList($entities, $listId, $userId);
 
         return $sentencesLists->getNumberOfSentences($listId);
@@ -278,7 +393,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $listId = 5;
         $user = 'kazuki';
         $userId = 7;
-        $users = TableRegistry::getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
 
         $nbSentences = $this->addSentencesToList($listId, $nbPerPageSetting * 2 + 1);

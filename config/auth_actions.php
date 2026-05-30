@@ -1,7 +1,7 @@
 <?php
 use App\Model\Entity\User;
 
-$config = [
+return [
     // actions available to everyone, even guests
     'public_actions' => [
         'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
@@ -11,8 +11,8 @@ $config = [
         ],
         'audio' => [ 'of', 'index', 'download' ],
         'reviews' => [ 'of' ],
-        'contributions' => [ '*' ],
-        'pages' => [ '*' ],
+        'contributions' => '*',
+        'pages' => '*',
         'favorites' => [ 'of_user' ],
         's' => [ 's' ],
         'sentence_annotations' => [ 'last_modified' ],
@@ -38,18 +38,17 @@ $config = [
             'search',
             'collaborative',
         ],
-        'stats' => [ '*' ],
+        'stats' => '*',
         'tags' => [
             'show_sentences_with_tag',
             'view_all',
             'search',
             'autocomplete'
         ],
-        'tools' => [ '*' ],
+        'tools' => '*',
         'transcriptions' => [ 'view', 'of' ],
         'user' => [
             'profile',
-            'accept_new_terms_of_use',
         ],
         'users' => [
             'all',
@@ -71,7 +70,7 @@ $config = [
             'show_message',
             'messages_of_user',
         ],
-        'angular_templates' => [ '*' ],
+        'angular_templates' => '*',
     ],
 
     // actions not available for guests or some users

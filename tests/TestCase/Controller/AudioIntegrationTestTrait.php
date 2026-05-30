@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Controller;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
-use Cake\ORM\TableRegistry;
 
 /**
  * A trait intended to make audio testing easier.
@@ -15,9 +14,9 @@ trait AudioIntegrationTestTrait
 
     private function getAudioFilePath($audioId) {
         try {
-            return TableRegistry::get('Audios')->get($audioId)->file_path;
+            return $this->fetchTable('Audios')->get($audioId)->file_path;
         } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
-            return TableRegistry::get('DisabledAudios')->get($audioId)->file_path;
+            return $this->fetchTable('DisabledAudios')->get($audioId)->file_path;
         }
     }
 

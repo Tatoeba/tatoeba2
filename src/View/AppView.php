@@ -5,6 +5,19 @@ use Cake\View\View;
 
 class AppView extends View
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        // At least thest helpers are needed on every single page, so preload them.
+        // The rest is lazy-loaded.
+        $this->loadHelper('AssetCompress.AssetCompress');
+        $this->loadHelper('AngularTemplate');
+        $this->loadHelper('Flash');
+        $this->loadHelper('Html');
+        $this->loadHelper('Languages');
+    }
+
     /**
      * Sanitize user input sent to AngularJS
      *

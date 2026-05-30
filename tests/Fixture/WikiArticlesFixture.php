@@ -9,24 +9,7 @@ class WikiArticlesFixture extends TestFixture
 
     public $table = 'articles';
 
-    public $fields = [
-        'id' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'autoIncrement' => true, 'precision' => null, 'comment' => null],
-        'group_id' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => 0, 'precision' => null, 'comment' => null, 'autoIncrement' => null],
-        'lang' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'precision' => null, 'comment' => null, 'collate' => null],
-        'slug' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'precision' => null, 'comment' => null, 'collate' => null],
-        'title' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'precision' => null, 'comment' => null, 'collate' => null],
-        'content' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'precision' => null, 'comment' => null, 'collate' => null],
-        'locked' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => false, 'precision' => null, 'comment' => null],
-        '_indexes' => [
-            'articles_group_id_idx' => ['type' => 'index', 'columns' => ['group_id'], 'length' => []],
-        ],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-//            'sqlite_autoindex_articles_1' => ['type' => 'unique', 'columns' => ['lang', 'slug'], 'length' => []],
-        ],
-    ];
-
-    public function init()
+    public function init(): void
     {
         $this->records = [
             [

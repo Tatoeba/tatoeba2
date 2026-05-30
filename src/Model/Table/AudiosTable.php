@@ -22,7 +22,7 @@ use App\Event\StatsListener;
 use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
@@ -35,13 +35,13 @@ class AudiosTable extends Table
 {
     const JOB_TYPE = 'AudioImport';
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('external', 'json');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');
@@ -56,7 +56,7 @@ class AudiosTable extends Table
         $this->getEventManager()->on(new StatsListener());
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->requirePresence('sentence_id', 'create')
@@ -67,11 +67,11 @@ class AudiosTable extends Table
             ->allowEmptyString('user_id');
 
         $validator
-            ->allowEmpty('created')
+            ->allowEmptyDateTime('created')
             ->dateTime('created');
 
         $validator
-            ->allowEmpty('modified')
+            ->allowEmptyDateTime('modified')
             ->dateTime('modified');
 
         $validator
@@ -102,7 +102,7 @@ class AudiosTable extends Table
         return $ok;
     }
 
-    public function beforeSave($event, $entity, $options = array()) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($entity->isNew()) {
             if ($entity->sentence_id) {
                 $sentence = $this->Sentences->get($entity->sentence_id);
@@ -112,7 +112,7 @@ class AudiosTable extends Table
         return $this->isAuthorConsistent($entity);
     }
 
-    public function afterSave($event, $entity, $options = array()) {
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($entity->isNew()) {
             $event = new Event('Model.Audio.audioCreated', $this, [
                 'audio' => $entity,
@@ -138,7 +138,7 @@ class AudiosTable extends Table
     }
 
     protected function moveRecordToOtherTable($entity, $tableModel) {
-        $entity->isNew(true);
+        $entity->setNew(true);
         $this->getConnection()->transactional(function () use ($entity, $tableModel) {
             if ($tableModel->save($entity)) {
                 if ($this->delete($entity)) {
@@ -156,7 +156,7 @@ class AudiosTable extends Table
         }
     }
 
-    public function afterDelete($event, $entity, $options) {
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options) {
         $this->removeAudioFile($entity, $options);
 
         $event = new Event('Model.Audio.audioDeleted', $this, [
@@ -244,7 +244,7 @@ class AudiosTable extends Table
     /**
      * Custom finder for optimized count of total sentences having audio
      */
-    public function findSentencesCount(Query $query, array $options) {
+    public function findSentencesCounter(Query $query, array $options) {
         $cache_key = 'audio_sentences_count_';
 
         if (isset($options['lang'])) {
@@ -252,12 +252,13 @@ class AudiosTable extends Table
             $cache_key .= $options['lang'];
         }
 
-        return $query
+        $counter = fn($query) => $query
             ->cache($cache_key)
             ->disableHydration()
             ->select(['cnt' => 'COUNT(DISTINCT sentence_id)'])
             ->first()
             ['cnt'];
+        return $query->counter($counter);
     }
 
     /**
@@ -311,6 +312,7 @@ class AudiosTable extends Table
             ->where(['Sentences.id IN' => $allSentenceIds])
             ->select(['id', 'lang'])
             ->contain(['Audios' => ['Users' => ['fields' => ['username']]]])
+            ->all()
             ->toList();
             
         $sentences = Hash::combine($sentences, '{n}.id', '{n}');
@@ -392,7 +394,7 @@ class AudiosTable extends Table
                     $audio = $existing->first();
                     $this->touch($audio);
                 } else {
-                    $audio = $this->newEntity();
+                    $audio = $this->newEmptyEntity();
                     $audio->sentence_id = $file['sentenceId'];
                     $audio->user_id = $author->id;
                 }
@@ -456,7 +458,8 @@ class AudiosTable extends Table
     public function lastImportJob() {
         return $this->QueuedJobs->find()
             ->where(['job_type' => self::JOB_TYPE])
-            ->last();
+            ->orderDesc($this->QueuedJobs->getPrimaryKey())
+            ->first();
     }
 
     public function enqueueImportTask($author, $replace = []) {

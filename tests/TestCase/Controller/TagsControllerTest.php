@@ -1,7 +1,6 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
@@ -10,21 +9,27 @@ class TagsControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.favorites_users',
-        'app.private_messages',
-        'app.sentences',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.links',
-        'app.tags',
-        'app.tags_sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
-        'app.wiki_articles',
+        'app.Audios',
+        'app.Contributions',
+        'app.FavoritesUsers',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Links',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
+        'app.WikiArticles',
     ];
+
+    public function setUp(): void {
+        parent::setUp();
+        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://example.net');
+    }
 
     public function accessesProvider() {
         return [
@@ -33,10 +38,10 @@ class TagsControllerTest extends IntegrationTestCase {
             [ '/en/tags/view_all', 'contributor', true ],
             [ '/en/tags/view_all/@', null, true ],
             [ '/en/tags/remove_tag_from_sentence/2/2', null, '/en/users/login?redirect=%2Fen%2Ftags%2Fremove_tag_from_sentence%2F2%2F2' ],
-            [ '/en/tags/remove_tag_from_sentence/2/2', 'contributor', '/' ],
+            [ '/en/tags/remove_tag_from_sentence/2/2', 'contributor', 'https://example.net/previous_page' ],
             [ '/en/tags/remove_tag_from_sentence/2/2', 'advanced_contributor', '/en/sentences/show/2' ],
             [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', null, '/en/users/login?redirect=%2Fen%2Ftags%2Fremove_tag_of_sentence_from_tags_show%2F2%2F2' ],
-            [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', 'contributor', '/' ],
+            [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', 'contributor', 'https://example.net/previous_page' ],
             [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', 'advanced_contributor', 'https://example.net/previous_page' ],
             [ '/en/tags/show_sentences_with_tag/2', null, true ],
             [ '/en/tags/show_sentences_with_tag/2', 'contributor', true ],
@@ -79,8 +84,9 @@ class TagsControllerTest extends IntegrationTestCase {
 
     public function testAddTagPost_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->add_tag_post();
-        $this->assertResponseError();
+        $this->assertResponseCode(403);
     }
 
     public function testAddTagPost_asContributor() {
@@ -136,11 +142,11 @@ class TagsControllerTest extends IntegrationTestCase {
                 'user_id' => $userId,
             ];
         }
-        $Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $Sentences = $this->fetchTable('Sentences');
         $entities = $Sentences->newEntities($newSentences);
         $Sentences->saveMany($entities);
 
-        $Tags = TableRegistry::getTableLocator()->get('Tags');
+        $Tags = $this->fetchTable('Tags');
         foreach ($entities as $sentence) {
             $Tags->TagsSentences->tagSentence($sentence->id, $tagId, $userId);
         }
@@ -165,8 +171,7 @@ class TagsControllerTest extends IntegrationTestCase {
         $tagId = 2;
         $user = 'kazuki';
         $userId = 7;
-        $nbPerPageSetting = TableRegistry::getTableLocator()
-            ->get('Users')
+        $nbPerPageSetting = $this->fetchTable('Users')
             ->getSettings($userId)
             ['settings']['sentences_per_page'];
 

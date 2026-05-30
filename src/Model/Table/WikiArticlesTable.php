@@ -10,13 +10,13 @@ use Cake\ORM\Table;
 
 class WikiArticlesTable extends Table
 {
-    public static function defaultConnectionName() {
+    public static function defaultConnectionName(): string {
         return 'wiki';
     }
 
     public function getArticleTranslations($lang, $slug) {
         $cache_key = "wiki_articles_${lang}_${slug}";
-        if (($result = Cache::read($cache_key)) === false) {
+        if (($result = Cache::read($cache_key)) === null) {
             try {
                 $group_id = $this->find()
                     ->select(['group_id'])
@@ -27,10 +27,11 @@ class WikiArticlesTable extends Table
                     ->select(['lang', 'slug'])
                     ->where(compact('group_id'))
                     ->enableHydration(false)
+                    ->all()
                     ->combine('lang', 'slug')
                     ->toArray();
             }
-            catch (\PDOException $e) {
+            catch (\Cake\Database\Exception\MissingConnectionException $e) {
                 if ($this->getConnection()->isQueryLoggingEnabled()) {
                     Log::error('Error while connecting to the wiki: '. $e->getMessage());
                 }
@@ -61,7 +62,7 @@ class WikiArticlesTable extends Table
         return function($slug) { return $this->getWikiLink($slug); };
     }
 
-    public function initialize(array $config) {
+    public function initialize(array $config): void {
         parent::initialize($config);
         $this->setTable('articles');
     }

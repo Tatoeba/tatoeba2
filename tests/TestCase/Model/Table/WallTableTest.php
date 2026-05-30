@@ -7,30 +7,32 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Event\EventList;
 use Cake\Http\ServerRequest;
+use Cake\I18n\FrozenTime;
 use Cake\I18n\I18n;
-use Cake\I18n\Time;
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
 class WallTest extends TestCase {
 
     public $fixtures = array(
-        'app.walls',
-        'app.wall_threads',
-        'app.users',
-        'app.users_languages',
+        'app.Walls',
+        'app.WallThreads',
+        'app.Users',
+        'app.UsersLanguages',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
-        $this->Wall = TableRegistry::getTableLocator()->get('Wall');
+        $this->Wall = $this->fetchTable('Wall');
 
         // enable event tracking
         $this->Wall->getEventManager()->setEventList(new EventList());
 
+        // load routes
+        $this->loadRoutes();
+
         // set current hostname
-        Router::pushRequest(new ServerRequest([
+        Router::setRequest(new ServerRequest([
             'environment' => [
                 'HTTP_HOST' => 'tatoeba.org',
                 'HTTPS' => 'on',
@@ -41,7 +43,7 @@ class WallTest extends TestCase {
         Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 10);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->Wall);
 
         parent::tearDown();
@@ -115,7 +117,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesExistingThreadDate() {
-        $date = new Time('2018-01-02 03:04:05');
+        $date = new FrozenTime('2018-01-02 03:04:05');
         $reply = $this->Wall->newEntity([
             'owner' => 7,
             'date' => $date,
@@ -130,7 +132,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesNewThreadDate() {
-        $date = new Time('2018-01-02 03:04:05');
+        $date = new FrozenTime('2018-01-02 03:04:05');
         $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => $date,
@@ -152,7 +154,7 @@ class WallTest extends TestCase {
 
         $this->Wall->save($post);
 
-        $this->_assertThreadDate($postId, new Time('2014-04-15 16:38:36'));
+        $this->_assertThreadDate($postId, new FrozenTime('2014-04-15 16:38:36'));
     }
 
     public function testSave_editExistingPostUpdatesModifiedDate() {

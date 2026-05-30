@@ -20,18 +20,18 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
-use Cake\ORM\TableRegistry;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
+use Cake\Datasource\FactoryLocator;
 
 class TranslationsTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('sentences');
 
@@ -131,7 +131,7 @@ class TranslationsTable extends Table
          *   WHERE Translation.id = AllTranslations.translation_id
          *   ORDER BY Translation.lang;
          */
-        $Links = TableRegistry::getTableLocator()->get('Links');
+        $Links = FactoryLocator::get('Table')->get('Links');
         $subQuery = $Links->find('all')
             ->where(['Links.sentence_id IN' => $ids])
             ->join([
@@ -159,7 +159,7 @@ class TranslationsTable extends Table
             ->select([
                 'type' => 'AllTranslations.type',
                 'sentence_id' => 'AllTranslations.sentence_id',
-                'id' => 'Translations.id',
+                'Translations__id' => 'Translations.id',
                 'text' => 'Translations.text',
                 'user_id' => 'Translations.user_id',
                 'lang' => 'Translations.lang',
@@ -200,9 +200,9 @@ class TranslationsTable extends Table
         }
         $query->contain([
             'Transcriptions' => [
-                'Users' => ['fields' => 'username']
+                'Users' => ['fields' => ['username']]
             ]
         ]);
-        return $query->toList();
+        return $query->all()->toList();
     }
 }

@@ -23,7 +23,7 @@ use Cake\ORM\Entity;
 use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
@@ -58,13 +58,13 @@ class SentencesTable extends Table
         return $association;
     }
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users');
         $this->belongsTo('Languages');
@@ -119,10 +119,10 @@ class SentencesTable extends Table
         $this->getEventManager()->on(new DenormalizationListener());
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
-            ->notEmpty('text');
+            ->notEmptyString('text');
 
         $sentenceLicenses = array_keys(Licenses::getSentenceLicenses());
         $validator
@@ -147,15 +147,15 @@ class SentencesTable extends Table
             ])
             ->allowEmptyString(
                 'license',
+                __('This is not a valid license.'),
                 function ($context) {
                     return $context['newRecord'] || CurrentUser::isAdmin();
-                },
-                __('This is not a valid license.')
+                }
             );
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
-            ->allowEmpty('lang')
+            ->allowEmptyString('lang')
             ->add('lang', [
                 'inList' => [
                     'rule' => ['inList', $languages]
@@ -169,7 +169,7 @@ class SentencesTable extends Table
         return $validator;
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->addCreate(
             function ($entity, $options) {
@@ -198,7 +198,7 @@ class SentencesTable extends Table
         return $rules;
     }
 
-    public function beforeSave($event, $entity, $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options)
     {
         if ($entity->isNew()) { // creating a new sentence
             if (!$entity->license && $entity->user_id) {
@@ -268,7 +268,7 @@ class SentencesTable extends Table
     /**
      * Called after a sentence is saved.
      */
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
         $created = $entity->isNew();
         $event = new Event('Model.Sentence.saved', $this, array(
@@ -330,7 +330,9 @@ class SentencesTable extends Table
     {
         if (!$entity->isNew() && $entity->isDirty('text')) {
             $OKTagId = $this->Tags->getIdFromName($this->Tags->getOKTagName());
-            $this->TagsSentences->removeTagFromSentence($OKTagId, $entity->id);
+            if (!is_null($OKTagId)) {
+                $this->TagsSentences->removeTagFromSentence($OKTagId, $entity->id);
+            }
         }
     }
 
@@ -355,7 +357,7 @@ class SentencesTable extends Table
         }
     }
 
-    public function beforeDelete($event, $entity, $options)
+    public function beforeDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         $hasAudio = $this->hasAudio($entity->id);
         if ($hasAudio) {
@@ -370,7 +372,7 @@ class SentencesTable extends Table
      *
      * @return void
      */
-    public function afterDelete($event, $entity, $options)
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         $sentenceId = $entity->id;
         $sentenceLang = $entity->lang;
@@ -402,7 +404,7 @@ class SentencesTable extends Table
             'sentence_id' => $sentenceId,
             'translation_id'=> $sentenceId
         ]];
-        $links = $this->Links->find('all')->where($conditions)->toList();
+        $links = $this->Links->find('all')->where($conditions)->all()->toList();
         $deleted = $this->Links->deleteAll($conditions);
 
         // --- Logs for links ---
@@ -985,7 +987,7 @@ class SentencesTable extends Table
         }
 
         $sentence = $this->find('all')
-                         ->where(['text' => $newSentence->text, 'lang' => $lang])
+                         ->where(['text' => $newSentence->text, 'lang IS' => $lang])
                          ->first();
 
         // Duplicate sentence found
@@ -1252,6 +1254,7 @@ class SentencesTable extends Table
         $sentences = $this->find('all')
             ->where(['user_id' => $user['id'], 'correctness' => 0])
             ->select(['id', 'correctness'])
+            ->all()
             ->toList();
 
         $editValues = array();
@@ -1271,6 +1274,7 @@ class SentencesTable extends Table
         $result = $this->find('all')
         ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
         ->select(['lang', 'id'])
+        ->all()
         ->toList();
 
         return Hash::combine($result, '{n}.id', '{n}.lang');

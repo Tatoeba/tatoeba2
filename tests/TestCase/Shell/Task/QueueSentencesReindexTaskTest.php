@@ -2,27 +2,26 @@
 namespace App\Test\TestCase\Shell\Task;
 
 use App\Shell\Task\QueueSentencesReindexTask;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class QueueSentencesReindexTaskTest extends TestCase
 {
     public $fixtures = [
-        'app.reindex_flags',
-        'app.sentences',
-        'app.links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.Links',
     ];
     public $io;
     public $task;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->io = $this->getMockBuilder('Cake\Console\ConsoleIo')->getMock();
         $this->task = new QueueSentencesReindexTask($this->io);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->task);
         parent::tearDown();
@@ -30,17 +29,18 @@ class QueueSentencesReindexTaskTest extends TestCase
 
     private function assertSentencesFlaggedForReindex($expected)
     {
-        $result = TableRegistry::getTableLocator()->get('ReindexFlags')
+        $result = $this->fetchTable('ReindexFlags')
             ->find('list', ['valueField' => 'sentence_id'])
             ->select(['sentence_id'])
             ->order('sentence_id')
+            ->all()
             ->toList();
         $this->assertEquals($expected, $result);
     }
 
     public function testRun_userLanguageLevelUp()
     {
-        $this->task->run(['user_id' => 7, 'lang' => 'fra'], null);
+        $this->task->run(['user_id' => 7, 'lang' => 'fra'], 1234);
 
         // should reindex sentences 4, 8, 12, 23 and 35
         // along with all direct and indirect translations
@@ -49,7 +49,7 @@ class QueueSentencesReindexTaskTest extends TestCase
 
     public function testRun_userLanguageLevelDrop()
     {
-        $this->task->run(['user_id' => 7, 'lang' => 'jpn'], null);
+        $this->task->run(['user_id' => 7, 'lang' => 'jpn'], 1234);
 
         // should reindex sentences 6, 10, 56 and 57
         // along with all direct and indirect translations

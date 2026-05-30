@@ -29,11 +29,11 @@ namespace App\Model\Table;
 use App\Model\Entity\User;
 use App\Auth\VersionedPasswordHasher;
 use ArrayObject;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -41,7 +41,7 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('birthday', 'string');
         $schema->setColumnType('description', 'text');
@@ -49,7 +49,7 @@ class UsersTable extends Table
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
 
@@ -74,16 +74,16 @@ class UsersTable extends Table
         ]);
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->allowEmptyString('id', 'create');
 
         $validator
             ->scalar('username')
             ->requirePresence('username', 'create')
-            ->notEmpty('username', __('Field required'))
+            ->notEmptyString('username', __('Field required'))
             ->minLength('username', 2, __('Username must be at least two characters long'))
             ->maxLength('username', 20, __('Username must be at most 20 characters long'))
             ->add('username', 'alphanumeric', [
@@ -94,7 +94,7 @@ class UsersTable extends Table
         $validator
             ->scalar('password')
             ->requirePresence('password', 'create')
-            ->notEmpty('password', __('Field required'))
+            ->notEmptyString('password', __('Field required'))
             ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
@@ -104,7 +104,7 @@ class UsersTable extends Table
                 __('Failed to change email address. Please enter a proper email address.')
             )
             ->requirePresence('email', 'create')
-            ->notEmpty('email', __('Field required'));
+            ->notEmptyString('email', __('Field required'));
 
         $validator
             ->date('since');
@@ -116,16 +116,16 @@ class UsersTable extends Table
             ->scalar('role');
 
         $validator
-            ->allowEmpty('send_notifications')
+            ->allowEmptyString('send_notifications')
             ->boolean('send_notifications');
 
         $validator
-            ->allowEmpty('name')
+            ->allowEmptyString('name')
             ->scalar('name')
             ->maxLength('name', 255);
 
         $validator
-            ->allowEmpty('birthday')
+            ->allowEmptyDateTime('birthday')
             ->add('birthday', 'validBirthday', [
                 'rule' => function ($data, $provider) {
                     $data = explode('-', $data, 3);
@@ -160,7 +160,7 @@ class UsersTable extends Table
             ]);
 
         $validator
-            ->allowEmpty('description')
+            ->allowEmptyString('description')
             ->scalar('description')
             ->add('description', 'outboundLinkCheck', [
                 'rule' => 'isLinkPermitted',
@@ -168,7 +168,7 @@ class UsersTable extends Table
             ]);
 
         $validator
-            ->allowEmpty('homepage')
+            ->allowEmptyString('homepage')
             ->scalar('homepage')
             ->maxLength('homepage', 255)
             ->add('homepage', 'outboundLinkCheck', [
@@ -181,7 +181,7 @@ class UsersTable extends Table
             ->maxLength('image', 255);
 
         $validator
-            ->allowEmpty('country_id')
+            ->allowEmptyString('country_id')
             ->scalar('country_id')
             ->maxLength('country_id', 2);
 
@@ -191,12 +191,12 @@ class UsersTable extends Table
             ->maxLength('audio_license', 50);
 
         $validator
-            ->allowEmpty('audio_attribution_url')
+            ->allowEmptyString('audio_attribution_url')
             ->scalar('audio_attribution_url')
             ->maxLength('audio_attribution_url', 255);
 
         $validator
-            ->allowEmpty('is_spamdexing')
+            ->allowEmptyString('is_spamdexing')
             ->boolean('is_spamdexing');
 
         return $validator;
@@ -244,7 +244,7 @@ class UsersTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->add($rules->isUnique(['username'], __('Username already taken.')));
         $rules->add($rules->isUnique(['email'], __('That email address already exists. Please try another.')));
@@ -252,7 +252,7 @@ class UsersTable extends Table
         return $rules;
     }
 
-    public function beforeSave(Event $event, User $user, ArrayObject $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, User $user, ArrayObject $options)
     {
         if ($user->isNew()) {
             if (!$user->has('is_spamdexing')) {
@@ -265,7 +265,7 @@ class UsersTable extends Table
             if ($user->get('remove-picture')) {
                 $user->image = null;
             }
-            $user->unsetProperty('remove-picture');
+            $user->unset('remove-picture');
         }
     }
 
@@ -283,7 +283,7 @@ class UsersTable extends Table
         }
     }
 
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
         if (!$entity->isNew() && $entity->isDirty('image') && empty($entity->image)) {
             $this->removeImages($entity->getOriginal('image'));
@@ -589,7 +589,7 @@ class UsersTable extends Table
         } catch (RecordNotFoundException $e) {    
             return;
         }
-        $user->last_contribution = Time::now();
+        $user->last_contribution = FrozenTime::now();
         $this->save($user);
     }
 

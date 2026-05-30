@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\TagsTable;
 use App\Test\TestCase\Model\Table\TatoebaTableTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Event\EventList;
 use Cake\I18n\I18n;
 
@@ -12,20 +11,20 @@ class TagsTableTest extends TestCase {
     use TatoebaTableTestTrait;
 
     public $fixtures = array(
-        'app.sentences',
-        'app.users',
-        'app.tags',
-        'app.tags_sentences',
-        'app.users_languages',
+        'app.Sentences',
+        'app.Users',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.UsersLanguages',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
-        $this->Tag = TableRegistry::getTableLocator()->get('Tags');
+        $this->Tag = $this->fetchTable('Tags');
         $this->Tag->getEventManager()->setEventList(new EventList());
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->Tag);
         parent::tearDown();
     }

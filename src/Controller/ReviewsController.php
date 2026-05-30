@@ -41,17 +41,7 @@ use App\Model\CurrentUser;
  */
 class ReviewsController extends AppController
 {
-    public $uses = array('UsersSentences', 'User');
-    public $helpers = array('CommonModules');
-
-    public function beforeFilter(Event $event)
-    {
-        $this->loadModel('UsersSentences');
-
-        $this->loadComponent('RequestHandler');
-
-        return parent::beforeFilter($event);
-    }
+    protected $defaultTable = 'UsersSentences';
 
     /**
      * Add a sentence to the user's sentence reviews.
@@ -70,8 +60,9 @@ class ReviewsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('result', $result);
-            $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             $this->render('add_delete');
         }
@@ -93,8 +84,9 @@ class ReviewsController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('result', $result);
-            $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         } else {
             $this->render('add_delete');
         }
@@ -115,10 +107,7 @@ class ReviewsController extends AppController
             return $this->redirect([$username, 'all', $lang], 301);
         }
 
-        $this->helpers[] = 'Pagination';
-
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
 
         if(empty($userId)) {
             $this->set('userExists', false);

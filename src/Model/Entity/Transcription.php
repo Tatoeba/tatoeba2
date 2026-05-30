@@ -22,7 +22,6 @@ use Cake\ORM\Entity;
 use App\Model\Entity\PinyinTrait;
 use App\Model\Entity\FuriganaTrait;
 use App\Lib\LanguagesLib;
-use Cake\I18n\Time;
 use App\Model\CurrentUser;
 
 

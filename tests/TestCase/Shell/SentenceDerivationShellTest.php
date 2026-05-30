@@ -5,24 +5,23 @@ use App\Shell\SentenceDerivationShell;
 use Cake\Console\ConsoleIo;
 use Cake\Console\Shell;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use App\Shell\Walker;
 use Cake\Utility\Hash;
 
 class SentenceDerivationShellTest extends TestCase
 {
     public $fixtures = array(
-        'app.audios',
-        'app.disabled_audios',
-        'app.contributions',
-        'app.sentences',
-        'app.languages',
-        'app.reindex_flags',
-        'app.links',
-        'app.users'
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Contributions',
+        'app.Sentences',
+        'app.Languages',
+        'app.ReindexFlags',
+        'app.Links',
+        'app.Users'
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
@@ -35,11 +34,11 @@ class SentenceDerivationShellTest extends TestCase
         $this->SentenceDerivationShell->linkEraFirstId = 1;
         $this->SentenceDerivationShell->linkABrange = array(29, 31);
 
-        $this->Contributions = TableRegistry::getTableLocator()->get('Contributions');
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Contributions = $this->fetchTable('Contributions');
+        $this->Sentences = $this->fetchTable('Sentences');
     }
     
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->SentenceDerivationShell);
@@ -47,7 +46,7 @@ class SentenceDerivationShellTest extends TestCase
 
     public function testWalkerLoops() {
         $model = $this->Contributions;
-        $expected = $model->find('all')->toList();
+        $expected = $model->find()->all()->toList();
 
         $walker = new Walker($model);
         $walker->bufferSize = 10;
@@ -68,6 +67,7 @@ class SentenceDerivationShellTest extends TestCase
                 'id >' => 2,
             ])
             ->limit(2)
+            ->all()
             ->toList();
 
         $walker = new Walker($model);
@@ -87,6 +87,7 @@ class SentenceDerivationShellTest extends TestCase
                 'id >' => 1,
                 'id <=' => 2,
             ])
+            ->all()
             ->toList();
 
         $walker = new Walker($model);
@@ -106,6 +107,7 @@ class SentenceDerivationShellTest extends TestCase
         $walker->allowRewindSize = 2;
         $expected = $model->find()
             ->where(['id IN' => [9, 10]])
+            ->all()
             ->toList();
 
         // position pointer just after a buffer refill
@@ -133,7 +135,7 @@ class SentenceDerivationShellTest extends TestCase
 
     public function testWalkerFindAfterHitsBufferEnd() {
         $model = $this->Contributions;
-        $all = $model->find()->toList();
+        $all = $model->find()->all()->toList();
         $expected = array(end($all));
 
         $walker = new Walker($model);
@@ -153,6 +155,7 @@ class SentenceDerivationShellTest extends TestCase
             ->where([
                 'id IN' => [1, 3, 5, 7],
             ])
+            ->all()
             ->toList();
         $walker = new Walker($model);
         $walker->next(); $walker->next();
@@ -170,6 +173,7 @@ class SentenceDerivationShellTest extends TestCase
         $result = $this->Sentences->find()
             ->where(['id IN' => $ids])
             ->select(['id', 'based_on_id'])
+            ->all()
             ->toList();
         return Hash::combine($result, '{n}.id', '{n}.based_on_id');
     }
@@ -218,7 +222,7 @@ class SentenceDerivationShellTest extends TestCase
     {
         $removedSentenceId = 13;
 
-        $result = $this->Sentences->findById($removedSentenceId)->toList();
+        $result = $this->Sentences->findById($removedSentenceId)->all()->toList();
         $this->assertEmpty($result);
     }
 
@@ -484,7 +488,7 @@ class SentenceDerivationShellTest extends TestCase
                 'text' => "Some random sentence $i.",
                 'action' => 'insert',
                 'user_id' => '1',
-                'datetime' => 'NOW()',
+                'datetime' => new \DateTime('now'),
                 'type' => 'sentence',
             ]);
             $Contributions->save($contribution);

@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
 use Cake\Filesystem\File;
@@ -13,32 +12,32 @@ class UserControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.contributions',
-        'app.favorites_users',
-        'app.users',
-        'app.private_messages',
-        'app.sentence_comments',
-        'app.sentences',
-        'app.users_languages',
-        'app.wiki_articles',
+        'app.Audios',
+        'app.Contributions',
+        'app.FavoritesUsers',
+        'app.Users',
+        'app.PrivateMessages',
+        'app.SentenceComments',
+        'app.Sentences',
+        'app.UsersLanguages',
+        'app.WikiArticles',
     ];
 
     private $oldPasswords = [];
 
     private $tmpFile = TMP.'UserControllerTest_tmpFile';
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
 
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $users = $users->find()->select(['username', 'password'])->all();
         $this->oldPasswords = $users->combine('username', 'password')->toArray();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         $file = new File($this->tmpFile);
         if ($file->exists()) {
             $file->delete();
@@ -73,7 +72,7 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     private function assertPassword($what, $username) {
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $currentPassword = $user->password;
         $oldPassword = $this->oldPasswords[$username];
@@ -232,7 +231,7 @@ class UserControllerTest extends IntegrationTestCase
             'role' => $newRole,
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newRole, $user->role);
     }
@@ -267,27 +266,28 @@ class UserControllerTest extends IntegrationTestCase
             'role' => $newRole,
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newRole, $user->role);
     }
 
-    private function prepareImageUpload() {
+    private function getUploadedImageForm() {
         $someImage = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA'.
                                    'AAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=');
         $ok = file_put_contents($this->tmpFile, $someImage);
         $this->assertNotFalse($ok);
-        return [
-            'tmp_name' => $this->tmpFile,
-            'error' => UPLOAD_ERR_OK,
-            'name' => '1x1_black.png',
-            'type' => 'image/png',
-            'size' => strlen($someImage),
-        ];
+        $image = new \Laminas\Diactoros\UploadedFile(
+            $this->tmpFile,
+            strlen($someImage),
+            \UPLOAD_ERR_OK,
+            '1x1_black.png',
+            'image/png',
+        );
+        return compact('image');
     }
 
     private function assertProfilePictureUploaded($username) {
-        $image = TableRegistry::get('Users')
+        $image = $this->fetchTable('Users')
             ->findByUsername($username)
             ->first()
             ->image;
@@ -306,16 +306,18 @@ class UserControllerTest extends IntegrationTestCase
         require __DIR__ . '/UserControllerTestFakeFunctions.php';
         $username = 'contributor';
         $this->logInAs($username);
-        $this->post('/en/user/save_image', [
-            'image' => $this->prepareImageUpload()
-        ]);
+        $files = $this->getUploadedImageForm();
+        $this->configRequest(compact('files'));
+
+        $this->post('/en/user/save_image', $files);
+
         $this->assertNoFlashMessage();
         $this->assertRedirect("/en/user/profile/$username");
         $this->assertProfilePictureUploaded($username);
     }
 
     public function testRemoveImage() {
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $contributor = $users->get(4);
         $images = [
             WWW_ROOT.'img/profiles_128/'.$contributor->image,
@@ -344,15 +346,35 @@ class UserControllerTest extends IntegrationTestCase
         $this->post('/en/user/accept_new_terms_of_use', [
             'settings' => [ 'new_terms_of_use' => true ],
         ]);
-        $this->assertResponseCode(404);
+        $this->assertRedirect('/en/users/login');
     }
 
     public function testAcceptNewTermsOfUser_asMember() {
+        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->logInAs('contributor');
         $this->addHeader('Referer', 'https://example.net/referer');
         $this->post('/en/user/accept_new_terms_of_use', [
             'settings' => [ 'new_terms_of_use' => true ],
         ]);
         $this->assertRedirect('https://example.net/referer');
+    }
+
+    public function testSaveBannerSetting_asGuest() {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->addHeader('Accept', 'application/json');
+        $this->ajaxPost('/en/user/save_banner_setting', [
+            'hide_new_design_announcement' => '1'
+        ]);
+        $this->assertResponseCode(403);
+    }
+
+    public function testSaveBannerSetting_asMember() {
+        $this->logInAs('contributor');
+        $this->addHeader('Accept', 'application/json');
+        $this->ajaxPost('/en/user/save_banner_setting', [
+            'hide_new_design_announcement' => '1'
+        ]);
+        $this->assertResponseOk();
     }
 }

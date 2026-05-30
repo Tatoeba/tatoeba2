@@ -4,21 +4,21 @@
     "license": "AGPL-3.0-only",
     "description": "Code for tatoeba.org, a multilingual sentence and translation database",
     "require": {
-        "cakephp/cakephp": "3.10.*",
+        "cakephp/cakephp": "4.4.x",
         "cakephp/plugin-installer": "^1.0",
-        "dereuromark/cakephp-queue": "dev-cake3",
-        "markstory/asset_compress": "^3.5",
+        "dereuromark/cakephp-queue": "^5.0",
+        "markstory/asset_compress": "^4.0",
         "patchwork/jsqueeze": "^2.0",
         "natxet/cssmin": "^3.0",
-        "cakephp/migrations": "^2.1",
-        "codekanzlei/cake-auth-actions": "^3.0",
+        "cakephp/migrations": "^3.0",
+        "codekanzlei/cake-auth-actions": "4.0.0-rc5",
         "zircote/swagger-php": "^5.3",
         "doctrine/annotations": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7|^6.0",
-        "cakephp/bake": "1.*",
-        "helmich/phpunit-json-assert": "v2"
+        "phpunit/phpunit": "^8.0",
+        "cakephp/bake": "2.*",
+        "helmich/phpunit-json-assert": "3.*"
     },
     "autoload": {
         "psr-4": {
@@ -38,6 +38,11 @@
         ]
     },
     "config": {
+        "audit": {
+            "ignore": {
+                "CVE-2023-29530": "Temporarily ignored to allow updating to CakePHP 4.* with PHP 7.4"
+            }
+        },
         "allow-plugins": {
             "cakephp/plugin-installer": true
         }

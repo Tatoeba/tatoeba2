@@ -21,7 +21,7 @@ namespace App\Model\Table;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Validation\Validator;
 use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
@@ -31,13 +31,13 @@ use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;
     }
 
-    public function initialize(Array $config)
+    public function initialize(Array $config): void
     {
         $this->setTable('vocabulary');
         $this->setEntityClass('App\Model\Entity\Vocable');
@@ -58,21 +58,21 @@ class VocabularyTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->add($rules->isUnique(['text', 'lang']));
 
         return $rules;
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
-            ->notEmpty('text');
+            ->notEmptyString('text');
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
-            ->allowEmpty('lang')
+            ->allowEmptyString('lang')
             ->add('lang', [
                 'inList' => [
                     'rule' => ['inList', $languages]
@@ -82,9 +82,9 @@ class VocabularyTable extends Table
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options)
     {
-        if ($entity->isNew() || $entity->dirty('lang') || $entity->dirty('text')) {
+        if ($entity->isNew() || $entity->isDirty('lang') || $entity->isDirty('text')) {
             $lang = $entity->lang;
             $text = $entity->text;
             $entity->numSentences = $this->_getNumberOfSentences($lang, $text);

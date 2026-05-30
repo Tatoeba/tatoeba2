@@ -20,7 +20,7 @@ namespace App\Shell;
 
 use App\Lib\CountriesList;
 use Cake\Console\Shell;
-use Cake\Core\App;
+use Cake\Core\Configure;
 
 class CLDRCountriesShell extends Shell {
     private $CLDR_copyright = '
@@ -70,6 +70,13 @@ class CLDRCountriesShell extends Shell {
         'MO', /* Macau */
         'PS', /* Palestine */
     );
+
+    private $locale_path;
+
+    public function initialize(): void {
+        parent::initialize();
+        $this->locale_path = Configure::read('App.paths.locales')[0];
+    }
 
     private function download_ldml($from, $to) {
         echo "Downloading $from... ";
@@ -188,7 +195,7 @@ class CountriesList {
     }
 
     private function write_po_header($fh, $locale) {
-        $orig_po_file = APP.'Locale'.DS.$locale.DS.'countries.po';
+        $orig_po_file = $this->locale_path.$locale.DS.'countries.po';
         $orig_header = shell_exec("sed -n '0,/^$/p' '$orig_po_file'");
         fprintf($fh, "%s", $orig_header);
     }
@@ -227,7 +234,7 @@ class CountriesList {
 
     private function merge_new_translations($new_trans, $locale) {
         $this->check_if_gettext_available('msgmerge');
-        $po_file = APP.'Locale'.DS.$locale.DS.'countries.po';
+        $po_file = $this->locale_path.$locale.DS.'countries.po';
         exec("msgmerge --no-wrap --no-fuzzy-matching -o '$po_file' '$new_trans' '$po_file'", $output, $retval);
         unlink($new_trans);
         if ($retval != 0) {

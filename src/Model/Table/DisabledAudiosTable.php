@@ -20,18 +20,18 @@ namespace App\Model\Table;
 
 class DisabledAudiosTable extends AudiosTable
 {
-    public function initialize(array $config) {
+    public function initialize(array $config): void {
         parent::initialize($config);
         $this->setEntityClass('Audio');
     }
 
-    public function afterSave($event, $entity, $options = array()) {
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($entity->enabled) {
             $this->moveRecordToOtherTable($entity, $this->Sentences->Audios);
         }
     }
 
-    public function afterDelete($event, $entity, $options) {
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options) {
         $this->removeAudioFile($entity, $options);
     }
 }

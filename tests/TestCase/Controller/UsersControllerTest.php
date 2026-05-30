@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
@@ -13,18 +12,18 @@ class UsersControllerTest extends IntegrationTestCase {
         TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.contributions',
-        'app.users',
-        'app.users_languages',
-        'app.last_contributions',
-        'app.private_messages',
-        'app.sentence_comments',
-        'app.sentences',
-        'app.walls',
-        'app.wiki_articles',
+        'app.Contributions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.LastContributions',
+        'app.PrivateMessages',
+        'app.SentenceComments',
+        'app.Sentences',
+        'app.Walls',
+        'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $this->previousSalt = Security::getSalt();
@@ -33,8 +32,9 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->enableSecurityToken();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         Security::setSalt($this->previousSalt);
+        parent::tearDown();
     }
 
     public function accessesProvider() {
@@ -279,7 +279,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
 
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->find()->where(['username' => 'contributor'])->first();
         list($version, $hash) = explode(' ', $user->password, 2);
         $this->assertEquals(1, $version);
@@ -296,7 +296,7 @@ class UsersControllerTest extends IntegrationTestCase {
                 'role' => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
             ];
         }
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $entities = $users->newEntities($newUsers);
         $result = $users->saveMany($entities);
 
@@ -307,7 +307,7 @@ class UsersControllerTest extends IntegrationTestCase {
 
     public function testDelete() {
         $this->assertAccessUrlAs('/en/users/delete/6', 'admin', '/en/users/index');
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->find()->where(['id' => 6])->first();
         $this->assertNull($user);
     }

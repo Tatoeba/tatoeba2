@@ -20,7 +20,7 @@ namespace App\Model\Exporter;
 
 use App\Lib\LanguagesLib;
 use App\Model\Entity\LanguageNameTrait;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Exception;
 
 class PairsExporter
@@ -86,7 +86,7 @@ class PairsExporter
 
     public function getQuery()
     {
-        $Links = TableRegistry::getTableLocator()->get('Links');
+        $Links = FactoryLocator::get('Table')->get('Links');
         $query = $Links->find()
             ->enableBufferedResults(false)
             ->select(['sentence_id', 'Sentences.text', 'translation_id', 'Translations.text'])

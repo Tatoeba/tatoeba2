@@ -16,15 +16,15 @@ class ReportContentControllerTest extends TestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.sentence_comments',
-        'app.users',
-        'app.users_languages',
-        'app.walls',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.SentenceComments',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Walls',
+        'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         Configure::write('App.fullBaseUrl', 'https://example.org');
         parent::setUp();
     }
@@ -54,7 +54,7 @@ class ReportContentControllerTest extends TestCase
     }
 
     private function assertFlashMessageContains($expected, $message = '') {
-        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'));
+        $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'));
     }
 
     public function testWallPost() {

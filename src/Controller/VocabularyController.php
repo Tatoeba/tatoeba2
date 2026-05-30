@@ -42,20 +42,14 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  */
 class VocabularyController extends AppController
 {
-    public $uses = array('UsersVocabulary', 'User', 'Sentence', 'Vocabulary');
-    public $components = array ('CommonSentence', 'Flash');
-    public $helpers = array(
-        'Vocabulary',
-    );
-
     /**
      * Before filter.
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save', 'save_sentence', 'edit'
         ]);
         return parent::beforeFilter($event);
@@ -70,11 +64,7 @@ class VocabularyController extends AppController
      */
     public function of($username, $lang = null)
     {
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'CommonModules';
-
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
 
         if (!$userId) {
             $this->Flash->set(format(
@@ -86,11 +76,8 @@ class VocabularyController extends AppController
                   'action' => 'all')
             );
         }
-        $this->loadModel('UsersVocabulary');
-        $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
-            $userId,
-            $lang
-        );
+        $this->paginate = $this->fetchTable('UsersVocabulary')
+            ->getPaginatedVocabularyOf($userId, $lang);
         $results = $this->paginate('UsersVocabulary');
 
         $vocabulary = $this->Vocabulary->syncNumSentences($results);
@@ -113,8 +100,7 @@ class VocabularyController extends AppController
     {
         $this->autoRender = false;
 
-        $this->loadModel('UsersVocabulary');
-        $usersVocab = $this->UsersVocabulary
+        $usersVocab = $this->fetchTable('UsersVocabulary')
             ->find()
             ->where(['vocabulary_id' => (int)$id])
             ->contain('Vocabulary')
@@ -166,10 +152,6 @@ class VocabularyController extends AppController
     {   
         $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang);
 
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'CommonModules';
-        $this->helpers[] = 'Languages';
-
         $this->paginate = $this->Vocabulary->getPaginatedVocabulary($lang);
         $vocabulary = $this->paginate('Vocabulary');
 
@@ -202,14 +184,14 @@ class VocabularyController extends AppController
      */
     public function remove($vocabularyId)
     {
-        $this->loadModel('UsersVocabulary');
-        $data = $this->UsersVocabulary->findFirst(
+        $UsersVocabulary = $this->fetchTable('UsersVocabulary');
+        $data = $UsersVocabulary->findFirst(
             $vocabularyId,
             CurrentUser::get('id')
         );
 
         if ($data) {
-            $this->UsersVocabulary->delete($data);
+            $UsersVocabulary->delete($data);
         }
 
         $this->set('vocabularyId', array('id' => $vocabularyId, 'data' => $data));
@@ -231,6 +213,7 @@ class VocabularyController extends AppController
         $userId = CurrentUser::get('id');
         $username = CurrentUser::get('username');
 
+        $this->loadComponent('CommonSentence');
         $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,

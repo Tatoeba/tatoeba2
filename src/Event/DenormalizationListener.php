@@ -18,11 +18,11 @@
  */
 namespace App\Event;
 
+use Cake\Datasource\FactoryLocator;
 use Cake\Event\EventListenerInterface;
-use Cake\ORM\TableRegistry;
 
 class DenormalizationListener implements EventListenerInterface {
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return array(
             'Model.Sentence.saved' => 'updateDenormalizedLanguageFields',
         );
@@ -31,11 +31,11 @@ class DenormalizationListener implements EventListenerInterface {
     public function updateDenormalizedLanguageFields($event, $entity, $options) {
         $sentence = $event->getData('data');
         if ($sentence->id && $sentence->isDirty('lang')) {
-            $Links = TableRegistry::getTableLocator()->get('Links');
+            $Links = FactoryLocator::get('Table')->get('Links');
             $Links->updateLanguage($sentence->id, $sentence->lang);
 
             foreach (['Audios', 'DisabledAudios'] as $tableName) {
-                $table = TableRegistry::getTableLocator()->get($tableName);
+                $table = FactoryLocator::get('Table')->get($tableName);
                 $table->updateAll(
                     ['sentence_lang' => $sentence->lang],
                     ['sentence_id'   => $sentence->id]

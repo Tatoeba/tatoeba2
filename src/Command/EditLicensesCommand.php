@@ -10,12 +10,12 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class EditLicensesCommand extends EditCommand_
 {
-    public function initialize() {
+    public function initialize(): void {
         parent::initialize();
         $this->licenses = Licenses::nameToKeys(Licenses::getSentenceLicenses());
     }
 
-    protected function buildOptionParser(ConsoleOptionParser $parser) {
+    protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser {
         $parser = parent::buildOptionParser($parser);
         $parser
             ->setDescription('Change sentence licenses.')

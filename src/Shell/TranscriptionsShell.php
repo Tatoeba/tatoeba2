@@ -28,10 +28,10 @@ class TranscriptionsShell extends Shell {
 
     use BatchOperationTrait;
 
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
-        $this->loadModel('Transcriptions');
+        $this->Transcriptions = $this->fetchTable('Transcriptions');
     }
 
     private function detectTranscriptionsFor($entities) {
@@ -42,7 +42,7 @@ class TranscriptionsShell extends Shell {
             $text = $entity->text;
             $entity->script = $this->Transcriptions->detectScript($lang, $text);
             if ($entity->has('modified'))
-                $entity->dirty('modified', true);
+                $entity->setDirty('modified', true);
         }
         return $entities;
     }
@@ -58,7 +58,7 @@ class TranscriptionsShell extends Shell {
             $proceeded = $this->allSentencesOperation('_autogen', array(
                 'lang' => $lang
             ));
-            $this->out();
+            $this->out("");
             $this->out("$proceeded transcriptions generated.");
         }
     }
@@ -93,7 +93,7 @@ class TranscriptionsShell extends Shell {
             )
         );
         $langs = implode(', ', $langs);
-        $this->out();
+        $this->out("");
         $this->out("Script set for $proceeded contributions in lang(s) $langs.");
     }
 
@@ -105,11 +105,11 @@ class TranscriptionsShell extends Shell {
             'lang IN' => $langs,
         ));
         $langs = implode(', ', $langs);
-        $this->out();
+        $this->out("");
         $this->out("Script set for $proceeded sentences in lang(s) $langs.");
     }
 
-    protected function _setScript($entities, $model) {
+    protected function _setScript($entities, $modelName) {
         $proceeded = 0;
         $entities = $this->detectTranscriptionsFor($entities);
         if ($entities) {
@@ -118,7 +118,7 @@ class TranscriptionsShell extends Shell {
                 'atomic' => false,
                 'callbacks' => false,
             );
-            if ($this->{$model}->saveMany($entities, $options))
+            if ($this->fetchTable($modelName)->saveMany($entities, $options))
                 $proceeded += count($entities);
         }
         $this->out('.', 0);

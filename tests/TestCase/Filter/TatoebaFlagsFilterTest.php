@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class TatoebaFlagsFilterTest extends TestCase
 {
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $this->flagsDir = WWW_ROOT . 'img' . DS . 'flags' . DS;
@@ -46,12 +46,12 @@ class TatoebaFlagsFilterTest extends TestCase
         $didParsingFail = simplexml_load_string($result) === false;
         $this->assertFalse($didParsingFail);
 
-        $this->assertContains('<?xml version="1.0"?>', $result);
-        $this->assertContains('<svg ', $result);
-        $this->assertContains('xmlns="http://www.w3.org/2000/svg"', $result);
-        $this->assertContains('xmlns:xlink="http://www.w3.org/1999/xlink', $result);
-        $this->assertContains('<symbol id="epo"', $result);
-        $this->assertContains('</svg>', $result);
+        $this->assertStringContainsString('<?xml version="1.0"?>', $result);
+        $this->assertStringContainsString('<svg ', $result);
+        $this->assertStringContainsString('xmlns="http://www.w3.org/2000/svg"', $result);
+        $this->assertStringContainsString('xmlns:xlink="http://www.w3.org/1999/xlink', $result);
+        $this->assertStringContainsString('<symbol id="epo"', $result);
+        $this->assertStringContainsString('</svg>', $result);
     }
 
     public function testFlagForcesViewbox() {
@@ -60,8 +60,8 @@ class TatoebaFlagsFilterTest extends TestCase
 
         $result = $this->compiler->generate($target);
 
-        $this->assertContains('<symbol id="ryu" viewBox="0 0 1050 700">', $result);
-        $this->assertContains('<rect width="1050" height="700"', $result);
+        $this->assertStringContainsString('<symbol id="ryu" viewBox="0 0 1050 700">', $result);
+        $this->assertStringContainsString('<rect width="1050" height="700"', $result);
     }
 
     public function testFlagDoesNotOverwriteExistingViewbox() {
@@ -70,7 +70,7 @@ class TatoebaFlagsFilterTest extends TestCase
 
         $result = $this->compiler->generate($target);
 
-        $this->assertContains('<symbol id="ajp" viewBox="0 0 4.5 3">', $result);
+        $this->assertStringContainsString('<symbol id="ajp" viewBox="0 0 4.5 3">', $result);
     }
 
     private function mockSVGFile($path, $contents) {
@@ -224,9 +224,9 @@ class TatoebaFlagsFilterTest extends TestCase
         ];
     }
 
-    private function assertContainsInThisOrder($expectations, $actual) {
+    private function assertStringContainsStringsInThisOrder($expectations, $actual) {
         foreach ($expectations as $expected) {
-            $this->assertContains($expected, $actual);
+            $this->assertStringContainsString($expected, $actual);
             $pos = strpos($actual, $expected);
             $actual = substr($actual, $pos + strlen($expected));
         }
@@ -254,7 +254,7 @@ class TatoebaFlagsFilterTest extends TestCase
 
         $result = $this->compiler->generate($target);
 
-        $this->assertContainsInThisOrder($expectations, $result);
+        $this->assertStringContainsStringsInThisOrder($expectations, $result);
     }
 
     public function testInternalSymbolsAreRemoved() {
@@ -267,9 +267,9 @@ class TatoebaFlagsFilterTest extends TestCase
 
         $result = $this->compiler->generate($target);
 
-        $this->assertContains('<symbol id="foo"><use href="#baz"/></symbol>', $result);
-        $this->assertContains('<symbol id="bar"><use href="#baz"/></symbol>', $result);
-        $this->assertContains('<symbol id="baz"><circle/></symbol>', $result);
+        $this->assertStringContainsString('<symbol id="foo"><use href="#baz"/></symbol>', $result);
+        $this->assertStringContainsString('<symbol id="bar"><use href="#baz"/></symbol>', $result);
+        $this->assertStringContainsString('<symbol id="baz"><circle/></symbol>', $result);
     }
 
     public function testIdConflictsAreAvoided_takingAccountCurrentFileIds() {
@@ -281,7 +281,7 @@ class TatoebaFlagsFilterTest extends TestCase
 
         $result = $this->compiler->generate($target);
 
-        $this->assertContains('<symbol id="file1"><path id="0"/></symbol>', $result);
-        $this->assertContains('<symbol id="file2"><path id="2"/><path id="1"/></symbol>', $result);
+        $this->assertStringContainsString('<symbol id="file1"><path id="0"/></symbol>', $result);
+        $this->assertStringContainsString('<symbol id="file2"><path id="2"/><path id="1"/></symbol>', $result);
     }
 }

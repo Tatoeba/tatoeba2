@@ -9,22 +9,21 @@ use Cake\Controller\Controller;
 use Cake\Controller\ComponentRegistry;
 use Cake\Http\ServerRequest;
 use Cake\Http\Response;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class PermissionsComponentTest extends TestCase
 {
     public $fixtures = [
-        'app.users',
-        'app.users_languages',
-        'app.walls',
-        'app.sentence_comments',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Walls',
+        'app.SentenceComments',
     ];
     private $component;
     private $controller;
     private $Users;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $request = new ServerRequest();
@@ -35,10 +34,10 @@ class PermissionsComponentTest extends TestCase
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->component = new PermissionsComponent($registry);
-        $this->Users = TableRegistry::getTableLocator()->get('Users');
+        $this->Users = $this->fetchTable('Users');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->component, $this->controller);
         CurrentUser::store([]);
@@ -111,8 +110,7 @@ class PermissionsComponentTest extends TestCase
 
     public function testGetWallMessagesOptions() {
         CurrentUser::store($this->Users->get(7)->toArray());
-        $wallThread = TableRegistry::getTableLocator()
-            ->get('Wall')
+        $wallThread = $this->fetchTable('Wall')
             ->getWholeThreadContaining(1);
         $wallThread = $this->component->getWallMessagesOptions($wallThread, 7);
         $this->assertTrue($wallThread[0]['Permissions']['canEdit']);
@@ -186,7 +184,7 @@ class PermissionsComponentTest extends TestCase
     }
 
     public function testGetCommentsOptions() {
-        $Comments = TableRegistry::getTableLocator()->get('SentenceComments');
+        $Comments = $this->fetchTable('SentenceComments');
         CurrentUser::store($this->Users->get(2)->toArray());
 
         $comments = $Comments->getCommentsForSentence(14);

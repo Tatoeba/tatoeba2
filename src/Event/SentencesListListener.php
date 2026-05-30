@@ -18,18 +18,18 @@
  */
 namespace App\Event;
 
+use Cake\Datasource\FactoryLocator;
 use Cake\Event\EventListenerInterface;
-use Cake\ORM\TableRegistry;
 
 class SentencesListListener implements EventListenerInterface {
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return [
             'Model.SentencesSentencesList.deleted' => 'decrementNumberOfSentencesOfList',
         ];
     }
 
     public function decrementNumberOfSentencesOfList($event, $entity, $options) {
-        $SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $SentencesLists = FactoryLocator::get('Table')->get('SentencesLists');
         $SentencesLists->decrementNumberOfSentencesOnAssociationDeletion($event);
     }
 }

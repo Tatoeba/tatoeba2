@@ -33,7 +33,7 @@ use Cake\Utility\Inflector;
 
 class SentencesSearchForm extends Form
 {
-    use \Cake\Datasource\ModelAwareTrait;
+    use \Cake\ORM\Locator\LocatorAwareTrait;
 
     private $search;
 
@@ -451,7 +451,7 @@ class SentencesSearchForm extends Form
         return $index;
     }
 
-    public function getData($field = null) {
+    public function getData(?string $field = null) {
         $data = parent::getData($field);
         if (is_null($field)) {
             uksort($data, function($a, $b) {
@@ -494,13 +494,13 @@ class SentencesSearchForm extends Form
         }
 
         if ($this->_data['native'] === 'yes' && $this->ownerId) {
-            $this->loadModel('UsersLanguages');
-            $natives = $this->UsersLanguages->find()
+            $natives = $this->fetchTable('UsersLanguages')->find()
                 ->where([
                     'language_code' => $this->_data['from'],
                     'level' => 5,
                 ])
                 ->select(['of_user_id'])
+                ->all()
                 ->toList();
             $natives = Hash::extract($natives, '{n}.of_user_id');
             if (!in_array($this->ownerId, $natives)) {
@@ -522,37 +522,37 @@ class SentencesSearchForm extends Form
 
     public function getSearchableLists($byUserId) {
         $listId = $this->_data['list'] ?? null;
-        $this->loadModel('SentencesLists');
-        $searchableLists = $this->SentencesLists->find();
+        $SentencesLists = $this->fetchTable('SentencesLists');
+        $searchableLists = $SentencesLists->find();
         $searchableLists
             ->select([
-                'additional' => $searchableLists->newExpr()->eq('id', $listId),
+                'additional' => $searchableLists->expr()->eq('id', $listId),
                 'id',
                 'name',
                 'user_id'
             ])
             ->where([
-                'OR' => [
+                'OR' => array_filter([
                     'user_id' => $byUserId,
                     'visibility IN' => ['public', 'listed']
-                ]
+                ])
             ]);
 
         if (strlen($listId)) {
-            $additional = $this->SentencesLists->find()
+            $additional = $SentencesLists->find()
                 ->where([
                     'id' => $listId,
-                    'OR' => [
+                    'OR' => array_filter([
                         'user_id' => $byUserId,
                         'NOT' => ['visibility' => 'private']
-                    ]
+                    ])
                 ])
                 ->select(['additional' => 1, 'id', 'name', 'user_id'])
                 ->limit(1);
             $searchableLists->union($additional);
         }
 
-        $searchableLists = $this->SentencesLists->find()
+        $searchableLists = $SentencesLists->find()
             ->select([
                 'id' => 'SentencesLists__id',
                 'name' => 'SentencesLists__name',

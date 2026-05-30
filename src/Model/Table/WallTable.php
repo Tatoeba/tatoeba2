@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use Cake\Event\Event;
 use Cake\Mailer\MailerAwareTrait;
@@ -33,13 +33,13 @@ class WallTable extends Table
 {
     use MailerAwareTrait;
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('content', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->hasOne('WallThreads', ['foreignKey' => 'id'])
             ->setDependent(true);
@@ -58,7 +58,7 @@ class WallTable extends Table
         $this->addBehavior('Tree');
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->addDelete(function($message) {
             $messageHasReplies = $this->hasMessageReplies($message->id);
@@ -76,7 +76,7 @@ class WallTable extends Table
             ->remove('content', 'outboundLinks');
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->add('content', 'notBlank', [
@@ -100,7 +100,7 @@ class WallTable extends Table
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options = array()) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($threshold = $this->_shouldTriggerAutoban($entity)) {
             $entity->hidden = true;
             $entity->__autohidden = $threshold;
@@ -119,7 +119,7 @@ class WallTable extends Table
      * @return void
      */
 
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
         if ($entity->isNew() && $entity->date) {
             $root = $this->getRootMessageOfReply($entity->id);
@@ -179,9 +179,9 @@ class WallTable extends Table
     }
 
     private function _warnAdminsAboutPotentialSEOSpam($post) {
-        $data = $post->extract($this->schema()->columns(), true);
+        $data = $post->extract($this->getSchema()->columns(), true);
         $validator = $this->getValidator('default');
-        $errors = $validator->errors($data, $post->isNew());
+        $errors = $validator->validate($data, $post->isNew());
         if (!$post->hidden && isset($errors['content']['outboundLinks'])) {
             $author = $this->Users->get($post->owner);
             $this->getMailer('User')->send('content_with_outbound_links', [$post, $author]);
@@ -230,7 +230,7 @@ class WallTable extends Table
                 'Wall.date' => 'ASC'
             ])
             ->where(function($exp) use ($rootMessages) {
-                $or = $exp->or_([]);
+                $or = $exp->or([]);
                 foreach ($rootMessages as $rootMessage) {
                     $or->between(
                         'Wall.lft', 
@@ -248,6 +248,7 @@ class WallTable extends Table
                     'fields' => ['last_message_date']
                 ]
             ])
+            ->all()
             ->toList();
 
         return $result;
@@ -329,6 +330,7 @@ class WallTable extends Table
             ->contain(['Users' => function ($q) {
                 return $q->select(['id', 'image', 'username']);
             }])
+            ->all()
             ->toList();
         
         return $result;

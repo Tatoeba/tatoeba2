@@ -5,12 +5,12 @@ use App\Lib\Autotranscription;
 use Cake\TestSuite\TestCase;
 
 class AutotranscriptionTest extends TestCase {
-    public function setUp(){
+    public function setUp(): void{
         parent::setUp();
         $this->AT = new Autotranscription();
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         parent::tearDown();
         unset($this->AT);
     }

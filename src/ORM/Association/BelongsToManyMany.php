@@ -16,7 +16,7 @@ class BelongsToManyMany extends BelongsToMany
      *
      * @return \Closure
      */
-    public function eagerLoader(array $options)
+    public function eagerLoader(array $options): \Closure
     {
         $name = $this->_junctionAssociationName();
         $loader = new SelectWithDoublePivotLoader([

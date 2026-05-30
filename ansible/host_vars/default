@@ -56,6 +56,7 @@ git_remote: origin
 git_rep: https://github.com/Tatoeba/tatoeba2.git
 
 security_salt: c0e82d920f0dbfb5e3c8d314278eed6c07b35e2bfcecdef4afc2136d391f01c2
+cookie_key: 74057dfe4c2e43d077eb1735ffc8325a49805c66bc1e906835ae9c12001e0f69
 # Variables for test server (leave unchanged if you don't need them or don't know what they mean)
 mysql_test_user: tatouser
 mysql_test_password: tatoeba

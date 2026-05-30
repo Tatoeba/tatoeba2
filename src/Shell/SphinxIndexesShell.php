@@ -19,7 +19,6 @@
 namespace App\Shell;
 
 use App\Lib\LanguagesLib;
-use App\Model\ReindexFlag;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
 
@@ -65,9 +64,8 @@ class SphinxIndexesShell extends Shell {
         }
 
         /* Remove sentences that were indexed */
-        $this->loadModel('ReindexFlags');
         $conditions = array('lang' => $lang, 'indexed' => true);
-        $this->ReindexFlags->deleteAll($conditions, false);
+        $this->fetchTable('ReindexFlags')->deleteAll($conditions, false);
         echo "ok\n";
     }
 
@@ -91,8 +89,7 @@ class SphinxIndexesShell extends Shell {
     private function update_index($type, $langs, $force) {
         if (!$langs) {
             if ($type == 'delta' && !$force) {
-                $this->loadModel('ReindexFlags');
-                $langs = $this->ReindexFlags
+                $langs = $this->fetchTable('ReindexFlags')
                      ->find('list', ['valueField' => 'lang'])
                      ->select(['lang'])
                      ->where(['indexed' => 0])
@@ -100,7 +97,7 @@ class SphinxIndexesShell extends Shell {
                      ->all()
                      ->toArray();
             } else {
-                $Sentences = $this->loadModel('Sentences');
+                $Sentences = $this->fetchTable('Sentences');
                 $langs = $Sentences->languagesHavingSentences();
             }
         }
@@ -127,7 +124,7 @@ class SphinxIndexesShell extends Shell {
         }
     }
 
-    public function getOptionParser()
+    public function getOptionParser(): \Cake\Console\ConsoleOptionParser
     {
         $parser = parent::getOptionParser();
         $parser->addOption('wait', [
@@ -159,12 +156,12 @@ class SphinxIndexesShell extends Shell {
                 if (count($this->args)) {
                     $langs = $this->validate_langs($this->args);
                 } else {
-                    $this->loadModel('ReindexFlags');
-                    $langs = $this->ReindexFlags
+                    $langs = $this->fetchTable('ReindexFlags')
                          ->find('all')
                          ->select('lang')
                          ->where(['indexed' => 1])
                          ->distinct('lang')
+                         ->all()
                          ->extract('lang');
                 }
                 foreach ($langs as $lang) {

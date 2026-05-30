@@ -32,6 +32,7 @@ use Cake\Event\Event;
 use Cake\Core\Configure;
 use App\Model\CurrentUser;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Http\Cookie\Cookie;
 
 /**
  * Controller for sentence comments.
@@ -45,16 +46,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 class SentenceCommentsController extends AppController
 {
     public $name = 'SentenceComments';
-    public $uses = array(
-        "SentenceComment",
-        "User",
-    );
-    public $helpers = array(
-        'Comments',
-        'CommonModules',
-        'Pagination',
-    );
-    public $components = array ('Flash', 'Permissions');
 
     public $paginate = [
         'contain' => [
@@ -80,7 +71,7 @@ class SentenceCommentsController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
@@ -91,7 +82,7 @@ class SentenceCommentsController extends AppController
         );
 
         $eventManager = $this->SentenceComments->getEventManager();
-        $eventManager->attach(new NotificationListener());
+        $eventManager->on(new NotificationListener());
 
         // disable Form Tampering Protection for actions where it's no big deal
         // (it was only protecting against changing the sentence_id)
@@ -112,9 +103,6 @@ class SentenceCommentsController extends AppController
      */
     public function index($langFilter = 'und')
     {
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'Members';
-
         $options = [
             'maxResults' => $this::PAGINATION_DEFAULT_TOTAL_LIMIT,
         ];
@@ -170,7 +158,7 @@ class SentenceCommentsController extends AppController
         $commentText = $data['text'];
         $sentenceId = $data['sentence_id'];
         // to avoid spammer and repost
-        $lastCom = $this->Cookie->read('hash_last_com');
+        $lastCom = $this->request->getCookie('hash_last_com');
         $thisCom = md5($commentText . $sentenceId);
         if ($lastCom == $thisCom) {
             return $this->redirect('/');
@@ -189,12 +177,7 @@ class SentenceCommentsController extends AppController
         $savedComment = $this->SentenceComments->save($comment);
         if ($savedComment) {
             $this->Flash->set(__('Your comment has been saved.'));
-            $this->Cookie->write(
-                'hash_last_com',
-                $thisCom,
-                false,
-                '+1 month'
-            );
+            $this->response = $this->response->withCookie(Cookie::create('hash_last_com', $thisCom));
         } else if ($comment->getErrors()) {
             foreach($comment->getErrors() as $error) {
                 $firstValidationErrorMessage = reset($error);
@@ -310,8 +293,7 @@ class SentenceCommentsController extends AppController
     public function of_user($userName)
     {
         $this->set('userName', $userName);
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($userName);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($userName);
         $this->set('userExists', !empty($userId));
         // if there's no such user no need to do more computation
         if (empty($userId)) {
@@ -342,8 +324,7 @@ class SentenceCommentsController extends AppController
     public function on_sentences_of_user($userName)
     {
         $this->set('userName', $userName);
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($userName);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($userName);
         $this->set('userExists', !empty($userId));
 
         if (empty($userId)) {

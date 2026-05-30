@@ -28,25 +28,13 @@ class AuthActions extends AbstractMigration
         ])->save();
 
         $builder = $this->getQueryBuilder();
-        $rolesCase = $builder->newExpr()->addCase(
-            [
-                $builder->newExpr()->add(['group_id' => 1]),
-                $builder->newExpr()->add(['group_id' => 2]),
-                $builder->newExpr()->add(['group_id' => 3]),
-                $builder->newExpr()->add(['group_id' => 4]),
-                $builder->newExpr()->add(['group_id' => 5]),
-                $builder->newExpr()->add(['group_id' => 6]),
-            ],
-            [
-                'admin',
-                'corpus_maintainer',
-                'advanced_contributor',
-                'contributor',
-                'inactive',
-                'spammer',
-            ],
-            [ 'string', 'string', 'string', 'string', 'string', 'string' ]
-        );
+        $rolesCase = $builder->expr()->case()
+            ->when(['group_id' => 1])->then('admin')
+            ->when(['group_id' => 2])->then('corpus_maintainer')
+            ->when(['group_id' => 3])->then('advanced_contributor')
+            ->when(['group_id' => 4])->then('contributor')
+            ->when(['group_id' => 5])->then('inactive')
+            ->when(['group_id' => 6])->then('spammer');
         $builder
             ->update('users')
             ->set('role', $rolesCase)

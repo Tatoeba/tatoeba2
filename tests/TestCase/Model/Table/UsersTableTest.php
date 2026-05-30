@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\CurrentUser;
 use App\Model\Table\UsersTable;
 use Cake\Http\ServerRequest;
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
@@ -13,30 +12,30 @@ class UsersTableTest extends TestCase
     public $Users;
 
     public $fixtures = [
-        'app.users',
-        'app.users_languages',
-        'app.sentences',
-        'app.contributions',
-        'app.sentence_comments',
-        'app.walls',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Sentences',
+        'app.Contributions',
+        'app.SentenceComments',
+        'app.Walls',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
-        Router::pushRequest(new ServerRequest([
+        Router::setRequest(new ServerRequest([
             'environment' => [
                 'HTTP_HOST' => 'tatoeba.org',
                 'HTTPS' => 'on',
             ],
         ]));
 
-        $config = TableRegistry::getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
-        $this->Users = TableRegistry::getTableLocator()->get('Users', $config);
+        $config = $this->getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
+        $this->Users = $this->fetchTable('Users', $config);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Users);
 

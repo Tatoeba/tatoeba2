@@ -6,7 +6,6 @@ use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 class AudioControllerTest extends IntegrationTestCase
@@ -15,19 +14,19 @@ class AudioControllerTest extends IntegrationTestCase
     use AudioIntegrationTestTrait;
 
     public $fixtures = [
-        'app.audios',
-        'app.contributions',
-        'app.disabled_audios',
-        'app.languages',
-        'app.private_messages',
-        'app.sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.wiki_articles',
-        'app.reindex_flags',
-        'app.links',
-        'app.queued_jobs',
+        'app.Audios',
+        'app.Contributions',
+        'app.DisabledAudios',
+        'app.Languages',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.WikiArticles',
+        'app.ReindexFlags',
+        'app.Links',
+        'app.QueuedJobs',
     ];
 
     public function accessesProvider() {
@@ -68,7 +67,7 @@ class AudioControllerTest extends IntegrationTestCase
     }
 
     private function addSentencesWithAudio($nbSentences) {
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $kazukiUserId = 7;
         $newSentences = [];
         for ($i = 1; $i <= $nbSentences; $i++) {
@@ -86,7 +85,9 @@ class AudioControllerTest extends IntegrationTestCase
             // "sentence_id required on create" validation rule
             'associated' => ['Audios' => ['validate' => false]]
         ]);
-        $sentences->saveMany($entities);
+        foreach ($entities as $entity) {
+            $sentences->save($entity);
+        }
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {

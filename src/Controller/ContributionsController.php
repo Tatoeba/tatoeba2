@@ -28,7 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 /**
  * Controller for contributions.
@@ -42,18 +42,6 @@ use Cake\I18n\Time;
 class ContributionsController extends AppController
 {
     public $name = 'Contributions';
-    public $helpers = array(
-        'Html',
-        'Form',
-        'Sentences',
-        'Logs',
-        'Date',
-        'Languages',
-        'CommonModules',
-        'Members'
-    );
-    public $components = array('Permissions');
-    public $uses = array('Contribution', 'ContributionsStats');
 
     /**
      * Display all contributions in specified language (or all languages).
@@ -77,9 +65,9 @@ class ContributionsController extends AppController
      */
     public function latest($filter = 'und')
     {
-        $this->loadModel('LastContributions');
-        $currentContributors = $this->LastContributions->getCurrentContributors();
-        $total = $this->LastContributions->getTotal($currentContributors);
+        $LastContributions = $this->fetchTable('LastContributions');
+        $currentContributors = $LastContributions->getCurrentContributors();
+        $total = $LastContributions->getTotal($currentContributors);
 
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
@@ -98,9 +86,7 @@ class ContributionsController extends AppController
      */
     public function activity_timeline($year = null, $month = null)
     {
-        $this->helpers[] = 'Date';
-
-        $now = Time::now();
+        $now = FrozenTime::now();
         $redirect = false;
         if ($year == null || $year > $now->format('Y') || $year < 2007) {
             $year = $now->format('Y');
@@ -123,8 +109,7 @@ class ContributionsController extends AppController
 
         } else {
 
-            $this->loadModel('ContributionsStats');
-            $stats = $this->ContributionsStats->getActivityTimelineStatistics(
+            $stats = $this->fetchTable('ContributionsStats')->getActivityTimelineStatistics(
                 $year, $month
             );
             $this->set('year', $year);
@@ -144,10 +129,7 @@ class ContributionsController extends AppController
      */
     public function of_user($username)
     {
-        $this->helpers[] = 'Pagination';
-
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
         $this->set('username', $username);
 
         if (empty($userId)) {

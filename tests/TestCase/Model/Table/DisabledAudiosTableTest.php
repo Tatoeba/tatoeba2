@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\DisabledAudiosTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class DisabledAudiosTableTest extends TestCase
@@ -18,14 +17,14 @@ class DisabledAudiosTableTest extends TestCase
         'app.Links',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('DisabledAudios') ? [] : ['className' => DisabledAudiosTable::class];
-        $this->DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios', $config);
+        $config = $this->getTableLocator()->exists('DisabledAudios') ? [] : ['className' => DisabledAudiosTable::class];
+        $this->DisabledAudios = $this->fetchTable('DisabledAudios', $config);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->DisabledAudios);
 
@@ -46,7 +45,7 @@ class DisabledAudiosTableTest extends TestCase
         }
 
         $this->assertFalse($result);
-        $reenabledAudio = TableRegistry::getTableLocator()->get('Audios')->get(4);
+        $reenabledAudio = $this->fetchTable('Audios')->get(4);
         $this->assertTrue($reenabledAudio->enabled);
         $this->assertEquals($reenabledAudio->modified, $audio->modified);
     }

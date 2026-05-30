@@ -18,18 +18,18 @@
  */
 namespace App\Event;
 
+use Cake\Datasource\FactoryLocator;
 use Cake\Event\EventListenerInterface;
-use Cake\ORM\TableRegistry;
 
 class ContributionListener implements EventListenerInterface {
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return array(
             'Model.Sentence.saved' => 'logSentence',
         );
     }
 
     public function logSentence($event, $entity, $options) {
-        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $Contributions = FactoryLocator::get('Table')->get('Contributions');
         $Contributions->logSentence($event);
     }
 }

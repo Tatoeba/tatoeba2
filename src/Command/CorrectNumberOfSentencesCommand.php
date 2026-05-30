@@ -7,11 +7,11 @@ use Cake\Console\ConsoleIo;
 
 class CorrectNumberOfSentencesCommand extends Command
 {
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
-        $this->loadModel('SentencesLists');
-        $this->loadModel('SentencesSentencesLists');
+        $this->SentencesLists = $this->fetchTable('SentencesLists');
+        $this->SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
     }
 
     public function execute(Arguments $args, ConsoleIo $io)

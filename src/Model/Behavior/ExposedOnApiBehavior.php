@@ -27,12 +27,12 @@ use Cake\ORM\Query;
 
 class ExposedOnApiBehavior extends Behavior
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         // Temporary introduction of new code, we should get rid of this
         // once the association is directly used on the SentencesTable model
-        if ($this->getTable()->getAlias() == 'Sentences') {
-            $this->getTable()->belongsToManyMany('Translations', [
+        if ($this->table()->getAlias() == 'Sentences') {
+            $this->table()->belongsToManyMany('Translations', [
                 'className' => 'Translations',
                 'joinTable' => 'sentences_translations',
                 'foreignKey' => 'sentence_id',
@@ -210,10 +210,10 @@ class ExposedOnApiBehavior extends Behavior
             });
 
         if ($this->getConfig('transcriptions')) {
-            $containOnApi['transcriptions'] = ['finder' => 'transcriptionsOnApi'];
+            $containOnApi['Transcriptions'] = ['finder' => 'transcriptionsOnApi'];
         }
         if ($this->getConfig('audios')) {
-            $containOnApi['audios'] = ['finder' => 'audiosOnApi'];
+            $containOnApi['Audios'] = ['finder' => 'audiosOnApi'];
         }
         if (isset($containOnApi)) {
             $query->find('containOnApi', compact('containOnApi'));

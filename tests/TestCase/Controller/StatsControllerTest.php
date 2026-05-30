@@ -9,11 +9,11 @@ class StatsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.users',
-        'app.languages',
-        'app.users_languages',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.Users',
+        'app.Languages',
+        'app.UsersLanguages',
+        'app.WikiArticles',
     ];
 
     public function accessesProvider() {

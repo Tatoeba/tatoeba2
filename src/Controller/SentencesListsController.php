@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Http\Cookie\Cookie;
 use Cake\ORM\Query;
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
@@ -45,46 +46,15 @@ use App\Model\Entity\SentencesList;
 class SentencesListsController extends AppController
 {
     public $name = 'SentencesLists';
-    public $helpers = array(
-        'Sentences',
-        'Csv',
-        'CommonModules',
-        'Html',
-        'Lists',
-        'Menu',
-        'Pagination'
-    );
-    public $components = array(
-        'Flash',
-        'LanguageDetection',
-        'CommonSentence'
-    );
-
-    public $uses = array('SentencesList', 'SentencesSentencesLists', 'User');
-
-    public function initialize() {
-        parent::initialize();
-        $params = $this->request->params;
-        $noCsrfActions = [
-            'set_option',
-            'save_name',
-            'add_new_sentence_to_list',
-            'add_sentence_to_new_list'
-        ];
-        if (in_array($params['action'], $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
-
 
     /**
      * Before filter.
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'set_option',
             'save_name',
             'add_new_sentence_to_list',
@@ -178,20 +148,18 @@ class SentencesListsController extends AppController
             return $this->redirect(array('action' => 'index'));
         }
 
-        $this->loadModel('Sentences');
-        $this->loadModel('SentencesSentencesLists');
-
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $options = [
             'conditions' => ['sentences_list_id' => $id],
             'maxResults' => $totalLimit,
             'contain' => [
                 'Sentences' => function (Query $q) use ($translationsLang) {
+                    $Sentences = $q->getRepository();
                     return $q
                       ->find('filteredTranslations', ['translationLang' => $translationsLang])
                       ->find('hideFields')
-                      ->contain($this->Sentences->contain(['translations' => true]))
-                      ->select($this->Sentences->fields());
+                      ->contain($Sentences->contain(['translations' => true]))
+                      ->select($Sentences->fields());
                 },
             ],
         ];
@@ -199,20 +167,21 @@ class SentencesListsController extends AppController
             $options['conditions']['Sentences.lang'] = $lang == 'unknown' ? null : $lang;
         }
 
+        $SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
         $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'sort' => $this->request->getQuery('sort', 'id'),
             'direction' => $this->request->getQuery('direction', 'desc'),
-            'sortWhitelist' => ['id', 'sentence_id'],
+            'sortableFields' => ['id', 'sentence_id'],
         ];
         $finder = ['latest' => $options];
         try {
-            $sentencesInList = $this->paginate($this->SentencesSentencesLists, compact('finder'));
+            $sentencesInList = $this->paginate($SentencesSentencesLists, compact('finder'));
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }
 
-        $total = $this->SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
+        $total = $SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
 
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
@@ -276,9 +245,9 @@ class SentencesListsController extends AppController
         }
 
         if ($acceptsJson) {
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result'])
+                ->setClassName('Json');
         }
     }
 
@@ -297,10 +266,10 @@ class SentencesListsController extends AppController
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
             // not been set, or has been set to false.
-            $mostRecentList = $this->Cookie->read('most_recent_list');
+            $mostRecentList = $this->request->getCookie('most_recent_list');
             if ($mostRecentList == $listId)
             {
-                $this->Cookie->delete('most_recent_list');
+                $this->response = $this->response->withExpiredCookie('most_recent_list');
             }
         }
 
@@ -322,16 +291,17 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
-            $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
+            $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $listId));
+
         } else {
             $this->set('result', 'error');
             $this->set('error', __('The sentence could not be added to the list.'));
         }
 
         if ($acceptsJson) {
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['result', 'error']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['result', 'error'])
+                ->setClassName('Json');
         }
     }
 
@@ -358,9 +328,9 @@ class SentencesListsController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['removed']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['removed'])
+                ->setClassName('Json');
         }
     }
 
@@ -383,8 +353,7 @@ class SentencesListsController extends AppController
         }
 
         $this->set('username', $username);
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
         if (empty($userId)) {
             $this->set('userExists', false);
             return;
@@ -424,23 +393,24 @@ class SentencesListsController extends AppController
 
         // This is meant to be temporary of course
         if (strstr($this->referer(), '/add_new_sentence_to_list')) {
-            $this->loadModel('Users');
-            $user = $this->Users->get($this->Auth->user('id'));
+            $Users = $this->fetchTable('Users');
+            $user = $Users->get($this->Auth->user('id'));
             if ($user) {
                 $user->level = -1;
-                $this->Users->save($user);
+                $Users->save($user);
             }
-            $this->loadModel('SentencesLists');
-            $list = $this->SentencesLists->get($listId);
+            $SentencesLists = $this->fetchTable('SentencesLists');
+            $list = $SentencesLists->get($listId);
             if ($list) {
                 $list->visibility = 'private';
-                $this->SentencesLists->save($list);
+                $SentencesLists->save($list);
             }
         }
 
         if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
             if ($sentenceLang == 'auto') {
+                $this->loadComponent('LanguageDetection');
                 $sentenceLang = $this->LanguageDetection->detectLang(
                     $sentenceText,
                     $userName
@@ -454,16 +424,16 @@ class SentencesListsController extends AppController
                 $this->Auth->user('id')
             );
 
-            $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
+            $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $listId));
         }
 
         $this->set('sentence', $result);
         
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['sentence']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['sentence'])
+                ->setClassName('Json');
         }
     }
 
@@ -478,14 +448,14 @@ class SentencesListsController extends AppController
             if ($this->SentencesLists->addSentenceToList($sentenceId, $list->id, $userId)) {
                 $list->hasSentence = true;
                 $result = $list;
-                $this->Cookie->write('most_recent_list', $list->id, false, '+1 month');
+                $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $list->id));
             }
         }
 
         $this->set('result', $result);
-        $this->loadComponent('RequestHandler');
-        $this->set('_serialize', ['result']);
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['result'])
+            ->setClassName('Json');
     }
 
     /**
@@ -502,7 +472,7 @@ class SentencesListsController extends AppController
             $userId
         );
         
-        $this->response->header('Content-Type: application/json');
+        $this->response->withHeader('Content-Type', 'application/json');
         if ($result) {
             $this->set('result', json_encode(
                 $result->extract(['id', 'name', 'user_id', 'editable_by'])
@@ -601,8 +571,8 @@ class SentencesListsController extends AppController
         );
 
         $this->set('lists', $lists);
-        $this->loadComponent('RequestHandler');
-        $this->set('_serialize', ['lists']);
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['lists'])
+            ->setClassName('Json');
     }
 }

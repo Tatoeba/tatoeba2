@@ -16,7 +16,7 @@ class LicenseHelperTest extends TestCase
     public $SentenceLicense;
     public $AudioLicense;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $view = new View();
@@ -25,7 +25,7 @@ class LicenseHelperTest extends TestCase
         $this->AudioLicense = new AudioLicenseHelper($view);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->License);
         unset($this->SentenceLicense);

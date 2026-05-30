@@ -24,7 +24,7 @@ use Cake\ORM\Table;
 
 class WallThreadsTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('wall_threads_last_message');
     }

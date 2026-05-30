@@ -18,24 +18,24 @@
  */
 namespace App\Model\Table;
 
-use Cake\Datasource\QueryInterface;
+use Cake\ORM\Query;
 use Cake\ORM\Table;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Cake\Utility\Hash;
 
 class LinksTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('sentences_translations');
         
         $this->belongsTo('Sentences')
-             ->setJoinType(QueryInterface::JOIN_TYPE_INNER);
+             ->setJoinType(Query::JOIN_TYPE_INNER);
         $this->belongsTo('Translations')
-             ->setJoinType(QueryInterface::JOIN_TYPE_INNER);
+             ->setJoinType(Query::JOIN_TYPE_INNER);
     }
 
-    public function beforeSave($event, $entity, $options)
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options)
     {
         if ($entity->sentence_id && $entity->translation_id) {
             $duplicate = $this->find()
@@ -52,9 +52,9 @@ class LinksTable extends Table
         return true;
     }
 
-    public function afterSave($event, $entity, $options = array())
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array())
     {
-        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $Contributions = FactoryLocator::get('Table')->get('Contributions');
         $Contributions->saveLinkContribution(
             $entity->sentence_id,
             $entity->translation_id,
@@ -82,7 +82,7 @@ class LinksTable extends Table
 
     private function logLinksAndFlagSentences($sentenceId, $translationId)
     {
-        $Contribution = TableRegistry::getTableLocator()->get('Contributions');
+        $Contribution = FactoryLocator::get('Table')->get('Contributions');
         $Contribution->saveLinkContribution(
             $sentenceId,
             $translationId,
@@ -94,7 +94,7 @@ class LinksTable extends Table
         );
     }
 
-    public function afterDelete($event, $entity, $options) {
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options) {
         $this->logLinksAndFlagSentences(
             $entity->sentence_id,
             $entity->translation_id
@@ -143,6 +143,7 @@ class LinksTable extends Table
             $result = $this->Sentences->find('all')
                 ->where(['id' => $ids], ['id' => 'integer[]'])
                 ->select(['id', 'lang'])
+                ->all()
                 ->toList();
 
             if (count($result) != 2) {
@@ -210,6 +211,7 @@ class LinksTable extends Table
         $links = $this->find('all')
             ->where(['sentence_id' => $sentenceId])
             ->select(['translation_id'])
+            ->all()
             ->toList();
         $ids = Hash::extract($links, '{n}.translation_id');
         return !empty($ids) ? $ids : array();
@@ -230,6 +232,7 @@ class LinksTable extends Table
                 'sentence_id' => 'DISTINCT(Links.sentence_id)',
                 'translation_id' => 'IF(Links.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id)'
             ])
+            ->all()
             ->toList();
         $links = Hash::extract($links, '{n}.translation_id');
         return is_null($links) ? array() : array_unique($links);

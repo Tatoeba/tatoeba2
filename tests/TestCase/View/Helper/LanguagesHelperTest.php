@@ -9,12 +9,12 @@ use Cake\I18n\I18n;
 
 class LanguagesHelperTest extends TestCase {
 	public $fixtures = array(
-		'app.users_languages'
+		'app.UsersLanguages'
 	);
 
 	private $prevLocale;
 
-	function setUp() {
+	function setUp(): void {
 		parent::setUp();
         $View = new View();
 		$this->Languages = new LanguagesHelper($View);
@@ -22,8 +22,9 @@ class LanguagesHelperTest extends TestCase {
 		CurrentUser::store(null);
 	}
 
-	function tearDown() {
+	function tearDown(): void {
 		I18n::setLocale($this->prevLocale);
+		parent::tearDown();
 	}
 
 	function _beRegularUser() {

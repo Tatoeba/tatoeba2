@@ -3,21 +3,20 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\LastContributionsTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class LastContributionsTableTest extends TestCase {
 	public $fixtures = array(
-        'app.last_contributions',
-        'app.users',
+        'app.LastContributions',
+        'app.Users',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-		$this->LastContributions = TableRegistry::getTableLocator()->get('LastContributions');
+		$this->LastContributions = $this->fetchTable('LastContributions');
 	}
 
-	function tearDown() {
+	function tearDown(): void {
 		unset($this->LastContributions);
 		parent::tearDown();
     }

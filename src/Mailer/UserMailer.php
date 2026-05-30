@@ -2,7 +2,6 @@
 namespace App\Mailer;
 
 use App\Model\CurrentUser;
-use Cake\Mailer\Email;
 use Cake\Mailer\Mailer;
 use Cake\Core\Configure;
 

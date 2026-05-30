@@ -7,23 +7,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class TagsFixture extends TestFixture {
 	public $name = 'Tag';
 
-	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
-		'internal_name' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'description' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 500, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
-		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
-		'nbrOfSentences' => ['type' => 'integer', 'null' => false, 'default' => '0'],
-		'category_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-		'_indexes' => [
-			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
-			'nbr_sentences_idx' => ['type' => 'index', 'columns' => ['nbrOfSentences'], 'length' => []],
-		],
-		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
-		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
-	);
-
 	public $records = array(
 		array(
 			'id' => '1',

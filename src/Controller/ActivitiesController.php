@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\CurrentUser;
 use Cake\Event\Event;
+use Cake\Http\Cookie\Cookie;
 
 /**
  * Controller for activities (i.e. things that contributors can do in Tatoeba).
@@ -41,8 +42,6 @@ use Cake\Event\Event;
  */
 class ActivitiesController extends AppController
 {
-    public $components = array ('CommonSentence', 'Flash');
-
     /**
      * Adopt sentences.
      *
@@ -50,15 +49,12 @@ class ActivitiesController extends AppController
      */
     public function adopt_sentences($lang = null)
     {
-        $this->helpers[] = 'CommonModules';
-        $this->helpers[] = 'Pagination';
-        
-        $this->loadModel('Sentences');
-        $query = $this->Sentences
+        $Sentences = $this->fetchTable('Sentences');
+        $query = $Sentences
             ->find('filteredTranslations', ['translationLang' => 'none'])
             ->find('hideFields')
-            ->select($this->Sentences->fields())
-            ->contain($this->Sentences->contain())
+            ->select($Sentences->fields())
+            ->contain($Sentences->contain())
             ->where(['user_id IS' => null]);
 
         if(!empty($lang)) {
@@ -79,18 +75,18 @@ class ActivitiesController extends AppController
      */
     public function improve_sentences()
     {
-        $this->loadModel('Tags');
-        $tagChangeName = $this->Tags->getChangeTagName();
-        $tagCheckName = $this->Tags->getCheckTagName();
-        $tagDeleteName = $this->Tags->getDeleteTagName();
-        $tagNeedsNativeCheckName = $this->Tags->getNeedsNativeCheckTagName();
-        $tagOKName = $this->Tags->getOKTagName();
+        $Tags = $this->fetchTable('Tags');
+        $tagChangeName = $Tags->getChangeTagName();
+        $tagCheckName = $Tags->getCheckTagName();
+        $tagDeleteName = $Tags->getDeleteTagName();
+        $tagNeedsNativeCheckName = $Tags->getNeedsNativeCheckTagName();
+        $tagOKName = $Tags->getOKTagName();
 
-        $tagChangeId = $this->Tags->getIdFromName($tagChangeName);
-        $tagCheckId = $this->Tags->getIdFromName($tagCheckName);
-        $tagDeleteId = $this->Tags->getIdFromName($tagDeleteName);
-        $tagNeedsNativeCheckId = $this->Tags->getIdFromName($tagNeedsNativeCheckName);
-        $tagOKId = $this->Tags->getIdFromName($tagOKName);
+        $tagChangeId = $Tags->getIdFromName($tagChangeName);
+        $tagCheckId = $Tags->getIdFromName($tagCheckName);
+        $tagDeleteId = $Tags->getIdFromName($tagDeleteName);
+        $tagNeedsNativeCheckId = $Tags->getIdFromName($tagNeedsNativeCheckName);
+        $tagOKId = $Tags->getIdFromName($tagOKName);
 
         $this->set('tagChangeName', $tagChangeName);
         $this->set('tagCheckName', $tagCheckName);
@@ -111,20 +107,13 @@ class ActivitiesController extends AppController
      */
     public function translate_sentences()
     {
-        $this->helpers[] = 'Languages';
-        
         $langFrom = $this->request->getQuery('langFrom');
         if ($langFrom)
         {
             $sort = $this->request->getQuery('sort', 'created');
             $langTo = $this->request->getQuery('langTo');
 
-            $this->Cookie->write(
-                'not_translated_into_lang',
-                $langTo,
-                false,
-                '+1 month'
-            );
+            $this->response = $this->response->withCookie(Cookie::create('not_translated_into_lang', $langTo));
 
             $searchParams = array(
                 'from' => $langFrom,
@@ -140,7 +129,7 @@ class ActivitiesController extends AppController
                 '?' => $searchParams
             ));
         }
-        $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
+        $notTranslatedInto = $this->request->getCookie('not_translated_into_lang');
         $this->set('not_translated_into_lang', $notTranslatedInto);
     }
     
@@ -152,14 +141,9 @@ class ActivitiesController extends AppController
      * @param string $lang              Language of the sentences.
      */
     public function translate_sentences_of($username, $lang = null) {
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'Languages';
-        $this->helpers[] = 'CommonModules';
-
         $this->set('username', $username);
 
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
 
         if (empty($userId)) {
             $flashMessage = format(
@@ -175,13 +159,13 @@ class ActivitiesController extends AppController
             );
         }
 
-        $this->loadModel('Sentences');
-        $query = $this->Sentences
+        $Sentences = $this->fetchTable('Sentences');
+        $query = $Sentences
             ->find('filteredTranslations')
             ->find('hideFields')
-            ->select($this->Sentences->fields())
+            ->select($Sentences->fields())
             ->where(['user_id' => $userId])
-            ->contain($this->Sentences->contain(['translations' => true]))
+            ->contain($Sentences->contain(['translations' => true]))
             ->order(['Sentences.created' => 'DESC']);
 
         if (!empty($lang)) {

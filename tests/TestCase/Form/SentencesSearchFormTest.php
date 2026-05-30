@@ -25,20 +25,20 @@ use Cake\TestSuite\TestCase;
 class SentencesSearchFormTest extends TestCase
 {
     public $fixtures = [
-        'app.users',
-        'app.sentences_lists',
-        'app.tags',
-        'app.users_languages',
+        'app.Users',
+        'app.SentencesLists',
+        'app.Tags',
+        'app.UsersLanguages',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->Form = new SentencesSearchForm();
         $this->Search = $this->createTestProxy(\App\Model\Search::class);
         $this->Form->setSearch($this->Search);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         parent::tearDown();
         unset($this->Form);
     }

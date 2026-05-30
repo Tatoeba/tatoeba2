@@ -32,6 +32,7 @@ use Cake\Event\Event;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 use Cake\I18n\I18n;
+use Cake\Core\Configure;
 use App\Lib\LanguagesLib;
 
 /**
@@ -54,26 +55,13 @@ class PagesController extends AppController
      * @access public
      */
     public $name = 'Pages';
-    /**
-     * Default helper
-     *
-     * @var array
-     * @access public
-     */
-    public $helpers = array(
-        'Html',
-        'Languages'
-    );
-
-    public $components = array('Permissions');
-
 
     /**
      * Before filter.
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         if ($response = $this->_redirect_for_old_url()) {
             return $response;
@@ -86,10 +74,6 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $this->helpers[] = 'Sentences';
-        $this->helpers[] = 'Members';
-        $this->helpers[] = 'Logs';
-
         $userId = $this->Auth->user('id');
         $isLogged = !empty($userId);
 
@@ -103,12 +87,10 @@ class PagesController extends AppController
         }
 
         // Stats
-        $this->loadModel('Languages');
-        $numSentences = $this->Languages->getTotalSentencesNumber();
+        $numSentences = $this->fetchTable('Languages')->getTotalSentencesNumber();
         $this->set('numSentences', $numSentences);
 
-        $this->loadModel('Contributions');
-        $contribToday = $this->Contributions->getTodayContributions();
+        $contribToday = $this->fetchTable('Contributions')->getTodayContributions();
         $this->set('contribToday', $contribToday);
 
         $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
@@ -127,12 +109,8 @@ class PagesController extends AppController
     }
 
     private function _homepageForMembers() {
-        $this->helpers[] = 'Wall';
-        $this->helpers[] = 'Messages';
-
         // latest comments
-        $this->loadModel('SentenceComments');
-        $latestComments = $this->SentenceComments->getLatestComments(5);
+        $latestComments = $this->fetchTable('SentenceComments')->getLatestComments(5);
         $commentsPermissions = $this->Permissions->getCommentsOptions(
             $latestComments
         );
@@ -142,8 +120,7 @@ class PagesController extends AppController
 
 
         // latest messages
-        $this->loadModel('Wall');
-        $latestMessages = $this->Wall->getLastMessages(5);
+        $latestMessages = $this->fetchTable('Wall')->getLastMessages(5);
 
         $this->set('latestMessages', $latestMessages);
     }
@@ -216,13 +193,13 @@ class PagesController extends AppController
      * @return void
      */
     private function _random_sentence() {
-        $this->loadModel('Sentences');
+        $Sentences = $this->fetchTable('Sentences');
         $lang = $this->request->getSession()->read('random_lang_selected');
-        $randomId = $this->Sentences->getRandomId($lang);
+        $randomId = $Sentences->getRandomId($lang);
         if (is_null($randomId)) {
             $this->set('searchProblem', true);
         } else {
-            $randomSentence = $this->Sentences->getSentenceWith(
+            $randomSentence = $Sentences->getSentenceWith(
                 $randomId,
                 ['translations' => true]
             );
@@ -311,12 +288,13 @@ class PagesController extends AppController
     {
         $lang = I18n::getLocale();
         $translated = true;
-        $dir = new Folder(LOCALE . $lang);
+        $localesPath = Configure::read('App.paths.locales')[0];
+        $dir = new Folder($localesPath . $lang);
         $file = new File($dir->pwd() . DS . 'terms-of-use.html');
 
         if (!$file->exists()) {
             $translated = false;
-            $dir = new Folder(LOCALE . 'fr');
+            $dir = new Folder($localesPath . 'fr');
             $file = new File($dir->pwd() . DS . 'terms-of-use.html');
         }
 
@@ -334,9 +312,8 @@ class PagesController extends AppController
     public function faq()
     {
         $proto = $this->getRequest()->getUri()->getScheme();
-        $this->loadModel('WikiArticles');
         $this->redirect(
-            $proto.':'.$this->WikiArticles->getWikiLink('faq'),
+            $proto.':'.$this->fetchTable('WikiArticles')->getWikiLink('faq'),
             301
         );
     }

@@ -20,7 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
 use Cake\Mailer\MailerAwareTrait;
 use App\Event\NotificationListener;
@@ -33,13 +33,13 @@ class SentenceCommentsTable extends Table
 {
     use MailerAwareTrait;
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');
@@ -48,7 +48,7 @@ class SentenceCommentsTable extends Table
         $this->addBehavior('LimitResults');
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->addDelete(function($message) {
             return $message->user_id == CurrentUser::get('id') || CurrentUser::isAdmin();
@@ -64,7 +64,7 @@ class SentenceCommentsTable extends Table
             ->remove('text', 'outboundLinks');
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->add('text', 'notBlank', [
@@ -88,23 +88,23 @@ class SentenceCommentsTable extends Table
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options = array()) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         if ($entity->isDirty('hidden')) {
             $entity->modified = $entity->getOriginal('modified');
         }
     }
 
     private function _warnAdminsAboutPotentialSEOSpam($comment) {
-        $data = $comment->extract($this->schema()->columns(), true);
+        $data = $comment->extract($this->getSchema()->columns(), true);
         $validator = $this->getValidator('default');
-        $errors = $validator->errors($data, $comment->isNew());
+        $errors = $validator->validate($data, $comment->isNew());
         if (isset($errors['text']['outboundLinks'])) {
             $author = $this->Users->get($comment->user_id);
             $this->getMailer('User')->send('content_with_outbound_links', [$comment, $author]);
         }
     }
 
-    public function afterSave($event, $entity, $options)
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options)
     {
         $this->_warnAdminsAboutPotentialSEOSpam($entity);
 
@@ -189,7 +189,7 @@ class SentenceCommentsTable extends Table
                 ]
             ]);
         $query = $this->excludeBots($query);
-        return $query->toList();
+        return $query->all()->toList();
     }
 
     /**

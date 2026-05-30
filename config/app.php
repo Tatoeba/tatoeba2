@@ -55,8 +55,8 @@ return [
         'jsBaseUrl' => 'js/',
         'paths' => [
             'plugins' => [ROOT . DS . 'plugins' . DS],
-            'templates' => [APP . 'Template' . DS],
-            'locales' => [APP . 'Locale' . DS],
+            'templates' => [ROOT . DS . 'templates' . DS],
+            'locales' => [RESOURCES . 'locales' . DS],
         ],
     ],
 
@@ -190,6 +190,7 @@ return [
         'skipLog' => [],
         'log' => true,
         'trace' => true,
+        'errorRenderer' => PHP_SAPI === 'cli' ? 'Cake\Error\Renderer\ConsoleErrorRenderer' : 'App\Error\Renderer\AngularJsSafeHtmlErrorRenderer',
     ],
 
     /**
@@ -419,6 +420,7 @@ return [
             'model' => 'Session',
             'cache' => 'memcached',
         ],
+        'cookie' => 'CAKEPHP',
         'timeout' => 120,
     ],
 ];

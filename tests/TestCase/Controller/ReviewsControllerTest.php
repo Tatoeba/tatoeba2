@@ -9,11 +9,11 @@ class ReviewsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
-        'app.users_sentences',
+        'app.PrivateMessages',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.UsersSentences',
     ];
 
     public function accessesProvider() {
@@ -52,7 +52,15 @@ class ReviewsControllerTest extends IntegrationTestCase
     /**
      * @dataProvider ajaxAccessesProvider
      */
-    public function testRatingsControllerAjaxAccess($url, $user, $response) {
+    public function testRatingsControllerNonAngularAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testRatingsControllerAngularAjaxAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 }

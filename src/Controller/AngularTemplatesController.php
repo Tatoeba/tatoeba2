@@ -9,7 +9,7 @@ class AngularTemplatesController extends AppController
 {
     public $name = 'AngularTemplates';
 
-    public function beforeRender(Event $event)
+    public function beforeRender(\Cake\Event\EventInterface $event)
     {
         $this->viewBuilder()->enableAutoLayout(false);
         return parent::beforeRender($event);

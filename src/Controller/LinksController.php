@@ -41,27 +41,15 @@ use Cake\Event\Event;
  */
 class LinksController extends AppController
 {
-    public function initialize() {
-        parent::initialize();
-        $params = $this->request->params;
-        $noCsrfActions = [
-            'add',
-            'delete'
-        ];
-        if (in_array($params['action'], $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
-
     /**
      * Before filter.
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         if($this->request->is('ajax')) {
-            $this->Security->config('unlockedActions', [
+            $this->Security->setConfig('unlockedActions', [
                 'add',
                 'delete'
             ]);
@@ -72,9 +60,10 @@ class LinksController extends AppController
 
     private function _renderTranslationsOf($sentenceId, $message)
     {
-        $this->loadModel('Sentences');
-        $langFilter = $this->request->data['langFilter'] ?? 'und';
-        $translations = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $langFilter)->translations;
+        $langFilter = $this->request->getData('langFilter') ?? 'und';
+        $translations = $this->fetchTable('Sentences')
+            ->getSentenceWith($sentenceId, ['translations' => true], $langFilter)
+            ->translations;
 
         $this->set('sentenceId', $sentenceId);
         $this->set('translations', $translations);
@@ -84,13 +73,14 @@ class LinksController extends AppController
     }
 
     private function _returnSentenceAndTranslations($sentenceId) {
-        $this->loadComponent('RequestHandler');
-        $this->loadModel('Sentences');
         $translationLang = $this->request->getQuery('translationLang');
-        $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
+        $sentence = $this->fetchTable('Sentences')
+            ->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
+
         $this->set('sentence', $sentence);
-        $this->set('_serialize', ['sentence']);
-        $this->RequestHandler->renderAs($this, 'sentences_json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['sentence'])
+            ->setClassName('SentencesJson');
     }
 
     /**
@@ -128,8 +118,7 @@ class LinksController extends AppController
         if ($acceptsJson) {
             $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
-            if (isset($this->request->data['returnTranslations'])
-                && (bool)$this->request->data['returnTranslations'])
+            if ($this->request->getData('returnTranslations'))
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
@@ -172,8 +161,7 @@ class LinksController extends AppController
         if ($acceptsJson) {
             $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
-            if (isset($this->request->data['returnTranslations'])
-                && (bool)$this->request->data['returnTranslations'])
+            if ($this->request->getData('returnTranslations'))
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);

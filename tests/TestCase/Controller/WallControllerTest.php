@@ -4,22 +4,21 @@ namespace App\Test\TestCase\Controller;
 use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
 use Cake\TestSuite\IntegrationTestCase;
-use Cake\ORM\TableRegistry;
 
 class WallControllerTest extends IntegrationTestCase {
     use EmailTrait;
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.walls',
-        'app.wall_threads',
-        'app.users',
-        'app.users_languages',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.Walls',
+        'app.WallThreads',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 100);
     }
@@ -46,14 +45,14 @@ class WallControllerTest extends IntegrationTestCase {
             [ '/en/wall/messages_of_user/admin', null, true ],
             [ '/en/wall/messages_of_user/admin', 'contributor', true ],
             [ '/en/wall/hide_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Fhide_message%2F1' ],
-            [ '/en/wall/hide_message/1', 'contributor', '/' ],
-            [ '/en/wall/hide_message/1', 'advanced_contributor', '/' ],
-            [ '/en/wall/hide_message/1', 'corpus_maintainer', '/' ],
+            [ '/en/wall/hide_message/1', 'contributor', 'https://example.net/referer' ],
+            [ '/en/wall/hide_message/1', 'advanced_contributor', 'https://example.net/referer' ],
+            [ '/en/wall/hide_message/1', 'corpus_maintainer', 'https://example.net/referer' ],
             [ '/en/wall/hide_message/1', 'admin', 'https://example.net/referer' ],
             [ '/en/wall/unhide_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Funhide_message%2F1' ],
-            [ '/en/wall/unhide_message/1', 'contributor', '/' ],
-            [ '/en/wall/unhide_message/1', 'advanced_contributor', '/' ],
-            [ '/en/wall/unhide_message/1', 'corpus_maintainer', '/' ],
+            [ '/en/wall/unhide_message/1', 'contributor', 'https://example.net/referer' ],
+            [ '/en/wall/unhide_message/1', 'advanced_contributor', 'https://example.net/referer' ],
+            [ '/en/wall/unhide_message/1', 'corpus_maintainer', 'https://example.net/referer' ],
             [ '/en/wall/unhide_message/1', 'admin', 'https://example.net/referer' ],
         ];
     }
@@ -62,12 +61,14 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
+        Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->addHeader('Referer', 'https://example.net/referer');
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
     public function testSave_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->post('/en/wall/save', [
             'replyTo' => '',
             'content' => 'How about more butterflies on the home page?',
@@ -99,8 +100,9 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider roleChangeProvider()
      */
     public function testSave_asMember_roleJustChanged($newRole, $exceptedRedirect, $flashMsg = null) {
+        $this->enableRetainFlashMessages();
         $this->logInAs('advanced_contributor');
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $advcontributor = $users->get(3);
         $advcontributor->role = $newRole;
         $users->save($advcontributor);
@@ -149,7 +151,7 @@ class WallControllerTest extends IntegrationTestCase {
     }
 
     private function assertFlashMessageContains($expected, $message = '') {
-        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+        $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
     }
 
     public function postsWithLinksProvider() {
@@ -294,7 +296,7 @@ class WallControllerTest extends IntegrationTestCase {
             ];
             $initialDate->modify("+1 day");
         }
-        $wall = TableRegistry::get('Wall');
+        $wall = $this->fetchTable('Wall');
         $wall->saveMany($wall->newEntities($posts));
     }
 

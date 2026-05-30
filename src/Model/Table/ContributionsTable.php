@@ -27,10 +27,10 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 
 /**
@@ -44,13 +44,13 @@ use Cake\I18n\Time;
  */
 class ContributionsTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users');
         $this->belongsTo('Sentences');
@@ -233,7 +233,7 @@ class ContributionsTable extends Table
     {
         return $this->find()
             ->where([
-                'datetime >' => Time::now()->format('Y-m-d'),
+                'datetime >' => FrozenTime::now()->format('Y-m-d'),
                 'translation_id IS NULL',
                 'action' => 'insert',
                 'type !=' => 'license'

@@ -1,10 +1,9 @@
 <?php
 namespace App\Test\TestCase\Command;
 
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\Console\Command;
 use App\Model\Table\SentencesListsTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
@@ -12,17 +11,17 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = array(
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $this->SentencesLists = $this->fetchTable('SentencesLists');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->SentencesLists);
         parent::tearDown();
     }
@@ -32,7 +31,7 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
 
         $this->exec("correct_number_of_sentences");
 
-        $sentencesLists = $this->SentencesLists->find('all')->toList();
+        $sentencesLists = $this->SentencesLists->find()->all()->toList();
         $newListsAndCounts = Hash::combine($sentencesLists, '{n}.id', '{n}.numberOfSentences');
         $expected = [
             1 => 3,

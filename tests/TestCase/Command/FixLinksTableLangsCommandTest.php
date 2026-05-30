@@ -2,8 +2,7 @@
 namespace App\Test\TestCase\Command;
 
 use App\Command\FixLinksTableLangsCommand;
-use Cake\ORM\TableRegistry;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 class FixLinksTableLangsCommandTest extends TestCase
@@ -11,14 +10,14 @@ class FixLinksTableLangsCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.sentences',
-        'app.links',
+        'app.Sentences',
+        'app.Links',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
-        $this->Links = TableRegistry::getTableLocator()->get('Links');
+        $this->Sentences = $this->fetchTable('Sentences');
+        $this->Links = $this->fetchTable('Links');
         $this->useCommandRunner();
     }
 

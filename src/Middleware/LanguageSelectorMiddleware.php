@@ -5,7 +5,11 @@ use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
 use Cake\Http\Cookie\Cookie;
 use Cake\I18n\I18n;
-use Cake\I18n\Time;
+use Laminas\Diactoros\Response\RedirectResponse;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Middleware for UI language selection
@@ -16,7 +20,7 @@ use Cake\I18n\Time;
  * 3. Use the language from the URL path
  * 4. Use English
  */
-class LanguageSelectorMiddleware
+class LanguageSelectorMiddleware implements MiddlewareInterface
 {
     private $allLanguages;
 
@@ -24,11 +28,11 @@ class LanguageSelectorMiddleware
         $this->allLanguages = Configure::read('UI.languages');
     }
 
-    public function __invoke($request, $response, $next)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         // Plugin paths should not be processed
         if ($request->getParam('plugin')) {
-            return $next($request, $response);
+            return $handler->handle($request);
         }
 
         $langInUrl = $request->getParam('lang');
@@ -59,20 +63,19 @@ class LanguageSelectorMiddleware
                     $status = 302;
                 }
                 $location = '/' . $lang . $path;
-                return $response->withStatus($status)
-                                ->withLocation($location);
+                return new RedirectResponse($location, $status);
             }
         }
 
         I18n::setLocale($lang);
-
-        $response = $response->withCookie(new Cookie(
-            'interface_language',
-            $lang,
-            new Time('+1 month')
-        ));
         $request = $request->withParam('lang', $lang);
-        return $next($request, $response);
+
+        $response = $handler->handle($request);
+
+        return $response->withCookie(new Cookie(
+            'interface_language',
+            $lang
+        ));
     }
 
      /**

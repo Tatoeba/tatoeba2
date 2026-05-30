@@ -134,7 +134,7 @@ class LimitResultsBehavior extends Behavior
             throw new BadRequestException("Invalid sort order");
         }
 
-        $alias = $query->repository()->getAlias();
+        $alias = $query->getRepository()->getAlias();
 
         $contain = $this->getMinimalContain($query);
 

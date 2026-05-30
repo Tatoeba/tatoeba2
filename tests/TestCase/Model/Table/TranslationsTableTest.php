@@ -3,23 +3,22 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\TranslationsTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class TranslationsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences',
-        'app.links',
-        'app.transcriptions',
-        'app.users'
+        'app.Sentences',
+        'app.Links',
+        'app.Transcriptions',
+        'app.Users'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-        $this->Translation = TableRegistry::getTableLocator()->get('Translations');
+        $this->Translation = $this->fetchTable('Translations');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Translation);
         parent::tearDown();
     }

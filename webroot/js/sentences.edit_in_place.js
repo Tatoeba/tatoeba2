@@ -59,7 +59,12 @@ $(document).ready(function() {
                 },
                 indicator : "<div class='sentence-loader loader'></div>",
                 cssclass  : 'editInPlaceForm',
-                onblur    : 'ignore'
+                onblur    : 'ignore',
+                ajaxoptions : {
+                    beforeSend: function(xhr, settings) {
+                        xhr.setRequestHeader('X-CSRF-Token', get_csrf_token());
+                    }
+                }
             }).bind('edit_sentence', function(e) {
                 $(this).find('textarea').keyup(function(event) {
                     var submitBtn = $(this).parent().find('button[type=submit]');

@@ -27,7 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 
 
 /**
@@ -152,7 +152,7 @@ class ClickableLinksHelper extends AppHelper
                     if ($countOfOpenedParanthesis >= 0) {
                       continue;
                     }
-                    
+
                     // a closing paranthesis without corresponding opening
                     // paranthesis ends the url 
                 }
@@ -182,12 +182,12 @@ class ClickableLinksHelper extends AppHelper
     public function clickableSentence($text)
     {
         $self = $this;
-        $model = TableRegistry::getTableLocator()->get('Sentences');
+        $model = FactoryLocator::get('Table')->get('Sentences');
         $content = preg_replace_callback(
             $this::SENTENCE_ID_PATTERN, 
             function ($m) use ($self, $model) {
                 return $m[1] . $self->Html->link($m[2],
-                    $self->request->scheme().'://'.$self->request->host().'/sentences/show/'.$m[3],
+                    $self->getView()->getRequest()->scheme().'://'.$self->getView()->getRequest()->host().'/sentences/show/'.$m[3],
                     array('title' => $model->getSentenceTextForId($m[3]))
                 );
             }, $text);

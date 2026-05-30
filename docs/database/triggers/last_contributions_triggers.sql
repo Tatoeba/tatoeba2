@@ -1,6 +1,4 @@
--- create and fill last_contributions table
-DROP TABLE IF EXISTS last_contributions;
-CREATE TABLE last_contributions LIKE contributions ;
+-- fill last_contributions table
 INSERT INTO last_contributions
   SELECT * FROM contributions
   WHERE type = 'sentence' # AND user_id != <bod_id>

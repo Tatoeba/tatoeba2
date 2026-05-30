@@ -15,21 +15,20 @@ class UserMailerTest extends TestCase {
 
     use EmailTrait;
 
-    public $fixtures = ['app.users'];
+    public $fixtures = ['app.Users'];
 
     protected $email = null;
     protected $mailer = null;
 
-    public function setUp() {
+    public function setUp(): void {
+        $this->loadRoutes();
         Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
 
-        $this->email = new Email([
-            'from' => 'sender@example.com',
-            'emailFormat' => 'html',
-            'transport' => 'debug',
-        ]);
-        $this->mailer = new UserMailer($this->email);
+        $this->mailer = new UserMailer();
+        $this->mailer
+            ->setFrom('sender@example.com')
+            ->setTransport('debug');
     }
 
     public function blockedOrSuspendedProvider () {
@@ -148,7 +147,7 @@ class UserMailerTest extends TestCase {
             'sentence_id' => 19,
             'user_id' => 7,
         ]);
-        $comment->isNew(false);
+        $comment->setNew(false);
         $user = new User([
             'username' => 'kazuki',
             'id' => 7,
@@ -187,7 +186,7 @@ class UserMailerTest extends TestCase {
             'content' => 'Check this out!! https://example.com',
             'owner' => 7,
         ]);
-        $wallPost->isNew(false);
+        $wallPost->setNew(false);
         $user = new User([
             'username' => 'kazuki',
             'id' => 7,
@@ -227,7 +226,7 @@ class UserMailerTest extends TestCase {
             'content' => 'Check this out!! https://example.com',
             'owner' => 7,
         ]);
-        $wallPost->isNew(false);
+        $wallPost->setNew(false);
         $user = new User([
             'username' => 'kazuki',
             'id' => 7,

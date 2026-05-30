@@ -25,7 +25,7 @@ class DownloadsHelperTest extends TestCase {
         }
     }
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         self::createTempTree();
         Configure::write(
             'Downloads.path',
@@ -33,18 +33,18 @@ class DownloadsHelperTest extends TestCase {
         );
     }
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $View = new View();
         $this->DownloadsHelper = new DownloadsHelper($View);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->DownloadsHelper);
         parent::tearDown();
     }
 
-    public static function tearDownAfterClass() {
+    public static function tearDownAfterClass(): void {
         $dir = new Folder(Folder::addPathElement(TMP, 'exports'));
         $dir->delete();
     }

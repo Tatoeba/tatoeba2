@@ -3,23 +3,22 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersSentencesTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\I18n\I18n;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 class UsersSentencesTest extends TestCase {
     public $fixtures = array(
-        'app.users',
-        'app.users_sentences',
-        'app.sentences'
+        'app.Users',
+        'app.UsersSentences',
+        'app.Sentences'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-        $this->UsersSentences = TableRegistry::getTableLocator()->get('UsersSentences');
+        $this->UsersSentences = $this->fetchTable('UsersSentences');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->UsersSentences);
         parent::tearDown();
     }
@@ -139,14 +138,14 @@ class UsersSentencesTest extends TestCase {
     function testSaveSentence_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new Time('2020-01-02 03:04:05');
-        Time::setTestNow($now);
+        $now = new FrozenTime('2020-01-02 03:04:05');
+        FrozenTime::setTestNow($now);
 
         $this->UsersSentences->saveSentence(1, 1, 4);
         $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
         $this->assertEquals($now, $returned->created);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 }

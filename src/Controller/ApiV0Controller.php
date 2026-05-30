@@ -40,6 +40,8 @@ use Exception;
  */
 class ApiV0Controller extends AppController
 {
+    protected $defaultTable = 'Sentences';
+
     /**
      * Show Json of specified sentence id.
      * 
@@ -48,8 +50,6 @@ class ApiV0Controller extends AppController
      * @return void
      */
     public function sentence($id = null) {
-        $this->loadModel('Sentences');
-
         if (is_numeric($id)) {
             // Retrieve the sentence
             $sentence = $this->Sentences->getSentenceWith($id, [
@@ -72,14 +72,12 @@ class ApiV0Controller extends AppController
      */
     public function search()
     {
-        $this->loadModel('Sentences');
-
         $search = new SentencesSearchForm();
         $search->setData($this->request->getQueryParams());
 
         $limit = 10;
         $sphinx = $search->asSphinx();
-        $sphinx['page'] = $this->request->query('page');
+        $sphinx['page'] = $this->request->getQuery('page');
         $sphinx['limit'] = $limit;
 
         $query = $this->Sentences
@@ -103,7 +101,7 @@ class ApiV0Controller extends AppController
         }
     
         $json = json_encode([
-            'paging' => $this->request->params['paging'],
+            'paging' => $this->request->getAttribute('paging'),
             'results' => $results
         ]);
         return $this->response

@@ -6,25 +6,25 @@ use App\Model\Table\SentenceCommentsTable;
 use Cake\Event\EventList;
 use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
 class SentenceCommentTest extends TestCase {
 
     public $fixtures = array(
-        'app.sentence_comments',
-        'app.users_languages',
-        'app.users',
-        'app.sentences',
+        'app.SentenceComments',
+        'app.UsersLanguages',
+        'app.Users',
+        'app.Sentences',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
-        $this->SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
+        $this->SentenceComment = $this->fetchTable('SentenceComments');
 
-        Router::pushRequest(new ServerRequest([
+        $this->loadRoutes();
+        Router::setRequest(new ServerRequest([
             'environment' => [
                 'HTTP_HOST' => 'tatoeba.org',
                 'HTTPS' => 'on',
@@ -32,7 +32,7 @@ class SentenceCommentTest extends TestCase {
         ]));
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->SentenceComment);
 
         parent::tearDown();

@@ -3,41 +3,43 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AudiosTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use App\Test\Fixture\AudiosFixture;
+use Cake\TestSuite\Fixture\FixtureHelper;
 use Cake\Utility\Hash;
 use Cake\I18n\I18n;
 
 class AudiosTableTest extends TestCase {
     public $fixtures = array(
-        'app.audios',
-        'app.disabled_audios',
-        'app.contributions',
-        'app.favorites_users',
-        'app.languages',
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.sentence_annotations',
-        'app.sentence_comments',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.tags',
-        'app.tags_sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.walls',
-        'app.wall_threads'
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Contributions',
+        'app.FavoritesUsers',
+        'app.Languages',
+        'app.Links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.SentenceAnnotations',
+        'app.SentenceComments',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.Walls',
+        'app.WallThreads'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-        $this->Audio = TableRegistry::getTableLocator()->get('Audios');
-        $this->AudioFixture =  new AudiosFixture();
+        $this->loadRoutes();
+        $this->Audio = $this->fetchTable('Audios');
+        $helper = new FixtureHelper();
+        $this->AudioFixture = current($helper->loadFixtures(['app.Audios']));
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Audio);
+        unset($this->AudioFixture);
         parent::tearDown();
     }
 
@@ -130,8 +132,9 @@ class AudiosTableTest extends TestCase {
         $this->Audio->save($data);
 
         $expected = array(1, 2, 3, 4, 7);
-        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+        $result = $this->Audio->Sentences->ReindexFlags->find()
             ->order('sentence_id')
+            ->all()
             ->toList();
         $result = Hash::extract($result, '{n}.sentence_id');
         $this->assertEquals($expected, $result);
@@ -142,8 +145,9 @@ class AudiosTableTest extends TestCase {
 
         $this->_saveRecordWith(0, array('sentence_id' => 10));
 
-        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+        $result = $this->Audio->Sentences->ReindexFlags->find()
             ->order('sentence_id')
+            ->all()
             ->toList();
         $result = Hash::extract($result, '{n}.sentence_id');
         $this->assertEquals($expected, $result);
@@ -155,8 +159,9 @@ class AudiosTableTest extends TestCase {
         $audio = $this->Audio->get(1);
         $this->Audio->delete($audio);
 
-        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+        $result = $this->Audio->Sentences->ReindexFlags->find()
             ->order('sentence_id')
+            ->all()
             ->toList();
         $result = Hash::extract($result, '{n}.sentence_id');
         $this->assertEquals($expected, $result);
@@ -241,7 +246,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testNewAudio_incrementsCount() {
-        $Languages = TableRegistry::getTableLocator()->get('Languages');
+        $Languages = $this->fetchTable('Languages');
         $before = $Languages->find()->where(['code' => 'eng'])->first()->audio;
 
         $audio = $this->Audio->newEntity(['sentence_id' => 1]);
@@ -253,7 +258,7 @@ class AudiosTableTest extends TestCase {
     }
 
     function testDelete_decrementsCount() {
-        $Languages = TableRegistry::getTableLocator()->get('Languages');
+        $Languages = $this->fetchTable('Languages');
         $before = $Languages->find()->where(['code' => 'fra'])->first()->audio;
         $audioToDelete = $this->Audio->get(2);
         $result = $this->Audio->delete($audioToDelete);
@@ -291,7 +296,7 @@ class AudiosTableTest extends TestCase {
         }
 
         $this->assertFalse($result);
-        $disabledAudio = TableRegistry::getTableLocator()->get('DisabledAudios')->get(1);
+        $disabledAudio = $this->fetchTable('DisabledAudios')->get(1);
         $this->assertFalse($disabledAudio->enabled);
         $this->assertEquals($disabledAudio->modified, $audio->modified);
     }
@@ -451,19 +456,19 @@ class AudiosTableTest extends TestCase {
     }
 
     function testSentencesCountFinder() {
-        $result = $this->Audio->find('sentencesCount');
+        $result = $this->Audio->find('sentencesCounter')->count();
 
         $this->assertEquals(6, $result);
     }
 
     function testSentencesCountFinder_withLang() {
-        $result = $this->Audio->find('sentencesCount', ['lang' => 'fra']);
+        $result = $this->Audio->find('sentencesCounter', ['lang' => 'fra'])->count();
 
         $this->assertEquals(2, $result);
     }
 
     function testChangeSentenceLangChangesAudioSentenceLang() {
-        $DisabledAudios = TableRegistry::getTableLocator()->get('DisabledAudios');
+        $DisabledAudios = $this->fetchTable('DisabledAudios');
         $sentenceId = 3;
 
         $before = $this->Audio->findBySentenceId($sentenceId)->all()->toList();

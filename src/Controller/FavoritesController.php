@@ -44,8 +44,6 @@ class FavoritesController extends AppController
 
     public $name = 'Favorites' ;
     public $paginate = array('limit' => 50);
-    public $helpers = array('Html', 'Menu', 'CommonModules', 'Pagination');
-    public $uses = array('Favorite', 'User');
 
     /**
      * view all favorites sentences of a given user
@@ -54,8 +52,7 @@ class FavoritesController extends AppController
      */
     public function of_user($username)
     {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $userId = $this->fetchTable('Users')->getIdFromUsername($username);
 
         $this->set('username', $username);
         if (empty($userId)) {

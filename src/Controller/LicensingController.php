@@ -26,9 +26,9 @@ use Cake\I18n\I18n;
 
 class LicensingController extends AppController {
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'refresh_license_switch_list',
         ]);
 
@@ -36,8 +36,6 @@ class LicensingController extends AppController {
     }
 
     private function paginateAffected($listId) {
-        $this->loadModel('Sentences');
-
         $pagination = [
             'contain' => [
                 'Sentences' => function($q) {
@@ -72,8 +70,7 @@ class LicensingController extends AppController {
 
         $currentUserId = CurrentUser::get('id');
 
-        $this->loadModel('Queue.QueuedJobs');
-        $currentJob = $this->QueuedJobs->find()
+        $currentJob = $this->fetchTable('Queue.QueuedJobs')->find()
             ->where([
                 'job_type' => 'SwitchSentencesLicense',
                 'job_group' => $currentUserId,

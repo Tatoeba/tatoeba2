@@ -7,14 +7,12 @@ use Cake\Event\Event;
 
 class ExportsController extends AppController
 {
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'add',
         ]);
         $this->Auth->allowedActions = ['add', 'get', 'download'];
-
-        $this->loadComponent('RequestHandler');
 
         return parent::beforeFilter($event);
     }
@@ -31,8 +29,9 @@ class ExportsController extends AppController
 
         if ($export) {
             $this->set(compact('export'));
-            $this->set('_serialize', ['export']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['export'])
+                ->setClassName('Json');
         }
     }
 
@@ -42,8 +41,9 @@ class ExportsController extends AppController
 
         if ($export) {
             $this->set(compact('export'));
-            $this->set('_serialize', ['export']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['export'])
+                ->setClassName('Json');
         }
     }
 

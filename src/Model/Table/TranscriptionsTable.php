@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use App\Lib\Autotranscription;
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
@@ -90,13 +90,13 @@ class TranscriptionsTable extends Table
        of the last transcription save operation */
     public $validationErrors = array();
 
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('text', 'text');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');
@@ -106,7 +106,7 @@ class TranscriptionsTable extends Table
         $this->setAutotranscription(new Autotranscription());
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->numeric('sentence_id')
@@ -137,7 +137,7 @@ class TranscriptionsTable extends Table
         $this->autotranscription = $object;
     }
 
-    public function beforeFind($event, $query, $options, $primary) {
+    public function beforeFind(\Cake\Event\EventInterface $event, $query, $options, $primary) {
         // By default we join with sentences because we need the 
         // lang and script data from the sentence to set `readonly`.
         // For cases where we want to query without joining with
@@ -170,7 +170,7 @@ class TranscriptionsTable extends Table
         return $count == 0;
     }
 
-    public function beforeSave($event, $entity, $options) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options) {
         $ok = true;
         if (!$entity->isNew()) { // update
             if ($entity->isDirty('sentence_id') || $entity->isDirty('script'))

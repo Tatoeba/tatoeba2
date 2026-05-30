@@ -22,7 +22,7 @@ class VersionedPasswordHasher extends AbstractPasswordHasher {
 		}
 	}
 
-	public function check($plainTextPassword, $storedHash) {
+	public function check($plainTextPassword, $storedHash): bool {
 		$versionedHash = explode(' ', $storedHash, 2);
 		if (count($versionedHash) != 2) {
 			return false;

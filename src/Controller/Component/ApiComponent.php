@@ -72,7 +72,7 @@ class ApiComponent extends Component
         $this->getController()->setRequest($request->withQueryParams($params));
     }
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->decodeQuery();
     }
@@ -148,7 +148,9 @@ class ApiComponent extends Component
 
         $this->autoRender = false;
 
-        return $this->response
+        return $this
+            ->getController()
+            ->getResponse()
             ->withType('application/json')
             ->withBody($stream);
     }

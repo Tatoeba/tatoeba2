@@ -11,39 +11,11 @@ class LinksFixture extends TestFixture
     public $table = 'sentences_translations';
 
     /**
-     * Fields
-     *
-     * @var array
-     */
-    // @codingStandardsIgnoreStart
-    public $fields = [
-        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'sentence_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'translation_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'sentence_lang' => ['type' => 'string', 'length' => 4, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'translation_lang' => ['type' => 'string', 'length' => 4, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'distance' => ['type' => 'smallinteger', 'length' => 2, 'unsigned' => false, 'null' => false, 'default' => '1', 'comment' => '', 'precision' => null],
-        '_indexes' => [
-            'translation_id' => ['type' => 'index', 'columns' => ['translation_id'], 'length' => []],
-            'translation_lang' => ['type' => 'index', 'columns' => ['translation_lang'], 'length' => []],
-            'sentence_lang_translation_lang_idx' => ['type' => 'index', 'columns' => ['sentence_lang', 'translation_lang'], 'length' => []],
-        ],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'sentence_id' => ['type' => 'unique', 'columns' => ['sentence_id', 'translation_id'], 'length' => []],
-        ],
-        '_options' => [
-            'engine' => 'InnoDB',
-            'collation' => 'utf8_general_ci'
-        ],
-    ];
-    // @codingStandardsIgnoreEnd
-    /**
      * Init method
      *
      * @return void
      */
-    public function init()
+    public function init(): void
     {
         $this->records = [
             [

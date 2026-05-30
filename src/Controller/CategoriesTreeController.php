@@ -32,10 +32,8 @@ class CategoriesTreeController extends AppController
      * @access public
      */
     public $name = 'CategoriesTree';
-    public $components = ['CommonSentence', 'Flash'];
-    public $helpers = ['Pagination'];
 
-    public function beforeFilter(Event $event)  {
+    public function beforeFilter(\Cake\Event\EventInterface $event)  {
         // Not ready for production yet
         if (!Configure::read('debug') && !Configure::read('Tatoeba.devStylesheet')) {
             return $this->response->withStatus(403);
@@ -44,9 +42,8 @@ class CategoriesTreeController extends AppController
     }
 
     public function manage(){
-        $this->loadModel('Tags');
         $tags = [];
-        $tagList = $this->Tags->find('all')
+        $tagList = $this->fetchTable('Tags')->find()
             ->select(['id', 'name', 'nbrOfSentences', 'category_id'])
             ->order(['name']);
         foreach ($tagList as $tag) {
@@ -71,9 +68,9 @@ class CategoriesTreeController extends AppController
     }
 
     public function createorEditCategory() {
-        $name = $this->request->data('name');
-        $description = $this->request->data('description');
-        $parentName = $this->request->data('parentName');
+        $name = $this->request->getData('name');
+        $description = $this->request->getData('description');
+        $parentName = $this->request->getData('parentName');
 
         $res = $this->CategoriesTree->createOrEdit($name, $description, $parentName);
 
@@ -95,11 +92,10 @@ class CategoriesTreeController extends AppController
     }
 
     public function attachTagToCategory() {
-        $tagName = $this->request->data('tagName');
-        $categoryName = $this->request->data('categoryName');
+        $tagName = $this->request->getData('tagName');
+        $categoryName = $this->request->getData('categoryName');
 
-        $this->loadModel('Tags');
-        $res = $this->Tags->attachToCategory($tagName, $categoryName);
+        $res = $this->fetchTable('Tags')->attachToCategory($tagName, $categoryName);
 
         return $this->redirect([
             'controller' => 'categories_tree',
@@ -109,8 +105,7 @@ class CategoriesTreeController extends AppController
     }
 
     public function detachTagFromCategory($tagId) {
-        $this->loadModel('Tags');
-        $res = $this->Tags->detachFromCategory($tagId);
+        $res = $this->fetchTable('Tags')->detachFromCategory($tagId);
 
         return $this->redirect([
             'controller' => 'categories_tree',
@@ -122,9 +117,9 @@ class CategoriesTreeController extends AppController
     public function autocomplete($search) {
         $results = $this->CategoriesTree->Autocomplete($search);
 
-        $this->loadComponent('RequestHandler');
         $this->set('results', $results);
-        $this->set('_serialize', ['results']);
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->viewBuilder()
+            ->setOption('serialize', ['results'])
+            ->setClassName('Json');
     }
 }

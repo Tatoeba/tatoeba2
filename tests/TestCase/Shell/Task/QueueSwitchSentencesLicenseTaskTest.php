@@ -5,27 +5,25 @@ use App\Shell\Task\QueueSwitchSentencesLicenseTask;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOutput;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use Cake\Core\Plugin;
 use Cake\Utility\Hash;
 use App\Model\CurrentUser;
 
 class QueueSwitchSentencesLicenseTaskTest extends TestCase
 {
     public $fixtures = array(
-        'app.sentences',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.users_languages',
-        'app.contributions',
-        'app.reindex_flags',
-        'app.private_messages',
+        'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.UsersLanguages',
+        'app.Contributions',
+        'app.ReindexFlags',
+        'app.PrivateMessages',
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        Plugin::load('Queue');
+        parent::loadPlugins(['Queue']);
 
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
         $this->task = $this->getMockBuilder(QueueSwitchSentencesLicenseTask::class)
@@ -34,11 +32,11 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
             ->getMock();
         $this->task->batchOperationSize = 10;
 
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
-        $this->PrivateMessages = TableRegistry::getTableLocator()->get('PrivateMessages');
+        $this->Sentences = $this->fetchTable('Sentences');
+        $this->PrivateMessages = $this->fetchTable('PrivateMessages');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->task);
@@ -46,12 +44,12 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
 
     public function _testSwitchLicense($expected, $options)
     {
-        $before = $this->Sentences->findAllByLicense('CC0 1.0')->toList();
+        $before = $this->Sentences->findAllByLicense('CC0 1.0')->all()->toList();
         $beforeIds = Hash::extract($before, '{n}.id');
 
-        $this->task->run($options);
+        $this->task->run($options, 1234);
 
-        $after = $this->Sentences->findAllByLicense('CC0 1.0')->toList();
+        $after = $this->Sentences->findAllByLicense('CC0 1.0')->all()->toList();
         $afterIds = Hash::extract($after, '{n}.id');
         $switched = array_diff($afterIds, $beforeIds);
         sort($switched);
@@ -80,7 +78,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
         CurrentUser::store(['id' => 4]);
         $numPmBefore = $this->PrivateMessages->find('all')->count();
-        $this->task->run($options);
+        $this->task->run($options, 1234);
         CurrentUser::store(['id' => 4]);
         $numPmAfter = $this->PrivateMessages->find('all')->count();
 
@@ -97,9 +95,9 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
 
         $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
 
-        $this->task->run($options);
+        $this->task->run($options, 1234);
 
-        $this->assertContains($fakeError, $this->task->getReport());
+        $this->assertStringContainsString($fakeError, $this->task->getReport());
     }
 
     public function testSwitchLicense_batchedOperation() {
@@ -111,7 +109,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
     {
         $options = ['userId' => 4, 'listId' => 4];
 
-        $this->task->run($options);
+        $this->task->run($options, 1234);
 
         $count = $this->Sentences->SentencesLists->getNumberOfSentences(4);
         $this->assertEquals(0, $count);

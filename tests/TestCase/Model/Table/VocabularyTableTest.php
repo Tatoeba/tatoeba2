@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\VocabularyTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\CurrentUser;
 use Cake\I18n\I18n;
@@ -12,19 +11,19 @@ class VocabularyTableTest extends TestCase
     use \App\Test\TestCase\SearchMockTrait;
 
     public $fixtures = [
-        'app.vocabulary',
-        'app.users_vocabulary',
-        'app.sentences',
-        'app.users_languages'
+        'app.Vocabulary',
+        'app.UsersVocabulary',
+        'app.Sentences',
+        'app.UsersLanguages'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->Vocabulary = TableRegistry::getTableLocator()->get('Vocabulary');
+        $this->Vocabulary = $this->fetchTable('Vocabulary');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Vocabulary);
 

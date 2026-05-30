@@ -13,7 +13,7 @@ use App\Lib\SphinxClient;
 use App\Model\Search;
 use Cake\Core\Configure;
 use Cake\ORM\Behavior;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Exception;
 
 
@@ -38,7 +38,7 @@ class SphinxBehavior extends Behavior
      */
     public $sphinx = null;
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $alias = $config['alias'];
         $databases = Configure::read('Sphinx');
@@ -66,7 +66,7 @@ class SphinxBehavior extends Behavior
      * @return array Modified query
      * @access public
      */
-    function beforeFind($event, $query, $options, $primary)
+    function beforeFind(\Cake\Event\EventInterface $event, $query, $options, $primary)
     {
         /* CakePHP's paginator makes two calls to the database: the first for the actual
          * query and the second for the total count. But when we use the search engine
@@ -282,18 +282,18 @@ class SphinxBehavior extends Behavior
         return $results;
     }
 
-    public function afterDelete($event, $entity, $options) {
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options) {
         $alias = $event->getSubject()->getAlias();
         $this->_refreshSphinxAttributes($alias, $entity);
     }
 
-    public function afterSave($event, $entity, $options = array()) {
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options = array()) {
         $alias = $event->getSubject()->getAlias();
         $this->_refreshSphinxAttributes($alias, $entity);
     }
 
     private function _refreshSphinxAttributes($alias, $entity) {
-        $model = TableRegistry::getTableLocator()->get($alias);
+        $model = FactoryLocator::get('Table')->get($alias);
         if (!method_exists($model, 'sphinxAttributesChanged'))
             return;
 
@@ -311,7 +311,7 @@ class SphinxBehavior extends Behavior
             }
         }
 
-        $Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $Sentences = FactoryLocator::get('Table')->get('Sentences');
         $langs = $Sentences->getSentencesLang(array_keys($values));
         $batchedByLang = array();
         foreach ($values as $sentenceId => $value) {

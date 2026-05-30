@@ -1,13 +1,11 @@
 <?php
 
 use Cake\Core\Configure;
-use Cake\Datasource\ModelAwareTrait;
+use Cake\Datasource\FactoryLocator;
 use Migrations\AbstractMigration;
 
 class OldTupiCodeRename extends AbstractMigration
 {
-    use ModelAwareTrait;
-
     private $langColumns = [
         'audios' => ['sentence_lang'],
         'contributions' => ['sentence_lang', 'translation_lang'],
@@ -39,14 +37,18 @@ class OldTupiCodeRename extends AbstractMigration
     }
 
     private function reindexAffectedSentences(string $lang) {
-        $this->loadModel('Sentences');
-        $ids = $this->Sentences->find()
+        $connection = $this->getAdapter()->getCakeConnection();
+        $Sentences = FactoryLocator::get('Table')
+            ->get('Sentences', compact('connection'));
+
+        $ids = $Sentences->find()
             ->select('id')
             ->where(['lang' => $lang])
+            ->all()
             ->extract('id')
             ->toList();
         foreach ($ids as $id) {
-            $this->Sentences->flagSentenceAndTranslationsToReindex($id);
+            $Sentences->flagSentenceAndTranslationsToReindex($id);
         }
     }
 

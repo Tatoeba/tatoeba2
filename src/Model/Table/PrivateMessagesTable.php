@@ -19,10 +19,10 @@
  */
 namespace App\Model\Table;
 
-use Cake\Database\Schema\TableSchema;
+use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
@@ -31,13 +31,13 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class PrivateMessagesTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
     {
         $schema->setColumnType('date', 'string');
         return $schema;
     }
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users');
         $this->belongsTo('Recipients', [
@@ -50,7 +50,7 @@ class PrivateMessagesTable extends Table
         ]);
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->addCreate(function($message) {
             return $message->type == 'machine' || $this->canSendMessage($message->sender);
@@ -67,7 +67,7 @@ class PrivateMessagesTable extends Table
         return $rules;
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->requirePresence('content')
@@ -95,7 +95,7 @@ class PrivateMessagesTable extends Table
         }
     }
 
-    public function beforeFind($event, $query, $options, $primary)
+    public function beforeFind(\Cake\Event\EventInterface $event, $query, $options, $primary)
     {
         // Making sure users can read only their own PM's.
         $query->where(['user_id' => CurrentUser::get('id')]);
@@ -178,7 +178,7 @@ class PrivateMessagesTable extends Table
      */
     public function todaysMessageCount($userId)
     {
-        $yesterday = new Time('-24 hours');
+        $yesterday = new FrozenTime('-24 hours');
 
         return $this->find()
             ->where([
@@ -353,7 +353,7 @@ class PrivateMessagesTable extends Table
     {
         $user = $this->Users->get($userId, ['fields' => 'since']);
         $sentToday = $this->todaysMessageCount($userId);
-        $since = new Time($user->since);
+        $since = new FrozenTime($user->since);
         $isNewUser = $since->wasWithinLast('2 weeks');
 
         return !$isNewUser || $sentToday < 5;

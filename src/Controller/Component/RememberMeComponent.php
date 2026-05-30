@@ -26,7 +26,9 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
+use Cake\Http\Cookie\Cookie;
+use DateTime;
 
 
 /**
@@ -40,7 +42,7 @@ use Cake\ORM\TableRegistry;
  */
 class RememberMeComponent extends Component
 {
-    public $components = array('Auth', 'Cookie');
+    public $components = array('Auth');
 
     /**
      * Cookie retention period.
@@ -48,7 +50,13 @@ class RememberMeComponent extends Component
      * @var string
      */
     private $_period = '+2 weeks';
-    private $_cookieName = 'User';
+    private static $_cookieName = 'User';
+
+    private function saveCookie($cookie)
+    {
+        $resp = $this->getController()->getResponse()->withCookie($cookie);
+        $this->getController()->setResponse($resp);
+    }
 
     /**
      * Remember user so (s)he doesn't have to log in again.
@@ -60,10 +68,15 @@ class RememberMeComponent extends Component
      */
     public function remember($username, $password)
     {
-        $cookie = array();
-        $cookie['username'] = $username;
-        $cookie['password'] = $password;
-        $this->Cookie->write($this->_cookieName, $cookie, true, $this->_period);
+        $cookie = Cookie::create(
+            self::$_cookieName,
+            compact('username', 'password'),
+            [
+                'expires' => new DateTime($this->_period),
+                'httponly' => true,
+            ]
+        );
+        $this->saveCookie($cookie);
     }
 
     /**
@@ -73,7 +86,7 @@ class RememberMeComponent extends Component
      */
     public function check()
     {
-        $cookie = $this->Cookie->read($this->_cookieName);
+        $cookie = $this->getController()->getRequest()->getCookie(self::$_cookieName);
         $validCookie = is_array($cookie) &&
                        isset($cookie['username']) &&
                        isset($cookie['password']);
@@ -82,7 +95,7 @@ class RememberMeComponent extends Component
             return;
         }
 
-        $model = TableRegistry::get('Users');
+        $model = FactoryLocator::get('Table')->get('Users');
         $user = $model->find('userToLogin')
             ->where([
                 'username' => $cookie['username'],
@@ -91,7 +104,8 @@ class RememberMeComponent extends Component
 
         if ($user) {
             $this->Auth->setUser($user->toArray());
-            $this->Cookie->write($this->_cookieName, $cookie, true, $this->_period);
+            // refresh cookie expiration date to $this->_period from now
+            $this->remember($cookie['username'], $cookie['password']);
         } else {
             $this->delete();
         }
@@ -104,6 +118,16 @@ class RememberMeComponent extends Component
      */
     public function delete()
     {
-        $this->Cookie->delete($this->_cookieName);
+        $controller = $this->getController();
+        $cookie = $controller->getRequest()->getCookie(self::$_cookieName);
+        if ($cookie) {
+            $resp = $controller->getResponse()->withExpiredCookie(new Cookie(self::$_cookieName));
+            $controller->setResponse($resp);
+        }
+    }
+
+    public static function getCookieName()
+    {
+        return self::$_cookieName;
     }
 }

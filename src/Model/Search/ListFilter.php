@@ -4,11 +4,11 @@ namespace App\Model\Search;
 
 use App\Model\Exception\InvalidValueException;
 use Cake\Database\Expression\FunctionExpression;
-use Cake\Datasource\ModelAwareTrait;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\Utility\Hash;
 
 class ListFilter extends SearchFilter {
-    use ModelAwareTrait;
+    use LocatorAwareTrait;
 
     private $currentUserId;
 
@@ -36,17 +36,17 @@ class ListFilter extends SearchFilter {
     public function getValuesMap() {
         $listIds = $this->getAllValues();
         if ($listIds) {
-            $this->loadModel('SentencesLists');
             $order = new FunctionExpression(
                 'FIND_IN_SET',
                 ['SentencesLists.id' => 'literal', implode(',', $listIds)]
             );
-            $result = $this->SentencesLists
+            $result = $this->fetchTable('SentencesLists')
                 ->find('searchableBy', ['user_id' => $this->currentUserId])
                 ->where(['id IN' => $listIds])
                 ->select(['id'])
                 ->order($order)
                 ->enableHydration(false)
+                ->all()
                 ->toList();
             return Hash::combine($result, '{n}.id', '{n}.id');
         } else {

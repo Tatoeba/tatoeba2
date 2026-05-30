@@ -2,13 +2,13 @@
 namespace App\Event;
 
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Datasource\FactoryLocator;
 use Cake\Event\EventListenerInterface;
-use Cake\ORM\TableRegistry;
 
 class StatsListener implements EventListenerInterface {
     public $Languages;
 
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return [
             'Model.Audio.audioCreated' => 'incrementAudioCount',
             'Model.Audio.audioDeleted' => 'decrementAudioCount',
@@ -16,7 +16,7 @@ class StatsListener implements EventListenerInterface {
     }
 
     public function __construct() {
-        $this->Languages = TableRegistry::get('Languages');
+        $this->Languages = FactoryLocator::get('Table')->get('Languages');
     }
 
     private function updateAudioCount($event, $offset) {

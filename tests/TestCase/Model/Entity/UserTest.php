@@ -8,13 +8,13 @@ class UserTest extends TestCase
 {
     public $User;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->User = new User();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->User);
         parent::tearDown();
@@ -23,7 +23,7 @@ class UserTest extends TestCase
     public function testSet_passwordhashesPassword()
     {
         $this->User->set('password', 'my super password');
-        $this->assertContains('$', $this->User->password);
+        $this->assertStringContainsString('$', $this->User->password);
     }
 
     public function testSet_settingsMergesExistingSettings()

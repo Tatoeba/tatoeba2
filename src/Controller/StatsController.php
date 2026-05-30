@@ -40,11 +40,12 @@ use Cake\Event\Event;
  */
 class StatsController extends AppController
 {
+    protected $defaultTable = 'Languages';
+
     /**
      *
      */
     function sentences_by_language() {
-        $this->loadModel('Languages');
         $stats = $this->Languages->getSentencesStatistics();
         $audioStats = $this->Languages->getAudioStats();
         $totalSentences = $this->Languages->getTotalSentencesNumber();
@@ -60,7 +61,6 @@ class StatsController extends AppController
      */
     function users_languages()
     {
-        $this->loadModel('Languages');
         $stats = $this->Languages->getUsersLanguagesStatistics();
         $this->set('stats', $stats);
     }
@@ -71,7 +71,6 @@ class StatsController extends AppController
      */
     function native_speakers()
     {
-        $this->loadModel('Languages');
         $stats = $this->Languages->getNativeSpeakersStatistics();
         $this->set('stats', $stats);
     }

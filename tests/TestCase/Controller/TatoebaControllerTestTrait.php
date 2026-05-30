@@ -1,16 +1,17 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
-use Cake\Utility\Text;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 
 trait TatoebaControllerTestTrait {
-    private function logInAs($username) {
-        $users = TableRegistry::get('Users');
+    private function logInAs($username, $addTokens = true) {
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->find('userToLogin')->first();
         $this->session(['Auth' => ['User' => $user->toArray()]]);
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
+        if ($addTokens) {
+            $this->enableCsrfToken();
+            $this->enableSecurityToken();
+        }
     }
 
     public function assertAccessUrlAs($url, $user, $response) {
@@ -47,7 +48,7 @@ trait TatoebaControllerTestTrait {
     public function ajaxPost($url, $data = []) {
         $this->addHeader('X-Requested-With', 'XMLHttpRequest');
         if (is_string($data)) {
-            $token = Text::uuid();
+            $token = (new CsrfProtectionMiddleware())->createToken();
             $this->cookie('csrfToken', $token);
             $this->configRequest(['headers' => ['X-CSRF-Token' => $token]]);
         }

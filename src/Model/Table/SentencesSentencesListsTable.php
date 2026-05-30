@@ -27,7 +27,7 @@ use App\Event\SentencesListListener;
 
 class SentencesSentencesListsTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('SentencesLists');
@@ -46,10 +46,10 @@ class SentencesSentencesListsTable extends Table
         return $this->find()
             ->where([
                 'sentence_id' => $sentenceId,
-                'OR' => [
+                'OR' => array_filter([
                     'user_id' => CurrentUser::get('id'),
                     'visibility' => 'public',
-                ]
+                ])
             ])
             ->select(['created'])
             ->contain([
@@ -68,6 +68,7 @@ class SentencesSentencesListsTable extends Table
         $records = $this->find('all')
             ->where(['sentence_id' => $sentenceId])
             ->select('sentences_list_id')
+            ->all()
             ->toList();
         $listsId = Hash::extract($records, '{n}.sentences_list_id');
         $values = array($sentenceId => array($listsId));
@@ -78,7 +79,7 @@ class SentencesSentencesListsTable extends Table
      *
      * @return void
      */
-    public function afterDelete($event, $entity, $options)
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         $event = new Event('Model.SentencesSentencesList.deleted', $this, array(
             'list_id' => $entity->sentences_list_id,

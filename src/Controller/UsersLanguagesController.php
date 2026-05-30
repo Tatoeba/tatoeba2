@@ -42,12 +42,9 @@ use Cake\Event\Event;
  */
 class UsersLanguagesController extends AppController
 {
-    public $uses = array('UsersLanguages');
-    public $components = array('Flash');
-
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save',
         ]);
 
@@ -58,15 +55,14 @@ class UsersLanguagesController extends AppController
     {
         $this->setResponse($this->response->withStatus(400, 'Validation error'));
         $this->set(compact('message'));
-        $this->set('_serialize', ['message']);
+        $this->viewBuilder()->setOption('serialize', ['message']);
     }
 
     public function save()
     {
         $isAngular = $this->request->accepts('application/json');
         if ($isAngular) {
-            $this->loadComponent('RequestHandler');
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()->setClassName('Json');
         }
 
         try {
@@ -106,8 +102,7 @@ class UsersLanguagesController extends AppController
             if ($isAngular) {
                 $languages = $this->UsersLanguages->getLanguagesByUser(CurrentUser::get('id'));
                 $this->set(compact('languages'));
-                $this->set('_serialize', ['languages']);
-                $this->RequestHandler->renderAs($this, 'json');
+                $this->viewBuilder()->setOption('serialize', ['languages']);
             } else {
                 $this->redirect(
                     array(

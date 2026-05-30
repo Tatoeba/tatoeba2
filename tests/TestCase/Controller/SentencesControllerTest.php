@@ -5,36 +5,37 @@ use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use App\Test\TestCase\SearchMockTrait;
 use Cake\Core\Configure;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
+use Helmich\JsonAssert\JsonAssertions;
 
 class SentencesControllerTest extends IntegrationTestCase {
+    use JsonAssertions;
     use TatoebaControllerTestTrait;
     use SearchMockTrait;
 
     public $fixtures = [
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
-        'app.sentences_sentences_lists',
-        'app.languages',
-        'app.links',
-        'app.private_messages',
-        'app.reindex_flags',
-        'app.audios',
-        'app.disabled_audios',
-        'app.transcriptions',
-        'app.contributions',
-        'app.tags',
-        'app.tags_sentences',
-        'app.users_sentences',
-        'app.sentence_comments',
-        'app.favorites_users',
-        'app.sentences_lists',
-        'app.wiki_articles',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.SentencesSentencesLists',
+        'app.Languages',
+        'app.Links',
+        'app.PrivateMessages',
+        'app.ReindexFlags',
+        'app.Audios',
+        'app.DisabledAudios',
+        'app.Transcriptions',
+        'app.Contributions',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.UsersSentences',
+        'app.SentenceComments',
+        'app.FavoritesUsers',
+        'app.SentencesLists',
+        'app.WikiArticles',
     ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         Configure::write('Search.enabled', false);
     }
@@ -120,7 +121,7 @@ class SentencesControllerTest extends IntegrationTestCase {
                 'user_id' => 1,
             ];
         }
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $entities = $sentences->newEntities($newSentences);
         $sentences->saveMany($entities);
 
@@ -130,7 +131,15 @@ class SentencesControllerTest extends IntegrationTestCase {
     /**
      * @dataProvider ajaxAccessesProvider
      */
-    public function testControllerAjaxAccess($url, $user, $response) {
+    public function testControllerAjaxNonAngularAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testControllerAjaxAngularAccess($url, $user, $response) {
+        $this->addHeader('Accept', 'application/json');
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
@@ -259,12 +268,40 @@ class SentencesControllerTest extends IntegrationTestCase {
 
         $response = json_decode($this->_response->getBody());
         if ($expectedLicense) {
-            $sentences = TableRegistry::getTableLocator()->get('Sentences');
+            $sentences = $this->fetchTable('Sentences');
             $license = $sentences->get($response->sentence->id)->license;
             $this->assertEquals($expectedLicense, $license);
         } else {
             $this->assertEmpty($response);
         }
+    }
+
+    public function testEditSentence_OK_angular() {
+        $this->logInAs('contributor');
+        $this->addHeader('Accept', 'application/json');
+
+        $this->ajaxPost('/ja/sentences/edit_sentence', [
+            'id' => '19', 'lang' => 'eng', 'text' => 'Where did I come from?',
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.id' => 19,
+            '$.result.text' => 'Where did I come from?',
+            '$.result.lang' => 'eng',
+            '$.result.user.username' => 'contributor',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testEditSentence_OK_nonAngular() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/ja/sentences/edit_sentence', [
+            'id' => '19', 'lang' => 'eng', 'text' => 'Where did I come from?',
+        ]);
+        $this->assertResponseOk();
     }
 
     public function testEditSentence_doesntWorkForUnknownSentence() {
@@ -308,7 +345,7 @@ class SentencesControllerTest extends IntegrationTestCase {
      * @dataProvider editLicenseProvider
      */
     public function testEditLicense_severalScenarios($sentenceId, $license, $username, $assertMethod) {
-        $sentences = TableRegistry::get('Sentences');
+        $sentences = $this->fetchTable('Sentences');
         $oldSentence = $sentences->get($sentenceId);
         $this->logInAs($username);
         $this->post('/ja/sentences/edit_license', [
@@ -328,7 +365,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseError();
     }
 
-    public function testSaveTranslation_asMember() {
+    public function testSaveTranslation_asMember_nonAngular() {
         $this->logInAs('contributor');
         $this->ajaxPost('/ja/sentences/save_translation', [
             'id' => '26',
@@ -336,6 +373,33 @@ class SentencesControllerTest extends IntegrationTestCase {
             'value' => 'Elle essaie toujours de faire ce qu\'elle pense.'
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testSaveTranslation_asMember_angular() {
+        $this->addHeader('Accept', 'application/json');
+        $this->logInAs('contributor');
+
+        $this->ajaxPost('/ja/sentences/save_translation', [
+            'id' => '26',
+            'selectLang' => 'fra',
+            'value' => 'Elle essaie toujours de faire ce qu\'elle pense.'
+        ]);
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(2),
+            '$.translation.text' => 'Elle essaie toujours de faire ce qu\'elle pense.',
+            '$.translation.lang' => 'fra',
+            '$.translation.user_id' => 4,
+            '$.translation.based_on_id' => 26,
+            '$.sentence.id' => 26,
+            '$.sentence.text' => 'Ella siempre intenta hacer lo que piensa.',
+            '$.sentence.lang' => 'spa',
+            '$.sentence.extraTranslationsCount' => -4,
+            '$.sentence.expandLabel' => null,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testSaveTranslation_sentenceWithLicensingIssue() {
@@ -367,6 +431,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testEditCorrectness_asGuest() {
         $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->post('/ja/sentences/edit_correctness', ['id' => '1', 'correctness' => '-1']);
         $this->assertRedirect('/ja/users/login');
     }
@@ -431,7 +496,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_withUserSetting() {
         $user = 'kazuki';
         $userId = 7;
-        $users = TableRegistry::getTableLocator()->get('Users');
+        $users = $this->fetchTable('Users');
         $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
 
         $nbSentences = $this->addSentencesOfUser($userId, $nbPerPageSetting + 1);

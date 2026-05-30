@@ -26,10 +26,10 @@ use Cake\I18n\I18n;
 
 class LanguagesTableShell extends Shell {
 
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
-        $this->loadModel('Languages');
+        $this->Languages = $this->fetchTable('Languages');
     }
 
     private function get_tatoeba_languages() {

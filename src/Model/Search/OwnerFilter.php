@@ -5,11 +5,11 @@ namespace App\Model\Search;
 use App\Utility\MappedKeysArray;
 use App\Model\Exception\InvalidValueException;
 use Cake\Database\Expression\FunctionExpression;
-use Cake\Datasource\ModelAwareTrait;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\Utility\Hash;
 
 class OwnerFilter extends SearchFilter {
-    use ModelAwareTrait;
+    use LocatorAwareTrait;
 
     protected function getAttributeName() {
         return 'user_id';
@@ -37,16 +37,16 @@ class OwnerFilter extends SearchFilter {
     public function getValuesMap() {
         $users = $this->getAllValues();
         if ($users) {
-            $this->loadModel('Users');
             $order = new FunctionExpression(
                 'FIND_IN_SET',
                 ['Users.username' => 'literal', implode(',', $users)]
             );
-            $result = $this->Users->find()
+            $result = $this->fetchTable('Users')->find()
                 ->where(['username IN' => $users])
                 ->select(['id', 'username'])
                 ->order($order)
                 ->enableHydration(false)
+                ->all()
                 ->toList();
             $mapper = function ($key) {
                 return is_string($key) ? strtolower($key) : $key;

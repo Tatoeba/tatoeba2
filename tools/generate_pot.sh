@@ -1,6 +1,6 @@
 #!/bin/bash
 
-POT=src/Locale/default.pot
+POT=resources/locales/default.pot
 POT_DIR=$(dirname $POT)
 POT_TMP=$(mktemp --suffix=.po)
 
@@ -8,7 +8,7 @@ POT_TMP=$(mktemp --suffix=.po)
 trap "rm -f $POT_TMP; exit" SIGHUP SIGINT SIGTERM
 
 list_source_files() {
-    git ls-files src/ \
+    git ls-files src/ templates/ \
         | grep '.\(ctp\|php\)$' \
         | LC_ALL=C sort
 }

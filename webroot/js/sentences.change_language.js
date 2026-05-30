@@ -42,15 +42,19 @@ $(document).ready(function() {
                 
                 flagImage.attr('src', '/img/loading.svg');
                 $("#selectLangContainer_" + sentenceId).hide();
-                
-                $.post(
-                    rootUrl + "/sentences/change_language/",
-                    { "id": sentenceId, "newLang": newLang },
-                    function(data){
+
+                $.ajax({
+                    type: 'post',
+                    url: rootUrl + "/sentences/change_language/",
+                    data: { "id": sentenceId, "newLang": newLang },
+                    headers: {
+                        'X-CSRF-Token': get_csrf_token()
+                    },
+                    success: function(data) {
                         $("#_" + sentenceId + "_in_process").hide();
                         flagImage.attr('src', '/img/flags/' + data + '.svg');
                     }
-                );
+                });
             });
         });
     });

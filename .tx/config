@@ -3,32 +3,32 @@ host     = https://www.transifex.com
 lang_map = lv_LV: lv, vi_VN: vi, sma: hoc
 
 [o:tatoeba:p:tatoeba-terms-of-use:r:terms-of-use]
-file_filter = src/Locale/<lang>/terms-of-use.html
-source_file = src/Locale/fr/terms-of-use.html
+file_filter = resources/locales/<lang>/terms-of-use.html
+source_file = resources/locales/fr/terms-of-use.html
 source_lang = fr
 type        = HTML
 
 [o:tatoeba:p:tatoeba_website:r:admin]
-file_filter = src/Locale/<lang>/admin.po
-source_file = src/Locale/admin.pot
+file_filter = resources/locales/<lang>/admin.po
+source_file = resources/locales/admin.pot
 source_lang = en
 type        = PO
 
 [o:tatoeba:p:tatoeba_website:r:countries]
-file_filter = src/Locale/<lang>/countries.po
-source_file = src/Locale/countries.pot
+file_filter = resources/locales/<lang>/countries.po
+source_file = resources/locales/countries.pot
 source_lang = en
 type        = PO
 
 [o:tatoeba:p:tatoeba_website:r:tatoeba-languages]
-file_filter = src/Locale/<lang>/languages.po
-source_file = src/Locale/languages.pot
+file_filter = resources/locales/<lang>/languages.po
+source_file = resources/locales/languages.pot
 source_lang = en
 type        = PO
 
 [o:tatoeba:p:tatoeba_website:r:tatoebaResource]
-file_filter = src/Locale/<lang>/default.po
-source_file = src/Locale/default.pot
+file_filter = resources/locales/<lang>/default.po
+source_file = resources/locales/default.pot
 source_lang = en
 type        = PO
 

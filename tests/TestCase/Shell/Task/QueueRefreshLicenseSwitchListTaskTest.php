@@ -5,23 +5,21 @@ use App\Shell\Task\QueueRefreshLicenseSwitchListTask;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOutput;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
-use Cake\Core\Plugin;
 use Cake\Utility\Hash;
 
 class QueueRefreshLicenseSwitchListTaskTest extends TestCase
 {
     public $fixtures = array(
-        'app.sentences',
-        'app.contributions',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
+        'app.Sentences',
+        'app.Contributions',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
     );
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        Plugin::load('Queue');
+        parent::loadPlugins(['Queue']);
 
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
         $this->task = $this->getMockBuilder(QueueRefreshLicenseSwitchListTask::class)
@@ -29,10 +27,10 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
             ->setConstructorArgs([$io])
             ->getMock();
 
-        $this->SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $this->SentencesLists = $this->fetchTable('SentencesLists');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->task);
@@ -45,10 +43,11 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
         $listId = $list->id;
         $expected = array(48, 53);
 
-        $this->task->run(compact('userId', 'listId'));
+        $this->task->run(compact('userId', 'listId'), 1234);
 
         $after = $this->SentencesLists->SentencesSentencesLists->find()
             ->where(['sentences_list_id' => $listId])
+            ->all()
             ->toList();
         $afterIds = Hash::extract($after, '{n}.sentence_id');
 
@@ -62,7 +61,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
 
     public function testRefreshList_doesNotFailOnDuplicateLogRows()
     {
-        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $Contributions = $this->fetchTable('Contributions');
         $row = $Contributions->find()
             ->where([
                 'sentence_id' => 48,
@@ -71,7 +70,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
             ])
             ->first();
         $row->id = null;
-        $row->isNew(true);
+        $row->setNew(true);
         $Contributions->save($row);
 
         $this->testRefreshList();

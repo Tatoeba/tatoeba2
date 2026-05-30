@@ -3,26 +3,27 @@ namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\TestSuite\IntegrationTestCase;
-use Cake\ORM\TableRegistry;
+use Helmich\JsonAssert\JsonAssertions;
 
 class TranscriptionsControllerTest extends IntegrationTestCase {
+    use JsonAssertions;
     use TatoebaControllerTestTrait;
 
     public $fixtures = array(
-        'app.private_messages',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.sentences',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Sentences',
+        'app.WikiArticles',
     );
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->enableCsrfToken();
     }
 
-    public function controllerSpy($event, $controller = null) {
+    public function controllerSpy($event, $controller = null): void {
         parent::controllerSpy($event, $controller);
 
         /* Replace Autotranscription to allow syntax errors */
@@ -98,9 +99,9 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->assertResponseCode(400);
     }
     public function testSentenceOwnerCanEditTranscriptionMadeBySomeoneElse() {
-        $users = TableRegistry::get('Users');
+        $users = $this->fetchTable('Users');
         $user = $users->findByUsername('contributor')->first();
-        $transcr = TableRegistry::get('Transcriptions');
+        $transcr = $this->fetchTable('Transcriptions');
         $tr = $transcr->get(1);
         $tr->user_id = $user->id;
         $saved = $transcr->save($tr);
@@ -110,13 +111,13 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->assertResponseSuccess();
     }
     public function testRegularUserCannotInsertTranscription() {
-        $transcr = TableRegistry::get('Transcriptions');
+        $transcr = $this->fetchTable('Transcriptions');
         $transcr->deleteAll('1=1');
         $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
         $this->assertResponseCode(400);
     }
     public function testOwnerCanInsertTranscription() {
-        $transcr = TableRegistry::get('Transcriptions');
+        $transcr = $this->fetchTable('Transcriptions');
         $transcr->deleteAll('1=1');
         $this->_saveAsUser('kazuki', 10, 'Hrkt', 'something new');
         $this->assertResponseSuccess();
@@ -156,6 +157,54 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
             ->where(['Transcriptions.sentence_id' => 6, 'Transcriptions.script' => 'Hrkt'])
             ->first();
         $this->assertEquals('furi', $result->text);
+    }
+
+    public function testSaveReturnsTranscriptionForAngular() {
+        $this->addHeader('Accept', 'application/json');
+
+        $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.sentence_id' => 6,
+            '$.result.script' => 'Hrkt',
+            '$.result.text' => 'something new',
+            '$.result.user_id' => 7,
+            '$.result.needsReview' => false,
+            '$.result.readonly' => false,
+            '$.result.type' => 'altscript',
+            '$.result.html' => 'something new',
+            '$.result.lang_tag' => 'ja-Hrkt',
+            '$.result.markup' => 'something new',
+            '$.result.editor' => 'kazuki',
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testResetReturnsTranscriptionForAngular() {
+        $this->addHeader('Accept', 'application/json');
+
+        $this->_resetAsUser('kazuki', 6, 'Hrkt');
+
+        $this->assertResponseOk();
+        $actual = $this->_getBodyAsString();
+        $expected = [
+            '$' => new \PHPUnit\Framework\Constraint\Count(1),
+            '$.result.sentence_id' => 6,
+            '$.result.script' => 'Hrkt',
+            '$.result.text' => 'furi',
+            '$.result.user_id' => null,
+            '$.result.needsReview' => true,
+            '$.result.readonly' => false,
+            '$.result.type' => 'altscript',
+            '$.result.html' => 'furi',
+            '$.result.lang_tag' => 'ja-Hrkt',
+            '$.result.markup' => null,
+            '$.result.editor' => null,
+        ];
+        $this->assertJsonDocumentMatches($actual, $expected);
     }
 
     public function testRegularUserCanResetNonExistingTranscription() {

@@ -8,27 +8,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class SentencesFixture extends TestFixture {
 	public $name = 'Sentence';
 
-	public $fields = array(
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
-		'lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'text' => ['type' => 'binary', 'null' => false, 'default' => null, 'length' => 1500],
-		'correctness' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2, 'unsigned' => false],
-		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
-		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
-		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
-		'script' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'license' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
-		'based_on_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
-		'_indexes' => [
-			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
-			'lang' => ['type' => 'index', 'columns' => ['lang'], 'length' => []],
-			'modified_idx' => ['type' => 'index', 'columns' => ['modified'], 'length' => []],
-			'text_lang_idx' => ['type' => 'index', 'columns' => ['text', 'lang'], 'length' => []],
-		],
-		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
-		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
-	);
-
 	public $records = array(
 		array(
 			'id' => '1',

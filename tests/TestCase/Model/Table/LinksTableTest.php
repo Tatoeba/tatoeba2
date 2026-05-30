@@ -3,35 +3,34 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\LinksTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class LinksTableTest extends TestCase {
 	public $fixtures = array(
-		'app.sentences',
-		'app.users',
-		'app.sentence_comments',
-		'app.contributions',
-		'app.sentences_lists',
-		'app.sentences_sentences_lists',
-		'app.walls',
-		'app.wall_threads',
-		'app.favorites_users',
-		'app.tags',
-		'app.tags_sentences',
-		'app.languages',
-		'app.links',
-		'app.sentence_annotations',
-		'app.transcriptions',
-		'app.reindex_flags'
+		'app.Sentences',
+		'app.Users',
+		'app.SentenceComments',
+		'app.Contributions',
+		'app.SentencesLists',
+		'app.SentencesSentencesLists',
+		'app.Walls',
+		'app.WallThreads',
+		'app.FavoritesUsers',
+		'app.Tags',
+		'app.TagsSentences',
+		'app.Languages',
+		'app.Links',
+		'app.SentenceAnnotations',
+		'app.Transcriptions',
+		'app.ReindexFlags'
 	);
 
-	function setUp() {
+	function setUp(): void {
 		parent::setUp();
-		$this->Link = TableRegistry::getTableLocator()->get('Links');
+		$this->Link = $this->fetchTable('Links');
 	}
 
-	function tearDown() {
+	function tearDown(): void {
 		unset($this->Link);
 		parent::tearDown();
 	}
@@ -88,7 +87,7 @@ class LinksTableTest extends TestCase {
 		$translationId = 6;
 		$this->Link->deletePair($sentenceId, $translationId);
 
-		$nbLogs = TableRegistry::getTableLocator()->get('Contributions')
+		$nbLogs = $this->fetchTable('Contributions')
 			->find('all')
 			->where(['OR' => [
 				[
@@ -190,7 +189,7 @@ class LinksTableTest extends TestCase {
                  */
 		$expected = array(8, 2, 5);
 		$this->Link->add(8, 5);
-		$result = $this->Link->Sentences->ReindexFlags->find('all')->toList();
+		$result = $this->Link->Sentences->ReindexFlags->find()->all()->toList();
 		$result = Hash::extract($result, '{n}.sentence_id');
 		$this->assertEquals($expected, $result);
 	}
@@ -203,7 +202,7 @@ class LinksTableTest extends TestCase {
                  */
 		$expected = array(1, 3, 4, 2, 4, 5);
 		$this->Link->deletePair(1, 2);
-		$result = $this->Link->Sentences->ReindexFlags->find('all')->toList();
+		$result = $this->Link->Sentences->ReindexFlags->find()->all()->toList();
 		$result = Hash::extract($result, '{n}.sentence_id');
 		$this->assertEquals($expected, $result);
 	}

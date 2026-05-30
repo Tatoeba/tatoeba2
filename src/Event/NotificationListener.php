@@ -18,10 +18,10 @@
  */
 namespace App\Event;
 
-use Cake\Datasource\ModelAwareTrait;
+use Cake\Datasource\FactoryLocator;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\Event\EventListenerInterface;
 use Cake\Mailer\MailerAwareTrait;
-use Cake\ORM\TableRegistry;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Utility\Hash;
 
@@ -29,9 +29,9 @@ use Cake\Utility\Hash;
 class NotificationListener implements EventListenerInterface {
 
     use MailerAwareTrait;
-    use ModelAwareTrait;
+    use LocatorAwareTrait;
 
-    public function implementedEvents() {
+    public function implementedEvents(): array {
         return [
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
             'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',
@@ -42,12 +42,12 @@ class NotificationListener implements EventListenerInterface {
 
     public function __construct() {
         $this->Mailer = $this->getMailer('Messaging');
-        $this->Users = $this->loadModel('Users');
+        $this->Users = $this->fetchTable('Users');
     }
 
     private function _getMessageForMail($parentMessageId)
     {
-        return $this->loadModel('Wall')->find()
+        return $this->fetchTable('Wall')->find()
             ->where([
                 'Wall.id' => $parentMessageId
             ])
@@ -71,6 +71,7 @@ class NotificationListener implements EventListenerInterface {
             $query
             ->where(['send_notifications' => true])
             ->select(['email'])
+            ->all()
             ->toList();
         $toNotify = Hash::extract($toNotify, '{n}.email');
         $toNotify = array_filter($toNotify);
@@ -133,8 +134,8 @@ class NotificationListener implements EventListenerInterface {
         $comment = $event->getData('comment'); // $comment
         $sentenceId = $comment->sentence_id;
 
-        $Sentence = TableRegistry::getTableLocator()->get('Sentences');
-        $SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
+        $Sentence = FactoryLocator::get('Table')->get('Sentences');
+        $SentenceComment = FactoryLocator::get('Table')->get('SentenceComments');
 
         try {
             $sentence = $Sentence->get($sentenceId, ['user_id', 'text']);
@@ -144,7 +145,7 @@ class NotificationListener implements EventListenerInterface {
 
         $comments = $SentenceComment->findAllBySentenceId($sentenceId, [
             'fields' => ['user_id']
-        ])->toList();
+        ])->all()->toList();
         $userIds = array_merge([$sentence], $comments);
         $userIds = Hash::extract($userIds, '{n}.user_id');
 

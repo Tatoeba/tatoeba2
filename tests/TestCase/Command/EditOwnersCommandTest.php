@@ -4,8 +4,7 @@ namespace App\Test\TestCase\Command;
 use Cake\Console\Command;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
-use Cake\ORM\TableRegistry;
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 class EditOwnersCommandTest extends TestCase
@@ -13,28 +12,28 @@ class EditOwnersCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.links',
-        'app.reindex_flags',
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
+        'app.Links',
+        'app.ReindexFlags',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
     const TESTDIR = TMP . 'edit_owners_tests' . DS;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         new Folder(self::TESTDIR, true, 0755);
     }
 
-    public static function tearDownAfterClass() {
+    public static function tearDownAfterClass(): void {
         $folder = new Folder(self::TESTDIR);
         $folder->delete();
     }
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Sentences = $this->fetchTable('Sentences');
     }
 
     private function create_test_file($ids) {

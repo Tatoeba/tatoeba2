@@ -2,26 +2,25 @@
 namespace App\Test\TestCase\View\Helper;
 
 use App\View\Helper\LogsHelper;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
 class LogsHelperTest extends TestCase
 {
     public $fixtures = [
-        'app.contributions',
+        'app.Contributions',
     ];
 
     public $LogsHelper;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $view = new View();
         $this->LogsHelper = new LogsHelper($view);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->LogsHelper);
         parent::tearDown();
@@ -29,8 +28,8 @@ class LogsHelperTest extends TestCase
 
     public function testObsoletize()
     {
-        $contributions = TableRegistry::get('Contributions');
-        $latests = $contributions->find()->where(['sentence_id' => 35])->toList();
+        $contributions = $this->fetchTable('Contributions');
+        $latests = $contributions->find()->where(['sentence_id' => 35])->all()->toList();
 
         $this->LogsHelper->obsoletize($latests);
 
@@ -39,8 +38,8 @@ class LogsHelperTest extends TestCase
 
     public function testObsoletize_withZeroDate()
     {
-        $contributions = TableRegistry::get('Contributions');
-        $latests = $contributions->find()->where(['sentence_id' => 18])->toList();
+        $contributions = $this->fetchTable('Contributions');
+        $latests = $contributions->find()->where(['sentence_id' => 18])->all()->toList();
 
         $this->LogsHelper->obsoletize($latests);
 

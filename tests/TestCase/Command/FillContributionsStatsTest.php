@@ -1,27 +1,26 @@
 <?php
 namespace App\Test\TestCase\Command;
 
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\Console\Command;
-use Cake\ORM\TableRegistry;
 use App\Model\Table\ContributionsStats;
 
 class FillContributionsStatsCommand extends TestCase {
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = array(
-        'app.contributions',
-        'app.contributions_stats'
+        'app.Contributions',
+        'app.ContributionsStats'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->ContributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
+        $this->ContributionsStats = $this->fetchTable('ContributionsStats');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->ContributionsStats);
         parent::tearDown();
     }
@@ -39,7 +38,7 @@ class FillContributionsStatsCommand extends TestCase {
     function testExecute_defaultParams_oldestDateIsCorrect() {
         $this->exec("fill_contributions_stats");
 
-        $contributionStats = $this->ContributionsStats->find('all')->toList();
+        $contributionStats = $this->ContributionsStats->find()->all()->toList();
         $this->assertEquals('2014-04-09', $contributionStats[0]->date);
     }
 

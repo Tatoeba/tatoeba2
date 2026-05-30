@@ -11,28 +11,27 @@ use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationOwnerFilter;
 use App\Model\Search\TranslationFilterGroup;
 use Cake\ORM\Query;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class ShowtransLimiterTest extends TestCase
 {
     public $fixtures = [
-        'app.audios',
-        'app.links',
-        'app.sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
+        'app.Audios',
+        'app.Links',
+        'app.Sentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Sentences = $this->fetchTable('Sentences');
         $this->Sentences->addBehavior('ExposedOnApi');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Sentences);
@@ -158,7 +157,7 @@ class ShowtransLimiterTest extends TestCase
             $groups[] = (new TranslationFilterGroup())->setFilter($filter);
         }
         $showtrans = new ShowtransLimiter($groups);
-        $containOnApi = ['translations' => function (Query $q) use ($showtrans) {
+        $containOnApi = ['Translations' => function (Query $q) use ($showtrans) {
             return $q->find('translationsOnApi', compact('showtrans'));
         }];
 
@@ -166,6 +165,7 @@ class ShowtransLimiterTest extends TestCase
                        ->findById($sentenceId)
                        ->find('sentencesOnApi')
                        ->find('containOnApi', compact('containOnApi'))
+                       ->all()
                        ->extract('translations.{*}.id')
                        ->toList();
 

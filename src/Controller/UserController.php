@@ -53,28 +53,11 @@ class UserController extends AppController
      */
     public $name = 'User';
 
-    /**
-     * TODO load model only where needed
-     *
-     * @var array
-     */
-    public $uses = array(
-        'User',
-        'UsersLanguages',
-        'Contribution',
-        'Sentence',
-        'SentenceComment',
-        'Favorite',
-        'SentencesList'
-    );
+    protected $defaultTable = 'Users';
 
-    public $helpers = array('Html', 'Date', 'Languages', 'Countries');
-
-    public $components = array('Auth', 'Flash');
-
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save_banner_setting',
         ]);
 
@@ -96,12 +79,6 @@ class UserController extends AppController
      */
     public function profile($userName = null)
     {
-        $this->helpers[] = 'ClickableLinks';
-        $this->helpers[] = 'Members';
-
-        $this->loadModel('Users');
-        $this->loadModel('UsersLanguages');
-
         if (empty($userName)) {
             if (!CurrentUser::isMember()) {
                 return $this->redirect(array('controller'=>'pages','action' => 'home'));
@@ -126,7 +103,8 @@ class UserController extends AppController
 
         $userId = $user->id;
         $userStats = $this->_stats($userId);
-        $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
+        $userLanguages = $this->fetchTable('UsersLanguages')
+            ->getLanguagesOfUser($userId);
 
         $isPublic = ($user->settings['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
@@ -157,9 +135,10 @@ class UserController extends AppController
         }
 
         // We first check if a file has been correctly uploaded
+        $tmpName = $image->getStream()->getMetadata('uri');
         $redirect = (empty($data) || empty($image)) ||
-                    ($image['error'] != UPLOAD_ERR_OK) ||
-                    !is_uploaded_file($image['tmp_name']);
+                    ($image->getError() != UPLOAD_ERR_OK) ||
+                    !is_uploaded_file($tmpName);
         if ($redirect) {
             $this->Flash->set(
                 __('Failed to upload image')
@@ -168,7 +147,7 @@ class UserController extends AppController
         }
 
         // The file size must be < 1mb
-        $fileSize = (int) $image['size'] / 1024;
+        $fileSize = (int) $image->getSize() / 1024;
         if ($fileSize > 1024) {
             $this->Flash->set(
                 __('Please choose an image that does not exceed 1 MB.')
@@ -177,7 +156,7 @@ class UserController extends AppController
         }
 
         // Check file extension
-        $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $fileExtension = pathinfo($image->getClientFilename(), PATHINFO_EXTENSION);
         $validExtensions = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
 
         if (!in_array($fileExtension, $validExtensions)) {
@@ -194,19 +173,18 @@ class UserController extends AppController
 
         // Use _resize_image method here
         $save128Succed = $this->_resize_image(
-            $image['tmp_name'],
+            $tmpName,
             $newFileFullPath128,
             128
         );
         $save36Succed = $this->_resize_image(
-            $image['tmp_name'],
+            $tmpName,
             $newFileFullPath36,
             36
         );
 
         // if all resize has worked we can save it in user information
         if ($save36Succed && $save128Succed) {
-            $this->loadModel('Users');
             $user = $this->Users->get($this->Auth->user('id'));
             $user->image = $newFileName;
             $this->Users->save($user);
@@ -221,7 +199,6 @@ class UserController extends AppController
 
     public function remove_image()
     {
-        $this->loadModel('Users');
         $user = $this->Users->get(CurrentUser::get('id'));
         $user->image = null;
         $this->Users->save($user);
@@ -321,7 +298,6 @@ class UserController extends AppController
     {
         $data = $this->request->getData();
         if (!empty($data)) {
-            $this->loadModel('Users');
             $userId = $this->Auth->user('id');
 
             $passwordHasher = new VersionedPasswordHasher();
@@ -369,19 +345,16 @@ class UserController extends AppController
      */
     private function _stats($userId)
     {
-        $this->loadModel('Audios');
-        $this->loadModel('Sentences');
-        $this->loadModel('SentenceComments');
-        $this->loadModel('Contributions');
-        $this->loadModel('Favorites');
-        $numberOfSentences = $this->Sentences->numberOfSentencesOwnedBy($userId);
-        $numberOfComments
-            = $this->SentenceComments->numberOfCommentsOwnedBy($userId);
-
-        $numberOfContributions
-            = $this->Contributions->numberOfContributionsBy($userId);
-        $numberOfFavorites  = $this->Favorites->numberOfFavoritesOfUser($userId);
-        $numberOfAudios = $this->Audios->numberOfAudiosBy($userId);
+        $numberOfSentences = $this->fetchTable('Sentences')
+            ->numberOfSentencesOwnedBy($userId);
+        $numberOfComments = $this->fetchTable('SentenceComments')
+            ->numberOfCommentsOwnedBy($userId);
+        $numberOfContributions = $this->fetchTable('Contributions')
+            ->numberOfContributionsBy($userId);
+        $numberOfFavorites = $this->fetchTable('Favorites')
+            ->numberOfFavoritesOfUser($userId);
+        $numberOfAudios = $this->fetchTable('Audios')
+            ->numberOfAudiosBy($userId);
         return compact(
             'numberOfComments',
             'numberOfSentences',
@@ -401,7 +374,6 @@ class UserController extends AppController
     {
         $currentUserId = CurrentUser::get('id');
 
-        $this->loadModel('Users');
         try {
             $user = $this->Users->get($currentUserId);
         } catch (RecordNotFoundException $e) {
@@ -450,7 +422,6 @@ class UserController extends AppController
             return $this->redirect('/');
         }
 
-        $this->loadModel('Users');
         if ($this->request->is('put')) {
             $data = $this->request->getData();
             if (isset($data['settings']['lang'])) {
@@ -485,8 +456,8 @@ class UserController extends AppController
         $userLanguage = null;
 
         if (!empty($lang)) {
-            $this->loadModel('UsersLanguages');
-            $userLanguage = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
+            $userLanguage = $this->fetchTable('UsersLanguages')
+                ->getLanguageInfoOfUser($lang, $userId);
         }
 
         $this->set('userLanguage', $userLanguage);
@@ -509,14 +480,13 @@ class UserController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->set('saved', (bool)$savedUser);
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['saved']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->viewBuilder()
+                ->setOption('serialize', ['saved'])
+                ->setClassName('Json');
         }
     }
 
     private function saveSetting($data) {
-        $this->loadModel('Users');
         $user = $this->Users->get(CurrentUser::get('id'));
         $this->Users->patchEntity($user, [
             'settings' => $data

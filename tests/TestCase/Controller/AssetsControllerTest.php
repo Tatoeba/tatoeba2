@@ -10,7 +10,7 @@ class AssetsControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         // Make sure debug is enabled so that

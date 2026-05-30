@@ -19,7 +19,7 @@
 namespace App\Model\Exporter;
 
 use App\Lib\LanguagesLib;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 use Exception;
 
 class ListExporter
@@ -80,7 +80,7 @@ class ListExporter
             && (!isset($this->config['trans_lang'])
                 || LanguagesLib::languageExists($this->config['trans_lang']))) {
 
-            $SL = TableRegistry::get('SentencesLists');
+            $SL = FactoryLocator::get('Table')->get('SentencesLists');
             $listId = $this->config['list_id'];
             try {
                 $list = $SL->getListWithPermissions($listId, $this->userId);
@@ -98,7 +98,7 @@ class ListExporter
 
     public function getQuery()
     {
-        $SSL = TableRegistry::get('SentencesSentencesLists');
+        $SSL = FactoryLocator::get('Table')->get('SentencesSentencesLists');
         $query = $SSL->find()
             ->enableBufferedResults(false)
             ->where(['SentencesSentencesLists.sentences_list_id' => $this->config['list_id']])

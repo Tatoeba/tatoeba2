@@ -10,22 +10,22 @@ use Cake\View\Exception\MissingTemplateException;
 
 class DocController extends Controller
 {
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
 
         // assign 'title' block from view var $title, if set
         // or default to 'Tatoeba API'
-        $this->getEventManager()->attach(
+        $this->getEventManager()->on(
+            'View.beforeRender',
             function (Event $event) {
-                $view = $event->subject;
+                $view = $event->getSubject();
                 $view->assign('title', $view->get('title') ?? 'Tatoeba API');
-            },
-            'View.beforeRender'
+            }
         );
     }
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $docurl = [
             'controller' => 'doc',

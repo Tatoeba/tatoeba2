@@ -5,7 +5,7 @@ namespace App\Shell;
 use Cake\Console\Shell;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 class Walker {
     private $model;
@@ -40,6 +40,7 @@ class Walker {
             $rows = $this->model->find('all')
                 ->where(['id > ' => $lastId])
                 ->limit($fetchSize)
+                ->all()
                 ->toList();
 
             if (empty($rows)) {
@@ -108,7 +109,6 @@ class SentenceDerivationShell extends Shell {
 
     use BatchOperationTrait;
 
-    public $uses = array('Sentence', 'Contribution');
     public $batchSize = 1000;
     public $linkEraFirstId = 330930;
     public $linkABrange = array(890774, 909052);
@@ -162,6 +162,7 @@ class SentenceDerivationShell extends Shell {
         if (!empty($ids)) {
             $oldData = $this->Sentences->find()
             ->where(['id IN' => $ids])
+            ->all()
             ->toList();
             $entities = $this->Sentences->patchEntities($oldData, $derivations);
             if ($this->Sentences->saveMany($entities)) {
@@ -180,6 +181,7 @@ class SentenceDerivationShell extends Shell {
             ->where(['action' => 'insert', 'type' => 'sentence']) 
             ->group(['sentence_id'])
             ->having('count(sentence_id) > 1')
+            ->all()
             ->toList();
         $result = Hash::combine($result, '{n}.sentence_id', '{n}.min');
         $this->out('done ('.count($result).' sentences affected)');
@@ -190,7 +192,7 @@ class SentenceDerivationShell extends Shell {
         $total = 0;
         $derivations = array();
         $saveExtraOptions = array(
-            'modified' => Time::now(),
+            'modified' => FrozenTime::now(),
             'callbacks' => false
         );
         $this->out("Setting 'based_on_id' field for all sentences", 0);
@@ -228,8 +230,8 @@ class SentenceDerivationShell extends Shell {
     }
 
     public function run() {
-        $this->loadModel('Contributions');
-        $this->loadModel('Sentences');
+        $this->Contributions = $this->fetchTable('Contributions');
+        $this->Sentences = $this->fetchTable('Sentences');
         $creationDups = $this->findDuplicateCreationRecords();
         $total = $this->setSentenceBasedOnId($creationDups);
         return $total;

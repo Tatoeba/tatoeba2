@@ -7,7 +7,7 @@ use App\Model\Exporter\PairsExporter;
 use Cake\Core\Configure;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -16,7 +16,7 @@ use Exception;
 
 class ExportsTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
 
@@ -28,59 +28,59 @@ class ExportsTable extends Table
         $this->belongsTo('Users');
     }
 
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->allowEmptyString('id', 'create');
 
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmptyString('name');
 
         $validator
             ->scalar('description')
             ->requirePresence('description', 'create')
-            ->notEmpty('description');
+            ->notEmptyString('description');
 
         $validator
             ->scalar('url')
             ->maxLength('url', 2048)
-            ->allowEmpty('url');
+            ->allowEmptyString('url');
 
         $validator
             ->scalar('filename')
             ->maxLength('filename', 255)
-            ->allowEmpty('filename');
+            ->allowEmptyString('filename');
 
         $validator
             ->dateTime('generated')
-            ->allowEmpty('generated');
+            ->allowEmptyDateTime('generated');
 
         $validator
             ->integer('queued_job_id')
-            ->allowEmpty('queued_job_id', 'create');
+            ->allowEmptyString('queued_job_id', 'create');
 
         $validator
             ->scalar('status')
             ->requirePresence('status', 'create')
-            ->notEmpty('status');
+            ->notEmptyString('status');
 
         return $validator;
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
     {
         $rules->add($rules->existsIn(['queued_job_id'], 'QueuedJobs'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         $rules->add(function ($entity) {
-            $data = $entity->extract($this->schema()->columns(), true);
-            $validator = $this->validator('default');
-            $errors = $validator->errors($data, $entity->isNew());
-            $entity->errors($errors);
+            $data = $entity->extract($this->getSchema()->columns(), true);
+            $validator = $this->getValidator('default');
+            $errors = $validator->validate($data, $entity->isNew());
+            $entity->getErrors($errors);
             return empty($errors);
         });
 
@@ -89,7 +89,7 @@ class ExportsTable extends Table
 
     private function createExportFromConfig(&$config, $userId)
     {
-        $export = $this->newEntity();
+        $export = $this->newEmptyEntity();
         $export->status = 'queued';
         $export->user_id = $userId;
 
@@ -136,7 +136,7 @@ class ExportsTable extends Table
         });
     }
 
-    public function afterDelete($event, $entity, $options)
+    public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
         if ($entity->filename) {
             $file = new File($entity->filename);
@@ -214,7 +214,7 @@ class ExportsTable extends Table
         }
 
         $filename = $this->newUniqueFilename($config);
-        $export->generated = Time::now();
+        $export->generated = FrozenTime::now();
         $export->filename = $filename;
         if (!$this->save($export)) {
             return false;

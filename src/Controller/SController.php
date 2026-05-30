@@ -43,12 +43,6 @@ class SController extends AppController
 {
     public $name = 'S';
 
-    public $helpers = array(
-        'Sentences',
-        'Html',
-        'Languages',
-    );
-
     /**
      * Show sentence of specified id
      *
@@ -58,9 +52,8 @@ class SController extends AppController
      */
     public function s($id)
     {
-        $this->loadModel('Sentences');
-
-        $sentence = $this->Sentences->getSentenceWith($id, ['translations' => true]);
+        $sentence = $this->fetchTable('Sentences')
+            ->getSentenceWith($id, ['translations' => true]);
 
         if (!$sentence) {
             throw new \Cake\Http\Exception\NotFoundException(format(

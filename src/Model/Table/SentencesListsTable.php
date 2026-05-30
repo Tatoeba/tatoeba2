@@ -27,7 +27,7 @@ use App\Model\CurrentUser;
 
 class SentencesListsTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
 
@@ -101,13 +101,14 @@ class SentencesListsTable extends Table
     {
         return $this->find()
             ->where([
-                'OR' => [
+                'OR' => array_filter([
                     'user_id' => CurrentUser::get('id'),
                     'visibility IN' => ['public', 'listed']
-                ]
+                ])
             ])
             ->select(['id', 'name', 'user_id'])
             ->order(['name'])
+            ->all()
             ->toList();
     }
 
@@ -140,7 +141,7 @@ class SentencesListsTable extends Table
         return $query->where(function ($exp, $query) use ($userId) {
             $exp = $query->newExpr()->add(['NOT' => ['visibility' => 'private']]);
             if ($userId) {
-                $exp = $exp->add(['user_id' => $userId])->tieWith('OR');
+                $exp = $exp->add(['user_id' => $userId])->setConjunction('OR');
             }
             return $exp;
         });
@@ -172,13 +173,13 @@ class SentencesListsTable extends Table
                 'id',
                 'name',
                 'user_id',
-                'is_mine' => $query->newExpr()->eq('SentencesLists.user_id', $userId),
-                'is_collaborative' => $query->newExpr()->eq('SentencesLists.editable_by', 'anyone'),
+                'is_mine' => $query->expr()->eq('SentencesLists.user_id', $userId),
+                'is_collaborative' => $query->expr()->eq('SentencesLists.editable_by', 'anyone'),
             ]);
 
         if ($forNewDesign) {
             $query->order(['is_mine DESC', 'modified DESC']);
-            return $query->toList();
+            return $query->all()->toList();
         } else {
             $results = $query->order(['name'])
                 ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
@@ -271,6 +272,7 @@ class SentencesListsTable extends Table
                         ];
                     });
                 })
+                ->all()
                 ->toList();
         } else {
             return $this->SentencesSentencesLists->find()
@@ -297,6 +299,7 @@ class SentencesListsTable extends Table
                     }
                     return $data;
                 })
+                ->all()
                 ->toList();
         }
     }

@@ -1,9 +1,8 @@
 <?php
 namespace App\Test\TestCase\Command;
 
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Console\Command;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
@@ -13,32 +12,32 @@ class EditLicensesCommandTest extends TestCase
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = [
-        'app.sentences',
-        'app.reindex_flags',
-        'app.transcriptions',
-        'app.contributions',
-        'app.tags',
-        'app.tags_sentences',
-        'app.users',
-        'app.users_languages',
+        'app.Sentences',
+        'app.ReindexFlags',
+        'app.Transcriptions',
+        'app.Contributions',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Users',
+        'app.UsersLanguages',
     ];
 
     const TESTDIR = TMP . 'edit_licenses_tests' . DS;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass(): void {
         new Folder(self::TESTDIR, true, 0755);
     }
 
-    public static function tearDownAfterClass() {
+    public static function tearDownAfterClass(): void {
         $folder = new Folder(self::TESTDIR);
         $folder->delete();
     }
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();
-        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
-        $this->Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $this->Sentences = $this->fetchTable('Sentences');
+        $this->Contributions = $this->fetchTable('Contributions');
     }
 
     private function create_test_file($ids) {
@@ -58,14 +57,15 @@ class EditLicensesCommandTest extends TestCase
         $sentence = $this->Sentences->get(1);
         $this->assertEquals('', $sentence->license);
 
-        $contribution = $this->Contributions->find()->where(['sentence_id' => 2])->last()->toArray();
-        $expected = [
+        $contribution = $this->Contributions->find()->where(['sentence_id' => 2])->all()->last()->toArray();
+        $expectedArraySubset = [
             'sentence_id' => 2,
             'type' => 'license',
             'action' => 'update',
             'text' => '',
         ];
-        $this->assertArraySubset($expected, $contribution);
+        $expected = array_replace_recursive($contribution, $expectedArraySubset);
+        $this->assertSame($expected, $contribution);
     }
 
     public function scenariosProvider() {

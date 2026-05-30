@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\Constraint\Response\HeaderNotSet;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Filesystem\Folder;
@@ -24,7 +23,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     private $testExportDir = TMP.'export_tests'.DS;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $folder = new Folder($this->testExportDir);
@@ -32,7 +31,7 @@ class ExportsControllerTest extends IntegrationTestCase
         $folder->create($this->testExportDir);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         $folder = new Folder($this->testExportDir);
         $folder->delete();
         parent::tearDown();
@@ -44,6 +43,9 @@ class ExportsControllerTest extends IntegrationTestCase
             [ '/en/exports/download/1', null, false ],
             [ '/en/exports/download/1', 'contributor', false ],
             [ '/en/exports/download/9999999', 'kazuki', 404 ],
+            [ '/en/exports/get/1', null, true ],
+            [ '/en/exports/get/1', 'contributor', true ],
+            [ '/en/exports/get/9999999', 'kazuki', 404 ],
         ];
     }
 
@@ -133,7 +135,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     public function testDownload_ownExport_asMember()
     {
-        $this->logInAs('kazuki');
+        $this->logInAs('kazuki', false);
         $filesize = $this->createDownloadFile('kazuki_sentences.zip');
         $this->get("/en/exports/download/1/A pretty filename.zip");
         $this->assertFileDownload('kazuki_sentences.zip', $filesize);
@@ -141,7 +143,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
     public function testDownload_guestExport_asMember()
     {
-        $this->logInAs('kazuki');
+        $this->logInAs('kazuki', false);
         $filesize = $this->createDownloadFile('kazuki_sentences.zip');
         $this->get("/en/exports/download/4/A pretty filename.zip");
         $this->assertResponseCode(403);
@@ -149,9 +151,9 @@ class ExportsControllerTest extends IntegrationTestCase
 
     public function testDownload_cannotDownloadUntilReady()
     {
-        $this->logInAs('kazuki');
+        $this->logInAs('kazuki', false);
 
-        $export = TableRegistry::get('Exports')->get(2);
+        $export = $this->fetchTable('Exports')->get(2);
         $file = new File($export->filename, true);
         $file->close();
 

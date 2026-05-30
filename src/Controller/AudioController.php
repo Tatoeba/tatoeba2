@@ -27,30 +27,15 @@ class AudioController extends AppController
 {
     public $name = 'Audio';
 
-    public $uses = array(
-        'Audio',
-        'Language',
-        'User',
-        'CurrentUser'
-    );
-
-    public $components = array(
-        'Flash'
-    );
-
-    public $helpers = array(
-        'Pagination',
-        'Languages',
-        'Audio',
-    );
-
     public $paginate = [
         'limit' => 100,
     ];
 
-    public function beforeFilter(Event $event)
+    protected $defaultTable = 'Audios';
+
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save',
             'delete',
         ]);
@@ -59,7 +44,6 @@ class AudioController extends AppController
     }
 
     public function import() {
-        $this->loadModel('Audios');
         $lastImportJob = $this->Audios->lastImportJob();
         $canImport = !$lastImportJob || $lastImportJob->completed;
 
@@ -85,8 +69,6 @@ class AudioController extends AppController
     }
 
     public function index($lang = null) {
-        $this->loadModel('Audios');
-
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $finder = ['sentences' => [
             'maxResults' => $totalLimit,
@@ -96,7 +78,7 @@ class AudioController extends AppController
             $finder['sentences']['lang'] = $lang;
             $this->set(compact('lang'));
         }
-        $total = $this->Audios->find('sentencesCount', $finder['sentences']);
+        $total = $this->Audios->find('sentencesCounter', $finder['sentences'])->count();
 
         try {
             $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
@@ -106,16 +88,13 @@ class AudioController extends AppController
 
         $this->set(compact('sentencesWithAudio', 'totalLimit', 'total'));
         
-        $this->loadModel('Languages');
-        $this->set(array('stats' => $this->Languages->getAudioStats()));
+        $this->set(array('stats' => $this->fetchTable('Languages')->getAudioStats()));
     }
 
     public function of($username) {
-        $this->loadModel('Users');
-        $userId = $this->Users->getIdFromUsername($username);
+        $Users = $this->fetchTable('Users');
+        $userId = $Users->getIdFromUsername($username);
         if ($userId) {
-            $this->loadModel('Audios');
-
             $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
             $finder = ['sentences' => [
                 'user_id' => $userId,
@@ -130,24 +109,24 @@ class AudioController extends AppController
 
             $this->set('totalAudio', $this->Audios->numberOfAudiosBy($userId));
 
-            $audioSettings = $this->Users->getAudioSettings($userId);
+            $audioSettings = $Users->getAudioSettings($userId);
             $this->set(compact('audioSettings', 'totalLimit'));
         }
         $this->set(compact('username'));
     }
 
     public function save_settings() {
-        if (!empty($this->request->data)) {
+        if (!empty($this->request->getData())) {
             $currentUserId = CurrentUser::get('id');
             $allowedFields = array(
                 'audio_license',
                 'audio_attribution_url',
             );
-            $dataToSave = $this->filterKeys($this->request->data, $allowedFields);
-            $this->loadModel('Users');
-            $user = $this->Users->get($currentUserId);
-            $this->Users->patchEntity($user, $dataToSave);
-            if ($this->Users->save($user)) {
+            $dataToSave = $this->filterKeys($this->request->getData(), $allowedFields);
+            $Users = $this->fetchTable('Users');
+            $user = $Users->get($currentUserId);
+            $Users->patchEntity($user, $dataToSave);
+            if ($Users->save($user)) {
                 $flashMsg = __('Your audio settings have been saved.');
             } else {
                 $flashMsg = __(
@@ -165,14 +144,12 @@ class AudioController extends AppController
     public function download($id) {
         $audio = false;
 
-        $this->loadModel('Audios');
         try {
             $audio = $this->Audios->get($id);
         } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
             if (CurrentUser::isAdmin()) {
-                $this->loadModel('DisabledAudios');
                 try {
-                    $audio = $this->DisabledAudios->get($id);
+                    $audio = $this->fetchTable('DisabledAudios')->get($id);
                 } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
                 }
             }
@@ -191,28 +168,27 @@ class AudioController extends AppController
     }
 
     public function save($id) {
-        $this->viewBuilder()->autoLayout(false);
+        $this->viewBuilder()->enableAutoLayout(false);
 
         if ($this->request->is('post')) {
             $audio = false;
-            $this->loadModel('Audios');
             try {
                 $audio = $this->Audios->get($id);
             } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
                 if (CurrentUser::isAdmin()) {
-                    $this->loadModel('DisabledAudios');
                     try {
-                        $audio = $this->DisabledAudios->get($id);
+                        $audio = $this->fetchTable('DisabledAudios')->get($id);
                     } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
                     }
                 }
             }
 
             if ($audio) {
-                $fields = $this->request->input('json_decode', true);
-                $source = $audio->getSource();
-                $this->{$source}->edit($audio, $fields);
-                if ($this->{$source}->save($audio)) {
+                $body = (string)$this->request->getBody();
+                $fields = json_decode($body, true);
+                $sourceTable = $this->fetchTable($audio->getSource());
+                $sourceTable->edit($audio, $fields);
+                if ($sourceTable->save($audio)) {
                     return $this->response->withStringBody(''); // OK
                 }
             }
@@ -223,26 +199,24 @@ class AudioController extends AppController
     }
 
     public function delete($id) {
-        $this->viewBuilder()->autoLayout(false);
+        $this->viewBuilder()->enableAutoLayout(false);
 
         if ($this->request->is('post')) {
             $audio = false;
-            $this->loadModel('Audios');
             try {
                 $audio = $this->Audios->get($id);
             } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
                 if (CurrentUser::isAdmin()) {
-                    $this->loadModel('DisabledAudios');
                     try {
-                        $audio = $this->DisabledAudios->get($id);
+                        $audio = $this->fetchTable('DisabledAudios')->get($id);
                     } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
                     }
                 }
             }
 
             if ($audio) {
-                $source = $audio->getSource();
-                if ($this->{$source}->delete($audio, ['deleteAudioFile' => true])) {
+                $sourceTable = $this->fetchTable($audio->getSource());
+                if ($sourceTable->delete($audio, ['deleteAudioFile' => true])) {
                     return $this->response->withStringBody(''); // OK
                 }
             }

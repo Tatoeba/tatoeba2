@@ -21,7 +21,7 @@ namespace App\Model\Behavior;
 use Cake\ORM\Behavior;
 use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 
 /**
  * Model behavior for transcriptions/transliterations.
@@ -29,11 +29,11 @@ use Cake\ORM\TableRegistry;
  */
 class TranscriptableBehavior extends Behavior
 {
-    public function initialize(array $config) {
-        $this->Transcriptions = TableRegistry::getTableLocator()->get('Transcriptions');
+    public function initialize(array $config): void {
+        $this->Transcriptions = FactoryLocator::get('Table')->get('Transcriptions');
     }
 
-    public function beforeSave($event, $entity, $options) {
+    public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options) {
         $lang = $entity->lang;
         if (!$lang && $entity->id) {
             $oldEntity = $event->getSubject()->get($entity->id, ['fields' => ['lang']]);
@@ -70,7 +70,7 @@ class TranscriptableBehavior extends Behavior
         return $isValid;
     }
 
-    public function afterSave($event, $entity, $options) {
+    public function afterSave(\Cake\Event\EventInterface $event, $entity, $options) {
         if ($entity->isNew()) {
             $this->createTranscriptions($entity);
         } else if ($entity->isDirty('text') || $entity->isDirty('lang')) {

@@ -7,7 +7,6 @@ use App\Model\Search\TranslationLangFilter;
 include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 
 class Search {
-    use \Cake\Datasource\ModelAwareTrait;
     use Search\FiltersCollectionTrait;
 
     const CURSOR_FIELD = 'cursor'; // name for calculated field

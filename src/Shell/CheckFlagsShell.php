@@ -27,8 +27,6 @@ use Cake\I18n\I18n;
 
 class CheckFlagsShell extends Shell {
 
-    public $uses = array('Sentence');
-
     private $tatoeba_languages = array();
     private $stdout;
 
@@ -85,7 +83,7 @@ class CheckFlagsShell extends Shell {
         $this->check_flag($lang, $command);
     }
 
-    public function startup() {
+    public function startup(): void {
         // don't loose time generating transcriptions
         Configure::write('AutoTranscriptions.enabled', false);
 

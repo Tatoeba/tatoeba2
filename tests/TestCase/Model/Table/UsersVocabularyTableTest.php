@@ -2,25 +2,24 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersVocabularyTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
 
 class UsersVocabularyTableTest extends TestCase
 {
     public $fixtures = [
-        'app.users_vocabulary',
-        'app.vocabulary',
-        'app.users'
+        'app.UsersVocabulary',
+        'app.Vocabulary',
+        'app.Users'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->UsersVocabulary = TableRegistry::getTableLocator()->get('UsersVocabulary');
+        $this->UsersVocabulary = $this->fetchTable('UsersVocabulary');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->UsersVocabulary);
 

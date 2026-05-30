@@ -4,14 +4,11 @@ namespace App\Test\TestCase\Model\Table;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\I18n\I18n;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class WikiArticlesTableTest extends TestCase
 {
     public $WikiArticles;
-
-    public $autoFixtures = false;
 
     public $fixtures = [
         'app.WikiArticles',
@@ -24,7 +21,15 @@ class WikiArticlesTableTest extends TestCase
         return ConnectionManager::get('test_wiki2');
     }
 
-    public function setUp() {
+    public function getFixtures(): array {
+        if ($this->getName() == 'testGetArticleTranslations_dbAccessFail') {
+            return [];
+        } else {
+            return $this->fixtures;
+        }
+    }
+
+    public function setUp(): void {
         parent::setUp();
 
         $this->oldLocale = I18n::getLocale();
@@ -34,13 +39,11 @@ class WikiArticlesTableTest extends TestCase
         $options = [];
         if ($this->getName() == 'testGetArticleTranslations_dbAccessFail') {
             $options['connection'] = $this->setupFailingConnection();
-        } else {
-            $this->loadFixtures(); // load all $this->fixtures
         }
-        $this->WikiArticles = TableRegistry::get('WikiArticles', $options);
+        $this->WikiArticles = $this->fetchTable('WikiArticles', $options);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->WikiArticles);
         I18n::setLocale($this->oldLocale);
         parent::tearDown();

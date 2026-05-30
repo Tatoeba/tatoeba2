@@ -25,7 +25,7 @@ use Cake\Utility\Hash;
 
 class TagsSentencesTable extends Table
 {
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->belongsTo('Users');
         $this->belongsTo('Tags');
@@ -83,6 +83,7 @@ class TagsSentencesTable extends Table
                 'TagsSentences.added_time'
             ])
             ->group(['TagsSentences.tag_id'])
+            ->all()
             ->toList();
     }
 
@@ -177,6 +178,7 @@ class TagsSentencesTable extends Table
         $records = $this->find('all')
             ->where(['sentence_id' => $sentenceId])
             ->select('tag_id')
+            ->all()
             ->toList();
         $tagsId = Hash::extract($records, '{n}.tag_id');
         $values = array($sentenceId => array($tagsId));

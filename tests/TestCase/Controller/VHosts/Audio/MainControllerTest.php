@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller\VHosts\Audio;
 
 use App\Controller\VHosts\Audio\MainController;
 use App\Test\TestCase\Controller\AudioIntegrationTestTrait;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -22,14 +21,16 @@ class MainControllerTest extends TestCase
         'app.Users',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
+        parent::setUp();
         $this->initAudioStorageDir();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->deleteAudioStorageDir();
+        parent::tearDown();
     }
 
     public function testUnknownController()
@@ -76,7 +77,7 @@ class MainControllerTest extends TestCase
     {
         $audioId = 1;
         $audioFileContents = $this->createAudioFile($audioId);
-        $audios = TableRegistry::get('Audios');
+        $audios = $this->fetchTable('Audios');
         $audio = $audios->get($audioId);
         $audio->enabled = false;
         $audios->save($audio);

@@ -3,27 +3,26 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\SentenceAnnotationsTable;
 use Cake\I18n\I18n;
-use Cake\I18n\Time;
-use Cake\ORM\TableRegistry;
+use Cake\I18n\FrozenTime;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
 class SentenceAnnotationsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentence_annotations',
-        'app.users',
-        'app.sentences',
+        'app.SentenceAnnotations',
+        'app.Users',
+        'app.Sentences',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-        $this->SentenceAnnotation = TableRegistry::getTableLocator()->get('SentenceAnnotations');
-        Time::setTestNow(new Time('2020-06-01 01:01:01'));
+        $this->SentenceAnnotation = $this->fetchTable('SentenceAnnotations');
+        FrozenTime::setTestNow(new FrozenTime('2020-06-01 01:01:01'));
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->SentenceAnnotation);
-        Time::setTestNow();
+        FrozenTime::setTestNow();
         parent::tearDown();
     }
 
@@ -53,7 +52,7 @@ class SentenceAnnotationsTableTest extends TestCase {
             'meaning_id' => 1,
             'text' => 'Trim me please',
             'user_id' => $userId,
-            'modified' => Time::now(),
+            'modified' => FrozenTime::now(),
         );
         $result = array_intersect_key(
             $sentenceAnnotation->toArray(), $expected
@@ -80,7 +79,7 @@ class SentenceAnnotationsTableTest extends TestCase {
             'meaning_id' => 1,
             'text' => 'Some new text',
             'user_id' => $userId,
-            'modified' => Time::now(),
+            'modified' => FrozenTime::now(),
         );
         $result = array_intersect_key(
             $sentenceAnnotation->toArray(), $expected

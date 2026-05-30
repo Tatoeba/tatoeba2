@@ -3,20 +3,19 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\LanguagesTable;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class LanguagesTableTest extends TestCase {
     public $fixtures = array(
-        'app.languages',
+        'app.Languages',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-        $this->Languages = TableRegistry::getTableLocator()->get('Languages');
+        $this->Languages = $this->fetchTable('Languages');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Languages);
         parent::tearDown();
     }

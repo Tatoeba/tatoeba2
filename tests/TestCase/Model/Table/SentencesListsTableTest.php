@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\SentencesListsTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\CurrentUser;
 use Cake\Utility\Hash;
@@ -10,26 +9,26 @@ use Cake\I18n\I18n;
 
 class SentencesListsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.sentences',
-        'app.favorites_users',
-        'app.users',
-        'app.users_languages',
-        'app.contributions',
-        'app.languages',
-        'app.reindex_flags',
-        'app.links',
-        'app.audios',
-        'app.transcriptions'
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Sentences',
+        'app.FavoritesUsers',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Contributions',
+        'app.Languages',
+        'app.ReindexFlags',
+        'app.Links',
+        'app.Audios',
+        'app.Transcriptions'
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
-        $this->SentencesList = TableRegistry::getTableLocator()->get('SentencesLists');
+        $this->SentencesList = $this->fetchTable('SentencesLists');
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->SentencesList);
         parent::tearDown();
     }
@@ -251,7 +250,9 @@ class SentencesListsTableTest extends TestCase {
     function testAddSentencesToList_succeeds() {
         $listId = 1;
         $sentences = $this->SentencesList->Sentences->find()
-                          ->where(['user_id' => 1])->toList();
+                          ->where(['user_id' => 1])
+                          ->all()
+                          ->toList();
         $before = $this->SentencesList->SentencesSentencesLists->find()
             ->where(['sentences_list_id' => $listId])
             ->count();
@@ -268,7 +269,9 @@ class SentencesListsTableTest extends TestCase {
     function testAddSentencesToList_incrementsCount() {
         $listId = 1;
         $sentences = $this->SentencesList->Sentences->find()
-                          ->where(['user_id' => 1])->toList();
+                          ->where(['user_id' => 1])
+                          ->all()
+                          ->toList();
         $before = $this->SentencesList->get($listId)->numberOfSentences;
 
         $this->SentencesList->addSentencesToList($sentences, $listId, 7);
@@ -279,7 +282,9 @@ class SentencesListsTableTest extends TestCase {
 
     function testAddSentencesToList_failsBecauseSentenceAlreadyInList() {
         $sentences = $this->SentencesList->Sentences->find()
-                          ->where(['user_id' => 7])->toList();
+                          ->where(['user_id' => 7])
+                          ->all()
+                          ->toList();
         $result = $this->SentencesList->addSentencesToList($sentences, 1, 7);
 
         $this->assertFalse($result);

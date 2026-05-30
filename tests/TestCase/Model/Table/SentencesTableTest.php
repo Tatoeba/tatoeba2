@@ -5,9 +5,8 @@ use App\Test\TestCase\SearchMockTrait;
 use App\Model\Table\SentencesTable;
 use App\Behavior\Sphinx;
 use Cake\Core\Configure;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 use App\Lib\Autotranscription;
@@ -21,33 +20,36 @@ class SentencesTableTest extends TestCase {
     use SearchMockTrait;
 
     public $fixtures = array(
-        'app.sentences',
-        'app.users',
-        'app.users_languages',
-        'app.contributions',
-        'app.disabled_audios',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.tags',
-        'app.tags_sentences',
-        'app.languages',
-        'app.links',
-        'app.transcriptions',
-        'app.reindex_flags',
-        'app.audios',
-        'app.users_sentences',
-        'app.favorites_users',
+        'app.Sentences',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.Contributions',
+        'app.DisabledAudios',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
+        'app.Tags',
+        'app.TagsSentences',
+        'app.Languages',
+        'app.Links',
+        'app.Transcriptions',
+        'app.ReindexFlags',
+        'app.Audios',
+        'app.UsersSentences',
+        'app.FavoritesUsers',
     );
 
-    function setUp() {
+    function setUp(): void {
         parent::setUp();
+
+        $this->loadRoutes();
+
         Configure::write('AutoTranscriptions.enabled', true);
 
         $foundIds = [1, 2, 3, 4, 5, 16, 17, 18, 19, 20];
         $totalResults = 10;
         $this->enableMockedSearch($foundIds, $totalResults);
 
-        $this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Sentence = $this->fetchTable('Sentences');
         $autotranscription = $this->_installAutotranscriptionMock();
         $autotranscription
             ->expects($this->any())
@@ -77,7 +79,7 @@ class SentencesTableTest extends TestCase {
         return $autotranscription;
     }
 
-    function tearDown() {
+    function tearDown(): void {
         unset($this->Sentence);
         parent::tearDown();
     }
@@ -479,12 +481,14 @@ class SentencesTableTest extends TestCase {
         $transcrBefore = $this->Sentence->Transcriptions->find('all')
             ->where($conditions)
             ->select(['id', 'script', 'text', 'user_id', 'needsReview'])
+            ->all()
             ->toList();
         $this->Sentence->unsetOwner($jpnSentenceId, $jpnSentenceOwner);
 
         $transcrAfter = $this->Sentence->Transcriptions->find('all')
             ->where($conditions)
             ->select(['id', 'script', 'text', 'user_id', 'needsReview'])
+            ->all()
             ->toList();
         $this->assertEquals($transcrBefore, $transcrAfter);
     }
@@ -495,6 +499,7 @@ class SentencesTableTest extends TestCase {
 
         $transcr = $this->Sentence->Transcriptions->find('all')
             ->where(['sentence_id' => $jpnSentence->id])
+            ->all()
             ->toList();
         $this->assertEquals(array(), $transcr);
     }
@@ -644,6 +649,7 @@ class SentencesTableTest extends TestCase {
         $logs = $this->Sentence->Contributions->find('all')
             ->where($conditions)
             ->select($fields)
+            ->all()
             ->toList();
 
         $result = [];
@@ -770,7 +776,8 @@ class SentencesTableTest extends TestCase {
         $reindex = array(2, 3);
         $this->Sentence->needsReindex($reindex);
         $result = $this->Sentence->ReindexFlags->find('all')
-            ->where(['sentence_id' => $reindex], ['sentence_id' => 'integer[]']);
+            ->where(['sentence_id' => $reindex], ['sentence_id' => 'integer[]'])
+            ->all();
         $this->assertEquals(2, $result->count());
         $this->assertTrue($result->every(function ($entity) {
             return $entity->type == 'change' && $entity->indexed === false;
@@ -784,6 +791,7 @@ class SentencesTableTest extends TestCase {
             ->where(['sentence_id' => $ids], ['sentence_id' => 'integer[]'])
             ->select('sentence_id')
             ->disableHydration()
+            ->all()
             ->toList();
         $this->assertNotContains(9, $result);
         $this->assertCount(3, $result);
@@ -824,8 +832,9 @@ class SentencesTableTest extends TestCase {
         $sentence = $this->Sentence->get(5);
         $sentence->{$prop} = $newValue;
         $this->Sentence->save($sentence);
-        $result = $this->Sentence->ReindexFlags->find('all')
-            ->order(['sentence_id']);
+        $result = $this->Sentence->ReindexFlags->find()
+            ->order(['sentence_id'])
+            ->all();
 
         $ids = $result->filter(fn($s) => $s->type == 'change')->extract('sentence_id')->toList();
         $this->assertEquals($exceptedChangedIds, $ids);
@@ -839,7 +848,8 @@ class SentencesTableTest extends TestCase {
         $sentence = $this->Sentence->get(5);
         $this->Sentence->delete($sentence);
         $result = $this->Sentence->ReindexFlags->find('all')
-            ->order(['sentence_id']);
+            ->order(['sentence_id'])
+            ->all();
         $ids = $result->extract('sentence_id')->toList();
         $this->assertEquals($expected, $ids);
         $types = $result->groupBy('type')->toArray();
@@ -984,7 +994,8 @@ class SentencesTableTest extends TestCase {
         );
         $sentence = $this->Sentence->editSentence($data);
 
-        $this->assertArraySubset($data, $sentence->toArray());
+        $this->assertSame('eng', $sentence->lang);
+        $this->assertSame('Edited sentence.', $sentence->text);
 
         $after = $this->Sentence->get(53);
         $this->assertNotEquals($before->text, $after->text);
@@ -1002,7 +1013,8 @@ class SentencesTableTest extends TestCase {
         );
         $sentence = $this->Sentence->editSentence($data);
 
-        $this->assertArraySubset($data, $sentence->toArray());
+        $this->assertSame(null, $sentence->lang);
+        $this->assertSame('Sentence with unknown lang.', $sentence->text);
     }
 
     function testEditSentence_failsBecauseHasAudio() {
@@ -1211,14 +1223,15 @@ class SentencesTableTest extends TestCase {
         CurrentUser::store($this->Sentence->Users->get(1));
         $id = 1;
         $this->Sentence->deleteSentence($id);
-        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first();
-        $expected = [
+        $result = $this->Sentence->ReindexFlags->findBySentenceId($id)->first()->toArray();
+        $expectedArraySubset = [
             'sentence_id' => 1,
             'lang' => 'eng',
             'indexed' => false,
             'type' => 'removal'
         ];
-        $this->assertArraySubset($expected, $result->toArray());
+        $expected = array_replace_recursive($result, $expectedArraySubset);
+        $this->assertSame($expected, $result);
     }
 
     function testDeleteSentene_NoEntryInReindexFlagsForUnknownLanguage() {
@@ -1433,7 +1446,7 @@ class SentencesTableTest extends TestCase {
      */
     function testFindFilteredTranslations($userId, $findOptions, $expected) {
         if ($userId) {
-            $Users = TableRegistry::getTableLocator()->get('Users');
+            $Users = $this->fetchTable('Users');
             CurrentUser::store($Users->get($userId));
         } else {
             CurrentUser::store(null);
@@ -1563,23 +1576,23 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(1);
         CurrentUser::store($user);
         
-        $testTime = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-01 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
         
         $user = $this->Sentence->Users->get(1);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 
     public function testEditSentence_UpdatesLastContributionField() {
         $user = $this->Sentence->Users->get(7);
         CurrentUser::store($user);
         
-        $testTime = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-01 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $before = $this->Sentence->get(7);
         $data = ['id' => '7', 'text' => 'This is the new text of sentence #7.'];
         $after = $this->Sentence->editSentence($data);
@@ -1588,7 +1601,7 @@ class SentencesTableTest extends TestCase {
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 
     public function testEditLicense_DoesNotUpdateLastContributionField() {
@@ -1597,8 +1610,8 @@ class SentencesTableTest extends TestCase {
 
         $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime = new Time('2019-02-01 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-01 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $data = $this->Sentence->get(7);
         $data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
         $result = $this->Sentence->save($data);
@@ -1607,7 +1620,7 @@ class SentencesTableTest extends TestCase {
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 
     public function testAdopt_DoesNotUpdateLastContributionField() {
@@ -1616,14 +1629,14 @@ class SentencesTableTest extends TestCase {
 
         $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime = new Time('2019-02-02 00:00:00');
-        Time::setTestNow($testTime); 
+        $testTime = new FrozenTime('2019-02-02 00:00:00');
+        FrozenTime::setTestNow($testTime);
         $sentence = $this->Sentence->saveNewSentence('An orphan sentence.', 'eng', 4);
 
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
 
-        Time::setTestNow();
+        FrozenTime::setTestNow();
     }
 }

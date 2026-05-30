@@ -47,7 +47,7 @@ class WallController extends AppController
 {
     public $name = 'Wall' ;
     public $paginate = [
-        'sortWhitelist' => ['WallThreads.last_message_date'],
+        'sortableFields' => ['WallThreads.last_message_date'],
         'order' => ['WallThreads.last_message_date' => 'DESC'],
         'limit' => 10,
         'fields' => ['lft', 'rght'],
@@ -56,26 +56,21 @@ class WallController extends AppController
             'WallThreads' => ['fields' => ['last_message_date']]
         ]
     ];
-    public $helpers = array(
-        'Wall',
-        'Date',
-        'Pagination'
-    );
-    public $components = array('Flash');
+
     /**
      * to know who can do what
      *
      * @return void
      */
 
-    public function beforeFilter(Event $event)
+    public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->config('unlockedActions', [
+        $this->Security->setConfig('unlockedActions', [
             'save_inside',
         ]);
         
         $eventManager = $this->Wall->getEventManager();
-        $eventManager->attach(new NotificationListener());
+        $eventManager->on(new NotificationListener());
 
         return parent::beforeFilter($event);
     }

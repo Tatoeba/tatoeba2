@@ -12,14 +12,19 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.private_messages',
-        'app.sentence_comments',
-        'app.sentences',
-        'app.transcriptions',
-        'app.users',
-        'app.users_languages',
-        'app.wiki_articles',
+        'app.PrivateMessages',
+        'app.SentenceComments',
+        'app.Sentences',
+        'app.Transcriptions',
+        'app.Users',
+        'app.UsersLanguages',
+        'app.WikiArticles',
     ];
+
+    public function setUp(): void {
+        parent::setUp();
+        Configure::write('App.fullBaseUrl', 'https://example.net');
+    }
 
     public function accessesProvider() {
         return [
@@ -49,16 +54,16 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
             [ '/en/sentence_comments/hide_message/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
             [ '/en/sentence_comments/hide_message/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
             [ '/en/sentence_comments/hide_message/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
-            [ '/en/sentence_comments/hide_message/1', 'kazuki', '/' ],
-            [ '/en/sentence_comments/hide_message/1', 'advanced_contributor', '/' ],
-            [ '/en/sentence_comments/hide_message/1', 'corpus_maintainer', '/' ],
+            [ '/en/sentence_comments/hide_message/1', 'kazuki', 'https://example.net/previous_page' ],
+            [ '/en/sentence_comments/hide_message/1', 'advanced_contributor', 'https://example.net/previous_page' ],
+            [ '/en/sentence_comments/hide_message/1', 'corpus_maintainer', 'https://example.net/previous_page' ],
             [ '/en/sentence_comments/hide_message/1', 'admin', 'https://example.net/previous_page' ],
             [ '/en/sentence_comments/unhide_message/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
             [ '/en/sentence_comments/unhide_message/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
             [ '/en/sentence_comments/unhide_message/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
-            [ '/en/sentence_comments/unhide_message/1', 'kazuki', '/' ],
-            [ '/en/sentence_comments/unhide_message/1', 'advanced_contributor', '/' ],
-            [ '/en/sentence_comments/unhide_message/1', 'corpus_maintainer', '/' ],
+            [ '/en/sentence_comments/unhide_message/1', 'kazuki', 'https://example.net/previous_page' ],
+            [ '/en/sentence_comments/unhide_message/1', 'advanced_contributor', 'https://example.net/previous_page' ],
+            [ '/en/sentence_comments/unhide_message/1', 'corpus_maintainer', 'https://example.net/previous_page' ],
             [ '/en/sentence_comments/unhide_message/1', 'admin', 'https://example.net/previous_page' ],
         ];
     }
@@ -106,7 +111,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
     }
 
     private function assertFlashMessageContains($expected, $message = '') {
-        $this->assertContains($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+        $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
     }
 
     public function commentWithLinksProvider() {

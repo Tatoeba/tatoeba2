@@ -30,7 +30,7 @@ use App\View\Helper\AppHelper;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use Cake\Controller\Component\AuthComponent;
-use Cake\ORM\TableRegistry;
+use Cake\Datasource\FactoryLocator;
 
 /**
  * Helper to display buttons in sentences menu.
@@ -278,7 +278,7 @@ class MenuHelper extends AppHelper
 
         <li style="display:none" id="linkTo<?php echo $sentenceId; ?>">
         <?php
-        echo $this->Form->input('linkToSentence'.$sentenceId, array(
+        echo $this->Form->control('linkToSentence'.$sentenceId, array(
             'id' => 'linkToSentence'.$sentenceId,
             'label' => false,
             'placeholder' => __('Sentence number'),
@@ -355,7 +355,7 @@ class MenuHelper extends AppHelper
             return;
         }
 
-        $SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $SentencesLists = FactoryLocator::get('Table')->get('SentencesLists');
         $lists = $SentencesLists->getUserChoices(
             CurrentUser::get('id'), $sentenceId
         );

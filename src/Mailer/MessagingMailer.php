@@ -12,20 +12,24 @@ class MessagingMailer extends Mailer
     public function wall_reply($recipient, $author, $post)
     {
         $this
+            ->viewBuilder()
+            ->setTemplate('wall_message');
+        $this
             ->setTo($recipient)
             ->setSubject("Tatoeba - $author has replied to you on the Wall")
             ->setEmailFormat('html')
-            ->setTemplate('wall_message')
             ->setViewVars(compact('post'));
     }
 
     public function wall_mention($recipient, $author, $post)
     {
         $this
+            ->viewBuilder()
+            ->setTemplate('wall_message');
+        $this
             ->setTo($recipient)
             ->setSubject("Tatoeba - $author mentioned you on the Wall")
             ->setEmailFormat('html')
-            ->setTemplate('wall_message')
             ->setViewVars(compact('post'));
     }
 

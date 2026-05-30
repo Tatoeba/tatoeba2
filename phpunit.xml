@@ -4,7 +4,6 @@
     processIsolation="false"
     stopOnFailure="false"
     failOnRisky="true"
-    syntaxCheck="false"
     bootstrap="tests/bootstrap.php"
     >
     <php>
@@ -20,15 +19,10 @@
         <!-- Add plugin test suites here. -->
     </testsuites>
 
-    <!-- Setup a listener for fixtures -->
-    <listeners>
-        <listener
-        class="\Cake\TestSuite\Fixture\FixtureInjector">
-            <arguments>
-                <object class="\Cake\TestSuite\Fixture\FixtureManager" />
-            </arguments>
-        </listener>
-    </listeners>
+    <!-- Load extension for fixtures -->
+    <extensions>
+        <extension class="\Cake\TestSuite\Fixture\PHPUnitExtension" />
+    </extensions>
 
     <!-- Ignore vendor tests in code coverage reports -->
     <filter>

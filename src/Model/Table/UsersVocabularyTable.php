@@ -24,7 +24,7 @@ use Cake\Core\Configure;
 
 class UsersVocabularyTable extends Table
 {
-    public function initialize(Array $config)
+    public function initialize(Array $config): void
     {
         $this->belongsTo('Vocabulary');
         $this->belongsTo('Users');
