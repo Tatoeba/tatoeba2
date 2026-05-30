@@ -21,15 +21,9 @@
     name: ['php7.4-fpm', 'php7.4-cli',
            'php7.4-mysql', 'php7.4-intl', 'php7.4-curl', 'php7.4-memcached', 'php7.4-imagick',
            'php7.4-xml', 'php7.4-mbstring', 'php7.4-zip', 'php7.4-sqlite3',
-           'memcached']
+           'memcached', 'composer']
     update_cache: yes
     state: latest
-
-- name: Install composer
-  get_url:
-    url: https://getcomposer.org/download/2.9.7/composer.phar
-    dest: /usr/local/bin/composer
-    mode: 0755
 
 - name: Remove default fpm pool
   file:
