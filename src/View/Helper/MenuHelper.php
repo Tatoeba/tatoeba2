@@ -607,11 +607,11 @@ class MenuHelper extends AppHelper
      */
     public function displayMenu(
         $sentenceId,
-        $owner = null,
-        $chineseScript = null,
+        $owner,
+        $chineseScript,
         $canTranslate,
-        $langFilter = 'und',
-        $hasAudio = true,
+        $langFilter,
+        $hasAudio,
         $isFavorited
     ) {
         ?>
