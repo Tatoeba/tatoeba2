@@ -104,7 +104,7 @@ class TagsController extends AppController
 
         $allTags = $this->paginate();
         $this->set("allTags", $allTags);
-        $this->set("filter", $filter);
+        $this->set("filter", $filter ?? '');
     }
 
     /**

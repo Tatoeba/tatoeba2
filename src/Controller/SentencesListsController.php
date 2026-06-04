@@ -83,7 +83,7 @@ class SentencesListsController extends AppController
         $allLists = $this->paginate();
 
         $this->set('allLists', $allLists);
-        $this->set('filter', $filter);
+        $this->set('filter', $filter ?? '');
     }
 
 
@@ -100,7 +100,7 @@ class SentencesListsController extends AppController
         $allLists = $this->paginate();
 
         $this->set('allLists', $allLists);
-        $this->set('filter', $filter);
+        $this->set('filter', $filter ?? '');
         $this->set('isCollaborative', true);
 
         $this->render('index');
@@ -369,7 +369,7 @@ class SentencesListsController extends AppController
         $userLists = $this->paginate();
 
         $this->set('userLists', $userLists);
-        $this->set('filter', $filter);
+        $this->set('filter', $filter ?? '');
         $this->set('userExists', true);
     }
 
