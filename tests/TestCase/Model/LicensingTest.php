@@ -64,7 +64,7 @@ class LicensingTest extends TestCase
         $this->Licensing->refreshLicenseSwitchList(7);
 
         $listId = $this->Licensing->SentencesLists->find()->all()->last()->id;
-        $settings = $this->Licensing->Users->get(7)->settings;
+        $settings = $this->fetchTable('Users')->get(7)->settings;
         $this->assertEquals($listId, $settings['license_switch_list_id']);
     }
 
