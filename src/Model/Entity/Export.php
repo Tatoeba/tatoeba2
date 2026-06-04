@@ -23,7 +23,7 @@ class Export extends Entity
 
     public function getFileExtension()
     {
-        $parts = explode('.', basename($this->filename));
+        $parts = explode('.', basename($this->filename ?? ''));
         if (count($parts) == 1) {
             $ext = '';
         } else {
