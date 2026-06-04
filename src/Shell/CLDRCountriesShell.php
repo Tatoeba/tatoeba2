@@ -98,7 +98,7 @@ class CLDRCountriesShell extends Shell {
         if (file_exists($file)) {
             echo "Using cached file $file\n";
         } else {
-            $url = 'https://raw.githubusercontent.com/unicode-org/cldr/master/'.$path;
+            $url = 'https://raw.githubusercontent.com/unicode-org/cldr-staging/main/production/'.$path;
             if (!$this->download_ldml($url, $file)) {
                 die("Error: the LDML file '$path' is required.\n");
             }
