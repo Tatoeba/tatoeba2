@@ -405,7 +405,7 @@ msgstr[0] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
-msgstr ""
+msgstr "jan li pali ala e nasin kepeken wile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L66
 msgid "Licensing issue"
@@ -529,7 +529,7 @@ msgstr ""
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L141
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "linja nimi ni li jo e nasin kepeken ni."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -998,7 +998,7 @@ msgstr "kalama mi"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
 msgid "License:"
-msgstr ""
+msgstr "nasin kepeken:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L55
 msgid "Attribution URL:"
@@ -1393,7 +1393,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr ""
+msgstr "o lukin e kalama pi toki ale"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
@@ -1640,7 +1640,7 @@ msgstr "linja nimi pi toki ni taso:"
 #. button to compose a new private message (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L46
 msgid "Compose"
-msgstr ""
+msgstr "o sitelen"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L53
@@ -2012,7 +2012,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L104
 msgid "License: {license}"
-msgstr ""
+msgstr "nasin kepeken: {license}"
 
 #. header text of the date an audio recording was added
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L107
@@ -2142,7 +2142,7 @@ msgstr "o lukin e linja nimi #:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L119
 msgid "Your sentence was not added because the following already exists."
-msgstr ""
+msgstr "linja nimi sina li kama ala lon tan ni: linja nimi ni li lon:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L154
 msgid "This sentence belongs to a native speaker."
@@ -3568,7 +3568,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L69
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
-msgstr[0] ""
+msgstr[0] "{folderName} (lipu&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L83
 msgid "Empty trash"
@@ -3614,7 +3614,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L68
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
+msgstr[0] "tenpo suno ni la sina pana e lipu&nbsp;{n}."
 
 #. submit button of content reporting form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/ReportContent/report.ctp#L7
@@ -4006,7 +4006,7 @@ msgstr "linja nimi ni li lon ala:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L176
 msgid "Metadata"
-msgstr ""
+msgstr "sona namako"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L152
 msgid "There are no comments for now."
@@ -4374,7 +4374,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L74
 msgid "All tags (total {{count}})"
-msgstr ""
+msgstr "nimi ilo ale (nanpa pi nimi ale li {count})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L78
 msgid "Tags containing: {search} (total {{count}})"
