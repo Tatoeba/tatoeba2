@@ -166,6 +166,10 @@ class TranscriptionsController extends AppController
             $query = $this->Transcriptions
                 ->find()
                 ->where(['Transcriptions.user_id' => $userId])
+                ->contain(['Sentences' => function (\Cake\ORM\Query $q) {
+                    $fields = $q->getRepository()->fields();
+                    return $q->select($fields);
+                }])
                 ->mapReduce(
                     function ($transcr, $key, $mapReduce) {
                         $mapReduce->emitIntermediate($transcr, $transcr->sentence_id);
