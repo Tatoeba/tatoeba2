@@ -331,11 +331,13 @@ class SentencesSearchForm extends Form
         $filter = $this->search->getFilter(WordCountFilter::class) ?? new WordCountFilter();
         try {
             $range = $before . $value . $after;
-            $filter->anyOf([$range])->and();
+            $filter->anyOf([$range]);
             $filter->compile(); // trigger validation
+            $filter->and();
             $this->search->setFilter($filter);
             return $value;
         } catch (InvalidValueException $e) {
+            $filter->anyOf([]); // clear invalid value
             return '';
         }
     }
