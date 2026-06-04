@@ -71,6 +71,10 @@ class CLDRCountriesShell extends Shell {
         'PS', /* Palestine */
     );
 
+    private $use_variant_names = array(
+        'TR', /* Turkey */
+    );
+
     private $locale_path;
 
     public function initialize(): void {
@@ -130,11 +134,16 @@ class CLDRCountriesShell extends Shell {
             if (preg_match($regions_pattern, $translated_into) === 0 ||
                 (
                     !in_array($translated_into, $this->use_short_names) &&
+                    !in_array($translated_into, $this->use_variant_names) &&
                     $country_trans->attributes()->{'alt'}
                 ) ||
                 (
                     in_array($translated_into, $this->use_short_names) &&
                     $country_trans->attributes()->{'alt'} != 'short'
+                ) ||
+                (
+                    in_array($translated_into, $this->use_variant_names) &&
+                    $country_trans->attributes()->{'alt'} != 'variant'
                 )
                ) {
                 continue;

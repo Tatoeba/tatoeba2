@@ -101,6 +101,7 @@ class CountriesList {
             'CN' => __d('countries', 'China'),
             'CO' => __d('countries', 'Colombia'),
             'CP' => __d('countries', 'Clipperton Island'),
+            'CQ' => __d('countries', 'Sark'),
             'CR' => __d('countries', 'Costa Rica'),
             'CU' => __d('countries', 'Cuba'),
             'CV' => __d('countries', 'Cape Verde'),
