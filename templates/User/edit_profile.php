@@ -126,7 +126,7 @@ $countries = $this->Countries->getAllCountries();
     ]);
 
     
-    $birthday = explode('-', $user->birthday);
+    $birthday = explode('-', $user->birthday ?? '');
     $year = !isset($birthday[0]) || $birthday[0] == '0000' ? '' : $birthday[0];
     $month = !isset($birthday[1]) || $birthday[1] == '00' ? '' : $birthday[1];
     $day = !isset($birthday[2]) || $birthday[2] == '00' ? '' : $birthday[2];
