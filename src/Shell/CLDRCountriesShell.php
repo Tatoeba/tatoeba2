@@ -251,7 +251,8 @@ class CountriesList {
     private function merge_new_translations($new_trans, $locale) {
         $this->check_if_gettext_available('msgmerge');
         $po_file = $this->locale_path.$locale.DS.'countries.po';
-        exec("msgmerge --no-wrap --no-fuzzy-matching -o '$po_file' '$new_trans' '$po_file'", $output, $retval);
+        $pot_file = $this->locale_path.DS.'countries.pot';
+        exec("msgmerge --no-wrap --no-fuzzy-matching -o '$po_file' -C '$new_trans' '$po_file' '$pot_file'", $output, $retval);
         unlink($new_trans);
         if ($retval != 0) {
             die("Error: a problem occurred while generating '$po_file'.\n");
