@@ -128,6 +128,9 @@ class CLDRCountriesShell extends Shell {
         $regions_pattern = $this->valid_regions_pattern($regions);
         $countries_trans = array();
         $ldml = simplexml_load_file($filename, 'SimpleXMLElement');
+        if (!isset($ldml->{'localeDisplayNames'}->{'territories'})) {
+            return $countries_trans;
+        }
         foreach ($ldml->{'localeDisplayNames'}->{'territories'}->{'territory'}
                  as $country_trans) {
             $translated_into = trim($country_trans->attributes()->{'type'});
@@ -156,7 +159,11 @@ class CLDRCountriesShell extends Shell {
     private function get_localized_countries($lang) {
         $lang_file = $this->get_ldml("common/main/$lang.xml");
         $regions_file = $this->get_ldml("common/validity/region.xml");
-        return $this->countries_from_ldml_file($lang_file, $regions_file);
+        $countries = $this->countries_from_ldml_file($lang_file, $regions_file);
+        if (count($countries) == 0) {
+            die("No localized territories found for language $lang\n");
+        }
+        return $countries;
     }
 
     private function countries_array_to_php($countries) {
