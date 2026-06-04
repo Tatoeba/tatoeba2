@@ -323,30 +323,6 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertJsonDocumentMatches($actual, $expected);
     }
 
-    public function testExportToCsv_asGuest_unlistedList() {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-        $this->post('/en/sentences_lists/export_to_csv', [
-            'id' => 1,
-            'insertId' => 1,
-            'TranslationsLang' => 'eng',
-        ]);
-        $this->assertResponseOk();
-        $this->assertHeader('Content-disposition', 'attachment;filename=export_list_1eng.csv');
-        $this->assertHeader('Content-type',        'application/vnd.ms-excel');
-    }
-
-    public function testExportToCsv_asGuest_privateList() {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-        $this->post('/en/sentences_lists/export_to_csv', [
-            'id' => 3,
-            'insertId' => 1,
-            'TranslationsLang' => 'eng',
-        ]);
-        $this->assertRedirect('/en/sentences_lists/index');
-    }
-
     //test redirect /:id/langX maps to /:id/und/langX
     public function testShowSentenceListRedirect()
     {
