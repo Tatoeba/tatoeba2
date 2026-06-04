@@ -421,7 +421,7 @@ class SentencesSearchForm extends Form
         /* Make sure trans_filter is applied at the end
            because it depends on other trans_* filters */
         uksort($data, function ($k) {
-            return $k == 'trans_filter';
+            return $k == 'trans_filter' ? 1 : 0;
         });
 
         /* Apply other criteria */
