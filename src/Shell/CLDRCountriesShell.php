@@ -156,10 +156,30 @@ class CLDRCountriesShell extends Shell {
         return $countries_trans;
     }
 
+    private function build_locale_tree($lang) {
+        $locale_tree = array();
+        $parts = explode('_', $lang);
+        do {
+            array_unshift($locale_tree, implode('_', $parts));
+            array_pop($parts);
+        } while (count($parts));
+
+        return $locale_tree;
+    }
+
     private function get_localized_countries($lang) {
-        $lang_file = $this->get_ldml("common/main/$lang.xml");
+        $locale_tree = $this->build_locale_tree($lang);
         $regions_file = $this->get_ldml("common/validity/region.xml");
-        $countries = $this->countries_from_ldml_file($lang_file, $regions_file);
+
+        $countries = array();
+        foreach ($locale_tree as $locale) {
+            $lang_file = $this->get_ldml("common/main/$locale.xml");
+            $countries = array_merge(
+                $countries,
+                $this->countries_from_ldml_file($lang_file, $regions_file)
+            );
+        }
+
         if (count($countries) == 0) {
             die("No localized territories found for language $lang\n");
         }
