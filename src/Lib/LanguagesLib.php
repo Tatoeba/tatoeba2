@@ -745,6 +745,10 @@ class LanguagesLib
      */
     public static function getLanguageDirection($lang) {
 
+        if (is_null($lang)) {
+            return 'auto';
+        }
+
         $direction = "ltr";
 
         $rightToLeftLangs = array(

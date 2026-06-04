@@ -60,6 +60,7 @@ class LanguagesLibTest extends TestCase {
             ['zlm', 'auto'],
             ['knc', 'auto'],
             ['bal', 'auto'],
+            [null, 'auto'],
         ];
     }
 
