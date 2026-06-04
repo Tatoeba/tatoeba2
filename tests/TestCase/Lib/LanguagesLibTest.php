@@ -40,4 +40,34 @@ class LanguagesLibTest extends TestCase {
         $actual = array_keys(LanguagesLib::activeUiLanguages());
         $this->assertEquals($expected, $actual);
     }
+
+    public function languageDirectionProvider() {
+        return [
+            ['eng', 'ltr'],
+            ['jpn', 'ltr'],
+            ['nav', 'ltr'],
+            ['crs', 'ltr'],
+            ['lij', 'ltr'],
+
+            ['ara', 'rtl'],
+            ['heb', 'rtl'],
+            ['yid', 'rtl'],
+            ['pnb', 'rtl'],
+            ['ckb', 'rtl'],
+
+            ['lad', 'auto'],
+            ['qxq', 'auto'],
+            ['zlm', 'auto'],
+            ['knc', 'auto'],
+            ['bal', 'auto'],
+        ];
+    }
+
+    /**
+     * @dataProvider languageDirectionProvider
+     */
+    public function testGetLanguageDirection($lang, $expectedDirection) {
+        $actualDirection = LanguagesLib::getLanguageDirection($lang);
+        $this->assertSame($expectedDirection, $actualDirection);
+    }
 }
