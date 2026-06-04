@@ -454,7 +454,7 @@ class SentencesController extends AppController
 
         /* Control input */
         if ($search->generateRandomSeedIfNeeded()) {
-            return $this->redirect(Router::url($search->getData()));
+            return $this->redirect(Router::url(['?' => $search->getData()]));
         }
         $search->checkUnwantedCombinations();
 
