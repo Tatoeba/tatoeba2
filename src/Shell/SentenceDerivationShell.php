@@ -146,9 +146,13 @@ class SentenceDerivationShell extends Shell {
         $matches = $walker->findAround($this->maxFindAroundRange, function ($elem) use ($log) {
             $isSameAuthor = $elem['user_id'] == $log['user_id'];
             $isInsertLink = $elem['action'] == 'insert' && $elem['type'] == 'link';
-            $creatDate = strtotime($log['datetime']);
-            $otherDate = strtotime($elem['datetime']);
-            $closeDatetime = abs($otherDate - $creatDate) <= 310;
+            if (!is_null($log['datetime']) && !is_null($elem['datetime'])) {
+                $creatDate = strtotime($log['datetime']);
+                $otherDate = strtotime($elem['datetime']);
+                $closeDatetime = abs($otherDate - $creatDate) <= 310;
+            } else {
+                $closeDatetime = false;
+            }
 
             $isRelated = ($elem['translation_id'] == $log['sentence_id'] && $elem['sentence_id'] < $log['sentence_id'])
                          || ($elem['sentence_id'] == $log['sentence_id'] && $elem['translation_id'] < $log['sentence_id']);
