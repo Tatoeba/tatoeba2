@@ -75,6 +75,11 @@ class CLDRCountriesShell extends Shell {
         'TR', /* Turkey */
     );
 
+    private $tatoeba_locale_to_cldr_locale = array(
+        'zh_CN' => 'zh_Hans_CN',
+        'zh_TW' => 'zh_Hant_TW',
+    );
+
     private $locale_path;
 
     public function initialize(): void {
@@ -168,6 +173,7 @@ class CLDRCountriesShell extends Shell {
     }
 
     private function get_localized_countries($lang) {
+        $lang = $this->tatoeba_locale_to_cldr_locale[$lang] ?? $lang;
         $locale_tree = $this->build_locale_tree($lang);
         $regions_file = $this->get_ldml("common/validity/region.xml");
 
