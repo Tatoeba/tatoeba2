@@ -78,8 +78,10 @@ class User extends Entity
     );
 
     protected function _setPassword($password) {
-        $passwordHasher = new VersionedPasswordHasher();
-        return $passwordHasher->hash($password);
+        if (!is_null($password)) {
+            $passwordHasher = new VersionedPasswordHasher();
+            return $passwordHasher->hash($password);
+        }
     }
 
     protected function _getSettings($settings) {
