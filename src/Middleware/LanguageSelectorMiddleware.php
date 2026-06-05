@@ -72,9 +72,10 @@ class LanguageSelectorMiddleware implements MiddlewareInterface
 
         $response = $handler->handle($request);
 
-        return $response->withCookie(new Cookie(
+        return $response->withCookie(Cookie::create(
             'interface_language',
-            $lang
+            $lang,
+            ['expires' => '+1 month']
         ));
     }
 

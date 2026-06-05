@@ -28,7 +28,6 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Datasource\FactoryLocator;
-use Cake\Http\Cookie\Cookie;
 
 
 /**
@@ -72,11 +71,7 @@ class CommonSentenceComponent extends Component
         $license = null
     ) {
         $controller = $this->getController();
-        $controller->setResponse(
-            $controller
-                 ->getResponse()
-                 ->withCookie(Cookie::create('contribute_lang', $lang))
-        );
+        $controller->setOneMonthCookie('contribute_lang', $lang);
 
         $lang = $this->_setLanguage($lang, $text, $username);
 

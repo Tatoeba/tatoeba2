@@ -29,7 +29,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\Http\Cookie\Cookie;
 use Cake\ORM\Query;
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
@@ -291,7 +290,7 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
-            $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $listId));
+            $this->setOneMonthCookie('most_recent_list', $listId);
 
         } else {
             $this->set('result', 'error');
@@ -424,7 +423,7 @@ class SentencesListsController extends AppController
                 $this->Auth->user('id')
             );
 
-            $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $listId));
+            $this->setOneMonthCookie('most_recent_list', $listId);
         }
 
         $this->set('sentence', $result);
@@ -448,7 +447,7 @@ class SentencesListsController extends AppController
             if ($this->SentencesLists->addSentenceToList($sentenceId, $list->id, $userId)) {
                 $list->hasSentence = true;
                 $result = $list;
-                $this->response = $this->response->withCookie(Cookie::create('most_recent_list', $list->id));
+                $this->setOneMonthCookie('most_recent_list', $list->id);
             }
         }
 

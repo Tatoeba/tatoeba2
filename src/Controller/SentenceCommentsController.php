@@ -32,7 +32,6 @@ use Cake\Event\Event;
 use Cake\Core\Configure;
 use App\Model\CurrentUser;
 use Cake\Datasource\Exception\RecordNotFoundException;
-use Cake\Http\Cookie\Cookie;
 
 /**
  * Controller for sentence comments.
@@ -177,7 +176,7 @@ class SentenceCommentsController extends AppController
         $savedComment = $this->SentenceComments->save($comment);
         if ($savedComment) {
             $this->Flash->set(__('Your comment has been saved.'));
-            $this->response = $this->response->withCookie(Cookie::create('hash_last_com', $thisCom));
+            $this->setOneMonthCookie('hash_last_com', $thisCom);
         } else if ($comment->getErrors()) {
             foreach($comment->getErrors() as $error) {
                 $firstValidationErrorMessage = reset($error);

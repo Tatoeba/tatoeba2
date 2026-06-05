@@ -31,6 +31,7 @@ use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Http\Cookie\Cookie;
 use Cake\Http\ServerRequest;
 use Cake\Routing\Router;
 
@@ -322,5 +323,10 @@ class AppController extends Controller
                 $session->write('last_used_lang', $current);
             }
         }
+    }
+
+    public function setOneMonthCookie(string $name, $value): void {
+        $cookie = Cookie::create($name, $value, ['expires' => new \DateTime('+1 month')]);
+        $this->response = $this->response->withCookie($cookie);
     }
 }

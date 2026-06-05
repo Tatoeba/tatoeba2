@@ -37,7 +37,6 @@ use App\Validation\Validation;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
-use Cake\Http\Cookie\Cookie;
 use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
@@ -389,7 +388,7 @@ class SentencesController extends AppController
         $translationText = $this->request->getData('value');
 
         // Store selected lang in cookie as default language for drop-downs
-        $this->response = $this->response->withCookie(Cookie::create('contribute_lang', $translationLang));
+        $this->setOneMonthCookie('contribute_lang', $translationLang);
 
         if (isset($translationText)
             && trim($translationText) != ''
@@ -574,7 +573,7 @@ class SentencesController extends AppController
         $this->set('total', $total);
         $this->set('totalLimit', $totalLimit);
 
-        $this->response = $this->response->withCookie(Cookie::create('browse_sentences_in_lang', $lang));
+        $this->setOneMonthCookie('browse_sentences_in_lang', $lang);
 
         $this->render(null);
     }
