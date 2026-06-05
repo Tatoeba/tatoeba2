@@ -46,7 +46,7 @@ use Cake\Routing\Route\InflectedRoute;
 use App\Controller\Component\RememberMeComponent;
 use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use App\Middleware\LegacyCsrfProtectionMiddleware;
 use App\Middleware\LegacyEncryptedCookieMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Utility\Security;
@@ -71,7 +71,7 @@ $routes->scope('/', function (RouteBuilder $routes) {
         Security::getSalt()
     ));
 
-    $routes->registerMiddleware('csrfProtection', new CsrfProtectionMiddleware());
+    $routes->registerMiddleware('csrfProtection', new LegacyCsrfProtectionMiddleware());
 });
 
 $routes->scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
