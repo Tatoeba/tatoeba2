@@ -288,7 +288,7 @@ class WallTable extends Table
     {
         try {
             $replyLftRght = $this->get($replyId, ['fields' => ['lft', 'rght']]);
-        } catch (RecordNotFoundException $e) {
+        } catch (\InvalidArgumentException | RecordNotFoundException $e) {
             return null;
         }
 

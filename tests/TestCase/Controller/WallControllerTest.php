@@ -42,6 +42,7 @@ class WallControllerTest extends IntegrationTestCase {
             [ '/en/wall/show_message/1', null, true ],
             [ '/en/wall/show_message/1', 'contributor', true ],
             [ '/en/wall/show_message/999999999', null, '/en/wall/index' ],
+            [ '/en/wall/show_message/invalid', null, '/en/wall/index' ],
             [ '/en/wall/messages_of_user/admin', null, true ],
             [ '/en/wall/messages_of_user/admin', 'contributor', true ],
             [ '/en/wall/hide_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Fhide_message%2F1' ],
