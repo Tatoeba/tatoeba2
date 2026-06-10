@@ -323,7 +323,7 @@ class SentencesControllerTest extends TestCase
         $this->assertResponseOk();
     }
 
-    public function testSearch_randomSortCannotBePaged()
+    public function testSearch_randomSortCanBePaged()
     {
         $this->enableMockedSearch([1,2,3], 42, false);
 
