@@ -31,7 +31,7 @@ use Cake\I18n\I18n;
 $lang = I18n::getLocale();
 $htmlDir = LanguagesLib::getLanguageDirection($lang);
 
-$controller = $this->request->getParam("controller");
+$controller = $this->request->getParam("controller", '');
 $controller = Cake\Utility\Inflector::delimit($controller);
 $action = $this->request->getParam("action");
 
