@@ -161,7 +161,7 @@ class TagsController extends AppController
         // In case the $tagId is not an int we assume that the user
         // comes from an old URL with the internal name, so we
         // redirect them to the right URL.
-        if ($tagId && $tagId != '0' && intval($tagId) == 0) {
+        if (!is_numeric($tagId)) {
             $actualTagId = $this->Tags->getIdFromInternalName($tagId);
             if ($actualTagId) {
                 return $this->redirect(
