@@ -202,10 +202,14 @@ class TagsTable extends Table
      *
      */
     public function getNameFromId($tagId) {
-        $result = $this->find()
-            ->where(['id' => $tagId])
-            ->select(['name'])
-            ->first();
+        try {
+            $result = $this->find()
+                ->where(['id' => $tagId])
+                ->select(['name'])
+                ->first();
+        } catch (\InvalidArgumentException $e) {
+            $result = null;
+        }
 
         return $result ? $result->name : null;
     }

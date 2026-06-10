@@ -163,14 +163,16 @@ class TagsController extends AppController
         // redirect them to the right URL.
         if ($tagId && $tagId != '0' && intval($tagId) == 0) {
             $actualTagId = $this->Tags->getIdFromInternalName($tagId);
-            return $this->redirect(
-                [
-                    "controller" => "tags",
-                    "action" => "show_sentences_with_tag",
-                    $actualTagId, $lang
-                ],
-                301
-            );
+            if ($actualTagId) {
+                return $this->redirect(
+                    [
+                        "controller" => "tags",
+                        "action" => "show_sentences_with_tag",
+                        $actualTagId, $lang
+                    ],
+                    301
+                );
+            }
         }
 
         $tagName = $this->Tags->getNameFromId($tagId);
