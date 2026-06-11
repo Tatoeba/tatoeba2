@@ -237,7 +237,7 @@ class ExportsTableTest extends TestCase
         $this->Exports->createExport(4, $this->options());
 
         $job = $this->Exports->QueuedJobs->find()->all()->last();
-        $this->assertEquals('Export', $job->job_type);
+        $this->assertEquals('Export', $job->job_task);
         $this->assertEquals(4, $job->job_group);
 
         $export = $this->Exports->find()->all()->last();

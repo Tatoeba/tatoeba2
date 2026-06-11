@@ -73,7 +73,7 @@ class LicensingTest extends TestCase
 
         $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->find()->all()->last();
-        $this->assertEquals('RefreshLicenseSwitchList', $job->job_type);
+        $this->assertEquals('RefreshLicenseSwitchList', $job->job_task);
         $this->assertEquals(4, $job->job_group);
     }
 

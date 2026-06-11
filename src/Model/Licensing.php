@@ -80,7 +80,7 @@ class Licensing {
     public function is_refreshing($userId) {
         $job = $this->QueuedJobs->find()
             ->where([
-                'job_type' => 'RefreshLicenseSwitchList',
+                'job_task' => 'RefreshLicenseSwitchList',
                 'job_group' => $userId,
                 'completed IS' => null,
             ])
@@ -92,7 +92,7 @@ class Licensing {
     public function is_switching($userId) {
         $job = $this->QueuedJobs->find()
             ->where([
-                'job_type' => 'SwitchSentencesLicense',
+                'job_task' => 'SwitchSentencesLicense',
                 'job_group' => $userId,
                 'completed IS' => null,
             ])

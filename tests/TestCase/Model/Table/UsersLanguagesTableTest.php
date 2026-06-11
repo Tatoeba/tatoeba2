@@ -250,14 +250,14 @@ class UsersLanguagesTableTest extends TestCase {
 
     function assertSentencesReindexJobQueued($expectedConfig) {
         $QueuedJobs = $this->fetchTable('QueuedJobs');
-        $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
+        $job = $QueuedJobs->findByJobTask('SentencesReindex')->first();
         $this->assertNotNull($job);
         $this->assertEquals($expectedConfig, unserialize($job->data));
     }
 
     function assertSentencesReindexJobNotQueued() {
         $QueuedJobs = $this->fetchTable('QueuedJobs');
-        $job = $QueuedJobs->findByJobType('SentencesReindex')->first();
+        $job = $QueuedJobs->findByJobTask('SentencesReindex')->first();
         $this->assertNull($job);
     }
 

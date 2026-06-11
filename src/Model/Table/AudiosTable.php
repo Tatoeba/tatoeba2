@@ -458,7 +458,7 @@ class AudiosTable extends Table
 
     public function lastImportJob() {
         return $this->QueuedJobs->find()
-            ->where(['job_type' => self::JOB_TYPE])
+            ->where(['job_task' => self::JOB_TYPE])
             ->orderDesc($this->QueuedJobs->getPrimaryKey())
             ->first();
     }

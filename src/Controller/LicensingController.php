@@ -77,7 +77,7 @@ class LicensingController extends AppController {
 
         $currentJob = $this->fetchTable('Queue.QueuedJobs')->find()
             ->where([
-                'job_type' => 'SwitchSentencesLicense',
+                'job_task' => 'SwitchSentencesLicense',
                 'job_group' => $currentUserId,
             ])
             ->first();
