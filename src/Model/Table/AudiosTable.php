@@ -214,7 +214,7 @@ class AudiosTable extends Table
         $countQuery = clone $query;
 
         $query = $query
-            ->repository($this->Sentences->getTarget())
+            ->setRepository($this->Sentences->getTarget())
             ->select($this->Sentences->fields())
             ->innerJoinWith('Audios')
             ->contain('Audios', function ($q) use ($options) {
