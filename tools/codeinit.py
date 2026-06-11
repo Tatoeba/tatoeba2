@@ -51,15 +51,20 @@ your existing app_local.php.
 
     return warning
 
+def run_cmd_or_fail(cmd):
+    status = system(cmd) >> 8
+    if status != 0:
+        sys.exit(status)
+
 def setup():
     # Running "composer install" twice is a workaround
     # virtualbox bug https://www.virtualbox.org/ticket/18776.
     # See also https://github.com/laravel/homestead/issues/1240.
-    system("composer install --no-progress --no-interaction --no-ansi --no-plugins --no-scripts")
-    system("composer install --no-progress --no-interaction --no-ansi")
-    system("bin/cake migrations migrate")
-    system("bin/cake migrations migrate -p Queue")
-    system("bin/cake languages_table reset")
+    run_cmd_or_fail("composer install --no-progress --no-interaction --no-ansi --no-plugins --no-scripts")
+    run_cmd_or_fail("composer install --no-progress --no-interaction --no-ansi")
+    run_cmd_or_fail("bin/cake migrations migrate")
+    run_cmd_or_fail("bin/cake migrations migrate -p Queue")
+    run_cmd_or_fail("bin/cake languages_table reset")
 
 def codeinit(argv):
     try:
