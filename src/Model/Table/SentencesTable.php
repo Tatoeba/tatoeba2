@@ -770,27 +770,6 @@ class SentencesTable extends Table
     }
 
     /**
-     * Override standard paginateCount method to eliminate unnecessary joins.
-     * If $conditions is empty, as in Sphinx search, return default behavior.
-     *
-     * @param  array   $conditions
-     * @param  integer $recursive
-     * @param  array   $extra
-     *
-     * @return integer
-     */
-    public function paginateCount(
-        $conditions = null,
-        $recursive = 0,
-        $extra = array()
-    ) {
-        $parameters = compact('conditions');
-        $extra['contain'] = [];
-
-        return $this->find('count', array_merge($parameters, $extra));
-    }
-
-    /**
      * Value for the hideFields finder option.
      * See findHideFields().
      */

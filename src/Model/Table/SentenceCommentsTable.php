@@ -210,37 +210,6 @@ class SentenceCommentsTable extends Table
         return $result->user_id;
     }
 
-
-    /**
-     * Overridden paginateCount method, for optimization purpose.
-     *
-     * @param array $conditions
-     * @param int   $recursive
-     * @param array $extra
-     *
-     * @return int
-     */
-    function paginateCount($conditions = null, $recursive = 0, $extra = array()) {
-        $contain = array();
-        foreach ($conditions as $key => $value) {
-            if (strpos($key, "SentenceComment") === false) {
-                $tmp = explode('.', $key);
-                $model = $tmp[0];
-                $contain[] = $model;
-            }
-        }
-
-        $result = $this->find(
-            'count',
-            array(
-                'contain' => $contain,
-                'conditions' => $conditions
-            )
-        );
-
-        return $result;
-    }
-
     public function excludeBots($query)
     {
         $botsIds = Configure::read('Bots.userIds');
