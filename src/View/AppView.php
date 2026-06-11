@@ -11,11 +11,11 @@ class AppView extends View
 
         // At least thest helpers are needed on every single page, so preload them.
         // The rest is lazy-loaded.
-        $this->loadHelper('AssetCompress.AssetCompress');
-        $this->loadHelper('AngularTemplate');
-        $this->loadHelper('Flash');
-        $this->loadHelper('Html');
-        $this->loadHelper('Languages');
+        $this->addHelper('AssetCompress.AssetCompress');
+        $this->addHelper('AngularTemplate');
+        $this->addHelper('Flash');
+        $this->addHelper('Html');
+        $this->addHelper('Languages');
     }
 
     /**
