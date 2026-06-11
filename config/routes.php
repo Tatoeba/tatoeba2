@@ -144,6 +144,12 @@ $routes->scope('/', ['prefix' => 'VHosts/Audio'], function (RouteBuilder $routes
         ['controller' => 'main', 'action' => 'default']
     )
     ->setHost('audio.*');
+
+    $routes->connect(
+        '/',
+        ['controller' => 'main', 'action' => 'default']
+    )
+    ->setHost('audio.*');
 });
 
 $routes->scope('/', function (RouteBuilder $routes) {
