@@ -17,13 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Shell\Task;
+namespace App\Queue\Task;
 
 use App\Shell\BatchOperationTrait;
 use Cake\ORM\Locator\LocatorAwareTrait;
-use Queue\Shell\Task\QueueTask;
+use Queue\Queue\Task;
 
-class QueueSentencesReindexTask extends QueueTask {
+class SentencesReindexTask extends Task {
 
     use BatchOperationTrait;
     use LocatorAwareTrait;

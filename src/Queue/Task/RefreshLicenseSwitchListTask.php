@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Shell\Task;
+namespace App\Queue\Task;
 
 use App\Shell\BatchOperationTrait;
-use Queue\Shell\Task\QueueTask;
+use Queue\Queue\Task;
 
-class QueueRefreshLicenseSwitchListTask extends QueueTask {
+class RefreshLicenseSwitchListTask extends Task {
 
     use BatchOperationTrait;
 

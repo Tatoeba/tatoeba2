@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Shell\Task;
+namespace App\Queue\Task;
 
-use Queue\Shell\Task\QueueTask;
+use Queue\Queue\Task;
 
-class QueueExportTask extends QueueTask {
+class ExportTask extends Task {
     public $retries = 0;
 
     public function run(array $config, int $jobId): void {

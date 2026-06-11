@@ -1,13 +1,11 @@
 <?php
-namespace App\Test\TestCase\Shell\Task;
+namespace App\Test\TestCase\Queue\Task;
 
-use App\Shell\Task\QueueRefreshLicenseSwitchListTask;
-use Cake\Console\ConsoleIo;
-use Cake\Console\ConsoleOutput;
+use App\Queue\Task\RefreshLicenseSwitchListTask;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
-class QueueRefreshLicenseSwitchListTaskTest extends TestCase
+class RefreshLicenseSwitchListTaskTest extends TestCase
 {
     public $fixtures = array(
         'app.Sentences',
@@ -24,12 +22,7 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
         parent::setUp();
         parent::loadPlugins(['Queue']);
 
-        $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
-        $this->task = $this->getMockBuilder(QueueRefreshLicenseSwitchListTask::class)
-            ->setMethods(['in', 'err', 'createFile', '_stop', 'clear'])
-            ->setConstructorArgs([$io])
-            ->getMock();
-
+        $this->task = new RefreshLicenseSwitchListTask();
         $this->SentencesLists = $this->fetchTable('SentencesLists');
     }
 

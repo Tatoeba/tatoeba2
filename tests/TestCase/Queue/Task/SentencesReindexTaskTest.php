@@ -1,24 +1,22 @@
 <?php
-namespace App\Test\TestCase\Shell\Task;
+namespace App\Test\TestCase\Queue\Task;
 
-use App\Shell\Task\QueueSentencesReindexTask;
+use App\Queue\Task\SentencesReindexTask;
 use Cake\TestSuite\TestCase;
 
-class QueueSentencesReindexTaskTest extends TestCase
+class SentencesReindexTaskTest extends TestCase
 {
     public $fixtures = [
         'app.ReindexFlags',
         'app.Sentences',
         'app.Links',
     ];
-    public $io;
     public $task;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->io = $this->getMockBuilder('Cake\Console\ConsoleIo')->getMock();
-        $this->task = new QueueSentencesReindexTask($this->io);
+        $this->task = new SentencesReindexTask();
     }
 
     public function tearDown(): void
