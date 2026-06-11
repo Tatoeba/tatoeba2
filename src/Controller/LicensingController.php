@@ -26,6 +26,8 @@ use Cake\I18n\I18n;
 
 class LicensingController extends AppController {
 
+    protected $defaultTable = 'SentencesSentencesLists';
+
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         $this->Security->setConfig('unlockedActions', [
