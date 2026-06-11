@@ -350,7 +350,7 @@ class SentencesTable extends Table
             $sentences = $this->find()
                 ->where(['id IN' => $someIds, 'lang IS NOT' => null])
                 ->select(['id', 'lang', 'type' => "'change'"]);
-            $query = $this->ReindexFlags->query()
+            $query = $this->ReindexFlags->insertQuery()
                 ->insert(['sentence_id', 'lang', 'type'])
                 ->values($sentences)
                 ->execute();
