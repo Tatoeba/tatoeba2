@@ -27,6 +27,9 @@ server {
 		fastcgi_pass    unix:{{php_fpm_socket}};
 		fastcgi_index   index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+{% if (deploy_for == "dev") %}
+		fastcgi_param HTTP_HOST $http_host; # Remove this after upgrading to Debian 14 (forky)
+{% endif %}
 	}
 
 	# Comment this out when the subdomain for static files is activated
@@ -80,6 +83,9 @@ server {
 		fastcgi_pass    unix:{{php_fpm_socket}};
 		fastcgi_index   index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+{% if (deploy_for == "dev") %}
+		fastcgi_param HTTP_HOST $http_host; # Remove this after upgrading to Debian 14 (forky)
+{% endif %}
 	}
 }
 
@@ -105,6 +111,9 @@ server {
 		fastcgi_pass    unix:{{php_fpm_socket}};
 		fastcgi_index   index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+{% if (deploy_for == "dev") %}
+		fastcgi_param HTTP_HOST $http_host; # Remove this after upgrading to Debian 14 (forky)
+{% endif %}
 		more_set_headers 'Access-Control-Allow-Origin: *';
 	}
 }
