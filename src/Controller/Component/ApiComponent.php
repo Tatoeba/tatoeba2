@@ -129,7 +129,7 @@ class ApiComponent extends Component
             $isFirst = true;
             $numResults = 0;
             $result = null;
-            foreach ($query->enableBufferedResults(false) as $result) {
+            foreach ($query->disableBufferedResults() as $result) {
                 if (!$isFirst) {
                     echo ',';
                 }

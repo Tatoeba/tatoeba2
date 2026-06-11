@@ -88,7 +88,7 @@ class PairsExporter
     {
         $Links = FactoryLocator::get('Table')->get('Links');
         $query = $Links->find()
-            ->enableBufferedResults(false)
+            ->disableBufferedResults()
             ->select(['sentence_id', 'Sentences.text', 'translation_id', 'Translations.text'])
             ->where([
                 'Links.sentence_lang' => $this->config['from'],
