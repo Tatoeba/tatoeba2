@@ -23,8 +23,9 @@ use Cake\Database\Schema\TableSchemaInterface;
 
 class ContributionsStatsTable extends Table
 {
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('date', 'string');
         return $schema;
     }

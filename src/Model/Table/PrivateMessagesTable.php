@@ -31,8 +31,9 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class PrivateMessagesTable extends Table
 {
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('date', 'string');
         return $schema;
     }

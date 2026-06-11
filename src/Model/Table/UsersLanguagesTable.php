@@ -33,8 +33,9 @@ class UsersLanguagesTable extends Table
 {
     // TODO Reimplement the update of language stats
 
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('details', 'text');
         return $schema;
     }

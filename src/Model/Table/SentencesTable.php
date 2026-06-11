@@ -58,8 +58,9 @@ class SentencesTable extends Table
         return $association;
     }
 
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('text', 'text');
         return $schema;
     }

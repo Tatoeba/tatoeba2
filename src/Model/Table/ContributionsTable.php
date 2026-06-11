@@ -44,8 +44,9 @@ use Cake\I18n\FrozenTime;
  */
 class ContributionsTable extends Table
 {
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('text', 'text');
         return $schema;
     }

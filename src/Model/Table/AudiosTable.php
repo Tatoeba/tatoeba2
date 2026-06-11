@@ -35,8 +35,9 @@ class AudiosTable extends Table
 {
     const JOB_TYPE = 'AudioImport';
 
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('external', 'json');
         return $schema;
     }

@@ -41,8 +41,9 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('birthday', 'string');
         $schema->setColumnType('description', 'text');
         $schema->setColumnType('settings', 'json');
