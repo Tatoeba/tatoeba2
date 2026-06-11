@@ -18,6 +18,8 @@ class SentenceCommentTest extends TestCase {
         'app.Sentences',
     );
 
+    private $SentenceComment;
+
     public function setUp(): void {
         parent::setUp();
 

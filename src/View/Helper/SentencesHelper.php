@@ -673,8 +673,8 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displaySentenceText(
-        $sentenceId, $sentenceText, $isEditable = false,
-        $sentenceLang = '', $sentenceScript = '', $correctness,
+        $sentenceId, $sentenceText, $isEditable,
+        $sentenceLang, $sentenceScript, $correctness,
         $highlight
     ) {
         $classes = array(

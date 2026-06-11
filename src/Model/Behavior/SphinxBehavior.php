@@ -30,6 +30,7 @@ class SphinxBehavior extends Behavior
     private $_cached_options = null;
 
     private $max_matches = 1000; // assuming default Manticore value is used
+    private $settings;
 
     /**
      * Spinx client object
@@ -326,7 +327,7 @@ class SphinxBehavior extends Behavior
 
         foreach ($batchedByLang as $lang => $values) {
             $res = $this->runtime[$alias]['sphinx']->UpdateAttributes(
-                "${lang}_delta_index,${lang}_main_index",
+                "{$lang}_delta_index,{$lang}_main_index",
                 $attributes,
                 $values,
                 $isMVA

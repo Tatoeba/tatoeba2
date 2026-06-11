@@ -611,10 +611,10 @@ EOT;
         foreach ($languages as $lang => $name) {
             foreach (array('main', 'delta') as $type) {
                 $parent = array(
-                    "${lang}_main_src" => 'default',
-                    "${lang}_delta_src" => "${lang}_main_src"
+                    "{$lang}_main_src" => 'default',
+                    "{$lang}_delta_src" => "{$lang}_main_src"
                 );
-                $source = ($type == 'main') ? "${lang}_main_src" : "${lang}_delta_src";
+                $source = ($type == 'main') ? "{$lang}_main_src" : "{$lang}_delta_src";
                 $conf .= "
     # $name ($type)
     source $source : $parent[$source]
@@ -738,8 +738,8 @@ EOT;
 ";
                 // generate index for this pair
                 $index = ($type == 'main') ?
-                    "${lang}_main_index : common_index" :
-                    "${lang}_delta_index : ${lang}_main_index";
+                    "{$lang}_main_index : common_index" :
+                    "{$lang}_delta_index : {$lang}_main_index";
                 $conf .= "
     index $index
     {
@@ -752,7 +752,7 @@ EOT;
                     }
                 } else {
                     $conf .= "
-        killlist_target = ${lang}_main_index";
+        killlist_target = {$lang}_main_index";
                 }
                 $conf .= "
     }
@@ -768,8 +768,8 @@ index und_index : common_index
 
     ";
         foreach ($languages as $lang => $name) {
-            $conf .= "    local           = ${lang}_main_index\n";
-            $conf .= "    local           = ${lang}_delta_index\n";
+            $conf .= "    local           = {$lang}_main_index\n";
+            $conf .= "    local           = {$lang}_delta_index\n";
         }
 
         $conf .= "

@@ -42,7 +42,7 @@ if ($isSwitching) {
     <div id="switchList" ng-show="!isRefreshing">
 <?php
     if (!$list->isEmpty()) {
-        echo $this->element('licensing/list', compact($list));
+        echo $this->element('licensing/list', compact('list'));
     }
 ?>
     </div>

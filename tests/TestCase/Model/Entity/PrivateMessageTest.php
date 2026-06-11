@@ -7,6 +7,8 @@ use Cake\TestSuite\TestCase;
 
 class PrivateMessageTest extends TestCase
 {
+    private $PrivateMessage;
+
     public function setUp(): void
     {
         parent::setUp();

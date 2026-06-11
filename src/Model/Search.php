@@ -52,7 +52,7 @@ class Search {
             if (!is_null($filter)) {
                 foreach ($filter->compile() as $compiled) {
                     if (isset($compiled[1]) && is_string($compiled[1])) {
-                        $select .= ", ${compiled[1]} as ${compiled[0]}";
+                        $select .= ", {$compiled[1]} as {$compiled[0]}";
                         $compiled[1] = (int)!($compiled[2] ?? false);
                         unset($compiled[2]);
                     }

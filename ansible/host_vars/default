@@ -31,6 +31,7 @@ static_server_name: static.{{main_server_name}}
 static_server_root: /var/media/www-static/
 xcache_server_name: xcache.{{main_server_name}}
 xcache_server_root: /var/www-xcache/
+php_fpm_socket: /run/php/php8.2-fpm.sock
 
 
 # Variables for mysql database

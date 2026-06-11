@@ -82,7 +82,7 @@ class SentencesListsController extends AppController
         $allLists = $this->paginate();
 
         $this->set('allLists', $allLists);
-        $this->set('filter', $filter);
+        $this->set('filter', $filter ?? '');
     }
 
 
@@ -99,7 +99,7 @@ class SentencesListsController extends AppController
         $allLists = $this->paginate();
 
         $this->set('allLists', $allLists);
-        $this->set('filter', $filter);
+        $this->set('filter', $filter ?? '');
         $this->set('isCollaborative', true);
 
         $this->render('index');
@@ -368,7 +368,7 @@ class SentencesListsController extends AppController
         $userLists = $this->paginate();
 
         $this->set('userLists', $userLists);
-        $this->set('filter', $filter);
+        $this->set('filter', $filter ?? '');
         $this->set('userExists', true);
     }
 
@@ -508,60 +508,6 @@ class SentencesListsController extends AppController
         $listName = $this->SentencesLists->getNameForListWithId($listId);
         $this->set('listId', $listId);
         $this->set('listName', $listName);
-    }
-
-    /**
-     * Export to csv a list
-     *
-     * @return void
-     */
-
-    public function export_to_csv()
-    {
-        $exportId = $this->request->getData('insertId');
-        $translationsLang = $this->request->getData('TranslationsLang');
-        $listId = $this->request->getData('id');
-
-        if ($translationsLang === 'none') {
-            $translationsLang = null;
-        }
-
-        $list = $this->SentencesLists->getListWithPermissions(
-            $listId, CurrentUser::get('id')
-        );
-
-        if (!$list['Permissions']['canView']) {
-            $this->Flash->set(
-                __('You do not have permission to download this list.')
-            );
-            return $this->redirect(array('action' => 'index'));
-        }
-
-        $exportId = ($exportId === '1');
-        $withTranslation = ($translationsLang !== null);
-
-        $results = $this->SentencesLists->getSentencesAndTranslationsOnly(
-            $listId, $translationsLang
-        );
-
-        $this->viewBuilder()->setLayout('ajax');
-
-        // We specify which fields will be present in the csv.
-        // Order is important.
-        $fieldsList = array();
-        if ($exportId === true) {
-            array_push($fieldsList, 'id');
-        }
-        array_push($fieldsList, 'text');
-        if ($withTranslation === true) {
-            array_push($fieldsList, 'translation');
-        }
-
-        // send to the view
-        $this->set("listId", $listId);
-        $this->set("fieldsList", $fieldsList);
-        $this->set("translationsLang", $translationsLang);
-        $this->set("sentencesWithTranslation", $results);
     }
 
     public function choices() {

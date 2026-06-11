@@ -14,6 +14,10 @@ class TranscriptionsTableTest extends TestCase {
         'app.Users'
     );
 
+    private $AutoTranscr;
+    private $Fixtures;
+    private $Transcription;
+
     public function setUp(): void {
         parent::setUp();
         $this->Transcription = $this->fetchTable('Transcriptions');

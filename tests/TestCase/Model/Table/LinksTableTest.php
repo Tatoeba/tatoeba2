@@ -25,6 +25,8 @@ class LinksTableTest extends TestCase {
 		'app.ReindexFlags'
 	);
 
+	private $Link;
+
 	function setUp(): void {
 		parent::setUp();
 		$this->Link = $this->fetchTable('Links');

@@ -20,6 +20,10 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         'app.PrivateMessages',
     );
 
+    private $PrivateMessages;
+    private $Sentences;
+    private $task;
+
     public function setUp(): void
     {
         parent::setUp();

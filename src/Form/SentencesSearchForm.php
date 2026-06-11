@@ -331,11 +331,13 @@ class SentencesSearchForm extends Form
         $filter = $this->search->getFilter(WordCountFilter::class) ?? new WordCountFilter();
         try {
             $range = $before . $value . $after;
-            $filter->anyOf([$range])->and();
+            $filter->anyOf([$range]);
             $filter->compile(); // trigger validation
+            $filter->and();
             $this->search->setFilter($filter);
             return $value;
         } catch (InvalidValueException $e) {
+            $filter->anyOf([]); // clear invalid value
             return '';
         }
     }
@@ -420,9 +422,9 @@ class SentencesSearchForm extends Form
 
         /* Make sure trans_filter is applied at the end
            because it depends on other trans_* filters */
-        uksort($data, function ($k) {
-            return $k == 'trans_filter';
-        });
+        $trans_filter = $data['trans_filter'];
+        unset($data['trans_filter']);
+        $data['trans_filter'] = $trans_filter;
 
         /* Apply other criteria */
         foreach ($data as $key => $value) {

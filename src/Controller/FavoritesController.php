@@ -61,7 +61,7 @@ class FavoritesController extends AppController
             return;
         }
 
-        $filter = $this->request->getQuery('filter');
+        $filter = $this->request->getQuery('filter', '');
         $favorites = $this->paginate($this->Favorites->getPaginatedFavoritesOfUser($userId, $filter));
         $this->set('filter', $filter);
         $this->set('favorites', $favorites);

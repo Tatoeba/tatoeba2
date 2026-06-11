@@ -11,6 +11,8 @@ class SentencesSentencesListsTableTest extends TestCase {
         'app.Sentences'
     );
 
+    private $SentencesSentencesLists;
+
     function setUp(): void {
         parent::setUp();
         $this->SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');

@@ -13,6 +13,8 @@ class TranslationsTableTest extends TestCase {
         'app.Users'
     );
 
+    private $Translation;
+
     function setUp(): void {
         parent::setUp();
         $this->Translation = $this->fetchTable('Translations');

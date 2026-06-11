@@ -17,6 +17,8 @@ class VocabularyTableTest extends TestCase
         'app.UsersLanguages'
     ];
 
+    private $Vocabulary;
+
     public function setUp(): void
     {
         parent::setUp();

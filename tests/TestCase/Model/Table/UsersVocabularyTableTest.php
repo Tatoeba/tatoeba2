@@ -13,6 +13,8 @@ class UsersVocabularyTableTest extends TestCase
         'app.Users'
     ];
 
+    private $UsersVocabulary;
+
     public function setUp(): void
     {
         parent::setUp();

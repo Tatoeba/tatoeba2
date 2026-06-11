@@ -5,6 +5,8 @@ use App\Lib\Autotranscription;
 use Cake\TestSuite\TestCase;
 
 class AutotranscriptionTest extends TestCase {
+    private $AT;
+
     public function setUp(): void{
         parent::setUp();
         $this->AT = new Autotranscription();
@@ -19,9 +21,9 @@ class AutotranscriptionTest extends TestCase {
         $errors = array();
         $result = $this->AT->{$method}($sentence, $transcription, $errors);
         if ($true)
-            $this->assertTrue($result, "$method “${sentence}” → “${transcription}” should pass check, error is ".implode("\n", $errors));
+            $this->assertTrue($result, "$method “{$sentence}” → “{$transcription}” should pass check, error is ".implode("\n", $errors));
         else
-            $this->assertFalse($result, "$method “${sentence}” → “${transcription}” should NOT pass check");
+            $this->assertFalse($result, "$method “{$sentence}” → “{$transcription}” should NOT pass check");
     }
 
     function testFuriganaSyntax() {
@@ -80,7 +82,7 @@ class AutotranscriptionTest extends TestCase {
     }
 
     function assertTranscriptions($lang, $fromScript, $toScript, $transcriptions, $validity) {
-        $method = "${lang}_${fromScript}_to_${toScript}_validate";
+        $method = "{$lang}_{$fromScript}_to_{$toScript}_validate";
         foreach ($transcriptions as $from => $tos)
             foreach ($tos as $to)
                 $this->_assertCheck($method, $from, $to, $validity);

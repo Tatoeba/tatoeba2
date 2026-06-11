@@ -9,6 +9,8 @@ class FavoritesTableTest extends TestCase {
         'app.FavoritesUsers',
     );
 
+    private $Favorites;
+
     function setUp(): void {
         parent::setUp();
         $this->Favorites = $this->fetchTable('Favorites');

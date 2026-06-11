@@ -15,6 +15,8 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
         'app.SentencesSentencesLists',
     );
 
+    private $SentencesLists;
+
     function setUp(): void {
         parent::setUp();
         $this->UseCommandRunner();

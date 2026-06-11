@@ -40,6 +40,9 @@ class NotificationListener implements EventListenerInterface {
         ];
     }
 
+    private $Mailer;
+    private $Users;
+
     public function __construct() {
         $this->Mailer = $this->getMailer('Messaging');
         $this->Users = $this->fetchTable('Users');

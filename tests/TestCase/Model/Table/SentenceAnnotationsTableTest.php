@@ -14,6 +14,8 @@ class SentenceAnnotationsTableTest extends TestCase {
         'app.Sentences',
     );
 
+    private $SentenceAnnotation;
+
     function setUp(): void {
         parent::setUp();
         $this->SentenceAnnotation = $this->fetchTable('SentenceAnnotations');

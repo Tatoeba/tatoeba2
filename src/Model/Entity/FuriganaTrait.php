@@ -17,7 +17,7 @@ trait FuriganaTrait
         for($part = 0; $part < count($parts); $part += 3) {
             $ruby .= htmlentities($parts[$part]);
             if ($part+2 < count($parts)) {
-               $kanjis = preg_split('//u', $parts[$part+1], null, PREG_SPLIT_NO_EMPTY);
+               $kanjis = preg_split('//u', $parts[$part+1], -1, PREG_SPLIT_NO_EMPTY);
                $readings = explode('|', $parts[$part+2]);
                for ($i = 0; $i < count($readings); $i++) {
                    if ($i > 0 && empty($readings[$i])) {

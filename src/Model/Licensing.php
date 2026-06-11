@@ -7,6 +7,11 @@ use Cake\Datasource\Exception\InvalidPrimaryKeyException;
 class Licensing {
     use \Cake\ORM\Locator\LocatorAwareTrait;
 
+    public $SentencesLists;
+
+    private $Users;
+    private $QueuedJobs;
+
     public function __construct() {
         $this->Users          = $this->fetchTable('Users');
         $this->SentencesLists = $this->fetchTable('SentencesLists');

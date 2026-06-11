@@ -31,6 +31,9 @@ class SentencesSearchFormTest extends TestCase
         'app.UsersLanguages',
     ];
 
+    private $Form;
+    private $Search;
+
     public function setUp(): void {
         parent::setUp();
         $this->Form = new SentencesSearchForm();
@@ -151,12 +154,12 @@ class SentencesSearchFormTest extends TestCase
             [ ['word_count_min' => 'invalid'], ['WordCountFilter' => null],                                           'any'],
 
             [ ['word_count_max' => ''],        ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
-            [ ['word_count_max' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['-0'])->and()
-                                                                                            ->anyOf(['1-'])->and()],  '0'  ],
-            [ ['word_count_max' => '01'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['-1'])->and()
-                                                                                            ->anyOf(['1-'])->and()],  '1'  ],
-            [ ['word_count_max' => '42'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['-42'])->and()
-                                                                                            ->anyOf(['1-'])->and()],  '42' ],
+            [ ['word_count_max' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()
+                                                                                            ->anyOf(['-0'])->and()],  '0'  ],
+            [ ['word_count_max' => '01'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()
+                                                                                            ->anyOf(['-1'])->and()],  '1'  ],
+            [ ['word_count_max' => '42'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()
+                                                                                            ->anyOf(['-42'])->and()], '42' ],
             [ ['word_count_max' => 'invalid'], ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
 
             [ ['trans_filter' => 'exclude'],      ['tf' => (new TranslationFilterGroup())

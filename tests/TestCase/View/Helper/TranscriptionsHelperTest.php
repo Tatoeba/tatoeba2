@@ -28,6 +28,8 @@ class TranscriptionsHelperTest extends TestCase {
         'app.WallThreads'
     );
 
+    private $T;
+
     function setUp(): void {
         parent::setUp();
         $View = new View();

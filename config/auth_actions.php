@@ -32,7 +32,6 @@ return [
         'sentences_lists' => [
             'index',
             'show',
-            'export_to_csv',
             'of_user',
             'download',
             'search',

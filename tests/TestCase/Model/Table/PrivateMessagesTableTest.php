@@ -15,6 +15,8 @@ class PrivateMessageTest extends TestCase {
         'app.UsersLanguages'
     );
 
+    private $PrivateMessage;
+
     public function setUp(): void {
         parent::setUp();
         $this->PrivateMessage = $this->fetchTable('PrivateMessages');

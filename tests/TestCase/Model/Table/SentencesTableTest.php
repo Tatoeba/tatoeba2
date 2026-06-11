@@ -3,6 +3,7 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Test\TestCase\SearchMockTrait;
 use App\Model\Table\SentencesTable;
+use App\Model\Table\LinksTable;
 use App\Behavior\Sphinx;
 use Cake\Core\Configure;
 use Cake\I18n\FrozenTime;
@@ -37,6 +38,8 @@ class SentencesTableTest extends TestCase {
         'app.UsersSentences',
         'app.FavoritesUsers',
     );
+
+    private $Sentence;
 
     function setUp(): void {
         parent::setUp();
@@ -206,11 +209,12 @@ class SentencesTableTest extends TestCase {
         $lastSentence = $this->Sentence->find()->select(['max' => 'MAX(id)'])->first();
         $newlyCreatedSentenceId = $lastSentence->max + 1;
 
-        $this->Sentence->Links = $this->getMockBuilder(LinksTable::class)
+        $mock = $this->getMockBuilder(LinksTable::class)
             ->setMethods(['add', 'findDirectAndIndirectTranslationsIds'])
             ->getMock();
+        $this->Sentence->Links->setTarget($mock);
 
-        $this->Sentence->Links
+        $mock
             ->expects($this->once())
             ->method('add')
             ->with($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng');
@@ -407,11 +411,11 @@ class SentencesTableTest extends TestCase {
     }
 
     function assertLinksLanguage($sentenceId, $prefix, $expectedLang) {
-        $expectedLink = ["${prefix}_lang" => $expectedLang];
+        $expectedLink = ["{$prefix}_lang" => $expectedLang];
         $links = $this->Sentence->Links
             ->find()
-            ->select(["${prefix}_lang"])
-            ->where(["${prefix}_id" => $sentenceId])
+            ->select(["{$prefix}_lang"])
+            ->where(["{$prefix}_id" => $sentenceId])
             ->enableHydration(false)
             ->all();
         foreach ($links as $link) {

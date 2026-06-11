@@ -65,7 +65,7 @@ class Audio extends Entity
         }
     }
 
-    private function __getUserProfileUrl($username) {
+    private function getUserProfileUrl($username) {
         $url = [
             'controller' => 'user',
             'action' => 'profile',
@@ -93,7 +93,7 @@ class Audio extends Entity
                 if (!empty($this->user->audio_attribution_url)) {
                     return $this->user->audio_attribution_url;
                 } elseif ($this->user->username) {
-                    return $this->__getUserProfileUrl($this->user->username);
+                    return $this->getUserProfileUrl($this->user->username);
                 }
             } else {
                 return null;
@@ -111,7 +111,7 @@ class Audio extends Entity
         }
     }
 
-    private function __balancedTreePath($id) {
+    private function balancedTreePath($id) {
         $id = substr(sprintf('%04d', $id), -4);
         $pieces = [];
         do {
@@ -123,7 +123,7 @@ class Audio extends Entity
 
     protected function _getFilePath() {
        if ($this->id) {
-           $path = $this->__balancedTreePath($this->id);
+           $path = $this->balancedTreePath($this->id);
            $audioBasePath = Configure::read('Recordings.path');
            return $audioBasePath.DS.$path.DS.$this->id.'.mp3';
        } else {
@@ -139,7 +139,7 @@ class Audio extends Entity
        }
     }
 
-    private function __getAudioDownloadAction() {
+    private function getAudioDownloadAction() {
         $action = 'download';
         $request = Router::getRequest();
         if ($request) {
@@ -157,7 +157,7 @@ class Audio extends Entity
         } else {
             $url = [
                 'controller' => 'audio',
-                'action' => $this->__getAudioDownloadAction(),
+                'action' => $this->getAudioDownloadAction(),
                 $this->id
             ];
             return Router::url($url);

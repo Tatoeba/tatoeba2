@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 
 class LimitResultsBehaviorTest extends TestCase
 {
+    private $Sentences;
     private $query;
     private $behavior;
 

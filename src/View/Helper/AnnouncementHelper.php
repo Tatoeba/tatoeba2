@@ -17,7 +17,7 @@ class AnnouncementHelper extends Helper
     }
 
     private function getConfigAsTime(string $configKey) {
-        $time = $this->getConfig($configKey);
+        $time = $this->getConfig($configKey, '');
         if (strlen($time)) {
             try {
                 return new FrozenTime($time);

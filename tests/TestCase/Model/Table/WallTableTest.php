@@ -21,6 +21,8 @@ class WallTest extends TestCase {
         'app.UsersLanguages',
     );
 
+    private $Wall;
+
     public function setUp(): void {
         parent::setUp();
         $this->Wall = $this->fetchTable('Wall');

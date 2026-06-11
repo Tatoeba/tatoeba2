@@ -24,7 +24,7 @@ server {
 	location ~ \.php$ {
 		try_files $uri =404;
 		include /etc/nginx/fastcgi_params;
-		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
+		fastcgi_pass    unix:{{php_fpm_socket}};
 		fastcgi_index   index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 	}
@@ -45,7 +45,7 @@ server {
 		allow 127.0.0.1;
 		deny all;
 		include /etc/nginx/fastcgi_params;
-		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_pass unix:{{php_fpm_socket}};
 	}
 
 	location ~ /nginx_status {
@@ -77,7 +77,7 @@ server {
 	location ~ \.php$ {
 		try_files $uri =404;
 		include /etc/nginx/fastcgi_params;
-		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
+		fastcgi_pass    unix:{{php_fpm_socket}};
 		fastcgi_index   index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 	}
@@ -102,7 +102,7 @@ server {
 	location ~ \.php$ {
 		try_files $uri =404;
 		include /etc/nginx/fastcgi_params;
-		fastcgi_pass    unix:/var/run/php/tatoeba.sock;
+		fastcgi_pass    unix:{{php_fpm_socket}};
 		fastcgi_index   index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 		more_set_headers 'Access-Control-Allow-Origin: *';

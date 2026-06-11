@@ -11,6 +11,8 @@ class TagsSentencesTableTest extends TestCase {
         'app.TagsSentences'
     );
 
+    private $TagsSentences;
+
     function setUp(): void {
         parent::setUp();
         $this->TagsSentences = $this->fetchTable('TagsSentences');

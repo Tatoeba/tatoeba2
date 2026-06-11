@@ -29,7 +29,7 @@ trait BatchOperationTrait {
         }
     }
 
-    public function batchOperationNewORM($query, $operation) {
+    public function batchOperationNewORM($query, $operation, ...$extraArgs) {
         if (!$query->clause('order')) {
             $table = $query->getRepository();
             $query = $query->order($table->getAlias().'.'.$table->getPrimaryKey());
@@ -65,8 +65,7 @@ trait BatchOperationTrait {
         $entities = array();
         do {
             $entities = $query->all();
-            $args = func_get_args();
-            array_splice($args, 0, 2, [$entities]);
+            $args = [$entities, ...$extraArgs];
             $proceeded += call_user_func_array($operation, $args);
             $lastEnt = $entities->last();
             if ($lastEnt) {
@@ -81,7 +80,7 @@ trait BatchOperationTrait {
         return $proceeded;
     }
 
-    protected function batchOperation($modelName, $operation, $options) {
+    protected function batchOperation($modelName, $operation, $options, ...$extraArgs) {
         $model = $this->fetchTable($modelName);
         if (!isset($options['order'])) {
             $options['order'] = $model->getAlias().'.'.$model->getPrimaryKey();
@@ -123,8 +122,7 @@ trait BatchOperationTrait {
         $data = array();
         do {
             $data = $model->find('all', $options)->all()->toList();
-            $args = func_get_args();
-            array_splice($args, 0, 3, array($data, $modelName));
+            $args = [$data, $modelName, ...$extraArgs];
             $proceeded += call_user_func_array(array($this, $operation), $args);
             $lastRow = end($data);
             if ($lastRow) {

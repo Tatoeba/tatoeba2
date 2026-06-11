@@ -6,6 +6,8 @@ use App\View\AppView;
 
 class AppViewTest extends TestCase {
 
+    private $AppView;
+
     public function setUp(): void {
         parent::setUp();
         $this->AppView = new AppView();

@@ -9,7 +9,7 @@ if (isset($log->type)) {
 $sentenceLink = '';
 if ($log->sentence_id) {
     $sentenceId = $log->sentence_id;
-    $sentenceText = $log->text ? $log->text : ($log->sentence ? $log->sentence->text : null);
+    $sentenceText = $log->text ? $log->text : ($log->sentence ? $log->sentence->text : '');
     $sentenceLink = $this->ClickableLinks->buildSentenceLink($sentenceId, $sentenceText);
 }
 
@@ -19,7 +19,7 @@ $sentenceScript = $log->script;
 $translationLink = null;
 if ($log->translation_id) {
     $translationId = $log->translation_id;
-    $translationText = $log->translation ? $log->translation->text : null;
+    $translationText = $log->translation ? $log->translation->text : '';
     $translationLink = $this->ClickableLinks->buildSentenceLink($translationId, $translationText);
 }
 

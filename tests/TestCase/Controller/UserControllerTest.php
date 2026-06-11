@@ -24,7 +24,7 @@ class UserControllerTest extends IntegrationTestCase
     ];
 
     private $oldPasswords = [];
-
+    private $previousSalt;
     private $tmpFile = TMP.'UserControllerTest_tmpFile';
 
     public function setUp(): void {
