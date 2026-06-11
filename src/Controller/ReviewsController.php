@@ -114,10 +114,13 @@ class ReviewsController extends AppController
             return;
         }
 
-        $this->paginate = $this->UsersSentences->getPaginatedCorpusOf(
-            $userId, $correctnessLabel, $lang
-        );
-        $corpus = $this->paginate('UsersSentences');
+        $this->paginate = [
+            'limit' => 50,
+            'order' => ['modified' => 'DESC']
+        ];
+        $options = compact('userId', 'correctnessLabel', 'lang');
+        $query = $this->UsersSentences->find('paginated', $options);
+        $corpus = $this->paginate($query);
 
         $this->set('username', $username);
         $this->set('corpus', $corpus);

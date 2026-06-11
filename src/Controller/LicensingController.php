@@ -39,17 +39,20 @@ class LicensingController extends AppController {
 
     private function paginateAffected($listId) {
         $pagination = [
-            'contain' => [
-                'Sentences' => function($q) {
-                    return $q->select(['id', 'lang', 'text', 'correctness']);
-                },
-            ],
-            'conditions' => ['sentences_list_id' => $listId],
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => ['Sentences.created']
         ];
         $this->paginate = $pagination;
-        return $this->paginate('SentencesSentencesLists');
+        $query = $this
+            ->SentencesSentencesLists
+            ->find()
+            ->where(['sentences_list_id' => $listId])
+            ->contain([
+                'Sentences' => function($q) {
+                    return $q->select(['id', 'lang', 'text', 'correctness']);
+                }
+            ]);
+        return $this->paginate($query);
     }
 
     public function refresh_license_switch_list() {

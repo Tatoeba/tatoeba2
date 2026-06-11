@@ -46,16 +46,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 class WallController extends AppController
 {
     public $name = 'Wall' ;
-    public $paginate = [
-        'sortableFields' => ['WallThreads.last_message_date'],
-        'order' => ['WallThreads.last_message_date' => 'DESC'],
-        'limit' => 10,
-        'fields' => ['lft', 'rght'],
-        'conditions' => ['Wall.parent_id IS NULL'],
-        'contain' => [
-            'WallThreads' => ['fields' => ['last_message_date']]
-        ]
-    ];
 
     /**
      * to know who can do what
@@ -86,8 +76,18 @@ class WallController extends AppController
 
         $userId = $this->Auth->user('id');
 
+        $query = $this->Wall
+            ->find()
+            ->select(['lft', 'rght'])
+            ->where(['Wall.parent_id IS' => null])
+            ->contain(['WallThreads' => ['fields' => ['last_message_date']]]);
+        $settings = [
+            'sortableFields' => ['WallThreads.last_message_date'],
+            'order' => ['WallThreads.last_message_date' => 'DESC'],
+            'limit' => 10,
+        ];
         try {
-            $messageLftRght = $this->paginate();
+            $messageLftRght = $this->paginate($query, $settings);
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }
@@ -318,23 +318,16 @@ class WallController extends AppController
         $userId = $this->Wall->Users->getIdFromUsername($username);
 
         if (isset($userId)) {
-            $this->paginate = [
+            $query = $this->Wall
+                ->find()
+                ->select(['id', 'date', 'content', 'hidden', 'owner', 'modified'])
+                ->where(['owner' => $userId])
+                ->contain(['Users' => ['fields' => ['username', 'image']]]);
+            $settings = [
                 'order' => ['date' => 'DESC'],
                 'limit' => 20,
-                'fields' => [
-                    'id', 'date', 'content', 'hidden', 'owner', 'modified'
-                ],
-                'conditions' => [
-                    'owner' => $userId,
-                ],
-                'contain' => [
-                    'Users' => [
-                        'fields' => ['username', 'image']
-                    ]
-                ]
             ];
-
-            $messages = $this->paginate();
+            $messages = $this->paginate($query, $settings);
         }
 
         $this->set('userExists', (bool) $userId);

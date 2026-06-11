@@ -23,6 +23,7 @@ use App\Lib\LanguagesLib;
 use App\Model\Entity\Language;
 use App\Model\Entity\User;
 use App\Model\CurrentUser;
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
 use Cake\Database\Schema\TableSchemaInterface;
@@ -128,32 +129,19 @@ class UsersLanguagesTable extends Table
     }
 
 
-    public function getUsersForLanguage($lang)
+    public function findPaginated(Query $query, array $options)
     {
-        $result = array(
-            'conditions' => array(
-                'language_code' => $lang,
+        return $query
+            ->select(['of_user_id', 'level'])
+            ->where([
+                'language_code' => $options['lang'],
                 'Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
-            ),
-            'fields' => array(
-                'of_user_id',
-                'level',
-            ),
-            'contain' => array(
-                'Users' => array(
-                    'fields' => array(
-                        'id',
-                        'username',
-                        'image',
-                        'last_contribution'
-                    )
-                )
-            ),
-            'order' => array('UsersLanguages.level DESC', 'Users.last_contribution DESC'),
-            'limit' => 30
-        );
-
-        return $result;
+            ])
+            ->contain([
+                'Users' => [
+                    'fields' => ['id', 'username', 'image', 'last_contribution'],
+                ]
+            ]);
     }
 
 

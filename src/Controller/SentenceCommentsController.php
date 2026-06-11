@@ -47,20 +47,6 @@ class SentenceCommentsController extends AppController
     public $name = 'SentenceComments';
 
     public $paginate = [
-        'contain' => [
-            'Users' => [
-                'fields' => [
-                    'id',
-                    'username',
-                    'image',
-                ]
-            ],
-            'Sentences' => [
-                'Users' => [
-                    'fields' => ['id', 'username']
-                ]
-            ]
-        ],
         'limit' => 50,
         'order' => ['SentenceComments.id' => 'DESC'],
     ];
@@ -114,7 +100,8 @@ class SentenceCommentsController extends AppController
         }
 
         $finder = ['latest' => $options];
-        $latestComments = $this->paginateOrRedirect($this->SentenceComments, compact('finder'));
+        $query = $this->SentenceComments->find('paginated');
+        $latestComments = $this->paginateOrRedirect($query, compact('finder'));
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 
@@ -299,11 +286,10 @@ class SentenceCommentsController extends AppController
             return;
         }
 
-        $this->paginate['conditions'] = array(
-            'SentenceComments.user_id' => $userId
-        );
-
-        $userComments = $this->paginate();
+        $query = $this->SentenceComments
+            ->find('paginated')
+            ->where(['SentenceComments.user_id' => $userId]);
+        $userComments = $this->paginate($query);
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
@@ -331,12 +317,13 @@ class SentenceCommentsController extends AppController
         }
 
         $botsIds = Configure::read('Bots.userIds');
-        $conditions = ['Sentences.user_id' => $userId];
+        $query = $this->SentenceComments
+            ->find('paginated')
+            ->where(['Sentences.user_id' => $userId]);
         if (!empty($botsIds)) {
-            $conditions['SentenceComments.user_id NOT IN'] = $botsIds;
+            $query->where(['SentenceComments.user_id NOT IN' => $botsIds]);
         }
-        $this->paginate['conditions'] = $conditions;
-        $userComments = $this->paginate();
+        $userComments = $this->paginate($query);
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 

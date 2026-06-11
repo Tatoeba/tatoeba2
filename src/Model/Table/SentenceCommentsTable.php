@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
@@ -115,6 +116,20 @@ class SentenceCommentsTable extends Table
             ));
             $this->getEventManager()->dispatch($event);
         }
+    }
+
+    public function findPaginated(Query $query, array $options)
+    {
+        return $query->contain([
+            'Users' => [
+                'fields' => ['id', 'username', 'image']
+            ],
+            'Sentences' => [
+                'Users' => [
+                    'fields' => ['id', 'username']
+                ]
+            ]
+        ]);
     }
 
     /**

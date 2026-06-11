@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\RulesChecker;
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
@@ -165,34 +166,28 @@ class VocabularyTable extends Table
     }
 
     /**
-     * Returns array to use in $this->paginate, to retrieve all the vocabulary
-     * items in language $lang for which sentences are needed.
+     * Finder used to paginate all the vocabulary
+     * items in language $options['lang'] for which sentences are needed.
      * We assume that a vocabulary item needs sentences if there are less than
      * 10 sentences for it.
      * The vocabulary items are sorted be number of sentences.
      *
-     * @param $lang string
-     *
-     * @return array
+     * @param $options['lang'] string
      */
-    public function getPaginatedVocabulary($lang = null)
+    public function findPaginated(Query $query, array $options)
     {
-        $conditions = [
-            'numSentences <' => 10,
-            'numAdded >' => 0
-        ];
+        $query
+            ->select(['id', 'lang', 'text', 'numSentences', 'numAdded'])
+            ->where([
+                'numSentences <' => 10,
+                'numAdded >' => 0
+            ]);
+        $lang = $options['lang'];
         if (!empty($lang)) {
-            $conditions['lang'] = $lang;
+            $query->where(['lang' => $lang]);
         }
 
-        $result = [
-            'conditions' => $conditions,
-            'fields' => ['id', 'lang', 'text', 'numSentences', 'numAdded'],
-            'limit' => 50,
-            'order' => ['numSentences' => 'ASC']
-        ];
-
-        return $result;
+        return $query;
     }
 
     /**

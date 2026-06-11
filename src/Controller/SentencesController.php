@@ -476,12 +476,12 @@ class SentencesController extends AppController
             ->find('filteredTranslations', [
                 'translationLang' => $search->getData('to'),
             ])
+            ->applyOptions(compact('sphinx'))
             ->select($this->Sentences->fields())
             ->contain($this->Sentences->contain(['translations' => true]));
 
         $this->paginate = [
             'limit' => $limit,
-            'sphinx' => $sphinx,
         ];
 
         try {
@@ -637,38 +637,33 @@ class SentencesController extends AppController
 
         $this->paginate = array(
             'Sentences' => array(
-                'fields' => array(
-                    'id',
-                    'text',
-                    'lang',
-                    'user_id',
-                    'correctness'
-                ),
-                'contain' => array(
-                    'Transcriptions' => array(
-                        'Users' => array('fields' => array('username')),
-                    ),
-                    'Users' => array(
-                        'fields' => array('username')
-                    )
-                ),
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => ['modified' => 'DESC']
             )
         );
 
-        $conditions = $this->Sentences->find()->where(['user_id' => $userId]);
+        $query = $this->Sentences
+            ->find()
+            ->select(['id', 'text', 'lang', 'user_id', 'correctness'])
+            ->where(['user_id' => $userId])
+            ->contain([
+                'Transcriptions' => [
+                    'Users' => ['fields' => ['username']],
+                ],
+                'Users' => ['fields' => ['username']],
+            ]);
+
         // if the lang is specified then we also filter on the language
         if (!empty($lang)) {
-            $conditions = $conditions->where(['lang' => $lang]);
+            $query->where(['lang' => $lang]);
         }
 
         if ($onlyOriginal) {
-            $conditions = $conditions->where('based_on_id = 0');
+            $query->where('based_on_id = 0');
         }
 
         try {
-            $sentences = $this->paginate($conditions);
+            $sentences = $this->paginate($query);
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
         }

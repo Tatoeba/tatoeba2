@@ -212,41 +212,32 @@ class SentencesListsTable extends Table
     }
 
 
-    /**
-     * Returns lists.
-     *
-     * @param int $userId Id of the user.
-     *
-     * @return array
-     */
-    public function getPaginatedLists(
-        $search = null, $username = null, $visibility = null, $editableBy = null
-    ) {
-        $conditions = null;
+    public function findPaginated(Query $query, array $options)
+    {
+        $query->contain(['Users' => ['fields' => ['username']]]);
+
+        $search = $options['search'] ?? null;
         if (!empty($search)) {
-            $conditions['SentencesLists.name LIKE'] = "%$search%";
-        }
-        if (!empty($username)) {
-            $userId = $this->Users->getIdFromUsername($username);
-            $conditions['SentencesLists.user_id'] = $userId;
-        }
-        if (!empty($visibility)) {
-            $conditions['SentencesLists.visibility IN'] = $visibility;
-        }
-        if (!empty($editableBy)) {
-            $conditions['SentencesLists.editable_by'] = $editableBy;
+            $query->where(['SentencesLists.name LIKE' => "%$search%"]);
         }
 
-        return [
-            'conditions' => $conditions,
-            'contain' => [
-                'Users' => [
-                    'fields' => ['username']
-                ]
-            ],
-            'order' => ['created' => 'DESC'],
-            'limit' => 50
-        ];
+        $username = $options['username'] ?? null;
+        if (!empty($username)) {
+            $userId = $this->Users->getIdFromUsername($username);
+            $query->where(['SentencesLists.user_id' => $userId]);
+        }
+
+        $visibility = $options['visibility'] ?? null;
+        if (!empty($visibility)) {
+            $query->where(['SentencesLists.visibility IN' => $visibility]);
+        }
+
+        $editableBy = $options['editableBy'] ?? null;
+        if (!empty($editableBy)) {
+            $query->where(['SentencesLists.editable_by' => $editableBy]);
+        }
+
+        return $query;
     }
 
 
