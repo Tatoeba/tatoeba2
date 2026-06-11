@@ -58,7 +58,7 @@ class AudioController extends AppController
 
         $filesImported = $errors = [];
         $filesToImport = $this->Audios->getFilesToImport();
-        if ($lastImportJob) {
+        if ($lastImportJob && is_string($lastImportJob->failure_message)) {
             $result = unserialize($lastImportJob->failure_message);
             if ($result) {
                 $filesImported = $result['filesImported'];
