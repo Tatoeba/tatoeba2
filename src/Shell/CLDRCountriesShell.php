@@ -71,6 +71,15 @@ class CLDRCountriesShell extends Shell {
         'PS', /* Palestine */
     );
 
+    private $use_variant_names = array(
+        'TR', /* Turkey */
+    );
+
+    private $tatoeba_locale_to_cldr_locale = array(
+        'zh_CN' => 'zh_Hans_CN',
+        'zh_TW' => 'zh_Hant_TW',
+    );
+
     private $locale_path;
 
     public function initialize(): void {
@@ -98,7 +107,7 @@ class CLDRCountriesShell extends Shell {
         if (file_exists($file)) {
             echo "Using cached file $file\n";
         } else {
-            $url = 'https://raw.githubusercontent.com/unicode-org/cldr/master/'.$path;
+            $url = 'https://raw.githubusercontent.com/unicode-org/cldr-staging/main/production/'.$path;
             if (!$this->download_ldml($url, $file)) {
                 die("Error: the LDML file '$path' is required.\n");
             }
@@ -124,17 +133,25 @@ class CLDRCountriesShell extends Shell {
         $regions_pattern = $this->valid_regions_pattern($regions);
         $countries_trans = array();
         $ldml = simplexml_load_file($filename, 'SimpleXMLElement');
+        if (!isset($ldml->{'localeDisplayNames'}->{'territories'})) {
+            return $countries_trans;
+        }
         foreach ($ldml->{'localeDisplayNames'}->{'territories'}->{'territory'}
                  as $country_trans) {
             $translated_into = trim($country_trans->attributes()->{'type'});
             if (preg_match($regions_pattern, $translated_into) === 0 ||
                 (
                     !in_array($translated_into, $this->use_short_names) &&
+                    !in_array($translated_into, $this->use_variant_names) &&
                     $country_trans->attributes()->{'alt'}
                 ) ||
                 (
                     in_array($translated_into, $this->use_short_names) &&
                     $country_trans->attributes()->{'alt'} != 'short'
+                ) ||
+                (
+                    in_array($translated_into, $this->use_variant_names) &&
+                    $country_trans->attributes()->{'alt'} != 'variant'
                 )
                ) {
                 continue;
@@ -144,10 +161,35 @@ class CLDRCountriesShell extends Shell {
         return $countries_trans;
     }
 
+    private function build_locale_tree($lang) {
+        $locale_tree = array();
+        $parts = explode('_', $lang);
+        do {
+            array_unshift($locale_tree, implode('_', $parts));
+            array_pop($parts);
+        } while (count($parts));
+
+        return $locale_tree;
+    }
+
     private function get_localized_countries($lang) {
-        $lang_file = $this->get_ldml("common/main/$lang.xml");
+        $lang = $this->tatoeba_locale_to_cldr_locale[$lang] ?? $lang;
+        $locale_tree = $this->build_locale_tree($lang);
         $regions_file = $this->get_ldml("common/validity/region.xml");
-        return $this->countries_from_ldml_file($lang_file, $regions_file);
+
+        $countries = array();
+        foreach ($locale_tree as $locale) {
+            $lang_file = $this->get_ldml("common/main/$locale.xml");
+            $countries = array_merge(
+                $countries,
+                $this->countries_from_ldml_file($lang_file, $regions_file)
+            );
+        }
+
+        if (count($countries) == 0) {
+            die("No localized territories found for language $lang\n");
+        }
+        return $countries;
     }
 
     private function countries_array_to_php($countries) {
@@ -235,7 +277,8 @@ class CountriesList {
     private function merge_new_translations($new_trans, $locale) {
         $this->check_if_gettext_available('msgmerge');
         $po_file = $this->locale_path.$locale.DS.'countries.po';
-        exec("msgmerge --no-wrap --no-fuzzy-matching -o '$po_file' '$new_trans' '$po_file'", $output, $retval);
+        $pot_file = $this->locale_path.DS.'countries.pot';
+        exec("msgmerge --no-wrap --no-fuzzy-matching -o '$po_file' -C '$new_trans' '$po_file' '$pot_file'", $output, $retval);
         unlink($new_trans);
         if ($retval != 0) {
             die("Error: a problem occurred while generating '$po_file'.\n");
