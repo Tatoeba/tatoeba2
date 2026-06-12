@@ -521,7 +521,7 @@ class SentencesTable extends Table
         $res = $this->find()
                     ->select(['min' => 'min(id)', 'max' => 'max(id)'])
                     ->first();
-        if ($res) {
+        if ($res && $res->min && $res->max) {
             $potentialIds = [];
             for ($i = 0; $i < 100; $i++) {
                 $potentialIds[] = mt_rand($res->min, $res->max);
