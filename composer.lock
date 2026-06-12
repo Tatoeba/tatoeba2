@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66c2e3df9f956b59ea81375c751a0a6d",
+    "content-hash": "72af17d82a9dfe524612b63daf663c25",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -113,20 +113,20 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "4.5.11",
+            "version": "4.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "005df99489c1a7e0f4d3d39878389ddc733218fe"
+                "reference": "70b5c1097866f7f392d052ab4514c9705449fb3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/005df99489c1a7e0f4d3d39878389ddc733218fe",
-                "reference": "005df99489c1a7e0f4d3d39878389ddc733218fe",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/70b5c1097866f7f392d052ab4514c9705449fb3f",
+                "reference": "70b5c1097866f7f392d052ab4514c9705449fb3f",
                 "shasum": ""
             },
             "require": {
-                "cakephp/chronos": "^2.4.0-RC2",
+                "cakephp/chronos": "^2.4.0",
                 "composer/ca-bundle": "^1.2",
                 "ext-intl": "*",
                 "ext-json": "*",
@@ -222,7 +222,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-05-23T16:57:41+00:00"
+            "time": "2026-05-23T16:54:32+00:00"
         },
         {
             "name": "cakephp/chronos",
