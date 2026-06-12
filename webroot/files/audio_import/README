@@ -10,5 +10,5 @@ How to import audio recordings :
    (e.g. http://localhost:8080/eng/audio/import ).
 4. Execute the following cake command from the webserver to process the queued audio import job.
 ```bash
-sudo -u www-data bin/cake queue runworker # execute queued jobs (background jobs)
+sudo -u www-data bin/cake queue run # execute queued jobs (background jobs)
 ```
