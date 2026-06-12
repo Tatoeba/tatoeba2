@@ -60,8 +60,8 @@ def setup():
     # Running "composer install" twice is a workaround
     # virtualbox bug https://www.virtualbox.org/ticket/18776.
     # See also https://github.com/laravel/homestead/issues/1240.
-    run_cmd_or_fail("composer install --no-progress --no-interaction --no-ansi --no-plugins --no-scripts --ignore-platform-req=php")
-    run_cmd_or_fail("composer install --no-progress --no-interaction --no-ansi --ignore-platform-req=php")
+    run_cmd_or_fail("composer install --no-progress --no-interaction --no-ansi --no-plugins --no-scripts")
+    run_cmd_or_fail("composer install --no-progress --no-interaction --no-ansi")
     run_cmd_or_fail("bin/cake migrations migrate")
     run_cmd_or_fail("bin/cake migrations migrate -p Queue")
     run_cmd_or_fail("bin/cake languages_table reset")

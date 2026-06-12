@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'composer install --ignore-platform-req=php'
+        sh 'composer install'
         sh 'cp config/app_local.php.template config/app_local.php'
         sh 'sed -i "s/{{mysql_test_user}}/jenkins/"             config/app_local.php'
         sh 'sed -i "s/{{mysql_test_password}}/cakephp_jenkins/" config/app_local.php'
