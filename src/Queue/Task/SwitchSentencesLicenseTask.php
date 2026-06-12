@@ -41,6 +41,7 @@ class SwitchSentencesLicenseTask extends Task {
 
     private $sendReport = false;
     private $report = '';
+    private $Sentences;
 
     public function report($message) {
         if ($this->sendReport) {

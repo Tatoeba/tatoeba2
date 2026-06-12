@@ -37,6 +37,8 @@ class RefreshLicenseSwitchListTask extends Task {
  */
     public $failureMessage = '';
 
+    private $SentencesLists;
+
     public function addToList($sentences, $listId, $userId) {
         $this->SentencesLists->addSentencesToList($sentences, $listId, $userId);
         return count($sentences);
