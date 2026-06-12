@@ -39,11 +39,6 @@
         ]
     },
     "config": {
-        "audit": {
-            "ignore": {
-                "CVE-2023-29530": "Temporarily ignored to allow updating to CakePHP 4.* with PHP 7.4"
-            }
-        },
         "allow-plugins": {
             "cakephp/plugin-installer": true
         }
