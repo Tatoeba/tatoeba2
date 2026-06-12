@@ -16,8 +16,7 @@ class MappedKeysArray implements ArrayAccess
         }
     }
 
-    #[\ReturnTypeWillChange]
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void {
         $offset = ($this->keyMapper)($offset);
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -26,20 +25,17 @@ class MappedKeysArray implements ArrayAccess
         }
     }
 
-    #[\ReturnTypeWillChange]
-    public function offsetExists($offset) {
+    public function offsetExists($offset): bool {
         $offset = ($this->keyMapper)($offset);
         return isset($this->container[$offset]);
     }
 
-    #[\ReturnTypeWillChange]
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void {
         $offset = ($this->keyMapper)($offset);
         unset($this->container[$offset]);
     }
 
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset) {
+    public function offsetGet($offset): mixed {
         $offset = ($this->keyMapper)($offset);
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
