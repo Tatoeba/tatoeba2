@@ -49,7 +49,7 @@ class Licensing {
                 compact('listId', 'userId'),
                 ['group' => $userId]
             );
-            $this->QueuedJobs->wakeUpWorkers();
+            $this->QueuedJobs->WorkerProcesses->wakeUpWorkers();
         }
     }
 
@@ -72,7 +72,7 @@ class Licensing {
             ['group' => $userId]
         );
         if ($ok) {
-            $this->QueuedJobs->wakeUpWorkers();
+            $this->QueuedJobs->WorkerProcesses->wakeUpWorkers();
         }
         return $ok;
     }

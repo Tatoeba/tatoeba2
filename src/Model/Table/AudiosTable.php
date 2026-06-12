@@ -468,7 +468,7 @@ class AudiosTable extends Table
             self::JOB_TYPE,
             compact('author', 'replace')
         );
-        $this->QueuedJobs->wakeUpWorkers();
+        $this->QueuedJobs->WorkerProcesses->wakeUpWorkers();
         return $job;
     }
 }
