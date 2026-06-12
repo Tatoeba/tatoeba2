@@ -299,3 +299,12 @@ Cake\I18n\FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 Cake\I18n\FrozenTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::LONG];
 
 Cake\Validation\Validator::addDefaultProvider('appvalidation', 'App\Validation\Validation');
+
+/* Work around missing pcntl definitions in php-fpm context (not php-cli) */
+if (!defined('SIGUSR1')) {
+    define('SIGUSR1', 10);
+}
+
+if (!defined('SIGTERM')) {
+    define('SIGTERM', 15);
+}
