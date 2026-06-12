@@ -20,6 +20,18 @@
     update_cache: yes
   when: result is changed
 
+# The base debian box has /etc/systemd/system/set-grub-install-device.service,
+# a thing that is here to prevent "apt upgrade" from asking where to install
+# GRUB. That thing is designed to start just once during the very first boot.
+# However, for some reason, it sometimes fails with this error:
+#
+#   debconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable
+#
+# So we check if it already executed successfully, and it it did not,
+# we execute it again.
+- name: Make sure GRUB is configured
+  shell: systemctl is-enabled set-grub-install-device && systemctl is-failed set-grub-install-device && systemctl restart set-grub-install-device || true
+
 - name: Update all packages
   apt:
     upgrade: yes
