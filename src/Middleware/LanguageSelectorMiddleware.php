@@ -67,7 +67,7 @@ class LanguageSelectorMiddleware implements MiddlewareInterface
             }
         }
 
-        I18n::setLocale($lang);
+        $this->setLocale($lang);
         $request = $request->withParam('lang', $lang);
 
         $response = $handler->handle($request);
@@ -115,5 +115,22 @@ class LanguageSelectorMiddleware implements MiddlewareInterface
     private function unalias($lang) {
         $langInfo = $this->allLanguages[$lang] ?? null;
         return is_array($langInfo) ? $lang: $langInfo;
+    }
+
+    /**
+     * Set locale while working around PHP 8.2 fatal errors.
+     */
+    private function setLocale(string $locale) {
+        try {
+            // We use isLenient() here but pretty much any method
+            // of IntlDateFormatter would trigger the error
+            datefmt_create($locale)->isLenient();
+        } catch (\Error $e) {
+            // This locale does not support datetime formatting so fall back to
+            // English instead of crashing every time we try to format a date.
+            // Known affected locales: gos (Gronings), hoc (Ho)
+            \Cake\I18n\FrozenTime::setDefaultLocale('en');
+        }
+        I18n::setLocale($locale);
     }
 }

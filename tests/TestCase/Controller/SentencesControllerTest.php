@@ -46,6 +46,7 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/en/sentences/show/1', null, true ],
             [ '/en/sentences/show/1', 'contributor', true ],
             [ '/en/sentences/show/1', 'admin', true ],
+            [ '/gos/sentences/show/1', null, true ],
             [ '/en/sentences/show', null, 302 ],
             [ '/en/sentences/show/random', null, 302 ],
             [ '/en/sentences/show/fra', null, true ], // no redirect because Search.enabled = false
