@@ -232,14 +232,16 @@ class ClickableLinksHelper extends AppHelper
      */
     public function buildSentenceLink($sentenceId, $sentenceText = null)
     {
-        $tooltipTag = $this->Html->tag(
-            'md-tooltip',
-            $this->_View->safeForAngular(h($sentenceText)),
-            ['ng-cloak']
-        );
-        $linkText = $this->Pages->formatSentenceIdWithSharp($sentenceId);
+        if (!is_null($sentenceText)) {
+            $tooltipTag = $this->Html->tag(
+                'md-tooltip',
+                $this->_View->safeForAngular(h($sentenceText)),
+                ['ng-cloak']
+            );
+        }
+        $linkText = h($this->Pages->formatSentenceIdWithSharp($sentenceId));
         return $this->Html->link(
-            h($linkText).$tooltipTag,
+            h($linkText).($tooltipTag ?? ''),
             array(
                 'controller' => 'sentences',
                 'action' => 'show',

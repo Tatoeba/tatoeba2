@@ -30,4 +30,11 @@ class ClickableLinksHelperTest extends TestCase
         $result = $this->ClickableLinksHelper->buildSentenceLink(123, "An example sentence.");
         $this->assertSame($expected, $result);
     }
+
+    public function testBuildSentenceLink_noText(): void
+    {
+        $expected = '<a href="/sentences/show/123">#123</a>';
+        $result = $this->ClickableLinksHelper->buildSentenceLink(123, null);
+        $this->assertSame($expected, $result);
+    }
 }
