@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-01 15:38+0000\n"
+"POT-Creation-Date: 2026-06-11 06:17+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Prasanta Hembram <Prasantahembram720@gmail.com>, 2025\n"
 "Language-Team: Santali (https://app.transifex.com/tatoeba/teams/28284/sat/)\n"
@@ -21,27 +21,27 @@ msgstr ""
 "Language: sat\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n == 2 ? 1 : 2;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L847
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L795
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "ᱵᱷᱩᱞ: {username} ᱥᱮᱞᱮᱫ ᱠᱟᱫ ᱟᱹᱭᱟᱹᱛ ᱠᱚ ᱵᱟᱝᱯᱟᱹᱛᱤᱭᱟᱣᱜ ᱞᱮᱠᱷᱟ ᱪᱤᱱᱦᱟᱹ ᱮᱢ ᱵᱟᱭ ᱜᱟᱱ "
 "ᱞᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L852
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L800
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "{username} ᱮ ᱥᱮᱞᱮᱫ ᱠᱟᱫ ᱡᱷᱚᱛᱚ ᱟᱹᱭᱟᱹᱛ ᱠᱚ ᱵᱟᱝᱯᱟᱹᱛᱤᱭᱟᱣᱜ ᱞᱮᱠᱷᱟ ᱪᱤᱱᱦᱟᱹ ᱠᱟᱜᱼᱟ ᱥᱮ ?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "ᱥᱟᱰᱮ ᱞᱟᱫᱮ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ : ᱵᱷᱵᱷᱟᱨᱤᱭᱟᱹ “{author}” ᱵᱟᱭ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L370
 msgid "Invalid file “{file}” ignored."
 msgstr "ᱵᱷᱩᱞ ᱨᱮᱫ “{file}” ᱮᱨᱮᱲ ᱜᱤᱰᱤ ᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L389
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
@@ -49,20 +49,20 @@ msgstr ""
 "“{author}”  ᱮᱱᱮᱢ ᱠᱟᱫ ᱥᱟᱰᱮ {sentenceId} ᱟᱹᱲᱟᱹ ᱞᱟᱹᱜᱤᱫ ᱵᱟᱭ ᱵᱚᱫᱚᱞ ᱞᱮᱱᱟ ᱺ ᱱᱩᱭ "
 "ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱴᱷᱮᱱ ᱢᱤᱫᱴᱟᱹᱝ ᱠᱷᱚᱱ ᱰᱷᱮᱨ ᱥᱟᱰᱮ ᱢᱮᱱᱟᱜ ᱠᱟᱫᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L404
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 "ᱰᱟᱴᱟᱵᱮᱥ ᱵᱷᱤᱛᱤᱨ ᱨᱮ {sentenceId}ᱟᱹᱭᱟᱹᱛ ᱞᱟᱹᱜᱤᱫ ᱛᱮ ᱥᱟᱰᱮ ᱥᱟᱧᱪᱟᱣ ᱵᱟᱭ ᱜᱚᱱᱚᱜ ᱠᱟᱱᱟ ᱾ "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L413
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L415
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "ᱨᱮᱫ “{file}” ᱟᱹᱜᱩ ᱞᱟᱹᱜᱤᱫ “{dir}” ᱛᱮᱭᱟᱨ ᱨᱮ ᱵᱷᱩᱞ ᱦᱩᱭᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L424
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "ᱛᱷᱚᱠ “{dir}” ᱨᱮ ᱨᱮᱫ “{file}” ᱱᱚᱠᱚᱞ ᱨᱮ ᱵᱷᱩᱞ ᱦᱩᱭᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L432
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -70,88 +70,72 @@ msgstr ""
 "ᱨᱮᱫ “{file}” ᱫᱚ ᱨᱟᱹᱥ ᱞᱮᱠᱷᱟᱛᱮ ᱟᱹᱜᱩ ᱮᱱᱟ ᱢᱮᱱᱠᱷᱟᱱ ᱟᱹᱜᱩ ᱛᱷᱚᱠ ᱠᱷᱚᱱ ᱚᱪᱚᱜ ᱵᱟᱭ ᱜᱟᱱ "
 "ᱞᱮᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
+msgid "unhide"
+msgstr "ᱥᱚᱫᱚᱨ ᱢᱮ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L212
+msgid "hide"
+msgstr "ᱩᱠᱩ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L27
 msgid "Import recordings"
 msgstr "ᱨᱮᱠᱚᱰᱤᱝ ᱠᱚ ᱟᱹᱜᱩ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L77
 msgid "The following errors occurred during the last import."
 msgstr "ᱢᱮᱲᱟᱝᱟᱜ ᱟᱹᱜᱩ ᱡᱷᱚᱜ ᱱᱚᱶᱟ ᱠᱚ ᱵᱷᱩᱞ ᱦᱩᱭᱱᱟ ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L86
 msgid "Audio import status"
 msgstr "ᱥᱟᱰᱮ ᱟᱹᱜᱩ ᱫᱚᱥᱟ ᱠᱚ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L106
 msgid "Files detected"
 msgstr "ᱨᱮᱫ ᱠᱚ ᱧᱟᱢᱮᱱᱟ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
-msgid "Audio author"
-msgstr "ᱥᱟᱰᱮ ᱚᱱᱚᱞᱤᱭᱟᱹ"
-
-#. audio save button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
-msgid "Save"
-msgstr "ᱥᱟᱺᱪᱟᱣ"
-
-#. audio deletion button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "ᱢᱮᱴᱟᱣ ᱢᱮ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
-msgid "Correctness"
-msgstr "ᱴᱷᱤᱠ ᱠᱚ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L188
-msgid "Submit"
-msgstr "ᱡᱚᱢᱟᱭ ᱢᱮ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L28
 msgid "Import sentences"
 msgstr "ᱟᱭᱟᱛ ᱟᱹᱜᱩᱭ ᱢᱮ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L36
 msgid "Single sentences"
 msgstr "ᱢᱤᱫᱴᱟᱹᱝ ᱟᱭᱟᱛ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L89
 msgid "Language of the sentences:"
 msgstr "ᱟᱹᱭᱟᱹᱛ ᱠᱚᱣᱟᱜ ᱯᱟᱹᱨᱥᱤ ᱠᱚ:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L99
 msgid "File:"
 msgstr "ᱨᱮᱫ:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L106
 msgid "Numeric user id: "
 msgstr "ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱟᱜ ᱱᱚᱢᱵᱚᱨ id: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L111
 msgid "import"
 msgstr "ᱟᱹᱜᱩ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L75
 msgid "Sentences and translations"
 msgstr "ᱟᱹᱭᱟᱹᱛ ᱠᱚ ᱟᱨ ᱛᱚᱨᱡᱚᱢᱟ ᱠᱚ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L94
 msgid "Language of the translations:"
 msgstr "ᱛᱚᱨᱡᱚᱢᱟ ᱠᱚᱣᱟᱜ ᱯᱟᱹᱨᱥᱤ :"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L77
 msgid "Mark as unreliable"
 msgstr "ᱵᱟᱝᱯᱟᱹᱛᱤᱭᱟᱣᱜ ᱞᱮᱠᱷᱟ ᱪᱤᱱᱦᱟᱹ ᱠᱟᱜ ᱢᱮ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L80
 msgid ""
 "Are you sure you want to mark all the sentences of this member as "
 "unreliable?"
@@ -159,109 +143,115 @@ msgstr ""
 "ᱟᱢ ᱡᱷᱚᱛᱚ ᱞᱮᱠᱷᱟᱛᱮ ᱱᱚᱶᱟ ᱫᱳᱞ ᱨᱤᱱ ᱡᱷᱚᱛᱚ ᱟᱹᱭᱟᱹᱛ ᱠᱚ ᱵᱟᱝᱯᱟᱹᱛᱤᱭᱟᱣᱜ ᱞᱮᱠᱷᱟ ᱪᱤᱱᱦᱟᱹ "
 "ᱥᱟᱱᱟᱢ ᱠᱟᱱᱟ ᱥᱮ ?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L136
+msgid "Delete"
+msgstr "ᱢᱮᱴᱟᱣ ᱢᱮ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L54
 msgid "Are you sure you want to delete user #{number}?"
 msgstr "ᱪᱮᱫ ᱟᱢ ᱜᱚᱴᱟ ᱢᱮᱱᱟᱢᱼᱟ ᱱᱩᱭ ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ #{number} ᱢᱮᱴᱟᱣ ᱞᱟ.ᱜᱤᱫ ᱛᱮ?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L62
 msgid "List Users"
 msgstr "ᱵᱮᱵ ᱛᱟᱹᱞᱠᱟᱹ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L66
 msgid "Profile"
 msgstr "ᱢᱚᱦᱲᱟ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L83
 msgid "Edit User"
 msgstr "ᱵᱮᱵ ᱥᱟᱯ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L86
 msgid "Profile picture"
 msgstr "ᱯᱨᱚᱯᱷᱟᱭᱤᱞ ᱪᱤᱛᱟᱹᱨ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L89
 msgid "Remove picture"
 msgstr "ᱪᱤᱛᱟᱹᱨ ᱚᱪᱚᱜᱽ ᱢᱮ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L102
 msgid "No picture set"
 msgstr "ᱪᱤᱛᱟᱹᱨ ᱥᱮᱴ ᱵᱟᱹᱱᱩᱜᱼᱟ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L109
 msgid "Id"
 msgstr "Id"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L110
 msgid "Username"
 msgstr "ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱧᱩᱛᱩᱢ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L111
 msgid "Lang"
 msgstr "ᱯᱟᱹᱨᱥᱤ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L114
 msgid "Group"
 msgstr "ᱫᱳᱞ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L117
 msgid "Spamdexing status"
 msgstr "ᱥᱯᱟᱢᱰᱮᱠᱥᱤᱝ ᱥᱴᱮᱴᱟᱥ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L119
 msgid "Unknown (links restricted)"
 msgstr "ᱵᱟᱝ ᱵᱟᱰᱟᱭ (ᱞᱤᱝᱠ ᱫᱚ ᱵᱟᱨᱚᱱ ᱟᱠᱟᱱᱟ)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L120
 msgid "Verified (links not restricted)"
 msgstr "ᱯᱩᱥᱴᱟᱹᱣ ᱟᱠᱟᱱᱟ (ᱞᱤᱝᱠ ᱵᱟᱝ ᱵᱟᱨᱚᱱ ᱟᱠᱟᱱᱟ)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L121
 msgid "Legacy (links not restricted)"
 msgstr "ᱞᱮᱜᱮᱥᱤ (ᱞᱤᱝᱠ ᱵᱟᱝ ᱵᱟᱨᱚᱱ ᱟᱠᱟᱱᱟ)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L131
 msgid "Level"
 msgstr "ᱛᱟᱦ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L139
 msgid "Name"
 msgstr "ᱧᱩᱛᱩᱢ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L142
 msgid "Country"
 msgstr "ᱫᱤᱥᱚᱢ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L147
 msgid "Homepage"
 msgstr "ᱚᱲᱟᱜᱥᱟᱦᱴᱟ"
 
 #. @translators toggle button to show form field (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L153
 msgid "Show"
 msgstr "ᱫᱮᱠᱷᱟᱣ  ᱢᱮ"
 
 #. @translators toggle button to hide form field (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L154
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L155
 msgid "Hide"
 msgstr "ᱩᱠᱩ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L157
 msgid "Description"
 msgstr "ᱵᱤᱵᱨᱚᱬ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L164
 msgid "Send notifications"
 msgstr "ᱠᱷᱚᱵᱚᱨ ᱠᱚ ᱠᱩᱞ ᱢᱮ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L169
 msgid "Profile is public"
 msgstr "ᱯᱨᱚᱯᱷᱟᱭᱤᱞ ᱫᱚ ᱥᱟᱱᱟᱢ ᱦᱚᱲ ᱞᱟᱹᱜᱤᱫ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L180
 msgid "About spamdexing status"
 msgstr "ᱥᱯᱟᱢᱰᱮᱠᱥᱤᱝ ᱥᱴᱮᱴᱟᱥ ᱵᱟᱨᱮᱛᱮ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L182
 msgid ""
 "\"Unknown\" users cannot include any outbound link in their profile. In "
 "addition, when trying to post a sentence comment or wall post that includes "
@@ -275,7 +265,7 @@ msgstr ""
 "ᱡᱟᱹᱛᱤᱱ ᱦᱩᱭᱩᱜ ᱞᱟᱹᱠᱛᱤᱭᱟ᱾ ᱡᱩᱫᱤ ᱩᱱᱠᱩ ᱞᱟᱦᱟ ᱪᱟᱞᱟᱣ ᱞᱟᱹᱜᱤᱫ ᱠᱚ ᱵᱟᱪᱷᱟᱣᱟ, ᱥᱟᱱᱫᱮᱥ ᱫᱚ "
 "ᱯᱚᱥᱴ ᱦᱩᱭᱩᱜᱼᱟ ᱟᱨ ᱢᱚᱰᱮᱨᱮᱴᱚᱨ ᱠᱚ ᱢᱤᱫ ᱤ-ᱢᱮᱞ ᱠᱚ ᱵᱷᱮᱡᱟᱭᱟ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L183
 msgid ""
 "\"Verified\" and \"legacy\" users can include any link anywhere without "
 "restriction."
@@ -283,7 +273,7 @@ msgstr ""
 "\"ᱯᱩᱥᱴᱟᱹᱣ ᱟᱠᱟᱱ\" ᱟᱨ \"ᱞᱮᱜᱮᱥᱤ\" ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱠᱚ ᱵᱤᱱ ᱵᱟᱨᱚᱱ ᱛᱮ ᱡᱟᱦᱟᱸ ᱨᱮᱜᱮ ᱡᱟᱦᱟᱱ "
 "ᱞᱤᱝᱠ ᱠᱚ ᱥᱮᱞᱮᱫ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L184
 msgid ""
 "\"Legacy\" users created their account before this restriction was "
 "implemented."
@@ -291,10 +281,20 @@ msgstr ""
 "ᱱᱚᱣᱟ ᱵᱟᱨᱚᱱ ᱞᱟᱹᱜᱩᱜ ᱞᱟᱦᱟᱨᱮ \"ᱞᱮᱜᱮᱥᱤ\" ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱠᱚ ᱟᱠᱚᱣᱟᱜ ᱮᱠᱟᱣᱩᱱᱴ ᱠᱚ ᱵᱮᱱᱟᱣ "
 "ᱞᱮᱫᱟ᱾"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
-msgid "unhide"
-msgstr "ᱥᱚᱫᱚᱨ ᱢᱮ"
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/correctness.php#L57
+msgid "Submit"
+msgstr "ᱡᱚᱢᱟᱭ ᱢᱮ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L212
-msgid "hide"
-msgstr "ᱩᱠᱩ"
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L125
+msgid "Audio author"
+msgstr "ᱥᱟᱰᱮ ᱚᱱᱚᱞᱤᱭᱟᱹ"
+
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L132
+msgid "Save"
+msgstr "ᱥᱟᱺᱪᱟᱣ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/correctness.php#L32
+msgid "Correctness"
+msgstr "ᱴᱷᱤᱠ ᱠᱚ"

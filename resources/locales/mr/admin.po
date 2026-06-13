@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-01 15:38+0000\n"
+"POT-Creation-Date: 2026-06-11 06:17+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>, 2026\n"
 "Language-Team: Marathi (https://app.transifex.com/tatoeba/teams/28284/mr/)\n"
@@ -22,262 +22,50 @@ msgstr ""
 "Language: mr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L847
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L795
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "त्रुटी: {username} यांनी जोडलेली वाक्ये 'अविश्वसनीय' म्हणून चिन्हित करता आली"
 " नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L852
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L800
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "{username} यांची सर्व वाक्ये 'अविश्वसनीय' म्हणून चिन्हित केली."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
 msgid "Unable to import audio: user “{author}” not found."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L370
 msgid "Invalid file “{file}” ignored."
 msgstr "“{file}” ही अवैध फाइल दुर्लक्ष करण्यात आली."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L389
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L404
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L413
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L415
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "“{file}” ही फाइल आयात करण्यास “{dir}” ही डिरेक्टरी बनवता आली नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L424
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "“{file}” ही फाइल “{dir}” या डिरेक्टरीत कॉपी करता आली नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L432
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
 "“{file}” ही फाईल यशस्वीरीत्या आयात करण्यात आली, पण ती आयात डिरेक्टरीमधून "
 "हटवता आली नाही."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
-msgid "Import recordings"
-msgstr "रेकॉर्डिंग आयात करा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
-msgid "The following errors occurred during the last import."
-msgstr "याआधी आयात करताना खालील त्रुट्या आढळल्या."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
-msgid "Audio import status"
-msgstr "ऑडियो आयात करण्याची स्तिथी"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
-msgid "Files detected"
-msgstr "फाइली आढळल्या"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
-msgid "Audio author"
-msgstr "ऑडियो निर्माता"
-
-#. audio save button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
-msgid "Save"
-msgstr "सेव्ह करा"
-
-#. audio deletion button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "हटवा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
-msgid "Correctness"
-msgstr "अचूकपणा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L188
-msgid "Submit"
-msgstr "सबमिट करा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
-msgid "Import sentences"
-msgstr "वाक्ये आयात करा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
-msgid "Single sentences"
-msgstr "एकटी वाक्ये"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
-msgid "Language of the sentences:"
-msgstr "वाक्यांची भाषा:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
-msgid "File:"
-msgstr "फाइल:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
-msgid "Numeric user id: "
-msgstr "संख्यात्मक प्रयोक्ता आयडी:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
-msgid "import"
-msgstr "आयात करा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
-msgid "Sentences and translations"
-msgstr "वाक्ये व भाषांतरे"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
-msgid "Language of the translations:"
-msgstr "भाषांतरांची भाषा:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
-msgid "Mark as unreliable"
-msgstr "'अविश्वसनीय' म्हणून चिन्हित करा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
-msgid ""
-"Are you sure you want to mark all the sentences of this member as "
-"unreliable?"
-msgstr ""
-"आपल्याला नक्की या प्रयोक्त्याचे सर्व वाक्ये 'अविश्वसनीय' म्हणून चिन्हित "
-"करायचे आहेत का?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
-msgid "Are you sure you want to delete user #{number}?"
-msgstr "आपल्याला प्रयोक्ता क्र. {number} नक्की हटवायचा आहे का?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
-msgid "List Users"
-msgstr "प्रयोक्त्यांची यादी बनवा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
-msgid "Profile"
-msgstr "रूपरेखा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
-msgid "Edit User"
-msgstr "प्रयोक्ता संपादित करा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
-msgid "Profile picture"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
-msgid "Remove picture"
-msgstr "चित्र काढून टाका"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
-msgid "No picture set"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
-msgid "Id"
-msgstr "ओळख"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
-msgid "Username"
-msgstr "प्रयोक्ता नाव"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L111
-msgid "Lang"
-msgstr "भाषा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L114
-msgid "Group"
-msgstr "गट"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
-msgid "Spamdexing status"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
-msgid "Unknown (links restricted)"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
-msgid "Verified (links not restricted)"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
-msgid "Legacy (links not restricted)"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
-msgid "Level"
-msgstr "स्तर"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
-msgid "Name"
-msgstr "नाव"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L141
-msgid "Country"
-msgstr "देश"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L146
-msgid "Homepage"
-msgstr "मुखपृष्ठ"
-
-#. @translators toggle button to show form field (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L152
-msgid "Show"
-msgstr "दाखवा"
-
-#. @translators toggle button to hide form field (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L154
-msgid "Hide"
-msgstr "लपवा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L156
-msgid "Description"
-msgstr "वर्णन"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L163
-msgid "Send notifications"
-msgstr "अधिसूचना पाठवा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
-msgid "Profile is public"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
-msgid "About spamdexing status"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
-msgid ""
-"\"Unknown\" users cannot include any outbound link in their profile. In "
-"addition, when trying to post a sentence comment or wall post that includes "
-"outbound links, they are warned that their links must be legitimate. If they"
-" choose to continue, the message is posted and an e-mail is sent to "
-"moderators."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
-msgid ""
-"\"Verified\" and \"legacy\" users can include any link anywhere without "
-"restriction."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
-msgid ""
-"\"Legacy\" users created their account before this restriction was "
-"implemented."
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
 msgid "unhide"
@@ -286,3 +74,215 @@ msgstr "दाखवा"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L212
 msgid "hide"
 msgstr "लपवा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L27
+msgid "Import recordings"
+msgstr "रेकॉर्डिंग आयात करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L77
+msgid "The following errors occurred during the last import."
+msgstr "याआधी आयात करताना खालील त्रुट्या आढळल्या."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L86
+msgid "Audio import status"
+msgstr "ऑडियो आयात करण्याची स्तिथी"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L106
+msgid "Files detected"
+msgstr "फाइली आढळल्या"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L28
+msgid "Import sentences"
+msgstr "वाक्ये आयात करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L36
+msgid "Single sentences"
+msgstr "एकटी वाक्ये"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L89
+msgid "Language of the sentences:"
+msgstr "वाक्यांची भाषा:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L99
+msgid "File:"
+msgstr "फाइल:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L106
+msgid "Numeric user id: "
+msgstr "संख्यात्मक प्रयोक्ता आयडी:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L111
+msgid "import"
+msgstr "आयात करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L75
+msgid "Sentences and translations"
+msgstr "वाक्ये व भाषांतरे"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L94
+msgid "Language of the translations:"
+msgstr "भाषांतरांची भाषा:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L77
+msgid "Mark as unreliable"
+msgstr "'अविश्वसनीय' म्हणून चिन्हित करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
+"आपल्याला नक्की या प्रयोक्त्याचे सर्व वाक्ये 'अविश्वसनीय' म्हणून चिन्हित "
+"करायचे आहेत का?"
+
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L136
+msgid "Delete"
+msgstr "हटवा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L54
+msgid "Are you sure you want to delete user #{number}?"
+msgstr "आपल्याला प्रयोक्ता क्र. {number} नक्की हटवायचा आहे का?"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L62
+msgid "List Users"
+msgstr "प्रयोक्त्यांची यादी बनवा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L66
+msgid "Profile"
+msgstr "रूपरेखा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L83
+msgid "Edit User"
+msgstr "प्रयोक्ता संपादित करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L86
+msgid "Profile picture"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L89
+msgid "Remove picture"
+msgstr "चित्र काढून टाका"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L102
+msgid "No picture set"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L109
+msgid "Id"
+msgstr "ओळख"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L110
+msgid "Username"
+msgstr "प्रयोक्ता नाव"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L111
+msgid "Lang"
+msgstr "भाषा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L114
+msgid "Group"
+msgstr "गट"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L117
+msgid "Spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L119
+msgid "Unknown (links restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L120
+msgid "Verified (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L121
+msgid "Legacy (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L131
+msgid "Level"
+msgstr "स्तर"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L139
+msgid "Name"
+msgstr "नाव"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L142
+msgid "Country"
+msgstr "देश"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L147
+msgid "Homepage"
+msgstr "मुखपृष्ठ"
+
+#. @translators toggle button to show form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L153
+msgid "Show"
+msgstr "दाखवा"
+
+#. @translators toggle button to hide form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L155
+msgid "Hide"
+msgstr "लपवा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L157
+msgid "Description"
+msgstr "वर्णन"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L164
+msgid "Send notifications"
+msgstr "अधिसूचना पाठवा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L169
+msgid "Profile is public"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L180
+msgid "About spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L182
+msgid ""
+"\"Unknown\" users cannot include any outbound link in their profile. In "
+"addition, when trying to post a sentence comment or wall post that includes "
+"outbound links, they are warned that their links must be legitimate. If they"
+" choose to continue, the message is posted and an e-mail is sent to "
+"moderators."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L183
+msgid ""
+"\"Verified\" and \"legacy\" users can include any link anywhere without "
+"restriction."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L184
+msgid ""
+"\"Legacy\" users created their account before this restriction was "
+"implemented."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/correctness.php#L57
+msgid "Submit"
+msgstr "सबमिट करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L125
+msgid "Audio author"
+msgstr "ऑडियो निर्माता"
+
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L132
+msgid "Save"
+msgstr "सेव्ह करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/correctness.php#L32
+msgid "Correctness"
+msgstr "अचूकपणा"
