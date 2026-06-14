@@ -325,7 +325,7 @@ class AppController extends Controller
         }
     }
 
-    public function setOneMonthCookie(string $name, $value): void {
+    public function setOneMonthCookie(string $name, string $value): void {
         $cookie = Cookie::create($name, $value, ['expires' => new \DateTime('+1 month')]);
         $this->response = $this->response->withCookie($cookie);
     }
