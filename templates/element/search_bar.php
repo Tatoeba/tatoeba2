@@ -32,6 +32,9 @@ $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
 
 <md-toolbar id="search-bar-minimal" ng-controller="SearchBarController as ctrl" ng-cloak>
     <div class="md-toolbar-tools">
+
+    <language-icon lang="filters.from.code" title="filters.from.name" ng-if="filters.from"></language-icon>
+
     <?php
     echo $this->Form->create(null, [
         'layout' => 'column',

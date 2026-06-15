@@ -784,6 +784,10 @@ html[dir="rtl"] .search-bar-extra a:before {
     fill: initial; /* Don't color flags with currentColor */
 }
 
+.md-toolbar-tools .language-icon {
+    filter: drop-shadow(1px 1px 1.33px rgba(52,52,52,1));
+}
+
 
 /*
  *
