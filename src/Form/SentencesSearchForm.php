@@ -431,17 +431,6 @@ class SentencesSearchForm extends Form
             $keyCamel = Inflector::camelize($key);
             $setter = "setData$keyCamel";
             $this->_data[$key] = $this->$setter($value);
-
-            $strippedParam = ($this->_data[$key] === null
-                              || $this->_data[$key] === false
-                              || $this->_data[$key] === '');
-            if ($strippedParam && !empty($this->defaultCriteria[$key])) {
-                /* Using Router::url() to reconstruct a URL for the given data
-                 * strips out empty parameters, which would lead to a non-empty
-                 * default being applied instead of the empty non-default value.
-                 * So represent them by "any" instead. */
-                $this->_data[$key] = 'any';
-            }
         }
     }
 

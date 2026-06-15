@@ -186,7 +186,7 @@ echo $this->Form->create(null, [
                         'label' => '',
                         'options' => [
                             /* @translators: dropdown option of "Is orphan" field in search form */
-                            'any' => __x('orphan', 'Any'),
+                            '' => __x('orphan', 'Any'),
                             /* @translators: part of Any/No/Yes dropdown options in search form */
                             'no' => __('No'),
                             /* @translators: part of Any/No/Yes dropdown options in search form */
@@ -210,7 +210,7 @@ echo $this->Form->create(null, [
                         'label' => '',
                         'options' => array(
                             /* @translators: dropdown option of "Is unapproved" field in search form */
-                            'any' => __x('unapproved', 'Any'),
+                            '' => __x('unapproved', 'Any'),
                             'no' => __('No'),
                             'yes' => __('Yes'),
                         ),
