@@ -22,9 +22,8 @@
         .controller('SearchBarController', ['$scope', 'searchService', function($scope, search) {
             var vm = this;
 
-            vm.langFrom = '';
-            vm.langTo = '';
-            
+            $scope.filters = search.filters;
+
             vm.clearSearch = clearSearch;
             vm.swapLanguages = swapLanguages;
             vm.submit = submit;
@@ -32,24 +31,19 @@
             ///////////////////////////////////////////////////////////////////////////
 
             function clearSearch() {
-                vm.searchQuery = '';
+                $scope.filters.query = '';
                 angular.element(document.querySelector('#SentenceQuery')).focus();
             }
 
             function swapLanguages() {
-                var newLangFrom = vm.langTo;
-                var newLangTo = vm.langFrom;
-                vm.langFrom = newLangFrom;
-                vm.langTo = newLangTo;
+                var newFrom = $scope.filters.to;
+                var newTo = $scope.filters.from;
+                $scope.filters.from = newFrom;
+                $scope.filters.to = newTo;
             }
 
             function submit(form) {
-                var filters = {
-                    'query': vm.searchQuery,
-                    'from' : vm.langFrom,
-                    'to'   : vm.langTo
-                };
-                search.submit(form, filters);
+                search.submit(form, 'search');
             }
         }]);
 })();

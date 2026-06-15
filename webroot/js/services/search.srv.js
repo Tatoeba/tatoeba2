@@ -20,11 +20,14 @@
     angular
         .module('app')
         .factory('searchService', ['$httpParamSerializer', '$window', function($httpParamSerializer, $window) {
+            var filters = {};
+
             return {
+               filters: filters,
                submit: submit
             };
 
-            function submit(form, filters, target = 'search') {
+            function submit(form, target = 'search') {
                 if (!form.$valid) {
                     return;
                 }
