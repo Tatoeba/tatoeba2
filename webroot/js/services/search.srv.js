@@ -24,6 +24,8 @@
 
             return {
                filters: filters,
+               getActiveFilters: getActiveFilters,
+               isFilterActive: isFilterActive,
                submit: submit
             };
 
@@ -43,6 +45,22 @@
                           + $httpParamSerializer(params);
 
                 $window.location.href = url;
+            }
+
+            function isFilterActive(name) {
+                return !isFilterInactive(name, filters[name]);
+            }
+
+            function isFilterInactive(name, value) {
+                return value === null || value === ''
+                    || (name === 'word_count_min' && (value === '0' || value === '1'))
+                    || (name === 'trans_filter' && value === 'limit')
+                    || name === 'sort'
+                    || name === 'sort_reverse';
+            }
+
+            function getActiveFilters() {
+                return Object.keys(filters).filter(name => isFilterActive(name));
             }
         }]);
 })();

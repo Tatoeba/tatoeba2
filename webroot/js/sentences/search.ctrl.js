@@ -48,6 +48,7 @@
             var vm = this;
 
             $scope.filters = search.filters;
+            $scope.isFilterActive = search.isFilterActive;
 
             vm.submit = submit;
 
