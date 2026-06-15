@@ -24,6 +24,7 @@
 
             return {
                filters: filters,
+               setFilters: setFilters,
                getActiveFilters: getActiveFilters,
                isFilterActive: isFilterActive,
                submit: submit
@@ -62,5 +63,11 @@
             function getActiveFilters() {
                 return Object.keys(filters).filter(name => isFilterActive(name));
             }
+
+            function setFilters(newFilters) {
+                Object.keys(filters).forEach(function(name) {
+                    filters[name] = newFilters[name];
+                });
+            };
         }]);
 })();

@@ -562,4 +562,8 @@ class SentencesSearchForm extends Form
     public function isUsingDefaultCriteria() {
         return $this->getData() == $this->defaultCriteria;
     }
+
+    public function getDefaultCriteria() {
+        return $this->defaultCriteria;
+    }
 }

@@ -514,6 +514,7 @@ class SentencesController extends AppController
             'is_advanced_search',
             !is_null($this->request->getQuery('trans_to'))
         );
+        $this->set('defaultCriteria', $search->getDefaultCriteria());
     }
 
     public function advanced_search() {
