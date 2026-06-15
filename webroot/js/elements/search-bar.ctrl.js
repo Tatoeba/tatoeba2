@@ -22,13 +22,16 @@
         .controller('SearchBarController', ['$scope', 'searchService', function($scope, search) {
             var vm = this;
 
-            $scope.filters = search.filters;
-
             vm.clearSearch = clearSearch;
             vm.swapLanguages = swapLanguages;
             vm.submit = submit;
+            vm.syncWithOtherSearchForms = syncWithOtherSearchForms;
 
             ///////////////////////////////////////////////////////////////////////////
+
+            function syncWithOtherSearchForms() {
+                $scope.filters = search.filters;
+            }
 
             function clearSearch() {
                 $scope.filters.query = '';
@@ -43,7 +46,7 @@
             }
 
             function submit(form) {
-                search.submit(form, 'search');
+                search.submit(form, 'search', $scope.filters);
             }
         }]);
 })();

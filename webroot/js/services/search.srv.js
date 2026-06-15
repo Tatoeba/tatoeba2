@@ -27,12 +27,12 @@
                submit: submit
             };
 
-            function submit(form, target = 'search') {
+            function submit(form, target = 'search', sentFilters = filters) {
                 if (!form.$valid) {
                     return;
                 }
 
-                var params = angular.copy(filters);
+                var params = angular.copy(sentFilters);
                 ['from', 'to', 'trans_to'].forEach(function(filter) {
                     if (filter in params) {
                         params[filter] = params[filter] ? params[filter].code : '';

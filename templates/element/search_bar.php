@@ -39,6 +39,7 @@ $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
         'url' => false,
         'type' => 'get',
         'flex' => '',
+        'ng-init' => 'ctrl.syncWithOtherSearchForms()',
         'ng-submit' => 'ctrl.submit(ctrl.form)',
     ]);
     ?>
