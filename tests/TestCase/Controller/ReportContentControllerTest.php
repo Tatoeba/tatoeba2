@@ -88,6 +88,11 @@ class ReportContentControllerTest extends TestCase
         $this->_testFailGracefully();
     }
 
+    public function testWallPost_fail_emailInvalid() {
+        Configure::write('Tatoeba.communityModeratorEmail', '');
+        $this->_testFailGracefully();
+    }
+
     public function testSentenceComment() {
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
