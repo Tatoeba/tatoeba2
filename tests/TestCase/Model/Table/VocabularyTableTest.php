@@ -80,6 +80,28 @@ class VocabularyTableTest extends TestCase
         $this->assertNotFalse($result);
     }
 
+    public function testEditItem_updatesCurrentNumberOfSentences()
+    {
+        $this->enableMockedSearch([21, 11, 12], 3);
+        $vocab = $this->Vocabulary->get(1);
+        $this->Vocabulary->patchEntity($vocab, ['text' => 'have got the blues']);
+
+        $result = $this->Vocabulary->save($vocab);
+
+        $this->assertEquals(3, $result->numSentences);
+    }
+
+    public function testEditItem_updatesCurrentNumberOfSentences_withSearchError()
+    {
+        $this->enableMockedSearchError();
+        $vocab = $this->Vocabulary->get(1);
+        $this->Vocabulary->patchEntity($vocab, ['text' => 'have got the blues']);
+
+        $result = $this->Vocabulary->save($vocab);
+
+        $this->assertEquals(0, $result->numSentences);
+    }
+
     public function testEditItem_withExistingVocabulary()
     {
         $vocab = $this->Vocabulary->get(2);
