@@ -80,7 +80,7 @@ class ContentReport
         try {
             $this->getMailer('User')->send('content_report', [$this]);
             return true;
-        } catch (SocketException $e) {
+        } catch (\TypeError | SocketException $e) {
             Log::error(
                 "Unable to send content report email by {$this->getReporter()}"
                ." about {$this->getContentUrl()}: {$e->getMessage()}"

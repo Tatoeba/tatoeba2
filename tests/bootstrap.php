@@ -34,6 +34,8 @@ Configure::write('Search.enabled', false);
 // This can be activated for some specific tests
 Configure::write('AutoTranscriptions.enabled', false);
 
+Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
+
 // Avoid caching any data produced by tests
 Cache::disable();
 

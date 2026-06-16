@@ -65,8 +65,7 @@ class ReportContentControllerTest extends TestCase
         $this->assertMailCount(1);
     }
 
-    public function testWallPost_fail() {
-        $this->enableFaultyMailer();
+    private function _testFailGracefully() {
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
@@ -77,6 +76,16 @@ class ReportContentControllerTest extends TestCase
         $this->assertNoRedirect();
         $this->assertFlashMessageContains('Sorry');
         $this->assertMailCount(0);
+    }
+
+    public function testWallPost_fail_faultyMailer() {
+        $this->enableFaultyMailer();
+        $this->_testFailGracefully();
+    }
+
+    public function testWallPost_fail_emailMissing() {
+        Configure::delete('Tatoeba.communityModeratorEmail');
+        $this->_testFailGracefully();
     }
 
     public function testSentenceComment() {
