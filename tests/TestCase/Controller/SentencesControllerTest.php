@@ -61,10 +61,7 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/en/sentences/delete/1', 'admin', '/en/sentences/show/1' ],
             [ '/en/sentences/index', null, true ],
             [ '/en/sentences/index', 'contributor', true ],
-            [ '/en/sentences/search', null, true ],
-            [ '/en/sentences/search', 'contributor', true ],
-            [ '/en/sentences/search?query=hacer&from=spa&to=fra', null, true ],
-            [ '/en/sentences/search?query=hacer&from=spa&to=fra&sort=random', null, true ], // TODO no redirect because Search.enabled = false
+            [ '/en/sentences/search', null, true ], // "search disabled" page
             [ '/en/sentences/advanced_search', null, true ],
             [ '/en/sentences/advanced_search', 'contributor', true ],
             [ '/en/sentences/show_all_in/eng/none', null, true ],
@@ -479,6 +476,24 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testMarkUnreliable() {
         $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'admin', '/en/sentences/of_user/spammer');
+    }
+
+    public function searchAccessesProvider() {
+        return [
+            // url; user; is accessible or redirection url
+            [ '/en/sentences/search', null, true ],
+            [ '/en/sentences/search', 'contributor', true ],
+            [ '/en/sentences/search?query=hacer&from=spa&to=fra', null, true ],
+            [ '/en/sentences/search?query=hacer&from=spa&to=fra&sort=random', null, 302 ],
+        ];
+    }
+
+    /**
+     * @dataProvider searchAccessesProvider
+     */
+    public function testSearch($url, $user, $response) {
+        $this->enableMockedSearch([1,2,3], 3, false);
+        $this->assertAccessUrlAs($url, $user, $response);
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
