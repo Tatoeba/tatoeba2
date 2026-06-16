@@ -28,11 +28,6 @@ $userName = h($userName);
 
 if ($userExists === true) {
     $numberOfSentences = $this->Paginator->param('count');
-    $this->Paginator->options(
-        array(
-            'url' => $this->request->getParam('pass')
-        )
-    );
 
     if (empty($lang)) {
         $title = format(__("{user}'s sentences"), array('user' => $userName));
@@ -125,13 +120,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <h2><?= $this->Paginator->counter($title . ' ' . __("(total {{count}})")); ?></h2>
 
                 <?php
-                    if ($onlyOriginal) {
-                        $urlOptions = $this->Paginator->generateUrlParams(
-                            array('?' => array('only_original' => ''))
-                        );
-                        $this->Paginator->options(array('url' => $urlOptions));
-                    }
-                
                     $options = array(
                         /* @translators: sort option in the "Sentences of user" page */
                         array('param' => 'modified', 'direction' => 'desc', 'label' => __x('sentences', 'Most recently updated')),
