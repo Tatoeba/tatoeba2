@@ -124,11 +124,14 @@ class SentencesControllerTest extends TestCase
     private function readStreamedBody()
     {
         ob_start();
-        $body = $this->_getBodyAsString();
-        if (strlen($body) == 0 && ob_get_length()) {
-            $this->_response = $this->_response->withStringBody(ob_get_contents());
+        try {
+            $body = $this->_getBodyAsString();
+            if (strlen($body) == 0 && ob_get_length()) {
+                $this->_response = $this->_response->withStringBody(ob_get_contents());
+            }
+        } finally {
+            ob_end_clean();
         }
-        ob_end_clean();
     }
 
     /**
@@ -522,6 +525,16 @@ class SentencesControllerTest extends TestCase
             ],
         ];
         $this->assertJsonDocumentMatches($actual, $expected);
+    }
+
+    public function testSearch_error()
+    {
+        $error = "unknown local table(s) 'eng_main_index, eng_delta_index' in search request";
+        $this->enableMockedSearchError($error);
+        $this->expectException(\Cake\Http\Exception\InternalErrorException::class);
+        $this->expectExceptionMessage("Error from search engine: $error");
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello");
     }
 
     public function limitsProvider() {
