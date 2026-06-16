@@ -89,7 +89,7 @@ class ListsHelper extends AppHelper
             $this->displayRow(
                 $list->id,
                 $list->name,
-                $list->user->username,
+                $list->user ? $list->user->username : null,
                 $list->created,
                 $list->modified,
                 $list->numberOfSentences,
