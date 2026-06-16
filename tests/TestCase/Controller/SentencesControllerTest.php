@@ -49,7 +49,7 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/gos/sentences/show/1', null, true ],
             [ '/en/sentences/show', null, 302 ],
             [ '/en/sentences/show/random', null, 302 ],
-            [ '/en/sentences/show/fra', null, true ], // no redirect because Search.enabled = false
+            [ '/en/sentences/show/fra', null, true ], // "random sentence disabled" page
             [ '/en/sentences/show/9999999999', null, true ],
             [ '/en/sentences/go_to_sentence?sentence_id=2', null, '/en/sentences/show/2' ],
             [ '/en/sentences/go_to_sentence?sentence_id=2', 'contributor', '/en/sentences/show/2' ],
@@ -494,6 +494,11 @@ class SentencesControllerTest extends IntegrationTestCase {
     public function testSearch($url, $user, $response) {
         $this->enableMockedSearch([1,2,3], 3, false);
         $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    public function testRandomSentence() {
+        $this->enableMockedSearch([3], 1, false);
+        $this->assertAccessUrlAs('/en/sentences/show/fra', null, '/en/sentences/show/3');
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
