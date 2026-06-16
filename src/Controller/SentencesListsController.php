@@ -388,22 +388,6 @@ class SentencesListsController extends AppController
         $sentenceText = $this->request->getData('sentenceText');
         $sentenceLang = $this->request->getData('sentenceLang');
 
-        // This is meant to be temporary of course
-        if (strstr($this->referer(), '/add_new_sentence_to_list')) {
-            $Users = $this->fetchTable('Users');
-            $user = $Users->get($this->Auth->user('id'));
-            if ($user) {
-                $user->level = -1;
-                $Users->save($user);
-            }
-            $SentencesLists = $this->fetchTable('SentencesLists');
-            $list = $SentencesLists->get($listId);
-            if ($list) {
-                $list->visibility = 'private';
-                $SentencesLists->save($list);
-            }
-        }
-
         if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
             if ($sentenceLang == 'auto') {

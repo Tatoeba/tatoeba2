@@ -118,47 +118,6 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertRedirect("/en/sentences_lists/index");
     }
 
-    public function testAddSentenceToListAsUnproperBot_bans() {
-        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://tatoeba.org');
-        $username = 'kazuki';
-        $this->logInAs($username);
-        $this->configRequest([
-            'headers' => ['Referer' => 'https://tatoeba.org/eng/sentences_lists/add_new_sentence_to_list/']
-        ]);
-
-        $this->post('/en/sentences_lists/add_new_sentence_to_list/', [
-            'listId' => 1,
-            'sentenceText' => 'spam',
-        ]);
-
-        $users = $this->fetchTable('Users');
-        $user = $users->findByUsername($username)->first();
-        $this->assertEquals(-1, $user->level);
-        $lists = $this->fetchTable('SentencesLists');
-        $list = $lists->get(1);
-        $this->assertEquals('private', $list->visibility);
-    }
-
-    public function testAddSentenceToListAsNormalUser_doesNotBans() {
-        $username = 'kazuki';
-        $this->logInAs($username);
-        $this->configRequest([
-            'headers' => ['Referer' => 'https://dev.tatoeba.org/eng/sentences_lists/show/1']
-        ]);
-
-        $this->post('/en/sentences_lists/add_new_sentence_to_list/', [
-            'listId' => 1,
-            'sentenceText' => 'not a spam',
-        ]);
-
-        $users = $this->fetchTable('Users');
-        $user = $users->findByUsername($username)->first();
-        $this->assertNotEquals(-1, $user->level);
-        $lists = $this->fetchTable('SentencesLists');
-        $list = $lists->get(1);
-        $this->assertNotEquals('private', $list->visibility);
-    }
-
     public function save_name() {
         $this->ajaxPost('/en/sentences_lists/save_name', [
             'value' => 'New name',
