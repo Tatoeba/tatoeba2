@@ -496,6 +496,12 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
+    public function testSearchError() {
+        $this->enableMockedSearchError();
+        $this->assertAccessUrlAs('/en/sentences/search?query=hacer&from=spa&to=fra', null, true);
+        $this->assertResponseContains('An error occurred while performing the search');
+    }
+
     public function testRandomSentence() {
         $this->enableMockedSearch([3], 1, false);
         $this->assertAccessUrlAs('/en/sentences/show/fra', null, '/en/sentences/show/3');
