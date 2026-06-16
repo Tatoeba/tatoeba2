@@ -52,6 +52,21 @@ class ListsHelper extends AppHelper
         'Number'
     );
 
+    public function createdByText(?string $username): string
+    {
+        $listAuthor = $this->Html->link(
+            $username,
+            [
+                'controller' => 'user',
+                'action' => 'profile',
+            ]
+        );
+        return format(
+            __('created by {listAuthor}'),
+            compact('listAuthor')
+        );
+    }
+
     /**
      * display an array of lists in an HTML table
      *
@@ -167,20 +182,8 @@ class ListsHelper extends AppHelper
             </div>
 
             <div class="creator">
-            <?php
-            $link = $this->Html->link(
-                $listCreatorName,
-                array(
-                    "controller"=>"user",
-                    "action"=>"profile",
-                    $listCreatorName
-                )
-            );
-            echo format(__('created by {listAuthor}'),
-                         array('listAuthor' => $link));
-
-             ?>
-             </div>
+                <?= $this->createdByText($listCreatorName) ?>
+            </div>
          </td>
 
          <td>

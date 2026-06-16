@@ -46,18 +46,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div class="section md-whiteframe-1dp">
         <h2><?php echo __('About this list'); ?></h2>
         <?php
-        $linkToAuthorProfile = $this->Html->link(
-            $user['username'],
-            array(
-                'controller' => 'user',
-                'action' => 'profile',
-                $user['username']
-            )
-        );
-        $createdBy = format(
-            __('created by {listAuthor}'),
-            array('listAuthor' => $linkToAuthorProfile)
-        );
+        $createdBy = $this->Lists->createdByText($user->username);
         $createdDate = $this->Date->ago($list['created']);
         echo $this->Html->tag('p', $createdBy);
         echo $this->Html->tag('p', $createdDate);
