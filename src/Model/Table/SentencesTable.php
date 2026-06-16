@@ -37,6 +37,7 @@ use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\LangFilter;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
+use App\Search\Exception\SearchQueryException;
 use App\ORM\Association\BelongsToManyMany;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -639,16 +640,17 @@ class SentencesTable extends Table
         $sphinx = $search->asSphinx();
         $sphinx['limit'] = $numberOfIdWanted;
 
-        $results = $this
+        $query = $this
             ->find('all', [
                 'fields' => ['id'],
                 'sphinx' => $sphinx,
-            ])
-            ->all()
-            ->extract('id')
-            ->toArray();
+            ]);
 
-        return $results;
+        try {
+            return $query->all()->extract('id')->toArray();
+        } catch (SearchQueryException $e) {
+            return null;
+        }
     }
 
     /**

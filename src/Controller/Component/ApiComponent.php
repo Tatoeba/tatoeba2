@@ -1,10 +1,12 @@
 <?php
 namespace App\Controller\Component;
 
+use App\Search\Exception\SearchQueryException;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\Event\Event;
 use Cake\Http\CallbackStream;
+use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Response;
 use Cake\ORM\Query;
 use Cake\Routing\Router;
@@ -125,17 +127,26 @@ class ApiComponent extends Component
     public function paginatedResponse(Query $query, callable $cursorEndCb, callable $numResultsCb = null): Response
     {
         $stream = new CallbackStream(function () use ($query, $cursorEndCb, $numResultsCb) {
-            echo '{"data":[';
             $isFirst = true;
             $numResults = 0;
             $result = null;
-            foreach ($query->disableBufferedResults() as $result) {
-                if (!$isFirst) {
-                    echo ',';
+            try {
+                foreach ($query->disableBufferedResults() as $result) {
+                    if ($isFirst) {
+                        echo '{"data":[';
+                        $isFirst = false;
+                    } else {
+                        echo ',';
+                    }
+                    echo json_encode($result);
+                    $numResults++;
                 }
-                echo json_encode($result);
-                $isFirst = false;
-                $numResults++;
+            } catch (SearchQueryException $e) {
+                throw new InternalErrorException($e->getMessage());
+            }
+
+            if ($isFirst) {
+                echo '{"data":[';
             }
             echo ']';
 

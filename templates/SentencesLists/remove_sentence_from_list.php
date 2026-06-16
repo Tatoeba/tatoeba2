@@ -27,13 +27,7 @@
 ?>
 
 <div class="sentenceInList">
-<?php
-if (isset($removed)) {
-    echo '<em>';
-    __('Sentence successfully removed.');
-    echo '</em>';
-} else {
-    echo 'Uh oh, something wrong happened.';
-}
-?>
+<?php if (isset($removed)): ?>
+    <em><?= h(__('Sentence successfully removed.')) ?></em>
+<?php endif; ?>
 </div>

@@ -40,6 +40,8 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
             [ '/en/private_messages/show/1', 'contributor', '/en/private_messages/folder/Inbox' ],
             [ '/en/private_messages/show/1', 'advanced_contributor', true ],
             [ '/en/private_messages/show/1', 'admin', '/en/private_messages/folder/Inbox' ],
+            [ '/en/private_messages/write', null, '/en/users/login?redirect=%2Fen%2Fprivate_messages%2Fwrite' ],
+            [ '/en/private_messages/write', 'contributor', true ],
         ];
     }
 
@@ -69,7 +71,6 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
     }
 
     public function testSendMessage() {
-        Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->logInAs('contributor');
 
         $this->post('/en/private_messages/send', [
@@ -80,6 +81,6 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
         ]);
 
         $this->assertRedirect('/en/private_messages/folder/Sent');
-        $this->assertMailContainsHtml('https://example.net/private_messages/show/9');
+        $this->assertMailContainsHtml('http://localhost/private_messages/show/9');
     }
 }

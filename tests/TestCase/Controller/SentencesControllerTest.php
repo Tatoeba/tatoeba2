@@ -46,9 +46,10 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/en/sentences/show/1', null, true ],
             [ '/en/sentences/show/1', 'contributor', true ],
             [ '/en/sentences/show/1', 'admin', true ],
+            [ '/gos/sentences/show/1', null, true ],
             [ '/en/sentences/show', null, 302 ],
             [ '/en/sentences/show/random', null, 302 ],
-            [ '/en/sentences/show/fra', null, true ], // no redirect because Search.enabled = false
+            [ '/en/sentences/show/fra', null, true ], // "random sentence disabled" page
             [ '/en/sentences/show/9999999999', null, true ],
             [ '/en/sentences/go_to_sentence?sentence_id=2', null, '/en/sentences/show/2' ],
             [ '/en/sentences/go_to_sentence?sentence_id=2', 'contributor', '/en/sentences/show/2' ],
@@ -60,10 +61,7 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/en/sentences/delete/1', 'admin', '/en/sentences/show/1' ],
             [ '/en/sentences/index', null, true ],
             [ '/en/sentences/index', 'contributor', true ],
-            [ '/en/sentences/search', null, true ],
-            [ '/en/sentences/search', 'contributor', true ],
-            [ '/en/sentences/search?query=hacer&from=spa&to=fra', null, true ],
-            [ '/en/sentences/search?query=hacer&from=spa&to=fra&sort=random', null, true ], // TODO no redirect because Search.enabled = false
+            [ '/en/sentences/search', null, true ], // "search disabled" page
             [ '/en/sentences/advanced_search', null, true ],
             [ '/en/sentences/advanced_search', 'contributor', true ],
             [ '/en/sentences/show_all_in/eng/none', null, true ],
@@ -478,6 +476,41 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function testMarkUnreliable() {
         $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'admin', '/en/sentences/of_user/spammer');
+    }
+
+    public function searchAccessesProvider() {
+        return [
+            // url; user; is accessible or redirection url
+            [ '/en/sentences/search', null, true ],
+            [ '/en/sentences/search', 'contributor', true ],
+            [ '/en/sentences/search?query=hacer&from=spa&to=fra', null, true ],
+            [ '/en/sentences/search?query=hacer&from=spa&to=fra&sort=random', null, 302 ],
+        ];
+    }
+
+    /**
+     * @dataProvider searchAccessesProvider
+     */
+    public function testSearch($url, $user, $response) {
+        $this->enableMockedSearch([1,2,3], 3, false);
+        $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    public function testSearchError() {
+        $this->enableMockedSearchError();
+        $this->assertAccessUrlAs('/en/sentences/search?query=hacer&from=spa&to=fra', null, true);
+        $this->assertResponseContains('An error occurred while performing the search');
+    }
+
+    public function testRandomSentence() {
+        $this->enableMockedSearch([3], 1, false);
+        $this->assertAccessUrlAs('/en/sentences/show/fra', null, '/en/sentences/show/3');
+    }
+
+    public function testRandomSentenceError() {
+        $this->enableMockedSearchError();
+        $this->assertAccessUrlAs('/en/sentences/show/fra', null, true);
+        $this->assertResponseContains('An error occurred while fetching random sentences');
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {

@@ -38,4 +38,20 @@ trait SearchMockTrait
 
         Configure::write('Search.enabled', true);
     }
+
+    public function enableMockedSearchError(string $errorMessage = 'search engine error goes here')
+    {
+        $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
+                       ->setMethods(['Query', 'GetLastError'])
+                       ->getMock();
+        $client->expects($this->any())
+               ->method('Query')
+               ->will($this->returnValue(false));
+        $client->expects($this->any())
+               ->method('GetLastError')
+               ->will($this->returnValue($errorMessage));
+        Configure::write('Sphinx.client', $client);
+
+        Configure::write('Search.enabled', true);
+    }
 }

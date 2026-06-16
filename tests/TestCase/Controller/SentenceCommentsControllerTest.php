@@ -21,11 +21,6 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
-    public function setUp(): void {
-        parent::setUp();
-        Configure::write('App.fullBaseUrl', 'https://example.net');
-    }
-
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
@@ -41,10 +36,10 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
             [ '/en/sentence_comments/delete_comment/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fdelete_comment%2F1' ],
             [ '/en/sentence_comments/delete_comment/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fdelete_comment%2F1' ],
             [ '/en/sentence_comments/delete_comment/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fdelete_comment%2F1' ],
-            [ '/en/sentence_comments/delete_comment/1', 'kazuki', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/delete_comment/1', 'advanced_contributor', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/delete_comment/1', 'corpus_maintainer', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/delete_comment/1', 'admin', 'https://example.net/previous_page' ],
+            [ '/en/sentence_comments/delete_comment/1', 'kazuki', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/delete_comment/1', 'advanced_contributor', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/delete_comment/1', 'corpus_maintainer', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/delete_comment/1', 'admin', 'http://localhost/previous_page' ],
             [ '/en/sentence_comments/of_user/kazuki', null, true ],
             [ '/en/sentence_comments/of_user/kazuki', 'contributor', true ],
             [ '/en/sentence_comments/of_user/non_existing_user', null, true ],
@@ -54,17 +49,17 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
             [ '/en/sentence_comments/hide_message/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
             [ '/en/sentence_comments/hide_message/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
             [ '/en/sentence_comments/hide_message/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Fhide_message%2F1' ],
-            [ '/en/sentence_comments/hide_message/1', 'kazuki', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/hide_message/1', 'advanced_contributor', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/hide_message/1', 'corpus_maintainer', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/hide_message/1', 'admin', 'https://example.net/previous_page' ],
+            [ '/en/sentence_comments/hide_message/1', 'kazuki', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/hide_message/1', 'advanced_contributor', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/hide_message/1', 'corpus_maintainer', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/hide_message/1', 'admin', 'http://localhost/previous_page' ],
             [ '/en/sentence_comments/unhide_message/1', null, '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
             [ '/en/sentence_comments/unhide_message/1', 'spammer', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
             [ '/en/sentence_comments/unhide_message/1', 'inactive', '/en/users/login?redirect=%2Fen%2Fsentence_comments%2Funhide_message%2F1' ],
-            [ '/en/sentence_comments/unhide_message/1', 'kazuki', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/unhide_message/1', 'advanced_contributor', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/unhide_message/1', 'corpus_maintainer', 'https://example.net/previous_page' ],
-            [ '/en/sentence_comments/unhide_message/1', 'admin', 'https://example.net/previous_page' ],
+            [ '/en/sentence_comments/unhide_message/1', 'kazuki', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/unhide_message/1', 'advanced_contributor', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/unhide_message/1', 'corpus_maintainer', 'http://localhost/previous_page' ],
+            [ '/en/sentence_comments/unhide_message/1', 'admin', 'http://localhost/previous_page' ],
         ];
     }
 
@@ -73,7 +68,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
      */
     public function testControllerAccess($url, $user, $response) {
         $this->configRequest([
-            'headers' => ['Referer' => 'https://example.net/previous_page']
+            'headers' => ['Referer' => 'http://localhost/previous_page']
         ]);
         $this->assertAccessUrlAs($url, $user, $response);
     }
@@ -104,10 +99,9 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
     }
 
     public function testSave_notificationEmailLink() {
-        Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->logInAs('contributor');
         $this->saveSomething(9);
-        $this->assertMailContainsHtml('https://example.net/sentence_comments/show/9#comments');
+        $this->assertMailContainsHtml('http://localhost/sentence_comments/show/9#comments');
     }
 
     private function assertFlashMessageContains($expected, $message = '') {
@@ -118,7 +112,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         return [
             // post data, comment should be saved, number of emails sent
             'inbound link, no confirmation' => [
-                ['text' => 'Check this out https://example.net'], true, 0
+                ['text' => 'Check this out http://localhost'], true, 0
             ],
             'outbound link, needs confirmation' => [
                 ['text' => 'Check this out https://example.com'], false, 0
@@ -150,7 +144,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->logInAs('new_member');
 
         $this->post(
-            'https://example.net/en/sentence_comments/save',
+            'http://localhost/en/sentence_comments/save',
             ['sentence_id' => 15] + $postData
         );
 
@@ -169,7 +163,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
-        $this->put('https://example.net/en/sentence_comments/edit/6', $postData);
+        $this->put('http://localhost/en/sentence_comments/edit/6', $postData);
 
         if ($shouldSave) {
             $this->assertFlashMessageContains('Changes to your comment have been saved');

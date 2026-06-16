@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-01 15:38+0000\n"
+"POT-Creation-Date: 2026-06-11 06:17+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: mpQadir, 2025\n"
 "Language-Team: Saraiki (https://app.transifex.com/tatoeba/teams/28284/skr/)\n"
@@ -21,26 +21,26 @@ msgstr ""
 "Language: skr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L847
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L795
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "خرابی: {username} ولوں شامل تھئے جملیاں تے بے اعتباریاں دا نشان کائنی لڳ "
 "سڳا۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L852
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L800
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "{username}ولوں جمع تھئے سارے جملیاں تے بے اعتباریاں دا نشان لڳا"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "آڈیو امپورٹ کرݨ دے قابل کائنی: ورتݨ آلا  \"{author}\" کائنی لبھا۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L370
 msgid "Invalid file “{file}” ignored."
 msgstr "خراب فائل  “{file}” نظرانداز تھئی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L389
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
@@ -48,239 +48,27 @@ msgstr ""
 "جملہ {sentenceId} کیتے \"{author}\" ولوں ونگار آڈیو کوں وٹاوݨ دے قابل کائنی:"
 " ایں ورتݨ آلے دیاں ہک کنوں ودھ آڈیو ہن۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L404
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr "ڈیٹابیس وچ جملہ {sentenceId} کیتے آڈیو محفوظ کرݨ دے قابل کائنی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L413
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L415
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "فائل '\"{file}\" کوں امپورٹ کرݨ کیتے ڈائریکٹری \"{dir}\"  تخلیق کرݨ وچ "
 "ناکامی تھئی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L424
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "ڈائریکٹری \"{dir}\" وچ \"{file}\" فائل نقل کرݨ وچ نا کامی تھئی۔"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L432
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
 "فائل \"{file}\" کامیابی نال امپورٹ تھی ڳئی پر امپورٹ ڈائریکٹری کنوں کائنی "
 "ہٹائی ون٘ڄ سڳی۔"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L22
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L27
-msgid "Import recordings"
-msgstr "ریکاڈنگاں امپورٹ کرو"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L77
-msgid "The following errors occurred during the last import."
-msgstr "پچھلی امپورٹ دےدوران ایہ خرابیاں تھیاں:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
-msgid "Audio import status"
-msgstr "آڈیو امپورٹ حیثیت"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
-msgid "Files detected"
-msgstr "فائلاں دا کھوڄ لڳے"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L125
-msgid "Audio author"
-msgstr "آڈیو مصنف"
-
-#. audio save button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L132
-msgid "Save"
-msgstr "محفوظ کرو"
-
-#. audio deletion button on sentence page (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
-msgid "Delete"
-msgstr "مٹاؤ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
-msgid "Correctness"
-msgstr "درستی"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L188
-msgid "Submit"
-msgstr "جمع کرواؤ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
-msgid "Import sentences"
-msgstr "جملے امپورٹ کرو"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
-msgid "Single sentences"
-msgstr "کلہے جملے"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
-msgid "Language of the sentences:"
-msgstr "جملیاں دی زبان"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
-msgid "File:"
-msgstr "فائل:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
-msgid "Numeric user id: "
-msgstr "عددی ورتݨ آئی ڈی:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
-msgid "import"
-msgstr "درآمد کرو"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
-msgid "Sentences and translations"
-msgstr "جملے تے ترجمے"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
-msgid "Language of the translations:"
-msgstr "ترجمیاں دی زبان:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L77
-msgid "Mark as unreliable"
-msgstr "نشان لاؤ جو اعتماد لائق کائنی"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L80
-msgid ""
-"Are you sure you want to mark all the sentences of this member as "
-"unreliable?"
-msgstr ""
-"بھلا تہاکوں پک ہے ججو تساں ایں رکن دے سارے جملیاں تے بے اعتبارے ہووݨ دا نشان"
-" لاوݨ چاہندے ہو؟"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
-msgid "Are you sure you want to delete user #{number}?"
-msgstr "بھلا تہاکوں پک ہے جو تساں ورتݨ آلے #{number} کوں مٹاوݨ چاہندے ہو؟"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
-msgid "List Users"
-msgstr "ورتݨ آلیاں دی تندیر"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
-msgid "Profile"
-msgstr "پروفائل"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
-msgid "Edit User"
-msgstr "ورتݨ آلیاں وچ تبدیلی کرو"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
-msgid "Profile picture"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L89
-msgid "Remove picture"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
-msgid "No picture set"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L109
-msgid "Id"
-msgstr "آئی ڈی"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
-msgid "Username"
-msgstr "ورتݨ ناں"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L111
-msgid "Lang"
-msgstr "زبان"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L114
-msgid "Group"
-msgstr "گروپ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L117
-msgid "Spamdexing status"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L119
-msgid "Unknown (links restricted)"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L120
-msgid "Verified (links not restricted)"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L121
-msgid "Legacy (links not restricted)"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L130
-msgid "Level"
-msgstr "درجہ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L138
-msgid "Name"
-msgstr "ناں"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L141
-msgid "Country"
-msgstr "ملک"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L146
-msgid "Homepage"
-msgstr "مکھ پناں"
-
-#. @translators toggle button to show form field (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L152
-msgid "Show"
-msgstr ""
-
-#. @translators toggle button to hide form field (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L154
-msgid "Hide"
-msgstr "لُکاؤ"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L156
-msgid "Description"
-msgstr "تفصیل"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L163
-msgid "Send notifications"
-msgstr "نوٹیفیکیشن بھیڄو"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L168
-msgid "Profile is public"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L179
-msgid "About spamdexing status"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L181
-msgid ""
-"\"Unknown\" users cannot include any outbound link in their profile. In "
-"addition, when trying to post a sentence comment or wall post that includes "
-"outbound links, they are warned that their links must be legitimate. If they"
-" choose to continue, the message is posted and an e-mail is sent to "
-"moderators."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L182
-msgid ""
-"\"Verified\" and \"legacy\" users can include any link anywhere without "
-"restriction."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L183
-msgid ""
-"\"Legacy\" users created their account before this restriction was "
-"implemented."
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L209
 msgid "unhide"
@@ -289,3 +77,215 @@ msgstr "ظاہر کرو"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L212
 msgid "hide"
 msgstr "لُکاؤ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L27
+msgid "Import recordings"
+msgstr "ریکاڈنگاں امپورٹ کرو"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L77
+msgid "The following errors occurred during the last import."
+msgstr "پچھلی امپورٹ دےدوران ایہ خرابیاں تھیاں:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L86
+msgid "Audio import status"
+msgstr "آڈیو امپورٹ حیثیت"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/import.php#L106
+msgid "Files detected"
+msgstr "فائلاں دا کھوڄ لڳے"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L28
+msgid "Import sentences"
+msgstr "جملے امپورٹ کرو"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L36
+msgid "Single sentences"
+msgstr "کلہے جملے"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L89
+msgid "Language of the sentences:"
+msgstr "جملیاں دی زبان"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L99
+msgid "File:"
+msgstr "فائل:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L106
+msgid "Numeric user id: "
+msgstr "عددی ورتݨ آئی ڈی:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L111
+msgid "import"
+msgstr "درآمد کرو"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L75
+msgid "Sentences and translations"
+msgstr "جملے تے ترجمے"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/import.php#L94
+msgid "Language of the translations:"
+msgstr "ترجمیاں دی زبان:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L77
+msgid "Mark as unreliable"
+msgstr "نشان لاؤ جو اعتماد لائق کائنی"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L80
+msgid ""
+"Are you sure you want to mark all the sentences of this member as "
+"unreliable?"
+msgstr ""
+"بھلا تہاکوں پک ہے ججو تساں ایں رکن دے سارے جملیاں تے بے اعتبارے ہووݨ دا نشان"
+" لاوݨ چاہندے ہو؟"
+
+#. audio deletion button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L136
+msgid "Delete"
+msgstr "مٹاؤ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L54
+msgid "Are you sure you want to delete user #{number}?"
+msgstr "بھلا تہاکوں پک ہے جو تساں ورتݨ آلے #{number} کوں مٹاوݨ چاہندے ہو؟"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L62
+msgid "List Users"
+msgstr "ورتݨ آلیاں دی تندیر"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L66
+msgid "Profile"
+msgstr "پروفائل"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L83
+msgid "Edit User"
+msgstr "ورتݨ آلیاں وچ تبدیلی کرو"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L86
+msgid "Profile picture"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L89
+msgid "Remove picture"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L102
+msgid "No picture set"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L109
+msgid "Id"
+msgstr "آئی ڈی"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L110
+msgid "Username"
+msgstr "ورتݨ ناں"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L111
+msgid "Lang"
+msgstr "زبان"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L114
+msgid "Group"
+msgstr "گروپ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L117
+msgid "Spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L119
+msgid "Unknown (links restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L120
+msgid "Verified (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L121
+msgid "Legacy (links not restricted)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L131
+msgid "Level"
+msgstr "درجہ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L139
+msgid "Name"
+msgstr "ناں"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L142
+msgid "Country"
+msgstr "ملک"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L147
+msgid "Homepage"
+msgstr "مکھ پناں"
+
+#. @translators toggle button to show form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L153
+msgid "Show"
+msgstr ""
+
+#. @translators toggle button to hide form field (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L155
+msgid "Hide"
+msgstr "لُکاؤ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L157
+msgid "Description"
+msgstr "تفصیل"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L164
+msgid "Send notifications"
+msgstr "نوٹیفیکیشن بھیڄو"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L169
+msgid "Profile is public"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L180
+msgid "About spamdexing status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L182
+msgid ""
+"\"Unknown\" users cannot include any outbound link in their profile. In "
+"addition, when trying to post a sentence comment or wall post that includes "
+"outbound links, they are warned that their links must be legitimate. If they"
+" choose to continue, the message is posted and an e-mail is sent to "
+"moderators."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L183
+msgid ""
+"\"Verified\" and \"legacy\" users can include any link anywhere without "
+"restriction."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L184
+msgid ""
+"\"Legacy\" users created their account before this restriction was "
+"implemented."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/correctness.php#L57
+msgid "Submit"
+msgstr "جمع کرواؤ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L125
+msgid "Audio author"
+msgstr "آڈیو مصنف"
+
+#. audio save button on sentence page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/audio.php#L132
+msgid "Save"
+msgstr "محفوظ کرو"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/correctness.php#L32
+msgid "Correctness"
+msgstr "درستی"

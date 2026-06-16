@@ -52,6 +52,27 @@ class ListsHelper extends AppHelper
         'Number'
     );
 
+    public function createdByText(?string $username): string
+    {
+        if (is_null($username)) {
+            /* @translators: refers to a sentences list
+               created by a user that was later deleted */
+            return __('created by a former member');
+        } else {
+            $listAuthor = $this->Html->link(
+                $username,
+                [
+                    'controller' => 'user',
+                    'action' => 'profile',
+                ]
+            );
+            return format(
+                __('created by {listAuthor}'),
+                compact('listAuthor')
+            );
+        }
+    }
+
     /**
      * display an array of lists in an HTML table
      *
@@ -89,7 +110,7 @@ class ListsHelper extends AppHelper
             $this->displayRow(
                 $list->id,
                 $list->name,
-                $list->user->username,
+                $list->user ? $list->user->username : null,
                 $list->created,
                 $list->modified,
                 $list->numberOfSentences,
@@ -167,20 +188,8 @@ class ListsHelper extends AppHelper
             </div>
 
             <div class="creator">
-            <?php
-            $link = $this->Html->link(
-                $listCreatorName,
-                array(
-                    "controller"=>"user",
-                    "action"=>"profile",
-                    $listCreatorName
-                )
-            );
-            echo format(__('created by {listAuthor}'),
-                         array('listAuthor' => $link));
-
-             ?>
-             </div>
+                <?= $this->createdByText($listCreatorName) ?>
+            </div>
          </td>
 
          <td>

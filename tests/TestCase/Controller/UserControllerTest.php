@@ -350,13 +350,12 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     public function testAcceptNewTermsOfUser_asMember() {
-        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->logInAs('contributor');
-        $this->addHeader('Referer', 'https://example.net/referer');
+        $this->addHeader('Referer', 'http://localhost/referer');
         $this->post('/en/user/accept_new_terms_of_use', [
             'settings' => [ 'new_terms_of_use' => true ],
         ]);
-        $this->assertRedirect('https://example.net/referer');
+        $this->assertRedirect('http://localhost/referer');
     }
 
     public function testSaveBannerSetting_asGuest() {

@@ -48,9 +48,15 @@ class SentencesTableTest extends TestCase {
 
         Configure::write('AutoTranscriptions.enabled', true);
 
-        $foundIds = [1, 2, 3, 4, 5, 16, 17, 18, 19, 20];
-        $totalResults = 10;
-        $this->enableMockedSearch($foundIds, $totalResults);
+        $annotations = $this->getAnnotations()['method'];
+        $searchError = $annotations['mockedSearchError'][0] ?? false;
+        if ($searchError !== false) {
+            $this->enableMockedSearchError($searchError);
+        } else {
+            $foundIds = [1, 2, 3, 4, 5, 16, 17, 18, 19, 20];
+            $totalResults = 10;
+            $this->enableMockedSearch($foundIds, $totalResults);
+        }
 
         $this->Sentence = $this->fetchTable('Sentences');
         $autotranscription = $this->_installAutotranscriptionMock();
@@ -1574,6 +1580,15 @@ class SentencesTableTest extends TestCase {
         $result = $this->Sentence->getSeveralRandomIds('nch');
 
         $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * @mockedSearchError
+     */
+    function testGetSeveralRandomIds_errors() {
+        $result = $this->Sentence->getSeveralRandomIds('nch');
+
+        $this->assertNull($result);
     }
 
     public function testNewSentence_UpdatesLastContributionField() {

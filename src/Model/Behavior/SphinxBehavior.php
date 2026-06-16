@@ -11,10 +11,10 @@ namespace App\Model\Behavior;
 
 use App\Lib\SphinxClient;
 use App\Model\Search;
+use App\Search\Exception\SearchQueryException;
 use Cake\Core\Configure;
 use Cake\ORM\Behavior;
 use Cake\Datasource\FactoryLocator;
-use Exception;
 
 
 class SphinxBehavior extends Behavior
@@ -143,7 +143,7 @@ class SphinxBehavior extends Behavior
         }
 
         if ($result === false) {
-            throw new Exception($sphinx->GetLastError());
+            throw new SearchQueryException('Error from search engine: ' . $sphinx->GetLastError());
         } else if(isset($result['matches'])) {
             if ($sphinx->GetLastWarning()) {
                 trigger_error("Search query warning: " . $sphinx->GetLastWarning());
@@ -260,6 +260,9 @@ class SphinxBehavior extends Behavior
 
         // Insert highlight markers in $results
         foreach ($results as $i => $result) {
+            if (count($mergedExcerpts) == 0) {
+                break;
+            }
             $excerpt = explode($options['chunk_separator'], array_shift($mergedExcerpts));
             $highlight = array(
                 array($options['before_match'], $options['after_match']),
@@ -270,6 +273,9 @@ class SphinxBehavior extends Behavior
         foreach ($results as $i => $result) {
             if (isset($result['Transcription'])) {
                 foreach ($result['Transcription'] as $j => $transcResult) {
+                    if (count($mergedExcerpts) == 0) {
+                        break 2;
+                    }
                     $excerpt = explode($options['chunk_separator'], array_shift($mergedExcerpts));
                     $highlight = array(
                         array($options['before_match'], $options['after_match']),

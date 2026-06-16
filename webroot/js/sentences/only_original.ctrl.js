@@ -30,8 +30,9 @@
             if ($scope.original) {
                 searchParams.delete('only_original');
             } else {
-                searchParams.set('only_original', '');
+                searchParams.set('only_original', 'yes');
             }
+            searchParams.delete('page');
             $window.location.search = searchParams.toString();
         }
     }

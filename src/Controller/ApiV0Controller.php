@@ -26,8 +26,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Form\SentencesSearchForm;
 use App\Model\CurrentUser;
+use App\Search\Exception\SearchQueryException;
 use Cake\Core\Configure;
-use Exception;
 
 /**
  * Controller for Api.
@@ -96,8 +96,8 @@ class ApiV0Controller extends AppController
 
         try {
             $results = $this->paginate($query);
-        } catch (Exception $e) {
-            throw new \Cake\Http\Exception\BadRequestException();
+        } catch (SearchQueryException $e) {
+            throw new \Cake\Http\Exception\InternalErrorException();
         }
     
         $json = json_encode([

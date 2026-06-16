@@ -33,6 +33,7 @@ use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use App\Lib\Licenses;
+use App\Search\Exception\SearchQueryException;
 use App\Validation\Validation;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
@@ -40,7 +41,6 @@ use Cake\Event\Event;
 use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
-use Exception;
 
 /**
  * Controller for sentences.
@@ -491,7 +491,7 @@ class SentencesController extends AppController
             $this->set(compact('results', 'real_total'));
         } catch (\Cake\Http\Exception\NotFoundException $e) {
             return $this->redirectPaginationToLastPage();
-        } catch (Exception $e) {
+        } catch (SearchQueryException $e) {
             $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
             if ($syntax_error) {
                 $this->set('syntax_error', true);

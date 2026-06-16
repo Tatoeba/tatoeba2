@@ -367,6 +367,7 @@ class SentencesSearchFormTest extends TestCase
             ['id' => 5, 'user_id' => 1, 'name' => 'Collaborative list'],
             ['id' => 6, 'user_id' => 7, 'name' => 'Inactive list'],
             ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+            ['id' => 7, 'user_id' => 10, 'name' => 'Public list that belongs to a deleted user'],
         ];
         $this->Form->setData(['list' => '']);
         $result = $this->Form->getSearchableLists($searcher);
@@ -380,6 +381,7 @@ class SentencesSearchFormTest extends TestCase
             ['id' => 5, 'user_id' => 1, 'name' => 'Collaborative list'],
             ['id' => 6, 'user_id' => 7, 'name' => 'Inactive list'],
             ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+            ['id' => 7, 'user_id' => 10, 'name' => 'Public list that belongs to a deleted user'],
             ['id' => 1, 'user_id' => 7, 'name' => 'Interesting French sentences'],
         ];
         $this->Form->setData(['list' => '1']);
@@ -396,6 +398,7 @@ class SentencesSearchFormTest extends TestCase
             ['id' => 1, 'user_id' => 7, 'name' => 'Interesting French sentences'],
             ['id' => 3, 'user_id' => 7, 'name' => 'Private list'],
             ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+            ['id' => 7, 'user_id' => 10, 'name' => 'Public list that belongs to a deleted user'],
         ];
         $this->Form->setData(['list' => '']);
         $result = $this->Form->getSearchableLists($searcher);
@@ -409,6 +412,7 @@ class SentencesSearchFormTest extends TestCase
             ['id' => 5, 'user_id' => 1, 'name' => 'Collaborative list'],
             ['id' => 6, 'user_id' => 7, 'name' => 'Inactive list'],
             ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+            ['id' => 7, 'user_id' => 10, 'name' => 'Public list that belongs to a deleted user'],
             ['id' => 1, 'user_id' => 7, 'name' => 'Interesting French sentences'],
         ];
         $this->Form->setData(['list' => '1']);

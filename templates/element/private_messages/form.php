@@ -61,7 +61,7 @@ if ($isReply) {
         echo $this->Form->control('title', [
             /* @translators: title field label in private message form */
             'label' => __('Title'),
-            'value' => $this->safeForAngular($pm->title),
+            'value' => $this->safeForAngular($pm->title ?? ''),
             'class' => 'pmTitle',
             'lang' => '',
             'dir' => 'auto',
@@ -78,7 +78,7 @@ if ($isReply) {
         echo $this->Form->textarea('content', [
             'lang' => '',
             'dir' => 'auto',
-            'value' => $this->safeForAngular($content),
+            'value' => $this->safeForAngular($content ?? ''),
         ]);
         ?>
         </div>

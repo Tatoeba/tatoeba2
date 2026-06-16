@@ -87,7 +87,7 @@ class SentenceAnnotationsHelper extends AppHelper
                 'text',
                 array(
                     "label" => "",
-                    "type" => "number"
+                    "type" => "text"
                 )
             );
             echo $this->Form->button('OK');

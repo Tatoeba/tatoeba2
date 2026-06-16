@@ -34,11 +34,11 @@ class WallControllerTest extends IntegrationTestCase {
             [ '/en/wall/edit/1', 'advanced_contributor', '/en/wall/index' ],
             [ '/en/wall/edit/1', 'corpus_maintainer', '/en/wall/index' ],
             [ '/en/wall/edit/1', 'admin', true ],
-            [ '/en/wall/edit/9999999999', 'contributor', 'https://example.net/referer' ],
+            [ '/en/wall/edit/9999999999', 'contributor', 'http://localhost/referer' ],
             [ '/en/wall/delete_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Fdelete_message%2F1' ],
-            [ '/en/wall/delete_message/1', 'contributor', 'https://example.net/referer' ],
-            [ '/en/wall/delete_message/1', 'admin', 'https://example.net/referer' ],
-            [ '/en/wall/delete_message/999999999', 'contributor', 'https://example.net/referer' ],
+            [ '/en/wall/delete_message/1', 'contributor', 'http://localhost/referer' ],
+            [ '/en/wall/delete_message/1', 'admin', 'http://localhost/referer' ],
+            [ '/en/wall/delete_message/999999999', 'contributor', 'http://localhost/referer' ],
             [ '/en/wall/show_message/1', null, true ],
             [ '/en/wall/show_message/1', 'contributor', true ],
             [ '/en/wall/show_message/999999999', null, '/en/wall/index' ],
@@ -46,15 +46,15 @@ class WallControllerTest extends IntegrationTestCase {
             [ '/en/wall/messages_of_user/admin', null, true ],
             [ '/en/wall/messages_of_user/admin', 'contributor', true ],
             [ '/en/wall/hide_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Fhide_message%2F1' ],
-            [ '/en/wall/hide_message/1', 'contributor', 'https://example.net/referer' ],
-            [ '/en/wall/hide_message/1', 'advanced_contributor', 'https://example.net/referer' ],
-            [ '/en/wall/hide_message/1', 'corpus_maintainer', 'https://example.net/referer' ],
-            [ '/en/wall/hide_message/1', 'admin', 'https://example.net/referer' ],
+            [ '/en/wall/hide_message/1', 'contributor', 'http://localhost/referer' ],
+            [ '/en/wall/hide_message/1', 'advanced_contributor', 'http://localhost/referer' ],
+            [ '/en/wall/hide_message/1', 'corpus_maintainer', 'http://localhost/referer' ],
+            [ '/en/wall/hide_message/1', 'admin', 'http://localhost/referer' ],
             [ '/en/wall/unhide_message/1', null, '/en/users/login?redirect=%2Fen%2Fwall%2Funhide_message%2F1' ],
-            [ '/en/wall/unhide_message/1', 'contributor', 'https://example.net/referer' ],
-            [ '/en/wall/unhide_message/1', 'advanced_contributor', 'https://example.net/referer' ],
-            [ '/en/wall/unhide_message/1', 'corpus_maintainer', 'https://example.net/referer' ],
-            [ '/en/wall/unhide_message/1', 'admin', 'https://example.net/referer' ],
+            [ '/en/wall/unhide_message/1', 'contributor', 'http://localhost/referer' ],
+            [ '/en/wall/unhide_message/1', 'advanced_contributor', 'http://localhost/referer' ],
+            [ '/en/wall/unhide_message/1', 'corpus_maintainer', 'http://localhost/referer' ],
+            [ '/en/wall/unhide_message/1', 'admin', 'http://localhost/referer' ],
         ];
     }
 
@@ -62,8 +62,7 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        Configure::write('App.fullBaseUrl', 'https://example.net');
-        $this->addHeader('Referer', 'https://example.net/referer');
+        $this->addHeader('Referer', 'http://localhost/referer');
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
@@ -89,8 +88,8 @@ class WallControllerTest extends IntegrationTestCase {
     public function roleChangeProvider() {
         return [
             // new role, redirect link, flash message match
-            ['spammer',  'https://example.net/en/users/login?redirect=%2Fprevious_page', 'suspended'],
-            ['inactive', 'https://example.net/en/users/login?redirect=%2Fprevious_page', 'deactivated'],
+            ['spammer',  'http://localhost/en/users/login?redirect=%2Fprevious_page', 'suspended'],
+            ['inactive', 'http://localhost/en/users/login?redirect=%2Fprevious_page', 'deactivated'],
             ['contributor',       '/en/wall/index'],
             ['corpus_maintainer', '/en/wall/index'],
             ['admin',             '/en/wall/index'],
@@ -108,9 +107,8 @@ class WallControllerTest extends IntegrationTestCase {
         $advcontributor->role = $newRole;
         $users->save($advcontributor);
 
-        Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->configRequest([
-            'headers' => ['Referer' => 'https://example.net/previous_page']
+            'headers' => ['Referer' => 'http://localhost/previous_page']
         ]);
         $this->post('/en/wall/save', [
             'replyTo' => '',
@@ -142,13 +140,12 @@ class WallControllerTest extends IntegrationTestCase {
     }
 
     public function testSaveInside_notificationEmailLink() {
-        Configure::write('App.fullBaseUrl', 'https://example.net');
         $this->logInAs('contributor');
         $this->ajaxPost('/en/wall/save_inside', [
             'content' => 'Hello admin!',
             'replyTo' => '2',
         ]);
-        $this->assertMailContainsHtml('https://example.net/wall/show_message/6#message_6');
+        $this->assertMailContainsHtml('http://localhost/wall/show_message/6#message_6');
     }
 
     private function assertFlashMessageContains($expected, $message = '') {

@@ -67,6 +67,16 @@ class SentencesListsFixture extends TestFixture {
 			'modified' => '2018-10-10 10:10:09',
 			'visibility' => 'public',
 			'editable_by' => 'no_one'
+		),
+		array(
+			'id' => '7',
+			'name' => 'Public list that belongs to a deleted user',
+			'user_id' => 10,
+			'numberOfSentences' => 0,
+			'created' => '2020-10-12 10:12:12',
+			'modified' => '2020-10-12 10:12:12',
+			'visibility' => 'public',
+			'editable_by' => 'no_one'
 		)
 	);
 }
