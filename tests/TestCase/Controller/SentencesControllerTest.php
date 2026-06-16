@@ -507,6 +507,12 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs('/en/sentences/show/fra', null, '/en/sentences/show/3');
     }
 
+    public function testRandomSentenceError() {
+        $this->enableMockedSearchError();
+        $this->assertAccessUrlAs('/en/sentences/show/fra', null, true);
+        $this->assertResponseContains('An error occurred while fetching random sentences');
+    }
+
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
         $user = 'kazuki';
         $userId = 7;
