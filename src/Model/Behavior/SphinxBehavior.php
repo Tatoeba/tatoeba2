@@ -11,10 +11,10 @@ namespace App\Model\Behavior;
 
 use App\Lib\SphinxClient;
 use App\Model\Search;
+use App\Search\Exception\SearchQueryException;
 use Cake\Core\Configure;
 use Cake\ORM\Behavior;
 use Cake\Datasource\FactoryLocator;
-use Exception;
 
 
 class SphinxBehavior extends Behavior
@@ -143,7 +143,7 @@ class SphinxBehavior extends Behavior
         }
 
         if ($result === false) {
-            throw new Exception($sphinx->GetLastError());
+            throw new SearchQueryException('Error from search engine: ' . $sphinx->GetLastError());
         } else if(isset($result['matches'])) {
             if ($sphinx->GetLastWarning()) {
                 trigger_error("Search query warning: " . $sphinx->GetLastWarning());
