@@ -32,6 +32,7 @@
             } else {
                 searchParams.set('only_original', 'yes');
             }
+            searchParams.delete('page');
             $window.location.search = searchParams.toString();
         }
     }
