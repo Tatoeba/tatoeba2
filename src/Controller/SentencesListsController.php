@@ -321,15 +321,13 @@ class SentencesListsController extends AppController
         );
         $this->set('removed', $isRemoved);
 
-        if (strpos($this->referer(), 'sentences/show')) {
-           return $this->redirect($this->referer());
-        }
-
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->viewBuilder()
                 ->setOption('serialize', ['removed'])
                 ->setClassName('Json');
+        } elseif (!$this->request->is('ajax')) {
+           return $this->redirect($this->referer());
         }
     }
 

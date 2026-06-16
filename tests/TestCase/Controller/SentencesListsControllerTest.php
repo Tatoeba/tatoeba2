@@ -62,6 +62,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
             [ '/en/sentences_lists/download/3', null, '/en/sentences_lists/index' ],
             [ '/en/sentences_lists/download/3', 'contributor', '/en/sentences_lists/index' ],
             [ '/en/sentences_lists/choices', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fchoices' ],
+            [ '/en/sentences_lists/remove_sentence_from_list/1/4', null, '/en/users/login?redirect=%2Fen%2Fsentences_lists%2Fremove_sentence_from_list%2F1%2F4' ],
         ];
     }
 
@@ -382,4 +383,12 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertRedirect("/en/sentences_lists/show/$listId/und/und?page=$lastPage");
     }
 
+    public function testRemoveSentenceFromListRedirectsToReferer() {
+        $this->configRequest([
+            'headers' => ['Referer' => 'http://localhost/en/sentences/show/1234']
+        ]);
+        $this->logInAs('kazuki');
+        $this->get('/en/sentences_lists/remove_sentence_from_list/1/4');
+        $this->assertRedirect('http://localhost/en/sentences/show/1234');
+    }
 }
