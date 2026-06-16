@@ -41,7 +41,8 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
             3 => 1,
             4 => 2,
             5 => 0,
-            6 => 1
+            6 => 1,
+            7 => 0,
         ];
         $this->assertEquals($expected, $newListsAndCounts);
     }

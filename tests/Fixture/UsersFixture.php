@@ -246,8 +246,13 @@ class UsersFixture extends TestFixture
                 'audio_attribution_url' => '',
                 'is_spamdexing' => true,
             ],
+            // Intentionally nonexistant. It has been deleted.
+            // Referenced in SentencesListsFixture.php.
+            //[
+            //    'id' => '10',
+            //],
             [
-                'id' => '10',
+                'id' => '11',
                 'username' => 'FixHashesCommand',
                 'password' => '0 $2a$10$C9HUn1u98XMMV/J2DP9F.eSPrJY0UiX7Z1PsDiWoGakXsSzwpUQ/e',
                 'email' => 'admin@example.net',

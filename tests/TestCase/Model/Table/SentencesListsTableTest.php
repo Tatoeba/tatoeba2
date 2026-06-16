@@ -449,7 +449,7 @@ class SentencesListsTableTest extends TestCase {
         $lists = $this->SentencesList->getSearchableLists();
         $result = Hash::extract($lists, '{n}.id');
         sort($result);
-        $expected = [2, 5, 6];
+        $expected = [2, 5, 6, 7];
         $this->assertEquals($expected, $result);
     }
 
@@ -458,7 +458,7 @@ class SentencesListsTableTest extends TestCase {
         $lists = $this->SentencesList->getSearchableLists();
         $result = Hash::extract($lists, '{n}.id');
         sort($result);
-        $expected = [1, 2, 3, 5, 6];
+        $expected = [1, 2, 3, 5, 6, 7];
         $this->assertEquals($expected, $result);
     }
 
