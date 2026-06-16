@@ -22,7 +22,6 @@ class UserMailerTest extends TestCase {
 
     public function setUp(): void {
         $this->loadRoutes();
-        Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
 
         $this->mailer = new UserMailer();
@@ -79,8 +78,8 @@ class UserMailerTest extends TestCase {
 
         $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('[Content Report] Wall message #3', 'subject');
-        $this->assertMailContainsHtml('Member <a href="https://example.net/user/profile/kazuki">kazuki</a> reported a wall post');
-        $this->assertMailContainsHtml('https://example.net/wall/show_message/3#message_3');
+        $this->assertMailContainsHtml('Member <a href="http://localhost/user/profile/kazuki">kazuki</a> reported a wall post');
+        $this->assertMailContainsHtml('http://localhost/wall/show_message/3#message_3');
         $this->assertMailContainsHtml("line1<br />\nline2");
     }
 
@@ -114,8 +113,8 @@ class UserMailerTest extends TestCase {
 
         $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('[Content Report] Comment #5 (on sentence #19)', 'subject');
-        $this->assertMailContainsHtml('Member <a href="https://example.net/user/profile/kazuki">kazuki</a> reported a sentence comment');
-        $this->assertMailContainsHtml('https://example.net/sentences/show/19#comment-5');
+        $this->assertMailContainsHtml('Member <a href="http://localhost/user/profile/kazuki">kazuki</a> reported a sentence comment');
+        $this->assertMailContainsHtml('http://localhost/sentences/show/19#comment-5');
         $this->assertMailContainsHtml('please remove spam');
     }
 
@@ -135,8 +134,8 @@ class UserMailerTest extends TestCase {
 
         $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('Outbound links in new sentence comment #5', 'subject');
-        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has posted a <a href="https://example.net/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
-        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('User <strong><a href="http://localhost/user/profile/kazuki">kazuki</a></strong> has posted a <a href="http://localhost/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="http://localhost/users/edit/7">edit kazuki&#039;s status</a>.');
         $this->assertMailContainsHtml('Check this out!! https://example.com');
     }
 
@@ -156,7 +155,7 @@ class UserMailerTest extends TestCase {
         $this->mailer->send('content_with_outbound_links', [$comment, $user]);
 
         $this->assertMailSentWith('Outbound links in edited sentence comment #5', 'subject');
-        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('User <strong><a href="http://localhost/user/profile/kazuki">kazuki</a></strong> has edited a <a href="http://localhost/sentences/show/19#comment-5">comment containing one or more outbound links</a>.');
         $this->assertMailContainsHtml('Check this out!! https://example.com');
     }
 
@@ -175,8 +174,8 @@ class UserMailerTest extends TestCase {
 
         $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('Outbound links in new wall post #5', 'subject');
-        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has posted a <a href="https://example.net/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
-        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('User <strong><a href="http://localhost/user/profile/kazuki">kazuki</a></strong> has posted a <a href="http://localhost/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="http://localhost/users/edit/7">edit kazuki&#039;s status</a>.');
         $this->assertMailContainsHtml('Check this out!! https://example.com');
     }
 
@@ -195,7 +194,7 @@ class UserMailerTest extends TestCase {
         $this->mailer->send('content_with_outbound_links', [$wallPost, $user]);
 
         $this->assertMailSentWith('Outbound links in edited wall post #5', 'subject');
-        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> has edited a <a href="https://example.net/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
+        $this->assertMailContainsHtml('User <strong><a href="http://localhost/user/profile/kazuki">kazuki</a></strong> has edited a <a href="http://localhost/wall/show_message/5#message_5">wall post containing one or more outbound links</a>.');
         $this->assertMailContainsHtml('Check this out!! https://example.com');
     }
 
@@ -215,8 +214,8 @@ class UserMailerTest extends TestCase {
 
         $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('Autoban triggered by outbound links in new wall post #5', 'subject');
-        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> was automatically banned after posting a <a href="https://example.net/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
-        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('User <strong><a href="http://localhost/user/profile/kazuki">kazuki</a></strong> was automatically banned after posting a <a href="http://localhost/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="http://localhost/users/edit/7">edit kazuki&#039;s status</a>.');
         $this->assertMailContainsHtml('Check this out!! https://example.com');
     }
 
@@ -237,8 +236,8 @@ class UserMailerTest extends TestCase {
 
         $this->assertMailSentTo('moderator@example.net');
         $this->assertMailSentWith('Autoban triggered by outbound links in edited wall post #5', 'subject');
-        $this->assertMailContainsHtml('User <strong><a href="https://example.net/user/profile/kazuki">kazuki</a></strong> was automatically banned after editing a <a href="https://example.net/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
-        $this->assertMailContainsHtml('You may <a href="https://example.net/users/edit/7">edit kazuki&#039;s status</a>.');
+        $this->assertMailContainsHtml('User <strong><a href="http://localhost/user/profile/kazuki">kazuki</a></strong> was automatically banned after editing a <a href="http://localhost/wall/show_message/5#message_5">wall post containing 100 or more outbound links</a>.');
+        $this->assertMailContainsHtml('You may <a href="http://localhost/users/edit/7">edit kazuki&#039;s status</a>.');
         $this->assertMailContainsHtml('Check this out!! https://example.com');
     }
 }

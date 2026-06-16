@@ -24,11 +24,6 @@ class ReportContentControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function setUp(): void {
-        Configure::write('App.fullBaseUrl', 'https://example.org');
-        parent::setUp();
-    }
-
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url

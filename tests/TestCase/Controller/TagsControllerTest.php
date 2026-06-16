@@ -26,11 +26,6 @@ class TagsControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     ];
 
-    public function setUp(): void {
-        parent::setUp();
-        \Cake\Core\Configure::write('App.fullBaseUrl', 'https://example.net');
-    }
-
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
@@ -38,11 +33,11 @@ class TagsControllerTest extends IntegrationTestCase {
             [ '/en/tags/view_all', 'contributor', true ],
             [ '/en/tags/view_all/@', null, true ],
             [ '/en/tags/remove_tag_from_sentence/2/2', null, '/en/users/login?redirect=%2Fen%2Ftags%2Fremove_tag_from_sentence%2F2%2F2' ],
-            [ '/en/tags/remove_tag_from_sentence/2/2', 'contributor', 'https://example.net/previous_page' ],
+            [ '/en/tags/remove_tag_from_sentence/2/2', 'contributor', 'http://localhost/previous_page' ],
             [ '/en/tags/remove_tag_from_sentence/2/2', 'advanced_contributor', '/en/sentences/show/2' ],
             [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', null, '/en/users/login?redirect=%2Fen%2Ftags%2Fremove_tag_of_sentence_from_tags_show%2F2%2F2' ],
-            [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', 'contributor', 'https://example.net/previous_page' ],
-            [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', 'advanced_contributor', 'https://example.net/previous_page' ],
+            [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', 'contributor', 'http://localhost/previous_page' ],
+            [ '/en/tags/remove_tag_of_sentence_from_tags_show/2/2', 'advanced_contributor', 'http://localhost/previous_page' ],
             [ '/en/tags/show_sentences_with_tag/2', null, true ],
             [ '/en/tags/show_sentences_with_tag/2', 'contributor', true ],
             [ '/en/tags/show_sentences_with_tag/2/cmn', null, true ],
@@ -57,7 +52,7 @@ class TagsControllerTest extends IntegrationTestCase {
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $this->addHeader('Referer', 'https://example.net/previous_page');
+        $this->addHeader('Referer', 'http://localhost/previous_page');
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
