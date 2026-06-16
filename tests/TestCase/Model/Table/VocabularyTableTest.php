@@ -60,6 +60,16 @@ class VocabularyTableTest extends TestCase
         $this->assertEquals(4, $result->numSentences);
     }
 
+    public function testAddItem_updatesCurrentNumberOfSentences_withSearchError()
+    {
+        $this->enableMockedSearchError();
+        CurrentUser::store(['id' => 7]);
+
+        $result = $this->Vocabulary->addItem('eng', 'hashtag');
+
+        $this->assertEquals(0, $result->numSentences);
+    }
+
     public function testEditItem()
     {
         $vocab = $this->Vocabulary->get(1);

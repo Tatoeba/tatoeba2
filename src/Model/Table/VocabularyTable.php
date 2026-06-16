@@ -27,6 +27,7 @@ use App\Model\CurrentUser;
 use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\LangFilter;
+use App\Search\Exception\SearchQueryException;
 use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
@@ -158,9 +159,14 @@ class VocabularyTable extends Table
         }
         $search->filterByQuery(Search::exactSearchQuery($text));
 
-        return $this->Sentences->find('withSphinx', [
+        $query = $this->Sentences->find('withSphinx', [
             'sphinx' => $search->asSphinx()
-        ])->count();
+        ]);
+        try {
+            return $query->count();
+        } catch (SearchQueryException $e) {
+            return null;
+        }
     }
 
     /**
