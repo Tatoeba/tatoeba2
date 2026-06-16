@@ -54,17 +54,23 @@ class ListsHelper extends AppHelper
 
     public function createdByText(?string $username): string
     {
-        $listAuthor = $this->Html->link(
-            $username,
-            [
-                'controller' => 'user',
-                'action' => 'profile',
-            ]
-        );
-        return format(
-            __('created by {listAuthor}'),
-            compact('listAuthor')
-        );
+        if (is_null($username)) {
+            /* @translators: refers to a sentences list
+               created by a user that was later deleted */
+            return __('created by a former member');
+        } else {
+            $listAuthor = $this->Html->link(
+                $username,
+                [
+                    'controller' => 'user',
+                    'action' => 'profile',
+                ]
+            );
+            return format(
+                __('created by {listAuthor}'),
+                compact('listAuthor')
+            );
+        }
     }
 
     /**
