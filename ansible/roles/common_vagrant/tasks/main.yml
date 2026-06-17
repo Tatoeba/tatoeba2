@@ -5,3 +5,6 @@
 
 - name: Install /etc/environment
   template: src=environment dest=/etc/environment
+
+- name: Install /etc/sudoers.d/tatoeba
+  template: src=sudoers dest=/etc/sudoers.d/tatoeba
