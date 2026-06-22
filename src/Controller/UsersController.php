@@ -414,7 +414,7 @@ class UsersController extends AppController
      */
     public function search()
     {
-        $username = $this->request->getData('search_username');
+        $username = $this->request->getData('search');
         $userId = $this->Users->getIdFromUsername($username);
 
         if ($userId != null) {

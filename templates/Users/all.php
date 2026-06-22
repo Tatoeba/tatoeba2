@@ -48,7 +48,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
     
     <md-input-container layout="column">
         <?php
-        echo $this->Form->control('search_username',[
+        echo $this->Form->control('search', [
             'id' => 'usernameInput',
             'label' => '',
         ]);
