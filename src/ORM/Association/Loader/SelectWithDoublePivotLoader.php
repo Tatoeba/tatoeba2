@@ -95,7 +95,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
         $resultMap = [];
         $key = (array)$options['foreignKey'];
 
-        foreach ($fetchQuery->enableBufferedResults(false)->all() as $result) {
+        foreach ($fetchQuery->disableBufferedResults()->all() as $result) {
             $values = [];
             foreach ($key as $k) {
                 $values[] = $result[$k];

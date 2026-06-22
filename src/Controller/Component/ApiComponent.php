@@ -131,7 +131,7 @@ class ApiComponent extends Component
             $numResults = 0;
             $result = null;
             try {
-                foreach ($query->enableBufferedResults(false) as $result) {
+                foreach ($query->disableBufferedResults() as $result) {
                     if ($isFirst) {
                         echo '{"data":[';
                         $isFirst = false;

@@ -59,8 +59,9 @@ class SentencesTable extends Table
         return $association;
     }
 
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('text', 'text');
         return $schema;
     }
@@ -351,7 +352,7 @@ class SentencesTable extends Table
             $sentences = $this->find()
                 ->where(['id IN' => $someIds, 'lang IS NOT' => null])
                 ->select(['id', 'lang', 'type' => "'change'"]);
-            $query = $this->ReindexFlags->query()
+            $query = $this->ReindexFlags->insertQuery()
                 ->insert(['sentence_id', 'lang', 'type'])
                 ->values($sentences)
                 ->execute();
@@ -769,27 +770,6 @@ class SentencesTable extends Table
         }
 
         return $contain;
-    }
-
-    /**
-     * Override standard paginateCount method to eliminate unnecessary joins.
-     * If $conditions is empty, as in Sphinx search, return default behavior.
-     *
-     * @param  array   $conditions
-     * @param  integer $recursive
-     * @param  array   $extra
-     *
-     * @return integer
-     */
-    public function paginateCount(
-        $conditions = null,
-        $recursive = 0,
-        $extra = array()
-    ) {
-        $parameters = compact('conditions');
-        $extra['contain'] = [];
-
-        return $this->find('count', array_merge($parameters, $extra));
     }
 
     /**

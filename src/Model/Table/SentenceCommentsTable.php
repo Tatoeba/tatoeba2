@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
@@ -33,8 +34,9 @@ class SentenceCommentsTable extends Table
 {
     use MailerAwareTrait;
 
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('text', 'text');
         return $schema;
     }
@@ -114,6 +116,20 @@ class SentenceCommentsTable extends Table
             ));
             $this->getEventManager()->dispatch($event);
         }
+    }
+
+    public function findPaginated(Query $query, array $options)
+    {
+        return $query->contain([
+            'Users' => [
+                'fields' => ['id', 'username', 'image']
+            ],
+            'Sentences' => [
+                'Users' => [
+                    'fields' => ['id', 'username']
+                ]
+            ]
+        ]);
     }
 
     /**
@@ -208,37 +224,6 @@ class SentenceCommentsTable extends Table
             ->first();
 
         return $result->user_id;
-    }
-
-
-    /**
-     * Overridden paginateCount method, for optimization purpose.
-     *
-     * @param array $conditions
-     * @param int   $recursive
-     * @param array $extra
-     *
-     * @return int
-     */
-    function paginateCount($conditions = null, $recursive = 0, $extra = array()) {
-        $contain = array();
-        foreach ($conditions as $key => $value) {
-            if (strpos($key, "SentenceComment") === false) {
-                $tmp = explode('.', $key);
-                $model = $tmp[0];
-                $contain[] = $model;
-            }
-        }
-
-        $result = $this->find(
-            'count',
-            array(
-                'contain' => $contain,
-                'conditions' => $conditions
-            )
-        );
-
-        return $result;
     }
 
     public function excludeBots($query)

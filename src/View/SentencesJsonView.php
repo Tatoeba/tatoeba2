@@ -9,7 +9,7 @@ class SentencesJsonView extends JsonView
     public function initialize(): void
     {
         parent::initialize();
-        $this->loadHelper('Sentences');
+        $this->addHelper('Sentences');
     }
 
     protected function _serialize($serialize): string

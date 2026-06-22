@@ -46,6 +46,11 @@ class SentencesListsController extends AppController
 {
     public $name = 'SentencesLists';
 
+    public $paginate = [
+        'order' => ['created' => 'DESC'],
+        'limit' => 50
+    ];
+
     /**
      * Before filter.
      *
@@ -76,10 +81,11 @@ class SentencesListsController extends AppController
             return $this->redirect(array('action' => 'index', $search));
         }
 
-        $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, ['public', 'listed']
-        );
-        $allLists = $this->paginate();
+        $query = $this->SentencesLists->find('paginated', [
+            'search' => $filter,
+            'visibility' => ['public', 'listed'],
+        ]);
+        $allLists = $this->paginate($query);
 
         $this->set('allLists', $allLists);
         $this->set('filter', $filter ?? '');
@@ -93,10 +99,12 @@ class SentencesListsController extends AppController
             return $this->redirect(array('action' => 'collaborative', $search));
         }
 
-        $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, ['public', 'listed'], 'anyone'
-        );
-        $allLists = $this->paginate();
+        $query = $this->SentencesLists->find('paginated', [
+            'search' => $filter,
+            'visibility' => ['public', 'listed'],
+            'editableBy' => 'anyone',
+        ]);
+        $allLists = $this->paginate($query);
 
         $this->set('allLists', $allLists);
         $this->set('filter', $filter ?? '');
@@ -169,8 +177,9 @@ class SentencesListsController extends AppController
         $SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
         $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
-            'sort' => $this->request->getQuery('sort', 'id'),
-            'direction' => $this->request->getQuery('direction', 'desc'),
+            'order' => [
+                $this->request->getQuery('sort', 'id') => $this->request->getQuery('direction', 'desc'),
+            ],
             'sortableFields' => ['id', 'sentence_id'],
         ];
         $finder = ['latest' => $options];
@@ -356,14 +365,15 @@ class SentencesListsController extends AppController
             return;
         }
 
-        $visibility = null;
         if ($username != CurrentUser::get('username')) {
             $visibility = ['public', 'listed'];
         }
-        $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, $username, $visibility
-        );
-        $userLists = $this->paginate();
+        $query = $this->SentencesLists->find('paginated', [
+            'search' => $filter,
+            'username' => $username,
+            'visibility' => $visibility ?? null,
+        ]);
+        $userLists = $this->paginate($query);
 
         $this->set('userLists', $userLists);
         $this->set('filter', $filter ?? '');

@@ -100,7 +100,7 @@ class ListExporter
     {
         $SSL = FactoryLocator::get('Table')->get('SentencesSentencesLists');
         $query = $SSL->find()
-            ->enableBufferedResults(false)
+            ->disableBufferedResults()
             ->where(['SentencesSentencesLists.sentences_list_id' => $this->config['list_id']])
             ->matching('Sentences', function ($q) {
                 if (in_array('lang', $this->config['fields'])) {

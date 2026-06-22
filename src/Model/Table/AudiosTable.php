@@ -35,8 +35,9 @@ class AudiosTable extends Table
 {
     const JOB_TYPE = 'AudioImport';
 
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('external', 'json');
         return $schema;
     }
@@ -213,7 +214,7 @@ class AudiosTable extends Table
         $countQuery = clone $query;
 
         $query = $query
-            ->repository($this->Sentences->getTarget())
+            ->setRepository($this->Sentences->getTarget())
             ->select($this->Sentences->fields())
             ->innerJoinWith('Audios')
             ->contain('Audios', function ($q) use ($options) {
@@ -457,7 +458,7 @@ class AudiosTable extends Table
 
     public function lastImportJob() {
         return $this->QueuedJobs->find()
-            ->where(['job_type' => self::JOB_TYPE])
+            ->where(['job_task' => self::JOB_TYPE])
             ->orderDesc($this->QueuedJobs->getPrimaryKey())
             ->first();
     }
@@ -467,7 +468,7 @@ class AudiosTable extends Table
             self::JOB_TYPE,
             compact('author', 'replace')
         );
-        $this->QueuedJobs->wakeUpWorkers();
+        $this->QueuedJobs->WorkerProcesses->wakeUpWorkers();
         return $job;
     }
 }

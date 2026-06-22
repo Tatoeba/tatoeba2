@@ -482,13 +482,15 @@ class UsersController extends AppController
 
         $this->paginate = array(
             'limit' => 20,
-            'order' => array('role' => 'desc', 'id' => 'asc'),
-            'fields' => array('id', 'username', 'since', 'image', 'role'),
-            'sort' => $this->request->getQuery('sort', 'role'),
-            'direction' => $this->request->getQuery('direction', 'asc'),
+            'order' => [
+                $this->request->getQuery('sort', 'role') => $this->request->getQuery('direction', 'asc'),
+            ],
         );
 
-        $query = $this->Users->find()->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
+        $query = $this->Users
+            ->find()
+            ->select(['id', 'username', 'since', 'image', 'role'])
+            ->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
         try {
             $users = $this->paginate($query);
         } catch (\Cake\Http\Exception\NotFoundException $e) {
@@ -547,8 +549,12 @@ class UsersController extends AppController
             $lang = $usersLanguages[0]->language_code;
         }
 
-        $this->paginate = $UsersLanguages->getUsersForLanguage($lang);
-        $users = $this->paginate('UsersLanguages');
+        $this->paginate = [
+            'order' => ['UsersLanguages.level' => 'DESC', 'Users.last_contribution' => 'DESC'],
+            'limit' => 30,
+        ];
+        $query = $UsersLanguages->find('paginated', compact('lang'));
+        $users = $this->paginate($query);
 
         $this->set('users', $users);
         $this->set('usersLanguages', $usersLanguages);

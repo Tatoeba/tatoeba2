@@ -172,24 +172,16 @@ class SentenceAnnotationsController extends AppController
      */
     public function last_modified()
     {
-        $pagination = [
-            'fields' => [
-                'sentence_id',
-                'modified',
-                'user_id',
-                'text'
-            ],
-            'contain' => [
-                'Users' => [
-                    'fields' => ['username']
-                ]
-            ],
+        $this->paginate = [
             'limit' => 200,
             'order' => ['modified' => 'DESC']
         ];
-
-        $this->paginate = $pagination;
-        $results = $this->paginate();
+        $query = $this
+            ->SentenceAnnotations
+            ->find()
+            ->select(['sentence_id', 'modified', 'user_id', 'text'])
+            ->contain(['Users' => ['fields' => ['username']]]);
+        $results = $this->paginate($query);
 
         $this->set('annotations', $results);
     }

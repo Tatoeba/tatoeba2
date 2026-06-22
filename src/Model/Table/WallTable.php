@@ -33,8 +33,9 @@ class WallTable extends Table
 {
     use MailerAwareTrait;
 
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('content', 'text');
         return $schema;
     }

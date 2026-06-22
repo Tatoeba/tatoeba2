@@ -20,6 +20,7 @@
 namespace App\Model\Table;
 
 use Cake\Database\Schema\TableSchemaInterface;
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
 use Cake\I18n\FrozenTime;
@@ -31,8 +32,9 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class PrivateMessagesTable extends Table
 {
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('date', 'string');
         return $schema;
     }
@@ -102,53 +104,43 @@ class PrivateMessagesTable extends Table
     }
 
     /**
-     * Return query for paginated messages in specified folder.
+     * Finder for paginated messages in specified folder.
      *
-     * @param  int $userId    ID for current user.
-     * @param  string $folder Folder to get messages for.
-     * @param  string $status Type of messages to get: 'read' or 'unread'
-     *
-     * @return array
+     * @param  int $options['userId']    ID for current user.
+     * @param  string $options['folder'] Folder to get messages for.
+     * @param  string $options['status'] Type of messages to get: 'read' or 'unread'
      */
-    public function getPaginatedMessages($userId, $folder, $status)
+    public function findPaginated(Query $query, array $options)
     {
-        $conditions = array('folder' => $folder);
-
-        if ($folder == 'Inbox') {
-            $conditions['recpt'] = $userId;
-        } else if ($folder == 'Sent' || $folder == 'Drafts') {
-            $conditions['sender'] = $userId;
-        } else if ($folder == 'Trash') {
-            $conditions['user_id'] = $userId;
-        }
-
-        if ($status == 'read') {
-            $conditions['isnonread'] = 0;
-        } else if ($status == 'unread') {
-            $conditions['isnonread'] = 1;
-        }
-
-        return [
-            'conditions' => $conditions,
-            'contain' => [
+        $query
+            ->where(['folder' => $options['folder']])
+            ->contain([
                 'Authors' => [
-                    'fields' => [
-                        'id',
-                        'username',
-                        'image'
-                    ]
+                    'fields' => ['id', 'username', 'image']
                 ],
                 'Recipients' => [
-                    'fields' => [
-                        'id',
-                        'username',
-                        'image',
-                    ]
+                    'fields' => ['id', 'username', 'image']
                 ]
-            ],
-            'order' => ['date' => 'DESC'],
-            'limit' => 20
-        ];
+            ]);
+
+        $userId = $options['userId'];
+        $folder = $options['folder'];
+        if ($folder == 'Inbox') {
+            $query->where(['recpt' => $userId]);
+        } else if ($folder == 'Sent' || $folder == 'Drafts') {
+            $query->where(['sender' => $userId]);
+        } else if ($folder == 'Trash') {
+            $query->where(['user_id' => $userId]);
+        }
+
+        $status = $options['status'];
+        if ($status == 'read') {
+            $query->where(['isnonread' => 0]);
+        } else if ($status == 'unread') {
+            $query->where(['isnonread' => 1]);
+        }
+
+        return $query;
     }
 
     /**

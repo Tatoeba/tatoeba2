@@ -117,7 +117,7 @@ class LanguagesHelperTest extends TestCase {
     function testIcon() {
         $src = $this->Languages->Url->assetUrl('/img/flags/tgl.svg');
         $expected = '<img src="'.$src.'" class="language-icon"'
-                   .' width="30" height="20" alt="tgl" title="Tagalog"/>';
+                   .' width="30" height="20" alt="tgl" title="Tagalog">';
 
         $result = $this->Languages->icon('tgl');
 
@@ -127,7 +127,7 @@ class LanguagesHelperTest extends TestCase {
     function testIcon_unknown() {
         $src = $this->Languages->Url->assetUrl('/img/flags/unknown.svg');
         $expected = '<img src="'.$src.'" class="language-icon"'
-                   .' width="30" height="20" alt="unknown" title="unknown"/>';
+                   .' width="30" height="20" alt="unknown" title="unknown">';
 
         $result = $this->Languages->icon('');
 
@@ -137,7 +137,7 @@ class LanguagesHelperTest extends TestCase {
     function testIcon_options() {
         $src = $this->Languages->Url->assetUrl('/img/flags/tgl.svg');
         $expected = '<img src="'.$src.'" class="foo language-icon"'
-                   .' width="30" height="20" alt="tgl" title="Tagalog"/>';
+                   .' width="30" height="20" alt="tgl" title="Tagalog">';
 
         $result = $this->Languages->icon('tgl', ['class' => 'foo']);
 

@@ -44,8 +44,9 @@ use Cake\I18n\FrozenTime;
  */
 class ContributionsTable extends Table
 {
-    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    public function getSchema(): TableSchemaInterface
     {
+        $schema = parent::getSchema();
         $schema->setColumnType('text', 'text');
         return $schema;
     }
@@ -93,43 +94,6 @@ class ContributionsTable extends Table
             ));
             $this->save($newLog);
         };
-    }
-
-    public function paginateCount($conditions = null, $recursive = 0, $extra = array())
-    {
-        $botsCondition = array('user_id' => Configure::read('Bots.userIds'));
-        if (is_null($conditions)
-            || (isset($conditions['NOT']) && $conditions['NOT'] == $botsCondition))
-        {
-            return $this->estimateRowCount($this->table);
-        }
-        else
-        {
-            $parameters = compact('conditions');
-            if ($recursive != $this->recursive) {
-                $parameters['recursive'] = $recursive;
-            }
-            return $this->find('count', array_merge($parameters, $extra));
-        }
-    }
-
-    private function estimateRowCount($tableName)
-    {
-        $db = $this->getDataSource();
-        $alias = 'TABLES';
-        $rowName = 'TABLE_ROWS';
-        $query = array(
-            'table' => 'INFORMATION_SCHEMA.TABLES',
-            'alias' => $alias,
-            'conditions' => array(
-                'TABLE_NAME' => $tableName,
-                'TABLE_SCHEMA' => $db->config['database'],
-            ),
-            'fields' => array($rowName),
-        );
-        $sql = $db->buildStatement($query, $this);
-        $result = $this->query($sql);
-        return $result[0][$alias][$rowName];
     }
 
     /**

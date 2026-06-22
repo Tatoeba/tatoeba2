@@ -2,3 +2,9 @@
 
 - name: Install .bash_aliases
   template: src=bash_aliases dest=/home/{{ansible_ssh_user}}/.bash_aliases owner={{ansible_ssh_user}}
+
+- name: Install /etc/environment
+  template: src=environment dest=/etc/environment
+
+- name: Install /etc/sudoers.d/tatoeba
+  template: src=sudoers dest=/etc/sudoers.d/tatoeba

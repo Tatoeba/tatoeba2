@@ -28,7 +28,7 @@ class SentencesReindexListener implements EventListenerInterface {
                 'lang' => $entity->language_code,
             ]
         );
-        $QueuedJobs->wakeUpWorkers();
+        $QueuedJobs->WorkerProcesses->wakeUpWorkers();
     }
 
     public function onSave(Event $event, EntityInterface $entity, ArrayObject $options) {

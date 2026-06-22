@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Shell\Task;
+namespace App\Queue\Task;
 
 use App\Model\CurrentUser;
 use App\Shell\BatchOperationTrait;
-use Cake\Console\Shell;
 use Cake\I18n\I18n;
-use Queue\Shell\Task\QueueTask;
+use Queue\Queue\Task;
 
-class QueueSwitchSentencesLicenseTask extends QueueTask {
+class SwitchSentencesLicenseTask extends Task {
 
     use BatchOperationTrait;
 
@@ -42,15 +41,12 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
 
     private $sendReport = false;
     private $report = '';
+    private $Sentences;
 
-    public function out($message = null, int $newlines = 1, int $level = Shell::NORMAL): ?int {
+    public function report($message) {
         if ($this->sendReport) {
-            $this->report .= $message;
-            if ($newlines) {
-                $this->report .= PHP_EOL;
-            }
+            $this->report .= $message . PHP_EOL;
         }
-        return parent::out($message, $newlines, $level);
     }
 
     public function getReport() {
@@ -88,7 +84,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                     compact('id', 'newLicense')
                 );
                 $errors = $data->getError('license');
-                $this->out($message."\n - ".implode("\n - ", $errors));
+                $this->report($message."\n - ".implode("\n - ", $errors));
             }
         }
         return $total;
@@ -109,19 +105,19 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                  return $q->where(['SentencesLists.id' => $options['listId']]);
              });
 
-        $this->out(format(
+        $this->report(format(
             __('License switch started on {date} at {time} UTC.'),
             $this->dateAndTime()
         ));
         $proceeded = $this->batchOperationNewORM($query, [$this, '_switchLicense'], $options);
-        $this->out(format(
+        $this->report(format(
             __n('Successfully changed the license of {n} sentence.',
                 'Successfully changed the license of {n} sentences.',
                 $proceeded),
             array('n' => $proceeded)
         ));
 
-        $this->out(format(
+        $this->report(format(
             __('License switch completed on {date} at {time} UTC.'),
             $this->dateAndTime()
         ));

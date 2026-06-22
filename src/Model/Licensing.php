@@ -49,7 +49,7 @@ class Licensing {
                 compact('listId', 'userId'),
                 ['group' => $userId]
             );
-            $this->QueuedJobs->wakeUpWorkers();
+            $this->QueuedJobs->WorkerProcesses->wakeUpWorkers();
         }
     }
 
@@ -72,7 +72,7 @@ class Licensing {
             ['group' => $userId]
         );
         if ($ok) {
-            $this->QueuedJobs->wakeUpWorkers();
+            $this->QueuedJobs->WorkerProcesses->wakeUpWorkers();
         }
         return $ok;
     }
@@ -80,7 +80,7 @@ class Licensing {
     public function is_refreshing($userId) {
         $job = $this->QueuedJobs->find()
             ->where([
-                'job_type' => 'RefreshLicenseSwitchList',
+                'job_task' => 'RefreshLicenseSwitchList',
                 'job_group' => $userId,
                 'completed IS' => null,
             ])
@@ -92,7 +92,7 @@ class Licensing {
     public function is_switching($userId) {
         $job = $this->QueuedJobs->find()
             ->where([
-                'job_type' => 'SwitchSentencesLicense',
+                'job_task' => 'SwitchSentencesLicense',
                 'job_group' => $userId,
                 'completed IS' => null,
             ])

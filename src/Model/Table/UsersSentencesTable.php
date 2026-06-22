@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\Database\Schema\TableSchema;
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Validation\Validator;
@@ -124,42 +125,38 @@ class UsersSentencesTable extends Table
     }
 
     /**
-     * Get paginated user_sentneces for user.
+     * Finder for paginated reviews
      *
-     * @param  int    $userId           User ID.
-     * @param  int    $correctnessLabel Label for correctness value.
-     * @param  string $lang             Language.
-     *
-     * @return array
+     * @param  int    $options['userId']           User ID.
+     * @param  int    $options['correctnessLabel'] Label for correctness value.
+     * @param  string $options['lang']             Language.
      */
-    public function getPaginatedCorpusOf($userId, $correctnessLabel = null, $lang = null)
+    public function findPaginated(Query $query, array $options)
     {
-        $correctness = $this->correctnessValueFromLabel(
-            $correctnessLabel
-        );
-        $conditions = array('UsersSentences.user_id' => $userId);
-
-        if (is_int($correctness)) {
-            $conditions['UsersSentences.correctness'] = $correctness;
-        } elseif ($correctness === 'outdated') {
-            $conditions['UsersSentences.dirty'] = true;
-        }
-
-        if (!empty($lang)) {
-            $conditions['lang'] = $lang;
-        }
-
-        return array(
-            'conditions' => $conditions,
-            'fields' => ['id', 'sentence_id', 'correctness', 'modified'],
-            'contain' => [
+        $query
+            ->select(['id', 'sentence_id', 'correctness', 'modified'])
+            ->where(['UsersSentences.user_id' => $options['userId']])
+            ->contain([
                 'Sentences' => [
                     'fields' => ['id', 'lang', 'text', 'correctness']
                 ]
-            ],
-            'limit' => 50,
-            'order' => ['modified' => 'DESC']
+            ]);
+
+        $correctness = $this->correctnessValueFromLabel(
+            $options['correctnessLabel']
         );
+
+        if (is_int($correctness)) {
+            $query->where(['UsersSentences.correctness' => $correctness]);
+        } elseif ($correctness === 'outdated') {
+            $query->where(['UsersSentences.dirty' => true]);
+        }
+
+        if (!empty($lang)) {
+            $query->where(['lang' => $lang]);
+        }
+
+        return $query;
     }
 
     /**

@@ -72,13 +72,15 @@ class PrivateMessagesController extends AppController
      */
     public function folder($folder = 'Inbox', $status = 'all')
     {
-        $this->paginate = $this->PrivateMessages->getPaginatedMessages(
-            $this->Auth->user('id'),
-            $folder,
-            $status
-        );
+        $this->paginate = [
+            'order' => ['date' => 'DESC'],
+            'limit' => 20
+        ];
 
-        $content = $this->paginate();
+        $userId = $this->Auth->user('id');
+        $options = compact('userId', 'folder', 'status');
+        $query = $this->PrivateMessages->find('paginated', $options);
+        $content = $this->paginate($query);
 
         $this->set('folder', $folder);
         $this->set('content', $content);

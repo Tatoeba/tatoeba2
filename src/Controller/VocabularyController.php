@@ -42,6 +42,10 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  */
 class VocabularyController extends AppController
 {
+    public $paginate = [
+        'limit' => 50,
+    ];
+
     /**
      * Before filter.
      *
@@ -76,9 +80,12 @@ class VocabularyController extends AppController
                   'action' => 'all')
             );
         }
-        $this->paginate = $this->fetchTable('UsersVocabulary')
-            ->getPaginatedVocabularyOf($userId, $lang);
-        $results = $this->paginate('UsersVocabulary');
+        $query = $this->fetchTable('UsersVocabulary')
+            ->find('paginated', compact('userId', 'lang'));
+        $settings = [
+            'order' => ['created' => 'DESC']
+        ];
+        $results = $this->paginate($query, $settings);
 
         $vocabulary = $this->Vocabulary->syncNumSentences($results);
         $vocabulary = $this->Vocabulary->addCanEditPermission($vocabulary);
@@ -152,8 +159,11 @@ class VocabularyController extends AppController
     {   
         $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang);
 
-        $this->paginate = $this->Vocabulary->getPaginatedVocabulary($lang);
-        $vocabulary = $this->paginate('Vocabulary');
+        $query = $this->Vocabulary->find('paginated', compact('lang'));
+        $settings = [
+            'order' => ['numSentences' => 'ASC'],
+        ];
+        $vocabulary = $this->paginate($query, $settings);
 
         $vocabulary = $this->Vocabulary->addCanEditPermission($vocabulary);
 

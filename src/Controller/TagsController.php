@@ -87,22 +87,21 @@ class TagsController extends AppController
      */
     public function view_all($filter = null)
     {
-        $conditions = [];
+        $query = $this->Tags
+            ->find()
+            ->select(['name', 'id', 'nbrOfSentences']);
         if (!empty($filter)) {
-            $conditions = [
-                'name LIKE' => "%$filter%"
-            ];
+            $query->where(['name LIKE' => "%$filter%"]);
         }
         $this->paginate = [
             'limit' => 50,
-            'fields' => ['name', 'id', 'nbrOfSentences'],
-            'order' => ['nbrOfSentences' => 'DESC', 'id' => 'ASC'],
-            'conditions' => $conditions,
-            'sort' => $this->request->getQuery('sort', 'nbrOfSentences'),
-            'direction' => $this->request->getQuery('direction', 'desc'),
+            'order' => [
+                $this->request->getQuery('sort', 'nbrOfSentences') => $this->request->getQuery('direction', 'desc'),
+                'id' => 'ASC',
+            ],
         ];
 
-        $allTags = $this->paginate();
+        $allTags = $this->paginate($query);
         $this->set("allTags", $allTags);
         $this->set("filter", $filter ?? '');
     }
@@ -207,8 +206,9 @@ class TagsController extends AppController
 
             $this->paginate = [
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'sort' => $this->request->getQuery('sort', 'id'),
-                'direction' => $this->request->getQuery('direction', 'desc'),
+                'order' => [
+                    $this->request->getQuery('sort', 'id') => $this->request->getQuery('direction', 'desc'),
+                ],
                 // keep added_time for backward compatibility
                 'sortableFields' => ['id', 'sentence_id', 'added_time'],
             ];

@@ -215,16 +215,14 @@ class TagsTable extends Table
     }
 
     public function attachToCategory($tagName, $categoryName) {
-        $query = $this->query();
-        return $query->update()
+        return $this->updateQuery()
                     ->set(['category_id' => $this->CategoriesTree->getIdFromName($categoryName)])
                     ->where(['id' => $this->getIdFromName($tagName)])
                     ->execute();
     }
 
     public function detachFromCategory($tagId) {
-        $query = $this->query();
-        return $query->update()
+        return $this->updateQuery()
                     ->set(['category_id' => null])
                     ->where(['id' => $tagId])
                     ->execute();

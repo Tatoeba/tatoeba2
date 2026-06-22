@@ -28,6 +28,7 @@ class VocabularyControllerTest extends IntegrationTestCase
             [ '/en/vocabulary/add', 'contributor', true ],
             [ '/en/vocabulary/add_sentences', null, '/en/users/login?redirect=%2Fen%2Fvocabulary%2Fadd_sentences' ],
             [ '/en/vocabulary/add_sentences', 'contributor', true ],
+            [ '/en/vocabulary/add_sentences/eng', 'contributor', true ],
         ];
     }
 

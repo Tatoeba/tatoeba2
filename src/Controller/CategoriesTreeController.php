@@ -67,7 +67,7 @@ class CategoriesTreeController extends AppController
         $this->set('tree', $tree);
     }
 
-    public function createorEditCategory() {
+    public function createOrEditCategory() {
         $name = $this->request->getData('name');
         $description = $this->request->getData('description');
         $parentName = $this->request->getData('parentName');

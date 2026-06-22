@@ -17,11 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Shell\Task;
+namespace App\Queue\Task;
 
-use Queue\Shell\Task\QueueTask;
+use Queue\Queue\Task;
 
-class QueueAudioImportTask extends QueueTask {
+class AudioImportTask extends Task {
     public $retries = 0;
 
     public function run(array $config, int $jobId): void {

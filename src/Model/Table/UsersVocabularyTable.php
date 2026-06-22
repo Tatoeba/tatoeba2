@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 
 
@@ -51,33 +52,27 @@ class UsersVocabularyTable extends Table
     }
 
     /**
-     * Get paginated vocabulary for user.
+     * Finder to get paginated vocabulary for user.
      *
-     * @param  int    $userId ID for user.
-     * @param  string $lang   Language.
-     *
-     * @return array
+     * @param  int    $options['userId'] ID for user.
+     * @param  string $options['lang']   Language.
      */
-    public function getPaginatedVocabularyOf($userId, $lang = null)
+    public function findPaginated(Query $query, array $options)
     {
-        $conditions = array('UsersVocabulary.user_id' => $userId);
-        if (!empty($lang)) {
-            $conditions['lang'] = $lang;
-        }
-
-        $result = [
-            'conditions' => $conditions,
-            'fields' => ['created', 'user_id'],
-            'contain' => [
+        $query
+            ->select(['created', 'user_id'])
+            ->where(['UsersVocabulary.user_id' => $options['userId']])
+            ->contain([
                 'Vocabulary' => [
                     'fields' => ['id', 'lang', 'text', 'numSentences', 'numAdded']
                 ]
-            ],
-            'limit' => 50,
-            'order' => ['created' => 'DESC']
-        ];
+            ]);
+        $lang = $options['lang'];
+        if (!empty($lang)) {
+            $query->where(['lang' => $lang]);
+        }
 
-        return $result;
+        return $query;
     }
 
     /**

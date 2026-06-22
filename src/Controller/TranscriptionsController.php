@@ -27,7 +27,6 @@ class TranscriptionsController extends AppController
     public $name = 'Transcriptions';
 
     public $paginate = array(
-        'contain' => array('Users', 'Sentences'),
         'limit' => 100,
         'order' => array('Transcriptions.modified' => 'desc'),
     );
@@ -166,10 +165,13 @@ class TranscriptionsController extends AppController
             $query = $this->Transcriptions
                 ->find()
                 ->where(['Transcriptions.user_id' => $userId])
-                ->contain(['Sentences' => function (\Cake\ORM\Query $q) {
-                    $fields = $q->getRepository()->fields();
-                    return $q->select($fields);
-                }])
+                ->contain([
+                    'Sentences' => function (\Cake\ORM\Query $q) {
+                        $fields = $q->getRepository()->fields();
+                        return $q->select($fields);
+                    },
+                    'Users',
+                ])
                 ->mapReduce(
                     function ($transcr, $key, $mapReduce) {
                         $mapReduce->emitIntermediate($transcr, $transcr->sentence_id);
