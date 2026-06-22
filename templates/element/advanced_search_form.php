@@ -26,7 +26,7 @@ echo $this->Form->create(null, [
     'url' => false,
     'name' => 'form',
     'ng-controller' => 'SearchController as vm',
-    'ng-submit' => "vm.submit(form, filters, 'search')",
+    'ng-submit' => "vm.submit(form)",
 ]);
 ?>
 
@@ -57,7 +57,8 @@ echo $this->Form->create(null, [
 
             
         <div layout="column">
-            <md-input-container class="md-button-right">
+            <md-input-container class="md-button-right"
+                                ng-class="{'active-filter': isFilterActive('query')}">
                 <?php
                 echo $this->Form->control('query', array(
                     'label' => __('Words:'),
@@ -74,7 +75,9 @@ echo $this->Form->create(null, [
                 <div class="hint"><?= __('Enter a word or a phrase') ?></div>
             </md-input-container>
 
-            <div class="param" layout="<?= $layout ?>" layout-align="center">
+            <div layout="<?= $layout ?>" layout-align="center"
+                 class="param" ng-class="{'active-filter': isFilterActive('from')}"
+            >
                 <label for="from" flex><?= __('Language:') ?></label>
                 <?php
                 echo $this->Search->selectLang('from', $from, [
@@ -83,7 +86,9 @@ echo $this->Form->create(null, [
                 ?>
             </div>
 
-            <div class="param" layout="<?= $layout ?>" layout-align="center">
+            <div layout="<?= $layout ?>" layout-align="center"
+                 class="param" ng-class="{'active-filter': isFilterActive('to')}"
+            >
                 <label for="to" flex><?= __('Show translations in:') ?></label>
                 <?php
                 echo $this->Search->selectLang('to', $to, [
@@ -97,7 +102,9 @@ echo $this->Form->create(null, [
             </div>
 
             <div class="param word-count">
-                <div layout="row" layout-align="center">
+                <div layout="row" layout-align="center"
+                     ng-class="{'active-filter': isFilterActive('word_count_min') || isFilterActive('word_count_max')}"
+                >
                       <?php /* @translators: sentence length filter in the search form. */ ?>
                       <label flex><?= __('Length:') ?></label>
                       <div layout="column" layout-align="end">
@@ -146,7 +153,8 @@ echo $this->Form->create(null, [
                 </div>
             </div>
 
-            <md-input-container class="md-button-right">
+            <md-input-container class="md-button-right"
+                                ng-class="{'active-filter': isFilterActive('user')}">
                 <?php
                 echo $this->Form->control('user', array(
                     'label' => __('Owner:'),
@@ -161,7 +169,9 @@ echo $this->Form->create(null, [
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
-            <div class="param" layout="row">
+            <div class="param" layout="row"
+                 ng-class="{'active-filter': isFilterActive('original')}"
+            >
                 <md-checkbox
                     ng-false-value="''"
                     ng-true-value="'yes'"
@@ -178,7 +188,7 @@ echo $this->Form->create(null, [
                 </div>
             </div>
 
-            <div class="param">
+            <div class="param" ng-class="{'active-filter': isFilterActive('orphans')}">
                 <div layout="row" layout-align="center">
                     <label for="orphans" flex><?= __('Is orphan:') ?></label>
                     <?php
@@ -186,7 +196,7 @@ echo $this->Form->create(null, [
                         'label' => '',
                         'options' => [
                             /* @translators: dropdown option of "Is orphan" field in search form */
-                            'any' => __x('orphan', 'Any'),
+                            '' => __x('orphan', 'Any'),
                             /* @translators: part of Any/No/Yes dropdown options in search form */
                             'no' => __('No'),
                             /* @translators: part of Any/No/Yes dropdown options in search form */
@@ -202,7 +212,7 @@ echo $this->Form->create(null, [
                 </div>
             </div>
 
-            <div class="param">
+            <div class="param" ng-class="{'active-filter': isFilterActive('unapproved')}">
                 <div layout="row" layout-align="center">
                     <label for="unapproved" flex><?= __('Is unapproved:') ?></label>
                     <?php
@@ -210,7 +220,7 @@ echo $this->Form->create(null, [
                         'label' => '',
                         'options' => array(
                             /* @translators: dropdown option of "Is unapproved" field in search form */
-                            'any' => __x('unapproved', 'Any'),
+                            '' => __x('unapproved', 'Any'),
                             'no' => __('No'),
                             'yes' => __('Yes'),
                         ),
@@ -224,7 +234,7 @@ echo $this->Form->create(null, [
                 </div>
             </div>
 
-            <div class="param">
+            <div class="param" ng-class="{'active-filter': isFilterActive('native')}">
                 <div layout="row" layout-align="center">
                     <label for="native" flex><?= __('Is owned by a native:') ?></label>
                     <?php
@@ -246,7 +256,9 @@ echo $this->Form->create(null, [
                 </div>
             </div>
 
-            <div class="param" layout="row" layout-align="center">
+            <div layout="row" layout-align="center"
+                 class="param" ng-class="{'active-filter': isFilterActive('has_audio')}"
+            >
                 <label for="has-audio" flex><?= __('Has audio:') ?></label>
                 <?php
                 echo $this->Form->control('has_audio', array(
@@ -263,7 +275,8 @@ echo $this->Form->create(null, [
                 ?>
             </div>
 
-            <md-input-container class="md-button-right">
+            <md-input-container class="md-button-right"
+                                ng-class="{'active-filter': isFilterActive('tags')}">
             <?php
             echo $this->Form->control('tags', array(
                 'label' => __('Tags:'),
@@ -280,7 +293,9 @@ echo $this->Form->create(null, [
             </div>
             </md-input-container>
 
-            <div class="param" layout="<?= $layout ?>" layout-align="center">
+            <div layout="<?= $layout ?>" layout-align="center"
+                 class="param" ng-class="{'active-filter': isFilterActive('list')}"
+            >
                 <label for="list" flex><?= __('Belongs to list:') ?></label>
                 <div flex>
                 <?php
@@ -305,7 +320,7 @@ echo $this->Form->create(null, [
             <md-subheader><?php echo __('Translations'); ?></md-subheader>
 
             <div layout="column">
-                <div class="param">
+                <div class="param" ng-class="{'active-filter': isFilterActive('trans_filter')}">
                 <?php
                 $filterOption = $this->Form->select(
                     'trans_filter',
@@ -332,7 +347,9 @@ echo $this->Form->create(null, [
                 ?>
                 </div>
 
-                <div class="param" layout="<?= $layout ?>" layout-align="center">
+                <div layout="<?= $layout ?>" layout-align="center"
+                     class="param" ng-class="{'active-filter': isFilterActive('trans_to')}"
+                >
                     <label for="trans-to" flex><?= __('Language:') ?></label>
                     <?php
                     echo $this->Search->selectLang('trans_to', $trans_to, [
@@ -341,7 +358,9 @@ echo $this->Form->create(null, [
                     ?>
                 </div>
 
-                <div class="param" layout="row" layout-align="center">
+                <div layout="row" layout-align="center"
+                     class="param" ng-class="{'active-filter': isFilterActive('trans_link')}"
+                >
                     <label for="trans-link" flex><?= __('Link:') ?></label>
                     <?php
                     echo $this->Form->control('trans_link', array(
@@ -360,7 +379,8 @@ echo $this->Form->create(null, [
                     ?>
                 </div>
 
-                <md-input-container class="md-button-right">
+                <md-input-container class="md-button-right"
+                                    ng-class="{'active-filter': isFilterActive('trans_user')}">
                     <?php
                     echo $this->Form->control('trans_user', array(
                         'label' => __('Owner:'),
@@ -375,7 +395,7 @@ echo $this->Form->create(null, [
                     <div class="hint"><?= __('Enter a username') ?></div>
                 </md-input-container>
 
-                <div class="param">
+                <div class="param" ng-class="{'active-filter': isFilterActive('trans_orphan')}">
                     <div layout="row" layout-align="center">
                         <label for="trans-orphan" flex><?= __('Is orphan:') ?></label>
                         <?php
@@ -396,7 +416,7 @@ echo $this->Form->create(null, [
                     </div>
                 </div>
 
-                <div class="param">
+                <div class="param" ng-class="{'active-filter': isFilterActive('trans_unapproved')}">
                     <div layout="row" layout-align="center">
                         <label for="trans-unapproved" flex><?= __('Is unapproved:') ?></label>
                         <?php
@@ -417,7 +437,7 @@ echo $this->Form->create(null, [
                     </div>
                 </div>
 
-                <div class="param">
+                <div class="param" ng-class="{'active-filter': isFilterActive('trans_native')}">
                     <div layout="row" layout-align="center">
                         <label for="trans-native" flex><?= __('Is owned by a native:') ?></label>
                         <?php
@@ -439,7 +459,9 @@ echo $this->Form->create(null, [
                     </div>
                 </div>
 
-                <div class="param" layout="row" layout-align="center">
+                <div layout="row" layout-align="center"
+                     class="param" ng-class="{'active-filter': isFilterActive('trans_has_audio')}"
+                >
                     <label for="trans-has-audio" flex><?= __('Has audio:') ?></label>
                     <?php
                     echo $this->Form->control('trans_has_audio', array(
@@ -510,7 +532,7 @@ echo $this->Form->create(null, [
             <?= __('More search options') ?>
         </md-button>
         <?php if (!(isset($isSidebar) && $isSidebar)): ?>
-            <md-button class="md-primary" ng-click="vm.submit(form, filters, 'advanced_search')">
+            <md-button class="md-primary" ng-click="vm.submit(form, 'advanced_search')">
                 <?= __('Create a search template') ?>
             </md-button>
             <span>

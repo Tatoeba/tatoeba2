@@ -109,15 +109,15 @@ class SentencesSearchFormTest extends TestCase
 
             [ ['unapproved' => 'yes'],     ['IsUnapprovedFilter' => new IsUnapprovedFilter()],          'yes' ],
             [ ['unapproved' => 'no'],      ['IsUnapprovedFilter' => (new IsUnapprovedFilter())->not()], 'no'  ],
-            [ ['unapproved' => 'any'],     ['IsUnapprovedFilter' => null],  'any' ],
-            [ ['unapproved' => 'invalid'], ['IsUnapprovedFilter' => null],  'any' ],
-            [ ['unapproved' => ''],        ['IsUnapprovedFilter' => null],  'any' ],
+            [ ['unapproved' => 'any'],     ['IsUnapprovedFilter' => null],  '' ],
+            [ ['unapproved' => 'invalid'], ['IsUnapprovedFilter' => null],  '' ],
+            [ ['unapproved' => ''],        ['IsUnapprovedFilter' => null],  '' ],
 
             [ ['orphans' => 'yes'],     ['IsOrphanFilter' => new IsOrphanFilter()],          'yes' ],
             [ ['orphans' => 'no'],      ['IsOrphanFilter' => (new IsOrphanFilter())->not()], 'no'  ],
-            [ ['orphans' => 'any'],     ['IsOrphanFilter' => null],                      'any' ],
-            [ ['orphans' => 'invalid'], ['IsOrphanFilter' => null],                      'any' ],
-            [ ['orphans' => ''],        ['IsOrphanFilter' => null],                      'any' ],
+            [ ['orphans' => 'any'],     ['IsOrphanFilter' => null],                      '' ],
+            [ ['orphans' => 'invalid'], ['IsOrphanFilter' => null],                      '' ],
+            [ ['orphans' => ''],        ['IsOrphanFilter' => null],                      '' ],
 
             [ ['user' => 'contributor'], ['OwnerFilter' => (new OwnerFilter())->anyOf(['contributor'])], 'contributor', 0 ],
             [ ['user' => 'invaliduser'], ['OwnerFilter' => new OwnerFilter()],                           '',            1 ],
@@ -147,11 +147,11 @@ class SentencesSearchFormTest extends TestCase
             [ ['native' => 'invalid'], ['IsNativeFilter' => null], '' ],
             [ ['native' => ''],        ['IsNativeFilter' => null], '' ],
 
-            [ ['word_count_min' => ''],        ['WordCountFilter' => null],                                           'any'],
+            [ ['word_count_min' => ''],        ['WordCountFilter' => null],                                           ''   ],
             [ ['word_count_min' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['0-'])->and()],  '0'  ],
             [ ['word_count_min' => '01'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  '1'  ],
             [ ['word_count_min' => '42'],      ['WordCountFilter' => (new WordCountFilter())->anyOf(['42-'])->and()], '42' ],
-            [ ['word_count_min' => 'invalid'], ['WordCountFilter' => null],                                           'any'],
+            [ ['word_count_min' => 'invalid'], ['WordCountFilter' => null],                                           ''   ],
 
             [ ['word_count_max' => ''],        ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()],  ''   ],
             [ ['word_count_max' => '0'],       ['WordCountFilter' => (new WordCountFilter())->anyOf(['1-'])->and()

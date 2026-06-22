@@ -30,15 +30,20 @@ use Cake\Core\Configure;
 $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
 ?>
 
-<md-toolbar id="search-bar-minimal" ng-cloak>
+<md-toolbar id="search-bar-minimal" ng-controller="SearchBarController as ctrl" ng-cloak>
     <div class="md-toolbar-tools">
+
+    <language-icon lang="filters.from.code" title="filters.from.name" ng-if="filters.from"></language-icon>
+
     <?php
     echo $this->Form->create(null, [
         'layout' => 'column',
-        'url' => ['controller' => 'sentences', 'action' => 'search'],
+        'name' => 'ctrl.form',
+        'url' => false,
         'type' => 'get',
         'flex' => '',
-        'ng-cloak' => ''
+        'ng-init' => 'ctrl.syncWithOtherSearchForms()',
+        'ng-submit' => 'ctrl.submit(ctrl.form)',
     ]);
     ?>
 
@@ -48,8 +53,8 @@ $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
                 accesskey="4" 
                 type="search"
                 dir="auto" 
-                ng-model="ctrl.searchQuery" 
-                ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
+                ng-model="filters.query"
+                ng-init="filters.query = <?= $searchQuery ?>"
                 <?php /* @translators: placeholder for the search input in the search bar */ ?>
                 placeholder="<?= __x('placeholder', 'Search') ?>"/>
         </md-input-container>
@@ -102,8 +107,8 @@ echo $this->Form->create(null, [
             <input id="SentenceQuery"
                    type="search"
                    name="query"
-                   ng-model="ctrl.searchQuery"
-                   ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
+                   ng-model="filters.query"
+                   ng-init="filters.query = <?= $searchQuery ?>"
                    accesskey="4"
                    lang=""
                    dir="auto"
@@ -127,7 +132,7 @@ echo $this->Form->create(null, [
                     'languages' => $this->Languages->getSearchableLanguagesArray(),
                     /* @translators: placeholder used in translation language selection dropdown in top search bar */
                     'placeholder' => __x('searchbar', 'Any language'),
-                    'selectedLanguage' => 'ctrl.langFrom',
+                    'selectedLanguage' => 'filters.from',
                 )
             );
             ?>
@@ -152,7 +157,7 @@ echo $this->Form->create(null, [
                     'languages' => $this->Languages->getSearchableLanguagesArray(),
                     /* @translators: placeholder used in translation language selection dropdown in top search bar */
                     'placeholder' => __x('searchbar', 'Any language'),
-                    'selectedLanguage' => 'ctrl.langTo',
+                    'selectedLanguage' => 'filters.to',
                 )
             );
             ?>

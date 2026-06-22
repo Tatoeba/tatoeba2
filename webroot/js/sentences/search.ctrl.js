@@ -44,15 +44,18 @@
                 }
             };
         })
-        .controller('SearchController', ['searchService', function(search) {
+        .controller('SearchController', ['searchService', '$scope', function(search, $scope) {
             var vm = this;
+
+            $scope.filters = search.filters;
+            $scope.isFilterActive = search.isFilterActive;
 
             vm.submit = submit;
 
             ///////////////////////////////////////////////////////////////////////////
 
-            function submit(form, filters, target) {
-                search.submit(form, filters, target);
+            function submit(form, target) {
+                search.submit(form, target);
             }
         }]);
 })();

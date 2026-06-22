@@ -20,16 +20,22 @@
     angular
         .module('app')
         .factory('searchService', ['$httpParamSerializer', '$window', function($httpParamSerializer, $window) {
+            var filters = {};
+
             return {
+               filters: filters,
+               setFilters: setFilters,
+               getActiveFilters: getActiveFilters,
+               isFilterActive: isFilterActive,
                submit: submit
             };
 
-            function submit(form, filters, target = 'search') {
+            function submit(form, target = 'search', sentFilters = filters) {
                 if (!form.$valid) {
                     return;
                 }
 
-                var params = angular.copy(filters);
+                var params = angular.copy(sentFilters);
                 ['from', 'to', 'trans_to'].forEach(function(filter) {
                     if (filter in params) {
                         params[filter] = params[filter] ? params[filter].code : '';
@@ -41,5 +47,27 @@
 
                 $window.location.href = url;
             }
+
+            function isFilterActive(name) {
+                return !isFilterInactive(name, filters[name]);
+            }
+
+            function isFilterInactive(name, value) {
+                return value === null || value === ''
+                    || (name === 'word_count_min' && (value === '0' || value === '1'))
+                    || (name === 'trans_filter' && value === 'limit')
+                    || name === 'sort'
+                    || name === 'sort_reverse';
+            }
+
+            function getActiveFilters() {
+                return Object.keys(filters).filter(name => isFilterActive(name));
+            }
+
+            function setFilters(newFilters) {
+                Object.keys(filters).forEach(function(name) {
+                    filters[name] = newFilters[name];
+                });
+            };
         }]);
 })();

@@ -74,6 +74,9 @@ if ($ignored) {
         'ng-non-bindable' => '',
     ));
 }
+
+$defaultCriteriaJson = json_encode($defaultCriteria);
+$defaultCriteriaJson = str_replace('{{', '\{\{', $defaultCriteriaJson);
 ?>
 
 <md-toolbar class="md-hue-2" hide-xs hide-sm ng-cloak>
@@ -102,8 +105,11 @@ if ($ignored) {
 
         <md-button ng-click="toggle('advanced-search')">
             <md-icon>filter_list</md-icon>
-            <?php /* @translators: button to open the advanced search option sidebar on mobile */ ?>
-            <?= __('Refine search') ?>
+            <?= format(
+                    /* @translators: button to open the advanced search option sidebar on mobile */
+                    __('Search filters ({numberOfCurrentlyActiveFilters})'),
+                    ['numberOfCurrentlyActiveFilters' => '{{search.getActiveFilters().length}}']
+            ) ?>
         </md-button>
     </div>
 </md-toolbar>
@@ -195,7 +201,12 @@ if ($ignored) {
     <md-toolbar>
         <div class="md-toolbar-tools" ng-controller="SidenavController">
             <?php /* @translators: title for the sidebar on the search page */ ?>
-            <h2 flex><?= __('Refine search'); ?></h2>
+            <h2 flex><?= __('Search filters'); ?></h2>
+            <md-button class="md-icon-button" ng-click="search.setFilters(<?= h($defaultCriteriaJson) ?>)">
+                <md-icon>refresh</md-icon>
+                <?php /* @translators: button on the sidebar on the search page (verb) */ ?>
+                <md-tooltip><?= __('Reset search filters') ?></md-tooltip>
+            </md-button>
             <md-button class="close md-icon-button" ng-click="toggle('advanced-search')">
                 <md-icon>close</md-icon>
             </md-button>

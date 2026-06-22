@@ -65,10 +65,11 @@
                 });
             };
         })
-        .controller('SidenavController', ['$scope', '$mdSidenav', '$window', function($scope, $mdSidenav, $window) {
+        .controller('SidenavController', ['$scope', '$mdSidenav', '$window', 'searchService', function($scope, $mdSidenav, $window, search) {
             $scope.toggle = function(id) {
                 $mdSidenav(id).toggle();
             };
+            $scope.search = search;
         }])
         .controller('MenuController', ['$scope', '$mdSidenav', '$mdDialog', function($scope, $mdSidenav, $mdDialog) {
             $scope.toggleMenu = function() {
