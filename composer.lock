@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72af17d82a9dfe524612b63daf663c25",
+    "content-hash": "4c6f3cf3b747739b5e9bb4d62b8c03a6",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -573,6 +573,65 @@
                 "source": "https://github.com/dereuromark/cakephp-queue"
             },
             "time": "2025-09-11T17:51:53+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-tinyauth",
+            "version": "3.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
+                "reference": "7f1b689329b3e299df2775bbcd2887b106f46b6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/7f1b689329b3e299df2775bbcd2887b106f46b6b",
+                "reference": "7f1b689329b3e299df2775bbcd2887b106f46b6b",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.2",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "cakephp/authentication": "^2.2",
+                "cakephp/authorization": "^2.0",
+                "cakephp/debug_kit": "^4.2.0",
+                "composer/semver": "^2.0 || ^3.0",
+                "fig-r/psr2r-sniffer": "^1.5.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "TinyAuth\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A CakePHP plugin to handle user authentication and authorization the easy way.",
+            "homepage": "https://github.com/dereuromark/cakephp-tinyauth",
+            "keywords": [
+                "Authentication",
+                "authorization",
+                "cakephp",
+                "plugin",
+                "roles",
+                "tinyauth"
+            ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-tinyauth/issues",
+                "source": "https://github.com/dereuromark/cakephp-tinyauth"
+            },
+            "time": "2026-06-25T12:29:14+00:00"
         },
         {
             "name": "doctrine/annotations",
