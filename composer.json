@@ -14,7 +14,9 @@
         "zircote/swagger-php": "^5.3",
         "doctrine/annotations": "^2.0",
         "cakedc/cakephp-cached-routing": "^1.0",
-        "dereuromark/cakephp-tinyauth": "3.*"
+        "dereuromark/cakephp-tinyauth": "3.*",
+        "cakephp/authentication": "2.*",
+        "cakephp/authorization": "^2.5"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0",
@@ -41,6 +43,11 @@
     "config": {
         "allow-plugins": {
             "cakephp/plugin-installer": true
+        },
+        "audit": {
+            "ignore": {
+                "CVE-2026-55590": "Ignored because cakephp/authentication 2.11.1 is fine, see https://github.com/cakephp/authentication/issues/798"
+            }
         }
     }
 }
