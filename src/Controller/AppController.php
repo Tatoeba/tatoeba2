@@ -49,8 +49,6 @@ use Cake\Routing\Router;
 
 class AppController extends Controller
 {
-    use \AuthActions\Lib\AuthActionsTrait;
-
     const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
 
     private function blackhole($type) {
@@ -62,11 +60,16 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Permissions');
         $this->loadComponent('Security');
-        $this->loadComponent('Auth', [
+        $this->loadComponent('TinyAuth.Auth', [
             'authenticate' => [
                 'Form' => [
                     'passwordHasher' => ['className' => 'Versioned'],
                     'finder' => 'userToLogin',
+                ],
+            ],
+            'authorize' => [
+                'TinyAuth.Tiny' => [
+                    'roleColumn' => 'role',
                 ],
             ]
         ]);
@@ -149,13 +152,9 @@ class AppController extends Controller
             // the whole page.
             'ajaxLogin' => 'session_expired',
             'authError' => false,
-            'authorize' => ['Controller'],
             'loginAction' => [ 'controller' => 'users', 'action' => 'login' ],
             'logoutRedirect' => [ 'controller' => 'users', 'action' => 'login' ],
-            // namespace declaration of AuthUtilsComponent
-            'AuthActions.AuthUtils',
         ]);
-        $this->initAuthActions();
         $this->RememberMe->check();
 
         // Get logged-in user so that we can access it info from models.

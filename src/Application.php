@@ -54,7 +54,7 @@ class Application extends BaseApplication
 
         $this->addPlugin('Queue', ['bootstrap' => true, 'routes' => false]);
         $this->addPlugin('AssetCompress', ['middleware' => false]);
-        $this->addPlugin('AuthActions', ['bootstrap' => false, 'routes' => false]);
+        $this->addPlugin('TinyAuth');
     }
 
     /**

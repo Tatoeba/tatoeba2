@@ -1,4 +1,6 @@
 <?php
+use App\Model\Entity\User;
+
 return [
     /**
      * Debug Level:
@@ -422,4 +424,6 @@ return [
         'cookie' => 'CAKEPHP',
         'timeout' => 120,
     ],
+
+    'Roles' => array_combine(User::ALL_ROLES, User::ALL_ROLES),
 ];
