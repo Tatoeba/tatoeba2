@@ -158,10 +158,10 @@ class UsersController extends AppController
     public function login()
     {
         /*maybe factor in _common login too*/
-        if (!$this->Auth->user()) {
+        if (!$this->Authentication->getIdentity()) {
             return;
         }
-        return $this->_common_login($this->Auth->redirectUrl());
+        return $this->_common_login($this->Authentication->getLoginRedirect() ?? '/');
 
     }
 
@@ -173,17 +173,19 @@ class UsersController extends AppController
      */
     public function check_login()
     {
-        $user = $this->Auth->identify();
+        $authResult = $this->Authentication->getResult();
 
         $redirectParam = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
-        $redirectUrl = $this->Auth->redirectUrl();
+        $redirectUrl = $this->Authentication->getLoginRedirect();
         $failedUrl = ['action' => 'login'];
-        if (!is_null($redirectParam)) {
+        if (!is_null($redirectParam) && !is_null($redirectUrl)) {
             $failedUrl['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl];
         };
 
-        if ($user) {
-            if ($user['role'] == User::ROLE_INACTIVE) {
+        if ($authResult->isValid()) {
+            $role = $this->Authentication->getIdentityData('role');
+            if ($role == User::ROLE_INACTIVE) {
+                $this->Authentication->logout();
                 $this->flash(
                     __(
                         'This account has been marked inactive. '.
@@ -193,7 +195,8 @@ class UsersController extends AppController
                     $failedUrl
                 );
             }
-            else if ($user['role'] == User::ROLE_SPAMMER) {
+            else if ($role == User::ROLE_SPAMMER) {
+                $this->Authentication->logout();
                 $this->flash(
                     __(
                         'This account has been marked as a spammer. '.
@@ -203,8 +206,7 @@ class UsersController extends AppController
                     $failedUrl
                 );
             } else {
-                $this->Auth->setUser($user);
-                return $this->_common_login($redirectUrl);
+                return $this->_common_login($redirectUrl ?? '/');
             }
         } else {
             if (empty($this->request->getData('username'))) {
@@ -238,7 +240,7 @@ class UsersController extends AppController
 
     private function _common_login($redirectUrl)
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
 
         // update the last login time
         $user = $this->Users->get($userId);
@@ -271,7 +273,7 @@ class UsersController extends AppController
     {
         $this->RememberMe->delete();
         $this->request->getSession()->delete('last_used_lang');
-        return $this->redirect($this->Auth->logout());
+        return $this->redirect($this->Authentication->logout());
     }
 
 
@@ -283,7 +285,7 @@ class UsersController extends AppController
     public function register()
     {
         // Already logged in
-        if ($this->Auth->User('id')) {
+        if ($this->Authentication->getIdentity()) {
             return $this->redirect('/');
         }
 
@@ -318,14 +320,17 @@ class UsersController extends AppController
                     $UsersLanguages->save($userLanguage);
                 }
 
-                $user = $this->Auth->identify();
-                $this->Auth->setUser($user);
+                $newIdentity = $this->Users
+                    ->findById($newUser->id)
+                    ->find('userToLogin')
+                    ->first();
+                $this->Authentication->setIdentity($newIdentity);
 
                 $profileUrl = Router::url(
                     array(
                         'controller' => 'user',
                         'action' => 'profile',
-                        $this->Auth->user('username')
+                        $this->Authentication->getIdentityData('username'),
                     )
                 );
                 $this->Flash->set(

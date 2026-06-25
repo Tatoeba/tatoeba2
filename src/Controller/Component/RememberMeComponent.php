@@ -42,7 +42,7 @@ use DateTime;
  */
 class RememberMeComponent extends Component
 {
-    public $components = array('Auth');
+    public $components = array('TinyAuth.Authentication');
 
     /**
      * Cookie retention period.
@@ -91,7 +91,7 @@ class RememberMeComponent extends Component
                        isset($cookie['username']) &&
                        isset($cookie['password']);
 
-        if (!$validCookie || $this->Auth->user()) {
+        if (!$validCookie || $this->Authentication->getIdentity()) {
             return;
         }
 
@@ -103,7 +103,7 @@ class RememberMeComponent extends Component
             ])->first();
 
         if ($user) {
-            $this->Auth->setUser($user->toArray());
+            $this->Authentication->setIdentity($user);
             // refresh cookie expiration date to $this->_period from now
             $this->remember($cookie['username'], $cookie['password']);
         } else {

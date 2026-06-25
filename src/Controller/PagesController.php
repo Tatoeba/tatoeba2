@@ -74,8 +74,7 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $userId = $this->Auth->user('id');
-        $isLogged = !empty($userId);
+        $isLogged = (bool)$this->Authentication->getIdentity();
 
         // Random sentence part
         $hideRandomSentence = CurrentUser::getSetting('hide_random_sentence');

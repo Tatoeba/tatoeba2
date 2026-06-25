@@ -148,7 +148,7 @@ class SentenceCommentsController extends AppController
             [
                 'sentence_id' => $sentenceId,
                 'text' => $commentText,
-                'user_id' => $this->Auth->user('id')
+                'user_id' => $this->Authentication->getIdentityData('id')
             ],
             compact('validate')
         );

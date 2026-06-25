@@ -78,7 +78,7 @@ class FavoritesController extends AppController
 
     public function add_favorite($sentenceId, $withRemoveOrUndo = false)
     {
-        $userId =$this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
 
         if ($userId != null) {
             $isSaved = $this->Favorites->addFavorite($sentenceId, $userId);
@@ -98,7 +98,7 @@ class FavoritesController extends AppController
 
     public function remove_favorite($sentenceId, $withRemoveOrUndo = false)
     {
-        $userId =$this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
 
         if ($userId != null) {
             $isSaved = $this->Favorites->removeFavorite($sentenceId, $userId);

@@ -74,7 +74,7 @@ class WallController extends AppController
     {
         $tenLastMessages = $this->Wall->getLastMessages(10);
 
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentity() ? $this->Authentication->getIdentityData('id') : null;
 
         $query = $this->Wall
             ->find()
@@ -113,7 +113,7 @@ class WallController extends AppController
      */
     public function save()
     {
-        if ($this->Auth->user('id')) {
+        if ($this->Authentication->getIdentity()) {
             $content = $this->request->getData('content');
             $session = $this->request->getSession();
             $lastMess = $session->read('hash_last_wall');
@@ -124,7 +124,7 @@ class WallController extends AppController
                             'skipOutboundLinksCheck' : 'default';
                 $newPost = $this->Wall->newEntity(
                     [
-                        'owner'   => $this->Auth->user('id'),
+                        'owner'   => $this->Authentication->getIdentityData('id'),
                         'content' => $content,
                     ],
                     compact('validate')
@@ -158,7 +158,7 @@ class WallController extends AppController
     public function save_inside()
     {
         $data = $this->request->getData();
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         $content = $data['content'];
         $parentId = $data['replyTo'];
         $validate = $this->request->getData('outboundLinksConfirmed', false) ?
@@ -277,7 +277,7 @@ class WallController extends AppController
      */
     public function show_message($messageId)
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentity() ? $this->Authentication->getIdentityData('id') : null;
 
         $thread = $this->Wall->getWholeThreadContaining($messageId);
 
@@ -302,7 +302,7 @@ class WallController extends AppController
         }
 
 
-        $this->set("isAuthenticated", $this->Auth->user());
+        $this->set("isAuthenticated", $this->Authentication->getIdentity());
     }
 
 

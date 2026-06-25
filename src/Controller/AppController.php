@@ -144,7 +144,7 @@ class AppController extends Controller
 
         // Get logged-in user so that we can access it info from models.
         // Important: needs to be done after RememberMe->check().
-        $logged_in_user = $this->Auth->user();
+        $logged_in_user = $this->Authentication->getIdentity();
         if ($logged_in_user) {
             $user = $this->fetchTable('Users')
                 ->getInformationOfCurrentUser($logged_in_user['id'])
@@ -153,7 +153,7 @@ class AppController extends Controller
             // Immediately logout if status was downgraded to one that cannot login
             if (in_array($user['role'], [User::ROLE_INACTIVE, User::ROLE_SPAMMER])) {
                 $this->RememberMe->delete();
-                $this->Auth->logout();
+                $this->Authentication->logout();
                 if ($user['role'] == User::ROLE_SPAMMER) {
                     $this->Flash->set(__('Your account has been suspended.'));
                 } elseif ($user['role'] == User::ROLE_INACTIVE) {
@@ -164,8 +164,8 @@ class AppController extends Controller
                 // Check if auth info needs to be updated
                 // May happen if an admin just changed the user's role or username
                 $updated_user_auth = array_intersect_key($user, $logged_in_user);
-                if ($updated_user_auth != $logged_in_user) {
-                    $this->Auth->setUser($updated_user_auth);
+                if ($updated_user_auth != $logged_in_user->getOriginalData()) {
+                    $this->Authentication->setIdentity($user);
                     // AuthComponent::setUser() renews the session id, which makes
                     // the Security component blackhole the request if it's a post
                     // so disable it just this time
