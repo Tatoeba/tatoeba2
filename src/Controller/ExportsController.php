@@ -12,7 +12,6 @@ class ExportsController extends AppController
         $this->Security->setConfig('unlockedActions', [
             'add',
         ]);
-        $this->Auth->allowedActions = ['add', 'get', 'download'];
 
         return parent::beforeFilter($event);
     }
