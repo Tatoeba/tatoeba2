@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 06:17+0000\n"
+"POT-Creation-Date: 2026-06-17 12:10+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Glossa Yao, 2021\n"
 "Language-Team: Chinese (Wu) (http://app.transifex.com/tatoeba/tatoeba_website/language/wuu/)\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/of_user.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L31
@@ -52,11 +52,11 @@ msgid ""
 "this."
 msgstr "保存额辰光发生错误。请再试试看或者帮阿拉联系以报告搿情况。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L91
 msgid "Please wait until the list is updated."
 msgstr "请等特些列表更新。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L95
 msgid "A license switch is already in progress."
 msgstr "许可证调换已经在进行。"
 
@@ -78,7 +78,7 @@ msgid ""
 "this."
 msgstr "去特链接额辰光发生错误。请再试试看或者帮阿拉联系以报告搿情况。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L166
 msgid "Folder \"{name}\" emptied."
 msgstr "文件夹{name}已经拔清空。"
 
@@ -99,15 +99,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr "id {number}么有句子。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L165
 msgid "Your comment has been saved."
 msgstr "侬额评论已经拔保存。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L208
 msgid "You do not have permission to edit this comment. "
 msgstr "侬么有权利编辑搿评论。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L212
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/write.php#L55
 msgid ""
@@ -115,7 +115,7 @@ msgid ""
 " {email}."
 msgstr "假使侬收到错误额搿消息，请通过搿方式联系管理员{email}。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L237
 msgid "Changes to your comment have been saved."
 msgstr "对侬额评论额编辑已经保存。"
 
@@ -127,27 +127,27 @@ msgstr "句子{id}已经拨删特了。"
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "错误：搿句子{id}伐能被删特。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L819
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L815
 msgid "You are not allowed to change the license of this sentence."
 msgstr "侬么权利调特搿句子额许可证。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L826
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L822
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "句子额许可证被调成{newLicense}。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L831
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L827
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "因为搿些原因，么办法拔许可证调成{newLicense}。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L153
 msgid "You do not have permission to view this list."
 msgstr "侬么权利查看搿列表。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L306
 msgid "The sentence could not be added to the list."
 msgstr "搿句子么办法添加到列表里相。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L495
 msgid "You do not have permission to download this list."
 msgstr "侬么权利下载搿列表。"
 
@@ -158,7 +158,7 @@ msgid ""
 msgstr "搿标签么有句子。侬要寻额标签已经删特了或者伐存在。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L95
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L75
 msgid "No user with this username: {username}"
 msgstr "么有用搿用户名{username}额用户。"
 
@@ -287,7 +287,7 @@ msgstr "闲话已删特。"
 msgid "You cannot delete this language."
 msgstr "侬伐能删特搿闲话。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L138
 msgid "The vocabulary item '{vocabText}' already exists for this language."
 msgstr ""
 
@@ -338,14 +338,14 @@ msgstr "“属于列表号{listId}”，因为列表{listId}是私有额或伐�
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L481
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L470
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "“句子是孤立额”，因为“句子所有者”已经设置为用户名。"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L492
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L481
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "“翻译是孤立额”，因为“翻译所有者”已经设置为用户名。"
@@ -353,7 +353,7 @@ msgstr "“翻译是孤立额”，因为“翻译所有者”已经设置为用
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L513
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L502
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
@@ -486,25 +486,25 @@ msgstr "句子ID [标签]句子文本[标签]翻译ID [标签]翻译文本"
 msgid "Sentences to switch to CC0"
 msgstr "句子调到CC0"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
 msgstr "侬伐能发送一则空消息。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L84
 msgid "You must fill the \"To\" field."
 msgstr "侬必须填写“收件宁”字段。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L312
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "侬要向伊发送消息额用户{username}伐存在。请尝试其他用户名。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L74
 msgid "Comments cannot be empty."
 msgstr "注释伐能是空额。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L80
 msgid ""
 "Your comment was not saved because it contains outbound links. Please "
 "confirm the links are legitimate by ticking the checkbox below, and re-"
@@ -517,123 +517,123 @@ msgstr "么命名清单"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L152
 msgid "This is not a valid license."
 msgstr "搿伐是有效额许可证。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L143
 msgid "This sentence is already under that license."
 msgstr "搿句子以来搿许可下头。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "句子必须是原句（最初伐是源自翻译）。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L244
 msgid "You're not the owner of this sentence."
 msgstr "侬伐是句子额所有者。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L251
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "句子额所有者必须是伊额原始创建者。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L264
 msgid "You can only switch to a more permissive license."
 msgstr "侬只好调到更宽松额许可证。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L186
 msgid "Field required"
 msgstr " 搿字段必须填写"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L95
 msgid "Username must be at least two characters long"
 msgstr "用户名必须最少还得两个字符"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
 msgid "Username must be at most 20 characters long"
 msgstr "用户名最长伐能超过20个字符"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L98
 msgid "Username can only contain letters, numbers, or underscore"
 msgstr "用户名只好有字母，数字或者下划线"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L141
 msgid "Password must be at least 6 characters long"
 msgstr "密码必须最少还得6个字符"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L105
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "更改电子邮箱地址失败了。请输进去正确额邮箱地址。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L148
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "输入额日期伐是有效额日期。请再试试看。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L158
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "输入额日期伐完整。接受额生日：完整日期，月份帮日期，年份帮月份，只有年份。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L250
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L101
 msgid "Username already taken."
 msgstr "用户名已经拨用了。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L251
 msgid "That email address already exists. Please try another."
 msgstr "搿额邮箱地址已经存在。请试试看另一则。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L85
 msgid "You cannot save an empty message."
 msgstr "侬伐能保存一则空消息。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L91
 msgid ""
 "Your message was not posted because it contains outbound links. Please "
 "confirm the links are legitimate by ticking the checkbox below, and re-"
 "submit your message."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L59
 msgid "Result of license switch to CC0 1.0"
 msgstr "许可证调到CC0 1.0的结果"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L83
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
 msgstr "么办法挠句子{id}调成{newLicense}，因为搿点原因："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L109
 msgid "License switch started on {date} at {time} UTC."
 msgstr "许可来{date}{time}UTC开始调。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L114
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
 msgstr[0] "成功额改特{n}句子额许可证。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L121
 msgid "License switch completed on {date} at {time} UTC."
 msgstr "许可调换已经来{date}{time}UTC调好。"
 
@@ -765,7 +765,7 @@ msgstr "隐藏"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L231
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L178
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L231
@@ -797,13 +797,13 @@ msgid "Delete"
 msgstr "删特"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L471
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/folder.php#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/folder.php#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_menu.php#L33
 msgid "Are you sure?"
@@ -816,7 +816,7 @@ msgstr "只显示"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/of_user.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/on_sentences_of_user.php#L65
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L113
 msgid "Go back to previous page"
 msgstr "回到上头一页"
 
@@ -955,7 +955,7 @@ msgstr "么"
 #. / option used in language selection dropdown for
 #. "Show translations in" in advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L195
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L98
 msgctxt "show-translations-in"
 msgid "All languages"
 msgstr "全部闲话"
@@ -1010,140 +1010,144 @@ msgstr "4：流利"
 msgid "5: Native level"
 msgstr "5：母语"
 
+#. refers to a sentences list
+#. created by a user that was later deleted
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L60
+msgid "created by a former member"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L70
+msgid "created by {listAuthor}"
+msgstr "是{listAuthor}创建额"
+
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L97
 msgid "created"
 msgstr "创建来"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L103
 msgid "last updated"
 msgstr "最后更新来"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L174
 msgid "(unnamed list)"
 msgstr "（么命名清单）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L179
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L58
-msgid "created by {listAuthor}"
-msgstr "是{listAuthor}创建额"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L221
 msgid "Number of sentences"
 msgstr "句子数量"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L242
 msgid "Back to all lists"
 msgstr "回到所有列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L265
 msgid "Back to this list"
 msgstr "回到搿列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L285
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L89
 msgid "Download this list"
 msgstr "下载搿则列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L164
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L92
 msgid "Show translations in:"
 msgstr "显示以下闲话额翻译："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L343
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L116
 msgid "Sentences in:"
 msgstr "句子闲话："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
 msgid "List visibility"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L386
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
 msgid "Public"
 msgstr "公开"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
 msgid "Listed"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L399
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L402
 msgid "Unlisted"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L405
 msgid "The list is accessible only to you."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L407
 msgid "Private"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L431
 msgid "Who can add/remove sentences"
 msgstr "啥宁可以添加、去特句子"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L447
 msgid "Anyone"
 msgstr "任何宁"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L442
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L451
 msgid "Only me"
 msgstr "只好吾"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L455
 msgid "No one (list inactive)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L467
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L104
 msgid "Delete this list"
 msgstr "删除搿则列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
 msgid "Remove sentence {number} from list"
 msgstr "从列表里向去特句子{number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L539
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences_lists/sentence_in_list.php#L36
 msgid "Remove from list"
 msgstr "从列表里向去特。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L554
 msgid "Remove this sentence from '{listName}'."
 msgstr "从{listName}列表里向去特搿句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L591
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L600
 msgid "Add a sentence to this list : "
 msgstr "添加句子到搿则列表"
 
@@ -1154,17 +1158,17 @@ msgstr "添加句子到搿则列表"
 #. / submit button of list name edition form
 #. / closing button of error message on user language addition form
 #. / submit button of new sentence addition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L597
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L606
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L491
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/add_sentences_jquery.php#L77
 msgid "OK"
 msgstr "确认"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L610
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L619
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
@@ -1174,32 +1178,32 @@ msgstr "注意：侬可以添加有搿标识{addToListButton}额例句（像来<
 #. / header text in sidebar on pages related to sentences lists
 #. / section title in the Downloads page
 #. / link to the user's lists on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L636
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L749
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L645
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L758
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L70
 msgid "Lists"
 msgstr "列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L677
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L686
 msgid "Create a new list"
 msgstr "创建新列表"
 
 #. field for the name of a list to create (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L689
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L698
 msgctxt "list"
 msgid "Name"
 msgstr "名字"
 
 #. button to create a new list from the lists of list page (verb)
 #. / button to create a new list directly from a sentence block
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L694
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L703
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/list_form.php#L9
 msgid "Create"
 msgstr "创建"
 
 #. header text in List of lists page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L712
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L721
 msgctxt "header"
 msgid "Search"
 msgstr "搜索"
@@ -1209,37 +1213,37 @@ msgstr "搜索"
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form submit button (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L733
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L742
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L505
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L527
 msgctxt "button"
 msgid "Search"
 msgstr "搜索"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L759
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L768
 msgid "All public lists"
 msgstr "全部公开列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L770
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L779
 msgid "Collaborative lists"
 msgstr "合作列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L783
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L809
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L792
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L818
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L139
 msgid "My lists"
 msgstr "吾额列表"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L798
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L807
 msgctxt "list"
 msgid "Unspecified"
 msgstr "没讲"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L810
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
 msgid "Other lists"
 msgstr "其他列表"
 
@@ -1651,8 +1655,8 @@ msgstr "翻译："
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L364
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/language.php#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L430
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L353
 msgid "Language:"
 msgstr "闲话："
 
@@ -1678,8 +1682,8 @@ msgstr "提交翻译"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L409
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L701
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L150
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L152
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/language.php#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L499
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L77
@@ -1988,29 +1992,29 @@ msgstr "最好额做法：只勿过翻译成侬额母语。"
 
 #. field name in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L169
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L489
 msgid "Order:"
 msgstr "顺序："
 
 #. sort order radio option in Translate sentences page (noun)
 #. / sort order dropdown option in advanced search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L174
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L478
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L500
 msgid "Random"
 msgstr "随机"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L177
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L496
 msgid "Fewest words first"
 msgstr "最少额词优先"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L180
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L498
 msgid "Last modified first"
 msgstr "最后修改优先"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L497
 msgid "Last created first"
 msgstr "最后创建优先"
 
@@ -2100,7 +2104,7 @@ msgstr "去特"
 #. / submit button of sentence text edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/AngularTemplates/edit_vocabulary.php#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/of.php#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/edit_profile.php#L182
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/language.php#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/settings.php#L352
@@ -2273,7 +2277,7 @@ msgstr "收藏已经成功去特。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L57
 msgid "(total {{count}})"
 msgstr "(总共 {{count}})"
@@ -2601,7 +2605,7 @@ msgstr "列表编号"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L77
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L145
 msgid "List name"
 msgstr "列表名称"
 
@@ -2907,7 +2911,7 @@ msgstr "有辅助或者替代脚本里向额全部转录。 帮转录关联额�
 #. / link text to the Help page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L86
 msgid "Help"
 msgstr "帮助中心"
 
@@ -3358,14 +3362,14 @@ msgstr "最旧优先"
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L132
 msgid "Newest sentences"
 msgstr "最新动态"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L142
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L134
 msgid "Oldest sentences"
 msgstr "最旧动态"
 
@@ -3420,7 +3424,7 @@ msgstr "拨{user}句子额评论（总共{n}条）"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/add.php#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L85
 msgid "Add sentences"
 msgstr "添加句子"
@@ -3501,46 +3505,46 @@ msgstr "十大"
 msgid "Show all languages {arrowIcon}"
 msgstr "显示全部闲话{arrowIcon}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L33
 msgid "{user}'s sentences"
 msgstr "{user}额句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L36
 msgid "{user}'s sentences in {language}"
 msgstr "{user}额{language}句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L65
 msgid "Only show original sentences"
 msgstr "只显示原创句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L102
 msgid "{user} does not own any sentences in {language}"
 msgstr "{user}么{language}句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L107
 msgid "{user} does not own any sentences"
 msgstr "{user}一则句子啊么"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L125
 msgctxt "sentences"
 msgid "Most recently updated"
 msgstr "最新更新优先"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L127
 msgctxt "sentences"
 msgid "Least recently updated"
 msgstr "最先更新优先"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L129
 msgctxt "sentences"
 msgid "Newest first"
 msgstr "最新优先"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L131
 msgctxt "sentences"
 msgid "Oldest first"
 msgstr "最旧优先"
@@ -3574,25 +3578,23 @@ msgstr "拨翻译成{language}额句子"
 msgid "Warning: the following criteria have been ignored:{list}"
 msgstr "当心：下头条件么用：{list}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L101
 msgid "Search error"
 msgstr "搜索出错"
 
 #. button to open the advanced search option sidebar on mobile
-#. / title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L106
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L198
-msgid "Refine search"
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L110
+msgid "Search filters ({numberOfCurrentlyActiveFilters})"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L124
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
 msgstr "查询么用。 关于更多详细信息，请看看<a href=\"{}\">搜索文档</a>。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L138
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{us}\">let us know</a> and include the error code "
@@ -3600,9 +3602,19 @@ msgid ""
 msgstr "执行搜索额辰光出错。 假使问题还来还，请<a href=\"{us}\">让阿拉晓得</a>，脱来还侬额消息里向写浪错误代码“{errorCode}”。"
 
 #. title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L157
 msgid "Search: {keywords}"
 msgstr "寻： {keywords}"
+
+#. title for the sidebar on the search page
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L204
+msgid "Search filters"
+msgstr ""
+
+#. button on the sidebar on the search page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L208
+msgid "Reset search filters"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search_disabled.php#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search_disabled.php#L7
@@ -3691,7 +3703,7 @@ msgstr "下载列表: "
 
 #. header text in the side bar of the download list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L94
 msgid "Actions"
 msgstr "操作"
 
@@ -3838,7 +3850,7 @@ msgstr "{username}额列表（{total}则）"
 msgid "{username}'s lists containing \"{search}\" ({total})"
 msgstr "{username}额列表有 \"{search}\" ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/remove_sentence_from_list.php#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/remove_sentence_from_list.php#L31
 msgid "Sentence successfully removed."
 msgstr "句子已经成功去特。"
 
@@ -3848,71 +3860,71 @@ msgid "About this list"
 msgstr "关于搿则列表"
 
 #. number of sentences contained in the list
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L72
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L56
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
 msgstr[0] "有{n}则句子"
 
 #. header text in the side bar of a list page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/settings.php#L45
 msgid "Options"
 msgstr "选项"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L133
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L112
 msgid "Edit name"
 msgstr "编辑名称"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L140
 msgid "Click to edit..."
 msgstr "点击编辑..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L153
 msgid "Sort by:"
 msgstr "排序方式："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L166
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L155
 msgid "date added to list"
 msgstr "日期已经添加到列表"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L157
 msgid "date created"
 msgstr "创建日期"
 
 #. sort option in a list page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L128
 msgid "Most recently added"
 msgstr "最新添加"
 
 #. sort option in a list page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L130
 msgid "Least recently added"
 msgstr "最先添加"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L185
 msgid "This list is empty."
 msgstr "搿则列表是空额。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L187
 msgid "This list does not contain any sentences in {language}."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L201
 msgid ""
 "You can create new sentences directly in this list by clicking on the "
 "{addSentenceButton} icon in the header of this section."
 msgstr "侬可以揿搿部分标题里向额{addSentenceButton}图标来还搿列表里向创建新句子。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L211
 msgid ""
 "You can also add existing sentences to this list, from other pages, by "
 "clicking on the {addToListButton} icon in the menu of the sentence."
 msgstr "侬啊可以来揿句子菜单里向额{addToListButton}图标从其他页面拨现有句子添加到搿列表里向。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L234
 msgid ""
 "The sentence you tried to create already exists. The existing sentence was "
 "added to your list instead."
@@ -4749,224 +4761,224 @@ msgstr "搿表格已经填写。"
 msgid "Clear form"
 msgstr "排除"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L64
 msgid "Words:"
 msgstr "词："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L75
 msgid "Enter a word or a phrase"
 msgstr "输入一则词或者一则词组"
 
 #. sentence length filter in the search form.
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L109
 msgid "Length:"
 msgstr ""
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L115
 msgid "At least {numericField}"
 msgstr ""
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L118
 msgid "At most {numericField}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L150
 msgid ""
 "For languages with word boundaries, the number of words is used. For other "
 "languages, the number of characters is used."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L366
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L386
 msgid "Owner:"
 msgstr "所有者："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L161
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L395
 msgid "Enter a username"
 msgstr "输入一则用户名"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L181
 msgid "Is original"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L186
 msgid ""
 "Original sentences are ones that were not added as translations of other "
 "sentences."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L380
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L400
 msgid "Is orphan:"
 msgstr "是孤立额"
 
 #. dropdown option of "Is orphan" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L189
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L405
 msgctxt "orphan"
 msgid "Any"
 msgstr "任何"
 
 #. part of Any/No/Yes dropdown options in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L191
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L214
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L236
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L257
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L386
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L407
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L429
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L427
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L449
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L471
 msgid "No"
 msgstr "勿<br>"
 
 #. part of Any/No/Yes dropdown options in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L193
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L215
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L237
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L258
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L387
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L270
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L428
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L450
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L472
 msgid "Yes"
 msgstr "是"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L201
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L415
 msgid "Orphan sentences are likely to be incorrect."
 msgstr "孤立额句子可能会得伐对。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L207
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L217
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L421
 msgid "Is unapproved:"
 msgstr "么批准"
 
 #. dropdown option of "Is unapproved" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L213
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L426
 msgctxt "unapproved"
 msgid "Any"
 msgstr "任何"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L223
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L436
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "么批准额句子可能会得伐对。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L229
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L442
 msgid "Is owned by a native:"
 msgstr ""
 
 #. dropdown option of "Is owned by a native:" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L235
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L428
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L448
 msgctxt "native"
 msgid "Any"
 msgstr "任何"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L245
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L458
 msgid "Native speakers are self-identified."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L250
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L465
 msgid "Has audio:"
 msgstr "有音频："
 
 #. dropdown option of "Has audio" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L256
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L470
 msgctxt "audio"
 msgid "Any"
 msgstr "任何"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L282
 msgid "Tags:"
 msgstr "标签："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L292
 msgid "Separate tags with commas."
 msgstr "用逗号分开标签。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L299
 msgid "Belongs to list:"
 msgstr "属于列表："
 
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L320
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L185
 msgid "Translations"
 msgstr "翻译"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L330
 msgid "Limit to"
 msgstr "仅限"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L333
 msgid "Exclude"
 msgstr "排除"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L342
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
 msgstr "{action}符合以下条件额句子"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L364
 msgid "Link:"
 msgstr "链接："
 
 #. dropdown option of "Link" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L351
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L370
 msgctxt "link"
 msgid "Any"
 msgstr "任何"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L372
 msgid "Direct"
 msgstr "直接"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L355
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L374
 msgid "Indirect"
 msgstr "间接"
 
 #. section title in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L484
 msgid "Sort"
 msgstr "排序"
 
 #. sort order dropdown option in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L473
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L495
 msgid "Relevance"
 msgstr "最符合优先"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L515
 msgid "Reverse order"
 msgstr "反向排序"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L532
 msgid "More search options"
 msgstr "更多搜索选项"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L514
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L536
 msgid "Create a search template"
 msgstr "创建一则搜索模板"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L519
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L541
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
@@ -5202,36 +5214,36 @@ msgid "show another "
 msgstr "换另外一则"
 
 #. placeholder for the search input in the search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L59
 msgctxt "placeholder"
 msgid "Search"
 msgstr "搜索"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L93
 msgid "Advanced search"
 msgstr "进阶搜索"
 
 #. keywords field label in top search bar (not displayed)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L105
 msgctxt "label"
 msgid "Search"
 msgstr "搜索"
 
 #. search language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L124
 msgid "From"
 msgstr "来自"
 
 #. placeholder used in translation language selection dropdown in top search
 #. bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L129
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L154
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L159
 msgctxt "searchbar"
 msgid "Any language"
 msgstr "任何闲话"
 
 #. translation language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L148
 msgctxt "language"
 msgid "To"
 msgstr "目标闲话"

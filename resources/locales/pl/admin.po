@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 06:17+0000\n"
+"POT-Creation-Date: 2026-06-17 12:10+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2025\n"
 "Language-Team: Polish (https://app.transifex.com/tatoeba/teams/28284/pl/)\n"
@@ -26,45 +26,45 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L795
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L791
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr ""
 "Błąd: nie można oznaczyć zdań dodanych przez {username} jako nierzetelne."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L800
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L796
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr ""
 "Wszystkie zdania dodane przez {username} zostały oznaczone jako nierzetelne."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
 msgid "Unable to import audio: user “{author}” not found."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Invalid file “{file}” ignored."
 msgstr "Nieprawidłowy plik “{file}” został zignorowany."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L404
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Nie udało się stworzyć katalogu “{dir}” aby zaimportować plik “{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Nie udało się skopiować pliku “{file}” do katalogu “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -133,11 +133,11 @@ msgstr "Zdania i tłumaczenia"
 msgid "Language of the translations:"
 msgstr "Język tłumaczeń:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L72
 msgid "Mark as unreliable"
 msgstr "Oznacz jako nierzetelne"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L75
 msgid ""
 "Are you sure you want to mark all the sentences of this member as "
 "unreliable?"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 06:17+0000\n"
+"POT-Creation-Date: 2026-06-17 12:10+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Dominika S, 2020-2021\n"
 "Language-Team: Slovak (http://app.transifex.com/tatoeba/tatoeba_website/language/sk/)\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/of_user.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L31
@@ -50,11 +50,11 @@ msgid ""
 "this."
 msgstr "Behom ukladania sa vyskytla chyba. Prosím, skúste to znova alebo chybu nahláste."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L91
 msgid "Please wait until the list is updated."
 msgstr "Prosím, počkajte kým sa zoznam neobnoví."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L95
 msgid "A license switch is already in progress."
 msgstr "Prebieha prepínanie licencií."
 
@@ -76,7 +76,7 @@ msgid ""
 "this."
 msgstr "Pri rušení prepojenia sa vyskytla chyba. Prosím, skúste to znova alebo chybu nahláste."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L166
 msgid "Folder \"{name}\" emptied."
 msgstr "Priečinok „{name}“ je vyprázdnený."
 
@@ -97,15 +97,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr "Veta s číslom {number} nejestvuje."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L165
 msgid "Your comment has been saved."
 msgstr "Váš komentár bol uložený."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L208
 msgid "You do not have permission to edit this comment. "
 msgstr "Na úpravu tohto komentára nemáte povolenie."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L212
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/write.php#L55
 msgid ""
@@ -113,7 +113,7 @@ msgid ""
 " {email}."
 msgstr "Ak ste túto správu dostali nedopatrením, prosím, spojte sa emailom s administrátormi {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L237
 msgid "Changes to your comment have been saved."
 msgstr "Úpravy vášho komentára boli uložené."
 
@@ -125,27 +125,27 @@ msgstr "Veta #{id} bola vymazaná."
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Chyba: vetu #{id} sa nepodarilo odstrániť."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L819
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L815
 msgid "You are not allowed to change the license of this sentence."
 msgstr "Nemáte oprávnenie zmeniť licenciu tejto vety."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L826
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L822
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "Licencia tejto vety bola zmenená na „{newLicense}“."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L831
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L827
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "Licenciu nie je možné zmeniť na „{newLicense}“ pretože:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L153
 msgid "You do not have permission to view this list."
 msgstr "Na zobrazenie tohto zoznamu nemáte povolenie."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L306
 msgid "The sentence could not be added to the list."
 msgstr "Vetu nebolo možné pridať na zoznam."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L495
 msgid "You do not have permission to download this list."
 msgstr "Na stiahnutie tohto zoznamu nemáte povolenie."
 
@@ -156,7 +156,7 @@ msgid ""
 msgstr "Neboli nájdené vety s týmto štítkom. Štítok, ktorý hľadáte bol zmazaný alebo vôbec nejestvuje."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L95
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L75
 msgid "No user with this username: {username}"
 msgstr "Nebol nájdený užívateľ: {username}"
 
@@ -285,7 +285,7 @@ msgstr "Jazyk zmazaný."
 msgid "You cannot delete this language."
 msgstr "Tento jazyk nemôžete zmazať ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L138
 msgid "The vocabulary item '{vocabText}' already exists for this language."
 msgstr ""
 
@@ -336,14 +336,14 @@ msgstr "„patrí do zoznamu číslo {listId}“, pretože zoznam {listId} je s�
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L481
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L470
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "„veta je sirota“, pretože „majiteľ vety“ je nastavený na užívateľské meno"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L492
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L481
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "„preklad je sirota“, pretože „majiteľ prekladu“ je nastavený na užívateľské meno"
@@ -351,7 +351,7 @@ msgstr "„preklad je sirota“, pretože „majiteľ prekladu“ je nastavený 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L513
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L502
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
@@ -493,25 +493,25 @@ msgstr "Číslo vety [tab] Text vety [tab] Číslo prekladu [tab] Text prekladu"
 msgid "Sentences to switch to CC0"
 msgstr "Vety určené zmenu licencie na CC0"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
 msgstr "Prázdna správa nemôže byť poslaná."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L84
 msgid "You must fill the \"To\" field."
 msgstr "Musíte vyplniť políčko „Komu“."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L312
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "Užívateľ {username}, ktorému chcete poslať túto správu nejestvuje. Prosím, skúste iné prihlasovacie meno."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L74
 msgid "Comments cannot be empty."
 msgstr "Komentár nemôže byť prázdny."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L80
 msgid ""
 "Your comment was not saved because it contains outbound links. Please "
 "confirm the links are legitimate by ticking the checkbox below, and re-"
@@ -524,118 +524,118 @@ msgstr "bezmenný zoznam"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L152
 msgid "This is not a valid license."
 msgstr "Toto nie je platná licencia."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L143
 msgid "This sentence is already under that license."
 msgstr "Táto veta už spadá pod túto licenciu."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Veta musí byť pôvodná (nie odvodená od prekladu)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L244
 msgid "You're not the owner of this sentence."
 msgstr "Nie ste majiteľom tejto vety."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L251
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Majiteľ vety musí byť jej pôvodným tvorcom."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L264
 msgid "You can only switch to a more permissive license."
 msgstr "Môžete iba zmeniť na viac dovoľujúcu licenciu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L186
 msgid "Field required"
 msgstr "Potrebné vyplniť"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L95
 msgid "Username must be at least two characters long"
 msgstr "Užívateľské meno musí obsahovať aspoň dva znaky."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
 msgid "Username must be at most 20 characters long"
 msgstr "Užívateľské meno musí obsahovať aspoň 20 znakov."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L98
 msgid "Username can only contain letters, numbers, or underscore"
 msgstr "Užívateľské meno môže obsahovať iba písmená, číslice alebo podčiarkovník."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L141
 msgid "Password must be at least 6 characters long"
 msgstr "Heslo musí mať aspoň 6 znakov."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L105
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Emailovú adresu sa nepodarilo zmeniť. Prosím, zadajte riadnu emailovú adresu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L148
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "Zadaný dátum narodenia je neplatný. Prosím, skúste to znova."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L158
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "Zadaný dátum narodenia je neúplný. Prijateľné dátumy: plný dátum, mesiac a deň, rok a mesiac, iba rok."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L250
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L101
 msgid "Username already taken."
 msgstr "Toto užívateľské meno sa už používa."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L251
 msgid "That email address already exists. Please try another."
 msgstr "Táto emailová adresa je už zadaná. Prosím skúste inú."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L85
 msgid "You cannot save an empty message."
 msgstr "Nedá sa uložiť prázdna správa."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L91
 msgid ""
 "Your message was not posted because it contains outbound links. Please "
 "confirm the links are legitimate by ticking the checkbox below, and re-"
 "submit your message."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L59
 msgid "Result of license switch to CC0 1.0"
 msgstr "Výsledok zmeny licencie na CC0 1.0"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L83
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
 msgstr "Licenciu vety {id} nemožno zmeniť na „{newLicense}“, pretože:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L109
 msgid "License switch started on {date} at {time} UTC."
 msgstr "Zmena licenciu započatá {date} {time} UTC."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L114
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
 msgstr[0] "Úspešne bola zmenená licencia {n} vety."
@@ -643,7 +643,7 @@ msgstr[1] "Úspešne bola zmenená licencia {n} viet."
 msgstr[2] "Úspešne bola zmenená licencia {n} viet."
 msgstr[3] "Úspešne bola zmenená licencia {n} viet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Queue/Task/SwitchSentencesLicenseTask.php#L121
 msgid "License switch completed on {date} at {time} UTC."
 msgstr "Zmena licencie dokončená {date} {time} UTC."
 
@@ -793,7 +793,7 @@ msgstr "Skryť"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L485
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L231
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L178
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L231
@@ -825,13 +825,13 @@ msgid "Delete"
 msgstr "Odstrániť"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L471
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/folder.php#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/folder.php#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_menu.php#L33
 msgid "Are you sure?"
@@ -844,7 +844,7 @@ msgstr "Triediť podľa jazyka"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/of_user.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/on_sentences_of_user.php#L65
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L113
 msgid "Go back to previous page"
 msgstr "Vrátiť sa na predchádzajúcu stránku"
 
@@ -992,7 +992,7 @@ msgstr "Žiadny"
 #. / option used in language selection dropdown for
 #. "Show translations in" in advanced search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L195
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L98
 msgctxt "show-translations-in"
 msgid "All languages"
 msgstr "Všetky jazyky"
@@ -1047,140 +1047,144 @@ msgstr "4: Plynulá znalosť"
 msgid "5: Native level"
 msgstr "5: Rodený hovoriaci"
 
+#. refers to a sentences list
+#. created by a user that was later deleted
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L60
+msgid "created by a former member"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L70
+msgid "created by {listAuthor}"
+msgstr "vytvorené užívateľom {listAuthor}"
+
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L97
 msgid "created"
 msgstr "vytvorené"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L103
 msgid "last updated"
 msgstr "naposledy upravené"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L174
 msgid "(unnamed list)"
 msgstr "(bezmenný zoznam)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L179
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L58
-msgid "created by {listAuthor}"
-msgstr "vytvorené užívateľom {listAuthor}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L221
 msgid "Number of sentences"
 msgstr "Počet viet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L242
 msgid "Back to all lists"
 msgstr "Späť k všetkým zoznamom"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L265
 msgid "Back to this list"
 msgstr "Späť k tomuto zoznamu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L285
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L89
 msgid "Download this list"
 msgstr "Stiahnuť tento zoznam"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L164
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L92
 msgid "Show translations in:"
 msgstr "Zobraziť preklady v jazyku:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L343
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L116
 msgid "Sentences in:"
 msgstr "Vety v jazyku:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
 msgid "List visibility"
 msgstr "Viditeľnosť zoznamu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L386
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
 msgstr "Zoznam je prístupný každému a je zaradený vo vyhľadávaní na stránke „Hľadať podľa zoznamu“ a taktiež na stránke každej vety, ktorú obsahuje."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
 msgid "Public"
 msgstr "Verejný"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
 msgstr "Zoznam je prístupný každému a je zaradený vo vyhľadávaní na stránke „Hľadať podľa zoznamu“."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
 msgid "Listed"
 msgstr "Zaradený vo vyhľadávaní"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L399
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
 msgstr "Zoznam je prístupný každému, ale nie je zaradený vo vyhľadávaní na stránke „Hľadať podľa zoznamu“."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L402
 msgid "Unlisted"
 msgstr "Nezaradený vo vyhľadávaní"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L405
 msgid "The list is accessible only to you."
 msgstr "Zoznam je prístupný iba vám."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L407
 msgid "Private"
 msgstr "Súkromný"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L431
 msgid "Who can add/remove sentences"
 msgstr "Kto môže pridať/odstrániť vety"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L447
 msgid "Anyone"
 msgstr "Každý"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L442
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L451
 msgid "Only me"
 msgstr "Iba ja"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L455
 msgid "No one (list inactive)"
 msgstr "Nikto (zoznam nečinný)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L467
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L104
 msgid "Delete this list"
 msgstr "Odstrániť tento zoznam"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
 msgid "Remove sentence {number} from list"
 msgstr "Odstrániť vetu {number} zo zoznamu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L539
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences_lists/sentence_in_list.php#L36
 msgid "Remove from list"
 msgstr "Odstrániť zo zoznamu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L554
 msgid "Remove this sentence from '{listName}'."
 msgstr "Odstrániť vetu zo zoznamu „{listName}“."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L591
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L600
 msgid "Add a sentence to this list : "
 msgstr "Pridať vetu na tento zoznam:"
 
@@ -1191,17 +1195,17 @@ msgstr "Pridať vetu na tento zoznam:"
 #. / submit button of list name edition form
 #. / closing button of error message on user language addition form
 #. / submit button of new sentence addition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L597
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L606
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L491
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/add_sentences_jquery.php#L77
 msgid "OK"
 msgstr "V poriadku"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L610
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L619
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
@@ -1211,32 +1215,32 @@ msgstr "POZNÁMKA: Vety môžete taktiež pridávať pomocou tohto tlačítka {a
 #. / header text in sidebar on pages related to sentences lists
 #. / section title in the Downloads page
 #. / link to the user's lists on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L636
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L749
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L645
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L758
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L70
 msgid "Lists"
 msgstr "Zoznamy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L677
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L686
 msgid "Create a new list"
 msgstr "Vytvoriť nový zoznam"
 
 #. field for the name of a list to create (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L689
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L698
 msgctxt "list"
 msgid "Name"
 msgstr "Meno"
 
 #. button to create a new list from the lists of list page (verb)
 #. / button to create a new list directly from a sentence block
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L694
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L703
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/list_form.php#L9
 msgid "Create"
 msgstr "Vytvoriť"
 
 #. header text in List of lists page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L712
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L721
 msgctxt "header"
 msgid "Search"
 msgstr "Zoradiť podľa"
@@ -1246,37 +1250,37 @@ msgstr "Zoradiť podľa"
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form submit button (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L733
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L742
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L505
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L527
 msgctxt "button"
 msgid "Search"
 msgstr "Vyhľadávanie"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L759
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L768
 msgid "All public lists"
 msgstr "Všetky verejné zoznamy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L770
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L779
 msgid "Collaborative lists"
 msgstr "Spoločné zoznamy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L783
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L809
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L792
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L818
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L139
 msgid "My lists"
 msgstr "Moje zoznamy"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L798
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L807
 msgctxt "list"
 msgid "Unspecified"
 msgstr "Neurčené"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L810
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
 msgid "Other lists"
 msgstr "Ďalšie zoznamy"
 
@@ -1709,8 +1713,8 @@ msgstr "Preklad:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L364
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/language.php#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L430
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L353
 msgid "Language:"
 msgstr "Jazyk:"
 
@@ -1736,8 +1740,8 @@ msgstr "Odoslať preklad"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L409
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L701
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L116
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L150
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L152
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/language.php#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L499
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L77
@@ -2052,29 +2056,29 @@ msgstr "Najlepší postup: prekladajte iba do svojho rodného jazyka."
 
 #. field name in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L169
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L489
 msgid "Order:"
 msgstr "Poradie:"
 
 #. sort order radio option in Translate sentences page (noun)
 #. / sort order dropdown option in advanced search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L174
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L478
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L500
 msgid "Random"
 msgstr "náhodné"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L177
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L496
 msgid "Fewest words first"
 msgstr "od najmenej slov"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L180
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L498
 msgid "Last modified first"
 msgstr "od naposledy upravených"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L497
 msgid "Last created first"
 msgstr "od naposledy vytvorených"
 
@@ -2164,7 +2168,7 @@ msgstr "Odstrániť"
 #. / submit button of sentence text edition form (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/AngularTemplates/edit_vocabulary.php#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/of.php#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/edit_profile.php#L182
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/language.php#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/settings.php#L352
@@ -2343,7 +2347,7 @@ msgstr "Úspešné odstránené z obľúbených."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L57
 msgid "(total {{count}})"
 msgstr "(spolu {{count}})"
@@ -2671,7 +2675,7 @@ msgstr "Číslo zoznamu"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L77
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L145
 msgid "List name"
 msgstr "Názov zoznamu"
 
@@ -2977,7 +2981,7 @@ msgstr "Obsahuje všetky prepisy v pomocných alebo alternatívnych zápisoch. U
 #. / link text to the Help page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L86
 msgid "Help"
 msgstr "Pomoc"
 
@@ -3434,14 +3438,14 @@ msgstr "Od najstarších"
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L132
 msgid "Newest sentences"
 msgstr "Najnovšie vety"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L142
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L134
 msgid "Oldest sentences"
 msgstr "Najstaršie vety"
 
@@ -3496,7 +3500,7 @@ msgstr "Komentáre viet užívateľa {user} (spolu&nbsp;{n})"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/add.php#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L85
 msgid "Add sentences"
 msgstr "Pridať vety"
@@ -3580,46 +3584,46 @@ msgstr "Naj desať"
 msgid "Show all languages {arrowIcon}"
 msgstr "Zobraziť všetky jazyky {arrowIcon}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L33
 msgid "{user}'s sentences"
 msgstr "Vety užívateľa {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L36
 msgid "{user}'s sentences in {language}"
 msgstr "Vety užívateľa {user} v jazyku {language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L65
 msgid "Only show original sentences"
 msgstr "Zobraziť iba pôvodné vety"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L102
 msgid "{user} does not own any sentences in {language}"
 msgstr "užívateľ {user} nevlastní žiadne vety v jazyku {language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L107
 msgid "{user} does not own any sentences"
 msgstr "užívateľ {user} nevlastní žiadne vety"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L125
 msgctxt "sentences"
 msgid "Most recently updated"
 msgstr "Naposledy upravené"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L127
 msgctxt "sentences"
 msgid "Least recently updated"
 msgstr "Najstaršie upravené"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L129
 msgctxt "sentences"
 msgid "Newest first"
 msgstr "Od najnovších"
 
 #. sort option in the "Sentences of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L131
 msgctxt "sentences"
 msgid "Oldest first"
 msgstr "Od najstarších"
@@ -3653,25 +3657,23 @@ msgstr "Vety preložené do jazyka {language}"
 msgid "Warning: the following criteria have been ignored:{list}"
 msgstr "Upozornenie: následujúce požiadavky neboli zohľadnené: {list}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L101
 msgid "Search error"
 msgstr "Chyba vo vyhľadávaní"
 
 #. button to open the advanced search option sidebar on mobile
-#. / title for the sidebar on the search page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L106
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L198
-msgid "Refine search"
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L110
+msgid "Search filters ({numberOfCurrentlyActiveFilters})"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L124
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
 msgstr "Neplatný dopyt. Prosím, pre ďalšie podrobnosti si prečítajte <a href=\"{}\">návod na vyhľadávanie</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L138
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{us}\">let us know</a> and include the error code "
@@ -3679,9 +3681,19 @@ msgid ""
 msgstr "Pri vyhľadávaní sa vyskytla chyba. Ak chyba pretrváva, prosím, <a href=\"{us}\">dajte nám vedieť</a> a zahrňte znak chyby „{errorCode}“ vo svojej správe."
 
 #. title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L157
 msgid "Search: {keywords}"
 msgstr "Hľadať slová: {keywords}"
+
+#. title for the sidebar on the search page
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L204
+msgid "Search filters"
+msgstr ""
+
+#. button on the sidebar on the search page (verb)
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L208
+msgid "Reset search filters"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search_disabled.php#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search_disabled.php#L7
@@ -3770,7 +3782,7 @@ msgstr "Stiahnuť zoznam:"
 
 #. header text in the side bar of the download list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L94
 msgid "Actions"
 msgstr "Činnosť"
 
@@ -3917,7 +3929,7 @@ msgstr "zoznamy užívateľa {username} ({total})"
 msgid "{username}'s lists containing \"{search}\" ({total})"
 msgstr "zoznam užívateľa {username} obsahujúce „{search}“ ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/remove_sentence_from_list.php#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/remove_sentence_from_list.php#L31
 msgid "Sentence successfully removed."
 msgstr "Veta úspešne odstránená."
 
@@ -3927,8 +3939,8 @@ msgid "About this list"
 msgstr "O tomto zozname"
 
 #. number of sentences contained in the list
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L72
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L56
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
 msgstr[0] "Obsahuje {n}&nbsp;vetu"
@@ -3937,64 +3949,64 @@ msgstr[2] "Obsahuje {n}&nbsp;viet"
 msgstr[3] "Obsahuje {n}&nbsp;viet"
 
 #. header text in the side bar of a list page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/settings.php#L45
 msgid "Options"
 msgstr "Možnosti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L133
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L112
 msgid "Edit name"
 msgstr "Zmeniť meno"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L140
 msgid "Click to edit..."
 msgstr "Kliknite k upraveniu..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L153
 msgid "Sort by:"
 msgstr "Zoradiť podľa:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L166
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L155
 msgid "date added to list"
 msgstr "dátum pridania na zoznam"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L157
 msgid "date created"
 msgstr "dátum vytvorenia"
 
 #. sort option in a list page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L128
 msgid "Most recently added"
 msgstr "Naposledy pridané"
 
 #. sort option in a list page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L130
 msgid "Least recently added"
 msgstr "Najstaršie pridané"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L185
 msgid "This list is empty."
 msgstr "Tento zoznam je prázdny."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L187
 msgid "This list does not contain any sentences in {language}."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L201
 msgid ""
 "You can create new sentences directly in this list by clicking on the "
 "{addSentenceButton} icon in the header of this section."
 msgstr "Môžete vytvoriť nové vety priamo na tento zoznam kliknutím na tlačítko {addSentenceButton} v záhlaví tejto stránky."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L211
 msgid ""
 "You can also add existing sentences to this list, from other pages, by "
 "clicking on the {addToListButton} icon in the menu of the sentence."
 msgstr "Môžete taktiež pridať už vytvorené vety na tento zoznam kliknutím na tlačítko {addToListButton} v záhlaví tejto stránky."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L234
 msgid ""
 "The sentence you tried to create already exists. The existing sentence was "
 "added to your list instead."
@@ -4846,224 +4858,224 @@ msgstr "Tieto možnosti vyhľadávania sú predvolené."
 msgid "Clear form"
 msgstr "Obnoviť"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L64
 msgid "Words:"
 msgstr "Slová:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L75
 msgid "Enter a word or a phrase"
 msgstr "Zadajte slovo alebo slovné spojenie"
 
 #. sentence length filter in the search form.
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L109
 msgid "Length:"
 msgstr ""
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L115
 msgid "At least {numericField}"
 msgstr ""
 
 #. text inside the filter "Length" in the search form.
 #. You may move the numericField placeholder around.
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L118
 msgid "At most {numericField}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L150
 msgid ""
 "For languages with word boundaries, the number of words is used. For other "
 "languages, the number of characters is used."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L366
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L386
 msgid "Owner:"
 msgstr "Majiteľ:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L161
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L395
 msgid "Enter a username"
 msgstr "Zadajte užívateľské meno"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L181
 msgid "Is original"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L186
 msgid ""
 "Original sentences are ones that were not added as translations of other "
 "sentences."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L380
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L400
 msgid "Is orphan:"
 msgstr "Je osirelá:"
 
 #. dropdown option of "Is orphan" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L189
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L405
 msgctxt "orphan"
 msgid "Any"
 msgstr "Akákoľvek"
 
 #. part of Any/No/Yes dropdown options in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L191
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L214
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L236
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L257
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L386
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L407
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L429
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L427
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L449
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L471
 msgid "No"
 msgstr "Nie"
 
 #. part of Any/No/Yes dropdown options in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L193
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L215
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L237
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L258
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L387
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L408
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L270
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L428
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L450
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L472
 msgid "Yes"
 msgstr "Áno"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L201
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L415
 msgid "Orphan sentences are likely to be incorrect."
 msgstr "U osirelých viet je vyššia pravdepodobnosť, že sú nesprávne."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L207
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L217
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L421
 msgid "Is unapproved:"
 msgstr "Je neschválená:"
 
 #. dropdown option of "Is unapproved" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L213
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L426
 msgctxt "unapproved"
 msgid "Any"
 msgstr "Akákoľvek"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L223
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L436
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "U neschválených viet je vyššia pravdepodobnosť, že sú nesprávne."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L229
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L442
 msgid "Is owned by a native:"
 msgstr ""
 
 #. dropdown option of "Is owned by a native:" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L235
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L428
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L448
 msgctxt "native"
 msgid "Any"
 msgstr "Akýkoľvek"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L245
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L458
 msgid "Native speakers are self-identified."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L250
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L465
 msgid "Has audio:"
 msgstr "Má zvukovú nahrávku:"
 
 #. dropdown option of "Has audio" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L256
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L470
 msgctxt "audio"
 msgid "Any"
 msgstr "Akákoľvek"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L282
 msgid "Tags:"
 msgstr "Štítky:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L292
 msgid "Separate tags with commas."
 msgstr "Jednotlivé štítky oddeľte čiarkami."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L299
 msgid "Belongs to list:"
 msgstr "Patrí na zoznam:"
 
 #. section title in advanced search form
 #. / text divider between a sentence and its translations
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L320
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L185
 msgid "Translations"
 msgstr "Preklady"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L330
 msgid "Limit to"
 msgstr "Obmedziť na"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L333
 msgid "Exclude"
 msgstr "Vyradiť"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L342
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
 msgstr "{action} vety s prekladmi, ktoré spĺňajú následujúce požiadavky."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L364
 msgid "Link:"
 msgstr "Odkaz:"
 
 #. dropdown option of "Link" field in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L351
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L370
 msgctxt "link"
 msgid "Any"
 msgstr "Akýkoľvek"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L372
 msgid "Direct"
 msgstr "Priamy"
 
 #. dropdown option of "Link" field in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L355
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L374
 msgid "Indirect"
 msgstr "Nepriamy"
 
 #. section title in search form (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L484
 msgid "Sort"
 msgstr "Poradie viet"
 
 #. sort order dropdown option in search form
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L473
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L495
 msgid "Relevance"
 msgstr "Podľa spĺňania požiadaviek"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L515
 msgid "Reverse order"
 msgstr "V opačnom poradí"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L532
 msgid "More search options"
 msgstr "Viac možností vyhľadávania"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L514
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L536
 msgid "Create a search template"
 msgstr "Uložiť ako vzor vyhľadávania"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L519
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L541
 msgid ""
 "Use this button to use the currently selected criteria as a base for other "
 "searches. You can also bookmark/share the search template with someone else."
@@ -5305,36 +5317,36 @@ msgid "show another "
 msgstr "zobraziť ďalšiu"
 
 #. placeholder for the search input in the search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L59
 msgctxt "placeholder"
 msgid "Search"
 msgstr "Vyhľadávať"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L93
 msgid "Advanced search"
 msgstr "Pokročilé vyhľadávanie"
 
 #. keywords field label in top search bar (not displayed)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L105
 msgctxt "label"
 msgid "Search"
 msgstr "Vyhľadávať"
 
 #. search language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L124
 msgid "From"
 msgstr "Z jazyka"
 
 #. placeholder used in translation language selection dropdown in top search
 #. bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L129
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L154
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L159
 msgctxt "searchbar"
 msgid "Any language"
 msgstr "Akýkoľvek"
 
 #. translation language field label in top search bar
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L148
 msgctxt "language"
 msgid "To"
 msgstr "Do jazyka"

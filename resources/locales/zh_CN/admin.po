@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 06:17+0000\n"
+"POT-Creation-Date: 2026-06-17 12:10+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Jinyi Zhou, 2026\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/tatoeba/teams/28284/zh_CN/)\n"
@@ -26,42 +26,42 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L795
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L791
 msgid ""
 "Error: Sentences added by {username} could not be marked as unreliable."
 msgstr "错误：用户{username} 添加的句子不能标记为不可靠。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L800
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L796
 msgid "Marked all sentences added by {username} as unreliable."
 msgstr "已标记用户{username}添加的所有句子为不可靠。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L361
 msgid "Unable to import audio: user “{author}” not found."
 msgstr "无法导入声音：用户 “{author}” 找不到。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L371
 msgid "Invalid file “{file}” ignored."
 msgstr "无效文件 “{file}” 已忽略。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L390
 msgid ""
 "Unable to replace audio contributed by “{author}” for sentence {sentenceId}:"
 " this user has more than one audio."
 msgstr "无法替换声音，投稿用户 “{author}” 句子 {sentenceId}: 该用户有不只一项声音。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L404
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L405
 msgid "Unable to save audio for sentence {sentenceId} inside the database."
 msgstr "无法保存句子 {sentenceId}的声音到数据库。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L416
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "无法创建文件夹 “{dir}” ，因而无法导入文件 “{file}”。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L425
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "无法复制文件 “{file}” 到文件夹 “{dir}”。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L433
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -128,11 +128,11 @@ msgstr "句子和翻译"
 msgid "Language of the translations:"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L72
 msgid "Mark as unreliable"
 msgstr "标记为不可靠"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L75
 msgid ""
 "Are you sure you want to mark all the sentences of this member as "
 "unreliable?"
