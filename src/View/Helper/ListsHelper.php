@@ -64,6 +64,7 @@ class ListsHelper extends AppHelper
                 [
                     'controller' => 'user',
                     'action' => 'profile',
+                    $username,
                 ]
             );
             return format(
