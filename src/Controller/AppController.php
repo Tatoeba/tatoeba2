@@ -144,7 +144,6 @@ class AppController extends Controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
 
-        $this->Auth->allow('display');
         $this->Auth->setConfig([
             // This line will call views/elements/session_expired.ctp.
             // When one tries to do an AJAX action after the session is expired,
