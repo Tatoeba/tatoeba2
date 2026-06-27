@@ -55,16 +55,18 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     {
         $service = new AuthenticationService();
 
-        // Define where users should be redirected to when they are not authenticated
-        $service->setConfig([
-            'unauthenticatedRedirect' => Router::url([
-                'prefix' => false,
-                'plugin' => false,
-                'controller' => 'Users',
-                'action' => 'login',
-            ]),
-            'queryParam' => self::QUERY_PARAM_REDIRECT,
-        ]);
+        // Define when and where users should be redirected to when they are not authenticated
+        if (!$request->is('ajax')) {
+            $service->setConfig([
+                'unauthenticatedRedirect' => Router::url([
+                    'prefix' => false,
+                    'plugin' => false,
+                    'controller' => 'Users',
+                    'action' => 'login',
+                ]),
+                'queryParam' => self::QUERY_PARAM_REDIRECT,
+            ]);
+        }
 
         $fields = [
             IdentifierInterface::CREDENTIAL_USERNAME => 'username',

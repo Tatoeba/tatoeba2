@@ -43,12 +43,12 @@ class LinksControllerTest extends IntegrationTestCase
     public function ajaxAccessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/en/links/add/2/3', null, 403 ],
+            [ '/en/links/add/2/3', null, 401 ],
             [ '/en/links/add/2/3', 'contributor', '/' ],
             [ '/en/links/add/2/3', 'advanced_contributor', true ],
             [ '/en/links/add/2/3', 'corpus_maintainer', true ],
             [ '/en/links/add/2/3', 'admin', true ],
-            [ '/en/links/delete/1/2', null, 403 ],
+            [ '/en/links/delete/1/2', null, 401 ],
             [ '/en/links/delete/1/2', 'contributor', '/' ],
             [ '/en/links/delete/1/2', 'advanced_contributor', true ],
             [ '/en/links/delete/1/2', 'corpus_maintainer', true ],
