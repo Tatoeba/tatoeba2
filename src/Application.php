@@ -74,6 +74,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('Authentication.Session', [
             'sessionKey' => 'Auth.User',
+            'identify' => true,
         ]);
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,

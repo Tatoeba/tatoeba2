@@ -160,17 +160,6 @@ class AppController extends Controller
                     $this->Flash->set(__('Your account has been deactivated.'));
                 }
                 $user = false;
-            } else {
-                // Check if auth info needs to be updated
-                // May happen if an admin just changed the user's role or username
-                $updated_user_auth = array_intersect_key($user, $logged_in_user);
-                if ($updated_user_auth != $logged_in_user->getOriginalData()) {
-                    $this->Authentication->setIdentity($user);
-                    // AuthComponent::setUser() renews the session id, which makes
-                    // the Security component blackhole the request if it's a post
-                    // so disable it just this time
-                    $this->Security->setConfig(['validatePost' => false]);
-                }
             }
         } else {
             $user = false;
