@@ -48,6 +48,8 @@ use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
 use App\Middleware\LegacyCsrfProtectionMiddleware;
 use App\Middleware\LegacyEncryptedCookieMiddleware;
+use Authentication\Middleware\AuthenticationMiddleware;
+use Authorization\Middleware\AuthorizationMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Utility\Security;
 
@@ -72,6 +74,10 @@ $routes->scope('/', function (RouteBuilder $routes) {
     ));
 
     $routes->registerMiddleware('csrfProtection', new LegacyCsrfProtectionMiddleware());
+
+    $routes->registerMiddleware('authentication', new AuthenticationMiddleware($this));
+
+    $routes->registerMiddleware('authorization', new AuthorizationMiddleware($this));
 });
 
 $routes->scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
@@ -161,6 +167,10 @@ $routes->scope('/', function (RouteBuilder $routes) {
     $routes->applyMiddleware('languageSelector');
 
     $routes->applyMiddleware('encryptedCookie');
+
+    $routes->applyMiddleware('authentication');
+
+    $routes->applyMiddleware('authorization');
 
     // Add csrf middleware.
     $routes->applyMiddleware('csrfProtection');

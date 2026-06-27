@@ -60,19 +60,15 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Permissions');
         $this->loadComponent('Security');
-        $this->loadComponent('TinyAuth.Auth', [
-            'authenticate' => [
-                'Form' => [
-                    'passwordHasher' => ['className' => 'Versioned'],
-                    'finder' => 'userToLogin',
-                ],
+        $this->loadComponent('TinyAuth.Authentication', [
+            'logoutRedirect' => [
+                'prefix' => false,
+                'plugin' => false,
+                'controller' => 'Users',
+                'action' => 'login',
             ],
-            'authorize' => [
-                'TinyAuth.Tiny' => [
-                    'roleColumn' => 'role',
-                ],
-            ]
         ]);
+        $this->loadComponent('TinyAuth.Authorization');
         $this->loadComponent('RememberMe');
     }
 
@@ -144,16 +140,6 @@ class AppController extends Controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
 
-        $this->Auth->setConfig([
-            // This line will call views/elements/session_expired.ctp.
-            // When one tries to do an AJAX action after the session is expired,
-            // the action will return the content of this file instead of
-            // the whole page.
-            'ajaxLogin' => 'session_expired',
-            'authError' => false,
-            'loginAction' => [ 'controller' => 'users', 'action' => 'login' ],
-            'logoutRedirect' => [ 'controller' => 'users', 'action' => 'login' ],
-        ]);
         $this->RememberMe->check();
 
         // Get logged-in user so that we can access it info from models.
