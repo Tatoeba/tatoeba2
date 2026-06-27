@@ -56,17 +56,14 @@ class PagesController extends AppController
      */
     public $name = 'Pages';
 
-    /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(\Cake\Event\EventInterface $event)
+    public function initialize(): void
     {
-        if ($response = $this->_redirect_for_old_url()) {
-            return $response;
-        }
-        return parent::beforeFilter($event);
+        parent::initialize();
+
+        $this->getEventManager()->on(
+            'Controller.startup',
+            fn() => $this->_redirect_for_old_url()
+        );
     }
 
     /**
