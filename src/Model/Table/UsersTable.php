@@ -27,7 +27,7 @@
 namespace App\Model\Table;
 
 use App\Model\Entity\User;
-use App\Auth\VersionedPasswordHasher;
+use App\PasswordHasher\VersionedPasswordHasher;
 use ArrayObject;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;

@@ -1,7 +1,7 @@
 <?php
-namespace App\Auth;
+namespace App\PasswordHasher;
 
-use Cake\Auth\AbstractPasswordHasher;
+use Authentication\PasswordHasher\AbstractPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Utility\Security;
 
@@ -9,7 +9,7 @@ class VersionedPasswordHasher extends AbstractPasswordHasher {
 
 	const LATEST_VERSION = 1;
 
-	public function hash($password) {
+	public function hash($password): string {
 		return '1 '.password_hash($password, PASSWORD_BCRYPT);
 	}
 

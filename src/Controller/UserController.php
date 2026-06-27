@@ -27,7 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Auth\VersionedPasswordHasher;
+use App\PasswordHasher\VersionedPasswordHasher;
 use App\Lib\LanguagesLib;
 use Cake\Event\Event;
 use App\Model\CurrentUser;

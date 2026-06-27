@@ -88,6 +88,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 'className' => 'Authentication.Orm',
                 'finder' => 'userToLogin',
             ],
+            'passwordHasher'=> [
+                'className' => 'Versioned'
+            ],
         ]);
 
         return $service;
