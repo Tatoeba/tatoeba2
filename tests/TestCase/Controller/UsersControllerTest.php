@@ -179,7 +179,7 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/en/users/login');
     }
 
-    public function testCheckLogin_setsSessionAuthDataAsArrayNotObject() {
+    public function testCheckLogin_setsSessionAuthDataAsArrayAndWithoutPassword() {
         $this->post('/en/users/check_login', [
             'username' => 'kazuki',
             'password' => 'myAwesomePassword',
@@ -187,6 +187,7 @@ class UsersControllerTest extends IntegrationTestCase {
         ]);
         $sessionAuthData = $this->getSession()->read('Auth.User');
         $this->assertIsArray($sessionAuthData);
+        $this->assertArrayNotHasKey('password', $sessionAuthData);
     }
 
     public function testCheckLogin_spammerCannotLogin() {
