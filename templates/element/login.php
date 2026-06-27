@@ -25,8 +25,6 @@
  * @link     https://tatoeba.org
  */
 
-use Cake\Controller\Component\AuthComponent;
-
 $this->Html->script('/js/elements/login-dialog.ctrl.js', ['block' => 'scriptBottom']);
 
 $registerUrl = $this->Url->build([
