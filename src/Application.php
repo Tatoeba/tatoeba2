@@ -43,6 +43,8 @@ use TinyAuth\Policy\RequestPolicy;
  */
 class Application extends BaseApplication implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
 {
+    const QUERY_PARAM_REDIRECT = 'redirect';
+
     /**
      * Returns a service provider instance.
      *
@@ -61,7 +63,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 'controller' => 'Users',
                 'action' => 'login',
             ]),
-            'queryParam' => 'redirect',
+            'queryParam' => self::QUERY_PARAM_REDIRECT,
         ]);
 
         $fields = [

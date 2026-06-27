@@ -35,7 +35,7 @@
  * @link     https://tatoeba.org
  */
 
-use \Cake\Controller\Component\AuthComponent;
+use App\Application;
 
 $title = __('Log in');
 $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
@@ -44,9 +44,9 @@ if  ($this->request->getSession()->check('Message.auth')) $this->Flash->render('
 
 $formTarget = array('controller' => 'users', 'action' => 'check_login');
 
-$redirect = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
+$redirect = $this->request->getQuery(Application::QUERY_PARAM_REDIRECT);
 if (!is_null($redirect)) {
-    $formTarget['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirect];
+    $formTarget['?'] = [Application::QUERY_PARAM_REDIRECT => $redirect];
 }
 
 $passwordUrl = $this->Url->build(
