@@ -103,6 +103,7 @@ class RememberMeComponent extends Component
             ])->first();
 
         if ($user) {
+            $user = new \ArrayObject($user); // TODO remove after upgrading to cakephp/authentication >= 3.3.1
             $this->Authentication->setIdentity($user);
             // refresh cookie expiration date to $this->_period from now
             $this->remember($cookie['username'], $cookie['password']);

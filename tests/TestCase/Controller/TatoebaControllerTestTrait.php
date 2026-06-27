@@ -7,7 +7,7 @@ trait TatoebaControllerTestTrait {
     private function logInAs($username, $addTokens = true) {
         $users = $this->fetchTable('Users');
         $user = $users->findByUsername($username)->find('userToLogin')->first();
-        $this->session(['Auth' => ['User' => $user->toArray()]]);
+        $this->session(['Auth' => ['User' => $user]]);
         if ($addTokens) {
             $this->enableCsrfToken();
             $this->enableSecurityToken();

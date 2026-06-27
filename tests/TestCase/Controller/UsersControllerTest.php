@@ -179,6 +179,16 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/en/users/login');
     }
 
+    public function testCheckLogin_setsSessionAuthDataAsArrayNotObject() {
+        $this->post('/en/users/check_login', [
+            'username' => 'kazuki',
+            'password' => 'myAwesomePassword',
+            'rememberMe' => 0,
+        ]);
+        $sessionAuthData = $this->getSession()->read('Auth.User');
+        $this->assertIsArray($sessionAuthData);
+    }
+
     public function testCheckLogin_spammerCannotLogin() {
         $this->enableRetainFlashMessages();
         $this->post('/en/users/check_login', [

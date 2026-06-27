@@ -324,6 +324,7 @@ class UsersController extends AppController
                     ->findById($newUser->id)
                     ->find('userToLogin')
                     ->first();
+                $newIdentity = new \ArrayObject($newIdentity); // TODO remove after upgrading to cakephp/authentication >= 3.3.1
                 $this->Authentication->setIdentity($newIdentity);
 
                 $profileUrl = Router::url(
