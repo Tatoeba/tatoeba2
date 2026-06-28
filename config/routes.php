@@ -43,7 +43,7 @@ use Cake\Routing\Route\InflectedRoute;
  * `:action` markers.
  */
 
-use App\Controller\Component\RememberMeComponent;
+use App\Application;
 use App\Middleware\AutoLogoutMiddleware;
 use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
@@ -69,7 +69,7 @@ $routes->scope('/', function (RouteBuilder $routes) {
 
     $routes->registerMiddleware('encryptedCookie', new LegacyEncryptedCookieMiddleware(
         // Names of cookies to protect
-        [RememberMeComponent::getCookieName()],
+        [Application::REMEMBER_ME_COOKIE_NAME],
         Configure::read('Security.cookieKey'),
         Security::getSalt()
     ));

@@ -69,7 +69,6 @@ class AppController extends Controller
             ],
         ]);
         $this->loadComponent('TinyAuth.Authorization');
-        $this->loadComponent('RememberMe');
     }
 
     /**
@@ -140,10 +139,7 @@ class AppController extends Controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
 
-        $this->RememberMe->check();
-
         // Get logged-in user so that we can access it info from models.
-        // Important: needs to be done after RememberMe->check().
         $logged_in_user = $this->Authentication->getIdentity();
         if ($logged_in_user) {
             $user = $this->fetchTable('Users')
@@ -151,7 +147,6 @@ class AppController extends Controller
                 ->toArray();
 
             if (in_array($user['role'], [User::ROLE_INACTIVE, User::ROLE_SPAMMER])) {
-                $this->RememberMe->delete();
                 $user = false;
             }
         } else {

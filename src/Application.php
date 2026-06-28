@@ -44,6 +44,7 @@ use TinyAuth\Policy\RequestPolicy;
 class Application extends BaseApplication implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
 {
     const QUERY_PARAM_REDIRECT = 'redirect';
+    const REMEMBER_ME_COOKIE_NAME = 'User';
 
     /**
      * Returns a service provider instance.
@@ -96,6 +97,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ]);
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
+            'loginUrl' => Router::url([
+                'prefix' => false,
+                'plugin' => false,
+                'controller' => 'Users',
+                'action' => 'check_login',
+            ]),
+        ]);
+        $service->loadAuthenticator('RememberMe', [
             'loginUrl' => Router::url([
                 'prefix' => false,
                 'plugin' => false,

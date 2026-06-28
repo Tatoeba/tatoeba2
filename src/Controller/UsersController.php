@@ -231,16 +231,6 @@ class UsersController extends AppController
         $plainTextPassword = $this->request->getData('password');
         $this->Users->updatePasswordVersion($userId, $plainTextPassword);
 
-        if (empty($this->request->getData('rememberMe'))) {
-            $this->RememberMe->delete();
-        } else {
-            $hashedPassword = $this->Users->get($userId, ['fields' => 'password'])->password;
-            $this->RememberMe->remember(
-                $this->request->getData('username'),
-                $hashedPassword
-            );
-        }
-
         return $this->redirect($redirectUrl);
     }
 
@@ -252,7 +242,6 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        $this->RememberMe->delete();
         $this->request->getSession()->delete('last_used_lang');
         return $this->redirect($this->Authentication->logout());
     }
