@@ -77,7 +77,19 @@ $routes->scope('/', function (RouteBuilder $routes) {
 
     $routes->registerMiddleware('authentication', new AuthenticationMiddleware($this));
 
-    $routes->registerMiddleware('authorization', new AuthorizationMiddleware($this));
+    $routes->registerMiddleware('autologout', new AutoLogoutMiddleware($this));
+
+    $routes->registerMiddleware('authorization', new AuthorizationMiddleware($this, [
+        'unauthorizedHandler' => [
+            // redirect all unauthorized requests to referer or /
+            'className' => 'LegacyRedirect',
+            'url' => '/',
+            'queryParam' => null,
+            'exceptions' => [
+                \Authorization\Exception\ForbiddenException::class,
+            ],
+        ],
+    ]));
 });
 
 $routes->scope('/', ['prefix' => 'VHosts/Api'], function (RouteBuilder $routes) {
