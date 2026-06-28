@@ -66,6 +66,22 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 ]),
                 'queryParam' => self::QUERY_PARAM_REDIRECT,
             ]);
+            // The code below mimics the behavior of old AuthComponent
+            if (is_null($request->getQuery(self::QUERY_PARAM_REDIRECT)) && $request->getMethod() != 'GET') {
+                $referer = $request->referer();
+                if ($referer) {
+                    // Set referer in redirect= query parameter instead of current URL
+                    $refererUri = $request->getUri()->withPath($referer);
+                    $url = $service->getUnauthenticatedRedirectUrl($request->withUri($refererUri));
+                    $service->setConfig([
+                        'unauthenticatedRedirect' => $url,
+                        'queryParam' => null,
+                    ]);
+                } else {
+                    // Do not set any redirect= query parameter at all
+                    $service->setConfig(['queryParam' => null]);
+                }
+            }
         }
 
         $fields = [
