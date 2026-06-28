@@ -150,15 +150,8 @@ class AppController extends Controller
                 ->getInformationOfCurrentUser($logged_in_user['id'])
                 ->toArray();
 
-            // Immediately logout if status was downgraded to one that cannot login
             if (in_array($user['role'], [User::ROLE_INACTIVE, User::ROLE_SPAMMER])) {
                 $this->RememberMe->delete();
-                $this->Authentication->logout();
-                if ($user['role'] == User::ROLE_SPAMMER) {
-                    $this->Flash->set(__('Your account has been suspended.'));
-                } elseif ($user['role'] == User::ROLE_INACTIVE) {
-                    $this->Flash->set(__('Your account has been deactivated.'));
-                }
                 $user = false;
             }
         } else {

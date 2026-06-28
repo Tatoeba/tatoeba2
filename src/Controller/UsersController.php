@@ -183,30 +183,11 @@ class UsersController extends AppController
         };
 
         if ($authResult->isValid()) {
-            $role = $this->Authentication->getIdentityData('role');
-            if ($role == User::ROLE_INACTIVE) {
-                $this->Authentication->logout();
-                $this->flash(
-                    __(
-                        'This account has been marked inactive. '.
-                        'You cannot log in with it anymore. '.
-                        'Please contact an admin if this is a mistake.', true
-                    ),
-                    $failedUrl
-                );
-            }
-            else if ($role == User::ROLE_SPAMMER) {
-                $this->Authentication->logout();
-                $this->flash(
-                    __(
-                        'This account has been marked as a spammer. '.
-                        'You cannot log in with it anymore. '.
-                        'Please contact an admin if this is a mistake.', true
-                    ),
-                    $failedUrl
-                );
-            } else {
+            if ($this->Authentication->getIdentity()) {
                 return $this->_common_login($redirectUrl ?? '/');
+            } else {
+                // AutoLogoutMiddleware just emptied identity
+                return $this->redirect($failedUrl);
             }
         } else {
             if (empty($this->request->getData('username'))) {

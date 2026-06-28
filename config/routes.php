@@ -44,6 +44,7 @@ use Cake\Routing\Route\InflectedRoute;
  */
 
 use App\Controller\Component\RememberMeComponent;
+use App\Middleware\AutoLogoutMiddleware;
 use App\Middleware\LanguageSelectorMiddleware;
 use AssetCompress\Middleware\AssetCompressMiddleware;
 use App\Middleware\LegacyCsrfProtectionMiddleware;
@@ -181,6 +182,8 @@ $routes->scope('/', function (RouteBuilder $routes) {
     $routes->applyMiddleware('encryptedCookie');
 
     $routes->applyMiddleware('authentication');
+
+    $routes->applyMiddleware('autologout');
 
     $routes->applyMiddleware('authorization');
 

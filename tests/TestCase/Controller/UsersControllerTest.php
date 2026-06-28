@@ -198,6 +198,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
+        $this->assertRedirect('/en/users/login');
         $this->assertFlashMessage(
             'This account has been marked as a spammer. '.
             'You cannot log in with it anymore. '.
