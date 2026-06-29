@@ -147,7 +147,7 @@ $sentenceUrl = $this->Url->build([
             </div>
             </div>
 
-            <div class="indicator" ng-if="vm.sentence.user.is_native === '1'">
+            <div class="indicator" ng-if="vm.sentence.user.is_native">
                 <md-icon>
                     star
                     <md-tooltip md-direction="top">
