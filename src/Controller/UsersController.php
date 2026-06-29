@@ -551,6 +551,7 @@ class UsersController extends AppController
 
         $this->paginate = [
             'order' => ['UsersLanguages.level' => 'DESC', 'Users.last_contribution' => 'DESC'],
+            'sortableFields' => ['UsersLanguages.level', 'Users.last_contribution'],
             'limit' => 30,
         ];
         $query = $UsersLanguages->find('paginated', compact('lang'));
