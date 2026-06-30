@@ -25,6 +25,8 @@
  * @link     https://tatoeba.org
  */
 
+use App\Model\CurrentUser;
+
 /* @translators: title of the Help page (noun) */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
 ?>
@@ -56,7 +58,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
 <div id="main_content">
 
     <?php
-    if ($this->request->getSession()->read('Auth.User.id')) {
+    if (CurrentUser::isMember()) {
         ?>
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Getting started'); ?></h2>

@@ -229,7 +229,7 @@ $uiLanguage = $this->Languages->getInterfaceLanguage();
             </div>
 
             <md-list>
-                <?php if (!$session->read('Auth.User.id') && !$isOnLoginPage) { ?>
+                <?php if (!CurrentUser::isMember() && !$isOnLoginPage) { ?>
                 <md-list-item href="<?= $registerUrl ?>">
                     <p>
                     <md-icon>chevron_right</md-icon>
