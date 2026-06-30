@@ -44,7 +44,6 @@ use TinyAuth\Policy\RequestPolicy;
 class Application extends BaseApplication implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
 {
     const QUERY_PARAM_REDIRECT = 'redirect';
-    const REMEMBER_ME_COOKIE_NAME = 'User';
 
     /**
      * Returns a service provider instance.

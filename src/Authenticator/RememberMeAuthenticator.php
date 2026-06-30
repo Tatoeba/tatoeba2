@@ -9,8 +9,10 @@ use Authentication\Authenticator\PersistenceInterface;
 use Authentication\Authenticator\Result;
 use Authentication\Authenticator\ResultInterface;
 use Authentication\UrlChecker\UrlCheckerTrait;
+use Cake\Core\Configure;
 use Cake\Http\Cookie\Cookie;
 use Cake\Http\Cookie\CookieInterface;
+use Cake\Utility\CookieCryptTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -19,6 +21,7 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 class RememberMeAuthenticator extends AbstractAuthenticator implements PersistenceInterface
 {
+    use CookieCryptTrait;
     use UrlCheckerTrait;
 
     protected $_defaultConfig = [
@@ -26,11 +29,16 @@ class RememberMeAuthenticator extends AbstractAuthenticator implements Persisten
         'urlChecker' => 'Authentication.Default',
         'rememberMeField' => 'rememberMe',
         'cookie' => [
-            'name' => \App\Application::REMEMBER_ME_COOKIE_NAME,
+            'name' => 'User',
             'expires' => '2 weeks',
             'httponly' => true,
         ],
     ];
+
+    protected function _getCookieEncryptionKey(): string
+    {
+        return Configure::read('Security.cookieKey');
+    }
 
     public function authenticate(ServerRequestInterface $request): ResultInterface
     {
@@ -42,7 +50,11 @@ class RememberMeAuthenticator extends AbstractAuthenticator implements Persisten
             ]);
         }
 
-        $identifier = $cookies[$cookieName];
+        $identifier = $this->_decrypt($cookies[$cookieName], 'aes');
+        if ($identifier === '') {
+            // TODO: remove after 2026/07/04
+            $identifier = $this->_decrypt($cookies[$cookieName], 'aes', \Cake\Utility\Security::getSalt());
+        }
 
         if (!is_array($identifier)
             || count($identifier) !== 2
@@ -119,10 +131,13 @@ class RememberMeAuthenticator extends AbstractAuthenticator implements Persisten
         unset($options['name']);
 
         $value = $identity ?
-            [
-                'username' => $identity['username'],
-                'password' => $identity['password'],
-            ]
+            $this->_encrypt(
+                [
+                    'username' => $identity['username'],
+                    'password' => $identity['password'],
+                ],
+                'aes'
+            )
             :
             '';
         $cookie = Cookie::create(

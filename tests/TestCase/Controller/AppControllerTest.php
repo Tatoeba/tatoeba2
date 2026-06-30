@@ -71,15 +71,7 @@ class AppControllerTest extends IntegrationTestCase {
 
 		$cookie = $cookies->get('User');
 		$this->assertSame(1, $cookie->getExpiry()->getTimestamp());
-
-		// note that the return value of $this->_decrypt() to mean "unable to decrypt"
-		// is an empty string, and the value RememberMeAuthenticator sets to clear the cookie
-		// is also an empty string, so we cannot reliably test that
-		//$value = $this->_decrypt($cookie->getValue(), 'aes', Configure::read('Security.cookieKey'));
-
-		// hence this heuristic length check instead: plaintexts shorter than 16 bytes
-		// will produce a ciphertext of 137 bytes
-		$this->assertTrue(strlen($cookie->getValue()) == 137);
+		$this->assertEmpty($cookie->getValue());
 	}
 
 	function testError404InProduction() {

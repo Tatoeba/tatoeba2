@@ -67,13 +67,6 @@ $routes->scope('/', function (RouteBuilder $routes) {
 
     $routes->registerMiddleware('assetCompress', new AssetCompressMiddleware());
 
-    $routes->registerMiddleware('encryptedCookie', new LegacyEncryptedCookieMiddleware(
-        // Names of cookies to protect
-        [Application::REMEMBER_ME_COOKIE_NAME],
-        Configure::read('Security.cookieKey'),
-        Security::getSalt()
-    ));
-
     $routes->registerMiddleware('csrfProtection', new LegacyCsrfProtectionMiddleware());
 
     $routes->registerMiddleware('authentication', new AuthenticationMiddleware($this));
@@ -178,8 +171,6 @@ $routes->scope('/', function (RouteBuilder $routes) {
     $routes->applyMiddleware('asset');
 
     $routes->applyMiddleware('languageSelector');
-
-    $routes->applyMiddleware('encryptedCookie');
 
     $routes->applyMiddleware('authentication');
 
