@@ -30,7 +30,7 @@ use Cake\ORM\Table;
 use Cake\Database\Schema\TableSchemaInterface;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 
 
 /**
@@ -197,7 +197,7 @@ class ContributionsTable extends Table
     {
         return $this->find()
             ->where([
-                'datetime >' => \Cake\I18n\DateTime::now()->format('Y-m-d'),
+                'datetime >' => DateTime::now()->format('Y-m-d'),
                 'translation_id IS NULL',
                 'action' => 'insert',
                 'type !=' => 'license'

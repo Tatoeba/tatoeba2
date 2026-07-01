@@ -4,7 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\ExportsTable;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 
 class ExportsTableTest extends TestCase
@@ -257,8 +257,8 @@ class ExportsTableTest extends TestCase
 
     public function testRunExport_updatesExport()
     {
-        $now = new \Cake\I18n\DateTime('2019-02-01 15:04:30');
-        \Cake\I18n\DateTime::setTestNow($now);
+        $now = new DateTime('2019-02-01 15:04:30');
+        DateTime::setTestNow($now);
 
         $jobId = 3;
         $exportId = 3;
@@ -266,7 +266,7 @@ class ExportsTableTest extends TestCase
 
         $this->Exports->runExport($config, $jobId);
 
-        \Cake\I18n\DateTime::setTestNow();
+        DateTime::setTestNow();
         $export = $this->Exports->get($exportId);
         $this->assertEquals($now, $export->generated);
         $this->assertEquals(TMP.'export_tests/list_3.tsv', $export->filename);

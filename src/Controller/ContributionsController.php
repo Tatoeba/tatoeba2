@@ -28,7 +28,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\I18n\FrozenTime;
 
 /**
  * Controller for contributions.

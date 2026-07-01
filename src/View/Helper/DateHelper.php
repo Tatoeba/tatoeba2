@@ -27,7 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use DateTimeInterface;
 
 /**
@@ -112,7 +112,7 @@ class DateHelper extends AppHelper
             if (empty($date) || $date == '0000-00-00 00:00:00') {
                 return __('date unknown');
             } else {
-                $dateObj = \Cake\I18n\DateTime::parseDateTime($date);
+                $dateObj = DateTime::parseDateTime($date);
                 if (!$dateObj) {
                     return __('date unknown');
                 }
@@ -121,7 +121,7 @@ class DateHelper extends AppHelper
             $dateObj = $date;
         }
 
-        $diff = \Cake\I18n\DateTime::fromNow($dateObj);
+        $diff = DateTime::fromNow($dateObj);
 
         if ($diff->days > 30) {
             $formattedDate = $dateObj->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::NONE]);
@@ -205,7 +205,7 @@ class DateHelper extends AppHelper
         }
 
         if ($this->_isCompleteDate($dateArray)) {
-            return \Cake\I18n\DateTime::parseDateTime($dateTime)->i18nFormat($dateFormat);
+            return DateTime::parseDateTime($dateTime)->i18nFormat($dateFormat);
         }
 
         return $this->_formatIncompleteDate($dateArray);

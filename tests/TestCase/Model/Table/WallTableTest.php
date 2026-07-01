@@ -7,7 +7,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Event\EventList;
 use Cake\Http\ServerRequest;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\I18n\I18n;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
@@ -119,7 +119,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesExistingThreadDate() {
-        $date = new \Cake\I18n\DateTime('2018-01-02 03:04:05');
+        $date = new DateTime('2018-01-02 03:04:05');
         $reply = $this->Wall->newEntity([
             'owner' => 7,
             'date' => $date,
@@ -134,7 +134,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesNewThreadDate() {
-        $date = new \Cake\I18n\DateTime('2018-01-02 03:04:05');
+        $date = new DateTime('2018-01-02 03:04:05');
         $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => $date,
@@ -156,7 +156,7 @@ class WallTest extends TestCase {
 
         $this->Wall->save($post);
 
-        $this->_assertThreadDate($postId, new \Cake\I18n\DateTime('2014-04-15 16:38:36'));
+        $this->_assertThreadDate($postId, new DateTime('2014-04-15 16:38:36'));
     }
 
     public function testSave_editExistingPostUpdatesModifiedDate() {

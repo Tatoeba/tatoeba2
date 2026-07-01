@@ -3,7 +3,7 @@ namespace App\Test\TestCase\View\Helper;
 
 use App\View\Helper\AnnouncementHelper;
 use Cake\Core\Configure;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
@@ -76,12 +76,12 @@ class AnnouncementHelperTest extends TestCase
      */
     public function testAnnouncement($now, $config, $shouldShow)
     {
-        \Cake\I18n\DateTime::setTestNow(new \Cake\I18n\DateTime($now));
+        DateTime::setTestNow(new DateTime($now));
         $helper = $this->createHelperWithConfig($config);
 
         $this->assertEquals($shouldShow, $helper->isDisplayed());
 
-        \Cake\I18n\DateTime::setTestNow();
+        DateTime::setTestNow();
     }
 
     public function maintenanceProvider() {
@@ -170,7 +170,7 @@ class AnnouncementHelperTest extends TestCase
      */
     public function testMaintenance($now, $config, $expectedMessage, $expectedIsImminent)
     {
-        \Cake\I18n\DateTime::setTestNow(new \Cake\I18n\DateTime($now));
+        DateTime::setTestNow(new DateTime($now));
         $helper = $this->createHelperWithConfig($config);
 
         if ($expectedMessage === '') {
@@ -180,6 +180,6 @@ class AnnouncementHelperTest extends TestCase
         }
         $this->assertEquals($expectedIsImminent, $helper->isMaintenanceImminent());
 
-        \Cake\I18n\DateTime::setTestNow();
+        DateTime::setTestNow();
     }
 }

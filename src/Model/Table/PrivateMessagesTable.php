@@ -23,7 +23,7 @@ use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
@@ -170,7 +170,7 @@ class PrivateMessagesTable extends Table
      */
     public function todaysMessageCount($userId)
     {
-        $yesterday = new \Cake\I18n\DateTime('-24 hours');
+        $yesterday = new DateTime('-24 hours');
 
         return $this->find()
             ->where([
@@ -345,7 +345,7 @@ class PrivateMessagesTable extends Table
     {
         $user = $this->Users->get($userId, ['fields' => 'since']);
         $sentToday = $this->todaysMessageCount($userId);
-        $since = new \Cake\I18n\DateTime($user->since);
+        $since = new DateTime($user->since);
         $isNewUser = $since->wasWithinLast('2 weeks');
 
         return !$isNewUser || $sentToday < 5;

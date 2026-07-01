@@ -5,7 +5,7 @@ namespace App\Shell;
 use Cake\Console\Shell;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 
 class Walker {
     private $model;
@@ -196,7 +196,7 @@ class SentenceDerivationShell extends Shell {
         $total = 0;
         $derivations = array();
         $saveExtraOptions = array(
-            'modified' => \Cake\I18n\DateTime::now(),
+            'modified' => DateTime::now(),
             'callbacks' => false
         );
         $this->out("Setting 'based_on_id' field for all sentences", 0);

@@ -5,7 +5,7 @@ use App\View\Helper\DateHelper;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 use Cake\I18n\I18n;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 
 class DateHelperTest extends TestCase {
 
@@ -58,10 +58,10 @@ class DateHelperTest extends TestCase {
      */
     public function testAgo($dateTime, $alone, $locale, $expected) {
         I18n::setLocale($locale);
-        \Cake\I18n\DateTime::setTestNow(new \Cake\I18n\DateTime('2016-06-24 13:50:43'));
+        DateTime::setTestNow(new DateTime('2016-06-24 13:50:43'));
         $result = $this->DateHelper->ago($dateTime, $alone);
         $this->assertEquals($expected, $result);
-        \Cake\I18n\DateTime::setTestNow();
+        DateTime::setTestNow();
     }
 
     public function formatBirthdayContentProvider() {
@@ -123,18 +123,18 @@ class DateHelperTest extends TestCase {
     public function testGetDateLabel($text, $created, $modified, $tooltip, $locale, $expected)
     {
         I18n::setLocale($locale);
-        \Cake\I18n\DateTime::setTestNow(new \Cake\I18n\DateTime('2018-10-24 17:28:36'));
+        DateTime::setTestNow(new DateTime('2018-10-24 17:28:36'));
         $result = $this->DateHelper->getDateLabel($text, $created, $modified, $tooltip);
         $this->assertEquals($expected, $result);
-        \Cake\I18n\DateTime::setTestNow();
+        DateTime::setTestNow();
     }
 
     public function niceContentProvider() {
         return [
             'null' => [null, 'date unknown'],
             '0000-00-00 00:00:00' => ['0000-00-00 00:00:00', 'date unknown'],
-            'CakePHP FrozenTime instance' =>
-                [new \Cake\I18n\DateTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45:19 PM UTC'],
+            'CakePHP DateTime instance' =>
+                [new DateTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45:19 PM UTC'],
             'string' => ['2000-12-07 01:23:45', 'December 7, 2000 at 1:23:45 AM UTC']
         ];
     }
@@ -160,8 +160,8 @@ class DateHelperTest extends TestCase {
         $this->assertEquals($expected, $this->DateHelper->ago('2004-03-05 09:27:00'));
     }
 
-    public function testAgoWorksWithFrozenTimeObjects() {
+    public function testAgoWorksWithDateTimeObjects() {
         $expected = 'November 24, 1988';
-        $this->assertEquals($expected, $this->DateHelper->ago(new \Cake\I18n\DateTime('1988-11-24 13:45:00')));
+        $this->assertEquals($expected, $this->DateHelper->ago(new DateTime('1988-11-24 13:45:00')));
     }
 }

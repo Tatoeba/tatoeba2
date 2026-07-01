@@ -4,7 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersSentencesTable;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 
 class UsersSentencesTest extends TestCase {
     public array $fixtures = array(
@@ -140,14 +140,14 @@ class UsersSentencesTest extends TestCase {
     function testSaveSentence_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new \Cake\I18n\DateTime('2020-01-02 03:04:05');
-        \Cake\I18n\DateTime::setTestNow($now);
+        $now = new DateTime('2020-01-02 03:04:05');
+        DateTime::setTestNow($now);
 
         $this->UsersSentences->saveSentence(1, 1, 4);
         $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
         $this->assertEquals($now, $returned->created);
 
-        \Cake\I18n\DateTime::setTestNow();
+        DateTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 }

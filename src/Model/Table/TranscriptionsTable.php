@@ -404,12 +404,14 @@ class TranscriptionsTable extends Table
     }
 
     public function getOwners($transcriptionId) {
-        $transc = $this->find('first',
-        conditions: array(
-            'Transcription.id' => $transcriptionId,
-        ),
-        fields: array('Sentence.user_id', 'Transcription.user_id'),
-        contain: array('Sentence'));
+        $transc = $this->find(
+            'first',
+            conditions: array(
+                'Transcription.id' => $transcriptionId,
+            ),
+            fields: array('Sentence.user_id', 'Transcription.user_id'),
+            contain: array('Sentence')
+        );
 
         if ($transc)
             return array(

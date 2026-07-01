@@ -15,7 +15,7 @@ class TranscriptionsTableTest extends TestCase {
     );
 
     private $AutoTranscr;
-    private array $Fixtures;
+    private $Fixtures;
     private $Transcription;
 
     public function setUp(): void {
