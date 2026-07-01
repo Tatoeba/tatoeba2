@@ -44,9 +44,9 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  */
 class SentenceCommentsController extends AppController
 {
-    public $name = 'SentenceComments';
+    public string $name = 'SentenceComments';
 
-    public $paginate = [
+    public array $paginate = [
         'limit' => 50,
         'order' => ['SentenceComments.id' => 'DESC'],
     ];

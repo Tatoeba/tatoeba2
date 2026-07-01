@@ -11,7 +11,7 @@ class UsersTableTest extends TestCase
 {
     public $Users;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
         'app.Sentences',

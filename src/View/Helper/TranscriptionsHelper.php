@@ -27,7 +27,7 @@ class TranscriptionsHelper extends AppHelper
 {
     use FuriganaTrait;
 
-    public $helpers = array(
+    public array $helpers = array(
         'Html',
         'Images',
         'Languages',

@@ -57,7 +57,7 @@ class SentencesSentencesListsTable extends Table
                     'fields' => ['id', 'name', 'visibility', 'user_id', 'editable_by']
                 ]
             ])
-            ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
+            ->orderBy(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
             ->all();
     }
 

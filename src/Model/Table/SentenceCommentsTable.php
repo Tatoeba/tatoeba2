@@ -174,7 +174,7 @@ class SentenceCommentsTable extends Table
     {
         return $this->find()
             ->where(['sentence_id' => $sentenceId])
-            ->order('SentenceComments.created')
+            ->orderBy('SentenceComments.created')
             ->contain(['Users' => function ($q) {
                     return $q->select(['id', 'username', 'image']);
             }])
@@ -193,7 +193,7 @@ class SentenceCommentsTable extends Table
         $query = $this->find()
             ->limit($limit)
             ->where(['hidden' => 0])
-            ->orderDesc('SentenceComments.created')
+            ->orderByDesc('SentenceComments.created')
             ->contain([
                 'Users' => [
                     'fields' => ['id', 'username', 'image']

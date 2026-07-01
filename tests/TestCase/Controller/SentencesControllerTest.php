@@ -13,7 +13,7 @@ class SentencesControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
     use SearchMockTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Sentences',
         'app.Users',
         'app.UsersLanguages',

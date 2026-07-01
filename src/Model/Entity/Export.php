@@ -13,13 +13,13 @@ class Export extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         '*' => false,
     ];
 
-    protected $_virtual = ['pretty_filename'];
+    protected array $_virtual = ['pretty_filename'];
 
-    protected $_hidden = ['filename', 'url', 'queued_job_id', 'user_id'];
+    protected array $_hidden = ['filename', 'url', 'queued_job_id', 'user_id'];
 
     public function getFileExtension()
     {

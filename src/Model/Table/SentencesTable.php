@@ -228,7 +228,7 @@ class SentencesTable extends Table
         }
 
         $sentenceId = $context['data']['id'];
-        $sentence = $this->get($sentenceId, ['fields' => ['based_on_id', 'user_id', 'license']]);
+        $sentence = $this->get($sentenceId, fields: ['based_on_id', 'user_id', 'license']);
         $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to
@@ -532,7 +532,7 @@ class SentencesTable extends Table
                         ->select(['id'])
                         ->where(['id in' => $potentialIds])
                         ->where(['user_id !=' => 0, 'correctness' => 0])
-                        ->order(['rand()'])
+                        ->orderBy(['rand()'])
                         ->first();
             if ($res) {
                 return $res->id;
@@ -641,10 +641,9 @@ class SentencesTable extends Table
         $sphinx['limit'] = $numberOfIdWanted;
 
         $query = $this
-            ->find('all', [
-                'fields' => ['id'],
-                'sphinx' => $sphinx,
-            ]);
+            ->find('all',
+            fields: ['id'],
+            sphinx: $sphinx);
 
         try {
             return $query->all()->extract('id')->toArray();
@@ -797,9 +796,7 @@ class SentencesTable extends Table
      */
     public function getSentenceWith($id, $what = [], $translationLang = null)
     {
-        return $this->find('filteredTranslations', [
-                'translationLang' => $translationLang
-            ])
+        return $this->find('filteredTranslations', translationLang: $translationLang)
             ->find('nativeMarker')
             ->find('hideFields')
             ->where(['Sentences.id' => $id])
@@ -871,12 +868,12 @@ class SentencesTable extends Table
 
         $prev = $this->find()
             ->select('id')
-            ->order(['id' => 'DESC'])
+            ->orderBy(['id' => 'DESC'])
             ->where(['id <' => $sourceId] + $langCondition)
             ->first();
         $next = $this->find()
             ->select('id')
-            ->orderAsc('id')
+            ->orderByAsc('id')
             ->where(['id >' => $sourceId] + $langCondition)
             ->first();
 
@@ -1109,7 +1106,7 @@ class SentencesTable extends Table
      */
     public function unsetOwner($sentenceId, $userId)
     {
-        $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
+        $sentence = $this->get($sentenceId, fields: ['id', 'user_id']);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         if ($currentOwner->id == $userId) {
             $sentence->user_id = null;
@@ -1129,7 +1126,7 @@ class SentencesTable extends Table
      */
     public function getOwnerInfoOfSentence($sentenceId)
     {
-        $sentence = $this->get($sentenceId, ['contain' => 'Users']);
+        $sentence = $this->get($sentenceId, contain: 'Users');
 
         return $sentence->user;
     }
@@ -1146,9 +1143,7 @@ class SentencesTable extends Table
     public function changeLanguage($sentenceId, $newLang)
     {
         try {
-            $sentence = $this->get($sentenceId, [
-                'fields' => ['id', 'lang', 'text', 'user_id']
-            ]);
+            $sentence = $this->get($sentenceId, fields: ['id', 'lang', 'text', 'user_id']);
         } catch (RecordNotFoundException $e) {
             return false;
         }
@@ -1177,7 +1172,7 @@ class SentencesTable extends Table
     public function getSentenceTextForId($sentenceId)
     {
         try {
-            $result = $this->get($sentenceId, ['fields' => 'text']);
+            $result = $this->get($sentenceId, fields: 'text');
             return $result->text;
         } catch (RecordNotFoundException $e) {
             return '';
@@ -1194,7 +1189,7 @@ class SentencesTable extends Table
     public function getLanguageCodeFromSentenceId($sentenceId)
     {
         try {
-            $result = $this->get($sentenceId, ['fields' => ['lang']]);
+            $result = $this->get($sentenceId, fields: ['lang']);
             return $result->lang;
         } catch (RecordNotFoundException $e) {
             return null;

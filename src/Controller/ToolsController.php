@@ -42,7 +42,7 @@ use Cake\Event\Event;
 
 class ToolsController extends AppController
 {
-    public $name = 'Tools';
+    public string $name = 'Tools';
 
     /**
      * Index of tools.

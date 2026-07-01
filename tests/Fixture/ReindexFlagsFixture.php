@@ -6,6 +6,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 class ReindexFlagsFixture extends TestFixture {
 	public $name = 'ReindexFlag';
 
-	public $records = array(
+	public array $records = array(
 	);
 }

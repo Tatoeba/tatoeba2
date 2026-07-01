@@ -40,7 +40,7 @@ use App\Model\CurrentUser;
  */
 class PrivateMessagesHelper extends AppHelper
 {
-    public $helpers = array('Form', 'Messages');
+    public array $helpers = array('Form', 'Messages');
 
     /**
      * function to format the text of the messages in case of answer

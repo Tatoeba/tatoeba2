@@ -11,7 +11,7 @@ class UserControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.FavoritesUsers',

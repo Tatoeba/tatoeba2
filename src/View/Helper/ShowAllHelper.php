@@ -44,7 +44,7 @@ use Cake\Utility\Inflector;
 class ShowAllHelper extends AppHelper
 {
 
-    public $helpers = array(
+    public array $helpers = array(
         'Languages',
         'Form',
         'Number',

@@ -11,7 +11,7 @@ class MainControllerTest extends TestCase
     use IntegrationTestTrait;
     use AudioIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.DisabledAudios',
         'app.Sentences',

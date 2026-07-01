@@ -26,7 +26,7 @@ use Cake\I18n\I18n;
 
 class LicensingController extends AppController {
 
-    protected $defaultTable = 'SentencesSentencesLists';
+    protected ?string $defaultTable = 'SentencesSentencesLists';
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {

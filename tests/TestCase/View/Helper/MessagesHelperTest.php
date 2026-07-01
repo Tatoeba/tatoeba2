@@ -9,7 +9,7 @@ use Cake\View\View;
 
 class MessagesHelperTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences'
     );
 

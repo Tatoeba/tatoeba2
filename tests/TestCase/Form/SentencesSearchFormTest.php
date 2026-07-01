@@ -24,7 +24,7 @@ use Cake\TestSuite\TestCase;
 
 class SentencesSearchFormTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.SentencesLists',
         'app.Tags',

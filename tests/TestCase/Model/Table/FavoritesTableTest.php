@@ -5,7 +5,7 @@ use App\Model\Table\FavoritesTable;
 use Cake\TestSuite\TestCase;
 
 class FavoritesTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.FavoritesUsers',
     );
 

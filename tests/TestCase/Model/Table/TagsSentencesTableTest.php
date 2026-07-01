@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
 
 class TagsSentencesTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences',
         'app.TagsSentences'
     );

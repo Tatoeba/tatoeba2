@@ -13,7 +13,7 @@ class CategoriesTreeFixture extends TestFixture
      *
      * @var string
      */
-    public $table = 'categories_tree';
+    public string $table = 'categories_tree';
 
     /**
      * Init method

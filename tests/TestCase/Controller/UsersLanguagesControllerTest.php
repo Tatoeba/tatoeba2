@@ -10,7 +10,7 @@ class UsersLanguagesControllerTest extends IntegrationTestCase
     use JsonAssertions;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
     ];

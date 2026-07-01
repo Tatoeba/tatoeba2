@@ -40,7 +40,7 @@ use Cake\Event\Event;
  */
 class StatsController extends AppController
 {
-    protected $defaultTable = 'Languages';
+    protected ?string $defaultTable = 'Languages';
 
     /**
      *

@@ -53,7 +53,7 @@ use Cake\View\ViewBuilder;
  */
 class SentencesController extends AppController
 {
-    public $name = 'Sentences';
+    public string $name = 'Sentences';
 
     /**
      * Before filter.

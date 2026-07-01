@@ -8,7 +8,7 @@ use Cake\Utility\Hash;
 use Cake\I18n\I18n;
 
 class AudiosTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Audios',
         'app.DisabledAudios',
         'app.Contributions',

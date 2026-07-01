@@ -550,7 +550,7 @@ class SentencesSearchForm extends Form
                 'user_id' => 'SentencesLists__user_id'
             ])
             ->from(['s' => $searchableLists])
-            ->order(['additional', 'name']);
+            ->orderBy(['additional', 'name']);
 
         return $searchableLists;
     }

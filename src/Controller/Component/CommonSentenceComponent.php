@@ -42,7 +42,7 @@ use Cake\Datasource\FactoryLocator;
 
 class CommonSentenceComponent extends Component
 {
-    public $components = array(
+    public array $components = array(
         'LanguageDetection',
     );
 

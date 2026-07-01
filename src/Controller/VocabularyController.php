@@ -42,7 +42,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  */
 class VocabularyController extends AppController
 {
-    public $paginate = [
+    public array $paginate = [
         'limit' => 50,
     ];
 

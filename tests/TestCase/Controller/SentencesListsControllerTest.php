@@ -11,7 +11,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
     use JsonAssertions;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.DisabledAudios',
@@ -108,7 +108,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->logInAs('contributor');
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
         $lists = $this->fetchTable('SentencesLists');
-        $lastId = $lists->find()->orderDesc('id')->first()->id;
+        $lastId = $lists->find()->orderByDesc('id')->first()->id;
         $this->assertRedirect("/en/sentences_lists/show/$lastId");
     }
 
@@ -287,7 +287,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     public function testShowSentenceListRedirect()
     {
         $lists = $this->fetchTable('SentencesLists');
-        $lastId = $lists->find()->orderDesc('id')->first()->id;
+        $lastId = $lists->find()->orderByDesc('id')->first()->id;
         $this->get("/en/sentences_lists/show/$lastId/cmn");
         $this->assertResponseCode(301);
         $this->assertRedirectContains("/en/sentences_lists/show/$lastId/und/cmn");

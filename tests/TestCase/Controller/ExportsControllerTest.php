@@ -11,7 +11,7 @@ class ExportsControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Exports',
         'app.SentencesLists',
         'app.Users',

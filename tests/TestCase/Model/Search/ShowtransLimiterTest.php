@@ -15,7 +15,7 @@ use Cake\TestSuite\TestCase;
 
 class ShowtransLimiterTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Links',
         'app.Sentences',

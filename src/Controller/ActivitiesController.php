@@ -50,7 +50,7 @@ class ActivitiesController extends AppController
     {
         $Sentences = $this->fetchTable('Sentences');
         $query = $Sentences
-            ->find('filteredTranslations', ['translationLang' => 'none'])
+            ->find('filteredTranslations', translationLang: 'none')
             ->find('hideFields')
             ->select($Sentences->fields())
             ->contain($Sentences->contain())
@@ -165,7 +165,7 @@ class ActivitiesController extends AppController
             ->select($Sentences->fields())
             ->where(['user_id' => $userId])
             ->contain($Sentences->contain(['translations' => true]))
-            ->order(['Sentences.created' => 'DESC']);
+            ->orderBy(['Sentences.created' => 'DESC']);
 
         if (!empty($lang)) {
             $query->where(['Sentences.lang' => $lang]);

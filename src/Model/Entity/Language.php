@@ -9,7 +9,7 @@ class Language extends Entity
 
     const MAX_LEVEL = 5;
 
-    protected $_virtual = [
+    protected array $_virtual = [
         'name',
     ];
 

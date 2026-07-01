@@ -10,7 +10,7 @@ use Cake\Utility\Hash;
 
 class SentenceDerivationShellTest extends TestCase
 {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Audios',
         'app.DisabledAudios',
         'app.Contributions',

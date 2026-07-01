@@ -8,7 +8,7 @@ use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 class ActivitiesControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Audios',
         'app.FavoritesUsers',
         'app.Links',

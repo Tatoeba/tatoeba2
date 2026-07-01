@@ -32,7 +32,7 @@ class TagsController extends AppController
      * @var string
      * @access public
      */
-    public $name = 'Tags';
+    public string $name = 'Tags';
 
     /**
      * Before filter.
@@ -73,7 +73,7 @@ class TagsController extends AppController
                 $this->set('sentenceId', $sentenceId);
                 $this->set('date', $tag->link->added_time);
                 $sentence = $this->fetchTable('Sentences')
-                    ->get($sentenceId, ['fields' => ['lang']]);
+                    ->get($sentenceId, fields: ['lang']);
                 $this->set('sentenceLang', $sentence->lang);
             }
         }

@@ -41,7 +41,7 @@ use Cake\Event\Event;
  */
 class SController extends AppController
 {
-    public $name = 'S';
+    public string $name = 'S';
 
     /**
      * Show sentence of specified id

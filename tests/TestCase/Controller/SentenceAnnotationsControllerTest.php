@@ -8,7 +8,7 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.SentenceAnnotations',
         'app.Sentences',

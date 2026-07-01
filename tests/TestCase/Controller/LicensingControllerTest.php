@@ -7,7 +7,7 @@ use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 class LicensingControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
         'app.QueuedJobs',

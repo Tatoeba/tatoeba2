@@ -33,7 +33,7 @@ class SearchApiTest extends TestCase
 {
     use SearchMockTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.SentencesLists',
         'app.UsersLanguages',
         'app.Tags',

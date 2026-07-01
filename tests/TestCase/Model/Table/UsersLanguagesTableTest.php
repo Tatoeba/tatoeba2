@@ -7,7 +7,7 @@ use Cake\I18n\I18n;
 use Cake\I18n\FrozenTime;
 
 class UsersLanguagesTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Users',
         'app.UsersLanguages',
         'app.Languages',
@@ -233,8 +233,8 @@ class UsersLanguagesTableTest extends TestCase {
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new FrozenTime('2020-01-02 03:04:05');
-        FrozenTime::setTestNow($now);
+        $now = new \Cake\I18n\DateTime('2020-01-02 03:04:05');
+        \Cake\I18n\DateTime::setTestNow($now);
 
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
@@ -244,7 +244,7 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
 
-        FrozenTime::setTestNow();
+        \Cake\I18n\DateTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 

@@ -295,8 +295,8 @@ if (!function_exists('__format_decompose_list')) {
 
 Cake\I18n\I18n::setDefaultFormatter('sprintf');
 Cake\I18n\I18n::useFallback(false);
-Cake\I18n\FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss');
-Cake\I18n\FrozenTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::LONG];
+\Cake\I18n\DateTime::setToStringFormat('yyyy-MM-dd HH:mm:ss');
+\Cake\I18n\DateTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::LONG];
 
 Cake\Validation\Validator::addDefaultProvider('appvalidation', 'App\Validation\Validation');
 

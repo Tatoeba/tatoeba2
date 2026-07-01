@@ -9,7 +9,7 @@ class ContributionsControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Contributions',
         'app.ContributionsStats',
         'app.LastContributions',
@@ -44,9 +44,9 @@ class ContributionsControllerTest extends IntegrationTestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $now = new FrozenTime('2017-04-22 07:22:01');
-        FrozenTime::setTestNow($now);
+        $now = new \Cake\I18n\DateTime('2017-04-22 07:22:01');
+        \Cake\I18n\DateTime::setTestNow($now);
         $this->assertAccessUrlAs($url, $user, $response);
-        FrozenTime::setTestNow();
+        \Cake\I18n\DateTime::setTestNow();
     }
 }

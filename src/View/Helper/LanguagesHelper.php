@@ -47,7 +47,7 @@ class LanguagesHelper extends AppHelper
 {
     use LanguageNameTrait;
 
-    public $helpers = ['AssetCompress.AssetCompress', 'Html', 'Url', 'Number'];
+    public array $helpers = ['AssetCompress.AssetCompress', 'Html', 'Url', 'Number'];
 
     /* Memoization of languages code and their localized names */
     private $__languages_alone;

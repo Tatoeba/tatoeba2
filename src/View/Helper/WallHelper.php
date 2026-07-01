@@ -43,7 +43,7 @@ use App\Model\CurrentUser;
 class WallHelper extends AppHelper
 {
 
-    public $helpers = array(
+    public array $helpers = array(
         'Html', 'Date', 'ClickableLinks', 'Languages', 'Messages'
     );
 

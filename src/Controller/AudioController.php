@@ -25,13 +25,13 @@ use App\Model\CurrentUser;
 
 class AudioController extends AppController
 {
-    public $name = 'Audio';
+    public string $name = 'Audio';
 
-    public $paginate = [
+    public array $paginate = [
         'limit' => 100,
     ];
 
-    protected $defaultTable = 'Audios';
+    protected ?string $defaultTable = 'Audios';
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {

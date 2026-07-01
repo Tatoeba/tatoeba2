@@ -39,7 +39,7 @@ class LanguagesTable extends Table
                 'sentences',
                 'audio',
             ])
-            ->order(['sentences' => 'DESC'])
+            ->orderBy(['sentences' => 'DESC'])
             ->limit($limit)
             ->all()
             ->toList();
@@ -72,7 +72,7 @@ class LanguagesTable extends Table
                 'code',
                 'sentences',
             ])
-            ->order(['sentences' => 'DESC'])
+            ->orderBy(['sentences' => 'DESC'])
             ->mapReduce($mapper, $reducer)
             ->toArray();
 
@@ -92,7 +92,7 @@ class LanguagesTable extends Table
                 'lang' => 'code', 
                 'total' => 'audio']
             )
-            ->order(['audio' => 'DESC'])
+            ->orderBy(['audio' => 'DESC'])
             ->all()
             ->toList();
 
@@ -121,7 +121,7 @@ class LanguagesTable extends Table
                 'level_unknown',
                 'total' => '(level_5 + level_4 + level_3 + level_2 + level_1 + level_0 + level_unknown)'
             ])
-            ->order(['total' => 'DESC'])
+            ->orderBy(['total' => 'DESC'])
             ->all()
             ->toList();
 
@@ -144,7 +144,7 @@ class LanguagesTable extends Table
                 'group_4',
                 'total' => '(group_1 + group_2 + group_3 + group_4)'
             ])
-            ->order(['total' => 'DESC'])
+            ->orderBy(['total' => 'DESC'])
             ->all()
             ->toList();
             

@@ -5,7 +5,7 @@ use App\Model\Table\SentencesSentencesListsTable;
 use Cake\TestSuite\TestCase;
 
 class SentencesSentencesListsTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.SentencesSentencesLists',
         'app.SentencesLists',
         'app.Sentences'

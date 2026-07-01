@@ -7,7 +7,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 class SentenceAnnotationsFixture extends TestFixture {
 	public $name = 'SentenceAnnotation';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => 1,
 			'sentence_id' => 6,

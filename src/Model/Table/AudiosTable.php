@@ -194,7 +194,7 @@ class AudiosTable extends Table
         $query = $query
             ->applyOptions($options)
             ->select(['sentence_id' => 'sentence_id'])
-            ->order(['Audios.id' => 'DESC']);
+            ->orderBy(['Audios.id' => 'DESC']);
 
         if (isset($options['lang'])) {
             $query->where(['sentence_lang' => $options['lang']]);
@@ -209,8 +209,8 @@ class AudiosTable extends Table
         }
 
         $query = $query
-            ->group(['sentence_id'])
-            ->order(['MAX(Audios.id)' => 'DESC'], true);
+            ->groupBy(['sentence_id'])
+            ->orderBy(['MAX(Audios.id)' => 'DESC'], true);
         $countQuery = clone $query;
 
         $query = $query

@@ -41,7 +41,7 @@ use App\Model\CurrentUser;
  */
 class ReviewsController extends AppController
 {
-    protected $defaultTable = 'UsersSentences';
+    protected ?string $defaultTable = 'UsersSentences';
 
     /**
      * Add a sentence to the user's sentence reviews.

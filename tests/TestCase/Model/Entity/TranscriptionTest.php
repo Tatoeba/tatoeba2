@@ -8,7 +8,7 @@ use Cake\TestSuite\TestCase;
 
 class TranscriptionTest extends TestCase
 {
-    public $fixtures = array(
+    public array $fixtures = array(
             'app.UsersLanguages'
     );
 

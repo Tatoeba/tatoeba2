@@ -48,7 +48,7 @@ class UsersController extends AppController
 {
     use MailerAwareTrait;
 
-    public $name = 'Users';
+    public string $name = 'Users';
 
     public function initialize(): void
     {

@@ -43,7 +43,7 @@ use Cake\Utility\Inflector;
 class CommonModulesHelper extends AppHelper
 {
 
-    public $helpers = array(
+    public array $helpers = array(
         'Languages',
         'Form',
         'Html',

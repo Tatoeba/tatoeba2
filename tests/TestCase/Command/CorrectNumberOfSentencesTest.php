@@ -10,7 +10,7 @@ use Cake\Utility\Hash;
 class CorrectNumberOfSentencesCommandTest extends TestCase {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.SentencesLists',
         'app.SentencesSentencesLists',
     );
@@ -19,7 +19,6 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->UseCommandRunner();
         $this->SentencesLists = $this->fetchTable('SentencesLists');
     }
 

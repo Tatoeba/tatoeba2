@@ -9,7 +9,7 @@ class AngularTemplatesControllerTest extends TestCase
 {
     use IntegrationTestTrait, TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
     ];

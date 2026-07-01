@@ -41,7 +41,7 @@ use App\Model\CurrentUser;
  */
 class SentenceAnnotationsController extends AppController
 {
-    public $name = 'SentenceAnnotations';
+    public string $name = 'SentenceAnnotations';
 
     /**
      * Index page. Doesn't do anything, just displays text to explain how it works.

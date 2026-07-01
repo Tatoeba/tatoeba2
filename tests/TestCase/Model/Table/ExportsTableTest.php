@@ -11,7 +11,7 @@ class ExportsTableTest extends TestCase
 {
     public $Exports;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Exports',
         'app.Links',
         'app.QueuedJobs',
@@ -257,8 +257,8 @@ class ExportsTableTest extends TestCase
 
     public function testRunExport_updatesExport()
     {
-        $now = new FrozenTime('2019-02-01 15:04:30');
-        FrozenTime::setTestNow($now);
+        $now = new \Cake\I18n\DateTime('2019-02-01 15:04:30');
+        \Cake\I18n\DateTime::setTestNow($now);
 
         $jobId = 3;
         $exportId = 3;
@@ -266,7 +266,7 @@ class ExportsTableTest extends TestCase
 
         $this->Exports->runExport($config, $jobId);
 
-        FrozenTime::setTestNow();
+        \Cake\I18n\DateTime::setTestNow();
         $export = $this->Exports->get($exportId);
         $this->assertEquals($now, $export->generated);
         $this->assertEquals(TMP.'export_tests/list_3.tsv', $export->filename);

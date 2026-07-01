@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 
 class LicensingTest extends TestCase
 {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.SentencesLists',
         'app.SentencesSentencesLists',
         'app.Users',

@@ -324,7 +324,7 @@ class ExposedOnApiBehavior extends Behavior
         $query
             ->find('sentencesOnApi')
             ->select('is_direct')
-            ->find('exposedFields', ['exposedFields' => ['is_direct']]);
+            ->find('exposedFields', exposedFields: ['is_direct']);
 
         // Apply showtrans filters
         $showtrans = $options['showtrans'] ?? null;

@@ -8,7 +8,7 @@ class FavoritesControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.FavoritesUsers',
         'app.Users',
         'app.UsersLanguages',

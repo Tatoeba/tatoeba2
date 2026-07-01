@@ -26,7 +26,7 @@ class Sentence extends Entity
 {
     use LanguageNameTrait;
 
-    protected $_virtual = [
+    protected array $_virtual = [
         'lang_name',
         'dir',
         'lang_tag',
@@ -37,7 +37,7 @@ class Sentence extends Entity
         'current_user_review'
     ];
 
-    protected $_hidden = [
+    protected array $_hidden = [
         'favorites_users',
         'highlight',
     ];

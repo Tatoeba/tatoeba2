@@ -44,7 +44,7 @@ use Cake\Datasource\FactoryLocator;
 class MenuHelper extends AppHelper
 {
 
-    public $helpers = array(
+    public array $helpers = array(
         'Html',
         'Form',
         'Pages',

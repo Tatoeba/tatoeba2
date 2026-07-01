@@ -11,7 +11,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
     use EmailTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.SentenceComments',
         'app.Sentences',

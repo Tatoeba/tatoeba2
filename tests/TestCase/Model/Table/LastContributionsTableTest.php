@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
 class LastContributionsTableTest extends TestCase {
-	public $fixtures = array(
+	public array $fixtures = array(
         'app.LastContributions',
         'app.Users',
     );

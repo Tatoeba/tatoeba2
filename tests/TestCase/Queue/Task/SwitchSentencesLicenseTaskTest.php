@@ -8,7 +8,7 @@ use App\Model\CurrentUser;
 
 class SwitchSentencesLicenseTaskTest extends TestCase
 {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences',
         'app.SentencesLists',
         'app.SentencesSentencesLists',

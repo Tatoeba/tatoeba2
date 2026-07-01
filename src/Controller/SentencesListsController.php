@@ -44,9 +44,9 @@ use App\Model\Entity\SentencesList;
  */
 class SentencesListsController extends AppController
 {
-    public $name = 'SentencesLists';
+    public string $name = 'SentencesLists';
 
-    public $paginate = [
+    public array $paginate = [
         'order' => ['created' => 'DESC'],
         'limit' => 50
     ];
@@ -163,7 +163,7 @@ class SentencesListsController extends AppController
                 'Sentences' => function (Query $q) use ($translationsLang) {
                     $Sentences = $q->getRepository();
                     return $q
-                      ->find('filteredTranslations', ['translationLang' => $translationsLang])
+                      ->find('filteredTranslations', translationLang: $translationsLang)
                       ->find('hideFields')
                       ->contain($Sentences->contain(['translations' => true]))
                       ->select($Sentences->fields());

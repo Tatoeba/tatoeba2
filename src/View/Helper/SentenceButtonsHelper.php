@@ -42,7 +42,7 @@ use Cake\Core\Configure;
  */
 class SentenceButtonsHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'Html',
         'Languages',
         'Form',

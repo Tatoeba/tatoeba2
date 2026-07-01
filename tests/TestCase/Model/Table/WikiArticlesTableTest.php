@@ -10,7 +10,7 @@ class WikiArticlesTableTest extends TestCase
 {
     public $WikiArticles;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.WikiArticles',
     ];
 

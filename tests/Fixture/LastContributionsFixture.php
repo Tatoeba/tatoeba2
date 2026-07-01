@@ -5,7 +5,7 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 class LastContributionsFixture extends TestFixture {
-	public $records = [
+	public array $records = [
 		[
 			'sentence_id' => '51',
 			'sentence_lang' => 'eng',

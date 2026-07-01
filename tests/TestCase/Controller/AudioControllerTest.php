@@ -13,7 +13,7 @@ class AudioControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
     use AudioIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.DisabledAudios',

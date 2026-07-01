@@ -14,7 +14,7 @@ class NotificationListenerTest extends TestCase {
 
     use EmailTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Users',
         'app.Sentences',
         'app.SentenceComments',

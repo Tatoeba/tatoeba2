@@ -42,7 +42,7 @@ use Cake\Datasource\FactoryLocator;
 
 class ClickableLinksHelper extends AppHelper
 {
-    public $helpers = array('Html', 'Pages');
+    public array $helpers = array('Html', 'Pages');
 
     const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
     const START_OF_URL = '|^https?://[[:alnum:]~_-]+\.[[:alnum:]~_-]+|';

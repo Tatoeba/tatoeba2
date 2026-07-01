@@ -8,14 +8,14 @@ use Cake\Utility\Hash;
 use Cake\I18n\I18n;
 
 class TranscriptionsTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Transcriptions',
         'app.Sentences',
         'app.Users'
     );
 
     private $AutoTranscr;
-    private $Fixtures;
+    private array $Fixtures;
     private $Transcription;
 
     public function setUp(): void {

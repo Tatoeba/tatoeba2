@@ -7,7 +7,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 class TranscriptionsFixture extends TestFixture {
 	public $name = 'Transcription';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => 1,
 			'sentence_id' => 6,

@@ -196,7 +196,7 @@ class SentenceDerivationShell extends Shell {
         $total = 0;
         $derivations = array();
         $saveExtraOptions = array(
-            'modified' => FrozenTime::now(),
+            'modified' => \Cake\I18n\DateTime::now(),
             'callbacks' => false
         );
         $this->out("Setting 'based_on_id' field for all sentences", 0);

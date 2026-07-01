@@ -54,7 +54,7 @@ class PagesController extends AppController
      * @var string
      * @access public
      */
-    public $name = 'Pages';
+    public string $name = 'Pages';
 
     public function initialize(): void
     {

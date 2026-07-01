@@ -40,7 +40,7 @@ use Cake\Core\Configure;
  */
 class ApiV0Controller extends AppController
 {
-    protected $defaultTable = 'Sentences';
+    protected ?string $defaultTable = 'Sentences';
 
     /**
      * Show Json of specified sentence id.

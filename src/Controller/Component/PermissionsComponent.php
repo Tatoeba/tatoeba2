@@ -41,7 +41,7 @@ use App\Model\CurrentUser;
  */
 class PermissionsComponent extends Component
 {
-    public $components = array('TinyAuth.Authentication');
+    public array $components = array('TinyAuth.Authentication');
 
     /**
      * Check which options user can access to and returns

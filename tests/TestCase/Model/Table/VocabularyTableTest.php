@@ -10,7 +10,7 @@ class VocabularyTableTest extends TestCase
 {
     use \App\Test\TestCase\SearchMockTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Vocabulary',
         'app.UsersVocabulary',
         'app.Sentences',

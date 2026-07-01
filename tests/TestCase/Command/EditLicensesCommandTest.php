@@ -11,7 +11,7 @@ class EditLicensesCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Sentences',
         'app.ReindexFlags',
         'app.Transcriptions',
@@ -38,7 +38,6 @@ class EditLicensesCommandTest extends TestCase
 
     public function setUp(): void {
         parent::setUp();
-        $this->UseCommandRunner();
         $this->Sentences = $this->fetchTable('Sentences');
         $this->Contributions = $this->fetchTable('Contributions');
     }

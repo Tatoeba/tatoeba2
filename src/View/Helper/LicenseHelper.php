@@ -24,7 +24,7 @@ use App\Lib\Licenses;
 
 class LicenseHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'Html',
     );
 

@@ -23,7 +23,7 @@ use App\View\Helper\AppHelper;
 
 class AudioHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'AudioLicense',
         'Form',
         'Html',

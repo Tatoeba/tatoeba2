@@ -411,7 +411,7 @@ class UsersTable extends Table
      */
     public function getUserByIdWithExtraInfo($id)
     {
-        return $this->get($id, ['contain' => [
+        return $this->get($id, contain: [
             'Sentences' => function ($q) {
                 return $q->select(['user_id', 'id', 'lang', 'correctness', 'text', 'modified'])
                          ->limit(10)
@@ -443,7 +443,7 @@ class UsersTable extends Table
                          ->limit(10)
                          ->orderDesc('date');
             },
-        ]]);
+        ]);
     }
 
 
@@ -590,7 +590,7 @@ class UsersTable extends Table
         } catch (RecordNotFoundException $e) {    
             return;
         }
-        $user->last_contribution = FrozenTime::now();
+        $user->last_contribution = \Cake\I18n\DateTime::now();
         $this->save($user);
     }
 

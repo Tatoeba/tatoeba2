@@ -40,7 +40,7 @@ use App\View\Helper\AppHelper;
  */
 class PaginationHelper extends AppHelper
 {
-    public $helpers = array('Paginator', 'Html', 'Number');
+    public array $helpers = array('Paginator', 'Html', 'Number');
 
     /**
      * Wraps Paginator->sort with default order

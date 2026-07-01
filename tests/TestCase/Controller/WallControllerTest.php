@@ -9,7 +9,7 @@ class WallControllerTest extends IntegrationTestCase {
     use EmailTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.Walls',
         'app.WallThreads',

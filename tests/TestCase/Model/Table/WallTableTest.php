@@ -14,7 +14,7 @@ use Cake\TestSuite\TestCase;
 
 class WallTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Walls',
         'app.WallThreads',
         'app.Users',
@@ -119,7 +119,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesExistingThreadDate() {
-        $date = new FrozenTime('2018-01-02 03:04:05');
+        $date = new \Cake\I18n\DateTime('2018-01-02 03:04:05');
         $reply = $this->Wall->newEntity([
             'owner' => 7,
             'date' => $date,
@@ -134,7 +134,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesNewThreadDate() {
-        $date = new FrozenTime('2018-01-02 03:04:05');
+        $date = new \Cake\I18n\DateTime('2018-01-02 03:04:05');
         $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => $date,
@@ -156,7 +156,7 @@ class WallTest extends TestCase {
 
         $this->Wall->save($post);
 
-        $this->_assertThreadDate($postId, new FrozenTime('2014-04-15 16:38:36'));
+        $this->_assertThreadDate($postId, new \Cake\I18n\DateTime('2014-04-15 16:38:36'));
     }
 
     public function testSave_editExistingPostUpdatesModifiedDate() {

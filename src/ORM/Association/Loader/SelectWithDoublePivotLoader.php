@@ -47,7 +47,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
                 'conditions' => ["$name.$targetForeignKey = $secondPivotTableAlias.{$this->foreignKey}"],
                 'type' => Query::JOIN_TYPE_INNER,
             ]])
-            ->group([$this->foreignKey, '_modal_key']);
+            ->groupBy([$this->foreignKey, '_modal_key']);
 
         if ($useSubquery) {
             $filter = $this->_buildSubquery($options['query']);
@@ -72,7 +72,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
         ]);
 
         if (!empty($options['sort'])) {
-            $fetchQuery->order($options['sort']);
+            $fetchQuery->orderBy($options['sort']);
         }
 
         if (!empty($options['contain'])) {

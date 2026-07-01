@@ -39,7 +39,7 @@ class MainController extends Controller
             ->innerJoinWith('Sentences', function ($q) use ($lang) {
                 return $q->where(['lang' => $lang]);
             })
-            ->order(['Audios.id' => 'ASC'])
+            ->orderBy(['Audios.id' => 'ASC'])
             ->all();
 
         if (count($audios) == 0) {

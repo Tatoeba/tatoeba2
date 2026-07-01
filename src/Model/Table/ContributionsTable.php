@@ -141,7 +141,7 @@ class ContributionsTable extends Table
                 },
                 'Translations',
             ])
-            ->order('datetime');
+            ->orderBy('datetime');
 
         return $query->all();
     }
@@ -170,7 +170,7 @@ class ContributionsTable extends Table
                 'action'
             ])
             ->where(['type' => 'sentence'])
-            ->orderDesc('datetime')
+            ->orderByDesc('datetime')
             ->limit($limit)
             ->contain(['Users' => function ($q) {
                 return $q->select(['id', 'username', 'image']);
@@ -197,7 +197,7 @@ class ContributionsTable extends Table
     {
         return $this->find()
             ->where([
-                'datetime >' => FrozenTime::now()->format('Y-m-d'),
+                'datetime >' => \Cake\I18n\DateTime::now()->format('Y-m-d'),
                 'translation_id IS NULL',
                 'action' => 'insert',
                 'type !=' => 'license'
@@ -294,7 +294,7 @@ class ContributionsTable extends Table
                 'action' => 'insert',
                 'type' => 'sentence',
             ])
-            ->order(['datetime' => 'DESC'])
+            ->orderBy(['datetime' => 'DESC'])
             ->first();
 
         if ($log) {

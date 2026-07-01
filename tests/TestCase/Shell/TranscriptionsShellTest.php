@@ -8,7 +8,7 @@ use Cake\TestSuite\ConsoleIntegrationTestCase;
 
 class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Sentences',
         'app.Transcriptions',
         'app.Users',
@@ -96,7 +96,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $this->TS->setSentencesScript('cmn');
 
         $scripts = $this->fetchTable('Sentences')
-            ->find('list', ['valueField' => 'script'])
+            ->find('list', valueField: 'script')
             ->where(['lang' => 'cmn'])
             ->toArray();
 
@@ -111,7 +111,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $this->TS->setContributionsScript('cmn');
 
         $scripts = $this->fetchTable('Contributions')
-            ->find('list', ['valueField' => 'script'])
+            ->find('list', valueField: 'script')
             ->where(['sentence_lang' => 'cmn'])
             ->toArray();
 
@@ -122,14 +122,14 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
     public function testSetSentencesScriptDoesNotUpdateModifiedField()
     {
         $before = $this->fetchTable('Sentences')
-            ->find('list', ['valueField' => 'modified'])
+            ->find('list', valueField: 'modified')
             ->where(['lang' => 'cmn'])
             ->toArray();
 
         $this->TS->setSentencesScript('cmn');
 
         $after = $this->fetchTable('Sentences')
-            ->find('list', ['valueField' => 'modified'])
+            ->find('list', valueField: 'modified')
             ->where(['lang' => 'cmn'])
             ->toArray();
 

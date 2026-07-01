@@ -45,7 +45,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallController extends AppController
 {
-    public $name = 'Wall' ;
+    public string $name = 'Wall' ;
 
     /**
      * to know who can do what

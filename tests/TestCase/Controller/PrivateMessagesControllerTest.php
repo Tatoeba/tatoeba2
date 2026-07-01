@@ -11,7 +11,7 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
     use EmailTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.Sentences',
         'app.Users',

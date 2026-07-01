@@ -11,7 +11,7 @@ class LimitResultsBehaviorTest extends TestCase
     private $query;
     private $behavior;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Sentences',
         'app.Users',
     ];

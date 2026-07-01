@@ -61,7 +61,7 @@ class SentencesControllerTest extends TestCase
       'additionalProperties' => false,
     ];
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Sentences',
         'app.Transcriptions',

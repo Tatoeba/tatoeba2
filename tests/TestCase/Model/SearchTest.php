@@ -32,7 +32,7 @@ use Cake\TestSuite\TestCase;
 
 class SearchTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.SentencesLists',
         'app.UsersLanguages',
         'app.Tags',

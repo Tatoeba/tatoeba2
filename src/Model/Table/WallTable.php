@@ -226,7 +226,7 @@ class WallTable extends Table
 
         // execute the request
         $result = $this->find('threaded')
-            ->order([
+            ->orderBy([
                 'WallThreads.last_message_date' => 'DESC',
                 'Wall.date' => 'ASC'
             ])
@@ -266,7 +266,7 @@ class WallTable extends Table
     public function getLastMessages($numberOfLastMessages)
     {
         return $this->find()
-            ->orderDesc('date')
+            ->orderByDesc('date')
             ->limit($numberOfLastMessages)
             ->where(['hidden' => 0])
             ->contain(['Users' => function ($q) {
@@ -288,7 +288,7 @@ class WallTable extends Table
     public function getRootMessageOfReply($replyId)
     {
         try {
-            $replyLftRght = $this->get($replyId, ['fields' => ['lft', 'rght']]);
+            $replyLftRght = $this->get($replyId, fields: ['lft', 'rght']);
         } catch (\InvalidArgumentException | RecordNotFoundException $e) {
             return null;
         }
@@ -324,7 +324,7 @@ class WallTable extends Table
 
         // execute the request
         $result = $this->find('threaded')
-            ->order(['Wall.date'])
+            ->orderBy(['Wall.date'])
             ->where(function($q) use ($rootMsg) {
                 return $q->between('Wall.lft', $rootMsg->lft, $rootMsg->rght);
             })
@@ -383,11 +383,9 @@ class WallTable extends Table
     }
 
     public function getMessage($id) {
-        return $this->get($id, [
-            'contain' => [
-                'Users' => [
-                    'fields' => ['id', 'username', 'image']
-                ]
+        return $this->get($id, contain: [
+            'Users' => [
+                'fields' => ['id', 'username', 'image']
             ]
         ]);
     }

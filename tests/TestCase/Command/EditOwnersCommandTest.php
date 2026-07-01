@@ -11,7 +11,7 @@ class EditOwnersCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Links',
         'app.ReindexFlags',
         'app.Sentences',
@@ -34,7 +34,6 @@ class EditOwnersCommandTest extends TestCase
 
     public function setUp(): void {
         parent::setUp();
-        $this->UseCommandRunner();
         $this->Sentences = $this->fetchTable('Sentences');
     }
 

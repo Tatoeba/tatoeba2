@@ -7,7 +7,7 @@ use Cake\I18n\I18n;
 use Cake\I18n\FrozenTime;
 
 class UsersSentencesTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Users',
         'app.UsersSentences',
         'app.Sentences'
@@ -140,14 +140,14 @@ class UsersSentencesTest extends TestCase {
     function testSaveSentence_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new FrozenTime('2020-01-02 03:04:05');
-        FrozenTime::setTestNow($now);
+        $now = new \Cake\I18n\DateTime('2020-01-02 03:04:05');
+        \Cake\I18n\DateTime::setTestNow($now);
 
         $this->UsersSentences->saveSentence(1, 1, 4);
         $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
         $this->assertEquals($now, $returned->created);
 
-        FrozenTime::setTestNow();
+        \Cake\I18n\DateTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 }

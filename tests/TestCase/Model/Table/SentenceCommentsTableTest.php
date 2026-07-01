@@ -11,7 +11,7 @@ use Cake\TestSuite\TestCase;
 
 class SentenceCommentTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.SentenceComments',
         'app.UsersLanguages',
         'app.Users',

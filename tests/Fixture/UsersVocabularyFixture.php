@@ -15,7 +15,7 @@ class UsersVocabularyFixture extends TestFixture
      *
      * @var string
      */
-    public $table = 'users_vocabulary';
+    public string $table = 'users_vocabulary';
 
     /**
      * Init method

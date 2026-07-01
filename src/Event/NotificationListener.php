@@ -54,7 +54,7 @@ class NotificationListener implements EventListenerInterface {
             ->where([
                 'Wall.id' => $parentMessageId
             ])
-            ->order(['Wall.id'])
+            ->orderBy(['Wall.id'])
             ->select(['Wall.id'])
             ->contain([
                 'Users' => [

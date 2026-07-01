@@ -8,7 +8,7 @@ class VocabularyControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.Sentences',
         'app.Users',

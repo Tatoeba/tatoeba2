@@ -44,7 +44,7 @@ class OwnerFilter extends SearchFilter {
             $result = $this->fetchTable('Users')->find()
                 ->where(['username IN' => $users])
                 ->select(['id', 'username'])
-                ->order($order)
+                ->orderBy($order)
                 ->enableHydration(false)
                 ->all()
                 ->toList();

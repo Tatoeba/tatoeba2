@@ -11,7 +11,7 @@ class EditLanguagesCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.DisabledAudios',
         'app.Contributions',
@@ -43,7 +43,6 @@ class EditLanguagesCommandTest extends TestCase
 
     public function setUp(): void {
         parent::setUp();
-        $this->UseCommandRunner();
         $this->Sentences = $this->fetchTable('Sentences');
     }
 

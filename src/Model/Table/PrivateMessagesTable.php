@@ -170,7 +170,7 @@ class PrivateMessagesTable extends Table
      */
     public function todaysMessageCount($userId)
     {
-        $yesterday = new FrozenTime('-24 hours');
+        $yesterday = new \Cake\I18n\DateTime('-24 hours');
 
         return $this->find()
             ->where([
@@ -345,7 +345,7 @@ class PrivateMessagesTable extends Table
     {
         $user = $this->Users->get($userId, ['fields' => 'since']);
         $sentToday = $this->todaysMessageCount($userId);
-        $since = new FrozenTime($user->since);
+        $since = new \Cake\I18n\DateTime($user->since);
         $isNewUser = $since->wasWithinLast('2 weeks');
 
         return !$isNewUser || $sentToday < 5;
@@ -420,12 +420,10 @@ class PrivateMessagesTable extends Table
     public function readMessage($id)
     {
         try {
-            $message = $this->get($id, [
-                'contain' => [
-                    'Authors' => [
-                        'fields' => ['username', 'image']
-                    ]
-                ]   
+            $message = $this->get($id, contain: [
+                'Authors' => [
+                    'fields' => ['username', 'image']
+                ]
             ]);
         } catch (RecordNotFoundException $e) {
             return null;

@@ -276,7 +276,7 @@ class CurrentUser
      */
     public static function isNewUser()
     {
-        $since = new FrozenTime(self::get('since'));
+        $since = new \Cake\I18n\DateTime(self::get('since'));
         
         return $since->wasWithinLast('2 weeks');
     }

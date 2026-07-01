@@ -8,7 +8,7 @@ class LinksControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Contributions',
         'app.Links',
         'app.ReindexFlags',

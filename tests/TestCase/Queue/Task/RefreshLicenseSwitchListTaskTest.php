@@ -7,7 +7,7 @@ use Cake\Utility\Hash;
 
 class RefreshLicenseSwitchListTaskTest extends TestCase
 {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences',
         'app.Contributions',
         'app.SentencesLists',

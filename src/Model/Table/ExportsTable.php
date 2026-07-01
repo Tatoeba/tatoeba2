@@ -163,7 +163,7 @@ class ExportsTable extends Table
         if ($maxSize > 0) {
             $exportPath = new Folder(Configure::read('Exports.path'));
             while ($exportPath->dirsize() > $maxSize) {
-                $export = $this->find()->orderAsc('generated')->first();
+                $export = $this->find()->orderByAsc('generated')->first();
                 if (!$export) {
                     break;
                 }
@@ -214,7 +214,7 @@ class ExportsTable extends Table
         }
 
         $filename = $this->newUniqueFilename($config);
-        $export->generated = FrozenTime::now();
+        $export->generated = \Cake\I18n\DateTime::now();
         $export->filename = $filename;
         if (!$this->save($export)) {
             return false;

@@ -41,7 +41,7 @@ use Cake\I18n\FrozenTime;
  */
 class ContributionsController extends AppController
 {
-    public $name = 'Contributions';
+    public string $name = 'Contributions';
 
     /**
      * Display all contributions in specified language (or all languages).
@@ -86,7 +86,7 @@ class ContributionsController extends AppController
      */
     public function activity_timeline($year = null, $month = null)
     {
-        $now = FrozenTime::now();
+        $now = \Cake\I18n\DateTime::now();
         $redirect = false;
         if ($year == null || $year > $now->format('Y') || $year < 2007) {
             $year = $now->format('Y');

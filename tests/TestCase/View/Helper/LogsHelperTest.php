@@ -7,7 +7,7 @@ use Cake\View\View;
 
 class LogsHelperTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Contributions',
     ];
 

@@ -85,7 +85,7 @@ class UsersLanguagesTable extends Table
         } else {
             return $this->find()
                 ->where(['of_user_id' => $userId])
-                ->order(['level DESC']);
+                ->orderBy(['level DESC']);
         }
     }
 
@@ -97,7 +97,7 @@ class UsersLanguagesTable extends Table
         } else {
             return $this->find()
             ->where(['by_user_id' => $userId])
-            ->order(['level DESC']);
+            ->orderBy(['level DESC']);
         }
     }
 
@@ -153,9 +153,9 @@ class UsersLanguagesTable extends Table
                 'total' => 'COUNT(*)'
             ])
             ->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER])
-            ->order(['total' => 'DESC'])
+            ->orderBy(['total' => 'DESC'])
             ->contain(['Users'])
-            ->group(['language_code'])
+            ->groupBy(['language_code'])
             ->all()
             ->toList();
 

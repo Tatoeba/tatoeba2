@@ -9,7 +9,7 @@ class FixLinksTableLangsCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Sentences',
         'app.Links',
     ];
@@ -21,7 +21,6 @@ class FixLinksTableLangsCommandTest extends TestCase
         parent::setUp();
         $this->Sentences = $this->fetchTable('Sentences');
         $this->Links = $this->fetchTable('Links');
-        $this->useCommandRunner();
     }
 
     public function testExecute_wrongLangGetsUpdated() {

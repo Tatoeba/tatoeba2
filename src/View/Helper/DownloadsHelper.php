@@ -27,7 +27,7 @@ class DownloadsHelper extends AppHelper
 {
     use LanguageNameTrait;
 
-    public $helpers = ['Html', 'Languages'];
+    public array $helpers = ['Html', 'Languages'];
 
     /**
      * Get all available per-language files for the given file

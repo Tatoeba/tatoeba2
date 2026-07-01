@@ -9,7 +9,7 @@ class ApiControllerTest extends TestCase
 {
     use AudioIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Sentences',
         'app.Users',

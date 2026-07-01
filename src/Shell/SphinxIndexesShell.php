@@ -90,10 +90,10 @@ class SphinxIndexesShell extends Shell {
         if (!$langs) {
             if ($type == 'delta' && !$force) {
                 $langs = $this->fetchTable('ReindexFlags')
-                     ->find('list', ['valueField' => 'lang'])
+                     ->find('list', valueField: 'lang')
                      ->select(['lang'])
                      ->where(['indexed' => 0])
-                     ->group('lang')
+                     ->groupBy('lang')
                      ->all()
                      ->toArray();
             } else {

@@ -11,7 +11,7 @@ use Cake\Utility\Security;
 class AppControllerTest extends IntegrationTestCase {
 	use TatoebaControllerTestTrait;
 
-	public $fixtures = array(
+	public array $fixtures = array(
 		'app.Users',
 		'app.UsersLanguages',
 		'app.PrivateMessages',

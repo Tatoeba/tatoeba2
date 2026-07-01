@@ -11,7 +11,7 @@ class UsersControllerTest extends IntegrationTestCase {
     use EmailTrait,
         TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Contributions',
         'app.Users',
         'app.UsersLanguages',

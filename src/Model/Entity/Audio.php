@@ -12,7 +12,7 @@ class Audio extends Entity
 
     private $__wantedEnabled;
 
-    protected $_virtual = [
+    protected array $_virtual = [
         'author',
         'attribution_url',
         'license',

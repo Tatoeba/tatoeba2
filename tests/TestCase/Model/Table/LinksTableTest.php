@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
 class LinksTableTest extends TestCase {
-	public $fixtures = array(
+	public array $fixtures = array(
 		'app.Sentences',
 		'app.Users',
 		'app.SentenceComments',

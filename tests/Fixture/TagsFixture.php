@@ -7,7 +7,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 class TagsFixture extends TestFixture {
 	public $name = 'Tag';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => '1',
 			'internal_name' => '@needs_native_check',

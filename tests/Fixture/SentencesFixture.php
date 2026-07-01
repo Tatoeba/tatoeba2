@@ -8,7 +8,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 class SentencesFixture extends TestFixture {
 	public $name = 'Sentence';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => '1',
 			'lang' => 'eng',

@@ -8,7 +8,7 @@ use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
 class SentenceAnnotationsTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.SentenceAnnotations',
         'app.Users',
         'app.Sentences',
@@ -19,12 +19,12 @@ class SentenceAnnotationsTableTest extends TestCase {
     function setUp(): void {
         parent::setUp();
         $this->SentenceAnnotation = $this->fetchTable('SentenceAnnotations');
-        FrozenTime::setTestNow(new FrozenTime('2020-06-01 01:01:01'));
+        \Cake\I18n\DateTime::setTestNow(new \Cake\I18n\DateTime('2020-06-01 01:01:01'));
     }
 
     function tearDown(): void {
         unset($this->SentenceAnnotation);
-        FrozenTime::setTestNow();
+        \Cake\I18n\DateTime::setTestNow();
         parent::tearDown();
     }
 
@@ -54,7 +54,7 @@ class SentenceAnnotationsTableTest extends TestCase {
             'meaning_id' => 1,
             'text' => 'Trim me please',
             'user_id' => $userId,
-            'modified' => FrozenTime::now(),
+            'modified' => \Cake\I18n\DateTime::now(),
         );
         $result = array_intersect_key(
             $sentenceAnnotation->toArray(), $expected
@@ -81,7 +81,7 @@ class SentenceAnnotationsTableTest extends TestCase {
             'meaning_id' => 1,
             'text' => 'Some new text',
             'user_id' => $userId,
-            'modified' => FrozenTime::now(),
+            'modified' => \Cake\I18n\DateTime::now(),
         );
         $result = array_intersect_key(
             $sentenceAnnotation->toArray(), $expected

@@ -5,9 +5,9 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 class WikiArticlesFixture extends TestFixture
 {
-    public $connection = 'test_wiki';
+    public string $connection = 'test_wiki';
 
-    public $table = 'articles';
+    public string $table = 'articles';
 
     public function init(): void
     {

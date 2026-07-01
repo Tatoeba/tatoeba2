@@ -9,7 +9,7 @@ use Cake\TestSuite\TestCase;
 
 class PrivateMessageTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.PrivateMessages',
         'app.Users',
         'app.UsersLanguages'

@@ -22,7 +22,7 @@ use Cake\ORM\Entity;
 
 class SentencesList extends Entity
 {
-    protected $_hidden = [
+    protected array $_hidden = [
         '_joinData',
         'SentencesSentencesLists',
     ];

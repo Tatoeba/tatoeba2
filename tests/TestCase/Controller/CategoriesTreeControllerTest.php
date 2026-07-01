@@ -11,7 +11,7 @@ class CategoriesTreeControllerTest extends TestCase
     use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.CategoriesTree',
         'app.PrivateMessages',
         'app.Tags',

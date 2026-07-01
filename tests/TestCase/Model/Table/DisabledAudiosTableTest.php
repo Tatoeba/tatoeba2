@@ -8,7 +8,7 @@ class DisabledAudiosTableTest extends TestCase
 {
     public $DisabledAudios;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.DisabledAudios',
         'app.Sentences',

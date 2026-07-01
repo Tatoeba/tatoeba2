@@ -9,7 +9,7 @@ use Cake\TestSuite\Fixture\TestFixture;
  */
 class VocabularyFixture extends TestFixture
 {
-    public $table = 'vocabulary';
+    public string $table = 'vocabulary';
 
     /**
      * Init method

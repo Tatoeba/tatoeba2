@@ -8,13 +8,13 @@ class Translation extends Entity
 {
     use LanguageNameTrait;
 
-    protected $_virtual = [
+    protected array $_virtual = [
         'lang_name',
         'dir',
         'lang_tag',
     ];
 
-    protected $_hidden = [
+    protected array $_hidden = [
         '_joinData',
         'SentencesTranslations',
     ];

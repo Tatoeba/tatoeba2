@@ -76,12 +76,12 @@ class AnnouncementHelperTest extends TestCase
      */
     public function testAnnouncement($now, $config, $shouldShow)
     {
-        FrozenTime::setTestNow(new FrozenTime($now));
+        \Cake\I18n\DateTime::setTestNow(new \Cake\I18n\DateTime($now));
         $helper = $this->createHelperWithConfig($config);
 
         $this->assertEquals($shouldShow, $helper->isDisplayed());
 
-        FrozenTime::setTestNow();
+        \Cake\I18n\DateTime::setTestNow();
     }
 
     public function maintenanceProvider() {
@@ -170,7 +170,7 @@ class AnnouncementHelperTest extends TestCase
      */
     public function testMaintenance($now, $config, $expectedMessage, $expectedIsImminent)
     {
-        FrozenTime::setTestNow(new FrozenTime($now));
+        \Cake\I18n\DateTime::setTestNow(new \Cake\I18n\DateTime($now));
         $helper = $this->createHelperWithConfig($config);
 
         if ($expectedMessage === '') {
@@ -180,6 +180,6 @@ class AnnouncementHelperTest extends TestCase
         }
         $this->assertEquals($expectedIsImminent, $helper->isMaintenanceImminent());
 
-        FrozenTime::setTestNow();
+        \Cake\I18n\DateTime::setTestNow();
     }
 }

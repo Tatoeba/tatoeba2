@@ -191,7 +191,7 @@ class TagsTable extends Table
      *
      */
     public function tagExists($tagId) {
-        $result = $this->get($tagId, ['fields' => ['name']]);
+        $result = $this->get($tagId, fields: ['name']);
         return !empty($result);
     }
 

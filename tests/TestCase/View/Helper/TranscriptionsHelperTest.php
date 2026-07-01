@@ -8,7 +8,7 @@ use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
 class TranscriptionsHelperTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Contributions',
         'app.FavoritesUsers',
         'app.Languages',

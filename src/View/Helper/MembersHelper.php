@@ -42,7 +42,7 @@ use App\View\Helper\AppHelper;
 
 class MembersHelper extends AppHelper
 {
-    public $helpers = array('Html');
+    public array $helpers = array('Html');
 
     /**
      *

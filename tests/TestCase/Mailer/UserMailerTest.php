@@ -15,7 +15,7 @@ class UserMailerTest extends TestCase {
 
     use EmailTrait;
 
-    public $fixtures = ['app.Users'];
+    public array $fixtures = ['app.Users'];
 
     protected $email = null;
     protected $mailer = null;

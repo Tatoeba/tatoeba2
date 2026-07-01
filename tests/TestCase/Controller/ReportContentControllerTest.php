@@ -15,7 +15,7 @@ class ReportContentControllerTest extends TestCase
     use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.SentenceComments',
         'app.Users',

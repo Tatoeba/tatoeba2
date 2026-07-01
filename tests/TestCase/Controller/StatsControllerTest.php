@@ -8,7 +8,7 @@ class StatsControllerTest extends IntegrationTestCase
 {
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.Users',
         'app.Languages',

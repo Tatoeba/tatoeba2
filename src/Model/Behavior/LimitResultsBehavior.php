@@ -141,11 +141,11 @@ class LimitResultsBehavior extends Behavior
         $internalQuery = clone $query;
         $this->removeLeftJoins($internalQuery);
         $lastValue = $internalQuery
-            ->find('list', ['valueField' => 'i'])
+            ->find('list', valueField: 'i')
             ->select([$query->getRepository()->getPrimaryKey(), 'i' => $orderField], true)
             ->contain($contain, true)
             ->offset($options['maxResults'] - 1)
-            ->group([], true)
+            ->groupBy([], true)
             ->first();
 
         if ($lastValue) {
