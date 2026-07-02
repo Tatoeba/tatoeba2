@@ -26,6 +26,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Form\SentencesSearchForm;
 use App\Model\CurrentUser;
+use App\Search\Exception\OffsetOutOfBoundsException;
 use App\Search\Exception\SearchQueryException;
 use Cake\Core\Configure;
 
@@ -96,6 +97,8 @@ class ApiV0Controller extends AppController
 
         try {
             $results = $this->paginate($query);
+        } catch (OffsetOutOfBoundsException $e) {
+            throw new \Cake\Http\Exception\NotFoundException();
         } catch (SearchQueryException $e) {
             throw new \Cake\Http\Exception\InternalErrorException();
         }

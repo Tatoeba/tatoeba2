@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Component;
 
+use App\Search\Exception\OffsetOutOfBoundsException;
 use App\Search\Exception\SearchQueryException;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
@@ -141,7 +142,7 @@ class ApiComponent extends Component
                     echo json_encode($result);
                     $numResults++;
                 }
-            } catch (SearchQueryException $e) {
+            } catch (SearchQueryException|OffsetOutOfBoundsException $e) {
                 throw new InternalErrorException($e->getMessage());
             }
 

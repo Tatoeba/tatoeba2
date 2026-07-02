@@ -12,6 +12,7 @@ namespace App\Model\Behavior;
 use App\Lib\SphinxClient;
 use App\Model\Search;
 use App\Search\Exception\SearchQueryException;
+use App\Search\Exception\OffsetOutOfBoundsException;
 use Cake\Core\Configure;
 use Cake\ORM\Behavior;
 use Cake\Datasource\FactoryLocator;
@@ -143,7 +144,13 @@ class SphinxBehavior extends Behavior
         }
 
         if ($result === false) {
-            throw new SearchQueryException('Error from search engine: ' . $sphinx->GetLastError());
+            $error = $sphinx->GetLastError();
+            $outOfBoundError = strpos($error, 'offset out of bounds') !== FALSE;
+            if ($outOfBoundError) {
+                throw new OffsetOutOfBoundsException();
+            } else {
+                throw new SearchQueryException('Error from search engine: ' . $error);
+            }
         } else if(isset($result['matches'])) {
             if ($sphinx->GetLastWarning()) {
                 trigger_error("Search query warning: " . $sphinx->GetLastWarning());

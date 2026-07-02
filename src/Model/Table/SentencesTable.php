@@ -37,6 +37,7 @@ use App\Model\Search\IsUnapprovedFilter;
 use App\Model\Search\LangFilter;
 use App\Event\ContributionListener;
 use App\Event\DenormalizationListener;
+use App\Search\Exception\OffsetOutOfBoundsException;
 use App\Search\Exception\SearchQueryException;
 use App\ORM\Association\BelongsToManyMany;
 use Cake\Utility\Hash;
@@ -648,7 +649,7 @@ class SentencesTable extends Table
 
         try {
             return $query->all()->extract('id')->toArray();
-        } catch (SearchQueryException $e) {
+        } catch (SearchQueryException|OffsetOutOfBoundsException $e) {
             return null;
         }
     }

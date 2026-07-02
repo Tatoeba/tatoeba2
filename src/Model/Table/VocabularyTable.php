@@ -29,6 +29,7 @@ use App\Model\Exception\InvalidValueException;
 use App\Model\Search;
 use App\Model\Search\LangFilter;
 use App\Search\Exception\SearchQueryException;
+use App\Search\Exception\OffsetOutOfBoundsException;
 use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
@@ -166,7 +167,7 @@ class VocabularyTable extends Table
         ]);
         try {
             return $query->count();
-        } catch (SearchQueryException $e) {
+        } catch (SearchQueryException|OffsetOutOfBoundsException $e) {
             return null;
         }
     }

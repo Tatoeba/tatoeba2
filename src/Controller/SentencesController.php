@@ -33,6 +33,7 @@ use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use App\Lib\Licenses;
+use App\Search\Exception\OffsetOutOfBoundsException;
 use App\Search\Exception\SearchQueryException;
 use App\Validation\Validation;
 use Cake\Core\Configure;
@@ -500,6 +501,8 @@ class SentencesController extends AppController
                 $error_code = $this->Error->traceError('Search error: ' . $e->getMessage());
                 $this->set('error_code', $error_code);
             }
+        } catch (OffsetOutOfBoundsException $e) {
+            throw new \Cake\Http\Exception\NotFoundException();
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $search->getData('query'));

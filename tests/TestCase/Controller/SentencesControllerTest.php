@@ -502,6 +502,11 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseContains('An error occurred while performing the search');
     }
 
+    public function testSearchOutOfBoundsError() {
+        $this->enableMockedSearchError('searchd error: offset out of bounds (offset=99990, max_matches=1000');
+        $this->assertAccessUrlAs('/en/sentences/search?query=hacer&from=spa&to=fra&page=10000', null, 404);
+    }
+
     public function testRandomSentence() {
         $this->enableMockedSearch([3], 1, false);
         $this->assertAccessUrlAs('/en/sentences/show/fra', null, '/en/sentences/show/3');
