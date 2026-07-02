@@ -34,8 +34,6 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
-use Cake\Database\TypeFactory;
-use Cake\Database\Type\StringType;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorTrap;
 use Cake\Error\ExceptionTrap;
@@ -45,6 +43,11 @@ use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+
+/**
+ * Load global functions.
+ */
+require CAKE . 'functions.php';
 
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.
@@ -116,7 +119,7 @@ if (Configure::read('debug')) {
 
 /*
  * Set the default server timezone. Using UTC makes time calculations / conversions easier.
- * Check http://php.net/manual/en/timezones.php for list of valid timezone strings.
+ * Check https://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
 date_default_timezone_set(Configure::read('App.defaultTimezone'));
 
@@ -163,13 +166,23 @@ if (PHP_SAPI === 'cli') {
  */
 $fullBaseUrl = Configure::read('App.fullBaseUrl');
 if (!$fullBaseUrl) {
+    /*
+     * When using proxies or load balancers, SSL/TLS connections might
+     * get terminated before reaching the server. If you trust the proxy,
+     * you can enable `$trustProxy` to rely on the `X-Forwarded-Proto`
+     * header to determine whether to generate URLs using `https`.
+     *
+     * See also https://book.cakephp.org/5/en/controllers/request-response.html#trusting-proxy-headers
+     */
+    $trustProxy = false;
+
     $s = null;
-    if (env('HTTPS')) {
+    if (env('HTTPS') || ($trustProxy && env('HTTP_X_FORWARDED_PROTO') === 'https')) {
         $s = 's';
     }
 
     $httpHost = env('HTTP_HOST');
-    if (isset($httpHost)) {
+    if ($httpHost) {
         $fullBaseUrl = 'http' . $s . '://' . $httpHost;
     }
     unset($httpHost, $s);
@@ -206,7 +219,7 @@ ServerRequest::addDetector('tablet', function ($request) {
  * You can enable default locale format parsing by adding calls
  * to `useLocaleParser()`. This enables the automatic conversion of
  * locale specific date formats. For details see
- * @link https://book.cakephp.org/4/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
+ * @link https://book.cakephp.org/5/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
  */
 // \Cake\Database\TypeFactory::build('time')
 //    ->useLocaleParser();
@@ -224,9 +237,6 @@ ServerRequest::addDetector('tablet', function ($request) {
 //    ->useLocaleParser();
 // \Cake\Database\TypeFactory::build('timestamptimezone')
 //    ->useLocaleParser();
-
-// There is no time-specific type in Cake
-TypeFactory::map('time', StringType::class);
 
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize
@@ -293,11 +303,16 @@ if (!function_exists('__format_decompose_list')) {
     }
 }
 
-Cake\I18n\I18n::setDefaultFormatter('sprintf');
-Cake\I18n\I18n::useFallback(false);
+// set a custom date and time format
+// see https://book.cakephp.org/5/en/core-libraries/time.html#setting-the-default-locale-and-format-string
+// and https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax
+\Cake\I18n\Date::setToStringFormat('yyyy-MM-dd');
+\Cake\I18n\Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // TODO needed?
 \Cake\I18n\DateTime::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 \Cake\I18n\DateTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::LONG];
 
+Cake\I18n\I18n::setDefaultFormatter('sprintf');
+Cake\I18n\I18n::useFallback(false);
 Cake\Validation\Validator::addDefaultProvider('appvalidation', 'App\Validation\Validation');
 
 /* Work around missing pcntl definitions in php-fpm context (not php-cli) */

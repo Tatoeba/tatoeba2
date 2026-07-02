@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -12,13 +14,14 @@
  * @since         3.0.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\I18n\I18n;
 use Cake\Core\Plugin;
 
-/**
+/*
  * Additional bootstrapping and configuration for CLI environments should
  * be put here.
  */
@@ -28,9 +31,15 @@ use Cake\Core\Plugin;
 //Configure::write('App.fullBaseUrl', php_uname('n'));
 
 // Set logs to different files so they don't have permission conflicts.
-Configure::write('Log.debug.file', 'cli-debug');
-Configure::write('Log.error.file', 'cli-error');
-Configure::write('Log.queries.file', 'cli-queries');
+if (Configure::check('Log.debug')) {
+    Configure::write('Log.debug.file', 'cli-debug');
+}
+if (Configure::check('Log.error')) {
+    Configure::write('Log.error.file', 'cli-error');
+}
+if (Configure::check('Log.queries')) {
+    Configure::write('Log.queries.file', 'cli-queries');
+}
 
 // Use 'en' locale for CLI so that we use the same locale
 // as browsers without an Accept-Language HTTP header
