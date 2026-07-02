@@ -27,7 +27,7 @@
 namespace App\Model\Table;
 
 use App\Model\Entity\User;
-use App\Auth\VersionedPasswordHasher;
+use App\PasswordHasher\VersionedPasswordHasher;
 use ArrayObject;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -596,7 +596,9 @@ class UsersTable extends Table
 
     public function findUserToLogin(Query $query, $options)
     {
-        // The result of this query will end up in AuthComponent->user()
-        return $query->select(['id', 'username', 'password', 'role']);
+        // The result of this query will end up in AuthenticationComponent->getIdentity()
+        return $query
+            ->select(['id', 'username', 'password', 'role'])
+            ->disableHydration();
     }
 }

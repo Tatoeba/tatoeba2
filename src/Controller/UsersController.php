@@ -158,10 +158,10 @@ class UsersController extends AppController
     public function login()
     {
         /*maybe factor in _common login too*/
-        if (!$this->Auth->user()) {
+        if (!$this->Authentication->getIdentity()) {
             return;
         }
-        return $this->_common_login($this->Auth->redirectUrl());
+        return $this->_common_login($this->Authentication->getLoginRedirect() ?? '/');
 
     }
 
@@ -173,38 +173,21 @@ class UsersController extends AppController
      */
     public function check_login()
     {
-        $user = $this->Auth->identify();
+        $authResult = $this->Authentication->getResult();
 
         $redirectParam = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
-        $redirectUrl = $this->Auth->redirectUrl();
+        $redirectUrl = $this->Authentication->getLoginRedirect();
         $failedUrl = ['action' => 'login'];
-        if (!is_null($redirectParam)) {
+        if (!is_null($redirectParam) && !is_null($redirectUrl)) {
             $failedUrl['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl];
         };
 
-        if ($user) {
-            if ($user['role'] == User::ROLE_INACTIVE) {
-                $this->flash(
-                    __(
-                        'This account has been marked inactive. '.
-                        'You cannot log in with it anymore. '.
-                        'Please contact an admin if this is a mistake.', true
-                    ),
-                    $failedUrl
-                );
-            }
-            else if ($user['role'] == User::ROLE_SPAMMER) {
-                $this->flash(
-                    __(
-                        'This account has been marked as a spammer. '.
-                        'You cannot log in with it anymore. '.
-                        'Please contact an admin if this is a mistake.', true
-                    ),
-                    $failedUrl
-                );
+        if ($authResult->isValid()) {
+            if ($this->Authentication->getIdentity()) {
+                return $this->_common_login($redirectUrl ?? '/');
             } else {
-                $this->Auth->setUser($user);
-                return $this->_common_login($redirectUrl);
+                // AutoLogoutMiddleware just emptied identity
+                return $this->redirect($failedUrl);
             }
         } else {
             if (empty($this->request->getData('username'))) {
@@ -238,7 +221,7 @@ class UsersController extends AppController
 
     private function _common_login($redirectUrl)
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
 
         // update the last login time
         $user = $this->Users->get($userId);
@@ -247,16 +230,6 @@ class UsersController extends AppController
 
         $plainTextPassword = $this->request->getData('password');
         $this->Users->updatePasswordVersion($userId, $plainTextPassword);
-
-        if (empty($this->request->getData('rememberMe'))) {
-            $this->RememberMe->delete();
-        } else {
-            $hashedPassword = $this->Users->get($userId, ['fields' => 'password'])->password;
-            $this->RememberMe->remember(
-                $this->request->getData('username'),
-                $hashedPassword
-            );
-        }
 
         return $this->redirect($redirectUrl);
     }
@@ -269,9 +242,8 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        $this->RememberMe->delete();
         $this->request->getSession()->delete('last_used_lang');
-        return $this->redirect($this->Auth->logout());
+        return $this->redirect($this->Authentication->logout());
     }
 
 
@@ -283,7 +255,7 @@ class UsersController extends AppController
     public function register()
     {
         // Already logged in
-        if ($this->Auth->User('id')) {
+        if ($this->Authentication->getIdentity()) {
             return $this->redirect('/');
         }
 
@@ -318,14 +290,18 @@ class UsersController extends AppController
                     $UsersLanguages->save($userLanguage);
                 }
 
-                $user = $this->Auth->identify();
-                $this->Auth->setUser($user);
+                $newIdentity = $this->Users
+                    ->findById($newUser->id)
+                    ->find('userToLogin')
+                    ->first();
+                $newIdentity = new \ArrayObject($newIdentity); // TODO remove after upgrading to cakephp/authentication >= 3.3.1
+                $this->Authentication->setIdentity($newIdentity);
 
                 $profileUrl = Router::url(
                     array(
                         'controller' => 'user',
                         'action' => 'profile',
-                        $this->Auth->user('username')
+                        $this->Authentication->getIdentityData('username'),
                     )
                 );
                 $this->Flash->set(

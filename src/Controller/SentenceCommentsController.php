@@ -58,14 +58,6 @@ class SentenceCommentsController extends AppController
      */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array(
-            'index',
-            'show',
-            'of_user',
-            'on_sentences_of_user'
-        );
-
         $eventManager = $this->SentenceComments->getEventManager();
         $eventManager->on(new NotificationListener());
 
@@ -156,7 +148,7 @@ class SentenceCommentsController extends AppController
             [
                 'sentence_id' => $sentenceId,
                 'text' => $commentText,
-                'user_id' => $this->Auth->user('id')
+                'user_id' => $this->Authentication->getIdentityData('id')
             ],
             compact('validate')
         );

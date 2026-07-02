@@ -14,12 +14,26 @@
  */
 namespace App;
 
+use Authorization\AuthorizationService;
+use Authorization\AuthorizationServiceInterface;
+use Authorization\AuthorizationServiceProviderInterface;
+use Authorization\Middleware\AuthorizationMiddleware;
+use Authorization\Policy\MapResolver;
+use Authentication\AuthenticationService;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\AuthenticationServiceProviderInterface;
+use Authentication\Identifier\IdentifierInterface;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
+use Cake\Http\ServerRequest;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\Routing\Router;
 use CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use TinyAuth\Policy\RequestPolicy;
 
 /**
  * Application setup class.
@@ -27,8 +41,105 @@ use CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware;
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication
+class Application extends BaseApplication implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
 {
+    const QUERY_PARAM_REDIRECT = 'redirect';
+
+    /**
+     * Returns a service provider instance.
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request Request
+     * @return \Authentication\AuthenticationServiceInterface
+     */
+    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
+    {
+        $service = new AuthenticationService();
+
+        // Define when and where users should be redirected to when they are not authenticated
+        if (!$request->is('ajax')) {
+            $service->setConfig([
+                'unauthenticatedRedirect' => Router::url([
+                    'prefix' => false,
+                    'plugin' => false,
+                    'controller' => 'Users',
+                    'action' => 'login',
+                ]),
+                'queryParam' => self::QUERY_PARAM_REDIRECT,
+            ]);
+            // The code below mimics the behavior of old AuthComponent
+            if (is_null($request->getQuery(self::QUERY_PARAM_REDIRECT)) && $request->getMethod() != 'GET') {
+                $referer = $request->referer();
+                if ($referer) {
+                    // Set referer in redirect= query parameter instead of current URL
+                    $refererUri = $request->getUri()->withPath($referer);
+                    $url = $service->getUnauthenticatedRedirectUrl($request->withUri($refererUri));
+                    $service->setConfig([
+                        'unauthenticatedRedirect' => $url,
+                        'queryParam' => null,
+                    ]);
+                } else {
+                    // Do not set any redirect= query parameter at all
+                    $service->setConfig(['queryParam' => null]);
+                }
+            }
+        }
+
+        $fields = [
+            IdentifierInterface::CREDENTIAL_USERNAME => 'username',
+            IdentifierInterface::CREDENTIAL_PASSWORD => 'password',
+        ];
+
+        // Load the authenticators. Session should be first.
+        $service->loadAuthenticator('SessionWithoutPassword', [
+            'sessionKey' => 'Auth.User',
+            'identify' => true,
+        ]);
+        $service->loadAuthenticator('Authentication.Form', [
+            'fields' => $fields,
+            'loginUrl' => Router::url([
+                'prefix' => false,
+                'plugin' => false,
+                'controller' => 'Users',
+                'action' => 'check_login',
+            ]),
+        ]);
+        $service->loadAuthenticator('RememberMe', [
+            'loginUrl' => Router::url([
+                'prefix' => false,
+                'plugin' => false,
+                'controller' => 'Users',
+                'action' => 'check_login',
+            ]),
+        ]);
+
+        // Load identifiers
+        $service->loadIdentifier('Authentication.Password', [
+            'fields' => $fields,
+            'resolver' => [
+                'className' => 'Authentication.Orm',
+                'finder' => 'userToLogin',
+            ],
+            'passwordHasher'=> [
+                'className' => 'Versioned'
+            ],
+        ]);
+
+        return $service;
+    }
+
+    public function getAuthorizationService(ServerRequestInterface $request): AuthorizationServiceInterface
+    {
+        // Map ServerRequest to TinyAuth's RequestPolicy for INI-based RBAC
+        $mapResolver = new MapResolver();
+        $policy = new RequestPolicy([
+            'includeAuthentication' => true,  // authorize any public action in auth_allow.ini
+            'roleColumn' => 'role',           // use users.role database field to get user role
+        ]);
+        $mapResolver->map(ServerRequest::class, $policy);
+
+        return new AuthorizationService($mapResolver);
+    }
+
     public function bootstrap(): void
     {
         parent::bootstrap();
@@ -54,7 +165,9 @@ class Application extends BaseApplication
 
         $this->addPlugin('Queue', ['bootstrap' => true, 'routes' => false]);
         $this->addPlugin('AssetCompress', ['middleware' => false]);
-        $this->addPlugin('AuthActions', ['bootstrap' => false, 'routes' => false]);
+        $this->addPlugin('TinyAuth');
+        $this->addPlugin('Authentication');
+        $this->addPlugin('Authorization');
     }
 
     /**

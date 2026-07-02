@@ -77,7 +77,7 @@ class PrivateMessagesController extends AppController
             'limit' => 20
         ];
 
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         $options = compact('userId', 'folder', 'status');
         $query = $this->PrivateMessages->find('paginated', $options);
         $content = $this->paginate($query);
@@ -94,7 +94,7 @@ class PrivateMessagesController extends AppController
      */
     public function send()
     {
-        $currentUserId = $this->Auth->user('id');
+        $currentUserId = $this->Authentication->getIdentityData('id');
         $now = date("Y-m-d H:i:s", time());
         $data = $this->request->getData();
 

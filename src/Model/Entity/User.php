@@ -1,7 +1,7 @@
 <?php
 namespace App\Model\Entity;
 
-use App\Auth\VersionedPasswordHasher;
+use App\PasswordHasher\VersionedPasswordHasher;
 use Cake\ORM\Entity;
 
 class User extends Entity

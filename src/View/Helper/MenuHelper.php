@@ -26,10 +26,10 @@
  */
 namespace App\View\Helper;
 
+use App\Application;
 use App\View\Helper\AppHelper;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
-use Cake\Controller\Component\AuthComponent;
 use Cake\Datasource\FactoryLocator;
 
 /**
@@ -106,7 +106,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
+                    "?" => array(Application::QUERY_PARAM_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -243,7 +243,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
+                    "?" => array(Application::QUERY_PARAM_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -340,7 +340,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
+                    "?" => array(Application::QUERY_PARAM_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false

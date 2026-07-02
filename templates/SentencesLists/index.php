@@ -25,6 +25,8 @@
  * @link     https://tatoeba.org
  */
 
+use App\Model\CurrentUser;
+
 $total = $this->Paginator->counter('{{count}}');
 if (empty($filter)) {
     if (!empty($isCollaborative)) {
@@ -51,7 +53,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     $this->Lists->displaySearchForm($filter);
 
-    if ($this->request->getSession()->read('Auth.User.id')) {
+    if (CurrentUser::isMember()) {
         $this->Lists->displayCreateListForm();
     }
     ?>

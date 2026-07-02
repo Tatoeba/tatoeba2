@@ -8,6 +8,7 @@ use Cake\Http\Response;
 use Cake\Http\ServerRequest;
 use Cake\I18n\I18n;
 use Cake\TestSuite\TestCase;
+use Laminas\Diactoros\Response\RedirectResponse;
 
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -195,5 +196,18 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $response = $this->middleware->process($request, $this->handler);
         $this->assertEquals($this->oldLocale, I18n::getLocale());
         $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function testMiddleware_handlesNonCakePHPResponses() {
+        $this->handler = $this->getMockBuilder(RequestHandlerInterface::class)
+            ->setMethods(['handle'])
+            ->getMock();
+
+        $this->handler
+            ->expects($this->any())
+            ->method('handle')
+            ->will($this->returnValue(new RedirectResponse('/somehwere/else')));
+
+        $this->testMiddleware_setsCookie();
     }
 }

@@ -49,8 +49,6 @@ use Cake\Routing\Router;
 
 class AppController extends Controller
 {
-    use \AuthActions\Lib\AuthActionsTrait;
-
     const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
 
     private function blackhole($type) {
@@ -62,15 +60,15 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Permissions');
         $this->loadComponent('Security');
-        $this->loadComponent('Auth', [
-            'authenticate' => [
-                'Form' => [
-                    'passwordHasher' => ['className' => 'Versioned'],
-                    'finder' => 'userToLogin',
-                ],
-            ]
+        $this->loadComponent('TinyAuth.Authentication', [
+            'logoutRedirect' => [
+                'prefix' => false,
+                'plugin' => false,
+                'controller' => 'Users',
+                'action' => 'login',
+            ],
         ]);
-        $this->loadComponent('RememberMe');
+        $this->loadComponent('TinyAuth.Authorization');
     }
 
     /**
@@ -141,52 +139,15 @@ class AppController extends Controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
 
-        $this->Auth->allow('display');
-        $this->Auth->setConfig([
-            // This line will call views/elements/session_expired.ctp.
-            // When one tries to do an AJAX action after the session is expired,
-            // the action will return the content of this file instead of
-            // the whole page.
-            'ajaxLogin' => 'session_expired',
-            'authError' => false,
-            'authorize' => ['Controller'],
-            'loginAction' => [ 'controller' => 'users', 'action' => 'login' ],
-            'logoutRedirect' => [ 'controller' => 'users', 'action' => 'login' ],
-            // namespace declaration of AuthUtilsComponent
-            'AuthActions.AuthUtils',
-        ]);
-        $this->initAuthActions();
-        $this->RememberMe->check();
-
         // Get logged-in user so that we can access it info from models.
-        // Important: needs to be done after RememberMe->check().
-        $logged_in_user = $this->Auth->user();
+        $logged_in_user = $this->Authentication->getIdentity();
         if ($logged_in_user) {
             $user = $this->fetchTable('Users')
                 ->getInformationOfCurrentUser($logged_in_user['id'])
                 ->toArray();
 
-            // Immediately logout if status was downgraded to one that cannot login
             if (in_array($user['role'], [User::ROLE_INACTIVE, User::ROLE_SPAMMER])) {
-                $this->RememberMe->delete();
-                $this->Auth->logout();
-                if ($user['role'] == User::ROLE_SPAMMER) {
-                    $this->Flash->set(__('Your account has been suspended.'));
-                } elseif ($user['role'] == User::ROLE_INACTIVE) {
-                    $this->Flash->set(__('Your account has been deactivated.'));
-                }
                 $user = false;
-            } else {
-                // Check if auth info needs to be updated
-                // May happen if an admin just changed the user's role or username
-                $updated_user_auth = array_intersect_key($user, $logged_in_user);
-                if ($updated_user_auth != $logged_in_user) {
-                    $this->Auth->setUser($updated_user_auth);
-                    // AuthComponent::setUser() renews the session id, which makes
-                    // the Security component blackhole the request if it's a post
-                    // so disable it just this time
-                    $this->Security->setConfig(['validatePost' => false]);
-                }
             }
         } else {
             $user = false;

@@ -41,7 +41,7 @@ use App\Model\CurrentUser;
  */
 class PermissionsComponent extends Component
 {
-    public $components = array('Auth');
+    public $components = array('TinyAuth.Authentication');
 
     /**
      * Check which options user can access to and returns
@@ -70,7 +70,7 @@ class PermissionsComponent extends Component
             'belongsToLists' => array()
         );
 
-        if ($this->Auth->user('id')) {
+        if ($this->Authentication->getIdentity()) {
             // -- comment --
             $specialOptions['canComment'] = true;
 
@@ -83,7 +83,7 @@ class PermissionsComponent extends Component
             // is_array is here to avoid a warning when favorites_users is empty
             if (is_array($sentence['Favorites_users'])) {
                 foreach ($sentence['Favorites_users'] as $favoritingUser) {
-                    if ($favoritingUser['user_id'] == $this->Auth->user('id')) {
+                    if ($favoritingUser['user_id'] == $this->Authentication->getIdentityData('id')) {
                         $specialOptions['canUnFavorite'] = true;
                         $specialOptions['canFavorite'] = false;
                     }

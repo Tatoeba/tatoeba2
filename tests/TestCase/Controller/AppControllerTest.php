@@ -1,8 +1,10 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
+use Cake\Http\Cookie\CookieCollection;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
 
@@ -54,6 +56,22 @@ class AppControllerTest extends IntegrationTestCase {
 		$this->get('/en/about');
 
 		$this->assertSession(null, 'Auth.User.id');
+	}
+
+	function testRememberMeCookieClearedOnLogout() {
+		$this->logInAs('contributor');
+		$this->setRememberMeCookie(
+			'contributor',
+			'0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l4'
+		);
+		$this->get('/en/users/logout');
+
+		$cookies = CookieCollection::createFromHeader($this->_response->getHeader('Set-Cookie'));
+		$this->assertTrue($cookies->has('User'));
+
+		$cookie = $cookies->get('User');
+		$this->assertSame(1, $cookie->getExpiry()->getTimestamp());
+		$this->assertEmpty($cookie->getValue());
 	}
 
 	function testError404InProduction() {

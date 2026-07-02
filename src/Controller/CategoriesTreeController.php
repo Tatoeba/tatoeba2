@@ -36,7 +36,7 @@ class CategoriesTreeController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)  {
         // Not ready for production yet
         if (!Configure::read('debug') && !Configure::read('Tatoeba.devStylesheet')) {
-            return $this->response->withStatus(403);
+            throw new \Cake\Http\Exception\ForbiddenException();
         }
         return parent::beforeFilter($event);
     }

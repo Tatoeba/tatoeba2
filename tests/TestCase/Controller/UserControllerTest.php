@@ -365,7 +365,7 @@ class UserControllerTest extends IntegrationTestCase
         $this->ajaxPost('/en/user/save_banner_setting', [
             'hide_new_design_announcement' => '1'
         ]);
-        $this->assertResponseCode(403);
+        $this->assertResponseCode(401);
     }
 
     public function testSaveBannerSetting_asMember() {

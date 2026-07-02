@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72af17d82a9dfe524612b63daf663c25",
+    "content-hash": "55bffff1a37db16ed4613775cdced4bc",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -110,6 +110,140 @@
                 "source": "https://github.com/CakeDC/cakephp-cached-routing"
             },
             "time": "2022-06-21T14:40:52+00:00"
+        },
+        {
+            "name": "cakephp/authentication",
+            "version": "2.11.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/authentication.git",
+                "reference": "9aec999d89382e34125d5ad2bf5b1518f5167d62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/authentication/zipball/9aec999d89382e34125d5ad2bf5b1518f5167d62",
+                "reference": "9aec999d89382e34125d5ad2bf5b1518f5167d62",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/http": "^4.5",
+                "laminas/laminas-diactoros": "^2.2.2",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^4.5",
+                "cakephp/cakephp-codesniffer": "^4.0",
+                "firebase/php-jwt": "^6.2",
+                "phpunit/phpunit": "^8.5 || ^9.3"
+            },
+            "suggest": {
+                "cakephp/cakephp": "Install full core to use \"CookieAuthenticator\".",
+                "cakephp/orm": "To use \"OrmResolver\" (Not needed separately if using full CakePHP framework).",
+                "cakephp/utility": "Provides CakePHP security methods. Required for the JWT adapter and Legacy password hasher.",
+                "ext-ldap": "Make sure this php extension is installed and enabled on your system if you want to use the built-in LDAP adapter for \"LdapIdentifier\".",
+                "firebase/php-jwt": "If you want to use the JWT adapter add this dependency"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Authentication\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/authentication/graphs/contributors"
+                }
+            ],
+            "description": "Authentication plugin for CakePHP",
+            "homepage": "https://cakephp.org",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "cakephp",
+                "middleware"
+            ],
+            "support": {
+                "docs": "https://book.cakephp.org/authentication/2/en/",
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/authentication/issues",
+                "source": "https://github.com/cakephp/authentication"
+            },
+            "time": "2026-06-25T03:16:36+00:00"
+        },
+        {
+            "name": "cakephp/authorization",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/authorization.git",
+                "reference": "27c9d551d37c663b7c61819e24c2e45ec043b8f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/authorization/zipball/27c9d551d37c663b7c61819e24c2e45ec043b8f8",
+                "reference": "27c9d551d37c663b7c61819e24c2e45ec043b8f8",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/http": "^4.2",
+                "php": ">=7.2",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "cakephp/authentication": "^2.0",
+                "cakephp/bake": "^2.0",
+                "cakephp/cakephp": "^4.0",
+                "cakephp/cakephp-codesniffer": "^4.0",
+                "cakephp/plugin-installer": "^1.3",
+                "phpunit/phpunit": "^8.5 || ^9.3"
+            },
+            "suggest": {
+                "cakephp/http": "To use \"RequestPolicyInterface\" (Not needed separately if using full CakePHP framework).",
+                "cakephp/orm": "To use \"OrmResolver\" (Not needed separately if using full CakePHP framework)."
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Authorization\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/authorization/graphs/contributors"
+                }
+            ],
+            "description": "Authorization abstraction layer plugin for CakePHP",
+            "keywords": [
+                "access",
+                "auth",
+                "authorization",
+                "cakephp"
+            ],
+            "support": {
+                "docs": "https://cakephp.org/authorization/2/en/",
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/authorization/issues",
+                "source": "https://github.com/cakephp/authorization"
+            },
+            "time": "2024-10-18T13:24:21+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -392,45 +526,6 @@
             "time": "2020-10-29T04:00:42+00:00"
         },
         {
-            "name": "codekanzlei/cake-auth-actions",
-            "version": "v4.0.0-rc5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/scherersoftware/cake-auth-actions.git",
-                "reference": "9fc31479566967dac27a3702d862c2ae03cfa678"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/scherersoftware/cake-auth-actions/zipball/9fc31479566967dac27a3702d862c2ae03cfa678",
-                "reference": "9fc31479566967dac27a3702d862c2ae03cfa678",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "^4.0.0-RC1",
-                "php": ">=7.2.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.11",
-                "scherersoftware/coding-standard": "^4.0-dev"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "AuthActions\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Simple ACL alternative for CakePHP 4",
-            "support": {
-                "issues": "https://github.com/scherersoftware/cake-auth-actions/issues",
-                "source": "https://github.com/scherersoftware/cake-auth-actions/tree/v4.0.0-rc5"
-            },
-            "time": "2019-11-29T12:15:18+00:00"
-        },
-        {
             "name": "composer/ca-bundle",
             "version": "1.5.12",
             "source": {
@@ -573,6 +668,65 @@
                 "source": "https://github.com/dereuromark/cakephp-queue"
             },
             "time": "2025-09-11T17:51:53+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-tinyauth",
+            "version": "3.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
+                "reference": "7f1b689329b3e299df2775bbcd2887b106f46b6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/7f1b689329b3e299df2775bbcd2887b106f46b6b",
+                "reference": "7f1b689329b3e299df2775bbcd2887b106f46b6b",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.2",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "cakephp/authentication": "^2.2",
+                "cakephp/authorization": "^2.0",
+                "cakephp/debug_kit": "^4.2.0",
+                "composer/semver": "^2.0 || ^3.0",
+                "fig-r/psr2r-sniffer": "^1.5.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "TinyAuth\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A CakePHP plugin to handle user authentication and authorization the easy way.",
+            "homepage": "https://github.com/dereuromark/cakephp-tinyauth",
+            "keywords": [
+                "Authentication",
+                "authorization",
+                "cakephp",
+                "plugin",
+                "roles",
+                "tinyauth"
+            ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-tinyauth/issues",
+                "source": "https://github.com/dereuromark/cakephp-tinyauth"
+            },
+            "time": "2026-06-25T12:29:14+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -5154,9 +5308,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "codekanzlei/cake-auth-actions": 5
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},

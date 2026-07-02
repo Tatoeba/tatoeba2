@@ -72,6 +72,8 @@ class LanguageSelectorMiddleware implements MiddlewareInterface
 
         $response = $handler->handle($request);
 
+        $response = $this->ensureCakeResponse($response);
+
         return $response->withCookie(Cookie::create(
             'interface_language',
             $lang,
@@ -132,5 +134,22 @@ class LanguageSelectorMiddleware implements MiddlewareInterface
             \Cake\I18n\FrozenTime::setDefaultLocale('en');
         }
         I18n::setLocale($locale);
+    }
+
+    /**
+     * Transform a potential non-cakephp-response into one.
+     */
+    private function ensureCakeResponse(ResponseInterface $response): \Cake\Http\Response {
+        if ($response instanceOf \Cake\Http\Response) {
+            return $response;
+        }
+        $cakeResponse = (new \Cake\Http\Response())
+            ->withProtocolVersion($response->getProtocolVersion())
+            ->withStatus($response->getStatusCode(), $response->getReasonPhrase())
+            ->withBody($response->getBody());
+        foreach ($response->getHeaders() as $name => $values) {
+            $cakeResponse = $cakeResponse->withHeader($name, $values);
+        }
+        return $cakeResponse;
     }
 }

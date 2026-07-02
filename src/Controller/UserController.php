@@ -27,7 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Auth\VersionedPasswordHasher;
+use App\PasswordHasher\VersionedPasswordHasher;
 use App\Lib\LanguagesLib;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
@@ -167,7 +167,7 @@ class UserController extends AppController
         }
 
         // Generate name for picture
-        $newFileName =  $this->Auth->user('id') . '.png' ;
+        $newFileName = $this->Authentication->getIdentityData('id') . '.png';
         $newFileFullPath128 = WWW_ROOT . 'img' . DS . 'profiles_128' . DS . $newFileName;
         $newFileFullPath36 = WWW_ROOT . 'img' . DS . 'profiles_36'. DS . $newFileName;
 
@@ -185,7 +185,7 @@ class UserController extends AppController
 
         // if all resize has worked we can save it in user information
         if ($save36Succed && $save128Succed) {
-            $user = $this->Users->get($this->Auth->user('id'));
+            $user = $this->Users->get($this->Authentication->getIdentityData('id'));
             $user->image = $newFileName;
             $this->Users->save($user);
         } else {
@@ -298,7 +298,7 @@ class UserController extends AppController
     {
         $data = $this->request->getData();
         if (!empty($data)) {
-            $userId = $this->Auth->user('id');
+            $userId = $this->Authentication->getIdentityData('id');
 
             $passwordHasher = new VersionedPasswordHasher();
             $submittedPassword = $data['old_password'];

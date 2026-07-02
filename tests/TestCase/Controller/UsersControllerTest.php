@@ -179,6 +179,17 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/en/users/login');
     }
 
+    public function testCheckLogin_setsSessionAuthDataAsArrayAndWithoutPassword() {
+        $this->post('/en/users/check_login', [
+            'username' => 'kazuki',
+            'password' => 'myAwesomePassword',
+            'rememberMe' => 0,
+        ]);
+        $sessionAuthData = $this->getSession()->read('Auth.User');
+        $this->assertIsArray($sessionAuthData);
+        $this->assertArrayNotHasKey('password', $sessionAuthData);
+    }
+
     public function testCheckLogin_spammerCannotLogin() {
         $this->enableRetainFlashMessages();
         $this->post('/en/users/check_login', [
@@ -187,6 +198,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
+        $this->assertRedirect('/en/users/login');
         $this->assertFlashMessage(
             'This account has been marked as a spammer. '.
             'You cannot log in with it anymore. '.

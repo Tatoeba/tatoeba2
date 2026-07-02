@@ -242,7 +242,7 @@ class SentencesController extends AppController
             return;
         }
 
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
         if ($userLevel < 0) {
             return;
@@ -255,7 +255,7 @@ class SentencesController extends AppController
             return;
         }
 
-        $userName = $this->Auth->user('username');
+        $userName = $this->Authentication->getIdentityData('username');
         $sentenceLicense = $this->request->getData('sentenceLicense');
 
         $this->loadComponent('CommonSentence');
@@ -322,7 +322,7 @@ class SentencesController extends AppController
      */
     public function adopt($id)
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
 
         $this->Sentences->setOwner($id, $userId, CurrentUser::get('role'));
 
@@ -340,7 +340,7 @@ class SentencesController extends AppController
      */
     public function let_go($id)
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
 
         $this->Sentences->unsetOwner($id, $userId);
 
@@ -378,7 +378,7 @@ class SentencesController extends AppController
     {
         $sentenceId = $this->request->getData('id');
         $translationLang = $this->request->getData('selectLang');
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
 
         if ($userLevel < 0) {
@@ -400,7 +400,7 @@ class SentencesController extends AppController
                 $this->loadComponent('LanguageDetection');
                 $translationLang = $this->LanguageDetection->detectLang(
                     $translationText,
-                    $this->Auth->user('username')
+                    $this->Authentication->getIdentityData('username')
                 );
             }
 

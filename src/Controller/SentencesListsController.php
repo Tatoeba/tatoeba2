@@ -215,7 +215,7 @@ class SentencesListsController extends AppController
     {
         $list = $this->SentencesLists->createList(
             $this->request->getData('name'),
-            $this->Auth->user('id')
+            $this->Authentication->getIdentityData('id')
         );
 
         if (isset($list->id)) {
@@ -234,7 +234,7 @@ class SentencesListsController extends AppController
      */
     public function save_name()
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
 
         $acceptsJson = $this->request->accepts('application/json');
 
@@ -269,7 +269,7 @@ class SentencesListsController extends AppController
      */
     public function delete($listId)
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         if ($this->SentencesLists->deleteList($listId, $userId)) {
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
@@ -296,7 +296,7 @@ class SentencesListsController extends AppController
     {
         $acceptsJson = $this->request->accepts('application/json');
 
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
             $this->setOneMonthCookie('most_recent_list', $listId);
@@ -324,7 +324,7 @@ class SentencesListsController extends AppController
      */
     public function remove_sentence_from_list($sentenceId, $listId )
     {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         $isRemoved = $this->SentencesLists->removeSentenceFromList(
             $sentenceId, $listId, $userId
         );
@@ -399,7 +399,7 @@ class SentencesListsController extends AppController
         $sentenceLang = $this->request->getData('sentenceLang');
 
         if (!is_null($listId) && !is_null($sentenceText)) {
-            $userName = $this->Auth->user('username');
+            $userName = $this->Authentication->getIdentityData('username');
             if ($sentenceLang == 'auto') {
                 $this->loadComponent('LanguageDetection');
                 $sentenceLang = $this->LanguageDetection->detectLang(
@@ -412,7 +412,7 @@ class SentencesListsController extends AppController
                 $listId,
                 $sentenceText,
                 $sentenceLang,
-                $this->Auth->user('id')
+                $this->Authentication->getIdentityData('id')
             );
 
             $this->setOneMonthCookie('most_recent_list', $listId);
@@ -429,7 +429,7 @@ class SentencesListsController extends AppController
     }
 
     public function add_sentence_to_new_list() {
-        $userId = $this->Auth->user('id');
+        $userId = $this->Authentication->getIdentityData('id');
         $listName = $this->request->getData('name');
         $sentenceId = $this->request->getData('sentenceId');
         $list = $this->SentencesLists->createList($listName, $userId);

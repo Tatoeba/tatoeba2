@@ -100,7 +100,6 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider roleChangeProvider()
      */
     public function testSave_asMember_roleJustChanged($newRole, $exceptedRedirect, $flashMsg = null) {
-        $this->enableRetainFlashMessages();
         $this->logInAs('advanced_contributor');
         $users = $this->fetchTable('Users');
         $advcontributor = $users->get(3);
@@ -149,7 +148,7 @@ class WallControllerTest extends IntegrationTestCase {
     }
 
     private function assertFlashMessageContains($expected, $message = '') {
-        $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
+        $this->assertStringContainsString($expected, $this->getSession()->read('Flash.flash.0.message'), $message);
     }
 
     public function postsWithLinksProvider() {
@@ -192,7 +191,6 @@ class WallControllerTest extends IntegrationTestCase {
      * @dataProvider postsWithLinksProvider()
      */
     public function testSave_postWithLinksByNewMember($postData, $shouldSave, $email) {
-        $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
         $this->post(

@@ -1,5 +1,5 @@
 <?php
-use \Cake\Controller\Component\AuthComponent;
+use App\Application;
 
 $passwordUrl = $this->Url->build([
     'controller' => 'users',
@@ -15,7 +15,7 @@ echo $this->Form->create(null, [
     'url' => [
         'controller' => 'users', 
         'action' => 'check_login',
-        '?' => [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl],
+        '?' => [Application::QUERY_PARAM_REDIRECT => $redirectUrl],
     ]
 ]);
 ?>
