@@ -36,6 +36,7 @@ class ActivitiesControllerTest extends IntegrationTestCase {
             [ '/en/activities/translate_sentences_of/admin', 'contributor', true ],
             [ '/en/activities/translate_sentences_of/admin/fra', null, true ],
             [ '/en/activities/translate_sentences_of/admin/fra', 'contributor', true ],
+            [ '/en/activities/translate_sentences_of/invalid', null, '/en/users/all' ],
         ];
     }
 

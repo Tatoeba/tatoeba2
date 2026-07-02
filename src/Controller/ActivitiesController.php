@@ -150,7 +150,7 @@ class ActivitiesController extends AppController
                 array('username' => $username)
             );
             $this->Flash->set($flashMessage);
-            $this->redirect(
+            return $this->redirect(
                 array(
                     'controller' => 'users',
                     'action' => 'all'

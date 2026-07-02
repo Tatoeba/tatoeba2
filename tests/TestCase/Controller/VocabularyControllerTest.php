@@ -24,6 +24,7 @@ class VocabularyControllerTest extends IntegrationTestCase
             [ '/en/vocabulary/of/admin', null, true ],
             [ '/en/vocabulary/of/admin', 'contributor', true ],
             [ '/en/vocabulary/of/admin/eng', null, true ],
+            [ '/en/vocabulary/of/invalid', null, '/en/users/all' ],
             [ '/en/vocabulary/add', null, '/en/users/login?redirect=%2Fen%2Fvocabulary%2Fadd' ],
             [ '/en/vocabulary/add', 'contributor', true ],
             [ '/en/vocabulary/add_sentences', null, '/en/users/login?redirect=%2Fen%2Fvocabulary%2Fadd_sentences' ],

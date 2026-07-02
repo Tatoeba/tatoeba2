@@ -75,7 +75,7 @@ class VocabularyController extends AppController
                 __('No user with this username: {username}'),
                 array('username' => $username)
             ));
-            $this->redirect(
+            return $this->redirect(
                 array('controller'=>'users',
                   'action' => 'all')
             );
