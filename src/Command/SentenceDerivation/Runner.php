@@ -55,8 +55,8 @@ class Runner {
             $isSameAuthor = $elem['user_id'] == $log['user_id'];
             $isInsertLink = $elem['action'] == 'insert' && $elem['type'] == 'link';
             if (!is_null($log['datetime']) && !is_null($elem['datetime'])) {
-                $creatDate = strtotime($log['datetime']);
-                $otherDate = strtotime($elem['datetime']);
+                $creatDate = $log['datetime']->getTimestamp();
+                $otherDate = $elem['datetime']->getTimestamp();
                 $closeDatetime = abs($otherDate - $creatDate) <= 310;
             } else {
                 $closeDatetime = false;
