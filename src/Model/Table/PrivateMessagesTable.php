@@ -272,7 +272,6 @@ class PrivateMessagesTable extends Table
             'recpt' => $recptId,
             'draft_recpts' => '',
             'sent' => 1,
-            'id' => null
         ));
 
         $message = $this->newEntity($message);

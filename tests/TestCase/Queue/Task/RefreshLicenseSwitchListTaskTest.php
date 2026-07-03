@@ -65,7 +65,6 @@ class RefreshLicenseSwitchListTaskTest extends TestCase
                 'action' => 'insert',
             ])
             ->first();
-        $row->id = null;
         $row->setNew(true);
         $Contributions->save($row);
 

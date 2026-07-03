@@ -237,7 +237,6 @@ class ContributionsTable extends Table
     public function saveSentenceContribution($id, $lang, $script, $text, $action)
     {
         $data = $this->newEntity([
-            'id' => null,
             'sentence_id' => $id,
             'sentence_lang' => $lang,
             'script' => $script,
@@ -264,7 +263,6 @@ class ContributionsTable extends Table
     public function saveLinkContribution($sentenceId, $translationId, $action)
     {
         $data = $this->newEntity([
-            'id' => null,
             'sentence_id' => $sentenceId,
             'translation_id' => $translationId,
             'user_id' => CurrentUser::get('id'),
