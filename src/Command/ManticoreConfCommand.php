@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  *  Tatoeba Project, free collaborative creation of languages corpuses project
  *  Copyright (C) 2014  Gilles Bedel
@@ -16,16 +18,18 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Shell;
+namespace App\Command;
 
+use App\Lib\LanguagesLib;
+use Cake\Command\Command;
+use Cake\Console\Arguments;
+use Cake\Console\ConsoleIo;
+use Cake\Console\ConsoleOptionParser;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
-use App\Lib\LanguagesLib;
-use Cake\Console\Shell;
 
-
-class SphinxConfShell extends Shell {
-
+class ManticoreConfCommand extends Command
+{
     private $tatoeba_languages;
 
     /**
@@ -341,8 +345,8 @@ class SphinxConfShell extends Shell {
     private $dbConfig;
     private $sphinxConfig;
 
-    public function __construct() {
-        parent::__construct();
+    public function initialize(): void {
+        parent::initialize();
 
         $this->indexExtraOptions['lat'] =
             "
@@ -809,10 +813,11 @@ EOT;
         return $conf;
     }
 
-    public function conf($only = null) {
+    public function conf(Arguments $args) {
+        $only = $args->getArguments() ?: null;
         $languages = LanguagesLib::languagesInTatoeba();
         if (is_null($only)) {
-            if (!$this->params['all']) {
+            if (!$args->getOption('all')) {
                 $Sentences = $this->fetchTable('Sentences');
                 $only = array_filter($Sentences->languagesHavingSentences());
             }
@@ -849,8 +854,14 @@ EOT;
         return $conf;
     }
 
-    public function getOptionParser(): \Cake\Console\ConsoleOptionParser {
-        $parser = parent::getOptionParser();
+    public static function defaultName(): string
+    {
+        return 'sphinx_conf';
+    }
+
+    public function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
+    {
+        $parser = parent::buildOptionParser($parser);
         $parser
             ->addOption('all', [
                 'short' => 'a',
@@ -858,20 +869,16 @@ EOT;
                 'default' => false,
                 'help' => 'Include all languages (default is to only include languages having sentences).',
             ])
-            ->setDescription('Generates configuration file for Manticore Search.');
+            ->setDescription('Generates configuration file for Manticore search.');
+
         return $parser;
     }
 
-    public function main() {
+    public function execute(Arguments $args, ConsoleIo $io)
+    {
         $this->dbConfig = ConnectionManager::get('default')->config();
         $this->sphinxConfig = Configure::read('Sphinx');
-        
-        if (count($this->args)) {
-            $langs = $this->args;
-        } else {
-            $langs = null;
-        }
 
-        echo $this->escape_long_lines($this->conf($langs));
+        echo $this->escape_long_lines($this->conf($args));
     }
 }
