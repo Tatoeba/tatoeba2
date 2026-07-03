@@ -1,122 +1,30 @@
 <?php
+declare(strict_types=1);
 
-namespace App\Shell;
+namespace App\Command\SentenceDerivation;
 
-use Cake\Console\Shell;
-use Cake\Utility\Hash;
+use App\Command\BatchOperationTrait;
+use Cake\Console\ConsoleIo;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\I18n\DateTime;
+use Cake\ORM\Locator\LocatorAwareTrait;
+use Cake\Utility\Hash;
 
-class Walker {
-    private $model;
-    private $startAtId;
-    private $buffer = array();
-    public $bufferSize = 1000;
-    public $allowRewindSize = 20;
-
-    public function __construct($model, $startAtId = 1) {
-        $this->model = $model;
-        $this->startAtId = $startAtId;
-    }
-
-    private function setBufferPointerAt($i) {
-        reset($this->buffer);
-        while (key($this->buffer) !== $i) {
-            next($this->buffer);
-        }
-    }
-
-    public function next() {
-        $next = next($this->buffer);
-        if ($next === false) {
-            if (empty($this->buffer)) {
-                $lastId = $this->startAtId - 1;
-                $fetchSize = $this->bufferSize;
-            } else {
-                $last = end($this->buffer);
-                $lastId = $last['id'];
-                $fetchSize = $this->bufferSize - $this->allowRewindSize;
-            }
-            $rows = $this->model->find('all')
-                ->where(['id > ' => $lastId])
-                ->limit($fetchSize)
-                ->all()
-                ->toList();
-
-            if (empty($rows)) {
-                return false;
-            }
-            $remainder = array_slice($this->buffer, -$this->allowRewindSize, $this->allowRewindSize);
-            $this->buffer = array_merge($remainder, $rows);
-            $this->setBufferPointerAt(count($remainder));
-            $next = current($this->buffer);
-        }
-        return $next;
-    }
-
-    public function findAround($range, $matchFunction) {
-        return array_merge(
-            $this->findBefore($range, $matchFunction),
-            $this->findAfter($range, $matchFunction)
-        );
-    }
-
-    public function findAfter($range, $matchFunction) {
-        $matches = array();
-        $max = $range;
-        for ($i = 0; $i < $max; $i++) {
-           $row = $this->next($this->buffer);
-           if ($row === false) {
-              $range--;
-           } else {
-               if ($matchFunction($row)) {
-                   $matches[] = $row;
-               }
-           }
-        }
-        if ($range != $max) {
-           end($this->buffer);
-        }
-        for ($i = 0; $i < $range; $i++) {
-           prev($this->buffer);
-        }
-        return $matches;
-    }
-
-    public function findBefore($range, $matchFunction) {
-        $matches = array();
-        $max = $range;
-        for ($i = 0; $i < $max; $i++) {
-           if (prev($this->buffer) === false) {
-              $range--;
-           }
-        }
-        if ($range != $max) {
-           reset($this->buffer);
-        }
-        for ($i = 0; $i < $range; $i++) {
-           $row = current($this->buffer);
-           if ($matchFunction($row)) {
-               $matches[] = $row;
-           }
-           $this->next($this->buffer);
-        }
-        return $matches;
-    }
-}
-
-class SentenceDerivationShell extends Shell {
+class Runner {
 
     use BatchOperationTrait;
+    use LocatorAwareTrait;
 
     public $batchSize = 1000;
     public $linkEraFirstId = 330930;
     public $linkABrange = array(890774, 909052);
     private $maxFindAroundRange = 87;
+    private ConsoleIo $io;
+    private $Contributions;
+    private $Sentences;
 
-    public function main() {
-        $proceeded = $this->run();
-        $this->out("\n$proceeded sentences proceeded.");
+    public function __construct(ConsoleIo $io) {
+        $this->io = $io;
     }
 
     private function findLinkedSentence($sentenceId, $matches) {
@@ -170,7 +78,7 @@ class SentenceDerivationShell extends Shell {
             ->toList();
             $entities = $this->Sentences->patchEntities($oldData, $derivations);
             if ($this->Sentences->saveMany($entities)) {
-                $this->out('.', 0);
+                $this->io->out('.', 0);
                 return count($derivations);
             }
         }
@@ -179,7 +87,7 @@ class SentenceDerivationShell extends Shell {
     }
 
     public function findDuplicateCreationRecords() {
-        $this->out("Finding duplicate creation records... ", 0);
+        $this->io->out("Finding duplicate creation records... ", 0);
         $result = $this->Contributions->find()
             ->select(['min' => 'MIN(id)', 'sentence_id'])
             ->where(['action' => 'insert', 'type' => 'sentence']) 
@@ -188,7 +96,7 @@ class SentenceDerivationShell extends Shell {
             ->all()
             ->toList();
         $result = Hash::combine($result, '{n}.sentence_id', '{n}.min');
-        $this->out('done ('.count($result).' sentences affected)');
+        $this->io->out('done ('.count($result).' sentences affected)');
         return $result;
     }
 
@@ -199,7 +107,7 @@ class SentenceDerivationShell extends Shell {
             'modified' => DateTime::now(),
             'callbacks' => false
         );
-        $this->out("Setting 'based_on_id' field for all sentences", 0);
+        $this->io->out("Setting 'based_on_id' field for all sentences", 0);
         $walker = new Walker($this->Contributions, $this->linkEraFirstId);
         $walker->allowRewindSize = $this->maxFindAroundRange;
         while ($log = $walker->next()) {
@@ -233,7 +141,7 @@ class SentenceDerivationShell extends Shell {
         return $total;
     }
 
-    public function run() {
+    public function main() {
         $this->Contributions = $this->fetchTable('Contributions');
         $this->Sentences = $this->fetchTable('Sentences');
         $creationDups = $this->findDuplicateCreationRecords();

@@ -1,14 +1,17 @@
 <?php
-namespace App\Test\TestCase\Shell;
+declare(strict_types=1);
 
-use App\Shell\SentenceDerivationShell;
+namespace App\Test\TestCase\Command;
+
+use App\Command\SentenceDerivation\Runner;
+use App\Command\SentenceDerivation\Walker;
 use Cake\Console\ConsoleIo;
-use Cake\Console\Shell;
+use Cake\Console\TestSuite\StubConsoleInput;
+use Cake\Console\TestSuite\StubConsoleOutput;
 use Cake\TestSuite\TestCase;
-use App\Shell\Walker;
 use Cake\Utility\Hash;
 
-class SentenceDerivationShellTest extends TestCase
+class SentenceDerivationCommandTest extends TestCase
 {
     public array $fixtures = array(
         'app.Audios',
@@ -22,21 +25,18 @@ class SentenceDerivationShellTest extends TestCase
     );
 
     private $Contributions;
-    private $SentenceDerivationShell;
+    private $SentenceDerivationRunner;
     private $Sentences;
 
     public function setUp(): void
     {
         parent::setUp();
-        $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
-        $this->SentenceDerivationShell = $this->getMockBuilder(SentenceDerivationShell::class)
-            ->setMethods(['in', 'err', 'createFile', '_stop', 'clear'])
-            ->setConstructorArgs([$io])
-            ->getMock();
-        
-        $this->SentenceDerivationShell->batchSize = 10;
-        $this->SentenceDerivationShell->linkEraFirstId = 1;
-        $this->SentenceDerivationShell->linkABrange = array(29, 31);
+
+        $io = new ConsoleIo(new StubConsoleOutput(), new StubConsoleOutput(), new StubConsoleInput([]));
+        $this->SentenceDerivationRunner = new Runner($io);
+        $this->SentenceDerivationRunner->batchSize = 10;
+        $this->SentenceDerivationRunner->linkEraFirstId = 1;
+        $this->SentenceDerivationRunner->linkABrange = array(29, 31);
 
         $this->Contributions = $this->fetchTable('Contributions');
         $this->Sentences = $this->fetchTable('Sentences');
@@ -45,7 +45,7 @@ class SentenceDerivationShellTest extends TestCase
     public function tearDown(): void
     {
         parent::tearDown();
-        unset($this->SentenceDerivationShell);
+        unset($this->SentenceDerivationCommand);
     }
 
     public function testWalkerLoops() {
@@ -184,7 +184,7 @@ class SentenceDerivationShellTest extends TestCase
 
     public function testRun()
     {
-        $result = $this->SentenceDerivationShell->run();
+        $result = $this->SentenceDerivationRunner->main();
 
         // execute all the _testRun*() methods
         // they only contain assertions about the above code
@@ -369,9 +369,9 @@ class SentenceDerivationShellTest extends TestCase
             6 => 4,
             7 => 0,
         );
-        $this->SentenceDerivationShell->linkEraFirstId = 11;
+        $this->SentenceDerivationRunner->linkEraFirstId = 11;
 
-        $this->SentenceDerivationShell->run();
+        $this->SentenceDerivationRunner->main();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
@@ -519,7 +519,7 @@ class SentenceDerivationShellTest extends TestCase
             $id => $linkTo,
         );
 
-        $this->SentenceDerivationShell->run();
+        $this->SentenceDerivationRunner->main();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
@@ -540,7 +540,7 @@ class SentenceDerivationShellTest extends TestCase
             $id => null, // we don't handle this special case yet
         );
 
-        $this->SentenceDerivationShell->run();
+        $this->SentenceDerivationRunner->main();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
