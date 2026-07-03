@@ -144,7 +144,7 @@ class CLDRCountriesCommand extends Command
         }
         foreach ($ldml->{'localeDisplayNames'}->{'territories'}->{'territory'}
                  as $country_trans) {
-            $translated_into = trim($country_trans->attributes()->{'type'});
+            $translated_into = trim((string)$country_trans->attributes()->{'type'});
             if (preg_match($regions_pattern, $translated_into) === 0 ||
                 (
                     !in_array($translated_into, $this->use_short_names) &&
