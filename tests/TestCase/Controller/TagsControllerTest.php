@@ -1,11 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
-class TagsControllerTest extends IntegrationTestCase {
+class TagsControllerTest extends TestCase {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
     public array $fixtures = [

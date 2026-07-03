@@ -3,12 +3,14 @@ namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\TestSuite\Constraint\Response\HeaderNotSet;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 
-class ExportsControllerTest extends IntegrationTestCase
+class ExportsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
     public array $fixtures = [

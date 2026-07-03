@@ -5,10 +5,12 @@ use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use App\Test\TestCase\SearchMockTrait;
 use Cake\Core\Configure;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class SentencesControllerTest extends IntegrationTestCase {
+class SentencesControllerTest extends TestCase {
+    use IntegrationTestTrait;
     use JsonAssertions;
     use TatoebaControllerTestTrait;
     use SearchMockTrait;

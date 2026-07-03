@@ -3,10 +3,12 @@ namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class WallControllerTest extends IntegrationTestCase {
+class WallControllerTest extends TestCase {
     use EmailTrait;
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
     public array $fixtures = [

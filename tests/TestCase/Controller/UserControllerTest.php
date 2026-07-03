@@ -3,12 +3,14 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Cake\Utility\Security;
 use Cake\Filesystem\File;
 
-class UserControllerTest extends IntegrationTestCase
+class UserControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
     public array $fixtures = [

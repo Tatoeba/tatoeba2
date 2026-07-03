@@ -2,10 +2,12 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\TestCase;
+use Cake\TestSuite\IntegrationTestTrait;
 
-class ImportsControllerTest extends IntegrationTestCase
+class ImportsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
     public array $fixtures = [

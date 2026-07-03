@@ -3,10 +3,12 @@ namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\I18n\DateTime;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class ContributionsControllerTest extends IntegrationTestCase
+class ContributionsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
     public array $fixtures = [

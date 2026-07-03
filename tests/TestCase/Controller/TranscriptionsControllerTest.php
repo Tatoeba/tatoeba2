@@ -2,10 +2,14 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class TranscriptionsControllerTest extends IntegrationTestCase {
+class TranscriptionsControllerTest extends TestCase {
+    use IntegrationTestTrait {
+        controllerSpy as _controllerSpy;
+    }
     use JsonAssertions;
     use TatoebaControllerTestTrait;
 
@@ -24,7 +28,7 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
     }
 
     public function controllerSpy($event, $controller = null): void {
-        parent::controllerSpy($event, $controller);
+        $this->_controllerSpy($event, $controller);
 
         /* Replace Autotranscription to allow syntax errors */
         $autotranscription = $this->getMockBuilder(Autotranscription::class)

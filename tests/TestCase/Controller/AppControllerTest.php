@@ -5,10 +5,12 @@ use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Http\Cookie\CookieCollection;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Cake\Utility\Security;
 
-class AppControllerTest extends IntegrationTestCase {
+class AppControllerTest extends TestCase {
+	use IntegrationTestTrait;
 	use TatoebaControllerTestTrait;
 
 	public array $fixtures = array(

@@ -3,11 +3,13 @@ namespace App\Test\TestCase\Controller;
 
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class SentencesListsControllerTest extends IntegrationTestCase
+class SentencesListsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
     use JsonAssertions;
 

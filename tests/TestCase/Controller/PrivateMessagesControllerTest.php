@@ -4,11 +4,13 @@ namespace App\Test\TestCase\Controller;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class PrivateMessagesControllerTest extends IntegrationTestCase
+class PrivateMessagesControllerTest extends TestCase
 {
     use EmailTrait;
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
     public array $fixtures = [

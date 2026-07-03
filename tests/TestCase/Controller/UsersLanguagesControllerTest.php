@@ -2,11 +2,13 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class UsersLanguagesControllerTest extends IntegrationTestCase
+class UsersLanguagesControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use JsonAssertions;
     use TatoebaControllerTestTrait;
 

@@ -6,10 +6,12 @@ use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class AudioControllerTest extends IntegrationTestCase
+class AudioControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
     use AudioIntegrationTestTrait;
 
