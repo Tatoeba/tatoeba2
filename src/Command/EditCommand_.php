@@ -4,8 +4,8 @@ namespace App\Command;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use Cake\Collection\Collection;
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 
