@@ -26,7 +26,7 @@ class OldTupiCodeRename extends AbstractMigration
     private function updateCode($from, $to) {
         foreach ($this->langColumns as $table => $columns) {
             foreach ($columns as $column) {
-                $this->getQueryBuilder()
+                $this->getUpdateBuilder()
                      ->update($table)
                      ->set($column, $to)
                      ->where([$column => $from])

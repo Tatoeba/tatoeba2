@@ -27,7 +27,7 @@ class AuthActions extends AbstractMigration
             ],
         ])->save();
 
-        $builder = $this->getQueryBuilder();
+        $builder = $this->getUpdateBuilder();
         $rolesCase = $builder->expr()->case()
             ->when(['group_id' => 1])->then('admin')
             ->when(['group_id' => 2])->then('corpus_maintainer')

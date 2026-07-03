@@ -13,7 +13,7 @@ class AllowUnknownDateAudios extends AbstractMigration
                     ])
                     ->update();
                 if ($nullable) {
-                    $this->getQueryBuilder()
+                    $this->getUpdateBuilder()
                         ->update($table)
                         ->set($column, null)
                         ->where([$column => '0000-00-00 00:00:00'])
