@@ -21,7 +21,8 @@
     "require-dev": {
         "phpunit/phpunit": "^10.1.0",
         "cakephp/bake": "^3.0",
-        "helmich/phpunit-json-assert": "3.*"
+        "helmich/phpunit-json-assert": "3.*",
+        "robmorgan/phinx": "0.16.10"
     },
     "autoload": {
         "psr-4": {
