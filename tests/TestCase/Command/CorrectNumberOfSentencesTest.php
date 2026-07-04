@@ -2,7 +2,7 @@
 namespace App\Test\TestCase\Command;
 
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
-use Cake\Console\Command;
+use Cake\Command\Command;
 use App\Model\Table\SentencesListsTable;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;

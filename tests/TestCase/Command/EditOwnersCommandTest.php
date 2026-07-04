@@ -1,7 +1,7 @@
 <?php
 namespace App\Test\TestCase\Command;
 
-use Cake\Console\Command;
+use Cake\Command\Command;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;

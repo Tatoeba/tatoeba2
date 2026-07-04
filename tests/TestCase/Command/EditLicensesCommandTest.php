@@ -3,7 +3,7 @@ namespace App\Test\TestCase\Command;
 
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\Console\Command;
+use Cake\Command\Command;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 

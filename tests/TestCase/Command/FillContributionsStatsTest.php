@@ -3,7 +3,7 @@ namespace App\Test\TestCase\Command;
 
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\Console\Command;
+use Cake\Command\Command;
 use App\Model\Table\ContributionsStats;
 
 class FillContributionsStatsCommand extends TestCase {
