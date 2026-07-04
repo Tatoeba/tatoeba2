@@ -32,7 +32,6 @@ use ArrayObject;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
-use Cake\Filesystem\File;
 use Cake\I18n\DateTime;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -277,9 +276,8 @@ class UsersTable extends Table
             WWW_ROOT . 'img' . DS . 'profiles_36' . DS . $file,
         ];
         foreach ($images as $image) {
-            $file = new File($image);
-            if ($file->exists()) {
-                $file->delete();
+            if (file_exists($image)) {
+                unlink($image);
             }
         }
     }

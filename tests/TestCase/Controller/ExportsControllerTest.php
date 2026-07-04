@@ -5,8 +5,7 @@ use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\TestSuite\Constraint\Response\HeaderNotSet;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\Filesystem\Folder;
-use Cake\Filesystem\File;
+use Cake\Utility\Filesystem;
 
 class ExportsControllerTest extends TestCase
 {
@@ -28,14 +27,13 @@ class ExportsControllerTest extends TestCase
     public function setUp(): void {
         parent::setUp();
 
-        $folder = new Folder($this->testExportDir);
-        $folder->delete();
-        $folder->create($this->testExportDir);
+        $fs = new Filesystem();
+        $fs->deleteDir($this->testExportDir);
+        $fs->mkdir($this->testExportDir);
     }
 
     public function tearDown(): void {
-        $folder = new Folder($this->testExportDir);
-        $folder->delete();
+        (new Filesystem())->deleteDir($this->testExportDir);
         parent::tearDown();
     }
 
@@ -103,10 +101,7 @@ class ExportsControllerTest extends TestCase
     private function createDownloadFile($filename)
     {
         $contents = "some zipped content";
-        $file = new File($this->testExportDir.$filename, true);
-        $file->write($contents);
-        $file->close();
-
+        file_put_contents($this->testExportDir.$filename, $contents);
         return strlen($contents);
     }
 
@@ -156,8 +151,7 @@ class ExportsControllerTest extends TestCase
         $this->logInAs('kazuki', false);
 
         $export = $this->fetchTable('Exports')->get(2);
-        $file = new File($export->filename, true);
-        $file->close();
+        touch($export->filename);
 
         $this->get("/en/exports/download/2");
 

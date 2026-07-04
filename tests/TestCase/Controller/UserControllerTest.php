@@ -6,7 +6,6 @@ use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\Utility\Security;
-use Cake\Filesystem\File;
 
 class UserControllerTest extends TestCase
 {
@@ -40,9 +39,8 @@ class UserControllerTest extends TestCase
     }
 
     public function tearDown(): void {
-        $file = new File($this->tmpFile);
-        if ($file->exists()) {
-            $file->delete();
+        if (file_exists($this->tmpFile)) {
+            unlink($this->tmpFile);
         }
         Security::setSalt($this->previousSalt);
         parent::tearDown();
@@ -298,9 +296,8 @@ class UserControllerTest extends TestCase
             WWW_ROOT.'img/profiles_36/'.$image,
         ];
         foreach ($images as $image) {
-            $file = new File($image);
             $this->assertFileExists($image);
-            $file->delete();
+            unlink($image);
         }
     }
 
@@ -326,8 +323,7 @@ class UserControllerTest extends TestCase
             WWW_ROOT.'img/profiles_36/'.$contributor->image,
         ];
         foreach ($images as $image) {
-            $file = new File($image, true);
-            $file->close();
+            touch($image);
             $this->assertFileExists($image);
         }
 

@@ -21,13 +21,21 @@ namespace App\View\Helper;
 use App\View\Helper\AppHelper;
 use App\Model\Entity\LanguageNameTrait;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
+use Cake\Utility\Filesystem;
 
 class DownloadsHelper extends AppHelper
 {
     use LanguageNameTrait;
 
     public array $helpers = ['Html', 'Languages'];
+
+    private static function addPathElement(string $path, $element): string
+    {
+        $element = (array)$element;
+        array_unshift($element, rtrim($path, DIRECTORY_SEPARATOR));
+
+        return implode(DIRECTORY_SEPARATOR, $element);
+    }
 
     /**
      * Get all available per-language files for the given file
@@ -38,22 +46,24 @@ class DownloadsHelper extends AppHelper
      * @return array           A mapping of language code => URL for file
      **/
     private function availableFiles($basename) {
-        $perLanguageDir = Folder::addPathElement(
+        $perLanguageDir = static::addPathElement(
             Configure::read('Downloads.path'),
             'per_language'
         );
-        $perLanguageURL = Folder::addPathElement(
+        $perLanguageURL = static::addPathElement(
             Configure::read('Downloads.url'),
             'per_language'
         );
 
-        $dir = new Folder($perLanguageDir);
-        $paths = $dir->findRecursive(".*$basename\.tsv\.bz2$");
+        $paths = [];
+        if (is_dir($perLanguageDir)) {
+            $paths = (new Filesystem())->findRecursive($perLanguageDir, "/.*$basename\.tsv\.bz2$/");
+        }
         $map = [];
         foreach ($paths as $path) {
             $path = substr($path, strlen($perLanguageDir) + 1);
             list($code, ) = preg_split('#/#', $path);
-            $url = Folder::addPathElement($perLanguageURL, $path);
+            $url = static::addPathElement($perLanguageURL, $path);
             $map[$code] = $url;
         }
         return $map;
@@ -72,7 +82,7 @@ class DownloadsHelper extends AppHelper
      *                         (for the all-languages file).
      **/
     public function createOptions($basename) {
-        $urlForAll = Folder::addPathElement(
+        $urlForAll = static::addPathElement(
             Configure::read('Downloads.url'),
             "$basename.tar.bz2"
         );

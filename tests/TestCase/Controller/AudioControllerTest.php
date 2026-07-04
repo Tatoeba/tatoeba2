@@ -4,8 +4,6 @@ namespace App\Test\TestCase\Controller;
 use App\Test\TestCase\Controller\AudioIntegrationTestTrait;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
-use Cake\Filesystem\File;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 

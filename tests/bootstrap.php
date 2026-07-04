@@ -17,7 +17,6 @@ declare(strict_types=1);
 
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
 use Cake\TestSuite\Fixture\SchemaLoader;
 use Migrations\Migrations;
 
@@ -54,8 +53,7 @@ Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
 Cache::disable();
 
 // Create database schema for fixtures
-$sqlFolder = new Folder(dirname(__DIR__) . '/docs/database/tables/');
-$sqlFiles = $sqlFolder->read(Folder::SORT_NAME, false, true)[1];
+$sqlFiles = glob(dirname(__DIR__) . '/docs/database/tables/*.sql');
 
 $loader = new SchemaLoader();
 $loader->loadSqlFiles($sqlFiles, 'test', true, true);

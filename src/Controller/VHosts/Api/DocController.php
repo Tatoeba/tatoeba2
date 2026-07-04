@@ -4,7 +4,6 @@ namespace App\Controller\VHosts\Api;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-use Cake\Filesystem\File;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 
@@ -42,8 +41,8 @@ class DocController extends Controller
     private function getOpenapiSpec()
     {
         $specFilename = "openapi.json";
-        $specFile = new File(WWW_ROOT . 'api' . DS . $specFilename);
-        if ($specFile->exists()) {
+        $specFile = WWW_ROOT . 'api' . DS . $specFilename;
+        if (file_exists($specFile)) {
             return "/$specFilename";
         } else {
             throw new NotFoundException("Unknown API version code: $version");

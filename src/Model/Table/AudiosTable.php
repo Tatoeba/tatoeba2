@@ -25,7 +25,6 @@ use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
-use Cake\Filesystem\File;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
 use InvalidArgumentException;
@@ -152,8 +151,9 @@ class AudiosTable extends Table
 
     protected function removeAudioFile($entity, $options) {
         if ($options['deleteAudioFile'] ?? false) {
-            $file = new File($entity->file_path);
-            $file->delete();
+            if (file_exists($entity->file_path)) {
+                unlink($entity->file_path);
+            }
         }
     }
 

@@ -3,9 +3,9 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\ExportsTable;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
 use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
+use Cake\Utility\Filesystem;
 
 class ExportsTableTest extends TestCase
 {
@@ -36,9 +36,9 @@ class ExportsTableTest extends TestCase
 
         parent::loadPlugins(['Queue']);
 
-        $folder = new Folder($this->testExportDir);
-        $folder->delete();
-        $folder->create($this->testExportDir);
+        $fs = new Filesystem();
+        $fs->deleteDir($this->testExportDir);
+        $fs->mkdir($this->testExportDir);
 
         $this->Exports = $this->fetchTable('Exports');
     }
@@ -47,8 +47,7 @@ class ExportsTableTest extends TestCase
     {
         unset($this->Exports);
 
-        $folder = new Folder($this->testExportDir);
-        $folder->delete();
+        (new Filesystem())->deleteDir($this->testExportDir);
 
         parent::tearDown();
     }
@@ -355,11 +354,11 @@ class ExportsTableTest extends TestCase
     public function testRunExport_failsIfExportDirNotWritable()
     {
         $readOnlyDir = $this->testExportDir.'readonly';
-        $folder = new Folder($readOnlyDir, true, 0444);
+        (new Filesystem())->mkdir($readOnlyDir, 0444);
         if (is_writable($readOnlyDir)) {
             $this->markTestSkipped('Unable to create a read-only directory');
         }
-        Configure::write('Exports.path', $folder->path.DS);
+        Configure::write('Exports.path', $readOnlyDir.DS);
 
         $jobId = 3;
         $exportId = 3;

@@ -2,10 +2,9 @@
 namespace App\Test\TestCase\Command;
 
 use Cake\Command\Command;
-use Cake\Filesystem\File;
-use Cake\Filesystem\Folder;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Cake\Utility\Filesystem;
 
 class EditLanguagesCommandTest extends TestCase
 {
@@ -33,12 +32,11 @@ class EditLanguagesCommandTest extends TestCase
     const TESTDIR = TMP . 'edit_languages_tests' . DS;
 
     public static function setUpBeforeClass(): void {
-        new Folder(self::TESTDIR, true, 0755);
+        (new Filesystem())->mkdir(self::TESTDIR, 0755);
     }
 
     public static function tearDownAfterClass(): void {
-        $folder = new Folder(self::TESTDIR);
-        $folder->delete();
+        (new Filesystem())->deleteDir(self::TESTDIR);
     }
 
     public function setUp(): void {
@@ -48,9 +46,9 @@ class EditLanguagesCommandTest extends TestCase
 
     private function create_test_file($ids) {
         $path = self::TESTDIR . 'input_test';
-        $file = new File($path);
-        $file->write(implode("\n", $ids));
-        $file->close();
+        $file = fopen($path, 'w');
+        fwrite($file, implode("\n", $ids));
+        fclose($file);
         return $path;
     }
 
