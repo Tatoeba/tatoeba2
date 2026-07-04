@@ -28,7 +28,7 @@ class SentencesReindexTask extends Task {
     use BatchOperationTrait;
     use LocatorAwareTrait;
 
-    public $retries = 0;
+    public ?int $retries = 0;
 
     public function __construct() {
         parent::__construct(...func_get_args());

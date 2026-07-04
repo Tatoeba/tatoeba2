@@ -18,7 +18,7 @@ use RuntimeException;
  */
 class GzipFilter extends AssetFilter
 {
-    public function output($filename, $content)
+    public function output(string $filename, string $content): string
     {
         if (!function_exists('gzopen')) {
             throw new RuntimeException('Cannot compress asset without gzopen()');

@@ -2,6 +2,7 @@
 namespace App\Test\TestCase;
 
 use Cake\Log\Engine\BaseLog;
+use Stringable;
 
 /**
  * Logger class used for testing
@@ -13,8 +14,8 @@ class TestLog extends BaseLog {
 
     private $_logMessage = '';
 
-    public function log($level, $message, $context = []) {
-        $this->_logMessage = $this->_format($message, $context);
+    public function log($level, Stringable|string $message, array $context = []): void {
+        $this->_logMessage = $this->interpolate($message, $context);
     }
 
     public function getLogMessage() {

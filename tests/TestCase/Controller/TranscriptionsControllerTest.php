@@ -2,6 +2,8 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
+use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
@@ -27,7 +29,7 @@ class TranscriptionsControllerTest extends TestCase {
         $this->enableCsrfToken();
     }
 
-    public function controllerSpy($event, $controller = null): void {
+    public function controllerSpy(EventInterface $event, ?Controller $controller = null): void {
         $this->_controllerSpy($event, $controller);
 
         /* Replace Autotranscription to allow syntax errors */

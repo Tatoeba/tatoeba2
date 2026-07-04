@@ -7,7 +7,7 @@ use Cake\View\JsonView;
 
 class ApiView extends JsonView
 {
-    public $helpers = [
+    public array $helpers = [
         'Paginator',
         'Url',
     ];
@@ -56,7 +56,7 @@ class ApiView extends JsonView
      *   need(s) to be serialized. If true all available view variables will be used.
      * @return mixed The data to serialize.
      */
-    protected function _dataToSerialize($serialize = true) {
+    protected function _dataToSerialize(array|string $serialize): mixed {
         $data = parent::_dataToSerialize($serialize);
 
         $params = $this->Paginator->params();

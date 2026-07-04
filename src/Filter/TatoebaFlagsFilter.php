@@ -8,7 +8,7 @@ class TatoebaFlagsFilter extends AssetFilter
     private $knownIds = [];
     private $lastIdAsInt = 0;
 
-    public function input($path, $content)
+    public function input(string $path, string $content): string
     {
         $filename = basename($path);
 
