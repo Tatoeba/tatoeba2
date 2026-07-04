@@ -44,7 +44,7 @@ class PermissionsComponentTest extends TestCase
         parent::tearDown();
     }
 
-    public function WallMessageOptionsProvider() {
+    public static function WallMessageOptionsProvider() {
         // lastInThread, owner, currentUser, isHidden, expected
         return [
             [false, null, null, false,
@@ -119,7 +119,7 @@ class PermissionsComponentTest extends TestCase
         $this->assertTrue($wallThread[0]['children'][0]['Permissions']['canPM']);
     }
 
-    public function CommentOptionsProvider() {
+    public static function CommentOptionsProvider() {
         // owner, currentUser, isHidden, expected
         return [
             [null, null, false,

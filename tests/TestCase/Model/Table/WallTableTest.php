@@ -223,7 +223,7 @@ class WallTest extends TestCase {
         $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
     }
 
-    public function wallPostsWithLinksProvider() {
+    public static function wallPostsWithLinksProvider() {
         $manyOLinks = str_repeat(' https://example.com', 10);
         $manyILinks = str_repeat(' https://tatoeba.org/en/sentences_lists/show/1234', 10);
         $maxOLinks = str_repeat(' https://example.com', 9);

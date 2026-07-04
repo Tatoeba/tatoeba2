@@ -23,7 +23,7 @@ class SentenceCommentsControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentence_comments/index', null, true ],
@@ -110,7 +110,7 @@ class SentenceCommentsControllerTest extends TestCase
         $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
     }
 
-    public function commentWithLinksProvider() {
+    public static function commentWithLinksProvider() {
         return [
             // post data, comment should be saved, number of emails sent
             'inbound link, no confirmation' => [

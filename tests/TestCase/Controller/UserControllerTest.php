@@ -46,7 +46,7 @@ class UserControllerTest extends TestCase
         parent::tearDown();
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/user/profile/contributor', null, true ],

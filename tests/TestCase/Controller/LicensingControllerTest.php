@@ -20,7 +20,7 @@ class LicensingControllerTest extends TestCase {
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             [ '/en/licensing/switch_my_sentences', null, '/en/users/login?redirect=%2Fen%2Flicensing%2Fswitch_my_sentences' ],
             [ '/en/licensing/switch_my_sentences', 'contributor', true ], // has can_switch_license
@@ -36,7 +36,7 @@ class LicensingControllerTest extends TestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/licensing/get_license_switch_list', null, false ],
             [ '/en/licensing/get_license_switch_list', 'contributor', true ],

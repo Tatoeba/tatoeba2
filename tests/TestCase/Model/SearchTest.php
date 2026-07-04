@@ -1159,7 +1159,7 @@ class SearchTest extends TestCase
         $this->fail("$filtername->$op() did not throw expected $expectedException");
     }
 
-    public function filtersExceptionsAndProvider() {
+    public static function filtersExceptionsAndProvider() {
         return [
             [HasAudioFilter::class],
             [IsNativeFilter::class],
@@ -1184,7 +1184,7 @@ class SearchTest extends TestCase
         $this->assertFilterThrowsException($filtername, 'and', InvalidAndOperatorException::class);
     }
 
-    public function filtersExceptionsNotProvider() {
+    public static function filtersExceptionsNotProvider() {
         return [
             [LangFilter::class],
             [OriginFilter::class],
@@ -1419,7 +1419,7 @@ class SearchTest extends TestCase
         $this->testSortByEmpty();
     }
 
-    public function exactQueryProvider() {
+    public static function exactQueryProvider() {
         return [
             ['="test"', 'test'],
             ['="\=test"', '=test'],

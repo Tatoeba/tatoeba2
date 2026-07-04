@@ -45,7 +45,7 @@ class ApiControllerTest extends TestCase
         $actualCode = $this->_response->getStatusCode();
         $this->assertNotEquals($exceptedCode, $actualCode);
     }
-    public function routeAccessesProvider() {
+    public static function routeAccessesProvider() {
         return [
             # API path, should return non-404 status code, create audio fixture
             ['/unstable/audios/1/file', true, true],

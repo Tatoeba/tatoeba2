@@ -19,7 +19,7 @@ class SentenceAnnotationsControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentence_annotations/index', null, '/en/users/login?redirect=%2Fen%2Fsentence_annotations%2Findex' ],

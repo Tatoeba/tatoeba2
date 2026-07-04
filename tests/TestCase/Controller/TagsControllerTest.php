@@ -28,7 +28,7 @@ class TagsControllerTest extends TestCase {
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/tags/view_all', null, true ],
@@ -58,7 +58,7 @@ class TagsControllerTest extends TestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/tags/autocomplete/foobar', null, true ],

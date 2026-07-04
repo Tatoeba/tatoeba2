@@ -44,7 +44,7 @@ class PagesControllerTest extends TestCase
         Configure::write('Tatowiki.baseHost', 'wiki.example.com');
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/terms-of-use', null, '/en/terms_of_use' ],

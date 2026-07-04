@@ -30,7 +30,7 @@ class UserMailerTest extends TestCase {
             ->setTransport('debug');
     }
 
-    public function blockedOrSuspendedProvider () {
+    public static function blockedOrSuspendedProvider () {
         return [
             'suspended user' => [true, 'suspended'],
             'blocked user' => [false, 'changed the level'],

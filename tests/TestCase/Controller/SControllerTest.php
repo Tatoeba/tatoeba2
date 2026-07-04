@@ -24,7 +24,7 @@ class SControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/s/s/1', null, true ],

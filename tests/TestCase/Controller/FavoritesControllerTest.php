@@ -20,7 +20,7 @@ class FavoritesControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/favorites/of_user/kazuki', null, true ],
@@ -35,7 +35,7 @@ class FavoritesControllerTest extends TestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/favorites/add_favorite/1', null, false ],
             [ '/en/favorites/add_favorite/1', 'contributor', true ],

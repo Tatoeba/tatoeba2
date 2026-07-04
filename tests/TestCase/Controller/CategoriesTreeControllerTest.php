@@ -20,7 +20,7 @@ class CategoriesTreeControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/categories_tree/manage', null, '/en/users/login?redirect=%2Fen%2Fcategories_tree%2Fmanage' ],
@@ -59,7 +59,7 @@ class CategoriesTreeControllerTest extends TestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/categories_tree/autocomplete/Lorem', null, false ],
             [ '/en/categories_tree/autocomplete/Lorem', 'contributor', '/' ],

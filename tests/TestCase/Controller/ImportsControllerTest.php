@@ -15,7 +15,7 @@ class ImportsControllerTest extends TestCase
         'app.UsersLanguages',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/imports/import_single_sentences', null, '/en/users/login?redirect=%2Fen%2Fimports%2Fimport_single_sentences' ],

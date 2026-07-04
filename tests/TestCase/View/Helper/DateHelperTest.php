@@ -26,7 +26,7 @@ class DateHelperTest extends TestCase {
         parent::tearDown();
     }
 
-    public function agoContentProvider() {
+    public static function agoContentProvider() {
         return [
             'null date eng' => [NULL, true, 'en', 'date unknown'],
             '0000-00-00 00:00:00 eng' => ['0000-00-00 00:00:00', false, 'en', 'date unknown'],
@@ -64,7 +64,7 @@ class DateHelperTest extends TestCase {
         DateTime::setTestNow();
     }
 
-    public function formatBirthdayContentProvider() {
+    public static function formatBirthdayContentProvider() {
         $longFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::NONE];
         $shortFormat = [\IntlDateFormatter::SHORT, \IntlDateFormatter::NONE];
         return [
@@ -92,7 +92,7 @@ class DateHelperTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    public function getDateLabelContentProvider() {
+    public static function getDateLabelContentProvider() {
         return [
             'created within 30 days eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-09-29 09:12:34', false, 'en', '25&nbsp;days ago'],
@@ -129,7 +129,7 @@ class DateHelperTest extends TestCase {
         DateTime::setTestNow();
     }
 
-    public function niceContentProvider() {
+    public static function niceContentProvider() {
         return [
             'null' => [null, 'date unknown'],
             '0000-00-00 00:00:00' => ['0000-00-00 00:00:00', 'date unknown'],

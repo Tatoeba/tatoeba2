@@ -29,7 +29,7 @@ class AudioControllerTest extends TestCase
         'app.QueuedJobs',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/audio/import', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fimport' ],

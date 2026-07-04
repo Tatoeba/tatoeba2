@@ -69,7 +69,7 @@ class EditOwnersCommandTest extends TestCase
         }
     }
 
-    public function successesProvider() {
+    public static function successesProvider() {
         // username, ids, owner, number of changes, log
         return [
             'all ids adopted by contributor' =>
@@ -135,7 +135,7 @@ class EditOwnersCommandTest extends TestCase
         }
     }
 
-    public function failuresProvider() {
+    public static function failuresProvider() {
         return [
             'without any required argument' => ['edit_owners'],
             'without file' => ['edit_owners admin'],

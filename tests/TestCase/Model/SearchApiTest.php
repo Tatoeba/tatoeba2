@@ -62,7 +62,7 @@ class SearchApiTest extends TestCase
         unset($this->SearchApi);
     }
 
-    public function filtersProvider() {
+    public static function filtersProvider() {
         return [
             'missing lang' => [
                 [],
@@ -631,7 +631,7 @@ class SearchApiTest extends TestCase
         }
     }
 
-    public function SearchSentencesParamsProvider() {
+    public static function SearchSentencesParamsProvider() {
         return [
             'invalid parameter' => [
                 [ 'lang' => 'epo', 'sort' => 'modified', 'invalid' => 'blah' ],
@@ -650,7 +650,7 @@ class SearchApiTest extends TestCase
         $this->assertThrowsException($codeToTest, $expected);
     }
 
-    public function GetSentenceParamsProvider() {
+    public static function GetSentenceParamsProvider() {
         return [
             'invalid parameter' => [
                 [ 'invalid' => 'blah' ],
@@ -762,7 +762,7 @@ class SearchApiTest extends TestCase
         $this->assertEquals($expectedSearch->asSphinx(), $this->SearchApi->search->asSphinx());
     }
 
-    public function sortFailureProvider() {
+    public static function sortFailureProvider() {
         $invalidError = "Invalid value for parameter 'sort': must be one of: relevance, words, created, modified, random, -relevance, -words, -created, -modified, -random";
         return [
             'missing' => [null, new BadRequestException('Required parameter "sort" missing')],
@@ -789,7 +789,7 @@ class SearchApiTest extends TestCase
         $this->fail(get_class($expected) . " was not thrown");
     }
 
-    public function showtransFiltersProvider_withMatching() {
+    public static function showtransFiltersProvider_withMatching() {
         return [
             'invalid showtrans value, with matching' => [
                 [ 'showtrans' => 'invalid' ],
@@ -818,7 +818,7 @@ class SearchApiTest extends TestCase
         ];
     }
 
-    public function showtransFiltersProvider_withoutMatching() {
+    public static function showtransFiltersProvider_withoutMatching() {
         return [
             'invalid showtrans value, without matching' => [
                 [ 'showtrans' => 'matching' ],
@@ -827,7 +827,7 @@ class SearchApiTest extends TestCase
         ];
     }
 
-    public function showtransFiltersProvider() {
+    public static function showtransFiltersProvider() {
         return [
             'showtrans is "all"' => [
                 [ 'showtrans' => 'all' ],
@@ -1039,7 +1039,7 @@ class SearchApiTest extends TestCase
         }
     }
 
-    public function limitProvider() {
+    public static function limitProvider() {
         return [
             'absent limit' => [ [], 200 ],
             'empty limit' => [
@@ -1080,7 +1080,7 @@ class SearchApiTest extends TestCase
         }
     }
 
-    public function includeProvider() {
+    public static function includeProvider() {
         return [
             'absent include' => [ [], [] ],
             'include audio' =>  [

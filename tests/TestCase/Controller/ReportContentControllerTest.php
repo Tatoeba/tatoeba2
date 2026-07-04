@@ -24,7 +24,7 @@ class ReportContentControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/report_content/wall_post/1', null, '/en/users/login?redirect=%2Fen%2Freport_content%2Fwall_post%2F1' ],

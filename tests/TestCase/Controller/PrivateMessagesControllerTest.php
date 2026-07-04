@@ -21,7 +21,7 @@ class PrivateMessagesControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/private_messages/index', null, '/en/users/login?redirect=%2Fen%2Fprivate_messages%2Findex' ],

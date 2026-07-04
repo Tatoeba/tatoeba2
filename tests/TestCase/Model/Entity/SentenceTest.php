@@ -69,7 +69,7 @@ class SentenceTest extends TestCase
         }
     }
 
-    public function allCharactersProvider()
+    public static function allCharactersProvider()
     {
         return [
             // language, text, expected result

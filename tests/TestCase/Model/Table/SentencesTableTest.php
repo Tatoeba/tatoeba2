@@ -154,7 +154,7 @@ class SentencesTableTest extends TestCase {
         $this->assertTrue((bool)$returnValue);
     }
 
-    function duplicatesProvider() {
+    static function duplicatesProvider() {
         return [
             'Exact duplicate' =>
                 [['What are you doing?', 'eng', 1], 27],
@@ -826,7 +826,7 @@ class SentencesTableTest extends TestCase {
         $this->assertNull($result);
     }
 
-    function sentencePropThatShouldTriggerTranslationsReindex() {
+    static function sentencePropThatShouldTriggerTranslationsReindex() {
         return [
             // sentence property, new value, ids of type "change", ids of type "removal"
             ['lang',        'tpn', [1, 2, 4, 5], [5]],
@@ -1437,7 +1437,7 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    function findFilteredTranslationsProvider () {
+    static function findFilteredTranslationsProvider () {
         // userId, find options, expected result (in alphabetic order)
         return [
             'with lang settings but without translation lang' =>

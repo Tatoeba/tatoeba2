@@ -20,7 +20,7 @@ class VocabularyControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/vocabulary/of/admin', null, true ],
@@ -41,7 +41,7 @@ class VocabularyControllerTest extends TestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/vocabulary/remove/1', null, false ],
             [ '/en/vocabulary/remove/1', 'admin', true ], // owner of vocab

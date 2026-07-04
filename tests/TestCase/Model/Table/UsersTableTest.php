@@ -69,7 +69,7 @@ class UsersTableTest extends TestCase
         $this->assertEquals('1904-02-29', $user->birthday);
     }
 
-    public function birthdayDateProvider() {
+    public static function birthdayDateProvider() {
         return [
             // testname => [is valid, date]
             'valid day'              => [true,  '2000-02-29'],
@@ -191,7 +191,7 @@ class UsersTableTest extends TestCase
         $this->assertNotEmpty($comment->sentence);
     }
 
-    public function addProfileLinksProvider() {
+    public static function addProfileLinksProvider() {
         return [
             // user id, field, value for field, should be able to save
             'legacy user, inbound homepage link'    => [1, 'homepage', 'https://tatoeba.org/en/sentences_lists/show/1234', true],

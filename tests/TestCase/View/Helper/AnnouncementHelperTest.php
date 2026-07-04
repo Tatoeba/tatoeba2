@@ -16,7 +16,7 @@ class AnnouncementHelperTest extends TestCase
         return new AnnouncementHelper($view);
     }
 
-    public function announcementProvider() {
+    public static function announcementProvider() {
         return [
             'announcement disabled' => [
                 '2020-05-30 02:00 UTC', // "now" time
@@ -84,7 +84,7 @@ class AnnouncementHelperTest extends TestCase
         DateTime::setTestNow();
     }
 
-    public function maintenanceProvider() {
+    public static function maintenanceProvider() {
         return [
             'maintenance in 2 days' => [
                 // "now" time

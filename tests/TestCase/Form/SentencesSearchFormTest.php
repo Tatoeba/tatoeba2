@@ -82,7 +82,7 @@ class SentencesSearchFormTest extends TestCase
         $this->assertNull($this->Form->getData('unknown_param'));
     }
 
-    public function searchParamsProvider() {
+    public static function searchParamsProvider() {
         return [
             [ ['query' => 'your proposal'],
               ['filterByQuery', 'your proposal' ],

@@ -154,7 +154,7 @@ class SentenceCommentTest extends TestCase {
         I18n::setLocale($prevLocale);
     }
 
-    public function newCommentsProvider() {
+    public static function newCommentsProvider() {
         return [
             // user id, validator, comment, should be able to save
             'legacy user, inbound link'        => [1, 'default', 'Hi! https://tatoeba.org/en/sentences_lists/show/1234', true],

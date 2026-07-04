@@ -42,7 +42,7 @@ class SentencesControllerTest extends TestCase {
         Configure::write('Search.enabled', false);
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentences/show/1', null, true ],
@@ -90,7 +90,7 @@ class SentencesControllerTest extends TestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/sentences/adopt/14', null, false ],
             [ '/en/sentences/adopt/14', 'contributor', true ],
@@ -143,7 +143,7 @@ class SentencesControllerTest extends TestCase {
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
-    public function addSentenceProvider () {
+    public static function addSentenceProvider () {
         return [
             'as guest' => [
                 null,
@@ -199,7 +199,7 @@ class SentencesControllerTest extends TestCase {
         $this->$assertion();
     }
 
-    public function addSentenceWithLicenseProvider() {
+    public static function addSentenceWithLicenseProvider() {
         return [
             'user cannot choose license, submits no license' =>
             [
@@ -328,7 +328,7 @@ class SentencesControllerTest extends TestCase {
         $this->assertResponseCode(400);
     }
 
-    public function editLicenseProvider() {
+    public static function editLicenseProvider() {
         return [
             'can edit as user with permissions' =>
             [48, 'CC0 1.0', 'contributor', 'assertNotEquals'],
@@ -480,7 +480,7 @@ class SentencesControllerTest extends TestCase {
         $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'admin', '/en/sentences/of_user/spammer');
     }
 
-    public function searchAccessesProvider() {
+    public static function searchAccessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentences/search', null, true ],

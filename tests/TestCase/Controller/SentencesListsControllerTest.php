@@ -32,7 +32,7 @@ class SentencesListsControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentences_lists/index', null, true ],
@@ -75,7 +75,7 @@ class SentencesListsControllerTest extends TestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/sentences_lists/add_sentence_to_list/1/1', null, false ],
             [ '/en/sentences_lists/add_sentence_to_list/1/1', 'kazuki', true ],

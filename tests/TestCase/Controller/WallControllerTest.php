@@ -25,7 +25,7 @@ class WallControllerTest extends TestCase {
         Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 100);
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/wall/index', null, true ],
@@ -87,7 +87,7 @@ class WallControllerTest extends TestCase {
         $this->assertRedirect('/en/wall/index');
     }
 
-    public function roleChangeProvider() {
+    public static function roleChangeProvider() {
         return [
             // new role, redirect link, flash message match
             ['spammer',  'http://localhost/en/users/login?redirect=%2Fprevious_page', 'suspended'],
@@ -153,7 +153,7 @@ class WallControllerTest extends TestCase {
         $this->assertStringContainsString($expected, $this->getSession()->read('Flash.flash.0.message'), $message);
     }
 
-    public function postsWithLinksProvider() {
+    public static function postsWithLinksProvider() {
         return [
             // post data, comment should be saved, one email sent containing
             'inbound link, no confirmation' => [

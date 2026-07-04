@@ -62,7 +62,7 @@ class EditLanguagesCommandTest extends TestCase
         $this->assertEquals('fra', $sentence->lang);
     }
 
-    public function successesProvider() {
+    public static function successesProvider() {
         // username, ids, language, number of changes
         return [
             'all ids changed to fra' =>
@@ -98,7 +98,7 @@ class EditLanguagesCommandTest extends TestCase
         $this->assertEquals($changes, $after - $before);
     }
 
-    public function failuresProvider() {
+    public static function failuresProvider() {
         return [
             'without any required argument' => ['edit_languages'],
             'without file' => ['edit_languages admin'],

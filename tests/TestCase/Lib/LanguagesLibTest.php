@@ -41,7 +41,7 @@ class LanguagesLibTest extends TestCase {
         $this->assertEquals($expected, $actual);
     }
 
-    public function languageDirectionProvider() {
+    public static function languageDirectionProvider() {
         return [
             ['eng', 'ltr'],
             ['jpn', 'ltr'],

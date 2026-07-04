@@ -68,7 +68,7 @@ class EditLicensesCommandTest extends TestCase
         $this->assertSame($expected, $contribution);
     }
 
-    public function scenariosProvider() {
+    public static function scenariosProvider() {
         // username, license, ids, at least one change, ignored sentence
         return [
             'all ids changed to CC0 1.0' =>

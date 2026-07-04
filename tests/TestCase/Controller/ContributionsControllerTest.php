@@ -22,7 +22,7 @@ class ContributionsControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/contributions/index', null, '/en/contributions/latest' ],

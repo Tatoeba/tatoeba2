@@ -37,7 +37,7 @@ class ExportsControllerTest extends TestCase
         parent::tearDown();
     }
 
-    public function accessesProvider()
+    public static function accessesProvider()
     {
         return [
             [ '/en/exports/download/1', null, false ],

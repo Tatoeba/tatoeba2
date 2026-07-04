@@ -113,7 +113,7 @@ class TatoebaFlagsFilterTest extends TestCase
         $this->fail("RuntimeException was not thrown");
     }
 
-    public function svgWithIdsProvider() {
+    public static function svgWithIdsProvider() {
         return [
             // SVG fragment,
             // expected strings (ordered) after combining fragment with itself,

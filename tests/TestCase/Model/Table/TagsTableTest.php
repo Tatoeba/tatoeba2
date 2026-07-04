@@ -44,7 +44,7 @@ class TagsTableTest extends TestCase {
         $this->assertEquals(4, $tag->id);
     }
 
-    public function eventTestProvider() {
+    public static function eventTestProvider() {
         return [
             'existing tag' => ['OK', 4, 1],
             'new tag' => ['new tag', 4, 1],

@@ -58,7 +58,7 @@ class DownloadsHelperTest extends TestCase {
         );
     }
 
-    public function filenameProvider () {
+    public static function filenameProvider () {
         return [
             ['sentences'],
             ['sentences_detailed'],
@@ -99,7 +99,7 @@ class DownloadsHelperTest extends TestCase {
         );
     }
 
-    public function fileFormatProvider () {
+    public static function fileFormatProvider () {
         return [
             'empty fields' => [[], ''],
             'one field' => [['id'], '%sparam%sid%s'],

@@ -41,7 +41,7 @@ class UsersControllerTest extends TestCase {
         parent::tearDown();
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/users/index', null, '/en/users/login?redirect=%2Fen%2Fusers%2Findex' ],
@@ -328,7 +328,7 @@ class UsersControllerTest extends TestCase {
         $this->assertNull($user);
     }
 
-    public function blockedOrSuspendedProvider() {
+    public static function blockedOrSuspendedProvider() {
         return [
             'blocking user' => [['level' => -1], 1],
             'unblocking user' => [['level' => 0], 0],

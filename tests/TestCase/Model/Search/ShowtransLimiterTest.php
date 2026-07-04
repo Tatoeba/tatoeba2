@@ -39,7 +39,7 @@ class ShowtransLimiterTest extends TestCase
         unset($this->Sentences);
     }
 
-    public function showtransFiltersProvider() {
+    public static function showtransFiltersProvider() {
         return [
             // filters, expected shown translation ids [, original sentence id = 1]
             'no filters' => [
