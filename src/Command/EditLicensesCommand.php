@@ -10,6 +10,8 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class EditLicensesCommand extends EditCommand_
 {
+    private $licenses;
+
     public function initialize(): void {
         parent::initialize();
         $this->licenses = Licenses::nameToKeys(Licenses::getSentenceLicenses());

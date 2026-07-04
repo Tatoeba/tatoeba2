@@ -7,6 +7,9 @@ use Cake\Console\ConsoleIo;
 
 class CorrectNumberOfSentencesCommand extends Command
 {
+    private $SentencesLists;
+    private $SentencesSentencesLists;
+
     public function initialize(): void
     {
         parent::initialize();

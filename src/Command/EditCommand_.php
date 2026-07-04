@@ -20,6 +20,8 @@ class EditCommand_ extends Command
 {
     protected $log = [];
     protected $total = 0;
+    protected $Sentences;
+    protected $Users;
 
     public function initialize(): void {
         parent::initialize();

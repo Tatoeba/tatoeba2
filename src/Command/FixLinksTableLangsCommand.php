@@ -8,6 +8,9 @@ use Cake\Console\ConsoleOptionParser;
 
 class FixLinksTableLangsCommand extends Command
 {
+    private $Links;
+    private $Sentences;
+
     public function initialize(): void
     {
         parent::initialize();
