@@ -6,9 +6,9 @@ use Cake\TestSuite\TestCase;
 use Cake\Event\Event;
 
 /**
- * Contribution Test Case
+ * ContributionsTable Test Case
  */
-class ContributionTest extends TestCase {
+class ContributionsTableTest extends TestCase {
 
     public array $fixtures = array(
         'app.Contributions',

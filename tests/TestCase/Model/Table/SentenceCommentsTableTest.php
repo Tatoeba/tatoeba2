@@ -9,7 +9,7 @@ use Cake\I18n\I18n;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
-class SentenceCommentTest extends TestCase {
+class SentenceCommentsTableTest extends TestCase {
 
     public array $fixtures = array(
         'app.SentenceComments',

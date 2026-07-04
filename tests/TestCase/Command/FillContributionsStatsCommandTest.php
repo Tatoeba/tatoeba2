@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\Command\Command;
 use App\Model\Table\ContributionsStats;
 
-class FillContributionsStatsCommand extends TestCase {
+class FillContributionsStatsCommandTest extends TestCase {
     use ConsoleIntegrationTestTrait;
 
     public array $fixtures = array(

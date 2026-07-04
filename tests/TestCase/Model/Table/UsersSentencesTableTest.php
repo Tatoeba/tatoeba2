@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
 use Cake\I18n\DateTime;
 
-class UsersSentencesTest extends TestCase {
+class UsersSentencesTableTest extends TestCase {
     public array $fixtures = array(
         'app.Users',
         'app.UsersSentences',

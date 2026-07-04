@@ -12,7 +12,7 @@ use Cake\I18n\I18n;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
-class WallTest extends TestCase {
+class WallTableTest extends TestCase {
 
     public array $fixtures = array(
         'app.Walls',
