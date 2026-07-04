@@ -19,7 +19,7 @@
 
 namespace App\Queue\Task;
 
-use App\Shell\BatchOperationTrait;
+use App\Command\BatchOperationTrait;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Queue\Queue\Task;
 

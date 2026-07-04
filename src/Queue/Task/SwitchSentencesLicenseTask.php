@@ -3,7 +3,7 @@
 namespace App\Queue\Task;
 
 use App\Model\CurrentUser;
-use App\Shell\BatchOperationTrait;
+use App\Command\BatchOperationTrait;
 use Cake\I18n\I18n;
 use Queue\Queue\Task;
 

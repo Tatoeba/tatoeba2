@@ -2,7 +2,7 @@
 
 namespace App\Queue\Task;
 
-use App\Shell\BatchOperationTrait;
+use App\Command\BatchOperationTrait;
 use Queue\Queue\Task;
 
 class RefreshLicenseSwitchListTask extends Task {
