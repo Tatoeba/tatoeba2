@@ -7,7 +7,7 @@ trait FaultyMailerTrait
     private function enableFaultyMailer() {
         $faultyTransport = $this
              ->getMockBuilder(\Cake\Mailer\Transport\DebugTransport::class)
-             ->setMethods(['send'])
+             ->onlyMethods(['send'])
              ->getMock();
         $faultyTransport
              ->method('send')

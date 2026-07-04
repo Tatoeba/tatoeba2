@@ -25,7 +25,7 @@ trait SearchMockTrait
         $results = compact('matches', 'total', 'total_found');
 
         $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
-                       ->setMethods(['Query', 'UpdateAttributes', 'SetLimits'])
+                       ->onlyMethods(['Query', 'UpdateAttributes', 'SetLimits'])
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')
@@ -42,7 +42,7 @@ trait SearchMockTrait
     public function enableMockedSearchError(string $errorMessage = 'search engine error goes here')
     {
         $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
-                       ->setMethods(['Query', 'GetLastError'])
+                       ->onlyMethods(['Query', 'GetLastError'])
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')

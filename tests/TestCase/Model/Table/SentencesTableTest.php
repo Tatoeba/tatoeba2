@@ -77,7 +77,7 @@ class SentencesTableTest extends TestCase {
 
     function _installAutotranscriptionMock() {
         $autotranscription = $this->getMockBuilder(Autotranscription::class)
-            ->setMethods([
+            ->onlyMethods([
                 'cmn_detectScript',
                 'jpn_Jpan_to_Hrkt_generate',
                 'jpn_Jpan_to_Hrkt_validate',
@@ -216,7 +216,7 @@ class SentencesTableTest extends TestCase {
         $newlyCreatedSentenceId = $lastSentence->max + 1;
 
         $mock = $this->getMockBuilder(LinksTable::class)
-            ->setMethods(['add', 'findDirectAndIndirectTranslationsIds'])
+            ->onlyMethods(['add', 'findDirectAndIndirectTranslationsIds'])
             ->getMock();
         $this->Sentence->Links->setTarget($mock);
 

@@ -36,7 +36,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->middleware = new LanguageSelectorMiddleware();
 
         $this->handler = $this->getMockBuilder(RequestHandlerInterface::class)
-            ->setMethods(['handle'])
+            ->onlyMethods(['handle'])
             ->getMock();
 
         $this->handler
@@ -200,7 +200,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
 
     public function testMiddleware_handlesNonCakePHPResponses() {
         $this->handler = $this->getMockBuilder(RequestHandlerInterface::class)
-            ->setMethods(['handle'])
+            ->onlyMethods(['handle'])
             ->getMock();
 
         $this->handler

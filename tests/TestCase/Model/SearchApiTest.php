@@ -48,7 +48,7 @@ class SearchApiTest extends TestCase
         $this->enableMockedSearch($returnedSentenceIds);
 
         $search = $this->getMockBuilder(Search::class)
-                       ->setMethods(['generateRand'])
+                       ->onlyMethods(['generateRand'])
                        ->getMock();
         $search->expects($this->any())
                ->method('generateRand')

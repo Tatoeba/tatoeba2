@@ -34,7 +34,7 @@ class TranscriptionsControllerTest extends TestCase {
 
         /* Replace Autotranscription to allow syntax errors */
         $autotranscription = $this->getMockBuilder(Autotranscription::class)
-            ->setMethods([
+            ->onlyMethods([
                 'jpn_Jpan_to_Hrkt_validate',
                 'jpn_Jpan_to_Hrkt_generate',
                 'jpn_Hrkt_to_Latn_generate',

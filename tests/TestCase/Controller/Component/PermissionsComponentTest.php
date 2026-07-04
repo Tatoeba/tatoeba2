@@ -30,7 +30,7 @@ class PermissionsComponentTest extends TestCase
         $response = new Response();
         $this->controller = $this->getMockBuilder('Cake\Controller\Controller')
             ->setConstructorArgs([$request, $response])
-            ->setMethods(null)
+            ->onlyMethods([])
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->component = new PermissionsComponent($registry);

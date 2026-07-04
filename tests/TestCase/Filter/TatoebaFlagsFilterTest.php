@@ -79,7 +79,7 @@ class TatoebaFlagsFilterTest extends TestCase
     private function mockSVGFile($path, $contents) {
         $mock = $this
             ->getMockBuilder('MiniAsset\File\FileInterface')
-            ->setMethods(['name', 'contents', 'modifiedTime', 'path'])
+            ->onlyMethods(['name', 'contents', 'modifiedTime', 'path'])
             ->getMock();
         $mock
             ->method('path')

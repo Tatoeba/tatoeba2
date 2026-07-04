@@ -135,7 +135,7 @@ class AutotranscriptionTest extends TestCase {
 
     function _mockHttpClient($body) {
         $response = $this->getMockBuilder(Cake\Http\Response::class)
-                       ->setMethods(['isOk', 'getStringBody'])
+                       ->onlyMethods(['isOk', 'getStringBody'])
                        ->getMock();
         $response->expects($this->once())
                  ->method('isOk')
@@ -144,7 +144,7 @@ class AutotranscriptionTest extends TestCase {
                  ->method('getStringBody')
                  ->will($this->returnValue($body));
         $client = $this->getMockBuilder(Cake\Network\Http\Client::class)
-                       ->setMethods(['get'])
+                       ->onlyMethods(['get'])
                        ->getMock();
         $client->expects($this->once())
                ->method('get')

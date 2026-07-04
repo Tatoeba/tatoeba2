@@ -54,7 +54,7 @@ class TranscriptionsTableTest extends TestCase {
 
     function _installAutotranscriptionMock() {
         $autotranscription = $this->getMockBuilder(Autotranscription::class)
-			->setMethods([
+			->onlyMethods([
                 'jpn_Jpan_to_Hrkt_generate',
                 'jpn_Jpan_to_Hrkt_validate',
                 'cmn_Hans_to_Hant_generate',
@@ -550,7 +550,7 @@ class TranscriptionsTableTest extends TestCase {
         $jpnSentence = $this->Transcription->Sentences->get(10);
 
         $this->Transcription = $this->getMockBuilder(TranscriptionsTable::class)
-            ->setMethods(['generateTranscription'])
+            ->onlyMethods(['generateTranscription'])
             ->getMock();
         $this->Transcription
             ->expects($this->once())

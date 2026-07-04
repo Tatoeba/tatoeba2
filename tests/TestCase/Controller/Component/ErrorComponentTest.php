@@ -27,12 +27,12 @@ class ErrorComponentTest extends TestCase
 
         $this->controller = $this->getMockBuilder(Controller::class)
             ->setConstructorArgs([$request])
-            ->setMethods(['log'])
+            ->onlyMethods(['log'])
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->Error = $this->getMockBuilder(ErrorComponent::class)
             ->setConstructorArgs([$registry])
-            ->setMethods(['generateNewCode'])
+            ->onlyMethods(['generateNewCode'])
             ->getMock();
     }
 
