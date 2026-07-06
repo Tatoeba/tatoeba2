@@ -20,6 +20,7 @@ declare(strict_types=1);
  */
 namespace App\Command;
 
+use App\Console\VarArgsConsoleOptionParser;
 use App\Lib\LanguagesLib;
 use Cake\Command\Command;
 use Cake\Console\Arguments;
@@ -859,15 +860,18 @@ EOT;
         return 'sphinx_conf';
     }
 
-    public function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
+    public function getOptionParser(): ConsoleOptionParser
     {
-        $parser = parent::buildOptionParser($parser);
+        $parser = new VarArgsConsoleOptionParser($this->defaultName());
         $parser
             ->addOption('all', [
                 'short' => 'a',
                 'boolean' => true,
                 'default' => false,
                 'help' => 'Include all languages (default is to only include languages having sentences).',
+            ])
+            ->addArgument('languages', [
+                'help' => 'Limit configuration to the provided space-separated list of three-letter ISO language codes.',
             ])
             ->setDescription('Generates configuration file for Manticore search.');
 
