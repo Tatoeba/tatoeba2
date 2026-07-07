@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Console;
 
+use Cake\Console\ConsoleInputArgument;
 use Cake\Console\ConsoleOptionParser;
 
 /**
@@ -17,7 +18,8 @@ class VarArgsConsoleOptionParser extends ConsoleOptionParser
         // define an extra argument in case more are coming
         $next = count($args);
         if ($this->_args && !isset($this->_args[$next])) {
-            $this->_args[$next] = $this->_args[$next - 1];
+            $prev = $this->_args[$next - 1];
+            $this->_args[$next] = new ConsoleInputArgument($prev->name());
         }
 
         return $args;

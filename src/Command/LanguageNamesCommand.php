@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  *  Tatoeba Project, free collaborative creation of languages corpuses project
  *  Copyright (C) 2014  Gilles Bedel
@@ -16,26 +18,34 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Shell;
+namespace App\Command;
 
+use App\Console\VarArgsConsoleOptionParser;
 use App\Lib\LanguagesLib;
-use Cake\Console\Shell;
+use Cake\Command\Command;
+use Cake\Console\Arguments;
+use Cake\Console\ConsoleIo;
+use Cake\Console\ConsoleOptionParser;
 use Cake\I18n\I18n;
 
-class LanguageNamesShell extends Shell {
-
+class LanguageNamesCommand extends Command
+{
+    private ConsoleIo $io;
     private $po_files = array();
     private $tatoeba_languages;
+    private $sources;
 
     private function list_english_translations($source) {
         $english_translations = array();
         foreach ($this->get_localized_translations('en', $source) as $iso_code => $lang_in_english) {
             $tatoeba_name = $this->tatoeba_languages[$iso_code];
             if ($tatoeba_name != $lang_in_english) {
-                printf("ISO code \"%s\" is called \"%s\" by Tatoeba, but \"%s\" in $source. Skipping translation.\n",
+                $this->io->out(sprintf(
+                    "ISO code \"%s\" is called \"%s\" by Tatoeba, but \"%s\" in $source. Skipping translation.",
                     $iso_code,
                     $tatoeba_name,
-                    $lang_in_english);
+                    $lang_in_english
+                ));
                 continue;
             }
             $english_translations[$iso_code] = $lang_in_english;
@@ -54,8 +64,8 @@ class LanguageNamesShell extends Shell {
         } elseif(is_dir($path)) {
             $this->add_po_files_from_dir($path);
         } else {
-            echo "Can't open '$path'.\n";
-            $this->die_usage();
+            $this->io->error("Can't open '$path'.");
+            $this->abort();
         }
     }
 
@@ -137,7 +147,8 @@ class LanguageNamesShell extends Shell {
                 $localized_translations[$binding->iso_code->value] = $binding->name->value;
             }
         } else {
-            die("Unknown translation source '$source'. Only 'cldr' (with optional suffixes) and 'wikidata' are supported.\n");
+            $this->io->error("Unknown translation source '$source'. Only 'cldr' (with optional suffixes) and 'wikidata' are supported.");
+            $this->abort();
         }
         return $localized_translations;
     }
@@ -243,25 +254,47 @@ class LanguageNamesShell extends Shell {
         return $po_file;
     }
 
-    private function die_usage() {
-        die("\nThis shell grabs language name translations from the CLDR project and/or Wikidata, and inserts them into some given .po file(s). The .po file should have a path like XX/languages.po where XX is the locale id. You can get a list of all the locale ids here:\n\tCLDR: https://www.unicode.org/cldr/charts/latest/summary/root.html\n\tWikidata: https://en.wikipedia.org/wiki/List_of_Wikipedias\nWhen selecting CLDR as a translation source, any suffix attached to the 'cldr' will select the corresponding alternative names, e.g. 'cldr-long' for long names.\n".
-'Usage: '.basename(__FILE__, '.php')." <comma-separated list of translation sources, e.g. 'wikidata,cldr-long,cldr-menu,cldr'> ( XX/languages.po | /path/to/po/files/ )...\n");
+    public function getOptionParser(): ConsoleOptionParser
+    {
+        $parser = new VarArgsConsoleOptionParser($this->defaultName());
+        $parser
+            ->setDescription([
+                'This command grabs language name translations from the CLDR project and/or Wikidata, and inserts them into some given .po file(s). The .po file should have a path like XX/languages.po where XX is the locale id. You can get a list of all the locale ids here:',
+                '- CLDR: https://www.unicode.org/cldr/charts/latest/summary/root.html',
+                '- Wikidata: https://en.wikipedia.org/wiki/List_of_Wikipedias',
+                "When selecting CLDR as a translation source, any suffix attached to the 'cldr' will select the corresponding alternative names, e.g. 'cldr-long' for long names.",
+            ])
+            ->addArgument('sources', [
+                'required' => true,
+                'help' => "Comma-separated list of translation sources, e.g. 'wikidata,cldr-long,cldr-menu,cldr'.",
+            ])
+            ->addArgument('po-files', [
+                'required' => true,
+                'help' => "languages.po files or directory containing languages.po files."
+            ]);
+
+        return $parser;
     }
 
-    private function parse_args() {
-        $this->sources = explode(',', array_shift($this->args));
-        foreach ($this->args as $arg) {
-            $this->add_po_file_or_dir($arg);
+    private function parse_args(Arguments $args) {
+        $this->sources = explode(',', $args->getArgument('sources'));
+
+        $pofiles = $args->getArguments();
+        array_shift($pofiles);
+        foreach ($pofiles as $pofile) {
+            $this->add_po_file_or_dir($pofile);
         }
         if (!$this->po_files) {
-            $this->die_usage();
+            $this->displayHelp($this->getOptionParser(), $args, $this->io);
+            $this->abort();
         }
     }
 
     private function check_if_gettext_available($command) {
         exec("which $command", $output, $retval);
         if ($retval != 0) {
-            die("Please install the gettext utility '$command'.\nIt should be part of the gettext pacakge.\n");
+            $this->io->error("Please install the gettext utility '$command'.\nIt should be part of the gettext pacakge.");
+            $this->abort();
         }
     }
 
@@ -280,14 +313,23 @@ exec("msgcat --use-first '$po_file' '$lang_po_file' -o '$merged_po_file'", $outp
             $new      = exec("msgfmt -o - '$merged_po_file' | msgunfmt | grep -c ^msgid");
             $new_translations = $new - $original;
             if ($new_translations > 0) {
-                printf("Successfully wrote %s with %s new translation(s).\n",
-                       $merged_po_file, $new - $original);
-                printf("Use that obscure command to print the new translation(s):\n".
+                $this->io->out(sprintf(
+                       "Successfully wrote %s with %s new translation(s).",
+                       $merged_po_file,
+                       $new - $original
+                ));
+                $this->io->out(sprintf(
+                       "Use that obscure command to print the new translation(s):\n".
                        "diff --suppress-common-lines <(msgfmt -o - '%s' | msgunfmt) ".
-                       "<(msgfmt -o - '%s' | msgunfmt)\n",
-                       $po_file, $merged_po_file);
+                       "<(msgfmt -o - '%s' | msgunfmt)",
+                       $po_file,
+                       $merged_po_file
+                ));
             } else {
-                printf("Wrote '%s' without a single new translation. What a waste of time.\n", $merged_po_file);
+                $thhis->io->out(sprintf(
+                    "Wrote '%s' without a single new translation. What a waste of time.",
+                    $merged_po_file
+                ));
             }
         }
     }
@@ -306,9 +348,11 @@ exec("msgcat --use-first '$po_file' '$lang_po_file' -o '$merged_po_file'", $outp
         return $result;
     }
 
-    public function main() {
+    public function execute(Arguments $args, ConsoleIo $io)
+    {
+        $this->io = $io;
         $this->check_prerequistes();
-        $this->parse_args();
+        $this->parse_args($args);
         $this->get_tatoeba_languages();
         $english_translations = array();
         foreach($this->sources as $source) {
@@ -316,7 +360,7 @@ exec("msgcat --use-first '$po_file' '$lang_po_file' -o '$merged_po_file'", $outp
         }
 
         foreach($this->po_files as $locale_id => $po_file) {
-            printf("======= Processing $po_file...\n");
+            $io->out("======= Processing $po_file...\n");
             $translation_pairs = array();
             foreach($this->sources as $source) {
                 $translations = $this->get_localized_translations($locale_id, $source);
