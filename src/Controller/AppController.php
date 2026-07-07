@@ -51,15 +51,11 @@ class AppController extends Controller
 {
     const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
 
-    private function blackhole($type) {
-      var_dump("Blackholed: $type");
-    }
-
     public function initialize(): void
     {
         $this->loadComponent('Flash');
         $this->loadComponent('Permissions');
-        $this->loadComponent('Security');
+        $this->loadComponent('FormProtection');
         $this->loadComponent('TinyAuth.Authentication', [
             'logoutRedirect' => [
                 'prefix' => false,
@@ -135,10 +131,6 @@ class AppController extends Controller
      */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        // only prevent CSRF for logins and registration in the users controller
-        $this->Security->csrfCheck = false;
-        $this->Security->blackHoleCallback = 'blackhole';
-
         // Get logged-in user so that we can access it info from models.
         $logged_in_user = $this->Authentication->getIdentity();
         if ($logged_in_user) {

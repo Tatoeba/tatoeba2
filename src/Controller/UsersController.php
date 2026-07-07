@@ -58,20 +58,6 @@ class UsersController extends AppController
     }
 
     /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(\Cake\Event\EventInterface $event)
-    {
-        // prevent CSRF in this controller
-        // since we're handling login and registration
-        $this->Security->validatePost = true;
-
-        return parent::beforeFilter($event);
-    }
-
-    /**
      * Index of users. For admin only.
      *
      * @return void

@@ -62,7 +62,7 @@ class SentencesController extends AppController
      */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
           'add_an_other_sentence',
           'save_translation',
           'change_language',

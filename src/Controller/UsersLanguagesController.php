@@ -44,7 +44,7 @@ class UsersLanguagesController extends AppController
 {
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save',
         ]);
 

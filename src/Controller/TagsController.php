@@ -41,9 +41,9 @@ class TagsController extends AppController
      */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->unlockedActions = [
+        $this->FormProtection->setConfig([
             'add_tag_post'
-        ];
+        ]);
 
         return parent::beforeFilter($event);
     }

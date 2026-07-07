@@ -63,7 +63,7 @@ class SentenceCommentsController extends AppController
 
         // disable Form Tampering Protection for actions where it's no big deal
         // (it was only protecting against changing the sentence_id)
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save',
             'edit',
         ]);

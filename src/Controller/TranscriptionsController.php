@@ -33,7 +33,7 @@ class TranscriptionsController extends AppController
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save',
             'reset'
         ]);
