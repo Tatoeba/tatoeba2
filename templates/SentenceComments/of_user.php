@@ -53,10 +53,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 
 <section class="md-whiteframe-1dp">
     <?php
-    $paging = $this->Paginator->params();
     if ($userExists === false) {
         $this->CommonModules->displayNoSuchUser($userName);
-    } elseif (!isset($paging['count'])) {
+    } elseif ($userComments->count() == 0) {
         echo '<h2>';
         echo format(
             __("{user} has posted no comment"),
@@ -67,6 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         echo $this->Html->link(__('Go back to previous page'), 'javascript:history.back()');
 
     } else {
+        $paging = $this->Paginator->params();
         ?>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
