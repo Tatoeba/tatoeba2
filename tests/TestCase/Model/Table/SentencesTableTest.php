@@ -41,6 +41,14 @@ class SentencesTableTest extends TestCase {
 
     private $Sentence;
 
+    private function shouldEnableMockedSearchError(): bool {
+        $method = new \ReflectionMethod($this::class, $this->name());
+        return (bool)array_filter(
+            $method->getAttributes(),
+            fn ($attr) => str_ends_with($attr->getName(), 'mockedSearchError')
+        );
+    }
+
     function setUp(): void {
         parent::setUp();
 
@@ -48,10 +56,8 @@ class SentencesTableTest extends TestCase {
 
         Configure::write('AutoTranscriptions.enabled', true);
 
-        $annotations = $this->getAnnotations()['method'];
-        $searchError = $annotations['mockedSearchError'][0] ?? false;
-        if ($searchError !== false) {
-            $this->enableMockedSearchError($searchError);
+        if ($this->shouldEnableMockedSearchError()) {
+            $this->enableMockedSearchError();
         } else {
             $foundIds = [1, 2, 3, 4, 5, 16, 17, 18, 19, 20];
             $totalResults = 10;
@@ -1582,9 +1588,7 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @mockedSearchError
-     */
+    #[mockedSearchError]
     function testGetSeveralRandomIds_errors() {
         $result = $this->Sentence->getSeveralRandomIds('nch');
 
