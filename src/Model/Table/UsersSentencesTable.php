@@ -94,7 +94,7 @@ class UsersSentencesTable extends Table
         )->first();
 
         if ($userSentence) {
-            return $this->delete($userSentence, false);
+            return $this->delete($userSentence);
         }
 
         return false;
