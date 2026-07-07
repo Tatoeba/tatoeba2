@@ -26,6 +26,7 @@
  */
 namespace App\Controller;
 
+use App\Application;
 use App\Controller\AppController;
 use App\Model\Entity\User;
 use Cake\Controller\Component\AuthComponent;
@@ -161,11 +162,11 @@ class UsersController extends AppController
     {
         $authResult = $this->Authentication->getResult();
 
-        $redirectParam = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
+        $redirectParam = $this->request->getQuery(Application::QUERY_PARAM_REDIRECT);
         $redirectUrl = $this->Authentication->getLoginRedirect();
         $failedUrl = ['action' => 'login'];
         if (!is_null($redirectParam) && !is_null($redirectUrl)) {
-            $failedUrl['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl];
+            $failedUrl['?'] = [Application::QUERY_PARAM_REDIRECT => $redirectUrl];
         };
 
         if ($authResult->isValid()) {
