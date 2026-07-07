@@ -32,7 +32,7 @@ class PagesControllerTest extends TestCase
     ];
 
     public function getFixtures(): array {
-        if ($this->getName(false) == 'testControllerAccess') {
+        if ($this->name() == 'testControllerAccess') {
             return ['app.PrivateMessages', 'app.Users', 'app.UsersLanguages', 'app.WikiArticles'];
         } else {
             return $this->fixtures;

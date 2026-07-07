@@ -24,7 +24,7 @@ class WikiArticlesTableTest extends TestCase
     }
 
     public function getFixtures(): array {
-        if ($this->getName() == 'testGetArticleTranslations_dbAccessFail') {
+        if ($this->name() == 'testGetArticleTranslations_dbAccessFail') {
             return [];
         } else {
             return $this->fixtures;
@@ -39,7 +39,7 @@ class WikiArticlesTableTest extends TestCase
         Configure::write('Tatowiki.baseHost', 'wiki.example.com:1234');
 
         $options = [];
-        if ($this->getName() == 'testGetArticleTranslations_dbAccessFail') {
+        if ($this->name() == 'testGetArticleTranslations_dbAccessFail') {
             $options['connection'] = $this->setupFailingConnection();
         }
         $this->WikiArticles = $this->fetchTable('WikiArticles', $options);

@@ -18,7 +18,7 @@ class UsersLanguagesTableTest extends TestCase {
     private $UsersLanguages;
 
     function getFixtures(): array {
-        if (stristr($this->getName(), 'reindex') === false) {
+        if (stristr($this->name(), 'reindex') === false) {
             return ['app.Users', 'app.UsersLanguages', 'app.Languages'];
         } else {
             return $this->fixtures;
