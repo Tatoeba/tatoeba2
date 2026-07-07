@@ -81,8 +81,17 @@ echo $this->element('/sentences/navigation', [
                     <?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?>
                     
                     <?php if (!empty($languageName)): ?>
-                    <span style="background-color: rgba(255, 255, 255, 0.2); color: #ffffff; border-radius: 12px; padding: 2px 10px; font-size: 0.6em; font-weight: bold; margin-left: 12px; border: 1px solid rgba(255, 255, 255, 0.4); text-transform: uppercase; cursor: default; display: inline-block; line-height: 1.4;">
-                        <?= h($languageName) ?>
+                    <style>
+                        <?php /* language badge, shows only ISO code for small screen devices */ ?>
+                        .lang-badge .lang-code { display: none; }
+                        @media (max-width: 599px) {
+                            .lang-badge .lang-name { display: none; }
+                            .lang-badge .lang-code { display: inline; }
+                        }
+                    </style>
+                    <span class="lang-badge" style="background-color: rgba(255, 255, 255, 0.2); color: #ffffff; border-radius: 12px; padding: 2px 10px; font-size: 0.6em; font-weight: bold; margin-left: 12px; border: 1px solid rgba(255, 255, 255, 0.4); text-transform: uppercase; cursor: default; display: inline-block; line-height: 1.4;">
+                        <span class="lang-name"><?= h($languageName) ?></span>
+                        <span class="lang-code"><?= h($sentenceLang) ?></span>
                     </span>
                     <?php endif; ?>
                 </h2>
