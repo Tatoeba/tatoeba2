@@ -91,7 +91,8 @@ class AudioControllerTest extends TestCase
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
-        $defaultNbPerPage = (new \App\Controller\AudioController())->paginate['limit'];
+        $req = new \Cake\Http\ServerRequest();
+        $defaultNbPerPage = (new \App\Controller\AudioController($req))->paginate['limit'];
         $nbSentences = $this->addSentencesWithAudio($defaultNbPerPage + 1);
         $expectedLastPage = 2;
 
