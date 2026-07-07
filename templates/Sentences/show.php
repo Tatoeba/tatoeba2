@@ -87,6 +87,7 @@ echo $this->element('/sentences/navigation', [
 
                 <md-button hide-gt-sm ng-controller="SidenavController" ng-click="toggle('metadata')">
                     <md-icon>info_outline</md-icon>
+                    <?php /* @translators: button to open the sidebar on the sentence page on mobile */ ?>
                     <?= __('Metadata') ?>
                 </md-button>
             </div>
