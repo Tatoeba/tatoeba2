@@ -508,7 +508,9 @@ class SentencesTable extends Table
         }
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
-                $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
+                if (!is_array($result['translations']) || count($result['translations']) == 0 || !is_array($result['translations'][0])) {
+                    $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
+                }
                 return $result;
             });
         });
