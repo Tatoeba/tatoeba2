@@ -9,7 +9,7 @@
             foreach($options as $option) {
                 $icon = 'blank';
                 $url = $this->Paginator->generateUrl(['sort'=>$option['param'], 'direction'=>$option['direction']]);
-                if ($this->Paginator->sortKey() === $option['param'] && $this->Paginator->sortDir() === $option['direction']){
+                if ($this->Paginator->param('sort') === $option['param'] && strtolower($this->Paginator->param('direction')) === $option['direction']){
                     $icon = 'check';
                     $url = '#'; 
                 }
