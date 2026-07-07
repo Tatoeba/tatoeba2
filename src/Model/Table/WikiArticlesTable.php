@@ -33,7 +33,8 @@ class WikiArticlesTable extends Table
                     ->toArray();
             }
             catch (\Cake\Database\Exception\MissingConnectionException $e) {
-                if ($this->getConnection()->isQueryLoggingEnabled()) {
+                // log an error if app_local.php has 'log' => true on the wiki connection
+                if ($this->getConnection()->getDriver()->getLogger()) {
                     Log::error('Error while connecting to the wiki: '. $e->getMessage());
                 }
                 return [];
