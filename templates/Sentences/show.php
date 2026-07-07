@@ -77,10 +77,16 @@ echo $this->element('/sentences/navigation', [
     <section>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2 flex><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
+                <h2 flex style="display: flex; align-items: center; margin: 0;">
+                    <?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?>
+                    
+                    <span style="background-color: rgba(255, 255, 255, 0.2); color: #ffffff; border-radius: 12px; padding: 2px 10px; font-size: 0.6em; font-weight: bold; margin-left: 12px; border: 1px solid rgba(255, 255, 255, 0.4); text-transform: uppercase; cursor: default; display: inline-block; line-height: 1.4;">
+                        <?= h($languageName) ?>
+                    </span>
+                </h2>
+
                 <md-button hide-gt-sm ng-controller="SidenavController" ng-click="toggle('metadata')">
                     <md-icon>info_outline</md-icon>
-                    <?php /* @translators: button to open the sidebar on the sentence page on mobile */ ?>
                     <?= __('Metadata') ?>
                 </md-button>
             </div>
