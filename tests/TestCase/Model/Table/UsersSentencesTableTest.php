@@ -22,6 +22,7 @@ class UsersSentencesTableTest extends TestCase {
 
     function tearDown(): void {
         unset($this->UsersSentences);
+        DateTime::setTestNow();
         parent::tearDown();
     }
 
@@ -147,7 +148,6 @@ class UsersSentencesTableTest extends TestCase {
         $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
         $this->assertEquals($now, $returned->created);
 
-        DateTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 }

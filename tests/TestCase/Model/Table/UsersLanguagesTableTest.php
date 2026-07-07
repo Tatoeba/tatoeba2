@@ -33,6 +33,7 @@ class UsersLanguagesTableTest extends TestCase {
 
     function tearDown(): void {
         unset($this->UsersLanguages); 
+        DateTime::setTestNow();
         parent::tearDown();
     }
 
@@ -244,7 +245,6 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
 
-        DateTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 

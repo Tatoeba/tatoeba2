@@ -22,6 +22,17 @@ class ContributionsControllerTest extends TestCase
         'app.WikiArticles',
     ];
 
+    public function setUp(): void {
+        parent::setUp();
+        $now = new DateTime('2017-04-22 07:22:01');
+        DateTime::setTestNow($now);
+    }
+
+    public function tearDown(): void {
+        DateTime::setTestNow();
+        parent::tearDown();
+    }
+
     public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
@@ -46,9 +57,6 @@ class ContributionsControllerTest extends TestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $now = new DateTime('2017-04-22 07:22:01');
-        DateTime::setTestNow($now);
         $this->assertAccessUrlAs($url, $user, $response);
-        DateTime::setTestNow();
     }
 }

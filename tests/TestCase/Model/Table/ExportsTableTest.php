@@ -49,6 +49,8 @@ class ExportsTableTest extends TestCase
 
         (new Filesystem())->deleteDir($this->testExportDir);
 
+        DateTime::setTestNow();
+
         parent::tearDown();
     }
 
@@ -265,7 +267,6 @@ class ExportsTableTest extends TestCase
 
         $this->Exports->runExport($config, $jobId);
 
-        DateTime::setTestNow();
         $export = $this->Exports->get($exportId);
         $this->assertEquals($now, $export->generated);
         $this->assertEquals(TMP.'export_tests/list_3.tsv', $export->filename);

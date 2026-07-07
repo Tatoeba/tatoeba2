@@ -96,6 +96,7 @@ class SentencesTableTest extends TestCase {
 
     function tearDown(): void {
         unset($this->Sentence);
+        DateTime::setTestNow();
         parent::tearDown();
     }
 
@@ -1606,8 +1607,6 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(1);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
-
-        DateTime::setTestNow();
     }
 
     public function testEditSentence_UpdatesLastContributionField() {
@@ -1623,8 +1622,6 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
-
-        DateTime::setTestNow();
     }
 
     public function testEditLicense_DoesNotUpdateLastContributionField() {
@@ -1642,8 +1639,6 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
-
-        DateTime::setTestNow();
     }
 
     public function testAdopt_DoesNotUpdateLastContributionField() {
@@ -1659,7 +1654,5 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
-
-        DateTime::setTestNow();
     }
 }

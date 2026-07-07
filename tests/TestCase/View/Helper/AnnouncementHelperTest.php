@@ -9,6 +9,12 @@ use Cake\View\View;
 
 class AnnouncementHelperTest extends TestCase
 {
+    public function tearDown(): void
+    {
+        DateTime::setTestNow();
+        parent::tearDown();
+    }
+
     private function createHelperWithConfig($config)
     {
         Configure::write('Announcement', $config);
@@ -80,8 +86,6 @@ class AnnouncementHelperTest extends TestCase
         $helper = $this->createHelperWithConfig($config);
 
         $this->assertEquals($shouldShow, $helper->isDisplayed());
-
-        DateTime::setTestNow();
     }
 
     public static function maintenanceProvider() {
@@ -179,7 +183,5 @@ class AnnouncementHelperTest extends TestCase
             $this->assertStringContainsString($expectedMessage, $helper->getMaintenanceMessage());
         }
         $this->assertEquals($expectedIsImminent, $helper->isMaintenanceImminent());
-
-        DateTime::setTestNow();
     }
 }

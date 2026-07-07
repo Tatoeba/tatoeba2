@@ -22,6 +22,7 @@ class DateHelperTest extends TestCase {
 
     public function tearDown(): void {
         I18n::setLocale($this->prevLocale);
+        DateTime::setTestNow();
         unset($this->DateHelper);
         parent::tearDown();
     }
@@ -61,7 +62,6 @@ class DateHelperTest extends TestCase {
         DateTime::setTestNow(new DateTime('2016-06-24 13:50:43'));
         $result = $this->DateHelper->ago($dateTime, $alone);
         $this->assertEquals($expected, $result);
-        DateTime::setTestNow();
     }
 
     public static function formatBirthdayContentProvider() {
@@ -126,7 +126,6 @@ class DateHelperTest extends TestCase {
         DateTime::setTestNow(new DateTime('2018-10-24 17:28:36'));
         $result = $this->DateHelper->getDateLabel($text, $created, $modified, $tooltip);
         $this->assertEquals($expected, $result);
-        DateTime::setTestNow();
     }
 
     public static function niceContentProvider() {
