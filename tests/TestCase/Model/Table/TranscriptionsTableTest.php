@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
+use App\Lib\Autotranscription;
 use App\Model\Table\TranscriptionsTable;
 use Cake\TestSuite\Fixture\FixtureHelper;
 use Cake\TestSuite\TestCase;

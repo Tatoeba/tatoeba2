@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Lib\Autotranscription;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Controller\Controller;
 use Cake\Event\EventInterface;
