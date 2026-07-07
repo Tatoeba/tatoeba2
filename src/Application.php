@@ -24,7 +24,7 @@ use Authorization\Policy\MapResolver;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
-use Authentication\Identifier\IdentifierInterface;
+use Authentication\Identifier\AbstractIdentifier;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
@@ -119,16 +119,30 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         }
 
         $fields = [
-            IdentifierInterface::CREDENTIAL_USERNAME => 'username',
-            IdentifierInterface::CREDENTIAL_PASSWORD => 'password',
+            AbstractIdentifier::CREDENTIAL_USERNAME => 'username',
+            AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
+        ];
+        $passwordIdentifier = [
+            'Authentication.Password' => [
+                'fields' => $fields,
+                'resolver' => [
+                    'className' => 'Authentication.Orm',
+                    'finder' => 'userToLogin',
+                ],
+                'passwordHasher'=> [
+                    'className' => 'Versioned'
+                ],
+            ],
         ];
 
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('SessionWithoutPassword', [
+            'identifier' => $passwordIdentifier,
             'sessionKey' => 'Auth.User',
             'identify' => true,
         ]);
         $service->loadAuthenticator('Authentication.Form', [
+            'identifier' => $passwordIdentifier,
             'fields' => $fields,
             'loginUrl' => Router::url([
                 'prefix' => false,
@@ -138,24 +152,13 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             ]),
         ]);
         $service->loadAuthenticator('RememberMe', [
+            'identifier' => $passwordIdentifier,
             'loginUrl' => Router::url([
                 'prefix' => false,
                 'plugin' => false,
                 'controller' => 'Users',
                 'action' => 'check_login',
             ]),
-        ]);
-
-        // Load identifiers
-        $service->loadIdentifier('Authentication.Password', [
-            'fields' => $fields,
-            'resolver' => [
-                'className' => 'Authentication.Orm',
-                'finder' => 'userToLogin',
-            ],
-            'passwordHasher'=> [
-                'className' => 'Versioned'
-            ],
         ]);
 
         return $service;
