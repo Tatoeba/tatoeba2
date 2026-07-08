@@ -93,7 +93,7 @@ class SentenceCommentsController extends AppController
 
         $finder = ['latest' => $options];
         $query = $this->SentenceComments->find('paginated');
-        $latestComments = $this->paginateOrRedirect($query, compact('finder'));
+        $latestComments = $this->paginate($query, compact('finder'));
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 

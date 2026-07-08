@@ -175,11 +175,7 @@ class ActivitiesController extends AppController
             'limit' => CurrentUser::getSetting('sentences_per_page'),
         ];
 
-        try {
-            $results = $this->paginate($query);
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $results = $this->paginate($query);
 
         $this->set('results', $results);
         $this->set('lang', $lang);

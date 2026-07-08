@@ -80,11 +80,7 @@ class AudioController extends AppController
         }
         $total = $this->Audios->find('sentencesCounter', $finder['sentences'])->count();
 
-        try {
-            $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
 
         $this->set(compact('sentencesWithAudio', 'totalLimit', 'total'));
         
@@ -100,11 +96,7 @@ class AudioController extends AppController
                 'user_id' => $userId,
                 'maxResults' => $totalLimit,
             ]];
-            try {
-                $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
-            } catch (\Cake\Http\Exception\NotFoundException $e) {
-                return $this->redirectPaginationToLastPage();
-            }
+            $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
             $this->set(compact('sentencesWithAudio'));
 
             $this->set('totalAudio', $this->Audios->numberOfAudiosBy($userId));

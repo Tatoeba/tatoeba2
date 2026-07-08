@@ -489,8 +489,6 @@ class SentencesController extends AppController
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
             $this->set(compact('results', 'real_total'));
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
         } catch (SearchQueryException $e) {
             $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
             if ($syntax_error) {
@@ -566,7 +564,7 @@ class SentencesController extends AppController
         ];
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $query->find('latest', ['maxResults' => $totalLimit]);
-        $allSentences = $this->paginateOrRedirect($query);
+        $allSentences = $this->paginate($query);
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);
@@ -663,11 +661,7 @@ class SentencesController extends AppController
             $query->where('based_on_id = 0');
         }
 
-        try {
-            $sentences = $this->paginate($query);
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $sentences = $this->paginate($query);
 
         $this->set('user_sentences', $sentences);
         $this->set("lang", $lang);

@@ -30,7 +30,13 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
+use Cake\Datasource\Paging\Exception\PageOutOfBoundsException;
+use Cake\Datasource\Paging\PaginatedInterface;
+use Cake\Datasource\QueryInterface;
+use Cake\Datasource\RepositoryInterface;
 use Cake\Event\Event;
+use Cake\Http\Exception\NotFoundException;
+use Cake\Http\Exception\RedirectException;
 use Cake\Http\Cookie\Cookie;
 use Cake\Http\ServerRequest;
 use Cake\Routing\Router;
@@ -224,10 +230,9 @@ class AppController extends Controller
         return parent::redirect($url, $status);
     }
 
-    protected function redirectPaginationToLastPage()
+    protected function redirectPaginationToLastPage(array $paging): void
     {
-        $paging = $this->request->getAttribute('paging');
-        $lastPage = reset($paging)['page'];
+        $lastPage = $paging['pageCount'];
         $queryParams = $this->request->getParam('?');
         $queryParams['page'] = $lastPage;
         $url = Router::url(array_merge(
@@ -238,14 +243,21 @@ class AppController extends Controller
             ],
             $this->request->getParam('pass')
         ));
-        return $this->redirect($url);
+        throw new RedirectException($url);
     }
 
-    public function paginateOrRedirect($object = null, array $settings = []) {
+    public function paginate(
+        RepositoryInterface|QueryInterface|string|null $object = null,
+        array $settings = []
+    ): PaginatedInterface {
         try {
-            return $this->paginate($object, $settings);
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
+            return parent::paginate($object, $settings);
+        } catch (NotFoundException $e) {
+            $prev = $e->getPrevious();
+            if ($prev instanceof PageOutOfBoundsException) {
+                $paging = $prev->getAttributes()['pagingParams'];
+                $this->redirectPaginationToLastPage($paging);
+            }
         }
     }
 

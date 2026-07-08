@@ -454,11 +454,7 @@ class UsersController extends AppController
             ->find()
             ->select(['id', 'username', 'since', 'image', 'role'])
             ->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
-        try {
-            $users = $this->paginate($query);
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $users = $this->paginate($query);
         $this->set('users', $users);
     }
 

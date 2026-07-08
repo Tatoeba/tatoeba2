@@ -213,11 +213,7 @@ class TagsController extends AppController
                 'sortableFields' => ['id', 'sentence_id', 'added_time'],
             ];
             $finder = ['latest' => $options];
-            try {
-                $sentences = $this->paginate($TagsSentences, compact('finder'));
-            } catch (\Cake\Http\Exception\NotFoundException $e) {
-                return $this->redirectPaginationToLastPage();
-            }
+            $sentences = $this->paginate($TagsSentences, compact('finder'));
             $total = $total->count();
 
             $taggerIds = [];

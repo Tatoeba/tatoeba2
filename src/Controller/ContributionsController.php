@@ -159,7 +159,7 @@ class ContributionsController extends AppController
         ];
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
         $query->find('latest', ['maxResults' => $totalLimit]);
-        $contributions = $this->paginateOrRedirect($query);
+        $contributions = $this->paginate($query);
         $this->set('contributions', $contributions);
         $this->set('userExists', true);
         $this->set('totalLimit', $totalLimit);

@@ -86,11 +86,7 @@ class WallController extends AppController
             'order' => ['WallThreads.last_message_date' => 'DESC'],
             'limit' => 10,
         ];
-        try {
-            $messageLftRght = $this->paginate($query, $settings);
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $messageLftRght = $this->paginate($query, $settings);
         $messages = $this->Wall->getMessagesThreaded($messageLftRght);
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,

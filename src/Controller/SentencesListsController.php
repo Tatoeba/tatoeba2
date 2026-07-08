@@ -183,11 +183,7 @@ class SentencesListsController extends AppController
             'sortableFields' => ['id', 'sentence_id'],
         ];
         $finder = ['latest' => $options];
-        try {
-            $sentencesInList = $this->paginate($SentencesSentencesLists, compact('finder'));
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $sentencesInList = $this->paginate($SentencesSentencesLists, compact('finder'));
 
         $total = $SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
 
