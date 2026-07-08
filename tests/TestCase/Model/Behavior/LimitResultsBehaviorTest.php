@@ -3,7 +3,7 @@ namespace App\Test\TestCase\Model\Behavior;
 
 use App\Model\Behavior\LimitResultsBehavior;
 use Cake\TestSuite\TestCase;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 
 class LimitResultsBehaviorTest extends TestCase
 {
@@ -41,7 +41,7 @@ class LimitResultsBehaviorTest extends TestCase
 
         $s = $this->fetchTable('Sentences');
         $this->behavior = new LimitResultsBehavior($s);
-        $query = new Query($s->getConnection(), $s);
+        $query = new SelectQuery($s);
         $this->query = $this->buildProxy($query);
         $this->query->order(['Sentences.id' => 'DESC']);
 
