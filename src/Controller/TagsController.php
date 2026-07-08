@@ -182,10 +182,9 @@ class TagsController extends AppController
         if ($tagExists) {
             $TagsSentences = $this->fetchTable('TagsSentences');
             $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-            $options = [
-                'conditions' => ['tag_id' => $tagId],
-                'maxResults' => $totalLimit,
-                'contain' => [
+            $query = $TagsSentences->find()
+                ->where(['tag_id' => $tagId])
+                ->contain([
                     'Sentences' => function (Query $q) {
                         $Sentences = $q->getRepository();
                         return $q
@@ -194,11 +193,10 @@ class TagsController extends AppController
                           ->contain($Sentences->contain(['translations' => true]))
                           ->select($Sentences->fields());
                     },
-                ],
-            ];
+                ]);
             $total = $TagsSentences->find()->where(['tag_id' => $tagId]);
             if (!empty($lang) && $lang != 'und') {
-                $options['conditions']['Sentences.lang'] = $lang;
+                $query->where(['Sentences.lang' => $lang]);
                 $total->matching('Sentences', function (Query $q) use ($lang) {
                     return $q->where(['Sentences.lang' => $lang]);
                 });
@@ -212,8 +210,8 @@ class TagsController extends AppController
                 // keep added_time for backward compatibility
                 'sortableFields' => ['id', 'sentence_id', 'added_time'],
             ];
-            $finder = ['latest' => $options];
-            $sentences = $this->paginate($TagsSentences, compact('finder'));
+            $finder = ['latest' => ['maxResults' => $totalLimit]];
+            $sentences = $this->paginate($query, compact('finder'));
             $total = $total->count();
 
             $taggerIds = [];

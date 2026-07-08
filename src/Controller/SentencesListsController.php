@@ -156,10 +156,10 @@ class SentencesListsController extends AppController
         }
 
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $options = [
-            'conditions' => ['sentences_list_id' => $id],
-            'maxResults' => $totalLimit,
-            'contain' => [
+        $SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
+        $query = $SentencesSentencesLists->find()
+            ->where(['sentences_list_id' => $id])
+            ->contain([
                 'Sentences' => function (Query $q) use ($translationsLang) {
                     $Sentences = $q->getRepository();
                     return $q
@@ -168,13 +168,14 @@ class SentencesListsController extends AppController
                       ->contain($Sentences->contain(['translations' => true]))
                       ->select($Sentences->fields());
                 },
-            ],
-        ];
-        if ($lang!="und") {
-            $options['conditions']['Sentences.lang'] = $lang == 'unknown' ? null : $lang;
+            ]);
+
+        if ($lang != 'und') {
+            $query->where([
+                'Sentences.lang' => $lang == 'unknown' ? null : $lang,
+            ]);
         }
 
-        $SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
         $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => [
@@ -182,8 +183,8 @@ class SentencesListsController extends AppController
             ],
             'sortableFields' => ['id', 'sentence_id'],
         ];
-        $finder = ['latest' => $options];
-        $sentencesInList = $this->paginate($SentencesSentencesLists, compact('finder'));
+        $finder = ['latest' => ['maxResults' => $totalLimit]];
+        $sentencesInList = $this->paginate($query, compact('finder'));
 
         $total = $SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
 
