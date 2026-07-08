@@ -37,7 +37,6 @@ class TranscriptionsControllerTest extends TestCase {
             ->onlyMethods([
                 'jpn_Jpan_to_Hrkt_validate',
                 'jpn_Jpan_to_Hrkt_generate',
-                'jpn_Hrkt_to_Latn_generate',
                 'yue_Hant_to_Latn_generate',
             ])
             ->getMock();
@@ -50,10 +49,6 @@ class TranscriptionsControllerTest extends TestCase {
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_generate')
             ->will($this->returnValue('furi'));
-        $autotranscription
-            ->expects($this->any())
-            ->method('jpn_Hrkt_to_Latn_generate')
-            ->will($this->returnValue('roma'));
         $autotranscription
             ->expects($this->any())
             ->method('yue_Hant_to_Latn_generate')
