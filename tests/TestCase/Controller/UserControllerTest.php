@@ -334,7 +334,7 @@ class UserControllerTest extends TestCase
         $contributor = $users->get(4);
         $this->assertEmpty($contributor->image);
         foreach ($images as $image) {
-            $this->assertFileNotExists($image);
+            $this->assertFileDoesNotExist($image);
         }
     }
 

@@ -148,7 +148,7 @@ class AudioControllerTest extends TestCase
         $this->logInAs('admin');
         $this->ajaxPost('/ja/audio/delete/'.$id);
         $this->assertResponseOk();
-        $this->assertFileNotExists($path);
+        $this->assertFileDoesNotExist($path);
 
         $this->deleteAudioStorageDir();
     }

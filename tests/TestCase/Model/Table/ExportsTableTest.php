@@ -442,6 +442,6 @@ class ExportsTableTest extends TestCase
 
         $this->Exports->delete($export);
 
-        $this->assertFileNotExists($export->filename);
+        $this->assertFileDoesNotExist($export->filename);
     }
 }
