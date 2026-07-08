@@ -195,7 +195,7 @@ class SentenceButtonsHelper extends AppHelper
                     $class .= ' nextAudioToPlay';
                 }
                 echo $this->Html->Link(
-                    null,
+                    '',
                     $audio->download_url,
                     array(
                         'title' => $title,
@@ -207,7 +207,7 @@ class SentenceButtonsHelper extends AppHelper
             }
         } else {
             echo $this->Html->Link(
-                null,
+                '',
                 $this->Pages->getWikiLink('contribute-audio'),
                 array(
                     'title' => __('No audio for this sentence. Click to learn how to contribute.'),
