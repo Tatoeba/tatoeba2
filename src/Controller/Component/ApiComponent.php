@@ -158,7 +158,7 @@ class ApiComponent extends Component
             echo ",\"paging\":$paging}";
         });
 
-        $this->autoRender = false;
+        $this->getController()->disableAutoRender();
 
         return $this
             ->getController()
