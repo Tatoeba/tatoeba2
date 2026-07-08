@@ -93,7 +93,7 @@ class SentencesTable extends Table
         $this->hasMany('ReindexFlags');
         $this->hasMany('UsersSentences');
         $this->hasMany('Favorites_users', [
-            'classname'  => 'favorites',
+            'className'  => 'Favorites',
             'foreignKey' => 'favorite_id'
         ]);
         $this->hasMany('SentenceComments');
