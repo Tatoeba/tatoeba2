@@ -4,9 +4,9 @@
     "license": "AGPL-3.0-only",
     "description": "Code for tatoeba.org, a multilingual sentence and translation database",
     "require": {
-        "cakephp/cakephp": "5.0.*",
+        "cakephp/cakephp": "5.1.*",
         "cakephp/plugin-installer": "^2.0",
-        "dereuromark/cakephp-queue": "^7.0",
+        "dereuromark/cakephp-queue": "^8.0",
         "markstory/asset_compress": "^5.0",
         "patchwork/jsqueeze": "^2.0",
         "natxet/cssmin": "^3.0",
@@ -14,12 +14,12 @@
         "zircote/swagger-php": "^5.3",
         "doctrine/annotations": "^2.0",
         "cakedc/cakephp-cached-routing": "^2.0",
-        "dereuromark/cakephp-tinyauth": "^4.0",
+        "dereuromark/cakephp-tinyauth": "^5.0",
         "cakephp/authentication": "^3.0",
         "cakephp/authorization": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.1.0",
+        "phpunit/phpunit": "^10.5.5",
         "cakephp/bake": "^3.0",
         "helmich/phpunit-json-assert": "3.*",
         "robmorgan/phinx": "0.16.10"
@@ -44,11 +44,6 @@
     "config": {
         "allow-plugins": {
             "cakephp/plugin-installer": true
-        },
-        "audit": {
-            "ignore": {
-                "CVE-2026-48820": "Temporarily ignored during progressive upgrade from CakePHP 4.6 to 5.2"
-            }
         }
     }
 }
