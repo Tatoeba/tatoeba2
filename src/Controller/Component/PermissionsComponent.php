@@ -240,7 +240,7 @@ class PermissionsComponent extends Component
     /**
      * Convenience function to get permissions for an array of wall's messages
      *
-     * @param array $messages         Array of comments.
+     * @param OuterIterator $messages Iterator of messages.
      * @param int   $currentUserId    Id of the requester.
      *
      * @return array
@@ -251,16 +251,16 @@ class PermissionsComponent extends Component
         $currentUserId
     ) {
 
-        foreach ($messages as $i=>$message) {
+        foreach ($messages as $message) {
             $lastInThread = empty($message->children);
-            $messages[$i]['Permissions'] = $this->getWallMessageOptions(
+            $message['Permissions'] = $this->getWallMessageOptions(
                 $lastInThread,
                 $message,
                 $currentUserId
             );
 
             if (!$lastInThread) {
-                $messages[$i]['children'] = $this->getWallMessagesOptions(
+                $message['children'] = $this->getWallMessagesOptions(
                     $message['children'],
                     $currentUserId
                 );
