@@ -3,6 +3,7 @@ namespace App\Test\Mailer;
 
 use App\Mailer\UserMailer;
 use App\Model\ContentReport;
+use App\Model\CurrentUser;
 use App\Model\Entity\SentenceComment;
 use App\Model\Entity\User;
 use App\Model\Entity\Wall;
@@ -21,13 +22,21 @@ class UserMailerTest extends TestCase {
     protected $mailer = null;
 
     public function setUp(): void {
+        parent::setUp();
         $this->loadRoutes();
         Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
+        $admin = $this->fetchTable('Users')->findByUsername('admin')->first();
+        CurrentUser::store($admin);
 
         $this->mailer = new UserMailer();
         $this->mailer
             ->setFrom('sender@example.com')
             ->setTransport('debug');
+    }
+
+    public function tearDown(): void {
+        parent::tearDown();
+        CurrentUser::store(false);
     }
 
     public static function blockedOrSuspendedProvider () {
