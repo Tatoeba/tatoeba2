@@ -43,7 +43,7 @@ class LicensingTest extends TestCase
         $this->Licensing->refreshLicenseSwitchList(7);
 
         $after = $SentencesLists->find()->all();
-        $this->assertNotEquals($before, $after);
+        $this->assertNotEquals($before->count(), $after->count());
 
         $lastList = $after->last();
         $this->assertIsSwitchListOf($lastList, 7);
