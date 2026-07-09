@@ -266,12 +266,12 @@ class WallControllerTest extends TestCase {
         $response = json_decode($this->_response->getBody());
         if ($shouldSave) {
             $this->assertResponseOk();
-            $this->assertObjectHasAttribute('content', $response);
+            $this->assertObjectHasProperty('content', $response);
             $this->assertEquals($postData['content'], $response->content);
         } else {
             $this->assertResponseError();
-            $this->assertObjectHasAttribute('content', $response);
-            $this->assertObjectHasAttribute('outboundLinks', $response->content);
+            $this->assertObjectHasProperty('content', $response);
+            $this->assertObjectHasProperty('outboundLinks', $response->content);
         }
         if ($email) {
             $this->assertMailCount(1);
