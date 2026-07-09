@@ -19,8 +19,8 @@ class AssetsControllerTest extends TestCase
     }
 
     public function testSvgSpriteIsWellFormed() {
-        // Ignore output produced by GzipFilter
-        $this->setOutputCallback(function ($output) { return ''; });
+        // Suppress output produced by GzipFilter
+        $this->expectOutputRegex('/also compressed version/');
 
         // Make sure cached versions are not being served instead
         $caches = [
