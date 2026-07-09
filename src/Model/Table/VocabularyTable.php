@@ -235,19 +235,19 @@ class VocabularyTable extends Table
     /**
      * Sync the numSentences column on vocabulary items with the Sphinx index.
      */
-    public function syncNumSentences($results)
+    public function findSyncNumSentences(Query $query): Query
     {
-        return $results->map(function ($item) {
+        return $query->formatResults(fn($results) => $results->map(function ($item) {
             $vocabulary = $item->vocabulary;
             $numSentences = $this->_updateNumSentences($vocabulary);
             $item->vocabulary->numSentences = $numSentences;
             return $item;
-        });
+        }));
     }
 
-    public function addCanEditPermission($results)
+    public function findWithCanEditPermission(Query $query): Query
     {
-        return $results->map(function ($item) {
+        return $query->formatResults(fn($results) => $results->map(function ($item) {
             if ($item instanceof \App\Model\Entity\Vocable) {
                 $canEdit = CurrentUser::isModerator();
                 $vocabulary = $item;
@@ -259,7 +259,7 @@ class VocabularyTable extends Table
             }
             $vocabulary->canEdit = $canEdit;
             return $item;
-        });
+        }));
     }
 
     /**
