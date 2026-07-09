@@ -21,6 +21,7 @@ namespace App\Model\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\ORM\Table;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Event\Event;
 use Cake\Mailer\MailerAwareTrait;
 use Cake\Validation\Validator;
@@ -209,23 +210,17 @@ class WallTable extends Table
 
 
     /**
-     * retrieve all the thread of the given root message
-     *
-     * @param ResultSet $rootMessages Set of messages with 'lft' and 'rght' field
-     *                            take a look at how to store hierarchical data
-     *                            with mysql for more informations
-     *
-     * @return array A nested array of array of array ... nested in a logical way
-     *                children are nested in their parent etc...
+     * Retrieve and the threads and organize them in nested arrays,
+     * ordered by last message date
      */
-    public function getMessagesThreaded($rootMessages)
+    public function findThreadedMessages(SelectQuery $query)
     {
-        if ($rootMessages->isEmpty()) {
-            return [];
-        }
+        $rootMessages = $query
+            ->select(['lft', 'rght'])
+            ->where(['Wall.parent_id IS' => null])
+            ->contain(['WallThreads' => ['fields' => ['last_message_date']]]);
 
-        // execute the request
-        $result = $this->find('threaded')
+        return $this->find('threaded')
             ->orderBy([
                 'WallThreads.last_message_date' => 'DESC',
                 'Wall.date' => 'ASC'
@@ -239,7 +234,11 @@ class WallTable extends Table
                         $rootMessage->rght
                     );
                 }
-                return $exp->add($or);
+                if (empty($rootMessage)) {
+                    return '1=0';
+                } else {
+                    return $exp->add($or);
+                }
             })
             ->contain([
                 'Users' => [
@@ -248,11 +247,7 @@ class WallTable extends Table
                 'WallThreads' => [
                     'fields' => ['last_message_date']
                 ]
-            ])
-            ->all()
-            ->toList();
-
-        return $result;
+            ]);
     }
 
     /**

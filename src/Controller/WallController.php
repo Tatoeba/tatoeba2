@@ -76,18 +76,13 @@ class WallController extends AppController
 
         $userId = $this->Authentication->getIdentity() ? $this->Authentication->getIdentityData('id') : null;
 
-        $query = $this->Wall
-            ->find()
-            ->select(['lft', 'rght'])
-            ->where(['Wall.parent_id IS' => null])
-            ->contain(['WallThreads' => ['fields' => ['last_message_date']]]);
+        $query = $this->Wall->find('threadedMessages');
         $settings = [
             'sortableFields' => ['WallThreads.last_message_date'],
             'order' => ['WallThreads.last_message_date' => 'DESC'],
             'limit' => 10,
         ];
-        $messageLftRght = $this->paginate($query, $settings);
-        $messages = $this->Wall->getMessagesThreaded($messageLftRght);
+        $messages = $this->paginate($query, $settings);
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,
             $userId
