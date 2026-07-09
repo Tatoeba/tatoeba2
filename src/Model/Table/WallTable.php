@@ -247,7 +247,8 @@ class WallTable extends Table
                 'WallThreads' => [
                     'fields' => ['last_message_date']
                 ]
-            ]);
+            ])
+            ->counter(fn ($q) => $rootMessages->count());
     }
 
     /**

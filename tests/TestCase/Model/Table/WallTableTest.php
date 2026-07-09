@@ -385,6 +385,12 @@ class WallTableTest extends TestCase {
         $this->assertEquals(0, count($results));
     }
 
+    public function testFindThreadedMessages_counter() {
+        $result = $this->Wall->find('threadedMessages')->count();
+
+        $this->assertEquals(4, $result);
+    }
+
     public function testDeleteMessage_succeeds() {
         CurrentUser::store(['id' => 1]);
         $result = $this->Wall->deleteMessage(2);
