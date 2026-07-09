@@ -32,6 +32,9 @@ class ExposedOnApiBehavior extends Behavior
         // Temporary introduction of new code, we should get rid of this
         // once the association is directly used on the SentencesTable model
         if ($this->table()->getAlias() == 'Sentences') {
+            if ($this->table()->hasAssociation('Translations')) {
+                $this->table()->associations()->remove('Translations');
+            }
             $this->table()->belongsToManyMany('Translations', [
                 'className' => 'Translations',
                 'joinTable' => 'sentences_translations',
