@@ -106,7 +106,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 if ($referer) {
                     // Set referer in redirect= query parameter instead of current URL
                     $refererUri = $request->getUri()->withPath($referer);
-                    $url = $service->getUnauthenticatedRedirectUrl($request->withUri($refererUri));
+                    $url = $service->getUnauthenticatedRedirectUrl($request->withUri($refererUri)->withMethod('GET'));
                     $service->setConfig([
                         'unauthenticatedRedirect' => $url,
                         'queryParam' => null,
