@@ -12,7 +12,7 @@ class QueuedJobsFixture extends TestFixture
                 /* Job completed */
                 'id' => 1,
                 'job_type' => 'Export',
-                'data' => serialize(['param' => 'foo']),
+                'data' => json_encode(['param' => 'foo'], true),
                 'job_group' => '7',
                 'reference' => null,
                 'created' => '2019-02-01 14:54:10',
@@ -30,7 +30,7 @@ class QueuedJobsFixture extends TestFixture
                 /* Job being executed */
                 'id' => 2,
                 'job_type' => 'Export',
-                'data' => serialize(['param' => 'foo']),
+                'data' => json_encode(['param' => 'foo'], true),
                 'job_group' => '7',
                 'reference' => null,
                 'created' => '2019-02-01 15:03:55',
@@ -48,7 +48,7 @@ class QueuedJobsFixture extends TestFixture
                 /* Job waiting to be executed */
                 'id' => 3,
                 'job_type' => 'Export',
-                'data' => serialize(['type' => 'list', 'list_id' => 1, 'export_id' => 3, 'format' => 'tsv', 'fields' => ['id', 'lang', 'text']]),
+                'data' => json_encode(['type' => 'list', 'list_id' => 1, 'export_id' => 3, 'format' => 'tsv', 'fields' => ['id', 'lang', 'text']], true),
                 'job_group' => '4',
                 'reference' => null,
                 'created' => '2019-02-01 15:03:56',
@@ -66,7 +66,7 @@ class QueuedJobsFixture extends TestFixture
                 /* Job completed */
                 'id' => 4,
                 'job_type' => 'Export',
-                'data' => serialize(['param' => 'foo']),
+                'data' => json_encode(['param' => 'foo'], true),
                 'job_group' => null, // does not belong to any user
                 'reference' => null,
                 'created' => '2019-02-20 20:50:10',

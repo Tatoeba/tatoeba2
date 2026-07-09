@@ -242,14 +242,14 @@ class ExportsTableTest extends TestCase
         $this->assertEquals(4, $job->job_group);
 
         $export = $this->Exports->find()->all()->last();
-        $this->assertEquals($export->id, unserialize($job->data)['export_id']);
+        $this->assertEquals($export->id, $job->data['export_id']);
     }
 
     public function testRunExport_returnsTrue()
     {
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $result = $this->Exports->runExport($config, $jobId);
 
@@ -263,7 +263,7 @@ class ExportsTableTest extends TestCase
 
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $this->Exports->runExport($config, $jobId);
 
@@ -278,7 +278,7 @@ class ExportsTableTest extends TestCase
     {
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $this->Exports->runExport($config, $jobId);
 
@@ -290,7 +290,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'fields' => ['lang', 'text']]);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -302,7 +302,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'trans_lang' => 'jpn', 'fields' => ['id', 'text', 'trans_text']]);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -320,7 +320,7 @@ class ExportsTableTest extends TestCase
             'format' => 'tsv',
         ];
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -332,7 +332,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'fields' => ['text'], 'format' => 'txt']);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -344,7 +344,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'format' => 'shtooka']);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -363,7 +363,7 @@ class ExportsTableTest extends TestCase
 
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $result = $this->Exports->runExport($config, $jobId);
 
@@ -409,7 +409,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 3]);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -420,7 +420,7 @@ class ExportsTableTest extends TestCase
 
         $options = $this->optionsWith(['list_id' => 2]);
         $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
 
         try {
@@ -435,7 +435,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 3]);
         $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $export = $this->Exports->get($config['export_id']);
         $this->assertFileExists($export->filename);

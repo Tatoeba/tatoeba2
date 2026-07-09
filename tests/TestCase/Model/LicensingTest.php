@@ -88,7 +88,7 @@ class LicensingTest extends TestCase
 
         $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->find()->all()->last();
-        $this->assertEquals(4, unserialize($job->data)['listId']);
+        $this->assertEquals(4, json_decode($job->data, true)['listId']);
     }
 
     public function testRefresh_doesNotCreatesDuplicateJob() {
