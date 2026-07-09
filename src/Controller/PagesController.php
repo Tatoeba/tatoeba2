@@ -60,7 +60,7 @@ class PagesController extends AppController
 
         $this->getEventManager()->on(
             'Controller.startup',
-            fn() => $this->_redirect_for_old_url()
+            function ($event) { $event->setResult($this->_redirect_for_old_url()); }
         );
     }
 
