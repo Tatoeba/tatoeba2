@@ -7,6 +7,7 @@ use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
+use function Cake\Core\env;
 
 return [
     /*
@@ -467,6 +468,19 @@ return [
         ],
         'cookie' => 'CAKEPHP',
         'timeout' => 120,
+    ],
+
+    /**
+     * TestSuite configuration.
+     *
+     * ## Options
+     *
+     *  - `errorLevel` - Defaults to `E_ALL`. Can be set to `false` to disable overwrite error level.
+     *  - `fixtureStrategy` - Defaults to TruncateStrategy. Can be set to any class implementing FixtureStrategyInterface.
+     */
+    'TestSuite' => [
+        'errorLevel' => null,
+        'fixtureStrategy' => null,
     ],
 
     'Roles' => array_combine(User::ALL_ROLES, User::ALL_ROLES),

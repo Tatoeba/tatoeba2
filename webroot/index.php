@@ -21,7 +21,7 @@ if (PHP_SAPI === 'cli-server') {
 
     $url = parse_url(urldecode($_SERVER['REQUEST_URI']));
     $file = __DIR__ . $url['path'];
-    if (strpos($url['path'], '..') === false && strpos($url['path'], '.') !== false && is_file($file)) {
+    if (!str_contains($url['path'], '..') && str_contains($url['path'], '.') && is_file($file)) {
         return false;
     }
 }
