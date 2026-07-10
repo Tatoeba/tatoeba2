@@ -36,6 +36,7 @@ class LimitedPaginator extends NumericPaginator
     public function __construct()
     {
         $this->_defaultConfig['maxResults'] = 1000;
+        $this->_defaultConfig['maxResultsBaseQuery'] = null;
     }
 
     private function getNeededAssociations(QueryInterface $query) {
@@ -190,7 +191,8 @@ class LimitedPaginator extends NumericPaginator
         $query = parent::getQuery($object, $query, $data);
 
         $maxResults = $data['options']['maxResults'];
+        $baseQuery = $data['options']['maxResultsBaseQuery'] ?? $query;
 
-        return $this->applyLimit($maxResults, $query, $query);
+        return $this->applyLimit($maxResults, $query, $baseQuery);
     }
 }

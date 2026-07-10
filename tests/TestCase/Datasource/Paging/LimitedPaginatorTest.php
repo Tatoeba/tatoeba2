@@ -61,6 +61,24 @@ class LimitedPaginatorTest extends TestCase
         $paginator->paginate($this->baseQuery, [], ['maxResults' => 123]);
     }
 
+    public function testPaginate_callsApplyLimit_withBaseQuery()
+    {
+        $paginationQuery = clone $this->baseQuery;
+        $paginator = $this->getMockBuilder(LimitedPaginator::class)
+            ->onlyMethods(['applyLimit'])
+            ->getMock();
+        $paginator
+             ->expects($this->once())
+             ->method('applyLimit')
+             ->with(123, $paginationQuery, $this->baseQuery);
+
+        $paginator->paginate(
+            $paginationQuery,
+            [],
+            ['maxResults' => 123, 'maxResultsBaseQuery' => $this->baseQuery]
+        );
+    }
+
     public function testApplyLimit_simple()
     {
         $this->mockQuery
