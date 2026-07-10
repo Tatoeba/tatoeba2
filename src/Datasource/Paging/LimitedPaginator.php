@@ -95,7 +95,7 @@ class LimitedPaginator extends NumericPaginator
         foreach ($query->clause('join') as $name => $join) {
             if ($join['type'] == 'LEFT'
                 && !in_array($join['alias'], $neededAssociations)) {
-                $query->removeJoin($name);
+                $query->removeJoin((string)$name);
             }
         }
     }
