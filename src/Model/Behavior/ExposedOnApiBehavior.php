@@ -23,7 +23,7 @@ use Cake\ORM\Association;
 use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 
 class ExposedOnApiBehavior extends Behavior
 {
@@ -88,7 +88,7 @@ class ExposedOnApiBehavior extends Behavior
      * perform some pseudo-hydration at the end, as a way to compute
      * visible fields in the final json response.
      */
-    private function initExposer(Query $query)
+    private function initExposer(SelectQuery $query)
     {
         $exposer = new Exposer();
         $query->applyOptions(['fieldsExposer' => $exposer]);
@@ -105,7 +105,7 @@ class ExposedOnApiBehavior extends Behavior
      * This allows to set which fields will be exported in json,
      * regardless of the fields being virtual or not.
      */
-    public function findExposedFields(Query $query, array $options)
+    public function findExposedFields(SelectQuery $query, array $options)
     {
         $options = $query->getOptions();
         $exposer = $options['fieldsExposer'] ?? $this->initExposer($query);
@@ -120,7 +120,7 @@ class ExposedOnApiBehavior extends Behavior
      * "2000-01-01"
      * on the proveded fields.
      */
-    public function findDatetime2date(Query $query, array $options) {
+    public function findDatetime2date(SelectQuery $query, array $options) {
         $query->formatResults(function($entities) use ($options) {
             return $entities->map(function($entity) use ($options) {
                 foreach ($options['datetimefields'] as $field) {
@@ -136,7 +136,7 @@ class ExposedOnApiBehavior extends Behavior
      * Helper to include related entities on the main entity.
      * Basically a ->contain() with API-specific stuff around.
      */
-    public function findContainOnApi(Query $query, array $options)
+    public function findContainOnApi(SelectQuery $query, array $options)
     {
         $exposer = $options['fieldsExposer'] ?? null;
         foreach ($options['containOnApi'] as $assoc => $value) {
@@ -147,11 +147,11 @@ class ExposedOnApiBehavior extends Behavior
                 $propName = $query->getRepository()->getAssociation($assoc)->getProperty();
                 $newOptions = ['fieldsExposer' => $exposer->in($propName)];
                 if (is_array($value) && is_string($value['finder'] ?? null)) {
-                    $value = fn (Query $q) => $q
+                    $value = fn (SelectQuery $q) => $q
                         ->applyOptions($newOptions)
                         ->find($value['finder']);
                 } elseif (is_callable($value)) {
-                    $value = fn (Query $q) =>
+                    $value = fn (SelectQuery $q) =>
                         $value($q->applyOptions($newOptions));
                 } else {
                     throw new \RuntimeException("Unsupported value for containOnApi containment $assoc, must be a callable or ['finder' => '...']");
@@ -193,7 +193,7 @@ class ExposedOnApiBehavior extends Behavior
      *   )
      * )
      */
-    public function findSentencesOnApi(Query $query, array $options) {
+    public function findSentencesOnApi(SelectQuery $query, array $options) {
         $exposedFields = [
             'id', 'text', 'lang', 'script', 'license', 'owner', 'is_unapproved'
         ];
@@ -260,7 +260,7 @@ class ExposedOnApiBehavior extends Behavior
      *   )
      * )
      */
-    public function findTranscriptionsOnApi(Query $query, array $options) {
+    public function findTranscriptionsOnApi(SelectQuery $query, array $options) {
         $exposedFields = [
             'script', 'text', 'needsReview', 'type', 'html', 'editor', 'modified'
         ];
@@ -293,7 +293,7 @@ class ExposedOnApiBehavior extends Behavior
      *                type="datetime", example="2020-02-20T02:20:00+00:00")
      * )
      */
-    public function findAudiosOnApi(Query $query, array $options) {
+    public function findAudiosOnApi(SelectQuery $query, array $options) {
         $exposedFields = [
             'id', 'created', 'author', 'license', 'attribution_url', 'download_url', 'created', 'modified'
         ];
@@ -301,7 +301,7 @@ class ExposedOnApiBehavior extends Behavior
         $query
             ->find('exposedFields', compact('exposedFields'))
             ->select($fields)
-            ->contain('Users', function(Query $q) {
+            ->contain('Users', function(SelectQuery $q) {
                 return $q->select(['username', 'audio_license', 'audio_attribution_url']);
             });
         return $query;
@@ -323,7 +323,7 @@ class ExposedOnApiBehavior extends Behavior
      *   }
      * )
      */
-    public function findTranslationsOnApi(Query $query, array $options) {
+    public function findTranslationsOnApi(SelectQuery $query, array $options) {
         $query
             ->find('sentencesOnApi')
             ->select('is_direct')

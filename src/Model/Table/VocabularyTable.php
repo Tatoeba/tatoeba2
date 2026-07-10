@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\RulesChecker;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
@@ -180,7 +180,7 @@ class VocabularyTable extends Table
      *
      * @param $options['lang'] string
      */
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query
             ->select(['id', 'lang', 'text', 'numSentences', 'numAdded'])
@@ -235,7 +235,7 @@ class VocabularyTable extends Table
     /**
      * Sync the numSentences column on vocabulary items with the Sphinx index.
      */
-    public function findSyncNumSentences(Query $query): Query
+    public function findSyncNumSentences(SelectQuery $query): SelectQuery
     {
         return $query->formatResults(fn($results) => $results->map(function ($item) {
             $vocabulary = $item->vocabulary;
@@ -245,7 +245,7 @@ class VocabularyTable extends Table
         }));
     }
 
-    public function findWithCanEditPermission(Query $query): Query
+    public function findWithCanEditPermission(SelectQuery $query): SelectQuery
     {
         return $query->formatResults(fn($results) => $results->map(function ($item) {
             if ($item instanceof \App\Model\Entity\Vocable) {

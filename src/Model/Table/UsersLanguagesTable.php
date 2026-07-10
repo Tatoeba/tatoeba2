@@ -23,7 +23,7 @@ use App\Lib\LanguagesLib;
 use App\Model\Entity\Language;
 use App\Model\Entity\User;
 use App\Model\CurrentUser;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
 use Cake\Database\Schema\TableSchemaInterface;
@@ -129,7 +129,7 @@ class UsersLanguagesTable extends Table
     }
 
 
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         return $query
             ->select(['of_user_id', 'level'])

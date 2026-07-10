@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
@@ -117,7 +117,7 @@ class SentenceCommentsTable extends Table
         }
     }
 
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         return $query->contain([
             'Users' => [

@@ -233,7 +233,7 @@ class AppController extends Controller
     protected function redirectPaginationToLastPage(array $paging): void
     {
         $lastPage = $paging['pageCount'];
-        $queryParams = $this->request->getParam('?');
+        $queryParams = $this->request->getQueryParams();
         $queryParams['page'] = $lastPage;
         $url = Router::url(array_merge(
             [

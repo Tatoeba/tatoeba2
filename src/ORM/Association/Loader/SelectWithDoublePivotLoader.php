@@ -3,14 +3,14 @@ namespace App\ORM\Association\Loader;
 
 use Cake\ORM\Association;
 use Cake\ORM\Association\Loader\SelectWithPivotLoader;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 
 /**
  * Implements the logic for loading an association using a SELECT query and two pivot tables
  */
 class SelectWithDoublePivotLoader extends SelectWithPivotLoader
 {
-    protected function _buildQuery($options): Query
+    protected function _buildQuery($options): SelectQuery
     {
         $key = $this->_linkField($options);
         $filter = $options['keys'];
@@ -21,7 +21,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
             $options['fields'] = [];
         }
 
-        /** @var \Cake\ORM\Query $query */
+        /** @var \Cake\ORM\Query\SelectQuery $query */
         $query = $finder();
         if (isset($options['finder'])) {
             list($finderName, $opts) = $this->_extractFinder($options['finder']);
@@ -45,7 +45,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
             ->join([$secondPivotTableAlias => [
                 'table' => $this->junctionAssoc->getTarget()->getTable(),
                 'conditions' => ["$name.$targetForeignKey = $secondPivotTableAlias.{$this->foreignKey}"],
-                'type' => Query::JOIN_TYPE_INNER,
+                'type' => SelectQuery::JOIN_TYPE_INNER,
             ]])
             ->groupBy([$this->foreignKey, '_modal_key']);
 
@@ -59,7 +59,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
         $fetchQuery->join([$name => [
             'table' => $subQuery,
             'conditions' => ["{$this->alias}.{$this->bindingKey} = $name._modal_key"],
-            'type' => Query::JOIN_TYPE_INNER,
+            'type' => SelectQuery::JOIN_TYPE_INNER,
         ]]);
         $fetchQuery->select([
             "{$this->alias}__is_direct" => "$name.is_direct",
@@ -90,7 +90,7 @@ class SelectWithDoublePivotLoader extends SelectWithPivotLoader
         return $fetchQuery;
     }
 
-    protected function _buildResultMap(Query $fetchQuery, array $options): array
+    protected function _buildResultMap(SelectQuery $fetchQuery, array $options): array
     {
         $resultMap = [];
         $key = (array)$options['foreignKey'];

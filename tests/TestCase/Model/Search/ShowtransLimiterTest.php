@@ -10,7 +10,7 @@ use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationOwnerFilter;
 use App\Model\Search\TranslationFilterGroup;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\TestSuite\TestCase;
 
 class ShowtransLimiterTest extends TestCase
@@ -159,7 +159,7 @@ class ShowtransLimiterTest extends TestCase
             $groups[] = (new TranslationFilterGroup())->setFilter($filter);
         }
         $showtrans = new ShowtransLimiter($groups);
-        $containOnApi = ['Translations' => function (Query $q) use ($showtrans) {
+        $containOnApi = ['Translations' => function (SelectQuery $q) use ($showtrans) {
             return $q->find('translationsOnApi', compact('showtrans'));
         }];
 

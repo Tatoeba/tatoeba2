@@ -21,7 +21,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Entity;
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
@@ -447,7 +447,7 @@ class SentencesTable extends Table
      * This allows to hide some extra fields
      * in json in a similar fashion as contain().
      */
-    public function findHideFields(Query $query, array $options)
+    public function findHideFields(SelectQuery $query, array $options)
     {
         $hide = $this->hideFields();
         return $query->formatResults(function($results) use ($hide) {
@@ -694,7 +694,7 @@ class SentencesTable extends Table
      */
     public function contain($what = [])
     {
-        $audioContainment = function (Query $q) use ($what) {
+        $audioContainment = function (SelectQuery $q) use ($what) {
             $audioFields = ['id', 'external', 'source', 'sentence_id'];
             $usersFields = ['username'];
             if (isset($what['sentenceDetails'])) {
@@ -710,7 +710,7 @@ class SentencesTable extends Table
 
         $transcriptionsContainment = [
             'Users' => ['fields' => ['username']],
-            'Sentences' => function (Query $q) {
+            'Sentences' => function (SelectQuery $q) {
                 return $q->select(['user_id']); // to allow calculating `Transcription.markup` property
             },
         ];
@@ -728,11 +728,11 @@ class SentencesTable extends Table
 
         if (CurrentUser::isMember()) {
             $contain += [
-                'Favorites_users' => function (Query $q) {
+                'Favorites_users' => function (SelectQuery $q) {
                     return $q->select(['id', 'favorite_id'])
                              ->where(['user_id' => CurrentUser::get('id')]);
                 },
-                'SentencesLists' => function (Query $q) {
+                'SentencesLists' => function (SelectQuery $q) {
                     return $q->select(['id', 'SentencesSentencesLists.sentence_id'])
                             ->where([
                                 'OR' => [
@@ -741,7 +741,7 @@ class SentencesTable extends Table
                                ]
                             ]);
                 },
-                'UsersSentences' => function (Query $q) {
+                'UsersSentences' => function (SelectQuery $q) {
                     return $q->select(['sentence_id', 'correctness'])
                              ->where(['user_id' => CurrentUser::get('id')]);
                 },

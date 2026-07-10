@@ -33,7 +33,7 @@ use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\I18n\DateTime;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -592,7 +592,7 @@ class UsersTable extends Table
         $this->save($user);
     }
 
-    public function findUserToLogin(Query $query, $options)
+    public function findUserToLogin(SelectQuery $query, $options)
     {
         // The result of this query will end up in AuthenticationComponent->getIdentity()
         return $query

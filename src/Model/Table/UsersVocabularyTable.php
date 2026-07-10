@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Core\Configure;
 
 
@@ -57,7 +57,7 @@ class UsersVocabularyTable extends Table
      * @param  int    $options['userId'] ID for user.
      * @param  string $options['lang']   Language.
      */
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query
             ->select(['created', 'user_id'])

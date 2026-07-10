@@ -29,7 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
@@ -160,7 +160,7 @@ class SentencesListsController extends AppController
         $query = $SentencesSentencesLists->find()
             ->where(['sentences_list_id' => $id])
             ->contain([
-                'Sentences' => function (Query $q) use ($translationsLang) {
+                'Sentences' => function (SelectQuery $q) use ($translationsLang) {
                     $Sentences = $q->getRepository();
                     return $q
                       ->find('filteredTranslations', translationLang: $translationsLang)

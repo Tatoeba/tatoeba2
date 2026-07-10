@@ -20,7 +20,7 @@ namespace App\Model\Table;
 
 use App\Event\StatsListener;
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -189,7 +189,7 @@ class AudiosTable extends Table
     /**
      * Custom finder for optimized pagination of sentences having audio
      */
-    public function findSentences(Query $query, array $options) {
+    public function findSentences(SelectQuery $query, array $options) {
         $query
             ->select(['sentence_id' => 'sentence_id'])
             ->groupBy(['sentence_id'])
@@ -219,10 +219,10 @@ class AudiosTable extends Table
     /**
      * Custom finder to include audio license information.
      */
-    public function findWithLicense(Query $query, array $options) {
+    public function findWithLicense(SelectQuery $query, array $options) {
         return $query
             ->select(['external'])
-            ->contain('Users', function(Query $q) {
+            ->contain('Users', function(SelectQuery $q) {
                 return $q->select('audio_license');
             });
     }
@@ -230,7 +230,7 @@ class AudiosTable extends Table
     /**
      * Custom finder for optimized count of total sentences having audio
      */
-    public function findSentencesCounter(Query $query, array $options) {
+    public function findSentencesCounter(SelectQuery $query, array $options) {
         $cache_key = 'audio_sentences_count';
 
         // Append language or other conditions to $cache_key

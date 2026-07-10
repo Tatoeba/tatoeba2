@@ -20,7 +20,7 @@
 namespace App\Model\Table;
 
 use Cake\Database\Schema\TableSchemaInterface;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
 use Cake\I18n\DateTime;
@@ -110,7 +110,7 @@ class PrivateMessagesTable extends Table
      * @param  string $options['folder'] Folder to get messages for.
      * @param  string $options['status'] Type of messages to get: 'read' or 'unread'
      */
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query
             ->where(['folder' => $options['folder']])

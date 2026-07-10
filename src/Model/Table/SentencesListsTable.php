@@ -18,7 +18,7 @@
  */
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Database\Schema\TableSchema;
@@ -132,7 +132,7 @@ class SentencesListsTable extends Table
      * $this->find('searchableBy', ['user_id' => 1234])
      *
      */
-    public function findSearchableBy(Query $query, array $options)
+    public function findSearchableBy(SelectQuery $query, array $options)
     {
         $userId = $options['user_id'] ?? null;
 
@@ -210,7 +210,7 @@ class SentencesListsTable extends Table
     }
 
 
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query->contain(['Users' => ['fields' => ['username']]]);
 

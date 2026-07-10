@@ -3,7 +3,7 @@
 namespace App\Model\Search;
 
 use App\Model\Search\TranslationFilterGroup;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 
 class ShowtransLimiter {
     private $filters = [];
@@ -20,7 +20,7 @@ class ShowtransLimiter {
         return $this->filters;
     }
 
-    private function compileToOredQueryExp(Query $query) {
+    private function compileToOredQueryExp(SelectQuery $query) {
         $exp = $query->expr();
         $exps = [];
         foreach ($this->filters as $filter) {

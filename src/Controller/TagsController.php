@@ -20,7 +20,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use App\Model\CurrentUser;
 
 
@@ -185,7 +185,7 @@ class TagsController extends AppController
             $query = $TagsSentences->find()
                 ->where(['tag_id' => $tagId])
                 ->contain([
-                    'Sentences' => function (Query $q) {
+                    'Sentences' => function (SelectQuery $q) {
                         $Sentences = $q->getRepository();
                         return $q
                           ->find('filteredTranslations')
@@ -197,7 +197,7 @@ class TagsController extends AppController
             $total = $TagsSentences->find()->where(['tag_id' => $tagId]);
             if (!empty($lang) && $lang != 'und') {
                 $query->where(['Sentences.lang' => $lang]);
-                $total->matching('Sentences', function (Query $q) use ($lang) {
+                $total->matching('Sentences', function (SelectQuery $q) use ($lang) {
                     return $q->where(['Sentences.lang' => $lang]);
                 });
             }

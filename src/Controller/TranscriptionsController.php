@@ -166,7 +166,7 @@ class TranscriptionsController extends AppController
                 ->find()
                 ->where(['Transcriptions.user_id' => $userId])
                 ->contain([
-                    'Sentences' => function (\Cake\ORM\Query $q) {
+                    'Sentences' => function (\Cake\ORM\Query\SelectQuery $q) {
                         $fields = $q->getRepository()->fields();
                         return $q->select($fields);
                     },
