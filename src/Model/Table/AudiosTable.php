@@ -205,7 +205,11 @@ class AudiosTable extends Table
                 return $q->contain(['Users' => ['fields' => ['username']]]);
             })
             ->contain('Transcriptions')
-            ->counter(function ($query) use ($originalQuery) {
+            ->counter(function ($q) use ($originalQuery) {
+                // $q has $originalQuery's where clauses plus potentially
+                // an additional where clause set by LimitedPaginator,
+                // so we just replace $originalQuery's entire where clause
+                $originalQuery->where($q->clause('where') ?? [], [], true);
                 return $originalQuery->count();
             });
 

@@ -375,6 +375,16 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(6, $result);
     }
 
+    function testSentencesFinder_appliesPostConditionsToCounter() {
+        $query = $this->Audio->find('sentences')->where(['Audios.id >=' => 5]);
+
+        $count = $query->count();
+        $results = $query->all();
+
+        $this->assertEquals(4, count($results));
+        $this->assertEquals(4, $count);
+    }
+
     function testSentencesFinder_lang() {
         $result = $this->Audio->find()
             ->where(['sentence_lang' => 'fra'])
