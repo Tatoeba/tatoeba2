@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09797cae1a994f35747944f557063315",
+    "content-hash": "ad948cea17690d4b8ada8fd1bb24f964",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -113,16 +113,16 @@
         },
         {
             "name": "cakephp/authentication",
-            "version": "3.3.6",
+            "version": "3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/authentication.git",
-                "reference": "86db711cbf34feee27d46a9c5810bb6abd49a4ff"
+                "reference": "a96a198816549d603a990730a861b756b887be95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/authentication/zipball/86db711cbf34feee27d46a9c5810bb6abd49a4ff",
-                "reference": "86db711cbf34feee27d46a9c5810bb6abd49a4ff",
+                "url": "https://api.github.com/repos/cakephp/authentication/zipball/a96a198816549d603a990730a861b756b887be95",
+                "reference": "a96a198816549d603a990730a861b756b887be95",
                 "shasum": ""
             },
             "require": {
@@ -177,7 +177,7 @@
                 "issues": "https://github.com/cakephp/authentication/issues",
                 "source": "https://github.com/cakephp/authentication"
             },
-            "time": "2026-06-14T15:35:23+00:00"
+            "time": "2026-07-08T22:07:16+00:00"
         },
         {
             "name": "cakephp/authorization",
@@ -246,16 +246,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "5.1.7",
+            "version": "5.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "3b7d95dc6c5d34a8d9f080cc592bee03da316596"
+                "reference": "199f0246ad497977e03f280a018b3fbebdc41071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/3b7d95dc6c5d34a8d9f080cc592bee03da316596",
-                "reference": "3b7d95dc6c5d34a8d9f080cc592bee03da316596",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/199f0246ad497977e03f280a018b3fbebdc41071",
+                "reference": "199f0246ad497977e03f280a018b3fbebdc41071",
                 "shasum": ""
             },
             "require": {
@@ -303,15 +303,12 @@
                 "cakephp/validation": "self.version"
             },
             "require-dev": {
-                "cakephp/cakephp-codesniffer": "^5.0",
-                "http-interop/http-factory-tests": "^2.0",
+                "cakephp/cakephp-codesniffer": "^5.3",
+                "http-interop/http-factory-tests": "dev-main",
                 "mikey179/vfsstream": "^1.6.10",
                 "mockery/mockery": "^1.6",
                 "paragonie/csp-builder": "^2.3 || ^3.0",
-                "phpstan/extension-installer": "^1.3",
-                "phpstan/phpstan": "1.12.7",
-                "phpunit/phpunit": "^10.5.5 || ^11.1.3",
-                "symplify/phpstan-rules": "^12.4"
+                "phpunit/phpunit": "^10.5.5 || ^11.1.3 || ^12.0.9"
             },
             "suggest": {
                 "ext-curl": "To enable more efficient network calls in Http\\Client.",
@@ -319,6 +316,11 @@
                 "paragonie/csp-builder": "CSP builder, to use the CSP Middleware"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.next": "5.2.x-dev"
+                }
+            },
             "autoload": {
                 "files": [
                     "src/Core/functions.php",
@@ -361,7 +363,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-05-23T16:51:40+00:00"
+            "time": "2026-05-23T16:33:40+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -424,27 +426,28 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "4.6.6",
+            "version": "4.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "c7312f25c1ebaf334090d53a29c872233d1258be"
+                "reference": "7745bb8489b1aaaa17811db9ca4f3a1f153d7d98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/c7312f25c1ebaf334090d53a29c872233d1258be",
-                "reference": "c7312f25c1ebaf334090d53a29c872233d1258be",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/7745bb8489b1aaaa17811db9ca4f3a1f153d7d98",
+                "reference": "7745bb8489b1aaaa17811db9ca4f3a1f153d7d98",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cache": "^5.0",
-                "cakephp/orm": "^5.0",
+                "cakephp/cache": "^5.2.9",
+                "cakephp/database": "^5.2.9",
+                "cakephp/orm": "^5.2.9",
                 "php": ">=8.1",
-                "robmorgan/phinx": "^0.16.10"
+                "robmorgan/phinx": "0.16.10"
             },
             "require-dev": {
-                "cakephp/bake": "^3.0",
-                "cakephp/cakephp": "^5.0.11",
+                "cakephp/bake": "^3.3",
+                "cakephp/cakephp": "^5.2.9",
                 "cakephp/cakephp-codesniffer": "^5.0",
                 "phpunit/phpunit": "^10.5.5 || ^11.1.3 || ^12.2.4"
             },
@@ -481,7 +484,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2025-07-22T17:47:52+00:00"
+            "time": "2026-04-30T19:46:00+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
