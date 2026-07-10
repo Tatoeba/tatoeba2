@@ -201,7 +201,7 @@
     </div>
 
     <div layout="row" layout-align="center center" class="license">
-        <img alt="Creative Commons License" src="/img/cc-logo.png" />
+        <img alt="Creative Commons License" src="/img/cc-logo.svg" width="36" height="36" style="width: 36px; height: 36px;" />
         <div class="text">
             <?php
             echo __(
