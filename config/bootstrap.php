@@ -44,6 +44,7 @@ use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+use Detection\MobileDetect;
 use function Cake\Core\env;
 
 /*
@@ -83,7 +84,7 @@ require CAKE . 'functions.php';
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
-} catch (\Exception $e) {
+} catch (Exception $e) {
     exit($e->getMessage() . "\n");
 }
 
@@ -99,8 +100,8 @@ if (file_exists(CONFIG . 'app_local.php')) {
  * When debug = true the metadata cache should only last for a short time.
  */
 if (Configure::read('debug')) {
-    Configure::write('Cache._cake_model_.duration', '+2 minutes');
-    Configure::write('Cache._cake_translations_.duration', '+2 minutes');
+    Configure::write('Cache._cake_model_.duration', '+1 minute');
+    Configure::write('Cache._cake_translations_.duration', '+1 minute');
     // disable router cache during development
     Configure::write('Cache._cake_routes_.duration', '+2 seconds');
 
@@ -171,29 +172,31 @@ if (PHP_SAPI === 'cli') {
 }
 
 /*
- * Set the full base URL.
- * This URL is used as the base of all absolute links.
- * Can be very useful for CLI/Commandline applications.
+ * Set the full base URL for the application.
+ *
+ * SECURITY: In production, App.fullBaseUrl MUST be explicitly configured to prevent
+ * Host Header Injection attacks. The HostHeaderMiddleware enforces this requirement
+ * and validates incoming Host headers against the configured value.
+ *
+ * Set APP_FULL_BASE_URL in your environment variables or configure App.fullBaseUrl
+ * in config/app.php or config/app_local.php
+ *
+ * Example: APP_FULL_BASE_URL=https://example.com
  */
 $fullBaseUrl = Configure::read('App.fullBaseUrl');
 if (!$fullBaseUrl) {
-    /*
-     * When using proxies or load balancers, SSL/TLS connections might
-     * get terminated before reaching the server. If you trust the proxy,
-     * you can enable `$trustProxy` to rely on the `X-Forwarded-Proto`
-     * header to determine whether to generate URLs using `https`.
-     *
-     * See also https://book.cakephp.org/5/en/controllers/request-response.html#trusting-proxy-headers
-     */
-    $trustProxy = false;
-
-    $s = null;
-    if (env('HTTPS') || ($trustProxy && env('HTTP_X_FORWARDED_PROTO') === 'https')) {
-        $s = 's';
-    }
-
     $httpHost = env('HTTP_HOST');
+
+    /*
+     * Development mode fallback: Use HTTP_HOST for convenience.
+     * WARNING: This is ONLY safe in development. In production, the
+     * HostHeaderMiddleware will reject requests when fullBaseUrl is not configured.
+     */
     if ($httpHost) {
+        $s = null;
+        if (env('HTTPS') || env('HTTP_X_FORWARDED_PROTO') === 'https') {
+            $s = 's';
+        }
         $fullBaseUrl = 'http' . $s . '://' . $httpHost;
     }
     unset($httpHost, $s);
@@ -220,12 +223,12 @@ Security::setSalt(Configure::consume('Security.salt'));
  * and the mobiledetect package from composer.json.
  */
 ServerRequest::addDetector('mobile', function ($request) {
-    $detector = new \Detection\MobileDetect();
+    $detector = new MobileDetect();
 
     return $detector->isMobile();
 });
 ServerRequest::addDetector('tablet', function ($request) {
-    $detector = new \Detection\MobileDetect();
+    $detector = new MobileDetect();
 
     return $detector->isTablet();
 });
