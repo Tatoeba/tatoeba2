@@ -35,7 +35,6 @@ class TagsSentencesTable extends Table
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
 
-        $this->addBehavior('LimitResults');
         $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => ['added_time' => 'new']

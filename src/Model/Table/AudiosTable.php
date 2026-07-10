@@ -51,7 +51,6 @@ class AudiosTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
-        $this->addBehavior('LimitResults');
 
         $this->getEventManager()->on(new StatsListener());
     }

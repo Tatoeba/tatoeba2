@@ -47,7 +47,6 @@ class SentenceCommentsTable extends Table
         $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('LimitResults');
     }
 
     public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker

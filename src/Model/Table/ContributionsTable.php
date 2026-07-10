@@ -56,8 +56,6 @@ class ContributionsTable extends Table
         $this->belongsTo('Users');
         $this->belongsTo('Sentences');
         $this->belongsTo('Translations');
-
-        $this->addBehavior('LimitResults');
     }
 
     public function logSentence($event) {
