@@ -484,4 +484,11 @@ return [
     ],
 
     'Roles' => array_combine(User::ALL_ROLES, User::ALL_ROLES),
+
+    'Migrations' => [
+        // null (default): Autodetect - use legacy if phinxlog tables exist
+        // false: Force use of new cake_migrations table
+        // true: Force use of legacy phinxlog tables
+        'legacyTables' => null,
+    ],
 ];
