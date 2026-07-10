@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddSrcLangTgtLangIndexToTranslations extends AbstractMigration
+class AddSrcLangTgtLangIndexToTranslations extends BaseMigration
 {
     /**
      * Change Method.

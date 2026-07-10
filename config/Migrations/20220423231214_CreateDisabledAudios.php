@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class CreateDisabledAudios extends AbstractMigration
+class CreateDisabledAudios extends BaseMigration
 {
     /**
      * Change Method.

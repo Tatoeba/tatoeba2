@@ -1,9 +1,9 @@
 <?php
 
 use Cake\Core\Configure;
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class TokiPonaCodeRename extends AbstractMigration
+class TokiPonaCodeRename extends BaseMigration
 {
     private $langColumns = [
         'contributions' => ['sentence_lang', 'translation_lang'],

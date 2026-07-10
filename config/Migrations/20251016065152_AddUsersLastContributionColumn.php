@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddUsersLastContributionColumn extends AbstractMigration
+class AddUsersLastContributionColumn extends BaseMigration
 {
     /**
      * Change Method.

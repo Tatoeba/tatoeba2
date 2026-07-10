@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddUserIdIndexOnAudiosTable extends AbstractMigration
+class AddUserIdIndexOnAudiosTable extends BaseMigration
 {
     public function up()
     {

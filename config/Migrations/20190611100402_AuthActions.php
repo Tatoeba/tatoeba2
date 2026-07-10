@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AuthActions extends AbstractMigration
+class AuthActions extends BaseMigration
 {
     /**
      * Change Method.

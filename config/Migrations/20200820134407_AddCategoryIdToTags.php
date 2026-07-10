@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddCategoryIdToTags extends AbstractMigration
+class AddCategoryIdToTags extends BaseMigration
 {
     /**
      * Change Method.

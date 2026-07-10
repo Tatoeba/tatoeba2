@@ -2,9 +2,9 @@
 
 use Cake\Core\Configure;
 use Cake\Datasource\FactoryLocator;
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class OldTupiCodeRename extends AbstractMigration
+class OldTupiCodeRename extends BaseMigration
 {
     private $langColumns = [
         'audios' => ['sentence_lang'],
@@ -37,7 +37,7 @@ class OldTupiCodeRename extends AbstractMigration
     }
 
     private function reindexAffectedSentences(string $lang) {
-        $connection = $this->getAdapter()->getCakeConnection();
+        $connection = $this->getAdapter()->getAdapter()->getConnection();
         $Sentences = FactoryLocator::get('Table')
             ->get('Sentences', compact('connection'));
 

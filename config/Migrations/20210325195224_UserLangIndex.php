@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class UserLangIndex extends AbstractMigration
+class UserLangIndex extends BaseMigration
 {
     public function up()
     {

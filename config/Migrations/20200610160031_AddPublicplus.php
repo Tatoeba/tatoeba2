@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddPublicplus extends AbstractMigration
+class AddPublicplus extends BaseMigration
 {
     /**
      * Change Method.

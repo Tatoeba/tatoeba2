@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class UpdateListVisibility extends AbstractMigration
+class UpdateListVisibility extends BaseMigration
 {
     /**
      * Change Method.

@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class CreateExports extends AbstractMigration
+class CreateExports extends BaseMigration
 {
     /**
      * Change Method.

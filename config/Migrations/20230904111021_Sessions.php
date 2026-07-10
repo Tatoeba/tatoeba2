@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class Sessions extends AbstractMigration
+class Sessions extends BaseMigration
 {
     public function up()
     {

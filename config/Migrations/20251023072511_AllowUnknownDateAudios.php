@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AllowUnknownDateAudios extends AbstractMigration
+class AllowUnknownDateAudios extends BaseMigration
 {
     private function set_nullable_datetime(bool $nullable)
     {

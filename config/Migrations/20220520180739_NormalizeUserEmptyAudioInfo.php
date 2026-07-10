@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class NormalizeUserEmptyAudioInfo extends AbstractMigration
+class NormalizeUserEmptyAudioInfo extends BaseMigration
 {
     public function up()
     {
