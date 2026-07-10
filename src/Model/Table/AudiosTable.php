@@ -190,41 +190,23 @@ class AudiosTable extends Table
      * Custom finder for optimized pagination of sentences having audio
      */
     public function findSentences(Query $query, array $options) {
-        $query = $query
-            ->applyOptions($options)
+        $query
             ->select(['sentence_id' => 'sentence_id'])
-            ->orderBy(['Audios.id' => 'DESC']);
-
-        if (isset($options['lang'])) {
-            $query->where(['sentence_lang' => $options['lang']]);
-        }
-
-        if (isset($options['user_id'])) {
-            $query->where(['Audios.user_id' => $options['user_id']]);
-        }
-
-        if (isset($options['maxResults'])) {
-            $query = $query->find('latest', $options);
-        }
-
-        $query = $query
             ->groupBy(['sentence_id'])
             ->orderBy(['MAX(Audios.id)' => 'DESC'], true);
-        $countQuery = clone $query;
+        $originalQuery = clone $query;
 
         $query = $query
             ->setRepository($this->Sentences->getTarget())
             ->select($this->Sentences->fields())
             ->innerJoinWith('Audios')
-            ->contain('Audios', function ($q) use ($options) {
-                if (isset($options['user_id'])) {
-                    $q->where(['Audios.user_id' => $options['user_id']]);
-                }
+            ->contain('Audios', function ($q) use ($originalQuery) {
+                $q->where($originalQuery->clause('where') ?? []);
                 return $q->contain(['Users' => ['fields' => ['username']]]);
             })
             ->contain('Transcriptions')
-            ->counter(function ($query) use ($countQuery) {
-                return $countQuery->count();
+            ->counter(function ($query) use ($originalQuery) {
+                return $originalQuery->count();
             });
 
         return $query;
@@ -245,11 +227,16 @@ class AudiosTable extends Table
      * Custom finder for optimized count of total sentences having audio
      */
     public function findSentencesCounter(Query $query, array $options) {
-        $cache_key = 'audio_sentences_count_';
+        $cache_key = 'audio_sentences_count';
 
-        if (isset($options['lang'])) {
-            $query->where(['sentence_lang' => $options['lang']]);
-            $cache_key .= $options['lang'];
+        // Append language or other conditions to $cache_key
+        $where = $query->clause('where');
+        if ($where) {
+            $query->clause('where')->traverse(
+                function ($exp) use (&$cache_key) {
+                    $cache_key .= '_' . $exp->getValue();
+                }
+            );
         }
 
         $counter = fn($query) => $query

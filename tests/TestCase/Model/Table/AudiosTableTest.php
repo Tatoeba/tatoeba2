@@ -369,28 +369,18 @@ class AudiosTableTest extends TestCase {
         }
     }
 
-    function testSentencesFinder_maxResults() {
-        $result = $this->Audio->find('sentences', ['maxResults' => 5])->all()->toList();
+    function testSentencesFinder_counter() {
+        $result = $this->Audio->find('sentences')->count();
 
-        $expected = [
-            [66, 1],  // sentence id, audio count
-            [57, 1],
-            [15, 1],
-            [4,  2],
-            [12, 1],
-        ];
-
-        $this->assertEquals(count($expected), count($result));
-
-        foreach ($result as $audio) {
-            list($expectedSentenceId, $expectedAudioCount) = array_shift($expected);
-            $this->assertEquals($expectedSentenceId, $audio->id);
-            $this->assertEquals($expectedAudioCount, count($audio->audios));
-        }
+        $this->assertEquals(6, $result);
     }
 
     function testSentencesFinder_lang() {
-        $result = $this->Audio->find('sentences', ['lang' => 'fra'])->all()->toList();
+        $result = $this->Audio->find()
+            ->where(['sentence_lang' => 'fra'])
+            ->find('sentences')
+            ->all()
+            ->toList();
 
         $this->assertEquals(2, count($result));
 
@@ -401,17 +391,12 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals(1, count($result[1]->audios));
     }
 
-    function testSentencesFinder_lang_maxResults() {
-        $result = $this->Audio->find('sentences', ['lang' => 'fra', 'maxResults' => 1])->all()->toList();
-
-        $this->assertEquals(1, count($result));
-
-        $this->assertEquals(4, $result[0]->id);
-        $this->assertEquals(2, count($result[0]->audios));
-    }
-
     function testSentencesFinder_user_id() {
-        $result = $this->Audio->find('sentences', ['user_id' => 3])->all()->toList();
+        $result = $this->Audio->find()
+            ->where(['Audios.user_id' => 3])
+            ->find('sentences')
+            ->all()
+            ->toList();
 
         $this->assertEquals(2, count($result));
 
@@ -448,16 +433,6 @@ class AudiosTableTest extends TestCase {
         $this->assertEmpty($result);
     }
 
-    function testSentencesFinder_user_id_maxResults() {
-        $result = $this->Audio->find('sentences', ['user_id' => 3, 'maxResults' => 1])->all()->toList();
-
-        $this->assertEquals(1, count($result));
-
-        $this->assertEquals(15, $result[0]->id);
-        $this->assertEquals(1, count($result[0]->audios));
-        $this->assertEquals(3, $result[0]->audios[0]->user_id);
-    }
-
     function testSentencesCountFinder() {
         $result = $this->Audio->find('sentencesCounter')->count();
 
@@ -465,7 +440,9 @@ class AudiosTableTest extends TestCase {
     }
 
     function testSentencesCountFinder_withLang() {
-        $result = $this->Audio->find('sentencesCounter', ['lang' => 'fra'])->count();
+        $result = $this->Audio->find()
+            ->where(['sentence_lang' => 'fra'])
+            ->find('sentencesCounter')->count();
 
         $this->assertEquals(2, $result);
     }
