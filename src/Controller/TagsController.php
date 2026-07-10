@@ -210,8 +210,11 @@ class TagsController extends AppController
                 // keep added_time for backward compatibility
                 'sortableFields' => ['id', 'sentence_id', 'added_time'],
             ];
-            $finder = ['latest' => ['maxResults' => $totalLimit]];
-            $sentences = $this->paginate($query, compact('finder'));
+            $options = [
+                'className' => 'Limited',
+                'maxResults' => $totalLimit,
+            ];
+            $sentences = $this->paginate($query, $options);
             $total = $total->count();
 
             $taggerIds = [];

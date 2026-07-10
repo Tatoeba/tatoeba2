@@ -80,20 +80,20 @@ class SentenceCommentsController extends AppController
      */
     public function index($langFilter = 'und')
     {
+        $query = $this->SentenceComments->find('paginated');
         $options = [
+            'className' => 'Limited',
             'maxResults' => $this::PAGINATION_DEFAULT_TOTAL_LIMIT,
         ];
         $botsIds = Configure::read('Bots.userIds');
         if (!empty($botsIds)) {
-            $options['conditions']['SentenceComments.user_id NOT IN'] = $botsIds;
+            $query->where(['SentenceComments.user_id NOT IN' => $botsIds]);
         }
         if ($langFilter != 'und') {
-            $options['conditions']['Sentences.lang'] = $langFilter;
+            $query->where(['Sentences.lang' => $langFilter]);
         }
 
-        $finder = ['latest' => $options];
-        $query = $this->SentenceComments->find('paginated');
-        $latestComments = $this->paginate($query, compact('finder'));
+        $latestComments = $this->paginate($query, $options);
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 

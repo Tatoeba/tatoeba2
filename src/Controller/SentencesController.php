@@ -563,8 +563,11 @@ class SentencesController extends AppController
             'limit' => CurrentUser::getSetting('sentences_per_page'),
         ];
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $query->find('latest', ['maxResults' => $totalLimit]);
-        $allSentences = $this->paginate($query);
+        $options = [
+            'className' => 'Limited',
+            'maxResults' => $totalLimit,
+        ];
+        $allSentences = $this->paginate($query, $options);
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);

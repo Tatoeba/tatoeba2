@@ -183,8 +183,11 @@ class SentencesListsController extends AppController
             ],
             'sortableFields' => ['id', 'sentence_id'],
         ];
-        $finder = ['latest' => ['maxResults' => $totalLimit]];
-        $sentencesInList = $this->paginate($query, compact('finder'));
+        $options = [
+            'className' => 'Limited',
+            'maxResults' => $totalLimit,
+        ];
+        $sentencesInList = $this->paginate($query, $options);
 
         $total = $SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
 
