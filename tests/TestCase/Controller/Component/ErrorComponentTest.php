@@ -63,7 +63,7 @@ END_OF_LOG;
         $this->Error
             ->expects($this->any())
             ->method('generateNewCode')
-            ->will($this->returnValue($code));
+            ->willReturn($code);
 
         $returned = $this->Error->traceError('ouch!');
 
@@ -83,7 +83,7 @@ END_OF_LOG;
         $this->Error
             ->expects($this->any())
             ->method('generateNewCode')
-            ->will($this->returnValue($code));
+            ->willReturn($code);
         $this->controller
             ->expects($this->once())
             ->method('log')

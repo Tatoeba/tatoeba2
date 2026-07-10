@@ -42,7 +42,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->handler
             ->expects($this->any())
             ->method('handle')
-            ->will($this->returnValue(new Response()));
+            ->willReturn(new Response());
     }
 
     function tearDown(): void {
@@ -206,7 +206,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->handler
             ->expects($this->any())
             ->method('handle')
-            ->will($this->returnValue(new RedirectResponse('/somehwere/else')));
+            ->willReturn(new RedirectResponse('/somehwere/else'));
 
         $this->testMiddleware_setsCookie();
     }

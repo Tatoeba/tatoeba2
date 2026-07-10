@@ -52,7 +52,7 @@ class SearchApiTest extends TestCase
                        ->getMock();
         $search->expects($this->any())
                ->method('generateRand')
-               ->will($this->returnValue(12345));
+               ->willReturn(12345);
 
         $this->SearchApi = new SearchApi($search);
     }

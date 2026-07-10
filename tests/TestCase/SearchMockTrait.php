@@ -29,11 +29,11 @@ trait SearchMockTrait
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')
-               ->will($this->returnValue($results));
+               ->willReturn($results);
         $numberOfUpdatedDocuments = 42;
         $client->expects($this->any())
                ->method('UpdateAttributes')
-               ->will($this->returnValue($numberOfUpdatedDocuments));
+               ->willReturn($numberOfUpdatedDocuments);
         Configure::write('Sphinx.client', $client);
 
         Configure::write('Search.enabled', true);
@@ -46,10 +46,10 @@ trait SearchMockTrait
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')
-               ->will($this->returnValue(false));
+               ->willReturn(false);
         $client->expects($this->any())
                ->method('GetLastError')
-               ->will($this->returnValue($errorMessage));
+               ->willReturn($errorMessage);
         Configure::write('Sphinx.client', $client);
 
         Configure::write('Search.enabled', true);

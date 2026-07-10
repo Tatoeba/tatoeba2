@@ -83,10 +83,10 @@ class TatoebaFlagsFilterTest extends TestCase
             ->getMock();
         $mock
             ->method('path')
-            ->will($this->returnValue($path));
+            ->willReturn($path);
         $mock
             ->method('contents')
-            ->will($this->returnValue($contents));
+            ->willReturn($contents);
         return $mock;
     }
 

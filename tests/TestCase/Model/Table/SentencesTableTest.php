@@ -69,16 +69,16 @@ class SentencesTableTest extends TestCase {
         $autotranscription
             ->expects($this->any())
             ->method('cmn_detectScript')
-            ->will($this->returnValue('Hans'));
+            ->willReturn('Hans');
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_generate')
             ->with($this->logicalNot($this->isEmpty()), $this->anything())
-            ->will($this->returnValue('transcription in furigana'));
+            ->willReturn('transcription in furigana');
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_validate')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
     }
 
     function _installAutotranscriptionMock() {
@@ -386,7 +386,7 @@ class SentencesTableTest extends TestCase {
         $autotranscription
             ->expects($this->once())
             ->method('cmn_detectScript')
-            ->will($this->returnValue('Hant'));
+            ->willReturn('Hant');
         $cmnSentenceId = 2;
         $data = $this->Sentence->get($cmnSentenceId);
         $data->text = '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。';

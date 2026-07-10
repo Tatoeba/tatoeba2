@@ -33,13 +33,13 @@ class TranscriptionsCommandTest extends TestCase
             ->getMock();
         $AT->expects($this->any())
            ->method('jpn_Jpan_to_Hrkt_generate')
-           ->will($this->returnValue('transcription in furigana'));
+           ->willReturn('transcription in furigana');
         $AT->expects($this->any())
            ->method('jpn_Jpan_to_Hrkt_validate')
-           ->will($this->returnValue(true));
+           ->willReturn(true);
         $AT->expects($this->any())
            ->method('cmn_detectScript')
-           ->will($this->returnValue('Hant'));
+           ->willReturn('Hant');
 
         return $AT;
     }

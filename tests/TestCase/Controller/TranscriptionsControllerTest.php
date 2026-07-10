@@ -45,15 +45,15 @@ class TranscriptionsControllerTest extends TestCase {
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_validate')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_generate')
-            ->will($this->returnValue('furi'));
+            ->willReturn('furi');
         $autotranscription
             ->expects($this->any())
             ->method('yue_Hant_to_Latn_generate')
-            ->will($this->returnValue('yeah'));
+            ->willReturn('yeah');
 
         $this->_controller->Transcriptions
             ->setAutotranscription($autotranscription);

@@ -141,7 +141,7 @@ class AutotranscriptionTest extends TestCase {
                        ->getMock();
         $client->expects($this->once())
                ->method('get')
-               ->will($this->returnValue($response));
+               ->willReturn($response);
         return $client;
     }
 
