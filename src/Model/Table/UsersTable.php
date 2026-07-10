@@ -127,7 +127,7 @@ class UsersTable extends Table
         $validator
             ->allowEmptyDateTime('birthday')
             ->add('birthday', 'validBirthday', [
-                'rule' => function ($data, $provider) {
+                'rule' => function ($data, array $context): bool {
                     $data = explode('-', $data, 3);
                     $data = array_map(fn ($n) => (int)$n, $data);
                     list($year, $month, $day) = array_pad($data, 3, null);
@@ -147,7 +147,7 @@ class UsersTable extends Table
                 'message' => __('The entered birthday is an invalid date. Please try again.'),
             ])
             ->add('birthday', 'isComplete', [
-                'rule' => function ($data, $provider) {
+                'rule' => function ($data, array $context): bool {
                     $data = explode('-', $data, 3);
                     $data = array_map(fn ($n) => (int)$n, $data);
                     list($year, $month, $day) = array_pad($data, 3, null);

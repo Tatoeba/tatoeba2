@@ -87,9 +87,9 @@ class PrivateMessagesTable extends Table
         return $validator;
     }
 
-    function notBlankExceptDraft($value, $provider)
+    public function notBlankExceptDraft($value, array $context): bool
     {
-        $data = $provider['data'];
+        $data = $context['data'];
         if (isset($data['folder']) && $data['folder'] == 'Drafts') {
             return true;
         } else {
