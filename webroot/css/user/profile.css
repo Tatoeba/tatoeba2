@@ -36,12 +36,131 @@
     padding-bottom: 20px;
 }
 
+#profile .profile-picture {
+    margin: 0 0 4px 0;
+    width: 128px;
+    height: 128px;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid #e3e3e3;
+}
+
+#profile .profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transform-origin: center;
+    display: block;
+}
+
 #profile .info {
     padding: 0 20px;
+    height: 128px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+#profile .info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#profile .info h2 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+#profile .member-since {
+    margin: 0 0 2px 0;
+}
+
+#profile .contact-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    align-self: flex-start;
+}
+
+#profile .contact-link md-icon {
+    margin: 0 10px 0 0;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    min-height: 24px;
+    min-width: 24px;
+    color: #4CAF50;
+}
+
+html[dir="rtl"] #profile .contact-link md-icon {
+    margin: 0 0 0 10px;
+}
+
+#profile .contact-link .contact-text {
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+#profile .actions {
+    gap: 8px;
+}
+
+#profile .actions md-button {
+    margin: 0;
+}
+
+/*
+ * Preferences / Settings Summary
+ */
+#profile .settings-summary {
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#profile .settings-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+#profile .settings-item md-icon {
+    margin: 0 10px 0 0;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    min-height: 24px;
+    min-width: 24px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+html[dir="rtl"] #profile .settings-item md-icon {
+    margin: 0 0 0 10px;
+}
+
+#profile .settings-item-text {
+    padding-top: 1px;
+}
+
+#profile .settings-item-text.languages-text {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+/*
+ * Personal Info
+ */
 
 #profile .personal-info {
     padding: 5px;
+    margin: 16px 0;
+}
+
+#profile .personal-info-row {
+    margin: 8px 0;
 }
 
 #profile .label {
@@ -67,6 +186,10 @@
 .profileDescription {
     padding: 20px 20px 10px 20px;
     margin: 10px 0;
+}
+
+.profileDescription.empty {
+    text-align: center;
 }
 
 .profileDescription .content {
@@ -96,4 +219,52 @@ html[dir="rtl"] md-list .language-icon {
 
 .md-list-item-text {
     padding: 5px 0;
+}
+
+/* this code centers the page on main content if there is enough space to*/
+@media (min-width: 1300px) {
+
+    .container {
+        max-width: none;
+        margin: 0 0 10px 0;
+    }
+
+    .profile-columns {
+        display: grid;
+        /* 4 Columns */
+        grid-template-columns: calc(50% - 395px) 670px 35px 270px;
+        align-items: start;
+    }
+
+    #main_content {
+        grid-column: 2;
+        grid-row: 1;
+        position: static;
+        left: auto;
+        max-width: none;
+        margin: 0;
+    }
+
+    #annexe_content {
+        grid-column: 4;
+        grid-row: 1;
+        position: static;
+        left: auto;
+        top: auto;
+        float: none;
+        width: auto;
+    }
+
+    html[dir="rtl"] .profile-columns {
+        grid-template-columns: 270px 35px 670px calc(50% - 395px);
+    }
+    
+    html[dir="rtl"] #main_content {
+        grid-column: 3;
+    }
+    
+    html[dir="rtl"] #annexe_content {
+        grid-column: 1;
+    }
+
 }
