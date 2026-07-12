@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 
 class LicensingTest extends TestCase
 {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.SentencesLists',
         'app.SentencesSentencesLists',
         'app.Users',
@@ -43,7 +43,7 @@ class LicensingTest extends TestCase
         $this->Licensing->refreshLicenseSwitchList(7);
 
         $after = $SentencesLists->find()->all();
-        $this->assertNotEquals($before, $after);
+        $this->assertNotEquals($before->count(), $after->count());
 
         $lastList = $after->last();
         $this->assertIsSwitchListOf($lastList, 7);
@@ -88,7 +88,7 @@ class LicensingTest extends TestCase
 
         $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->find()->all()->last();
-        $this->assertEquals(4, unserialize($job->data)['listId']);
+        $this->assertEquals(4, json_decode($job->data, true)['listId']);
     }
 
     public function testRefresh_doesNotCreatesDuplicateJob() {

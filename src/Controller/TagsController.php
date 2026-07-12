@@ -20,7 +20,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use App\Model\CurrentUser;
 
 
@@ -32,7 +32,7 @@ class TagsController extends AppController
      * @var string
      * @access public
      */
-    public $name = 'Tags';
+    public string $name = 'Tags';
 
     /**
      * Before filter.
@@ -41,9 +41,9 @@ class TagsController extends AppController
      */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->unlockedActions = [
+        $this->FormProtection->setConfig([
             'add_tag_post'
-        ];
+        ]);
 
         return parent::beforeFilter($event);
     }
@@ -73,7 +73,7 @@ class TagsController extends AppController
                 $this->set('sentenceId', $sentenceId);
                 $this->set('date', $tag->link->added_time);
                 $sentence = $this->fetchTable('Sentences')
-                    ->get($sentenceId, ['fields' => ['lang']]);
+                    ->get($sentenceId, fields: ['lang']);
                 $this->set('sentenceLang', $sentence->lang);
             }
         }
@@ -182,11 +182,10 @@ class TagsController extends AppController
         if ($tagExists) {
             $TagsSentences = $this->fetchTable('TagsSentences');
             $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-            $options = [
-                'conditions' => ['tag_id' => $tagId],
-                'maxResults' => $totalLimit,
-                'contain' => [
-                    'Sentences' => function (Query $q) {
+            $query = $TagsSentences->find()
+                ->where(['tag_id' => $tagId])
+                ->contain([
+                    'Sentences' => function (SelectQuery $q) {
                         $Sentences = $q->getRepository();
                         return $q
                           ->find('filteredTranslations')
@@ -194,12 +193,11 @@ class TagsController extends AppController
                           ->contain($Sentences->contain(['translations' => true]))
                           ->select($Sentences->fields());
                     },
-                ],
-            ];
+                ]);
             $total = $TagsSentences->find()->where(['tag_id' => $tagId]);
             if (!empty($lang) && $lang != 'und') {
-                $options['conditions']['Sentences.lang'] = $lang;
-                $total->matching('Sentences', function (Query $q) use ($lang) {
+                $query->where(['Sentences.lang' => $lang]);
+                $total->matching('Sentences', function (SelectQuery $q) use ($lang) {
                     return $q->where(['Sentences.lang' => $lang]);
                 });
             }
@@ -212,12 +210,11 @@ class TagsController extends AppController
                 // keep added_time for backward compatibility
                 'sortableFields' => ['id', 'sentence_id', 'added_time'],
             ];
-            $finder = ['latest' => $options];
-            try {
-                $sentences = $this->paginate($TagsSentences, compact('finder'));
-            } catch (\Cake\Http\Exception\NotFoundException $e) {
-                return $this->redirectPaginationToLastPage();
-            }
+            $options = [
+                'className' => 'Limited',
+                'maxResults' => $totalLimit,
+            ];
+            $sentences = $this->paginate($query, $options);
             $total = $total->count();
 
             $taggerIds = [];

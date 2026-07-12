@@ -24,7 +24,7 @@ use Cake\TestSuite\TestCase;
 
 class SentencesSearchFormTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.SentencesLists',
         'app.Tags',
@@ -34,10 +34,30 @@ class SentencesSearchFormTest extends TestCase
     private $Form;
     private $Search;
 
+    protected function _createTestProxy(string $class)
+    {
+        $instance = new $class();
+        $reflection = new \ReflectionClass($class);
+
+        $proxy = $this->createMock($class);
+        foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+            $methodName = $method->getName();
+            $callback = [$instance, $methodName];
+            if (!$method->isConstructor() && !$method->isDestructor() && !$method->isFinal() && $methodName != '__clone' && is_callable($callback)) {
+                $proxy->method($method->getName())
+                    ->willReturnCallback(
+                        fn(...$args) => call_user_func_array($callback, $args)
+                    );
+            }
+        }
+
+        return $proxy;
+    }
+
     public function setUp(): void {
         parent::setUp();
         $this->Form = new SentencesSearchForm();
-        $this->Search = $this->createTestProxy(\App\Model\Search::class);
+        $this->Search = $this->_createTestProxy(\App\Model\Search::class);
         $this->Form->setSearch($this->Search);
     }
 
@@ -82,7 +102,7 @@ class SentencesSearchFormTest extends TestCase
         $this->assertNull($this->Form->getData('unknown_param'));
     }
 
-    public function searchParamsProvider() {
+    public static function searchParamsProvider() {
         return [
             [ ['query' => 'your proposal'],
               ['filterByQuery', 'your proposal' ],

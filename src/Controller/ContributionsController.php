@@ -28,7 +28,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\I18n\FrozenTime;
 
 /**
  * Controller for contributions.
@@ -41,7 +40,7 @@ use Cake\I18n\FrozenTime;
  */
 class ContributionsController extends AppController
 {
-    public $name = 'Contributions';
+    public string $name = 'Contributions';
 
     /**
      * Display all contributions in specified language (or all languages).
@@ -86,7 +85,7 @@ class ContributionsController extends AppController
      */
     public function activity_timeline($year = null, $month = null)
     {
-        $now = FrozenTime::now();
+        $now = \Cake\I18n\DateTime::now();
         $redirect = false;
         if ($year == null || $year > $now->format('Y') || $year < 2007) {
             $year = $now->format('Y');
@@ -159,8 +158,11 @@ class ContributionsController extends AppController
             'limit' => 100,
         ];
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $query->find('latest', ['maxResults' => $totalLimit]);
-        $contributions = $this->paginateOrRedirect($query);
+        $options = [
+            'className' => 'Limited',
+            'maxResults' => $totalLimit,
+        ];
+        $contributions = $this->paginate($query, $options);
         $this->set('contributions', $contributions);
         $this->set('userExists', true);
         $this->set('totalLimit', $totalLimit);

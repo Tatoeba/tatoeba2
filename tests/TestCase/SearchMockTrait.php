@@ -25,15 +25,15 @@ trait SearchMockTrait
         $results = compact('matches', 'total', 'total_found');
 
         $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
-                       ->setMethods(['Query', 'UpdateAttributes', 'SetLimits'])
+                       ->onlyMethods(['Query', 'UpdateAttributes', 'SetLimits'])
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')
-               ->will($this->returnValue($results));
+               ->willReturn($results);
         $numberOfUpdatedDocuments = 42;
         $client->expects($this->any())
                ->method('UpdateAttributes')
-               ->will($this->returnValue($numberOfUpdatedDocuments));
+               ->willReturn($numberOfUpdatedDocuments);
         Configure::write('Sphinx.client', $client);
 
         Configure::write('Search.enabled', true);
@@ -42,14 +42,14 @@ trait SearchMockTrait
     public function enableMockedSearchError(string $errorMessage = 'search engine error goes here')
     {
         $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
-                       ->setMethods(['Query', 'GetLastError'])
+                       ->onlyMethods(['Query', 'GetLastError'])
                        ->getMock();
         $client->expects($this->any())
                ->method('Query')
-               ->will($this->returnValue(false));
+               ->willReturn(false);
         $client->expects($this->any())
                ->method('GetLastError')
-               ->will($this->returnValue($errorMessage));
+               ->willReturn($errorMessage);
         Configure::write('Sphinx.client', $client);
 
         Configure::write('Search.enabled', true);

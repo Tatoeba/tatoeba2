@@ -3,13 +3,13 @@ namespace App\Test\TestCase\Command;
 
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\Console\Command;
+use Cake\Command\Command;
 use App\Model\Table\ContributionsStats;
 
-class FillContributionsStatsCommand extends TestCase {
+class FillContributionsStatsCommandTest extends TestCase {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Contributions',
         'app.ContributionsStats'
     );
@@ -18,7 +18,6 @@ class FillContributionsStatsCommand extends TestCase {
 
     function setUp(): void {
         parent::setUp();
-        $this->UseCommandRunner();
         $this->ContributionsStats = $this->fetchTable('ContributionsStats');
     }
 

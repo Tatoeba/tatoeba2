@@ -2,13 +2,15 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class LinksControllerTest extends IntegrationTestCase
+class LinksControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Contributions',
         'app.Links',
         'app.ReindexFlags',
@@ -17,7 +19,7 @@ class LinksControllerTest extends IntegrationTestCase
         'app.UsersLanguages',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/links/add/2/3', null, '/en/users/login?redirect=%2Fen%2Flinks%2Fadd%2F2%2F3' ],
@@ -40,7 +42,7 @@ class LinksControllerTest extends IntegrationTestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/links/add/2/3', null, 401 ],

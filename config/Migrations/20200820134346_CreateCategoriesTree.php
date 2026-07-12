@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class CreateCategoriesTree extends AbstractMigration
+class CreateCategoriesTree extends BaseMigration
 {
     /**
      * Change Method.

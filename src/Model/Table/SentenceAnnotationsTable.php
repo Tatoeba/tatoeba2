@@ -68,7 +68,7 @@ class SentenceAnnotationsTable extends Table
     public function getLatestAnnotations($limit)
     {
         return $this->find()
-            ->order(['modified' => 'DESC'])
+            ->orderBy(['modified' => 'DESC'])
             ->limit($limit)
             ->contain([
                 'Users' => ['fields' => ['username']]

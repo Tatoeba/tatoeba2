@@ -52,8 +52,8 @@ class LastContributionsTable extends Table
                 'Users.role',
                 'Users.image'
             ])
-            ->order(['total' => 'DESC'])
-            ->group(['LastContributions.user_id'])
+            ->orderBy(['total' => 'DESC'])
+            ->groupBy(['LastContributions.user_id'])
             ->all()
             ->toList();
 

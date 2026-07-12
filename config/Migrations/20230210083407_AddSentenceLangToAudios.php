@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddSentenceLangToAudios extends AbstractMigration
+class AddSentenceLangToAudios extends BaseMigration
 {
     public function up()
     {

@@ -29,7 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
@@ -44,9 +44,9 @@ use App\Model\Entity\SentencesList;
  */
 class SentencesListsController extends AppController
 {
-    public $name = 'SentencesLists';
+    public string $name = 'SentencesLists';
 
-    public $paginate = [
+    public array $paginate = [
         'order' => ['created' => 'DESC'],
         'limit' => 50
     ];
@@ -58,7 +58,7 @@ class SentencesListsController extends AppController
      */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'set_option',
             'save_name',
             'add_new_sentence_to_list',
@@ -156,25 +156,26 @@ class SentencesListsController extends AppController
         }
 
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $options = [
-            'conditions' => ['sentences_list_id' => $id],
-            'maxResults' => $totalLimit,
-            'contain' => [
-                'Sentences' => function (Query $q) use ($translationsLang) {
+        $SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
+        $query = $SentencesSentencesLists->find()
+            ->where(['sentences_list_id' => $id])
+            ->contain([
+                'Sentences' => function (SelectQuery $q) use ($translationsLang) {
                     $Sentences = $q->getRepository();
                     return $q
-                      ->find('filteredTranslations', ['translationLang' => $translationsLang])
+                      ->find('filteredTranslations', translationLang: $translationsLang)
                       ->find('hideFields')
                       ->contain($Sentences->contain(['translations' => true]))
                       ->select($Sentences->fields());
                 },
-            ],
-        ];
-        if ($lang!="und") {
-            $options['conditions']['Sentences.lang'] = $lang == 'unknown' ? null : $lang;
+            ]);
+
+        if ($lang != 'und') {
+            $query->where([
+                'Sentences.lang' => $lang == 'unknown' ? null : $lang,
+            ]);
         }
 
-        $SentencesSentencesLists = $this->fetchTable('SentencesSentencesLists');
         $this->paginate = [
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => [
@@ -182,12 +183,11 @@ class SentencesListsController extends AppController
             ],
             'sortableFields' => ['id', 'sentence_id'],
         ];
-        $finder = ['latest' => $options];
-        try {
-            $sentencesInList = $this->paginate($SentencesSentencesLists, compact('finder'));
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $options = [
+            'className' => 'Limited',
+            'maxResults' => $totalLimit,
+        ];
+        $sentencesInList = $this->paginate($query, $options);
 
         $total = $SentencesSentencesLists->find()->where(['sentences_list_id' => $id])->count();
 

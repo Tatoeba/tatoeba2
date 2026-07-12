@@ -6,11 +6,11 @@ use Cake\ORM\Entity;
 
 class User extends Entity
 {
-    protected $_hidden = [
+    protected array $_hidden = [
         'password',
     ];
 
-    protected $_accessible = [
+    protected array $_accessible = [
         'is_spamdexing' => false,
         '*' => true,
     ];

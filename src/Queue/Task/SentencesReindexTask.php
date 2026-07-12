@@ -19,7 +19,7 @@
 
 namespace App\Queue\Task;
 
-use App\Shell\BatchOperationTrait;
+use App\Command\BatchOperationTrait;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Queue\Queue\Task;
 
@@ -28,7 +28,7 @@ class SentencesReindexTask extends Task {
     use BatchOperationTrait;
     use LocatorAwareTrait;
 
-    public $retries = 0;
+    public ?int $retries = 0;
 
     public function __construct() {
         parent::__construct(...func_get_args());

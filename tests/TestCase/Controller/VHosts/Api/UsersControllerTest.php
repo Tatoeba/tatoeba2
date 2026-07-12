@@ -32,7 +32,7 @@ class UsersControllerTest extends TestCase
       ],
     ];
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
     ];

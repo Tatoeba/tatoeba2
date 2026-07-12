@@ -5,9 +5,7 @@ use App\Model\ExportRateThrottler;
 use App\Model\Exporter\ListExporter;
 use App\Model\Exporter\PairsExporter;
 use Cake\Core\Configure;
-use Cake\Filesystem\File;
-use Cake\Filesystem\Folder;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -138,11 +136,8 @@ class ExportsTable extends Table
 
     public function afterDelete(\Cake\Event\EventInterface $event, $entity, $options)
     {
-        if ($entity->filename) {
-            $file = new File($entity->filename);
-            if ($file->exists()) {
-                $file->delete();
-            }
+        if ($entity->filename && file_exists($entity->filename) && is_file($entity->filename)) {
+            unlink($entity->filename);
         }
     }
 
@@ -157,13 +152,30 @@ class ExportsTable extends Table
         return false;
     }
 
+    // https://stackoverflow.com/questions/478121#answer-21409562
+    private function getDirectorySize($path)
+    {
+        $bytestotal = 0;
+        $path = realpath($path);
+        if ($path !== false && $path != '' && file_exists($path)) {
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS)
+            );
+            foreach ($iterator as $object){
+                $bytestotal += $object->getSize();
+            }
+        }
+        return $bytestotal;
+    }
+
     private function removeOldExports()
     {
         $maxSize = Configure::read('Exports.maxSizeInBytes', 0);
         if ($maxSize > 0) {
-            $exportPath = new Folder(Configure::read('Exports.path'));
-            while ($exportPath->dirsize() > $maxSize) {
-                $export = $this->find()->orderAsc('generated')->first();
+            $exportPath = Configure::read('Exports.path');
+            $exportPathSize = $this->getDirectorySize($exportPath);
+            while ($exportPathSize > $maxSize) {
+                $export = $this->find()->orderByAsc('generated')->first();
                 if (!$export) {
                     break;
                 }
@@ -214,33 +226,33 @@ class ExportsTable extends Table
         }
 
         $filename = $this->newUniqueFilename($config);
-        $export->generated = FrozenTime::now();
+        $export->generated = DateTime::now();
         $export->filename = $filename;
         if (!$this->save($export)) {
             return false;
         }
 
-        $file = new File($filename, true, 0600);
-        if (!$file->open('w')) {
+        $file = @fopen($filename, 'w');
+        if ($file === false) {
             return false;
         }
 
         $BOM = "\xEF\xBB\xBF";
-        $file->write($BOM);
+        fwrite($file, $BOM);
 
         $throttler = new ExportRateThrottler();
         $throttler->start();
         foreach ($query as $fields) {
             $linefeed = "\r\n";
             if ($config['format'] == 'shtooka') {
-                $file->write(implode(" - ", $fields).$linefeed);
+                fwrite($file, implode(" - ", $fields).$linefeed);
             } else {
-                $file->write(implode("\t", $fields).$linefeed);
+                fwrite($file, implode("\t", $fields).$linefeed);
             }
             $throttler->oneMoreRecord();
             $throttler->control();
         }
-        $file->close();
+        fclose($file);
 
         $export = $this->get($export->id);
         $export->url = $this->urlFromFilename($filename);

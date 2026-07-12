@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class SentencesReplaceHashWithKey extends AbstractMigration
+class SentencesReplaceHashWithKey extends BaseMigration
 {
     /**
      * Change Method.

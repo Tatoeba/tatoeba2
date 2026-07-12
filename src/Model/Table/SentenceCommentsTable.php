@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
@@ -47,7 +47,6 @@ class SentenceCommentsTable extends Table
         $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('LimitResults');
     }
 
     public function buildRules(RulesChecker $rules): \Cake\ORM\RulesChecker
@@ -118,7 +117,7 @@ class SentenceCommentsTable extends Table
         }
     }
 
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         return $query->contain([
             'Users' => [
@@ -174,7 +173,7 @@ class SentenceCommentsTable extends Table
     {
         return $this->find()
             ->where(['sentence_id' => $sentenceId])
-            ->order('SentenceComments.created')
+            ->orderBy('SentenceComments.created')
             ->contain(['Users' => function ($q) {
                     return $q->select(['id', 'username', 'image']);
             }])
@@ -193,7 +192,7 @@ class SentenceCommentsTable extends Table
         $query = $this->find()
             ->limit($limit)
             ->where(['hidden' => 0])
-            ->orderDesc('SentenceComments.created')
+            ->orderByDesc('SentenceComments.created')
             ->contain([
                 'Users' => [
                     'fields' => ['id', 'username', 'image']

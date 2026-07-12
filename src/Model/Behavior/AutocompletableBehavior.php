@@ -37,7 +37,7 @@ class AutocompletableBehavior extends Behavior
      *
      * @var array
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'implementedMethods' =>
             ['Autocomplete' => 'Autocomplete'],
         'index' => 'name',
@@ -65,7 +65,7 @@ class AutocompletableBehavior extends Behavior
             $query->where(["{$this->getConfig('index')} LIKE" => $pattern]);
         }
 
-        $query->order($this->getConfig('order'));
+        $query->orderBy($this->getConfig('order'));
         $query->limit($this->getConfig('limit'));
 
         return $query->all();

@@ -7,14 +7,14 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Event\EventList;
 use Cake\Http\ServerRequest;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\I18n\I18n;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 
-class WallTest extends TestCase {
+class WallTableTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Walls',
         'app.WallThreads',
         'app.Users',
@@ -119,7 +119,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesExistingThreadDate() {
-        $date = new FrozenTime('2018-01-02 03:04:05');
+        $date = new DateTime('2018-01-02 03:04:05');
         $reply = $this->Wall->newEntity([
             'owner' => 7,
             'date' => $date,
@@ -134,7 +134,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesNewThreadDate() {
-        $date = new FrozenTime('2018-01-02 03:04:05');
+        $date = new DateTime('2018-01-02 03:04:05');
         $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => $date,
@@ -156,7 +156,7 @@ class WallTest extends TestCase {
 
         $this->Wall->save($post);
 
-        $this->_assertThreadDate($postId, new FrozenTime('2014-04-15 16:38:36'));
+        $this->_assertThreadDate($postId, new DateTime('2014-04-15 16:38:36'));
     }
 
     public function testSave_editExistingPostUpdatesModifiedDate() {
@@ -223,7 +223,7 @@ class WallTest extends TestCase {
         $this->assertFalse($this->Wall->getEventManager()->getEventList()->hasEvent('Model.Wall.newThread'));
     }
 
-    public function wallPostsWithLinksProvider() {
+    public static function wallPostsWithLinksProvider() {
         $manyOLinks = str_repeat(' https://example.com', 10);
         $manyILinks = str_repeat(' https://tatoeba.org/en/sentences_lists/show/1234', 10);
         $maxOLinks = str_repeat(' https://example.com', 9);
@@ -338,21 +338,57 @@ class WallTest extends TestCase {
         $this->assertTrue($this->Wall->get($wallPost->id)->hidden);
     }
 
-    public function testGetMessagesThreaded() {
-        $rootMessages = $this->Wall->find()
-            ->where(['parent_id IS NULL'])
-            ->all();
-        $threads = $this->Wall->getMessagesThreaded($rootMessages);
-        $this->assertEquals(4, count($threads));
-        $this->assertEquals(0, count($threads[0]->children));
-        $this->assertEquals(1, count($threads[1]->children));
+    public function testFindThreadedMessages() {
+        $results = $this->Wall->find('threadedMessages')->all()->toList();
+
+        $this->assertEquals(4, count($results));
+
+        $this->assertEquals(3, $results[0]->id);
+        $this->assertEquals(7, $results[0]->owner);
+        $this->assertEquals(null, $results[0]->parent_id);
+        $this->assertEquals(new DateTime('2025-06-19 12:33:44'), $results[0]->date);
+        $this->assertEquals('Standalone post', $results[0]->content);
+        $this->assertEquals(false, $results[0]->hidden);
+        $this->assertEquals(new DateTime('2025-06-19 12:33:44'), $results[0]->modified);
+        $this->assertEquals('kazuki', $results[0]->user->username);
+
+        $this->assertEquals(0, count($results[0]->children));
+
+        $this->assertEquals(1, $results[1]->id);
+        $this->assertEquals(7, $results[1]->owner);
+        $this->assertEquals(null, $results[1]->parent_id);
+        $this->assertEquals(new DateTime('2014-04-15 16:37:11'), $results[1]->date);
+        $this->assertEquals(false, $results[1]->hidden);
+        $this->assertEquals('When will the next version of Tatoeba be released?', $results[1]->content);
+        $this->assertEquals(new DateTime('2014-04-15 16:37:12'), $results[1]->modified);
+        $this->assertEquals('kazuki', $results[1]->user->username);
+
+        $this->assertEquals(1, count($results[1]->children));
+        $this->assertEquals(2, $results[1]->children[0]->id);
+        $this->assertEquals(1, $results[1]->children[0]->owner);
+        $this->assertEquals(new DateTime('2014-04-15 16:38:36'), $results[1]->children[0]->date);
+        $this->assertEquals('When it’s done.', $results[1]->children[0]->content);
+        $this->assertEquals(false, $results[1]->children[0]->hidden);
+        $this->assertEquals(new DateTime('2014-04-15 16:38:36'), $results[1]->children[0]->modified);
+        $this->assertEquals('admin', $results[1]->children[0]->user->username);
+
+        $this->assertEquals(0, count($results[1]->children[0]->children));
+
+        $this->assertEquals(true, $results[3]->hidden);
     }
 
-    public function testGetMessagesThreaded_empty() {
+    public function testFindThreadedMessages_empty() {
         $this->Wall->deleteAll([]);
-        $rootMessages = $this->Wall->find()->all();
-        $threads = $this->Wall->getMessagesThreaded($rootMessages);
-        $this->assertCount(0, $threads);
+
+        $results = $this->Wall->find('threadedMessages')->all()->toList();
+
+        $this->assertEquals(0, count($results));
+    }
+
+    public function testFindThreadedMessages_counter() {
+        $result = $this->Wall->find('threadedMessages')->count();
+
+        $this->assertEquals(4, $result);
     }
 
     public function testDeleteMessage_succeeds() {

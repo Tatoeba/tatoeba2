@@ -52,7 +52,7 @@ class AudioTest extends TestCase
         $this->assertNull($this->Audio->external);
     }
 
-    public function fileProvider() {
+    public static function fileProvider() {
         // audio id, sentence id, expected audio file path, expected pretty filename
         return [
             [       1,       2, '/foo/bar/00/01/1.mp3',       '2-1.mp3'       ],

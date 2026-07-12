@@ -26,11 +26,11 @@ use Cake\I18n\I18n;
 
 class LicensingController extends AppController {
 
-    protected $defaultTable = 'SentencesSentencesLists';
+    protected ?string $defaultTable = 'SentencesSentencesLists';
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'refresh_license_switch_list',
         ]);
 

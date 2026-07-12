@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class RemoveIPsFromContributions extends AbstractMigration
+class RemoveIPsFromContributions extends BaseMigration
 {
     /**
      * Change Method.

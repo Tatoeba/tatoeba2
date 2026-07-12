@@ -2,7 +2,7 @@
 
 namespace App\Queue\Task;
 
-use App\Shell\BatchOperationTrait;
+use App\Command\BatchOperationTrait;
 use Queue\Queue\Task;
 
 class RefreshLicenseSwitchListTask extends Task {
@@ -21,14 +21,14 @@ class RefreshLicenseSwitchListTask extends Task {
  *
  * @var int
  */
-    public $timeout = 10;
+    public ?int $timeout = 10;
 
 /**
  * Number of times a failed instance of this task should be restarted before giving up.
  *
  * @var int
  */
-    public $retries = 1;
+    public ?int $retries = 1;
 
 /**
  * Stores any failure messages triggered during run()

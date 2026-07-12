@@ -3,15 +3,16 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Cake\Utility\Security;
-use Cake\Filesystem\File;
 
-class UserControllerTest extends IntegrationTestCase
+class UserControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.FavoritesUsers',
@@ -38,15 +39,14 @@ class UserControllerTest extends IntegrationTestCase
     }
 
     public function tearDown(): void {
-        $file = new File($this->tmpFile);
-        if ($file->exists()) {
-            $file->delete();
+        if (file_exists($this->tmpFile)) {
+            unlink($this->tmpFile);
         }
         Security::setSalt($this->previousSalt);
         parent::tearDown();
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/user/profile/contributor', null, true ],
@@ -296,9 +296,8 @@ class UserControllerTest extends IntegrationTestCase
             WWW_ROOT.'img/profiles_36/'.$image,
         ];
         foreach ($images as $image) {
-            $file = new File($image);
             $this->assertFileExists($image);
-            $file->delete();
+            unlink($image);
         }
     }
 
@@ -324,8 +323,7 @@ class UserControllerTest extends IntegrationTestCase
             WWW_ROOT.'img/profiles_36/'.$contributor->image,
         ];
         foreach ($images as $image) {
-            $file = new File($image, true);
-            $file->close();
+            touch($image);
             $this->assertFileExists($image);
         }
 
@@ -336,7 +334,7 @@ class UserControllerTest extends IntegrationTestCase
         $contributor = $users->get(4);
         $this->assertEmpty($contributor->image);
         foreach ($images as $image) {
-            $this->assertFileNotExists($image);
+            $this->assertFileDoesNotExist($image);
         }
     }
 

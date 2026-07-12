@@ -42,7 +42,7 @@ use App\Event\NotificationListener;
  */
 class PrivateMessagesController extends AppController
 {
-    public $name = 'PrivateMessages';
+    public string $name = 'PrivateMessages';
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {

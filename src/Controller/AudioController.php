@@ -25,17 +25,17 @@ use App\Model\CurrentUser;
 
 class AudioController extends AppController
 {
-    public $name = 'Audio';
+    public string $name = 'Audio';
 
-    public $paginate = [
+    public array $paginate = [
         'limit' => 100,
     ];
 
-    protected $defaultTable = 'Audios';
+    protected ?string $defaultTable = 'Audios';
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save',
             'delete',
         ]);
@@ -70,21 +70,22 @@ class AudioController extends AppController
 
     public function index($lang = null) {
         $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-        $finder = ['sentences' => [
-            'maxResults' => $totalLimit,
-            'sentences' => [],
-        ]];
+        $query = $this->Audios
+            ->find()
+            ->orderBy(['Audios.id' => 'DESC']);
         if (LanguagesLib::languageExists($lang)) {
-            $finder['sentences']['lang'] = $lang;
+            $query->where(['sentence_lang' => $lang]);
             $this->set(compact('lang'));
         }
-        $total = $this->Audios->find('sentencesCounter', $finder['sentences'])->count();
+        $options = [
+            'className' => 'Limited',
+            'maxResults' => $totalLimit,
+            'maxResultsBaseQuery' => clone $query,
+        ];
 
-        try {
-            $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $total = (clone $query)->find('sentencesCounter')->count();
+
+        $sentencesWithAudio = $this->paginate($query->find('sentences'), $options);
 
         $this->set(compact('sentencesWithAudio', 'totalLimit', 'total'));
         
@@ -96,15 +97,16 @@ class AudioController extends AppController
         $userId = $Users->getIdFromUsername($username);
         if ($userId) {
             $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
-            $finder = ['sentences' => [
-                'user_id' => $userId,
+            $query = $this->Audios
+                ->find()
+                ->where(['Audios.user_id' => $userId])
+                ->orderBy(['Audios.id' => 'DESC']);
+            $options = [
+                'className' => 'Limited',
                 'maxResults' => $totalLimit,
-            ]];
-            try {
-                $sentencesWithAudio = $this->paginate($this->Audios, compact('finder'));
-            } catch (\Cake\Http\Exception\NotFoundException $e) {
-                return $this->redirectPaginationToLastPage();
-            }
+                'maxResultsBaseQuery' => clone $query,
+            ];
+            $sentencesWithAudio = $this->paginate($query->find('sentences'), $options);
             $this->set(compact('sentencesWithAudio'));
 
             $this->set('totalAudio', $this->Audios->numberOfAudiosBy($userId));

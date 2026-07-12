@@ -7,7 +7,7 @@ use Cake\Utility\Hash;
 
 class RefreshLicenseSwitchListTaskTest extends TestCase
 {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences',
         'app.Contributions',
         'app.SentencesLists',
@@ -65,7 +65,6 @@ class RefreshLicenseSwitchListTaskTest extends TestCase
                 'action' => 'insert',
             ])
             ->first();
-        $row->id = null;
         $row->setNew(true);
         $Contributions->save($row);
 

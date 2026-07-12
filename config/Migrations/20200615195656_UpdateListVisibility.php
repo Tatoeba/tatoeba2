@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class UpdateListVisibility extends AbstractMigration
+class UpdateListVisibility extends BaseMigration
 {
     /**
      * Change Method.
@@ -12,7 +12,7 @@ class UpdateListVisibility extends AbstractMigration
      */
     public function change()
     {
-        $builder = $this->getQueryBuilder();
+        $builder = $this->getUpdateBuilder();
         $builder
             ->update('sentences_lists')
             ->set('visibility', 'listed')

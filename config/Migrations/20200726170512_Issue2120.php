@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class Issue2120 extends AbstractMigration
+class Issue2120 extends BaseMigration
 {
     /**
      * Change Method.

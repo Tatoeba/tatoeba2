@@ -32,9 +32,8 @@ use ArrayObject;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
-use Cake\Filesystem\File;
-use Cake\I18n\FrozenTime;
-use Cake\ORM\Query;
+use Cake\I18n\DateTime;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -128,7 +127,7 @@ class UsersTable extends Table
         $validator
             ->allowEmptyDateTime('birthday')
             ->add('birthday', 'validBirthday', [
-                'rule' => function ($data, $provider) {
+                'rule' => function ($data, array $context): bool {
                     $data = explode('-', $data, 3);
                     $data = array_map(fn ($n) => (int)$n, $data);
                     list($year, $month, $day) = array_pad($data, 3, null);
@@ -148,7 +147,7 @@ class UsersTable extends Table
                 'message' => __('The entered birthday is an invalid date. Please try again.'),
             ])
             ->add('birthday', 'isComplete', [
-                'rule' => function ($data, $provider) {
+                'rule' => function ($data, array $context): bool {
                     $data = explode('-', $data, 3);
                     $data = array_map(fn ($n) => (int)$n, $data);
                     list($year, $month, $day) = array_pad($data, 3, null);
@@ -277,9 +276,8 @@ class UsersTable extends Table
             WWW_ROOT . 'img' . DS . 'profiles_36' . DS . $file,
         ];
         foreach ($images as $image) {
-            $file = new File($image);
-            if ($file->exists()) {
-                $file->delete();
+            if (file_exists($image)) {
+                unlink($image);
             }
         }
     }
@@ -411,7 +409,7 @@ class UsersTable extends Table
      */
     public function getUserByIdWithExtraInfo($id)
     {
-        return $this->get($id, ['contain' => [
+        return $this->get($id, contain: [
             'Sentences' => function ($q) {
                 return $q->select(['user_id', 'id', 'lang', 'correctness', 'text', 'modified'])
                          ->limit(10)
@@ -443,7 +441,7 @@ class UsersTable extends Table
                          ->limit(10)
                          ->orderDesc('date');
             },
-        ]]);
+        ]);
     }
 
 
@@ -590,11 +588,11 @@ class UsersTable extends Table
         } catch (RecordNotFoundException $e) {    
             return;
         }
-        $user->last_contribution = FrozenTime::now();
+        $user->last_contribution = DateTime::now();
         $this->save($user);
     }
 
-    public function findUserToLogin(Query $query, $options)
+    public function findUserToLogin(SelectQuery $query, $options)
     {
         // The result of this query will end up in AuthenticationComponent->getIdentity()
         return $query

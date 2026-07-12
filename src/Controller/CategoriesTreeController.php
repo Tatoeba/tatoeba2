@@ -31,7 +31,7 @@ class CategoriesTreeController extends AppController
      * @var string
      * @access public
      */
-    public $name = 'CategoriesTree';
+    public string $name = 'CategoriesTree';
 
     public function beforeFilter(\Cake\Event\EventInterface $event)  {
         // Not ready for production yet
@@ -45,7 +45,7 @@ class CategoriesTreeController extends AppController
         $tags = [];
         $tagList = $this->fetchTable('Tags')->find()
             ->select(['id', 'name', 'nbrOfSentences', 'category_id'])
-            ->order(['name']);
+            ->orderBy(['name']);
         foreach ($tagList as $tag) {
             $category = ($tag['category_id'] == null) ? -1 : $tag['category_id'];
             if (!array_key_exists($category, $tags)) {

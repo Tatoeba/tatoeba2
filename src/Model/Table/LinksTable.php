@@ -18,7 +18,7 @@
  */
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Datasource\FactoryLocator;
 use Cake\Utility\Hash;
@@ -30,9 +30,9 @@ class LinksTable extends Table
         $this->setTable('sentences_translations');
         
         $this->belongsTo('Sentences')
-             ->setJoinType(Query::JOIN_TYPE_INNER);
+             ->setJoinType(SelectQuery::JOIN_TYPE_INNER);
         $this->belongsTo('Translations')
-             ->setJoinType(Query::JOIN_TYPE_INNER);
+             ->setJoinType(SelectQuery::JOIN_TYPE_INNER);
     }
 
     public function beforeSave(\Cake\Event\EventInterface $event, $entity, $options)

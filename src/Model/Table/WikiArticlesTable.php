@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use App\Lib\LanguagesLib;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
+use Cake\Datasource\EntityInterface;
 use Cake\I18n\I18n;
 use Cake\Log\Log;
 use Cake\ORM\Table;
@@ -32,7 +33,8 @@ class WikiArticlesTable extends Table
                     ->toArray();
             }
             catch (\Cake\Database\Exception\MissingConnectionException $e) {
-                if ($this->getConnection()->isQueryLoggingEnabled()) {
+                // log an error if app_local.php has 'log' => true on the wiki connection
+                if ($this->getConnection()->getDriver()->getLogger()) {
                     Log::error('Error while connecting to the wiki: '. $e->getMessage());
                 }
                 return [];
@@ -67,7 +69,7 @@ class WikiArticlesTable extends Table
         $this->setTable('articles');
     }
 
-    public function save($article, $options = []) {
+    public function save(EntityInterface $article, array $options = []): EntityInterface|false {
         // The PDO connection is set to read-only already,
         // but let's be extra careful about not writing anything
         return false;

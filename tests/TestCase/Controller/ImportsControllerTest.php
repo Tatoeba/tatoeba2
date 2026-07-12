@@ -2,18 +2,20 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\TestCase;
+use Cake\TestSuite\IntegrationTestTrait;
 
-class ImportsControllerTest extends IntegrationTestCase
+class ImportsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/imports/import_single_sentences', null, '/en/users/login?redirect=%2Fen%2Fimports%2Fimport_single_sentences' ],

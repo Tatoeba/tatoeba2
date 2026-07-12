@@ -3,13 +3,15 @@ namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class PagesControllerTest extends IntegrationTestCase
+class PagesControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.FavoritesUsers',
@@ -30,7 +32,7 @@ class PagesControllerTest extends IntegrationTestCase
     ];
 
     public function getFixtures(): array {
-        if ($this->getName(false) == 'testControllerAccess') {
+        if ($this->name() == 'testControllerAccess') {
             return ['app.PrivateMessages', 'app.Users', 'app.UsersLanguages', 'app.WikiArticles'];
         } else {
             return $this->fixtures;
@@ -42,7 +44,7 @@ class PagesControllerTest extends IntegrationTestCase
         Configure::write('Tatowiki.baseHost', 'wiki.example.com');
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/terms-of-use', null, '/en/terms_of_use' ],

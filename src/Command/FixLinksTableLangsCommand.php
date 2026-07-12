@@ -1,13 +1,16 @@
 <?php
 namespace App\Command;
 
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 
 class FixLinksTableLangsCommand extends Command
 {
+    private $Links;
+    private $Sentences;
+
     public function initialize(): void
     {
         parent::initialize();

@@ -26,7 +26,7 @@ use Cake\View\Helper;
  */
 class AngularTemplateHelper extends Helper
 {
-    public $helpers = ['Html'];
+    public array $helpers = ['Html'];
 
     private $seenIds = [];
 

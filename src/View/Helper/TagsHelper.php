@@ -41,7 +41,7 @@ use App\View\Helper\AppHelper;
  */
 class TagsHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'Html',
         'Form',
         'Sentences',

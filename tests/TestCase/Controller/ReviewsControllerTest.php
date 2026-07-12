@@ -2,13 +2,15 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class ReviewsControllerTest extends IntegrationTestCase
+class ReviewsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.Sentences',
         'app.Users',
@@ -16,7 +18,7 @@ class ReviewsControllerTest extends IntegrationTestCase
         'app.UsersSentences',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/reviews/of/admin', null, '/en/reviews/of/admin/all' ],
@@ -39,7 +41,7 @@ class ReviewsControllerTest extends IntegrationTestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/reviews/add_sentence/30/-1', null, false ],
             [ '/en/reviews/add_sentence/30/-1', 'contributor', true ],

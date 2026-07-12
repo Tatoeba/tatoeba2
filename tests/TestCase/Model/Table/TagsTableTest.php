@@ -10,7 +10,7 @@ use Cake\I18n\I18n;
 class TagsTableTest extends TestCase {
     use TatoebaTableTestTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences',
         'app.Users',
         'app.Tags',
@@ -44,7 +44,7 @@ class TagsTableTest extends TestCase {
         $this->assertEquals(4, $tag->id);
     }
 
-    public function eventTestProvider() {
+    public static function eventTestProvider() {
         return [
             'existing tag' => ['OK', 4, 1],
             'new tag' => ['new tag', 4, 1],

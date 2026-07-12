@@ -9,7 +9,7 @@ use Cake\View\View;
 
 class MessagesHelperTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences'
     );
 
@@ -33,7 +33,7 @@ class MessagesHelperTest extends TestCase {
         parent::tearDown();
     }
 
-    public function formatContentProvider() {
+    public static function formatContentProvider() {
         return [
             [ 'a simple http://example.com/ URL',
               'a simple <a href="http://example.com/" target="_blank" rel="nofollow">http://example.com/</a> URL' ],

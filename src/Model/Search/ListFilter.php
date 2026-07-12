@@ -41,10 +41,10 @@ class ListFilter extends SearchFilter {
                 ['SentencesLists.id' => 'literal', implode(',', $listIds)]
             );
             $result = $this->fetchTable('SentencesLists')
-                ->find('searchableBy', ['user_id' => $this->currentUserId])
+                ->find('searchableBy', user_id: $this->currentUserId)
                 ->where(['id IN' => $listIds])
                 ->select(['id'])
-                ->order($order)
+                ->orderBy($order)
                 ->enableHydration(false)
                 ->all()
                 ->toList();

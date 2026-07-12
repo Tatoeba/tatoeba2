@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddTypeToReindexFlags extends AbstractMigration
+class AddTypeToReindexFlags extends BaseMigration
 {
     /**
      * Change Method.

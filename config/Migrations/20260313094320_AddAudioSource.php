@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddAudioSource extends AbstractMigration
+class AddAudioSource extends BaseMigration
 {
     public function change()
     {

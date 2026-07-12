@@ -2,13 +2,15 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class FavoritesControllerTest extends IntegrationTestCase
+class FavoritesControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.FavoritesUsers',
         'app.Users',
         'app.UsersLanguages',
@@ -18,7 +20,7 @@ class FavoritesControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/favorites/of_user/kazuki', null, true ],
@@ -33,7 +35,7 @@ class FavoritesControllerTest extends IntegrationTestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/favorites/add_favorite/1', null, false ],
             [ '/en/favorites/add_favorite/1', 'contributor', true ],

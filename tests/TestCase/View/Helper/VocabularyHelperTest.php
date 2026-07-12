@@ -20,7 +20,7 @@ class VocabularyHelperTest extends TestCase
         parent::tearDown();
     }
 
-    public function sentenceCountProvider() {
+    public static function sentenceCountProvider() {
         return [
             ['Unknown number of sentences', null],
             ['1 sentence', 1],

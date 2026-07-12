@@ -4,14 +4,16 @@ namespace App\Test\TestCase\Controller;
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\TestSuite\EmailTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Cake\Utility\Security;
 
-class UsersControllerTest extends IntegrationTestCase {
+class UsersControllerTest extends TestCase {
     use EmailTrait,
+        IntegrationTestTrait,
         TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Contributions',
         'app.Users',
         'app.UsersLanguages',
@@ -39,7 +41,7 @@ class UsersControllerTest extends IntegrationTestCase {
         parent::tearDown();
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/users/index', null, '/en/users/login?redirect=%2Fen%2Fusers%2Findex' ],
@@ -326,7 +328,7 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->assertNull($user);
     }
 
-    public function blockedOrSuspendedProvider() {
+    public static function blockedOrSuspendedProvider() {
         return [
             'blocking user' => [['level' => -1], 1],
             'unblocking user' => [['level' => 0], 0],

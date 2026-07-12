@@ -40,10 +40,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
         <h2 flex><?= __('Private messages') ?></h2>
-        
-        <?php
-        $this->Pagination->display();
-        ?>
     </div>
 </md-toolbar>
 

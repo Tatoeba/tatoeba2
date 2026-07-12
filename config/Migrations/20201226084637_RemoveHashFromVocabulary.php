@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class RemoveHashFromVocabulary extends AbstractMigration
+class RemoveHashFromVocabulary extends BaseMigration
 {
     public function change()
     {

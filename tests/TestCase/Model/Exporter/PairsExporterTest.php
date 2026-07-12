@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 
 class PairsExporterTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Links',
         'app.Users',
         'app.Sentences',

@@ -12,7 +12,7 @@ class UsersSentencesFixture extends TestFixture {
  *
  * @var array
  */
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => 1,
 			'user_id' => 1,

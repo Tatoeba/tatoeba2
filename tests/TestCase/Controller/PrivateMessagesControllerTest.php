@@ -4,14 +4,16 @@ namespace App\Test\TestCase\Controller;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class PrivateMessagesControllerTest extends IntegrationTestCase
+class PrivateMessagesControllerTest extends TestCase
 {
     use EmailTrait;
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.Sentences',
         'app.Users',
@@ -19,7 +21,7 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/private_messages/index', null, '/en/users/login?redirect=%2Fen%2Fprivate_messages%2Findex' ],

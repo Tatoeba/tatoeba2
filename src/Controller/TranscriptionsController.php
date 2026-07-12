@@ -24,16 +24,16 @@ use Cake\Event\Event;
 
 class TranscriptionsController extends AppController
 {
-    public $name = 'Transcriptions';
+    public string $name = 'Transcriptions';
 
-    public $paginate = array(
+    public array $paginate = array(
         'limit' => 100,
         'order' => array('Transcriptions.modified' => 'desc'),
     );
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save',
             'reset'
         ]);
@@ -166,7 +166,7 @@ class TranscriptionsController extends AppController
                 ->find()
                 ->where(['Transcriptions.user_id' => $userId])
                 ->contain([
-                    'Sentences' => function (\Cake\ORM\Query $q) {
+                    'Sentences' => function (\Cake\ORM\Query\SelectQuery $q) {
                         $fields = $q->getRepository()->fields();
                         return $q->select($fields);
                     },
@@ -194,7 +194,7 @@ class TranscriptionsController extends AppController
             if (!$sentence) {
                 $sentence = $this->fetchTable('Sentences')->get(
                     $sentenceId,
-                    ['fields' => ['lang', 'user_id']]
+                    fields: ['lang', 'user_id']
                 );
             }
             if ($sentence) {

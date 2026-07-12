@@ -34,7 +34,7 @@ class LicenseHelperTest extends TestCase
         parent::tearDown();
     }
 
-    public function getLicenseNameProvider() {
+    public static function getLicenseNameProvider() {
         return [
             // helper, license, link, expected
             ['SentenceLicense', '', true, 'Licensing'],
@@ -56,7 +56,7 @@ class LicenseHelperTest extends TestCase
         $this->assertStringStartsWith($expected, $name);
     }
 
-    public function getLicenseOptionsProvider() {
+    public static function getLicenseOptionsProvider() {
         return [
             // helper, admin, expected
             ['SentenceLicense', false, 2],

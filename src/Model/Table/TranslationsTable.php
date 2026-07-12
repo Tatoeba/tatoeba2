@@ -167,7 +167,7 @@ class TranslationsTable extends Table
                 'script' => 'Translations.script',
                 'correctness' => 'Translations.correctness',
             ])
-            ->order('Translations.lang');
+            ->orderBy('Translations.lang');
     }
 
     public function afterFind($results, $primary = false) {

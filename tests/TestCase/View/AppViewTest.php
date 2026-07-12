@@ -18,7 +18,7 @@ class AppViewTest extends TestCase {
         parent::tearDown();
     }
 
-    public function safeForAngularProvider() {
+    public static function safeForAngularProvider() {
         return [
             ['', ''],
             ['abc', 'abc'],

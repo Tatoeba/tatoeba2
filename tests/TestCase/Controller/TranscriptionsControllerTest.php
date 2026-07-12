@@ -1,15 +1,22 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Lib\Autotranscription;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class TranscriptionsControllerTest extends IntegrationTestCase {
+class TranscriptionsControllerTest extends TestCase {
+    use IntegrationTestTrait {
+        controllerSpy as _controllerSpy;
+    }
     use JsonAssertions;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.PrivateMessages',
         'app.Transcriptions',
         'app.Users',
@@ -23,15 +30,14 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $this->enableCsrfToken();
     }
 
-    public function controllerSpy($event, $controller = null): void {
-        parent::controllerSpy($event, $controller);
+    public function controllerSpy(EventInterface $event, ?Controller $controller = null): void {
+        $this->_controllerSpy($event, $controller);
 
         /* Replace Autotranscription to allow syntax errors */
         $autotranscription = $this->getMockBuilder(Autotranscription::class)
-            ->setMethods([
+            ->onlyMethods([
                 'jpn_Jpan_to_Hrkt_validate',
                 'jpn_Jpan_to_Hrkt_generate',
-                'jpn_Hrkt_to_Latn_generate',
                 'yue_Hant_to_Latn_generate',
             ])
             ->getMock();
@@ -39,19 +45,15 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_validate')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_generate')
-            ->will($this->returnValue('furi'));
-        $autotranscription
-            ->expects($this->any())
-            ->method('jpn_Hrkt_to_Latn_generate')
-            ->will($this->returnValue('roma'));
+            ->willReturn('furi');
         $autotranscription
             ->expects($this->any())
             ->method('yue_Hant_to_Latn_generate')
-            ->will($this->returnValue('yeah'));
+            ->willReturn('yeah');
 
         $this->_controller->Transcriptions
             ->setAutotranscription($autotranscription);

@@ -45,7 +45,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallController extends AppController
 {
-    public $name = 'Wall' ;
+    public string $name = 'Wall' ;
 
     /**
      * to know who can do what
@@ -55,7 +55,7 @@ class WallController extends AppController
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save_inside',
         ]);
         
@@ -76,22 +76,13 @@ class WallController extends AppController
 
         $userId = $this->Authentication->getIdentity() ? $this->Authentication->getIdentityData('id') : null;
 
-        $query = $this->Wall
-            ->find()
-            ->select(['lft', 'rght'])
-            ->where(['Wall.parent_id IS' => null])
-            ->contain(['WallThreads' => ['fields' => ['last_message_date']]]);
+        $query = $this->Wall->find('threadedMessages');
         $settings = [
             'sortableFields' => ['WallThreads.last_message_date'],
             'order' => ['WallThreads.last_message_date' => 'DESC'],
             'limit' => 10,
         ];
-        try {
-            $messageLftRght = $this->paginate($query, $settings);
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
-        $messages = $this->Wall->getMessagesThreaded($messageLftRght);
+        $messages = $this->paginate($query, $settings);
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,
             $userId

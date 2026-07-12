@@ -51,13 +51,13 @@ class UserController extends AppController
      *
      * @var string
      */
-    public $name = 'User';
+    public string $name = 'User';
 
-    protected $defaultTable = 'Users';
+    protected ?string $defaultTable = 'Users';
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save_banner_setting',
         ]);
 

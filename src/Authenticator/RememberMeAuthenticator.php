@@ -24,7 +24,7 @@ class RememberMeAuthenticator extends AbstractAuthenticator implements Persisten
     use CookieCryptTrait;
     use UrlCheckerTrait;
 
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'loginUrl' => null,
         'urlChecker' => 'Authentication.Default',
         'rememberMeField' => 'rememberMe',

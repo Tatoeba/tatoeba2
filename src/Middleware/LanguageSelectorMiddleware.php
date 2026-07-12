@@ -131,7 +131,7 @@ class LanguageSelectorMiddleware implements MiddlewareInterface
             // This locale does not support datetime formatting so fall back to
             // English instead of crashing every time we try to format a date.
             // Known affected locales: gos (Gronings), hoc (Ho)
-            \Cake\I18n\FrozenTime::setDefaultLocale('en');
+            \Cake\I18n\DateTime::setDefaultLocale('en');
         }
         I18n::setLocale($locale);
     }

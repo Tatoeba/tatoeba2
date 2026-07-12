@@ -36,13 +36,13 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->middleware = new LanguageSelectorMiddleware();
 
         $this->handler = $this->getMockBuilder(RequestHandlerInterface::class)
-            ->setMethods(['handle'])
+            ->onlyMethods(['handle'])
             ->getMock();
 
         $this->handler
             ->expects($this->any())
             ->method('handle')
-            ->will($this->returnValue(new Response()));
+            ->willReturn(new Response());
     }
 
     function tearDown(): void {
@@ -69,7 +69,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->assertEquals('ja', I18n::getLocale());
     }
 
-    public function simpleRedirectsProvider() {
+    public static function simpleRedirectsProvider() {
         return [
             // URL, lang parameter, redirect-URL, status
             'root' => ['/', '', '/en/', 301],
@@ -92,7 +92,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->assertResponse($request, $redirectUrl, $status);
     }
 
-    public function withCookieProvider() {
+    public static function withCookieProvider() {
         return [
             // URL, cookie, redirect-URL, status
             'new cookie' =>
@@ -121,7 +121,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         $this->assertResponse($request, $redirectUrl, $status);
     }
 
-    public function withAcceptLanguageProvider() {
+    public static function withAcceptLanguageProvider() {
         return [
             // URL, header, redirect-URL, status
             'simple header' => ['/en/index', 'ja', '/ja/index', 302],
@@ -162,7 +162,7 @@ class LanguageSelectorMiddlewareTest extends TestCase {
         }
     }
 
-    public function languageProvider () {
+    public static function languageProvider () {
         return [
             ['', 'en'],
             ['chi', 'zh-cn'],
@@ -200,13 +200,13 @@ class LanguageSelectorMiddlewareTest extends TestCase {
 
     public function testMiddleware_handlesNonCakePHPResponses() {
         $this->handler = $this->getMockBuilder(RequestHandlerInterface::class)
-            ->setMethods(['handle'])
+            ->onlyMethods(['handle'])
             ->getMock();
 
         $this->handler
             ->expects($this->any())
             ->method('handle')
-            ->will($this->returnValue(new RedirectResponse('/somehwere/else')));
+            ->willReturn(new RedirectResponse('/somehwere/else'));
 
         $this->testMiddleware_setsCookie();
     }

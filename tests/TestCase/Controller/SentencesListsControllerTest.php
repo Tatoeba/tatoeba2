@@ -3,15 +3,17 @@ namespace App\Test\TestCase\Controller;
 
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class SentencesListsControllerTest extends IntegrationTestCase
+class SentencesListsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
     use JsonAssertions;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.DisabledAudios',
@@ -30,7 +32,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentences_lists/index', null, true ],
@@ -73,7 +75,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/sentences_lists/add_sentence_to_list/1/1', null, false ],
             [ '/en/sentences_lists/add_sentence_to_list/1/1', 'kazuki', true ],
@@ -108,7 +110,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $this->logInAs('contributor');
         $this->post('/en/sentences_lists/add', ['name' => 'My new list']);
         $lists = $this->fetchTable('SentencesLists');
-        $lastId = $lists->find()->orderDesc('id')->first()->id;
+        $lastId = $lists->find()->orderByDesc('id')->first()->id;
         $this->assertRedirect("/en/sentences_lists/show/$lastId");
     }
 
@@ -287,7 +289,7 @@ class SentencesListsControllerTest extends IntegrationTestCase
     public function testShowSentenceListRedirect()
     {
         $lists = $this->fetchTable('SentencesLists');
-        $lastId = $lists->find()->orderDesc('id')->first()->id;
+        $lastId = $lists->find()->orderByDesc('id')->first()->id;
         $this->get("/en/sentences_lists/show/$lastId/cmn");
         $this->assertResponseCode(301);
         $this->assertRedirectContains("/en/sentences_lists/show/$lastId/und/cmn");

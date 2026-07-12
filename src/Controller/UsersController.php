@@ -26,6 +26,7 @@
  */
 namespace App\Controller;
 
+use App\Application;
 use App\Controller\AppController;
 use App\Model\Entity\User;
 use Cake\Controller\Component\AuthComponent;
@@ -48,27 +49,13 @@ class UsersController extends AppController
 {
     use MailerAwareTrait;
 
-    public $name = 'Users';
+    public string $name = 'Users';
 
     public function initialize(): void
     {
         parent::initialize();
 
         $this->loadComponent('Flash');
-    }
-
-    /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(\Cake\Event\EventInterface $event)
-    {
-        // prevent CSRF in this controller
-        // since we're handling login and registration
-        $this->Security->validatePost = true;
-
-        return parent::beforeFilter($event);
     }
 
     /**
@@ -175,11 +162,11 @@ class UsersController extends AppController
     {
         $authResult = $this->Authentication->getResult();
 
-        $redirectParam = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
+        $redirectParam = $this->request->getQuery(Application::QUERY_PARAM_REDIRECT);
         $redirectUrl = $this->Authentication->getLoginRedirect();
         $failedUrl = ['action' => 'login'];
         if (!is_null($redirectParam) && !is_null($redirectUrl)) {
-            $failedUrl['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl];
+            $failedUrl['?'] = [Application::QUERY_PARAM_REDIRECT => $redirectUrl];
         };
 
         if ($authResult->isValid()) {
@@ -467,11 +454,7 @@ class UsersController extends AppController
             ->find()
             ->select(['id', 'username', 'since', 'image', 'role'])
             ->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
-        try {
-            $users = $this->paginate($query);
-        } catch (\Cake\Http\Exception\NotFoundException $e) {
-            return $this->redirectPaginationToLastPage();
-        }
+        $users = $this->paginate($query);
         $this->set('users', $users);
     }
 

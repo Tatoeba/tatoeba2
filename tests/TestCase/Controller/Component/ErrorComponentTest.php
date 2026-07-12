@@ -27,12 +27,12 @@ class ErrorComponentTest extends TestCase
 
         $this->controller = $this->getMockBuilder(Controller::class)
             ->setConstructorArgs([$request])
-            ->setMethods(['log'])
+            ->onlyMethods(['log'])
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->Error = $this->getMockBuilder(ErrorComponent::class)
             ->setConstructorArgs([$registry])
-            ->setMethods(['generateNewCode'])
+            ->onlyMethods(['generateNewCode'])
             ->getMock();
     }
 
@@ -63,7 +63,7 @@ END_OF_LOG;
         $this->Error
             ->expects($this->any())
             ->method('generateNewCode')
-            ->will($this->returnValue($code));
+            ->willReturn($code);
 
         $returned = $this->Error->traceError('ouch!');
 
@@ -83,7 +83,7 @@ END_OF_LOG;
         $this->Error
             ->expects($this->any())
             ->method('generateNewCode')
-            ->will($this->returnValue($code));
+            ->willReturn($code);
         $this->controller
             ->expects($this->once())
             ->method('log')

@@ -1,14 +1,16 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
-class TagsControllerTest extends IntegrationTestCase {
+class TagsControllerTest extends TestCase {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.FavoritesUsers',
@@ -26,7 +28,7 @@ class TagsControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/tags/view_all', null, true ],
@@ -56,7 +58,7 @@ class TagsControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/tags/autocomplete/foobar', null, true ],

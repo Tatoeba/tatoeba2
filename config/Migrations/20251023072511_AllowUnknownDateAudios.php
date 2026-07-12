@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AllowUnknownDateAudios extends AbstractMigration
+class AllowUnknownDateAudios extends BaseMigration
 {
     private function set_nullable_datetime(bool $nullable)
     {
@@ -13,7 +13,7 @@ class AllowUnknownDateAudios extends AbstractMigration
                     ])
                     ->update();
                 if ($nullable) {
-                    $this->getQueryBuilder()
+                    $this->getUpdateBuilder()
                         ->update($table)
                         ->set($column, null)
                         ->where([$column => '0000-00-00 00:00:00'])

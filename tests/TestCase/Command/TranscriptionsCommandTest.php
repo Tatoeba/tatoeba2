@@ -1,14 +1,19 @@
 <?php
-namespace App\Test\TestCase\Shell;
+declare(strict_types=1);
 
+namespace App\Test\TestCase\Command;
+
+use App\Command\TranscriptionsCommand;
 use App\Lib\Autotranscription;
-use App\Shell\TranscriptionsShell;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\Core\Configure;
-use Cake\TestSuite\ConsoleIntegrationTestCase;
+use Cake\TestSuite\TestCase;
 
-class TranscriptionsShellTest extends ConsoleIntegrationTestCase
+class TranscriptionsCommandTest extends TestCase
 {
-    public $fixtures = [
+    use ConsoleIntegrationTestTrait;
+
+    public array $fixtures = [
         'app.Sentences',
         'app.Transcriptions',
         'app.Users',
@@ -16,12 +21,11 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         'app.ReindexFlags',
     ];
 
-    public $io;
-    public $TS;
+    private $Transcriptions;
 
     private function getAutotranscriptionMock() {
         $AT = $this->getMockBuilder(Autotranscription::class)
-            ->setMethods([
+            ->onlyMethods([
                 'jpn_Jpan_to_Hrkt_generate',
                 'jpn_Jpan_to_Hrkt_validate',
                 'cmn_detectScript',
@@ -29,13 +33,13 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
             ->getMock();
         $AT->expects($this->any())
            ->method('jpn_Jpan_to_Hrkt_generate')
-           ->will($this->returnValue('transcription in furigana'));
+           ->willReturn('transcription in furigana');
         $AT->expects($this->any())
            ->method('jpn_Jpan_to_Hrkt_validate')
-           ->will($this->returnValue(true));
+           ->willReturn(true);
         $AT->expects($this->any())
            ->method('cmn_detectScript')
-           ->will($this->returnValue('Hant'));
+           ->willReturn('Hant');
 
         return $AT;
     }
@@ -43,31 +47,32 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->io = $this->getMockBuilder('Cake\Console\ConsoleIo')->getMock();
-
-        $this->TS = new TranscriptionsShell($this->io);
-        $this->TS->initialize();
 
         $AT = $this->getAutotranscriptionMock();
-        $this->TS->Transcriptions->setAutotranscription($AT);
+        $this->Transcriptions = $this->fetchTable('Transcriptions');
+        $this->Transcriptions->setAutotranscription($AT);
 
         Configure::write('AutoTranscriptions.enabled', true);
     }
 
     public function tearDown(): void
     {
-        unset($this->TS);
+        unset($this->Transcriptions);
 
         parent::tearDown();
     }
 
-    public function testAutogen_forAllSentences()
+    /**
+     * @testWith [""]
+     *           ["--batchSize 2"]
+     */
+    public function testAutogen_forAllSentences($opts)
     {
-        $transcrBefore = $this->TS->Transcriptions->find()->where(['lang' => 'jpn'])->count();
+        $transcrBefore = $this->Transcriptions->find()->where(['lang' => 'jpn'])->count();
 
-        $this->TS->autogen('jpn');
+        $this->exec("transcriptions $opts autogen_transcriptions_text jpn");
 
-        $transcrAfter = $this->TS->Transcriptions->find()->where(['lang' => 'jpn'])->count();
+        $transcrAfter = $this->Transcriptions->find()->where(['lang' => 'jpn'])->count();
         $jpnSentences = $this->fetchTable('Sentences')->find()->where(['lang' => 'jpn'])->count();
 
         $this->assertGreaterThan($transcrBefore, $transcrAfter);
@@ -76,27 +81,21 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
     public function testAutogen_regenExisting()
     {
-        $before = $this->TS->Transcriptions->find()->where(['sentence_id' => 10])->first();
-        $this->TS->autogen('jpn');
-        $after = $this->TS->Transcriptions->find()->where(['sentence_id' => 10])->first();
+        $before = $this->Transcriptions->find()->where(['sentence_id' => 10])->first();
+        $this->exec('transcriptions autogen_transcriptions_text jpn');
+        $after = $this->Transcriptions->find()->where(['sentence_id' => 10])->first();
 
         $this->assertNotEquals($before->text, $after->text);
-    }
-
-    public function testAutogen_batched()
-    {
-        $this->TS->batchOperationSize = 2;
-        $this->testAutogen_forAllSentences();
     }
 
     public function testSetSentencesScript()
     {
         $expectedScripts = ['Hant'];
 
-        $this->TS->setSentencesScript('cmn');
+        $this->exec('transcriptions autodetect_sentences_script cmn');
 
         $scripts = $this->fetchTable('Sentences')
-            ->find('list', ['valueField' => 'script'])
+            ->find('list', valueField: 'script')
             ->where(['lang' => 'cmn'])
             ->toArray();
 
@@ -108,10 +107,10 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
     {
         $expectedScripts = ['Hant'];
 
-        $this->TS->setContributionsScript('cmn');
+        $this->exec('transcriptions autodetect_contributions_script cmn');
 
         $scripts = $this->fetchTable('Contributions')
-            ->find('list', ['valueField' => 'script'])
+            ->find('list', valueField: 'script')
             ->where(['sentence_lang' => 'cmn'])
             ->toArray();
 
@@ -122,14 +121,14 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
     public function testSetSentencesScriptDoesNotUpdateModifiedField()
     {
         $before = $this->fetchTable('Sentences')
-            ->find('list', ['valueField' => 'modified'])
+            ->find('list', valueField: 'modified')
             ->where(['lang' => 'cmn'])
             ->toArray();
 
-        $this->TS->setSentencesScript('cmn');
+        $this->exec('transcriptions autodetect_sentences_script cmn');
 
         $after = $this->fetchTable('Sentences')
-            ->find('list', ['valueField' => 'modified'])
+            ->find('list', valueField: 'modified')
             ->where(['lang' => 'cmn'])
             ->toArray();
 

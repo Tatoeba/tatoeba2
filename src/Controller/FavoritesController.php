@@ -42,8 +42,8 @@ use Cake\Event\Event;
 class FavoritesController extends AppController
 {
 
-    public $name = 'Favorites' ;
-    public $paginate = array('limit' => 50);
+    public string $name = 'Favorites' ;
+    public array $paginate = array('limit' => 50);
 
     /**
      * view all favorites sentences of a given user

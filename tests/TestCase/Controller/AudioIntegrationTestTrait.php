@@ -2,8 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
-use Cake\Filesystem\File;
+use Cake\Utility\Filesystem;
 
 /**
  * A trait intended to make audio testing easier.
@@ -24,23 +23,19 @@ trait AudioIntegrationTestTrait
         $contents = md5($audioId, true);
         $audioPath = $this->getAudioFilePath($audioId);
         mkdir(dirname($audioPath), 0777, true);
-
-        $file = new File($audioPath, true);
-        $file->write($contents);
-        $file->close();
+        file_put_contents($audioPath, $contents);
 
         return $contents;
     }
 
     private function deleteAudioStorageDir() {
-        $folder = new Folder($this->testAudioDir);
-        $folder->delete();
+        (new Filesystem())->deleteDir($this->testAudioDir);
     }
 
     private function initAudioStorageDir() {
         Configure::write('Recordings.path', $this->testAudioDir);
-        $folder = new Folder($this->testAudioDir);
-        $folder->delete();
-        $folder->create($this->testAudioDir);
+        $fs = new Filesystem();
+        $fs->deleteDir($this->testAudioDir);
+        $fs->mkdir($this->testAudioDir);
     }
 }

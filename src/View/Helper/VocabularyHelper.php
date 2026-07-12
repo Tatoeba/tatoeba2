@@ -25,7 +25,7 @@ use App\Model\Search;
 
 class VocabularyHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'Html', 'Url', 'Languages'
     );
 

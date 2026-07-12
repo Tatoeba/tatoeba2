@@ -10,7 +10,7 @@ class SessionsTableTest extends TestCase
 {
     public $Sessions;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Sessions',
         'app.UsersLanguages',
     ];

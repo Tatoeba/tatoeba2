@@ -61,7 +61,7 @@ class SentencesControllerTest extends TestCase
       'additionalProperties' => false,
     ];
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Sentences',
         'app.Transcriptions',
@@ -69,7 +69,7 @@ class SentencesControllerTest extends TestCase
         'app.Links',
     ];
 
-    private function sentenceSchema(bool $withTranslations, bool $withAudio, bool $withTranscriptions) {
+    private static function sentenceSchema(bool $withTranslations, bool $withAudio, bool $withTranscriptions) {
         $sentenceSchema = self::SENTENCE_JSON_SCHEMA;
 
         if ($withAudio) {
@@ -157,41 +157,41 @@ class SentencesControllerTest extends TestCase
         $this->assertResponseCode(400);
     }
 
-    public function sentenceSchemaTestProvider()
+    public static function sentenceSchemaTestProvider()
     {
         return [
             // query, expected response JSON schema under .data
             'no associated data' => [
                 '',
-                $this->sentenceSchema(false, false, false),
+                static::sentenceSchema(false, false, false),
             ],
             'with translations' => [
                 'showtrans=all',
-                $this->sentenceSchema(true, false, false),
+                static::sentenceSchema(true, false, false),
             ],
             'with audios' => [
                 'include=audios',
-                $this->sentenceSchema(false, true, false),
+                static::sentenceSchema(false, true, false),
             ],
             'with transcriptions' => [
                 'include=transcriptions',
-                $this->sentenceSchema(false, false, true),
+                static::sentenceSchema(false, false, true),
             ],
             'with audios and transcriptions' => [
                 'include=audios,transcriptions',
-                $this->sentenceSchema(false, true, true),
+                static::sentenceSchema(false, true, true),
             ],
             'with translations and audios' => [
                 'showtrans=all&include=audios',
-                $this->sentenceSchema(true, true, false),
+                static::sentenceSchema(true, true, false),
             ],
             'with translations and transcriptions' => [
                 'showtrans=all&include=transcriptions',
-                $this->sentenceSchema(true, false, true),
+                static::sentenceSchema(true, false, true),
             ],
             'with translations, audios and transcriptions' => [
                 'showtrans=all&include=audios,transcriptions',
-                $this->sentenceSchema(true, true, true),
+                static::sentenceSchema(true, true, true),
             ],
         ];
     }
@@ -391,7 +391,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema($this->sentenceSchema(true, false, false));
+        $schema = $this->sentencesResultSchema(static::sentenceSchema(true, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
@@ -413,7 +413,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema($this->sentenceSchema(false, false, false));
+        $schema = $this->sentencesResultSchema(static::sentenceSchema(false, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
     }
 
@@ -426,7 +426,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema($this->sentenceSchema(false, false, false));
+        $schema = $this->sentencesResultSchema(static::sentenceSchema(false, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
     }
 
@@ -439,7 +439,7 @@ class SentencesControllerTest extends TestCase
         $this->assertContentType('application/json');
 
         $actual = $this->_getBodyAsString();
-        $schema = $this->sentencesResultSchema($this->sentenceSchema(true, false, false));
+        $schema = $this->sentencesResultSchema(static::sentenceSchema(true, false, false));
         $this->assertJsonDocumentMatchesSchema($actual, $schema);
         $expected = [
             '$.data' => new \PHPUnit\Framework\Constraint\Count(3),
@@ -537,7 +537,7 @@ class SentencesControllerTest extends TestCase
         $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello");
     }
 
-    public function limitsProvider() {
+    public static function limitsProvider() {
         return [
             'default results limit when no translations are returned' => [
                 'lang=ara&sort=created&showtrans=none', 50

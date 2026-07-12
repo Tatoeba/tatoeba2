@@ -1,5 +1,5 @@
 <?php
-namespace App\Shell;
+namespace App\Command;
 
 use Cake\Core\Exception\Exception;
 

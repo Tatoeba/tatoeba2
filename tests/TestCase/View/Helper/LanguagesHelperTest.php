@@ -8,7 +8,7 @@ use Cake\View\View;
 use Cake\I18n\I18n;
 
 class LanguagesHelperTest extends TestCase {
-	public $fixtures = array(
+	public array $fixtures = array(
 		'app.UsersLanguages'
 	);
 

@@ -6,9 +6,9 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 class WallsFixture extends TestFixture {
 	public $name = 'Wall';
-	public $table = 'wall';
+	public string $table = 'wall';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => '1',
 			'owner' => '7',

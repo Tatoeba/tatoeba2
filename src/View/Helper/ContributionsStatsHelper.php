@@ -36,7 +36,7 @@ use App\View\Helper\AppHelper;
  */
 class ContributionsStatsHelper extends AppHelper
 {
-    public $helpers = array('Html');
+    public array $helpers = array('Html');
 
     /**
      * Return the HTML to display the stats bar corresponding to $category

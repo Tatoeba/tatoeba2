@@ -7,7 +7,7 @@ use Cake\Event\Event;
 
 class AngularTemplatesController extends AppController
 {
-    public $name = 'AngularTemplates';
+    public string $name = 'AngularTemplates';
 
     public function beforeRender(\Cake\Event\EventInterface $event)
     {

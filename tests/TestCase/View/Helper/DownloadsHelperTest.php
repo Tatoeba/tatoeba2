@@ -4,9 +4,8 @@ namespace App\Test\TestCase\View\Helper;
 use App\View\Helper\DownloadsHelper;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
-use Cake\Filesystem\Folder;
-use Cake\Filesystem\File;
 use Cake\Core\Configure;
+use Cake\Utility\Filesystem;
 
 class DownloadsHelperTest extends TestCase {
 
@@ -15,12 +14,13 @@ class DownloadsHelperTest extends TestCase {
     private static function createTempTree() {
         $languages = ['eng', 'fra', 'jpn', 'unknown'];
         $files = ['sentences.tsv.bz2', 'sentences_detailed.tsv.bz2', 'sentences_CC0.tsv.bz2'];
+        $fs = new Filesystem();
         foreach ($languages as $lang) {
-            $path = Folder::addPathElement(TMP, ['exports', 'per_language', $lang]);
-            $subdir = new Folder($path, true);
+            $path = TMP . 'exports' . DS . 'per_language' . DS . $lang;
+            $fs->mkdir($path);
             foreach ($files as $file) {
-                $newFile = Folder::addPathElement($subdir->path, "{$lang}_$file");
-                new File($newFile, true);
+                $newFile = $path . DS . "{$lang}_$file";
+                touch($newFile);
             }
         }
     }
@@ -29,7 +29,7 @@ class DownloadsHelperTest extends TestCase {
         self::createTempTree();
         Configure::write(
             'Downloads.path',
-            Folder::addPathElement(TMP, 'exports/')
+            TMP . 'exports' . DS
         );
     }
 
@@ -45,8 +45,7 @@ class DownloadsHelperTest extends TestCase {
     }
 
     public static function tearDownAfterClass(): void {
-        $dir = new Folder(Folder::addPathElement(TMP, 'exports'));
-        $dir->delete();
+        (new Filesystem())->deleteDir(TMP . 'exports');
     }
 
     public function testCreateOptions_InvalidBasename() {
@@ -54,12 +53,12 @@ class DownloadsHelperTest extends TestCase {
 
         $this->assertEquals(1, count($options));
         $this->assertEquals(
-            Folder::addPathElement(Configure::read('Downloads.url'), "foobar.tar.bz2"),
+            Configure::read('Downloads.url') . 'foobar.tar.bz2',
             $options[0]['url']
         );
     }
 
-    public function filenameProvider () {
+    public static function filenameProvider () {
         return [
             ['sentences'],
             ['sentences_detailed'],
@@ -75,17 +74,11 @@ class DownloadsHelperTest extends TestCase {
 
         $this->assertEquals(5, count($options));
         $this->assertEquals(
-            Folder::addPathElement(
-                Configure::read('Downloads.url'),
-                "$basename.tar.bz2"
-            ),
+            Configure::read('Downloads.url') . "$basename.tar.bz2",
             $options[0]['url']
         );
         $this->assertEquals(
-            Folder::addPathElement(
-                Configure::read('Downloads.url'),
-                ['per_language', 'eng', "eng_$basename.tsv.bz2"]
-            ),
+            Configure::read('Downloads.url') . 'per_language' . DS . 'eng' . DS . "eng_$basename.tsv.bz2",
             $options[1]['url']
         );
         $this->assertEquals('Japanese', $options[3]['language']);
@@ -101,15 +94,12 @@ class DownloadsHelperTest extends TestCase {
 
         $this->assertEquals(1, count($options));
         $this->assertEquals(
-            Folder::addPathElement(
-                Configure::read('Downloads.url'),
-                "$basename.tar.bz2"
-            ),
+            Configure::read('Downloads.url') . "$basename.tar.bz2",
             $options[0]['url']
         );
     }
 
-    public function fileFormatProvider () {
+    public static function fileFormatProvider () {
         return [
             'empty fields' => [[], ''],
             'one field' => [['id'], '%sparam%sid%s'],

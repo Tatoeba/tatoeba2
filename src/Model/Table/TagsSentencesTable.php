@@ -35,7 +35,6 @@ class TagsSentencesTable extends Table
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
 
-        $this->addBehavior('LimitResults');
         $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => ['added_time' => 'new']
@@ -82,7 +81,7 @@ class TagsSentencesTable extends Table
                 'TagsSentences.tag_id',
                 'TagsSentences.added_time'
             ])
-            ->group(['TagsSentences.tag_id'])
+            ->groupBy(['TagsSentences.tag_id'])
             ->all()
             ->toList();
     }
@@ -129,23 +128,21 @@ class TagsSentencesTable extends Table
 
         return $this->find(
             'all',
-            array(
-                'fields' => array('sentence_id'),
-                'conditions' => array(
-                    'tag_id' => $tagId,
-                    'added_time <' => $date,
-                    'text !=' => null
-                ),
-                'contain' => array(
-                    'Sentence' => array(
-                        'Transcription' => array(
-                            'User' => array('fields' => 'username'),
-                        ),
-                        'conditions' => $sentenceConditions
-                    )
-                ),
-                'limit' => 100
-            )
+            fields: array('sentence_id'),
+            conditions: array(
+                'tag_id' => $tagId,
+                'added_time <' => $date,
+                'text !=' => null
+            ),
+            contain: array(
+                'Sentence' => array(
+                    'Transcription' => array(
+                        'User' => array('fields' => 'username'),
+                    ),
+                    'conditions' => $sentenceConditions
+                )
+            ),
+            limit: 100
         );
     }
 

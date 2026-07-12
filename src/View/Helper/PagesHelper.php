@@ -22,7 +22,7 @@ use App\View\Helper\AppHelper;
 
 class PagesHelper extends AppHelper
 {
-    public $helpers = ['Number'];
+    public array $helpers = ['Number'];
 
     public function formatTitle($pageTitle) {
         return $pageTitle . __(' - Tatoeba');

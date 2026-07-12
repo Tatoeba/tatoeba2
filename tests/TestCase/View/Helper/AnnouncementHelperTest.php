@@ -3,12 +3,18 @@ namespace App\Test\TestCase\View\Helper;
 
 use App\View\Helper\AnnouncementHelper;
 use Cake\Core\Configure;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
 class AnnouncementHelperTest extends TestCase
 {
+    public function tearDown(): void
+    {
+        DateTime::setTestNow();
+        parent::tearDown();
+    }
+
     private function createHelperWithConfig($config)
     {
         Configure::write('Announcement', $config);
@@ -16,7 +22,7 @@ class AnnouncementHelperTest extends TestCase
         return new AnnouncementHelper($view);
     }
 
-    public function announcementProvider() {
+    public static function announcementProvider() {
         return [
             'announcement disabled' => [
                 '2020-05-30 02:00 UTC', // "now" time
@@ -76,15 +82,13 @@ class AnnouncementHelperTest extends TestCase
      */
     public function testAnnouncement($now, $config, $shouldShow)
     {
-        FrozenTime::setTestNow(new FrozenTime($now));
+        DateTime::setTestNow(new DateTime($now));
         $helper = $this->createHelperWithConfig($config);
 
         $this->assertEquals($shouldShow, $helper->isDisplayed());
-
-        FrozenTime::setTestNow();
     }
 
-    public function maintenanceProvider() {
+    public static function maintenanceProvider() {
         return [
             'maintenance in 2 days' => [
                 // "now" time
@@ -170,7 +174,7 @@ class AnnouncementHelperTest extends TestCase
      */
     public function testMaintenance($now, $config, $expectedMessage, $expectedIsImminent)
     {
-        FrozenTime::setTestNow(new FrozenTime($now));
+        DateTime::setTestNow(new DateTime($now));
         $helper = $this->createHelperWithConfig($config);
 
         if ($expectedMessage === '') {
@@ -179,7 +183,5 @@ class AnnouncementHelperTest extends TestCase
             $this->assertStringContainsString($expectedMessage, $helper->getMaintenanceMessage());
         }
         $this->assertEquals($expectedIsImminent, $helper->isMaintenanceImminent());
-
-        FrozenTime::setTestNow();
     }
 }

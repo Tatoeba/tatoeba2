@@ -29,8 +29,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\CurrentUser;
 use Cake\Event\Event;
-use Cake\Filesystem\Folder;
-use Cake\Filesystem\File;
 use Cake\I18n\I18n;
 use Cake\Core\Configure;
 use App\Lib\LanguagesLib;
@@ -54,7 +52,7 @@ class PagesController extends AppController
      * @var string
      * @access public
      */
-    public $name = 'Pages';
+    public string $name = 'Pages';
 
     public function initialize(): void
     {
@@ -62,7 +60,7 @@ class PagesController extends AppController
 
         $this->getEventManager()->on(
             'Controller.startup',
-            fn() => $this->_redirect_for_old_url()
+            function ($event) { $event->setResult($this->_redirect_for_old_url()); }
         );
     }
 
@@ -285,16 +283,20 @@ class PagesController extends AppController
         $lang = I18n::getLocale();
         $translated = true;
         $localesPath = Configure::read('App.paths.locales')[0];
-        $dir = new Folder($localesPath . $lang);
-        $file = new File($dir->pwd() . DS . 'terms-of-use.html');
+        $path = $localesPath . $lang . DS . 'terms-of-use.html';
+        $file = @fopen($path, 'r');
 
-        if (!$file->exists()) {
+        if ($file === false) {
             $translated = false;
-            $dir = new Folder($localesPath . 'fr');
-            $file = new File($dir->pwd() . DS . 'terms-of-use.html');
+            $path = $localesPath . 'fr' . DS . 'terms-of-use.html';
+            $file = @fopen($path, 'r');
+            if ($file === false) {
+                throw new \RuntimeException(sprintf('Unable to open `%s`.', $path));
+            }
         }
 
-        $content = $file->read();
+        $content = fread($file, filesize($path));
+        fclose($file);
         
         $this->set('content', $content);
         $this->set('translated', $translated);

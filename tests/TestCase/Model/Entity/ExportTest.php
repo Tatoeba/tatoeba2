@@ -20,7 +20,7 @@ class ExportTest extends TestCase
         parent::tearDown();
     }
 
-    public function filesProvider()
+    public static function filesProvider()
     {
         return [
             [null, ''],

@@ -40,7 +40,7 @@ use App\View\Helper\AppHelper;
  */
 class ImagesHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'Html', 'Url'
     );
 

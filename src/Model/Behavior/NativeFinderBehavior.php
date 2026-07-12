@@ -20,11 +20,11 @@ namespace App\Model\Behavior;
 
 use App\Model\CurrentUser;
 use Cake\ORM\Behavior;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 
 class NativeFinderBehavior extends Behavior
 {
-    public function findNativeMarker(Query $query, array $options)
+    public function findNativeMarker(SelectQuery $query, array $options)
     {
         if (!CurrentUser::getSetting('native_indicator')) {
             return $query;

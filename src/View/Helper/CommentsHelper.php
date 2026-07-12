@@ -42,7 +42,7 @@ use App\View\Helper\AppHelper;
 class CommentsHelper extends AppHelper
 {
 
-    public $helpers = array('Form', 'Html', 'Sentences', 'Messages', 'Url');
+    public array $helpers = array('Form', 'Html', 'Sentences', 'Messages', 'Url');
 
 
     /**

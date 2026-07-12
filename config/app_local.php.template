@@ -11,7 +11,7 @@ return [
     ],
 
 # You can disable debug to run like production runs
-#    'debug' => false,
+    'debug' => true,
 
     'Datasources' => [
         'default' => [

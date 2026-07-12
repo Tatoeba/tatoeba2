@@ -42,7 +42,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  */
 class VocabularyController extends AppController
 {
-    public $paginate = [
+    public array $paginate = [
         'limit' => 50,
     ];
 
@@ -53,7 +53,7 @@ class VocabularyController extends AppController
      */
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save', 'save_sentence', 'edit'
         ]);
         return parent::beforeFilter($event);
@@ -82,15 +82,15 @@ class VocabularyController extends AppController
         }
         $query = $this->fetchTable('UsersVocabulary')
             ->find('paginated', compact('userId', 'lang'));
+        $this->Vocabulary->find('all', $query)
+            ->find('withCanEditPermission')
+            ->find('syncNumSentences');
         $settings = [
             'order' => ['created' => 'DESC']
         ];
         $results = $this->paginate($query, $settings);
 
-        $vocabulary = $this->Vocabulary->syncNumSentences($results);
-        $vocabulary = $this->Vocabulary->addCanEditPermission($vocabulary);
-
-        $this->set('vocabulary', $vocabulary);
+        $this->set('vocabulary', $results);
         $this->set('username', $username);
         $this->set('canDelete', $username == CurrentUser::get('username'));
     }
@@ -159,13 +159,13 @@ class VocabularyController extends AppController
     {   
         $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang);
 
-        $query = $this->Vocabulary->find('paginated', compact('lang'));
+        $query = $this->Vocabulary
+            ->find('paginated', compact('lang'))
+            ->find('withCanEditPermission');
         $settings = [
             'order' => ['numSentences' => 'ASC'],
         ];
         $vocabulary = $this->paginate($query, $settings);
-
-        $vocabulary = $this->Vocabulary->addCanEditPermission($vocabulary);
 
         $this->set('vocabulary', $vocabulary);
         $this->set('langFilter', $lang);

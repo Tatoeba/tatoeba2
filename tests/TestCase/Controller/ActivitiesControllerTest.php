@@ -2,13 +2,15 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\ActivitiesController;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
-class ActivitiesControllerTest extends IntegrationTestCase {
+class ActivitiesControllerTest extends TestCase {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Audios',
         'app.FavoritesUsers',
         'app.Links',
@@ -23,7 +25,7 @@ class ActivitiesControllerTest extends IntegrationTestCase {
         'app.WikiArticles',
     );
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/activities/adopt_sentences', null, '/en/users/login?redirect=%2Fen%2Factivities%2Fadopt_sentences' ],

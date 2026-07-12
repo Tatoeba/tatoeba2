@@ -79,14 +79,14 @@ class TatoebaFlagsFilterTest extends TestCase
     private function mockSVGFile($path, $contents) {
         $mock = $this
             ->getMockBuilder('MiniAsset\File\FileInterface')
-            ->setMethods(['name', 'contents', 'modifiedTime', 'path'])
+            ->onlyMethods(['name', 'contents', 'modifiedTime', 'path'])
             ->getMock();
         $mock
             ->method('path')
-            ->will($this->returnValue($path));
+            ->willReturn($path);
         $mock
             ->method('contents')
-            ->will($this->returnValue($contents));
+            ->willReturn($contents);
         return $mock;
     }
 
@@ -113,7 +113,7 @@ class TatoebaFlagsFilterTest extends TestCase
         $this->fail("RuntimeException was not thrown");
     }
 
-    public function svgWithIdsProvider() {
+    public static function svgWithIdsProvider() {
         return [
             // SVG fragment,
             // expected strings (ordered) after combining fragment with itself,

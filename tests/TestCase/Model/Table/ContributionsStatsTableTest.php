@@ -10,7 +10,7 @@ use Cake\Event\Event;
  */
 class ContributionsStatsTableTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.ContributionsStats',
     );
 

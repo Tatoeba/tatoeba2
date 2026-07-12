@@ -2,14 +2,16 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\I18n\FrozenTime;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\I18n\DateTime;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class ContributionsControllerTest extends IntegrationTestCase
+class ContributionsControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Contributions',
         'app.ContributionsStats',
         'app.LastContributions',
@@ -20,7 +22,18 @@ class ContributionsControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public function setUp(): void {
+        parent::setUp();
+        $now = new DateTime('2017-04-22 07:22:01');
+        DateTime::setTestNow($now);
+    }
+
+    public function tearDown(): void {
+        DateTime::setTestNow();
+        parent::tearDown();
+    }
+
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/contributions/index', null, '/en/contributions/latest' ],
@@ -44,9 +57,6 @@ class ContributionsControllerTest extends IntegrationTestCase
      * @dataProvider accessesProvider
      */
     public function testControllerAccess($url, $user, $response) {
-        $now = new FrozenTime('2017-04-22 07:22:01');
-        FrozenTime::setTestNow($now);
         $this->assertAccessUrlAs($url, $user, $response);
-        FrozenTime::setTestNow();
     }
 }

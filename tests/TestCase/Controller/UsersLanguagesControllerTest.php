@@ -2,20 +2,22 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class UsersLanguagesControllerTest extends IntegrationTestCase
+class UsersLanguagesControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use JsonAssertions;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
            [ '/en/users_languages/delete/1', null, '/en/users/login?redirect=%2Fen%2Fusers_languages%2Fdelete%2F1' ],

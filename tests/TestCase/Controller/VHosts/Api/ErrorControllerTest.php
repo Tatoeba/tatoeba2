@@ -8,7 +8,7 @@ class ErrorControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Sentences',
         'app.Transcriptions',

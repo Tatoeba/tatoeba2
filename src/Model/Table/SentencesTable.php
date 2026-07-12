@@ -21,7 +21,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Entity;
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Event\Event;
@@ -94,7 +94,7 @@ class SentencesTable extends Table
         $this->hasMany('ReindexFlags');
         $this->hasMany('UsersSentences');
         $this->hasMany('Favorites_users', [
-            'classname'  => 'favorites',
+            'className'  => 'Favorites',
             'foreignKey' => 'favorite_id'
         ]);
         $this->hasMany('SentenceComments');
@@ -115,7 +115,6 @@ class SentencesTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
-        $this->addBehavior('LimitResults');
         $this->addBehavior('NativeFinder');
 
         $this->getEventManager()->on(new ContributionListener());
@@ -229,7 +228,7 @@ class SentencesTable extends Table
         }
 
         $sentenceId = $context['data']['id'];
-        $sentence = $this->get($sentenceId, ['fields' => ['based_on_id', 'user_id', 'license']]);
+        $sentence = $this->get($sentenceId, fields: ['based_on_id', 'user_id', 'license']);
         $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to
@@ -449,7 +448,7 @@ class SentencesTable extends Table
      * This allows to hide some extra fields
      * in json in a similar fashion as contain().
      */
-    public function findHideFields(Query $query, array $options)
+    public function findHideFields(SelectQuery $query, array $options)
     {
         $hide = $this->hideFields();
         return $query->formatResults(function($results) use ($hide) {
@@ -509,7 +508,9 @@ class SentencesTable extends Table
         }
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
-                $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
+                if (!is_array($result['translations']) || count($result['translations']) == 0 || !is_array($result['translations'][0])) {
+                    $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
+                }
                 return $result;
             });
         });
@@ -533,7 +534,7 @@ class SentencesTable extends Table
                         ->select(['id'])
                         ->where(['id in' => $potentialIds])
                         ->where(['user_id !=' => 0, 'correctness' => 0])
-                        ->order(['rand()'])
+                        ->orderBy(['rand()'])
                         ->first();
             if ($res) {
                 return $res->id;
@@ -642,10 +643,9 @@ class SentencesTable extends Table
         $sphinx['limit'] = $numberOfIdWanted;
 
         $query = $this
-            ->find('all', [
-                'fields' => ['id'],
-                'sphinx' => $sphinx,
-            ]);
+            ->find('all',
+            fields: ['id'],
+            sphinx: $sphinx);
 
         try {
             return $query->all()->extract('id')->toArray();
@@ -695,7 +695,7 @@ class SentencesTable extends Table
      */
     public function contain($what = [])
     {
-        $audioContainment = function (Query $q) use ($what) {
+        $audioContainment = function (SelectQuery $q) use ($what) {
             $audioFields = ['id', 'external', 'source', 'sentence_id'];
             $usersFields = ['username'];
             if (isset($what['sentenceDetails'])) {
@@ -711,7 +711,7 @@ class SentencesTable extends Table
 
         $transcriptionsContainment = [
             'Users' => ['fields' => ['username']],
-            'Sentences' => function (Query $q) {
+            'Sentences' => function (SelectQuery $q) {
                 return $q->select(['user_id']); // to allow calculating `Transcription.markup` property
             },
         ];
@@ -729,11 +729,11 @@ class SentencesTable extends Table
 
         if (CurrentUser::isMember()) {
             $contain += [
-                'Favorites_users' => function (Query $q) {
+                'Favorites_users' => function (SelectQuery $q) {
                     return $q->select(['id', 'favorite_id'])
                              ->where(['user_id' => CurrentUser::get('id')]);
                 },
-                'SentencesLists' => function (Query $q) {
+                'SentencesLists' => function (SelectQuery $q) {
                     return $q->select(['id', 'SentencesSentencesLists.sentence_id'])
                             ->where([
                                 'OR' => [
@@ -742,7 +742,7 @@ class SentencesTable extends Table
                                ]
                             ]);
                 },
-                'UsersSentences' => function (Query $q) {
+                'UsersSentences' => function (SelectQuery $q) {
                     return $q->select(['sentence_id', 'correctness'])
                              ->where(['user_id' => CurrentUser::get('id')]);
                 },
@@ -798,9 +798,7 @@ class SentencesTable extends Table
      */
     public function getSentenceWith($id, $what = [], $translationLang = null)
     {
-        return $this->find('filteredTranslations', [
-                'translationLang' => $translationLang
-            ])
+        return $this->find('filteredTranslations', translationLang: $translationLang)
             ->find('nativeMarker')
             ->find('hideFields')
             ->where(['Sentences.id' => $id])
@@ -872,12 +870,12 @@ class SentencesTable extends Table
 
         $prev = $this->find()
             ->select('id')
-            ->order(['id' => 'DESC'])
+            ->orderBy(['id' => 'DESC'])
             ->where(['id <' => $sourceId] + $langCondition)
             ->first();
         $next = $this->find()
             ->select('id')
-            ->orderAsc('id')
+            ->orderByAsc('id')
             ->where(['id >' => $sourceId] + $langCondition)
             ->first();
 
@@ -1110,7 +1108,7 @@ class SentencesTable extends Table
      */
     public function unsetOwner($sentenceId, $userId)
     {
-        $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
+        $sentence = $this->get($sentenceId, fields: ['id', 'user_id']);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         if ($currentOwner->id == $userId) {
             $sentence->user_id = null;
@@ -1130,7 +1128,7 @@ class SentencesTable extends Table
      */
     public function getOwnerInfoOfSentence($sentenceId)
     {
-        $sentence = $this->get($sentenceId, ['contain' => 'Users']);
+        $sentence = $this->get($sentenceId, contain: 'Users');
 
         return $sentence->user;
     }
@@ -1147,9 +1145,7 @@ class SentencesTable extends Table
     public function changeLanguage($sentenceId, $newLang)
     {
         try {
-            $sentence = $this->get($sentenceId, [
-                'fields' => ['id', 'lang', 'text', 'user_id']
-            ]);
+            $sentence = $this->get($sentenceId, fields: ['id', 'lang', 'text', 'user_id']);
         } catch (RecordNotFoundException $e) {
             return false;
         }
@@ -1178,7 +1174,7 @@ class SentencesTable extends Table
     public function getSentenceTextForId($sentenceId)
     {
         try {
-            $result = $this->get($sentenceId, ['fields' => 'text']);
+            $result = $this->get($sentenceId, fields: 'text');
             return $result->text;
         } catch (RecordNotFoundException $e) {
             return '';
@@ -1195,7 +1191,7 @@ class SentencesTable extends Table
     public function getLanguageCodeFromSentenceId($sentenceId)
     {
         try {
-            $result = $this->get($sentenceId, ['fields' => ['lang']]);
+            $result = $this->get($sentenceId, fields: ['lang']);
             return $result->lang;
         } catch (RecordNotFoundException $e) {
             return null;

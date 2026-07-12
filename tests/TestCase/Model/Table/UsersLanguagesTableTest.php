@@ -4,10 +4,10 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersLanguagesTable;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 
 class UsersLanguagesTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Users',
         'app.UsersLanguages',
         'app.Languages',
@@ -18,7 +18,7 @@ class UsersLanguagesTableTest extends TestCase {
     private $UsersLanguages;
 
     function getFixtures(): array {
-        if (stristr($this->getName(), 'reindex') === false) {
+        if (stristr($this->name(), 'reindex') === false) {
             return ['app.Users', 'app.UsersLanguages', 'app.Languages'];
         } else {
             return $this->fixtures;
@@ -33,6 +33,7 @@ class UsersLanguagesTableTest extends TestCase {
 
     function tearDown(): void {
         unset($this->UsersLanguages); 
+        DateTime::setTestNow();
         parent::tearDown();
     }
 
@@ -233,8 +234,8 @@ class UsersLanguagesTableTest extends TestCase {
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new FrozenTime('2020-01-02 03:04:05');
-        FrozenTime::setTestNow($now);
+        $now = new DateTime('2020-01-02 03:04:05');
+        DateTime::setTestNow($now);
 
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
@@ -244,7 +245,6 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
 
-        FrozenTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 
@@ -252,7 +252,7 @@ class UsersLanguagesTableTest extends TestCase {
         $QueuedJobs = $this->fetchTable('QueuedJobs');
         $job = $QueuedJobs->findByJobTask('SentencesReindex')->first();
         $this->assertNotNull($job);
-        $this->assertEquals($expectedConfig, unserialize($job->data));
+        $this->assertEquals($expectedConfig, json_decode($job->data, true));
     }
 
     function assertSentencesReindexJobNotQueued() {

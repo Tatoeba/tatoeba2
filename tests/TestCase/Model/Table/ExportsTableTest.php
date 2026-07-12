@@ -3,15 +3,15 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\ExportsTable;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
+use Cake\Utility\Filesystem;
 
 class ExportsTableTest extends TestCase
 {
     public $Exports;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Exports',
         'app.Links',
         'app.QueuedJobs',
@@ -36,9 +36,9 @@ class ExportsTableTest extends TestCase
 
         parent::loadPlugins(['Queue']);
 
-        $folder = new Folder($this->testExportDir);
-        $folder->delete();
-        $folder->create($this->testExportDir);
+        $fs = new Filesystem();
+        $fs->deleteDir($this->testExportDir);
+        $fs->mkdir($this->testExportDir);
 
         $this->Exports = $this->fetchTable('Exports');
     }
@@ -47,8 +47,9 @@ class ExportsTableTest extends TestCase
     {
         unset($this->Exports);
 
-        $folder = new Folder($this->testExportDir);
-        $folder->delete();
+        (new Filesystem())->deleteDir($this->testExportDir);
+
+        DateTime::setTestNow();
 
         parent::tearDown();
     }
@@ -241,14 +242,14 @@ class ExportsTableTest extends TestCase
         $this->assertEquals(4, $job->job_group);
 
         $export = $this->Exports->find()->all()->last();
-        $this->assertEquals($export->id, unserialize($job->data)['export_id']);
+        $this->assertEquals($export->id, $job->data['export_id']);
     }
 
     public function testRunExport_returnsTrue()
     {
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $result = $this->Exports->runExport($config, $jobId);
 
@@ -257,16 +258,15 @@ class ExportsTableTest extends TestCase
 
     public function testRunExport_updatesExport()
     {
-        $now = new FrozenTime('2019-02-01 15:04:30');
-        FrozenTime::setTestNow($now);
+        $now = new DateTime('2019-02-01 15:04:30');
+        DateTime::setTestNow($now);
 
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $this->Exports->runExport($config, $jobId);
 
-        FrozenTime::setTestNow();
         $export = $this->Exports->get($exportId);
         $this->assertEquals($now, $export->generated);
         $this->assertEquals(TMP.'export_tests/list_3.tsv', $export->filename);
@@ -278,7 +278,7 @@ class ExportsTableTest extends TestCase
     {
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $this->Exports->runExport($config, $jobId);
 
@@ -290,7 +290,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'fields' => ['lang', 'text']]);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -302,7 +302,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'trans_lang' => 'jpn', 'fields' => ['id', 'text', 'trans_text']]);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -320,7 +320,7 @@ class ExportsTableTest extends TestCase
             'format' => 'tsv',
         ];
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -332,7 +332,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'fields' => ['text'], 'format' => 'txt']);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -344,7 +344,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 1, 'format' => 'shtooka']);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -355,15 +355,15 @@ class ExportsTableTest extends TestCase
     public function testRunExport_failsIfExportDirNotWritable()
     {
         $readOnlyDir = $this->testExportDir.'readonly';
-        $folder = new Folder($readOnlyDir, true, 0444);
+        (new Filesystem())->mkdir($readOnlyDir, 0444);
         if (is_writable($readOnlyDir)) {
             $this->markTestSkipped('Unable to create a read-only directory');
         }
-        Configure::write('Exports.path', $folder->path.DS);
+        Configure::write('Exports.path', $readOnlyDir.DS);
 
         $jobId = 3;
         $exportId = 3;
-        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+        $config = $this->Exports->QueuedJobs->get($jobId)->data;
 
         $result = $this->Exports->runExport($config, $jobId);
 
@@ -409,7 +409,7 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 3]);
         $export = $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
@@ -420,7 +420,7 @@ class ExportsTableTest extends TestCase
 
         $options = $this->optionsWith(['list_id' => 2]);
         $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
 
         try {
@@ -435,13 +435,13 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['list_id' => 3]);
         $this->Exports->createExport(7, $options);
-        $config = (array)unserialize($this->Exports->QueuedJobs->find()->all()->last()->data);
+        $config = $this->Exports->QueuedJobs->find()->all()->last()->data;
         $this->Exports->runExport($config);
         $export = $this->Exports->get($config['export_id']);
         $this->assertFileExists($export->filename);
 
         $this->Exports->delete($export);
 
-        $this->assertFileNotExists($export->filename);
+        $this->assertFileDoesNotExist($export->filename);
     }
 }

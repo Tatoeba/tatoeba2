@@ -41,7 +41,7 @@ use App\View\Helper\AppHelper;
 class LogsHelper extends AppHelper
 {
 
-    public $helpers = array('Date', 'Html', 'Languages');
+    public array $helpers = array('Date', 'Html', 'Languages');
 
     private function _findLatestContributionDates($contributions) {
         $latestContribs = array();

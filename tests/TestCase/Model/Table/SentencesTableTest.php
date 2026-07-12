@@ -6,7 +6,7 @@ use App\Model\Table\SentencesTable;
 use App\Model\Table\LinksTable;
 use App\Behavior\Sphinx;
 use Cake\Core\Configure;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\TestSuite\TestCase;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
@@ -20,7 +20,7 @@ use Cake\I18n\I18n;
 class SentencesTableTest extends TestCase {
     use SearchMockTrait;
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences',
         'app.Users',
         'app.UsersLanguages',
@@ -41,6 +41,14 @@ class SentencesTableTest extends TestCase {
 
     private $Sentence;
 
+    private function shouldEnableMockedSearchError(): bool {
+        $method = new \ReflectionMethod($this::class, $this->name());
+        return (bool)array_filter(
+            $method->getAttributes(),
+            fn ($attr) => str_ends_with($attr->getName(), 'mockedSearchError')
+        );
+    }
+
     function setUp(): void {
         parent::setUp();
 
@@ -48,10 +56,8 @@ class SentencesTableTest extends TestCase {
 
         Configure::write('AutoTranscriptions.enabled', true);
 
-        $annotations = $this->getAnnotations()['method'];
-        $searchError = $annotations['mockedSearchError'][0] ?? false;
-        if ($searchError !== false) {
-            $this->enableMockedSearchError($searchError);
+        if ($this->shouldEnableMockedSearchError()) {
+            $this->enableMockedSearchError();
         } else {
             $foundIds = [1, 2, 3, 4, 5, 16, 17, 18, 19, 20];
             $totalResults = 10;
@@ -63,21 +69,21 @@ class SentencesTableTest extends TestCase {
         $autotranscription
             ->expects($this->any())
             ->method('cmn_detectScript')
-            ->will($this->returnValue('Hans'));
+            ->willReturn('Hans');
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_generate')
             ->with($this->logicalNot($this->isEmpty()), $this->anything())
-            ->will($this->returnValue('transcription in furigana'));
+            ->willReturn('transcription in furigana');
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_validate')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
     }
 
     function _installAutotranscriptionMock() {
         $autotranscription = $this->getMockBuilder(Autotranscription::class)
-            ->setMethods([
+            ->onlyMethods([
                 'cmn_detectScript',
                 'jpn_Jpan_to_Hrkt_generate',
                 'jpn_Jpan_to_Hrkt_validate',
@@ -90,6 +96,7 @@ class SentencesTableTest extends TestCase {
 
     function tearDown(): void {
         unset($this->Sentence);
+        DateTime::setTestNow();
         parent::tearDown();
     }
 
@@ -154,7 +161,7 @@ class SentencesTableTest extends TestCase {
         $this->assertTrue((bool)$returnValue);
     }
 
-    function duplicatesProvider() {
+    static function duplicatesProvider() {
         return [
             'Exact duplicate' =>
                 [['What are you doing?', 'eng', 1], 27],
@@ -216,7 +223,7 @@ class SentencesTableTest extends TestCase {
         $newlyCreatedSentenceId = $lastSentence->max + 1;
 
         $mock = $this->getMockBuilder(LinksTable::class)
-            ->setMethods(['add', 'findDirectAndIndirectTranslationsIds'])
+            ->onlyMethods(['add', 'findDirectAndIndirectTranslationsIds'])
             ->getMock();
         $this->Sentence->Links->setTarget($mock);
 
@@ -379,7 +386,7 @@ class SentencesTableTest extends TestCase {
         $autotranscription
             ->expects($this->once())
             ->method('cmn_detectScript')
-            ->will($this->returnValue('Hant'));
+            ->willReturn('Hant');
         $cmnSentenceId = 2;
         $data = $this->Sentence->get($cmnSentenceId);
         $data->text = '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。';
@@ -826,7 +833,7 @@ class SentencesTableTest extends TestCase {
         $this->assertNull($result);
     }
 
-    function sentencePropThatShouldTriggerTranslationsReindex() {
+    static function sentencePropThatShouldTriggerTranslationsReindex() {
         return [
             // sentence property, new value, ids of type "change", ids of type "removal"
             ['lang',        'tpn', [1, 2, 4, 5], [5]],
@@ -1437,7 +1444,7 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    function findFilteredTranslationsProvider () {
+    static function findFilteredTranslationsProvider () {
         // userId, find options, expected result (in alphabetic order)
         return [
             'with lang settings but without translation lang' =>
@@ -1582,9 +1589,7 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @mockedSearchError
-     */
+    #[mockedSearchError]
     function testGetSeveralRandomIds_errors() {
         $result = $this->Sentence->getSeveralRandomIds('nch');
 
@@ -1595,23 +1600,21 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(1);
         CurrentUser::store($user);
         
-        $testTime = new FrozenTime('2019-02-01 00:00:00');
-        FrozenTime::setTestNow($testTime);
+        $testTime = new DateTime('2019-02-01 00:00:00');
+        DateTime::setTestNow($testTime);
         $this->Sentence->saveNewSentence('This is my newer English sentence.', 'eng', 1);
         
         $user = $this->Sentence->Users->get(1);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
-
-        FrozenTime::setTestNow();
     }
 
     public function testEditSentence_UpdatesLastContributionField() {
         $user = $this->Sentence->Users->get(7);
         CurrentUser::store($user);
         
-        $testTime = new FrozenTime('2019-02-01 00:00:00');
-        FrozenTime::setTestNow($testTime);
+        $testTime = new DateTime('2019-02-01 00:00:00');
+        DateTime::setTestNow($testTime);
         $before = $this->Sentence->get(7);
         $data = ['id' => '7', 'text' => 'This is the new text of sentence #7.'];
         $after = $this->Sentence->editSentence($data);
@@ -1619,8 +1622,6 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($testTime, $newLastContribution);
-
-        FrozenTime::setTestNow();
     }
 
     public function testEditLicense_DoesNotUpdateLastContributionField() {
@@ -1629,8 +1630,8 @@ class SentencesTableTest extends TestCase {
 
         $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime = new FrozenTime('2019-02-01 00:00:00');
-        FrozenTime::setTestNow($testTime);
+        $testTime = new DateTime('2019-02-01 00:00:00');
+        DateTime::setTestNow($testTime);
         $data = $this->Sentence->get(7);
         $data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
         $result = $this->Sentence->save($data);
@@ -1638,8 +1639,6 @@ class SentencesTableTest extends TestCase {
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
-
-        FrozenTime::setTestNow();
     }
 
     public function testAdopt_DoesNotUpdateLastContributionField() {
@@ -1648,14 +1647,12 @@ class SentencesTableTest extends TestCase {
 
         $oldLastContribution = $this->Sentence->Users->get(7)->last_contribution;
 
-        $testTime = new FrozenTime('2019-02-02 00:00:00');
-        FrozenTime::setTestNow($testTime);
+        $testTime = new DateTime('2019-02-02 00:00:00');
+        DateTime::setTestNow($testTime);
         $sentence = $this->Sentence->saveNewSentence('An orphan sentence.', 'eng', 4);
 
         $user = $this->Sentence->Users->get(7);
         $newLastContribution = $user->last_contribution;
         $this->assertEquals($oldLastContribution, $newLastContribution);
-
-        FrozenTime::setTestNow();
     }
 }

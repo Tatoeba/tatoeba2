@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddSentenceLangIndexOnAudiosTable extends AbstractMigration
+class AddSentenceLangIndexOnAudiosTable extends BaseMigration
 {
     public function up()
     {

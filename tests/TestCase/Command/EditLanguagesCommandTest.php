@@ -1,17 +1,16 @@
 <?php
 namespace App\Test\TestCase\Command;
 
-use Cake\Console\Command;
-use Cake\Filesystem\File;
-use Cake\Filesystem\Folder;
+use Cake\Command\Command;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Cake\Utility\Filesystem;
 
 class EditLanguagesCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.DisabledAudios',
         'app.Contributions',
@@ -33,25 +32,23 @@ class EditLanguagesCommandTest extends TestCase
     const TESTDIR = TMP . 'edit_languages_tests' . DS;
 
     public static function setUpBeforeClass(): void {
-        new Folder(self::TESTDIR, true, 0755);
+        (new Filesystem())->mkdir(self::TESTDIR, 0755);
     }
 
     public static function tearDownAfterClass(): void {
-        $folder = new Folder(self::TESTDIR);
-        $folder->delete();
+        (new Filesystem())->deleteDir(self::TESTDIR);
     }
 
     public function setUp(): void {
         parent::setUp();
-        $this->UseCommandRunner();
         $this->Sentences = $this->fetchTable('Sentences');
     }
 
     private function create_test_file($ids) {
         $path = self::TESTDIR . 'input_test';
-        $file = new File($path);
-        $file->write(implode("\n", $ids));
-        $file->close();
+        $file = fopen($path, 'w');
+        fwrite($file, implode("\n", $ids));
+        fclose($file);
         return $path;
     }
 
@@ -65,7 +62,7 @@ class EditLanguagesCommandTest extends TestCase
         $this->assertEquals('fra', $sentence->lang);
     }
 
-    public function successesProvider() {
+    public static function successesProvider() {
         // username, ids, language, number of changes
         return [
             'all ids changed to fra' =>
@@ -101,7 +98,7 @@ class EditLanguagesCommandTest extends TestCase
         $this->assertEquals($changes, $after - $before);
     }
 
-    public function failuresProvider() {
+    public static function failuresProvider() {
         return [
             'without any required argument' => ['edit_languages'],
             'without file' => ['edit_languages admin'],

@@ -7,7 +7,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 class ContributionsFixture extends TestFixture {
 	public $name = 'Contribution';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'sentence_id' => '1',
 			'sentence_lang' => 'eng',

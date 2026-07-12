@@ -4,8 +4,8 @@ namespace App\Command;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use Cake\Collection\Collection;
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 
@@ -20,6 +20,8 @@ class EditCommand_ extends Command
 {
     protected $log = [];
     protected $total = 0;
+    protected $Sentences;
+    protected $Users;
 
     public function initialize(): void {
         parent::initialize();

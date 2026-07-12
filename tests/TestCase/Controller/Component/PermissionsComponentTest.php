@@ -13,7 +13,7 @@ use Cake\TestSuite\TestCase;
 
 class PermissionsComponentTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Users',
         'app.UsersLanguages',
         'app.Walls',
@@ -30,7 +30,7 @@ class PermissionsComponentTest extends TestCase
         $response = new Response();
         $this->controller = $this->getMockBuilder('Cake\Controller\Controller')
             ->setConstructorArgs([$request, $response])
-            ->setMethods(null)
+            ->onlyMethods([])
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->component = new PermissionsComponent($registry);
@@ -44,7 +44,7 @@ class PermissionsComponentTest extends TestCase
         parent::tearDown();
     }
 
-    public function WallMessageOptionsProvider() {
+    public static function WallMessageOptionsProvider() {
         // lastInThread, owner, currentUser, isHidden, expected
         return [
             [false, null, null, false,
@@ -119,7 +119,7 @@ class PermissionsComponentTest extends TestCase
         $this->assertTrue($wallThread[0]['children'][0]['Permissions']['canPM']);
     }
 
-    public function CommentOptionsProvider() {
+    public static function CommentOptionsProvider() {
         // owner, currentUser, isHidden, expected
         return [
             [null, null, false,

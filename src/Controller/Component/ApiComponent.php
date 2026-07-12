@@ -9,7 +9,7 @@ use Cake\Event\Event;
 use Cake\Http\CallbackStream;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Response;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Routing\Router;
 
 class ApiComponent extends Component
@@ -125,7 +125,7 @@ class ApiComponent extends Component
      * responses without having to keep the whole response into memory, but
      * streaming it bit by bit as results are coming out of $query.
      */
-    public function paginatedResponse(Query $query, callable $cursorEndCb, callable $numResultsCb = null): Response
+    public function paginatedResponse(SelectQuery $query, callable $cursorEndCb, callable $numResultsCb = null): Response
     {
         $stream = new CallbackStream(function () use ($query, $cursorEndCb, $numResultsCb) {
             $isFirst = true;
@@ -159,7 +159,7 @@ class ApiComponent extends Component
             echo ",\"paging\":$paging}";
         });
 
-        $this->autoRender = false;
+        $this->getController()->disableAutoRender();
 
         return $this
             ->getController()

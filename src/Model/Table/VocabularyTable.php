@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\RulesChecker;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
@@ -181,7 +181,7 @@ class VocabularyTable extends Table
      *
      * @param $options['lang'] string
      */
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query
             ->select(['id', 'lang', 'text', 'numSentences', 'numAdded'])
@@ -236,19 +236,19 @@ class VocabularyTable extends Table
     /**
      * Sync the numSentences column on vocabulary items with the Sphinx index.
      */
-    public function syncNumSentences($results)
+    public function findSyncNumSentences(SelectQuery $query): SelectQuery
     {
-        return $results->map(function ($item) {
+        return $query->formatResults(fn($results) => $results->map(function ($item) {
             $vocabulary = $item->vocabulary;
             $numSentences = $this->_updateNumSentences($vocabulary);
             $item->vocabulary->numSentences = $numSentences;
             return $item;
-        });
+        }));
     }
 
-    public function addCanEditPermission($results)
+    public function findWithCanEditPermission(SelectQuery $query): SelectQuery
     {
-        return $results->map(function ($item) {
+        return $query->formatResults(fn($results) => $results->map(function ($item) {
             if ($item instanceof \App\Model\Entity\Vocable) {
                 $canEdit = CurrentUser::isModerator();
                 $vocabulary = $item;
@@ -260,7 +260,7 @@ class VocabularyTable extends Table
             }
             $vocabulary->canEdit = $canEdit;
             return $item;
-        });
+        }));
     }
 
     /**

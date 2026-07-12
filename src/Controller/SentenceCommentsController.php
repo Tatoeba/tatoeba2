@@ -44,9 +44,9 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  */
 class SentenceCommentsController extends AppController
 {
-    public $name = 'SentenceComments';
+    public string $name = 'SentenceComments';
 
-    public $paginate = [
+    public array $paginate = [
         'limit' => 50,
         'order' => ['SentenceComments.id' => 'DESC'],
     ];
@@ -63,7 +63,7 @@ class SentenceCommentsController extends AppController
 
         // disable Form Tampering Protection for actions where it's no big deal
         // (it was only protecting against changing the sentence_id)
-        $this->Security->setConfig('unlockedActions', [
+        $this->FormProtection->setConfig('unlockedActions', [
             'save',
             'edit',
         ]);
@@ -80,20 +80,20 @@ class SentenceCommentsController extends AppController
      */
     public function index($langFilter = 'und')
     {
+        $query = $this->SentenceComments->find('paginated');
         $options = [
+            'className' => 'Limited',
             'maxResults' => $this::PAGINATION_DEFAULT_TOTAL_LIMIT,
         ];
         $botsIds = Configure::read('Bots.userIds');
         if (!empty($botsIds)) {
-            $options['conditions']['SentenceComments.user_id NOT IN'] = $botsIds;
+            $query->where(['SentenceComments.user_id NOT IN' => $botsIds]);
         }
         if ($langFilter != 'und') {
-            $options['conditions']['Sentences.lang'] = $langFilter;
+            $query->where(['Sentences.lang' => $langFilter]);
         }
 
-        $finder = ['latest' => $options];
-        $query = $this->SentenceComments->find('paginated');
-        $latestComments = $this->paginateOrRedirect($query, compact('finder'));
+        $latestComments = $this->paginate($query, $options);
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 

@@ -166,7 +166,7 @@ class TranscriptionsTable extends Table
             $conditions['id !='] = $entity->id;
         }
 
-        $query = $this->find('all', ['withoutSentences' => true])->where($conditions);
+        $query = $this->find('all', withoutSentences: true)->where($conditions);
         $count = $query->count(); 
         return $count == 0;
     }
@@ -404,13 +404,14 @@ class TranscriptionsTable extends Table
     }
 
     public function getOwners($transcriptionId) {
-        $transc = $this->find('first', array(
-            'conditions' => array(
+        $transc = $this->find(
+            'first',
+            conditions: array(
                 'Transcription.id' => $transcriptionId,
             ),
-            'fields' => array('Sentence.user_id', 'Transcription.user_id'),
-            'contain' => array('Sentence'),
-        ));
+            fields: array('Sentence.user_id', 'Transcription.user_id'),
+            contain: array('Sentence')
+        );
 
         if ($transc)
             return array(

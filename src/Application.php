@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -22,13 +24,15 @@ use Authorization\Policy\MapResolver;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
-use Authentication\Identifier\IdentifierInterface;
+use Authentication\Identifier\AbstractIdentifier;
 use Cake\Core\Configure;
-use Cake\Core\Exception\MissingPluginException;
+use Cake\Core\ContainerInterface;
+use Cake\Datasource\FactoryLocator;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
+use Cake\Http\MiddlewareQueue;
 use Cake\Http\ServerRequest;
-use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Router;
 use CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware;
 use Psr\Http\Message\ResponseInterface;
@@ -40,10 +44,40 @@ use TinyAuth\Policy\RequestPolicy;
  *
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
+ *
+ * @extends \Cake\Http\BaseApplication<\App\Application>
  */
 class Application extends BaseApplication implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
 {
     const QUERY_PARAM_REDIRECT = 'redirect';
+
+    /**
+     * Load all the application configuration and bootstrap logic.
+     *
+     * @return void
+     */
+    public function bootstrap(): void
+    {
+        // Call parent to load bootstrap from files.
+        parent::bootstrap();
+
+        if (PHP_SAPI === 'cli') {
+            // reload app commands once at the end
+            // this allow app commands to override plugin commands
+            $this->getEventManager()->on(
+                'Console.buildCommands',
+                function (\Cake\Event\Event $event) {
+                    $commands = $event->getData('commands');
+                    $commands->addMany($commands->autoDiscover());
+                }
+            );
+        } else {
+            FactoryLocator::add(
+                'Table',
+                (new TableLocator())->allowFallbackClass(false)
+            );
+        }
+    }
 
     /**
      * Returns a service provider instance.
@@ -72,7 +106,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 if ($referer) {
                     // Set referer in redirect= query parameter instead of current URL
                     $refererUri = $request->getUri()->withPath($referer);
-                    $url = $service->getUnauthenticatedRedirectUrl($request->withUri($refererUri));
+                    $url = $service->getUnauthenticatedRedirectUrl($request->withUri($refererUri)->withMethod('GET'));
                     $service->setConfig([
                         'unauthenticatedRedirect' => $url,
                         'queryParam' => null,
@@ -85,16 +119,30 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         }
 
         $fields = [
-            IdentifierInterface::CREDENTIAL_USERNAME => 'username',
-            IdentifierInterface::CREDENTIAL_PASSWORD => 'password',
+            AbstractIdentifier::CREDENTIAL_USERNAME => 'username',
+            AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
+        ];
+        $passwordIdentifier = [
+            'Authentication.Password' => [
+                'fields' => $fields,
+                'resolver' => [
+                    'className' => 'Authentication.Orm',
+                    'finder' => 'userToLogin',
+                ],
+                'passwordHasher'=> [
+                    'className' => 'Versioned'
+                ],
+            ],
         ];
 
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('SessionWithoutPassword', [
+            'identifier' => $passwordIdentifier,
             'sessionKey' => 'Auth.User',
             'identify' => true,
         ]);
         $service->loadAuthenticator('Authentication.Form', [
+            'identifier' => $passwordIdentifier,
             'fields' => $fields,
             'loginUrl' => Router::url([
                 'prefix' => false,
@@ -104,24 +152,13 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             ]),
         ]);
         $service->loadAuthenticator('RememberMe', [
+            'identifier' => $passwordIdentifier,
             'loginUrl' => Router::url([
                 'prefix' => false,
                 'plugin' => false,
                 'controller' => 'Users',
                 'action' => 'check_login',
             ]),
-        ]);
-
-        // Load identifiers
-        $service->loadIdentifier('Authentication.Password', [
-            'fields' => $fields,
-            'resolver' => [
-                'className' => 'Authentication.Orm',
-                'finder' => 'userToLogin',
-            ],
-            'passwordHasher'=> [
-                'className' => 'Versioned'
-            ],
         ]);
 
         return $service;
@@ -140,48 +177,18 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         return new AuthorizationService($mapResolver);
     }
 
-    public function bootstrap(): void
-    {
-        parent::bootstrap();
-
-        if (PHP_SAPI === 'cli') {
-            try {
-                $this->addPlugin('Bake');
-            } catch (MissingPluginException $e) {
-                // Do not halt if the plugin is missing
-            }
-            $this->addPlugin('Migrations');
-
-            // reload app commands once at the end
-            // this allow app commands to override plugin commands
-            $this->getEventManager()->on(
-                'Console.buildCommands',
-                function (\Cake\Event\Event $event) {
-                    $commands = $event->getData('commands');
-                    $commands->addMany($commands->autoDiscover());
-                }
-            );
-        }
-
-        $this->addPlugin('Queue', ['bootstrap' => true, 'routes' => false]);
-        $this->addPlugin('AssetCompress', ['middleware' => false]);
-        $this->addPlugin('TinyAuth');
-        $this->addPlugin('Authentication');
-        $this->addPlugin('Authorization');
-    }
-
     /**
      * Setup the middleware queue your application will use.
      *
      * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
      * @return \Cake\Http\MiddlewareQueue The updated middleware queue.
      */
-    public function middleware($middlewareQueue): \Cake\Http\MiddlewareQueue
+    public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
-            ->add(new ErrorHandlerMiddleware(Configure::read('Error')))
+            ->add(new ErrorHandlerMiddleware(Configure::read('Error'), $this))
 
             // Add routing middleware.
             ->add(new CachedRoutingMiddleware($this, '_cake_routes_'));
@@ -189,5 +196,16 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             // Other middlewares are added from config/routes.php
 
         return $middlewareQueue;
+    }
+
+    /**
+     * Register application container services.
+     *
+     * @param \Cake\Core\ContainerInterface $container The Container to update.
+     * @return void
+     * @link https://book.cakephp.org/5/en/development/dependency-injection.html#dependency-injection
+     */
+    public function services(ContainerInterface $container): void
+    {
     }
 }

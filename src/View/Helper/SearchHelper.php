@@ -24,7 +24,7 @@ use App\View\Helper\AppHelper;
 
 class SearchHelper extends AppHelper
 {
-    public $helpers = array('Form', 'Languages');
+    public array $helpers = array('Form', 'Languages');
 
     private $langs;
 

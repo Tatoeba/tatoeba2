@@ -4,10 +4,10 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersSentencesTable;
 use Cake\TestSuite\TestCase;
 use Cake\I18n\I18n;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 
-class UsersSentencesTest extends TestCase {
-    public $fixtures = array(
+class UsersSentencesTableTest extends TestCase {
+    public array $fixtures = array(
         'app.Users',
         'app.UsersSentences',
         'app.Sentences'
@@ -22,6 +22,7 @@ class UsersSentencesTest extends TestCase {
 
     function tearDown(): void {
         unset($this->UsersSentences);
+        DateTime::setTestNow();
         parent::tearDown();
     }
 
@@ -140,14 +141,13 @@ class UsersSentencesTest extends TestCase {
     function testSaveSentence_correctDateUsingArabicLocale() {
         $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
-        $now = new FrozenTime('2020-01-02 03:04:05');
-        FrozenTime::setTestNow($now);
+        $now = new DateTime('2020-01-02 03:04:05');
+        DateTime::setTestNow($now);
 
         $this->UsersSentences->saveSentence(1, 1, 4);
         $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
         $this->assertEquals($now, $returned->created);
 
-        FrozenTime::setTestNow();
         I18n::setLocale($prevLocale);
     }
 }

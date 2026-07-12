@@ -19,7 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\Database\Schema\TableSchema;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Validation\Validator;
@@ -94,7 +94,7 @@ class UsersSentencesTable extends Table
         )->first();
 
         if ($userSentence) {
-            return $this->delete($userSentence, false);
+            return $this->delete($userSentence);
         }
 
         return false;
@@ -131,7 +131,7 @@ class UsersSentencesTable extends Table
      * @param  int    $options['correctnessLabel'] Label for correctness value.
      * @param  string $options['lang']             Language.
      */
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query
             ->select(['id', 'sentence_id', 'correctness', 'modified'])

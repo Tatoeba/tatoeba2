@@ -10,12 +10,12 @@ use App\Model\Search\TranslationIsUnapprovedFilter;
 use App\Model\Search\TranslationLangFilter;
 use App\Model\Search\TranslationOwnerFilter;
 use App\Model\Search\TranslationFilterGroup;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\TestSuite\TestCase;
 
 class ShowtransLimiterTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Links',
         'app.Sentences',
@@ -39,7 +39,7 @@ class ShowtransLimiterTest extends TestCase
         unset($this->Sentences);
     }
 
-    public function showtransFiltersProvider() {
+    public static function showtransFiltersProvider() {
         return [
             // filters, expected shown translation ids [, original sentence id = 1]
             'no filters' => [
@@ -159,7 +159,7 @@ class ShowtransLimiterTest extends TestCase
             $groups[] = (new TranslationFilterGroup())->setFilter($filter);
         }
         $showtrans = new ShowtransLimiter($groups);
-        $containOnApi = ['Translations' => function (Query $q) use ($showtrans) {
+        $containOnApi = ['Translations' => function (SelectQuery $q) use ($showtrans) {
             return $q->find('translationsOnApi', compact('showtrans'));
         }];
 

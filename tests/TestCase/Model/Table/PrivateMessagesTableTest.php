@@ -7,9 +7,9 @@ use Cake\Event\Event;
 use Cake\Event\EventList;
 use Cake\TestSuite\TestCase;
 
-class PrivateMessageTest extends TestCase {
+class PrivateMessagesTableTest extends TestCase {
 
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.PrivateMessages',
         'app.Users',
         'app.UsersLanguages'

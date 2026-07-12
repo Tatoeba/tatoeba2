@@ -32,7 +32,6 @@ class SentencesSentencesListsTable extends Table
         $this->belongsTo('Sentences');
         $this->belongsTo('SentencesLists');
         
-        $this->addBehavior('LimitResults');
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
@@ -57,7 +56,7 @@ class SentencesSentencesListsTable extends Table
                     'fields' => ['id', 'name', 'visibility', 'user_id', 'editable_by']
                 ]
             ])
-            ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
+            ->orderBy(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
             ->all();
     }
 

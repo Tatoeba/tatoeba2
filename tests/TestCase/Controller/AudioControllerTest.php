@@ -4,16 +4,16 @@ namespace App\Test\TestCase\Controller;
 use App\Test\TestCase\Controller\AudioIntegrationTestTrait;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
-use Cake\Filesystem\Folder;
-use Cake\Filesystem\File;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class AudioControllerTest extends IntegrationTestCase
+class AudioControllerTest extends TestCase
 {
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
     use AudioIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Contributions',
         'app.DisabledAudios',
@@ -29,7 +29,7 @@ class AudioControllerTest extends IntegrationTestCase
         'app.QueuedJobs',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/audio/import', null, '/en/users/login?redirect=%2Fen%2Faudio%2Fimport' ],
@@ -91,7 +91,8 @@ class AudioControllerTest extends IntegrationTestCase
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
-        $defaultNbPerPage = (new \App\Controller\AudioController())->paginate['limit'];
+        $req = new \Cake\Http\ServerRequest();
+        $defaultNbPerPage = (new \App\Controller\AudioController($req))->paginate['limit'];
         $nbSentences = $this->addSentencesWithAudio($defaultNbPerPage + 1);
         $expectedLastPage = 2;
 
@@ -147,7 +148,7 @@ class AudioControllerTest extends IntegrationTestCase
         $this->logInAs('admin');
         $this->ajaxPost('/ja/audio/delete/'.$id);
         $this->assertResponseOk();
-        $this->assertFileNotExists($path);
+        $this->assertFileDoesNotExist($path);
 
         $this->deleteAudioStorageDir();
     }

@@ -20,12 +20,11 @@ namespace App\Model\Table;
 
 use App\Event\StatsListener;
 use Cake\ORM\Table;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchemaInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
-use Cake\Filesystem\File;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
 use InvalidArgumentException;
@@ -52,7 +51,6 @@ class AudiosTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
-        $this->addBehavior('LimitResults');
 
         $this->getEventManager()->on(new StatsListener());
     }
@@ -152,8 +150,9 @@ class AudiosTable extends Table
 
     protected function removeAudioFile($entity, $options) {
         if ($options['deleteAudioFile'] ?? false) {
-            $file = new File($entity->file_path);
-            $file->delete();
+            if (file_exists($entity->file_path)) {
+                unlink($entity->file_path);
+            }
         }
     }
 
@@ -190,42 +189,28 @@ class AudiosTable extends Table
     /**
      * Custom finder for optimized pagination of sentences having audio
      */
-    public function findSentences(Query $query, array $options) {
-        $query = $query
-            ->applyOptions($options)
+    public function findSentences(SelectQuery $query, array $options) {
+        $query
             ->select(['sentence_id' => 'sentence_id'])
-            ->order(['Audios.id' => 'DESC']);
-
-        if (isset($options['lang'])) {
-            $query->where(['sentence_lang' => $options['lang']]);
-        }
-
-        if (isset($options['user_id'])) {
-            $query->where(['Audios.user_id' => $options['user_id']]);
-        }
-
-        if (isset($options['maxResults'])) {
-            $query = $query->find('latest', $options);
-        }
-
-        $query = $query
-            ->group(['sentence_id'])
-            ->order(['MAX(Audios.id)' => 'DESC'], true);
-        $countQuery = clone $query;
+            ->groupBy(['sentence_id'])
+            ->orderBy(['MAX(Audios.id)' => 'DESC'], true);
+        $originalQuery = clone $query;
 
         $query = $query
             ->setRepository($this->Sentences->getTarget())
             ->select($this->Sentences->fields())
             ->innerJoinWith('Audios')
-            ->contain('Audios', function ($q) use ($options) {
-                if (isset($options['user_id'])) {
-                    $q->where(['Audios.user_id' => $options['user_id']]);
-                }
+            ->contain('Audios', function ($q) use ($originalQuery) {
+                $q->where($originalQuery->clause('where') ?? []);
                 return $q->contain(['Users' => ['fields' => ['username']]]);
             })
             ->contain('Transcriptions')
-            ->counter(function ($query) use ($countQuery) {
-                return $countQuery->count();
+            ->counter(function ($q) use ($originalQuery) {
+                // $q has $originalQuery's where clauses plus potentially
+                // an additional where clause set by LimitedPaginator,
+                // so we just replace $originalQuery's entire where clause
+                $originalQuery->where($q->clause('where') ?? [], [], true);
+                return $originalQuery->count();
             });
 
         return $query;
@@ -234,10 +219,10 @@ class AudiosTable extends Table
     /**
      * Custom finder to include audio license information.
      */
-    public function findWithLicense(Query $query, array $options) {
+    public function findWithLicense(SelectQuery $query, array $options) {
         return $query
             ->select(['external'])
-            ->contain('Users', function(Query $q) {
+            ->contain('Users', function(SelectQuery $q) {
                 return $q->select('audio_license');
             });
     }
@@ -245,12 +230,17 @@ class AudiosTable extends Table
     /**
      * Custom finder for optimized count of total sentences having audio
      */
-    public function findSentencesCounter(Query $query, array $options) {
-        $cache_key = 'audio_sentences_count_';
+    public function findSentencesCounter(SelectQuery $query, array $options) {
+        $cache_key = 'audio_sentences_count';
 
-        if (isset($options['lang'])) {
-            $query->where(['sentence_lang' => $options['lang']]);
-            $cache_key .= $options['lang'];
+        // Append language or other conditions to $cache_key
+        $where = $query->clause('where');
+        if ($where) {
+            $query->clause('where')->traverse(
+                function ($exp) use (&$cache_key) {
+                    $cache_key .= '_' . $exp->getValue();
+                }
+            );
         }
 
         $counter = fn($query) => $query

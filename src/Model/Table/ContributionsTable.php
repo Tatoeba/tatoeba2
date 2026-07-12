@@ -30,7 +30,7 @@ use Cake\ORM\Table;
 use Cake\Database\Schema\TableSchemaInterface;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 
 
 /**
@@ -56,8 +56,6 @@ class ContributionsTable extends Table
         $this->belongsTo('Users');
         $this->belongsTo('Sentences');
         $this->belongsTo('Translations');
-
-        $this->addBehavior('LimitResults');
     }
 
     public function logSentence($event) {
@@ -141,7 +139,7 @@ class ContributionsTable extends Table
                 },
                 'Translations',
             ])
-            ->order('datetime');
+            ->orderBy('datetime');
 
         return $query->all();
     }
@@ -170,7 +168,7 @@ class ContributionsTable extends Table
                 'action'
             ])
             ->where(['type' => 'sentence'])
-            ->orderDesc('datetime')
+            ->orderByDesc('datetime')
             ->limit($limit)
             ->contain(['Users' => function ($q) {
                 return $q->select(['id', 'username', 'image']);
@@ -197,7 +195,7 @@ class ContributionsTable extends Table
     {
         return $this->find()
             ->where([
-                'datetime >' => FrozenTime::now()->format('Y-m-d'),
+                'datetime >' => DateTime::now()->format('Y-m-d'),
                 'translation_id IS NULL',
                 'action' => 'insert',
                 'type !=' => 'license'
@@ -237,7 +235,6 @@ class ContributionsTable extends Table
     public function saveSentenceContribution($id, $lang, $script, $text, $action)
     {
         $data = $this->newEntity([
-            'id' => null,
             'sentence_id' => $id,
             'sentence_lang' => $lang,
             'script' => $script,
@@ -264,7 +261,6 @@ class ContributionsTable extends Table
     public function saveLinkContribution($sentenceId, $translationId, $action)
     {
         $data = $this->newEntity([
-            'id' => null,
             'sentence_id' => $sentenceId,
             'translation_id' => $translationId,
             'user_id' => CurrentUser::get('id'),
@@ -294,7 +290,7 @@ class ContributionsTable extends Table
                 'action' => 'insert',
                 'type' => 'sentence',
             ])
-            ->order(['datetime' => 'DESC'])
+            ->orderBy(['datetime' => 'DESC'])
             ->first();
 
         if ($log) {

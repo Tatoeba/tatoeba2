@@ -1,9 +1,9 @@
 <?php
 
 use Cake\Core\Configure;
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class TokiPonaCodeRename extends AbstractMigration
+class TokiPonaCodeRename extends BaseMigration
 {
     private $langColumns = [
         'contributions' => ['sentence_lang', 'translation_lang'],
@@ -24,7 +24,7 @@ class TokiPonaCodeRename extends AbstractMigration
     private function updateCode($from, $to) {
         foreach ($this->langColumns as $table => $columns) {
             foreach ($columns as $column) {
-                $this->getQueryBuilder()
+                $this->getUpdateBuilder()
                      ->update($table)
                      ->set($column, $to)
                      ->where([$column => $from])

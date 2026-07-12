@@ -1,7 +1,7 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class AddUserIsSpamdexingField extends AbstractMigration
+class AddUserIsSpamdexingField extends BaseMigration
 {
     /**
      * Change Method.

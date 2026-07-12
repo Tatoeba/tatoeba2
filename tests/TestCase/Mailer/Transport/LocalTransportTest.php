@@ -16,7 +16,7 @@ class LocalTransportTest extends TestCase {
     public function setUp(): void {
         parent::setUp();
         $this->LocalTransport = $this->getMockBuilder(LocalTransport::class)
-            ->setMethods(['_parent'])
+            ->onlyMethods(['_parent'])
             ->getMock();
 
         $this->msg = new Message();
@@ -54,7 +54,7 @@ class LocalTransportTest extends TestCase {
 
         $loggingTransport = $this->getMockBuilder(LocalTransport::class)
             ->setConstructorArgs([['log' => true]])
-            ->setMethods(['_parent'])
+            ->onlyMethods(['_parent'])
             ->getMock();
         $loggingTransport->expects($this->once())
             ->method('_parent')

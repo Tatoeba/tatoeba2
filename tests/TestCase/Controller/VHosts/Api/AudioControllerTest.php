@@ -12,7 +12,7 @@ class AudioControllerTest extends TestCase
     use IntegrationTestTrait;
     use JsonAssertions;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Audios',
         'app.Sentences',
         'app.Users',

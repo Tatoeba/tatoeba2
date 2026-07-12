@@ -5,15 +5,17 @@ use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use App\Test\TestCase\SearchMockTrait;
 use Cake\Core\Configure;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use Helmich\JsonAssert\JsonAssertions;
 
-class SentencesControllerTest extends IntegrationTestCase {
+class SentencesControllerTest extends TestCase {
+    use IntegrationTestTrait;
     use JsonAssertions;
     use TatoebaControllerTestTrait;
     use SearchMockTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Sentences',
         'app.Users',
         'app.UsersLanguages',
@@ -40,7 +42,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         Configure::write('Search.enabled', false);
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentences/show/1', null, true ],
@@ -88,7 +90,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs($url, $user, $response);
     }
 
-    public function ajaxAccessesProvider() {
+    public static function ajaxAccessesProvider() {
         return [
             [ '/en/sentences/adopt/14', null, false ],
             [ '/en/sentences/adopt/14', 'contributor', true ],
@@ -141,7 +143,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
-    public function addSentenceProvider () {
+    public static function addSentenceProvider () {
         return [
             'as guest' => [
                 null,
@@ -197,7 +199,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->$assertion();
     }
 
-    public function addSentenceWithLicenseProvider() {
+    public static function addSentenceWithLicenseProvider() {
         return [
             'user cannot choose license, submits no license' =>
             [
@@ -326,7 +328,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseCode(400);
     }
 
-    public function editLicenseProvider() {
+    public static function editLicenseProvider() {
         return [
             'can edit as user with permissions' =>
             [48, 'CC0 1.0', 'contributor', 'assertNotEquals'],
@@ -478,7 +480,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertAccessUrlAs('/en/sentences/mark_unreliable/spammer', 'admin', '/en/sentences/of_user/spammer');
     }
 
-    public function searchAccessesProvider() {
+    public static function searchAccessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentences/search', null, true ],

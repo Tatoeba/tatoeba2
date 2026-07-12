@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  *  Tatoeba Project, free collaborative creation of languages corpuses project
  *  Copyright (C) 2018  Gilles Bedel
@@ -16,15 +18,19 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Shell;
+namespace App\Command;
 
 use App\Lib\LanguagesLib;
-use Cake\Console\Shell;
+use Cake\Command\Command;
+use Cake\Console\Arguments;
+use Cake\Console\ConsoleIo;
+use Cake\Console\ConsoleOptionParser;
 use Cake\Datasource\ConnectionManager;
 use Cake\I18n\I18n;
 
-
-class LanguagesTableShell extends Shell {
+class LanguagesTableCommand extends Command
+{
+    private $Languages;
 
     public function initialize(): void
     {
@@ -37,10 +43,17 @@ class LanguagesTableShell extends Shell {
         return LanguagesLib::languagesInTatoeba();
     }
 
-    private function die_usage($message = '') {
-        $myself = basename(__FILE__, '.php');
-        die("$message\n\nReset or update the `languages` table with values.\n\n"
-           ."Usage: $myself (reset|update)\n");
+    public function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
+    {
+        $parser = parent::buildOptionParser($parser);
+        $parser
+            ->setDescription('Reset or update the `languages` table with values.')
+            ->addArgument('operation', [
+                'required' => true,
+                'choices' => ['reset', 'update'],
+            ]);
+
+        return $parser;
     }
 
     private function removeStats() {
@@ -67,8 +80,9 @@ class LanguagesTableShell extends Shell {
         $conn->execute($script);
     }
 
-    private function run() {
-        $op = $this->args[0] ?? '';
+    public function execute(Arguments $args, ConsoleIo $io)
+    {
+        $op = $args->getArgument('operation');
         switch ($op) {
             case 'reset':
                 $this->removeStats();
@@ -76,12 +90,6 @@ class LanguagesTableShell extends Shell {
             case 'update':
                 $this->insertStats();
                 break;
-            default:
-                $this->die_usage("Error: please specify 'reset' or 'update' as first parameter.");
         }
-    }
-
-    public function main() {
-        return $this->run();
     }
 }

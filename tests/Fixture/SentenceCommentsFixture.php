@@ -7,7 +7,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 class SentenceCommentsFixture extends TestFixture {
 	public $name = 'SentenceComment';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => '1',
 			'sentence_id' => '4',

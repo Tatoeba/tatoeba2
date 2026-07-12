@@ -1,17 +1,16 @@
 <?php
 namespace App\Test\TestCase\Command;
 
-use Cake\Console\Command;
-use Cake\Filesystem\File;
-use Cake\Filesystem\Folder;
+use Cake\Command\Command;
 use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Cake\Utility\Filesystem;
 
 class EditOwnersCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.Links',
         'app.ReindexFlags',
         'app.Sentences',
@@ -24,25 +23,23 @@ class EditOwnersCommandTest extends TestCase
     const TESTDIR = TMP . 'edit_owners_tests' . DS;
 
     public static function setUpBeforeClass(): void {
-        new Folder(self::TESTDIR, true, 0755);
+        (new Filesystem())->mkdir(self::TESTDIR, 0755);
     }
 
     public static function tearDownAfterClass(): void {
-        $folder = new Folder(self::TESTDIR);
-        $folder->delete();
+        (new Filesystem())->deleteDir(self::TESTDIR);
     }
 
     public function setUp(): void {
         parent::setUp();
-        $this->UseCommandRunner();
         $this->Sentences = $this->fetchTable('Sentences');
     }
 
     private function create_test_file($ids) {
         $path = self::TESTDIR . 'input_test';
-        $file = new File($path);
-        $file->write(implode("\n", $ids));
-        $file->close();
+        $file = fopen($path, 'w');
+        fwrite($file, implode("\n", $ids));
+        fclose($file);
         return $path;
     }
 
@@ -72,7 +69,7 @@ class EditOwnersCommandTest extends TestCase
         }
     }
 
-    public function successesProvider() {
+    public static function successesProvider() {
         // username, ids, owner, number of changes, log
         return [
             'all ids adopted by contributor' =>
@@ -138,7 +135,7 @@ class EditOwnersCommandTest extends TestCase
         }
     }
 
-    public function failuresProvider() {
+    public static function failuresProvider() {
         return [
             'without any required argument' => ['edit_owners'],
             'without file' => ['edit_owners admin'],

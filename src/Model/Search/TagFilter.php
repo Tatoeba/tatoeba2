@@ -32,7 +32,7 @@ class TagFilter extends SearchFilter {
             $result = $this->fetchTable('Tags')->find()
                 ->where(['name IN' => $tags])
                 ->select(['id', 'name'])
-                ->order($order)
+                ->orderBy($order)
                 ->enableHydration(false)
                 ->all()
                 ->toList();

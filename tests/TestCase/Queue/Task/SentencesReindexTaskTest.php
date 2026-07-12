@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 
 class SentencesReindexTaskTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.ReindexFlags',
         'app.Sentences',
         'app.Links',
@@ -28,9 +28,9 @@ class SentencesReindexTaskTest extends TestCase
     private function assertSentencesFlaggedForReindex($expected)
     {
         $result = $this->fetchTable('ReindexFlags')
-            ->find('list', ['valueField' => 'sentence_id'])
+            ->find('list', valueField: 'sentence_id')
             ->select(['sentence_id'])
-            ->order('sentence_id')
+            ->orderBy('sentence_id')
             ->all()
             ->toList();
         $this->assertEquals($expected, $result);

@@ -4,14 +4,16 @@ namespace App\Test\TestCase\Controller;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class SentenceCommentsControllerTest extends IntegrationTestCase
+class SentenceCommentsControllerTest extends TestCase
 {
     use EmailTrait;
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.SentenceComments',
         'app.Sentences',
@@ -21,7 +23,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         'app.WikiArticles',
     ];
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/sentence_comments/index', null, true ],
@@ -108,7 +110,7 @@ class SentenceCommentsControllerTest extends IntegrationTestCase
         $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'), $message);
     }
 
-    public function commentWithLinksProvider() {
+    public static function commentWithLinksProvider() {
         return [
             // post data, comment should be saved, number of emails sent
             'inbound link, no confirmation' => [

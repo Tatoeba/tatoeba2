@@ -41,7 +41,7 @@ use Cake\Utility\Hash;
  */
 class ListsHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'Html',
         'Form',
         'Languages',

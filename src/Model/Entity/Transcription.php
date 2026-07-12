@@ -30,7 +30,7 @@ class Transcription extends Entity
     use PinyinTrait;
     use FuriganaTrait;
 
-    protected $_virtual = [
+    protected array $_virtual = [
         'readonly',
         'type',
         'html',
@@ -40,7 +40,7 @@ class Transcription extends Entity
         'info_message'
     ];
 
-    protected $_hidden = [
+    protected array $_hidden = [
         'created',
         'sentence',
     ];

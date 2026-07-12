@@ -10,7 +10,7 @@ class TatoebaJSqueezeFilter extends JSqueezeFilter
      * We move minification from output() to input() so that we
      * can avoid minifying files which name ends with .min.js
      */
-    public function input($file, $content)
+    public function input(string $file, string $content): string
     {
         if (!preg_match('/\.min\.js$/', $file)
             && (!Configure::read('debug') || php_sapi_name() === 'cli')) {
@@ -22,7 +22,7 @@ class TatoebaJSqueezeFilter extends JSqueezeFilter
     /**
      * Files already minifed in input(). Purposely do nothing.
      */
-    public function output($filename, $content)
+    public function output(string $filename, string $content): string
     {
         return $content;
     }

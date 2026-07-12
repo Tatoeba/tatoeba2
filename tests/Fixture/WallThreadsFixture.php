@@ -6,9 +6,9 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 class WallThreadsFixture extends TestFixture {
 	public $name = 'WallThread';
-	public $table = 'wall_threads_last_message';
+	public string $table = 'wall_threads_last_message';
 
-	public $records = array(
+	public array $records = array(
 		array(
 			'id' => '1',
 			'last_message_date' => '2014-04-15 16:38:36'

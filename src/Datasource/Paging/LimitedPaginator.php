@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Tatoeba Project, free collaborative creation of languages corpuses project
  * Copyright (C) 2020 Tatoeba Project
@@ -16,15 +18,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Model\Behavior;
+namespace App\Datasource\Paging;
 
-use Cake\Http\Exception\BadRequestException;
-use Cake\ORM\Behavior;
-use Cake\ORM\Query;
+use Cake\Datasource\QueryInterface;
+use Cake\Datasource\Paging\NumericPaginator;
+use Cake\Datasource\RepositoryInterface;
+use Cake\Datasource\ResultSetInterface;
 
-class LimitResultsBehavior extends Behavior
+/**
+ * A paginator used to add a strong and efficient limit to paginated queries.
+ * It is used as a safeguard for paginated results when browsing high-numbered
+ * pages, which result in very poor performance. The poor performance comes
+ * from the `OFFSET n` clause with n very high, typically greater than 10000.
+ */
+class LimitedPaginator extends NumericPaginator
 {
-    private function getNeededAssociations(Query $query) {
+    public function __construct()
+    {
+        $this->_defaultConfig['maxResults'] = 1000;
+        $this->_defaultConfig['maxResultsBaseQuery'] = null;
+    }
+
+    private function getNeededAssociations(QueryInterface $query) {
         $fields = [];
 
         $clause = $query->clause('where');
@@ -61,7 +76,7 @@ class LimitResultsBehavior extends Behavior
      *
      * @return array
      **/
-    private function getMinimalContain(Query $query) {
+    private function getMinimalContain(QueryInterface $query) {
         $neededAssociations = $this->getNeededAssociations($query);
         $contain = $query->getEagerLoader()->getContain();
         return array_filter(
@@ -76,12 +91,12 @@ class LimitResultsBehavior extends Behavior
      * Removes any LEFT JOIN clause to tables that are not mentioned
      * in the 'where' part of the query.
      */
-    private function removeLeftJoins(Query $query) {
+    private function removeLeftJoins(QueryInterface $query) {
         $neededAssociations = $this->getNeededAssociations($query);
         foreach ($query->clause('join') as $name => $join) {
             if ($join['type'] == 'LEFT'
                 && !in_array($join['alias'], $neededAssociations)) {
-                $query->removeJoin($name);
+                $query->removeJoin((string)$name);
             }
         }
     }
@@ -96,7 +111,7 @@ class LimitResultsBehavior extends Behavior
      *
      * @return array Field name and direction.
      **/
-    private function getOrderValues(Query $query) {
+    private function getOrderValues(QueryInterface $query) {
         $direction = null;
         $orderField = null;
 
@@ -117,47 +132,67 @@ class LimitResultsBehavior extends Behavior
     }
 
     /**
-     * This custom finder is used to add a strong and efficient
-     * limit to a query by adding a WHERE _field_ > n clause,
-     * _field_ being the field used in ORDER BY, typically it is id.
-     * It is used as a safeguard for paginated results because
-     * browsing pages of high numbers results in very poor
-     * performance.
+     * Adds a WHERE _field_ > n clause to $paginationQuery, _field_ being
+     * the ORDER BY field of $baseQuery, typically it is id.
+     * Also makes sure any existing OFFSET clause is clamped to $maxResults.
+     *
+     * @param int $maxResults Maximum number of results $paginationQuery should return.
+     * @param \Cake\Datasource\QueryInterface $paginationQuery Query to apply limit to.
+     * @param \Cake\Datasource\QueryInterface $baseQuery Query to calculate limit from.
+     * @return \Cake\Datasource\QueryInterface Modified $paginationQuery.
      */
-    public function findLatest(Query $query, array $options) {
-        list($orderField, $direction) = $this->getOrderValues($query);
+    public function applyLimit(int $maxResults, QueryInterface $paginationQuery, QueryInterface $baseQuery): QueryInterface
+    {
+        list($orderField, $direction) = $this->getOrderValues($baseQuery);
         if (!$orderField) {
             // We cannot limit the results without a sort order. If there is
             // no sort order, it means the programmer forgot to set one, or
             // the client is playing tricks requesting a non-whitelisted
             // order. Both are good reasons to bail out.
-            throw new BadRequestException("Invalid sort order");
+            throw new \RuntimeException("Invalid sort order");
         }
 
-        $alias = $query->getRepository()->getAlias();
+        $contain = $this->getMinimalContain($baseQuery);
 
-        $contain = $this->getMinimalContain($query);
-
-        $internalQuery = clone $query;
+        $internalQuery = clone $baseQuery;
         $this->removeLeftJoins($internalQuery);
         $lastValue = $internalQuery
-            ->find('list', ['valueField' => 'i'])
-            ->select([$query->getRepository()->getPrimaryKey(), 'i' => $orderField], true)
+            ->find('list', valueField: 'i')
+            ->select([$baseQuery->getRepository()->getPrimaryKey(), 'i' => $orderField], true)
             ->contain($contain, true)
-            ->offset($options['maxResults'] - 1)
-            ->group([], true)
+            ->offset($maxResults - 1)
+            ->groupBy([], true)
             ->first();
 
         if ($lastValue) {
             $cmp = $direction == 'desc' ? '>=' : '<=';
-            $query->where(["$orderField $cmp" => $lastValue]);
+            $paginationQuery->where(["$orderField $cmp" => $lastValue]);
         }
 
         // Prevent running a request having OFFSET n with n excessively high
         // just because the user asked for page 9999999
-        $offset = min($options['maxResults'], $query->clause('offset'));
-        $query->offset($offset);
+        $offset = min($maxResults, $paginationQuery->clause('offset'));
+        $paginationQuery->offset($offset);
 
-        return $query;
+        return $paginationQuery;
+    }
+
+    /**
+     * Get query for fetching paginated results while efficiently limiting
+     * the total number of results using passed option 'maxResults'.
+     *
+     * @param \Cake\Datasource\RepositoryInterface $object Repository instance.
+     * @param \Cake\Datasource\QueryInterface|null $query Query Instance.
+     * @param array<string, mixed> $data Pagination data.
+     * @return \Cake\Datasource\QueryInterface
+     */
+    protected function getQuery(RepositoryInterface $object, ?QueryInterface $query, array $data): QueryInterface
+    {
+        $query = parent::getQuery($object, $query, $data);
+
+        $maxResults = $data['options']['maxResults'];
+        $baseQuery = $data['options']['maxResultsBaseQuery'] ?? $query;
+
+        return $this->applyLimit($maxResults, $query, $baseQuery);
     }
 }

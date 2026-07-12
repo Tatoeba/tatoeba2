@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\Utility\Hash;
 
 class TranslationsTableTest extends TestCase {
-    public $fixtures = array(
+    public array $fixtures = array(
         'app.Sentences',
         'app.Links',
         'app.Transcriptions',

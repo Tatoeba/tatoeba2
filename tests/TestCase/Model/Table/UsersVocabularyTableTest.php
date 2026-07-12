@@ -7,7 +7,7 @@ use Cake\I18n\I18n;
 
 class UsersVocabularyTableTest extends TestCase
 {
-    public $fixtures = [
+    public array $fixtures = [
         'app.UsersVocabulary',
         'app.Vocabulary',
         'app.Users'

@@ -3,6 +3,7 @@ namespace App\Test\Mailer;
 
 use App\Mailer\UserMailer;
 use App\Model\ContentReport;
+use App\Model\CurrentUser;
 use App\Model\Entity\SentenceComment;
 use App\Model\Entity\User;
 use App\Model\Entity\Wall;
@@ -15,14 +16,17 @@ class UserMailerTest extends TestCase {
 
     use EmailTrait;
 
-    public $fixtures = ['app.Users'];
+    public array $fixtures = ['app.Users'];
 
     protected $email = null;
     protected $mailer = null;
 
     public function setUp(): void {
+        parent::setUp();
         $this->loadRoutes();
         Configure::write('Tatoeba.communityModeratorEmail', 'moderator@example.net');
+        $admin = $this->fetchTable('Users')->findByUsername('admin')->first();
+        CurrentUser::store($admin);
 
         $this->mailer = new UserMailer();
         $this->mailer
@@ -30,7 +34,12 @@ class UserMailerTest extends TestCase {
             ->setTransport('debug');
     }
 
-    public function blockedOrSuspendedProvider () {
+    public function tearDown(): void {
+        parent::tearDown();
+        CurrentUser::store(false);
+    }
+
+    public static function blockedOrSuspendedProvider () {
         return [
             'suspended user' => [true, 'suspended'],
             'blocked user' => [false, 'changed the level'],

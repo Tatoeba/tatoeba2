@@ -1,13 +1,13 @@
 <?php
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
-class NormalizeUserEmptyAudioInfo extends AbstractMigration
+class NormalizeUserEmptyAudioInfo extends BaseMigration
 {
     public function up()
     {
         $table = $this->table('users');
         foreach (['audio_license', 'audio_attribution_url'] as $column) {
-            $this->getQueryBuilder()
+            $this->getUpdateBuilder()
                  ->update('users')
                  ->set($column, '')
                  ->where(["$column IS" => null])

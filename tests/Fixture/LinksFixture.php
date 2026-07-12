@@ -8,7 +8,7 @@ use Cake\TestSuite\Fixture\TestFixture;
  */
 class LinksFixture extends TestFixture
 {
-    public $table = 'sentences_translations';
+    public string $table = 'sentences_translations';
 
     /**
      * Init method

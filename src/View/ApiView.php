@@ -3,11 +3,12 @@ namespace App\View;
 
 use App\Controller\Component\ApiComponent;
 use Cake\Core\Configure;
+use Cake\Datasource\Paging\PaginatedResultSet;
 use Cake\View\JsonView;
 
 class ApiView extends JsonView
 {
-    public $helpers = [
+    public array $helpers = [
         'Paginator',
         'Url',
     ];
@@ -56,12 +57,15 @@ class ApiView extends JsonView
      *   need(s) to be serialized. If true all available view variables will be used.
      * @return mixed The data to serialize.
      */
-    protected function _dataToSerialize($serialize = true) {
+    protected function _dataToSerialize(array|string $serialize): mixed {
         $data = parent::_dataToSerialize($serialize);
 
-        $params = $this->Paginator->params();
-        if ($params) {
-            $data['paging'] = $this->pagination($params);
+        if (isset($data['data']) && $data['data'] instanceof PaginatedResultSet) {
+            $this->Paginator->setPaginated($data['data']);
+            $params = $this->Paginator->params();
+            if ($params) {
+                $data['paging'] = $this->pagination($params);
+            }
         }
 
         return $data;

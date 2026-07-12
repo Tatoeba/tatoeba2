@@ -7,7 +7,7 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 class PrivateMessagesFixture extends TestFixture {
-    public $records = array(
+    public array $records = array(
         # PM sent and not yet read
         array(
             'id' => '1',

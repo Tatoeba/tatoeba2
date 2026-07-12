@@ -1,12 +1,15 @@
 <?php
 namespace App\Command;
 
+use Cake\Command\Command;
 use Cake\Console\Arguments;
-use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 
 class CorrectNumberOfSentencesCommand extends Command
 {
+    private $SentencesLists;
+    private $SentencesSentencesLists;
+
     public function initialize(): void
     {
         parent::initialize();

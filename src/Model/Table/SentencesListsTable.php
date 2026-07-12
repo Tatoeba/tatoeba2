@@ -18,7 +18,7 @@
  */
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Database\Schema\TableSchema;
@@ -49,12 +49,10 @@ class SentencesListsTable extends Table
     {
         return $this->find(
             'first',
-            array(
-                'conditions' => array('SentencesList.id' => $id),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('User.username')
-                    )
+            conditions: array('SentencesList.id' => $id),
+            contain: array(
+                'User' => array(
+                    'fields' => array('User.username')
                 )
             )
         );
@@ -65,7 +63,7 @@ class SentencesListsTable extends Table
      */
     public function getListWithPermissions($id, $currentUserId)
     {
-        $list = $this->get($id, ['contain' => ['Users']]);
+        $list = $this->get($id, contain: ['Users']);
         $list['Permissions'] = $this->_getPermissions(
             $list, $currentUserId
         );
@@ -107,7 +105,7 @@ class SentencesListsTable extends Table
                 ])
             ])
             ->select(['id', 'name', 'user_id'])
-            ->order(['name'])
+            ->orderBy(['name'])
             ->all()
             ->toList();
     }
@@ -120,7 +118,7 @@ class SentencesListsTable extends Table
      */
     public function isSearchableList($listId, $byUserId)
     {
-        return $this->find('searchableBy', ['user_id' => $byUserId])
+        return $this->find('searchableBy', user_id: $byUserId)
             ->where(['id' => $listId])
             ->select(['id', 'user_id', 'name'])
             ->first();
@@ -134,7 +132,7 @@ class SentencesListsTable extends Table
      * $this->find('searchableBy', ['user_id' => 1234])
      *
      */
-    public function findSearchableBy(Query $query, array $options)
+    public function findSearchableBy(SelectQuery $query, array $options)
     {
         $userId = $options['user_id'] ?? null;
 
@@ -178,10 +176,10 @@ class SentencesListsTable extends Table
             ]);
 
         if ($forNewDesign) {
-            $query->order(['is_mine DESC', 'modified DESC']);
+            $query->orderBy(['is_mine DESC', 'modified DESC']);
             return $query->all()->toList();
         } else {
-            $results = $query->order(['name'])
+            $results = $query->orderBy(['name'])
                 ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
                     return $q->where(['SentencesSentencesLists.sentence_id' => $sentenceId]);
                 });
@@ -212,7 +210,7 @@ class SentencesListsTable extends Table
     }
 
 
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query->contain(['Users' => ['fields' => ['username']]]);
 
@@ -307,18 +305,16 @@ class SentencesListsTable extends Table
     {
         $list = $this->find(
             'first',
-            array(
-                "conditions" => array(
-                    "SentencesList.id" => $listId,
-                    "OR" => array(
-                        "user_id" => $userId,
-                        "editable_by" => 'anyone'
-                    )
-                ),
-                "fields" => array(
-                    'user_id',
-                    'editable_by'
+            conditions: array(
+                "SentencesList.id" => $listId,
+                "OR" => array(
+                    "user_id" => $userId,
+                    "editable_by" => 'anyone'
                 )
+            ),
+            fields: array(
+                'user_id',
+                'editable_by'
             )
         );
 
@@ -337,11 +333,9 @@ class SentencesListsTable extends Table
     {
         $list = $this->find(
             'first',
-            array(
-                "conditions" => array(
-                    "SentencesList.id" => $listId,
-                    "user_id" => $userId
-                )
+            conditions: array(
+                "SentencesList.id" => $listId,
+                "user_id" => $userId
             )
         );
 
@@ -524,7 +518,7 @@ class SentencesListsTable extends Table
      */
     public function getNameForListWithId($listId)
     {
-        $result = $this->get($listId, ['fields' => ['name']]);
+        $result = $this->get($listId, fields: ['name']);
 
         return $result->name;
     }

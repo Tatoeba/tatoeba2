@@ -57,7 +57,7 @@ use App\Model\Table\SentencesTable;
  */
 class SentencesHelper extends AppHelper
 {
-    public $helpers = array(
+    public array $helpers = array(
         'AssetCompress.AssetCompress',
         'Html',
         'Form',

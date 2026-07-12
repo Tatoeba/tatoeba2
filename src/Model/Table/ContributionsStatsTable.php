@@ -72,7 +72,7 @@ class ContributionsStatsTable extends Table
                 'action',
                 'date',
             ])
-            ->order([
+            ->orderBy([
                 'date' => 'ASC',
                 'type' => 'ASC'
             ])

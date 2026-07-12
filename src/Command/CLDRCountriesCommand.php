@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  *  Tatoeba Project, free collaborative creation of languages corpuses project
  *  Copyright (C) 2015  Gilles Bedel
@@ -16,13 +18,17 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Shell;
+namespace App\Command;
 
 use App\Lib\CountriesList;
-use Cake\Console\Shell;
 use Cake\Core\Configure;
+use Cake\Command\Command;
+use Cake\Console\Arguments;
+use Cake\Console\ConsoleIo;
+use Cake\Console\ConsoleOptionParser;
 
-class CLDRCountriesShell extends Shell {
+class CLDRCountriesCommand extends Command
+{
     private $CLDR_copyright = '
 # This file is based on modified data files from Unicode, Inc.
 
@@ -138,7 +144,7 @@ class CLDRCountriesShell extends Shell {
         }
         foreach ($ldml->{'localeDisplayNames'}->{'territories'}->{'territory'}
                  as $country_trans) {
-            $translated_into = trim($country_trans->attributes()->{'type'});
+            $translated_into = trim((string)$country_trans->attributes()->{'type'});
             if (preg_match($regions_pattern, $translated_into) === 0 ||
                 (
                     !in_array($translated_into, $this->use_short_names) &&
@@ -298,24 +304,34 @@ class CountriesList {
         $this->merge_new_translations($tmp_po_file, $locale);
     }
 
-    private function die_usage() {
-        $this_script = basename(__FILE__, '.php');
-        die("\nThis script generates the country list in English (as PHP code) when given the 'en' parameter. Given any other language code, it generates its translation into this language based on data from the CLDR project (as PO file).\n\n".
-"  Usage: $this_script <2-letters-locale-code>\n".
-"Example: $this_script es\n");
+    public function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
+    {
+        $parser = parent::buildOptionParser($parser);
+        $parser
+            ->setDescription('Generate and update localized country list.')
+            ->addArgument('locale', [
+                'help' => '2-letters-locale-code',
+            ])
+            ->setEpilog("This script generates the country list in English (as PHP code) when given the 'en' parameter. Given any other language code, it generates its translation into this language based on data from the CLDR project (as PO file).");
+
+        return $parser;
     }
 
-    public function main() {
-        if (count($this->args) < 1) {
-            $this->die_usage();
-        }
+    public function execute(Arguments $args, ConsoleIo $io)
+    {
+        $locale = $args->getArgument('locale');
 
-        $locale = $this->args[0];
+        if (!is_string($locale) || mb_strlen($locale) == 0) {
+            $this->displayHelp($this->getOptionParser(), $args, $io);
+            $this->abort();
+        }
 
         if ($locale == 'en') {
             $this->CLDR_to_PHP_array($locale);
         } else {
             $this->CLDR_to_po($locale);
         }
+
+        return static::CODE_SUCCESS;
     }
 }

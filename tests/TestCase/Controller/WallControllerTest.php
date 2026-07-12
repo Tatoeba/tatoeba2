@@ -3,13 +3,15 @@ namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\EmailTrait;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 
-class WallControllerTest extends IntegrationTestCase {
+class WallControllerTest extends TestCase {
     use EmailTrait;
+    use IntegrationTestTrait;
     use TatoebaControllerTestTrait;
 
-    public $fixtures = [
+    public array $fixtures = [
         'app.PrivateMessages',
         'app.Walls',
         'app.WallThreads',
@@ -23,7 +25,7 @@ class WallControllerTest extends IntegrationTestCase {
         Configure::write('Tatoeba.minOutboundLinksTriggeringAutoban', 100);
     }
 
-    public function accessesProvider() {
+    public static function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/en/wall/index', null, true ],
@@ -85,7 +87,7 @@ class WallControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/en/wall/index');
     }
 
-    public function roleChangeProvider() {
+    public static function roleChangeProvider() {
         return [
             // new role, redirect link, flash message match
             ['spammer',  'http://localhost/en/users/login?redirect=%2Fprevious_page', 'suspended'],
@@ -151,7 +153,7 @@ class WallControllerTest extends IntegrationTestCase {
         $this->assertStringContainsString($expected, $this->getSession()->read('Flash.flash.0.message'), $message);
     }
 
-    public function postsWithLinksProvider() {
+    public static function postsWithLinksProvider() {
         return [
             // post data, comment should be saved, one email sent containing
             'inbound link, no confirmation' => [
@@ -264,12 +266,12 @@ class WallControllerTest extends IntegrationTestCase {
         $response = json_decode($this->_response->getBody());
         if ($shouldSave) {
             $this->assertResponseOk();
-            $this->assertObjectHasAttribute('content', $response);
+            $this->assertObjectHasProperty('content', $response);
             $this->assertEquals($postData['content'], $response->content);
         } else {
             $this->assertResponseError();
-            $this->assertObjectHasAttribute('content', $response);
-            $this->assertObjectHasAttribute('outboundLinks', $response->content);
+            $this->assertObjectHasProperty('content', $response);
+            $this->assertObjectHasProperty('outboundLinks', $response->content);
         }
         if ($email) {
             $this->assertMailCount(1);

@@ -30,9 +30,9 @@ class UsersLanguage extends Entity
 {
     use LanguageNameTrait;
 
-    protected $_virtual = ['name'];
+    protected array $_virtual = ['name'];
 
-    protected $_hidden = ['level_approval_status', 'by_user_id', 'created', 'modified'];
+    protected array $_hidden = ['level_approval_status', 'by_user_id', 'created', 'modified'];
 
     protected function _getName()
     {

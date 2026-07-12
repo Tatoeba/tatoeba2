@@ -20,10 +20,10 @@
 namespace App\Model\Table;
 
 use Cake\Database\Schema\TableSchemaInterface;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
@@ -87,9 +87,9 @@ class PrivateMessagesTable extends Table
         return $validator;
     }
 
-    function notBlankExceptDraft($value, $provider)
+    public function notBlankExceptDraft($value, array $context): bool
     {
-        $data = $provider['data'];
+        $data = $context['data'];
         if (isset($data['folder']) && $data['folder'] == 'Drafts') {
             return true;
         } else {
@@ -110,7 +110,7 @@ class PrivateMessagesTable extends Table
      * @param  string $options['folder'] Folder to get messages for.
      * @param  string $options['status'] Type of messages to get: 'read' or 'unread'
      */
-    public function findPaginated(Query $query, array $options)
+    public function findPaginated(SelectQuery $query, array $options)
     {
         $query
             ->where(['folder' => $options['folder']])
@@ -170,7 +170,7 @@ class PrivateMessagesTable extends Table
      */
     public function todaysMessageCount($userId)
     {
-        $yesterday = new FrozenTime('-24 hours');
+        $yesterday = new DateTime('-24 hours');
 
         return $this->find()
             ->where([
@@ -272,7 +272,6 @@ class PrivateMessagesTable extends Table
             'recpt' => $recptId,
             'draft_recpts' => '',
             'sent' => 1,
-            'id' => null
         ));
 
         $message = $this->newEntity($message);
@@ -345,7 +344,7 @@ class PrivateMessagesTable extends Table
     {
         $user = $this->Users->get($userId, ['fields' => 'since']);
         $sentToday = $this->todaysMessageCount($userId);
-        $since = new FrozenTime($user->since);
+        $since = new DateTime($user->since);
         $isNewUser = $since->wasWithinLast('2 weeks');
 
         return !$isNewUser || $sentToday < 5;
@@ -420,12 +419,10 @@ class PrivateMessagesTable extends Table
     public function readMessage($id)
     {
         try {
-            $message = $this->get($id, [
-                'contain' => [
-                    'Authors' => [
-                        'fields' => ['username', 'image']
-                    ]
-                ]   
+            $message = $this->get($id, contain: [
+                'Authors' => [
+                    'fields' => ['username', 'image']
+                ]
             ]);
         } catch (RecordNotFoundException $e) {
             return null;
