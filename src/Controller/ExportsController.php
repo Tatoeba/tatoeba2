@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\CurrentUser;
 use Cake\Event\Event;
+use Cake\Http\Exception\MethodNotAllowedException;
 
 class ExportsController extends AppController
 {
@@ -18,13 +19,14 @@ class ExportsController extends AppController
 
     public function add()
     {
-        $export = false;
-        if ($this->request->is('post')) {
-            $export = $this->Exports->createExport(
-                CurrentUser::get('id'),
-                $this->request->getData()
-            );
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
         }
+
+        $export = $this->Exports->createExport(
+            CurrentUser::get('id'),
+            $this->request->getData()
+        );
 
         if ($export) {
             $this->set(compact('export'));

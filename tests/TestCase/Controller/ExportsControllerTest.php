@@ -40,6 +40,7 @@ class ExportsControllerTest extends IntegrationTestCase
     public function accessesProvider()
     {
         return [
+            [ '/en/exports/add', null, 405 ],
             [ '/en/exports/download/1', null, false ],
             [ '/en/exports/download/1', 'contributor', false ],
             [ '/en/exports/download/9999999', 'kazuki', 404 ],
