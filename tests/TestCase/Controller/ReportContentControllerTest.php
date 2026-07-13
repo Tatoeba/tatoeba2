@@ -56,7 +56,7 @@ class ReportContentControllerTest extends TestCase
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
-        $this->post('http://example.net/en/report_content/wall_post/1?origin=/en/wall/index', [
+        $this->post('http://localhost/en/report_content/wall_post/1?origin=/en/wall/index', [
             'details' => 'this is spam',
         ]);
 
@@ -69,7 +69,7 @@ class ReportContentControllerTest extends TestCase
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
-        $this->post('http://example.net/en/report_content/wall_post/1?origin=/en/wall/index', [
+        $this->post('http://localhost/en/report_content/wall_post/1?origin=/en/wall/index', [
             'details' => 'this is spam',
         ]);
 
@@ -97,7 +97,7 @@ class ReportContentControllerTest extends TestCase
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
-        $this->post('http://example.net/en/report_content/sentence_comment/1?origin=/en/sentences/show/4', [
+        $this->post('http://localhost/en/report_content/sentence_comment/1?origin=/en/sentences/show/4', [
             'details' => 'this is spam',
         ]);
 

@@ -155,7 +155,7 @@ class WallControllerTest extends IntegrationTestCase {
         return [
             // post data, comment should be saved, one email sent containing
             'inbound link, no confirmation' => [
-                ['content' => 'Check this out https://example.net'], true, null
+                ['content' => 'Check this out https://localhost'], true, null
             ],
             'outbound link, needs confirmation' => [
                 ['content' => 'Check this out https://example.com'], false, null
@@ -194,7 +194,7 @@ class WallControllerTest extends IntegrationTestCase {
         $this->logInAs('new_member');
 
         $this->post(
-            'https://example.net/en/wall/save',
+            'https://localhost/en/wall/save',
             ['replyTo' => ''] + $postData
         );
 
@@ -218,7 +218,7 @@ class WallControllerTest extends IntegrationTestCase {
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
-        $this->put('https://example.net/en/wall/edit/4', $postData);
+        $this->put('https://localhost/en/wall/edit/4', $postData);
 
         if ($shouldSave) {
             $this->assertFlashMessageContains('Message saved');
@@ -240,7 +240,7 @@ class WallControllerTest extends IntegrationTestCase {
         $this->enableRetainFlashMessages();
         $this->logInAs('new_member');
 
-        $this->put('https://example.net/en/wall/edit/5', $postData);
+        $this->put('https://localhost/en/wall/edit/5', $postData);
 
         if ($shouldSave) {
             $this->assertFlashMessageContains('Message saved');
@@ -257,7 +257,7 @@ class WallControllerTest extends IntegrationTestCase {
         $this->logInAs('new_member');
 
         $this->ajaxPost(
-             'https://example.net/en/wall/save_inside',
+             'https://localhost/en/wall/save_inside',
             ['replyTo' => '4'] + $postData
         );
 
