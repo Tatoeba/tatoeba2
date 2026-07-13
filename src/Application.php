@@ -31,6 +31,7 @@ use Cake\Http\ServerRequest;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\Routing\Router;
 use CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware;
+use Laminas\Diactoros\Uri;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TinyAuth\Policy\RequestPolicy;
@@ -71,7 +72,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 $referer = $request->referer();
                 if ($referer) {
                     // Set referer in redirect= query parameter instead of current URL
-                    $refererUri = $request->getUri()->withPath($referer);
+                    $refererUri = new Uri($referer);
                     $url = $service->getUnauthenticatedRedirectUrl($request->withUri($refererUri));
                     $service->setConfig([
                         'unauthenticatedRedirect' => $url,
