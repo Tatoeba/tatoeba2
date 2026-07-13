@@ -45,6 +45,7 @@ class TagsControllerTest extends IntegrationTestCase {
             [ '/en/tags/show_sentences_with_tag/doesnotexists', null, '/en/tags/view_all' ],
             [ '/en/tags/show_sentences_with_tag/@needs_native_check', null, '/en/tags/show_sentences_with_tag/1' ],
             [ '/en/tags/show_sentences_with_tag/@needs_native_check/eng', null, '/en/tags/show_sentences_with_tag/1/eng' ],
+            [ '/en/tags/show_sentences_with_tag/', null, '/en/tags/view_all'],
         ];
     }
 

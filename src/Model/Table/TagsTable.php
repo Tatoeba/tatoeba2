@@ -161,10 +161,14 @@ class TagsTable extends Table
      * @return int Id of the tag
      */
     public function getIdFromInternalName($tagInternalName) {
-        $result = $this->find()
-            ->where(['internal_name' => $tagInternalName])
-            ->select(['id'])
-            ->first();
+        try {
+            $result = $this->find()
+                ->where(['internal_name' => $tagInternalName])
+                ->select(['id'])
+                ->first();
+        } catch (\InvalidArgumentException $e) {
+            $result = null;
+        }
             
         return $result ? $result->id : null;
     }
