@@ -702,6 +702,7 @@ class LanguagesLib
                 'mdr' => __d('languages', 'Mandar'),
                 'sva' => __d('languages', 'Svan'),
                 'njo' => __d('languages', 'Ao Naga'),
+                'ttq' => __d('languages', 'Tawallammat Tamajaq'),
             );
         }
         return $languages;
