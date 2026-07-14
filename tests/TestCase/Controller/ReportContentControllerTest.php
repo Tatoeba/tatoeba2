@@ -52,13 +52,18 @@ class ReportContentControllerTest extends TestCase
         $this->assertStringContainsString($expected, $this->_requestSession->read('Flash.flash.0.message'));
     }
 
-    public function testWallPost() {
+    private function postReport($formUrl) {
         $this->enableRetainFlashMessages();
         $this->logInAs('contributor');
 
-        $this->post('http://example.net/en/report_content/wall_post/1?origin=/en/wall/index', [
+        $this->addHeader('Referer', $formUrl);
+        $this->post($formUrl, [
             'details' => 'this is spam',
         ]);
+    }
+
+    public function testWallPost() {
+        $this->postReport('http://localhost/en/report_content/wall_post/1?origin=/en/wall/index');
 
         $this->assertRedirect('/en/wall/index');
         $this->assertFlashMessageContains('Thank you');
@@ -66,12 +71,7 @@ class ReportContentControllerTest extends TestCase
     }
 
     private function _testFailGracefully() {
-        $this->enableRetainFlashMessages();
-        $this->logInAs('contributor');
-
-        $this->post('http://example.net/en/report_content/wall_post/1?origin=/en/wall/index', [
-            'details' => 'this is spam',
-        ]);
+        $this->postReport('http://localhost/en/report_content/wall_post/1?origin=/en/wall/index');
 
         $this->assertNoRedirect();
         $this->assertFlashMessageContains('Sorry');
@@ -94,12 +94,7 @@ class ReportContentControllerTest extends TestCase
     }
 
     public function testSentenceComment() {
-        $this->enableRetainFlashMessages();
-        $this->logInAs('contributor');
-
-        $this->post('http://example.net/en/report_content/sentence_comment/1?origin=/en/sentences/show/4', [
-            'details' => 'this is spam',
-        ]);
+        $this->postReport('http://localhost/en/report_content/sentence_comment/1?origin=/en/sentences/show/4');
 
         $this->assertRedirect('/en/sentences/show/4');
         $this->assertFlashMessageContains('Thank you');
