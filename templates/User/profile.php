@@ -149,7 +149,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                 <!-- member since + contact -->
                 <div class="info-group">
                     <div class="member-since">
-                        <span class="label"><?= __('Member since') ?></span> <?= $userSince ?>
+                        <strong><?= __('Member since') ?></strong> <?= $userSince ?>
                     </div>
 
                     <?php
@@ -164,7 +164,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                             email
                         </md-icon>
                         <div class="contact-text">
-                            <?= format(__('Contact')) ?>
+                            <?= format(__('Message user')) ?>
                         </div>
                     </a>
                 </div>
@@ -190,89 +190,84 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 
                 if (!empty($editUrl)):
                 ?>
-                    <md-button class="md-icon-button md-primary md-raised"
+                    <md-button class="md-raised md-primary"
                             aria-label="<?= __('Edit') ?>"
                             href="<?= $editUrl ?>">
-                        <md-icon>edit</md-icon>
-                    </md-button>
-                <?php endif; ?>
-
-                <?php
-                if ($username == $currentMember):
-                    $editSettingsUrl = $this->Url->build(array(
-                        'controller' => 'user',
-                        'action' => 'settings'
-                    ));
-                ?>
-                    <md-button class="md-icon-button md-primary md-raised"
-                            aria-label="<?= __('Settings') ?>"
-                            href="<?= $editSettingsUrl ?>">
-                        <md-icon>settings</md-icon>
+                        <md-icon class="button-icon">edit</md-icon>
+                        <span class="button-text"><?= __('Edit') ?></span>
                     </md-button>
                 <?php endif; ?>
             </div>
-
         </div>
 
         <?php
         if ($isDisplayed) {
-            $isOwnProfile = ($username == $currentMember);
-            
-            // Only if current user is us
-            if ($isOwnProfile || !empty($languagesSettings)) {
                 ?>
                 <!-- Divider (Preferences) -->
                 <md-divider></md-divider>
 
-                <!-- Preferences -->
-                <div class="settings-summary">
+                <!-- Preferences Container -->
+                <div class="settings-summary-container" layout="row" layout-align="space-between center">
                     
-                    <!-- Email notifications -->
-                    <div class="settings-item">
-                        <md-icon class="material-icons-outlined">
-                            mail_outline
-                        </md-icon>
-                        <div class="settings-item-text">
-                            <?php
-                            if ($notificationsEnabled) {
-                                echo __('Email notifications: ENABLED.');
-                            } else {
-                                echo __('Email notifications: DISABLED.');
-                            }
-                            ?>
-                        </div>
-                    </div>
-
-                    <!-- Profile visibility -->
-                    <div class="settings-item">
-                        <md-icon class="material-icons-outlined">
-                            people_outline
-                        </md-icon>
-                        <div class="settings-item-text">
-                            <?php
-                            if ($isPublic) {
-                                echo __('Visibility: PUBLIC.');
-                            } else {
-                                echo __('Visibility: OTHER MEMBERS ONLY.');
-                            }
-                            ?>
-                        </div>
-                    </div>
-
-                    <!-- Language settings (Optional) -->
-                    <?php if (!empty($languagesSettings)): ?>
+                    <!-- Preferences (Left Block) -->
+                    <div class="settings-summary" flex>
+                        
+                        <!-- Email notifications -->
                         <div class="settings-item">
-                            <md-icon class="material-icons-outlined">
-                                translate
-                            </md-icon>
-                            <div class="settings-item-text languages-text">
-                                <?= str_replace(',', ', ', $languagesSettings); ?>
+                             <div class="settings-item-text">
+                                <?php
+                                if ($notificationsEnabled) {
+                                    echo format(__('Email notifications: {}.'), '<strong class="setting-highlight">' . __('enabled') . '</strong>');
+                                } else {
+                                    echo format(__('Email notifications: {}.'), '<strong class="setting-highlight">' . __('disabled') . '</strong>');
+                                }
+                                ?>
                             </div>
                         </div>
+
+                        <!-- Profile visibility -->
+                        <div class="settings-item">
+                            <div class="settings-item-text">
+                                <?php
+                                if ($isPublic) {
+                                    echo format(__('Visibility: {}.'), '<strong class="setting-highlight">' . __('public') . '</strong>');
+                                } else {
+                                    echo format(__('Visibility: {}.'), '<strong class="setting-highlight">' . __('other members only') . '</strong>');
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+                        <!-- Language settings (Optional) -->
+                        <?php if (!empty($languagesSettings)): ?>
+                            <div class="settings-item">
+                                <md-icon class="material-icons-outlined">
+                                    translate
+                                </md-icon>
+                                <div class="settings-item-text languages-text">
+                                    <?= str_replace(',', ', ', $languagesSettings); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Settings Button (Right Block) -->
+                    <?php
+                    if ($username == $currentMember):
+                        $editSettingsUrl = $this->Url->build(array(
+                            'controller' => 'user',
+                            'action' => 'settings'
+                        ));
+                    ?>
+                        <div class="settings-action" flex="none">
+                            <a href="<?= $editSettingsUrl ?>" class="change-choices-link">
+                                <?= __('change choices') ?>
+                            </a>
+                        </div>
                     <?php endif; ?>
+
                 </div>
             <?php
-            }
         }
         ?>
 
@@ -311,7 +306,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         ?>
 
         <?php
-        // Gestione condizionale della descrizione vuota tramite classe CSS
+        // this code changes description alignement (centered if it's empty, left if it contains informations)
         if (!empty($userDescription)) {
             $descriptionContent = $this->ClickableLinks->clickableURL($userDescription);
             $descriptionContent = nl2br($descriptionContent);
