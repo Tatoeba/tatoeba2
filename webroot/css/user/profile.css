@@ -111,11 +111,49 @@ html[dir="rtl"] #profile .contact-link md-icon {
     margin: 0;
 }
 
+/* Spacing for the edit button content */
+#profile .actions .button-icon {
+    margin-right: 8px;
+}
+
+#profile .actions .button-text {
+    padding-right: 12px; /* Adjust this value to increase or decrease the padding at the right of the text */
+}
+
+/* RTL Support */
+html[dir="rtl"] #profile .actions .button-icon {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+html[dir="rtl"] #profile .actions .button-text {
+    padding-right: 0;
+    padding-left: 12px;
+}
+
+#profile .change-choices-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#profile .change-choices-link:hover {
+    text-decoration: underline;
+}
+
 /*
  * Preferences / Settings Summary
  */
-#profile .settings-summary {
+#profile .settings-summary-container {
     margin: 16px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#profile .settings-summary {
     font-size: 14px;
     line-height: 1.6;
     display: flex;
@@ -148,6 +186,19 @@ html[dir="rtl"] #profile .settings-item md-icon {
 
 #profile .settings-item-text.languages-text {
     color: rgba(0, 0, 0, 0.54);
+}
+
+#profile .setting-highlight {
+    color: #387dff;
+}
+
+#profile .settings-action {
+    margin-left: 16px;
+}
+
+html[dir="rtl"] #profile .settings-action {
+    margin-left: 0;
+    margin-right: 16px;
 }
 
 /*
