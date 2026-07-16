@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 12:10+0000\n"
+"POT-Creation-Date: 2026-07-07 09:25+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2014\n"
 "Language-Team: Hindi (http://app.transifex.com/tatoeba/tatoeba_website/language/hi/)\n"
@@ -32,19 +32,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L31
 msgid "There's no user called {username}"
 msgstr "{username} नाम का कोई भी उपयोगकर्ता नहीं है।"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L174
-msgid "Your account has been suspended."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L176
-msgid "Your account has been deactivated."
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L130
 msgid "Your audio settings have been saved."
@@ -104,15 +96,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr "{number} आईडी वाला कोई वाक्य नहीं है"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L157
 msgid "Your comment has been saved."
 msgstr "आपकी टिप्पणी सहेजी गई है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L200
 msgid "You do not have permission to edit this comment. "
 msgstr "आपको इस टिप्पणी को संपादित करने की अनुमति नहीं है। "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L204
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/write.php#L55
 msgid ""
@@ -120,27 +112,27 @@ msgid ""
 " {email}."
 msgstr "यदि आपको यह संदेश गलती से मिला है, तो कृपया {email} पर व्यवस्थापकों से संपर्क करें।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L229
 msgid "Changes to your comment have been saved."
 msgstr "टिप्पणी पर किये गये बदल सहेजे गए हैं।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L217
 msgid "The sentence #{id} has been deleted."
 msgstr "वाक्य क्र. {id} हटाया गया है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L223
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "त्रुटि: वाक्य क्र. {id} हटा नहीं सके।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L815
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L818
 msgid "You are not allowed to change the license of this sentence."
 msgstr "इस वाक्य का लाइसेंस बदलने की अनुमति आपके पास नहीं है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L822
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L825
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "वाक्य का लाइसेंस “{newLicense}” में बदल दिया गया है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L827
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L830
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "लाइसेंस को “{newLicense}” में बदलने में असमर्थ क्योंकि:"
 
@@ -215,64 +207,52 @@ msgstr "आपके सेटिंग्ज़ सहेजे गए है�
 msgid "You have accepted the new terms of use."
 msgstr "आपने उपयोग की शर्तें स्वीकार की हैं।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L189
-msgid ""
-"This account has been marked inactive. You cannot log in with it anymore. "
-"Please contact an admin if this is a mistake."
-msgstr "इस अकाउंट को निष्क्रिय चिह्नित कर दिया गया है। आप इसके साथ अब और लॉग इन नहीं कर सकते। कृपया एक व्यवस्थापक से संपर्क करें यदि यह एक गलती है।"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L199
-msgid ""
-"This account has been marked as a spammer. You cannot log in with it "
-"anymore. Please contact an admin if this is a mistake."
-msgstr "इस अकाउंट को स्पैमर के तौर पर चिह्नित किया गया है। आप इसके साथ अब और लॉग इन नहीं कर सकते। कृपया एक व्यवस्थापक से संपर्क करें यदि यह एक गलती है।"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L196
 msgid "You must fill in your username and password."
 msgstr "आपको अपना यूजरनेम और पासवर्ड भरना होगा।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L204
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "लॉगइन असफल। सुनिश्चित करें कि आपका कैप्स लॉक और न्यूम लॉक अनजाने में चालू नहीं है। आपका पासवर्ड केस - सेंसिटिव है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L309
 msgid "Welcome to Tatoeba!"
 msgstr "Tatoeba पर आपका स्वागत है!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L313
 msgid ""
 "To start things off, we encourage you to read our <a href='{url}'>Quick "
 "Start Guide</a>. If you want to read it later, you will find the link at the"
 " bottom of any page on the website."
 msgstr "चीजों को शुरू करने के लिए, हम आपको हमारी <a href='{url}'>त्वरित आरंभ मार्गदर्शिका</a> पढ़ने के लिए प्रोत्साहित करते हैं। यदि आप इसे बाद में पढ़ना चाहते हैं, तो आपको वेबसाइट पर किसी भी पृष्ठ के तल पर लिंक मिलेगा।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L321
 msgid "We hope you'll enjoy your time here with us!"
 msgstr "हमें उम्मीद है कि आप हमारे साथ अपने समय का आनंद लेंगे!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
 msgid "Please fix the form errors."
 msgstr "कृपया फ़ॉर्म त्रुटियाँ ठीक करें।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L365
 msgid "Your new password has been sent to {email}."
 msgstr "आपका नया पासवर्ड {email} पर भेज दिया गया है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L370
 msgid "You may need to check your spam folder to find this message."
 msgstr "इस वाक्य को ढूंढने के लिए आपको अपने स्पैम फ़ोल्डर को भी तलाशना पड़ सकता है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L378
 msgid "There is no registered user with this email address: "
 msgstr "इस ईमेल के साथ कोई पंजीकृत उपयोगकर्ता है: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
 msgid "No user with this username: "
 msgstr "इस उपयोगकर्ता नाम के साथ कोई उपयोगकर्ता: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L437
 msgid "No user with this ID: {id}"
 msgstr "{id} इस आईडी का कोई भी उपयोगकर्ता नहीं है"
 
@@ -420,6 +400,26 @@ msgstr "लाइसेंसिंग मुद्दा"
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, नया पासवर्ड"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L27
+msgid ""
+"This account has been marked as a spammer. You cannot log in with it "
+"anymore. Please contact an admin if this is a mistake."
+msgstr "इस अकाउंट को स्पैमर के तौर पर चिह्नित किया गया है। आप इसके साथ अब और लॉग इन नहीं कर सकते। कृपया एक व्यवस्थापक से संपर्क करें यदि यह एक गलती है।"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L32
+msgid "Your account has been suspended."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L38
+msgid ""
+"This account has been marked inactive. You cannot log in with it anymore. "
+"Please contact an admin if this is a mistake."
+msgstr "इस अकाउंट को निष्क्रिय चिह्नित कर दिया गया है। आप इसके साथ अब और लॉग इन नहीं कर सकते। कृपया एक व्यवस्थापक से संपर्क करें यदि यह एक गलती है।"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L43
+msgid "Your account has been deactivated."
+msgstr ""
+
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
 #. For instance, in language lists, on flag mouseover or on the stats
@@ -525,39 +525,39 @@ msgstr "अनामांकित सूची"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L153
 msgid "This is not a valid license."
 msgstr "यह मान्य लाइसेंस नहीं है।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L144
 msgid "This sentence is already under that license."
 msgstr "यह वाक्य पहले से ही उस लाइसेंस के तहत है।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L237
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "वाक्य मूल होना चाहिए (शुरुआत में अनुवाद से नहीं लिया गया)।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L245
 msgid "You're not the owner of this sentence."
 msgstr "आप इस वाक्य के स्वामी नहीं हैं।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L252
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "वाक्य का स्वामी इसका मूल निर्माता होना चाहिए।"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L265
 msgid "You can only switch to a more permissive license."
 msgstr "आप केवल अधिक अनुमेय लाइसेंस पर स्विच कर सकते हैं।"
 
@@ -812,7 +812,7 @@ msgid "Delete"
 msgstr "मिटाएं"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L472
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
@@ -1034,138 +1034,138 @@ msgstr "5: मातृ भाषा स्तर"
 msgid "created by a former member"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L71
 msgid "created by {listAuthor}"
 msgstr "{listAuthor} ने बानाया"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L98
 msgid "created"
 msgstr "बनायी"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L104
 msgid "last updated"
 msgstr "नवीनतम अद्यतन"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L175
 msgid "(unnamed list)"
 msgstr "(बेनाम सूची)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L222
 msgid "Number of sentences"
 msgstr "वाक्यों की संख्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L243
 msgid "Back to all lists"
 msgstr "सूचियों पर वापस लौटें"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L266
 msgid "Back to this list"
 msgstr "इस सूची पर लौटें"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L295
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L89
 msgid "Download this list"
 msgstr "या सूची डाउनलोड करें"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L313
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L92
 msgid "Show translations in:"
 msgstr "इस भाषा में अनुवाद दिखाएँ:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L344
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L116
 msgid "Sentences in:"
 msgstr "इस भाषा में वाक्य दिखाएँ:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L370
 msgid "List visibility"
 msgstr "सूची दृश्यता"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L387
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
 msgstr "सूची किसी के लिए भी पहुंच योग्य है और 'सूची द्वारा ब्राउज़ करें' पृष्ठ पर सूचीबद्ध है, साथ ही इसमें शामिल प्रत्येक वाक्य के वाक्य पृष्ठ पर भी सूचीबद्ध है।"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L391
 msgid "Public"
 msgstr "सार्वजनिक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L394
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
 msgstr "सूची किसी के लिए भी पहुंच योग्य है और 'सूची द्वारा ब्राउज़ करें' पृष्ठ पर सूचीबद्ध है।"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L397
 msgid "Listed"
 msgstr "सूचीबध्द"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L400
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
 msgstr "सूची किसी के लिए भी सुलभ है लेकिन 'सूची के अनुसार ब्राउज़ करें' पृष्ठ पर सूचीबद्ध नहीं है।"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L403
 msgid "Unlisted"
 msgstr "असूचीबद्ध"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L406
 msgid "The list is accessible only to you."
 msgstr "सूची केवल आपके लिए उपलब्ध है।"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L408
 msgid "Private"
 msgstr "निजी"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L431
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L432
 msgid "Who can add/remove sentences"
 msgstr "वाक्य कौन जोड़ या निकाल सकता है"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L448
 msgid "Anyone"
 msgstr "कोई भी"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L452
 msgid "Only me"
 msgstr "केवल मैं"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L456
 msgid "No one (list inactive)"
 msgstr "कोई नहीं (निष्क्रिय सूची)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L477
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L104
 msgid "Delete this list"
 msgstr "इस सूची को हटाएँ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L531
 msgid "Remove sentence {number} from list"
 msgstr "वाक्य {number} को सूची से निकाल दें"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L540
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences_lists/sentence_in_list.php#L36
 msgid "Remove from list"
 msgstr "सूची से निकाल दें"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L555
 msgid "Remove this sentence from '{listName}'."
 msgstr "इस वाक्य को '{listName}' से हटाएँ।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L600
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L601
 msgid "Add a sentence to this list : "
 msgstr "इस सूची में वाक्य जोड़ें: "
 
@@ -1176,7 +1176,7 @@ msgstr "इस सूची में वाक्य जोड़ें: "
 #. / submit button of list name edition form
 #. / closing button of error message on user language addition form
 #. / submit button of new sentence addition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L606
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L607
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L114
@@ -1186,7 +1186,7 @@ msgstr "इस सूची में वाक्य जोड़ें: "
 msgid "OK"
 msgstr "ठीक है"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L620
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
@@ -1196,32 +1196,32 @@ msgstr "नोट: आप इस आइकन {addToListButton} के साथ
 #. / header text in sidebar on pages related to sentences lists
 #. / section title in the Downloads page
 #. / link to the user's lists on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L645
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L758
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L646
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L759
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L70
 msgid "Lists"
 msgstr "सूचियाँ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L686
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L687
 msgid "Create a new list"
 msgstr "नयी सूची बनाएँ"
 
 #. field for the name of a list to create (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L698
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L699
 msgctxt "list"
 msgid "Name"
 msgstr "नाम"
 
 #. button to create a new list from the lists of list page (verb)
 #. / button to create a new list directly from a sentence block
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L703
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L704
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/list_form.php#L9
 msgid "Create"
 msgstr "बनाएँ"
 
 #. header text in List of lists page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L721
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L722
 msgctxt "header"
 msgid "Search"
 msgstr "खोज करें"
@@ -1231,7 +1231,7 @@ msgstr "खोज करें"
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form submit button (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L742
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L743
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L58
@@ -1240,28 +1240,28 @@ msgctxt "button"
 msgid "Search"
 msgstr "खोजें"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L768
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L769
 msgid "All public lists"
 msgstr "सभी सार्वजनिक सूचियाँ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L779
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L780
 msgid "Collaborative lists"
 msgstr "सहयोगात्मक सूचियाँ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L792
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L818
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L793
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L139
 msgid "My lists"
 msgstr "मेरी सूचीयाँ"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L807
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L808
 msgctxt "list"
 msgid "Unspecified"
 msgstr "अनिर्दिष्ट"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L820
 msgid "Other lists"
 msgstr "अन्य सूचियाँ"
 
@@ -1533,11 +1533,9 @@ msgid "Next page [Ctrl+→]"
 msgstr "अगला पन्ना [Ctrl+→]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L153
-msgid ""
-"Only the sentence with the most-recently added audio file is displayed here."
+msgid "Only the most recently added audio recording is displayed here."
 msgid_plural ""
-"Only sentences with the {n} most-recently added audio files are displayed "
-"here."
+"Only the {n} most recently added audio recordings are displayed here."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -2938,74 +2936,74 @@ msgstr "सहायक या वैकल्पिक लिपियों �
 
 #. title of the Help page (noun)
 #. / link text to the Help page in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L86
 msgid "Help"
 msgstr "मदद"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L36
 msgid "Need more help?"
 msgstr "अधिक मदद चाहिए?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L40
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
 msgstr "आप <a href=\"{}\">फ़ैक</a> देख सकते हैं।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L48
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
 msgstr "यदि आपको अपने प्रश्न का उत्तर नहीं मिल रहा है, तो बेझिझक <a href=\"{}\">हमसे संपर्क करें</a>।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L64
 msgid "Getting started"
 msgstr "प्रारंभ करना"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L71
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
 msgstr "अगर आपको पता नहीं है कि अब क्या करना है और आप पंजीकृत हैं, तो आप <a href=\"{wall}\">वाल </a> पर अपना परिचय दे सकते हैं, या हमारे <a href=\"{chatroom}\">चैटरूम में शामिल हो सकते हैं </a>। हम आपको एक उद्देश्य देंगे। :)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L87
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
 msgstr "यदि आपको लगता है कि यह परियोजना शानदार है और सक्रिय रूप से मदद करना चाहते हैं, तो यहां एक लिंक है जिसे आप <strong>जरूर</strong> पढ़ सकते हैं:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L99
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
 msgstr "कहा जा रहा है, Tatoeba में आपका स्वागत है! हमें उम्मीद है कि आपको इस परियोजना का हिस्सा बनने में मज़ा आएगा :)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L110
 msgid "Important links"
 msgstr "महत्त्वपूर्ण पन्ने"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L132
 msgid "Adding new sentences"
 msgstr "नये वाक्य जोड़ना"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L133
 msgid "There are two ways to add new sentences."
 msgstr "नये वाक्य जोड़नाे के दो तरीके हैं।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L139
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
 msgstr "प्रत्येक पृष्ठ के शीर्ष पर <strong>योगदान करें</strong> मेनू से <a href=\"{}\">वाक्य जोड़ें</a> चुनें।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L155
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
 msgstr "एक नई <a href=\"{}\">सूची</a> बनाकर और उस सूची के संपादन पृष्ठ पर जाकर।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L172
 msgid ""
 "Even though there are many sentences in Tatoeba, there is still a lot of "
 "vocabulary that is not covered. This is why we encourage you to add new "
@@ -3013,44 +3011,44 @@ msgid ""
 "into any language."
 msgstr "हालांकि Tatoeba में कई वाक्य हैं, फिर भी बहुत सारी शब्दावली है जो कवर नहीं की गई है। यही कारण है कि हम आपको नई शब्दावली के साथ नए वाक्य जोड़ने के लिए प्रोत्साहित करते हैं, भले ही आप इसे किसी भी भाषा में अनुवाद करना नहीं जानते हों।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L182
 msgid "Translating sentences"
 msgstr "वाक्यों का अनुवाद करना"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L186
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
 msgstr "Tatoeba में अनुवाद सबसे महत्वपूर्ण कार्यों में से एक है, क्योंकि परियोजना का मुख्य लक्ष्य कई भाषाओं में अनुवादित वाक्यों को इकट्ठा करना है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L196
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
 msgstr "आप किसी वाक्य का बहुत अधिक हर जगह से अनुवाद कर सकते हैं। जब भी आप इस आइकन को देखें {translateButton} पर क्लिक करें।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L207
 msgid "Correcting mistakes"
 msgstr "गलतीयाँ दुरुस्त करना"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L211
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
 msgstr "आप केवल उन वाक्यों में गलतियों को सुधार सकते हैं जो आपके हैं। यदि आप किसी और के वाक्य में कोई गलती देखते हैं, तो आप उसे गलती के बारे में सूचित करने के लिए एक टिप्पणी पोस्ट कर सकते हैं।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L220
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
 msgstr "कुछ मामलों में, वाक्य का कोई मालिक नहीं होता है। अधिक जानने के लिए नीचे दिया गया पैराग्राफ (वाक्य अपनाने पर) पढ़ें।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L229
 msgid "Adopting sentences"
 msgstr "वाक्य अपनाना"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L233
 msgid ""
 "When you add a sentence, this sentence \"belongs\" to you - only you can "
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
@@ -3058,7 +3056,7 @@ msgid ""
 "owner because they have been collected outside of Tatoeba."
 msgstr "जब आप कोई वाक्य जोड़ते हैं, तो यह वाक्य \"आपका है\" - केवल आप ही इसे संपादित कर सकते हैं। हालांकि, Tatoeba में कई वाक्य जापानी-अंग्रेज़ी कार्पस से आते हैं जिन्हें Tanaka कॉर्पस कहा जाता है। इन वाक्यों का कोई स्वामी नहीं है क्योंकि इन्हें Tatoeba के बाहर एकत्र किया गया है।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L245
 msgid ""
 "If you see a mistake in an \"orphan\" sentence, you will not be able to "
 "correct it because you are not the owner. This is why there is an \"adopt\" "
@@ -3066,24 +3064,24 @@ msgid ""
 "therefore can edit it."
 msgstr "यदि आपको \"अनाथ\" वाक्य में कोई गलती दिखाई देती है, तो आप इसे ठीक नहीं कर पाएंगे क्योंकि आप मालिक नहीं हैं। यही कारण है कि एक \"अपनाने\" विकल्प ({adoptButton}) है। एक बार जब आप एक वाक्य अपनाते हैं, तो आप उसके मालिक बन जाते हैं और इसलिए इसे संपादित कर सकते हैं।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L263
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
 msgstr "एक वाक्य को अपनाना भी \"गुणवत्ता प्रक्रिया\" का हिस्सा है। आप इसके बारे में अधिक जानकारी यहाँ प्राप्त कर सकते हैं:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L274
 msgid "Sentence lists"
 msgstr "वाक्यों की सूचियाँ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L278
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
 msgstr "आप Tatoeba में वाक्यों की सूची बना सकते हैं। डिफ़ॉल्ट रूप से सूची <strong>व्यक्तिगत</strong> है, जिसका अर्थ है कि इसे केवल उस व्यक्ति द्वारा संपादित किया जा सकता है जिसने इसे बनाया है (लेकिन यह अभी भी सभी को दिखाई देता है)।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L287
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
@@ -3794,48 +3792,48 @@ msgstr "डाउनलोड तैयार हो रहा है, कृप
 msgid "Failed to prepare download, please try again."
 msgstr "डाउनलोड तैयार करने में विफल, कृपया पुन: प्रयास करें।"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L33
 msgid "Collaborative lists ({total})"
 msgstr "सहयोगी सूचियाँ ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L35
 msgid "All public lists ({total})"
 msgstr "सभी सार्वजनिक सूचियाँ ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
 msgid "Collaborative lists containing \"{search}\" ({total})"
 msgstr "सहयोगी सूचियाँ जिनमें \"{search}\" है ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L42
 msgid "All public lists containing \"{search}\" ({total})"
 msgstr "सभी सार्वजनिक सूचियाँ जिनमें \"{search}\" है ({total})"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L80
 msgid "List name (alphabetical)"
 msgstr "सूची का नाम (वर्णमाला)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L82
 msgid "List name (reverse alphabetical)"
 msgstr "सूची का नाम (उल्टा वर्णानुक्रम)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L84
 msgctxt "lists"
 msgid "Newest first"
 msgstr "सबसे नए वाक्य पहले दिखाए"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L77
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L86
 msgctxt "lists"
 msgid "Oldest first"
 msgstr "सबसे पुराने वाक्य पहले दिखाए"
@@ -3843,8 +3841,8 @@ msgstr "सबसे पुराने वाक्य पहले दिख�
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #. / sort option in the All tags page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L91
 msgid "Highest number of sentences"
 msgstr "वाक्यों की उच्चतम संख्या"
@@ -3852,33 +3850,33 @@ msgstr "वाक्यों की उच्चतम संख्या"
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #. / sort option in the All tags page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L81
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L93
 msgid "Lowest number of sentences"
 msgstr "वाक्यों की न्यूनतम संख्या"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L92
 msgctxt "lists"
 msgid "Most recently updated"
 msgstr "हाल ही में अपडेट किया गया"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L94
 msgctxt "lists"
 msgid "Least recently updated"
 msgstr "कम से कम हाल ही में अपडेट किया गया"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L40
 msgid "{username}'s lists ({total})"
 msgstr "{username} की सूचियाँ ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L45
 msgid "{username}'s lists containing \"{search}\" ({total})"
 msgstr "{username} की सूचियाँ जिनमें \"{search}\" है ({total})"
 
@@ -4550,7 +4548,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L248
 msgid "Log in"
 msgstr "लॉग इन"
@@ -4580,7 +4578,7 @@ msgstr "पासवर्ड भूल गएं?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L284
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L238
 msgid "Register"
 msgstr "पंजीकरण"

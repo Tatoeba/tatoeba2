@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 12:10+0000\n"
+"POT-Creation-Date: 2026-07-07 09:25+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: Koyuki <smallsnow.tatoeba@gmail.com>, 2023\n"
 "Language-Team: Japanese (http://app.transifex.com/tatoeba/tatoeba_website/language/ja/)\n"
@@ -35,19 +35,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L31
 msgid "There's no user called {username}"
 msgstr "{username} というユーザーはいません。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L174
-msgid "Your account has been suspended."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L176
-msgid "Your account has been deactivated."
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L130
 msgid "Your audio settings have been saved."
@@ -107,15 +99,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr "#{number}の例文はありません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L157
 msgid "Your comment has been saved."
 msgstr "コメントを投稿しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L200
 msgid "You do not have permission to edit this comment. "
 msgstr "このコメントを編集する権限がありません。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L204
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/write.php#L55
 msgid ""
@@ -123,27 +115,27 @@ msgid ""
 " {email}."
 msgstr "このメッセージが誤りであると思われる場合は、管理者 {email} にご連絡ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L229
 msgid "Changes to your comment have been saved."
 msgstr "コメントを変更しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L217
 msgid "The sentence #{id} has been deleted."
 msgstr "例文#{id}を削除しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L223
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "例文#{id}は削除できませんでした。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L815
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L818
 msgid "You are not allowed to change the license of this sentence."
 msgstr "この例文のライセンスを変更することはできません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L822
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L825
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "例文のライセンスは “{newLicense}” に変更されました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L827
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L830
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "次の理由によりライセンスを “{newLicense}” に変更できません。"
 
@@ -218,64 +210,52 @@ msgstr "設定を保存しました。"
 msgid "You have accepted the new terms of use."
 msgstr "新しい利用規約に同意されました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L189
-msgid ""
-"This account has been marked inactive. You cannot log in with it anymore. "
-"Please contact an admin if this is a mistake."
-msgstr "このアカウントは休止中に設定されていますので、ログインすることはできません。ご不明な点は管理人までお問い合わせください。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L199
-msgid ""
-"This account has been marked as a spammer. You cannot log in with it "
-"anymore. Please contact an admin if this is a mistake."
-msgstr "このアカウントはスパムアカウントとして指定されていますので、ログインすることはできません。ご不明な点は管理人までお問い合わせください。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L196
 msgid "You must fill in your username and password."
 msgstr "ユーザー名とパスワードを入力してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L204
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "ログインに失敗しました。Caps Lock や Num Lock がオンになっていないか確認してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L309
 msgid "Welcome to Tatoeba!"
 msgstr "Tatoebaへようこそ！"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L313
 msgid ""
 "To start things off, we encourage you to read our <a href='{url}'>Quick "
 "Start Guide</a>. If you want to read it later, you will find the link at the"
 " bottom of any page on the website."
 msgstr "まず始めに <a href='{url}'>スタートガイド</a>をお読みください。後で読みたい場合は、各ページの下にリンクがあります。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L321
 msgid "We hope you'll enjoy your time here with us!"
 msgstr "Tatoeba で楽しい時間をお過ごしください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
 msgid "Please fix the form errors."
 msgstr "エラーを修正してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L365
 msgid "Your new password has been sent to {email}."
 msgstr "新しいパスワードを {email} に送信しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L370
 msgid "You may need to check your spam folder to find this message."
 msgstr "メールが届かない場合は迷惑メールフォルダをご確認ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L378
 msgid "There is no registered user with this email address: "
 msgstr "このメールアドレスは登録されていません。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
 msgid "No user with this username: "
 msgstr "このユーザー名は登録されていません。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L437
 msgid "No user with this ID: {id}"
 msgstr "次のIDのユーザーは存在しません：\"{id}\""
 
@@ -420,6 +400,26 @@ msgstr "ライセンス上の問題"
 msgid "Tatoeba, new password"
 msgstr "Tatoeba パスワードの再送"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L27
+msgid ""
+"This account has been marked as a spammer. You cannot log in with it "
+"anymore. Please contact an admin if this is a mistake."
+msgstr "このアカウントはスパムアカウントとして指定されていますので、ログインすることはできません。ご不明な点は管理人までお問い合わせください。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L32
+msgid "Your account has been suspended."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L38
+msgid ""
+"This account has been marked inactive. You cannot log in with it anymore. "
+"Please contact an admin if this is a mistake."
+msgstr "このアカウントは休止中に設定されていますので、ログインすることはできません。ご不明な点は管理人までお問い合わせください。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L43
+msgid "Your account has been deactivated."
+msgstr ""
+
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
 #. For instance, in language lists, on flag mouseover or on the stats
@@ -525,39 +525,39 @@ msgstr "無題のリスト"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L153
 msgid "This is not a valid license."
 msgstr "ライセンスが無効です。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L144
 msgid "This sentence is already under that license."
 msgstr "この例文は以下のライセンスが適用されています。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L237
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "例文はオリジナルでなければならい（翻訳から派生したものではないこと）。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L245
 msgid "You're not the owner of this sentence."
 msgstr "あなたはこの例文の所有者ではありません。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L252
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "例文の所有者はその例文を作成した人でなければならない。"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L265
 msgid "You can only switch to a more permissive license."
 msgstr "制限が緩和されたライセンスにのみ変更することができます。"
 
@@ -805,7 +805,7 @@ msgid "Delete"
 msgstr "削除"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L472
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
@@ -1024,138 +1024,138 @@ msgstr "5: ネイティブ"
 msgid "created by a former member"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L71
 msgid "created by {listAuthor}"
 msgstr "作成者：{listAuthor}"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L98
 msgid "created"
 msgstr "作成日時"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L104
 msgid "last updated"
 msgstr "最終更新日時"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L175
 msgid "(unnamed list)"
 msgstr "（無題のリスト）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L222
 msgid "Number of sentences"
 msgstr "例文の数"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L243
 msgid "Back to all lists"
 msgstr "リストの一覧に戻る"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L266
 msgid "Back to this list"
 msgstr "このリストの例文一覧に戻る"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L295
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L89
 msgid "Download this list"
 msgstr "このリストをダウンロードする"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L313
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L92
 msgid "Show translations in:"
 msgstr "翻訳を表示する言語："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L344
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L116
 msgid "Sentences in:"
 msgstr "例文を表示する言語："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L370
 msgid "List visibility"
 msgstr "リストの公開範囲"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L387
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
 msgstr "誰でもアクセス可能で、「リストごとに見る」および例文の詳細ページにも表示されます。"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L391
 msgid "Public"
 msgstr "完全公開"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L394
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
 msgstr "誰でもアクセス可能で、「リストごとに見る」にのみ表示されます。"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L397
 msgid "Listed"
 msgstr "制限付き公開"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L400
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
 msgstr "本人以外でもアクセス可能ですが、「リストごとに見る」および例文の詳細ページには表示されません。"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L403
 msgid "Unlisted"
 msgstr "限定公開"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L406
 msgid "The list is accessible only to you."
 msgstr "本人のみアクセス可能です。"
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L408
 msgid "Private"
 msgstr "本人のみ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L431
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L432
 msgid "Who can add/remove sentences"
 msgstr "例文の追加・削除ができるユーザー"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L448
 msgid "Anyone"
 msgstr "全員"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L452
 msgid "Only me"
 msgstr "本人のみ"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L456
 msgid "No one (list inactive)"
 msgstr "許可しない（非アクティブ）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L477
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L104
 msgid "Delete this list"
 msgstr "このリストを削除する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L531
 msgid "Remove sentence {number} from list"
 msgstr "例文「{number}」をリストから外す"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L540
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences_lists/sentence_in_list.php#L36
 msgid "Remove from list"
 msgstr "リストから外す"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L555
 msgid "Remove this sentence from '{listName}'."
 msgstr "例文をリスト「{listName}」から外す"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L600
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L601
 msgid "Add a sentence to this list : "
 msgstr "新しい例文をこのリストに追加する： "
 
@@ -1166,7 +1166,7 @@ msgstr "新しい例文をこのリストに追加する： "
 #. / submit button of list name edition form
 #. / closing button of error message on user language addition form
 #. / submit button of new sentence addition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L606
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L607
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L114
@@ -1176,7 +1176,7 @@ msgstr "新しい例文をこのリストに追加する： "
 msgid "OK"
 msgstr "OK"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L620
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
@@ -1186,32 +1186,32 @@ msgstr "※リストに文を追加するには、{addToListButton}ボタンを�
 #. / header text in sidebar on pages related to sentences lists
 #. / section title in the Downloads page
 #. / link to the user's lists on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L645
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L758
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L646
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L759
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L70
 msgid "Lists"
 msgstr "リスト"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L686
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L687
 msgid "Create a new list"
 msgstr "新しいリストを作る"
 
 #. field for the name of a list to create (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L698
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L699
 msgctxt "list"
 msgid "Name"
 msgstr "名前"
 
 #. button to create a new list from the lists of list page (verb)
 #. / button to create a new list directly from a sentence block
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L703
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L704
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/list_form.php#L9
 msgid "Create"
 msgstr "作成する"
 
 #. header text in List of lists page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L721
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L722
 msgctxt "header"
 msgid "Search"
 msgstr "検索"
@@ -1221,7 +1221,7 @@ msgstr "検索"
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form submit button (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L742
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L743
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L58
@@ -1230,28 +1230,28 @@ msgctxt "button"
 msgid "Search"
 msgstr "検索"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L768
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L769
 msgid "All public lists"
 msgstr "公開リスト"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L779
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L780
 msgid "Collaborative lists"
 msgstr "共有リスト"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L792
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L818
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L793
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L139
 msgid "My lists"
 msgstr "自分のリスト"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L807
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L808
 msgctxt "list"
 msgid "Unspecified"
 msgstr "指定なし"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L820
 msgid "Other lists"
 msgstr "その他のリスト"
 
@@ -1521,11 +1521,9 @@ msgid "Next page [Ctrl+→]"
 msgstr "次のページ（Ctrl＋→）"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L153
-msgid ""
-"Only the sentence with the most-recently added audio file is displayed here."
+msgid "Only the most recently added audio recording is displayed here."
 msgid_plural ""
-"Only sentences with the {n} most-recently added audio files are displayed "
-"here."
+"Only the {n} most recently added audio recordings are displayed here."
 msgstr[0] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L160
@@ -2917,74 +2915,74 @@ msgstr "このファイルには、自動生成または手動訂正されたト
 
 #. title of the Help page (noun)
 #. / link text to the Help page in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L86
 msgid "Help"
 msgstr "ヘルプ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L36
 msgid "Need more help?"
 msgstr "お問い合わせの前に"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L40
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
 msgstr "Tatoebaについて分からないことがあれば、まず<a href=\"{}\">よくある質問</a>をお読みください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L48
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
 msgstr "問題が解決しない場合やその他のご質問がある場合は、お気軽に<a href=\"{}\">こちら</a>にご連絡ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L64
 msgid "Getting started"
 msgstr "Tatoebaを始めるにあたって"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L71
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
 msgstr "ユーザー登録後に、何を行ったらいいかわからない場合は、<a href=\"{wall}\">掲示板</a>で自己紹介をしたり、<a href=\"{chatroom}\">チャットルーム</a>にご参加ください。私たちは活動方法についてサポートいたします。:)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L87
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
 msgstr "Tatoebaに惚れた、がんがん活動していきたい！という方は、<strong>必ず</strong>こちらのページをお読みください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L99
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
 msgstr "でも何よりもまず、<strong>Tatoebaへようこそ</strong>。ここでの活動を楽しんでいただけることを願っています！"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L110
 msgid "Important links"
 msgstr "重要な記事"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L132
 msgid "Adding new sentences"
 msgstr "新しい文を追加する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L133
 msgid "There are two ways to add new sentences."
 msgstr "オリジナルの例文は次の２つのページから追加できます。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L139
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
 msgstr "各ページの上部にあるメニューの「活動する」ー「<a href=\"{}\">例文を追加する</a>」のページ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L155
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
 msgstr "<a href=\"{}\">リスト</a>の「編集」のページ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L172
 msgid ""
 "Even though there are many sentences in Tatoeba, there is still a lot of "
 "vocabulary that is not covered. This is why we encourage you to add new "
@@ -2992,44 +2990,44 @@ msgid ""
 "into any language."
 msgstr "Tatoebaには膨大な数の例文がありますが、まだまだ例文のない単語や表現もたくさんあります。ですから、ぜひとも積極的に新しい例文を投稿してください。あなた自身が他の言語に訳せないものでも全く構いません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L182
 msgid "Translating sentences"
 msgstr "例文を翻訳する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L186
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
 msgstr "例文の翻訳は、Tatoebaのメインともいえる活動です。Tatoebaの趣旨は、さまざまな言語に翻訳された例文を集めることですから。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L196
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
 msgstr "訳の投稿は、サイト内のいたるところで出来るようになっています。{translateButton}アイコンをクリックすれば訳を追加することができます。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L207
 msgid "Correcting mistakes"
 msgstr "例文を訂正する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L211
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
 msgstr "Tatoebaでは、自分が“所有”している例文にのみ変更を加えることができます。他の人の文に間違いを見つけたときは、コメントを書いて間違いを教えてあげてください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L220
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
 msgstr "例文に所有者がいない場合もあります。これについては次の項（「例文をアドプトする」）をご覧ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L229
 msgid "Adopting sentences"
 msgstr "例文をアドプトする"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L233
 msgid ""
 "When you add a sentence, this sentence \"belongs\" to you - only you can "
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
@@ -3037,7 +3035,7 @@ msgid ""
 "owner because they have been collected outside of Tatoeba."
 msgstr "Tatoebaのユーザーが投稿した例文については、投稿した人が例文の所有者になり、その人だけが文を変更できることになっています。しかしTatoebaの例文の一部は、「田中コーパス」という日英対訳コーパスから来ています。これらの文は、Tatoebaのユーザーが投稿したわけではないので、もともと所有者がいません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L245
 msgid ""
 "If you see a mistake in an \"orphan\" sentence, you will not be able to "
 "correct it because you are not the owner. This is why there is an \"adopt\" "
@@ -3045,24 +3043,24 @@ msgid ""
 "therefore can edit it."
 msgstr "所有者のいない“野良文”は、あなたの文ではないのでそのままでは変更できません。野良文に間違いを見つけた場合は、文を“アドプト”（{adoptButton}）して、所有者になってから訂正してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L263
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
 msgstr "また、アドプトの作業はコーパスの“品質管理”の一環でもあります。これについて詳しくはこちらをご覧ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L274
 msgid "Sentence lists"
 msgstr "リスト"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L278
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
 msgstr "Tatoebaの例文はリストにまとめることができます。デフォルトでは<strong>個人用リスト</strong>に設定されています。リストを見ることは誰でもできますが、編集できるのはリスト作成者本人に限られます。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L287
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
@@ -3770,48 +3768,48 @@ msgstr "ダウンロードの準備をしています。しばらくお待ちく
 msgid "Failed to prepare download, please try again."
 msgstr "ダウンロードに失敗しました。もう一度やり直してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L33
 msgid "Collaborative lists ({total})"
 msgstr "共有リスト（{total}件）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L35
 msgid "All public lists ({total})"
 msgstr "公開リスト（{total} 件）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
 msgid "Collaborative lists containing \"{search}\" ({total})"
 msgstr "「{search}」を含む共有リスト（{total}件）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L42
 msgid "All public lists containing \"{search}\" ({total})"
 msgstr "\"{search}\" を含む公開リスト（{total} 件）"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L80
 msgid "List name (alphabetical)"
 msgstr "リスト名（アルファベット順）"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L82
 msgid "List name (reverse alphabetical)"
 msgstr "リスト名（アルファベットの逆順）"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L84
 msgctxt "lists"
 msgid "Newest first"
 msgstr "作成日時：最近のものから"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L77
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L86
 msgctxt "lists"
 msgid "Oldest first"
 msgstr "作成日時：作成された順"
@@ -3819,8 +3817,8 @@ msgstr "作成日時：作成された順"
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #. / sort option in the All tags page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L91
 msgid "Highest number of sentences"
 msgstr "例文数：多いものから"
@@ -3828,33 +3826,33 @@ msgstr "例文数：多いものから"
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #. / sort option in the All tags page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L81
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L93
 msgid "Lowest number of sentences"
 msgstr "例文数：少ないものから"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L92
 msgctxt "lists"
 msgid "Most recently updated"
 msgstr "更新日時：最近のものから"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L94
 msgctxt "lists"
 msgid "Least recently updated"
 msgstr "更新日時：更新された順"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L40
 msgid "{username}'s lists ({total})"
 msgstr "{username}さんのリスト（{total}件）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L45
 msgid "{username}'s lists containing \"{search}\" ({total})"
 msgstr "\"{search}\" を含む {username} さんのリスト（{total} 件）"
 
@@ -4521,7 +4519,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L248
 msgid "Log in"
 msgstr "ログイン"
@@ -4551,7 +4549,7 @@ msgstr "パスワードをお忘れの方はこちら"
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L284
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L238
 msgid "Register"
 msgstr "登録する"

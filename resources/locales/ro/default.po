@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 12:10+0000\n"
+"POT-Creation-Date: 2026-07-07 09:25+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2014\n"
 "Language-Team: Romanian (http://app.transifex.com/tatoeba/tatoeba_website/language/ro/)\n"
@@ -32,19 +32,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L31
 msgid "There's no user called {username}"
 msgstr "Nu există niciun utilizator numit {username}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L174
-msgid "Your account has been suspended."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L176
-msgid "Your account has been deactivated."
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L130
 msgid "Your audio settings have been saved."
@@ -104,15 +96,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr "Nu există nicio propoziție cu id-ul {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L157
 msgid "Your comment has been saved."
 msgstr "Comentariul dumneavoastră a fost salvat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L200
 msgid "You do not have permission to edit this comment. "
 msgstr "Nu aveți permisiunea de a edita acest comentariu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L204
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/write.php#L55
 msgid ""
@@ -120,27 +112,27 @@ msgid ""
 " {email}."
 msgstr "Dacă ați primit acest mesaj din greșeală, vă rugăm să contactați administratorii la {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L229
 msgid "Changes to your comment have been saved."
 msgstr "Modificările la comentariul dumneavoastră au fost salvate."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L217
 msgid "The sentence #{id} has been deleted."
 msgstr "Propoziția #{id} a fost ștearsă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L223
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Eroare: propoziția #{id} nu a putut fi ștearsă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L815
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L818
 msgid "You are not allowed to change the license of this sentence."
 msgstr "Nu aveți voie să schimbați licența acestei propoziții."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L822
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L825
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "Licența propoziției a fost schimbată cu „{newLicense}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L827
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L830
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "Nu se poate schimba licența cu  „{newLicense}” deoarece:"
 
@@ -215,64 +207,52 @@ msgstr "Opțiunile dumneavoastră au fost salvate."
 msgid "You have accepted the new terms of use."
 msgstr "Ați acceptat noile condiții de utilizare."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L189
-msgid ""
-"This account has been marked inactive. You cannot log in with it anymore. "
-"Please contact an admin if this is a mistake."
-msgstr "Acest cont a fost marcat ca inactiv. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un administrator dacă aceasta este o greșeală."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L199
-msgid ""
-"This account has been marked as a spammer. You cannot log in with it "
-"anymore. Please contact an admin if this is a mistake."
-msgstr "Acest cont a fost marcat ca spamer. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un admin dacă aceasta este o greșeală."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L196
 msgid "You must fill in your username and password."
 msgstr "Trebuie să completați numele de utilizator și parola."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L204
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Autentificare eșuată. Asigurați-vă că Num Lock și Caps Lock nu sunt activate. Parola este sensibilă la litere mari și mici."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L309
 msgid "Welcome to Tatoeba!"
 msgstr "Bine ați venit la Tatoeba!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L313
 msgid ""
 "To start things off, we encourage you to read our <a href='{url}'>Quick "
 "Start Guide</a>. If you want to read it later, you will find the link at the"
 " bottom of any page on the website."
 msgstr "Pentru a începe, vă încurajăm să citiți <a href='{url}'>Ghidul de pornire rapidă</a>. Dacă doriți să-l citiți mai târziu, veți găsi linkul în partea de jos a fiecărei pagini de pe site."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L321
 msgid "We hope you'll enjoy your time here with us!"
 msgstr "Sperăm că vă va face plăcere să vă petreceți timpul alături de noi!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
 msgid "Please fix the form errors."
 msgstr "Vă rugăm să corectați erorile din formular."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L365
 msgid "Your new password has been sent to {email}."
 msgstr "O nouă parolă a fost trimisă la {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L370
 msgid "You may need to check your spam folder to find this message."
 msgstr "Este posibil să fie nevoie să verificați folderul de spam pentru a găsi acest mesaj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L378
 msgid "There is no registered user with this email address: "
 msgstr "Nu există niciun utilizator înregistrat cu această adresă de e-mail: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
 msgid "No user with this username: "
 msgstr "Niciun utilizator cu acest nume: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L437
 msgid "No user with this ID: {id}"
 msgstr "Nu există niciun utilizator cu acest ID: {id}"
 
@@ -423,6 +403,26 @@ msgstr "Probleme de licențiere"
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, parolă nouă"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L27
+msgid ""
+"This account has been marked as a spammer. You cannot log in with it "
+"anymore. Please contact an admin if this is a mistake."
+msgstr "Acest cont a fost marcat ca spamer. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un admin dacă aceasta este o greșeală."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L32
+msgid "Your account has been suspended."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L38
+msgid ""
+"This account has been marked inactive. You cannot log in with it anymore. "
+"Please contact an admin if this is a mistake."
+msgstr "Acest cont a fost marcat ca inactiv. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un administrator dacă aceasta este o greșeală."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L43
+msgid "Your account has been deactivated."
+msgstr ""
+
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
 #. For instance, in language lists, on flag mouseover or on the stats
@@ -528,39 +528,39 @@ msgstr "listă fără nume"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L153
 msgid "This is not a valid license."
 msgstr "Aceasta nu este o licență validă."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L144
 msgid "This sentence is already under that license."
 msgstr "Această propoziție se află deja sub licența respectivă."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L237
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "Propoziția trebuie să fie originală (nu derivată din traducere)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L245
 msgid "You're not the owner of this sentence."
 msgstr "Nu sunteți proprietarul acestei propoziții."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L252
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "Proprietarul propoziției trebuie să fie creatorul original."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L265
 msgid "You can only switch to a more permissive license."
 msgstr "Puteți schimba doar cu o licență mai permisivă."
 
@@ -822,7 +822,7 @@ msgid "Delete"
 msgstr "Ștergeți"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L472
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
@@ -1047,138 +1047,138 @@ msgstr "5: Nativ"
 msgid "created by a former member"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L71
 msgid "created by {listAuthor}"
 msgstr "creată de {listAuthor}"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L98
 msgid "created"
 msgstr "creată"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L104
 msgid "last updated"
 msgstr "ultima actualizare"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L175
 msgid "(unnamed list)"
 msgstr "(listă fără nume)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L222
 msgid "Number of sentences"
 msgstr "Număr de propoziții"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L243
 msgid "Back to all lists"
 msgstr "Înapoi la toate listele"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L266
 msgid "Back to this list"
 msgstr "Înapoi la această listă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L295
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L89
 msgid "Download this list"
 msgstr "Descărcați această listă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L313
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L92
 msgid "Show translations in:"
 msgstr "Afișați traducerile în:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L344
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L116
 msgid "Sentences in:"
 msgstr "Propoziții în:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L370
 msgid "List visibility"
 msgstr "Vizibilitate listă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L387
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
 msgstr "Lista este accesibilă oricui și este listată pe pagina „Navigați după liste”, precum și pe pagina de propoziții pentru fiecare propoziție pe care o conține."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L391
 msgid "Public"
 msgstr "Public"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L394
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
 msgstr "Lista este accesibilă oricui și este listată pe pagina „Navigați după liste”."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L397
 msgid "Listed"
 msgstr "Listată"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L400
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
 msgstr "Lista este accesibilă oricui, dar nu este listată pe pagina „Navigați după liste”."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L403
 msgid "Unlisted"
 msgstr "Neafișat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L406
 msgid "The list is accessible only to you."
 msgstr "Lista este accesibilă numai pentru dumneavoastră."
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L408
 msgid "Private"
 msgstr "Privat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L431
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L432
 msgid "Who can add/remove sentences"
 msgstr "Cine poate adăuga/șterge propoziții"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L448
 msgid "Anyone"
 msgstr "Oricine"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L452
 msgid "Only me"
 msgstr "Doar eu"
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L456
 msgid "No one (list inactive)"
 msgstr "Nimeni (listă inactivă)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L477
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L104
 msgid "Delete this list"
 msgstr "Ștergeți această listă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L531
 msgid "Remove sentence {number} from list"
 msgstr "Ștergeți din listă propoziția {number} "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L540
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences_lists/sentence_in_list.php#L36
 msgid "Remove from list"
 msgstr "Ștergeți din listă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L555
 msgid "Remove this sentence from '{listName}'."
 msgstr "Eliminați această propoziție din '{listName}'."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L600
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L601
 msgid "Add a sentence to this list : "
 msgstr "Adăugați o propoziție în această listă: "
 
@@ -1189,7 +1189,7 @@ msgstr "Adăugați o propoziție în această listă: "
 #. / submit button of list name edition form
 #. / closing button of error message on user language addition form
 #. / submit button of new sentence addition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L606
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L607
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L114
@@ -1199,7 +1199,7 @@ msgstr "Adăugați o propoziție în această listă: "
 msgid "OK"
 msgstr "Adăugați"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L620
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
@@ -1209,32 +1209,32 @@ msgstr "NOTĂ: Puteți adăuga propoziții existente cu ajutorul acestei iconiț
 #. / header text in sidebar on pages related to sentences lists
 #. / section title in the Downloads page
 #. / link to the user's lists on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L645
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L758
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L646
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L759
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L70
 msgid "Lists"
 msgstr "Liste"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L686
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L687
 msgid "Create a new list"
 msgstr "Creați o listă nouă"
 
 #. field for the name of a list to create (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L698
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L699
 msgctxt "list"
 msgid "Name"
 msgstr "Nume"
 
 #. button to create a new list from the lists of list page (verb)
 #. / button to create a new list directly from a sentence block
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L703
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L704
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/list_form.php#L9
 msgid "Create"
 msgstr "Creați"
 
 #. header text in List of lists page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L721
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L722
 msgctxt "header"
 msgid "Search"
 msgstr "Căutare"
@@ -1244,7 +1244,7 @@ msgstr "Căutare"
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form submit button (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L742
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L743
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L58
@@ -1253,28 +1253,28 @@ msgctxt "button"
 msgid "Search"
 msgstr "Căutare"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L768
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L769
 msgid "All public lists"
 msgstr "Toate listele publice"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L779
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L780
 msgid "Collaborative lists"
 msgstr "Liste colaborative"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L792
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L818
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L793
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L139
 msgid "My lists"
 msgstr "Listele mele"
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L807
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L808
 msgctxt "list"
 msgid "Unspecified"
 msgstr "Nespecificat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L820
 msgid "Other lists"
 msgstr "Alte liste"
 
@@ -1548,11 +1548,9 @@ msgid "Next page [Ctrl+→]"
 msgstr "Pagina următoare [Ctrl+→]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L153
-msgid ""
-"Only the sentence with the most-recently added audio file is displayed here."
+msgid "Only the most recently added audio recording is displayed here."
 msgid_plural ""
-"Only sentences with the {n} most-recently added audio files are displayed "
-"here."
+"Only the {n} most recently added audio recordings are displayed here."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -2962,74 +2960,74 @@ msgstr "Conține toate transcrierile din scripturile auxiliare sau alternative. 
 
 #. title of the Help page (noun)
 #. / link text to the Help page in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L86
 msgid "Help"
 msgstr "Asistență"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L36
 msgid "Need more help?"
 msgstr "Aveți nevoie de mai mult ajutor?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L40
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
 msgstr "Puteți începe cu <a href=\"{}\">Întrebările frecvente</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L48
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
 msgstr "Dacă nu găsiți răspunsul la întrebarea dumneavoastră, nu ezitați să <a href=\"{}\"> ne contactați</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L64
 msgid "Getting started"
 msgstr "Primii pași"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L71
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
 msgstr "Dacă nu aveți idee ce să faceți după ce v-ați înregistrat, pentru început puteți să vă prezentați pe <a href=\"{wall}\">Perete</a> sau puteți să vă alăturați <a href=\"{chatroom}\">chatului</a> nostru. Vă vom oferi un scop. :)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L87
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
 msgstr "Dacă considerați că acest proiect este nemaipomenit și dacă ați dori să vă implicați activ, aici este pagina pe care <strong>TREBUIE</strong> să o citiți:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L99
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
 msgstr "Acestea fiind spuse, bine ați venit la Tatoeba! Sperăm că vă va face plăcere să fiți parte din acest proiect :)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L110
 msgid "Important links"
 msgstr "Linkuri importante"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L132
 msgid "Adding new sentences"
 msgstr "Adăugarea de noi propoziții"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L133
 msgid "There are two ways to add new sentences."
 msgstr "Există două moduri de a adăuga propoziții noi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L139
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
 msgstr "Selectați <a href=\"{}\">Adăugați propoziții</a> din meniul <strong>Contribuiți</strong> din partea de sus a fiecărei pagini."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L155
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
 msgstr "Prin crearea unei <a href=\"{}\">liste</a> noi și accesând pagina de editare a acelei liste."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L172
 msgid ""
 "Even though there are many sentences in Tatoeba, there is still a lot of "
 "vocabulary that is not covered. This is why we encourage you to add new "
@@ -3037,44 +3035,44 @@ msgid ""
 "into any language."
 msgstr "Chiar dacă Tatoeba conține o mulțime de propoziții, există totuși foarte multe elemente de vocabular care nu au fost folosite încă. De aceea vă încurajăm să adăugați propoziții noi care să conțină vocabular nou, chiar dacă nu știți cum se traduc în altă limbă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L182
 msgid "Translating sentences"
 msgstr "Traducerea propozițiilor"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L186
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
 msgstr "Traducerea propozițiilor este una dintre activitățile cele mai importante de pe Tatoeba deoarece principalul scop al proiectului este colectarea propozițiilor traduse în mai multe limbi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L196
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
 msgstr "Puteți traduce propoziții cam de oriunde. Faceți clic pe această iconiță {translateButton} ori de câte ori o vedeți."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L207
 msgid "Correcting mistakes"
 msgstr "Corectarea greșelilor"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L211
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
 msgstr "Puteți corecta doar greșelile din propozițiile care vă aparțin. Dacă vedeți o greșeală într-o propoziție care aparține altcuiva, aveți posibilitatea de a publica un comentariu pentru a îi atrage atenția asupra greșelii."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L220
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
 msgstr "În unele cazuri, propoziția nu are proprietar. Citiți paragraful de mai jos (despre adoptarea propozițiilor) pentru a afla mai multe."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L229
 msgid "Adopting sentences"
 msgstr "Adoptarea propozițiilor"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L233
 msgid ""
 "When you add a sentence, this sentence \"belongs\" to you - only you can "
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
@@ -3082,7 +3080,7 @@ msgid ""
 "owner because they have been collected outside of Tatoeba."
 msgstr "Când adăugați o propoziție, acea propoziție vă „aparține” - doar dumneavoastră o puteți modifica. Totuși, multe dintre propozițiile de pe Tatoeba provin din baza de date japonezo-engleză Tanaka. Aceste propoziții nu au proprietar deoarece au fost colectate în afara platformei Tatoeba."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L245
 msgid ""
 "If you see a mistake in an \"orphan\" sentence, you will not be able to "
 "correct it because you are not the owner. This is why there is an \"adopt\" "
@@ -3090,24 +3088,24 @@ msgid ""
 "therefore can edit it."
 msgstr "Dacă observați o eroare într-o propoziție „orfană”, nu o veți putea corecta pentru că nu sunteți proprietarul ei. Din acest motiv, există opțiunea „adoptați” ({adoptButton}). Odată ce ați adoptat o propoziție, deveniți proprietarul ei și astfel o puteți modifica."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L263
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
 msgstr "Adoptarea unei propoziții este, de asemenea, o parte a „procesului de calitate”. Puteți găsi mai multe informații despre acesta aici:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L274
 msgid "Sentence lists"
 msgstr "Liste de propoziții"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L278
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
 msgstr "Puteți crea liste de propoziții în Tatoeba. În mod implicit lista este <strong>personală</strong>, ceea ce înseamnă că poate fi editată doar de persoana care a creat-o (dar este totuși vizibilă pentru toată lumea)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L287
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
@@ -3821,48 +3819,48 @@ msgstr "Se pregătește descărcarea. Vă rugăm să așteptați."
 msgid "Failed to prepare download, please try again."
 msgstr "Eroare la pregătirea descărcării. Vă rugăm să încercați din nou."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L33
 msgid "Collaborative lists ({total})"
 msgstr "Liste colaborative ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L35
 msgid "All public lists ({total})"
 msgstr "Toate listele publice ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
 msgid "Collaborative lists containing \"{search}\" ({total})"
 msgstr "Liste colaborative care conțin \"{search}\" ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L42
 msgid "All public lists containing \"{search}\" ({total})"
 msgstr "Toate listele publice care conțin \"{search}\" ({total})"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L80
 msgid "List name (alphabetical)"
 msgstr "Numele listei (în odine alfabetică)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L82
 msgid "List name (reverse alphabetical)"
 msgstr "Numele listei (în ordine invers alfabetică)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L84
 msgctxt "lists"
 msgid "Newest first"
 msgstr "Cele mai noi mai întâi"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L77
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L86
 msgctxt "lists"
 msgid "Oldest first"
 msgstr "Cele mai vechi mai întâi"
@@ -3870,8 +3868,8 @@ msgstr "Cele mai vechi mai întâi"
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #. / sort option in the All tags page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L91
 msgid "Highest number of sentences"
 msgstr "Cel mai mare număr de propoziții"
@@ -3879,33 +3877,33 @@ msgstr "Cel mai mare număr de propoziții"
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #. / sort option in the All tags page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L81
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L93
 msgid "Lowest number of sentences"
 msgstr "Cel mai mic număr de propoziții"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L92
 msgctxt "lists"
 msgid "Most recently updated"
 msgstr "Cel mai recent actualizate"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L94
 msgctxt "lists"
 msgid "Least recently updated"
 msgstr "Cel mai vechi actualizate"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L40
 msgid "{username}'s lists ({total})"
 msgstr "listele lui {username} ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L45
 msgid "{username}'s lists containing \"{search}\" ({total})"
 msgstr "listele lui {username} conțin \"{search}\" ({total})"
 
@@ -4582,7 +4580,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L248
 msgid "Log in"
 msgstr "Autentificare"
@@ -4612,7 +4610,7 @@ msgstr "Parolă uitată?"
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L284
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L238
 msgid "Register"
 msgstr "Înregistrare"

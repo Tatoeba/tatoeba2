@@ -5,13 +5,14 @@
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
 # Razmik Badalyan <rbadalyan@educaregeorgia.com>, 2023
+# Tea Toradze, 2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 12:10+0000\n"
+"POT-Creation-Date: 2026-07-07 09:25+0000\n"
 "PO-Revision-Date: 2014-10-05 13:32+0000\n"
-"Last-Translator: Razmik Badalyan <rbadalyan@educaregeorgia.com>, 2023\n"
+"Last-Translator: Tea Toradze, 2026\n"
 "Language-Team: Georgian (http://app.transifex.com/tatoeba/tatoeba_website/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,66 +27,58 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L31
 msgid "There's no user called {username}"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L174
-msgid "Your account has been suspended."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AppController.php#L176
-msgid "Your account has been deactivated."
-msgstr ""
+msgstr "მომხმარებელი {username} ვერ მოიძებნა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L130
 msgid "Your audio settings have been saved."
-msgstr ""
+msgstr "ხმის პარამეტრები შენახულია."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L109
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "შენახვისას მოხდა შეცდომა. გთხოვთ, სცადოთ ხელახლა ან დაგვიკავშირდეთ პრობლემის შესატყობინებლად."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L91
 msgid "Please wait until the list is updated."
-msgstr "გთხოვთ დაელოდოთ, სანამ სია განახლდება."
+msgstr "გთხოვთ, დაელოდოთ სიის განახლებას."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L95
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "ლიცენზიის შეცვლის პროცესი უკვე მიმდინარეობს."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L101
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr ""
+msgstr "{firstNumber} და {secondNumber} წინადადებები ახლა ერთმანეთის პირდაპირი თარგმანია."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L144
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr ""
+msgstr "{firstNumber} და {secondNumber} წინადადებები აღარ არის ერთმანეთის პირდაპირი თარგმანი."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L152
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "კავშირის მოხსნისას მოხდა შეცდომა. გთხოვთ, სცადოთ ხელახლა ან დაგვიკავშირდეთ პრობლემის შესატყობინებლად."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L166
 msgid "Folder \"{name}\" emptied."
-msgstr ""
+msgstr "{name} საქაღალდე დაცარიელებულია."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ReportContentController.php#L26
 msgid ""
 "Thank you for your help. Your report was sent to the admins. If needed, they"
 " will reply to you by private message."
-msgstr ""
+msgstr "გმადლობთ დახმარებისთვის. თქვენი შეტყობინება გაიგზავნა ადმინისტრაციასთან. საჭიროების შემთხვევაში, ისინი პირადი შეტყობინებით გიპასუხებენ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ReportContentController.php#L34
 msgid ""
@@ -98,15 +91,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L157
 msgid "Your comment has been saved."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L200
 msgid "You do not have permission to edit this comment. "
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L204
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/PrivateMessages/write.php#L55
 msgid ""
@@ -114,27 +107,27 @@ msgid ""
 " {email}."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L229
 msgid "Changes to your comment have been saved."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L217
 msgid "The sentence #{id} has been deleted."
-msgstr ""
+msgstr "#{id} წინადადება წაშლილია."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L223
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L815
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L818
 msgid "You are not allowed to change the license of this sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L822
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L825
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L827
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L830
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr ""
 
@@ -209,64 +202,52 @@ msgstr ""
 msgid "You have accepted the new terms of use."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L189
-msgid ""
-"This account has been marked inactive. You cannot log in with it anymore. "
-"Please contact an admin if this is a mistake."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L199
-msgid ""
-"This account has been marked as a spammer. You cannot log in with it "
-"anymore. Please contact an admin if this is a mistake."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L196
 msgid "You must fill in your username and password."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L204
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
-msgstr ""
+msgstr "შესვლა ვერ მოხერხდა. დარწმუნდით, რომ მთავრული (Caps Lock) და ციფრული (Num Lock) ღილაკები უნებლიეთ არ არის ჩართული. პაროლის შეყვანისას მნიშვნელობა აქვს დიდ და პატარა ასოებს."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L309
 msgid "Welcome to Tatoeba!"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L313
 msgid ""
 "To start things off, we encourage you to read our <a href='{url}'>Quick "
 "Start Guide</a>. If you want to read it later, you will find the link at the"
 " bottom of any page on the website."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L321
 msgid "We hope you'll enjoy your time here with us!"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
 msgid "Please fix the form errors."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L365
 msgid "Your new password has been sent to {email}."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L370
 msgid "You may need to check your spam folder to find this message."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L378
 msgid "There is no registered user with this email address: "
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
 msgid "No user with this username: "
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L437
 msgid "No user with this ID: {id}"
 msgstr ""
 
@@ -414,6 +395,26 @@ msgstr ""
 msgid "Tatoeba, new password"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L27
+msgid ""
+"This account has been marked as a spammer. You cannot log in with it "
+"anymore. Please contact an admin if this is a mistake."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L32
+msgid "Your account has been suspended."
+msgstr "თქვენი ანგარიში დაბლოკილია."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L38
+msgid ""
+"This account has been marked inactive. You cannot log in with it anymore. "
+"Please contact an admin if this is a mistake."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Middleware/AutoLogoutMiddleware.php#L43
+msgid "Your account has been deactivated."
+msgstr "თქვენი ანგარიში დეაქტივირებულია."
+
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
 #. For instance, in language lists, on flag mouseover or on the stats
@@ -431,7 +432,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/index.php#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/random_sentence_header.php#L51
 msgid "All languages"
-msgstr ""
+msgstr "ყველა ენა"
 
 #. dropdown option for unknown language
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L57
@@ -442,12 +443,12 @@ msgstr ""
 msgid ""
 "This alternative script was generated automatically and has not been "
 "reviewed."
-msgstr ""
+msgstr "ეს ალტერნატიული ვერსია გენერირებულია ავტომატურად და ჯერ არ არის გადამოწმებული."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L214
 msgid ""
 "This transcription was generated automatically and has not been reviewed."
-msgstr ""
+msgstr "ეს ტრანსკრიფცია გენერირებულია ავტომატურად და ჯერ არ არის გადამოწმებული."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L221
 msgid "The furigana was last edited by {author} on {date}."
@@ -461,7 +462,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L232
 msgid "This alternative script was generated automatically."
-msgstr ""
+msgstr "ეს ალტერნატიული ვერსია გენერირებულია ავტომატურად."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L234
 msgid "This transcription was generated automatically."
@@ -519,39 +520,39 @@ msgstr "უსახელო სია"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L153
 msgid "This is not a valid license."
 msgstr ""
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L144
 msgid "This sentence is already under that license."
 msgstr ""
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L237
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr ""
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L245
 msgid "You're not the owner of this sentence."
 msgstr ""
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L252
 msgid "The owner of the sentence needs to be its original creator."
 msgstr ""
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L265
 msgid "You can only switch to a more permissive license."
 msgstr ""
 
@@ -721,19 +722,19 @@ msgstr ""
 msgid ""
 "The following audio recordings by {userName} are licensed under the public "
 "domain."
-msgstr ""
+msgstr "ქვემოთ მოცემული ხმოვანი ჩანაწერები, რომელთა ავტორიც არის {userName}, საჯარო საკუთრებაა (Public Domain)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L56
 msgid ""
 "The following audio recordings by {userName} are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "ქვემოთ მოცემული ხმოვანი ჩანაწერები, რომელთა ავტორიც არის {userName}, ვრცელდება {licenseName} ლიცენზიით."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid ""
 "The following audio recordings by {userName} are licensed under an unknown "
 "license."
-msgstr ""
+msgstr "ქვემოთ მოცემული ხმოვანი ჩანაწერები, რომელთა ავტორიც არის {userName}, ვრცელდება უცნობი ლიცენზიით."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_comments/comment.php#L45
@@ -745,7 +746,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L185
 msgid "Report"
-msgstr ""
+msgstr "გასაჩივრება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L197
@@ -806,7 +807,7 @@ msgid "Delete"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L472
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L446
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L253
@@ -820,7 +821,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
-msgstr ""
+msgstr "ფილტრაცია ენის მიხედვით"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/of_user.php#L67
@@ -844,14 +845,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L140
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "გუშინ"
+msgstr[1] "{n}&nbsp;დღის წინ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L142
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ახლახანს"
+msgstr[1] "{n}&nbsp;საათის წინ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L146
 msgid "a minute ago"
@@ -861,51 +862,51 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L155
 msgid "January"
-msgstr ""
+msgstr "იანვარი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L156
 msgid "February"
-msgstr ""
+msgstr "თებერვალი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L157
 msgid "March"
-msgstr ""
+msgstr "მარტი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L158
 msgid "April"
-msgstr ""
+msgstr "აპრილი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L159
 msgid "May"
-msgstr ""
+msgstr "მაისი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L160
 msgid "June"
-msgstr ""
+msgstr "ივნისი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L161
 msgid "July"
-msgstr ""
+msgstr "ივლისი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L162
 msgid "August"
-msgstr ""
+msgstr "აგვისტო"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L163
 msgid "September"
-msgstr ""
+msgstr "სექტემბერი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L164
 msgid "October"
-msgstr ""
+msgstr "ოქტომბერი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L165
 msgid "November"
-msgstr ""
+msgstr "ნოემბერი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L166
 msgid "December"
-msgstr ""
+msgstr "დეკემბერი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L264
 msgctxt "incomplete date"
@@ -960,7 +961,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L242
 msgid "None"
-msgstr ""
+msgstr "არცერთი"
 
 #. option used in language selection dropdown for "Show translations in" in
 #. advanced search form
@@ -970,19 +971,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L98
 msgctxt "show-translations-in"
 msgid "All languages"
-msgstr ""
+msgstr "ყველა ენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L329
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "თქვენ ვერ დაამატებთ წინადადებებს, რადგან თქვენს პროფილში არცერთი ენა არ გაქვთ მითითებული."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L334
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "თქვენ ვერ თარგმნით წინადადებებს, რადგან თქვენს პროფილში არცერთი ენა არ გაქვთ მითითებული."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L348
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/language.php#L29
@@ -990,37 +991,37 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L404
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L408
 msgid "Add a language"
-msgstr ""
+msgstr "ენის დამატება"
 
 #. language level
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L360
 msgctxt "level"
 msgid "Unspecified"
-msgstr ""
+msgstr "მითითებული არ არის"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L361
 msgid "0: Almost no knowledge"
-msgstr ""
+msgstr "0: თითქმის არ იცის"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L362
 msgid "1: Beginner"
-msgstr ""
+msgstr "1: დაწყებითი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L363
 msgid "2: Intermediate"
-msgstr ""
+msgstr "2: საშუალო"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L364
 msgid "3: Advanced"
-msgstr ""
+msgstr "3: მაღალი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L365
 msgid "4: Fluent"
-msgstr ""
+msgstr "4: თავისუფლად"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L366
 msgid "5: Native level"
-msgstr ""
+msgstr "5: მშობლიური"
 
 #. refers to a sentences list
 #. created by a user that was later deleted
@@ -1028,138 +1029,138 @@ msgstr ""
 msgid "created by a former member"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L71
 msgid "created by {listAuthor}"
-msgstr ""
+msgstr "შემქმნელი: {listAuthor}"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L98
 msgid "created"
-msgstr ""
+msgstr "შექმნის თარიღი"
 
 #. sort option in list of lists
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L104
 msgid "last updated"
-msgstr ""
+msgstr "ბოლო განახლება"
 
 #. string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L175
 msgid "(unnamed list)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L222
 msgid "Number of sentences"
-msgstr ""
+msgstr "წინადადებათა რაოდენობა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L243
 msgid "Back to all lists"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L266
 msgid "Back to this list"
-msgstr ""
+msgstr "ამ სიაში დაბრუნება"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L295
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L89
 msgid "Download this list"
-msgstr ""
+msgstr "ამ სიის ჩამოტვირთვა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L313
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L92
 msgid "Show translations in:"
-msgstr ""
+msgstr "თარგმანების ენა:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L344
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L116
 msgid "Sentences in:"
-msgstr ""
+msgstr "წინადადებების ენა:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L370
 msgid "List visibility"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L387
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page,"
 " as well as on the sentence page for every sentence it contains."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L391
 msgid "Public"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L394
 msgid ""
 "The list is accessible to anyone and is listed on the 'Browse by list' page."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L397
 msgid "Listed"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L400
 msgid ""
 "The list is accessible to anyone but is not listed on the 'Browse by list' "
 "page."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L403
 msgid "Unlisted"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L406
 msgid "The list is accessible only to you."
 msgstr ""
 
 #. visibility option of a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L408
 msgid "Private"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L431
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L432
 msgid "Who can add/remove sentences"
 msgstr ""
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L448
 msgid "Anyone"
 msgstr ""
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L452
 msgid "Only me"
 msgstr ""
 
 #. option when choosing who can edit a list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L456
 msgid "No one (list inactive)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L477
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L104
 msgid "Delete this list"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L531
 msgid "Remove sentence {number} from list"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L540
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences_lists/sentence_in_list.php#L36
 msgid "Remove from list"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L555
 msgid "Remove this sentence from '{listName}'."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L600
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L601
 msgid "Add a sentence to this list : "
 msgstr ""
 
@@ -1170,7 +1171,7 @@ msgstr ""
 #. / submit button of list name edition form
 #. / closing button of error message on user language addition form
 #. / submit button of new sentence addition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L606
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L607
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L699
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L114
@@ -1180,7 +1181,7 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L620
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
@@ -1190,72 +1191,72 @@ msgstr ""
 #. / header text in sidebar on pages related to sentences lists
 #. / section title in the Downloads page
 #. / link to the user's lists on profile page sidebar
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L645
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L758
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L646
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L759
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L70
 msgid "Lists"
-msgstr ""
+msgstr "სიები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L686
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L687
 msgid "Create a new list"
 msgstr ""
 
 #. field for the name of a list to create (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L698
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L699
 msgctxt "list"
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #. button to create a new list from the lists of list page (verb)
 #. / button to create a new list directly from a sentence block
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L703
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L704
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/list_form.php#L9
 msgid "Create"
 msgstr ""
 
 #. header text in List of lists page (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L721
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L722
 msgctxt "header"
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #. search form button in List of lists pages (verb)
 #. / search button in favorites page (verb)
 #. / search button in All tags page (verb)
 #. / search button in All members page (verb)
 #. / search form submit button (verb)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L742
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L743
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L527
 msgctxt "button"
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L768
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L769
 msgid "All public lists"
-msgstr ""
+msgstr "საჯარო სიები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L779
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L780
 msgid "Collaborative lists"
-msgstr ""
+msgstr "გუნდური სიები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L792
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L818
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L793
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L139
 msgid "My lists"
 msgstr ""
 
 #. dropdown option when no list is selected (used to filter by list in
 #. advanced search)
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L807
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L808
 msgctxt "list"
 msgid "Unspecified"
-msgstr ""
+msgstr "მითითებული არ არის"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L819
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L820
 msgid "Other lists"
 msgstr ""
 
@@ -1329,22 +1330,22 @@ msgstr ""
 #. one of the user status displayed on profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L93
 msgid "admin"
-msgstr ""
+msgstr "ადმინისტრატორი"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L95
 msgid "corpus maintainer"
-msgstr ""
+msgstr "კორპუსის მმართველი"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L97
 msgid "advanced contributor"
-msgstr ""
+msgstr "გამოცდილი წევრი"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L99
 msgid "contributor"
-msgstr ""
+msgstr "წევრი"
 
 #. one of the user status displayed on profile pages
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L101
@@ -1494,8 +1495,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L48
 msgid "{n} result"
 msgid_plural "{n}&nbsp;results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}&nbsp;შედეგი"
+msgstr[1] "{n}&nbsp;შედეგი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L60
 msgid "{thousand}&nbsp;results out of {n} occurrence"
@@ -1518,28 +1519,26 @@ msgstr ""
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L118
 msgid "Previous page [Ctrl+←]"
-msgstr ""
+msgstr "წინა გვერდი [Ctrl+←]"
 
 #. @translators Appears on “next page” links
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L128
 msgid "Next page [Ctrl+→]"
-msgstr ""
+msgstr "შემდეგი გვერდი [Ctrl+→]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L153
-msgid ""
-"Only the sentence with the most-recently added audio file is displayed here."
+msgid "Only the most recently added audio recording is displayed here."
 msgid_plural ""
-"Only sentences with the {n} most-recently added audio files are displayed "
-"here."
+"Only the {n} most recently added audio recordings are displayed here."
 msgstr[0] ""
 msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L160
 msgid "Only the last contribution is displayed here."
 msgid_plural "Only the last {n} contributions are displayed here."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "აქ ნაჩვენებია მხოლოდ უახლესი წვლილი."
+msgstr[1] "აქ ნაჩვენებია მხოლოდ {n} უახლესი წვლილი."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L168
 msgid "Only the first sentence of the selected sort is displayed here."
@@ -1551,8 +1550,8 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PaginationHelper.php#L175
 msgid "Only the last sentence is displayed here."
 msgid_plural "Only the last {n} sentences are displayed here."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "აქ ნაჩვენებია მხოლოდ უახლესი წინადადება."
+msgstr[1] "აქ ნაჩვენებია მხოლოდ {n} უახლესი წინადადება."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L59
 msgid "{sender} wrote:"
@@ -1605,11 +1604,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SearchHelper.php#L41
 msgid "Any language"
-msgstr ""
+msgstr "ნებისმიერი ენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L79
 msgid "Show sentence's details"
-msgstr ""
+msgstr "წინადადების დეტალების ჩვენება"
 
 #. alt text for unlink translation button (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L101
@@ -1638,17 +1637,17 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L189
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_buttons/audio.php#L9
 msgid "Play audio recorded by {author}"
-msgstr ""
+msgstr "{author}-ის მიერ გახმოვანებული წინადადების მოსმენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L213
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_buttons/audio.php#L19
 msgid "No audio for this sentence. Click to learn how to contribute."
-msgstr ""
+msgstr "ამ წინადადებისთვის აუდიოჩანაწერი არ არსებობს. დააწკაპუნეთ, რათა გაიგოთ, როგორ გაახმოვანოთ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L286
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_icons.php#L24
 msgid "Copy sentence"
-msgstr ""
+msgstr "წინადადების ასლის აღება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L119
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L73
@@ -1659,13 +1658,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L856
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "კიდევ 1 თარგმანის ჩვენება"
+msgstr[1] "კიდევ {number} თარგმანის ჩვენება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L237
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L216
 msgid "Fewer translations"
-msgstr ""
+msgstr "თარგმანების აკეცვა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L343
 msgid "Translation:"
@@ -1713,7 +1712,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/wall/edit_form.php#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/wall/reply_form.php#L78
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L818
 msgid "This sentence is original and was not derived from translation."
@@ -1733,15 +1732,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L175
 msgid "NOTE: Both direct and indirect translations will be shown."
-msgstr ""
+msgstr "შენიშვნა: ნაჩვენები იქნება როგორც პირდაპირი, ისე არაპირდაპირი თარგმანები."
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L191
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/index/all.php#L12
 msgid "{n}+ sentence"
 msgid_plural "{n}+ sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}-ზე მეტი წინადადება"
+msgstr[1] "{n}-ზე მეტი წინადადება"
 
 #. header text on a sentence page in the sidebar (noun)
 #. / section title in the Downloads page
@@ -1814,8 +1813,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/stats/homepage_stats.php#L16
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} წინადადება"
+msgstr[1] "{number} წინადადება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L138
 msgid "by {messageAuthor}"
@@ -1854,7 +1853,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Vocabulary/add.php#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/index.php#L56
 msgid "Tips"
-msgstr ""
+msgstr "რჩევები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/adopt_sentences.php#L78
 msgid ""
@@ -2005,7 +2004,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L155
 msgctxt "not-directly-translated-into"
 msgid "Any language"
-msgstr ""
+msgstr "ნებისმიერი ენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences.php#L161
 msgid "Best practice: translate only into your native language."
@@ -2065,11 +2064,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences_of.php#L33
 msgid "Translate {language} sentences that belong to {user}"
-msgstr ""
+msgstr "თარგმნეთ {language} წინადადებები, რომელთა ავტორია {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Activities/translate_sentences_of.php#L39
 msgid "Translate sentences that belong to {user}"
-msgstr ""
+msgstr "თარგმნეთ წინადადებები, რომელთა ავტორია {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/AngularTemplates/edit_vocabulary.php#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/AngularTemplates/edit_vocabulary.php#L10
@@ -2100,7 +2099,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_form.php#L18
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/translation_form.php#L15
 msgid "Language"
-msgstr ""
+msgstr "ენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/AngularTemplates/edit_vocabulary.php#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Vocabulary/add.php#L90
@@ -2138,7 +2137,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/AngularTemplates/interface_language.php#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/AngularTemplates/interface_language.php#L29
 msgid "Interface language"
-msgstr ""
+msgstr "ინტერფეისის ენა"
 
 #. button appearing after a language search
 #. in Browse by languages page.
@@ -2154,7 +2153,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/index.php#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L459
 msgid "Sentences with audio"
-msgstr ""
+msgstr "ხმოვანი წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/index.php#L49
 msgid "There are no sentences with audio"
@@ -2162,7 +2161,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/of.php#L22
 msgid "Audio contributed by {username}"
-msgstr ""
+msgstr "ხმოვანი ჩანაწერები, რომელთა ავტორია {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/of.php#L40
 msgid "My audio"
@@ -2185,62 +2184,62 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/of.php#L81
 msgid "{username} has not contributed any audio"
-msgstr ""
+msgstr "ამ წევრს არცერთი ხმოვანი ჩანაწერი არ გამოუქვეყნებია: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Audio/of.php#L85
 msgid "(total {totalAudio})"
-msgstr ""
+msgstr "(სულ {{totalAudio}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/stats/homepage_stats.php#L50
 msgid "Activity timeline"
-msgstr ""
+msgstr "აქტივობის ქრონიკა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L64
 msgid "Activity timeline — {month} {year}"
-msgstr ""
+msgstr "აქტივობის ქრონიკა — {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr ""
+msgstr "ამ თვის განმავლობაში შეტანილი წვლილის სტატისტიკა."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr ""
+msgstr "შეტანილი წვლილის სტატისტიკა — {month}, {year} წელი."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L89
 msgid "Day"
-msgstr ""
+msgstr "დღე"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L92
 msgctxt "Activity timeline page"
 msgid "Sentences added"
-msgstr ""
+msgstr "დამატებული წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L93
 msgid "Links added"
-msgstr ""
+msgstr "დამატებული კავშირები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L94
 msgid "Links removed"
-msgstr ""
+msgstr "მოხსნილი კავშირები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L95
 msgid "Sentences removed"
-msgstr ""
+msgstr "წაშლილი წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L130
 msgid "Daily Average: {n} sentence added"
 msgid_plural "Daily Average: {n} sentences added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "დღიური საშუალო: {n} დამატებული წინადადება"
+msgstr[1] "დღიური საშუალო: {n} დამატებული წინადადება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/activity_timeline.php#L140
 msgid ", {n} link added"
 msgid_plural ", {n} links added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] ", {n} დამატებული კავშირი"
+msgstr[1] ", {n} დამატებული კავშირი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/latest.php#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/latest.php#L58
@@ -2251,7 +2250,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Contributions/of_user.php#L38
 msgid "Latest contributions of {user}"
-msgstr ""
+msgstr "უახლესი წვლილი, რომლის ავტორიც არის {user}"
 
 #. @translators Title of the "404 not found" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Error/error400.php#L36
@@ -2288,11 +2287,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L34
 msgid "{user}'s favorite sentences matching “{filter}”"
-msgstr ""
+msgstr "{user}-ის მიერ რჩეულებში დამატებული წინადადებები, რომლებიც შეიცავს ტექსტს: \"{filter}\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L36
 msgid "{user}'s favorite sentences"
-msgstr ""
+msgstr "{user}-ის მიერ რჩეულებში დამატებული წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L56
 msgid "Favorite successfully removed."
@@ -2303,20 +2302,20 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L57
 msgid "(total {{count}})"
-msgstr ""
+msgstr "(სულ {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L81
 msgid "Sentence text:"
-msgstr ""
+msgstr "წინადადების ტექსტი:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L173
 msgid "Sentence {id} has been deleted."
-msgstr ""
+msgstr "{id} წინადადება წაშლილია."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L142
 msgid "This user does not have any favorites matching “{filter}”."
-msgstr ""
+msgstr "ამ წევრს არ აქვს არცერთი რჩეული წინადადება, რომელიც შეიცავს ტექსტს: \"{filter}\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Favorites/of_user.php#L148
 msgid "This user does not have any favorites."
@@ -2389,14 +2388,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/about.php#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L129
 msgid "What is Tatoeba?"
-msgstr ""
+msgstr "რა არის Tatoeba?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/about.php#L42
 msgid ""
 "Tatoeba is a large database of sentences and translations. Its content is "
 "ever-growing and results from the voluntary contributions of thousands of "
 "members."
-msgstr ""
+msgstr "Tatoeba წინადადებებისა და მათი თარგმანების დიდი მონაცემთა ბაზაა. საიტის მასალები მუდმივად იზრდება და ეფუძნება ათასობით წევრის ნებაყოფლობით გაწეულ წვლილს."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/about.php#L51
 msgid ""
@@ -2405,45 +2404,45 @@ msgid ""
 "sentences containing these words with their translations in the desired "
 "languages. The name Tatoeba (<em>for example</em> in Japanese) captures this"
 " concept."
-msgstr ""
+msgstr "Tatoeba გაძლევთ შესაძლებლობას, იხილოთ წინადადების კონტექსტში სიტყვების გამოყენების მაგალითები. თქვენ მიუთითებთ თქვენთვის საინტერესო სიტყვებს, სისტემა კი გიბრუნებთ მათ შემცველ წინადადებებს სასურველ ენებზე შესრულებულ თარგმანებთან ერთად. დასახელება Tatoeba (რაც ნიშნავს \"<em>მაგალითად</em>\"-ს იაპონურად) სწორედ ამ ჩანაფიქრს გამოხატავს."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/about.php#L64
 msgid ""
 "The project was founded by Trang Ho in 2006, hosted on Sourceforge under the"
 " codename of <em>multilangdict</em>."
-msgstr ""
+msgstr "პროექტი 2006 წელს ტრანგ ჰომ (Trang Ho) დააარსა; იგი Sourceforge-ზე იყო განთავსებული, კოდური სახელწოდებით multilangdict."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/about.php#L73
 msgid "The video below, made in 2010, presents the core ideas of Tatoeba."
-msgstr ""
+msgstr "ქვემოთ მოცემული ვიდეო, რომელიც 2010 წელს მომზადდა, Tatoeba-ს მთავარ იდეებსა და არსს წარმოაჩენს."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L140
 msgid "Contact us"
-msgstr ""
+msgstr "დაგვიკავშირდით"
 
 #. section title in the Contact page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L43
 msgctxt "header"
 msgid "FAQ"
-msgstr ""
+msgstr "ხშირი კითხვები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L49
 msgid ""
 "Please make sure to <a href=\"{}\">read the FAQ</a> before asking a "
 "question."
-msgstr ""
+msgstr "გთხოვთ, შეკითხვის დასმამდე აუცილებლად წაიკითხოთ <a href=\"{}\">ხშირად დასმული კითხვები (FAQ)</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L58
 msgid "Follow us"
-msgstr ""
+msgstr "გამოგვყევით"
 
 #. link text to the Tatoeba Twitter account in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L183
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L61
 msgid "Tatoeba Blog"
@@ -2453,34 +2452,34 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L193
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L74
 msgid ""
 "If you have any question, suggestion, or request (or if you would just like "
 "to say thank you), feel free to drop us an email at {emailAddress}."
-msgstr ""
+msgstr "თუ გაქვთ რაიმე შეკითხვა, იდეა ან თხოვნა (ან უბრალოდ მადლობის თქმა გსურთ), მოგვწერეთ ელექტრონული ფოსტის მისამართზე: {emailAddress}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L83
 msgid "Post on the Wall"
-msgstr ""
+msgstr "საინფორმაციო დაფაზე გამოქვეყნება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L87
 msgid ""
 "You can also tell us what you think by posting on the <a "
 "href=\"{}\">Wall</a>."
-msgstr ""
+msgstr "თქვენი აზრის გაზიარება ასევე შეგიძლიათ <a href=\"{}\">საინფორმაციო დაფაზე</a> შეტყობინების გამოქვეყნებით."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L96
 msgid "Join our chatroom"
-msgstr ""
+msgstr "შემოუერთდით ჩვენს ჩატს"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/contact.php#L101
 msgid ""
 "We have an <strong>XMPP room</strong>: <a "
 "href=\"{room}\">tatoeba@chat.tatoeba.org</a>.  You can join with your "
 "favorite XMPP client or <a href=\"{webclient}\">from your browser</a>."
-msgstr ""
+msgstr "ჩვენ გვაქვს <strong>XMPP ოთახი</strong>: <a href=\"{room}\">tatoeba@chat.tatoeba.org</a>. შეგიძლიათ შემოუერთდეთ თქვენი საყვარელი XMPP კლიენტით ან პირდაპირ <a href=\"{webclient}\">ბრაუზერიდან</a>."
 
 #. title of the Donate page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L29
@@ -2489,7 +2488,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L34
 msgid "Any question?"
-msgstr ""
+msgstr "გაქვთ შეკითხვები?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L38
 msgid ""
@@ -2497,41 +2496,41 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr ""
+msgstr "თუ შემოწირულობებთან დაკავშირებით რაიმე შეკითხვა გაქვთ, ან გსურთ მხარი დაგვიჭიროთ აქ ჩამოთვლილთაგან განსხვავებული გზით, შეგიძლიათ დაუკავშირდეთ როგორც <a href=\"{trangEmail}\">ტრანგს</a>, ისე მთელ <a href=\"{teamEmail}\">გუნდს</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L52
 msgid "All donations"
-msgstr ""
+msgstr "ყველა შემოწირულობა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L61
 msgid "How to donate"
-msgstr ""
+msgstr "როგორ გავიღოთ შემოწირულობა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L62
 msgid "You have two possible ways to make a donation:"
-msgstr ""
+msgstr "შემოწირულობის გაცემის ორი გზა არსებობს:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L67
 msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr ""
+msgstr "<b>IBAN გადარიცხვა.</b> ეს, სავარაუდოდ, შემოწირულობის ყველაზე იაფი გზაა. Tatoeba-ს ბანკი საფრანგეთში მდებარეობს, ამიტომ, თუ ევროკავშირის ქვეყნიდან ხართ, დიდი ალბათობით, გადარიცხვა სრულიად უფასო იქნება."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L76
 msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
-msgstr ""
+msgstr "<b>PayPal.</b> თუ თანხის IBAN-ით გადარიცხვას ვერ ახერხებთ, შეგიძლიათ გამოიყენოთ PayPal. გაითვალისწინეთ, რომ PayPal შემოწირულობიდან გარკვეულ პროცენტს იტოვებს."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L86
 msgid "IBAN transfer"
-msgstr ""
+msgstr "IBAN გადარიცხვა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L87
 msgid "Titular:"
-msgstr ""
+msgstr "მიმღები:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/donate.php#L88
 msgid "IBAN:"
@@ -2554,7 +2553,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L87
 msgid "Fields and structure"
-msgstr ""
+msgstr "ველები და სტრუქტურა"
 
 #. header text on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L49
@@ -2594,7 +2593,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L64
 msgid "Username"
-msgstr ""
+msgstr "მომხმარებლის სახელი"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L65
@@ -2604,7 +2603,7 @@ msgstr ""
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L67
 msgid "Date created"
-msgstr ""
+msgstr "შექმნის თარიღი"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L69
@@ -2676,7 +2675,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_form.php#L45
 msgid "Transcription"
-msgstr ""
+msgstr "ტრანსკრიფცია"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L95
@@ -2752,7 +2751,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L190
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L86
 msgid "Downloads"
-msgstr ""
+msgstr "ჩამოტვირთვა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L197
 msgid "Weekly exports"
@@ -2771,7 +2770,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L42
 msgid "Sentences"
-msgstr ""
+msgstr "წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L226
 msgid ""
@@ -2919,7 +2918,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L546
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L136
 msgid "Transcriptions"
-msgstr ""
+msgstr "ტრანსკრიფციები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/downloads.php#L559
 msgid ""
@@ -2932,74 +2931,74 @@ msgstr ""
 
 #. title of the Help page (noun)
 #. / link text to the Help page in the footer (noun)
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L86
 msgid "Help"
-msgstr ""
+msgstr "დახმარება"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L36
 msgid "Need more help?"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L40
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L48
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L64
 msgid "Getting started"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L71
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L87
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L99
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L110
 msgid "Important links"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L132
 msgid "Adding new sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L133
 msgid "There are two ways to add new sentences."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L139
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L155
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L172
 msgid ""
 "Even though there are many sentences in Tatoeba, there is still a lot of "
 "vocabulary that is not covered. This is why we encourage you to add new "
@@ -3007,44 +3006,44 @@ msgid ""
 "into any language."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L182
 msgid "Translating sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L186
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L196
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L207
 msgid "Correcting mistakes"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L211
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L220
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L229
 msgid "Adopting sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L233
 msgid ""
 "When you add a sentence, this sentence \"belongs\" to you - only you can "
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
@@ -3052,7 +3051,7 @@ msgid ""
 "owner because they have been collected outside of Tatoeba."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L245
 msgid ""
 "If you see a mistake in an \"orphan\" sentence, you will not be able to "
 "correct it because you are not the owner. This is why there is an \"adopt\" "
@@ -3060,24 +3059,24 @@ msgid ""
 "therefore can edit it."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L263
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L274
 msgid "Sentence lists"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L278
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/help.php#L287
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
@@ -3094,12 +3093,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index_for_guests.php#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L92
 msgid "Stats"
-msgstr ""
+msgstr "სტატისტიკა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index.php#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/index.php#L99
 msgid "Latest messages"
-msgstr ""
+msgstr "უახლესი შეტყობინებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index.php#L93
 msgid ""
@@ -3122,7 +3121,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/list_form.php#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_form.php#L8
 msgid "Close"
-msgstr ""
+msgstr "დახურვა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index.php#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index.php#L142
@@ -3137,17 +3136,17 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index_for_guests.php#L67
 msgid "Want to help?"
-msgstr ""
+msgstr "გსურთ დაგვეხმაროთ?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index_for_guests.php#L72
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr ""
+msgstr "ჩვენ ვაგროვებთ წინადადებებსა და მათ თარგმანებს. თქვენ შეგიძლიათ დაგვეხმაროთ ახალი წინადადებების დამატებით ან მათი თარგმნით."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/index_for_guests.php#L78
 msgid "Join the community"
-msgstr ""
+msgstr "გაწევრიანდით"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/temporarily_disabled.php#L43
 msgid "Page temporarily disabled"
@@ -3166,7 +3165,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/terms_of_use.php#L1
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L161
 msgid "Terms of use"
-msgstr ""
+msgstr "გამოყენების პირობები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Pages/terms_of_use.php#L6
 msgid ""
@@ -3264,7 +3263,7 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/ReportContent/report.php#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/ReportContent/report.php#L82
 msgid "Report content"
-msgstr ""
+msgstr "მასალის გასაჩივრება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/ReportContent/report.php#L11
 msgid ""
@@ -3276,12 +3275,12 @@ msgstr ""
 msgid ""
 "If you simply want to report a problem with the sentence, leave a comment on"
 " it instead."
-msgstr ""
+msgstr "თუ უბრალოდ წინადადებაში არსებული ხარვეზის შესახებ შეტყობინება გსურთ, უმჯობესია, მის ქვემოთ კომენტარი დატოვოთ."
 
 #. title of the content reporting page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/ReportContent/report.php#L25
 msgid "Report inappropriate content"
-msgstr ""
+msgstr "შეუსაბამო მასალის გასაჩივრება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/ReportContent/report.php#L34
 msgid "Report the following Wall message"
@@ -3315,7 +3314,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L60
 msgid "All sentences"
-msgstr ""
+msgstr "ყველა წინადადება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L43
 msgid "Outdated reviews"
@@ -3364,39 +3363,39 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L132
 msgctxt "reviews"
 msgid "Most recently updated"
-msgstr ""
+msgstr "ბოლო განახლებით"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L134
 msgctxt "reviews"
 msgid "Least recently updated"
-msgstr ""
+msgstr "ყველაზე ძველი განახლებით"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L136
 msgctxt "reviews"
 msgid "Newest first"
-msgstr ""
+msgstr "ჯერ ახალი წევრები"
 
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L138
 msgctxt "reviews"
 msgid "Oldest first"
-msgstr ""
+msgstr "ჯერ ძველი სიები"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L132
 msgid "Newest sentences"
-msgstr ""
+msgstr "ჯერ უახლესი წინადადებები"
 
 #. sort option in the list of reviews
 #. / sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Reviews/of.php#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L134
 msgid "Oldest sentences"
-msgstr ""
+msgstr "ჯერ უძველესი წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/S/s.php#L41
 msgid ""
@@ -3423,7 +3422,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/of_user.php#L40
 msgid "{user}'s comments"
-msgstr ""
+msgstr "კომენტარები, რომელთა ავტორიც არის {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/of_user.php#L62
 msgid "{user} has posted no comment"
@@ -3431,13 +3430,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/of_user.php#L76
 msgid "{user}'s comments (total&nbsp;{n})"
-msgstr ""
+msgstr "კომენტარები, რომელთა ავტორიც არის {user} (სულ&nbsp;{n})"
 
 #. link on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/on_sentences_of_user.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L97
 msgid "Comments on {user}'s sentences"
-msgstr ""
+msgstr "კომენტარები {user}-ის წინადადებებზე"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/on_sentences_of_user.php#L60
 msgid "{user} has no comment posted on his/her sentences"
@@ -3445,14 +3444,14 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentenceComments/on_sentences_of_user.php#L75
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
-msgstr ""
+msgstr "კომენტარები {user}-ის წინადადებებზე (სულ&nbsp;{n})"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/add.php#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L85
 msgid "Add sentences"
-msgstr ""
+msgstr "წინადადებების დამატება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/add.php#L49
 msgid "Add new sentences"
@@ -3507,7 +3506,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/short_description.php#L87
 msgctxt "title"
 msgid "Advanced search"
-msgstr ""
+msgstr "გაფართოებული ძებნა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/index.php#L6
 msgid "Language index"
@@ -3516,8 +3515,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/index.php#L10
 msgid "There is {n} language on Tatoeba"
 msgid_plural "There are {n} languages on Tatoeba"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tatoeba-ზე {n} ენაა"
+msgstr[1] "Tatoeba-ზე {n} ენაა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/index.php#L26
 msgid "My profile languages"
@@ -3529,7 +3528,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/index.php#L61
 msgid "Show all languages {arrowIcon}"
-msgstr ""
+msgstr "ყველა ენის ნახვა {arrowIcon}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L33
 msgid "{user}'s sentences"
@@ -3561,19 +3560,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L127
 msgctxt "sentences"
 msgid "Least recently updated"
-msgstr ""
+msgstr "ყველაზე ძველი განახლებით"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L129
 msgctxt "sentences"
 msgid "Newest first"
-msgstr ""
+msgstr "ჯერ ახალი წევრები"
 
 #. sort option in the "Sentences of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/of_user.php#L131
 msgctxt "sentences"
 msgid "Oldest first"
-msgstr ""
+msgstr "ჯერ ძველი სიები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L36
 msgid "Sentences with: {keywords}"
@@ -3590,7 +3589,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/show_all_in.php#L32
 msgid "Sentences in {language}"
-msgstr ""
+msgstr "{language} ენის წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/search.php#L53
 msgid "Sentences not translated into {language}"
@@ -3679,7 +3678,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/show.php#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L88
 msgid "Comments"
-msgstr ""
+msgstr "კომენტარები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/show.php#L152
 msgid "There are no comments for now."
@@ -3698,7 +3697,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/show.php#L254
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L115
 msgid "Logs"
-msgstr ""
+msgstr "ჟურნალი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/show.php#L275
 msgid "There is no log for this sentence"
@@ -3706,7 +3705,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/show.php#L287
 msgid "Random Sentence"
-msgstr ""
+msgstr "შემთხვევითი წინადადება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Sentences/show.php#L289
 msgid ""
@@ -3731,29 +3730,29 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L46
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L94
 msgid "Actions"
-msgstr ""
+msgstr "დამატებითი მენიუ"
 
 #. subheader text in the download list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L60
 msgctxt "header"
 msgid "Download"
-msgstr ""
+msgstr "ჩამოტვირთვა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L65
 msgid "File format"
-msgstr ""
+msgstr "ფაილის ფორმატი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L71
 msgid "Raw text file"
-msgstr ""
+msgstr "მარტივი ტექსტური ფაილი (.txt)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L72
 msgid "Tab-separated file"
-msgstr ""
+msgstr "ტაბულაციით გამოყოფილი ფაილი (.tsv)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L73
 msgid "List for the Shtooka recorder"
-msgstr ""
+msgstr "სია Shtooka ხმის ჩამწერისთვის"
 
 #. translation field label on new translation addition form
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L92
@@ -3763,20 +3762,20 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L98
 msgid "Translation (optional)"
-msgstr ""
+msgstr "თარგმანი (არასავალდებულო)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L132
 msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
-msgstr ""
+msgstr "ენის არჩევის შემთხვევაში, გადმოწერილ ფაილს დაემატება წინადადებების შესაბამისი თარგმანებიც (თუ არსებობს). და შემდეგ ამ ფაილის პროგრამა {Anki}-ში იმპორტირებით, თქვენ შეძლებთ სასწავლო ბარათების ნაკრების შექმნას."
 
 #. button to download on the download list page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L150
 msgctxt "button"
 msgid "Download"
-msgstr ""
+msgstr "ჩამოტვირთვა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/download.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/custom_export_download_button.php#L9
@@ -3788,93 +3787,93 @@ msgstr ""
 msgid "Failed to prepare download, please try again."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L31
-msgid "Collaborative lists ({total})"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L33
-msgid "All public lists ({total})"
-msgstr ""
+msgid "Collaborative lists ({total})"
+msgstr "გუნდური სიები ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L35
+msgid "All public lists ({total})"
+msgstr "საჯარო სიები ({total})"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
 msgid "Collaborative lists containing \"{search}\" ({total})"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L42
 msgid "All public lists containing \"{search}\" ({total})"
-msgstr ""
-
-#. sort option in the "List of lists" page
-#. / sort option in the "Lists of user" page
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L78
-msgid "List name (alphabetical)"
 msgstr ""
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L80
-msgid "List name (reverse alphabetical)"
-msgstr ""
+msgid "List name (alphabetical)"
+msgstr "სიის სახელით (ანბანის მიხედვით)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L75
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L82
-msgctxt "lists"
-msgid "Newest first"
-msgstr ""
+msgid "List name (reverse alphabetical)"
+msgstr "სიის სახელით (ანბანის შებრუნებით)"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L84
 msgctxt "lists"
-msgid "Oldest first"
-msgstr ""
+msgid "Newest first"
+msgstr "ჯერ ახალი სიები"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
-#. / sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L91
-msgid "Highest number of sentences"
-msgstr ""
+msgctxt "lists"
+msgid "Oldest first"
+msgstr "ჯერ ძველი სიები"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #. / sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L81
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L88
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L93
-msgid "Lowest number of sentences"
-msgstr ""
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L91
+msgid "Highest number of sentences"
+msgstr "წინადადებათა რაოდენობის კლებადობით"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
+#. / sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L90
-msgctxt "lists"
-msgid "Most recently updated"
-msgstr ""
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L93
+msgid "Lowest number of sentences"
+msgstr "წინადადებათა რაოდენობის ზრდადობით"
 
 #. sort option in the "List of lists" page
 #. / sort option in the "Lists of user" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L92
 msgctxt "lists"
+msgid "Most recently updated"
+msgstr "ბოლო განახლებით"
+
+#. sort option in the "List of lists" page
+#. / sort option in the "Lists of user" page
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/index.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L94
+msgctxt "lists"
 msgid "Least recently updated"
-msgstr ""
+msgstr "ყველაზე ძველი განახლებით"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L40
 msgid "{username}'s lists ({total})"
-msgstr ""
+msgstr "სიები, რომელთა ავტორიც არის {username} (სულ&nbsp;{total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/of_user.php#L45
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "სიები, რომელთა ავტორიც არის {username} და რომელთა სახელი შეიცავს ტექსტს: {search} (სულ&nbsp;{total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/remove_sentence_from_list.php#L31
 msgid "Sentence successfully removed."
@@ -3883,15 +3882,15 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L47
 msgid "About this list"
-msgstr ""
+msgstr "ამ სიის შესახებ"
 
 #. number of sentences contained in the list
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L56
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "შეიცავს {n}&nbsp;წინადადებას"
+msgstr[1] "შეიცავს {n}&nbsp;წინადადებას"
 
 #. header text in the side bar of a list page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L77
@@ -3911,7 +3910,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L153
 msgid "Sort by:"
-msgstr ""
+msgstr "დახარისხება:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L155
 msgid "date added to list"
@@ -3919,17 +3918,17 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show.php#L157
 msgid "date created"
-msgstr ""
+msgstr "შექმნის თარიღი"
 
 #. sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L128
 msgid "Most recently added"
-msgstr ""
+msgstr "ბოლო დამატებულები"
 
 #. sort option in a list page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L130
 msgid "Least recently added"
-msgstr ""
+msgstr "ადრე დამატებულები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/SentencesLists/show_angular.php#L185
 msgid "This list is empty."
@@ -3961,41 +3960,41 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/native_speakers.php#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L137
 msgid "Native speakers"
-msgstr ""
+msgstr "წევრები მშობლიური ენის მიხედვით"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/native_speakers.php#L32
 msgid "Admins"
-msgstr ""
+msgstr "ადმინისტრატორები"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/native_speakers.php#L34
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "კორპუსის მმართველები"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/native_speakers.php#L36
 msgid "Advanced contributors"
-msgstr ""
+msgstr "გამოცდილი წევრები"
 
 #. refer to user status, used on the Native speakers page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/native_speakers.php#L38
 msgid "Contributors"
-msgstr ""
+msgstr "წევრები"
 
 #. header text in the side bar of the Native speakers page (noun)
 #. / header text in the side bar of the Languages of members page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/native_speakers.php#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/users_languages.php#L35
 msgid "Legend"
-msgstr ""
+msgstr "პირობითი ნიშნები"
 
 #. table header text in Native speakers page
 #. / table header text in Languages of members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/native_speakers.php#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/users_languages.php#L78
 msgid "Total"
-msgstr ""
+msgstr "სულ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/sentences_by_language.php#L29
 msgid "Number of sentences per language"
@@ -4005,15 +4004,15 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L119
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ერთი წინადადება"
+msgstr[1] "{n}&nbsp;წინადადება"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/users_languages.php#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Stats/users_languages.php#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L132
 msgid "Languages of members"
-msgstr ""
+msgstr "წევრები ენების მიხედვით"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/show_sentences_with_tag.php#L30
 msgid "Sentences with tag {tagName}"
@@ -4027,8 +4026,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/show_sentences_with_tag.php#L56
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{tagName} ({n} წინადადება)"
+msgstr[1] "{tagName} ({n} წინადადება)"
 
 #. sort option in a "Sentences with tag" page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/show_sentences_with_tag.php#L70
@@ -4056,11 +4055,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L38
 msgid "Search tags"
-msgstr ""
+msgstr "ჭდეების ძებნა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L74
 msgid "All tags (total {{count}})"
-msgstr ""
+msgstr "ყველა ჭდე (სულ {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L78
 msgid "Tags containing: {search} (total {{count}})"
@@ -4069,12 +4068,12 @@ msgstr ""
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L95
 msgid "Tag name (alphabetical)"
-msgstr ""
+msgstr "ჭდის სახელით (ანბანის მიხედვით)"
 
 #. sort option in the All tags page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tags/view_all.php#L97
 msgid "Tag name (reverse alphabetical)"
-msgstr ""
+msgstr "ჭდის სახელით (ანბანის შებრუნებით)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tools/conversion_simplified_traditional_chinese.php#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Tools/conversion_simplified_traditional_chinese.php#L58
@@ -4161,11 +4160,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L21
 msgid "Transcriptions of {username}"
-msgstr ""
+msgstr "ტრანსკრიფციები, რომელთა ავტორია {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/of.php#L52
 msgid "{username} does not have any transcriptions"
-msgstr ""
+msgstr "ამ წევრს არცერთი ტრანსკრიფცია არ აქვს: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Transcriptions/view.php#L22
 msgid "Please fix the following error or press the Cancel button."
@@ -4200,19 +4199,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L280
 msgctxt "user"
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #. label for user's country in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/edit_profile.php#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L281
 msgid "Country"
-msgstr ""
+msgstr "ქვეყანა"
 
 #. label for user's birthday in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/edit_profile.php#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L282
 msgid "Birthday"
-msgstr ""
+msgstr "დაბადების თარიღი"
 
 #. this special string lets you to tweak how months are
 #. displayed when used inside a drop down (on the profile edition page).
@@ -4233,7 +4232,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/edit_profile.php#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L283
 msgid "Homepage"
-msgstr ""
+msgstr "ვებგვერდი"
 
 #. label for user's description in profile page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/edit_profile.php#L173
@@ -4267,31 +4266,31 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L86
 msgid "Contact {user}"
-msgstr ""
+msgstr "{user}-თან დაკავშირება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L94
 msgid "Comments posted"
-msgstr ""
+msgstr "კომენტარები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L96
 msgid "Sentences owned"
-msgstr ""
+msgstr "საკუთარი წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L98
 msgid "Audio recordings"
-msgstr ""
+msgstr "აუდიოჩანაწერები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L100
 msgid "Sentences favorited"
-msgstr ""
+msgstr "რჩეული წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L102
 msgid "Contributions"
-msgstr ""
+msgstr "შეტანილი წვლილი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L109
 msgid "Show latest activity"
-msgstr ""
+msgstr "ბოლო აქტივობის ჩვენება"
 
 #. header text for settings on profile page
 #. / title of Settings page
@@ -4299,7 +4298,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/settings.php#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L88
 msgid "Settings"
-msgstr ""
+msgstr "პარამეტრები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L131
 msgid "Email notifications are ENABLED."
@@ -4307,13 +4306,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L133
 msgid "Email notifications are DISABLED."
-msgstr ""
+msgstr "ელ-ფოსტის შეტყობინებები გამორთულია."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L142
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr ""
+msgstr "ეს პროფილი საჯაროა. ნებისმიერ მომხმარებელს შეუძლია სრული ინფორმაციის ნახვა."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L147
 msgid ""
@@ -4324,7 +4323,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L244
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L145
 msgid "Member since"
-msgstr ""
+msgstr "დარეგისტრირდა:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/profile.php#L253
 msgid "Contributions blocked"
@@ -4451,7 +4450,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/settings.php#L374
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L161
 msgid "Email address"
-msgstr ""
+msgstr "ელ-ფოსტა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/User/settings.php#L393
 msgid "Change password"
@@ -4471,47 +4470,47 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L38
 msgid "Members"
-msgstr ""
+msgstr "წევრები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L43
 msgid "Search user"
-msgstr ""
+msgstr "წევრის ძებნა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L86
 msgid "Members (total {number})"
-msgstr ""
+msgstr "წევრები (სულ {number})"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L96
 msgid "Username (alphabetical)"
-msgstr ""
+msgstr "წევრის სახელით (ანბანის მიხედვით)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L98
 msgid "Username (reverse alphabetical)"
-msgstr ""
+msgstr "წევრის სახელით (ანბანის შებრუნებით)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L100
 msgctxt "members"
 msgid "Newest first"
-msgstr ""
+msgstr "ჯერ ახალი წევრები"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L102
 msgctxt "members"
 msgid "Oldest first"
-msgstr ""
+msgstr "ჯერ ძველი წევრები"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L104
 msgid "Status (admin to contributor)"
-msgstr ""
+msgstr "სტატუსით (ადმინისტრატორიდან წევრამდე)"
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/all.php#L106
 msgid "Status (contributor to admin)"
-msgstr ""
+msgstr "სტატუსით (წევრიდან ადმინისტრატორამდე)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/edit.php#L174
 msgid "Can switch license"
@@ -4523,13 +4522,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/for_language.php#L52
 msgid "Back to global stats"
-msgstr ""
+msgstr "საერთო სტატისტიკაზე დაბრუნება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/for_language.php#L96
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{lang} ({total} წევრი)"
+msgstr[1] "{lang} ({total} წევრი)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/for_language.php#L131
 msgid "Active within the past week"
@@ -4544,26 +4543,26 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L248
 msgid "Log in"
-msgstr ""
+msgstr "შესვლა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login.php#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L114
 msgid "Password"
-msgstr ""
+msgstr "პაროლი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login.php#L104
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L52
 msgid "Remember me"
-msgstr ""
+msgstr "დამიმახსოვრე"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login.php#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/login_dialog_template.php#L72
 msgid "Forgot your password?"
-msgstr ""
+msgstr "პაროლი დაგავიწყდათ?"
 
 #. link to the Register page in the login page (verb)
 #. / title of the Register page (verb)
@@ -4574,10 +4573,10 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L284
-#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/login.php#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L238
 msgid "Register"
-msgstr ""
+msgstr "რეგისტრაცია"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/new_password.php#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/new_password.php#L44
@@ -4586,7 +4585,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/new_password.php#L52
 msgid "Email"
-msgstr ""
+msgstr "ელ-ფოსტა"
 
 #. button to send a new password by email
 #. because the password was forgotten (verb)
@@ -4602,15 +4601,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L55
 msgid "I accept the <a href=\"{}\">terms of use</a>"
-msgstr ""
+msgstr "ვეთანხმები <a href=\"{}\">გამოყენების პირობებს</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L148
 msgid "unmask password"
-msgstr ""
+msgstr "პაროლის გამოჩენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L153
 msgid "Unmask password"
-msgstr ""
+msgstr "პაროლის გამოჩენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L189
 msgid "Invalid email address"
@@ -4638,12 +4637,12 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L233
 msgid "Native language:"
-msgstr ""
+msgstr "მშობლიური ენა:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L252
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
-msgstr ""
+msgstr "თუ სიაში ვერ იპოვით თქვენს მშობლიურ ენას, დატოვეთ 'არცერთი'."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Users/register.php#L276
 msgid "You did not accept the terms of use."
@@ -4739,28 +4738,28 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/index.php#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L122
 msgid "Wall"
-msgstr ""
+msgstr "საინფორმაციო დაფა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/index.php#L48
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "საინფორმაციო დაფა (1 თემა)"
+msgstr[1] "საინფორმაციო დაფა ({n}&nbsp;თემა)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/index.php#L61
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "შეკითხვის დასმამდე აუცილებლად წაიკითხეთ <a href=\"{}\">ხშირად დასმული კითხვები (FAQ)</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/index.php#L72
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
-msgstr ""
+msgstr "ჩვენი მიზანია ცივილიზებული დისკუსიებისთვის ჯანსაღი გარემოს შენარჩუნება. გთხოვთ, გაეცნოთ <a href=\"{}\">საზოგადოებრივი ქცევის წესებს</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/index.php#L86
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr ""
+msgstr "შეგიძლიათ წეროთ ნებისმიერ სასურველ ენაზე. Tatoeba-ზე ყველა ენა თანასწორია."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L29
 msgid "{user}'s Wall messages"
@@ -4768,7 +4767,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/messages_of_user.php#L54
 msgid "{user}'s messages on the Wall (total&nbsp;{n})"
-msgstr ""
+msgstr "შეტყობინებები საინფორმაციო დაფაზე, რომელთა ავტორიც არის {user} (სულ&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/show_message.php#L39
 msgid "Thread #{number}"
@@ -4777,11 +4776,11 @@ msgstr ""
 #. header text the side bar of the page of a Wall post
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/show_message.php#L47
 msgid "Menu"
-msgstr ""
+msgstr "მენიუ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/Wall/show_message.php#L51
 msgid "Back to Wall"
-msgstr ""
+msgstr "საინფორმაციო დაფაზე დაბრუნება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L36
 msgid "This form is pre-filled."
@@ -4948,7 +4947,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/advanced_search_form.php#L320
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L185
 msgid "Translations"
-msgstr ""
+msgstr "თარგმანები"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
@@ -5032,20 +5031,20 @@ msgstr ""
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr ""
+msgstr "ყურადღება: ეს ვებგვერდი სატესტო რეჟიმში მუშაობს. თქვენ მიერ შეყვანილი ნებისმიერი მონაცემი შეუქცევადად წაიშლება."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/audio_stats.php#L29
 msgid "Number of audio recordings by language"
-msgstr ""
+msgstr "აუდიოჩანაწერების რაოდენობა ენების მიხედვით"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/audio_stats.php#L48
 msgid "Browse audio for all languages"
-msgstr ""
+msgstr "ყველა ენის აუდიოჩანაწერების დათვალიერება"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/calendar.php#L45
 msgid "Month"
-msgstr ""
+msgstr "თვე"
 
 #. this special string lets you to tweak how months are
 #. displayed when used inside a calendar (on the activity timeline page).
@@ -5058,23 +5057,23 @@ msgstr ""
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/calendar.php#L76
 msgid "Year"
-msgstr ""
+msgstr "წელი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/currently_active_members.php#L30
 msgid "Currently contributing"
-msgstr ""
+msgstr "ბოლო ცვლილებების ავტორები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/currently_active_members.php#L35
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "წევრი, რომელმაც ბოლო წინადადება დაამატა."
+msgstr[1] "წევრები, რომლებმაც მონაწილეობა მიიღეს {n} უახლესი წინადადების დამატებაში."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/currently_active_members.php#L60
 msgid "{n}&nbsp;sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}&nbsp;წინადადება"
+msgstr[1] "{n}&nbsp;წინადადება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/custom_export.php#L18
 msgid "Custom exports"
@@ -5115,64 +5114,64 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L36
 msgid "Need some help?"
-msgstr ""
+msgstr "დახმარება გესაჭიროებათ?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L41
 msgid "Quick Start Guide"
-msgstr ""
+msgstr "მოკლე გზამკვლევი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L49
 msgid "Tatoeba Wiki"
-msgstr ""
+msgstr "Tatoeba-ს ვიკი"
 
 #. link text in the footer
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L58
 msgctxt "footer"
 msgid "FAQ"
-msgstr ""
+msgstr "ხშირი კითხვები"
 
 #. section name in the footer
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L80
 msgid "Developers"
-msgstr ""
+msgstr "დეველოპერებისთვის"
 
 #. link text to the Tatoeba GitHub page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L98
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #. link text to the Tatoeba API page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L108
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #. section name in the footer
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L124
 msgid "About"
-msgstr ""
+msgstr "საიტის შესახებ"
 
 #. link text to the Status page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L152
 msgid "Status"
-msgstr ""
+msgstr "სისტემის სტატუსი"
 
 #. link text to the Blog page in the footer (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L173
 msgid "Blog"
-msgstr ""
+msgstr "ბლოგი"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L208
 msgid "Our data is released under various Creative Commons licenses."
-msgstr ""
+msgstr "ჩვენი მონაცემები ვრცელდება სხვადასხვა Creative Commons ლიცენზიით."
 
 #. link text (in the footer) to the section 6 of the Terms of use page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L212
 msgid "More information"
-msgstr ""
+msgstr "მეტი ინფორმაცია"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/foot.php#L226
 msgid "If you love this content, please consider a <a href={}>donation</a>."
-msgstr ""
+msgstr "თუ მოგწონთ ჩვენი მასალები, გთხოვთ, მხარი დაგვიჭიროთ <a href={}>შემოწირულობით</a>."
 
 #. top-left site name written in big.
 #. You shouldn't translate it unless speakers of your
@@ -5184,7 +5183,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/language_dropdown.php#L4
 msgid "Select a language"
-msgstr ""
+msgstr "აირჩიეთ ენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/language_dropdown_angular.php#L32
 msgid "No language found."
@@ -5226,7 +5225,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/private_messages/form.php#L49
 msgctxt "message"
 msgid "To"
-msgstr ""
+msgstr "სად"
 
 #. title field label in private message form
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/private_messages/form.php#L63
@@ -5241,32 +5240,32 @@ msgstr ""
 #. random sentence block header on the home page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/random_sentence_header.php#L39
 msgid "Random sentence"
-msgstr ""
+msgstr "შემთხვევითი წინადადება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/random_sentence_header.php#L59
 msgid "show another "
-msgstr ""
+msgstr "სხვა წინადადების ჩვენება"
 
 #. placeholder for the search input in the search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L59
 msgctxt "placeholder"
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L93
 msgid "Advanced search"
-msgstr ""
+msgstr "გაფართოებული ძებნა"
 
 #. keywords field label in top search bar (not displayed)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L105
 msgctxt "label"
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #. search language field label in top search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L124
 msgid "From"
-msgstr ""
+msgstr "საიდან"
 
 #. placeholder used in translation language selection dropdown in top search
 #. bar
@@ -5274,13 +5273,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L159
 msgctxt "searchbar"
 msgid "Any language"
-msgstr ""
+msgstr "ნებისმიერი ენა"
 
 #. translation language field label in top search bar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_bar.php#L148
 msgctxt "language"
 msgid "To"
-msgstr ""
+msgstr "სად"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/search_with_no_result.php#L30
 msgid "No results found."
@@ -5317,12 +5316,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_comments/edit_form.php#L11
 msgctxt "sentence comment"
 msgid "{createdDate}, edited {modifiedDate}"
-msgstr ""
+msgstr "{createdDate}, განახლდა {modifiedDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_comments/comment.php#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L111
 msgid "Sentence {number} — belongs to {username}"
-msgstr ""
+msgstr " წინადადება {number} — ეკუთვნის მომხმარებელს {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_comments/comment.php#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L122
@@ -5333,7 +5332,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_comments/comment.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/wall/message.php#L44
 msgid "Permalink"
-msgstr ""
+msgstr "მუდმივი ბმული"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentence_comments/comment.php#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/wall/message.php#L114
@@ -5358,7 +5357,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/add_sentences_jquery.php#L90
 msgctxt "Add sentences page"
 msgid "Sentences added"
-msgstr ""
+msgstr "დამატებული წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/add_sentences_angular.php#L18
 msgid "No sentences added yet."
@@ -5413,18 +5412,18 @@ msgstr ""
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/index/all.php#L5
 msgid "0 sentences"
-msgstr ""
+msgstr "0 წინადადება"
 
 #. section header in Browse by language page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/index/all.php#L8
 msgid "1 or more sentences"
-msgstr ""
+msgstr "1 ან მეტი წინადადება"
 
 #. placeholder text in search field of
 #. Browse by languages page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/index/search.php#L13
 msgid "Search a language"
-msgstr ""
+msgstr "ენის ძებნა"
 
 #. header text on sentence page
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/license.php#L31
@@ -5493,7 +5492,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/navigation.php#L54
 msgctxt "navigation"
 msgid "Any language"
-msgstr ""
+msgstr "ნებისმიერი ენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/navigation.php#L78
 msgid "Show sentence #: "
@@ -5505,7 +5504,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_and_translations.php#L197
 msgid "Translations of translations"
-msgstr ""
+msgstr "თარგმანების თარგმანები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_form.php#L20
 msgid "Other language"
@@ -5521,7 +5520,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_icons.php#L31
 msgid "Go to sentence page"
-msgstr ""
+msgstr "წინადადების გვერდზე გადასვლა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/sentence_menu.php#L21
 msgid "Add sentence to list"
@@ -5537,11 +5536,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/transcription_button.php#L5
 msgid "Show unreviewed transcriptions"
-msgstr ""
+msgstr "გადაუმოწმებული ტრანსკრიფციების ჩვენება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/transcription_button.php#L10
 msgid "Hide unreviewed transcriptions"
-msgstr ""
+msgstr "გადაუმოწმებული ტრანსკრიფციების დამალვა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sentences/translation.php#L12
 msgid "Unlink this translation"
@@ -5585,31 +5584,31 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/short_description.php#L34
 msgid "Tatoeba is a collection of sentences and translations."
-msgstr ""
+msgstr "Tatoeba წინადადებებისა და მათი თარგმანების ერთობლიობაა."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/short_description.php#L38
 msgid "It's collaborative, open, free and even addictive."
-msgstr ""
+msgstr "იგი ერთობლივი, ღია, უფასო და მეტად ჩამთრევიც კია."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/short_description.php#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/short_description.php#L74
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/short_description.php#L65
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
-msgstr ""
+msgstr "მინიშნება: \"<em>=word</em>\" მოძებნის ზუსტად \"<em>word</em>\"-ს და არა მისგან ნაწარმოებ სიტყვათფორმებს"
 
 #. links to a page with tips to perform
 #. searches, like search operators
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/short_description.php#L83
 msgid "More tips"
-msgstr ""
+msgstr "სხვა რჩევები"
 
 #. button to open top-right sort menu on various pages (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/sort_menu.php#L4
 msgid "Sort by"
-msgstr ""
+msgstr "დახარისხება"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L69
 msgid "My profile"
@@ -5625,7 +5624,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L109
 msgid "My sentences"
-msgstr ""
+msgstr "ჩემი წინადადებები"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/space.php#L119
 msgid "My vocabulary"
@@ -5658,48 +5657,48 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/stats/homepage_stats.php#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} ხელმისაწვდომი ენა"
+msgstr[1] "{number} ხელმისაწვდომი ენა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/stats/homepage_stats.php#L34
 msgid "Stats per languages"
-msgstr ""
+msgstr "სტატისტიკა ენების მიხედვით"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/stats/homepage_stats.php#L42
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} შეტანილი წვლილი დღეს"
+msgstr[1] "{number} შეტანილი წვლილი დღეს"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L50
 msgid "Browse"
-msgstr ""
+msgstr "დათვალიერება"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L53
 msgid "Show random sentence"
-msgstr ""
+msgstr "შემთხვევითი წინადადების ჩვენება"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L59
 msgid "Browse by language"
-msgstr ""
+msgstr "დათვალიერება ენების მიხედვით"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L64
 msgid "Browse by list"
-msgstr ""
+msgstr "დათვალიერება სიების მიხედვით"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L69
 msgid "Browse by tag"
-msgstr ""
+msgstr "დათვალიერება ჭდეების მიხედვით"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L74
 msgid "Browse audio"
-msgstr ""
+msgstr "აუდიოჩანაწერების დათვალიერება"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L81
@@ -5724,47 +5723,47 @@ msgstr ""
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L119
 msgid "Community"
-msgstr ""
+msgstr "საზოგადოება"
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/top_menu.php#L127
 msgid "List of all members"
-msgstr ""
+msgstr "წევრების სია"
 
 #. link to the user's profile in the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L33
 msgid "Profile"
-msgstr ""
+msgstr "პროფილი"
 
 #. link to the user's vocabulary on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L51
 msgid "Vocabulary"
-msgstr ""
+msgstr "ლექსიკონი"
 
 #. link to the user's reviews on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L60
 msgid "Reviews"
-msgstr ""
+msgstr "მიმოხილვები"
 
 #. link to the user's favorite sentences on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L79
 msgid "Favorites"
-msgstr ""
+msgstr "რჩეულები"
 
 #. link to the user's wall posts on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L106
 msgid "Wall messages"
-msgstr ""
+msgstr "შეტყობინებები საინფორმაციო დაფაზე"
 
 #. link to the list of audio on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L127
 msgid "Audio"
-msgstr ""
+msgstr "ხმოვანი ჩანაწერები"
 
 #. link text on profile page sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/users_menu.php#L149
 msgid "Translate {user}'s sentences"
-msgstr ""
+msgstr "{user}-ის წინადადებების თარგმნა"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/vocabulary/menu.php#L28
 msgid "Vocabulary requests"
@@ -5799,7 +5798,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/wall/message.php#L22
 msgctxt "wall message"
 msgid "{createdDate}, edited {modifiedDate}"
-msgstr ""
+msgstr "{createdDate}, განახლდა {modifiedDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/templates/element/wall/message.php#L137
 msgid "hide replies"
