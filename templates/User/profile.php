@@ -164,7 +164,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                             email
                         </md-icon>
                         <div class="contact-text">
-                            <?= format(__('Message user')) ?>
+                            <?= __('Message user') ?>
                         </div>
                     </a>
                 </div>
@@ -216,11 +216,13 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                         <div class="settings-item">
                              <div class="settings-item-text">
                                 <?php
-                                if ($notificationsEnabled) {
-                                    echo format(__('Email notifications: {}.'), '<strong class="setting-highlight">' . __('enabled') . '</strong>');
-                                } else {
-                                    echo format(__('Email notifications: {}.'), '<strong class="setting-highlight">' . __('disabled') . '</strong>');
-                                }
+                                $status = $this->Html->tag(
+                                    'strong',
+                                    $notificationsEnabled ? __('enabled') : __('disabled'),
+                                    ['class' => 'setting-highlight']
+                                );
+                                
+                                echo format(__('Email notifications: {}.'), $status);
                                 ?>
                             </div>
                         </div>
@@ -229,11 +231,13 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                         <div class="settings-item">
                             <div class="settings-item-text">
                                 <?php
-                                if ($isPublic) {
-                                    echo format(__('Visibility: {}.'), '<strong class="setting-highlight">' . __('public') . '</strong>');
-                                } else {
-                                    echo format(__('Visibility: {}.'), '<strong class="setting-highlight">' . __('other members only') . '</strong>');
-                                }
+                                $status = $this->Html->tag(
+                                    'strong',
+                                    $isPublic ? __('public') : __('other members only'),
+                                    ['class' => 'setting-highlight']
+                                );
+                                
+                                echo format(__('Visibility: {}.'), $status);
                                 ?>
                             </div>
                         </div>
@@ -261,7 +265,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     ?>
                         <div class="settings-action" flex="none">
                             <a href="<?= $editSettingsUrl ?>" class="change-choices-link">
-                                <?= __('change choices') ?>
+                                <?= __('edit settings') ?>
                             </a>
                         </div>
                     <?php endif; ?>
@@ -306,16 +310,21 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         ?>
 
         <?php
-        // this code changes description alignement (centered if it's empty, left if it contains informations)
+        $tagOptions = array(
+            'class' => 'profileDescription',
+            'escape' => false
+        );
+
+        // If the description is populated, format line breaks and convert URLs to clickable links. 
+        // Otherwise, display a fallback message and append the 'empty' CSS class (used to center-align the empty state).
         if (!empty($userDescription)) {
             $descriptionContent = $this->ClickableLinks->clickableURL($userDescription);
             $descriptionContent = nl2br($descriptionContent);
-            $isEmptyDescription = false;
         } else {
             $descriptionContent = '<div class="tip">';
             $descriptionContent.= __('No description.');
             $descriptionContent.= '</div>';
-            $isEmptyDescription = true;
+            $tagOptions['class'] .= ' empty';
         }
         ?>
 
@@ -324,15 +333,6 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             ?>
             <md-divider></md-divider>
             <?php
-            $tagOptions = array(
-                'class' => 'profileDescription',
-                'escape' => false
-            );
-
-            if ($isEmptyDescription) {
-                $tagOptions['class'] .= ' empty';
-            }
-
             echo $this->Languages->tagWithLang(
                 'div', '', $descriptionContent,
                 $tagOptions
