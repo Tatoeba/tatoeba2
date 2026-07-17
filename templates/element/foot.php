@@ -72,6 +72,14 @@
                 );
                 ?>
             </li>
+            <li>
+                <?php
+                echo $this->Html->link(
+                    __('Rules and Guidelines'),
+                    $this->Pages->getWikiLink('guidelines')
+                );
+                ?>
+            </li>
         </ul>
     </div>
     
