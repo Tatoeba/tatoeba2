@@ -443,18 +443,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </div>
         </md-toolbar>
 
-        <div layout-padding style="font-size: 0.95em; line-height: 1.5;">
-            <p style="color: #c62828; font-weight: bold; margin-bottom: 16px;">
-                <?php
-                echo __('Before asking to delete your account, make sure to remove all personal information from your profile. Please note that your contributions on the site will still be visible.');
-                ?>
-            </p>
+        <div layout-padding>
+            <?php
+            echo $this->Html->div('experimental-info',
+                __('Before asking to delete your account, make sure to remove all personal information from your profile. Please note that your contributions on the site will still be visible.')
+            );
+            ?>
 
-            <p style="margin-bottom: 16px;">
+            <p>
                 <?php
                 $adminsUrl = $this->Url->build('/private_messages/write/TatoebaAdmins');
                 echo format(
-                    __('To delete your account, send a private message to <a href="{url}" target="_blank">TatoebaAdmins</a> with the title "Account deletion".'),
+                    __('To delete your account, send a private message to <a href="{url}">TatoebaAdmins</a> with the title "Account deletion".'),
                     array('url' => $adminsUrl)
                 );
                 ?>
@@ -464,7 +464,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <?php
                 $wikiUrl = $this->Pages->getWikiLink('delete-account');
                 echo format(
-                    __('You can learn more about the account deletion process and the consequences of this action on <a href="{url}" target="_blank">the dedicated page on our wiki</a>.'),
+                    __('You can learn more about the account deletion process and the consequences of this action on <a href="{url}">the dedicated page on our wiki</a>.'),
                     array('url' => $wikiUrl)
                 );
                 ?>
