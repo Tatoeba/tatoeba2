@@ -56,7 +56,7 @@ $languagesSettings = $user['settings']['lang'];
 $level = $user['level'];
 $countryName = $this->Countries->getCountryNameByCode($user['country_id']);
 
-$userImage = 'unknown-avatar.png';
+$userImage = 'unknown-avatar.svg';
 if (!empty($user['image'])) {
     $userImage = h($user['image']);
 }
@@ -64,7 +64,7 @@ if (!empty($user['image'])) {
 $title = empty($realName) ? $username : "$username ($realName)";
 $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 ?>
-
+<div class="profile-columns">
 <div id="annexe_content" ng-cloak>
     <?php
         echo $this->element(
@@ -72,20 +72,6 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         array('username' => $username)
     );
     ?>
-
-    <md-list class="annexe-menu md-whiteframe-1dp">
-        <?php
-            $url = $this->Url->build([
-                'controller' => 'private_messages',
-                'action' => 'write',
-                $username,
-            ]);
-        ?>
-        <md-list-item href="<?= $url ?>">
-            <md-icon>email</md-icon>
-            <p><?= format(__('Contact {user}'), ['user' => $username]) ?></p>
-        </md-list-item>
-    </md-list>
 
     <div class="section md-whiteframe-1dp">
         <?php /* @translators: header text in side bar of profile pages (noun) */ ?>
@@ -117,133 +103,33 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         </div>
     </div>
 
-    <?php
-    if ($isDisplayed) {
-        ?>
-        <div class="section md-whiteframe-1dp">
-            <?php /* @translators: header text for settings on profile page */ ?>
-            <h2><?php echo __('Settings'); ?></h2>
-
-            <ul class="annexeMenu">
-                <li class="item">
-                    <?php
-                    if ($notificationsEnabled) {
-                        echo __('Email notifications are ENABLED.');
-                    } else {
-                        echo __('Email notifications are DISABLED.');
-                    }
-                    ?>
-                </li>
-
-                <li class="item">
-                    <?php
-                    if ($isPublic) {
-                        echo __(
-                            'Access to this profile is PUBLIC. '.
-                            'All the information can be seen by everyone.'
-                        );
-                    } else {
-                        echo __(
-                            'Access to this profile is RESTRICTED. '.
-                            'Only Tatoeba members can see the personal information '.
-                            'and the description.'
-                        );
-                    }
-                    ?>
-                </li>
-
-                <?php
-                if (!empty($languagesSettings)) {
-                    ?>
-                    <li class="item">
-                    <?php echo str_replace(',', ', ', $languagesSettings); ?>
-                    </li>
-                    <?php
-                }
-                ?>
-            </ul>
-
-            <?php
-            if ($username == $currentMember) {
-                $editSettingsUrl = $this->Url->build(array(
-                    'controller' => 'user',
-                    'action' => 'settings'
-                ));
-                ?>
-                <div ng-cloak layout="row" layout-align="end center">
-                    <md-button class="md-primary md-raised"
-                               aria-label="<?= __('Edit') ?>"
-                               href="<?= $editSettingsUrl ?>">
-                        <?php /* @translators: edit button for settings on profile page (verb) */ ?>
-                        <?= __('Edit') ?>
-                    </md-button>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
-    <?php
-    }
-    ?>
 </div>
 
 <div id="main_content">
     <div ng-cloak id="profile" class="section with-title-button md-whiteframe-1dp" layout="column">
 
-        <div layout="row" class="header">
-            <div>
+        <div layout="row" class="header" layout-align="start start">
+
+            <!-- Profile picture -->
+            <div flex="none" class="profile-picture">
                 <?php
                 echo $this->Html->image(
                     IMG_PATH . 'profiles_128/'.$userImage,
                     array(
                         'width' => 128,
                         'height' => 128,
-                        'alt' => $username
+                        'alt' => $username,
                     )
                 );
                 ?>
             </div>
 
-            <div layout="column" class="info" flex>
-                <div layout="row" layout-align="space-between center">
-                    <h2 flex><?= $username ?></h2>
-                    <?php
-                    $editUrl = null;
-                    if ($username == $currentMember) {
-                        $editUrl = $this->Url->build(
-                            array(
-                                'controller' => 'user',
-                                'action' => 'edit_profile'
-                            )
-                        );
-                    } else if (CurrentUser::isAdmin()) {
-                        $editUrl = $this->Url->build(
-                            array(
-                                'controller' => 'users',
-                                'action' => 'edit',
-                                $userId
-                            )
-                        );
-                    }
-                    if (!empty($editUrl)){
-                        ?>
-                        <md-button class="md-primary md-raised"
-                                   aria-label="<?= __('Edit') ?>"
-                                   href="<?= $editUrl ?>">
-                            <?php /* @translators: profile edition button on profile page (verb) */ ?>
-                            <?= __('Edit') ?>
-                        </md-button>
-                        <?php
-                    }
-                    ?>
-                </div>
+            <!-- Personal info -->
+            <div class="info" flex>
 
-
-                <div layout="column" flex layout-margin>
-                    <div layout="row">
-                        <div class="label"><?= __('Member since') ?></div>
-                        <div flex><?= $userSince ?></div>
-                    </div>
+                <!-- nickname + status -->
+                <div class="info-group">
+                    <h2><?= $username ?></h2>
 
                     <?php
                     $cssClasses = array('status', $statusClass);
@@ -260,9 +146,134 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     ?>
                 </div>
 
+                <!-- member since + contact -->
+                <div class="info-group">
+                    <div class="member-since">
+                        <strong><?= __('Member since') ?></strong> <?= $userSince ?>
+                    </div>
+
+                    <?php
+                        $url = $this->Url->build([
+                            'controller' => 'private_messages',
+                            'action' => 'write',
+                            $username,
+                        ]);
+                    ?>
+                    <a href="<?= $url ?>" class="contact-link">
+                        <md-icon>
+                            email
+                        </md-icon>
+                        <div class="contact-text">
+                            <?= __('Message user') ?>
+                        </div>
+                    </a>
+                </div>
 
             </div>
+
+            <!-- Actions -->
+            <div layout="row" layout-align="end start" class="actions" flex="none">
+                <?php
+                $editUrl = null;
+                if ($username == $currentMember) {
+                    $editUrl = $this->Url->build(array(
+                        'controller' => 'user',
+                        'action' => 'edit_profile'
+                    ));
+                } else if (CurrentUser::isAdmin()) {
+                    $editUrl = $this->Url->build(array(
+                        'controller' => 'users',
+                        'action' => 'edit',
+                        $userId
+                    ));
+                }
+
+                if (!empty($editUrl)):
+                ?>
+                    <md-button class="md-raised md-primary"
+                            aria-label="<?= __('Edit') ?>"
+                            href="<?= $editUrl ?>">
+                        <md-icon class="button-icon">edit</md-icon>
+                        <span class="button-text"><?= __('Edit') ?></span>
+                    </md-button>
+                <?php endif; ?>
+            </div>
         </div>
+
+        <?php
+        if ($isDisplayed) {
+                ?>
+                <!-- Divider (Preferences) -->
+                <md-divider></md-divider>
+
+                <!-- Preferences Container -->
+                <div class="settings-summary-container" layout="row" layout-align="space-between center">
+                    
+                    <!-- Preferences (Left Block) -->
+                    <div class="settings-summary" flex>
+                        
+                        <!-- Email notifications -->
+                        <div class="settings-item">
+                             <div class="settings-item-text">
+                                <?php
+                                $status = $this->Html->tag(
+                                    'strong',
+                                    $notificationsEnabled ? __('enabled') : __('disabled'),
+                                    ['class' => 'setting-highlight']
+                                );
+                                
+                                echo format(__('Email notifications: {}.'), $status);
+                                ?>
+                            </div>
+                        </div>
+
+                        <!-- Profile visibility -->
+                        <div class="settings-item">
+                            <div class="settings-item-text">
+                                <?php
+                                $status = $this->Html->tag(
+                                    'strong',
+                                    $isPublic ? __('public') : __('other members only'),
+                                    ['class' => 'setting-highlight']
+                                );
+                                
+                                echo format(__('Visibility: {}.'), $status);
+                                ?>
+                            </div>
+                        </div>
+
+                        <!-- Language settings (Optional) -->
+                        <?php if (!empty($languagesSettings)): ?>
+                            <div class="settings-item">
+                                <md-icon class="material-icons-outlined">
+                                    translate
+                                </md-icon>
+                                <div class="settings-item-text languages-text">
+                                    <?= str_replace(',', ', ', $languagesSettings); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Settings Button (Right Block) -->
+                    <?php
+                    if ($username == $currentMember):
+                        $editSettingsUrl = $this->Url->build(array(
+                            'controller' => 'user',
+                            'action' => 'settings'
+                        ));
+                    ?>
+                        <div class="settings-action" flex="none">
+                            <a href="<?= $editSettingsUrl ?>" class="change-choices-link">
+                                <?= __('edit settings') ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+            <?php
+        }
+        ?>
 
         <?php
         if ($isDisplayed) {
@@ -283,11 +294,12 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                 __('Homepage') => $homepage
             );
             ?>
+            <!-- Divider (personal info) -->
             <md-divider></md-divider>
 
-            <div class="personal-info" layout-margin>
+            <div class="personal-info">
                 <?php foreach ($personalInfo as $label => $value) { ?>
-                    <div layout="row">
+                    <div layout="row" class="personal-info-row">
                         <div flex="33" class="label"><?= $label ?></div>
                         <div flex><span ng-non-bindable><?= $value ? $value : '-' ?></span></div>
                     </div>
@@ -298,6 +310,13 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         ?>
 
         <?php
+        $tagOptions = array(
+            'class' => 'profileDescription',
+            'escape' => false
+        );
+
+        // If the description is populated, format line breaks and convert URLs to clickable links. 
+        // Otherwise, display a fallback message and append the 'empty' CSS class (used to center-align the empty state).
         if (!empty($userDescription)) {
             $descriptionContent = $this->ClickableLinks->clickableURL($userDescription);
             $descriptionContent = nl2br($descriptionContent);
@@ -305,6 +324,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             $descriptionContent = '<div class="tip">';
             $descriptionContent.= __('No description.');
             $descriptionContent.= '</div>';
+            $tagOptions['class'] .= ' empty';
         }
         ?>
 
@@ -315,14 +335,12 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             <?php
             echo $this->Languages->tagWithLang(
                 'div', '', $descriptionContent,
-                array(
-                    'class' => 'profileDescription',
-                    'escape' => false
-                )
+                $tagOptions
             );
         }
         ?>
     </div>
+
 
 <?php
 $userLanguages = h(json_encode($userLanguages));
@@ -507,4 +525,5 @@ $userLanguages = h(json_encode($userLanguages));
             </div>
         <?php } ?>
     </div>
+</div>
 </div>
