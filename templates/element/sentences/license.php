@@ -31,6 +31,11 @@ use App\Model\CurrentUser;
     <h2><?php echo __('Sentence text') ?></h2>
 
 <?php
+/* Language name of the sentence text */
+echo '<div style="margin-bottom: 12px;">' . format(
+    __('Language') . ': {}',
+    $languageName
+) . '</div>';
 echo format(
     /* @translators: placeholder is the name of the license
        of the sentence text, could be CC BY 2.0 FR or CC0 */

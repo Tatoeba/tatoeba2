@@ -223,6 +223,7 @@ echo $this->element('/sentences/navigation', [
                 'sentenceId' => $sentenceId,
                 'license' => $sentence->license,
                 'canEdit' => CurrentUser::canEditLicenseOfSentence($sentence),
+                'languageName' => $languageName,
             )
         );
 
