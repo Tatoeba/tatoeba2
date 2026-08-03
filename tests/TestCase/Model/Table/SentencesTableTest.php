@@ -242,6 +242,16 @@ class SentencesTableTest extends TestCase {
         $this->assertTrue((bool)$result);
     }
 
+    function testSave_sentenceContainingOnlySpace() {
+        $sentence = $this->Sentence->newEntity([
+            'text' => ' ',
+        ]);
+
+        $result = $this->Sentence->save($sentence);
+
+        $this->assertFalse((bool)$result);
+    }
+
     function testSave_checksValidLicense() {
         $data = $this->Sentence->newEntity([
             'text' => 'Trying to save a sentence with an invalid license.',

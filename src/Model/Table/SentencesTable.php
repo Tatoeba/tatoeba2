@@ -125,7 +125,7 @@ class SentencesTable extends Table
     public function validationDefault(Validator $validator): \Cake\Validation\Validator
     {
         $validator
-            ->notEmptyString('text');
+            ->notBlank('text');
 
         $sentenceLicenses = array_keys(Licenses::getSentenceLicenses());
         $validator
