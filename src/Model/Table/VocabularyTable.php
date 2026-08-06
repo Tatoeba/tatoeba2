@@ -124,10 +124,24 @@ class VocabularyTable extends Table
         }
 
         if ($vocable) {
-            try {
-                $this->UsersVocabulary->add($vocable->id, CurrentUser::get('id'));
-            } catch (\PDOException $e) {
+            $alreadyAdded = $this->UsersVocabulary->findFirst(
+                $vocable->id,
+                CurrentUser::get('id')
+            );
+            if ($alreadyAdded) {
                 $vocable->duplicate = true;
+            } else {
+                try {
+                    $added = $this->UsersVocabulary->add(
+                        $vocable->id,
+                        CurrentUser::get('id')
+                    );
+                    if (!$added) {
+                        $vocable->duplicate = true;
+                    }
+                } catch (\PDOException $e) {
+                    $vocable->duplicate = true;
+                }
             }
 
             if (Configure::read('Search.enabled')) {

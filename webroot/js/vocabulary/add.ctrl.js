@@ -47,6 +47,7 @@
 
         vm.data = {};
         vm.vocabularyAdded = [];
+        vm.error = false;
 
         vm.add = add;
         vm.remove = remove;
@@ -57,6 +58,7 @@
 
         function add() {
             vm.isAdding = true;
+            vm.error = false;
 
             var req = {
                 method: 'POST',
@@ -80,6 +82,10 @@
                     vm.data.text = '';
                     vm.isAdding = false;
                     $scope.focusInput = true;
+                },
+                function() {
+                    vm.isAdding = false;
+                    vm.error = true;
                 }
             );
         }
