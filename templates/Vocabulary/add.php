@@ -106,6 +106,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </div>
         <?= $this->Form->end() ?>
 
+        <p ng-if="ctrl.error" role="alert">
+            <?= h(__('An error occurred while adding the vocabulary item.')) ?>
+        </p>
+
     </section>
 
     <section class="md-whiteframe-1dp">
