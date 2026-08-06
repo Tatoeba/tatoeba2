@@ -21,7 +21,7 @@ $(document).ready(function () {
     $('.audioAvailable').off();
     $('.audioAvailable').click(function () {
       $(this).removeClass('nextAudioToPlay');
-      var next = $(this).next();
+      var next = $(this).next(".audioButton");
       if (!next.length) {
           next = $(this).parent().children().first();
       }

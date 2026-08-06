@@ -758,6 +758,8 @@ html[dir="rtl"] .comment-sentence .text {
 }
 
 .sentence {
+    display: flex;
+    align-items: center;
     padding: 4px 0px;
     background: #fff;
 }
@@ -767,8 +769,8 @@ html[dir="rtl"] .comment-sentence .text {
 }
 
 .sentence .column {
-    display: inline-block;
-    vertical-align: text-top;
+    display: flex;
+    align-items: center;
     margin: 0 4px;
 }
 
@@ -796,10 +798,6 @@ html[dir="rtl"] .comment-sentence .text {
     width: 515px;
 }
 
-
-.sentence .audio.column {
-}
-
 .sentence .link.button {
     float: left;
     margin: 4px 7px 0 5px;
@@ -814,8 +812,6 @@ html[dir="rtl"] .comment-sentence .text {
     width: 16px;
     height: 16px;
     cursor: pointer;
-    margin-top: 5px;
-    margin-left: 5px;
 }
 
 .sentence .copy-btn.copied {
@@ -826,10 +822,6 @@ html[dir="rtl"] .comment-sentence .text {
     margin-top: 2px;
     border-top: 1px solid #FFF;
     border-left: 1px solid #FFF;
-}
-
-.sentence .audioButton {
-    margin-top: 3px;
 }
 
 .sentence .favorite-page.column{
@@ -1198,6 +1190,21 @@ input.sentenceId {
 
 .md-icon-button.audioUnavailable {
     opacity: 0.3;
+}
+
+.audioButtonWrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 2px;
+    margin-right: 1.5rem;
+}
+
+.audioButtonCount {
+    position: absolute;
+    font-size: 0.8rem;
+    left: calc(100% + 0.25rem);
 }
 
 /*
