@@ -426,4 +426,8 @@ return [
     ],
 
     'Roles' => array_combine(User::ALL_ROLES, User::ALL_ROLES),
+
+    'TranslationImports' => [
+        'allowedUserIds' => [],
+    ],
 ];
