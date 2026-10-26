@@ -31,6 +31,12 @@ class TranslationImportsTable extends Table
         $this->hasMany('TranslationImportItems');
     }
 
+    /**
+     * Check the contributor role and configured import allowlist.
+     *
+     * @param array $user User data.
+     * @return bool
+     */
     public static function canImport(array $user): bool
     {
         $allowedIds = array_map(
@@ -49,6 +55,9 @@ class TranslationImportsTable extends Table
             );
     }
 
+    /**
+     * Localized labels keyed by stored status and reason codes.
+     */
     public static function labels(): array
     {
         return [
@@ -81,6 +90,11 @@ class TranslationImportsTable extends Table
 
     /**
      * Snapshot source text and normalize translations without changing sentences.
+     *
+     * @param int $userId Import owner ID.
+     * @param array $rows Parsed translation records.
+     * @param array $options Source/target languages and optional context/filename.
+     * @return \Cake\Datasource\EntityInterface Saved preview.
      */
     public function createPreview(
         int $userId,
@@ -207,6 +221,11 @@ class TranslationImportsTable extends Table
         ]);
     }
 
+    /**
+     * Check a record, storing the target ID if already linked.
+     *
+     * @return string|null Skip reason code, or null if the record is ready.
+     */
     private function failureReason($import, $item, $source): ?string
     {
         if (!$source) {
@@ -254,6 +273,11 @@ class TranslationImportsTable extends Table
         return null;
     }
 
+    /**
+     * Lock the import within the caller's transaction.
+     *
+     * @return \Cake\Datasource\EntityInterface|null
+     */
     private function lockImport(int $id)
     {
         // Confirmation, discarding and workers must serialize on the same row.
@@ -290,6 +314,10 @@ class TranslationImportsTable extends Table
 
     /**
      * Delete an unconfirmed preview and its items without changing sentences.
+     *
+     * @param int $id Translation import ID.
+     * @param int $userId Import owner ID.
+     * @return bool Whether the preview was deleted.
      */
     public function discardPreview(int $id, int $userId): bool
     {
@@ -321,6 +349,11 @@ class TranslationImportsTable extends Table
 
     /**
      * Queue confirmation or resume atomically with the current job pointer.
+     *
+     * @param int $id Translation import ID.
+     * @param int $userId Import owner ID.
+     * @param bool $resume Resume remaining records instead of confirming a preview.
+     * @return void
      */
     public function queueImport(
         int $id,
@@ -368,6 +401,14 @@ class TranslationImportsTable extends Table
         );
     }
 
+    /**
+     * Process one ready record atomically, record save errors after rollback.
+     * Records marked skipped or error still allow the batch to continue.
+     *
+     * @param int $id Translation import ID.
+     * @param int $jobId Queue job ID currently executing.
+     * @return bool True to continue the batch; false to stop.
+     */
     private function processOne(int $id, int $jobId): bool
     {
         $failedItemId = null;
@@ -485,6 +526,11 @@ class TranslationImportsTable extends Table
 
     /**
      * Commit each record separately so retries never repeat committed records.
+     * Queue a continuation if ready records remain.
+     *
+     * @param int $id Translation import ID.
+     * @param int $jobId Queue job ID currently executing.
+     * @return void
      */
     public function runBatch(int $id, int $jobId): void
     {

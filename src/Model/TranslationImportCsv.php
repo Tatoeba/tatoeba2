@@ -10,7 +10,12 @@ class TranslationImportCsv
     public const MAX_TEXT_BYTES = 1500;
 
     /**
-     * Read logical CSV records; quoted newlines do not increase record numbers.
+     * Read CSV/TSV records, quoted newlines do not increase record numbers.
+     *
+     * @param string $contents UTF-8 file contents.
+     * @param mixed $format Delimiter name: comma, semicolon or tab.
+     * @return array Parsed records with their logical record numbers.
+     * @throws InvalidArgumentException If the format, contents or limits are invalid.
      */
     public static function parse(string $contents, $format): array
     {

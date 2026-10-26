@@ -165,6 +165,9 @@ class TranslationImportsTableTest extends TestCase
         );
     }
 
+    /**
+     * Queue a continuation after 50 records and stop the obsolete job.
+     */
     public function testAnotherBatchIsQueuedAndOldJobStops()
     {
         $import = $this->preview(51);
