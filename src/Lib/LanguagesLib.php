@@ -703,6 +703,7 @@ class LanguagesLib
                 'sva' => __d('languages', 'Svan'),
                 'njo' => __d('languages', 'Ao Naga'),
                 'ttq' => __d('languages', 'Tawallammat Tamajaq'),
+                'frs' => __d('languages', 'East Frisian Low Saxon'),
             );
         }
         return $languages;
