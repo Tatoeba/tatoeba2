@@ -435,4 +435,40 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         ?>
         </div>
     </section>
+
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Delete my account'); ?></h2>
+            </div>
+        </md-toolbar>
+
+        <div layout-padding>
+            <?php
+            echo $this->Html->div('experimental-info',
+                __('Before asking to delete your account, make sure to remove all personal information from your profile. Please note that your contributions on the site will still be visible.')
+            );
+            ?>
+
+            <p>
+                <?php
+                $adminsUrl = $this->Url->build('/private_messages/write/TatoebaAdmins');
+                echo format(
+                    __('To delete your account, send a private message to <a href="{url}">TatoebaAdmins</a> with the title "Account deletion".'),
+                    array('url' => $adminsUrl)
+                );
+                ?>
+            </p>
+
+            <p>
+                <?php
+                $wikiUrl = $this->Pages->getWikiLink('delete-account');
+                echo format(
+                    __('You can learn more about the account deletion process and the consequences of this action on <a href="{url}">the dedicated page on our wiki</a>.'),
+                    array('url' => $wikiUrl)
+                );
+                ?>
+            </p>
+        </div>
+    </section>
 </div>
