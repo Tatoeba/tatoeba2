@@ -799,6 +799,7 @@ class LanguagesLib
             "rhg",
             "mfa",
             "bal",
+            "kas",
         );
 
         $lang = self::locale_To_Iso639_3($lang);
