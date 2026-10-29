@@ -151,10 +151,11 @@ class SphinxBehavior extends Behavior
             } else {
                 throw new SearchQueryException('Error from search engine: ' . $error);
             }
-        } else if(isset($result['matches'])) {
-            if ($sphinx->GetLastWarning()) {
-                trigger_error("Search query warning: " . $sphinx->GetLastWarning());
-            }
+        }
+
+        $warning = $sphinx->GetLastWarning();
+        if ($warning) {
+            trigger_error("Search query warning: " . $warning);
         }
 
         $this->_cached_result = $result;
