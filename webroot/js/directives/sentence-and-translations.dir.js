@@ -577,7 +577,10 @@
             }).finally(function() {
                 sentence.transcriptions.splice(i, 1);
                 sentence.transcriptions.push(transcription);
-                initTranscriptions(sentence);
+                // Keep the editable model and its baseline in sync with the
+                // transcription returned by the server. Otherwise the next
+                // edit is compared with the pre-save transcription.
+                initSentence(sentence);
                 vm.inProgress = false;
             });
         }
