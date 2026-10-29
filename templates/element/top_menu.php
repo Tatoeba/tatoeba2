@@ -28,6 +28,7 @@
 use Cake\I18n\I18n;
 use App\Model\CurrentUser;
 use App\Lib\LanguagesLib;
+use App\Model\Table\TranslationImportsTable;
 
 // Detecting language for "adopt sentences" page
 // $browse_sentences_in_lang is normally set by AppController,
@@ -141,6 +142,15 @@ $menuElements = array(
         )
     )
 );
+
+if (TranslationImportsTable::canImport(
+    (array)CurrentUser::get('User')
+)) {
+    $menuElements[__('Contribute')]['sub-menu'][__('Import translations')] = [
+        'controller' => 'translation_imports',
+        'action' => 'index',
+    ];
+}
 
 if (!isset($htmlDir)) {
     $htmlDir = null;
