@@ -74,6 +74,18 @@ class VocabularyControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
     }
 
+    public function testSave_asMember_duplicate() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/en/vocabulary/save', [
+            'lang' => 'eng',
+            'text' => 'out of the blue',
+        ]);
+
+        $this->assertResponseOk();
+        $response = json_decode((string)$this->_response->getBody(), true);
+        $this->assertTrue($response['duplicate']);
+    }
+
     public function testEdit_asGuest() {
         $this->enableCsrfToken();
         $this->ajaxPost('/en/vocabulary/edit/1', [
