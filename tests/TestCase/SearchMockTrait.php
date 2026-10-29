@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 
 trait SearchMockTrait
 {
-    public function enableMockedSearch(array $sentencesIds, $total = null, $selectCursor = true)
+    private function forgeResults(array $sentencesIds, $total = null, $selectCursor = true)
     {
         // SphinxClient->Query() returns matches as an array
         // having document ids (sentence ids) as keys
@@ -22,7 +22,12 @@ trait SearchMockTrait
             $total = count($sentencesIds);
         }
         $total_found = $total;
-        $results = compact('matches', 'total', 'total_found');
+        return compact('matches', 'total', 'total_found');
+    }
+
+    public function enableMockedSearch(array $sentencesIds, $total = null, $selectCursor = true)
+    {
+        $results = $this->forgeResults($sentencesIds, $total, $selectCursor);
 
         $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
                        ->setMethods(['Query', 'UpdateAttributes', 'SetLimits'])
@@ -50,6 +55,25 @@ trait SearchMockTrait
         $client->expects($this->any())
                ->method('GetLastError')
                ->will($this->returnValue($errorMessage));
+        Configure::write('Sphinx.client', $client);
+
+        Configure::write('Search.enabled', true);
+    }
+
+    public function enableMockedQueryTimeExceededSearch(string $warningMessage = 'index und_index: query time exceeded max_query_time')
+    {
+        $results = $this->forgeResults([1, 2, 3]);
+
+        $client = $this->getMockBuilder(\App\Lib\SphinxClient::class)
+                       ->setMethods(['Query', 'GetLastWarning'])
+                       ->getMock();
+
+        $client->expects($this->any())
+               ->method('Query')
+               ->will($this->returnValue($results));
+        $client->expects($this->any())
+               ->method('GetLastWarning')
+               ->will($this->returnValue($warningMessage));
         Configure::write('Sphinx.client', $client);
 
         Configure::write('Search.enabled', true);

@@ -24,7 +24,7 @@ class SphinxBehavior extends Behavior
      * Used for runtime configuration of model
      */
     public $runtime = array();
-    public $_defaults = array('host' => 'localhost', 'port' => 9312);
+    public $_defaults = array('host' => 'localhost', 'port' => 9312, 'max_query_time' => 0);
 
     public $_cached_result = null;
     public $_cached_query = null;
@@ -125,6 +125,7 @@ class SphinxBehavior extends Behavior
             }
         }
         $sphinx->SetLimits(($page - 1) * $limit, $limit);
+        $sphinx->SetMaxQueryTime($this->settings[$alias]['max_query_time']);
 
         $indexes = !empty($options['sphinx']['index']) ? implode(',' , $options['sphinx']['index']) : '*';
 
@@ -155,7 +156,14 @@ class SphinxBehavior extends Behavior
 
         $warning = $sphinx->GetLastWarning();
         if ($warning) {
-            trigger_error("Search query warning: " . $warning);
+            if (strpos($warning, 'query time exceeded max_query_time') !== FALSE) {
+                // In case max_query_time is reached, Manticore returns the results
+                // it got so far, along with a warning. But we don't want to return
+                // such incomplete results, so we error instead.
+                throw new SearchQueryException('Error from search engine: ' . $warning);
+            } else {
+                trigger_error("Search query warning: " . $warning);
+            }
         }
 
         $this->_cached_result = $result;

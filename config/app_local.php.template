@@ -63,6 +63,7 @@ return [
         'logdir' => '{{manticore_log_dir}}',
         'pidfile' => '{{manticore_pid_file}}',
         'binlog_path' => '{{manticore_binlog_path}}',
+        'max_query_time' => 60000, # in milliseconds
     ],
 
     /**

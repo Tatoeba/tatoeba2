@@ -537,6 +537,16 @@ class SentencesControllerTest extends TestCase
         $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello");
     }
 
+    public function testSearch_maxQueryTimeExceeded()
+    {
+        $error = 'table eng_main_index,rus_main_index: query time exceeded max_query_time';
+        $this->enableMockedQueryTimeExceededSearch($error);
+        $this->expectException(\Cake\Http\Exception\InternalErrorException::class);
+        $this->expectExceptionMessage("Error from search engine: $error");
+
+        $this->get("http://api.example.com/unstable/sentences?lang=eng&sort=created&q=hello");
+    }
+
     public function limitsProvider() {
         return [
             'default results limit when no translations are returned' => [
