@@ -316,6 +316,28 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertProfilePictureUploaded($username);
     }
 
+    public function testSaveImageWithNoFile() {
+        $username = 'contributor';
+        $this->logInAs($username);
+        // A form submitted without selecting a file yields an upload with
+        // UPLOAD_ERR_NO_FILE whose stream cannot be read; the controller must
+        // report it gracefully rather than raising an internal error.
+        $image = new \Laminas\Diactoros\UploadedFile(
+            '',
+            0,
+            \UPLOAD_ERR_NO_FILE,
+            '',
+            '',
+        );
+        $files = compact('image');
+        $this->configRequest(compact('files'));
+
+        $this->post('/en/user/save_image', $files);
+
+        $this->assertFlashMessage('Failed to upload image');
+        $this->assertRedirect("/en/user/profile/$username");
+    }
+
     public function testRemoveImage() {
         $users = $this->fetchTable('Users');
         $contributor = $users->get(4);

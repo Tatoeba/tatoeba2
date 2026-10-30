@@ -134,11 +134,15 @@ class UserController extends AppController
             $image = $data['image'];
         }
 
-        // We first check if a file has been correctly uploaded
-        $tmpName = $image->getStream()->getMetadata('uri');
-        $redirect = (empty($data) || empty($image)) ||
-                    ($image->getError() != UPLOAD_ERR_OK) ||
-                    !is_uploaded_file($tmpName);
+        // We first check if a file has been correctly uploaded. The stream is
+        // only inspected once we know an actual file was uploaded, otherwise
+        // getStream() throws (or $image is null) when no file was selected.
+        $redirect = empty($data) || empty($image) ||
+                    ($image->getError() != UPLOAD_ERR_OK);
+        if (!$redirect) {
+            $tmpName = $image->getStream()->getMetadata('uri');
+            $redirect = !is_uploaded_file($tmpName);
+        }
         if ($redirect) {
             $this->Flash->set(
                 __('Failed to upload image')
